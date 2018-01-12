@@ -12,6 +12,8 @@
 		EC1DFB9420063C400080BC50 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC1DFB9220063C400080BC50 /* Main.storyboard */; };
 		EC1DFB9620063C400080BC50 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC1DFB9520063C400080BC50 /* Assets.xcassets */; };
 		EC1DFB9920063C400080BC50 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC1DFB9720063C400080BC50 /* LaunchScreen.storyboard */; };
+		ECB2C0D32008E55500AF1AF5 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2C0D22008E55500AF1AF5 /* Colors.swift */; };
+		ECB2C0D52008E56300AF1AF5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2C0D42008E56300AF1AF5 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		EC1DFB9520063C400080BC50 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EC1DFB9820063C400080BC50 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EC1DFB9A20063C400080BC50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ECB2C0D22008E55500AF1AF5 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		ECB2C0D42008E56300AF1AF5 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,12 +60,22 @@
 			children = (
 				EC1DFB8E20063C400080BC50 /* AppDelegate.swift */,
 				EC1DFB9020063C400080BC50 /* ViewController.swift */,
+				ECB2C0D12008E54000AF1AF5 /* Miscellaneous */,
 				EC1DFB9220063C400080BC50 /* Main.storyboard */,
 				EC1DFB9520063C400080BC50 /* Assets.xcassets */,
 				EC1DFB9720063C400080BC50 /* LaunchScreen.storyboard */,
 				EC1DFB9A20063C400080BC50 /* Info.plist */,
 			);
 			path = "golos-ios";
+			sourceTree = "<group>";
+		};
+		ECB2C0D12008E54000AF1AF5 /* Miscellaneous */ = {
+			isa = PBXGroup;
+			children = (
+				ECB2C0D22008E55500AF1AF5 /* Colors.swift */,
+				ECB2C0D42008E56300AF1AF5 /* Constants.swift */,
+			);
+			path = Miscellaneous;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,7 +151,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				EC1DFB9120063C400080BC50 /* ViewController.swift in Sources */,
+				ECB2C0D32008E55500AF1AF5 /* Colors.swift in Sources */,
 				EC1DFB8F20063C400080BC50 /* AppDelegate.swift in Sources */,
+				ECB2C0D52008E56300AF1AF5 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
