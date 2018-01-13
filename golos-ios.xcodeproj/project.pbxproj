@@ -8,24 +8,36 @@
 
 /* Begin PBXBuildFile section */
 		EC1DFB8F20063C400080BC50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1DFB8E20063C400080BC50 /* AppDelegate.swift */; };
-		EC1DFB9120063C400080BC50 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1DFB9020063C400080BC50 /* ViewController.swift */; };
-		EC1DFB9420063C400080BC50 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC1DFB9220063C400080BC50 /* Main.storyboard */; };
 		EC1DFB9620063C400080BC50 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC1DFB9520063C400080BC50 /* Assets.xcassets */; };
 		EC1DFB9920063C400080BC50 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC1DFB9720063C400080BC50 /* LaunchScreen.storyboard */; };
 		ECB2C0D32008E55500AF1AF5 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2C0D22008E55500AF1AF5 /* Colors.swift */; };
 		ECB2C0D52008E56300AF1AF5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2C0D42008E56300AF1AF5 /* Constants.swift */; };
+		ECC15FA0200976320099BBC9 /* Intro.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ECC15F9F200976320099BBC9 /* Intro.storyboard */; };
+		ECC15FA3200976770099BBC9 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC15FA1200976770099BBC9 /* IntroViewController.swift */; };
+		ECC15FA4200976770099BBC9 /* IntroViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECC15FA2200976770099BBC9 /* IntroViewController.xib */; };
+		ECC15FA62009794E0099BBC9 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC15FA52009794E0099BBC9 /* Fonts.swift */; };
+		ECF28087200A94550000D949 /* ViewController+Nib.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF28086200A94550000D949 /* ViewController+Nib.swift */; };
+		ECF2808C200A9A210000D949 /* UIButton+Intro.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF2808B200A9A210000D949 /* UIButton+Intro.swift */; };
+		ECF31725200A9D2800F7B703 /* UIAlertController+Window.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF31724200A9D2800F7B703 /* UIAlertController+Window.swift */; };
+		ECF31727200A9E0B00F7B703 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF31726200A9E0B00F7B703 /* Utils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		EC1DFB8B20063C400080BC50 /* golos-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "golos-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC1DFB8E20063C400080BC50 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		EC1DFB9020063C400080BC50 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		EC1DFB9320063C400080BC50 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EC1DFB9520063C400080BC50 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EC1DFB9820063C400080BC50 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EC1DFB9A20063C400080BC50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ECB2C0D22008E55500AF1AF5 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		ECB2C0D42008E56300AF1AF5 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		ECC15F9F200976320099BBC9 /* Intro.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Intro.storyboard; sourceTree = "<group>"; };
+		ECC15FA1200976770099BBC9 /* IntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
+		ECC15FA2200976770099BBC9 /* IntroViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IntroViewController.xib; sourceTree = "<group>"; };
+		ECC15FA52009794E0099BBC9 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
+		ECF28086200A94550000D949 /* ViewController+Nib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Nib.swift"; sourceTree = "<group>"; };
+		ECF2808B200A9A210000D949 /* UIButton+Intro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Intro.swift"; sourceTree = "<group>"; };
+		ECF31724200A9D2800F7B703 /* UIAlertController+Window.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Window.swift"; sourceTree = "<group>"; };
+		ECF31726200A9E0B00F7B703 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,9 +71,10 @@
 			isa = PBXGroup;
 			children = (
 				EC1DFB8E20063C400080BC50 /* AppDelegate.swift */,
-				EC1DFB9020063C400080BC50 /* ViewController.swift */,
+				ECC15F9B200975680099BBC9 /* Modules */,
+				ECF28084200A941F0000D949 /* Common */,
+				ECC15F9E2009759B0099BBC9 /* Storyboards */,
 				ECB2C0D12008E54000AF1AF5 /* Miscellaneous */,
-				EC1DFB9220063C400080BC50 /* Main.storyboard */,
 				EC1DFB9520063C400080BC50 /* Assets.xcassets */,
 				EC1DFB9720063C400080BC50 /* LaunchScreen.storyboard */,
 				EC1DFB9A20063C400080BC50 /* Info.plist */,
@@ -74,8 +87,61 @@
 			children = (
 				ECB2C0D22008E55500AF1AF5 /* Colors.swift */,
 				ECB2C0D42008E56300AF1AF5 /* Constants.swift */,
+				ECC15FA52009794E0099BBC9 /* Fonts.swift */,
+				ECF31726200A9E0B00F7B703 /* Utils.swift */,
 			);
 			path = Miscellaneous;
+			sourceTree = "<group>";
+		};
+		ECC15F9B200975680099BBC9 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				ECC15F9D2009757A0099BBC9 /* Intro */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		ECC15F9D2009757A0099BBC9 /* Intro */ = {
+			isa = PBXGroup;
+			children = (
+				ECC15FA1200976770099BBC9 /* IntroViewController.swift */,
+				ECC15FA2200976770099BBC9 /* IntroViewController.xib */,
+			);
+			path = Intro;
+			sourceTree = "<group>";
+		};
+		ECC15F9E2009759B0099BBC9 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				ECC15F9F200976320099BBC9 /* Intro.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		ECF28084200A941F0000D949 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				ECF28088200A95730000D949 /* Protocols */,
+				ECF28085200A94360000D949 /* Extensions */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		ECF28085200A94360000D949 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				ECF28086200A94550000D949 /* ViewController+Nib.swift */,
+				ECF2808B200A9A210000D949 /* UIButton+Intro.swift */,
+				ECF31724200A9D2800F7B703 /* UIAlertController+Window.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		ECF28088200A95730000D949 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,7 +205,8 @@
 			files = (
 				EC1DFB9920063C400080BC50 /* LaunchScreen.storyboard in Resources */,
 				EC1DFB9620063C400080BC50 /* Assets.xcassets in Resources */,
-				EC1DFB9420063C400080BC50 /* Main.storyboard in Resources */,
+				ECC15FA0200976320099BBC9 /* Intro.storyboard in Resources */,
+				ECC15FA4200976770099BBC9 /* IntroViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -150,24 +217,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EC1DFB9120063C400080BC50 /* ViewController.swift in Sources */,
 				ECB2C0D32008E55500AF1AF5 /* Colors.swift in Sources */,
+				ECF2808C200A9A210000D949 /* UIButton+Intro.swift in Sources */,
+				ECF31727200A9E0B00F7B703 /* Utils.swift in Sources */,
+				ECC15FA62009794E0099BBC9 /* Fonts.swift in Sources */,
+				ECF28087200A94550000D949 /* ViewController+Nib.swift in Sources */,
 				EC1DFB8F20063C400080BC50 /* AppDelegate.swift in Sources */,
 				ECB2C0D52008E56300AF1AF5 /* Constants.swift in Sources */,
+				ECF31725200A9D2800F7B703 /* UIAlertController+Window.swift in Sources */,
+				ECC15FA3200976770099BBC9 /* IntroViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		EC1DFB9220063C400080BC50 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				EC1DFB9320063C400080BC50 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		EC1DFB9720063C400080BC50 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -292,6 +356,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "golos-ios/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "io.golos.golos-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -306,6 +371,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "golos-ios/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "io.golos.golos-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";

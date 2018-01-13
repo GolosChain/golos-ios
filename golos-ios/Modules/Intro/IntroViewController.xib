@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="IntroViewController" customModule="golos_ios" customModuleProvider="target">
+            <connections>
+                <outlet property="enterButton" destination="lPq-Wo-OzR" id="iQR-db-Zdt"/>
+                <outlet property="moreInfoButton" destination="IRR-HH-NBp" id="cJb-jA-tr9"/>
+                <outlet property="registerButton" destination="ty7-k8-VjG" id="xeE-Wy-dvJ"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="golos_intro_icon" translatesAutoresizingMaskIntoConstraints="NO" id="jG5-b4-zd9">
+                    <rect key="frame" x="147.5" y="88" width="80" height="80"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="80" id="RXP-QK-N93"/>
+                        <constraint firstAttribute="width" constant="80" id="fP7-rk-cIe"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Добро пожаловать" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IQF-Ua-JLL">
+                    <rect key="frame" x="10" y="198" width="355" height="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="в Golos.io" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hYZ-xR-sy6">
+                    <rect key="frame" x="10" y="228" width="355" height="48"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IRR-HH-NBp">
+                    <rect key="frame" x="123.5" y="613" width="127" height="30"/>
+                    <state key="normal" title="Больше о Golos.io"/>
+                    <connections>
+                        <action selector="moreInfoButtonPressed:" destination="-1" eventType="touchUpInside" id="Czg-v9-303"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ty7-k8-VjG">
+                    <rect key="frame" x="24" y="545" width="327" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="YHJ-wl-tav"/>
+                    </constraints>
+                    <state key="normal" title="Регистрация"/>
+                    <connections>
+                        <action selector="registerButtonPressed:" destination="-1" eventType="touchUpInside" id="88W-Yb-sg8"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lPq-Wo-OzR">
+                    <rect key="frame" x="24" y="487" width="327" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="ZHl-f2-rgp"/>
+                    </constraints>
+                    <state key="normal" title="Войти"/>
+                    <connections>
+                        <action selector="enterButtonPressed:" destination="-1" eventType="touchUpInside" id="Voj-Ec-teE"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="lPq-Wo-OzR" secondAttribute="trailing" constant="24" id="0jx-C4-zgk"/>
+                <constraint firstItem="ty7-k8-VjG" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="24" id="1Rr-hX-SUm"/>
+                <constraint firstItem="IQF-Ua-JLL" firstAttribute="top" secondItem="jG5-b4-zd9" secondAttribute="bottom" constant="30" id="2U3-cv-FEy"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="hYZ-xR-sy6" secondAttribute="trailing" constant="10" id="6jt-fP-Mtj"/>
+                <constraint firstItem="jG5-b4-zd9" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="68" id="BH9-KI-AVm"/>
+                <constraint firstItem="jG5-b4-zd9" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="CuB-Xg-p07"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="IRR-HH-NBp" secondAttribute="bottom" constant="24" id="Hb8-dD-ccf"/>
+                <constraint firstItem="hYZ-xR-sy6" firstAttribute="top" secondItem="IQF-Ua-JLL" secondAttribute="bottom" id="YNB-LF-DR5"/>
+                <constraint firstItem="lPq-Wo-OzR" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="24" id="asE-e4-VI5"/>
+                <constraint firstItem="IRR-HH-NBp" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="dGE-ne-T44"/>
+                <constraint firstItem="IRR-HH-NBp" firstAttribute="top" secondItem="ty7-k8-VjG" secondAttribute="bottom" constant="24" id="eTx-X4-Pph"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="IQF-Ua-JLL" secondAttribute="trailing" constant="10" id="fDD-i4-lei"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="ty7-k8-VjG" secondAttribute="trailing" constant="24" id="lGp-q8-Cc0"/>
+                <constraint firstItem="IQF-Ua-JLL" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="pcd-3V-0Jj"/>
+                <constraint firstItem="ty7-k8-VjG" firstAttribute="top" secondItem="lPq-Wo-OzR" secondAttribute="bottom" constant="14" id="yvi-e2-ldq"/>
+                <constraint firstItem="hYZ-xR-sy6" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="zQz-oP-34i"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="golos_intro_icon" width="80" height="80"/>
+    </resources>
+</document>
