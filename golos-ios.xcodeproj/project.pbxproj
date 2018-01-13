@@ -20,6 +20,7 @@
 		ECF2808C200A9A210000D949 /* UIButton+Intro.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF2808B200A9A210000D949 /* UIButton+Intro.swift */; };
 		ECF31725200A9D2800F7B703 /* UIAlertController+Window.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF31724200A9D2800F7B703 /* UIAlertController+Window.swift */; };
 		ECF31727200A9E0B00F7B703 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF31726200A9E0B00F7B703 /* Utils.swift */; };
+		ECF3172A200AA0B200F7B703 /* IntroPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF31729200AA0B200F7B703 /* IntroPresenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		ECF2808B200A9A210000D949 /* UIButton+Intro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Intro.swift"; sourceTree = "<group>"; };
 		ECF31724200A9D2800F7B703 /* UIAlertController+Window.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Window.swift"; sourceTree = "<group>"; };
 		ECF31726200A9E0B00F7B703 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		ECF31729200AA0B200F7B703 /* IntroPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroPresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,8 +106,8 @@
 		ECC15F9D2009757A0099BBC9 /* Intro */ = {
 			isa = PBXGroup;
 			children = (
-				ECC15FA1200976770099BBC9 /* IntroViewController.swift */,
-				ECC15FA2200976770099BBC9 /* IntroViewController.xib */,
+				ECF31728200AA07E00F7B703 /* IntroViewController */,
+				ECF31729200AA0B200F7B703 /* IntroPresenter.swift */,
 			);
 			path = Intro;
 			sourceTree = "<group>";
@@ -142,6 +144,15 @@
 			children = (
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		ECF31728200AA07E00F7B703 /* IntroViewController */ = {
+			isa = PBXGroup;
+			children = (
+				ECC15FA1200976770099BBC9 /* IntroViewController.swift */,
+				ECC15FA2200976770099BBC9 /* IntroViewController.xib */,
+			);
+			path = IntroViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -226,6 +237,7 @@
 				ECB2C0D52008E56300AF1AF5 /* Constants.swift in Sources */,
 				ECF31725200A9D2800F7B703 /* UIAlertController+Window.swift in Sources */,
 				ECC15FA3200976770099BBC9 /* IntroViewController.swift in Sources */,
+				ECF3172A200AA0B200F7B703 /* IntroPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
