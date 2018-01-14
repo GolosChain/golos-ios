@@ -11,6 +11,8 @@
 		EC1DFB9620063C400080BC50 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC1DFB9520063C400080BC50 /* Assets.xcassets */; };
 		EC1DFB9920063C400080BC50 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC1DFB9720063C400080BC50 /* LaunchScreen.storyboard */; };
 		EC6FD59E200AD53100DCB824 /* ViewController+BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6FD59D200AD53100DCB824 /* ViewController+BackButton.swift */; };
+		EC6FD5A2200AE1A200DCB824 /* QRScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6FD5A0200AE1A200DCB824 /* QRScannerViewController.swift */; };
+		EC6FD5A3200AE1A200DCB824 /* QRScannerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC6FD5A1200AE1A200DCB824 /* QRScannerViewController.xib */; };
 		ECB2C0D32008E55500AF1AF5 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2C0D22008E55500AF1AF5 /* Colors.swift */; };
 		ECB2C0D52008E56300AF1AF5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2C0D42008E56300AF1AF5 /* Constants.swift */; };
 		ECC15FA0200976320099BBC9 /* Intro.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ECC15F9F200976320099BBC9 /* Intro.storyboard */; };
@@ -25,6 +27,7 @@
 		ECF3172E200AB22E00F7B703 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF3172C200AB22E00F7B703 /* LoginViewController.swift */; };
 		ECF3172F200AB22E00F7B703 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECF3172D200AB22E00F7B703 /* LoginViewController.xib */; };
 		ECF31732200ABB7C00F7B703 /* AppDelegate+SetupAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF31731200ABB7C00F7B703 /* AppDelegate+SetupAppearance.swift */; };
+		ECFF44E8200BC42F00DAF74C /* QRScannerViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFF44E7200BC42F00DAF74C /* QRScannerViewControllerDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +37,8 @@
 		EC1DFB9820063C400080BC50 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EC1DFB9A20063C400080BC50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EC6FD59D200AD53100DCB824 /* ViewController+BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+BackButton.swift"; sourceTree = "<group>"; };
+		EC6FD5A0200AE1A200DCB824 /* QRScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerViewController.swift; sourceTree = "<group>"; };
+		EC6FD5A1200AE1A200DCB824 /* QRScannerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QRScannerViewController.xib; sourceTree = "<group>"; };
 		ECB2C0D22008E55500AF1AF5 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		ECB2C0D42008E56300AF1AF5 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		ECC15F9F200976320099BBC9 /* Intro.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Intro.storyboard; sourceTree = "<group>"; };
@@ -48,6 +53,7 @@
 		ECF3172C200AB22E00F7B703 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		ECF3172D200AB22E00F7B703 /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		ECF31731200ABB7C00F7B703 /* AppDelegate+SetupAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+SetupAppearance.swift"; sourceTree = "<group>"; };
+		ECFF44E7200BC42F00DAF74C /* QRScannerViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerViewControllerDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +99,24 @@
 			path = "golos-ios";
 			sourceTree = "<group>";
 		};
+		EC6FD59F200AE18E00DCB824 /* QRScanner */ = {
+			isa = PBXGroup;
+			children = (
+				EC6FD5A4200AE1A700DCB824 /* QRScannerViewController */,
+				ECFF44E7200BC42F00DAF74C /* QRScannerViewControllerDelegate.swift */,
+			);
+			path = QRScanner;
+			sourceTree = "<group>";
+		};
+		EC6FD5A4200AE1A700DCB824 /* QRScannerViewController */ = {
+			isa = PBXGroup;
+			children = (
+				EC6FD5A0200AE1A200DCB824 /* QRScannerViewController.swift */,
+				EC6FD5A1200AE1A200DCB824 /* QRScannerViewController.xib */,
+			);
+			path = QRScannerViewController;
+			sourceTree = "<group>";
+		};
 		ECB2C0D12008E54000AF1AF5 /* Miscellaneous */ = {
 			isa = PBXGroup;
 			children = (
@@ -107,6 +131,7 @@
 		ECC15F9B200975680099BBC9 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				EC6FD59F200AE18E00DCB824 /* QRScanner */,
 				ECF3172B200AB22000F7B703 /* Login */,
 				ECC15F9D2009757A0099BBC9 /* Intro */,
 			);
@@ -252,6 +277,7 @@
 			files = (
 				ECF3172F200AB22E00F7B703 /* LoginViewController.xib in Resources */,
 				EC1DFB9920063C400080BC50 /* LaunchScreen.storyboard in Resources */,
+				EC6FD5A3200AE1A200DCB824 /* QRScannerViewController.xib in Resources */,
 				EC1DFB9620063C400080BC50 /* Assets.xcassets in Resources */,
 				ECC15FA0200976320099BBC9 /* Intro.storyboard in Resources */,
 				ECC15FA4200976770099BBC9 /* IntroViewController.xib in Resources */,
@@ -269,8 +295,10 @@
 				ECF2808C200A9A210000D949 /* UIButton+Intro.swift in Sources */,
 				ECF31727200A9E0B00F7B703 /* Utils.swift in Sources */,
 				EC6FD59E200AD53100DCB824 /* ViewController+BackButton.swift in Sources */,
+				ECFF44E8200BC42F00DAF74C /* QRScannerViewControllerDelegate.swift in Sources */,
 				ECC15FA62009794E0099BBC9 /* Fonts.swift in Sources */,
 				ECF31732200ABB7C00F7B703 /* AppDelegate+SetupAppearance.swift in Sources */,
+				EC6FD5A2200AE1A200DCB824 /* QRScannerViewController.swift in Sources */,
 				ECF28087200A94550000D949 /* ViewController+Nib.swift in Sources */,
 				EC1DFB8F20063C400080BC50 /* AppDelegate.swift in Sources */,
 				ECB2C0D52008E56300AF1AF5 /* Constants.swift in Sources */,
@@ -409,7 +437,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YS34WB4Z9W;
 				INFOPLIST_FILE = "golos-ios/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "io.golos.golos-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -425,7 +453,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YS34WB4Z9W;
 				INFOPLIST_FILE = "golos-ios/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "io.golos.golos-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
