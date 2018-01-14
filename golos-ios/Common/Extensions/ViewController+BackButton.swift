@@ -10,7 +10,7 @@ import UIKit
 
 extension UIViewController {
     func configureBackButton() {
-        var backImage = UIImage(named: "back_button")
+        let backImage = UIImage(named: "back_button")
         
         self.navigationController?.navigationBar.backIndicatorImage = backImage
         self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = backImage

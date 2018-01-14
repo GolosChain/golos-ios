@@ -91,7 +91,12 @@ class IntroViewController: UIViewController {
     }
     
     @IBAction func registerButtonPressed(_ sender: Any) {
-        Utils.inDevelopmentAlert()
+        guard let moreUrl = URL.init(string: Constants.Urls.registration) else {
+            Utils.showAlert(title: "Wrong registration url", message: "Developer error!")
+            return
+        }
+        
+        UIApplication.shared.open(moreUrl, options: [:], completionHandler: nil)
     }
     
     @IBAction func moreInfoButtonPressed(_ sender: Any) {

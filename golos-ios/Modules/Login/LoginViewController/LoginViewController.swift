@@ -20,16 +20,42 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var loginTextField: UITextField!
     
     
+    //MARK: Module
+    lazy var presenter: LoginPresenter = {
+        let presenter = LoginPresenter()
+        presenter.view = self
+        return presenter
+    }()
+    
+    var loginType: LoginType {
+        get {
+            return presenter.loginType
+        }
+        set {
+            presenter.loginType = newValue
+        }
+    }
+    
+    
     //MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        loginTextField.text = nil
+        keyTextField.text = nil
+    }
+    
     
     //MARK: SetupUI
     private func setupUI() {
-        title = "Войти"
+        
+        refreshLabelContent()
+        
         configureBackButton()
         
         enterButton.setBlueButtonRoundEdges()
@@ -50,6 +76,12 @@ class LoginViewController: UIViewController {
         keyTextField.font = Fonts.shared.regular(with: 16.0)
     }
     
+    private func refreshLabelContent() {
+        title = presenter.loginUIStrings.titleString
+        keyTextField.placeholder = presenter.loginUIStrings.keyPlaceholder
+        changeKeyTypeButton.setTitle(presenter.loginUIStrings.loginTypeString, for: .normal)
+    }
+    
     
     //MARK: Actions
     @IBAction func enterButtonPressed(_ sender: Any) {
@@ -57,15 +89,27 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func cancelButtonPressed(_ sender: Any) {
-        navigationController?.popViewController(animated: true)
+        navigationController?.popToRootViewController(animated: true)
     }
     
     @IBAction func registerButtonPressed(_ sender: Any) {
-        Utils.inDevelopmentAlert()
+        guard let moreUrl = URL.init(string: Constants.Urls.registration) else {
+            Utils.showAlert(title: "Wrong registration url", message: "Developer error!")
+            return
+        }
+        
+        UIApplication.shared.open(moreUrl, options: [:], completionHandler: nil)
     }
     
     @IBAction func changeKeyTypePressed(_ sender: Any) {
-        Utils.inDevelopmentAlert()
+        switch loginType {
+        case .activeKey:
+            navigationController?.popViewController(animated: true)
+        case .postingKey:
+            let activeLoginViewController = LoginViewController.nibInstance()
+            activeLoginViewController.loginType = .activeKey
+            navigationController?.pushViewController(activeLoginViewController, animated: true)
+        }
     }
     
     @IBAction func scanQRButtonPressed(_ sender: Any) {
@@ -76,9 +120,15 @@ class LoginViewController: UIViewController {
     }
 }
 
+
 //MARK: QRScannerViewControllerDelegate
 extension LoginViewController: QRScannerViewControllerDelegate {
     func didScanQRCode(with value: String) {
         keyTextField.text = value
     }
+}
+
+
+//MARK: LoginView
+extension LoginViewController: LoginView {
 }

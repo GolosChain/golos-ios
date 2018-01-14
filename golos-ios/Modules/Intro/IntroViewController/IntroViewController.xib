@@ -78,7 +78,7 @@
                         <constraint firstAttribute="height" constant="70" id="DZb-ss-h4H"/>
                     </constraints>
                 </scrollView>
-                <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="5RI-u9-wD9">
+                <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="5RI-u9-wD9">
                     <rect key="frame" x="0.0" y="424" width="375" height="37"/>
                     <color key="pageIndicatorTintColor" red="0.85882352941176465" green="0.85882352941176465" blue="0.85882352941176465" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                     <color key="currentPageIndicatorTintColor" red="0.49019607843137253" green="0.49019607843137253" blue="0.49019607843137253" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

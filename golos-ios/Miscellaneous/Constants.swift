@@ -16,5 +16,6 @@ struct Constants {
     
     struct Urls {
         static let moreInfoAbout = "https://golos.io/welcome"
+        static let registration = "https://golos.io/create_account"
     }
 }
