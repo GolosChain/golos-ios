@@ -17,6 +17,7 @@
 		EC24FF26200BEA8800A0AE15 /* AppDelegate+IQKeyboardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC24FF25200BEA8800A0AE15 /* AppDelegate+IQKeyboardManager.swift */; };
 		EC24FF28200BEBE600A0AE15 /* ViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC24FF27200BEBE600A0AE15 /* ViewProtocol.swift */; };
 		EC24FF2B200BFAA100A0AE15 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC24FF2A200BFAA100A0AE15 /* Validator.swift */; };
+		EC24FF4D200C03E100A0AE15 /* ValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC24FF4C200C03E100A0AE15 /* ValidatorTests.swift */; };
 		EC6FD59E200AD53100DCB824 /* ViewController+BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6FD59D200AD53100DCB824 /* ViewController+BackButton.swift */; };
 		EC6FD5A2200AE1A200DCB824 /* QRScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6FD5A0200AE1A200DCB824 /* QRScannerViewController.swift */; };
 		EC6FD5A3200AE1A200DCB824 /* QRScannerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC6FD5A1200AE1A200DCB824 /* QRScannerViewController.xib */; };
@@ -37,11 +38,21 @@
 		ECFF44E8200BC42F00DAF74C /* QRScannerViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFF44E7200BC42F00DAF74C /* QRScannerViewControllerDelegate.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		EC24FF46200C038D00A0AE15 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EC1DFB8320063C400080BC50 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EC1DFB8A20063C400080BC50;
+			remoteInfo = Golos;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		617A00E81BE0A996F90DD4BB /* Pods_golos_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_golos_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BD44B1209B5C64C3D1EF768 /* Pods-golos-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-golos-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-golos-ios/Pods-golos-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		DECBC36021F31D8D6F619C11 /* Pods-golos-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-golos-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-golos-ios/Pods-golos-ios.release.xcconfig"; sourceTree = "<group>"; };
-		EC1DFB8B20063C400080BC50 /* golos-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "golos-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC1DFB8B20063C400080BC50 /* Golos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Golos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC1DFB8E20063C400080BC50 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EC1DFB9520063C400080BC50 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EC1DFB9820063C400080BC50 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -52,6 +63,9 @@
 		EC24FF25200BEA8800A0AE15 /* AppDelegate+IQKeyboardManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+IQKeyboardManager.swift"; sourceTree = "<group>"; };
 		EC24FF27200BEBE600A0AE15 /* ViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewProtocol.swift; sourceTree = "<group>"; };
 		EC24FF2A200BFAA100A0AE15 /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
+		EC24FF41200C038D00A0AE15 /* GolosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GolosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC24FF45200C038D00A0AE15 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EC24FF4C200C03E100A0AE15 /* ValidatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidatorTests.swift; sourceTree = "<group>"; };
 		EC6FD59D200AD53100DCB824 /* ViewController+BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+BackButton.swift"; sourceTree = "<group>"; };
 		EC6FD5A0200AE1A200DCB824 /* QRScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerViewController.swift; sourceTree = "<group>"; };
 		EC6FD5A1200AE1A200DCB824 /* QRScannerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QRScannerViewController.xib; sourceTree = "<group>"; };
@@ -81,6 +95,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EC24FF3E200C038D00A0AE15 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -105,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				EC1DFB8D20063C400080BC50 /* golos-ios */,
+				EC24FF42200C038D00A0AE15 /* GolosTests */,
 				EC1DFB8C20063C400080BC50 /* Products */,
 				4C8254C4C6C021D08A08DBAD /* Pods */,
 				486C2A5A1B72C10663D9DAB3 /* Frameworks */,
@@ -114,7 +136,8 @@
 		EC1DFB8C20063C400080BC50 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				EC1DFB8B20063C400080BC50 /* golos-ios.app */,
+				EC1DFB8B20063C400080BC50 /* Golos.app */,
+				EC24FF41200C038D00A0AE15 /* GolosTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -141,6 +164,23 @@
 			isa = PBXGroup;
 			children = (
 				EC24FF2A200BFAA100A0AE15 /* Validator.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		EC24FF42200C038D00A0AE15 /* GolosTests */ = {
+			isa = PBXGroup;
+			children = (
+				EC24FF4B200C03BD00A0AE15 /* Managers */,
+				EC24FF45200C038D00A0AE15 /* Info.plist */,
+			);
+			path = GolosTests;
+			sourceTree = "<group>";
+		};
+		EC24FF4B200C03BD00A0AE15 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				EC24FF4C200C03E100A0AE15 /* ValidatorTests.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -269,9 +309,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		EC1DFB8A20063C400080BC50 /* golos-ios */ = {
+		EC1DFB8A20063C400080BC50 /* Golos */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EC1DFB9D20063C400080BC50 /* Build configuration list for PBXNativeTarget "golos-ios" */;
+			buildConfigurationList = EC1DFB9D20063C400080BC50 /* Build configuration list for PBXNativeTarget "Golos" */;
 			buildPhases = (
 				55A88D3868FC3CC3DBEF14AF /* [CP] Check Pods Manifest.lock */,
 				EC1DFB8720063C400080BC50 /* Sources */,
@@ -284,10 +324,28 @@
 			);
 			dependencies = (
 			);
-			name = "golos-ios";
+			name = Golos;
 			productName = "golos-ios";
-			productReference = EC1DFB8B20063C400080BC50 /* golos-ios.app */;
+			productReference = EC1DFB8B20063C400080BC50 /* Golos.app */;
 			productType = "com.apple.product-type.application";
+		};
+		EC24FF40200C038D00A0AE15 /* GolosTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EC24FF48200C038D00A0AE15 /* Build configuration list for PBXNativeTarget "GolosTests" */;
+			buildPhases = (
+				EC24FF3D200C038D00A0AE15 /* Sources */,
+				EC24FF3E200C038D00A0AE15 /* Frameworks */,
+				EC24FF3F200C038D00A0AE15 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EC24FF47200C038D00A0AE15 /* PBXTargetDependency */,
+			);
+			name = GolosTests;
+			productName = GolosTests;
+			productReference = EC24FF41200C038D00A0AE15 /* GolosTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -302,6 +360,12 @@
 					EC1DFB8A20063C400080BC50 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+					};
+					EC24FF40200C038D00A0AE15 = {
+						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 0920;
+						ProvisioningStyle = Automatic;
+						TestTargetID = EC1DFB8A20063C400080BC50;
 					};
 				};
 			};
@@ -318,7 +382,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				EC1DFB8A20063C400080BC50 /* golos-ios */,
+				EC1DFB8A20063C400080BC50 /* Golos */,
+				EC24FF40200C038D00A0AE15 /* GolosTests */,
 			);
 		};
 /* End PBXProject section */
@@ -334,6 +399,13 @@
 				EC1DFB9620063C400080BC50 /* Assets.xcassets in Resources */,
 				ECC15FA0200976320099BBC9 /* Intro.storyboard in Resources */,
 				ECC15FA4200976770099BBC9 /* IntroViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EC24FF3F200C038D00A0AE15 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -422,7 +494,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EC24FF3D200C038D00A0AE15 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EC24FF4D200C03E100A0AE15 /* ValidatorTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EC24FF47200C038D00A0AE15 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EC1DFB8A20063C400080BC50 /* Golos */;
+			targetProxy = EC24FF46200C038D00A0AE15 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		EC1DFB9720063C400080BC50 /* LaunchScreen.storyboard */ = {
@@ -577,6 +665,41 @@
 			};
 			name = Release;
 		};
+		EC24FF49200C038D00A0AE15 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YS34WB4Z9W;
+				INFOPLIST_FILE = GolosTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.golos.GolosTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Golos.app/Golos";
+			};
+			name = Debug;
+		};
+		EC24FF4A200C038D00A0AE15 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YS34WB4Z9W;
+				INFOPLIST_FILE = GolosTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.golos.GolosTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Golos.app/Golos";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -589,11 +712,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EC1DFB9D20063C400080BC50 /* Build configuration list for PBXNativeTarget "golos-ios" */ = {
+		EC1DFB9D20063C400080BC50 /* Build configuration list for PBXNativeTarget "Golos" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EC1DFB9E20063C400080BC50 /* Debug */,
 				EC1DFB9F20063C400080BC50 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EC24FF48200C038D00A0AE15 /* Build configuration list for PBXNativeTarget "GolosTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EC24FF49200C038D00A0AE15 /* Debug */,
+				EC24FF4A200C038D00A0AE15 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
