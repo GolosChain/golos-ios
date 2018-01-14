@@ -10,6 +10,9 @@
 		EC1DFB8F20063C400080BC50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1DFB8E20063C400080BC50 /* AppDelegate.swift */; };
 		EC1DFB9620063C400080BC50 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC1DFB9520063C400080BC50 /* Assets.xcassets */; };
 		EC1DFB9920063C400080BC50 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC1DFB9720063C400080BC50 /* LaunchScreen.storyboard */; };
+		EC24FF20200BC69400A0AE15 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC24FF1F200BC69400A0AE15 /* LoginPresenter.swift */; };
+		EC24FF22200BC69B00A0AE15 /* LoginType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC24FF21200BC69B00A0AE15 /* LoginType.swift */; };
+		EC24FF24200BC72F00A0AE15 /* LoginUIStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC24FF23200BC72F00A0AE15 /* LoginUIStrings.swift */; };
 		EC6FD59E200AD53100DCB824 /* ViewController+BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6FD59D200AD53100DCB824 /* ViewController+BackButton.swift */; };
 		EC6FD5A2200AE1A200DCB824 /* QRScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6FD5A0200AE1A200DCB824 /* QRScannerViewController.swift */; };
 		EC6FD5A3200AE1A200DCB824 /* QRScannerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC6FD5A1200AE1A200DCB824 /* QRScannerViewController.xib */; };
@@ -36,6 +39,9 @@
 		EC1DFB9520063C400080BC50 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EC1DFB9820063C400080BC50 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EC1DFB9A20063C400080BC50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EC24FF1F200BC69400A0AE15 /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
+		EC24FF21200BC69B00A0AE15 /* LoginType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginType.swift; sourceTree = "<group>"; };
+		EC24FF23200BC72F00A0AE15 /* LoginUIStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUIStrings.swift; sourceTree = "<group>"; };
 		EC6FD59D200AD53100DCB824 /* ViewController+BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+BackButton.swift"; sourceTree = "<group>"; };
 		EC6FD5A0200AE1A200DCB824 /* QRScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerViewController.swift; sourceTree = "<group>"; };
 		EC6FD5A1200AE1A200DCB824 /* QRScannerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QRScannerViewController.xib; sourceTree = "<group>"; };
@@ -196,6 +202,9 @@
 			isa = PBXGroup;
 			children = (
 				ECF31730200AB23200F7B703 /* LoginViewController */,
+				EC24FF1F200BC69400A0AE15 /* LoginPresenter.swift */,
+				EC24FF21200BC69B00A0AE15 /* LoginType.swift */,
+				EC24FF23200BC72F00A0AE15 /* LoginUIStrings.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -291,6 +300,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC24FF20200BC69400A0AE15 /* LoginPresenter.swift in Sources */,
+				EC24FF22200BC69B00A0AE15 /* LoginType.swift in Sources */,
 				ECB2C0D32008E55500AF1AF5 /* Colors.swift in Sources */,
 				ECF2808C200A9A210000D949 /* UIButton+Intro.swift in Sources */,
 				ECF31727200A9E0B00F7B703 /* Utils.swift in Sources */,
@@ -299,6 +310,7 @@
 				ECC15FA62009794E0099BBC9 /* Fonts.swift in Sources */,
 				ECF31732200ABB7C00F7B703 /* AppDelegate+SetupAppearance.swift in Sources */,
 				EC6FD5A2200AE1A200DCB824 /* QRScannerViewController.swift in Sources */,
+				EC24FF24200BC72F00A0AE15 /* LoginUIStrings.swift in Sources */,
 				ECF28087200A94550000D949 /* ViewController+Nib.swift in Sources */,
 				EC1DFB8F20063C400080BC50 /* AppDelegate.swift in Sources */,
 				ECB2C0D52008E56300AF1AF5 /* Constants.swift in Sources */,
