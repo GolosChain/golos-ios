@@ -43,6 +43,13 @@ class LoginViewController: UIViewController {
         setupUI()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        loginTextField.text = nil
+        keyTextField.text = nil
+    }
+    
     
     //MARK: SetupUI
     private func setupUI() {
