@@ -69,6 +69,16 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func scanQRButtonPressed(_ sender: Any) {
-        Utils.inDevelopmentAlert()
+        let qrScannerViewController = QRScannerViewController.nibInstance()
+        qrScannerViewController.delegate = self
+        let navigationController = UINavigationController(rootViewController: qrScannerViewController)
+        present(navigationController, animated: true, completion: nil)
+    }
+}
+
+//MARK: QRScannerViewControllerDelegate
+extension LoginViewController: QRScannerViewControllerDelegate {
+    func didScanQRCode(with value: String) {
+        keyTextField.text = value
     }
 }
