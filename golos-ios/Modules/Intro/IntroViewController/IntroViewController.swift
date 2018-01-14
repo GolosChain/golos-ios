@@ -30,10 +30,21 @@ class IntroViewController: UIViewController {
         setupUI()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: true)
+    }
     
     //MARK: SetupUI
     private func setupUI() {
-        navigationController?.setNavigationBarHidden(true, animated: false)
+        title = ""
+        
+        configureBackButton()
         
         enterButton.setBlueButtonRoundEdges()
         registerButton.setBorderButtonRoundEdges()
@@ -76,7 +87,7 @@ class IntroViewController: UIViewController {
     
     //MARK: Actions
     @IBAction func enterButtonPressed(_ sender: Any) {
-        Utils.inDevelopmentAlert()
+        openLoginScreen()
     }
     
     @IBAction func registerButtonPressed(_ sender: Any) {
@@ -90,6 +101,13 @@ class IntroViewController: UIViewController {
         }
         
         UIApplication.shared.open(moreUrl, options: [:], completionHandler: nil)
+    }
+    
+    
+    //MARK: Navigation
+    func openLoginScreen() {
+        let loginViewController = LoginViewController.nibInstance()
+        navigationController?.pushViewController(loginViewController, animated: true)
     }
 }
 
