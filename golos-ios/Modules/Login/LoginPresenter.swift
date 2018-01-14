@@ -8,7 +8,9 @@
 
 import Foundation
 
-protocol LoginView: class {
+protocol LoginView: ViewProtocol {
+    func didStartLogin()
+    func didLoginSuccessed()
 }
 
 class LoginPresenter: NSObject {
@@ -24,6 +26,50 @@ class LoginPresenter: NSObject {
     override init() {
         super.init()
         refreshUIStrings()
+    }
+    
+    func login(with login: String?,
+               key: String?) {
+        var errorMessage: String?
+        defer {
+            if let errorMessage = errorMessage {
+                view.didFail(with: errorMessage)
+            } else {
+                startLogin(with: login!, key: key!)
+            }
+        }
+        
+        if !validate(login: login) {
+            errorMessage = "Введите корректный логин"
+            return
+        }
+        
+        if !validate(key: key) {
+            errorMessage = "Введите корректный ключ"
+            return
+        }
+    }
+    
+    private func startLogin(with login: String,
+                            key: String) {
+        view.didStartLogin()
+        
+        let delayTime = DispatchTime.now() + .seconds(1)
+        DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: delayTime) { [weak self] in
+            guard let strongSelf = self else {return}
+            
+            DispatchQueue.main.async {
+                strongSelf.view.didLoginSuccessed()
+            }
+        }
+    }
+    
+    private func validate(login: String?) -> Bool {
+        return Validator.validate(login: login)
+    }
+    
+    private func validate(key: String?) -> Bool {
+        return Validator.validate(key: key)
     }
     
     private func refreshUIStrings() {

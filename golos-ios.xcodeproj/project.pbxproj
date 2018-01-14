@@ -7,12 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4DAAAD6714B074435D5557C7 /* Pods_golos_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 617A00E81BE0A996F90DD4BB /* Pods_golos_ios.framework */; };
 		EC1DFB8F20063C400080BC50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1DFB8E20063C400080BC50 /* AppDelegate.swift */; };
 		EC1DFB9620063C400080BC50 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC1DFB9520063C400080BC50 /* Assets.xcassets */; };
 		EC1DFB9920063C400080BC50 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC1DFB9720063C400080BC50 /* LaunchScreen.storyboard */; };
 		EC24FF20200BC69400A0AE15 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC24FF1F200BC69400A0AE15 /* LoginPresenter.swift */; };
 		EC24FF22200BC69B00A0AE15 /* LoginType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC24FF21200BC69B00A0AE15 /* LoginType.swift */; };
 		EC24FF24200BC72F00A0AE15 /* LoginUIStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC24FF23200BC72F00A0AE15 /* LoginUIStrings.swift */; };
+		EC24FF26200BEA8800A0AE15 /* AppDelegate+IQKeyboardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC24FF25200BEA8800A0AE15 /* AppDelegate+IQKeyboardManager.swift */; };
+		EC24FF28200BEBE600A0AE15 /* ViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC24FF27200BEBE600A0AE15 /* ViewProtocol.swift */; };
+		EC24FF2B200BFAA100A0AE15 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC24FF2A200BFAA100A0AE15 /* Validator.swift */; };
 		EC6FD59E200AD53100DCB824 /* ViewController+BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6FD59D200AD53100DCB824 /* ViewController+BackButton.swift */; };
 		EC6FD5A2200AE1A200DCB824 /* QRScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6FD5A0200AE1A200DCB824 /* QRScannerViewController.swift */; };
 		EC6FD5A3200AE1A200DCB824 /* QRScannerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC6FD5A1200AE1A200DCB824 /* QRScannerViewController.xib */; };
@@ -34,6 +38,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		617A00E81BE0A996F90DD4BB /* Pods_golos_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_golos_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7BD44B1209B5C64C3D1EF768 /* Pods-golos-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-golos-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-golos-ios/Pods-golos-ios.debug.xcconfig"; sourceTree = "<group>"; };
+		DECBC36021F31D8D6F619C11 /* Pods-golos-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-golos-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-golos-ios/Pods-golos-ios.release.xcconfig"; sourceTree = "<group>"; };
 		EC1DFB8B20063C400080BC50 /* golos-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "golos-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC1DFB8E20063C400080BC50 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EC1DFB9520063C400080BC50 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -42,6 +49,9 @@
 		EC24FF1F200BC69400A0AE15 /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
 		EC24FF21200BC69B00A0AE15 /* LoginType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginType.swift; sourceTree = "<group>"; };
 		EC24FF23200BC72F00A0AE15 /* LoginUIStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUIStrings.swift; sourceTree = "<group>"; };
+		EC24FF25200BEA8800A0AE15 /* AppDelegate+IQKeyboardManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+IQKeyboardManager.swift"; sourceTree = "<group>"; };
+		EC24FF27200BEBE600A0AE15 /* ViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewProtocol.swift; sourceTree = "<group>"; };
+		EC24FF2A200BFAA100A0AE15 /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
 		EC6FD59D200AD53100DCB824 /* ViewController+BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+BackButton.swift"; sourceTree = "<group>"; };
 		EC6FD5A0200AE1A200DCB824 /* QRScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerViewController.swift; sourceTree = "<group>"; };
 		EC6FD5A1200AE1A200DCB824 /* QRScannerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QRScannerViewController.xib; sourceTree = "<group>"; };
@@ -67,17 +77,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4DAAAD6714B074435D5557C7 /* Pods_golos_ios.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		486C2A5A1B72C10663D9DAB3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				617A00E81BE0A996F90DD4BB /* Pods_golos_ios.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4C8254C4C6C021D08A08DBAD /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7BD44B1209B5C64C3D1EF768 /* Pods-golos-ios.debug.xcconfig */,
+				DECBC36021F31D8D6F619C11 /* Pods-golos-ios.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		EC1DFB8220063C400080BC50 = {
 			isa = PBXGroup;
 			children = (
 				EC1DFB8D20063C400080BC50 /* golos-ios */,
 				EC1DFB8C20063C400080BC50 /* Products */,
+				4C8254C4C6C021D08A08DBAD /* Pods */,
+				486C2A5A1B72C10663D9DAB3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -93,8 +123,10 @@
 			isa = PBXGroup;
 			children = (
 				EC1DFB8E20063C400080BC50 /* AppDelegate.swift */,
+				EC24FF25200BEA8800A0AE15 /* AppDelegate+IQKeyboardManager.swift */,
 				ECF31731200ABB7C00F7B703 /* AppDelegate+SetupAppearance.swift */,
 				ECC15F9B200975680099BBC9 /* Modules */,
+				EC24FF29200BFA9300A0AE15 /* Managers */,
 				ECF28084200A941F0000D949 /* Common */,
 				ECC15F9E2009759B0099BBC9 /* Storyboards */,
 				ECB2C0D12008E54000AF1AF5 /* Miscellaneous */,
@@ -103,6 +135,14 @@
 				EC1DFB9A20063C400080BC50 /* Info.plist */,
 			);
 			path = "golos-ios";
+			sourceTree = "<group>";
+		};
+		EC24FF29200BFA9300A0AE15 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				EC24FF2A200BFAA100A0AE15 /* Validator.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 		EC6FD59F200AE18E00DCB824 /* QRScanner */ = {
@@ -185,6 +225,7 @@
 		ECF28088200A95730000D949 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				EC24FF27200BEBE600A0AE15 /* ViewProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -232,9 +273,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EC1DFB9D20063C400080BC50 /* Build configuration list for PBXNativeTarget "golos-ios" */;
 			buildPhases = (
+				55A88D3868FC3CC3DBEF14AF /* [CP] Check Pods Manifest.lock */,
 				EC1DFB8720063C400080BC50 /* Sources */,
 				EC1DFB8820063C400080BC50 /* Frameworks */,
 				EC1DFB8920063C400080BC50 /* Resources */,
+				60A1024D6273CE5A42A1ADAB /* [CP] Embed Pods Frameworks */,
+				F1798BD0C66927B5A490FD17 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -295,6 +339,60 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		55A88D3868FC3CC3DBEF14AF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-golos-ios-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		60A1024D6273CE5A42A1ADAB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-golos-ios/Pods-golos-ios-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-golos-ios/Pods-golos-ios-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F1798BD0C66927B5A490FD17 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-golos-ios/Pods-golos-ios-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		EC1DFB8720063C400080BC50 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -304,7 +402,10 @@
 				EC24FF22200BC69B00A0AE15 /* LoginType.swift in Sources */,
 				ECB2C0D32008E55500AF1AF5 /* Colors.swift in Sources */,
 				ECF2808C200A9A210000D949 /* UIButton+Intro.swift in Sources */,
+				EC24FF2B200BFAA100A0AE15 /* Validator.swift in Sources */,
 				ECF31727200A9E0B00F7B703 /* Utils.swift in Sources */,
+				EC24FF26200BEA8800A0AE15 /* AppDelegate+IQKeyboardManager.swift in Sources */,
+				EC24FF28200BEBE600A0AE15 /* ViewProtocol.swift in Sources */,
 				EC6FD59E200AD53100DCB824 /* ViewController+BackButton.swift in Sources */,
 				ECFF44E8200BC42F00DAF74C /* QRScannerViewControllerDelegate.swift in Sources */,
 				ECC15FA62009794E0099BBC9 /* Fonts.swift in Sources */,
@@ -444,6 +545,7 @@
 		};
 		EC1DFB9E20063C400080BC50 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7BD44B1209B5C64C3D1EF768 /* Pods-golos-ios.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -460,6 +562,7 @@
 		};
 		EC1DFB9F20063C400080BC50 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DECBC36021F31D8D6F619C11 /* Pods-golos-ios.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
