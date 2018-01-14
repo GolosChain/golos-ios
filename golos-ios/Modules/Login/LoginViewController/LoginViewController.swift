@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import IQKeyboardManagerSwift
 
 class LoginViewController: UIViewController {
 
@@ -18,6 +19,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var changeKeyTypeButton: UIButton!
     @IBOutlet weak var keyTextField: UITextField!
     @IBOutlet weak var loginTextField: UITextField!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     
     //MARK: Module
@@ -47,7 +49,9 @@ class LoginViewController: UIViewController {
         super.viewWillDisappear(animated)
         
         loginTextField.text = nil
+        loginTextField.resignFirstResponder()
         keyTextField.text = nil
+        keyTextField.resignFirstResponder()
     }
     
     
@@ -74,6 +78,9 @@ class LoginViewController: UIViewController {
         
         loginTextField.font = Fonts.shared.regular(with: 16.0)
         keyTextField.font = Fonts.shared.regular(with: 16.0)
+        
+        loginTextField.delegate = self
+        keyTextField.delegate = self
     }
     
     private func refreshLabelContent() {
@@ -82,10 +89,22 @@ class LoginViewController: UIViewController {
         changeKeyTypeButton.setTitle(presenter.loginUIStrings.loginTypeString, for: .normal)
     }
     
+    func startLogin() {
+        view.isUserInteractionEnabled = false
+        activityIndicator.startAnimating()
+        enterButton.alpha = 0.7
+    }
+    
+    func stopLogin() {
+        view.isUserInteractionEnabled = true
+        activityIndicator.stopAnimating()
+        enterButton.alpha = 1
+    }
+    
     
     //MARK: Actions
     @IBAction func enterButtonPressed(_ sender: Any) {
-        Utils.inDevelopmentAlert()
+        presenter.login(with: loginTextField.text, key: keyTextField.text)
     }
     
     @IBAction func cancelButtonPressed(_ sender: Any) {
@@ -131,4 +150,32 @@ extension LoginViewController: QRScannerViewControllerDelegate {
 
 //MARK: LoginView
 extension LoginViewController: LoginView {
+    func didStartLogin() {
+        startLogin()
+    }
+    
+    func didLoginSuccessed() {
+        stopAllActivity()
+    }
+    
+    func stopAllActivity() {
+        stopLogin()
+    }
+}
+
+
+//MARK: UITextFieldDelegate
+extension LoginViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        switch textField {
+        case loginTextField:
+            IQKeyboardManager.sharedManager().goNext()
+        case keyTextField:
+            presenter.login(with: loginTextField.text, key: keyTextField.text)
+        default:
+            break
+        }
+        
+        return true
+    }
 }
