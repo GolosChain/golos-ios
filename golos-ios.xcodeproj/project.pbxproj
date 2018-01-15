@@ -18,6 +18,10 @@
 		EC24FF28200BEBE600A0AE15 /* ViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC24FF27200BEBE600A0AE15 /* ViewProtocol.swift */; };
 		EC24FF2B200BFAA100A0AE15 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC24FF2A200BFAA100A0AE15 /* Validator.swift */; };
 		EC24FF4D200C03E100A0AE15 /* ValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC24FF4C200C03E100A0AE15 /* ValidatorTests.swift */; };
+		EC24FF50200C065F00A0AE15 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC24FF4F200C065F00A0AE15 /* AppState.swift */; };
+		EC24FF52200C06E300A0AE15 /* StateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC24FF51200C06E300A0AE15 /* StateMachine.swift */; };
+		EC24FF54200C080300A0AE15 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC24FF53200C080300A0AE15 /* Notifications.swift */; };
+		EC24FF56200C0C1900A0AE15 /* StateMachineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC24FF55200C0C1900A0AE15 /* StateMachineTests.swift */; };
 		EC6FD59E200AD53100DCB824 /* ViewController+BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6FD59D200AD53100DCB824 /* ViewController+BackButton.swift */; };
 		EC6FD5A2200AE1A200DCB824 /* QRScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6FD5A0200AE1A200DCB824 /* QRScannerViewController.swift */; };
 		EC6FD5A3200AE1A200DCB824 /* QRScannerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC6FD5A1200AE1A200DCB824 /* QRScannerViewController.xib */; };
@@ -66,6 +70,10 @@
 		EC24FF41200C038D00A0AE15 /* GolosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GolosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC24FF45200C038D00A0AE15 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EC24FF4C200C03E100A0AE15 /* ValidatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidatorTests.swift; sourceTree = "<group>"; };
+		EC24FF4F200C065F00A0AE15 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		EC24FF51200C06E300A0AE15 /* StateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateMachine.swift; sourceTree = "<group>"; };
+		EC24FF53200C080300A0AE15 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
+		EC24FF55200C0C1900A0AE15 /* StateMachineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateMachineTests.swift; sourceTree = "<group>"; };
 		EC6FD59D200AD53100DCB824 /* ViewController+BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+BackButton.swift"; sourceTree = "<group>"; };
 		EC6FD5A0200AE1A200DCB824 /* QRScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerViewController.swift; sourceTree = "<group>"; };
 		EC6FD5A1200AE1A200DCB824 /* QRScannerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QRScannerViewController.xib; sourceTree = "<group>"; };
@@ -163,6 +171,7 @@
 		EC24FF29200BFA9300A0AE15 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				EC24FF4E200C064B00A0AE15 /* StateMachine */,
 				EC24FF2A200BFAA100A0AE15 /* Validator.swift */,
 			);
 			path = Managers;
@@ -181,8 +190,18 @@
 			isa = PBXGroup;
 			children = (
 				EC24FF4C200C03E100A0AE15 /* ValidatorTests.swift */,
+				EC24FF55200C0C1900A0AE15 /* StateMachineTests.swift */,
 			);
 			path = Managers;
+			sourceTree = "<group>";
+		};
+		EC24FF4E200C064B00A0AE15 /* StateMachine */ = {
+			isa = PBXGroup;
+			children = (
+				EC24FF4F200C065F00A0AE15 /* AppState.swift */,
+				EC24FF51200C06E300A0AE15 /* StateMachine.swift */,
+			);
+			path = StateMachine;
 			sourceTree = "<group>";
 		};
 		EC6FD59F200AE18E00DCB824 /* QRScanner */ = {
@@ -210,6 +229,7 @@
 				ECB2C0D42008E56300AF1AF5 /* Constants.swift */,
 				ECC15FA52009794E0099BBC9 /* Fonts.swift */,
 				ECF31726200A9E0B00F7B703 /* Utils.swift */,
+				EC24FF53200C080300A0AE15 /* Notifications.swift */,
 			);
 			path = Miscellaneous;
 			sourceTree = "<group>";
@@ -470,6 +490,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC24FF54200C080300A0AE15 /* Notifications.swift in Sources */,
 				EC24FF20200BC69400A0AE15 /* LoginPresenter.swift in Sources */,
 				EC24FF22200BC69B00A0AE15 /* LoginType.swift in Sources */,
 				ECB2C0D32008E55500AF1AF5 /* Colors.swift in Sources */,
@@ -482,11 +503,13 @@
 				ECFF44E8200BC42F00DAF74C /* QRScannerViewControllerDelegate.swift in Sources */,
 				ECC15FA62009794E0099BBC9 /* Fonts.swift in Sources */,
 				ECF31732200ABB7C00F7B703 /* AppDelegate+SetupAppearance.swift in Sources */,
+				EC24FF52200C06E300A0AE15 /* StateMachine.swift in Sources */,
 				EC6FD5A2200AE1A200DCB824 /* QRScannerViewController.swift in Sources */,
 				EC24FF24200BC72F00A0AE15 /* LoginUIStrings.swift in Sources */,
 				ECF28087200A94550000D949 /* ViewController+Nib.swift in Sources */,
 				EC1DFB8F20063C400080BC50 /* AppDelegate.swift in Sources */,
 				ECB2C0D52008E56300AF1AF5 /* Constants.swift in Sources */,
+				EC24FF50200C065F00A0AE15 /* AppState.swift in Sources */,
 				ECF31725200A9D2800F7B703 /* UIAlertController+Window.swift in Sources */,
 				ECC15FA3200976770099BBC9 /* IntroViewController.swift in Sources */,
 				ECF3172A200AA0B200F7B703 /* IntroPresenter.swift in Sources */,
@@ -499,6 +522,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EC24FF4D200C03E100A0AE15 /* ValidatorTests.swift in Sources */,
+				EC24FF56200C0C1900A0AE15 /* StateMachineTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

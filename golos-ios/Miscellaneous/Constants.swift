@@ -18,4 +18,8 @@ struct Constants {
         static let moreInfoAbout = "https://golos.io/welcome"
         static let registration = "https://golos.io/create_account"
     }
+    
+    struct StateMachine {
+        static let oldStateKey = "oldStateKey"
+    }
 }
