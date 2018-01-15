@@ -20,10 +20,10 @@ extension AppDelegate {
         appearance.isTranslucent = false
         appearance.shadowImage = UIImage()
     }
-//        // UITabBar and UITabBarItem
-//        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedStringKey.font: FontManager.shared.ralewayRegular(withSize: 11)],
-//                                                         for: .normal)
-//        UITabBar.appearance().barTintColor = UIColor.black
-//        UITabBar.appearance().tintColor = UIColor.white
-//    }
+    
+    func setupTabBarAppearance() {
+        UITabBar.appearance().barTintColor = UIColor.white
+        UITabBar.appearance().tintColor = UIColor.Project.darkBlueTabSelected
+        UITabBar.appearance().isTranslucent = false
+    }
 }
