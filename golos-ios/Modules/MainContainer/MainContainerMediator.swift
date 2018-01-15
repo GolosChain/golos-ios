@@ -13,8 +13,10 @@ class MainContainerMediator: NSObject {
         let viewController: UIViewController
         switch state {
         case .loggedIn:
-            viewController = UIViewController()
-            viewController.view.backgroundColor = .red
+//            viewController = UIViewController()
+//            viewController.view.backgroundColor = .red
+            
+            viewController = GSTabBarController()
         case .loggedOut:
             let introViewController = IntroViewController.nibInstance()
             viewController = UINavigationController(rootViewController: introViewController)

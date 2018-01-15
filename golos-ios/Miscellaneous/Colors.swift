@@ -27,5 +27,7 @@ extension UIColor {
         static let textPlaceholderGray = UIColor(red: 125, green: 125, blue: 125)
         static let navigationBarTextBlack = UIColor(red: 45, green: 41, blue: 41)
         static let backButtonBlackColor = UIColor(red: 60, green: 54, blue: 54)
+        static let darkBlueTabSelected = UIColor(red: 68, green: 105, blue: 175)
+        static let darkBlueHeader = UIColor(red: 68, green: 105, blue: 175)
     }
 }
