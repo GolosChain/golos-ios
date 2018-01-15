@@ -19,10 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setupNavigationBarAppearance()
         setupKeyboardManager()
         
-        let introViewController = IntroViewController.nibInstance()
-        let navigationController = UINavigationController(rootViewController: introViewController)
-        
-        window?.rootViewController = navigationController
+        configureMainContainer()
         window?.makeKeyAndVisible()
 
         return true
