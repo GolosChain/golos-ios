@@ -90,6 +90,7 @@ class LoginViewController: UIViewController {
     }
     
     func startLogin() {
+        view.endEditing(true)
         view.isUserInteractionEnabled = false
         activityIndicator.startAnimating()
         enterButton.alpha = 0.7
@@ -156,6 +157,7 @@ extension LoginViewController: LoginView {
     
     func didLoginSuccessed() {
         stopAllActivity()
+        presenter.changeStateToLoggedIn()
     }
     
     func stopAllActivity() {

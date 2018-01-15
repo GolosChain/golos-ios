@@ -23,6 +23,8 @@ class LoginPresenter: NSObject {
     }
     var loginUIStrings: LoginUIStrings!
     
+    let stateMachine = StateMachine.load()
+    
     override init() {
         super.init()
         refreshUIStrings()
@@ -48,6 +50,10 @@ class LoginPresenter: NSObject {
             errorMessage = "Введите корректный ключ"
             return
         }
+    }
+    
+    func changeStateToLoggedIn() {
+        stateMachine.changeState(.loggedIn)
     }
     
     private func startLogin(with login: String,
