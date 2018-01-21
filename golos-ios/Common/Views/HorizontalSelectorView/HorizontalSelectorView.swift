@@ -9,7 +9,7 @@
 import UIKit
 
 protocol HorizontalSelectorViewDelegate: class {
-    func didChangeSelectedIndex(_ index: Int)
+    func didChangeSelectedIndex(_ index: Int, previousIndex: Int)
 }
 
 class HorizontalSelectorView: UIView {
@@ -41,7 +41,20 @@ class HorizontalSelectorView: UIView {
     }
     
     var selectedItem: HorizontalSelectorItem?
-    var selectedIndex: Int?
+    var selectedIndex: Int? {
+        didSet {
+            guard let index = selectedIndex,
+            index < buttons.count else {
+                return
+            }
+            
+            let item = items[index]
+            selectedItem = item
+            
+            let button = buttons[index]
+            setButtonActive(button)
+        }
+    }
     
     
     //MARK: Delegate
@@ -119,6 +132,11 @@ class HorizontalSelectorView: UIView {
         return button
     }
     
+    private func setButtonActive(_ button: UIButton) {
+        buttons.forEach{$0.isSelected = $0 == button}
+        moveSelectionViewToButton(button, animated: true)
+    }
+    
     
     //MARK: Selection view
     private func moveSelectionViewToButton(_ button: UIButton?,
@@ -153,14 +171,15 @@ class HorizontalSelectorView: UIView {
             return
         }
         
-        buttons.forEach{$0.isSelected = $0 == button}
+        guard let previousIndex = selectedIndex,
+            previousIndex != selectedButtonIndex else {return}
+        
         let selectedItem = items[selectedButtonIndex]
         self.selectedItem = selectedItem
         self.selectedIndex = selectedButtonIndex
+        setButtonActive(button)
         
-        moveSelectionViewToButton(button, animated: true)
-        
-        delegate?.didChangeSelectedIndex(selectedButtonIndex)
+        delegate?.didChangeSelectedIndex(selectedButtonIndex, previousIndex: previousIndex)
     }
     
     

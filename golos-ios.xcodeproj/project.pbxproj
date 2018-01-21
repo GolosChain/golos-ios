@@ -199,8 +199,7 @@
 		EC07F4AE2014402E00560CF0 /* FeedTab */ = {
 			isa = PBXGroup;
 			children = (
-				EC07F4AF2014404200560CF0 /* FeedTabViewController.swift */,
-				EC07F4B02014404200560CF0 /* FeedTabViewController.xib */,
+				EC9B2ADE201535AE008335C8 /* FeedTabViewController */,
 			);
 			path = FeedTab;
 			sourceTree = "<group>";
@@ -372,6 +371,15 @@
 				EC6FD5A1200AE1A200DCB824 /* QRScannerViewController.xib */,
 			);
 			path = QRScannerViewController;
+			sourceTree = "<group>";
+		};
+		EC9B2ADE201535AE008335C8 /* FeedTabViewController */ = {
+			isa = PBXGroup;
+			children = (
+				EC07F4AF2014404200560CF0 /* FeedTabViewController.swift */,
+				EC07F4B02014404200560CF0 /* FeedTabViewController.xib */,
+			);
+			path = FeedTabViewController;
 			sourceTree = "<group>";
 		};
 		ECB2C0D12008E54000AF1AF5 /* Miscellaneous */ = {

@@ -21,8 +21,9 @@ class FeedViewController: UIViewController {
     
     
     //MARK: Module properties
-    lazy var presenter: FeedPresenter = {
+    lazy var presenter: FeedPresenterProtocol = {
         let presenter = FeedPresenter()
+        presenter.feedView = self
         return presenter
     }()
     
@@ -56,7 +57,9 @@ class FeedViewController: UIViewController {
         
         let items = presenter.getFeedTabs().map{HorizontalSelectorItem(title: $0.type.rawValue)}
         
-        horizontalSelector.items = items 
+        horizontalSelector.items = items
+        horizontalSelector.delegate = self
+        
         navigationController?.navigationBar.barTintColor = UIColor.Project.darkBlueHeader
 //        if let navigationBar = navigationController?.navigationBar {
 //            let dropDownMenu = NavigationDropDownView()
@@ -86,20 +89,22 @@ class FeedViewController: UIViewController {
         pageViewController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         pageViewController.view.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         
-        let vc1 = FeedTabViewController()
-        vc1.feedType = presenter.selectedFeedTab?.type ?? .hot
-        
-        pageViewController.setViewControllers([vc1], direction: .forward, animated: true, completion: nil)
-        
-        pageViewController.dataSource = mediator
-        pageViewController.delegate = mediator
+        mediator.configure(pageViewController: pageViewController)
+        mediator.setViewController(at: 0)
     }
 }
 
 
-//MARK: FeedMediatorDelegate
-extension FeedViewController: FeedMediatorDelegate {
-    func didChangeFeedTab(_ feedTab: FeedTab) {
-        
+//MARK: FeedViewProtocol
+extension FeedViewController: FeedViewProtocol {
+    func didChangeActiveIndex(_ index: Int) {
+        horizontalSelector.selectedIndex = index
+    }
+}
+
+
+extension FeedViewController: HorizontalSelectorViewDelegate {
+    func didChangeSelectedIndex(_ index: Int, previousIndex: Int) {
+        mediator.setViewController(at: index, previousIndex: previousIndex)
     }
 }
