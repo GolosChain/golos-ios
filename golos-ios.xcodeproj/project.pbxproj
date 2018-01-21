@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		4DAAAD6714B074435D5557C7 /* Pods_golos_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 617A00E81BE0A996F90DD4BB /* Pods_golos_ios.framework */; };
 		EC07F4A22014093E00560CF0 /* HorizontalSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC07F4A12014093E00560CF0 /* HorizontalSelectorView.swift */; };
+		EC07F4A620141E8D00560CF0 /* FeedType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC07F4A520141E8D00560CF0 /* FeedType.swift */; };
+		EC07F4A820141F0200560CF0 /* FeedMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC07F4A720141F0200560CF0 /* FeedMediator.swift */; };
+		EC07F4AA20141F0C00560CF0 /* FeedPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC07F4A920141F0C00560CF0 /* FeedPresenter.swift */; };
+		EC07F4AC20141F7400560CF0 /* FeedTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC07F4AB20141F7400560CF0 /* FeedTab.swift */; };
+		EC07F4B12014404200560CF0 /* FeedTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC07F4AF2014404200560CF0 /* FeedTabViewController.swift */; };
+		EC07F4B22014404200560CF0 /* FeedTabViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC07F4B02014404200560CF0 /* FeedTabViewController.xib */; };
 		EC1DFB8F20063C400080BC50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1DFB8E20063C400080BC50 /* AppDelegate.swift */; };
 		EC1DFB9620063C400080BC50 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC1DFB9520063C400080BC50 /* Assets.xcassets */; };
 		EC1DFB9920063C400080BC50 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC1DFB9720063C400080BC50 /* LaunchScreen.storyboard */; };
@@ -72,6 +78,12 @@
 		7BD44B1209B5C64C3D1EF768 /* Pods-golos-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-golos-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-golos-ios/Pods-golos-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		DECBC36021F31D8D6F619C11 /* Pods-golos-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-golos-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-golos-ios/Pods-golos-ios.release.xcconfig"; sourceTree = "<group>"; };
 		EC07F4A12014093E00560CF0 /* HorizontalSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalSelectorView.swift; sourceTree = "<group>"; };
+		EC07F4A520141E8D00560CF0 /* FeedType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedType.swift; sourceTree = "<group>"; };
+		EC07F4A720141F0200560CF0 /* FeedMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedMediator.swift; sourceTree = "<group>"; };
+		EC07F4A920141F0C00560CF0 /* FeedPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPresenter.swift; sourceTree = "<group>"; };
+		EC07F4AB20141F7400560CF0 /* FeedTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTab.swift; sourceTree = "<group>"; };
+		EC07F4AF2014404200560CF0 /* FeedTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTabViewController.swift; sourceTree = "<group>"; };
+		EC07F4B02014404200560CF0 /* FeedTabViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedTabViewController.xib; sourceTree = "<group>"; };
 		EC1DFB8B20063C400080BC50 /* Golos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Golos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC1DFB8E20063C400080BC50 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EC1DFB9520063C400080BC50 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -168,6 +180,31 @@
 			path = HorizontalSelectorView;
 			sourceTree = "<group>";
 		};
+		EC07F4A320141E7400560CF0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EC07F4A420141E8400560CF0 /* Feed */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		EC07F4A420141E8400560CF0 /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				EC07F4A520141E8D00560CF0 /* FeedType.swift */,
+			);
+			path = Feed;
+			sourceTree = "<group>";
+		};
+		EC07F4AE2014402E00560CF0 /* FeedTab */ = {
+			isa = PBXGroup;
+			children = (
+				EC07F4AF2014404200560CF0 /* FeedTabViewController.swift */,
+				EC07F4B02014404200560CF0 /* FeedTabViewController.xib */,
+			);
+			path = FeedTab;
+			sourceTree = "<group>";
+		};
 		EC1DFB8220063C400080BC50 = {
 			isa = PBXGroup;
 			children = (
@@ -197,6 +234,7 @@
 				ECF31731200ABB7C00F7B703 /* AppDelegate+SetupAppearance.swift */,
 				ECC15F9B200975680099BBC9 /* Modules */,
 				EC24FF29200BFA9300A0AE15 /* Managers */,
+				EC07F4A320141E7400560CF0 /* Model */,
 				ECF28084200A941F0000D949 /* Common */,
 				ECC15F9E2009759B0099BBC9 /* Storyboards */,
 				ECB2C0D12008E54000AF1AF5 /* Miscellaneous */,
@@ -283,6 +321,9 @@
 			isa = PBXGroup;
 			children = (
 				EC24FF76200C496800A0AE15 /* FeedViewController */,
+				EC07F4A720141F0200560CF0 /* FeedMediator.swift */,
+				EC07F4A920141F0C00560CF0 /* FeedPresenter.swift */,
+				EC07F4AB20141F7400560CF0 /* FeedTab.swift */,
 			);
 			path = Feed;
 			sourceTree = "<group>";
@@ -348,6 +389,7 @@
 		ECC15F9B200975680099BBC9 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				EC07F4AE2014402E00560CF0 /* FeedTab */,
 				EC24FF75200C495F00A0AE15 /* Feed */,
 				EC24FF6D200C432700A0AE15 /* Profile */,
 				EC24FF6A200C3FE700A0AE15 /* Tab */,
@@ -536,6 +578,7 @@
 				EC1DFB9920063C400080BC50 /* LaunchScreen.storyboard in Resources */,
 				EC24FF7F200C4E2C00A0AE15 /* NavigationDropDownView.xib in Resources */,
 				EC6FD5A3200AE1A200DCB824 /* QRScannerViewController.xib in Resources */,
+				EC07F4B22014404200560CF0 /* FeedTabViewController.xib in Resources */,
 				EC1DFB9620063C400080BC50 /* Assets.xcassets in Resources */,
 				ECC15FA0200976320099BBC9 /* Intro.storyboard in Resources */,
 				ECC15FA4200976770099BBC9 /* IntroViewController.xib in Resources */,
@@ -617,13 +660,16 @@
 				EC24FF74200C43B500A0AE15 /* ProfilePresenter.swift in Sources */,
 				EC24FF5B200C30C500A0AE15 /* MainContainerPresenter.swift in Sources */,
 				EC24FF79200C497800A0AE15 /* FeedViewController.swift in Sources */,
+				EC07F4B12014404200560CF0 /* FeedTabViewController.swift in Sources */,
 				EC24FF22200BC69B00A0AE15 /* LoginType.swift in Sources */,
 				ECB2C0D32008E55500AF1AF5 /* Colors.swift in Sources */,
 				ECF2808C200A9A210000D949 /* UIButton+Intro.swift in Sources */,
 				EC24FF2B200BFAA100A0AE15 /* Validator.swift in Sources */,
 				ECF31727200A9E0B00F7B703 /* Utils.swift in Sources */,
 				EC24FF26200BEA8800A0AE15 /* AppDelegate+IQKeyboardManager.swift in Sources */,
+				EC07F4AA20141F0C00560CF0 /* FeedPresenter.swift in Sources */,
 				EC07F4A22014093E00560CF0 /* HorizontalSelectorView.swift in Sources */,
+				EC07F4A820141F0200560CF0 /* FeedMediator.swift in Sources */,
 				EC24FF28200BEBE600A0AE15 /* ViewProtocol.swift in Sources */,
 				EC24FF84200C635600A0AE15 /* DropDownMediator.swift in Sources */,
 				EC24FF70200C433700A0AE15 /* ProfileViewController.swift in Sources */,
@@ -642,6 +688,8 @@
 				ECB2C0D52008E56300AF1AF5 /* Constants.swift in Sources */,
 				EC24FF7D200C4DE300A0AE15 /* NavigationDropDownView.swift in Sources */,
 				EC24FF50200C065F00A0AE15 /* AppState.swift in Sources */,
+				EC07F4A620141E8D00560CF0 /* FeedType.swift in Sources */,
+				EC07F4AC20141F7400560CF0 /* FeedTab.swift in Sources */,
 				ECF31725200A9D2800F7B703 /* UIAlertController+Window.swift in Sources */,
 				ECC15FA3200976770099BBC9 /* IntroViewController.swift in Sources */,
 				ECF3172A200AA0B200F7B703 /* IntroPresenter.swift in Sources */,
