@@ -29,5 +29,8 @@ extension UIColor {
         static let backButtonBlackColor = UIColor(red: 60, green: 54, blue: 54)
         static let darkBlueTabSelected = UIColor(red: 68, green: 105, blue: 175)
         static let darkBlueHeader = UIColor(red: 68, green: 105, blue: 175)
+        
+        //MARK: Horizontal selector
+        static let unselectedButtonColor = UIColor(red: 214, green: 214, blue: 214)
     }
 }

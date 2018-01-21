@@ -12,13 +12,15 @@ class GSTabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-
-        
-        let v1 = UIViewController()
-        v1.view.backgroundColor = .green
-        v1.tabBarItem = UITabBarItem(title: "", image: UIImage.init(named: "tab_home"), selectedImage: nil)
-        
+        configureViewControllers()
+    }
+    
+    private func configureViewControllers() {
+        let feedViewController = FeedViewController.nibInstance()
+        let feedNavigationViewController = UINavigationController(rootViewController: feedViewController)
+        feedNavigationViewController.tabBarItem = UITabBarItem(title: "",
+                                                     image: UIImage(named: "tab_home"),
+                                                     selectedImage: nil)
         let v2 = UIViewController()
         v2.view.backgroundColor = .red
         v2.tabBarItem = UITabBarItem(title: "", image: UIImage.init(named: "tab_search"), selectedImage: nil)
@@ -37,9 +39,13 @@ class GSTabBarController: UITabBarController {
                                                               image: UIImage.init(named: "tab_profile"),
                                                               selectedImage: nil)
         
-        viewControllers = [v1, v2, v3, v4, profileNavigationController]
-        
-        
+        viewControllers = [
+            feedNavigationViewController,
+            v2,
+            v3,
+            v4,
+            profileNavigationController
+        ]
     }
     
     override var viewControllers: [UIViewController]? {
