@@ -46,6 +46,11 @@
 		EC6FD59E200AD53100DCB824 /* ViewController+BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6FD59D200AD53100DCB824 /* ViewController+BackButton.swift */; };
 		EC6FD5A2200AE1A200DCB824 /* QRScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6FD5A0200AE1A200DCB824 /* QRScannerViewController.swift */; };
 		EC6FD5A3200AE1A200DCB824 /* QRScannerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC6FD5A1200AE1A200DCB824 /* QRScannerViewController.xib */; };
+		EC9B2AE020154B62008335C8 /* FeedTabPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9B2ADF20154B62008335C8 /* FeedTabPresenter.swift */; };
+		EC9B2AE220154DE9008335C8 /* FeedArticleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9B2AE120154DE9008335C8 /* FeedArticleViewModel.swift */; };
+		EC9B2AE6201550F4008335C8 /* FeedArticleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9B2AE4201550F4008335C8 /* FeedArticleTableViewCell.swift */; };
+		EC9B2AE7201550F4008335C8 /* FeedArticleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC9B2AE5201550F4008335C8 /* FeedArticleTableViewCell.xib */; };
+		EC9B2AE920155B9C008335C8 /* FeedTabMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9B2AE820155B9C008335C8 /* FeedTabMediator.swift */; };
 		ECB2C0D32008E55500AF1AF5 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2C0D22008E55500AF1AF5 /* Colors.swift */; };
 		ECB2C0D52008E56300AF1AF5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2C0D42008E56300AF1AF5 /* Constants.swift */; };
 		ECC15FA0200976320099BBC9 /* Intro.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ECC15F9F200976320099BBC9 /* Intro.storyboard */; };
@@ -119,6 +124,11 @@
 		EC6FD59D200AD53100DCB824 /* ViewController+BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+BackButton.swift"; sourceTree = "<group>"; };
 		EC6FD5A0200AE1A200DCB824 /* QRScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerViewController.swift; sourceTree = "<group>"; };
 		EC6FD5A1200AE1A200DCB824 /* QRScannerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QRScannerViewController.xib; sourceTree = "<group>"; };
+		EC9B2ADF20154B62008335C8 /* FeedTabPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTabPresenter.swift; sourceTree = "<group>"; };
+		EC9B2AE120154DE9008335C8 /* FeedArticleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedArticleViewModel.swift; sourceTree = "<group>"; };
+		EC9B2AE4201550F4008335C8 /* FeedArticleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedArticleTableViewCell.swift; sourceTree = "<group>"; };
+		EC9B2AE5201550F4008335C8 /* FeedArticleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedArticleTableViewCell.xib; sourceTree = "<group>"; };
+		EC9B2AE820155B9C008335C8 /* FeedTabMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTabMediator.swift; sourceTree = "<group>"; };
 		ECB2C0D22008E55500AF1AF5 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		ECB2C0D42008E56300AF1AF5 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		ECC15F9F200976320099BBC9 /* Intro.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Intro.storyboard; sourceTree = "<group>"; };
@@ -199,7 +209,11 @@
 		EC07F4AE2014402E00560CF0 /* FeedTab */ = {
 			isa = PBXGroup;
 			children = (
+				EC9B2AE3201550E1008335C8 /* Cells */,
 				EC9B2ADE201535AE008335C8 /* FeedTabViewController */,
+				EC9B2ADF20154B62008335C8 /* FeedTabPresenter.swift */,
+				EC9B2AE820155B9C008335C8 /* FeedTabMediator.swift */,
+				EC9B2AE120154DE9008335C8 /* FeedArticleViewModel.swift */,
 			);
 			path = FeedTab;
 			sourceTree = "<group>";
@@ -380,6 +394,15 @@
 				EC07F4B02014404200560CF0 /* FeedTabViewController.xib */,
 			);
 			path = FeedTabViewController;
+			sourceTree = "<group>";
+		};
+		EC9B2AE3201550E1008335C8 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				EC9B2AE4201550F4008335C8 /* FeedArticleTableViewCell.swift */,
+				EC9B2AE5201550F4008335C8 /* FeedArticleTableViewCell.xib */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		ECB2C0D12008E54000AF1AF5 /* Miscellaneous */ = {
@@ -583,6 +606,7 @@
 				EC24FF71200C433700A0AE15 /* ProfileViewController.xib in Resources */,
 				ECF3172F200AB22E00F7B703 /* LoginViewController.xib in Resources */,
 				EC24FF7A200C497800A0AE15 /* FeedViewController.xib in Resources */,
+				EC9B2AE7201550F4008335C8 /* FeedArticleTableViewCell.xib in Resources */,
 				EC1DFB9920063C400080BC50 /* LaunchScreen.storyboard in Resources */,
 				EC24FF7F200C4E2C00A0AE15 /* NavigationDropDownView.xib in Resources */,
 				EC6FD5A3200AE1A200DCB824 /* QRScannerViewController.xib in Resources */,
@@ -663,9 +687,11 @@
 			files = (
 				EC24FF59200C30B800A0AE15 /* MainContainerViewController.swift in Sources */,
 				EC24FF54200C080300A0AE15 /* Notifications.swift in Sources */,
+				EC9B2AE020154B62008335C8 /* FeedTabPresenter.swift in Sources */,
 				EC24FF5D200C30CF00A0AE15 /* MainContainerMediator.swift in Sources */,
 				EC24FF20200BC69400A0AE15 /* LoginPresenter.swift in Sources */,
 				EC24FF74200C43B500A0AE15 /* ProfilePresenter.swift in Sources */,
+				EC9B2AE220154DE9008335C8 /* FeedArticleViewModel.swift in Sources */,
 				EC24FF5B200C30C500A0AE15 /* MainContainerPresenter.swift in Sources */,
 				EC24FF79200C497800A0AE15 /* FeedViewController.swift in Sources */,
 				EC07F4B12014404200560CF0 /* FeedTabViewController.swift in Sources */,
@@ -678,7 +704,9 @@
 				EC07F4AA20141F0C00560CF0 /* FeedPresenter.swift in Sources */,
 				EC07F4A22014093E00560CF0 /* HorizontalSelectorView.swift in Sources */,
 				EC07F4A820141F0200560CF0 /* FeedMediator.swift in Sources */,
+				EC9B2AE920155B9C008335C8 /* FeedTabMediator.swift in Sources */,
 				EC24FF28200BEBE600A0AE15 /* ViewProtocol.swift in Sources */,
+				EC9B2AE6201550F4008335C8 /* FeedArticleTableViewCell.swift in Sources */,
 				EC24FF84200C635600A0AE15 /* DropDownMediator.swift in Sources */,
 				EC24FF70200C433700A0AE15 /* ProfileViewController.swift in Sources */,
 				EC24FF82200C625800A0AE15 /* DropDownViewController.swift in Sources */,
