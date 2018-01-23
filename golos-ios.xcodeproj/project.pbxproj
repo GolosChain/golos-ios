@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		4DAAAD6714B074435D5557C7 /* Pods_golos_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 617A00E81BE0A996F90DD4BB /* Pods_golos_ios.framework */; };
+		EC07F4A22014093E00560CF0 /* HorizontalSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC07F4A12014093E00560CF0 /* HorizontalSelectorView.swift */; };
+		EC07F4A620141E8D00560CF0 /* FeedType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC07F4A520141E8D00560CF0 /* FeedType.swift */; };
+		EC07F4A820141F0200560CF0 /* FeedMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC07F4A720141F0200560CF0 /* FeedMediator.swift */; };
+		EC07F4AA20141F0C00560CF0 /* FeedPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC07F4A920141F0C00560CF0 /* FeedPresenter.swift */; };
+		EC07F4AC20141F7400560CF0 /* FeedTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC07F4AB20141F7400560CF0 /* FeedTab.swift */; };
+		EC07F4B12014404200560CF0 /* FeedTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC07F4AF2014404200560CF0 /* FeedTabViewController.swift */; };
+		EC07F4B22014404200560CF0 /* FeedTabViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC07F4B02014404200560CF0 /* FeedTabViewController.xib */; };
 		EC1DFB8F20063C400080BC50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1DFB8E20063C400080BC50 /* AppDelegate.swift */; };
 		EC1DFB9620063C400080BC50 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC1DFB9520063C400080BC50 /* Assets.xcassets */; };
 		EC1DFB9920063C400080BC50 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC1DFB9720063C400080BC50 /* LaunchScreen.storyboard */; };
@@ -30,9 +37,20 @@
 		EC24FF70200C433700A0AE15 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC24FF6E200C433700A0AE15 /* ProfileViewController.swift */; };
 		EC24FF71200C433700A0AE15 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC24FF6F200C433700A0AE15 /* ProfileViewController.xib */; };
 		EC24FF74200C43B500A0AE15 /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC24FF73200C43B500A0AE15 /* ProfilePresenter.swift */; };
+		EC24FF79200C497800A0AE15 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC24FF77200C497800A0AE15 /* FeedViewController.swift */; };
+		EC24FF7A200C497800A0AE15 /* FeedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC24FF78200C497800A0AE15 /* FeedViewController.xib */; };
+		EC24FF7D200C4DE300A0AE15 /* NavigationDropDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC24FF7C200C4DE300A0AE15 /* NavigationDropDownView.swift */; };
+		EC24FF7F200C4E2C00A0AE15 /* NavigationDropDownView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC24FF7E200C4E2C00A0AE15 /* NavigationDropDownView.xib */; };
+		EC24FF82200C625800A0AE15 /* DropDownViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC24FF81200C625800A0AE15 /* DropDownViewController.swift */; };
+		EC24FF84200C635600A0AE15 /* DropDownMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC24FF83200C635600A0AE15 /* DropDownMediator.swift */; };
 		EC6FD59E200AD53100DCB824 /* ViewController+BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6FD59D200AD53100DCB824 /* ViewController+BackButton.swift */; };
 		EC6FD5A2200AE1A200DCB824 /* QRScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6FD5A0200AE1A200DCB824 /* QRScannerViewController.swift */; };
 		EC6FD5A3200AE1A200DCB824 /* QRScannerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC6FD5A1200AE1A200DCB824 /* QRScannerViewController.xib */; };
+		EC9B2AE020154B62008335C8 /* FeedTabPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9B2ADF20154B62008335C8 /* FeedTabPresenter.swift */; };
+		EC9B2AE220154DE9008335C8 /* FeedArticleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9B2AE120154DE9008335C8 /* FeedArticleViewModel.swift */; };
+		EC9B2AE6201550F4008335C8 /* FeedArticleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9B2AE4201550F4008335C8 /* FeedArticleTableViewCell.swift */; };
+		EC9B2AE7201550F4008335C8 /* FeedArticleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC9B2AE5201550F4008335C8 /* FeedArticleTableViewCell.xib */; };
+		EC9B2AE920155B9C008335C8 /* FeedTabMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9B2AE820155B9C008335C8 /* FeedTabMediator.swift */; };
 		ECB2C0D32008E55500AF1AF5 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2C0D22008E55500AF1AF5 /* Colors.swift */; };
 		ECB2C0D52008E56300AF1AF5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2C0D42008E56300AF1AF5 /* Constants.swift */; };
 		ECC15FA0200976320099BBC9 /* Intro.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ECC15F9F200976320099BBC9 /* Intro.storyboard */; };
@@ -64,6 +82,13 @@
 		617A00E81BE0A996F90DD4BB /* Pods_golos_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_golos_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BD44B1209B5C64C3D1EF768 /* Pods-golos-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-golos-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-golos-ios/Pods-golos-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		DECBC36021F31D8D6F619C11 /* Pods-golos-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-golos-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-golos-ios/Pods-golos-ios.release.xcconfig"; sourceTree = "<group>"; };
+		EC07F4A12014093E00560CF0 /* HorizontalSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalSelectorView.swift; sourceTree = "<group>"; };
+		EC07F4A520141E8D00560CF0 /* FeedType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedType.swift; sourceTree = "<group>"; };
+		EC07F4A720141F0200560CF0 /* FeedMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedMediator.swift; sourceTree = "<group>"; };
+		EC07F4A920141F0C00560CF0 /* FeedPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPresenter.swift; sourceTree = "<group>"; };
+		EC07F4AB20141F7400560CF0 /* FeedTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTab.swift; sourceTree = "<group>"; };
+		EC07F4AF2014404200560CF0 /* FeedTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTabViewController.swift; sourceTree = "<group>"; };
+		EC07F4B02014404200560CF0 /* FeedTabViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedTabViewController.xib; sourceTree = "<group>"; };
 		EC1DFB8B20063C400080BC50 /* Golos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Golos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC1DFB8E20063C400080BC50 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EC1DFB9520063C400080BC50 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -90,9 +115,20 @@
 		EC24FF6E200C433700A0AE15 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		EC24FF6F200C433700A0AE15 /* ProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
 		EC24FF73200C43B500A0AE15 /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
+		EC24FF77200C497800A0AE15 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
+		EC24FF78200C497800A0AE15 /* FeedViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedViewController.xib; sourceTree = "<group>"; };
+		EC24FF7C200C4DE300A0AE15 /* NavigationDropDownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationDropDownView.swift; sourceTree = "<group>"; };
+		EC24FF7E200C4E2C00A0AE15 /* NavigationDropDownView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NavigationDropDownView.xib; sourceTree = "<group>"; };
+		EC24FF81200C625800A0AE15 /* DropDownViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownViewController.swift; sourceTree = "<group>"; };
+		EC24FF83200C635600A0AE15 /* DropDownMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownMediator.swift; sourceTree = "<group>"; };
 		EC6FD59D200AD53100DCB824 /* ViewController+BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+BackButton.swift"; sourceTree = "<group>"; };
 		EC6FD5A0200AE1A200DCB824 /* QRScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerViewController.swift; sourceTree = "<group>"; };
 		EC6FD5A1200AE1A200DCB824 /* QRScannerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QRScannerViewController.xib; sourceTree = "<group>"; };
+		EC9B2ADF20154B62008335C8 /* FeedTabPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTabPresenter.swift; sourceTree = "<group>"; };
+		EC9B2AE120154DE9008335C8 /* FeedArticleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedArticleViewModel.swift; sourceTree = "<group>"; };
+		EC9B2AE4201550F4008335C8 /* FeedArticleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedArticleTableViewCell.swift; sourceTree = "<group>"; };
+		EC9B2AE5201550F4008335C8 /* FeedArticleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedArticleTableViewCell.xib; sourceTree = "<group>"; };
+		EC9B2AE820155B9C008335C8 /* FeedTabMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTabMediator.swift; sourceTree = "<group>"; };
 		ECB2C0D22008E55500AF1AF5 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		ECB2C0D42008E56300AF1AF5 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		ECC15F9F200976320099BBC9 /* Intro.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Intro.storyboard; sourceTree = "<group>"; };
@@ -146,6 +182,42 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		EC07F4A0201408FF00560CF0 /* HorizontalSelectorView */ = {
+			isa = PBXGroup;
+			children = (
+				EC07F4A12014093E00560CF0 /* HorizontalSelectorView.swift */,
+			);
+			path = HorizontalSelectorView;
+			sourceTree = "<group>";
+		};
+		EC07F4A320141E7400560CF0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EC07F4A420141E8400560CF0 /* Feed */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		EC07F4A420141E8400560CF0 /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				EC07F4A520141E8D00560CF0 /* FeedType.swift */,
+			);
+			path = Feed;
+			sourceTree = "<group>";
+		};
+		EC07F4AE2014402E00560CF0 /* FeedTab */ = {
+			isa = PBXGroup;
+			children = (
+				EC9B2AE3201550E1008335C8 /* Cells */,
+				EC9B2ADE201535AE008335C8 /* FeedTabViewController */,
+				EC9B2ADF20154B62008335C8 /* FeedTabPresenter.swift */,
+				EC9B2AE820155B9C008335C8 /* FeedTabMediator.swift */,
+				EC9B2AE120154DE9008335C8 /* FeedArticleViewModel.swift */,
+			);
+			path = FeedTab;
+			sourceTree = "<group>";
+		};
 		EC1DFB8220063C400080BC50 = {
 			isa = PBXGroup;
 			children = (
@@ -175,6 +247,7 @@
 				ECF31731200ABB7C00F7B703 /* AppDelegate+SetupAppearance.swift */,
 				ECC15F9B200975680099BBC9 /* Modules */,
 				EC24FF29200BFA9300A0AE15 /* Managers */,
+				EC07F4A320141E7400560CF0 /* Model */,
 				ECF28084200A941F0000D949 /* Common */,
 				ECC15F9E2009759B0099BBC9 /* Storyboards */,
 				ECB2C0D12008E54000AF1AF5 /* Miscellaneous */,
@@ -257,6 +330,45 @@
 			path = ProfileViewController;
 			sourceTree = "<group>";
 		};
+		EC24FF75200C495F00A0AE15 /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				EC24FF76200C496800A0AE15 /* FeedViewController */,
+				EC07F4A720141F0200560CF0 /* FeedMediator.swift */,
+				EC07F4A920141F0C00560CF0 /* FeedPresenter.swift */,
+				EC07F4AB20141F7400560CF0 /* FeedTab.swift */,
+			);
+			path = Feed;
+			sourceTree = "<group>";
+		};
+		EC24FF76200C496800A0AE15 /* FeedViewController */ = {
+			isa = PBXGroup;
+			children = (
+				EC24FF77200C497800A0AE15 /* FeedViewController.swift */,
+				EC24FF78200C497800A0AE15 /* FeedViewController.xib */,
+			);
+			path = FeedViewController;
+			sourceTree = "<group>";
+		};
+		EC24FF7B200C4CE500A0AE15 /* NavigationDropDownView */ = {
+			isa = PBXGroup;
+			children = (
+				EC24FF80200C622700A0AE15 /* DropDownTable */,
+				EC24FF7C200C4DE300A0AE15 /* NavigationDropDownView.swift */,
+				EC24FF7E200C4E2C00A0AE15 /* NavigationDropDownView.xib */,
+			);
+			path = NavigationDropDownView;
+			sourceTree = "<group>";
+		};
+		EC24FF80200C622700A0AE15 /* DropDownTable */ = {
+			isa = PBXGroup;
+			children = (
+				EC24FF81200C625800A0AE15 /* DropDownViewController.swift */,
+				EC24FF83200C635600A0AE15 /* DropDownMediator.swift */,
+			);
+			path = DropDownTable;
+			sourceTree = "<group>";
+		};
 		EC6FD59F200AE18E00DCB824 /* QRScanner */ = {
 			isa = PBXGroup;
 			children = (
@@ -275,6 +387,24 @@
 			path = QRScannerViewController;
 			sourceTree = "<group>";
 		};
+		EC9B2ADE201535AE008335C8 /* FeedTabViewController */ = {
+			isa = PBXGroup;
+			children = (
+				EC07F4AF2014404200560CF0 /* FeedTabViewController.swift */,
+				EC07F4B02014404200560CF0 /* FeedTabViewController.xib */,
+			);
+			path = FeedTabViewController;
+			sourceTree = "<group>";
+		};
+		EC9B2AE3201550E1008335C8 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				EC9B2AE4201550F4008335C8 /* FeedArticleTableViewCell.swift */,
+				EC9B2AE5201550F4008335C8 /* FeedArticleTableViewCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		ECB2C0D12008E54000AF1AF5 /* Miscellaneous */ = {
 			isa = PBXGroup;
 			children = (
@@ -290,6 +420,8 @@
 		ECC15F9B200975680099BBC9 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				EC07F4AE2014402E00560CF0 /* FeedTab */,
+				EC24FF75200C495F00A0AE15 /* Feed */,
 				EC24FF6D200C432700A0AE15 /* Profile */,
 				EC24FF6A200C3FE700A0AE15 /* Tab */,
 				EC24FF57200C30A300A0AE15 /* MainContainer */,
@@ -378,6 +510,8 @@
 		ECF31733200AC77A00F7B703 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				EC07F4A0201408FF00560CF0 /* HorizontalSelectorView */,
+				EC24FF7B200C4CE500A0AE15 /* NavigationDropDownView */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -471,8 +605,12 @@
 			files = (
 				EC24FF71200C433700A0AE15 /* ProfileViewController.xib in Resources */,
 				ECF3172F200AB22E00F7B703 /* LoginViewController.xib in Resources */,
+				EC24FF7A200C497800A0AE15 /* FeedViewController.xib in Resources */,
+				EC9B2AE7201550F4008335C8 /* FeedArticleTableViewCell.xib in Resources */,
 				EC1DFB9920063C400080BC50 /* LaunchScreen.storyboard in Resources */,
+				EC24FF7F200C4E2C00A0AE15 /* NavigationDropDownView.xib in Resources */,
 				EC6FD5A3200AE1A200DCB824 /* QRScannerViewController.xib in Resources */,
+				EC07F4B22014404200560CF0 /* FeedTabViewController.xib in Resources */,
 				EC1DFB9620063C400080BC50 /* Assets.xcassets in Resources */,
 				ECC15FA0200976320099BBC9 /* Intro.storyboard in Resources */,
 				ECC15FA4200976770099BBC9 /* IntroViewController.xib in Resources */,
@@ -549,18 +687,29 @@
 			files = (
 				EC24FF59200C30B800A0AE15 /* MainContainerViewController.swift in Sources */,
 				EC24FF54200C080300A0AE15 /* Notifications.swift in Sources */,
+				EC9B2AE020154B62008335C8 /* FeedTabPresenter.swift in Sources */,
 				EC24FF5D200C30CF00A0AE15 /* MainContainerMediator.swift in Sources */,
 				EC24FF20200BC69400A0AE15 /* LoginPresenter.swift in Sources */,
 				EC24FF74200C43B500A0AE15 /* ProfilePresenter.swift in Sources */,
+				EC9B2AE220154DE9008335C8 /* FeedArticleViewModel.swift in Sources */,
 				EC24FF5B200C30C500A0AE15 /* MainContainerPresenter.swift in Sources */,
+				EC24FF79200C497800A0AE15 /* FeedViewController.swift in Sources */,
+				EC07F4B12014404200560CF0 /* FeedTabViewController.swift in Sources */,
 				EC24FF22200BC69B00A0AE15 /* LoginType.swift in Sources */,
 				ECB2C0D32008E55500AF1AF5 /* Colors.swift in Sources */,
 				ECF2808C200A9A210000D949 /* UIButton+Intro.swift in Sources */,
 				EC24FF2B200BFAA100A0AE15 /* Validator.swift in Sources */,
 				ECF31727200A9E0B00F7B703 /* Utils.swift in Sources */,
 				EC24FF26200BEA8800A0AE15 /* AppDelegate+IQKeyboardManager.swift in Sources */,
+				EC07F4AA20141F0C00560CF0 /* FeedPresenter.swift in Sources */,
+				EC07F4A22014093E00560CF0 /* HorizontalSelectorView.swift in Sources */,
+				EC07F4A820141F0200560CF0 /* FeedMediator.swift in Sources */,
+				EC9B2AE920155B9C008335C8 /* FeedTabMediator.swift in Sources */,
 				EC24FF28200BEBE600A0AE15 /* ViewProtocol.swift in Sources */,
+				EC9B2AE6201550F4008335C8 /* FeedArticleTableViewCell.swift in Sources */,
+				EC24FF84200C635600A0AE15 /* DropDownMediator.swift in Sources */,
 				EC24FF70200C433700A0AE15 /* ProfileViewController.swift in Sources */,
+				EC24FF82200C625800A0AE15 /* DropDownViewController.swift in Sources */,
 				EC6FD59E200AD53100DCB824 /* ViewController+BackButton.swift in Sources */,
 				ECFF44E8200BC42F00DAF74C /* QRScannerViewControllerDelegate.swift in Sources */,
 				ECC15FA62009794E0099BBC9 /* Fonts.swift in Sources */,
@@ -573,7 +722,10 @@
 				EC1DFB8F20063C400080BC50 /* AppDelegate.swift in Sources */,
 				EC24FF6C200C400300A0AE15 /* GSTabBarController.swift in Sources */,
 				ECB2C0D52008E56300AF1AF5 /* Constants.swift in Sources */,
+				EC24FF7D200C4DE300A0AE15 /* NavigationDropDownView.swift in Sources */,
 				EC24FF50200C065F00A0AE15 /* AppState.swift in Sources */,
+				EC07F4A620141E8D00560CF0 /* FeedType.swift in Sources */,
+				EC07F4AC20141F7400560CF0 /* FeedTab.swift in Sources */,
 				ECF31725200A9D2800F7B703 /* UIAlertController+Window.swift in Sources */,
 				ECC15FA3200976770099BBC9 /* IntroViewController.swift in Sources */,
 				ECF3172A200AA0B200F7B703 /* IntroPresenter.swift in Sources */,
