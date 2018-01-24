@@ -46,6 +46,12 @@
 		EC6FD59E200AD53100DCB824 /* ViewController+BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6FD59D200AD53100DCB824 /* ViewController+BackButton.swift */; };
 		EC6FD5A2200AE1A200DCB824 /* QRScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6FD5A0200AE1A200DCB824 /* QRScannerViewController.swift */; };
 		EC6FD5A3200AE1A200DCB824 /* QRScannerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC6FD5A1200AE1A200DCB824 /* QRScannerViewController.xib */; };
+		EC9ABBBF20179CEF00AF8597 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9ABBBE20179CEF00AF8597 /* Images.swift */; };
+		EC9ABBC32017D17000AF8597 /* UIImageEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9ABBC22017D17000AF8597 /* UIImageEffects.swift */; };
+		EC9ABBC62017D55800AF8597 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9ABBC52017D55800AF8597 /* ProfileHeaderView.swift */; };
+		EC9ABBC82017D56800AF8597 /* ProfileHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC9ABBC72017D56800AF8597 /* ProfileHeaderView.xib */; };
+		EC9ABBE82018036E00AF8597 /* Device+Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9ABBE72018036E00AF8597 /* Device+Size.swift */; };
+		EC9ABBEA2018072600AF8597 /* GSScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9ABBE92018072600AF8597 /* GSScrollView.swift */; };
 		EC9B2AE020154B62008335C8 /* FeedTabPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9B2ADF20154B62008335C8 /* FeedTabPresenter.swift */; };
 		EC9B2AE220154DE9008335C8 /* FeedArticleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9B2AE120154DE9008335C8 /* FeedArticleViewModel.swift */; };
 		EC9B2AE6201550F4008335C8 /* FeedArticleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9B2AE4201550F4008335C8 /* FeedArticleTableViewCell.swift */; };
@@ -124,6 +130,12 @@
 		EC6FD59D200AD53100DCB824 /* ViewController+BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+BackButton.swift"; sourceTree = "<group>"; };
 		EC6FD5A0200AE1A200DCB824 /* QRScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerViewController.swift; sourceTree = "<group>"; };
 		EC6FD5A1200AE1A200DCB824 /* QRScannerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QRScannerViewController.xib; sourceTree = "<group>"; };
+		EC9ABBBE20179CEF00AF8597 /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
+		EC9ABBC22017D17000AF8597 /* UIImageEffects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageEffects.swift; sourceTree = "<group>"; };
+		EC9ABBC52017D55800AF8597 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
+		EC9ABBC72017D56800AF8597 /* ProfileHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileHeaderView.xib; sourceTree = "<group>"; };
+		EC9ABBE72018036E00AF8597 /* Device+Size.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Device+Size.swift"; sourceTree = "<group>"; };
+		EC9ABBE92018072600AF8597 /* GSScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GSScrollView.swift; sourceTree = "<group>"; };
 		EC9B2ADF20154B62008335C8 /* FeedTabPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTabPresenter.swift; sourceTree = "<group>"; };
 		EC9B2AE120154DE9008335C8 /* FeedArticleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedArticleViewModel.swift; sourceTree = "<group>"; };
 		EC9B2AE4201550F4008335C8 /* FeedArticleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedArticleTableViewCell.swift; sourceTree = "<group>"; };
@@ -315,6 +327,7 @@
 		EC24FF6D200C432700A0AE15 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				EC9ABBC42017D54900AF8597 /* Views */,
 				EC24FF72200C439E00A0AE15 /* ProfileViewController */,
 				EC24FF73200C43B500A0AE15 /* ProfilePresenter.swift */,
 			);
@@ -387,6 +400,15 @@
 			path = QRScannerViewController;
 			sourceTree = "<group>";
 		};
+		EC9ABBC42017D54900AF8597 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				EC9ABBC52017D55800AF8597 /* ProfileHeaderView.swift */,
+				EC9ABBC72017D56800AF8597 /* ProfileHeaderView.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		EC9B2ADE201535AE008335C8 /* FeedTabViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -413,6 +435,8 @@
 				ECC15FA52009794E0099BBC9 /* Fonts.swift */,
 				ECF31726200A9E0B00F7B703 /* Utils.swift */,
 				EC24FF53200C080300A0AE15 /* Notifications.swift */,
+				EC9ABBBE20179CEF00AF8597 /* Images.swift */,
+				EC9ABBE72018036E00AF8597 /* Device+Size.swift */,
 			);
 			path = Miscellaneous;
 			sourceTree = "<group>";
@@ -466,6 +490,7 @@
 				EC6FD59D200AD53100DCB824 /* ViewController+BackButton.swift */,
 				ECF2808B200A9A210000D949 /* UIButton+Intro.swift */,
 				ECF31724200A9D2800F7B703 /* UIAlertController+Window.swift */,
+				EC9ABBC22017D17000AF8597 /* UIImageEffects.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -512,6 +537,7 @@
 			children = (
 				EC07F4A0201408FF00560CF0 /* HorizontalSelectorView */,
 				EC24FF7B200C4CE500A0AE15 /* NavigationDropDownView */,
+				EC9ABBE92018072600AF8597 /* GSScrollView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -610,6 +636,7 @@
 				EC1DFB9920063C400080BC50 /* LaunchScreen.storyboard in Resources */,
 				EC24FF7F200C4E2C00A0AE15 /* NavigationDropDownView.xib in Resources */,
 				EC6FD5A3200AE1A200DCB824 /* QRScannerViewController.xib in Resources */,
+				EC9ABBC82017D56800AF8597 /* ProfileHeaderView.xib in Resources */,
 				EC07F4B22014404200560CF0 /* FeedTabViewController.xib in Resources */,
 				EC1DFB9620063C400080BC50 /* Assets.xcassets in Resources */,
 				ECC15FA0200976320099BBC9 /* Intro.storyboard in Resources */,
@@ -685,6 +712,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC9ABBE82018036E00AF8597 /* Device+Size.swift in Sources */,
 				EC24FF59200C30B800A0AE15 /* MainContainerViewController.swift in Sources */,
 				EC24FF54200C080300A0AE15 /* Notifications.swift in Sources */,
 				EC9B2AE020154B62008335C8 /* FeedTabPresenter.swift in Sources */,
@@ -692,6 +720,7 @@
 				EC24FF20200BC69400A0AE15 /* LoginPresenter.swift in Sources */,
 				EC24FF74200C43B500A0AE15 /* ProfilePresenter.swift in Sources */,
 				EC9B2AE220154DE9008335C8 /* FeedArticleViewModel.swift in Sources */,
+				EC9ABBC62017D55800AF8597 /* ProfileHeaderView.swift in Sources */,
 				EC24FF5B200C30C500A0AE15 /* MainContainerPresenter.swift in Sources */,
 				EC24FF79200C497800A0AE15 /* FeedViewController.swift in Sources */,
 				EC07F4B12014404200560CF0 /* FeedTabViewController.swift in Sources */,
@@ -699,7 +728,9 @@
 				ECB2C0D32008E55500AF1AF5 /* Colors.swift in Sources */,
 				ECF2808C200A9A210000D949 /* UIButton+Intro.swift in Sources */,
 				EC24FF2B200BFAA100A0AE15 /* Validator.swift in Sources */,
+				EC9ABBEA2018072600AF8597 /* GSScrollView.swift in Sources */,
 				ECF31727200A9E0B00F7B703 /* Utils.swift in Sources */,
+				EC9ABBBF20179CEF00AF8597 /* Images.swift in Sources */,
 				EC24FF26200BEA8800A0AE15 /* AppDelegate+IQKeyboardManager.swift in Sources */,
 				EC07F4AA20141F0C00560CF0 /* FeedPresenter.swift in Sources */,
 				EC07F4A22014093E00560CF0 /* HorizontalSelectorView.swift in Sources */,
@@ -714,6 +745,7 @@
 				ECFF44E8200BC42F00DAF74C /* QRScannerViewControllerDelegate.swift in Sources */,
 				ECC15FA62009794E0099BBC9 /* Fonts.swift in Sources */,
 				ECF31732200ABB7C00F7B703 /* AppDelegate+SetupAppearance.swift in Sources */,
+				EC9ABBC32017D17000AF8597 /* UIImageEffects.swift in Sources */,
 				EC24FF52200C06E300A0AE15 /* StateMachine.swift in Sources */,
 				EC24FF5F200C3B8100A0AE15 /* AppDelegate+RootViewController.swift in Sources */,
 				EC6FD5A2200AE1A200DCB824 /* QRScannerViewController.swift in Sources */,

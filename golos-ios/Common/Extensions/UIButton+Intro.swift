@@ -25,6 +25,13 @@ extension UIButton {
         titleLabel?.font = Fonts.shared.medium(with: 16)
     }
     
+    func setProfileHeaderButton() {
+        setRoundEdges(cornerRadius: 4.0)
+        backgroundColor = .white
+        setTitleColor(UIColor.Project.textBlack, for: .normal)
+        titleLabel?.font = Fonts.shared.regular(with: 10)
+    }
+    
     private func setRoundEdges(cornerRadius: CGFloat) {
         layer.masksToBounds = true
         layer.cornerRadius = cornerRadius
