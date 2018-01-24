@@ -17,10 +17,14 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     
     
     //MARK: Outlets properties
-    @IBOutlet weak var headerView: ProfileHeaderView!
     @IBOutlet weak var mainScrollView: UIScrollView!
+    @IBOutlet weak var headerView: ProfileHeaderView!
+    @IBOutlet weak var infoView: ProfileInfoView!
+    @IBOutlet weak var statusBarImageView: UIImageView!
+    @IBOutlet weak var tableView: UITableView!
     
     @IBOutlet weak var headerHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var tableViewHeight: NSLayoutConstraint!
     
     
     //MARK: Module properties
@@ -35,6 +39,19 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+     
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        tableView.dataSource = self
+        
+        tableView.addObserver(self, forKeyPath: "contentSize", options: .new, context: nil)
+    }
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if keyPath == "contentSize" {
+            guard let change = change, let value = change[NSKeyValueChangeKey.newKey] as? NSValue else {return}
+            let size = value.cgSizeValue
+            tableViewHeight.constant = size.height
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -55,8 +72,6 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
             headerView.showBackButton(navigationController.viewControllers.count > 1)
         }
         
-        
-        
         mainScrollView.delegate = self
         mainScrollView.delaysContentTouches = false
         var topInset: CGFloat = -20
@@ -69,7 +84,8 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
         headerView.backgroundImage = img
         headerView.delegate = self
         
-        
+        statusBarImageView.alpha = 0
+        statusBarImageView.image = headerView.backgroundImage
     }
     
     
@@ -103,9 +119,14 @@ extension ProfileViewController: UIScrollViewDelegate {
                 headerView.startLoading()
                 presenter.refresh()
             }
-            
+            statusBarImageView.alpha = 0
         } else {
             headerHeightConstraint.constant = 180
+            if 180 - yOffset <= 20 {
+                statusBarImageView.alpha = 1
+            } else {
+                statusBarImageView.alpha = 0
+            }
         }
     }
 }
@@ -138,7 +159,14 @@ extension ProfileViewController: ProfileViewProtocol {
     }
 }
 
-//extension ProfileViewController: UINavigationControllerDelegate {
-//
-//}
+extension ProfileViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell")
+        return cell!
+    }
+}
 
