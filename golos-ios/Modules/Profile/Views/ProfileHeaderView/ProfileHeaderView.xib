@@ -18,10 +18,10 @@
                 <outlet property="backButton" destination="mTm-oF-ogX" id="dow-vZ-L1c"/>
                 <outlet property="backgroundImageView" destination="bRX-hm-6zh" id="Mf4-Lf-Tdk"/>
                 <outlet property="blurImageView" destination="Sjy-q5-k3d" id="Oyt-9j-DbC"/>
-                <outlet property="dolphinImageVIew" destination="SJ5-yn-dOL" id="wYC-80-ap4"/>
-                <outlet property="dolphinLabel" destination="Tbu-zp-zfg" id="ORm-xR-rVg"/>
                 <outlet property="editProfileButton" destination="Rmb-0P-j3P" id="UQg-TI-nUf"/>
                 <outlet property="nameLabel" destination="FaU-67-Zn3" id="MdH-Pg-0DV"/>
+                <outlet property="rankImageVIew" destination="SJ5-yn-dOL" id="3eN-Zl-kj9"/>
+                <outlet property="rankLabel" destination="Tbu-zp-zfg" id="YVh-Rb-1U4"/>
                 <outlet property="sendMessageButton" destination="h2m-l8-ZoS" id="zpw-tU-bh1"/>
                 <outlet property="starsImageView" destination="GYK-T0-5RT" id="thR-nK-FaL"/>
                 <outlet property="starsLabel" destination="V8g-ut-yLv" id="rD5-Tf-J1J"/>
@@ -59,14 +59,14 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_doplhin_icon" translatesAutoresizingMaskIntoConstraints="NO" id="SJ5-yn-dOL">
+                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_doplhin_icon" translatesAutoresizingMaskIntoConstraints="NO" id="SJ5-yn-dOL" userLabel="Rank Image View">
                             <rect key="frame" x="66.5" y="36" width="14" height="14"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="14" id="fml-iw-c52"/>
                                 <constraint firstAttribute="width" constant="14" id="mw5-KO-Pin"/>
                             </constraints>
                         </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Дельфин" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tbu-zp-zfg">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Дельфин" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tbu-zp-zfg" userLabel="Rank Label">
                             <rect key="frame" x="85.5" y="37" width="44.5" height="12"/>
                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
