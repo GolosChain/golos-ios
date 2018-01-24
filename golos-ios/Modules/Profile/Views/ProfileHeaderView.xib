@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProfileHeaderView" customModule="Golos" customModuleProvider="target">
+            <connections>
+                <outlet property="activityView" destination="fsq-NL-sVQ" id="6Hb-YX-HLQ"/>
+                <outlet property="avatarImageView" destination="acw-MW-GSz" id="GLD-Bm-uXq"/>
+                <outlet property="backButton" destination="mTm-oF-ogX" id="dow-vZ-L1c"/>
+                <outlet property="backgroundImageView" destination="bRX-hm-6zh" id="Mf4-Lf-Tdk"/>
+                <outlet property="blurImageView" destination="Sjy-q5-k3d" id="Oyt-9j-DbC"/>
+                <outlet property="dolphinImageVIew" destination="SJ5-yn-dOL" id="wYC-80-ap4"/>
+                <outlet property="dolphinLabel" destination="Tbu-zp-zfg" id="ORm-xR-rVg"/>
+                <outlet property="editProfileButton" destination="Rmb-0P-j3P" id="UQg-TI-nUf"/>
+                <outlet property="nameLabel" destination="FaU-67-Zn3" id="MdH-Pg-0DV"/>
+                <outlet property="sendMessageButton" destination="h2m-l8-ZoS" id="zpw-tU-bh1"/>
+                <outlet property="starsImageView" destination="GYK-T0-5RT" id="thR-nK-FaL"/>
+                <outlet property="starsLabel" destination="V8g-ut-yLv" id="rD5-Tf-J1J"/>
+                <outlet property="subscribeButton" destination="d0u-Zn-tmK" id="iTj-cO-rEI"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="364" height="180"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bRX-hm-6zh" userLabel="Background Image View">
+                    <rect key="frame" x="0.0" y="0.0" width="364" height="180"/>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mock_avatar_image" translatesAutoresizingMaskIntoConstraints="NO" id="acw-MW-GSz">
+                    <rect key="frame" x="39" y="67" width="100" height="100"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="100" id="KwY-2z-2JW"/>
+                        <constraint firstAttribute="height" constant="100" id="b2k-vN-KzR"/>
+                    </constraints>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jsw-mG-XMN">
+                    <rect key="frame" x="156" y="67" width="193" height="50"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_star_icon" translatesAutoresizingMaskIntoConstraints="NO" id="GYK-T0-5RT">
+                            <rect key="frame" x="0.0" y="36" width="14" height="14"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="14" id="3i2-he-Nax"/>
+                                <constraint firstAttribute="width" constant="14" id="W5f-Ey-HZv"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V8g-ut-yLv">
+                            <rect key="frame" x="19" y="37" width="30.5" height="12"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_doplhin_icon" translatesAutoresizingMaskIntoConstraints="NO" id="SJ5-yn-dOL">
+                            <rect key="frame" x="66.5" y="36" width="14" height="14"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="14" id="fml-iw-c52"/>
+                                <constraint firstAttribute="width" constant="14" id="mw5-KO-Pin"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Дельфин" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tbu-zp-zfg">
+                            <rect key="frame" x="85.5" y="37" width="44.5" height="12"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Egor Federov" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FaU-67-Zn3">
+                            <rect key="frame" x="0.0" y="8.5" width="193" height="19.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="GYK-T0-5RT" secondAttribute="bottom" id="47f-RC-kvW"/>
+                        <constraint firstItem="SJ5-yn-dOL" firstAttribute="top" secondItem="FaU-67-Zn3" secondAttribute="bottom" constant="8" id="LVf-BZ-Gas"/>
+                        <constraint firstItem="SJ5-yn-dOL" firstAttribute="centerY" secondItem="GYK-T0-5RT" secondAttribute="centerY" id="MDj-Ue-8X9"/>
+                        <constraint firstItem="V8g-ut-yLv" firstAttribute="leading" secondItem="GYK-T0-5RT" secondAttribute="trailing" constant="5" id="Ncm-lf-JOG"/>
+                        <constraint firstItem="GYK-T0-5RT" firstAttribute="leading" secondItem="Jsw-mG-XMN" secondAttribute="leading" id="YsA-pX-YlZ"/>
+                        <constraint firstItem="FaU-67-Zn3" firstAttribute="leading" secondItem="Jsw-mG-XMN" secondAttribute="leading" id="aEr-JW-qca"/>
+                        <constraint firstItem="V8g-ut-yLv" firstAttribute="centerY" secondItem="GYK-T0-5RT" secondAttribute="centerY" id="eEa-06-ae3"/>
+                        <constraint firstItem="Tbu-zp-zfg" firstAttribute="leading" secondItem="SJ5-yn-dOL" secondAttribute="trailing" constant="5" id="eLr-oW-WSH"/>
+                        <constraint firstItem="Tbu-zp-zfg" firstAttribute="centerY" secondItem="SJ5-yn-dOL" secondAttribute="centerY" id="f2G-yW-Mvl"/>
+                        <constraint firstAttribute="trailing" secondItem="FaU-67-Zn3" secondAttribute="trailing" id="tRJ-fM-WL6"/>
+                        <constraint firstItem="SJ5-yn-dOL" firstAttribute="leading" secondItem="V8g-ut-yLv" secondAttribute="trailing" constant="17" id="v1h-8o-88y"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d0u-Zn-tmK">
+                    <rect key="frame" x="153" y="127" width="106" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="zEP-LY-td2"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                    <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
+                    <state key="normal" title="Подписаться"/>
+                    <connections>
+                        <action selector="subscribeButtonPressed:" destination="-1" eventType="touchUpInside" id="w5A-dD-Xdz"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h2m-l8-ZoS">
+                    <rect key="frame" x="263" y="127" width="88" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="5II-1c-rG7"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                    <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
+                    <state key="normal" title="Написать"/>
+                    <connections>
+                        <action selector="sendMessageButtonPressed:" destination="-1" eventType="touchUpInside" id="gF4-SB-SGi"/>
+                    </connections>
+                </button>
+                <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_header_bg" translatesAutoresizingMaskIntoConstraints="NO" id="Sjy-q5-k3d" userLabel="Blur Image View">
+                    <rect key="frame" x="0.0" y="0.0" width="364" height="180"/>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rmb-0P-j3P" userLabel="Edit Button">
+                    <rect key="frame" x="5" y="25" width="45" height="42"/>
+                    <inset key="contentEdgeInsets" minX="10" minY="10" maxX="20" maxY="10"/>
+                    <state key="normal" image="profile_edit_button_icon"/>
+                    <connections>
+                        <action selector="editButtonPressed:" destination="-1" eventType="touchUpInside" id="uMy-th-B3w"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pNd-xN-Zbi" userLabel="Settings Button">
+                    <rect key="frame" x="309" y="25" width="40" height="42"/>
+                    <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                    <state key="normal" image="profile_settings_button_icon"/>
+                    <connections>
+                        <action selector="settingsButtonPressed:" destination="-1" eventType="touchUpInside" id="i9h-lN-PPW"/>
+                    </connections>
+                </button>
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="fsq-NL-sVQ">
+                    <rect key="frame" x="172" y="36" width="20" height="20"/>
+                </activityIndicatorView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mTm-oF-ogX" userLabel="Back Button">
+                    <rect key="frame" x="5" y="25" width="45" height="42"/>
+                    <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
+                    <state key="normal" image="back_button"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                            <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="backButtonPressed:" destination="-1" eventType="touchUpInside" id="HQZ-Jw-AEw"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="pNd-xN-Zbi" firstAttribute="centerY" secondItem="Rmb-0P-j3P" secondAttribute="centerY" id="1B0-jQ-LhZ"/>
+                <constraint firstItem="Sjy-q5-k3d" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="2br-9J-DIq"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="pNd-xN-Zbi" secondAttribute="trailing" constant="15" id="7Gn-E6-fHk"/>
+                <constraint firstItem="Sjy-q5-k3d" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Am4-fO-Yav"/>
+                <constraint firstItem="mTm-oF-ogX" firstAttribute="top" secondItem="Rmb-0P-j3P" secondAttribute="top" id="Axn-gf-JoA"/>
+                <constraint firstItem="bRX-hm-6zh" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="DJy-py-dOe"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Jsw-mG-XMN" secondAttribute="trailing" constant="15" id="Hc5-cv-iKv"/>
+                <constraint firstItem="Sjy-q5-k3d" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="KEe-4t-a52"/>
+                <constraint firstItem="bRX-hm-6zh" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="O2S-9l-YQy"/>
+                <constraint firstItem="acw-MW-GSz" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="39" id="TJw-yf-Ovo"/>
+                <constraint firstItem="mTm-oF-ogX" firstAttribute="leading" secondItem="Rmb-0P-j3P" secondAttribute="leading" id="WfM-VA-n6q"/>
+                <constraint firstItem="Jsw-mG-XMN" firstAttribute="bottom" secondItem="acw-MW-GSz" secondAttribute="centerY" id="ajT-US-8OD"/>
+                <constraint firstItem="Sjy-q5-k3d" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="c88-hx-9uc"/>
+                <constraint firstItem="acw-MW-GSz" firstAttribute="top" secondItem="Rmb-0P-j3P" secondAttribute="bottom" id="dPc-Sr-1He"/>
+                <constraint firstItem="h2m-l8-ZoS" firstAttribute="leading" secondItem="d0u-Zn-tmK" secondAttribute="trailing" constant="4" id="eVz-Ka-73g"/>
+                <constraint firstItem="Rmb-0P-j3P" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="5" id="eWp-bh-g52"/>
+                <constraint firstItem="bRX-hm-6zh" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="fR4-Ny-kSB"/>
+                <constraint firstItem="Rmb-0P-j3P" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="25" id="ftH-Rh-XEz"/>
+                <constraint firstItem="d0u-Zn-tmK" firstAttribute="leading" secondItem="acw-MW-GSz" secondAttribute="trailing" constant="14" id="hab-bz-Y2Z"/>
+                <constraint firstItem="mTm-oF-ogX" firstAttribute="trailing" secondItem="Rmb-0P-j3P" secondAttribute="trailing" id="hl4-Zr-h5i"/>
+                <constraint firstItem="fsq-NL-sVQ" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="itd-z1-Vdh"/>
+                <constraint firstItem="mTm-oF-ogX" firstAttribute="bottom" secondItem="Rmb-0P-j3P" secondAttribute="bottom" id="lQE-h2-Ed0"/>
+                <constraint firstItem="bRX-hm-6zh" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="oJm-uI-4ML"/>
+                <constraint firstItem="fsq-NL-sVQ" firstAttribute="centerY" secondItem="Rmb-0P-j3P" secondAttribute="centerY" id="qt7-Ye-xdb"/>
+                <constraint firstItem="Jsw-mG-XMN" firstAttribute="leading" secondItem="acw-MW-GSz" secondAttribute="trailing" constant="17" id="rch-TZ-X53"/>
+                <constraint firstItem="h2m-l8-ZoS" firstAttribute="centerY" secondItem="d0u-Zn-tmK" secondAttribute="centerY" id="rh3-gV-3TN"/>
+                <constraint firstItem="d0u-Zn-tmK" firstAttribute="top" secondItem="Jsw-mG-XMN" secondAttribute="bottom" constant="10" id="szq-4o-m0V"/>
+                <constraint firstItem="Jsw-mG-XMN" firstAttribute="top" secondItem="acw-MW-GSz" secondAttribute="top" id="uCK-TI-Vk6"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="19" y="-191"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="back_button" width="17" height="16"/>
+        <image name="mock_avatar_image" width="200" height="200"/>
+        <image name="profile_doplhin_icon" width="14" height="14"/>
+        <image name="profile_edit_button_icon" width="15" height="14"/>
+        <image name="profile_header_bg" width="375" height="181"/>
+        <image name="profile_settings_button_icon" width="20" height="20"/>
+        <image name="profile_star_icon" width="15" height="14"/>
+    </resources>
+</document>

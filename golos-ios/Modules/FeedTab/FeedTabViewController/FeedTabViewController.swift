@@ -59,7 +59,7 @@ class FeedTabViewController: UIViewController {
         super.viewWillAppear(animated)
         presenter.fetchArticles()
     }
-    
+
     
     //MARK: SetupUI
     private func setupUI() {
@@ -81,11 +81,13 @@ extension FeedTabViewController: FeedTabViewProtocol {
 
 extension FeedTabViewController: FeedTabMediatorDelegate {
     func didPressAuthor(at index: Int) {
-        Utils.inDevelopmentAlert()
+        let profileViewController = ProfileViewController.nibInstance()
+        navigationController?.pushViewController(profileViewController, animated: true)
     }
     
     func didPressReblogAuthor(at index: Int) {
-        Utils.inDevelopmentAlert()
+        let profileViewController = ProfileViewController.nibInstance()
+        navigationController?.pushViewController(profileViewController, animated: true)
     }
     
     func didPressUpvote(at index: Int) {

@@ -12,28 +12,58 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProfileViewController" customModule="Golos" customModuleProvider="target">
             <connections>
+                <outlet property="headerHeightConstraint" destination="TYU-er-KTK" id="wWx-yJ-6b0"/>
+                <outlet property="headerView" destination="iTb-Ac-4xK" id="sDs-AX-GrO"/>
+                <outlet property="mainScrollView" destination="Ro0-ja-l75" id="BpE-6j-GFF"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="864"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bmI-ba-KLA">
-                    <rect key="frame" x="163" y="318" width="48" height="30"/>
-                    <state key="normal" title="Logout"/>
-                    <connections>
-                        <action selector="logoutButtonPressed:" destination="-1" eventType="touchUpInside" id="t5d-uw-sn4"/>
-                    </connections>
-                </button>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ro0-ja-l75" customClass="GSScrollView" customModule="Golos" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="864"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iTb-Ac-4xK" userLabel="Header View" customClass="ProfileHeaderView" customModule="Golos" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="180"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="180" id="TYU-er-KTK"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ebn-r8-GNp">
+                            <rect key="frame" x="0.0" y="180" width="375" height="700"/>
+                            <color key="backgroundColor" red="1" green="1" blue="0.083928571428571422" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="700" id="3dG-Lo-oxe"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="iTb-Ac-4xK" firstAttribute="leading" secondItem="Ro0-ja-l75" secondAttribute="leading" id="Enb-4T-136"/>
+                        <constraint firstAttribute="bottom" secondItem="Ebn-r8-GNp" secondAttribute="bottom" id="Gyg-fR-pdx"/>
+                        <constraint firstItem="Ebn-r8-GNp" firstAttribute="leading" secondItem="Ro0-ja-l75" secondAttribute="leading" id="T0H-tD-iFu"/>
+                        <constraint firstAttribute="trailing" secondItem="iTb-Ac-4xK" secondAttribute="trailing" id="VDv-hV-56s"/>
+                        <constraint firstItem="Ebn-r8-GNp" firstAttribute="top" secondItem="Ro0-ja-l75" secondAttribute="top" constant="180" id="aXb-9w-LUM"/>
+                        <constraint firstAttribute="trailing" secondItem="Ebn-r8-GNp" secondAttribute="trailing" id="eo0-Dc-OHG"/>
+                        <constraint firstItem="Ebn-r8-GNp" firstAttribute="top" secondItem="iTb-Ac-4xK" secondAttribute="bottom" id="g7Q-by-ymM"/>
+                    </constraints>
+                </scrollView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="bmI-ba-KLA" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="rUu-82-TTW"/>
-                <constraint firstItem="bmI-ba-KLA" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="u1O-oN-baZ"/>
+                <constraint firstItem="Ro0-ja-l75" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="ZQe-FE-YvL"/>
+                <constraint firstItem="Ro0-ja-l75" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="ebK-pK-qzE"/>
+                <constraint firstItem="Ro0-ja-l75" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="esB-cr-rHY"/>
+                <constraint firstItem="Ro0-ja-l75" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="wIk-k1-tjs"/>
+                <constraint firstItem="Ebn-r8-GNp" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="xQT-2c-MRp"/>
             </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="24.5" y="151"/>
         </view>
     </objects>
 </document>
