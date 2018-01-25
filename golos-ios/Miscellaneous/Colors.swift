@@ -38,5 +38,8 @@ extension UIColor {
         static let articleBodyGrayColor = UIColor(red: 79, green: 79, blue: 79)
         static let articleButtonsGreenColor = UIColor(red: 106, green: 211, blue: 129)
         static let articleButtonsGrayColor = UIColor(red: 193, green: 193, blue: 193)
+        
+        //MARK: Profile
+        static let profileSelectionViewBackground = UIColor(red: 18, green: 152, blue: 255)
     }
 }

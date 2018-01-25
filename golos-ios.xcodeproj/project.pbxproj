@@ -59,6 +59,10 @@
 		EC9B2AE920155B9C008335C8 /* FeedTabMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9B2AE820155B9C008335C8 /* FeedTabMediator.swift */; };
 		ECA8E3512018A626003B8ABA /* ProfileInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA8E3502018A626003B8ABA /* ProfileInfoView.swift */; };
 		ECA8E3532018A62E003B8ABA /* ProfileInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECA8E3522018A62E003B8ABA /* ProfileInfoView.xib */; };
+		ECA8E3572018C9A3003B8ABA /* ProfileFeedType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA8E3562018C9A3003B8ABA /* ProfileFeedType.swift */; };
+		ECA8E35A2018CA17003B8ABA /* ProfileHorizontalSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA8E3592018CA17003B8ABA /* ProfileHorizontalSelectorView.swift */; };
+		ECA8E35C2018CA30003B8ABA /* ProfileHorizontalSelectorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECA8E35B2018CA30003B8ABA /* ProfileHorizontalSelectorView.xib */; };
+		ECA8E35E2018D119003B8ABA /* UIView+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA8E35D2018D119003B8ABA /* UIView+Shadow.swift */; };
 		ECB2C0D32008E55500AF1AF5 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2C0D22008E55500AF1AF5 /* Colors.swift */; };
 		ECB2C0D52008E56300AF1AF5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2C0D42008E56300AF1AF5 /* Constants.swift */; };
 		ECC15FA0200976320099BBC9 /* Intro.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ECC15F9F200976320099BBC9 /* Intro.storyboard */; };
@@ -145,6 +149,10 @@
 		EC9B2AE820155B9C008335C8 /* FeedTabMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTabMediator.swift; sourceTree = "<group>"; };
 		ECA8E3502018A626003B8ABA /* ProfileInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoView.swift; sourceTree = "<group>"; };
 		ECA8E3522018A62E003B8ABA /* ProfileInfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileInfoView.xib; sourceTree = "<group>"; };
+		ECA8E3562018C9A3003B8ABA /* ProfileFeedType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFeedType.swift; sourceTree = "<group>"; };
+		ECA8E3592018CA17003B8ABA /* ProfileHorizontalSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHorizontalSelectorView.swift; sourceTree = "<group>"; };
+		ECA8E35B2018CA30003B8ABA /* ProfileHorizontalSelectorView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileHorizontalSelectorView.xib; sourceTree = "<group>"; };
+		ECA8E35D2018D119003B8ABA /* UIView+Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shadow.swift"; sourceTree = "<group>"; };
 		ECB2C0D22008E55500AF1AF5 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		ECB2C0D42008E56300AF1AF5 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		ECC15F9F200976320099BBC9 /* Intro.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Intro.storyboard; sourceTree = "<group>"; };
@@ -218,6 +226,7 @@
 			isa = PBXGroup;
 			children = (
 				EC07F4A520141E8D00560CF0 /* FeedType.swift */,
+				ECA8E3562018C9A3003B8ABA /* ProfileFeedType.swift */,
 			);
 			path = Feed;
 			sourceTree = "<group>";
@@ -407,6 +416,7 @@
 		EC9ABBC42017D54900AF8597 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				ECA8E3582018C9F5003B8ABA /* ProfileHorizontalSelectorView */,
 				ECA8E34F2018A619003B8ABA /* ProfileInfoView */,
 				ECA8E34E2018A5E2003B8ABA /* ProfileHeaderView */,
 			);
@@ -447,6 +457,15 @@
 				ECA8E3522018A62E003B8ABA /* ProfileInfoView.xib */,
 			);
 			path = ProfileInfoView;
+			sourceTree = "<group>";
+		};
+		ECA8E3582018C9F5003B8ABA /* ProfileHorizontalSelectorView */ = {
+			isa = PBXGroup;
+			children = (
+				ECA8E3592018CA17003B8ABA /* ProfileHorizontalSelectorView.swift */,
+				ECA8E35B2018CA30003B8ABA /* ProfileHorizontalSelectorView.xib */,
+			);
+			path = ProfileHorizontalSelectorView;
 			sourceTree = "<group>";
 		};
 		ECB2C0D12008E54000AF1AF5 /* Miscellaneous */ = {
@@ -513,6 +532,7 @@
 				ECF2808B200A9A210000D949 /* UIButton+Intro.swift */,
 				ECF31724200A9D2800F7B703 /* UIAlertController+Window.swift */,
 				EC9ABBC22017D17000AF8597 /* UIImageEffects.swift */,
+				ECA8E35D2018D119003B8ABA /* UIView+Shadow.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -660,6 +680,7 @@
 				EC6FD5A3200AE1A200DCB824 /* QRScannerViewController.xib in Resources */,
 				EC9ABBC82017D56800AF8597 /* ProfileHeaderView.xib in Resources */,
 				EC07F4B22014404200560CF0 /* FeedTabViewController.xib in Resources */,
+				ECA8E35C2018CA30003B8ABA /* ProfileHorizontalSelectorView.xib in Resources */,
 				EC1DFB9620063C400080BC50 /* Assets.xcassets in Resources */,
 				ECC15FA0200976320099BBC9 /* Intro.storyboard in Resources */,
 				ECC15FA4200976770099BBC9 /* IntroViewController.xib in Resources */,
@@ -765,15 +786,18 @@
 				EC24FF84200C635600A0AE15 /* DropDownMediator.swift in Sources */,
 				EC24FF70200C433700A0AE15 /* ProfileViewController.swift in Sources */,
 				EC24FF82200C625800A0AE15 /* DropDownViewController.swift in Sources */,
+				ECA8E35A2018CA17003B8ABA /* ProfileHorizontalSelectorView.swift in Sources */,
 				EC6FD59E200AD53100DCB824 /* ViewController+BackButton.swift in Sources */,
 				ECFF44E8200BC42F00DAF74C /* QRScannerViewControllerDelegate.swift in Sources */,
 				ECC15FA62009794E0099BBC9 /* Fonts.swift in Sources */,
+				ECA8E35E2018D119003B8ABA /* UIView+Shadow.swift in Sources */,
 				ECF31732200ABB7C00F7B703 /* AppDelegate+SetupAppearance.swift in Sources */,
 				EC9ABBC32017D17000AF8597 /* UIImageEffects.swift in Sources */,
 				EC24FF52200C06E300A0AE15 /* StateMachine.swift in Sources */,
 				EC24FF5F200C3B8100A0AE15 /* AppDelegate+RootViewController.swift in Sources */,
 				EC6FD5A2200AE1A200DCB824 /* QRScannerViewController.swift in Sources */,
 				EC24FF24200BC72F00A0AE15 /* LoginUIStrings.swift in Sources */,
+				ECA8E3572018C9A3003B8ABA /* ProfileFeedType.swift in Sources */,
 				ECF28087200A94550000D949 /* ViewController+Nib.swift in Sources */,
 				EC1DFB8F20063C400080BC50 /* AppDelegate.swift in Sources */,
 				EC24FF6C200C400300A0AE15 /* GSTabBarController.swift in Sources */,

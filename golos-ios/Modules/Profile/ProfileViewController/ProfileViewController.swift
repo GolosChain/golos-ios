@@ -21,10 +21,12 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var headerView: ProfileHeaderView!
     @IBOutlet weak var infoView: ProfileInfoView!
     @IBOutlet weak var statusBarImageView: UIImageView!
+    @IBOutlet weak var horizontalSelector: ProfileHorizontalSelectorView!
     @IBOutlet weak var tableView: UITableView!
     
     @IBOutlet weak var headerHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var tableViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var statusBarImageViewBottom: NSLayoutConstraint!
     
     
     //MARK: Module properties
@@ -77,6 +79,7 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
         var topInset: CGFloat = -20
         if UIDevice.getDeviceScreenSize() == .iphoneX {
             topInset = -44
+            statusBarImageViewBottom.constant = 40
         }
         mainScrollView.contentInset = UIEdgeInsetsMake(topInset, 0, 0, 0)
         
@@ -86,6 +89,8 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
         
         statusBarImageView.alpha = 0
         statusBarImageView.image = headerView.backgroundImage
+        
+        horizontalSelector.addBottomShadow()
     }
     
     
