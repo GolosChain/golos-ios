@@ -19,76 +19,10 @@ protocol FeedArticleTableViewCellDelegate: class {
 class FeedArticleTableViewCell: UITableViewCell {
     
     //MARK: Constants
-    private let minimizedHeight: CGFloat = 65.0
+    private static let bodyFont = Fonts.shared.regular(with: 13.0)
+    private static let bodyEdgesOffset: CGFloat = 12.0
+    static let minimizedHeight: CGFloat = 180
     
-    //MARK: Setters properties
-    var authorName: String? {
-        didSet {
-            authorLabel.text = authorName
-        }
-    }
-    var authorAvatarUrl: String? {
-        didSet {
-            
-        }
-    }
-    var articleTitle: String? {
-        didSet {
-            titleLabel.text = articleTitle
-        }
-    }
-    var reblogAuthorName: String? {
-        didSet {
-            guard let name = reblogAuthorName else {
-                reblogAuthorLabel.isHidden = true
-                reblogIconImageView.isHidden = true
-                return
-            }
-            reblogAuthorLabel.isHidden = false
-            reblogIconImageView.isHidden = false
-            reblogAuthorLabel.text = name
-        }
-    }
-    var theme: String? {
-        didSet {
-            themeLabel.text = theme
-        }
-    }
-    var articleImageUrl: String? {
-        didSet {
-            
-        }
-    }
-    var articleBody: String? {
-        didSet {
-            bodyTextView.text = articleBody
-        }
-    }
-    var upvoteAmount: String? {
-        didSet {
-            upvoteButton.setTitle(upvoteAmount, for: .normal)
-        }
-    }
-    var commentsAmount: String? {
-        didSet {
-            commentsButton.setTitle(commentsAmount, for: .normal)
-        }
-    }
-    var didUpvote: Bool = false {
-        didSet {
-            upvoteButton.tintColor = didUpvote
-                ? UIColor.Project.articleButtonsGreenColor
-                : UIColor.Project.articleButtonsGrayColor
-            
-        }
-    }
-    var didComment: Bool = false {
-        didSet {
-            commentsButton.tintColor = didComment
-                ? UIColor.Project.articleButtonsGreenColor
-                : UIColor.Project.articleButtonsGrayColor
-        }
-    }
     
     //MARK: UI Outlets
     @IBOutlet private weak var headerView: UIView!
@@ -110,10 +44,6 @@ class FeedArticleTableViewCell: UITableViewCell {
     
     @IBOutlet private weak var expandButton: UIButton!
     
-    @IBOutlet private var contentViewHeightConstraint: NSLayoutConstraint!
-    
-    @IBOutlet private var textViewHeightConstraint: NSLayoutConstraint!
-    
     @IBOutlet weak var authorTappableView: UIView!
     @IBOutlet weak var reblogAuthorTappableView: UIView!
     
@@ -122,7 +52,7 @@ class FeedArticleTableViewCell: UITableViewCell {
     let gradientLayer = CAGradientLayer()
     var isExpanded = false {
         didSet {
-            updateExpand(animated: false)
+            gradientView.isHidden = isExpanded
         }
     }
     
@@ -143,6 +73,12 @@ class FeedArticleTableViewCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        
+        if bounds.size.height == FeedArticleTableViewCell.minimizedHeight {
+            isExpanded = false
+        } else {
+            isExpanded = true
+        }
         
         authorAvatarImageView.layer.cornerRadius = authorAvatarImageView.bounds.size.width / 2
         
@@ -167,7 +103,11 @@ class FeedArticleTableViewCell: UITableViewCell {
         titleLabel.font = Fonts.shared.regular(with: 16.0)
         
         bodyTextView.textColor = UIColor.Project.articleBodyGrayColor
-        bodyTextView.textContainerInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
+        bodyTextView.textContainerInset = UIEdgeInsets(top: 0,
+                                                       left: FeedArticleTableViewCell.bodyEdgesOffset,
+                                                       bottom: 0,
+                                                       right: 0)
+        bodyTextView.font = FeedArticleTableViewCell.bodyFont
         
         upvoteButton.tintColor = UIColor.Project.articleButtonsGrayColor
         upvoteButton.setTitleColor(UIColor.Project.articleBodyGrayColor, for: .normal)
@@ -181,9 +121,6 @@ class FeedArticleTableViewCell: UITableViewCell {
         gradientLayer.locations = [0.0, 0.6]
         gradientView.layer.insertSublayer(gradientLayer, at: 0)
         
-        textViewHeightConstraint.constant = minimizedHeight
-        textViewHeightConstraint.isActive = true
-        
         expandButton.tintColor = UIColor.Project.buttonTextGray
         
         let authorTapGesture = UITapGestureRecognizer(target: self, action: #selector(didPressAuthor))
@@ -196,36 +133,8 @@ class FeedArticleTableViewCell: UITableViewCell {
     
     //MARK: Reset
     private func resetAll() {
-        textViewHeightConstraint.constant = minimizedHeight
-        rotateArrow(down: false, animated: false)
-        isExpanded = false
-    }
-    
-    private func updateExpand(animated: Bool) {
-        if isExpanded {
-            let fixedWidth = bodyTextView.bounds.size.width
-            let newSize = bodyTextView.sizeThatFits(CGSize.init(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
-            var newFrame = bodyTextView.frame
-            newFrame.size = CGSize(width: CGFloat.maximum(newSize.width, fixedWidth), height: newSize.height)
-            
-            textViewHeightConstraint.constant = newSize.height + 30
-        } else {
-            textViewHeightConstraint.constant = minimizedHeight
-        }
         
-        rotateArrow(down: !isExpanded, animated: animated)
-        delegate?.didPressExpandButton(at: self)
     }
-    
-//    - (void)textViewFitToContent:(UITextView *)textView
-//    {
-//    CGFloat fixedWidth = textView.frame.size.width;
-//    CGSize newSize = [textView sizeThatFits:CGSizeMake(fixedWidth, MAXFLOAT)];
-//    CGRect newFrame = textView.frame;
-//    newFrame.size = CGSizeMake(fmaxf(newSize.width, fixedWidth), newSize.height);
-//    textView.frame = newFrame;
-//    textView.scrollEnabled = NO;
-//    }
     
     
     //MARK: Actions
@@ -238,7 +147,7 @@ class FeedArticleTableViewCell: UITableViewCell {
     }
     
     @IBAction func didPressExpandButton(_ sender: Any) {
-        isExpanded = !isExpanded
+        delegate?.didPressExpandButton(at: self)
     }
     
     @objc
@@ -250,23 +159,7 @@ class FeedArticleTableViewCell: UITableViewCell {
     private func didPressReblogAuthor() {
         delegate?.didPressReblogAuthor(at: self)
     }
-    
-    private func rotateArrow(down: Bool, animated: Bool) {
-        let transform = down
-            ? CGAffineTransform.identity
-            : expandButton.transform.rotated(by: 180 * CGFloat(Double.pi/180))
-        
-        let animations = {
-            self.expandButton.transform = transform
-        }
-        
-        if animated {
-            UIView.animate(withDuration: 0.3, animations: animations)
-        } else {
-            animations()
-        }
-    }
-    
+
     
     //MARK: Reuse identifier
     override var reuseIdentifier: String? {
@@ -276,4 +169,120 @@ class FeedArticleTableViewCell: UITableViewCell {
     class var reuseIdentifier: String? {
         return String.init(describing: self)
     }
+}
+
+
+//MARK: Setters
+extension FeedArticleTableViewCell{
+    var authorName: String? {
+        get {
+            return authorLabel.text
+        }
+        set {
+            authorLabel.text = newValue
+        }
+    }
+    
+    var authorAvatarUrl: String? {
+        get {
+            return nil
+        }
+        set {
+        
+        }
+    }
+    
+    var articleTitle: String? {
+        get {
+            return titleLabel.text
+        }
+        set {
+            titleLabel.text = newValue
+        }
+    }
+    
+    var reblogAuthorName: String? {
+        get {
+            return reblogAuthorLabel.text
+        }
+        set {
+            reblogAuthorLabel.text = newValue
+            reblogAuthorLabel.isHidden = newValue == nil
+            reblogIconImageView.isHidden = newValue == nil
+        }
+    }
+    
+    var theme: String? {
+        get {
+            return themeLabel.text
+        }
+        set {
+            themeLabel.text = newValue
+        }
+    }
+    
+    var articleImageUrl: String? {
+        get {
+            return nil
+        }
+        
+        set {
+            
+        }
+    }
+    
+    var articleBody: String? {
+        get {
+            return bodyTextView.text
+        }
+        
+        set {
+            bodyTextView.text = newValue
+        }
+    }
+    
+    var upvoteAmount: String? {
+        get {
+            return upvoteButton.title(for: .normal)
+        }
+        
+        set {
+            upvoteButton.setTitle(newValue, for: .normal)
+        }
+    }
+    
+    var commentsAmount: String? {
+        get {
+            return commentsButton.title(for: .normal)
+        }
+        
+        set {
+            commentsButton.setTitle(newValue, for: .normal)
+        }
+    }
+    
+    var didUpvote: Bool {
+        get {
+            return false
+        }
+        
+        set {
+            upvoteButton.tintColor = newValue
+                ? UIColor.Project.articleButtonsGreenColor
+                : UIColor.Project.articleButtonsGrayColor
+        }
+    }
+    
+    var didComment: Bool {
+        get {
+            return false
+        }
+        
+        set {
+            commentsButton.tintColor = newValue
+                ? UIColor.Project.articleButtonsGreenColor
+                : UIColor.Project.articleButtonsGrayColor
+        }
+    }
+    
 }

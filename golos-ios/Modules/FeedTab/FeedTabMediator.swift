@@ -19,6 +19,10 @@ protocol FeedTabMediatorDelegate: class {
 class FeedTabMediator: NSObject {
     private let feedArticleTableViewCellIdentifier = FeedArticleTableViewCell.reuseIdentifier!
     
+    private var selectedIndex: IndexPath?
+    
+    var array = [IndexPath]()
+    
     //MARK: Module properties
     weak var tableView: UITableView!
     weak var feedTabPresenter: FeedTabPresenterProtocol!
@@ -31,8 +35,8 @@ class FeedTabMediator: NSObject {
         tableView.delegate = self
 
         self.tableView = tableView
+
     }
-    
     
     //MARK: Delegate
     weak var delegate: FeedTabMediatorDelegate?
@@ -68,9 +72,7 @@ extension FeedTabMediator: UITableViewDataSource {
         
         let viewModel = feedTabPresenter.getArticleModel(at: indexPath.row)
         configureArticleCell(cell, with: viewModel)
-        
-        cell.isExpanded = feedTabPresenter.isExpanded(at: indexPath.row)
-        
+                
         return cell
     }
 }
@@ -78,6 +80,20 @@ extension FeedTabMediator: UITableViewDataSource {
 
 //MARK: UITableViewDelegate
 extension FeedTabMediator: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        guard let selectedIndex = self.selectedIndex, selectedIndex == indexPath else {
+            return FeedArticleTableViewCell.minimizedHeight
+        }
+        return UITableViewAutomaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        guard let selectedIndex = self.selectedIndex, selectedIndex == indexPath else {
+            return FeedArticleTableViewCell.minimizedHeight
+        }
+
+        return UITableViewAutomaticDimension
+    }
 }
 
 
@@ -95,6 +111,7 @@ extension FeedTabMediator: FeedArticleTableViewCellDelegate {
     
     func didPressExpandButton(at cell: FeedArticleTableViewCell) {
         guard let indexPath = tableView.indexPath(for: cell) else {return}
+        self.selectedIndex = indexPath
         delegate?.didPressExpand(at: indexPath.row)
     }
     

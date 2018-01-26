@@ -17,9 +17,6 @@ protocol FeedTabPresenterProtocol: class {
     
     func fetchArticles()
     func loadArticles()
-    
-    func makeExpanded(_ isExpanded: Bool, at index: Int)
-    func isExpanded(at index: Int) -> Bool
 }
 
 protocol FeedTabViewProtocol: class {
@@ -33,7 +30,6 @@ class FeedTabPresenter: NSObject {
     private var feedTab = FeedTab(type: .popular)
     
     private var articleModels = [FeedArticleViewModel]()
-    private var expandedArticles = [Int]()
 }
 
 extension FeedTabPresenter: FeedTabPresenterProtocol {
@@ -60,18 +56,6 @@ extension FeedTabPresenter: FeedTabPresenterProtocol {
     
     func loadArticles() {
         
-    }
-    
-    func makeExpanded(_ isExpanded: Bool, at index: Int) {
-        if isExpanded {
-            expandedArticles.append(index)
-        } else {
-            expandedArticles = expandedArticles.filter{$0 != index}
-        }
-    }
-    
-    func isExpanded(at index: Int) -> Bool {
-        return expandedArticles.contains(index)
     }
 }
 
@@ -100,6 +84,6 @@ extension FeedTabPresenter {
                                                 commentsAmount: "100",
                                                 didUpvote: false,
                                                 didComment: true)
-        return [fakeArticle1, fakeArticle2, fakeArticle1, fakeArticle2]
+        return [fakeArticle1, fakeArticle2, fakeArticle1, fakeArticle2, fakeArticle1, fakeArticle2, fakeArticle1, fakeArticle2, fakeArticle1, fakeArticle2, fakeArticle1, fakeArticle2, fakeArticle1, fakeArticle2, fakeArticle1, fakeArticle2]
     }
 }
