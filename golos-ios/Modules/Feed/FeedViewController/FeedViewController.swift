@@ -61,6 +61,18 @@ class FeedViewController: UIViewController {
         horizontalSelector.delegate = self
         
         navigationController?.navigationBar.barTintColor = UIColor.Project.darkBlueHeader
+        
+//        let a = ProfileHeaderView()
+        let a = ProfileInfoView()
+        view.addSubview(a)
+        a.translatesAutoresizingMaskIntoConstraints = false
+        
+        a.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        a.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        a.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+//        a.backgroundImage = Images.Profile.getProfileHeaderBackground()
+        
+        
 //        if let navigationBar = navigationController?.navigationBar {
 //            let dropDownMenu = NavigationDropDownView()
 //            dropDownMenu.frame = CGRect(x: 0,
