@@ -46,10 +46,10 @@ class ProfileHeaderView: UIView {
     
     var dolphinString: String? {
         get {
-            return dolphinLabel.text
+            return rankLabel.text
         }
         set {
-            dolphinLabel.text = name
+            rankLabel.text = name
         }
     }
     
@@ -65,8 +65,8 @@ class ProfileHeaderView: UIView {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var starsImageView: UIImageView!
     @IBOutlet weak var starsLabel: UILabel!
-    @IBOutlet weak var dolphinLabel: UILabel!
-    @IBOutlet weak var dolphinImageVIew: UIImageView!
+    @IBOutlet weak var rankLabel: UILabel!
+    @IBOutlet weak var rankImageVIew: UIImageView!
     @IBOutlet weak var subscribeButton: UIButton!
     @IBOutlet weak var sendMessageButton: UIButton!
     @IBOutlet weak var activityView: UIActivityIndicatorView!

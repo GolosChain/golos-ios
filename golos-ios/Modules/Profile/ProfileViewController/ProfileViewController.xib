@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14087.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14075.4"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -14,7 +14,13 @@
             <connections>
                 <outlet property="headerHeightConstraint" destination="TYU-er-KTK" id="wWx-yJ-6b0"/>
                 <outlet property="headerView" destination="iTb-Ac-4xK" id="sDs-AX-GrO"/>
+                <outlet property="horizontalSelector" destination="tkh-We-W4g" id="wVw-OK-8uN"/>
+                <outlet property="infoView" destination="c8c-E0-Mzn" id="ean-n5-iGJ"/>
                 <outlet property="mainScrollView" destination="Ro0-ja-l75" id="BpE-6j-GFF"/>
+                <outlet property="statusBarImageView" destination="gmr-gT-Or5" id="cgU-qe-5Kl"/>
+                <outlet property="statusBarImageViewBottom" destination="pTB-nE-vK6" id="FmZ-Fq-j59"/>
+                <outlet property="tableView" destination="kCG-6d-BuK" id="Q0a-Qc-Xxn"/>
+                <outlet property="tableViewHeight" destination="5c2-cc-aaf" id="d7O-8Z-mg1"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -33,33 +39,59 @@
                                 <constraint firstAttribute="height" constant="180" id="TYU-er-KTK"/>
                             </constraints>
                         </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ebn-r8-GNp">
-                            <rect key="frame" x="0.0" y="180" width="375" height="700"/>
-                            <color key="backgroundColor" red="1" green="1" blue="0.083928571428571422" alpha="1" colorSpace="calibratedRGB"/>
+                        <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="150" translatesAutoresizingMaskIntoConstraints="NO" id="c8c-E0-Mzn" customClass="ProfileInfoView" customModule="Golos" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="180" width="375" height="150"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="375" placeholderIntrinsicHeight="700" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kCG-6d-BuK">
+                            <rect key="frame" x="0.0" y="373" width="375" height="700"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="700" id="3dG-Lo-oxe"/>
+                                <constraint firstAttribute="height" constant="700" id="5c2-cc-aaf"/>
+                            </constraints>
+                        </tableView>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tkh-We-W4g" customClass="ProfileHorizontalSelectorView" customModule="Golos" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="330" width="375" height="43"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="43" id="d6R-l3-gsR"/>
                             </constraints>
                         </view>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
+                        <constraint firstItem="c8c-E0-Mzn" firstAttribute="leading" secondItem="Ro0-ja-l75" secondAttribute="leading" id="5hq-qd-OvN"/>
                         <constraint firstItem="iTb-Ac-4xK" firstAttribute="leading" secondItem="Ro0-ja-l75" secondAttribute="leading" id="Enb-4T-136"/>
-                        <constraint firstAttribute="bottom" secondItem="Ebn-r8-GNp" secondAttribute="bottom" id="Gyg-fR-pdx"/>
-                        <constraint firstItem="Ebn-r8-GNp" firstAttribute="leading" secondItem="Ro0-ja-l75" secondAttribute="leading" id="T0H-tD-iFu"/>
+                        <constraint firstAttribute="trailing" secondItem="c8c-E0-Mzn" secondAttribute="trailing" id="JC9-bv-SFJ"/>
+                        <constraint firstItem="c8c-E0-Mzn" firstAttribute="top" secondItem="Ro0-ja-l75" secondAttribute="top" constant="180" id="KcE-ru-9gK"/>
+                        <constraint firstAttribute="bottom" secondItem="kCG-6d-BuK" secondAttribute="bottom" id="LBy-JC-epU"/>
+                        <constraint firstAttribute="trailing" secondItem="tkh-We-W4g" secondAttribute="trailing" id="LFn-xd-4Iz"/>
+                        <constraint firstItem="tkh-We-W4g" firstAttribute="leading" secondItem="Ro0-ja-l75" secondAttribute="leading" id="NNY-cw-l7I"/>
                         <constraint firstAttribute="trailing" secondItem="iTb-Ac-4xK" secondAttribute="trailing" id="VDv-hV-56s"/>
-                        <constraint firstItem="Ebn-r8-GNp" firstAttribute="top" secondItem="Ro0-ja-l75" secondAttribute="top" constant="180" id="aXb-9w-LUM"/>
-                        <constraint firstAttribute="trailing" secondItem="Ebn-r8-GNp" secondAttribute="trailing" id="eo0-Dc-OHG"/>
-                        <constraint firstItem="Ebn-r8-GNp" firstAttribute="top" secondItem="iTb-Ac-4xK" secondAttribute="bottom" id="g7Q-by-ymM"/>
+                        <constraint firstItem="kCG-6d-BuK" firstAttribute="leading" secondItem="Ro0-ja-l75" secondAttribute="leading" id="cvf-wq-jHg"/>
+                        <constraint firstAttribute="trailing" secondItem="kCG-6d-BuK" secondAttribute="trailing" id="nW1-Wq-ZFU"/>
+                        <constraint firstItem="kCG-6d-BuK" firstAttribute="top" secondItem="tkh-We-W4g" secondAttribute="bottom" id="oLM-Wk-Kfq"/>
+                        <constraint firstItem="c8c-E0-Mzn" firstAttribute="top" secondItem="iTb-Ac-4xK" secondAttribute="bottom" id="sPb-Cn-d0P"/>
+                        <constraint firstItem="tkh-We-W4g" firstAttribute="top" secondItem="c8c-E0-Mzn" secondAttribute="bottom" id="vdI-aF-SzA"/>
                     </constraints>
                 </scrollView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gmr-gT-Or5" userLabel="Below Status Bar Image View">
+                    <rect key="frame" x="0.0" y="-160" width="375" height="180"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="180" id="6B2-Bs-8k5"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="kCG-6d-BuK" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="AvD-vd-p4N"/>
+                <constraint firstItem="gmr-gT-Or5" firstAttribute="trailing" secondItem="Ro0-ja-l75" secondAttribute="trailing" id="Guc-eX-2Tu"/>
                 <constraint firstItem="Ro0-ja-l75" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="ZQe-FE-YvL"/>
+                <constraint firstItem="gmr-gT-Or5" firstAttribute="leading" secondItem="Ro0-ja-l75" secondAttribute="leading" id="ZUx-SA-aIc"/>
                 <constraint firstItem="Ro0-ja-l75" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="ebK-pK-qzE"/>
                 <constraint firstItem="Ro0-ja-l75" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="esB-cr-rHY"/>
+                <constraint firstItem="gmr-gT-Or5" firstAttribute="bottom" secondItem="Ro0-ja-l75" secondAttribute="top" constant="20" id="pTB-nE-vK6"/>
                 <constraint firstItem="Ro0-ja-l75" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="wIk-k1-tjs"/>
-                <constraint firstItem="Ebn-r8-GNp" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="xQT-2c-MRp"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>

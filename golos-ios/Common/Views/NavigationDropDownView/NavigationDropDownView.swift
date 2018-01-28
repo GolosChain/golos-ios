@@ -14,7 +14,6 @@ class NavigationDropDownView: UIView {
     @IBOutlet weak var arrowImage: UIImageView!
     
     
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()

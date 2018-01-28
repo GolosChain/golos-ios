@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4DAAAD6714B074435D5557C7 /* Pods_golos_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 617A00E81BE0A996F90DD4BB /* Pods_golos_ios.framework */; };
+		99AA4A81C46AA503973BA77F /* Pods_Golos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D3CE7EF617BA80468724899 /* Pods_Golos.framework */; };
 		EC07F4A22014093E00560CF0 /* HorizontalSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC07F4A12014093E00560CF0 /* HorizontalSelectorView.swift */; };
 		EC07F4A620141E8D00560CF0 /* FeedType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC07F4A520141E8D00560CF0 /* FeedType.swift */; };
 		EC07F4A820141F0200560CF0 /* FeedMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC07F4A720141F0200560CF0 /* FeedMediator.swift */; };
@@ -43,6 +43,7 @@
 		EC24FF7F200C4E2C00A0AE15 /* NavigationDropDownView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC24FF7E200C4E2C00A0AE15 /* NavigationDropDownView.xib */; };
 		EC24FF82200C625800A0AE15 /* DropDownViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC24FF81200C625800A0AE15 /* DropDownViewController.swift */; };
 		EC24FF84200C635600A0AE15 /* DropDownMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC24FF83200C635600A0AE15 /* DropDownMediator.swift */; };
+		EC5B2BFD201A443C007A4335 /* String+Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5B2BFC201A443C007A4335 /* String+Size.swift */; };
 		EC6FD59E200AD53100DCB824 /* ViewController+BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6FD59D200AD53100DCB824 /* ViewController+BackButton.swift */; };
 		EC6FD5A2200AE1A200DCB824 /* QRScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6FD5A0200AE1A200DCB824 /* QRScannerViewController.swift */; };
 		EC6FD5A3200AE1A200DCB824 /* QRScannerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC6FD5A1200AE1A200DCB824 /* QRScannerViewController.xib */; };
@@ -57,6 +58,12 @@
 		EC9B2AE6201550F4008335C8 /* FeedArticleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9B2AE4201550F4008335C8 /* FeedArticleTableViewCell.swift */; };
 		EC9B2AE7201550F4008335C8 /* FeedArticleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC9B2AE5201550F4008335C8 /* FeedArticleTableViewCell.xib */; };
 		EC9B2AE920155B9C008335C8 /* FeedTabMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9B2AE820155B9C008335C8 /* FeedTabMediator.swift */; };
+		ECA8E3512018A626003B8ABA /* ProfileInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA8E3502018A626003B8ABA /* ProfileInfoView.swift */; };
+		ECA8E3532018A62E003B8ABA /* ProfileInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECA8E3522018A62E003B8ABA /* ProfileInfoView.xib */; };
+		ECA8E3572018C9A3003B8ABA /* ProfileFeedType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA8E3562018C9A3003B8ABA /* ProfileFeedType.swift */; };
+		ECA8E35A2018CA17003B8ABA /* ProfileHorizontalSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA8E3592018CA17003B8ABA /* ProfileHorizontalSelectorView.swift */; };
+		ECA8E35C2018CA30003B8ABA /* ProfileHorizontalSelectorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECA8E35B2018CA30003B8ABA /* ProfileHorizontalSelectorView.xib */; };
+		ECA8E35E2018D119003B8ABA /* UIView+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA8E35D2018D119003B8ABA /* UIView+Shadow.swift */; };
 		ECB2C0D32008E55500AF1AF5 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2C0D22008E55500AF1AF5 /* Colors.swift */; };
 		ECB2C0D52008E56300AF1AF5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2C0D42008E56300AF1AF5 /* Constants.swift */; };
 		ECC15FA0200976320099BBC9 /* Intro.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ECC15F9F200976320099BBC9 /* Intro.storyboard */; };
@@ -87,6 +94,8 @@
 /* Begin PBXFileReference section */
 		617A00E81BE0A996F90DD4BB /* Pods_golos_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_golos_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BD44B1209B5C64C3D1EF768 /* Pods-golos-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-golos-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-golos-ios/Pods-golos-ios.debug.xcconfig"; sourceTree = "<group>"; };
+		8D3CE7EF617BA80468724899 /* Pods_Golos.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Golos.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		974FDF6AE6B94E5A2BFC2FDE /* Pods-Golos.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Golos.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Golos/Pods-Golos.debug.xcconfig"; sourceTree = "<group>"; };
 		DECBC36021F31D8D6F619C11 /* Pods-golos-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-golos-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-golos-ios/Pods-golos-ios.release.xcconfig"; sourceTree = "<group>"; };
 		EC07F4A12014093E00560CF0 /* HorizontalSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalSelectorView.swift; sourceTree = "<group>"; };
 		EC07F4A520141E8D00560CF0 /* FeedType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedType.swift; sourceTree = "<group>"; };
@@ -127,6 +136,7 @@
 		EC24FF7E200C4E2C00A0AE15 /* NavigationDropDownView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NavigationDropDownView.xib; sourceTree = "<group>"; };
 		EC24FF81200C625800A0AE15 /* DropDownViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownViewController.swift; sourceTree = "<group>"; };
 		EC24FF83200C635600A0AE15 /* DropDownMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownMediator.swift; sourceTree = "<group>"; };
+		EC5B2BFC201A443C007A4335 /* String+Size.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Size.swift"; sourceTree = "<group>"; };
 		EC6FD59D200AD53100DCB824 /* ViewController+BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+BackButton.swift"; sourceTree = "<group>"; };
 		EC6FD5A0200AE1A200DCB824 /* QRScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerViewController.swift; sourceTree = "<group>"; };
 		EC6FD5A1200AE1A200DCB824 /* QRScannerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QRScannerViewController.xib; sourceTree = "<group>"; };
@@ -141,6 +151,12 @@
 		EC9B2AE4201550F4008335C8 /* FeedArticleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedArticleTableViewCell.swift; sourceTree = "<group>"; };
 		EC9B2AE5201550F4008335C8 /* FeedArticleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedArticleTableViewCell.xib; sourceTree = "<group>"; };
 		EC9B2AE820155B9C008335C8 /* FeedTabMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTabMediator.swift; sourceTree = "<group>"; };
+		ECA8E3502018A626003B8ABA /* ProfileInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoView.swift; sourceTree = "<group>"; };
+		ECA8E3522018A62E003B8ABA /* ProfileInfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileInfoView.xib; sourceTree = "<group>"; };
+		ECA8E3562018C9A3003B8ABA /* ProfileFeedType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFeedType.swift; sourceTree = "<group>"; };
+		ECA8E3592018CA17003B8ABA /* ProfileHorizontalSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHorizontalSelectorView.swift; sourceTree = "<group>"; };
+		ECA8E35B2018CA30003B8ABA /* ProfileHorizontalSelectorView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileHorizontalSelectorView.xib; sourceTree = "<group>"; };
+		ECA8E35D2018D119003B8ABA /* UIView+Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shadow.swift"; sourceTree = "<group>"; };
 		ECB2C0D22008E55500AF1AF5 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		ECB2C0D42008E56300AF1AF5 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		ECC15F9F200976320099BBC9 /* Intro.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Intro.storyboard; sourceTree = "<group>"; };
@@ -156,6 +172,7 @@
 		ECF3172D200AB22E00F7B703 /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		ECF31731200ABB7C00F7B703 /* AppDelegate+SetupAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+SetupAppearance.swift"; sourceTree = "<group>"; };
 		ECFF44E7200BC42F00DAF74C /* QRScannerViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerViewControllerDelegate.swift; sourceTree = "<group>"; };
+		F860D859C40BCA60C8DE58EE /* Pods-Golos.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Golos.release.xcconfig"; path = "Pods/Target Support Files/Pods-Golos/Pods-Golos.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,7 +180,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4DAAAD6714B074435D5557C7 /* Pods_golos_ios.framework in Frameworks */,
+				99AA4A81C46AA503973BA77F /* Pods_Golos.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -181,6 +198,7 @@
 			isa = PBXGroup;
 			children = (
 				617A00E81BE0A996F90DD4BB /* Pods_golos_ios.framework */,
+				8D3CE7EF617BA80468724899 /* Pods_Golos.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -190,6 +208,8 @@
 			children = (
 				7BD44B1209B5C64C3D1EF768 /* Pods-golos-ios.debug.xcconfig */,
 				DECBC36021F31D8D6F619C11 /* Pods-golos-ios.release.xcconfig */,
+				974FDF6AE6B94E5A2BFC2FDE /* Pods-Golos.debug.xcconfig */,
+				F860D859C40BCA60C8DE58EE /* Pods-Golos.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -214,6 +234,7 @@
 			isa = PBXGroup;
 			children = (
 				EC07F4A520141E8D00560CF0 /* FeedType.swift */,
+				ECA8E3562018C9A3003B8ABA /* ProfileFeedType.swift */,
 			);
 			path = Feed;
 			sourceTree = "<group>";
@@ -403,8 +424,9 @@
 		EC9ABBC42017D54900AF8597 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				EC9ABBC52017D55800AF8597 /* ProfileHeaderView.swift */,
-				EC9ABBC72017D56800AF8597 /* ProfileHeaderView.xib */,
+				ECA8E3582018C9F5003B8ABA /* ProfileHorizontalSelectorView */,
+				ECA8E34F2018A619003B8ABA /* ProfileInfoView */,
+				ECA8E34E2018A5E2003B8ABA /* ProfileHeaderView */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -425,6 +447,33 @@
 				EC9B2AE5201550F4008335C8 /* FeedArticleTableViewCell.xib */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		ECA8E34E2018A5E2003B8ABA /* ProfileHeaderView */ = {
+			isa = PBXGroup;
+			children = (
+				EC9ABBC52017D55800AF8597 /* ProfileHeaderView.swift */,
+				EC9ABBC72017D56800AF8597 /* ProfileHeaderView.xib */,
+			);
+			path = ProfileHeaderView;
+			sourceTree = "<group>";
+		};
+		ECA8E34F2018A619003B8ABA /* ProfileInfoView */ = {
+			isa = PBXGroup;
+			children = (
+				ECA8E3502018A626003B8ABA /* ProfileInfoView.swift */,
+				ECA8E3522018A62E003B8ABA /* ProfileInfoView.xib */,
+			);
+			path = ProfileInfoView;
+			sourceTree = "<group>";
+		};
+		ECA8E3582018C9F5003B8ABA /* ProfileHorizontalSelectorView */ = {
+			isa = PBXGroup;
+			children = (
+				ECA8E3592018CA17003B8ABA /* ProfileHorizontalSelectorView.swift */,
+				ECA8E35B2018CA30003B8ABA /* ProfileHorizontalSelectorView.xib */,
+			);
+			path = ProfileHorizontalSelectorView;
 			sourceTree = "<group>";
 		};
 		ECB2C0D12008E54000AF1AF5 /* Miscellaneous */ = {
@@ -491,6 +540,8 @@
 				ECF2808B200A9A210000D949 /* UIButton+Intro.swift */,
 				ECF31724200A9D2800F7B703 /* UIAlertController+Window.swift */,
 				EC9ABBC22017D17000AF8597 /* UIImageEffects.swift */,
+				ECA8E35D2018D119003B8ABA /* UIView+Shadow.swift */,
+				EC5B2BFC201A443C007A4335 /* String+Size.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -638,9 +689,11 @@
 				EC6FD5A3200AE1A200DCB824 /* QRScannerViewController.xib in Resources */,
 				EC9ABBC82017D56800AF8597 /* ProfileHeaderView.xib in Resources */,
 				EC07F4B22014404200560CF0 /* FeedTabViewController.xib in Resources */,
+				ECA8E35C2018CA30003B8ABA /* ProfileHorizontalSelectorView.xib in Resources */,
 				EC1DFB9620063C400080BC50 /* Assets.xcassets in Resources */,
 				ECC15FA0200976320099BBC9 /* Intro.storyboard in Resources */,
 				ECC15FA4200976770099BBC9 /* IntroViewController.xib in Resources */,
+				ECA8E3532018A62E003B8ABA /* ProfileInfoView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -665,7 +718,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-golos-ios-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Golos-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -678,7 +731,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-golos-ios/Pods-golos-ios-frameworks.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-Golos/Pods-Golos-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -687,7 +740,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-golos-ios/Pods-golos-ios-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Golos/Pods-Golos-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F1798BD0C66927B5A490FD17 /* [CP] Copy Pods Resources */ = {
@@ -702,7 +755,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-golos-ios/Pods-golos-ios-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Golos/Pods-Golos-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -727,6 +780,7 @@
 				EC24FF22200BC69B00A0AE15 /* LoginType.swift in Sources */,
 				ECB2C0D32008E55500AF1AF5 /* Colors.swift in Sources */,
 				ECF2808C200A9A210000D949 /* UIButton+Intro.swift in Sources */,
+				ECA8E3512018A626003B8ABA /* ProfileInfoView.swift in Sources */,
 				EC24FF2B200BFAA100A0AE15 /* Validator.swift in Sources */,
 				EC9ABBEA2018072600AF8597 /* GSScrollView.swift in Sources */,
 				ECF31727200A9E0B00F7B703 /* Utils.swift in Sources */,
@@ -741,15 +795,19 @@
 				EC24FF84200C635600A0AE15 /* DropDownMediator.swift in Sources */,
 				EC24FF70200C433700A0AE15 /* ProfileViewController.swift in Sources */,
 				EC24FF82200C625800A0AE15 /* DropDownViewController.swift in Sources */,
+				ECA8E35A2018CA17003B8ABA /* ProfileHorizontalSelectorView.swift in Sources */,
 				EC6FD59E200AD53100DCB824 /* ViewController+BackButton.swift in Sources */,
 				ECFF44E8200BC42F00DAF74C /* QRScannerViewControllerDelegate.swift in Sources */,
 				ECC15FA62009794E0099BBC9 /* Fonts.swift in Sources */,
+				ECA8E35E2018D119003B8ABA /* UIView+Shadow.swift in Sources */,
 				ECF31732200ABB7C00F7B703 /* AppDelegate+SetupAppearance.swift in Sources */,
 				EC9ABBC32017D17000AF8597 /* UIImageEffects.swift in Sources */,
 				EC24FF52200C06E300A0AE15 /* StateMachine.swift in Sources */,
 				EC24FF5F200C3B8100A0AE15 /* AppDelegate+RootViewController.swift in Sources */,
 				EC6FD5A2200AE1A200DCB824 /* QRScannerViewController.swift in Sources */,
 				EC24FF24200BC72F00A0AE15 /* LoginUIStrings.swift in Sources */,
+				ECA8E3572018C9A3003B8ABA /* ProfileFeedType.swift in Sources */,
+				EC5B2BFD201A443C007A4335 /* String+Size.swift in Sources */,
 				ECF28087200A94550000D949 /* ViewController+Nib.swift in Sources */,
 				EC1DFB8F20063C400080BC50 /* AppDelegate.swift in Sources */,
 				EC24FF6C200C400300A0AE15 /* GSTabBarController.swift in Sources */,
@@ -905,7 +963,7 @@
 		};
 		EC1DFB9E20063C400080BC50 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7BD44B1209B5C64C3D1EF768 /* Pods-golos-ios.debug.xcconfig */;
+			baseConfigurationReference = 974FDF6AE6B94E5A2BFC2FDE /* Pods-Golos.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -922,7 +980,7 @@
 		};
 		EC1DFB9F20063C400080BC50 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DECBC36021F31D8D6F619C11 /* Pods-golos-ios.release.xcconfig */;
+			baseConfigurationReference = F860D859C40BCA60C8DE58EE /* Pods-Golos.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

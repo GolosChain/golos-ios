@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProfileHorizontalSelectorView" customModule="Golos" customModuleProvider="target">
+            <connections>
+                <outlet property="answersButton" destination="xZG-iS-3Xs" id="CKy-ta-Izv"/>
+                <outlet property="favoriteButton" destination="0ru-8H-on4" id="aDs-rV-qMR"/>
+                <outlet property="postsButton" destination="wAb-W4-aEK" id="fLF-Uw-SeB"/>
+                <outletCollection property="buttons" destination="wAb-W4-aEK" collectionClass="NSMutableArray" id="Wo6-s8-SdJ"/>
+                <outletCollection property="buttons" destination="xZG-iS-3Xs" collectionClass="NSMutableArray" id="eho-Dj-has"/>
+                <outletCollection property="buttons" destination="0ru-8H-on4" collectionClass="NSMutableArray" id="49H-Re-Zzs"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="75"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4yg-4E-RGC">
+                    <rect key="frame" x="0.0" y="0.0" width="125" height="75"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T32-YW-ESb">
+                    <rect key="frame" x="125" y="0.0" width="125" height="75"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7FY-kE-xQv">
+                    <rect key="frame" x="250" y="0.0" width="125" height="75"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xZG-iS-3Xs">
+                    <rect key="frame" x="152" y="21" width="56" height="32"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <state key="normal" title="Ответы">
+                        <color key="titleColor" red="0.49019607843137253" green="0.49019607843137253" blue="0.49019607843137253" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="didPressButton:" destination="-1" eventType="touchUpInside" id="l0D-NC-Cq0"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wAb-W4-aEK">
+                    <rect key="frame" x="38" y="21" width="49" height="32"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <state key="normal" title="Посты">
+                        <color key="titleColor" red="0.49019607840000001" green="0.49019607840000001" blue="0.49019607840000001" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="didPressButton:" destination="-1" eventType="touchUpInside" id="VaK-NH-h2Y"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0ru-8H-on4">
+                    <rect key="frame" x="263" y="21" width="85" height="32"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <state key="normal" title="Избранное">
+                        <color key="titleColor" red="0.49019607840000001" green="0.49019607840000001" blue="0.49019607840000001" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="didPressButton:" destination="-1" eventType="touchUpInside" id="j9e-yV-csy"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="4yg-4E-RGC" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="09s-4i-LF5"/>
+                <constraint firstItem="7FY-kE-xQv" firstAttribute="width" secondItem="4yg-4E-RGC" secondAttribute="width" id="40O-9V-7YI"/>
+                <constraint firstItem="wAb-W4-aEK" firstAttribute="centerX" secondItem="4yg-4E-RGC" secondAttribute="centerX" id="4yY-Jo-78d"/>
+                <constraint firstItem="xZG-iS-3Xs" firstAttribute="leading" secondItem="T32-YW-ESb" secondAttribute="leading" constant="27" id="74b-VA-5zV"/>
+                <constraint firstItem="T32-YW-ESb" firstAttribute="leading" secondItem="4yg-4E-RGC" secondAttribute="trailing" id="9nd-Bx-OJN"/>
+                <constraint firstItem="7FY-kE-xQv" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="BzO-VC-58U"/>
+                <constraint firstItem="T32-YW-ESb" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="EHm-0p-AIE"/>
+                <constraint firstItem="0ru-8H-on4" firstAttribute="centerY" secondItem="7FY-kE-xQv" secondAttribute="centerY" id="HAd-6E-HdP"/>
+                <constraint firstItem="T32-YW-ESb" firstAttribute="width" secondItem="4yg-4E-RGC" secondAttribute="width" id="bit-mC-oEu"/>
+                <constraint firstItem="4yg-4E-RGC" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="bje-GS-MB9"/>
+                <constraint firstItem="7FY-kE-xQv" firstAttribute="leading" secondItem="T32-YW-ESb" secondAttribute="trailing" id="c6E-1g-D1x"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="7FY-kE-xQv" secondAttribute="trailing" id="dag-7P-End"/>
+                <constraint firstAttribute="bottom" secondItem="T32-YW-ESb" secondAttribute="bottom" id="iqE-YX-9YR"/>
+                <constraint firstItem="xZG-iS-3Xs" firstAttribute="centerY" secondItem="T32-YW-ESb" secondAttribute="centerY" id="kQc-7q-OMo"/>
+                <constraint firstAttribute="bottom" secondItem="4yg-4E-RGC" secondAttribute="bottom" id="p26-z4-fOA"/>
+                <constraint firstItem="0ru-8H-on4" firstAttribute="leading" secondItem="7FY-kE-xQv" secondAttribute="leading" constant="13" id="wmU-D8-q9J"/>
+                <constraint firstAttribute="bottom" secondItem="7FY-kE-xQv" secondAttribute="bottom" id="xvs-ZQ-x3K"/>
+                <constraint firstItem="wAb-W4-aEK" firstAttribute="centerY" secondItem="4yg-4E-RGC" secondAttribute="centerY" id="zNS-WJ-txz"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="29.5" y="-189.5"/>
+        </view>
+    </objects>
+</document>
