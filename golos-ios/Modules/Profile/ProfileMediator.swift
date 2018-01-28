@@ -41,6 +41,10 @@ extension ProfileMediator: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard section == 0 else {
+            return 0
+        }
+        
         return 50
     }
     
@@ -63,18 +67,17 @@ extension ProfileMediator: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        guard section == 0, let delegate = delegate else {
+        guard section == 0 else {
             return 0
         }
         
-        return delegate.heightForSegmentedControlHeight()
+        return delegate!.heightForSegmentedControlHeight()
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard section == 0 else {
             return nil
         }
-        
         let horizontalSelector = ProfileHorizontalSelectorView()
         return horizontalSelector
     }

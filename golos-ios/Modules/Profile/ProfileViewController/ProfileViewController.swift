@@ -18,15 +18,14 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     
     //MARK: Outlets properties
     @IBOutlet weak var tableView: UITableView!
-    
+    @IBOutlet weak var statusImageView: UIImageView!
+    @IBOutlet weak var statusBarImageViewBottomConstraint: NSLayoutConstraint!
     
     //MARK: UI Properties
-    var topView: UIView!
-    var profileHeaderView: ProfileHeaderView!
-    var profileInfoView: ProfileInfoView!
     var tableHeaderView: UIView!
+    let profileHeaderView = ProfileHeaderView()
+    let profileInfoView = ProfileInfoView()
     
-    var topViewHeightConstraint: NSLayoutConstraint!
     
     //MARK: Module properties
     lazy var presenter: ProfilePresenterProtocol = {
@@ -64,7 +63,6 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     
     //MARK: Setup UI
     private func setupUI() {
-        navigationController?.interactivePopGestureRecognizer?.delegate = self
         
         mediator.configure(tableView: tableView)
         
@@ -73,6 +71,12 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
         } else {
             self.automaticallyAdjustsScrollViewInsets = false
         }
+        
+        tableHeaderView = UIView()
+        tableHeaderView.backgroundColor = .green
+        tableHeaderView.frame = CGRect(x: 0, y: 0, width: 0, height: profileHeaderHeight + profileInfoHeight - headerMinimizedHeight)
+        tableView.tableHeaderView = tableHeaderView
+        setupHeaderAndInfoView()
         
         tableView.scrollIndicatorInsets = UIEdgeInsets(
             top: profileHeaderHeight + profileInfoHeight + segmentedControlHeight - headerMinimizedHeight,
@@ -88,83 +92,56 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
         )
         tableView.contentOffset = CGPoint(x: 0, y: -headerMinimizedHeight)
         
-        tableHeaderView = UIView()
-        tableHeaderView.frame = CGRect(
-            x: 0,
-            y: 0,
-            width: 0,
-            height: profileHeaderHeight + profileInfoHeight - headerMinimizedHeight
-        )
-        tableHeaderView.backgroundColor = .green
-        tableView.tableHeaderView = tableHeaderView
-        
-        setupHeaderAndInfoView()
-//        topView.frame = CGRect(x: 0, y: -headerMinimizedHeight, width: UIScreen.main.bounds.width, height: profileHeaderHeight + profileInfoHeight)
-        topView.backgroundColor = .yellow
-        tableView.addSubview(topView)
-        
-        topView.translatesAutoresizingMaskIntoConstraints = false
-        topView.topAnchor.constraint(equalTo: tableView.topAnchor).isActive = true
-        topView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width).isActive = true
-//        topViewHeightConstraint = topView.heightAnchor.constraint(equalToConstant: 100)
-//        topViewHeightConstraint.isActive = true
-        topView.centerXAnchor.constraint(equalTo: tableView.centerXAnchor).isActive = true
+        statusImageView.image = Images.Profile.getProfileHeaderBackground()
+        view.bringSubview(toFront: statusImageView)
+        statusBarImageViewBottomConstraint.constant = headerMinimizedHeight
     }
     
     func setupHeaderAndInfoView() {
-        profileHeaderView = ProfileHeaderView()
+        var isEdit = false
+        if let navigationController = navigationController {
+            isEdit = navigationController.viewControllers.count == 1 ? true : false
+        }
+        
+        profileHeaderView.isEdit = isEdit
         profileHeaderView.translatesAutoresizingMaskIntoConstraints = false
         profileHeaderView.backgroundImage = Images.Profile.getProfileHeaderBackground()
         profileHeaderView.delegate = self
+        profileHeaderView.minimizedHeaderHeight = headerMinimizedHeight
+        tableHeaderView.addSubview(profileHeaderView)
         
-        profileInfoView = ProfileInfoView()
         profileInfoView.translatesAutoresizingMaskIntoConstraints = false
+        tableHeaderView.addSubview(profileInfoView)
         
-        topView = UIView()
-        topView.addSubview(profileHeaderView)
-        topView.addSubview(profileInfoView)
-//
-        profileHeaderView.topAnchor.constraint(equalTo: topView.topAnchor).isActive = true
-        profileHeaderView.leftAnchor.constraint(equalTo: topView.leftAnchor).isActive = true
-        profileHeaderView.rightAnchor.constraint(equalTo: topView.rightAnchor).isActive = true
-//        profileHeaderView.heightAnchor.constraint(equalToConstant: profileHeaderHeight).isActive = true
+        profileHeaderView.topAnchor.constraint(equalTo: tableHeaderView.topAnchor, constant: -headerMinimizedHeight).isActive = true
+        profileHeaderView.leftAnchor.constraint(equalTo: tableHeaderView.leftAnchor).isActive = true
+        profileHeaderView.rightAnchor.constraint(equalTo: tableHeaderView.rightAnchor).isActive = true
+        profileHeaderView.heightAnchor.constraint(equalToConstant: profileHeaderHeight).isActive = true
+
         profileInfoView.topAnchor.constraint(equalTo: profileHeaderView.bottomAnchor).isActive = true
-        profileInfoView.leftAnchor.constraint(equalTo: topView.leftAnchor).isActive = true
-        profileInfoView.rightAnchor.constraint(equalTo: topView.rightAnchor).isActive = true
-//        profileInfoView.heightAnchor.constraint(equalToConstant: profileInfoHeight).isActive = true
-        profileInfoView.bottomAnchor.constraint(equalTo: topView.bottomAnchor).isActive = true
-        
+        profileInfoView.leftAnchor.constraint(equalTo: profileHeaderView.leftAnchor).isActive = true
+        profileInfoView.rightAnchor.constraint(equalTo: profileHeaderView.rightAnchor).isActive = true
+        profileInfoView.bottomAnchor.constraint(equalTo: tableHeaderView.bottomAnchor).isActive = true
     }
     
     
     //MARK: Autolayout
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        sizeTableHeader()
+    }
+    
+    private func sizeTableHeader() {
+        let infoView = profileInfoView
+        infoView.setNeedsLayout()
+        infoView.layoutIfNeeded()
         
-//        CGRect headerFrame           = self.profile.tableHeaderView.frame;
-//        headerFrame.size.height      = self.myStatus.frame.size.height + offset;
-//        self.header.frame            = headerFrame;
-//        self.profile.tableHeaderView = self.header;
-        
-        var headerFrame = tableHeaderView.frame
-        headerFrame.size.height = topView.bounds.height
-        tableHeaderView.frame = headerFrame
-        tableView.tableHeaderView = tableHeaderView
-        tableView.reloadData()
-//        profileHeaderView.setNeedsLayout()
-//        profileHeaderView.layoutIfNeeded()
-//        tableView.beginUpdates()
-//        tableView.endUpdates()
-        
-//        topViewHeightConstraint.constant = profileHeaderView.bounds.size.height + profileInfoView.bounds.size.height
-//        topView.setNeedsLayout()
-//        topView.layoutIfNeeded()
-        
-//        print(topView.frame.height)
-//        var topViewFrame = topView.frame
-//        topViewFrame.size.height = profileHeaderHeight + profileInfoView.bounds.size.height
-//        print(profileHeaderHeight + profileInfoView.bounds.size.height)
-//        topView.frame = topViewFrame
+        let height = infoView.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height + profileHeaderHeight
+        let headerView = tableHeaderView
+        var frame = headerView!.frame
+        frame.size.height = height
+        headerView?.frame = frame
+        tableView.tableHeaderView = headerView
     }
     
     //MARK: Actions
@@ -174,13 +151,11 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
 //MARK: ProfileHeaderViewDelegate
 extension ProfileViewController: ProfileHeaderViewDelegate {
     func didPressEditProfileButton() {
-        
         Utils.inDevelopmentAlert()
     }
     
     func didPressSettingsButton() {
-        profileInfoView.information = "shdjshj djs hdjhjs jsdhjshj hjhdjs hjdh sjdhj shdj hd shdjshj djs hdjhjs jsdhjshj hjhdjs hjdh sjdhj shdj hd shdjshj djs hdjhjs jsdhjshj hjhdjs hjdh sjdhj shdj hd shdjshj djs hdjhjs jsdhjshj hjhdjs hjdh sjdhj shdj hd shdjshj djs hdjhjs jsdhjshj hjhdjs hjdh sjdhj shdj hd shdjshj djs hdjhjs jsdhjshj hjhdjs hjdh sjdhj shdj hd shdjshj djs hdjhjs jsdhjshj hjhdjs hjdh sjdhj shdj hd shdjshj djs hdjhjs jsdhjshj hjhdjs hjdh sjdhj shdj hd  shdjshj djs hdjhjs jsdhjshj hjhdjs hjdh sjdhj shdj hd shdjshj djs hdjhjs jsdhjshj hjhdjs hjdh sjdhj shdj hd shdjshj djs hdjhjs jsdhjshj hjhdjs hjdh sjdhj shdj hd shdjshj djs hdjhjs jsdhjshj hjhdjs hjdh sjdhj shdj hd shdjshj djs hdjhjs jsdhjshj hjhdjs hjdh sjdhj shdj hd shdjshj djs hdjhjs jsdhjshj hjhdjs hjdh sjdhj shdj hd shdjshj djs hdjhjs jsdhjshj hjhdjs hjdh sjdhj shdj hd shdjshj djs hdjhjs jsdhjshj hjhdjs hjdh sjdhj shdj hd shdjshj djs hdjhjs jsdhjshj hjhdjs hjdh sjdhj shdj hd shdjshj djs hdjhjs jsdhjshj hjhdjs hjdh sjdhj shdj hd shdjshj djs hdjhjs jsdhjshj hjhdjs hjdh sjdhj shdj hd shdjshj djs hdjhjs jsdhjshj hjhdjs hjdh sjdhj shdj hd shdjshj djs hdjhjs jsdhjshj hjhdjs hjdh sjdhj shdj hd shdjshj djs hdjhjs jsdhjshj hjhdjs hjdh sjdhj shdj hd shdjshj djs hdjhjs jsdhjshj hjhdjs hjdh sjdhj shdj hd shdjshj djs hdjhjs jsdhjshj hjhdjs hjdh sjdhj shdj hd shdjshj djs hdjhjs jsdhjshj hjhdjs hjdh sjdhj shdj hd shdjshj djs hdjhjs jsdhjshj hjhdjs hjdh sjdhj shdj hd shdjshj djs hdjhjs jsdhjshj hjhdjs hjdh sjdhj shdj hd shdjshj djs hdjhjs jsdhjshj hjhdjs hjdh sjdhj shdj hd"
-//        Utils.inDevelopmentAlert()
+        Utils.inDevelopmentAlert()
     }
     
     func didPressSubsribeButton() {
@@ -208,7 +183,14 @@ extension ProfileViewController: ProfileViewProtocol {
 //MARK: ProfileMediatorDelegate
 extension ProfileViewController: ProfileMediatorDelegate {
     func tableViewDidScroll(_ tableView: UITableView) {
-        print("dsds")
+        profileHeaderView.didChangeOffset(tableView.contentOffset.y)
+        
+        let offset = tableView.contentOffset.y
+        if offset > profileHeaderHeight - (headerMinimizedHeight * 2) {
+            statusImageView.alpha = 1
+        } else {
+            statusImageView.alpha = 0
+        }
     }
     
     func heightForSegmentedControlHeight() -> CGFloat {

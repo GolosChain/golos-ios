@@ -1,5 +1,5 @@
 //
-//  GSScrollView.swift
+//  GSTableView.swift
 //  Golos
 //
 //  Created by Grigory Serebryanyy on 24/01/2018.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GSScrollView: UIScrollView {
+class GSTableView: UITableView {
     override func touchesShouldCancel(in view: UIView) -> Bool {
         if view is UIButton {
             return true

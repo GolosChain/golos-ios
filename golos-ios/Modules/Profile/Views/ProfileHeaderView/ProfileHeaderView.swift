@@ -18,6 +18,9 @@ protocol ProfileHeaderViewDelegate: class {
 
 
 class ProfileHeaderView: UIView {
+    
+    //MARK: Size properties
+    var minimizedHeaderHeight: CGFloat = 0
 
     //MARK: Setter properties
     var backgroundImage: UIImage? {
@@ -57,6 +60,12 @@ class ProfileHeaderView: UIView {
         return nil
     }
     
+    var isEdit = false {
+        didSet {
+            showBackButton(!isEdit)
+        }
+    }
+    
     
     //MARK: Outlet properties
     @IBOutlet private weak var backgroundImageView: UIImageView!
@@ -74,6 +83,7 @@ class ProfileHeaderView: UIView {
     @IBOutlet weak var editProfileButton: UIButton!
     
     
+    @IBOutlet weak var imageViewTopConstraint: NSLayoutConstraint!
     //MARK: Delegate
     weak var delegate: ProfileHeaderViewDelegate?
     
@@ -136,10 +146,14 @@ class ProfileHeaderView: UIView {
                                                                    saturationDeltaFactor: 1.0)
     }
     
-    func setBlurViewAlpha(_ alpha: CGFloat) {
-        blurImageView.alpha = alpha
+    func didChangeOffset(_ offset: CGFloat) {
+        if offset + minimizedHeaderHeight < 0 {
+            imageViewTopConstraint.constant = offset + minimizedHeaderHeight
+        }
+        
+        blurImageView.alpha = -((offset + minimizedHeaderHeight) / 100)
     }
-    
+
     
     //MARK: Activity
     func startLoading() {

@@ -22,8 +22,9 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="276"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Вот так выглядит женская половина (а по факту пятая часть) команды проекта 50/50." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KHo-KQ-r3F">
-                    <rect key="frame" x="15" y="15" width="340" height="186"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KHo-KQ-r3F">
+                    <rect key="frame" x="15" y="10" width="340" height="196"/>
+                    <mutableString key="text">Вот так выглядит женская половина (а по факту пятая часть) команды проекта 50/50.Вот так выглядит женская половина (а по факту пятая часть) команды проекта 50/50.Вот так выглядит женская половина (а по факту пятая часть) команды проекта 50/50.Вот так выглядит женская половина (а по факту пятая часть) команды проекта 50/50.Вот так выглядит женская половина (а по факту пятая часть) команды проекта 50/50.Вот так выглядит женская половина (а по факту пятая часть) команды проекта 50/50.Вот так выглядит женская половина (а по факту пятая часть) команды проекта 50/50.</mutableString>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -153,7 +154,7 @@
                 <constraint firstAttribute="trailing" secondItem="ibl-SU-eCF" secondAttribute="trailing" id="7fR-lM-aqu"/>
                 <constraint firstItem="34H-hl-bNi" firstAttribute="leading" secondItem="o4t-CK-JzB" secondAttribute="trailing" id="8l0-sN-Sqg"/>
                 <constraint firstItem="34H-hl-bNi" firstAttribute="leading" secondItem="o4t-CK-JzB" secondAttribute="trailing" id="AV6-u9-Gpv"/>
-                <constraint firstItem="KHo-KQ-r3F" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="15" id="Crh-kB-dbm"/>
+                <constraint firstItem="KHo-KQ-r3F" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="Crh-kB-dbm"/>
                 <constraint firstItem="jR6-hK-TDm" firstAttribute="top" secondItem="ibl-SU-eCF" secondAttribute="bottom" id="E1u-nQ-Sge"/>
                 <constraint firstItem="W7T-fR-uEr" firstAttribute="bottom" secondItem="jR6-hK-TDm" secondAttribute="bottom" id="Iqg-0P-sKa"/>
                 <constraint firstItem="o4t-CK-JzB" firstAttribute="bottom" secondItem="jR6-hK-TDm" secondAttribute="bottom" id="Jhl-6Y-bmx"/>
@@ -167,7 +168,7 @@
                 <constraint firstItem="o4t-CK-JzB" firstAttribute="top" secondItem="jR6-hK-TDm" secondAttribute="top" id="YtO-EK-nWz"/>
                 <constraint firstItem="34H-hl-bNi" firstAttribute="bottom" secondItem="jR6-hK-TDm" secondAttribute="bottom" id="als-JL-aea"/>
                 <constraint firstItem="o4t-CK-JzB" firstAttribute="width" secondItem="jR6-hK-TDm" secondAttribute="width" id="cZK-9X-EuF"/>
-                <constraint firstItem="ibl-SU-eCF" firstAttribute="top" secondItem="KHo-KQ-r3F" secondAttribute="bottom" constant="15" id="ceL-ER-NBc"/>
+                <constraint firstItem="ibl-SU-eCF" firstAttribute="top" secondItem="KHo-KQ-r3F" secondAttribute="bottom" constant="10" id="ceL-ER-NBc"/>
                 <constraint firstItem="W7T-fR-uEr" firstAttribute="width" secondItem="jR6-hK-TDm" secondAttribute="width" id="cyt-EF-RVq"/>
                 <constraint firstItem="W7T-fR-uEr" firstAttribute="top" secondItem="jR6-hK-TDm" secondAttribute="top" id="euZ-TO-PnV"/>
                 <constraint firstItem="KVB-tr-RXw" firstAttribute="top" secondItem="jR6-hK-TDm" secondAttribute="top" id="inY-Cv-Snd"/>

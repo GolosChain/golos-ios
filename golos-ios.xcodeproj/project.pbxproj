@@ -53,7 +53,7 @@
 		EC9ABBC62017D55800AF8597 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9ABBC52017D55800AF8597 /* ProfileHeaderView.swift */; };
 		EC9ABBC82017D56800AF8597 /* ProfileHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC9ABBC72017D56800AF8597 /* ProfileHeaderView.xib */; };
 		EC9ABBE82018036E00AF8597 /* Device+Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9ABBE72018036E00AF8597 /* Device+Size.swift */; };
-		EC9ABBEA2018072600AF8597 /* GSScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9ABBE92018072600AF8597 /* GSScrollView.swift */; };
+		EC9ABBEA2018072600AF8597 /* GSTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9ABBE92018072600AF8597 /* GSTableView.swift */; };
 		EC9B2AE020154B62008335C8 /* FeedTabPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9B2ADF20154B62008335C8 /* FeedTabPresenter.swift */; };
 		EC9B2AE220154DE9008335C8 /* FeedArticleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9B2AE120154DE9008335C8 /* FeedArticleViewModel.swift */; };
 		EC9B2AE6201550F4008335C8 /* FeedArticleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9B2AE4201550F4008335C8 /* FeedArticleTableViewCell.swift */; };
@@ -147,7 +147,7 @@
 		EC9ABBC52017D55800AF8597 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		EC9ABBC72017D56800AF8597 /* ProfileHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileHeaderView.xib; sourceTree = "<group>"; };
 		EC9ABBE72018036E00AF8597 /* Device+Size.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Device+Size.swift"; sourceTree = "<group>"; };
-		EC9ABBE92018072600AF8597 /* GSScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GSScrollView.swift; sourceTree = "<group>"; };
+		EC9ABBE92018072600AF8597 /* GSTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GSTableView.swift; sourceTree = "<group>"; };
 		EC9B2ADF20154B62008335C8 /* FeedTabPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTabPresenter.swift; sourceTree = "<group>"; };
 		EC9B2AE120154DE9008335C8 /* FeedArticleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedArticleViewModel.swift; sourceTree = "<group>"; };
 		EC9B2AE4201550F4008335C8 /* FeedArticleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedArticleTableViewCell.swift; sourceTree = "<group>"; };
@@ -591,7 +591,7 @@
 			children = (
 				EC07F4A0201408FF00560CF0 /* HorizontalSelectorView */,
 				EC24FF7B200C4CE500A0AE15 /* NavigationDropDownView */,
-				EC9ABBE92018072600AF8597 /* GSScrollView.swift */,
+				EC9ABBE92018072600AF8597 /* GSTableView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -786,7 +786,7 @@
 				ECF2808C200A9A210000D949 /* UIButton+Intro.swift in Sources */,
 				ECA8E3512018A626003B8ABA /* ProfileInfoView.swift in Sources */,
 				EC24FF2B200BFAA100A0AE15 /* Validator.swift in Sources */,
-				EC9ABBEA2018072600AF8597 /* GSScrollView.swift in Sources */,
+				EC9ABBEA2018072600AF8597 /* GSTableView.swift in Sources */,
 				ECF31727200A9E0B00F7B703 /* Utils.swift in Sources */,
 				EC9ABBBF20179CEF00AF8597 /* Images.swift in Sources */,
 				EC24FF26200BEA8800A0AE15 /* AppDelegate+IQKeyboardManager.swift in Sources */,

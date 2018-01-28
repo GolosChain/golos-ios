@@ -12,6 +12,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProfileViewController" customModule="Golos" customModuleProvider="target">
             <connections>
+                <outlet property="statusBarImageViewBottomConstraint" destination="jPO-CG-PVL" id="5p9-9y-pZO"/>
+                <outlet property="statusImageView" destination="6lT-rg-uBh" id="Swi-h8-2vq"/>
                 <outlet property="tableView" destination="PqM-Ds-jBw" id="lpo-mD-kbj"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -21,7 +23,13 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="616"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PqM-Ds-jBw">
+                <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6lT-rg-uBh">
+                    <rect key="frame" x="0.0" y="-160" width="375" height="180"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="180" id="8d8-As-UWC"/>
+                    </constraints>
+                </imageView>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PqM-Ds-jBw" customClass="GSTableView" customModule="Golos" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="616"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </tableView>
@@ -31,7 +39,10 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="PqM-Ds-jBw" secondAttribute="bottom" id="9Eu-J4-c59"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="PqM-Ds-jBw" secondAttribute="trailing" id="A4n-sb-Pgv"/>
                 <constraint firstItem="PqM-Ds-jBw" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="SfS-tG-J2C"/>
+                <constraint firstItem="6lT-rg-uBh" firstAttribute="bottom" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="jPO-CG-PVL"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="6lT-rg-uBh" secondAttribute="trailing" id="qvW-Fb-kjv"/>
                 <constraint firstItem="PqM-Ds-jBw" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="vKQ-UQ-UHR"/>
+                <constraint firstItem="6lT-rg-uBh" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="ztZ-DB-2Zu"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>

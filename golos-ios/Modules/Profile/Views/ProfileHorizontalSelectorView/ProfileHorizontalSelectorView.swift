@@ -27,6 +27,8 @@ class ProfileHorizontalSelectorView: UIView {
     //MARK: UI Properties
     let selectionView = UIView()
     
+    var selectedButton: UIButton?
+    
     
     //MARK: Delegate
     weak var delegate: ProfileHorizontalSelectorViewDelegate?
@@ -80,23 +82,44 @@ class ProfileHorizontalSelectorView: UIView {
         favoriteButton.setTitleColor(UIColor.Project.textBlack, for: .selected)
         
         postsButton.isSelected = true
+        selectedButton = postsButton
+        addBottomShadow()
+    }
+
+    
+    //MARK: Layout
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        guard let selectedButton = selectedButton else {
+            return
+        }
+        moveSelectionView(to: selectedButton, animated: false)
     }
     
-    private func moveSelectionView(to button: UIButton) {
+    
+    private func moveSelectionView(to button: UIButton, animated: Bool) {
         var frame = selectionView.frame
         frame.origin.x = button.frame.origin.x
         frame.size.width = button.frame.size.width
+        frame.origin.y = bounds.size.height - selectionViewHeight
         
-        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
+        let animation = {
             self.selectionView.frame = frame
-        }) { _ in }
+        }
+        
+        if animated {
+            UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: animation, completion: nil)
+        } else {
+            animation()
+        }
     }
     
     
     //MARK: Actions
     @IBAction func didPressButton(_ sender: UIButton) {
         buttons.forEach{$0.isSelected = $0 == sender}
-        moveSelectionView(to: sender)
+        selectedButton = sender
+        moveSelectionView(to: sender, animated: true)
         switch sender {
         case postsButton:
             delegate?.didSelect(profileFeedType: .posts)

@@ -21,8 +21,8 @@ class ProfileInfoView: UIView {
 //                return
 //            }
 //            infoLabelHeightConstraint.constant = height
-//            setNeedsLayout()
-//            layoutIfNeeded()
+            setNeedsLayout()
+            layoutIfNeeded()
         }
     }
     
