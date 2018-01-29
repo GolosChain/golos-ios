@@ -41,5 +41,10 @@ extension UIColor {
         
         //MARK: Profile
         static let profileSelectionViewBackground = UIColor(red: 18, green: 152, blue: 255)
+        
+        struct TagToken {
+            static let textColor = UIColor(red: 130, green: 130, blue: 130)
+            static let borderColor = UIColor(red: 224, green: 224, blue: 224)
+        }
     }
 }

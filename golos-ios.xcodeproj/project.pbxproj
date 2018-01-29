@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7D25B47F201F4714004A3400 /* TagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D25B47E201F4714004A3400 /* TagsView.swift */; };
+		7D25B483201F479B004A3400 /* TagTokenButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D25B482201F479B004A3400 /* TagTokenButton.swift */; };
+		7D25B487201F4978004A3400 /* ArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D25B485201F4978004A3400 /* ArticleViewController.swift */; };
+		7D25B488201F4978004A3400 /* ArticleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D25B486201F4978004A3400 /* ArticleViewController.xib */; };
+		7D25B48C201F5700004A3400 /* TagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D25B48A201F5700004A3400 /* TagCollectionViewCell.swift */; };
+		7D25B48D201F5700004A3400 /* TagCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D25B48B201F5700004A3400 /* TagCollectionViewCell.xib */; };
+		7D25B48F201F5E88004A3400 /* CollectionViewCenteredLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D25B48E201F5E88004A3400 /* CollectionViewCenteredLayout.swift */; };
 		7D7EFEAA201E76140088EB44 /* ProfileDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7EFEA9201E76140088EB44 /* ProfileDataViewModel.swift */; };
 		7D7EFEAC201E95B30088EB44 /* ProfileFeedTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7EFEAB201E95B30088EB44 /* ProfileFeedTab.swift */; };
 		7DF16A72201D6043000F5529 /* ProfileMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF16A71201D6043000F5529 /* ProfileMediator.swift */; };
@@ -97,6 +104,13 @@
 /* Begin PBXFileReference section */
 		617A00E81BE0A996F90DD4BB /* Pods_golos_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_golos_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BD44B1209B5C64C3D1EF768 /* Pods-golos-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-golos-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-golos-ios/Pods-golos-ios.debug.xcconfig"; sourceTree = "<group>"; };
+		7D25B47E201F4714004A3400 /* TagsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsView.swift; sourceTree = "<group>"; };
+		7D25B482201F479B004A3400 /* TagTokenButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagTokenButton.swift; sourceTree = "<group>"; };
+		7D25B485201F4978004A3400 /* ArticleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleViewController.swift; sourceTree = "<group>"; };
+		7D25B486201F4978004A3400 /* ArticleViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleViewController.xib; sourceTree = "<group>"; };
+		7D25B48A201F5700004A3400 /* TagCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCollectionViewCell.swift; sourceTree = "<group>"; };
+		7D25B48B201F5700004A3400 /* TagCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TagCollectionViewCell.xib; sourceTree = "<group>"; };
+		7D25B48E201F5E88004A3400 /* CollectionViewCenteredLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCenteredLayout.swift; sourceTree = "<group>"; };
 		7D7EFEA9201E76140088EB44 /* ProfileDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDataViewModel.swift; sourceTree = "<group>"; };
 		7D7EFEAB201E95B30088EB44 /* ProfileFeedTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFeedTab.swift; sourceTree = "<group>"; };
 		7DF16A71201D6043000F5529 /* ProfileMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMediator.swift; sourceTree = "<group>"; };
@@ -218,6 +232,35 @@
 				F860D859C40BCA60C8DE58EE /* Pods-Golos.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		7D25B47D201F46FF004A3400 /* TagsView */ = {
+			isa = PBXGroup;
+			children = (
+				7D25B47E201F4714004A3400 /* TagsView.swift */,
+				7D25B482201F479B004A3400 /* TagTokenButton.swift */,
+				7D25B48A201F5700004A3400 /* TagCollectionViewCell.swift */,
+				7D25B48B201F5700004A3400 /* TagCollectionViewCell.xib */,
+				7D25B48E201F5E88004A3400 /* CollectionViewCenteredLayout.swift */,
+			);
+			path = TagsView;
+			sourceTree = "<group>";
+		};
+		7D25B484201F4967004A3400 /* Article */ = {
+			isa = PBXGroup;
+			children = (
+				7D25B489201F497D004A3400 /* ArticleViewController */,
+			);
+			path = Article;
+			sourceTree = "<group>";
+		};
+		7D25B489201F497D004A3400 /* ArticleViewController */ = {
+			isa = PBXGroup;
+			children = (
+				7D25B485201F4978004A3400 /* ArticleViewController.swift */,
+				7D25B486201F4978004A3400 /* ArticleViewController.xib */,
+			);
+			path = ArticleViewController;
 			sourceTree = "<group>";
 		};
 		EC07F4A0201408FF00560CF0 /* HorizontalSelectorView */ = {
@@ -502,6 +545,7 @@
 		ECC15F9B200975680099BBC9 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				7D25B484201F4967004A3400 /* Article */,
 				EC07F4AE2014402E00560CF0 /* FeedTab */,
 				EC24FF75200C495F00A0AE15 /* Feed */,
 				EC24FF6D200C432700A0AE15 /* Profile */,
@@ -595,6 +639,7 @@
 		ECF31733200AC77A00F7B703 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				7D25B47D201F46FF004A3400 /* TagsView */,
 				EC07F4A0201408FF00560CF0 /* HorizontalSelectorView */,
 				EC24FF7B200C4CE500A0AE15 /* NavigationDropDownView */,
 				EC9ABBE92018072600AF8597 /* GSTableView.swift */,
@@ -701,8 +746,10 @@
 				ECA8E35C2018CA30003B8ABA /* ProfileHorizontalSelectorView.xib in Resources */,
 				EC1DFB9620063C400080BC50 /* Assets.xcassets in Resources */,
 				ECC15FA0200976320099BBC9 /* Intro.storyboard in Resources */,
+				7D25B488201F4978004A3400 /* ArticleViewController.xib in Resources */,
 				ECC15FA4200976770099BBC9 /* IntroViewController.xib in Resources */,
 				ECA8E3532018A62E003B8ABA /* ProfileInfoView.xib in Resources */,
+				7D25B48D201F5700004A3400 /* TagCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -785,6 +832,7 @@
 				EC9B2AE220154DE9008335C8 /* FeedArticleViewModel.swift in Sources */,
 				7D7EFEAA201E76140088EB44 /* ProfileDataViewModel.swift in Sources */,
 				EC9ABBC62017D55800AF8597 /* ProfileHeaderView.swift in Sources */,
+				7D25B483201F479B004A3400 /* TagTokenButton.swift in Sources */,
 				EC24FF5B200C30C500A0AE15 /* MainContainerPresenter.swift in Sources */,
 				EC24FF79200C497800A0AE15 /* FeedViewController.swift in Sources */,
 				EC07F4B12014404200560CF0 /* FeedTabViewController.swift in Sources */,
@@ -813,10 +861,12 @@
 				ECC15FA62009794E0099BBC9 /* Fonts.swift in Sources */,
 				ECA8E35E2018D119003B8ABA /* UIView+Shadow.swift in Sources */,
 				ECF31732200ABB7C00F7B703 /* AppDelegate+SetupAppearance.swift in Sources */,
+				7D25B48F201F5E88004A3400 /* CollectionViewCenteredLayout.swift in Sources */,
 				EC9ABBC32017D17000AF8597 /* UIImageEffects.swift in Sources */,
 				EC24FF52200C06E300A0AE15 /* StateMachine.swift in Sources */,
 				EC24FF5F200C3B8100A0AE15 /* AppDelegate+RootViewController.swift in Sources */,
 				EC6FD5A2200AE1A200DCB824 /* QRScannerViewController.swift in Sources */,
+				7D25B47F201F4714004A3400 /* TagsView.swift in Sources */,
 				EC24FF24200BC72F00A0AE15 /* LoginUIStrings.swift in Sources */,
 				ECA8E3572018C9A3003B8ABA /* ProfileFeedType.swift in Sources */,
 				EC5B2BFD201A443C007A4335 /* String+Size.swift in Sources */,
@@ -829,9 +879,11 @@
 				EC07F4A620141E8D00560CF0 /* FeedType.swift in Sources */,
 				EC07F4AC20141F7400560CF0 /* FeedTab.swift in Sources */,
 				ECF31725200A9D2800F7B703 /* UIAlertController+Window.swift in Sources */,
+				7D25B48C201F5700004A3400 /* TagCollectionViewCell.swift in Sources */,
 				ECC15FA3200976770099BBC9 /* IntroViewController.swift in Sources */,
 				ECF3172A200AA0B200F7B703 /* IntroPresenter.swift in Sources */,
 				ECF3172E200AB22E00F7B703 /* LoginViewController.swift in Sources */,
+				7D25B487201F4978004A3400 /* ArticleViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
