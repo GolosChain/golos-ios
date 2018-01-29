@@ -98,20 +98,10 @@ extension FeedTabViewController: FeedTabMediatorDelegate {
     }
     
     func didPressExpand(at index: Int) {
-//        CATransaction.begin()
-//        CATransaction.setCompletionBlock {
-//            let cell = self.tableView.cellForRow(at: IndexPath.init(row: index, section: 0))
-//            self.tableView.scrollRectToVisible(cell!.frame, animated: true)
-//            self.tableView.scrollToRow(at: IndexPath(row: index, section: 0), at: .top, animated: true)
-//        }
-//        let offset = self.tableView.contentOffset
-        let offset = self.tableView.contentOffset
         UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut, animations: {
             self.tableView.beginUpdates()
             self.tableView.endUpdates()
             self.tableView.layer.removeAllAnimations()
-//            self.tableView.contentOffset = offset
-//            self.tableView.scrollToRow(at: IndexPath(row: index, section: 0), at: .top, animated: true)
         }) { (_) in
             self.tableView.scrollToRow(at: IndexPath(row: index, section: 0), at: .top, animated: true)
         }

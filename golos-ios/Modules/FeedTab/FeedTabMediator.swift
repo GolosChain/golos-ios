@@ -41,22 +41,6 @@ class FeedTabMediator: NSObject {
     //MARK: Delegate
     weak var delegate: FeedTabMediatorDelegate?
     
-    
-    //MARK: Cell configure
-    private func configureArticleCell(_ cell: FeedArticleTableViewCell, with viewModel: FeedArticleViewModel?) {
-        guard let viewModel = viewModel else {return}
-        cell.authorName = viewModel.authorName
-        cell.authorAvatarUrl = viewModel.authorAvatarUrl
-        cell.articleTitle = viewModel.articleTitle
-        cell.reblogAuthorName = viewModel.reblogAuthorName
-        cell.theme = viewModel.theme
-        cell.articleImageUrl = viewModel.articleImageUrl
-        cell.articleBody = viewModel.articleBody
-        cell.upvoteAmount = viewModel.upvoteAmount
-        cell.commentsAmount = viewModel.commentsAmount
-        cell.didUpvote = viewModel.didUpvote
-        cell.didComment = viewModel.didComment
-    }
 }
 
 
@@ -71,7 +55,7 @@ extension FeedTabMediator: UITableViewDataSource {
         cell.delegate = self
         
         let viewModel = feedTabPresenter.getArticleModel(at: indexPath.row)
-        configureArticleCell(cell, with: viewModel)
+        cell.configure(with: viewModel)
                 
         return cell
     }

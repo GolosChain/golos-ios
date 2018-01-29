@@ -34,7 +34,7 @@ class ProfileHeaderView: UIView {
             return nameLabel.text
         }
         set {
-            nameLabel.text = name
+            nameLabel.text = newValue
         }
     }
     
@@ -43,16 +43,16 @@ class ProfileHeaderView: UIView {
             return starsLabel.text
         }
         set {
-            starsLabel.text = name
+            starsLabel.text = newValue
         }
     }
     
-    var dolphinString: String? {
+    var rankString: String? {
         get {
             return rankLabel.text
         }
         set {
-            rankLabel.text = name
+            rankLabel.text = newValue
         }
     }
     
@@ -70,20 +70,20 @@ class ProfileHeaderView: UIView {
     //MARK: Outlet properties
     @IBOutlet private weak var backgroundImageView: UIImageView!
     @IBOutlet private weak var blurImageView: UIImageView!
-    @IBOutlet weak var avatarImageView: UIImageView!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var starsImageView: UIImageView!
-    @IBOutlet weak var starsLabel: UILabel!
-    @IBOutlet weak var rankLabel: UILabel!
-    @IBOutlet weak var rankImageVIew: UIImageView!
-    @IBOutlet weak var subscribeButton: UIButton!
-    @IBOutlet weak var sendMessageButton: UIButton!
-    @IBOutlet weak var activityView: UIActivityIndicatorView!
-    @IBOutlet weak var backButton: UIButton!
-    @IBOutlet weak var editProfileButton: UIButton!
+    @IBOutlet private weak var avatarImageView: UIImageView!
+    @IBOutlet private weak var nameLabel: UILabel!
+    @IBOutlet private weak var starsImageView: UIImageView!
+    @IBOutlet private weak var starsLabel: UILabel!
+    @IBOutlet private weak var rankLabel: UILabel!
+    @IBOutlet private weak var rankImageVIew: UIImageView!
+    @IBOutlet private weak var subscribeButton: UIButton!
+    @IBOutlet private weak var sendMessageButton: UIButton!
+    @IBOutlet private weak var activityView: UIActivityIndicatorView!
+    @IBOutlet private weak var backButton: UIButton!
+    @IBOutlet private weak var editProfileButton: UIButton!
     
     
-    @IBOutlet weak var imageViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var imageViewTopConstraint: NSLayoutConstraint!
     //MARK: Delegate
     weak var delegate: ProfileHeaderViewDelegate?
     

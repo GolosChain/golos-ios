@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7D7EFEAA201E76140088EB44 /* ProfileDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7EFEA9201E76140088EB44 /* ProfileDataViewModel.swift */; };
+		7D7EFEAC201E95B30088EB44 /* ProfileFeedTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7EFEAB201E95B30088EB44 /* ProfileFeedTab.swift */; };
 		7DF16A72201D6043000F5529 /* ProfileMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF16A71201D6043000F5529 /* ProfileMediator.swift */; };
 		99AA4A81C46AA503973BA77F /* Pods_Golos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D3CE7EF617BA80468724899 /* Pods_Golos.framework */; };
 		EC07F4A22014093E00560CF0 /* HorizontalSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC07F4A12014093E00560CF0 /* HorizontalSelectorView.swift */; };
@@ -95,6 +97,8 @@
 /* Begin PBXFileReference section */
 		617A00E81BE0A996F90DD4BB /* Pods_golos_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_golos_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BD44B1209B5C64C3D1EF768 /* Pods-golos-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-golos-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-golos-ios/Pods-golos-ios.debug.xcconfig"; sourceTree = "<group>"; };
+		7D7EFEA9201E76140088EB44 /* ProfileDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDataViewModel.swift; sourceTree = "<group>"; };
+		7D7EFEAB201E95B30088EB44 /* ProfileFeedTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFeedTab.swift; sourceTree = "<group>"; };
 		7DF16A71201D6043000F5529 /* ProfileMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMediator.swift; sourceTree = "<group>"; };
 		8D3CE7EF617BA80468724899 /* Pods_Golos.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Golos.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		974FDF6AE6B94E5A2BFC2FDE /* Pods-Golos.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Golos.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Golos/Pods-Golos.debug.xcconfig"; sourceTree = "<group>"; };
@@ -354,6 +358,8 @@
 				EC24FF72200C439E00A0AE15 /* ProfileViewController */,
 				EC24FF73200C43B500A0AE15 /* ProfilePresenter.swift */,
 				7DF16A71201D6043000F5529 /* ProfileMediator.swift */,
+				7D7EFEA9201E76140088EB44 /* ProfileDataViewModel.swift */,
+				7D7EFEAB201E95B30088EB44 /* ProfileFeedTab.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -777,11 +783,13 @@
 				7DF16A72201D6043000F5529 /* ProfileMediator.swift in Sources */,
 				EC24FF74200C43B500A0AE15 /* ProfilePresenter.swift in Sources */,
 				EC9B2AE220154DE9008335C8 /* FeedArticleViewModel.swift in Sources */,
+				7D7EFEAA201E76140088EB44 /* ProfileDataViewModel.swift in Sources */,
 				EC9ABBC62017D55800AF8597 /* ProfileHeaderView.swift in Sources */,
 				EC24FF5B200C30C500A0AE15 /* MainContainerPresenter.swift in Sources */,
 				EC24FF79200C497800A0AE15 /* FeedViewController.swift in Sources */,
 				EC07F4B12014404200560CF0 /* FeedTabViewController.swift in Sources */,
 				EC24FF22200BC69B00A0AE15 /* LoginType.swift in Sources */,
+				7D7EFEAC201E95B30088EB44 /* ProfileFeedTab.swift in Sources */,
 				ECB2C0D32008E55500AF1AF5 /* Colors.swift in Sources */,
 				ECF2808C200A9A210000D949 /* UIButton+Intro.swift in Sources */,
 				ECA8E3512018A626003B8ABA /* ProfileInfoView.swift in Sources */,

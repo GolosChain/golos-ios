@@ -9,7 +9,7 @@
 import UIKit
 
 protocol ProfileHorizontalSelectorViewDelegate: class {
-    func didSelect(profileFeedType: ProfileFeedType)
+    func didSelect(profileFeedTab: ProfileFeedTab)
 }
 
 class ProfileHorizontalSelectorView: UIView {
@@ -29,6 +29,8 @@ class ProfileHorizontalSelectorView: UIView {
     
     var selectedButton: UIButton?
     
+    
+//    var items = [ProfileHorizontalSelectorItem]()
     
     //MARK: Delegate
     weak var delegate: ProfileHorizontalSelectorViewDelegate?
@@ -61,6 +63,9 @@ class ProfileHorizontalSelectorView: UIView {
     
     //MARK: Setup UI
     private func setupUI() {
+//        let items = presenter.getFeedTabs().map{HorizontalSelectorItem(title: $0.type.rawValue)}
+//        items = [ProfileHorizontalSelectorItem]
+        
         selectionView.backgroundColor = UIColor.Project.profileSelectionViewBackground
         let frame = CGRect(x: postsButton.frame.origin.x,
                            y: bounds.size.height - selectionViewHeight,
@@ -117,18 +122,26 @@ class ProfileHorizontalSelectorView: UIView {
     
     //MARK: Actions
     @IBAction func didPressButton(_ sender: UIButton) {
+        guard sender != selectedButton else {
+            return
+        }
         buttons.forEach{$0.isSelected = $0 == sender}
         selectedButton = sender
         moveSelectionView(to: sender, animated: true)
         switch sender {
         case postsButton:
-            delegate?.didSelect(profileFeedType: .posts)
+            
+            delegate?.didSelect(profileFeedTab: ProfileFeedTab(type: .posts))
         case answersButton:
-            delegate?.didSelect(profileFeedType: .answers)
+            delegate?.didSelect(profileFeedTab: ProfileFeedTab(type: .answers))
         case favoriteButton:
-            delegate?.didSelect(profileFeedType: .favorite)
+            delegate?.didSelect(profileFeedTab: ProfileFeedTab(type: .favorite))
         default:
             break
         }
     }
+}
+
+struct ProfileHorizontalSelectorItem {
+    let title: String
 }

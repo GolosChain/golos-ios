@@ -15,6 +15,8 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     let profileInfoHeight: CGFloat = 145.0
     let segmentedControlHeight: CGFloat = 43.0
     let headerMinimizedHeight: CGFloat = 20.0
+    let checkRefreshOffset: CGFloat = -70.0
+    let startRefreshOffset: CGFloat = -40.0
     
     //MARK: Outlets properties
     @IBOutlet weak var tableView: UITableView!
@@ -25,6 +27,8 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     var tableHeaderView: UIView!
     let profileHeaderView = ProfileHeaderView()
     let profileInfoView = ProfileInfoView()
+    
+    var isNeedToStartRefreshing = false
     
     
     //MARK: Module properties
@@ -54,6 +58,10 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
         super.viewWillAppear(animated)
         UIApplication.shared.statusBarStyle = .lightContent
         navigationController?.setNavigationBarHidden(true, animated: true)
+        
+        presenter.fetchProfileData()
+        presenter.fetchFeed()
+        refreshHeader()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -91,10 +99,11 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
             right: 0
         )
         tableView.contentOffset = CGPoint(x: 0, y: -headerMinimizedHeight)
+        tableView.delaysContentTouches = false
         
         statusImageView.image = Images.Profile.getProfileHeaderBackground()
         view.bringSubview(toFront: statusImageView)
-        statusBarImageViewBottomConstraint.constant = headerMinimizedHeight
+        statusBarImageViewBottomConstraint.constant = headerMinimizedHeight + 1
     }
     
     func setupHeaderAndInfoView() {
@@ -122,6 +131,22 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
         profileInfoView.leftAnchor.constraint(equalTo: profileHeaderView.leftAnchor).isActive = true
         profileInfoView.rightAnchor.constraint(equalTo: profileHeaderView.rightAnchor).isActive = true
         profileInfoView.bottomAnchor.constraint(equalTo: tableHeaderView.bottomAnchor).isActive = true
+    }
+    
+    //MARK: Refresh
+    private func refreshHeader() {
+        let data = presenter.getProfileData()
+        
+        profileHeaderView.name = data.name
+        profileHeaderView.rankString = data.rankString
+        profileHeaderView.starsAmountString = data.starsString
+        
+        profileInfoView.information = data.information
+        profileInfoView.postsAmountString = data.postsAmountString
+        profileInfoView.subscribtionsAmountString = data.subscriptionsAmountString
+        profileInfoView.subscribersAmountString = data.subscribersAmountString
+        
+        sizeTableHeader()
     }
     
     
@@ -174,26 +199,104 @@ extension ProfileViewController: ProfileHeaderViewDelegate {
 
 //MARK: ProfileViewProtocol
 extension ProfileViewController: ProfileViewProtocol {
+    func didLoadProfileData() {
+        profileHeaderView.stopLoading()
+        refreshHeader()
+    }
+    
+    func didLoadArticles() {
+        tableView.reloadSections(IndexSet.init(integer: 0), with: .none)
+    }
+    
     func didRefreshSuccess() {
         
+    }
+    
+    func didChangedFeedTab(isForward: Bool, previousAmount: Int) {
+        let deleteAnimation: UITableViewRowAnimation = isForward ? .left : .right
+        let insertAnimation: UITableViewRowAnimation = isForward ? .right : .left
+        
+        var deleteIndexPaths = [IndexPath]()
+        for i in 0..<previousAmount {
+            deleteIndexPaths.append(IndexPath(row: i, section: 0))
+        }
+        
+        var insertIndexPaths = [IndexPath]()
+        for i in 0..<presenter.getFeedModels().count {
+            insertIndexPaths.append(IndexPath(row: i, section: 0))
+        }
+//
+        CATransaction.begin()
+        CATransaction.setCompletionBlock {
+        }
+        
+        tableView.beginUpdates()
+        tableView.deleteRows(at: deleteIndexPaths, with: deleteAnimation)
+        tableView.insertRows(at: insertIndexPaths, with: insertAnimation)
+        tableView.endUpdates()
+
+        CATransaction.commit()
     }
 }
 
 
 //MARK: ProfileMediatorDelegate
 extension ProfileViewController: ProfileMediatorDelegate {
+    func didSelect(tab: ProfileFeedTab) {
+        presenter.setActiveTab(tab)
+    }
+    
     func tableViewDidScroll(_ tableView: UITableView) {
         profileHeaderView.didChangeOffset(tableView.contentOffset.y)
         
         let offset = tableView.contentOffset.y
+        
+        if offset < -headerMinimizedHeight {
+            tableView.scrollIndicatorInsets = UIEdgeInsetsMake(
+                tableHeaderView.bounds.height + segmentedControlHeight + (-offset),
+                0,
+                0,
+                0
+            )
+        }
+        
         if offset > profileHeaderHeight - (headerMinimizedHeight * 2) {
             statusImageView.alpha = 1
         } else {
             statusImageView.alpha = 0
         }
+        
+        if offset < checkRefreshOffset {
+            profileHeaderView.startLoading()
+            isNeedToStartRefreshing = true
+        }
+        
+        if offset > startRefreshOffset && isNeedToStartRefreshing {
+            isNeedToStartRefreshing = false
+            presenter.loadFeed()
+            presenter.loadProfileData()
+        }
     }
     
     func heightForSegmentedControlHeight() -> CGFloat {
         return segmentedControlHeight
+    }
+    
+    func didPressAuthor(at index: Int) {
+        let profileViewController = ProfileViewController.nibInstance()
+        navigationController?.pushViewController(profileViewController, animated: true)
+    }
+    
+    func didPressReblogAuthor(at index: Int) {
+        let profileViewController = ProfileViewController.nibInstance()
+        navigationController?.pushViewController(profileViewController, animated: true)
+    }
+    
+    func didPressUpvote(at index: Int) {
+        Utils.inDevelopmentAlert()
+    }
+    
+    func didPressComments(at index: Int) {
+        Utils.inDevelopmentAlert()
     }
 }

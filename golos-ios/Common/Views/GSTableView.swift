@@ -13,8 +13,7 @@ class GSTableView: UITableView {
         if view is UIButton {
             return true
         }
-        
+
         return super.touchesShouldCancel(in: view)
     }
-   
 }
