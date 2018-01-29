@@ -16,6 +16,10 @@ protocol FeedArticleTableViewCellDelegate: class {
     func didPressReblogAuthor(at cell: FeedArticleTableViewCell)
 }
 
+extension FeedArticleTableViewCellDelegate {
+    func didPressExpandButton(at cell: FeedArticleTableViewCell) {}
+}
+
 class FeedArticleTableViewCell: UITableViewCell {
     
     //MARK: Constants
@@ -56,6 +60,12 @@ class FeedArticleTableViewCell: UITableViewCell {
         }
     }
     
+    var isNeedExpand = true {
+        didSet {
+            gradientView.isHidden = !isNeedExpand
+        }
+    }
+    
     
     //MARK: Delegate
     weak var delegate: FeedArticleTableViewCellDelegate?
@@ -74,15 +84,20 @@ class FeedArticleTableViewCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
+        authorAvatarImageView.layer.cornerRadius = authorAvatarImageView.bounds.size.width / 2
+        
+        gradientLayer.frame = gradientView.bounds
+        
+        guard isNeedExpand == true else {
+            return
+        }
+        
         if bounds.size.height == FeedArticleTableViewCell.minimizedHeight {
             isExpanded = false
         } else {
             isExpanded = true
         }
         
-        authorAvatarImageView.layer.cornerRadius = authorAvatarImageView.bounds.size.width / 2
-        
-        gradientLayer.frame = gradientView.bounds
     }
     
     
@@ -120,6 +135,7 @@ class FeedArticleTableViewCell: UITableViewCell {
         gradientLayer.colors = [UIColor(white: 1, alpha: 0.2).cgColor, UIColor.white.cgColor]
         gradientLayer.locations = [0.0, 0.6]
         gradientView.layer.insertSublayer(gradientLayer, at: 0)
+        gradientView.isHidden = !isNeedExpand
         
         expandButton.tintColor = UIColor.Project.buttonTextGray
         
@@ -130,6 +146,23 @@ class FeedArticleTableViewCell: UITableViewCell {
         reblogAuthorTappableView.addGestureRecognizer(reblogAuthorTapGesture)
     }
     
+    func configure(with viewModel: FeedArticleViewModel?) {
+        guard let viewModel = viewModel else {
+            return
+        }
+        authorName = viewModel.authorName
+        authorAvatarUrl = viewModel.authorAvatarUrl
+        articleTitle = viewModel.articleTitle
+        reblogAuthorName = viewModel.reblogAuthorName
+        theme = viewModel.theme
+        articleImageUrl = viewModel.articleImageUrl
+        articleBody = viewModel.articleBody
+        upvoteAmount = viewModel.upvoteAmount
+        commentsAmount = viewModel.commentsAmount
+        didUpvote = viewModel.didUpvote
+        didComment = viewModel.didComment
+    }
+
     
     //MARK: Reset
     private func resetAll() {

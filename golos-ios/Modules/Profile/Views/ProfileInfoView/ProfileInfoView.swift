@@ -17,6 +17,12 @@ class ProfileInfoView: UIView {
         }
         set {
             informationLabel.text = newValue
+//            guard let height = information?.height(with: informationLabel.font, width: bounds.size.width) else {
+//                return
+//            }
+//            infoLabelHeightConstraint.constant = height
+            setNeedsLayout()
+            layoutIfNeeded()
         }
     }
     
@@ -53,6 +59,9 @@ class ProfileInfoView: UIView {
     @IBOutlet private weak var subscribersAmountLabel: UILabel!
     @IBOutlet private weak var subscribtionsAmountLabel: UILabel!
         
+//    @IBOutlet weak var infoLabelHeightConstraint: NSLayoutConstraint!
+    
+    
     
     //MARK: Init
     override init(frame: CGRect) {

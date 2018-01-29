@@ -61,6 +61,8 @@ class FeedViewController: UIViewController {
         horizontalSelector.delegate = self
         
         navigationController?.navigationBar.barTintColor = UIColor.Project.darkBlueHeader
+        
+        
 //        if let navigationBar = navigationController?.navigationBar {
 //            let dropDownMenu = NavigationDropDownView()
 //            dropDownMenu.frame = CGRect(x: 0,

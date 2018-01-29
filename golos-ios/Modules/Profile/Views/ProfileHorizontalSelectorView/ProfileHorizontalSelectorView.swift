@@ -9,7 +9,7 @@
 import UIKit
 
 protocol ProfileHorizontalSelectorViewDelegate: class {
-    func didSelect(profileFeedType: ProfileFeedType)
+    func didSelect(profileFeedTab: ProfileFeedTab)
 }
 
 class ProfileHorizontalSelectorView: UIView {
@@ -27,6 +27,10 @@ class ProfileHorizontalSelectorView: UIView {
     //MARK: UI Properties
     let selectionView = UIView()
     
+    var selectedButton: UIButton?
+    
+    
+//    var items = [ProfileHorizontalSelectorItem]()
     
     //MARK: Delegate
     weak var delegate: ProfileHorizontalSelectorViewDelegate?
@@ -59,6 +63,9 @@ class ProfileHorizontalSelectorView: UIView {
     
     //MARK: Setup UI
     private func setupUI() {
+//        let items = presenter.getFeedTabs().map{HorizontalSelectorItem(title: $0.type.rawValue)}
+//        items = [ProfileHorizontalSelectorItem]
+        
         selectionView.backgroundColor = UIColor.Project.profileSelectionViewBackground
         let frame = CGRect(x: postsButton.frame.origin.x,
                            y: bounds.size.height - selectionViewHeight,
@@ -80,32 +87,61 @@ class ProfileHorizontalSelectorView: UIView {
         favoriteButton.setTitleColor(UIColor.Project.textBlack, for: .selected)
         
         postsButton.isSelected = true
+        selectedButton = postsButton
+        addBottomShadow()
+    }
+
+    
+    //MARK: Layout
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        guard let selectedButton = selectedButton else {
+            return
+        }
+        moveSelectionView(to: selectedButton, animated: false)
     }
     
-    private func moveSelectionView(to button: UIButton) {
+    
+    private func moveSelectionView(to button: UIButton, animated: Bool) {
         var frame = selectionView.frame
         frame.origin.x = button.frame.origin.x
         frame.size.width = button.frame.size.width
+        frame.origin.y = bounds.size.height - selectionViewHeight
         
-        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
+        let animation = {
             self.selectionView.frame = frame
-        }) { _ in }
+        }
+        
+        if animated {
+            UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: animation, completion: nil)
+        } else {
+            animation()
+        }
     }
     
     
     //MARK: Actions
     @IBAction func didPressButton(_ sender: UIButton) {
+        guard sender != selectedButton else {
+            return
+        }
         buttons.forEach{$0.isSelected = $0 == sender}
-        moveSelectionView(to: sender)
+        selectedButton = sender
+        moveSelectionView(to: sender, animated: true)
         switch sender {
         case postsButton:
-            delegate?.didSelect(profileFeedType: .posts)
+            
+            delegate?.didSelect(profileFeedTab: ProfileFeedTab(type: .posts))
         case answersButton:
-            delegate?.didSelect(profileFeedType: .answers)
+            delegate?.didSelect(profileFeedTab: ProfileFeedTab(type: .answers))
         case favoriteButton:
-            delegate?.didSelect(profileFeedType: .favorite)
+            delegate?.didSelect(profileFeedTab: ProfileFeedTab(type: .favorite))
         default:
             break
         }
     }
+}
+
+struct ProfileHorizontalSelectorItem {
+    let title: String
 }
