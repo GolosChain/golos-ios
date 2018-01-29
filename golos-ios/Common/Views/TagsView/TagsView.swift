@@ -11,11 +11,18 @@ import UIKit
 class TagsView: UIView {
     private let tagCellIdentifier = String(describing: TagCollectionViewCell.self)
     
-    let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: CollectionViewCenteredLayout())
+    private let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: CollectionViewCenteredLayout())
     
-    var collectionViewHeightConstraint: NSLayoutConstraint!
+    private var collectionViewHeightConstraint: NSLayoutConstraint!
     
-    var tagStringArray = [String]()
+    var tagStringArray = [String]() {
+        didSet {
+            collectionView.reloadData()
+            if tagStringArray.count == 0 {
+                collectionViewHeightConstraint.constant = 0
+            }
+        }
+    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -47,6 +54,10 @@ class TagsView: UIView {
         let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         layout.estimatedItemSize = CGSize(width: 60, height: 20)
         layout.sectionInset = UIEdgeInsetsMake(0, 16, 0, 16)
+        
+        if tagStringArray.count == 0 {
+            collectionViewHeightConstraint.constant = 0
+        }
     }
     
     //MARK: KVO
@@ -62,7 +73,7 @@ class TagsView: UIView {
                                of object: Any?,
                                change: [NSKeyValueChangeKey : Any]?,
                                context: UnsafeMutableRawPointer?) {
-        guard let object = object as? UICollectionView,
+        guard let _ = object as? UICollectionView,
             let change = change,
             let new = change[NSKeyValueChangeKey.newKey] as? NSValue else {
             return

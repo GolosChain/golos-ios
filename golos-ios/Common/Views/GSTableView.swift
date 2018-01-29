@@ -9,6 +9,21 @@
 import UIKit
 
 class GSTableView: UITableView {
+    
+    override init(frame: CGRect, style: UITableViewStyle) {
+        super.init(frame: frame, style: style)
+        setup()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        setup()
+    }
+    
+    private func setup() {
+        delaysContentTouches = false
+    }
+    
     override func touchesShouldCancel(in view: UIView) -> Bool {
         if view is UIButton {
             return true

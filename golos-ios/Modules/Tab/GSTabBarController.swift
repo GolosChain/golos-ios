@@ -17,7 +17,9 @@ class GSTabBarController: UITabBarController {
     
     private func configureViewControllers() {
         let feedViewController = FeedViewController.nibInstance()
-        let feedNavigationViewController = UINavigationController(rootViewController: feedViewController)
+        let feedNavigationViewController = UINavigationController(navigationBarClass: GSNavigationBar.self,
+                                                                  toolbarClass: nil)
+        feedNavigationViewController.viewControllers = [feedViewController]
         feedNavigationViewController.tabBarItem = UITabBarItem(title: "",
                                                      image: UIImage(named: "tab_home"),
                                                      selectedImage: nil)

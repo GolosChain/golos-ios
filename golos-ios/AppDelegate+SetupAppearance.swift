@@ -19,6 +19,7 @@ extension AppDelegate {
         ]
         appearance.isTranslucent = false
         appearance.shadowImage = UIImage()
+        appearance.setBackgroundImage(UIImage(), for: .default)
     }
     
     func setupTabBarAppearance() {

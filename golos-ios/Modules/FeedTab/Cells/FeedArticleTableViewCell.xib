@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,102 +19,24 @@
                 <rect key="frame" x="0.0" y="0.0" width="375" height="319.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x0K-7b-ZlY" userLabel="Header View">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wgI-hi-zs7" userLabel="Reblog Author TappableView">
-                                <rect key="frame" x="123" y="0.0" width="69.5" height="27"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <gestureRecognizers/>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0DR-Fh-cAK" userLabel="Author Tappable View">
-                                <rect key="frame" x="52" y="0.0" width="50" height="27"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="article_theme_icon" translatesAutoresizingMaskIntoConstraints="NO" id="ihD-ph-9Ff">
-                                <rect key="frame" x="52" y="32" width="11" height="8"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="11" id="3Ei-vt-2D7"/>
-                                    <constraint firstAttribute="height" constant="8" id="bgi-or-559"/>
-                                </constraints>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mock_avatar_image" translatesAutoresizingMaskIntoConstraints="NO" id="OqX-MM-24g">
-                                <rect key="frame" x="14" y="12" width="30" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="30" id="1Tq-JQ-C6B"/>
-                                    <constraint firstAttribute="height" constant="30" id="XOc-kD-hmr"/>
-                                </constraints>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="bbb" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gGH-xw-RP6" userLabel="author label">
-                                <rect key="frame" x="52" y="12" width="50" height="15"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="ijj-An-sx9"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="egorfedorov" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rcd-oo-GG6" userLabel="reblog author label">
-                                <rect key="frame" x="123" y="12" width="69.5" height="15"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="glf-4s-fbR"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="reblog_icon" translatesAutoresizingMaskIntoConstraints="NO" id="Lwn-xj-qv6">
-                                <rect key="frame" x="109" y="16.5" width="9" height="6"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="9" id="DUX-PM-OiV"/>
-                                    <constraint firstAttribute="height" constant="6" id="vel-ht-JSv"/>
-                                </constraints>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Технологии" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Up-Yi-kPf">
-                                <rect key="frame" x="66" y="30" width="58.5" height="12"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x0K-7b-ZlY" userLabel="Header View" customClass="ArticleHeaderView" customModule="Golos" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="46"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="gGH-xw-RP6" firstAttribute="leading" secondItem="OqX-MM-24g" secondAttribute="trailing" constant="8" id="0TL-93-qKL"/>
-                            <constraint firstItem="OqX-MM-24g" firstAttribute="top" secondItem="x0K-7b-ZlY" secondAttribute="top" constant="12" id="AD8-M6-bIx"/>
-                            <constraint firstItem="rcd-oo-GG6" firstAttribute="bottom" secondItem="gGH-xw-RP6" secondAttribute="bottom" id="DtV-oL-5fM"/>
-                            <constraint firstItem="Lwn-xj-qv6" firstAttribute="centerY" secondItem="gGH-xw-RP6" secondAttribute="centerY" id="Exr-h6-e5X"/>
-                            <constraint firstItem="rcd-oo-GG6" firstAttribute="leading" secondItem="Lwn-xj-qv6" secondAttribute="trailing" constant="5" id="OkN-TE-gZT"/>
-                            <constraint firstItem="wgI-hi-zs7" firstAttribute="trailing" secondItem="rcd-oo-GG6" secondAttribute="trailing" id="Puy-Zx-XcS"/>
-                            <constraint firstItem="rcd-oo-GG6" firstAttribute="top" secondItem="gGH-xw-RP6" secondAttribute="top" id="TjV-ia-JNP"/>
-                            <constraint firstItem="0DR-Fh-cAK" firstAttribute="bottom" secondItem="gGH-xw-RP6" secondAttribute="bottom" id="Yun-Ou-yYJ"/>
-                            <constraint firstItem="wgI-hi-zs7" firstAttribute="bottom" secondItem="rcd-oo-GG6" secondAttribute="bottom" id="ZSl-Sf-Zjl"/>
-                            <constraint firstItem="gGH-xw-RP6" firstAttribute="bottom" secondItem="OqX-MM-24g" secondAttribute="centerY" id="bTt-hw-qRw"/>
-                            <constraint firstItem="OqX-MM-24g" firstAttribute="leading" secondItem="x0K-7b-ZlY" secondAttribute="leading" constant="14" id="bet-FL-u2I"/>
-                            <constraint firstItem="8Up-Yi-kPf" firstAttribute="centerY" secondItem="ihD-ph-9Ff" secondAttribute="centerY" id="bwN-Ih-8ex"/>
-                            <constraint firstItem="ihD-ph-9Ff" firstAttribute="bottom" secondItem="OqX-MM-24g" secondAttribute="bottom" constant="-2" id="cEz-jD-l8W"/>
-                            <constraint firstItem="0DR-Fh-cAK" firstAttribute="top" secondItem="x0K-7b-ZlY" secondAttribute="top" id="dwA-Q7-Wzt"/>
-                            <constraint firstAttribute="height" constant="50" id="dwe-r9-QvL"/>
-                            <constraint firstItem="0DR-Fh-cAK" firstAttribute="trailing" secondItem="gGH-xw-RP6" secondAttribute="trailing" id="enF-99-4ci"/>
-                            <constraint firstItem="0DR-Fh-cAK" firstAttribute="leading" secondItem="gGH-xw-RP6" secondAttribute="leading" id="fC0-We-gqT"/>
-                            <constraint firstItem="wgI-hi-zs7" firstAttribute="top" secondItem="x0K-7b-ZlY" secondAttribute="top" id="oXK-Pf-dfJ"/>
-                            <constraint firstItem="wgI-hi-zs7" firstAttribute="leading" secondItem="rcd-oo-GG6" secondAttribute="leading" id="oi6-Hh-hG4"/>
-                            <constraint firstItem="8Up-Yi-kPf" firstAttribute="leading" secondItem="ihD-ph-9Ff" secondAttribute="trailing" constant="3" id="pMg-1e-egF"/>
-                            <constraint firstItem="ihD-ph-9Ff" firstAttribute="leading" secondItem="OqX-MM-24g" secondAttribute="trailing" constant="8" id="pgF-xH-WW8"/>
-                            <constraint firstItem="Lwn-xj-qv6" firstAttribute="leading" secondItem="gGH-xw-RP6" secondAttribute="trailing" constant="7" id="wmi-GJ-7v8"/>
-                            <constraint firstItem="gGH-xw-RP6" firstAttribute="top" secondItem="x0K-7b-ZlY" secondAttribute="top" constant="12" id="zZ2-tt-Juh"/>
+                            <constraint firstAttribute="height" constant="46" id="dwe-r9-QvL"/>
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pct-39-y7G" userLabel="Article Content View">
-                        <rect key="frame" x="0.0" y="50" width="375" height="224.5"/>
+                        <rect key="frame" x="0.0" y="46" width="375" height="228.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="752" text="G factor. Про альтруизм и эгоизм. Часть вторая или подвиг кончика ногтя" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VKV-nZ-kLa" userLabel="Title Label">
-                                <rect key="frame" x="16" y="0.0" width="343" height="38.5"/>
+                                <rect key="frame" x="16" y="5" width="343" height="38.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NTc-S6-a0r" userLabel="Body Text View">
-                                <rect key="frame" x="0.0" y="48.5" width="375" height="176"/>
+                                <rect key="frame" x="0.0" y="53.5" width="375" height="175"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <string key="text">Не прошло и года, как вторая часть. Вообще-то в моем цикле про альтруизм первая часть должна была быть второй, та что сейчас - первой, но все смешалось в доме обломов, так что пусть идет так, как идет. Потом еще и третья выйдет. Там интересно будет, там про проституток. Ожидайте.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -126,7 +47,7 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="NTc-S6-a0r" secondAttribute="trailing" id="9sA-qE-aFc"/>
                             <constraint firstAttribute="bottom" secondItem="NTc-S6-a0r" secondAttribute="bottom" id="BD4-n7-zB9"/>
-                            <constraint firstItem="VKV-nZ-kLa" firstAttribute="top" secondItem="pct-39-y7G" secondAttribute="top" id="IKg-Zk-P1I"/>
+                            <constraint firstItem="VKV-nZ-kLa" firstAttribute="top" secondItem="pct-39-y7G" secondAttribute="top" constant="5" id="IKg-Zk-P1I"/>
                             <constraint firstAttribute="trailing" secondItem="VKV-nZ-kLa" secondAttribute="trailing" constant="16" id="Le0-dY-S56"/>
                             <constraint firstItem="VKV-nZ-kLa" firstAttribute="leading" secondItem="pct-39-y7G" secondAttribute="leading" constant="16" id="Lhq-yM-UyE"/>
                             <constraint firstItem="NTc-S6-a0r" firstAttribute="leading" secondItem="pct-39-y7G" secondAttribute="leading" id="hvm-AJ-bRX"/>
@@ -210,19 +131,12 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="articleContentView" destination="pct-39-y7G" id="iVt-gg-uFv"/>
-                <outlet property="authorAvatarImageView" destination="OqX-MM-24g" id="3eD-5o-sb7"/>
-                <outlet property="authorLabel" destination="gGH-xw-RP6" id="SfT-Yx-9YC"/>
-                <outlet property="authorTappableView" destination="0DR-Fh-cAK" id="QkH-9s-0PK"/>
+                <outlet property="articleHeaderView" destination="x0K-7b-ZlY" id="ooS-ti-3C0"/>
                 <outlet property="bodyTextView" destination="NTc-S6-a0r" id="Zvq-tb-zhS"/>
                 <outlet property="bottomView" destination="rgg-s6-oxm" id="i6M-lf-bbh"/>
                 <outlet property="commentsButton" destination="YHf-4Q-6Ih" id="GcT-Bz-AHG"/>
                 <outlet property="expandButton" destination="sHq-Fw-dgj" id="7sd-sP-Q8I"/>
                 <outlet property="gradientView" destination="E2A-ok-pW6" id="6V2-Oo-yEM"/>
-                <outlet property="headerView" destination="x0K-7b-ZlY" id="qDz-T6-2P4"/>
-                <outlet property="reblogAuthorLabel" destination="rcd-oo-GG6" id="jJU-6V-rJl"/>
-                <outlet property="reblogAuthorTappableView" destination="wgI-hi-zs7" id="xiu-Na-sxU"/>
-                <outlet property="reblogIconImageView" destination="Lwn-xj-qv6" id="Y9j-vM-L4T"/>
-                <outlet property="themeLabel" destination="8Up-Yi-kPf" id="WSd-J8-bty"/>
                 <outlet property="titleLabel" destination="VKV-nZ-kLa" id="ukM-uL-n0N"/>
                 <outlet property="upvoteButton" destination="a2D-jz-RAy" id="It0-aE-ZW6"/>
             </connections>
@@ -232,9 +146,6 @@
     <resources>
         <image name="article_comments_icon" width="20" height="20"/>
         <image name="article_expand_icon" width="20" height="20"/>
-        <image name="article_theme_icon" width="13" height="10"/>
         <image name="article_upvote_icon" width="20" height="20"/>
-        <image name="mock_avatar_image" width="200" height="200"/>
-        <image name="reblog_icon" width="9" height="6"/>
     </resources>
 </document>

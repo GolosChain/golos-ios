@@ -24,6 +24,9 @@ class FeedTabMediator: NSObject {
     
     var array = [IndexPath]()
     
+    //MARK: Delegate
+    weak var delegate: FeedTabMediatorDelegate?
+    
     //MARK: Module properties
     weak var tableView: UITableView!
     weak var feedTabPresenter: FeedTabPresenterProtocol!
@@ -36,12 +39,7 @@ class FeedTabMediator: NSObject {
         tableView.delegate = self
 
         self.tableView = tableView
-
     }
-    
-    //MARK: Delegate
-    weak var delegate: FeedTabMediatorDelegate?
-    
 }
 
 

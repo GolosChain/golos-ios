@@ -50,7 +50,6 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-     
     }
     
     
@@ -58,6 +57,7 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
         super.viewWillAppear(animated)
         UIApplication.shared.statusBarStyle = .lightContent
         navigationController?.setNavigationBarHidden(true, animated: true)
+        navigationController?.interactivePopGestureRecognizer?.delegate = self
         
         presenter.fetchProfileData()
         presenter.fetchFeed()
@@ -99,7 +99,6 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
             right: 0
         )
         tableView.contentOffset = CGPoint(x: 0, y: -headerMinimizedHeight)
-        tableView.delaysContentTouches = false
         
         statusImageView.image = Images.Profile.getProfileHeaderBackground()
         view.bringSubview(toFront: statusImageView)

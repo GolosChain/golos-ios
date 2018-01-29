@@ -9,66 +9,52 @@
 import UIKit
 
 class ArticleViewController: UIViewController {
-<<<<<<< HEAD
+    
+    //Outlets properties
+    @IBOutlet weak var topBarView: UIView!
+    @IBOutlet weak var articleHeaderView: ArticleHeaderView!
+    @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var tableView: UITableView!
+    
+
+    //Module properties
+    lazy var mediator: ArticleMediator = {
+        let mediator = ArticleMediator()
+//        mediator.feedTabPresenter = presenter
+//        mediator.delegate = self
+        return mediator
+    }()
     
     
     //MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        
-//        let tagsView = TagsView()
-//        tagsView.translatesAutoresizingMaskIntoConstraints = false
-//        view.addSubview(tagsView)
-//
-//        tagsView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-//        tagsView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-//        tagsView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-//
-//        tagsView.tagStringArray = ["sds", "d", "dsdsds", "sssdsdsdsadsdsd", "s", "ds", "sssdsdsdsadsdsd", "s", "ds" , "d", "dsdsds", "d", "dsdsds"]
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        navigationController?.navigationBar.setBackgroundImage(UIImage.init(named: "nav_bar_bg_white"), for: .default)
-//        transitionCoordinator?.animateAlongsideTransition(in: nil, animation: { (context) in
-//            self.navigationController?.navigationBar.barTintColor = UIColor.white
-//        }, completion: nil)
+        UIApplication.shared.statusBarStyle = .default
+        navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-//        navigationController?.navigationBar.barTintColor = UIColor.Project.darkBlueHeader
-//        navigationController?.navigationBar.layoutIfNeeded()
     }
+    
     
     //MARK: SetupUI
     private func setupUI() {
-        configureBackButton()
-    }
-=======
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        navigationController?.interactivePopGestureRecognizer?.delegate = self as? UIGestureRecognizerDelegate
+        backButton.tintColor = UIColor.Project.backButtonBlackColor
+        topBarView.addBottomShadow()
+        
+        mediator.configure(tableView: tableView)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    //MARK: Actions
+    @IBAction func backButtonPressed(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
     }
-    */
-
->>>>>>> 6efd99ac9d383223a8580aec85b47d0dc660df6a
 }
