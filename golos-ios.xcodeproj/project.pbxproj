@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7D1783DD201FD9B600B75979 /* PostedInTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1783DB201FD9B600B75979 /* PostedInTableViewCell.swift */; };
-		7D1783DE201FD9B600B75979 /* PostedInTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D1783DC201FD9B600B75979 /* PostedInTableViewCell.xib */; };
+		7D1783DD201FD9B600B75979 /* ArticlePostedInTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1783DB201FD9B600B75979 /* ArticlePostedInTableViewCell.swift */; };
+		7D1783DE201FD9B600B75979 /* ArticlePostedInTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D1783DC201FD9B600B75979 /* ArticlePostedInTableViewCell.xib */; };
 		7D25B47F201F4714004A3400 /* TagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D25B47E201F4714004A3400 /* TagsView.swift */; };
 		7D25B483201F479B004A3400 /* TagTokenButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D25B482201F479B004A3400 /* TagTokenButton.swift */; };
 		7D25B487201F4978004A3400 /* ArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D25B485201F4978004A3400 /* ArticleViewController.swift */; };
@@ -117,8 +117,8 @@
 /* Begin PBXFileReference section */
 		617A00E81BE0A996F90DD4BB /* Pods_golos_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_golos_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BD44B1209B5C64C3D1EF768 /* Pods-golos-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-golos-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-golos-ios/Pods-golos-ios.debug.xcconfig"; sourceTree = "<group>"; };
-		7D1783DB201FD9B600B75979 /* PostedInTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostedInTableViewCell.swift; sourceTree = "<group>"; };
-		7D1783DC201FD9B600B75979 /* PostedInTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostedInTableViewCell.xib; sourceTree = "<group>"; };
+		7D1783DB201FD9B600B75979 /* ArticlePostedInTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlePostedInTableViewCell.swift; sourceTree = "<group>"; };
+		7D1783DC201FD9B600B75979 /* ArticlePostedInTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticlePostedInTableViewCell.xib; sourceTree = "<group>"; };
 		7D25B47E201F4714004A3400 /* TagsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsView.swift; sourceTree = "<group>"; };
 		7D25B482201F479B004A3400 /* TagTokenButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagTokenButton.swift; sourceTree = "<group>"; };
 		7D25B485201F4978004A3400 /* ArticleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleViewController.swift; sourceTree = "<group>"; };
@@ -311,8 +311,8 @@
 				7D25B4C5201FABCB004A3400 /* ArticleTextTableViewCell.xib */,
 				7D25B4C8201FABD8004A3400 /* ArticleFooterTableViewCell.swift */,
 				7D25B4C9201FABD8004A3400 /* ArticleFooterTableViewCell.xib */,
-				7D1783DB201FD9B600B75979 /* PostedInTableViewCell.swift */,
-				7D1783DC201FD9B600B75979 /* PostedInTableViewCell.xib */,
+				7D1783DB201FD9B600B75979 /* ArticlePostedInTableViewCell.swift */,
+				7D1783DC201FD9B600B75979 /* ArticlePostedInTableViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -781,7 +781,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7D1783DE201FD9B600B75979 /* PostedInTableViewCell.xib in Resources */,
+				7D1783DE201FD9B600B75979 /* ArticlePostedInTableViewCell.xib in Resources */,
 				7D25B4BA201F9821004A3400 /* ArticleHeaderView.xib in Resources */,
 				EC24FF71200C433700A0AE15 /* ProfileViewController.xib in Resources */,
 				ECF3172F200AB22E00F7B703 /* LoginViewController.xib in Resources */,
@@ -876,7 +876,7 @@
 				EC9ABBE82018036E00AF8597 /* Device+Size.swift in Sources */,
 				EC24FF59200C30B800A0AE15 /* MainContainerViewController.swift in Sources */,
 				EC24FF54200C080300A0AE15 /* Notifications.swift in Sources */,
-				7D1783DD201FD9B600B75979 /* PostedInTableViewCell.swift in Sources */,
+				7D1783DD201FD9B600B75979 /* ArticlePostedInTableViewCell.swift in Sources */,
 				EC9B2AE020154B62008335C8 /* FeedTabPresenter.swift in Sources */,
 				EC24FF5D200C30CF00A0AE15 /* MainContainerMediator.swift in Sources */,
 				EC24FF20200BC69400A0AE15 /* LoginPresenter.swift in Sources */,

@@ -13,6 +13,9 @@ class ArticleMediator: NSObject {
     private let articleImageCellIdentifier = ArticleImageTableViewCell.reuseIdentifier!
     private let articleTextCellIdentifier = ArticleTextTableViewCell.reuseIdentifier!
     private let articleFooterCellIdentifier = ArticleFooterTableViewCell.reuseIdentifier!
+    private let articlePostedInCellIdentifier = ArticlePostedInTableViewCell.reuseIdentifier!
+    
+
     
     weak var tableView: UITableView!
     
@@ -36,6 +39,8 @@ class ArticleMediator: NSObject {
         tableView.register(nib2, forCellReuseIdentifier: articleTextCellIdentifier)
         let nib4 = UINib(nibName: articleFooterCellIdentifier, bundle: nil)
         tableView.register(nib4, forCellReuseIdentifier: articleFooterCellIdentifier)
+        let nib5 = UINib(nibName: articlePostedInCellIdentifier, bundle: nil)
+        tableView.register(nib5, forCellReuseIdentifier: articlePostedInCellIdentifier)
     }
 }
 
@@ -62,7 +67,15 @@ extension ArticleMediator: UITableViewDataSource {
             resultCell = cell
         case 5:
             let cell = tableView.dequeueReusableCell(withIdentifier: articleFooterCellIdentifier) as! ArticleFooterTableViewCell
-//            cell.tagsView.tagStringArray = ["Путешествия", "Творчество", "Блокчейн", "Жизнь", "Мираж"]
+            cell.tags = ["Путешествия", "Творчество", "Блокчейн", "Жизнь", "Мираж"]
+            resultCell = cell
+        case 6:
+            let cell = tableView.dequeueReusableCell(withIdentifier: articlePostedInCellIdentifier) as! ArticlePostedInTableViewCell
+            cell.isAuthor = false
+            resultCell = cell
+        case 7:
+            let cell = tableView.dequeueReusableCell(withIdentifier: articlePostedInCellIdentifier) as! ArticlePostedInTableViewCell
+            cell.isAuthor = true
             resultCell = cell
         default:
             resultCell = UITableViewCell()
@@ -72,7 +85,7 @@ extension ArticleMediator: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        return 8
     }
 }
 

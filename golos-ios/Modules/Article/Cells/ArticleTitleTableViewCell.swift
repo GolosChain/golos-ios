@@ -23,7 +23,13 @@ class ArticleTitleTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        setup()
+    }
+    
+    //MARK: Setup
+    private func setup() {
+        titleLabel.textColor = UIColor.Project.articleBlackColor
+        titleLabel.font = Fonts.shared.medium(with: 15.0)
     }
 
     
