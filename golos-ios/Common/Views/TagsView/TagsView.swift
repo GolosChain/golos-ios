@@ -33,6 +33,10 @@ class TagsView: UIView {
         super.init(coder: aDecoder)
         setup()
     }
+    
+    deinit {
+        removeObserving()
+    }
 
     private func setup() {
         addSubview(collectionView)
@@ -58,6 +62,8 @@ class TagsView: UIView {
         if tagStringArray.count == 0 {
             collectionViewHeightConstraint.constant = 0
         }
+        
+        addObserving()
     }
     
     //MARK: KVO
