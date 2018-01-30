@@ -37,7 +37,7 @@ class ArticlePostedInTableViewCell: UITableViewCell {
     }
     
     
-    //MARK: Setup
+    // MARK: Setup
     private func setup() {
         updateAppearance()
         
@@ -64,7 +64,7 @@ class ArticlePostedInTableViewCell: UITableViewCell {
     }
     
     
-    //MARK: Reuse identifier
+    // MARK: Reuse identifier
     override var reuseIdentifier: String? {
         return ArticlePostedInTableViewCell.reuseIdentifier
     }
@@ -74,14 +74,14 @@ class ArticlePostedInTableViewCell: UITableViewCell {
     }
     
     
-    //MARK: Layout
+    // MARK: Layout
     override func layoutSubviews() {
         super.layoutSubviews()
         cellImageView.layer.cornerRadius = cellImageView.bounds.height / 2
     }
     
     
-    //MARK: Actions
+    // MARK: Actions
     @IBAction func subscribeButonPressed(_ sender: Any) {
         delegate?.didPressSubsribeButton(at: self)
     }

@@ -1,3 +1,5 @@
+// MARK: ads
+
 //
 //  ArticleCommentsSectionHeader.swift
 //  Golos
@@ -14,7 +16,7 @@ protocol ArticleCommentsSectionHeaderDelegate: class {
 
 class ArticleCommentsSectionHeader: UITableViewHeaderFooterView {
 
-    //MARK: Outlets
+    // MARK: Outlets
     @IBOutlet weak var commentsAmountLabel: UILabel!
     @IBOutlet weak var commentsTitleLabel: UILabel!
     @IBOutlet weak var sortByLabel: UILabel!
@@ -22,7 +24,8 @@ class ArticleCommentsSectionHeader: UITableViewHeaderFooterView {
     @IBOutlet weak var hideShowCommentsButton: UIButton!
     
     
-    //MARK: Delegate
+    
+    // MARK: Delegate
     weak var delegate: ArticleCommentsSectionHeaderDelegate?
     
     
@@ -39,7 +42,7 @@ class ArticleCommentsSectionHeader: UITableViewHeaderFooterView {
     }
     
     
-    //MARK: Setup
+    // MARK: Setup
     private func setup() {
         hideShowCommentsButton.setBorderButtonRoundEdges()
         hideShowCommentsButton.layer.cornerRadius = 4.0
@@ -65,13 +68,13 @@ class ArticleCommentsSectionHeader: UITableViewHeaderFooterView {
         hideShowCommentsButton.setTitle(title, for: .normal)
     }
     
-    //MARK: Actions
+    // MARK: Actions
     @IBAction func hideShowCommentsButtonPressed(_ sender: Any) {
         updateButton()
         delegate?.didPressHideShowCommentsButton(at: self)
     }
     
-    //MARK: Reuse identifier
+    // MARK: Reuse identifier
     override var reuseIdentifier: String? {
         return ArticleCommentsSectionHeader.reuseIdentifier
     }

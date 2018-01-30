@@ -26,7 +26,7 @@ class ArticleViewController: UIViewController {
     }()
     
     
-    //MARK: Life cycle
+    // MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -43,7 +43,7 @@ class ArticleViewController: UIViewController {
     }
     
     
-    //MARK: SetupUI
+    // MARK: SetupUI
     private func setupUI() {
         navigationController?.interactivePopGestureRecognizer?.delegate = self as? UIGestureRecognizerDelegate
         backButton.tintColor = UIColor.Project.backButtonBlackColor
@@ -59,7 +59,7 @@ class ArticleViewController: UIViewController {
     }
     
     
-    //MARK: Actions
+    // MARK: Actions
     @IBAction func backButtonPressed(_ sender: Any) {
         navigationController?.popViewController(animated: true)
     }

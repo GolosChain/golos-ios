@@ -39,7 +39,7 @@ class ArticleFooterTableViewCell: UITableViewCell {
     }
     
     
-    //MARK: SetupUI
+    // MARK: SetupUI
     private func setupUI() {
         let greenColor = UIColor.Project.articleButtonsGreenColor
         let grayColor = UIColor.Project.articleButtonsGrayColor
@@ -73,7 +73,7 @@ class ArticleFooterTableViewCell: UITableViewCell {
     }
     
     
-    //MARK: Actions
+    // MARK: Actions
     @IBAction func upvoteButtonPressed(_ sender: Any) {
         delegate?.didPressUpvote(at: self)
     }
@@ -94,7 +94,7 @@ class ArticleFooterTableViewCell: UITableViewCell {
         delegate?.didPressDonate(at: self)
     }
     
-    //MARK: Reuse identifier
+    // MARK: Reuse identifier
     override var reuseIdentifier: String? {
         return ArticleFooterTableViewCell.reuseIdentifier
     }
@@ -106,7 +106,7 @@ class ArticleFooterTableViewCell: UITableViewCell {
 }
 
 
-//MARK: Setters
+// MARK: Setters
 extension ArticleFooterTableViewCell {
     var upvoteString: String? {
         get {return upvoteButton.title(for: .normal)}

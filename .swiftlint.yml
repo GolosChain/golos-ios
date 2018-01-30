@@ -5,7 +5,14 @@ line_length:
 - 200 #warning
 - 300 #error
 
+warning_threshold: 15
+
 force_cast: warning
 
 disabled_rules:
 - trailing_whitespace
+- vertical_whitespace
+- nesting
+- force_cast
+- notification_center_detachment
+- multiple_closures_with_trailing_closure

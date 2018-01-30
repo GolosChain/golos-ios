@@ -37,12 +37,12 @@ class NavigationDropDownView: UIView {
     }
     
     
-    //MARK: Actions
+    // MARK: Actions
     @IBAction func didPressTitleButton(_ sender: Any) {
         rotateArrow()
     }
     
-    //MARK: UI
+    // MARK: UI
     private func rotateArrow() {
         UIView.animate(withDuration: 0.3, animations: {
             self.arrowImage.transform = self.arrowImage.transform.rotated(by: 180 * CGFloat(Double.pi/180))

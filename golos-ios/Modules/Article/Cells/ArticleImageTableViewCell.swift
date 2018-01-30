@@ -21,7 +21,7 @@ class ArticleImageTableViewCell: UITableViewCell {
     }
     
     
-    //MARK: Reuse identifier
+    // MARK: Reuse identifier
     override var reuseIdentifier: String? {
         return ArticleImageTableViewCell.reuseIdentifier
     }

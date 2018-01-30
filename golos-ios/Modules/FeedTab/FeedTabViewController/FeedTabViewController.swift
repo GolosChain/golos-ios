@@ -10,11 +10,11 @@ import UIKit
 
 class FeedTabViewController: UIViewController {
     
-    //MARK: Outlets properties
+    // MARK: Outlets properties
     @IBOutlet weak var tableView: UITableView!
     
 
-    //MARK: Module properties
+    // MARK: Module properties
     lazy var presenter: FeedTabPresenterProtocol = {
         let presenter = FeedTabPresenter()
         presenter.feedTabView = self
@@ -38,7 +38,7 @@ class FeedTabViewController: UIViewController {
     }
     
     
-    //MARK: Life cycle
+    // MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -60,14 +60,14 @@ class FeedTabViewController: UIViewController {
     }
 
     
-    //MARK: SetupUI
+    // MARK: SetupUI
     private func setupUI() {
         mediator.configure(tableView: tableView)
     }
 }
 
 
-//MARK: FeedTabViewProtocol
+// MARK: FeedTabViewProtocol
 extension FeedTabViewController: FeedTabViewProtocol {
     func didFetchArticles() {
         

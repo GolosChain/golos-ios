@@ -14,10 +14,9 @@ class GSNavigationBar: UINavigationBar {
         super.layoutSubviews()
         for subview in subviews {
             let classString = String(describing: subview.self)
-            if classString.contains("BarBackground"){
+            if classString.contains("BarBackground") {
                 subview.backgroundColor = barTintColor
             }
         }
     }
 }
-

@@ -22,13 +22,13 @@ extension FeedArticleTableViewCellDelegate {
 
 class FeedArticleTableViewCell: UITableViewCell {
     
-    //MARK: Constants
+    // MARK: Constants
     private static let bodyFont = Fonts.shared.regular(with: 13.0)
     private static let bodyEdgesOffset: CGFloat = 12.0
     static let minimizedHeight: CGFloat = 180
     
     
-    //MARK: UI Outlets
+    // MARK: UI Outlets
     @IBOutlet private weak var articleHeaderView: ArticleHeaderView!
     @IBOutlet private weak var articleContentView: UIView!
     @IBOutlet private weak var bottomView: UIView!
@@ -44,7 +44,7 @@ class FeedArticleTableViewCell: UITableViewCell {
 
     
     
-    //MARK: UI properties
+    // MARK: UI properties
     let gradientLayer = CAGradientLayer()
     var isExpanded = false {
         didSet {
@@ -59,7 +59,7 @@ class FeedArticleTableViewCell: UITableViewCell {
     }
     
     
-    //MARK: Delegate
+    // MARK: Delegate
     weak var delegate: FeedArticleTableViewCellDelegate?
     
     
@@ -90,7 +90,7 @@ class FeedArticleTableViewCell: UITableViewCell {
     }
     
     
-    //MARK: Setup UI
+    // MARK: Setup UI
     private func setupUI() {
 
         titleLabel.textColor = UIColor.Project.articleBlackColor
@@ -139,13 +139,13 @@ class FeedArticleTableViewCell: UITableViewCell {
     }
 
     
-    //MARK: Reset
+    // MARK: Reset
     private func resetAll() {
         
     }
     
     
-    //MARK: Actions
+    // MARK: Actions
     @IBAction func didPressUpvoteButton(_ sender: Any) {
         delegate?.didPressUpvoteButton(at: self)
     }
@@ -159,7 +159,7 @@ class FeedArticleTableViewCell: UITableViewCell {
     }
     
     
-    //MARK: Reuse identifier
+    // MARK: Reuse identifier
     override var reuseIdentifier: String? {
         return FeedArticleTableViewCell.reuseIdentifier
     }
@@ -170,7 +170,7 @@ class FeedArticleTableViewCell: UITableViewCell {
 }
 
 
-//MARK: ArticleHeaderViewDelegate
+// MARK: ArticleHeaderViewDelegate
 extension FeedArticleTableViewCell: ArticleHeaderViewDelegate {
     func didPressAuthor() {
         delegate?.didPressAuthor(at: self)
@@ -182,8 +182,8 @@ extension FeedArticleTableViewCell: ArticleHeaderViewDelegate {
 }
 
 
-//MARK: Setters
-extension FeedArticleTableViewCell{
+// MARK: Setters
+extension FeedArticleTableViewCell {
     var authorName: String? {
         get {
             return articleHeaderView.authorLabel.text

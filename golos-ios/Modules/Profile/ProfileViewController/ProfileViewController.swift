@@ -10,7 +10,7 @@ import UIKit
 
 class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     
-    //MARK: Constants
+    // MARK: Constants
     let profileHeaderHeight: CGFloat = 180.0
     let profileInfoHeight: CGFloat = 145.0
     let segmentedControlHeight: CGFloat = 43.0
@@ -18,12 +18,12 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     let checkRefreshOffset: CGFloat = -70.0
     let startRefreshOffset: CGFloat = -40.0
     
-    //MARK: Outlets properties
+    // MARK: Outlets properties
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var statusImageView: UIImageView!
     @IBOutlet weak var statusBarImageViewBottomConstraint: NSLayoutConstraint!
     
-    //MARK: UI Properties
+    // MARK: UI Properties
     var tableHeaderView: UIView!
     let profileHeaderView = ProfileHeaderView()
     let profileInfoView = ProfileInfoView()
@@ -31,7 +31,7 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     var isNeedToStartRefreshing = false
     
     
-    //MARK: Module properties
+    // MARK: Module properties
     lazy var presenter: ProfilePresenterProtocol = {
         let presenter = ProfilePresenter()
         presenter.profileView = self
@@ -46,7 +46,7 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     }()
 
     
-    //MARK: Life cycle
+    // MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -69,7 +69,7 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     
-    //MARK: Setup UI
+    // MARK: Setup UI
     private func setupUI() {
         
         mediator.configure(tableView: tableView)
@@ -132,7 +132,7 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
         profileInfoView.bottomAnchor.constraint(equalTo: tableHeaderView.bottomAnchor).isActive = true
     }
     
-    //MARK: Refresh
+    // MARK: Refresh
     private func refreshHeader() {
         let data = presenter.getProfileData()
         
@@ -149,7 +149,7 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     
-    //MARK: Autolayout
+    // MARK: Autolayout
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         sizeTableHeader()
@@ -168,11 +168,11 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
         tableView.tableHeaderView = headerView
     }
     
-    //MARK: Actions
+    // MARK: Actions
 }
 
 
-//MARK: ProfileHeaderViewDelegate
+// MARK: ProfileHeaderViewDelegate
 extension ProfileViewController: ProfileHeaderViewDelegate {
     func didPressEditProfileButton() {
         Utils.inDevelopmentAlert()
@@ -196,7 +196,7 @@ extension ProfileViewController: ProfileHeaderViewDelegate {
 }
 
 
-//MARK: ProfileViewProtocol
+// MARK: ProfileViewProtocol
 extension ProfileViewController: ProfileViewProtocol {
     func didLoadProfileData() {
         profileHeaderView.stopLoading()
@@ -239,7 +239,7 @@ extension ProfileViewController: ProfileViewProtocol {
 }
 
 
-//MARK: ProfileMediatorDelegate
+// MARK: ProfileMediatorDelegate
 extension ProfileViewController: ProfileMediatorDelegate {
     func didSelect(tab: ProfileFeedTab) {
         presenter.setActiveTab(tab)
@@ -251,11 +251,11 @@ extension ProfileViewController: ProfileMediatorDelegate {
         let offset = tableView.contentOffset.y
         
         if offset < -headerMinimizedHeight {
-            tableView.scrollIndicatorInsets = UIEdgeInsetsMake(
-                tableHeaderView.bounds.height + segmentedControlHeight + (-offset),
-                0,
-                0,
-                0
+            tableView.scrollIndicatorInsets = UIEdgeInsets(
+                top: tableHeaderView.bounds.height + segmentedControlHeight + (-offset),
+                left: 0,
+                bottom: 0,
+                right: 0
             )
         }
         

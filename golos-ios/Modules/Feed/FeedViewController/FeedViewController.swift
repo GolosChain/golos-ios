@@ -10,17 +10,17 @@ import UIKit
 
 class FeedViewController: UIViewController {
 
-    //MARK: UI Outlets
+    // MARK: UI Outlets
     @IBOutlet weak var horizontalSelector: HorizontalSelectorView!
     
     
-    //MARK: UI properties
+    // MARK: UI properties
     let pageViewController = UIPageViewController(transitionStyle: .scroll,
                                                   navigationOrientation: .horizontal,
                                                   options: nil)
     
     
-    //MARK: Module properties
+    // MARK: Module properties
     lazy var presenter: FeedPresenterProtocol = {
         let presenter = FeedPresenter()
         presenter.feedView = self
@@ -34,7 +34,7 @@ class FeedViewController: UIViewController {
     }()
     
     
-    //MARK: Life cycle
+    // MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -53,12 +53,12 @@ class FeedViewController: UIViewController {
     }
     
     
-    //MARK: Setup UI
+    // MARK: Setup UI
     private func setupUI() {
         setupPageViewController()
         configureBackButton()
         
-        let items = presenter.getFeedTabs().map{HorizontalSelectorItem(title: $0.type.rawValue)}
+        let items = presenter.getFeedTabs().map {HorizontalSelectorItem(title: $0.type.rawValue)}
         
         horizontalSelector.items = items
         horizontalSelector.delegate = self
@@ -102,7 +102,7 @@ class FeedViewController: UIViewController {
 }
 
 
-//MARK: FeedViewProtocol
+// MARK: FeedViewProtocol
 extension FeedViewController: FeedViewProtocol {
     func didChangeActiveIndex(_ index: Int) {
         horizontalSelector.selectedIndex = index
@@ -110,7 +110,7 @@ extension FeedViewController: FeedViewProtocol {
 }
 
 
-//MARK: HorizontalSelectorViewDelegate
+// MARK: HorizontalSelectorViewDelegate
 extension FeedViewController: HorizontalSelectorViewDelegate {
     func didChangeSelectedIndex(_ index: Int, previousIndex: Int) {
         mediator.setViewController(at: index, previousIndex: previousIndex)

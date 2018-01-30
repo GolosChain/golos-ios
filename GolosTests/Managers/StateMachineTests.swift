@@ -23,7 +23,7 @@ class StateMachineTests: XCTestCase {
     }
     
     
-    //MARK: Init tests
+    // MARK: Init tests
     func testCorrectStateAfterInit() {
         let state = AppState.loggedIn
         mockUserDefaults.set(state.rawValue, forKey: StateMachine.appStateKey)
@@ -45,7 +45,7 @@ class StateMachineTests: XCTestCase {
     }
     
     
-    //MARK: State Machine synch
+    // MARK: State Machine synch
     func testStateMachineInstancesWithSameUserDefaultsSynch() {
         let stateMachine1 = StateMachine.load(mockUserDefaults)
         stateMachine1.changeState(.loggedOut)
@@ -61,7 +61,7 @@ class StateMachineTests: XCTestCase {
     }
     
     
-    //MARK: State change tests
+    // MARK: State change tests
     func testValidityToEnterLoggedInStateAfterLoggedOut() {
         let state = AppState.loggedOut
         mockUserDefaults.set(state.rawValue, forKey: StateMachine.appStateKey)
