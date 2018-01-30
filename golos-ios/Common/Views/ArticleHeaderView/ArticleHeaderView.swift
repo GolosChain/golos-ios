@@ -18,7 +18,7 @@ class ArticleHeaderView: UIView {
     //MARK: Delegate
     weak var delegate: ArticleHeaderViewDelegate?
     
-    //MARK: Outlets properties
+    // MARK: Outlets properties
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var authorAvatarImageView: UIImageView!
     @IBOutlet weak var reblogAuthorLabel: UILabel!

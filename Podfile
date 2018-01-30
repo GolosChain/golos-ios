@@ -7,7 +7,10 @@ target 'Golos' do
 
   # Pods for golos-ios
 
-  #IQKeyboardManager
+  # IQKeyboardManager
   pod 'IQKeyboardManagerSwift'
+
+  # SwiftLint
+  pod 'SwiftLint'
 
 end

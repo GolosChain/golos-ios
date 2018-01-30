@@ -1,0 +1,11 @@
+excluded:
+- Pods
+
+line_length:
+- 200 #warning
+- 300 #error
+
+force_cast: warning
+
+disabled_rules:
+- trailing_whitespace
