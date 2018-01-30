@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol ArticlePostedInTableViewCellDelegate: class {
+    func didPressSubsribeButton(at cell: ArticlePostedInTableViewCell)
+}
+
 class ArticlePostedInTableViewCell: UITableViewCell {
     
     // IBOutlets properties
@@ -15,6 +19,10 @@ class ArticlePostedInTableViewCell: UITableViewCell {
     @IBOutlet weak var topLabel: UILabel!
     @IBOutlet weak var bottomLabel: UILabel!
     @IBOutlet weak var button: UIButton!
+    
+    
+    // Delegate
+    weak var delegate: ArticlePostedInTableViewCellDelegate?
     
     var isAuthor = true {
         didSet {
@@ -75,6 +83,6 @@ class ArticlePostedInTableViewCell: UITableViewCell {
     
     //MARK: Actions
     @IBAction func subscribeButonPressed(_ sender: Any) {
-        
+        delegate?.didPressSubsribeButton(at: self)
     }
 }

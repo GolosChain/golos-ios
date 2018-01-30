@@ -8,6 +8,14 @@
 
 import UIKit
 
+protocol ArticleFooterTableViewCellDelegate: class {
+    func didPressUpvote(at cell: ArticleFooterTableViewCell)
+    func didPressComments(at cell: ArticleFooterTableViewCell)
+    func didPressFavorite(at cell: ArticleFooterTableViewCell)
+    func didPressPromote(at cell: ArticleFooterTableViewCell)
+    func didPressDonate(at cell: ArticleFooterTableViewCell)
+}
+
 class ArticleFooterTableViewCell: UITableViewCell {
 
     // Outlets
@@ -20,6 +28,10 @@ class ArticleFooterTableViewCell: UITableViewCell {
     @IBOutlet private weak var donateButton: UIButton!
     
     @IBOutlet var tagsViewHeightConstraint: NSLayoutConstraint!
+    
+    
+    //Delegate
+    weak var delegate: ArticleFooterTableViewCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -63,23 +75,23 @@ class ArticleFooterTableViewCell: UITableViewCell {
     
     //MARK: Actions
     @IBAction func upvoteButtonPressed(_ sender: Any) {
-        
+        delegate?.didPressUpvote(at: self)
     }
     
     @IBAction func commentsButtonPressed(_ sender: Any) {
-        
+        delegate?.didPressComments(at: self)
     }
     
     @IBAction func favoriteButtonPressed(_ sender: Any) {
-        
+        delegate?.didPressFavorite(at: self)
     }
     
     @IBAction func promoteButtonPressed(_ sender: Any) {
-        
+        delegate?.didPressPromote(at: self)
     }
     
     @IBAction func donateButtonPressed(_ sender: Any) {
-        
+        delegate?.didPressDonate(at: self)
     }
     
     //MARK: Reuse identifier

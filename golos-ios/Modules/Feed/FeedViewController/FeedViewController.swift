@@ -68,14 +68,14 @@ class FeedViewController: UIViewController {
         
         
         
-//        if let navigationBar = navigationController?.navigationBar {
-//            let dropDownMenu = NavigationDropDownView()
-//            dropDownMenu.frame = CGRect(x: 0,
-//                                        y: 0,
-//                                        width: navigationBar.bounds.width,
-//                                        height: navigationBar.bounds.height)
-//            navigationItem.titleView = dropDownMenu
-//        }
+        if let navigationBar = navigationController?.navigationBar {
+            let dropDownMenu = NavigationDropDownView()
+            dropDownMenu.frame = CGRect(x: 0,
+                                        y: 0,
+                                        width: navigationBar.bounds.width,
+                                        height: navigationBar.bounds.height)
+            navigationItem.titleView = dropDownMenu
+        }
         
     //        let dropDownViewController = DropDownViewController()
     //        dropDownViewController.view.frame = dropDownViewController.view.frame.offsetBy(dx: 0, dy: 100)

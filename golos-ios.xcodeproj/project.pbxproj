@@ -30,6 +30,10 @@
 		7D25B4CD201FAE93004A3400 /* ArticleMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D25B4CC201FAE93004A3400 /* ArticleMediator.swift */; };
 		7D7EFEAA201E76140088EB44 /* ProfileDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7EFEA9201E76140088EB44 /* ProfileDataViewModel.swift */; };
 		7D7EFEAC201E95B30088EB44 /* ProfileFeedTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7EFEAB201E95B30088EB44 /* ProfileFeedTab.swift */; };
+		7DCF74A2201FE1C700D46495 /* ArticleCommentsSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF74A1201FE1C700D46495 /* ArticleCommentsSectionHeader.swift */; };
+		7DCF74A4201FE1E400D46495 /* ArticleCommentsSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DCF74A3201FE1E400D46495 /* ArticleCommentsSectionHeader.xib */; };
+		7DCF74A720200AA700D46495 /* ArticleCommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF74A520200AA700D46495 /* ArticleCommentTableViewCell.swift */; };
+		7DCF74A820200AA700D46495 /* ArticleCommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DCF74A620200AA700D46495 /* ArticleCommentTableViewCell.xib */; };
 		7DF16A72201D6043000F5529 /* ProfileMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF16A71201D6043000F5529 /* ProfileMediator.swift */; };
 		99AA4A81C46AA503973BA77F /* Pods_Golos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D3CE7EF617BA80468724899 /* Pods_Golos.framework */; };
 		EC07F4A22014093E00560CF0 /* HorizontalSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC07F4A12014093E00560CF0 /* HorizontalSelectorView.swift */; };
@@ -140,6 +144,10 @@
 		7D25B4CC201FAE93004A3400 /* ArticleMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleMediator.swift; sourceTree = "<group>"; };
 		7D7EFEA9201E76140088EB44 /* ProfileDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDataViewModel.swift; sourceTree = "<group>"; };
 		7D7EFEAB201E95B30088EB44 /* ProfileFeedTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFeedTab.swift; sourceTree = "<group>"; };
+		7DCF74A1201FE1C700D46495 /* ArticleCommentsSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCommentsSectionHeader.swift; sourceTree = "<group>"; };
+		7DCF74A3201FE1E400D46495 /* ArticleCommentsSectionHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleCommentsSectionHeader.xib; sourceTree = "<group>"; };
+		7DCF74A520200AA700D46495 /* ArticleCommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCommentTableViewCell.swift; sourceTree = "<group>"; };
+		7DCF74A620200AA700D46495 /* ArticleCommentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleCommentTableViewCell.xib; sourceTree = "<group>"; };
 		7DF16A71201D6043000F5529 /* ProfileMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMediator.swift; sourceTree = "<group>"; };
 		8D3CE7EF617BA80468724899 /* Pods_Golos.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Golos.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		974FDF6AE6B94E5A2BFC2FDE /* Pods-Golos.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Golos.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Golos/Pods-Golos.debug.xcconfig"; sourceTree = "<group>"; };
@@ -275,6 +283,7 @@
 		7D25B484201F4967004A3400 /* Article */ = {
 			isa = PBXGroup;
 			children = (
+				7DCF74A0201FE18A00D46495 /* TableHeaders */,
 				7D25B4BB201FAB83004A3400 /* Cells */,
 				7D25B489201F497D004A3400 /* ArticleViewController */,
 				7D25B4CC201FAE93004A3400 /* ArticleMediator.swift */,
@@ -313,8 +322,19 @@
 				7D25B4C9201FABD8004A3400 /* ArticleFooterTableViewCell.xib */,
 				7D1783DB201FD9B600B75979 /* ArticlePostedInTableViewCell.swift */,
 				7D1783DC201FD9B600B75979 /* ArticlePostedInTableViewCell.xib */,
+				7DCF74A520200AA700D46495 /* ArticleCommentTableViewCell.swift */,
+				7DCF74A620200AA700D46495 /* ArticleCommentTableViewCell.xib */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		7DCF74A0201FE18A00D46495 /* TableHeaders */ = {
+			isa = PBXGroup;
+			children = (
+				7DCF74A1201FE1C700D46495 /* ArticleCommentsSectionHeader.swift */,
+				7DCF74A3201FE1E400D46495 /* ArticleCommentsSectionHeader.xib */,
+			);
+			path = TableHeaders;
 			sourceTree = "<group>";
 		};
 		EC07F4A0201408FF00560CF0 /* HorizontalSelectorView */ = {
@@ -791,6 +811,7 @@
 				EC9B2AE7201550F4008335C8 /* FeedArticleTableViewCell.xib in Resources */,
 				7D25B4BF201FABB2004A3400 /* ArticleTitleTableViewCell.xib in Resources */,
 				EC1DFB9920063C400080BC50 /* LaunchScreen.storyboard in Resources */,
+				7DCF74A820200AA700D46495 /* ArticleCommentTableViewCell.xib in Resources */,
 				EC24FF7F200C4E2C00A0AE15 /* NavigationDropDownView.xib in Resources */,
 				EC6FD5A3200AE1A200DCB824 /* QRScannerViewController.xib in Resources */,
 				EC9ABBC82017D56800AF8597 /* ProfileHeaderView.xib in Resources */,
@@ -799,6 +820,7 @@
 				EC1DFB9620063C400080BC50 /* Assets.xcassets in Resources */,
 				7D25B488201F4978004A3400 /* ArticleViewController.xib in Resources */,
 				ECC15FA4200976770099BBC9 /* IntroViewController.xib in Resources */,
+				7DCF74A4201FE1E400D46495 /* ArticleCommentsSectionHeader.xib in Resources */,
 				7D25B4C7201FABCB004A3400 /* ArticleTextTableViewCell.xib in Resources */,
 				ECA8E3532018A62E003B8ABA /* ProfileInfoView.xib in Resources */,
 				7D25B48D201F5700004A3400 /* TagCollectionViewCell.xib in Resources */,
@@ -908,12 +930,14 @@
 				EC9B2AE920155B9C008335C8 /* FeedTabMediator.swift in Sources */,
 				7D25B4C2201FABBD004A3400 /* ArticleImageTableViewCell.swift in Sources */,
 				EC24FF28200BEBE600A0AE15 /* ViewProtocol.swift in Sources */,
+				7DCF74A720200AA700D46495 /* ArticleCommentTableViewCell.swift in Sources */,
 				EC9B2AE6201550F4008335C8 /* FeedArticleTableViewCell.swift in Sources */,
 				EC24FF84200C635600A0AE15 /* DropDownMediator.swift in Sources */,
 				EC24FF70200C433700A0AE15 /* ProfileViewController.swift in Sources */,
 				EC24FF82200C625800A0AE15 /* DropDownViewController.swift in Sources */,
 				ECA8E35A2018CA17003B8ABA /* ProfileHorizontalSelectorView.swift in Sources */,
 				EC6FD59E200AD53100DCB824 /* ViewController+BackButton.swift in Sources */,
+				7DCF74A2201FE1C700D46495 /* ArticleCommentsSectionHeader.swift in Sources */,
 				ECFF44E8200BC42F00DAF74C /* QRScannerViewControllerDelegate.swift in Sources */,
 				ECC15FA62009794E0099BBC9 /* Fonts.swift in Sources */,
 				ECA8E35E2018D119003B8ABA /* UIView+Shadow.swift in Sources */,

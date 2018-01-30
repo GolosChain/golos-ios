@@ -50,6 +50,12 @@ class ArticleViewController: UIViewController {
         topBarView.addBottomShadow()
         
         mediator.configure(tableView: tableView)
+        tableView.contentInset = UIEdgeInsets(top: -35, left: 0, bottom: 0, right: 0)
+        if #available(iOS 11.0, *) {
+            tableView.contentInsetAdjustmentBehavior = .never
+        } else {
+            self.automaticallyAdjustsScrollViewInsets = false
+        }
     }
     
     
