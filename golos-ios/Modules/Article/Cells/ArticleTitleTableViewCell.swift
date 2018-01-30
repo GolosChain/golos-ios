@@ -26,14 +26,14 @@ class ArticleTitleTableViewCell: UITableViewCell {
         setup()
     }
     
-    //MARK: Setup
+    // MARK: Setup
     private func setup() {
         titleLabel.textColor = UIColor.Project.articleBlackColor
         titleLabel.font = Fonts.shared.medium(with: 15.0)
     }
 
     
-    //MARK: Reuse identifier
+    // MARK: Reuse identifier
     override var reuseIdentifier: String? {
         return ArticleTitleTableViewCell.reuseIdentifier
     }

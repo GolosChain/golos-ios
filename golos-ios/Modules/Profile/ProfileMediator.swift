@@ -41,7 +41,7 @@ class ProfileMediator: NSObject {
 }
 
 
-//MARK: UITableViewDataSource
+// MARK: UITableViewDataSource
 extension ProfileMediator: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -68,7 +68,7 @@ extension ProfileMediator: UITableViewDataSource {
 }
 
 
-//MARK: UITableViewDelegate
+// MARK: UITableViewDelegate
 extension ProfileMediator: UITableViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         guard let tableView = scrollView as? UITableView else {
@@ -108,7 +108,7 @@ extension ProfileMediator: UITableViewDelegate {
 }
 
 
-//MARK: FeedArticleTableViewCellDelegate
+// MARK: FeedArticleTableViewCellDelegate
 extension ProfileMediator: FeedArticleTableViewCellDelegate {
     func didPressCommentsButton(at cell: FeedArticleTableViewCell) {
         guard let indexPath = tableView.indexPath(for: cell) else {return}

@@ -45,7 +45,7 @@ class FeedPresenter: NSObject {
 }
 
 
-//MARK: FeedPresenterProtocol
+// MARK: FeedPresenterProtocol
 extension FeedPresenter: FeedPresenterProtocol {
     func getTabAfter(_ tab: FeedTab) -> FeedTab? {
         guard let index = feedTabs.index(of: tab) else {return nil}

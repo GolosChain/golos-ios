@@ -30,19 +30,19 @@ extension UIColor {
         static let darkBlueTabSelected = UIColor(red: 68, green: 105, blue: 175)
         static let darkBlueHeader = UIColor(red: 68, green: 105, blue: 175)
         
-        //MARK: Horizontal selector
+        // MARK: Horizontal selector
         static let unselectedButtonColor = UIColor(red: 214, green: 214, blue: 214)
         
-        //MARK: Article
+        // MARK: Article
         static let articleBlackColor = UIColor(red: 51, green: 51, blue: 51)
         static let articleBodyGrayColor = UIColor(red: 79, green: 79, blue: 79)
         static let articleButtonsGreenColor = UIColor(red: 106, green: 211, blue: 129)
         static let articleButtonsGrayColor = UIColor(red: 193, green: 193, blue: 193)
         
-        //MARK: Comments
+        // MARK: Comments
         static let commentsAmountColor = UIColor(red: 166, green: 166, blue: 166)
         
-        //MARK: Profile
+        // MARK: Profile
         static let profileSelectionViewBackground = UIColor(red: 18, green: 152, blue: 255)
         
         struct TagToken {

@@ -10,21 +10,21 @@ import UIKit
 
 class IntroViewController: UIViewController {
 
-    //MARK: Outlets
+    // MARK: Outlets
     @IBOutlet weak var enterButton: UIButton!
     @IBOutlet weak var registerButton: UIButton!
     @IBOutlet weak var moreInfoButton: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
     
-    //MARK: UI
+    // MARK: UI
     var scrollLabels = [UILabel]()
     
-    //MARK: Module
+    // MARK: Module
     let presenter = IntroPresenter()
     
     
-    //MARK: Life cycle
+    // MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -40,7 +40,7 @@ class IntroViewController: UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
-    //MARK: SetupUI
+    // MARK: SetupUI
     private func setupUI() {
         title = ""
         
@@ -71,7 +71,7 @@ class IntroViewController: UIViewController {
     }
     
     
-    //MARK: Layout
+    // MARK: Layout
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
@@ -85,7 +85,7 @@ class IntroViewController: UIViewController {
     }
     
     
-    //MARK: Actions
+    // MARK: Actions
     @IBAction func enterButtonPressed(_ sender: Any) {
         openLoginScreen()
     }
@@ -109,7 +109,7 @@ class IntroViewController: UIViewController {
     }
     
     
-    //MARK: Navigation
+    // MARK: Navigation
     func openLoginScreen() {
         let loginViewController = LoginViewController.nibInstance()
         navigationController?.pushViewController(loginViewController, animated: true)
@@ -117,7 +117,7 @@ class IntroViewController: UIViewController {
 }
 
 
-//MARK: UIScrollViewDelegate
+// MARK: UIScrollViewDelegate
 extension IntroViewController: UIScrollViewDelegate {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let scrollViewWidth = scrollView.bounds.size.width

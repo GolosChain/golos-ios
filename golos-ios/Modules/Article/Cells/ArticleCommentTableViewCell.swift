@@ -36,7 +36,7 @@ class ArticleCommentTableViewCell: UITableViewCell {
     }
     
     
-    //MARK: Setup
+    // MARK: Setup
     private func setup() {
         let greenColor = UIColor.Project.articleButtonsGreenColor
         let grayColor = UIColor.Project.articleButtonsGrayColor
@@ -58,7 +58,7 @@ class ArticleCommentTableViewCell: UITableViewCell {
     }
     
     
-    //MARK: Layout
+    // MARK: Layout
     override func layoutSubviews() {
         super.layoutSubviews()
         
@@ -66,7 +66,7 @@ class ArticleCommentTableViewCell: UITableViewCell {
     }
     
     
-    //MARK: Actions
+    // MARK: Actions
     @IBAction func upvoteButtonPressed(_ sender: Any) {
         delegate?.didPressUpvote(at: self)
     }
@@ -80,7 +80,7 @@ class ArticleCommentTableViewCell: UITableViewCell {
     }
     
     
-    //MARK: Reuse identifier
+    // MARK: Reuse identifier
     override var reuseIdentifier: String? {
         return ArticleCommentTableViewCell.reuseIdentifier
     }
@@ -91,7 +91,7 @@ class ArticleCommentTableViewCell: UITableViewCell {
 }
 
 
-//MARK: Setters
+// MARK: Setters
 extension ArticleCommentTableViewCell {
     var upvoteString: String? {
         get {return upvoteButton.title(for: .normal)}

@@ -14,7 +14,7 @@ class TagsView: UIView {
     private let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: CollectionViewCenteredLayout())
     
     private var collectionViewHeightConstraint: NSLayoutConstraint!
-    
+
     var tagStringArray = [String]() {
         didSet {
             collectionView.reloadData()
@@ -23,6 +23,9 @@ class TagsView: UIView {
             }
         }
     }
+    
+    //KVO
+    var collectionContentSizeObserver: NSKeyValueObservation?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -32,10 +35,6 @@ class TagsView: UIView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setup()
-    }
-    
-    deinit {
-        removeObserving()
     }
 
     private func setup() {
@@ -48,6 +47,13 @@ class TagsView: UIView {
         collectionViewHeightConstraint = collectionView.heightAnchor.constraint(equalToConstant: 100)
         collectionViewHeightConstraint.isActive = true
         
+        collectionContentSizeObserver = collectionView.observe(\.contentSize, options: [.new]) { object, _ in
+            let newContentSize = object.contentSize
+            self.collectionViewHeightConstraint.constant = newContentSize.height
+            
+        }
+        
+        
         let cellNib = UINib(nibName: tagCellIdentifier, bundle: nil)
         collectionView.register(cellNib, forCellWithReuseIdentifier: tagCellIdentifier)
         collectionView.dataSource = self
@@ -57,35 +63,11 @@ class TagsView: UIView {
         
         let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         layout.estimatedItemSize = CGSize(width: 60, height: 20)
-        layout.sectionInset = UIEdgeInsetsMake(0, 16, 0, 16)
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
         
         if tagStringArray.count == 0 {
             collectionViewHeightConstraint.constant = 0
         }
-        
-        addObserving()
-    }
-    
-    //MARK: KVO
-    private func addObserving() {
-        collectionView.addObserver(self, forKeyPath: "contentSize", options: .new, context: nil)
-    }
-    
-    private func removeObserving() {
-        collectionView.removeObserver(self, forKeyPath: "contentSize")
-    }
-    
-    override func observeValue(forKeyPath keyPath: String?,
-                               of object: Any?,
-                               change: [NSKeyValueChangeKey : Any]?,
-                               context: UnsafeMutableRawPointer?) {
-        guard let _ = object as? UICollectionView,
-            let change = change,
-            let new = change[NSKeyValueChangeKey.newKey] as? NSValue else {
-            return
-        }
-        let newContentSize = new.cgSizeValue
-        collectionViewHeightConstraint.constant = newContentSize.height
     }
 }
 
@@ -100,4 +82,3 @@ extension TagsView: UICollectionViewDataSource {
         return cell
     }
 }
-

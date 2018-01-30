@@ -40,5 +40,3 @@ extension UIAlertController {
                                                  completion: nil)
     }
 }
-
-

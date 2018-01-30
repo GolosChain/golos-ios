@@ -21,7 +21,7 @@ class ArticleTextTableViewCell: UITableViewCell {
     }
 
     
-    //MARK: SetupUI
+    // MARK: SetupUI
     private func setupUI() {
         articleTextView.textContainerInset = UIEdgeInsets(top: 0,
                                                        left: ArticleTextTableViewCell.bodyEdgesOffset,
@@ -30,7 +30,7 @@ class ArticleTextTableViewCell: UITableViewCell {
     }
     
     
-    //MARK: Reuse identifier
+    // MARK: Reuse identifier
     override var reuseIdentifier: String? {
         return ArticleTextTableViewCell.reuseIdentifier
     }

@@ -10,13 +10,13 @@ import UIKit
 
 class TagTokenButton: UIButton {
     
-    //MARK: Setter
+    // MARK: Setter
     var tagTitle: String? {
         get { return title(for: .normal) }
         set { setTitle(newValue, for: .normal) }
     }
     
-    //MARK: Init
+    // MARK: Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
@@ -28,7 +28,7 @@ class TagTokenButton: UIButton {
     }
     
     
-    //MARK: Setup
+    // MARK: Setup
     private func setup() {
         backgroundColor = .clear
         
@@ -40,11 +40,11 @@ class TagTokenButton: UIButton {
         setTitleColor(UIColor.Project.TagToken.textColor, for: .normal)
         setTitleColor(UIColor.Project.TagToken.textColor, for: .highlighted)
         
-        contentEdgeInsets = UIEdgeInsetsMake(5, 14, 5, 14)
+        contentEdgeInsets = UIEdgeInsets(top: 5, left: 14, bottom: 5, right: 14)
     }
     
     
-    //MARK: Layout
+    // MARK: Layout
     override func layoutSubviews() {
         super.layoutSubviews()
         layer.cornerRadius = bounds.size.height / 2

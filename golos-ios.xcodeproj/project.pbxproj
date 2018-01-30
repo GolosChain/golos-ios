@@ -721,6 +721,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EC1DFB9D20063C400080BC50 /* Build configuration list for PBXNativeTarget "Golos" */;
 			buildPhases = (
+				7DD6B76C2020E0F3004D0830 /* ShellScript */,
 				55A88D3868FC3CC3DBEF14AF /* [CP] Check Pods Manifest.lock */,
 				EC1DFB8720063C400080BC50 /* Sources */,
 				EC1DFB8820063C400080BC50 /* Frameworks */,
@@ -872,6 +873,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Golos/Pods-Golos-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		7DD6B76C2020E0F3004D0830 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
 		};
 		F1798BD0C66927B5A490FD17 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;

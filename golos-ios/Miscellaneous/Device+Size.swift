@@ -19,7 +19,7 @@ enum DeviceScreenSize {
 extension UIDevice {
     
     class func getDeviceScreenSize() -> DeviceScreenSize {
-        if UIDevice().userInterfaceIdiom == .phone {
+        if UIDevice.current.userInterfaceIdiom == .phone {
             switch UIScreen.main.nativeBounds.height {
             case 1136:
                 return DeviceScreenSize.iphone5

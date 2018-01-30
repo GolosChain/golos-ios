@@ -14,14 +14,14 @@ protocol HorizontalSelectorViewDelegate: class {
 
 class HorizontalSelectorView: UIView {
     
-    //MARK: Constants
+    // MARK: Constants
     private let edgesOffset: CGFloat = 16.0
     private let interButtonsOffset: CGFloat = 24.0
     private let animationDuration: TimeInterval = 0.3
     private let selectionViewHeight: CGFloat = 2.0
     
     
-    //MARK: UI properties
+    // MARK: UI properties
     let scrollView = UIScrollView()
     var buttons = [UIButton]()
     
@@ -29,7 +29,7 @@ class HorizontalSelectorView: UIView {
     let selectionView = UIView()
 
     
-    //MARK: Data properties
+    // MARK: Data properties
     var items = [HorizontalSelectorItem]() {
         didSet {
             selectedItem = items.first
@@ -57,7 +57,7 @@ class HorizontalSelectorView: UIView {
     }
     
     
-    //MARK: Delegate
+    // MARK: Delegate
     weak var delegate: HorizontalSelectorViewDelegate?
     
     
@@ -87,7 +87,7 @@ class HorizontalSelectorView: UIView {
     }
     
     
-    //MARK: Buttons
+    // MARK: Buttons
     private func addItemsButtons() {
         var originX: CGFloat = edgesOffset
         for item in items {
@@ -133,12 +133,12 @@ class HorizontalSelectorView: UIView {
     }
     
     private func setButtonActive(_ button: UIButton) {
-        buttons.forEach{$0.isSelected = $0 == button}
+        buttons.forEach {$0.isSelected = $0 == button}
         moveSelectionViewToButton(button, animated: true)
     }
     
     
-    //MARK: Selection view
+    // MARK: Selection view
     private func moveSelectionViewToButton(_ button: UIButton?,
                                            animated: Bool) {
         guard let button = button else {return}
@@ -164,7 +164,7 @@ class HorizontalSelectorView: UIView {
     }
     
     
-    //MARK: Actions
+    // MARK: Actions
     @objc
     private func didPressedButton(_ button: UIButton) {
         guard let selectedButtonIndex = buttons.index(of: button) else {
@@ -183,7 +183,7 @@ class HorizontalSelectorView: UIView {
     }
     
     
-    //MARK: Layout
+    // MARK: Layout
     override func layoutSubviews() {
         super.layoutSubviews()
         

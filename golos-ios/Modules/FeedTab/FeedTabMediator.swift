@@ -24,10 +24,10 @@ class FeedTabMediator: NSObject {
     
     var array = [IndexPath]()
     
-    //MARK: Delegate
+    // MARK: Delegate
     weak var delegate: FeedTabMediatorDelegate?
     
-    //MARK: Module properties
+    // MARK: Module properties
     weak var tableView: UITableView!
     weak var feedTabPresenter: FeedTabPresenterProtocol!
     
@@ -43,7 +43,7 @@ class FeedTabMediator: NSObject {
 }
 
 
-//MARK: UITableViewDataSource
+// MARK: UITableViewDataSource
 extension FeedTabMediator: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return feedTabPresenter.getArticleModels().count
@@ -61,7 +61,7 @@ extension FeedTabMediator: UITableViewDataSource {
 }
 
 
-//MARK: UITableViewDelegate
+// MARK: UITableViewDelegate
 extension FeedTabMediator: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         guard let selectedIndex = self.selectedIndex, selectedIndex == indexPath else {
@@ -84,7 +84,7 @@ extension FeedTabMediator: UITableViewDelegate {
 }
 
 
-//MARK: FeedArticleTableViewCellDelegate
+// MARK: FeedArticleTableViewCellDelegate
 extension FeedTabMediator: FeedArticleTableViewCellDelegate {
     func didPressCommentsButton(at cell: FeedArticleTableViewCell) {
         guard let indexPath = tableView.indexPath(for: cell) else {return}

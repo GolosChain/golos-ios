@@ -19,10 +19,10 @@ protocol ProfileHeaderViewDelegate: class {
 
 class ProfileHeaderView: UIView {
     
-    //MARK: Size properties
+    // MARK: Size properties
     var minimizedHeaderHeight: CGFloat = 0
 
-    //MARK: Setter properties
+    // MARK: Setter properties
     var backgroundImage: UIImage? {
         didSet {
             updateBackground()
@@ -67,7 +67,7 @@ class ProfileHeaderView: UIView {
     }
     
     
-    //MARK: Outlet properties
+    // MARK: Outlet properties
     @IBOutlet private weak var backgroundImageView: UIImageView!
     @IBOutlet private weak var blurImageView: UIImageView!
     @IBOutlet private weak var avatarImageView: UIImageView!
@@ -84,11 +84,11 @@ class ProfileHeaderView: UIView {
     
     
     @IBOutlet private weak var imageViewTopConstraint: NSLayoutConstraint!
-    //MARK: Delegate
+    // MARK: Delegate
     weak var delegate: ProfileHeaderViewDelegate?
     
     
-    //MARK: Init
+    // MARK: Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -114,7 +114,7 @@ class ProfileHeaderView: UIView {
     }
     
     
-    //MARK: Setup UI
+    // MARK: Setup UI
     private func setupUI() {
         avatarImageView.layer.masksToBounds = true
         
@@ -131,14 +131,14 @@ class ProfileHeaderView: UIView {
     }
     
     
-    //MARK: Layout
+    // MARK: Layout
     override func layoutSubviews() {
         super.layoutSubviews()
         avatarImageView.layer.cornerRadius = avatarImageView.bounds.size.width / 2
     }
     
     
-    //MARK: Background images
+    // MARK: Background images
     private func updateBackground() {
         backgroundImageView.image = backgroundImage
         blurImageView.image = backgroundImage?.applyBlurWithRadius(10.0,
@@ -155,7 +155,7 @@ class ProfileHeaderView: UIView {
     }
 
     
-    //MARK: Activity
+    // MARK: Activity
     func startLoading() {
         activityView.startAnimating()
     }
@@ -165,7 +165,7 @@ class ProfileHeaderView: UIView {
     }
     
     
-    //MARK: Actions
+    // MARK: Actions
     @IBAction func editButtonPressed(_ sender: Any) {
         delegate?.didPressEditProfileButton()
     }

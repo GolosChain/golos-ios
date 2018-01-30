@@ -10,7 +10,7 @@ import UIKit
 
 class ProfileInfoView: UIView {
     
-    //MARK: Setter properties
+    // MARK: Setter properties
     var information: String? {
         get {
             return informationLabel.text
@@ -53,7 +53,7 @@ class ProfileInfoView: UIView {
         }
     }
     
-    //MARK: Outlets properties
+    // MARK: Outlets properties
     @IBOutlet private weak var informationLabel: UILabel!
     @IBOutlet private weak var postsAmountLabel: UILabel!
     @IBOutlet private weak var subscribersAmountLabel: UILabel!
@@ -63,7 +63,7 @@ class ProfileInfoView: UIView {
     
     
     
-    //MARK: Init
+    // MARK: Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -89,7 +89,7 @@ class ProfileInfoView: UIView {
     }
     
     
-    //MARK: Setup UI
+    // MARK: Setup UI
     private func setupUI() {
         
     }

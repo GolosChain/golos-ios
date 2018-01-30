@@ -10,7 +10,7 @@ import UIKit
 
 class MainContainerViewController: UIViewController {
     
-    //MARK: Module properties
+    // MARK: Module properties
     lazy var presenter: MainContainerPresenter = {
         let presenter = MainContainerPresenter()
         presenter.view = self
@@ -21,11 +21,11 @@ class MainContainerViewController: UIViewController {
     let mediator = MainContainerMediator()
     
     
-    //MARK: UI Properties
+    // MARK: UI Properties
     var activeViewController: UIViewController!
     
     
-    //MARK: Life cycle
+    // MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
      
@@ -33,7 +33,7 @@ class MainContainerViewController: UIViewController {
     }
     
     
-    //MARK: Setup UI
+    // MARK: Setup UI
     private func setupUI() {
         let currentState = presenter.currentState
         let viewController = mediator.getViewController(forState: currentState)
@@ -46,7 +46,7 @@ class MainContainerViewController: UIViewController {
     }
     
     
-    //MARK: Presenting view controllers
+    // MARK: Presenting view controllers
     private func present(newState: AppState, oldState: AppState) {
         let viewController = mediator.getViewController(forState: newState)
         

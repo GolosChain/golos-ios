@@ -14,17 +14,17 @@ protocol ProfileHorizontalSelectorViewDelegate: class {
 
 class ProfileHorizontalSelectorView: UIView {
     
-    //MARK: Constants
+    // MARK: Constants
     private let selectionViewHeight: CGFloat = 2.0
     
-    //MARK: Outlets properties
+    // MARK: Outlets properties
     @IBOutlet weak var postsButton: UIButton!
     @IBOutlet weak var answersButton: UIButton!
     @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet var buttons: [UIButton]!
     
     
-    //MARK: UI Properties
+    // MARK: UI Properties
     let selectionView = UIView()
     
     var selectedButton: UIButton?
@@ -32,10 +32,10 @@ class ProfileHorizontalSelectorView: UIView {
     
 //    var items = [ProfileHorizontalSelectorItem]()
     
-    //MARK: Delegate
+    // MARK: Delegate
     weak var delegate: ProfileHorizontalSelectorViewDelegate?
     
-    //MARK: Init
+    // MARK: Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -61,7 +61,7 @@ class ProfileHorizontalSelectorView: UIView {
     }
     
     
-    //MARK: Setup UI
+    // MARK: Setup UI
     private func setupUI() {
 //        let items = presenter.getFeedTabs().map{HorizontalSelectorItem(title: $0.type.rawValue)}
 //        items = [ProfileHorizontalSelectorItem]
@@ -92,7 +92,7 @@ class ProfileHorizontalSelectorView: UIView {
     }
 
     
-    //MARK: Layout
+    // MARK: Layout
     override func layoutSubviews() {
         super.layoutSubviews()
         guard let selectedButton = selectedButton else {
@@ -120,12 +120,12 @@ class ProfileHorizontalSelectorView: UIView {
     }
     
     
-    //MARK: Actions
+    // MARK: Actions
     @IBAction func didPressButton(_ sender: UIButton) {
         guard sender != selectedButton else {
             return
         }
-        buttons.forEach{$0.isSelected = $0 == sender}
+        buttons.forEach {$0.isSelected = $0 == sender}
         selectedButton = sender
         moveSelectionView(to: sender, animated: true)
         switch sender {

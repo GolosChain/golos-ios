@@ -15,10 +15,10 @@ protocol ArticleHeaderViewDelegate: class {
 
 class ArticleHeaderView: UIView {
     
-    //MARK: Delegate
+    // MARK: Delegate
     weak var delegate: ArticleHeaderViewDelegate?
     
-    //MARK: Outlets properties
+    // MARK: Outlets properties
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var authorAvatarImageView: UIImageView!
     @IBOutlet weak var reblogAuthorLabel: UILabel!
@@ -54,7 +54,7 @@ class ArticleHeaderView: UIView {
     }
     
     
-    //MARK: Setup UI
+    // MARK: Setup UI
     private func setupUI() {
         authorLabel.textColor = UIColor.Project.articleBlackColor
         authorLabel.font = Fonts.shared.regular(with: 12.0)
@@ -79,7 +79,7 @@ class ArticleHeaderView: UIView {
         return CGSize(width: 300, height: 46)
     }
     
-    //MARK: Actions
+    // MARK: Actions
     @objc
     private func didPressAuthor() {
         delegate?.didPressAuthor()
@@ -91,7 +91,7 @@ class ArticleHeaderView: UIView {
     }
 
     
-    //MARK: Layout
+    // MARK: Layout
     override func layoutSubviews() {
         super.layoutSubviews()
         authorAvatarImageView.layer.cornerRadius = authorAvatarImageView.bounds.size.height / 2

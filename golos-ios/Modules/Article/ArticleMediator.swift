@@ -24,7 +24,7 @@ class ArticleMediator: NSObject {
     private var isCommentsExpanded = false
     
     
-    //MARK: Configure
+    // MARK: Configure
     func configure(tableView: UITableView) {
         self.tableView = tableView
         tableView.tableFooterView = UIView(frame: CGRect.zero)
@@ -55,7 +55,7 @@ class ArticleMediator: NSObject {
 }
 
 
-//MARK: UITableViewCellDataSource
+// MARK: UITableViewCellDataSource
 extension ArticleMediator: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var resultCell: UITableViewCell!
@@ -100,8 +100,7 @@ extension ArticleMediator: UITableViewDataSource {
             default:
                 resultCell = UITableViewCell()
             }
-        }
-        else if indexPath.section == 2 {
+        } else if indexPath.section == 2 {
             let cell = tableView.dequeueReusableCell(withIdentifier: articleCommentCellIdentifier) as! ArticleCommentTableViewCell
             cell.delegate = self
             resultCell = cell
@@ -129,7 +128,7 @@ extension ArticleMediator: UITableViewDataSource {
 }
 
 
-//MARK: UITableViewDelegate
+// MARK: UITableViewDelegate
 extension ArticleMediator: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
@@ -161,7 +160,7 @@ extension ArticleMediator: UITableViewDelegate {
 }
 
 
-//MARK: ArticleCommentsSectionHeaderDelegate
+// MARK: ArticleCommentsSectionHeaderDelegate
 extension ArticleMediator: ArticleCommentsSectionHeaderDelegate {
     func didPressHideShowCommentsButton(at header: ArticleCommentsSectionHeader) {
         isCommentsExpanded = !isCommentsExpanded
@@ -174,7 +173,7 @@ extension ArticleMediator: ArticleCommentsSectionHeaderDelegate {
 }
 
 
-//MARK: ArticleFooterTableViewCellDelegate
+// MARK: ArticleFooterTableViewCellDelegate
 extension ArticleMediator: ArticleFooterTableViewCellDelegate {
     func didPressUpvote(at cell: ArticleFooterTableViewCell) {
         guard let indexPath = tableView.indexPath(for: cell) else {return}

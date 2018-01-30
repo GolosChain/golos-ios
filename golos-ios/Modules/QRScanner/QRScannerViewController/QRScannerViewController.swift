@@ -13,23 +13,23 @@ private let qrCodeNotFoundString = "QR код не обнаружен"
 
 class QRScannerViewController: UIViewController {
     
-    //MARK: Outlets
+    // MARK: Outlets
     @IBOutlet weak var cameraView: UIView!
     @IBOutlet weak var statusLabel: UILabel!
     
     
-    //MARK: Camera properties
+    // MARK: Camera properties
     var captureSession = AVCaptureSession()
     
     var videoPreviewLayer: AVCaptureVideoPreviewLayer?
     var qrCodeFrameView: UIView?
     
     
-    //MARK: Delegate
+    // MARK: Delegate
     weak var delegate: QRScannerViewControllerDelegate?
     
    
-    //MARK: Life cycle
+    // MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -49,7 +49,7 @@ class QRScannerViewController: UIViewController {
     }
     
     
-    //MARK: Setup UI
+    // MARK: Setup UI
     private func setupUI() {
         title = "QR сканнер"
         
@@ -63,14 +63,14 @@ class QRScannerViewController: UIViewController {
     }
     
     
-    //MARK: View layout
+    // MARK: View layout
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         videoPreviewLayer?.frame = cameraView.bounds
     }
     
     
-    //MARK: Camera
+    // MARK: Camera
     private func startScanning() {
         let deviceDiscoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera],
                                                                       mediaType: AVMediaType.video,
@@ -122,7 +122,7 @@ class QRScannerViewController: UIViewController {
     }
     
     
-    //MARK: Actions
+    // MARK: Actions
     @objc
     func didPressCancelButton() {
         dismiss(animated: true, completion: nil)
@@ -154,4 +154,3 @@ extension QRScannerViewController: AVCaptureMetadataOutputObjectsDelegate {
         didScanQRCode(code: stringValue)
     }
 }
-

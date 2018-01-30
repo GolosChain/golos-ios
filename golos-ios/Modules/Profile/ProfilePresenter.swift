@@ -36,7 +36,7 @@ protocol ProfileViewProtocol: class {
 }
 
 class ProfilePresenter: NSObject {
-    //MARK: View
+    // MARK: View
     weak var profileView: ProfileViewProtocol!
     
     private var profileData = ProfileDataViewModel()
@@ -131,8 +131,9 @@ extension ProfilePresenter: ProfilePresenterProtocol {
 }
 
 
-//MARK: Fake data
+// MARK: Fake data
 extension ProfilePresenter {
+    // swiftlint:disable line_length
     private func fetchFakeProfileData() -> ProfileDataViewModel {
         let fakeData = ProfileDataViewModel(
             name: "Konstantin Konstantinopolskiy",
@@ -145,6 +146,7 @@ extension ProfilePresenter {
             subscriptionsAmountString: "12")
         return fakeData
     }
+    
     
     private func fetchFakeAcrticles() -> [FeedArticleViewModel] {
         let fakeArticle1 = FeedArticleViewModel(authorName: "digitalbeauty",
@@ -171,5 +173,5 @@ extension ProfilePresenter {
                                                 didComment: true)
         return [fakeArticle1, fakeArticle2, fakeArticle1, fakeArticle2, fakeArticle1, fakeArticle2, fakeArticle1, fakeArticle2, fakeArticle1, fakeArticle2, fakeArticle1, fakeArticle2, fakeArticle1, fakeArticle2, fakeArticle1, fakeArticle2]
     }
+    // swiftlint:enable line_length
 }
-

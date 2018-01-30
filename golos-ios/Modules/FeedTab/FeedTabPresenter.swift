@@ -61,6 +61,7 @@ extension FeedTabPresenter: FeedTabPresenterProtocol {
 
 //FAKE DATA
 extension FeedTabPresenter {
+    // swiftlint:disable line_length
     private func fetchFakeAcrticles() -> [FeedArticleViewModel] {
         let fakeArticle1 = FeedArticleViewModel(authorName: "digitalbeauty",
                                                authorAvatarUrl: "https://cdn.pixabay.com/photo/2016/08/20/05/38/avatar-1606916_1280.png",
@@ -86,4 +87,5 @@ extension FeedTabPresenter {
                                                 didComment: true)
         return [fakeArticle1, fakeArticle2, fakeArticle1, fakeArticle2, fakeArticle1, fakeArticle2, fakeArticle1, fakeArticle2, fakeArticle1, fakeArticle2, fakeArticle1, fakeArticle2, fakeArticle1, fakeArticle2, fakeArticle1, fakeArticle2]
     }
+    // swiftlint:enable line_length
 }

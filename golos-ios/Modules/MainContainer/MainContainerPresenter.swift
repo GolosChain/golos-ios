@@ -19,10 +19,10 @@ class MainContainerPresenter: NSObject {
         return stateMachine.state
     }
     
-    //MARK: Module
+    // MARK: Module
     weak var view: MainContainerView!
     
-    //MARK: Life cycle
+    // MARK: Life cycle
     override init() {
         super.init()
         subscribeNotifications()
@@ -33,7 +33,7 @@ class MainContainerPresenter: NSObject {
     }
     
     
-    //MARK: Notifications
+    // MARK: Notifications
     func subscribeNotifications() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(stateDidChange(_:)),

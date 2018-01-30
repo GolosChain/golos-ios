@@ -25,10 +25,10 @@ class CollectionViewCenteredLayout: UICollectionViewFlowLayout {
         
         var updatedAttributes = [UICollectionViewLayoutAttributes]()
         
-        for attribute in originalAttributes {
-            if attribute.representedElementKind == nil {
+        for attribute in originalAttributes where attribute.representedElementKind == nil {
+//            if attribute.representedElementKind == nil {
                 updatedAttributes.append(self.layoutAttributesForItem(at: attribute.indexPath)!)
-            }
+//            }
         }
         
         return updatedAttributes
