@@ -29,16 +29,10 @@ class FeedArticleTableViewCell: UITableViewCell {
     
     
     //MARK: UI Outlets
-    @IBOutlet private weak var headerView: UIView!
+    @IBOutlet private weak var articleHeaderView: ArticleHeaderView!
     @IBOutlet private weak var articleContentView: UIView!
     @IBOutlet private weak var bottomView: UIView!
     @IBOutlet weak var gradientView: UIView!
-    
-    @IBOutlet private weak var authorLabel: UILabel!
-    @IBOutlet private weak var authorAvatarImageView: UIImageView!
-    @IBOutlet private weak var reblogAuthorLabel: UILabel!
-    @IBOutlet private weak var reblogIconImageView: UIImageView!
-    @IBOutlet private weak var themeLabel: UILabel!
     
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var bodyTextView: UITextView!
@@ -47,9 +41,7 @@ class FeedArticleTableViewCell: UITableViewCell {
     @IBOutlet private weak var commentsButton: UIButton!
     
     @IBOutlet private weak var expandButton: UIButton!
-    
-    @IBOutlet weak var authorTappableView: UIView!
-    @IBOutlet weak var reblogAuthorTappableView: UIView!
+
     
     
     //MARK: UI properties
@@ -84,8 +76,6 @@ class FeedArticleTableViewCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        authorAvatarImageView.layer.cornerRadius = authorAvatarImageView.bounds.size.width / 2
-        
         gradientLayer.frame = gradientView.bounds
         
         guard isNeedExpand == true else {
@@ -97,23 +87,12 @@ class FeedArticleTableViewCell: UITableViewCell {
         } else {
             isExpanded = true
         }
-        
     }
     
     
     //MARK: Setup UI
     private func setupUI() {
-        authorLabel.textColor = UIColor.Project.articleBlackColor
-        authorLabel.font = Fonts.shared.regular(with: 12.0)
-        
-        reblogAuthorLabel.textColor = UIColor.Project.articleBlackColor
-        reblogAuthorLabel.font = Fonts.shared.regular(with: 12.0)
-        
-        themeLabel.textColor = UIColor.Project.textPlaceholderGray
-        themeLabel.font = Fonts.shared.regular(with: 10.0)
-        
-        authorAvatarImageView.layer.masksToBounds = true
-        
+
         titleLabel.textColor = UIColor.Project.articleBlackColor
         titleLabel.font = Fonts.shared.regular(with: 16.0)
         
@@ -139,11 +118,7 @@ class FeedArticleTableViewCell: UITableViewCell {
         
         expandButton.tintColor = UIColor.Project.buttonTextGray
         
-        let authorTapGesture = UITapGestureRecognizer(target: self, action: #selector(didPressAuthor))
-        authorTappableView.addGestureRecognizer(authorTapGesture)
-        
-        let reblogAuthorTapGesture = UITapGestureRecognizer(target: self, action: #selector(didPressReblogAuthor))
-        reblogAuthorTappableView.addGestureRecognizer(reblogAuthorTapGesture)
+        articleHeaderView.delegate = self
     }
     
     func configure(with viewModel: FeedArticleViewModel?) {
@@ -183,16 +158,6 @@ class FeedArticleTableViewCell: UITableViewCell {
         delegate?.didPressExpandButton(at: self)
     }
     
-    @objc
-    private func didPressAuthor() {
-        delegate?.didPressAuthor(at: self)
-    }
-    
-    @objc
-    private func didPressReblogAuthor() {
-        delegate?.didPressReblogAuthor(at: self)
-    }
-
     
     //MARK: Reuse identifier
     override var reuseIdentifier: String? {
@@ -205,14 +170,26 @@ class FeedArticleTableViewCell: UITableViewCell {
 }
 
 
+//MARK: ArticleHeaderViewDelegate
+extension FeedArticleTableViewCell: ArticleHeaderViewDelegate {
+    func didPressAuthor() {
+        delegate?.didPressAuthor(at: self)
+    }
+    
+    func didPressReblogAuthor() {
+        delegate?.didPressReblogAuthor(at: self)
+    }
+}
+
+
 //MARK: Setters
 extension FeedArticleTableViewCell{
     var authorName: String? {
         get {
-            return authorLabel.text
+            return articleHeaderView.authorLabel.text
         }
         set {
-            authorLabel.text = newValue
+            articleHeaderView.authorLabel.text = newValue
         }
     }
     
@@ -236,21 +213,21 @@ extension FeedArticleTableViewCell{
     
     var reblogAuthorName: String? {
         get {
-            return reblogAuthorLabel.text
+            return articleHeaderView.reblogAuthorLabel.text
         }
         set {
-            reblogAuthorLabel.text = newValue
-            reblogAuthorLabel.isHidden = newValue == nil
-            reblogIconImageView.isHidden = newValue == nil
+            articleHeaderView.reblogAuthorLabel.text = newValue
+            articleHeaderView.reblogAuthorLabel.isHidden = newValue == nil
+            articleHeaderView.reblogIconImageView.isHidden = newValue == nil
         }
     }
     
     var theme: String? {
         get {
-            return themeLabel.text
+            return articleHeaderView.themeLabel.text
         }
         set {
-            themeLabel.text = newValue
+            articleHeaderView.themeLabel.text = newValue
         }
     }
     

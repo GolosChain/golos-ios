@@ -79,6 +79,11 @@ extension FeedTabViewController: FeedTabViewProtocol {
 }
 
 extension FeedTabViewController: FeedTabMediatorDelegate {
+    func didSelectArticle(at index: Int) {
+        let articleViewController = ArticleViewController.nibInstance()
+        navigationController?.pushViewController(articleViewController, animated: true)
+    }
+    
     func didPressAuthor(at index: Int) {
         let profileViewController = ProfileViewController.nibInstance()
         navigationController?.pushViewController(profileViewController, animated: true)
@@ -102,8 +107,9 @@ extension FeedTabViewController: FeedTabMediatorDelegate {
             self.tableView.beginUpdates()
             self.tableView.endUpdates()
             self.tableView.layer.removeAllAnimations()
-        }) { (_) in
             self.tableView.scrollToRow(at: IndexPath(row: index, section: 0), at: .top, animated: true)
+        }) { (_) in
+            
         }
     }
 }

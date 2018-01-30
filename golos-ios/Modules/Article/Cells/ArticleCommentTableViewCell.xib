@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="139" id="KGk-i7-Jjw" customClass="ArticleCommentTableViewCell" customModule="Golos" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="139"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="138.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" image="mock_avatar_image" translatesAutoresizingMaskIntoConstraints="NO" id="H1S-WG-dLi">
+                        <rect key="frame" x="16" y="15" width="40" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="3br-X0-pgD"/>
+                            <constraint firstAttribute="width" constant="40" id="CMy-9q-lR5"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="digitalbeauty" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rl4-vC-Pik">
+                        <rect key="frame" x="67" y="15" width="63" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5 часов назад" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D5d-lP-fcd">
+                        <rect key="frame" x="140" y="15" width="70.5" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="REl-4r-6fi">
+                        <rect key="frame" x="67" y="98.5" width="58" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="vbn-A0-G6N"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <inset key="contentEdgeInsets" minX="0.0" minY="10" maxX="10" maxY="10"/>
+                        <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="-5" maxY="0.0"/>
+                        <state key="normal" title="$23.2" image="article_upvote_icon">
+                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                        </state>
+                        <connections>
+                            <action selector="upvoteButtonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Hd2-Fn-8PS"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="56y-kb-IwZ">
+                        <rect key="frame" x="184" y="98" width="43" height="40"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <inset key="contentEdgeInsets" minX="0.0" minY="10" maxX="10" maxY="10"/>
+                        <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="-5" maxY="0.0"/>
+                        <state key="normal" title="50" image="article_comments_icon">
+                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                        </state>
+                        <connections>
+                            <action selector="commentsButtonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="BcK-4k-JPo"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gXS-vw-CTt">
+                        <rect key="frame" x="137" y="98.5" width="31" height="40"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <inset key="contentEdgeInsets" minX="0.0" minY="10" maxX="0.0" maxY="10"/>
+                        <state key="normal" title="42" image="article_profile_icon">
+                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                        </state>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TcN-4p-UcJ">
+                        <rect key="frame" x="238" y="106" width="48" height="24"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="10"/>
+                        <state key="normal" title="Ответить"/>
+                        <connections>
+                            <action selector="answerButtonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="RRo-c5-Y6N"/>
+                        </connections>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="с @aleos согласен, я не хочу ждать еще пол года когда адаптируют ХФ со стима, дайте хоть какой! и пилите себе дальше че угодно!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uCz-0U-597">
+                        <rect key="frame" x="67" y="43" width="292" height="45"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="TcN-4p-UcJ" firstAttribute="centerY" secondItem="56y-kb-IwZ" secondAttribute="centerY" id="0Wf-fj-gKh"/>
+                    <constraint firstItem="D5d-lP-fcd" firstAttribute="bottom" secondItem="Rl4-vC-Pik" secondAttribute="bottom" id="1f6-s0-HfD"/>
+                    <constraint firstItem="56y-kb-IwZ" firstAttribute="top" secondItem="uCz-0U-597" secondAttribute="bottom" constant="10" id="1hN-tT-YHh"/>
+                    <constraint firstItem="Rl4-vC-Pik" firstAttribute="top" secondItem="H1S-WG-dLi" secondAttribute="top" id="5Ud-Tf-Omp"/>
+                    <constraint firstItem="gXS-vw-CTt" firstAttribute="top" secondItem="REl-4r-6fi" secondAttribute="top" id="9Va-kH-Nqq"/>
+                    <constraint firstItem="D5d-lP-fcd" firstAttribute="leading" secondItem="Rl4-vC-Pik" secondAttribute="trailing" constant="10" id="B1c-Qq-Yea"/>
+                    <constraint firstAttribute="bottom" secondItem="REl-4r-6fi" secondAttribute="bottom" id="Dvg-rk-LvZ"/>
+                    <constraint firstItem="gXS-vw-CTt" firstAttribute="leading" secondItem="REl-4r-6fi" secondAttribute="trailing" constant="12" id="ETs-lV-ZLs"/>
+                    <constraint firstItem="56y-kb-IwZ" firstAttribute="bottom" secondItem="gXS-vw-CTt" secondAttribute="bottom" id="Hqw-vV-K5q"/>
+                    <constraint firstAttribute="trailing" secondItem="uCz-0U-597" secondAttribute="trailing" constant="16" id="Iux-nN-FfT"/>
+                    <constraint firstItem="uCz-0U-597" firstAttribute="leading" secondItem="Rl4-vC-Pik" secondAttribute="leading" id="JOG-hi-tIT"/>
+                    <constraint firstItem="56y-kb-IwZ" firstAttribute="top" secondItem="gXS-vw-CTt" secondAttribute="top" id="Jtq-dm-sJr"/>
+                    <constraint firstItem="Rl4-vC-Pik" firstAttribute="bottom" secondItem="H1S-WG-dLi" secondAttribute="centerY" constant="-2" id="OIj-Oo-BJf"/>
+                    <constraint firstItem="H1S-WG-dLi" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="RDg-2A-tbP"/>
+                    <constraint firstItem="Rl4-vC-Pik" firstAttribute="leading" secondItem="H1S-WG-dLi" secondAttribute="trailing" constant="11" id="Vhj-lR-hHY"/>
+                    <constraint firstItem="56y-kb-IwZ" firstAttribute="leading" secondItem="gXS-vw-CTt" secondAttribute="trailing" constant="16" id="alt-0O-2cp"/>
+                    <constraint firstItem="H1S-WG-dLi" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="cgg-At-mM4"/>
+                    <constraint firstItem="uCz-0U-597" firstAttribute="top" secondItem="Rl4-vC-Pik" secondAttribute="bottom" constant="10" id="dMV-Km-oaz"/>
+                    <constraint firstItem="REl-4r-6fi" firstAttribute="leading" secondItem="Rl4-vC-Pik" secondAttribute="leading" id="iMK-A3-qhr"/>
+                    <constraint firstItem="TcN-4p-UcJ" firstAttribute="leading" secondItem="56y-kb-IwZ" secondAttribute="trailing" constant="11" id="kpG-qb-J29"/>
+                    <constraint firstItem="gXS-vw-CTt" firstAttribute="bottom" secondItem="REl-4r-6fi" secondAttribute="bottom" id="lUo-Sl-XaZ"/>
+                    <constraint firstItem="D5d-lP-fcd" firstAttribute="top" secondItem="Rl4-vC-Pik" secondAttribute="top" id="o8E-pM-Tmx"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="authorNameLabel" destination="Rl4-vC-Pik" id="viO-wx-b7G"/>
+                <outlet property="avatarImageView" destination="H1S-WG-dLi" id="k6m-re-Rv9"/>
+                <outlet property="commentsButton" destination="56y-kb-IwZ" id="ym0-bc-LK8"/>
+                <outlet property="contentLabel" destination="uCz-0U-597" id="w7q-Pf-C7Y"/>
+                <outlet property="dateLabel" destination="D5d-lP-fcd" id="Djj-lu-jcf"/>
+                <outlet property="replyButton" destination="TcN-4p-UcJ" id="03I-bJ-dYH"/>
+                <outlet property="upvoteAmountButton" destination="gXS-vw-CTt" id="0sq-Mr-JJA"/>
+                <outlet property="upvoteButton" destination="REl-4r-6fi" id="lMU-Au-Ec0"/>
+            </connections>
+            <point key="canvasLocation" x="-15.5" y="94.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="article_comments_icon" width="20" height="20"/>
+        <image name="article_profile_icon" width="18" height="18"/>
+        <image name="article_upvote_icon" width="20" height="20"/>
+        <image name="mock_avatar_image" width="200" height="200"/>
+    </resources>
+</document>

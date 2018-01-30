@@ -44,6 +44,8 @@ class FeedViewController: UIViewController {
         super.viewWillAppear(animated)
         UIApplication.shared.statusBarStyle = .lightContent
         navigationController?.setNavigationBarHidden(false, animated: true)
+        navigationController?.navigationBar.barTintColor = UIColor.Project.darkBlueHeader
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -54,23 +56,26 @@ class FeedViewController: UIViewController {
     //MARK: Setup UI
     private func setupUI() {
         setupPageViewController()
+        configureBackButton()
         
         let items = presenter.getFeedTabs().map{HorizontalSelectorItem(title: $0.type.rawValue)}
         
         horizontalSelector.items = items
         horizontalSelector.delegate = self
         
-        navigationController?.navigationBar.barTintColor = UIColor.Project.darkBlueHeader
+//        navigationController?.navigationBar.barTintColor = UIColor.Project.darkBlueHeader
+//        UIColor.init(patternImage: <#T##UIImage#>)
         
         
-//        if let navigationBar = navigationController?.navigationBar {
-//            let dropDownMenu = NavigationDropDownView()
-//            dropDownMenu.frame = CGRect(x: 0,
-//                                        y: 0,
-//                                        width: navigationBar.bounds.width,
-//                                        height: navigationBar.bounds.height)
-//            navigationItem.titleView = dropDownMenu
-//        }
+        
+        if let navigationBar = navigationController?.navigationBar {
+            let dropDownMenu = NavigationDropDownView()
+            dropDownMenu.frame = CGRect(x: 0,
+                                        y: 0,
+                                        width: navigationBar.bounds.width,
+                                        height: navigationBar.bounds.height)
+            navigationItem.titleView = dropDownMenu
+        }
         
     //        let dropDownViewController = DropDownViewController()
     //        dropDownViewController.view.frame = dropDownViewController.view.frame.offsetBy(dx: 0, dy: 100)
@@ -105,6 +110,7 @@ extension FeedViewController: FeedViewProtocol {
 }
 
 
+//MARK: HorizontalSelectorViewDelegate
 extension FeedViewController: HorizontalSelectorViewDelegate {
     func didChangeSelectedIndex(_ index: Int, previousIndex: Int) {
         mediator.setViewController(at: index, previousIndex: previousIndex)

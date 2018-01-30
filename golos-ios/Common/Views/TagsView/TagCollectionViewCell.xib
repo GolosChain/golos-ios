@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="gTV-IL-0wX" customClass="TagCollectionViewCell" customModule="Golos" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="230" height="50"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="230" height="50"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fZB-wM-YnL" customClass="TagTokenButton" customModule="Golos" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="230" height="50"/>
+                        <state key="normal" title="Button"/>
+                    </button>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="fZB-wM-YnL" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="110-2q-ipd"/>
+                <constraint firstAttribute="bottom" secondItem="fZB-wM-YnL" secondAttribute="bottom" id="d1f-To-o78"/>
+                <constraint firstItem="fZB-wM-YnL" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="mzz-td-pig"/>
+                <constraint firstAttribute="trailing" secondItem="fZB-wM-YnL" secondAttribute="trailing" id="uOO-vK-Tam"/>
+            </constraints>
+            <size key="customSize" width="230" height="50"/>
+            <connections>
+                <outlet property="tagButton" destination="fZB-wM-YnL" id="r3d-c7-rKG"/>
+            </connections>
+            <point key="canvasLocation" x="-56" y="54"/>
+        </collectionViewCell>
+    </objects>
+</document>

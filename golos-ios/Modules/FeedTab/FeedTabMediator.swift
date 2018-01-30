@@ -14,6 +14,7 @@ protocol FeedTabMediatorDelegate: class {
     func didPressExpand(at index: Int)
     func didPressAuthor(at index: Int)
     func didPressReblogAuthor(at index: Int)
+    func didSelectArticle(at index: Int)
 }
 
 class FeedTabMediator: NSObject {
@@ -22,6 +23,9 @@ class FeedTabMediator: NSObject {
     private var selectedIndex: IndexPath?
     
     var array = [IndexPath]()
+    
+    //MARK: Delegate
+    weak var delegate: FeedTabMediatorDelegate?
     
     //MARK: Module properties
     weak var tableView: UITableView!
@@ -35,12 +39,7 @@ class FeedTabMediator: NSObject {
         tableView.delegate = self
 
         self.tableView = tableView
-
     }
-    
-    //MARK: Delegate
-    weak var delegate: FeedTabMediatorDelegate?
-    
 }
 
 
@@ -77,6 +76,10 @@ extension FeedTabMediator: UITableViewDelegate {
         }
 
         return UITableViewAutomaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        delegate?.didSelectArticle(at: indexPath.row)
     }
 }
 
