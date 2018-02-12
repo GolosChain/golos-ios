@@ -28,6 +28,7 @@
 		7D25B4CA201FABD8004A3400 /* ArticleFooterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D25B4C8201FABD8004A3400 /* ArticleFooterTableViewCell.swift */; };
 		7D25B4CB201FABD8004A3400 /* ArticleFooterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D25B4C9201FABD8004A3400 /* ArticleFooterTableViewCell.xib */; };
 		7D25B4CD201FAE93004A3400 /* ArticleMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D25B4CC201FAE93004A3400 /* ArticleMediator.swift */; };
+		7D4597AC2031AD63007BA90C /* AppDelegate+HockeyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4597AB2031AD63007BA90C /* AppDelegate+HockeyApp.swift */; };
 		7D7EFEAA201E76140088EB44 /* ProfileDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7EFEA9201E76140088EB44 /* ProfileDataViewModel.swift */; };
 		7D7EFEAC201E95B30088EB44 /* ProfileFeedTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7EFEAB201E95B30088EB44 /* ProfileFeedTab.swift */; };
 		7DCF74A2201FE1C700D46495 /* ArticleCommentsSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF74A1201FE1C700D46495 /* ArticleCommentsSectionHeader.swift */; };
@@ -142,6 +143,7 @@
 		7D25B4C8201FABD8004A3400 /* ArticleFooterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleFooterTableViewCell.swift; sourceTree = "<group>"; };
 		7D25B4C9201FABD8004A3400 /* ArticleFooterTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleFooterTableViewCell.xib; sourceTree = "<group>"; };
 		7D25B4CC201FAE93004A3400 /* ArticleMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleMediator.swift; sourceTree = "<group>"; };
+		7D4597AB2031AD63007BA90C /* AppDelegate+HockeyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+HockeyApp.swift"; sourceTree = "<group>"; };
 		7D7EFEA9201E76140088EB44 /* ProfileDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDataViewModel.swift; sourceTree = "<group>"; };
 		7D7EFEAB201E95B30088EB44 /* ProfileFeedTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFeedTab.swift; sourceTree = "<group>"; };
 		7DCF74A1201FE1C700D46495 /* ArticleCommentsSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCommentsSectionHeader.swift; sourceTree = "<group>"; };
@@ -401,6 +403,7 @@
 				EC24FF5E200C3B8100A0AE15 /* AppDelegate+RootViewController.swift */,
 				EC24FF25200BEA8800A0AE15 /* AppDelegate+IQKeyboardManager.swift */,
 				ECF31731200ABB7C00F7B703 /* AppDelegate+SetupAppearance.swift */,
+				7D4597AB2031AD63007BA90C /* AppDelegate+HockeyApp.swift */,
 				ECC15F9B200975680099BBC9 /* Modules */,
 				EC24FF29200BFA9300A0AE15 /* Managers */,
 				EC07F4A320141E7400560CF0 /* Model */,
@@ -721,13 +724,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EC1DFB9D20063C400080BC50 /* Build configuration list for PBXNativeTarget "Golos" */;
 			buildPhases = (
-				7DD6B76C2020E0F3004D0830 /* ShellScript */,
 				55A88D3868FC3CC3DBEF14AF /* [CP] Check Pods Manifest.lock */,
+				7DD6B76C2020E0F3004D0830 /* ShellScript */,
 				EC1DFB8720063C400080BC50 /* Sources */,
 				EC1DFB8820063C400080BC50 /* Frameworks */,
 				EC1DFB8920063C400080BC50 /* Resources */,
 				60A1024D6273CE5A42A1ADAB /* [CP] Embed Pods Frameworks */,
 				F1798BD0C66927B5A490FD17 /* [CP] Copy Pods Resources */,
+				7D4597AA2031ABEA007BA90C /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -768,7 +772,7 @@
 				TargetAttributes = {
 					EC1DFB8A20063C400080BC50 = {
 						CreatedOnToolsVersion = 9.2;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 					EC24FF40200C038D00A0AE15 = {
 						CreatedOnToolsVersion = 9.2;
@@ -874,6 +878,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Golos/Pods-Golos-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		7D4597AA2031ABEA007BA90C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "FILE=\"${SRCROOT}/HockeySDK-iOS/BuildAgent\"\nif [ -f \"$FILE\" ]; then\n\"$FILE\"\nfi";
+		};
 		7DD6B76C2020E0F3004D0830 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -893,9 +910,12 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Golos/Pods-Golos-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/HockeySDK/HockeySDKResources.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/HockeySDKResources.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -922,6 +942,7 @@
 				EC9B2AE220154DE9008335C8 /* FeedArticleViewModel.swift in Sources */,
 				7D7EFEAA201E76140088EB44 /* ProfileDataViewModel.swift in Sources */,
 				EC9ABBC62017D55800AF8597 /* ProfileHeaderView.swift in Sources */,
+				7D4597AC2031AD63007BA90C /* AppDelegate+HockeyApp.swift in Sources */,
 				7D25B4CA201FABD8004A3400 /* ArticleFooterTableViewCell.swift in Sources */,
 				7D25B483201F479B004A3400 /* TagTokenButton.swift in Sources */,
 				EC24FF5B200C30C500A0AE15 /* MainContainerPresenter.swift in Sources */,
@@ -1128,13 +1149,15 @@
 			baseConfigurationReference = 974FDF6AE6B94E5A2BFC2FDE /* Pods-Golos.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = YS34WB4Z9W;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 29QBR47DMW;
+				HOCKEY_APP_ID = cd188c0839d94ff483eed5944117e7f9;
 				INFOPLIST_FILE = "golos-ios/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "io.golos.golos-ios";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.golos.testing.golos-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1145,13 +1168,17 @@
 			baseConfigurationReference = F860D859C40BCA60C8DE58EE /* Pods-Golos.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = YS34WB4Z9W;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 29QBR47DMW;
+				HOCKEY_APP_ID = cd188c0839d94ff483eed5944117e7f9;
 				INFOPLIST_FILE = "golos-ios/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "io.golos.golos-ios";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.golos.testing.golos-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "e1c57c95-437b-4933-9bae-8cad4514d8cd";
+				PROVISIONING_PROFILE_SPECIFIER = GolosTestAdHocProfile;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

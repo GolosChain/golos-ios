@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setupNavigationBarAppearance()
         setupTabBarAppearance()
         setupKeyboardManager()
+        setupHockeyApp()
         
         configureMainContainer()
         window?.makeKeyAndVisible()
