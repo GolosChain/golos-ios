@@ -22,4 +22,8 @@ struct Constants {
     struct StateMachine {
         static let oldStateKey = "oldStateKey"
     }
+    
+    struct InfoDictionaryKey {
+        static let hockeyAppIdKey = "HockeyAppId"
+    }
 }
