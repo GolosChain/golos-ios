@@ -9,10 +9,10 @@
 import UIKit
 
 protocol ProfileHorizontalSelectorViewDelegate: class {
-    func didSelect(profileFeedTab: ProfileFeedTab)
+    func didSelectItem(at index: Int)
 }
 
-class ProfileHorizontalSelectorView: UIView {
+class ProfileHorizontalSelectorView: PassthroughView {
     
     // MARK: Constants
     private let selectionViewHeight: CGFloat = 2.0
@@ -21,6 +21,7 @@ class ProfileHorizontalSelectorView: UIView {
     @IBOutlet weak var postsButton: UIButton!
     @IBOutlet weak var answersButton: UIButton!
     @IBOutlet weak var favoriteButton: UIButton!
+    @IBOutlet weak var infoButton: UIButton!
     @IBOutlet var buttons: [UIButton]!
     
     
@@ -63,9 +64,6 @@ class ProfileHorizontalSelectorView: UIView {
     
     // MARK: Setup UI
     private func setupUI() {
-//        let items = presenter.getFeedTabs().map{HorizontalSelectorItem(title: $0.type.rawValue)}
-//        items = [ProfileHorizontalSelectorItem]
-        
         selectionView.backgroundColor = UIColor.Project.profileSelectionViewBackground
         let frame = CGRect(x: postsButton.frame.origin.x,
                            y: bounds.size.height - selectionViewHeight,
@@ -91,7 +89,6 @@ class ProfileHorizontalSelectorView: UIView {
         addBottomShadow()
     }
 
-    
     // MARK: Layout
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -102,7 +99,9 @@ class ProfileHorizontalSelectorView: UIView {
     }
     
     
-    private func moveSelectionView(to button: UIButton, animated: Bool) {
+    private func moveSelectionView(to button: UIButton,
+                                   progress: CGFloat = 1,
+                                   animated: Bool) {
         var frame = selectionView.frame
         frame.origin.x = button.frame.origin.x
         frame.size.width = button.frame.size.width
@@ -119,7 +118,6 @@ class ProfileHorizontalSelectorView: UIView {
         }
     }
     
-    
     // MARK: Actions
     @IBAction func didPressButton(_ sender: UIButton) {
         guard sender != selectedButton else {
@@ -128,17 +126,20 @@ class ProfileHorizontalSelectorView: UIView {
         buttons.forEach {$0.isSelected = $0 == sender}
         selectedButton = sender
         moveSelectionView(to: sender, animated: true)
-        switch sender {
-        case postsButton:
-            
-            delegate?.didSelect(profileFeedTab: ProfileFeedTab(type: .posts))
-        case answersButton:
-            delegate?.didSelect(profileFeedTab: ProfileFeedTab(type: .answers))
-        case favoriteButton:
-            delegate?.didSelect(profileFeedTab: ProfileFeedTab(type: .favorite))
-        default:
-            break
+        
+        guard let buttonIndex = buttons.index(of: sender) else {
+            return
         }
+        delegate?.didSelectItem(at: buttonIndex)
+    }
+    
+    // MARK: Scrolling
+    func changeSelectedButton(at index: Int, progress: CGFloat = 0) {
+        let button = buttons[index]
+        moveSelectionView(to: button, progress: progress, animated: true)
+        selectedButton = button
+        buttons.forEach { $0.isSelected = $0 == button }
+//        delegate?.didSelectItem(at: index)
     }
 }
 

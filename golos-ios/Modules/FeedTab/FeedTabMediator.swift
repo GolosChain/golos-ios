@@ -9,12 +9,17 @@
 import UIKit
 
 protocol FeedTabMediatorDelegate: class {
+    func didScroll(tableView: UITableView)
     func didPressUpvote(at index: Int)
     func didPressComments(at index: Int)
     func didPressExpand(at index: Int)
     func didPressAuthor(at index: Int)
     func didPressReblogAuthor(at index: Int)
     func didSelectArticle(at index: Int)
+}
+
+extension FeedTabMediatorDelegate {
+    func didScroll(tableView: UITableView) {}
 }
 
 class FeedTabMediator: NSObject {
@@ -80,6 +85,10 @@ extension FeedTabMediator: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         delegate?.didSelectArticle(at: indexPath.row)
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        delegate?.didScroll(tableView: tableView)
     }
 }
 

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProfileInfoView: UIView {
+class ProfileInfoView: PassthroughView {
     
     // MARK: Setter properties
     var information: String? {

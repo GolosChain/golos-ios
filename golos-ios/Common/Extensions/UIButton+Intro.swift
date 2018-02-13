@@ -29,7 +29,7 @@ extension UIButton {
         setRoundEdges(cornerRadius: 4.0)
         backgroundColor = .white
         setTitleColor(UIColor.Project.textBlack, for: .normal)
-        titleLabel?.font = Fonts.shared.regular(with: 10)
+        titleLabel?.font = Fonts.shared.regular(with: 12)
     }
     
     private func setRoundEdges(cornerRadius: CGFloat) {

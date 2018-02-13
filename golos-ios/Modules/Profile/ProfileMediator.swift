@@ -9,11 +9,6 @@
 import UIKit
 
 protocol ProfileMediatorDelegate: class {
-    func tableViewDidScroll(_ tableView: UITableView)
-    
-    func heightForSegmentedControlHeight() -> CGFloat
-    func didSelect(tab: ProfileFeedTab)
-    
     func didPressUpvote(at index: Int)
     func didPressComments(at index: Int)
     func didPressAuthor(at index: Int)
@@ -74,7 +69,6 @@ extension ProfileMediator: UITableViewDelegate {
         guard let tableView = scrollView as? UITableView else {
             return
         }
-        delegate?.tableViewDidScroll(tableView)
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -82,16 +76,11 @@ extension ProfileMediator: UITableViewDelegate {
             return 0
         }
         
-        return delegate!.heightForSegmentedControlHeight()
+        return 0
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard section == 0 else {
-            return nil
-        }
-        let horizontalSelector = ProfileHorizontalSelectorView()
-        horizontalSelector.delegate = self
-        return horizontalSelector
+           return nil
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -128,11 +117,5 @@ extension ProfileMediator: FeedArticleTableViewCellDelegate {
     func didPressReblogAuthor(at cell: FeedArticleTableViewCell) {
         guard let indexPath = tableView.indexPath(for: cell) else {return}
         delegate?.didPressReblogAuthor(at: indexPath.row)
-    }
-}
-
-extension ProfileMediator: ProfileHorizontalSelectorViewDelegate {
-    func didSelect(profileFeedTab: ProfileFeedTab) {
-        delegate?.didSelect(tab: profileFeedTab)
     }
 }
