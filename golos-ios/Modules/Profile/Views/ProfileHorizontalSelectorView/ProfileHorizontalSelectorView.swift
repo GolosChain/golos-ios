@@ -63,9 +63,6 @@ class ProfileHorizontalSelectorView: PassthroughView {
     
     // MARK: Setup UI
     private func setupUI() {
-//        let items = presenter.getFeedTabs().map{HorizontalSelectorItem(title: $0.type.rawValue)}
-//        items = [ProfileHorizontalSelectorItem]
-        
         selectionView.backgroundColor = UIColor.Project.profileSelectionViewBackground
         let frame = CGRect(x: postsButton.frame.origin.x,
                            y: bounds.size.height - selectionViewHeight,
@@ -102,14 +99,27 @@ class ProfileHorizontalSelectorView: PassthroughView {
     }
     
     
-    private func moveSelectionView(to button: UIButton, animated: Bool) {
-        var frame = selectionView.frame
-        frame.origin.x = button.frame.origin.x
-        frame.size.width = button.frame.size.width
-        frame.origin.y = bounds.size.height - selectionViewHeight
+    private func moveSelectionView(to button: UIButton,
+                                   progress: CGFloat = 1,
+                                   animated: Bool) {
+        let currentFrame = selectionView.frame
+        let nextFrame = button.frame
         
+        let widthDelta = (currentFrame.width - nextFrame.width) * progress
+        let newWidth = currentFrame.width - widthDelta
+        
+        let xDelta = -(currentFrame.minX - nextFrame.minX) * progress
+        let newX = currentFrame.minX + xDelta
+        
+        let newFrame = CGRect(x: newX, y: currentFrame.minY, width: newWidth, height: currentFrame.height)
+        
+        
+//        frame.origin.x = button.frame.origin.x
+//        frame.size.width = button.frame.size.width
+//        frame.origin.y = bounds.size.height - selectionViewHeight
+//
         let animation = {
-            self.selectionView.frame = frame
+            self.selectionView.frame = newFrame
         }
         
         if animated {
