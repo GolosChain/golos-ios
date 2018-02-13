@@ -12,7 +12,7 @@ protocol ProfileHorizontalSelectorViewDelegate: class {
     func didSelect(profileFeedTab: ProfileFeedTab)
 }
 
-class ProfileHorizontalSelectorView: OverScrollView {
+class ProfileHorizontalSelectorView: PassthroughView {
     
     // MARK: Constants
     private let selectionViewHeight: CGFloat = 2.0
