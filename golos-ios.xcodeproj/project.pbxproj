@@ -31,6 +31,11 @@
 		7D4597AC2031AD63007BA90C /* AppDelegate+HockeyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4597AB2031AD63007BA90C /* AppDelegate+HockeyApp.swift */; };
 		7D7EFEAA201E76140088EB44 /* ProfileDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7EFEA9201E76140088EB44 /* ProfileDataViewModel.swift */; };
 		7D7EFEAC201E95B30088EB44 /* ProfileFeedTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7EFEAB201E95B30088EB44 /* ProfileFeedTab.swift */; };
+		7DA063222032513A00B5630C /* ProfileFeedContainerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA063212032513A00B5630C /* ProfileFeedContainerController.swift */; };
+		7DA063242032517D00B5630C /* ProfileFeedContainerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA063232032517D00B5630C /* ProfileFeedContainerItem.swift */; };
+		7DA06328203256D700B5630C /* PropertyStoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA06327203256D700B5630C /* PropertyStoring.swift */; };
+		7DA0632A2032583F00B5630C /* FeedTabViewController+ProfileFeedContainerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA063292032583F00B5630C /* FeedTabViewController+ProfileFeedContainerItem.swift */; };
+		7DA0632C203315A300B5630C /* OverScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA0632B203315A300B5630C /* OverScrollView.swift */; };
 		7DCF74A2201FE1C700D46495 /* ArticleCommentsSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF74A1201FE1C700D46495 /* ArticleCommentsSectionHeader.swift */; };
 		7DCF74A4201FE1E400D46495 /* ArticleCommentsSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DCF74A3201FE1E400D46495 /* ArticleCommentsSectionHeader.xib */; };
 		7DCF74A720200AA700D46495 /* ArticleCommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF74A520200AA700D46495 /* ArticleCommentTableViewCell.swift */; };
@@ -146,6 +151,11 @@
 		7D4597AB2031AD63007BA90C /* AppDelegate+HockeyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+HockeyApp.swift"; sourceTree = "<group>"; };
 		7D7EFEA9201E76140088EB44 /* ProfileDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDataViewModel.swift; sourceTree = "<group>"; };
 		7D7EFEAB201E95B30088EB44 /* ProfileFeedTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFeedTab.swift; sourceTree = "<group>"; };
+		7DA063212032513A00B5630C /* ProfileFeedContainerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFeedContainerController.swift; sourceTree = "<group>"; };
+		7DA063232032517D00B5630C /* ProfileFeedContainerItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFeedContainerItem.swift; sourceTree = "<group>"; };
+		7DA06327203256D700B5630C /* PropertyStoring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyStoring.swift; sourceTree = "<group>"; };
+		7DA063292032583F00B5630C /* FeedTabViewController+ProfileFeedContainerItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FeedTabViewController+ProfileFeedContainerItem.swift"; sourceTree = "<group>"; };
+		7DA0632B203315A300B5630C /* OverScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverScrollView.swift; sourceTree = "<group>"; };
 		7DCF74A1201FE1C700D46495 /* ArticleCommentsSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCommentsSectionHeader.swift; sourceTree = "<group>"; };
 		7DCF74A3201FE1E400D46495 /* ArticleCommentsSectionHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleCommentsSectionHeader.xib; sourceTree = "<group>"; };
 		7DCF74A520200AA700D46495 /* ArticleCommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCommentTableViewCell.swift; sourceTree = "<group>"; };
@@ -330,6 +340,15 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		7DA063202032511D00B5630C /* ProfileFeedContainerController */ = {
+			isa = PBXGroup;
+			children = (
+				7DA063212032513A00B5630C /* ProfileFeedContainerController.swift */,
+				7DA063232032517D00B5630C /* ProfileFeedContainerItem.swift */,
+			);
+			path = ProfileFeedContainerController;
+			sourceTree = "<group>";
+		};
 		7DCF74A0201FE18A00D46495 /* TableHeaders */ = {
 			isa = PBXGroup;
 			children = (
@@ -473,6 +492,7 @@
 		EC24FF6D200C432700A0AE15 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				7DA063202032511D00B5630C /* ProfileFeedContainerController */,
 				EC9ABBC42017D54900AF8597 /* Views */,
 				EC24FF72200C439E00A0AE15 /* ProfileViewController */,
 				EC24FF73200C43B500A0AE15 /* ProfilePresenter.swift */,
@@ -564,6 +584,7 @@
 			children = (
 				EC07F4AF2014404200560CF0 /* FeedTabViewController.swift */,
 				EC07F4B02014404200560CF0 /* FeedTabViewController.xib */,
+				7DA063292032583F00B5630C /* FeedTabViewController+ProfileFeedContainerItem.swift */,
 			);
 			path = FeedTabViewController;
 			sourceTree = "<group>";
@@ -671,6 +692,7 @@
 			isa = PBXGroup;
 			children = (
 				EC24FF27200BEBE600A0AE15 /* ViewProtocol.swift */,
+				7DA06327203256D700B5630C /* PropertyStoring.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -713,6 +735,7 @@
 				EC24FF7B200C4CE500A0AE15 /* NavigationDropDownView */,
 				EC9ABBE92018072600AF8597 /* GSTableView.swift */,
 				7D25B4B4201F9218004A3400 /* GSNavigationBar.swift */,
+				7DA0632B203315A300B5630C /* OverScrollView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -930,6 +953,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EC9ABBE82018036E00AF8597 /* Device+Size.swift in Sources */,
+				7DA06328203256D700B5630C /* PropertyStoring.swift in Sources */,
 				EC24FF59200C30B800A0AE15 /* MainContainerViewController.swift in Sources */,
 				EC24FF54200C080300A0AE15 /* Notifications.swift in Sources */,
 				7D1783DD201FD9B600B75979 /* ArticlePostedInTableViewCell.swift in Sources */,
@@ -939,6 +963,7 @@
 				7DF16A72201D6043000F5529 /* ProfileMediator.swift in Sources */,
 				7D25B4BE201FABB2004A3400 /* ArticleTitleTableViewCell.swift in Sources */,
 				EC24FF74200C43B500A0AE15 /* ProfilePresenter.swift in Sources */,
+				7DA0632A2032583F00B5630C /* FeedTabViewController+ProfileFeedContainerItem.swift in Sources */,
 				EC9B2AE220154DE9008335C8 /* FeedArticleViewModel.swift in Sources */,
 				7D7EFEAA201E76140088EB44 /* ProfileDataViewModel.swift in Sources */,
 				EC9ABBC62017D55800AF8597 /* ProfileHeaderView.swift in Sources */,
@@ -961,12 +986,15 @@
 				EC07F4AA20141F0C00560CF0 /* FeedPresenter.swift in Sources */,
 				EC07F4A22014093E00560CF0 /* HorizontalSelectorView.swift in Sources */,
 				EC07F4A820141F0200560CF0 /* FeedMediator.swift in Sources */,
+				7DA063242032517D00B5630C /* ProfileFeedContainerItem.swift in Sources */,
+				7DA063222032513A00B5630C /* ProfileFeedContainerController.swift in Sources */,
 				7D25B4C6201FABCB004A3400 /* ArticleTextTableViewCell.swift in Sources */,
 				EC9B2AE920155B9C008335C8 /* FeedTabMediator.swift in Sources */,
 				7D25B4C2201FABBD004A3400 /* ArticleImageTableViewCell.swift in Sources */,
 				EC24FF28200BEBE600A0AE15 /* ViewProtocol.swift in Sources */,
 				7DCF74A720200AA700D46495 /* ArticleCommentTableViewCell.swift in Sources */,
 				EC9B2AE6201550F4008335C8 /* FeedArticleTableViewCell.swift in Sources */,
+				7DA0632C203315A300B5630C /* OverScrollView.swift in Sources */,
 				EC24FF84200C635600A0AE15 /* DropDownMediator.swift in Sources */,
 				EC24FF70200C433700A0AE15 /* ProfileViewController.swift in Sources */,
 				EC24FF82200C625800A0AE15 /* DropDownViewController.swift in Sources */,

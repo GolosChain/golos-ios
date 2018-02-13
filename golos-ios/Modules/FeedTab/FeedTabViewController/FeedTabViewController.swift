@@ -112,4 +112,8 @@ extension FeedTabViewController: FeedTabMediatorDelegate {
             
         }
     }
+    
+    func didScroll(tableView: UITableView) {
+        delegate?.didScrollItem(self)
+    }
 }

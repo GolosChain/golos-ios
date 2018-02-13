@@ -17,7 +17,7 @@ protocol ProfileHeaderViewDelegate: class {
 }
 
 
-class ProfileHeaderView: UIView {
+class ProfileHeaderView: OverScrollView {
     
     // MARK: Size properties
     var minimizedHeaderHeight: CGFloat = 0
@@ -147,11 +147,12 @@ class ProfileHeaderView: UIView {
     }
     
     func didChangeOffset(_ offset: CGFloat) {
-        if offset + minimizedHeaderHeight < 0 {
-            imageViewTopConstraint.constant = offset + minimizedHeaderHeight
-        }
-        
-        blurImageView.alpha = -((offset + minimizedHeaderHeight) / 100)
+        imageViewTopConstraint.constant = -100
+//        if offset + minimizedHeaderHeight < 0 {
+//            imageViewTopConstraint.constant = -offset + minimizedHeaderHeight
+//        }
+//
+//        blurImageView.alpha = -((offset + minimizedHeaderHeight) / 100)
     }
 
     

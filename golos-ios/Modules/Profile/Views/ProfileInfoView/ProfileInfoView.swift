@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProfileInfoView: UIView {
+class ProfileInfoView: OverScrollView {
     
     // MARK: Setter properties
     var information: String? {
