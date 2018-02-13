@@ -39,7 +39,6 @@ extension FeedTabViewController: ProfileFeedContainerItem, PropertyStoring {
                                                y: 0,
                                                width: UIScreen.main.bounds.width,
                                                height: minimizedHeaderHeight))
-        tableHeader.backgroundColor = .orange
         tableView.tableHeaderView = tableHeader
         
         itemScrollView.contentInset = UIEdgeInsets(
