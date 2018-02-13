@@ -77,11 +77,6 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
         presenter.fetchFeed()
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-    }
-    
-    
     // MARK: Setup UI
     private func setupUI() {
         addChildViewController(profileFeedContainer)
@@ -96,11 +91,17 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
         let vc4 = FeedTabViewController.nibInstance()
         
         profileFeedContainer.setFeedItems([vc1, vc2, vc3, vc4], headerHeight: headerHeight, minimizedHeaderHeight: headerMinimizedHeight)
-      
         
         view.bringSubview(toFront: profileInfoView)
         view.bringSubview(toFront: profileHeaderView)
         view.bringSubview(toFront: profileHorizontalSelector)
+        
+        profileHorizontalSelector.delegate = self
+        profileHeaderView.delegate = self
+        
+        if let navigationController = self.navigationController {
+            profileHeaderView.showBackButton(navigationController.viewControllers.count > 1)
+        }
         
         profileHeaderViewHeightConstraint.constant = topViewHeight
         
@@ -110,13 +111,8 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
         horizontalSelectorHeightConstraint.constant = bottomViewHeight
         horizontalSelectorTopConstraint.constant = topViewHeight + middleViewHeight
         
-        profileHeaderView.backgroundImage = Images.Profile.getProfileHeaderBackground()
-    }
-    
-    // MARK: Autolayout
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
         
+        profileHeaderView.backgroundImage = Images.Profile.getProfileHeaderBackground()
     }
     
     // MARK: Actions
@@ -161,32 +157,9 @@ extension ProfileViewController: ProfileViewProtocol {
     }
     
     func didChangedFeedTab(isForward: Bool, previousAmount: Int) {
-        let deleteAnimation: UITableViewRowAnimation = isForward ? .left : .right
-        let insertAnimation: UITableViewRowAnimation = isForward ? .right : .left
-        
-        var deleteIndexPaths = [IndexPath]()
-        for i in 0..<previousAmount {
-            deleteIndexPaths.append(IndexPath(row: i, section: 0))
-        }
-        
-        var insertIndexPaths = [IndexPath]()
-        for i in 0..<presenter.getFeedModels().count {
-            insertIndexPaths.append(IndexPath(row: i, section: 0))
-        }
-//
-        CATransaction.begin()
-        CATransaction.setCompletionBlock {
-        }
-        
-        tableView.beginUpdates()
-        tableView.deleteRows(at: deleteIndexPaths, with: deleteAnimation)
-        tableView.insertRows(at: insertIndexPaths, with: insertAnimation)
-        tableView.endUpdates()
-
-        CATransaction.commit()
+       
     }
 }
-
 
 // MARK: ProfileMediatorDelegate
 extension ProfileViewController: ProfileMediatorDelegate {
@@ -209,7 +182,12 @@ extension ProfileViewController: ProfileMediatorDelegate {
     }
 }
 
+// MARK: ProfileFeedContainerControllerDelegate
 extension ProfileViewController: ProfileFeedContainerControllerDelegate {
+    func didMainScroll(to pageIndex: Int) {
+        profileHorizontalSelector.changeSelectedButton(at: pageIndex)
+    }
+    
     func didChangeYOffset(_ yOffset: CGFloat) {
         profileHeaderViewTopConstraint.constant = -(min(
             yOffset,
@@ -225,5 +203,12 @@ extension ProfileViewController: ProfileFeedContainerControllerDelegate {
         ))
         
         profileHeaderView.didChangeOffset(yOffset)
+    }
+}
+
+// MARK: HorizontalSelectorViewDelegate
+extension ProfileViewController: ProfileHorizontalSelectorViewDelegate {
+    func didSelectItem(at index: Int) {
+        profileFeedContainer.setActiveItem(at: index)
     }
 }

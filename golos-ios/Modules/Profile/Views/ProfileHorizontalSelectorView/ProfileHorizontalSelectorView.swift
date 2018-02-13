@@ -9,7 +9,7 @@
 import UIKit
 
 protocol ProfileHorizontalSelectorViewDelegate: class {
-    func didSelect(profileFeedTab: ProfileFeedTab)
+    func didSelectItem(at index: Int)
 }
 
 class ProfileHorizontalSelectorView: PassthroughView {
@@ -21,6 +21,7 @@ class ProfileHorizontalSelectorView: PassthroughView {
     @IBOutlet weak var postsButton: UIButton!
     @IBOutlet weak var answersButton: UIButton!
     @IBOutlet weak var favoriteButton: UIButton!
+    @IBOutlet weak var infoButton: UIButton!
     @IBOutlet var buttons: [UIButton]!
     
     
@@ -88,7 +89,6 @@ class ProfileHorizontalSelectorView: PassthroughView {
         addBottomShadow()
     }
 
-    
     // MARK: Layout
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -102,24 +102,13 @@ class ProfileHorizontalSelectorView: PassthroughView {
     private func moveSelectionView(to button: UIButton,
                                    progress: CGFloat = 1,
                                    animated: Bool) {
-        let currentFrame = selectionView.frame
-        let nextFrame = button.frame
+        var frame = selectionView.frame
+        frame.origin.x = button.frame.origin.x
+        frame.size.width = button.frame.size.width
+        frame.origin.y = bounds.size.height - selectionViewHeight
         
-        let widthDelta = (currentFrame.width - nextFrame.width) * progress
-        let newWidth = currentFrame.width - widthDelta
-        
-        let xDelta = -(currentFrame.minX - nextFrame.minX) * progress
-        let newX = currentFrame.minX + xDelta
-        
-        let newFrame = CGRect(x: newX, y: currentFrame.minY, width: newWidth, height: currentFrame.height)
-        
-        
-//        frame.origin.x = button.frame.origin.x
-//        frame.size.width = button.frame.size.width
-//        frame.origin.y = bounds.size.height - selectionViewHeight
-//
         let animation = {
-            self.selectionView.frame = newFrame
+            self.selectionView.frame = frame
         }
         
         if animated {
@@ -129,7 +118,6 @@ class ProfileHorizontalSelectorView: PassthroughView {
         }
     }
     
-    
     // MARK: Actions
     @IBAction func didPressButton(_ sender: UIButton) {
         guard sender != selectedButton else {
@@ -138,17 +126,20 @@ class ProfileHorizontalSelectorView: PassthroughView {
         buttons.forEach {$0.isSelected = $0 == sender}
         selectedButton = sender
         moveSelectionView(to: sender, animated: true)
-        switch sender {
-        case postsButton:
-            
-            delegate?.didSelect(profileFeedTab: ProfileFeedTab(type: .posts))
-        case answersButton:
-            delegate?.didSelect(profileFeedTab: ProfileFeedTab(type: .answers))
-        case favoriteButton:
-            delegate?.didSelect(profileFeedTab: ProfileFeedTab(type: .favorite))
-        default:
-            break
+        
+        guard let buttonIndex = buttons.index(of: sender) else {
+            return
         }
+        delegate?.didSelectItem(at: buttonIndex)
+    }
+    
+    // MARK: Scrolling
+    func changeSelectedButton(at index: Int, progress: CGFloat = 0) {
+        let button = buttons[index]
+        moveSelectionView(to: button, progress: progress, animated: true)
+        selectedButton = button
+        buttons.forEach { $0.isSelected = $0 == button }
+//        delegate?.didSelectItem(at: index)
     }
 }
 

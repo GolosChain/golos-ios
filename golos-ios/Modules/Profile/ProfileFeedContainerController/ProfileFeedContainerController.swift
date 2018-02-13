@@ -10,6 +10,7 @@ import UIKit
 
 protocol ProfileFeedContainerControllerDelegate: class {
     func didChangeYOffset(_ yOffset: CGFloat)
+    func didMainScroll(to pageIndex: Int)
 }
 
 class ProfileFeedContainerController: UIViewController {
@@ -18,6 +19,11 @@ class ProfileFeedContainerController: UIViewController {
     
     private var headerHeight: CGFloat = 0
     private var minimizedHeaderHeight: CGFloat = 0
+    
+    // MARK: Main Scrolling
+    private var startIndex: Int = 0
+    private var lastContentOffsetX: CGFloat = 0
+    private var needToDelegate = true
     
     
     weak var delegate: ProfileFeedContainerControllerDelegate?
@@ -92,8 +98,22 @@ class ProfileFeedContainerController: UIViewController {
         mainScrollView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         
         mainScrollView.isPagingEnabled = true
+        mainScrollView.delegate = self
     }
-
+    
+    // MARK: Change active item
+    func setActiveItem(at index: Int) {
+        let width = mainScrollView.bounds.width
+        let xOffset = width * CGFloat(index)
+        let contentOffset = CGPoint(x: xOffset, y: 0)
+        
+        needToDelegate = false
+        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
+            self.mainScrollView.contentOffset = contentOffset
+        }) { (_) in
+            self.needToDelegate = true
+        }
+    }
 }
 
 extension ProfileFeedContainerController: ProfileFeedContainerItemDelegate {
@@ -116,5 +136,15 @@ extension ProfileFeedContainerController: ProfileFeedContainerItemDelegate {
                 containerItem.itemScrollView.scrollIndicatorInsets = scrollIndicatorInsets
             }
         }
+    }
+}
+
+extension ProfileFeedContainerController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        guard needToDelegate else {return}
+        let width = scrollView.bounds.width
+        let fractPage = Float(scrollView.contentOffset.x / width)
+        let page = lroundf(fractPage)
+        delegate?.didMainScroll(to: page)
     }
 }

@@ -14,10 +14,12 @@
             <connections>
                 <outlet property="answersButton" destination="xZG-iS-3Xs" id="CKy-ta-Izv"/>
                 <outlet property="favoriteButton" destination="0ru-8H-on4" id="aDs-rV-qMR"/>
+                <outlet property="infoButton" destination="Yh5-U2-LkE" id="P8t-Lg-cNl"/>
                 <outlet property="postsButton" destination="wAb-W4-aEK" id="fLF-Uw-SeB"/>
                 <outletCollection property="buttons" destination="wAb-W4-aEK" collectionClass="NSMutableArray" id="Wo6-s8-SdJ"/>
                 <outletCollection property="buttons" destination="xZG-iS-3Xs" collectionClass="NSMutableArray" id="eho-Dj-has"/>
                 <outletCollection property="buttons" destination="0ru-8H-on4" collectionClass="NSMutableArray" id="49H-Re-Zzs"/>
+                <outletCollection property="buttons" destination="Yh5-U2-LkE" collectionClass="NSMutableArray" id="7ad-WY-65u"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
