@@ -14,7 +14,7 @@ protocol ProfileFeedContainerControllerDelegate: class {
 }
 
 class ProfileFeedContainerController: UIViewController {
-    private var mainScrollView = UIScrollView()
+    private var mainScrollView = GSScrollView()
     private var items = [UIViewController & ProfileFeedContainerItem]()
     
     private var headerHeight: CGFloat = 0
@@ -132,8 +132,8 @@ extension ProfileFeedContainerController: ProfileFeedContainerItemDelegate {
                     bottom: 0,
                     right: 0
                 )
-                containerItem.itemScrollView.contentOffset = scrollView.contentOffset
-                containerItem.itemScrollView.scrollIndicatorInsets = scrollIndicatorInsets
+                containerItem.changeItemScrollViewOffset(scrollView.contentOffset)
+//                containerItem.itemScrollView.scrollIndicatorInsets = scrollIndicatorInsets
             }
         }
     }

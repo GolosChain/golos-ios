@@ -29,6 +29,16 @@
 		7D25B4CB201FABD8004A3400 /* ArticleFooterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D25B4C9201FABD8004A3400 /* ArticleFooterTableViewCell.xib */; };
 		7D25B4CD201FAE93004A3400 /* ArticleMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D25B4CC201FAE93004A3400 /* ArticleMediator.swift */; };
 		7D4597AC2031AD63007BA90C /* AppDelegate+HockeyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4597AB2031AD63007BA90C /* AppDelegate+HockeyApp.swift */; };
+		7D79C33A2034675C00794447 /* AnswersFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D79C3382034675C00794447 /* AnswersFeedViewController.swift */; };
+		7D79C33B2034675C00794447 /* AnswersFeedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D79C3392034675C00794447 /* AnswersFeedViewController.xib */; };
+		7D79C33D203467B600794447 /* AnswersFeedPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D79C33C203467B600794447 /* AnswersFeedPresenter.swift */; };
+		7D79C33F203467C000794447 /* AnswersFeedMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D79C33E203467C000794447 /* AnswersFeedMediator.swift */; };
+		7D79C341203467D500794447 /* AnswersFeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D79C340203467D500794447 /* AnswersFeedViewModel.swift */; };
+		7D79C3452034685900794447 /* AnswersFeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D79C3432034685900794447 /* AnswersFeedTableViewCell.swift */; };
+		7D79C3462034685900794447 /* AnswersFeedTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D79C3442034685900794447 /* AnswersFeedTableViewCell.xib */; };
+		7D79C3482034686B00794447 /* ReusableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D79C3472034686B00794447 /* ReusableCell.swift */; };
+		7D79C34A20346B5500794447 /* AnswerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D79C34920346B5500794447 /* AnswerType.swift */; };
+		7D79C34C20347DCE00794447 /* AnswersFeedViewController+ProfileFeedContainerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D79C34B20347DCE00794447 /* AnswersFeedViewController+ProfileFeedContainerItem.swift */; };
 		7DA063222032513A00B5630C /* ProfileFeedContainerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA063212032513A00B5630C /* ProfileFeedContainerController.swift */; };
 		7DA063242032517D00B5630C /* ProfileFeedContainerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA063232032517D00B5630C /* ProfileFeedContainerItem.swift */; };
 		7DA06328203256D700B5630C /* PropertyStoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA06327203256D700B5630C /* PropertyStoring.swift */; };
@@ -145,6 +155,16 @@
 		7D25B4C9201FABD8004A3400 /* ArticleFooterTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleFooterTableViewCell.xib; sourceTree = "<group>"; };
 		7D25B4CC201FAE93004A3400 /* ArticleMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleMediator.swift; sourceTree = "<group>"; };
 		7D4597AB2031AD63007BA90C /* AppDelegate+HockeyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+HockeyApp.swift"; sourceTree = "<group>"; };
+		7D79C3382034675C00794447 /* AnswersFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswersFeedViewController.swift; sourceTree = "<group>"; };
+		7D79C3392034675C00794447 /* AnswersFeedViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AnswersFeedViewController.xib; sourceTree = "<group>"; };
+		7D79C33C203467B600794447 /* AnswersFeedPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswersFeedPresenter.swift; sourceTree = "<group>"; };
+		7D79C33E203467C000794447 /* AnswersFeedMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswersFeedMediator.swift; sourceTree = "<group>"; };
+		7D79C340203467D500794447 /* AnswersFeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswersFeedViewModel.swift; sourceTree = "<group>"; };
+		7D79C3432034685900794447 /* AnswersFeedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswersFeedTableViewCell.swift; sourceTree = "<group>"; };
+		7D79C3442034685900794447 /* AnswersFeedTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AnswersFeedTableViewCell.xib; sourceTree = "<group>"; };
+		7D79C3472034686B00794447 /* ReusableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableCell.swift; sourceTree = "<group>"; };
+		7D79C34920346B5500794447 /* AnswerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerType.swift; sourceTree = "<group>"; };
+		7D79C34B20347DCE00794447 /* AnswersFeedViewController+ProfileFeedContainerItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnswersFeedViewController+ProfileFeedContainerItem.swift"; sourceTree = "<group>"; };
 		7DA063212032513A00B5630C /* ProfileFeedContainerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFeedContainerController.swift; sourceTree = "<group>"; };
 		7DA063232032517D00B5630C /* ProfileFeedContainerItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFeedContainerItem.swift; sourceTree = "<group>"; };
 		7DA06327203256D700B5630C /* PropertyStoring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyStoring.swift; sourceTree = "<group>"; };
@@ -332,6 +352,38 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		7D79C3362034673500794447 /* Answers */ = {
+			isa = PBXGroup;
+			children = (
+				7D79C3422034683B00794447 /* Cells */,
+				7D79C3372034673E00794447 /* AnswersFeedViewController */,
+				7D79C33C203467B600794447 /* AnswersFeedPresenter.swift */,
+				7D79C33E203467C000794447 /* AnswersFeedMediator.swift */,
+				7D79C340203467D500794447 /* AnswersFeedViewModel.swift */,
+				7D79C34920346B5500794447 /* AnswerType.swift */,
+			);
+			path = Answers;
+			sourceTree = "<group>";
+		};
+		7D79C3372034673E00794447 /* AnswersFeedViewController */ = {
+			isa = PBXGroup;
+			children = (
+				7D79C3382034675C00794447 /* AnswersFeedViewController.swift */,
+				7D79C3392034675C00794447 /* AnswersFeedViewController.xib */,
+				7D79C34B20347DCE00794447 /* AnswersFeedViewController+ProfileFeedContainerItem.swift */,
+			);
+			path = AnswersFeedViewController;
+			sourceTree = "<group>";
+		};
+		7D79C3422034683B00794447 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				7D79C3432034685900794447 /* AnswersFeedTableViewCell.swift */,
+				7D79C3442034685900794447 /* AnswersFeedTableViewCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		7DA063202032511D00B5630C /* ProfileFeedContainerController */ = {
 			isa = PBXGroup;
 			children = (
@@ -356,21 +408,6 @@
 				EC07F4A12014093E00560CF0 /* HorizontalSelectorView.swift */,
 			);
 			path = HorizontalSelectorView;
-			sourceTree = "<group>";
-		};
-		EC07F4A320141E7400560CF0 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				EC07F4A420141E8400560CF0 /* Feed */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		EC07F4A420141E8400560CF0 /* Feed */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Feed;
 			sourceTree = "<group>";
 		};
 		EC07F4AE2014402E00560CF0 /* Posts Feed */ = {
@@ -416,7 +453,6 @@
 				7D4597AB2031AD63007BA90C /* AppDelegate+HockeyApp.swift */,
 				ECC15F9B200975680099BBC9 /* Modules */,
 				EC24FF29200BFA9300A0AE15 /* Managers */,
-				EC07F4A320141E7400560CF0 /* Model */,
 				ECF28084200A941F0000D949 /* Common */,
 				ECB2C0D12008E54000AF1AF5 /* Miscellaneous */,
 				EC1DFB9520063C400080BC50 /* Assets.xcassets */,
@@ -630,6 +666,7 @@
 		ECC15F9B200975680099BBC9 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				7D79C3362034673500794447 /* Answers */,
 				7D25B484201F4967004A3400 /* Article */,
 				EC07F4AE2014402E00560CF0 /* Posts Feed */,
 				EC24FF75200C495F00A0AE15 /* Feed */,
@@ -681,6 +718,7 @@
 			children = (
 				EC24FF27200BEBE600A0AE15 /* ViewProtocol.swift */,
 				7DA06327203256D700B5630C /* PropertyStoring.swift */,
+				7D79C3472034686B00794447 /* ReusableCell.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -820,6 +858,7 @@
 				7D1783DE201FD9B600B75979 /* ArticlePostedInTableViewCell.xib in Resources */,
 				7D25B4BA201F9821004A3400 /* ArticleHeaderView.xib in Resources */,
 				EC24FF71200C433700A0AE15 /* ProfileViewController.xib in Resources */,
+				7D79C3462034685900794447 /* AnswersFeedTableViewCell.xib in Resources */,
 				ECF3172F200AB22E00F7B703 /* LoginViewController.xib in Resources */,
 				7D25B4C3201FABBD004A3400 /* ArticleImageTableViewCell.xib in Resources */,
 				7D25B4CB201FABD8004A3400 /* ArticleFooterTableViewCell.xib in Resources */,
@@ -829,6 +868,7 @@
 				EC1DFB9920063C400080BC50 /* LaunchScreen.storyboard in Resources */,
 				7DCF74A820200AA700D46495 /* ArticleCommentTableViewCell.xib in Resources */,
 				EC24FF7F200C4E2C00A0AE15 /* NavigationDropDownView.xib in Resources */,
+				7D79C33B2034675C00794447 /* AnswersFeedViewController.xib in Resources */,
 				EC6FD5A3200AE1A200DCB824 /* QRScannerViewController.xib in Resources */,
 				EC9ABBC82017D56800AF8597 /* ProfileHeaderView.xib in Resources */,
 				EC07F4B22014404200560CF0 /* PostsFeedViewController.xib in Resources */,
@@ -941,6 +981,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EC9ABBE82018036E00AF8597 /* Device+Size.swift in Sources */,
+				7D79C34A20346B5500794447 /* AnswerType.swift in Sources */,
 				7DA06328203256D700B5630C /* PropertyStoring.swift in Sources */,
 				EC24FF59200C30B800A0AE15 /* MainContainerViewController.swift in Sources */,
 				EC24FF54200C080300A0AE15 /* Notifications.swift in Sources */,
@@ -948,6 +989,7 @@
 				EC9B2AE020154B62008335C8 /* PostsFeedPresenter.swift in Sources */,
 				EC24FF5D200C30CF00A0AE15 /* MainContainerMediator.swift in Sources */,
 				EC24FF20200BC69400A0AE15 /* LoginPresenter.swift in Sources */,
+				7D79C341203467D500794447 /* AnswersFeedViewModel.swift in Sources */,
 				7DF16A72201D6043000F5529 /* ProfileMediator.swift in Sources */,
 				7D25B4BE201FABB2004A3400 /* ArticleTitleTableViewCell.swift in Sources */,
 				EC24FF74200C43B500A0AE15 /* ProfilePresenter.swift in Sources */,
@@ -987,10 +1029,12 @@
 				ECA8E35A2018CA17003B8ABA /* ProfileHorizontalSelectorView.swift in Sources */,
 				EC6FD59E200AD53100DCB824 /* ViewController+BackButton.swift in Sources */,
 				7DCF74A2201FE1C700D46495 /* ArticleCommentsSectionHeader.swift in Sources */,
+				7D79C33D203467B600794447 /* AnswersFeedPresenter.swift in Sources */,
 				ECFF44E8200BC42F00DAF74C /* QRScannerViewControllerDelegate.swift in Sources */,
 				ECC15FA62009794E0099BBC9 /* Fonts.swift in Sources */,
 				ECA8E35E2018D119003B8ABA /* UIView+Shadow.swift in Sources */,
 				ECF31732200ABB7C00F7B703 /* AppDelegate+SetupAppearance.swift in Sources */,
+				7D79C3482034686B00794447 /* ReusableCell.swift in Sources */,
 				7D25B48F201F5E88004A3400 /* CollectionViewCenteredLayout.swift in Sources */,
 				EC9ABBC32017D17000AF8597 /* UIImageEffects.swift in Sources */,
 				EC24FF52200C06E300A0AE15 /* StateMachine.swift in Sources */,
@@ -1002,10 +1046,14 @@
 				EC5B2BFD201A443C007A4335 /* String+Size.swift in Sources */,
 				ECF28087200A94550000D949 /* ViewController+Nib.swift in Sources */,
 				EC1DFB8F20063C400080BC50 /* AppDelegate.swift in Sources */,
+				7D79C34C20347DCE00794447 /* AnswersFeedViewController+ProfileFeedContainerItem.swift in Sources */,
 				EC24FF6C200C400300A0AE15 /* GSTabBarController.swift in Sources */,
 				7D25B4B8201F980A004A3400 /* ArticleHeaderView.swift in Sources */,
+				7D79C33A2034675C00794447 /* AnswersFeedViewController.swift in Sources */,
+				7D79C3452034685900794447 /* AnswersFeedTableViewCell.swift in Sources */,
 				ECB2C0D52008E56300AF1AF5 /* Constants.swift in Sources */,
 				EC24FF7D200C4DE300A0AE15 /* NavigationDropDownView.swift in Sources */,
+				7D79C33F203467C000794447 /* AnswersFeedMediator.swift in Sources */,
 				EC24FF50200C065F00A0AE15 /* AppState.swift in Sources */,
 				EC07F4A620141E8D00560CF0 /* PostsFeedType.swift in Sources */,
 				ECF31725200A9D2800F7B703 /* UIAlertController+Window.swift in Sources */,
