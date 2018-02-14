@@ -30,6 +30,7 @@ class FeedViewController: UIViewController {
     lazy var mediator: FeedMediator = {
         let mediator = FeedMediator()
         mediator.presenter = self.presenter
+        mediator.delegate = self
         return mediator
     }()
     
@@ -58,15 +59,12 @@ class FeedViewController: UIViewController {
         setupPageViewController()
         configureBackButton()
         
-        let items = presenter.getFeedTabs().map {HorizontalSelectorItem(title: $0.type.rawValue)}
+        let selectorItems = presenter.getPostsFeedTypeArray()
+            .map { $0.rawValue }
+            .map { HorizontalSelectorItem(title: $0) }
         
-        horizontalSelector.items = items
+        horizontalSelector.items = selectorItems
         horizontalSelector.delegate = self
-        
-//        navigationController?.navigationBar.barTintColor = UIColor.Project.darkBlueHeader
-//        UIColor.init(patternImage: <#T##UIImage#>)
-        
-        
         
         if let navigationBar = navigationController?.navigationBar {
             let dropDownMenu = NavigationDropDownView()
@@ -101,13 +99,15 @@ class FeedViewController: UIViewController {
     }
 }
 
-
-// MARK: FeedViewProtocol
-extension FeedViewController: FeedViewProtocol {
-    func didChangeActiveIndex(_ index: Int) {
+extension FeedViewController: FeedMediatorDelegate {
+    func didChangePage(at index: Int) {
         horizontalSelector.selectedIndex = index
     }
 }
+
+
+// MARK: FeedViewProtocol
+extension FeedViewController: FeedViewProtocol {}
 
 
 // MARK: HorizontalSelectorViewDelegate

@@ -1,5 +1,5 @@
 //
-//  FeedType.swift
+//  PostsFeedType.swift
 //  Golos
 //
 //  Created by Grigory Serebryanyy on 21/01/2018.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum FeedType: String {
+enum PostsFeedType: String {
     case new = "Новое"
     case hot = "Актуальное"
     case popular = "Популярное"

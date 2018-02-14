@@ -121,7 +121,7 @@ class FeedArticleTableViewCell: UITableViewCell {
         articleHeaderView.delegate = self
     }
     
-    func configure(with viewModel: FeedArticleViewModel?) {
+    func configure(with viewModel: PostsFeedViewModel?) {
         guard let viewModel = viewModel else {
             return
         }

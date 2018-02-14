@@ -8,8 +8,7 @@
 
 import UIKit
 
-extension FeedTabViewController: ProfileFeedContainerItem, PropertyStoring {
-    
+extension PostsFeedViewController: ProfileFeedContainerItem, PropertyStoring {
     
     typealias StorePropertyType = ProfileFeedContainerItemDelegate?
     

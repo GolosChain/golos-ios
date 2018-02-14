@@ -8,62 +8,61 @@
 
 import Foundation
 
-protocol FeedTabPresenterProtocol: class {
-    func setFeedTab(_ tab: FeedTab)
-    func getFeedTab() -> FeedTab
+protocol PostsFeedPresenterProtocol: class {
+    func setPostsFeedType(_ type: PostsFeedType)
+    func getPostsFeedType() -> PostsFeedType
     
-    func getArticleModels() -> [FeedArticleViewModel]
-    func getArticleModel(at index: Int) -> FeedArticleViewModel?
+    func fetchPosts()
+    func loadPosts()
     
-    func fetchArticles()
-    func loadArticles()
+    func getPostsViewModels() -> [PostsFeedViewModel]
+    func getPostViewModel(at index: Int) -> PostsFeedViewModel?
 }
 
-protocol FeedTabViewProtocol: class {
-    func didFetchArticles()
-    func didLoadArticles()
+protocol PostsFeedViewProtocol: class {
+    func didFetchPosts()
+    func didLoadPosts()
 }
 
-class FeedTabPresenter: NSObject {
-    weak var feedTabView: FeedTabViewProtocol!
+class PostsFeedPresenter: NSObject {
+    weak var postsFeedView: PostsFeedViewProtocol!
     
-    private var feedTab = FeedTab(type: .popular)
-    
-    private var articleModels = [FeedArticleViewModel]()
+    private var postsFeedType: PostsFeedType = .new
+    private var postsItems = [PostsFeedViewModel]()
 }
 
-extension FeedTabPresenter: FeedTabPresenterProtocol {
-    func getFeedTab() -> FeedTab {
-        return feedTab
+extension PostsFeedPresenter: PostsFeedPresenterProtocol {
+    func setPostsFeedType(_ type: PostsFeedType) {
+        self.postsFeedType = type
     }
     
-    func setFeedTab(_ tab: FeedTab) {
-        feedTab = tab
+    func getPostsFeedType() -> PostsFeedType {
+        return self.postsFeedType
     }
     
-    func getArticleModels() -> [FeedArticleViewModel] {
-        return articleModels
+    func fetchPosts() {
+        postsItems = fetchFakeAcrticles()
     }
     
-    func getArticleModel(at index: Int) -> FeedArticleViewModel? {
-        guard index < articleModels.count else {return nil}
-        return articleModels[index]
-    }
-    
-    func fetchArticles() {
-        articleModels = fetchFakeAcrticles()
-    }
-    
-    func loadArticles() {
+    func loadPosts() {
         
+    }
+    
+    func getPostsViewModels() -> [PostsFeedViewModel] {
+        return postsItems
+    }
+    
+    func getPostViewModel(at index: Int) -> PostsFeedViewModel? {
+        guard index < postsItems.count else { return nil }
+        return postsItems[index]
     }
 }
 
 //FAKE DATA
-extension FeedTabPresenter {
+extension PostsFeedPresenter {
     // swiftlint:disable line_length
-    private func fetchFakeAcrticles() -> [FeedArticleViewModel] {
-        let fakeArticle1 = FeedArticleViewModel(authorName: "digitalbeauty",
+    private func fetchFakeAcrticles() -> [PostsFeedViewModel] {
+        let fakeArticle1 = PostsFeedViewModel(authorName: "digitalbeauty",
                                                authorAvatarUrl: "https://cdn.pixabay.com/photo/2016/08/20/05/38/avatar-1606916_1280.png",
                                                articleTitle: "Когда женственность настолько крута, что дух захватывает ...",
                                                reblogAuthorName: "egorfedorov",
@@ -74,7 +73,7 @@ extension FeedTabPresenter {
                                                commentsAmount: "32",
                                                didUpvote: true,
                                                didComment: false)
-        let fakeArticle2 = FeedArticleViewModel(authorName: "innusik",
+        let fakeArticle2 = PostsFeedViewModel(authorName: "innusik",
                                                 authorAvatarUrl: "https://cdn.pixabay.com/photo/2016/08/20/05/38/avatar-1606916_1280.png",
                                                 articleTitle: "Покушение на президента СССР Михаила Горбачева",
                                                 reblogAuthorName: nil,

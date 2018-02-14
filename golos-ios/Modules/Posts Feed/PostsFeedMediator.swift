@@ -1,5 +1,5 @@
 //
-//  FeedTabMediator.swift
+//  PostsFeedMediator.swift
 //  Golos
 //
 //  Created by Grigory Serebryanyy on 22/01/2018.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol FeedTabMediatorDelegate: class {
+protocol PostsFeedMediatorDelegate: class {
     func didScroll(tableView: UITableView)
     func didPressUpvote(at index: Int)
     func didPressComments(at index: Int)
@@ -18,11 +18,11 @@ protocol FeedTabMediatorDelegate: class {
     func didSelectArticle(at index: Int)
 }
 
-extension FeedTabMediatorDelegate {
+extension PostsFeedMediatorDelegate {
     func didScroll(tableView: UITableView) {}
 }
 
-class FeedTabMediator: NSObject {
+class PostsFeedMediator: NSObject {
     private let feedArticleTableViewCellIdentifier = FeedArticleTableViewCell.reuseIdentifier!
     
     private var selectedIndex: IndexPath?
@@ -30,11 +30,11 @@ class FeedTabMediator: NSObject {
     var array = [IndexPath]()
     
     // MARK: Delegate
-    weak var delegate: FeedTabMediatorDelegate?
+    weak var delegate: PostsFeedMediatorDelegate?
     
     // MARK: Module properties
     weak var tableView: UITableView!
-    weak var feedTabPresenter: FeedTabPresenterProtocol!
+    weak var postsFeedPresenter: PostsFeedPresenterProtocol!
     
     func configure(tableView: UITableView) {
         tableView.tableFooterView = UIView(frame: CGRect.zero)
@@ -49,16 +49,16 @@ class FeedTabMediator: NSObject {
 
 
 // MARK: UITableViewDataSource
-extension FeedTabMediator: UITableViewDataSource {
+extension PostsFeedMediator: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return feedTabPresenter.getArticleModels().count
+        return postsFeedPresenter.getPostsViewModels().count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: feedArticleTableViewCellIdentifier) as! FeedArticleTableViewCell
         cell.delegate = self
         
-        let viewModel = feedTabPresenter.getArticleModel(at: indexPath.row)
+        let viewModel = postsFeedPresenter.getPostViewModel(at: indexPath.row)
         cell.configure(with: viewModel)
                 
         return cell
@@ -67,7 +67,7 @@ extension FeedTabMediator: UITableViewDataSource {
 
 
 // MARK: UITableViewDelegate
-extension FeedTabMediator: UITableViewDelegate {
+extension PostsFeedMediator: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         guard let selectedIndex = self.selectedIndex, selectedIndex == indexPath else {
             return FeedArticleTableViewCell.minimizedHeight
@@ -94,7 +94,7 @@ extension FeedTabMediator: UITableViewDelegate {
 
 
 // MARK: FeedArticleTableViewCellDelegate
-extension FeedTabMediator: FeedArticleTableViewCellDelegate {
+extension PostsFeedMediator: FeedArticleTableViewCellDelegate {
     func didPressCommentsButton(at cell: FeedArticleTableViewCell) {
         guard let indexPath = tableView.indexPath(for: cell) else {return}
         delegate?.didPressComments(at: indexPath.row)

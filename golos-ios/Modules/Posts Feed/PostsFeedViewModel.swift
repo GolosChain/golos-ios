@@ -1,5 +1,5 @@
 //
-//  FeedArticleViewModel.swift
+//  PostsFeedViewModel.swift
 //  Golos
 //
 //  Created by Grigory Serebryanyy on 22/01/2018.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct FeedArticleViewModel {
+struct PostsFeedViewModel {
     let authorName: String
     let authorAvatarUrl: String?
     let articleTitle: String

@@ -55,7 +55,6 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     lazy var mediator: ProfileMediator = {
         let mediator = ProfileMediator()
         mediator.profilePresenter = self.presenter
-        mediator.delegate = self
         return mediator
     }()
 
@@ -72,9 +71,6 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
         UIApplication.shared.statusBarStyle = .lightContent
         navigationController?.setNavigationBarHidden(true, animated: true)
         navigationController?.interactivePopGestureRecognizer?.delegate = self
-        
-        presenter.fetchProfileData()
-        presenter.fetchFeed()
     }
     
     // MARK: Setup UI
@@ -85,10 +81,10 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
         
         profileFeedContainer.delegate = self
         
-        let vc1 = FeedTabViewController.nibInstance()
-        let vc2 = FeedTabViewController.nibInstance()
-        let vc3 = FeedTabViewController.nibInstance()
-        let vc4 = FeedTabViewController.nibInstance()
+        let vc1 = PostsFeedViewController.nibInstance()
+        let vc2 = PostsFeedViewController.nibInstance()
+        let vc3 = PostsFeedViewController.nibInstance()
+        let vc4 = PostsFeedViewController.nibInstance()
         
         profileFeedContainer.setFeedItems([vc1, vc2, vc3, vc4], headerHeight: headerHeight, minimizedHeaderHeight: headerMinimizedHeight)
         
@@ -158,27 +154,6 @@ extension ProfileViewController: ProfileViewProtocol {
     
     func didChangedFeedTab(isForward: Bool, previousAmount: Int) {
        
-    }
-}
-
-// MARK: ProfileMediatorDelegate
-extension ProfileViewController: ProfileMediatorDelegate {
-    func didPressAuthor(at index: Int) {
-        let profileViewController = ProfileViewController.nibInstance()
-        navigationController?.pushViewController(profileViewController, animated: true)
-    }
-    
-    func didPressReblogAuthor(at index: Int) {
-        let profileViewController = ProfileViewController.nibInstance()
-        navigationController?.pushViewController(profileViewController, animated: true)
-    }
-    
-    func didPressUpvote(at index: Int) {
-        Utils.inDevelopmentAlert()
-    }
-    
-    func didPressComments(at index: Int) {
-        Utils.inDevelopmentAlert()
     }
 }
 

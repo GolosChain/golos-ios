@@ -8,57 +8,51 @@
 
 import UIKit
 
-class FeedTabViewController: UIViewController {
+class PostsFeedViewController: UIViewController {
     
     // MARK: Outlets properties
     @IBOutlet weak var tableView: UITableView!
     
 
     // MARK: Module properties
-    lazy var presenter: FeedTabPresenterProtocol = {
-        let presenter = FeedTabPresenter()
-        presenter.feedTabView = self
+    lazy var presenter: PostsFeedPresenterProtocol = {
+        let presenter = PostsFeedPresenter()
+        presenter.postsFeedView = self
         return presenter
     }()
     
-    lazy var mediator: FeedTabMediator = {
-        let mediator = FeedTabMediator()
-        mediator.feedTabPresenter = presenter
+    lazy var mediator: PostsFeedMediator = {
+        let mediator = PostsFeedMediator()
+        mediator.postsFeedPresenter = presenter
         mediator.delegate = self
         return mediator
     }()
     
-    var feedTab: FeedTab {
+    var postsFeedType: PostsFeedType {
         get {
-            return presenter.getFeedTab()
+            return presenter.getPostsFeedType()
         }
         set {
-            presenter.setFeedTab(newValue)
+            presenter.setPostsFeedType(newValue)
         }
     }
     
+    class func nibInstance(with feedType: PostsFeedType) -> PostsFeedViewController {
+        let viewController = super.nibInstance() as! PostsFeedViewController
+        viewController.postsFeedType = feedType
+        return viewController
+    }
     
     // MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        
-        let color: UIColor
-        switch feedTab.type {
-        case .hot: color = .red
-        case .new: color = .blue
-        case .popular: color = .green
-        case .promoted: color = .magenta
-        }
-        view.backgroundColor = color
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        presenter.fetchArticles()
+        presenter.fetchPosts()
     }
-
     
     // MARK: SetupUI
     private func setupUI() {
@@ -67,18 +61,18 @@ class FeedTabViewController: UIViewController {
 }
 
 
-// MARK: FeedTabViewProtocol
-extension FeedTabViewController: FeedTabViewProtocol {
-    func didFetchArticles() {
+// MARK: PostsFeedViewProtocol
+extension PostsFeedViewController: PostsFeedViewProtocol {
+    func didFetchPosts() {
         
     }
     
-    func didLoadArticles() {
+    func didLoadPosts() {
         
     }
 }
 
-extension FeedTabViewController: FeedTabMediatorDelegate {
+extension PostsFeedViewController: PostsFeedMediatorDelegate {
     func didSelectArticle(at index: Int) {
         let articleViewController = ArticleViewController.nibInstance()
         navigationController?.pushViewController(articleViewController, animated: true)
