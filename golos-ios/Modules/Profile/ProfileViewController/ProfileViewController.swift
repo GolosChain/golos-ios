@@ -11,7 +11,7 @@ import UIKit
 private let topViewHeight: CGFloat = 180.0
 private let middleViewHeight: CGFloat = 145.0
 private let bottomViewHeight: CGFloat = 43.0
-private let topViewMinimizedHeight: CGFloat = 20.0
+private let topViewMinimizedHeight: CGFloat = UIDevice.getDeviceScreenSize() == .iphoneX ? 35.0 : 20.0
 
 class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     var headerHeight: CGFloat {
@@ -22,7 +22,6 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     // MARK: Outlets properties
-    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var statusImageView: UIImageView!
     @IBOutlet weak var profileHeaderView: ProfileHeaderView!
     @IBOutlet weak var profileInfoView: ProfileInfoView!
@@ -79,10 +78,16 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
         view.addSubview(profileFeedContainer.view)
         profileFeedContainer.didMove(toParentViewController: self)
         
+        profileFeedContainer.view.translatesAutoresizingMaskIntoConstraints = false
+        profileFeedContainer.view.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        profileFeedContainer.view.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        profileFeedContainer.view.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        profileFeedContainer.view.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        
         profileFeedContainer.delegate = self
         
         let vc1 = PostsFeedViewController.nibInstance()
-        let vc2 = PostsFeedViewController.nibInstance()
+        let vc2 = AnswersFeedViewController.nibInstance()
         let vc3 = PostsFeedViewController.nibInstance()
         let vc4 = PostsFeedViewController.nibInstance()
         
@@ -109,6 +114,8 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
         
         
         profileHeaderView.backgroundImage = Images.Profile.getProfileHeaderBackground()
+        
+        profileHorizontalSelector.backgroundColor = .green
     }
     
     // MARK: Actions
@@ -145,7 +152,7 @@ extension ProfileViewController: ProfileViewProtocol {
     }
     
     func didLoadArticles() {
-        tableView.reloadSections(IndexSet.init(integer: 0), with: .none)
+    
     }
     
     func didRefreshSuccess() {

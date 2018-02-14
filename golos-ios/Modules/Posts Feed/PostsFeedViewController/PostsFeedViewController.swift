@@ -56,6 +56,11 @@ class PostsFeedViewController: UIViewController {
     
     // MARK: SetupUI
     private func setupUI() {
+        if #available(iOS 11.0, *) {
+            tableView.contentInsetAdjustmentBehavior = .never
+        } else {
+            self.automaticallyAdjustsScrollViewInsets = false
+        }
         mediator.configure(tableView: tableView)
     }
 }

@@ -23,7 +23,6 @@
                 <outlet property="profileInfoViewTopConstraint" destination="hya-mY-W4Y" id="zii-yc-aSL"/>
                 <outlet property="statusBarImageViewBottomConstraint" destination="jPO-CG-PVL" id="5p9-9y-pZO"/>
                 <outlet property="statusImageView" destination="6lT-rg-uBh" id="Swi-h8-2vq"/>
-                <outlet property="tableView" destination="PqM-Ds-jBw" id="lpo-mD-kbj"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -38,10 +37,6 @@
                         <constraint firstAttribute="height" constant="180" id="8d8-As-UWC"/>
                     </constraints>
                 </imageView>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PqM-Ds-jBw" customClass="GSTableView" customModule="Golos" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="616"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                </tableView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OXR-eo-1yi" customClass="ProfileHeaderView" customModule="Golos" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="180"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -67,11 +62,8 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="3bD-aF-YjH" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="333" id="897-7T-Bfg"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="PqM-Ds-jBw" secondAttribute="bottom" id="9Eu-J4-c59"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="PqM-Ds-jBw" secondAttribute="trailing" id="A4n-sb-Pgv"/>
                 <constraint firstItem="kMl-fy-C8P" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="NZB-Ia-Ww6"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="kMl-fy-C8P" secondAttribute="trailing" id="Nmm-N1-GhF"/>
-                <constraint firstItem="PqM-Ds-jBw" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="SfS-tG-J2C"/>
                 <constraint firstItem="OXR-eo-1yi" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="g54-Ki-8lm"/>
                 <constraint firstItem="OXR-eo-1yi" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="gvi-cs-pJa"/>
                 <constraint firstItem="kMl-fy-C8P" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="180" id="hya-mY-W4Y"/>
@@ -79,7 +71,6 @@
                 <constraint firstItem="3bD-aF-YjH" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="jb1-4A-WIP"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="6lT-rg-uBh" secondAttribute="trailing" id="qvW-Fb-kjv"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="3bD-aF-YjH" secondAttribute="trailing" id="u6C-58-Uri"/>
-                <constraint firstItem="PqM-Ds-jBw" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="vKQ-UQ-UHR"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="OXR-eo-1yi" secondAttribute="trailing" id="x1n-mI-zhd"/>
                 <constraint firstItem="6lT-rg-uBh" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="ztZ-DB-2Zu"/>
             </constraints>
