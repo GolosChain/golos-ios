@@ -99,6 +99,7 @@ class ProfileFeedContainerController: UIViewController {
         
         mainScrollView.isPagingEnabled = true
         mainScrollView.delegate = self
+        mainScrollView.showsHorizontalScrollIndicator = false
     }
     
     // MARK: Change active item
@@ -126,14 +127,7 @@ extension ProfileFeedContainerController: ProfileFeedContainerItemDelegate {
         
         if offset < 0 {
             for containerItem in self.items {
-                let scrollIndicatorInsets = UIEdgeInsets(
-                    top: -offset,
-                    left: 0,
-                    bottom: 0,
-                    right: 0
-                )
                 containerItem.changeItemScrollViewOffset(scrollView.contentOffset)
-//                containerItem.itemScrollView.scrollIndicatorInsets = scrollIndicatorInsets
             }
         }
     }
