@@ -8,9 +8,15 @@
 
 import UIKit
 
+protocol FeedMediatorDelegate: class {
+    func didChangePage(at index: Int)
+}
+
 class FeedMediator: NSObject {
     weak var presenter: FeedPresenterProtocol!
     weak var pageViewController: UIPageViewController!
+    
+    weak var delegate: FeedMediatorDelegate?
 
     func configure(pageViewController: UIPageViewController) {
         pageViewController.dataSource = self
@@ -20,14 +26,15 @@ class FeedMediator: NSObject {
     }
     
     func setViewController(at index: Int, previousIndex: Int = 0) {
-        guard let tab = presenter.getFeedTab(at: index) else {return}
+        guard let type = presenter.getPostsFeedType(at: index) else { return }
         
         let animated = index != previousIndex
-        let direction: UIPageViewControllerNavigationDirection = index < previousIndex ? .reverse : .forward
-        let nextFeedTabViewController = FeedTabViewController()
-        nextFeedTabViewController.feedTab = tab
+        let direction: UIPageViewControllerNavigationDirection = index < previousIndex
+            ? .reverse
+            : .forward
+        let viewController = PostsFeedViewController.nibInstance(with: type)
         
-        pageViewController.setViewControllers([nextFeedTabViewController],
+        pageViewController.setViewControllers([viewController],
                                               direction: direction,
                                               animated: animated,
                                               completion: nil)
@@ -37,24 +44,20 @@ class FeedMediator: NSObject {
 extension FeedMediator: UIPageViewControllerDataSource {
     func pageViewController(_ pageViewController: UIPageViewController,
                             viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        guard let feedTabViewController = viewController as? FeedTabViewController else {return nil}
-        guard let previousTab = presenter.getTabBefore(feedTabViewController.feedTab) else {return nil}
+        guard let currentViewController = viewController as? PostsFeedViewController else { return nil }
+        guard let previousType = presenter.previousPostsFeedType(currentViewController.postsFeedType) else { return nil }
         
-        let previousFeedTabViewController = FeedTabViewController()
-        previousFeedTabViewController.feedTab = previousTab
-        
-        return previousFeedTabViewController
+        let previousViewController = PostsFeedViewController.nibInstance(with: previousType)
+        return previousViewController
     }
     
     func pageViewController(_ pageViewController: UIPageViewController,
                             viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        guard let feedTabViewController = viewController as? FeedTabViewController else {return nil}
-        guard let nextTab = presenter.getTabAfter(feedTabViewController.feedTab) else {return nil}
+        guard let currentViewController = viewController as? PostsFeedViewController else { return nil }
+        guard let nextType = presenter.nextPostsFeedType(currentViewController.postsFeedType) else { return nil }
         
-        let nextFeedTabViewController = FeedTabViewController()
-        nextFeedTabViewController.feedTab = nextTab
-        
-        return nextFeedTabViewController
+        let nextViewController = PostsFeedViewController.nibInstance(with: nextType)
+        return nextViewController
     }
 }
 
@@ -68,8 +71,9 @@ extension FeedMediator: UIPageViewControllerDelegate {
                             didFinishAnimating finished: Bool,
                             previousViewControllers: [UIViewController],
                             transitionCompleted completed: Bool) {
-        guard let feedTabViewController = pageViewController.viewControllers?.first as? FeedTabViewController else {return}
-        
-        presenter.setActiveTab(feedTabViewController.feedTab)
+        guard let viewController = pageViewController.viewControllers?.first as? PostsFeedViewController else { return }
+        let type = viewController.postsFeedType
+        guard let index = presenter.getPostsFeedTypeArray().index(of: type) else { return }
+        delegate?.didChangePage(at: index)
     }
 }

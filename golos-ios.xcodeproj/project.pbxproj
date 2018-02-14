@@ -29,12 +29,10 @@
 		7D25B4CB201FABD8004A3400 /* ArticleFooterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D25B4C9201FABD8004A3400 /* ArticleFooterTableViewCell.xib */; };
 		7D25B4CD201FAE93004A3400 /* ArticleMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D25B4CC201FAE93004A3400 /* ArticleMediator.swift */; };
 		7D4597AC2031AD63007BA90C /* AppDelegate+HockeyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4597AB2031AD63007BA90C /* AppDelegate+HockeyApp.swift */; };
-		7D7EFEAA201E76140088EB44 /* ProfileDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7EFEA9201E76140088EB44 /* ProfileDataViewModel.swift */; };
-		7D7EFEAC201E95B30088EB44 /* ProfileFeedTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7EFEAB201E95B30088EB44 /* ProfileFeedTab.swift */; };
 		7DA063222032513A00B5630C /* ProfileFeedContainerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA063212032513A00B5630C /* ProfileFeedContainerController.swift */; };
 		7DA063242032517D00B5630C /* ProfileFeedContainerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA063232032517D00B5630C /* ProfileFeedContainerItem.swift */; };
 		7DA06328203256D700B5630C /* PropertyStoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA06327203256D700B5630C /* PropertyStoring.swift */; };
-		7DA0632A2032583F00B5630C /* FeedTabViewController+ProfileFeedContainerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA063292032583F00B5630C /* FeedTabViewController+ProfileFeedContainerItem.swift */; };
+		7DA0632A2032583F00B5630C /* PostsFeedViewController+ProfileFeedContainerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA063292032583F00B5630C /* PostsFeedViewController+ProfileFeedContainerItem.swift */; };
 		7DA0632C203315A300B5630C /* PassthroughView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA0632B203315A300B5630C /* PassthroughView.swift */; };
 		7DCF74A2201FE1C700D46495 /* ArticleCommentsSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF74A1201FE1C700D46495 /* ArticleCommentsSectionHeader.swift */; };
 		7DCF74A4201FE1E400D46495 /* ArticleCommentsSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DCF74A3201FE1E400D46495 /* ArticleCommentsSectionHeader.xib */; };
@@ -43,12 +41,11 @@
 		7DF16A72201D6043000F5529 /* ProfileMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF16A71201D6043000F5529 /* ProfileMediator.swift */; };
 		99AA4A81C46AA503973BA77F /* Pods_Golos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D3CE7EF617BA80468724899 /* Pods_Golos.framework */; };
 		EC07F4A22014093E00560CF0 /* HorizontalSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC07F4A12014093E00560CF0 /* HorizontalSelectorView.swift */; };
-		EC07F4A620141E8D00560CF0 /* FeedType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC07F4A520141E8D00560CF0 /* FeedType.swift */; };
+		EC07F4A620141E8D00560CF0 /* PostsFeedType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC07F4A520141E8D00560CF0 /* PostsFeedType.swift */; };
 		EC07F4A820141F0200560CF0 /* FeedMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC07F4A720141F0200560CF0 /* FeedMediator.swift */; };
 		EC07F4AA20141F0C00560CF0 /* FeedPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC07F4A920141F0C00560CF0 /* FeedPresenter.swift */; };
-		EC07F4AC20141F7400560CF0 /* FeedTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC07F4AB20141F7400560CF0 /* FeedTab.swift */; };
-		EC07F4B12014404200560CF0 /* FeedTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC07F4AF2014404200560CF0 /* FeedTabViewController.swift */; };
-		EC07F4B22014404200560CF0 /* FeedTabViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC07F4B02014404200560CF0 /* FeedTabViewController.xib */; };
+		EC07F4B12014404200560CF0 /* PostsFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC07F4AF2014404200560CF0 /* PostsFeedViewController.swift */; };
+		EC07F4B22014404200560CF0 /* PostsFeedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC07F4B02014404200560CF0 /* PostsFeedViewController.xib */; };
 		EC1DFB8F20063C400080BC50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1DFB8E20063C400080BC50 /* AppDelegate.swift */; };
 		EC1DFB9620063C400080BC50 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC1DFB9520063C400080BC50 /* Assets.xcassets */; };
 		EC1DFB9920063C400080BC50 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC1DFB9720063C400080BC50 /* LaunchScreen.storyboard */; };
@@ -87,14 +84,13 @@
 		EC9ABBC82017D56800AF8597 /* ProfileHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC9ABBC72017D56800AF8597 /* ProfileHeaderView.xib */; };
 		EC9ABBE82018036E00AF8597 /* Device+Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9ABBE72018036E00AF8597 /* Device+Size.swift */; };
 		EC9ABBEA2018072600AF8597 /* GSTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9ABBE92018072600AF8597 /* GSTableView.swift */; };
-		EC9B2AE020154B62008335C8 /* FeedTabPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9B2ADF20154B62008335C8 /* FeedTabPresenter.swift */; };
-		EC9B2AE220154DE9008335C8 /* FeedArticleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9B2AE120154DE9008335C8 /* FeedArticleViewModel.swift */; };
+		EC9B2AE020154B62008335C8 /* PostsFeedPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9B2ADF20154B62008335C8 /* PostsFeedPresenter.swift */; };
+		EC9B2AE220154DE9008335C8 /* PostsFeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9B2AE120154DE9008335C8 /* PostsFeedViewModel.swift */; };
 		EC9B2AE6201550F4008335C8 /* FeedArticleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9B2AE4201550F4008335C8 /* FeedArticleTableViewCell.swift */; };
 		EC9B2AE7201550F4008335C8 /* FeedArticleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC9B2AE5201550F4008335C8 /* FeedArticleTableViewCell.xib */; };
-		EC9B2AE920155B9C008335C8 /* FeedTabMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9B2AE820155B9C008335C8 /* FeedTabMediator.swift */; };
+		EC9B2AE920155B9C008335C8 /* PostsFeedMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9B2AE820155B9C008335C8 /* PostsFeedMediator.swift */; };
 		ECA8E3512018A626003B8ABA /* ProfileInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA8E3502018A626003B8ABA /* ProfileInfoView.swift */; };
 		ECA8E3532018A62E003B8ABA /* ProfileInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECA8E3522018A62E003B8ABA /* ProfileInfoView.xib */; };
-		ECA8E3572018C9A3003B8ABA /* ProfileFeedType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA8E3562018C9A3003B8ABA /* ProfileFeedType.swift */; };
 		ECA8E35A2018CA17003B8ABA /* ProfileHorizontalSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA8E3592018CA17003B8ABA /* ProfileHorizontalSelectorView.swift */; };
 		ECA8E35C2018CA30003B8ABA /* ProfileHorizontalSelectorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECA8E35B2018CA30003B8ABA /* ProfileHorizontalSelectorView.xib */; };
 		ECA8E35E2018D119003B8ABA /* UIView+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA8E35D2018D119003B8ABA /* UIView+Shadow.swift */; };
@@ -149,12 +145,10 @@
 		7D25B4C9201FABD8004A3400 /* ArticleFooterTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleFooterTableViewCell.xib; sourceTree = "<group>"; };
 		7D25B4CC201FAE93004A3400 /* ArticleMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleMediator.swift; sourceTree = "<group>"; };
 		7D4597AB2031AD63007BA90C /* AppDelegate+HockeyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+HockeyApp.swift"; sourceTree = "<group>"; };
-		7D7EFEA9201E76140088EB44 /* ProfileDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDataViewModel.swift; sourceTree = "<group>"; };
-		7D7EFEAB201E95B30088EB44 /* ProfileFeedTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFeedTab.swift; sourceTree = "<group>"; };
 		7DA063212032513A00B5630C /* ProfileFeedContainerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFeedContainerController.swift; sourceTree = "<group>"; };
 		7DA063232032517D00B5630C /* ProfileFeedContainerItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFeedContainerItem.swift; sourceTree = "<group>"; };
 		7DA06327203256D700B5630C /* PropertyStoring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyStoring.swift; sourceTree = "<group>"; };
-		7DA063292032583F00B5630C /* FeedTabViewController+ProfileFeedContainerItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FeedTabViewController+ProfileFeedContainerItem.swift"; sourceTree = "<group>"; };
+		7DA063292032583F00B5630C /* PostsFeedViewController+ProfileFeedContainerItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PostsFeedViewController+ProfileFeedContainerItem.swift"; sourceTree = "<group>"; };
 		7DA0632B203315A300B5630C /* PassthroughView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassthroughView.swift; sourceTree = "<group>"; };
 		7DCF74A1201FE1C700D46495 /* ArticleCommentsSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCommentsSectionHeader.swift; sourceTree = "<group>"; };
 		7DCF74A3201FE1E400D46495 /* ArticleCommentsSectionHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleCommentsSectionHeader.xib; sourceTree = "<group>"; };
@@ -165,12 +159,11 @@
 		974FDF6AE6B94E5A2BFC2FDE /* Pods-Golos.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Golos.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Golos/Pods-Golos.debug.xcconfig"; sourceTree = "<group>"; };
 		DECBC36021F31D8D6F619C11 /* Pods-golos-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-golos-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-golos-ios/Pods-golos-ios.release.xcconfig"; sourceTree = "<group>"; };
 		EC07F4A12014093E00560CF0 /* HorizontalSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalSelectorView.swift; sourceTree = "<group>"; };
-		EC07F4A520141E8D00560CF0 /* FeedType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedType.swift; sourceTree = "<group>"; };
+		EC07F4A520141E8D00560CF0 /* PostsFeedType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsFeedType.swift; sourceTree = "<group>"; };
 		EC07F4A720141F0200560CF0 /* FeedMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedMediator.swift; sourceTree = "<group>"; };
 		EC07F4A920141F0C00560CF0 /* FeedPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPresenter.swift; sourceTree = "<group>"; };
-		EC07F4AB20141F7400560CF0 /* FeedTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTab.swift; sourceTree = "<group>"; };
-		EC07F4AF2014404200560CF0 /* FeedTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTabViewController.swift; sourceTree = "<group>"; };
-		EC07F4B02014404200560CF0 /* FeedTabViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedTabViewController.xib; sourceTree = "<group>"; };
+		EC07F4AF2014404200560CF0 /* PostsFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsFeedViewController.swift; sourceTree = "<group>"; };
+		EC07F4B02014404200560CF0 /* PostsFeedViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostsFeedViewController.xib; sourceTree = "<group>"; };
 		EC1DFB8B20063C400080BC50 /* Golos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Golos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC1DFB8E20063C400080BC50 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EC1DFB9520063C400080BC50 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -213,14 +206,13 @@
 		EC9ABBC72017D56800AF8597 /* ProfileHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileHeaderView.xib; sourceTree = "<group>"; };
 		EC9ABBE72018036E00AF8597 /* Device+Size.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Device+Size.swift"; sourceTree = "<group>"; };
 		EC9ABBE92018072600AF8597 /* GSTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GSTableView.swift; sourceTree = "<group>"; };
-		EC9B2ADF20154B62008335C8 /* FeedTabPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTabPresenter.swift; sourceTree = "<group>"; };
-		EC9B2AE120154DE9008335C8 /* FeedArticleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedArticleViewModel.swift; sourceTree = "<group>"; };
+		EC9B2ADF20154B62008335C8 /* PostsFeedPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsFeedPresenter.swift; sourceTree = "<group>"; };
+		EC9B2AE120154DE9008335C8 /* PostsFeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsFeedViewModel.swift; sourceTree = "<group>"; };
 		EC9B2AE4201550F4008335C8 /* FeedArticleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedArticleTableViewCell.swift; sourceTree = "<group>"; };
 		EC9B2AE5201550F4008335C8 /* FeedArticleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedArticleTableViewCell.xib; sourceTree = "<group>"; };
-		EC9B2AE820155B9C008335C8 /* FeedTabMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTabMediator.swift; sourceTree = "<group>"; };
+		EC9B2AE820155B9C008335C8 /* PostsFeedMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsFeedMediator.swift; sourceTree = "<group>"; };
 		ECA8E3502018A626003B8ABA /* ProfileInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoView.swift; sourceTree = "<group>"; };
 		ECA8E3522018A62E003B8ABA /* ProfileInfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileInfoView.xib; sourceTree = "<group>"; };
-		ECA8E3562018C9A3003B8ABA /* ProfileFeedType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFeedType.swift; sourceTree = "<group>"; };
 		ECA8E3592018CA17003B8ABA /* ProfileHorizontalSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHorizontalSelectorView.swift; sourceTree = "<group>"; };
 		ECA8E35B2018CA30003B8ABA /* ProfileHorizontalSelectorView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileHorizontalSelectorView.xib; sourceTree = "<group>"; };
 		ECA8E35D2018D119003B8ABA /* UIView+Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shadow.swift"; sourceTree = "<group>"; };
@@ -377,22 +369,21 @@
 		EC07F4A420141E8400560CF0 /* Feed */ = {
 			isa = PBXGroup;
 			children = (
-				EC07F4A520141E8D00560CF0 /* FeedType.swift */,
-				ECA8E3562018C9A3003B8ABA /* ProfileFeedType.swift */,
 			);
 			path = Feed;
 			sourceTree = "<group>";
 		};
-		EC07F4AE2014402E00560CF0 /* FeedTab */ = {
+		EC07F4AE2014402E00560CF0 /* Posts Feed */ = {
 			isa = PBXGroup;
 			children = (
 				EC9B2AE3201550E1008335C8 /* Cells */,
-				EC9B2ADE201535AE008335C8 /* FeedTabViewController */,
-				EC9B2ADF20154B62008335C8 /* FeedTabPresenter.swift */,
-				EC9B2AE820155B9C008335C8 /* FeedTabMediator.swift */,
-				EC9B2AE120154DE9008335C8 /* FeedArticleViewModel.swift */,
+				EC9B2ADE201535AE008335C8 /* PostsFeedViewController */,
+				EC9B2ADF20154B62008335C8 /* PostsFeedPresenter.swift */,
+				EC9B2AE820155B9C008335C8 /* PostsFeedMediator.swift */,
+				EC07F4A520141E8D00560CF0 /* PostsFeedType.swift */,
+				EC9B2AE120154DE9008335C8 /* PostsFeedViewModel.swift */,
 			);
-			path = FeedTab;
+			path = "Posts Feed";
 			sourceTree = "<group>";
 		};
 		EC1DFB8220063C400080BC50 = {
@@ -497,8 +488,6 @@
 				EC24FF72200C439E00A0AE15 /* ProfileViewController */,
 				EC24FF73200C43B500A0AE15 /* ProfilePresenter.swift */,
 				7DF16A71201D6043000F5529 /* ProfileMediator.swift */,
-				7D7EFEA9201E76140088EB44 /* ProfileDataViewModel.swift */,
-				7D7EFEAB201E95B30088EB44 /* ProfileFeedTab.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -518,7 +507,6 @@
 				EC24FF76200C496800A0AE15 /* FeedViewController */,
 				EC07F4A720141F0200560CF0 /* FeedMediator.swift */,
 				EC07F4A920141F0C00560CF0 /* FeedPresenter.swift */,
-				EC07F4AB20141F7400560CF0 /* FeedTab.swift */,
 			);
 			path = Feed;
 			sourceTree = "<group>";
@@ -579,14 +567,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		EC9B2ADE201535AE008335C8 /* FeedTabViewController */ = {
+		EC9B2ADE201535AE008335C8 /* PostsFeedViewController */ = {
 			isa = PBXGroup;
 			children = (
-				EC07F4AF2014404200560CF0 /* FeedTabViewController.swift */,
-				EC07F4B02014404200560CF0 /* FeedTabViewController.xib */,
-				7DA063292032583F00B5630C /* FeedTabViewController+ProfileFeedContainerItem.swift */,
+				EC07F4AF2014404200560CF0 /* PostsFeedViewController.swift */,
+				EC07F4B02014404200560CF0 /* PostsFeedViewController.xib */,
+				7DA063292032583F00B5630C /* PostsFeedViewController+ProfileFeedContainerItem.swift */,
 			);
-			path = FeedTabViewController;
+			path = PostsFeedViewController;
 			sourceTree = "<group>";
 		};
 		EC9B2AE3201550E1008335C8 /* Cells */ = {
@@ -643,7 +631,7 @@
 			isa = PBXGroup;
 			children = (
 				7D25B484201F4967004A3400 /* Article */,
-				EC07F4AE2014402E00560CF0 /* FeedTab */,
+				EC07F4AE2014402E00560CF0 /* Posts Feed */,
 				EC24FF75200C495F00A0AE15 /* Feed */,
 				EC24FF6D200C432700A0AE15 /* Profile */,
 				EC24FF6A200C3FE700A0AE15 /* Tab */,
@@ -843,7 +831,7 @@
 				EC24FF7F200C4E2C00A0AE15 /* NavigationDropDownView.xib in Resources */,
 				EC6FD5A3200AE1A200DCB824 /* QRScannerViewController.xib in Resources */,
 				EC9ABBC82017D56800AF8597 /* ProfileHeaderView.xib in Resources */,
-				EC07F4B22014404200560CF0 /* FeedTabViewController.xib in Resources */,
+				EC07F4B22014404200560CF0 /* PostsFeedViewController.xib in Resources */,
 				ECA8E35C2018CA30003B8ABA /* ProfileHorizontalSelectorView.xib in Resources */,
 				EC1DFB9620063C400080BC50 /* Assets.xcassets in Resources */,
 				7D25B488201F4978004A3400 /* ArticleViewController.xib in Resources */,
@@ -957,24 +945,22 @@
 				EC24FF59200C30B800A0AE15 /* MainContainerViewController.swift in Sources */,
 				EC24FF54200C080300A0AE15 /* Notifications.swift in Sources */,
 				7D1783DD201FD9B600B75979 /* ArticlePostedInTableViewCell.swift in Sources */,
-				EC9B2AE020154B62008335C8 /* FeedTabPresenter.swift in Sources */,
+				EC9B2AE020154B62008335C8 /* PostsFeedPresenter.swift in Sources */,
 				EC24FF5D200C30CF00A0AE15 /* MainContainerMediator.swift in Sources */,
 				EC24FF20200BC69400A0AE15 /* LoginPresenter.swift in Sources */,
 				7DF16A72201D6043000F5529 /* ProfileMediator.swift in Sources */,
 				7D25B4BE201FABB2004A3400 /* ArticleTitleTableViewCell.swift in Sources */,
 				EC24FF74200C43B500A0AE15 /* ProfilePresenter.swift in Sources */,
-				7DA0632A2032583F00B5630C /* FeedTabViewController+ProfileFeedContainerItem.swift in Sources */,
-				EC9B2AE220154DE9008335C8 /* FeedArticleViewModel.swift in Sources */,
-				7D7EFEAA201E76140088EB44 /* ProfileDataViewModel.swift in Sources */,
+				7DA0632A2032583F00B5630C /* PostsFeedViewController+ProfileFeedContainerItem.swift in Sources */,
+				EC9B2AE220154DE9008335C8 /* PostsFeedViewModel.swift in Sources */,
 				EC9ABBC62017D55800AF8597 /* ProfileHeaderView.swift in Sources */,
 				7D4597AC2031AD63007BA90C /* AppDelegate+HockeyApp.swift in Sources */,
 				7D25B4CA201FABD8004A3400 /* ArticleFooterTableViewCell.swift in Sources */,
 				7D25B483201F479B004A3400 /* TagTokenButton.swift in Sources */,
 				EC24FF5B200C30C500A0AE15 /* MainContainerPresenter.swift in Sources */,
 				EC24FF79200C497800A0AE15 /* FeedViewController.swift in Sources */,
-				EC07F4B12014404200560CF0 /* FeedTabViewController.swift in Sources */,
+				EC07F4B12014404200560CF0 /* PostsFeedViewController.swift in Sources */,
 				EC24FF22200BC69B00A0AE15 /* LoginType.swift in Sources */,
-				7D7EFEAC201E95B30088EB44 /* ProfileFeedTab.swift in Sources */,
 				ECB2C0D32008E55500AF1AF5 /* Colors.swift in Sources */,
 				ECF2808C200A9A210000D949 /* UIButton+Intro.swift in Sources */,
 				ECA8E3512018A626003B8ABA /* ProfileInfoView.swift in Sources */,
@@ -989,7 +975,7 @@
 				7DA063242032517D00B5630C /* ProfileFeedContainerItem.swift in Sources */,
 				7DA063222032513A00B5630C /* ProfileFeedContainerController.swift in Sources */,
 				7D25B4C6201FABCB004A3400 /* ArticleTextTableViewCell.swift in Sources */,
-				EC9B2AE920155B9C008335C8 /* FeedTabMediator.swift in Sources */,
+				EC9B2AE920155B9C008335C8 /* PostsFeedMediator.swift in Sources */,
 				7D25B4C2201FABBD004A3400 /* ArticleImageTableViewCell.swift in Sources */,
 				EC24FF28200BEBE600A0AE15 /* ViewProtocol.swift in Sources */,
 				7DCF74A720200AA700D46495 /* ArticleCommentTableViewCell.swift in Sources */,
@@ -1013,7 +999,6 @@
 				7D25B47F201F4714004A3400 /* TagsView.swift in Sources */,
 				EC24FF24200BC72F00A0AE15 /* LoginUIStrings.swift in Sources */,
 				7D25B4B5201F9218004A3400 /* GSNavigationBar.swift in Sources */,
-				ECA8E3572018C9A3003B8ABA /* ProfileFeedType.swift in Sources */,
 				EC5B2BFD201A443C007A4335 /* String+Size.swift in Sources */,
 				ECF28087200A94550000D949 /* ViewController+Nib.swift in Sources */,
 				EC1DFB8F20063C400080BC50 /* AppDelegate.swift in Sources */,
@@ -1022,8 +1007,7 @@
 				ECB2C0D52008E56300AF1AF5 /* Constants.swift in Sources */,
 				EC24FF7D200C4DE300A0AE15 /* NavigationDropDownView.swift in Sources */,
 				EC24FF50200C065F00A0AE15 /* AppState.swift in Sources */,
-				EC07F4A620141E8D00560CF0 /* FeedType.swift in Sources */,
-				EC07F4AC20141F7400560CF0 /* FeedTab.swift in Sources */,
+				EC07F4A620141E8D00560CF0 /* PostsFeedType.swift in Sources */,
 				ECF31725200A9D2800F7B703 /* UIAlertController+Window.swift in Sources */,
 				7D25B48C201F5700004A3400 /* TagCollectionViewCell.swift in Sources */,
 				ECC15FA3200976770099BBC9 /* IntroViewController.swift in Sources */,
