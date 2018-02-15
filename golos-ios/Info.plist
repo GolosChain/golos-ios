@@ -43,5 +43,7 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>WebSocketUrl</key>
+	<string>$(WEBSOCKET_URL)</string>
 </dict>
 </plist>

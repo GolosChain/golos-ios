@@ -29,6 +29,8 @@ class PostsFeedPresenter: NSObject {
     
     private var postsFeedType: PostsFeedType = .new
     private var postsItems = [PostsFeedViewModel]()
+    
+    private let postsManager = PostsManager()
 }
 
 extension PostsFeedPresenter: PostsFeedPresenterProtocol {
@@ -45,7 +47,15 @@ extension PostsFeedPresenter: PostsFeedPresenterProtocol {
     }
     
     func loadPosts() {
-        
+        postsManager.loadFeed(with: postsFeedType, amount: 10) { [weak self] posts, error in
+            guard let strongSelf = self else { return }
+            guard  error == nil else {
+                return
+            }
+            
+            strongSelf.postsItems = strongSelf.parse(posts: posts)
+            strongSelf.postsFeedView.didLoadPosts()
+        }
     }
     
     func getPostsViewModels() -> [PostsFeedViewModel] {
@@ -55,6 +65,13 @@ extension PostsFeedPresenter: PostsFeedPresenterProtocol {
     func getPostViewModel(at index: Int) -> PostsFeedViewModel? {
         guard index < postsItems.count else { return nil }
         return postsItems[index]
+    }
+    
+    // TEMPORARY
+    func parse(posts: [PostModel]) -> [PostsFeedViewModel] {
+        return posts.map({ model -> PostsFeedViewModel in
+            PostsFeedViewModel(authorName: "a", authorAvatarUrl: nil, articleTitle: model.title, reblogAuthorName: "b", theme: "s", articleImageUrl: nil, articleBody: model.body, upvoteAmount: "2", commentsAmount: "2", didUpvote: true, didComment: true)
+        })
     }
 }
 

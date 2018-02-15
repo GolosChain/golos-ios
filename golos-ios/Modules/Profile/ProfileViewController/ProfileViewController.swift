@@ -64,7 +64,7 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
         setupUI()
     }
     
-    
+    let postsManager = PostsManager()
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         UIApplication.shared.statusBarStyle = .lightContent

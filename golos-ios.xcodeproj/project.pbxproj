@@ -39,6 +39,16 @@
 		7D79C3482034686B00794447 /* ReusableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D79C3472034686B00794447 /* ReusableCell.swift */; };
 		7D79C34A20346B5500794447 /* AnswerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D79C34920346B5500794447 /* AnswerType.swift */; };
 		7D79C34C20347DCE00794447 /* AnswersFeedViewController+ProfileFeedContainerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D79C34B20347DCE00794447 /* AnswersFeedViewController+ProfileFeedContainerItem.swift */; };
+		7D79C34F2034F29900794447 /* WebSocketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D79C34E2034F29900794447 /* WebSocketManager.swift */; };
+		7D911D142035CCAE00F19D3C /* WebSocketMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D911D132035CCAE00F19D3C /* WebSocketMethod.swift */; };
+		7D911D162035CDA800F19D3C /* WebSocketRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D911D152035CDA800F19D3C /* WebSocketRequest.swift */; };
+		7D911D182035DDD300F19D3C /* WebSocketResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D911D172035DDD300F19D3C /* WebSocketResponse.swift */; };
+		7D911D1A2035DE5D00F19D3C /* String+Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D911D192035DE5D00F19D3C /* String+Dictionary.swift */; };
+		7D911D1D2035ED0200F19D3C /* PostsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D911D1C2035ED0200F19D3C /* PostsManager.swift */; };
+		7D911D202035F0A600F19D3C /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D911D1F2035F0A600F19D3C /* PostModel.swift */; };
+		7D911D222035F5AA00F19D3C /* PostCommentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D911D212035F5AA00F19D3C /* PostCommentModel.swift */; };
+		7D911D242035F5C900F19D3C /* PostVoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D911D232035F5C900F19D3C /* PostVoteModel.swift */; };
+		7D911D262035F6EA00F19D3C /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D911D252035F6EA00F19D3C /* UserModel.swift */; };
 		7DA063222032513A00B5630C /* ProfileFeedContainerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA063212032513A00B5630C /* ProfileFeedContainerController.swift */; };
 		7DA063242032517D00B5630C /* ProfileFeedContainerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA063232032517D00B5630C /* ProfileFeedContainerItem.swift */; };
 		7DA06328203256D700B5630C /* PropertyStoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA06327203256D700B5630C /* PropertyStoring.swift */; };
@@ -165,6 +175,16 @@
 		7D79C3472034686B00794447 /* ReusableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableCell.swift; sourceTree = "<group>"; };
 		7D79C34920346B5500794447 /* AnswerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerType.swift; sourceTree = "<group>"; };
 		7D79C34B20347DCE00794447 /* AnswersFeedViewController+ProfileFeedContainerItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnswersFeedViewController+ProfileFeedContainerItem.swift"; sourceTree = "<group>"; };
+		7D79C34E2034F29900794447 /* WebSocketManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketManager.swift; sourceTree = "<group>"; };
+		7D911D132035CCAE00F19D3C /* WebSocketMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketMethod.swift; sourceTree = "<group>"; };
+		7D911D152035CDA800F19D3C /* WebSocketRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketRequest.swift; sourceTree = "<group>"; };
+		7D911D172035DDD300F19D3C /* WebSocketResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketResponse.swift; sourceTree = "<group>"; };
+		7D911D192035DE5D00F19D3C /* String+Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Dictionary.swift"; sourceTree = "<group>"; };
+		7D911D1C2035ED0200F19D3C /* PostsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsManager.swift; sourceTree = "<group>"; };
+		7D911D1F2035F0A600F19D3C /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
+		7D911D212035F5AA00F19D3C /* PostCommentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCommentModel.swift; sourceTree = "<group>"; };
+		7D911D232035F5C900F19D3C /* PostVoteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostVoteModel.swift; sourceTree = "<group>"; };
+		7D911D252035F6EA00F19D3C /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		7DA063212032513A00B5630C /* ProfileFeedContainerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFeedContainerController.swift; sourceTree = "<group>"; };
 		7DA063232032517D00B5630C /* ProfileFeedContainerItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFeedContainerItem.swift; sourceTree = "<group>"; };
 		7DA06327203256D700B5630C /* PropertyStoring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyStoring.swift; sourceTree = "<group>"; };
@@ -384,6 +404,36 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		7D79C34D2034F28B00794447 /* WebSocketManager */ = {
+			isa = PBXGroup;
+			children = (
+				7D79C34E2034F29900794447 /* WebSocketManager.swift */,
+				7D911D132035CCAE00F19D3C /* WebSocketMethod.swift */,
+				7D911D152035CDA800F19D3C /* WebSocketRequest.swift */,
+				7D911D172035DDD300F19D3C /* WebSocketResponse.swift */,
+			);
+			path = WebSocketManager;
+			sourceTree = "<group>";
+		};
+		7D911D1B2035ECF000F19D3C /* PostsFeedManager */ = {
+			isa = PBXGroup;
+			children = (
+				7D911D1C2035ED0200F19D3C /* PostsManager.swift */,
+			);
+			path = PostsFeedManager;
+			sourceTree = "<group>";
+		};
+		7D911D1E2035ED7C00F19D3C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7D911D1F2035F0A600F19D3C /* PostModel.swift */,
+				7D911D212035F5AA00F19D3C /* PostCommentModel.swift */,
+				7D911D232035F5C900F19D3C /* PostVoteModel.swift */,
+				7D911D252035F6EA00F19D3C /* UserModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		7DA063202032511D00B5630C /* ProfileFeedContainerController */ = {
 			isa = PBXGroup;
 			children = (
@@ -453,6 +503,7 @@
 				7D4597AB2031AD63007BA90C /* AppDelegate+HockeyApp.swift */,
 				ECC15F9B200975680099BBC9 /* Modules */,
 				EC24FF29200BFA9300A0AE15 /* Managers */,
+				7D911D1E2035ED7C00F19D3C /* Model */,
 				ECF28084200A941F0000D949 /* Common */,
 				ECB2C0D12008E54000AF1AF5 /* Miscellaneous */,
 				EC1DFB9520063C400080BC50 /* Assets.xcassets */,
@@ -465,6 +516,8 @@
 		EC24FF29200BFA9300A0AE15 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				7D911D1B2035ECF000F19D3C /* PostsFeedManager */,
+				7D79C34D2034F28B00794447 /* WebSocketManager */,
 				EC24FF4E200C064B00A0AE15 /* StateMachine */,
 				EC24FF2A200BFAA100A0AE15 /* Validator.swift */,
 			);
@@ -709,6 +762,7 @@
 				EC9ABBC22017D17000AF8597 /* UIImageEffects.swift */,
 				ECA8E35D2018D119003B8ABA /* UIView+Shadow.swift */,
 				EC5B2BFC201A443C007A4335 /* String+Size.swift */,
+				7D911D192035DE5D00F19D3C /* String+Dictionary.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -919,10 +973,12 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Golos/Pods-Golos-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -980,7 +1036,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D911D1D2035ED0200F19D3C /* PostsManager.swift in Sources */,
+				7D911D202035F0A600F19D3C /* PostModel.swift in Sources */,
 				EC9ABBE82018036E00AF8597 /* Device+Size.swift in Sources */,
+				7D911D162035CDA800F19D3C /* WebSocketRequest.swift in Sources */,
 				7D79C34A20346B5500794447 /* AnswerType.swift in Sources */,
 				7DA06328203256D700B5630C /* PropertyStoring.swift in Sources */,
 				EC24FF59200C30B800A0AE15 /* MainContainerViewController.swift in Sources */,
@@ -1021,6 +1080,7 @@
 				7D25B4C2201FABBD004A3400 /* ArticleImageTableViewCell.swift in Sources */,
 				EC24FF28200BEBE600A0AE15 /* ViewProtocol.swift in Sources */,
 				7DCF74A720200AA700D46495 /* ArticleCommentTableViewCell.swift in Sources */,
+				7D911D1A2035DE5D00F19D3C /* String+Dictionary.swift in Sources */,
 				EC9B2AE6201550F4008335C8 /* FeedArticleTableViewCell.swift in Sources */,
 				7DA0632C203315A300B5630C /* PassthroughView.swift in Sources */,
 				EC24FF84200C635600A0AE15 /* DropDownMediator.swift in Sources */,
@@ -1031,29 +1091,34 @@
 				7DCF74A2201FE1C700D46495 /* ArticleCommentsSectionHeader.swift in Sources */,
 				7D79C33D203467B600794447 /* AnswersFeedPresenter.swift in Sources */,
 				ECFF44E8200BC42F00DAF74C /* QRScannerViewControllerDelegate.swift in Sources */,
+				7D911D242035F5C900F19D3C /* PostVoteModel.swift in Sources */,
 				ECC15FA62009794E0099BBC9 /* Fonts.swift in Sources */,
 				ECA8E35E2018D119003B8ABA /* UIView+Shadow.swift in Sources */,
 				ECF31732200ABB7C00F7B703 /* AppDelegate+SetupAppearance.swift in Sources */,
 				7D79C3482034686B00794447 /* ReusableCell.swift in Sources */,
 				7D25B48F201F5E88004A3400 /* CollectionViewCenteredLayout.swift in Sources */,
 				EC9ABBC32017D17000AF8597 /* UIImageEffects.swift in Sources */,
+				7D911D222035F5AA00F19D3C /* PostCommentModel.swift in Sources */,
 				EC24FF52200C06E300A0AE15 /* StateMachine.swift in Sources */,
 				EC24FF5F200C3B8100A0AE15 /* AppDelegate+RootViewController.swift in Sources */,
 				EC6FD5A2200AE1A200DCB824 /* QRScannerViewController.swift in Sources */,
 				7D25B47F201F4714004A3400 /* TagsView.swift in Sources */,
 				EC24FF24200BC72F00A0AE15 /* LoginUIStrings.swift in Sources */,
+				7D911D182035DDD300F19D3C /* WebSocketResponse.swift in Sources */,
 				7D25B4B5201F9218004A3400 /* GSNavigationBar.swift in Sources */,
 				EC5B2BFD201A443C007A4335 /* String+Size.swift in Sources */,
 				ECF28087200A94550000D949 /* ViewController+Nib.swift in Sources */,
 				EC1DFB8F20063C400080BC50 /* AppDelegate.swift in Sources */,
 				7D79C34C20347DCE00794447 /* AnswersFeedViewController+ProfileFeedContainerItem.swift in Sources */,
 				EC24FF6C200C400300A0AE15 /* GSTabBarController.swift in Sources */,
+				7D911D142035CCAE00F19D3C /* WebSocketMethod.swift in Sources */,
 				7D25B4B8201F980A004A3400 /* ArticleHeaderView.swift in Sources */,
 				7D79C33A2034675C00794447 /* AnswersFeedViewController.swift in Sources */,
 				7D79C3452034685900794447 /* AnswersFeedTableViewCell.swift in Sources */,
 				ECB2C0D52008E56300AF1AF5 /* Constants.swift in Sources */,
 				EC24FF7D200C4DE300A0AE15 /* NavigationDropDownView.swift in Sources */,
 				7D79C33F203467C000794447 /* AnswersFeedMediator.swift in Sources */,
+				7D911D262035F6EA00F19D3C /* UserModel.swift in Sources */,
 				EC24FF50200C065F00A0AE15 /* AppState.swift in Sources */,
 				EC07F4A620141E8D00560CF0 /* PostsFeedType.swift in Sources */,
 				ECF31725200A9D2800F7B703 /* UIAlertController+Window.swift in Sources */,
@@ -1063,6 +1128,7 @@
 				7D25B4CD201FAE93004A3400 /* ArticleMediator.swift in Sources */,
 				ECF3172E200AB22E00F7B703 /* LoginViewController.swift in Sources */,
 				7D25B487201F4978004A3400 /* ArticleViewController.swift in Sources */,
+				7D79C34F2034F29900794447 /* WebSocketManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1220,6 +1286,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				WEBSOCKET_URL = "wss://ws.golos.io";
 			};
 			name = Debug;
 		};
@@ -1241,6 +1308,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = GolosTestAdHocProfile;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				WEBSOCKET_URL = "wss://ws.golos.io";
 			};
 			name = Release;
 		};

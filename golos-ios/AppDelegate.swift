@@ -25,4 +25,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return true
     }
+    
+    func applicationWillResignActive(_ application: UIApplication) {
+        WebSocketManager.shared.disconnect()
+    }
+    
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        WebSocketManager.shared.connect()
+    }
 }

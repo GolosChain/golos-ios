@@ -25,5 +25,6 @@ struct Constants {
     
     struct InfoDictionaryKey {
         static let hockeyAppIdKey = "HockeyAppId"
+        static let webSocketUrlKey = "WebSocketUrl"
     }
 }

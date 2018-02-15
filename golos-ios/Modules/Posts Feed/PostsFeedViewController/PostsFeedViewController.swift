@@ -52,6 +52,7 @@ class PostsFeedViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         presenter.fetchPosts()
+        presenter.loadPosts()
     }
     
     // MARK: SetupUI
@@ -73,7 +74,7 @@ extension PostsFeedViewController: PostsFeedViewProtocol {
     }
     
     func didLoadPosts() {
-        
+        tableView.reloadData()
     }
 }
 
