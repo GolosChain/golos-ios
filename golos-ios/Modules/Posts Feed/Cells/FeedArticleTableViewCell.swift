@@ -22,6 +22,8 @@ extension FeedArticleTableViewCellDelegate {
 
 class FeedArticleTableViewCell: UITableViewCell {
     
+    let imageLoader = GSImageLoader()
+    
     // MARK: Constants
     private static let bodyFont = Fonts.shared.regular(with: 13.0)
     private static let bodyEdgesOffset: CGFloat = 12.0
@@ -32,32 +34,21 @@ class FeedArticleTableViewCell: UITableViewCell {
     @IBOutlet private weak var articleHeaderView: ArticleHeaderView!
     @IBOutlet private weak var articleContentView: UIView!
     @IBOutlet private weak var bottomView: UIView!
-    @IBOutlet weak var gradientView: UIView!
-    
     @IBOutlet private weak var titleLabel: UILabel!
-    @IBOutlet private weak var bodyTextView: UITextView!
-    
     @IBOutlet private weak var upvoteButton: UIButton!
     @IBOutlet private weak var commentsButton: UIButton!
     
-    @IBOutlet private weak var expandButton: UIButton!
-
+    @IBOutlet weak var descriptionTextView: UITextView!
+    @IBOutlet weak var postImageView: UIImageView!
+    
+    @IBOutlet weak var imageViewHeightConstraint: NSLayoutConstraint!
+    
+    private var pictureUrl: String = ""
+    private var authorPictureUrl: String = ""
     
     
     // MARK: UI properties
     let gradientLayer = CAGradientLayer()
-    var isExpanded = false {
-        didSet {
-            gradientView.isHidden = isExpanded
-        }
-    }
-    
-    var isNeedExpand = true {
-        didSet {
-            gradientView.isHidden = !isNeedExpand
-        }
-    }
-    
     
     // MARK: Delegate
     weak var delegate: FeedArticleTableViewCellDelegate?
@@ -70,38 +61,18 @@ class FeedArticleTableViewCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        resetAll()
+        
+        postImageView.image = UIImage(named: "post_picture_placeholder")
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
-        gradientLayer.frame = gradientView.bounds
-        
-        guard isNeedExpand == true else {
-            return
-        }
-        
-        if bounds.size.height == FeedArticleTableViewCell.minimizedHeight {
-            isExpanded = false
-        } else {
-            isExpanded = true
-        }
     }
-    
     
     // MARK: Setup UI
     private func setupUI() {
-
         titleLabel.textColor = UIColor.Project.articleBlackColor
         titleLabel.font = Fonts.shared.regular(with: 16.0)
-        
-        bodyTextView.textColor = UIColor.Project.articleBodyGrayColor
-        bodyTextView.textContainerInset = UIEdgeInsets(top: 0,
-                                                       left: FeedArticleTableViewCell.bodyEdgesOffset,
-                                                       bottom: 0,
-                                                       right: 0)
-        bodyTextView.font = FeedArticleTableViewCell.bodyFont
         
         upvoteButton.tintColor = UIColor.Project.articleButtonsGrayColor
         upvoteButton.setTitleColor(UIColor.Project.articleBodyGrayColor, for: .normal)
@@ -111,39 +82,53 @@ class FeedArticleTableViewCell: UITableViewCell {
         commentsButton.setTitleColor(UIColor.Project.articleBodyGrayColor, for: .normal)
         commentsButton.titleLabel?.font = Fonts.shared.regular(with: 10.0)
         
-        gradientLayer.colors = [UIColor(white: 1, alpha: 0.2).cgColor, UIColor.white.cgColor]
-        gradientLayer.locations = [0.0, 0.6]
-        gradientView.layer.insertSublayer(gradientLayer, at: 0)
-        gradientView.isHidden = !isNeedExpand
-        
-        expandButton.tintColor = UIColor.Project.buttonTextGray
-        
         articleHeaderView.delegate = self
+        
+        descriptionTextView.textContainer.lineBreakMode = .byTruncatingTail
+        descriptionTextView.textContainerInset = UIEdgeInsets(top: 5, left: 13, bottom: 0, right: 13)
     }
     
     func configure(with viewModel: PostsFeedViewModel?) {
         guard let viewModel = viewModel else {
             return
         }
-        authorName = viewModel.authorName
-        authorAvatarUrl = viewModel.authorAvatarUrl
-        articleTitle = viewModel.articleTitle
-        reblogAuthorName = viewModel.reblogAuthorName
-        theme = viewModel.theme
-        articleImageUrl = viewModel.articleImageUrl
-        articleBody = viewModel.articleBody
-        upvoteAmount = viewModel.upvoteAmount
-        commentsAmount = viewModel.commentsAmount
-        didUpvote = viewModel.didUpvote
-        didComment = viewModel.didComment
+        
+        descriptionTextView.text = viewModel.postDescription
+        articleHeaderView.authorLabel.text = viewModel.authorName
+        articleHeaderView.themeLabel.text = viewModel.theme
+        articleHeaderView.reblogAuthorLabel.text = viewModel.reblogAuthorName
+        upvoteButton.tintColor = viewModel.didUpvote ? UIColor.Project.articleButtonsGreenColor : UIColor.Project.articleButtonsGrayColor
+        commentsButton.tintColor = viewModel.didComment ? UIColor.Project.articleButtonsGreenColor : UIColor.Project.articleButtonsGrayColor
+        upvoteButton.setTitle(viewModel.upvoteAmount, for: .normal)
+        
+        
+        let imageHeight: CGFloat = viewModel.imagePictureUrl == nil ? 0 : 212
+        imageViewHeightConstraint.constant = imageHeight
+        contentView.layoutIfNeeded()
+        
+        if let imageUrl = viewModel.imagePictureUrl {
+            self.pictureUrl = imageUrl
+            imageLoader.startLoadImage(with: imageUrl) { (image) in
+                DispatchQueue.main.async {
+                    if let image = image, imageUrl == self.pictureUrl {
+                        self.postImageView.image = image
+                    }
+                }
+            }
+        }
+        
+        if let authorPictureUrl = viewModel.authorAvatarUrl {
+            self.authorPictureUrl = authorPictureUrl
+            imageLoader.startLoadImage(with: authorPictureUrl) { (image) in
+                DispatchQueue.main.async {
+                    if let image = image, authorPictureUrl == self.authorPictureUrl {
+                        self.articleHeaderView.authorAvatarImageView.image = image
+                    }
+                }
+            }
+        }
     }
 
-    
-    // MARK: Reset
-    private func resetAll() {
-        
-    }
-    
     
     // MARK: Actions
     @IBAction func didPressUpvoteButton(_ sender: Any) {
@@ -165,7 +150,11 @@ class FeedArticleTableViewCell: UITableViewCell {
     }
     
     class var reuseIdentifier: String? {
-        return String.init(describing: self)
+        return String(describing: self)
+    }
+    
+    static func height(withImage: Bool) -> CGFloat {
+        return withImage ? 427 : 427 - 212
     }
 }
 
@@ -179,120 +168,4 @@ extension FeedArticleTableViewCell: ArticleHeaderViewDelegate {
     func didPressReblogAuthor() {
         delegate?.didPressReblogAuthor(at: self)
     }
-}
-
-
-// MARK: Setters
-extension FeedArticleTableViewCell {
-    var authorName: String? {
-        get {
-            return articleHeaderView.authorLabel.text
-        }
-        set {
-            articleHeaderView.authorLabel.text = newValue
-        }
-    }
-    
-    var authorAvatarUrl: String? {
-        get {
-            return nil
-        }
-        set {
-        
-        }
-    }
-    
-    var articleTitle: String? {
-        get {
-            return titleLabel.text
-        }
-        set {
-            titleLabel.text = newValue
-        }
-    }
-    
-    var reblogAuthorName: String? {
-        get {
-            return articleHeaderView.reblogAuthorLabel.text
-        }
-        set {
-            articleHeaderView.reblogAuthorLabel.text = newValue
-            articleHeaderView.reblogAuthorLabel.isHidden = newValue == nil
-            articleHeaderView.reblogIconImageView.isHidden = newValue == nil
-        }
-    }
-    
-    var theme: String? {
-        get {
-            return articleHeaderView.themeLabel.text
-        }
-        set {
-            articleHeaderView.themeLabel.text = newValue
-        }
-    }
-    
-    var articleImageUrl: String? {
-        get {
-            return nil
-        }
-        
-        set {
-            
-        }
-    }
-    
-    var articleBody: String? {
-        get {
-            return bodyTextView.text
-        }
-        
-        set {
-            bodyTextView.text = newValue
-        }
-    }
-    
-    var upvoteAmount: String? {
-        get {
-            return upvoteButton.title(for: .normal)
-        }
-        
-        set {
-            upvoteButton.setTitle(newValue, for: .normal)
-        }
-    }
-    
-    var commentsAmount: String? {
-        get {
-            return commentsButton.title(for: .normal)
-        }
-        
-        set {
-            commentsButton.setTitle(newValue, for: .normal)
-        }
-    }
-    
-    var didUpvote: Bool {
-        get {
-            return false
-        }
-        
-        set {
-            upvoteButton.tintColor = newValue
-                ? UIColor.Project.articleButtonsGreenColor
-                : UIColor.Project.articleButtonsGrayColor
-        }
-    }
-    
-    var didComment: Bool {
-        get {
-            return false
-        }
-        
-        set {
-            commentsButton.tintColor = newValue
-                ? UIColor.Project.articleButtonsGreenColor
-                : UIColor.Project.articleButtonsGrayColor
-        }
-    }
-    
 }

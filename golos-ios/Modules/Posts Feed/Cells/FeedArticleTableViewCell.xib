@@ -12,11 +12,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="320" id="KGk-i7-Jjw" customClass="FeedArticleTableViewCell" customModule="Golos" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="320"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="427" id="KGk-i7-Jjw" customClass="FeedArticleTableViewCell" customModule="Golos" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="427"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="319.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="426.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x0K-7b-ZlY" userLabel="Header View" customClass="ArticleHeaderView" customModule="Golos" customModuleProvider="target">
@@ -27,55 +27,54 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pct-39-y7G" userLabel="Article Content View">
-                        <rect key="frame" x="0.0" y="46" width="375" height="228.5"/>
+                        <rect key="frame" x="0.0" y="46" width="375" height="335.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="752" text="G factor. Про альтруизм и эгоизм. Часть вторая или подвиг кончика ногтя" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VKV-nZ-kLa" userLabel="Title Label">
                                 <rect key="frame" x="16" y="5" width="343" height="38.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="38.5" id="FnC-Tb-Rhx"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NTc-S6-a0r" userLabel="Body Text View">
-                                <rect key="frame" x="0.0" y="53.5" width="375" height="175"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="post_picture_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="cNc-UC-tpt">
+                                <rect key="frame" x="0.0" y="53.5" width="375" height="212"/>
+                                <color key="backgroundColor" red="0.8817963606" green="1" blue="0.18576353370000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" priority="999" constant="212" id="Ra8-JN-wFO"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eeW-La-Ggy">
+                                <rect key="frame" x="0.0" y="266" width="375" height="70"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <string key="text">Не прошло и года, как вторая часть. Вообще-то в моем цикле про альтруизм первая часть должна была быть второй, та что сейчас - первой, но все смешалось в доме обломов, так что пусть идет так, как идет. Потом еще и третья выйдет. Там интересно будет, там про проституток. Ожидайте.</string>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="UaF-oW-wCi"/>
+                                </constraints>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" smartDashesType="no"/>
                             </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="NTc-S6-a0r" secondAttribute="trailing" id="9sA-qE-aFc"/>
-                            <constraint firstAttribute="bottom" secondItem="NTc-S6-a0r" secondAttribute="bottom" id="BD4-n7-zB9"/>
+                            <constraint firstItem="cNc-UC-tpt" firstAttribute="top" secondItem="VKV-nZ-kLa" secondAttribute="bottom" constant="10" id="8oG-Ak-dxR"/>
+                            <constraint firstItem="eeW-La-Ggy" firstAttribute="top" secondItem="cNc-UC-tpt" secondAttribute="bottom" id="DEI-lU-hoh"/>
                             <constraint firstItem="VKV-nZ-kLa" firstAttribute="top" secondItem="pct-39-y7G" secondAttribute="top" constant="5" id="IKg-Zk-P1I"/>
                             <constraint firstAttribute="trailing" secondItem="VKV-nZ-kLa" secondAttribute="trailing" constant="16" id="Le0-dY-S56"/>
                             <constraint firstItem="VKV-nZ-kLa" firstAttribute="leading" secondItem="pct-39-y7G" secondAttribute="leading" constant="16" id="Lhq-yM-UyE"/>
-                            <constraint firstItem="NTc-S6-a0r" firstAttribute="leading" secondItem="pct-39-y7G" secondAttribute="leading" id="hvm-AJ-bRX"/>
-                            <constraint firstItem="NTc-S6-a0r" firstAttribute="top" secondItem="VKV-nZ-kLa" secondAttribute="bottom" constant="10" id="toH-FO-Gcz"/>
-                        </constraints>
-                    </view>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E2A-ok-pW6" userLabel="Gradient View">
-                        <rect key="frame" x="0.0" y="254.5" width="375" height="30"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sHq-Fw-dgj" userLabel="Expand Button">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
-                                <state key="normal" image="article_expand_icon"/>
-                                <connections>
-                                    <action selector="didPressExpandButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="c86-3E-Q4L"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="sHq-Fw-dgj" firstAttribute="leading" secondItem="E2A-ok-pW6" secondAttribute="leading" id="B9u-E9-ngW"/>
-                            <constraint firstAttribute="bottom" secondItem="sHq-Fw-dgj" secondAttribute="bottom" id="Xqd-jA-92Y"/>
-                            <constraint firstAttribute="trailing" secondItem="sHq-Fw-dgj" secondAttribute="trailing" id="a5Q-8b-sNE"/>
-                            <constraint firstAttribute="height" constant="30" id="cB8-Mi-691"/>
-                            <constraint firstItem="sHq-Fw-dgj" firstAttribute="top" secondItem="E2A-ok-pW6" secondAttribute="top" id="eEO-GP-LYe"/>
+                            <constraint firstAttribute="trailing" secondItem="cNc-UC-tpt" secondAttribute="trailing" id="ZAp-1G-wRm"/>
+                            <constraint firstItem="cNc-UC-tpt" firstAttribute="leading" secondItem="pct-39-y7G" secondAttribute="leading" id="aAb-93-pNE"/>
+                            <constraint firstAttribute="bottom" secondItem="eeW-La-Ggy" secondAttribute="bottom" id="afM-fZ-6iu"/>
+                            <constraint firstAttribute="trailing" secondItem="eeW-La-Ggy" secondAttribute="trailing" id="d1q-oA-MY9"/>
+                            <constraint firstItem="eeW-La-Ggy" firstAttribute="leading" secondItem="pct-39-y7G" secondAttribute="leading" id="iF4-Mc-vnj"/>
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rgg-s6-oxm" userLabel="Bottom View">
-                        <rect key="frame" x="0.0" y="274.5" width="375" height="45"/>
+                        <rect key="frame" x="0.0" y="381.5" width="375" height="45"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="a2D-jz-RAy" userLabel="Upvote Button">
                                 <rect key="frame" x="6" y="13" width="71" height="20"/>
@@ -113,14 +112,11 @@
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="E2A-ok-pW6" firstAttribute="bottom" secondItem="pct-39-y7G" secondAttribute="bottom" constant="10" id="6zr-Qr-mwa"/>
-                    <constraint firstItem="E2A-ok-pW6" firstAttribute="leading" secondItem="pct-39-y7G" secondAttribute="leading" id="81q-hC-dVN"/>
                     <constraint firstItem="x0K-7b-ZlY" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="GoF-tS-EU1"/>
                     <constraint firstItem="pct-39-y7G" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="NY8-YI-S8U"/>
                     <constraint firstAttribute="bottom" secondItem="rgg-s6-oxm" secondAttribute="bottom" id="Phh-kP-0gf"/>
                     <constraint firstItem="x0K-7b-ZlY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="YBj-9B-EKd"/>
                     <constraint firstAttribute="trailing" secondItem="pct-39-y7G" secondAttribute="trailing" id="byS-dk-fS8"/>
-                    <constraint firstItem="E2A-ok-pW6" firstAttribute="trailing" secondItem="pct-39-y7G" secondAttribute="trailing" id="oNN-qb-49v"/>
                     <constraint firstItem="pct-39-y7G" firstAttribute="top" secondItem="x0K-7b-ZlY" secondAttribute="bottom" id="qUc-Oj-AGc"/>
                     <constraint firstAttribute="trailing" secondItem="rgg-s6-oxm" secondAttribute="trailing" id="s1R-fc-8OZ"/>
                     <constraint firstItem="rgg-s6-oxm" firstAttribute="top" secondItem="pct-39-y7G" secondAttribute="bottom" id="s3T-yI-HVw"/>
@@ -132,20 +128,20 @@
             <connections>
                 <outlet property="articleContentView" destination="pct-39-y7G" id="iVt-gg-uFv"/>
                 <outlet property="articleHeaderView" destination="x0K-7b-ZlY" id="ooS-ti-3C0"/>
-                <outlet property="bodyTextView" destination="NTc-S6-a0r" id="Zvq-tb-zhS"/>
                 <outlet property="bottomView" destination="rgg-s6-oxm" id="i6M-lf-bbh"/>
                 <outlet property="commentsButton" destination="YHf-4Q-6Ih" id="GcT-Bz-AHG"/>
-                <outlet property="expandButton" destination="sHq-Fw-dgj" id="7sd-sP-Q8I"/>
-                <outlet property="gradientView" destination="E2A-ok-pW6" id="6V2-Oo-yEM"/>
+                <outlet property="descriptionTextView" destination="eeW-La-Ggy" id="bqD-nm-YQt"/>
+                <outlet property="imageViewHeightConstraint" destination="Ra8-JN-wFO" id="K1d-dp-BPn"/>
+                <outlet property="postImageView" destination="cNc-UC-tpt" id="Wky-e0-vzt"/>
                 <outlet property="titleLabel" destination="VKV-nZ-kLa" id="ukM-uL-n0N"/>
                 <outlet property="upvoteButton" destination="a2D-jz-RAy" id="It0-aE-ZW6"/>
             </connections>
-            <point key="canvasLocation" x="46.5" y="99"/>
+            <point key="canvasLocation" x="46.5" y="152.5"/>
         </tableViewCell>
     </objects>
     <resources>
         <image name="article_comments_icon" width="20" height="20"/>
-        <image name="article_expand_icon" width="20" height="20"/>
         <image name="article_upvote_icon" width="20" height="20"/>
+        <image name="post_picture_placeholder" width="150" height="150"/>
     </resources>
 </document>

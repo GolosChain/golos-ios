@@ -15,4 +15,6 @@ enum WebSocketMethod: String {
     case getDiscussionsPromo = "get_discussions_by_feed"
     
     case getPostComments = "get_content_replies"
+    
+    case getAccounts = "get_accounts"
 }

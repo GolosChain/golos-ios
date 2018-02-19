@@ -43,7 +43,7 @@ class WebSocketManager {
     }
     
     func sendRequestWith(method: WebSocketMethod,
-                         parameters: [String: Any],
+                         parameters: Any,
                          completion: @escaping (Any?, NSError?) -> Void) {
         
         let requestId = randomUniqueId()
@@ -56,6 +56,8 @@ class WebSocketManager {
         
         if webSocket.isConnected {
             sendMessage(request.messageString)
+        } else {
+            webSocket.connect()
         }
     }
 }

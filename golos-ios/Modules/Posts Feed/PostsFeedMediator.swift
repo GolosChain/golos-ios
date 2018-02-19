@@ -69,18 +69,15 @@ extension PostsFeedMediator: UITableViewDataSource {
 // MARK: UITableViewDelegate
 extension PostsFeedMediator: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        guard let selectedIndex = self.selectedIndex, selectedIndex == indexPath else {
-            return FeedArticleTableViewCell.minimizedHeight
-        }
-        return UITableViewAutomaticDimension
+        let viewModel = postsFeedPresenter.getPostViewModel(at: indexPath.row)
+        let isImage = viewModel?.imagePictureUrl == nil ? false : true
+        return FeedArticleTableViewCell.height(withImage: isImage)
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        guard let selectedIndex = self.selectedIndex, selectedIndex == indexPath else {
-            return FeedArticleTableViewCell.minimizedHeight
-        }
-
-        return UITableViewAutomaticDimension
+        let viewModel = postsFeedPresenter.getPostViewModel(at: indexPath.row)
+        let isImage = viewModel?.imagePictureUrl == nil ? false : true
+        return FeedArticleTableViewCell.height(withImage: isImage)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -89,6 +86,18 @@ extension PostsFeedMediator: UITableViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         delegate?.didScroll(tableView: tableView)
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard let cell = cell as? FeedArticleTableViewCell else {
+            return
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard let cell = cell as? FeedArticleTableViewCell else {
+            return
+        }
     }
 }
 

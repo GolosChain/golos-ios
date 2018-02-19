@@ -19,4 +19,12 @@ target 'Golos' do
   # Starscream
   pod 'Starscream', '~> 3.0.2'
 
+  # PINCache
+  pod 'PINCache'
+
+  # Markdown / HTML
+  pod "MarkdownView"
+  pod "Down"
+  pod 'MarkedView'
+
 end

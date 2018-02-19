@@ -45,5 +45,10 @@
 	<false/>
 	<key>WebSocketUrl</key>
 	<string>$(WEBSOCKET_URL)</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 </dict>
 </plist>
