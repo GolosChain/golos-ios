@@ -17,6 +17,7 @@ struct PostsFeedViewModel {
     let articleBody: String
     let postDescription: String
     let imagePictureUrl: String?
+    let tags: [String]
     let upvoteAmount: String
     let commentsAmount: String
     let didUpvote: Bool

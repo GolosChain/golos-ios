@@ -148,6 +148,7 @@ extension PostsFeedPresenter: PostsFeedPresenterProtocol {
                                   articleBody: postModel.body,
                                   postDescription: postModel.description,
                                   imagePictureUrl: postModel.pictureUrl,
+                                  tags: postModel.tags,
                                   upvoteAmount: "\(postModel.votes.count)",
             commentsAmount: postModel.replies == nil ? "-" :"\(postModel.replies!.count)",
             didUpvote: postModel.isVoteAllow,

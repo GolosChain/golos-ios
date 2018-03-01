@@ -20,7 +20,7 @@ struct PostModel {
     let isVoteAllow: Bool
     let isCommentAllow: Bool
     let permalink: String
-//    let tags: [String]
+    let tags: [String]
     let votes: [PostVoteModel]
     var replies: [PostReplyModel]?
     var author: UserModel?
@@ -59,13 +59,16 @@ struct PostModel {
             votes = []
         }
         
-//
-//        if let metadataString = postDictionary["json_metadata"] as? String,
-//            let data = metadataString.data(using: .utf8),
-//            let json = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any] {
-//
-//        } else {
-//            self.tags = []()
-//        }
+        let tags: [String]
+        if let metadataString = postDictionary["json_metadata"] as? String,
+            let data = metadataString.data(using: .utf8),
+            let json = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any] {
+            
+            
+            tags = json?["tags"] as? [String] ?? [String]()
+        } else {
+            tags = [String]()
+        }
+        self.tags = tags
     }
 }

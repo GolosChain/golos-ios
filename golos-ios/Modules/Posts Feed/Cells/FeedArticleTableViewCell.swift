@@ -115,12 +115,16 @@ class FeedArticleTableViewCell: UITableViewCell {
             articleHeaderView.reblogIconImageView.isHidden = true
         }
         
+        let isNsfw = viewModel.tags.map {$0.lowercased()}.contains("nsfw")
         
-        let imageHeight: CGFloat = viewModel.imagePictureUrl == nil ? 0 : 212
+        let imageHeight: CGFloat = viewModel.imagePictureUrl != nil || isNsfw ? 212 : 0
         imageViewHeightConstraint.constant = imageHeight
         contentView.layoutIfNeeded()
         
-        if let imageUrl = viewModel.imagePictureUrl {
+        if isNsfw {
+            let nsfwImage = UIImage(named: "nsfw")
+            self.postImageView.image = nsfwImage
+        } else if let imageUrl = viewModel.imagePictureUrl {
             if self.pictureUrl == imageUrl && postImageView.image != nil {
                 return
             }
