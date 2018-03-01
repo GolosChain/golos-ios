@@ -36,7 +36,7 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_header_bg" translatesAutoresizingMaskIntoConstraints="NO" id="bRX-hm-6zh" userLabel="Background Image View">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="180"/>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mock_avatar_image" translatesAutoresizingMaskIntoConstraints="NO" id="acw-MW-GSz">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="acw-MW-GSz">
                     <rect key="frame" x="39" y="65" width="80" height="80"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="80" id="XvQ-Qy-1p8"/>
@@ -191,8 +191,8 @@
         </view>
     </objects>
     <resources>
+        <image name="avatar_placeholder" width="13" height="13"/>
         <image name="back_button" width="17" height="16"/>
-        <image name="mock_avatar_image" width="200" height="200"/>
         <image name="profile_doplhin_icon" width="14" height="14"/>
         <image name="profile_edit_button_icon" width="15" height="14"/>
         <image name="profile_header_bg" width="375" height="181"/>

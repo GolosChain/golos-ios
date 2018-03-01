@@ -17,11 +17,16 @@ class GSImageLoader {
     func startLoadImage(with urlString: String,
                         resize: CGSize? = .zero,
                         completion: @escaping (UIImage?) -> Void) {
-        guard let url = URL(string: urlString) else {
+        let csCopy = CharacterSet(bitmapRepresentation: CharacterSet.urlPathAllowed.bitmapRepresentation)
+        guard let correctedUrlString = urlString.addingPercentEncoding(withAllowedCharacters: csCopy) else {
             return
         }
         
-        if let cacheImage = cache.object(forKey: urlString) as? UIImage {
+        guard let url = URL(string: correctedUrlString) else {
+            return
+        }
+        
+        if let cacheImage = cache.object(forKey: correctedUrlString) as? UIImage {
             completion(cacheImage)
             return
         }
@@ -30,10 +35,12 @@ class GSImageLoader {
         let imageOperation = GSImageLoadOperation(with: url)
         imageOperation.completionBlock = {
             if let image = imageOperation.image {
-                PINCache.shared().setObject(image, forKey: urlString)
+                PINCache.shared().setObject(image, forKey: correctedUrlString)
             }
         
-            completion(imageOperation.image)
+            DispatchQueue.main.async {
+                completion(imageOperation.image)
+            }
         }
         
         operationQueue.addOperations([imageOperation], waitUntilFinished: false)

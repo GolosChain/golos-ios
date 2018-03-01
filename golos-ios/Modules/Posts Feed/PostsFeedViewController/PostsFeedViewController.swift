@@ -121,7 +121,10 @@ extension PostsFeedViewController: PostsFeedMediatorDelegate {
     }
     
     func didPressAuthor(at index: Int) {
+        let user = presenter.getUser(at: index)
         let profileViewController = ProfileViewController.nibInstance()
+        profileViewController.user = user
+        
         navigationController?.pushViewController(profileViewController, animated: true)
     }
     

@@ -32,6 +32,19 @@ class UserManager {
             completion(users, nil)
         }
     }
+    
+    func loadUser(with name: String, completion: @escaping (UserModel?, NSError?) -> Void) {
+        loadUsers([name]) { users, error in
+            guard error == nil else {
+                completion(nil, error!)
+                return
+            }
+            
+            let user = users.first
+            
+            completion(user, error)
+        }
+    }
 
     private func methodForUserRequest(_ request: UserRequestType) -> WebSocketMethod {
         switch request {

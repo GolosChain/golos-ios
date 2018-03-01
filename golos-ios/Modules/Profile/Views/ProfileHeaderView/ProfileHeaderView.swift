@@ -56,8 +56,10 @@ class ProfileHeaderView: PassthroughView {
         }
     }
     
-    var avatarImageUrlString: String? {
-        return nil
+    var avatarImage: UIImage? {
+        didSet {
+            self.avatarImageView.image = avatarImage
+        }
     }
     
     var isEdit = false {

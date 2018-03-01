@@ -12,8 +12,10 @@ struct UserModel {
     let userId: Int
     let name: String
     let about: String?
+    let postCount: Int
     let pictureUrl: String?
     let coverImageUrl: String?
+    
     
     init?(userDictionary: [String: Any]) {
         guard let id = userDictionary["id"] as? Int,
@@ -25,6 +27,7 @@ struct UserModel {
         self.userId = id
         self.name = name
         
+        self.postCount = userDictionary["post_count"] as? Int ?? 0
         
         var about: String?
         var pictureUrl: String?

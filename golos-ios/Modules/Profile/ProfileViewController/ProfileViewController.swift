@@ -43,6 +43,8 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     
     var isNeedToStartRefreshing = false
     
+    var username: String!
+    var user: UserModel!
     
     // MARK: Module properties
     lazy var presenter: ProfilePresenterProtocol = {
@@ -56,20 +58,27 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
         mediator.profilePresenter = self.presenter
         return mediator
     }()
+    
+    private var imageLoader = GSImageLoader()
 
     
     // MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        
+//        self.presenter.setUsername(username: self.username)
+        self.presenter.setUser(self.user)
     }
     
-    let postsManager = PostsManager()
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         UIApplication.shared.statusBarStyle = .lightContent
         navigationController?.setNavigationBarHidden(true, animated: true)
         navigationController?.interactivePopGestureRecognizer?.delegate = self
+        
+//        self.presenter.loadUser()
+        self.presenter.fetchUser()
     }
     
     // MARK: Setup UI
@@ -86,12 +95,18 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
         
         profileFeedContainer.delegate = self
         
-        let vc1 = PostsFeedViewController.nibInstance()
-        let vc2 = AnswersFeedViewController.nibInstance()
-        let vc3 = PostsFeedViewController.nibInstance()
-        let vc4 = PostsFeedViewController.nibInstance()
         
-        profileFeedContainer.setFeedItems([vc1, vc2, vc3, vc4], headerHeight: headerHeight, minimizedHeaderHeight: headerMinimizedHeight)
+        // TODO: Move to mediator
+        let postsFeedViewController = PostsFeedViewController.nibInstance()
+        let answersFeedViewController = AnswersFeedViewController.nibInstance()
+        let postsFeedViewController1 = PostsFeedViewController.nibInstance()
+        let postsFeedViewController2 = PostsFeedViewController.nibInstance()
+        let feedItems: [UIViewController & ProfileFeedContainerItem] = [postsFeedViewController,
+                                                                        answersFeedViewController,
+                                                                        postsFeedViewController1,
+                                                                        postsFeedViewController2]
+        
+        profileFeedContainer.setFeedItems(feedItems, headerHeight: headerHeight, minimizedHeaderHeight: headerMinimizedHeight)
         
         view.bringSubview(toFront: profileInfoView)
         view.bringSubview(toFront: profileHeaderView)
@@ -106,7 +121,7 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
         
         profileHeaderViewHeightConstraint.constant = topViewHeight
         
-        profileInfoViewHeightConstraint.constant = middleViewHeight
+//        profileInfoViewHeightConstraint.constant = middleViewHeight
         profileInfoViewTopConstraint.constant = topViewHeight
         
         horizontalSelectorHeightConstraint.constant = bottomViewHeight
@@ -129,7 +144,17 @@ extension ProfileViewController: ProfileHeaderViewDelegate {
     }
     
     func didPressSettingsButton() {
-        Utils.inDevelopmentAlert()
+//        Utils.inDevelopmentAlert()
+        let alert = UIAlertController(title: "Выход", message: "Уверены?", preferredStyle: .alert)
+        let cancel = UIAlertAction(title: "Нет", style: .destructive, handler: nil)
+        let ok = UIAlertAction(title: "Да", style: .default) { _ in
+            self.presenter.logout()
+        }
+        
+        alert.addAction(cancel)
+        alert.addAction(ok)
+        
+        present(alert, animated: true, completion: nil)
     }
     
     func didPressSubsribeButton() {
@@ -148,19 +173,31 @@ extension ProfileViewController: ProfileHeaderViewDelegate {
 
 // MARK: ProfileViewProtocol
 extension ProfileViewController: ProfileViewProtocol {
-    func didLoadProfileData() {
+    func didFail(with errorMessage: String) {
+        Utils.showAlert(message: errorMessage)
     }
     
-    func didLoadArticles() {
-    
-    }
-    
-    func didRefreshSuccess() {
+    func didRefreshUser() {
+        guard let viewModel = presenter.getProfileViewModel() else {
+            return
+        }
+        profileHeaderView.name = viewModel.name
+        profileHeaderView.rankString = viewModel.rank
+        profileHeaderView.starsAmountString = viewModel.starsAmount
         
-    }
-    
-    func didChangedFeedTab(isForward: Bool, previousAmount: Int) {
-       
+        profileInfoView.information = viewModel.information
+        profileInfoView.postsAmountString = viewModel.postsCount
+        
+        if let pictureUrlString = viewModel.pictureUrl {
+            imageLoader.startLoadImage(with: pictureUrlString) { [weak self] image in
+                guard let strongSelf = self else { return }
+                let image = image ?? UIImage(named: "avatar_placeholder")
+                strongSelf.profileHeaderView.avatarImage = image
+            }
+        }
+        
+        
+        
     }
 }
 

@@ -20,8 +20,8 @@ protocol PostsFeedPresenterProtocol: class {
     func getPostsViewModels() -> [PostsFeedViewModel]
     func getPostViewModel(at index: Int) -> PostsFeedViewModel?
     
-    func getPostPermalinkAndAuthorName(at index: Int) -> (String, String)
-    
+    func getPostPermalinkAndAuthorName(at index: Int) -> (permalink: String, author: String)
+    func getUser(at index: Int) -> UserModel?
 //    func loadRepliesForPost(at index: Int)
 }
 
@@ -47,7 +47,12 @@ class PostsFeedPresenter: NSObject {
 }
 
 extension PostsFeedPresenter: PostsFeedPresenterProtocol {
-    func getPostPermalinkAndAuthorName(at index: Int) -> (String, String) {
+    func getUser(at index: Int) -> UserModel? {
+        let post = posts[index]
+        return post.author
+    }
+    
+    func getPostPermalinkAndAuthorName(at index: Int) -> (permalink: String, author: String) {
         let post = posts[index]
         return (post.permalink, post.authorName)
     }

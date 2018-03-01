@@ -62,6 +62,9 @@ class FeedArticleTableViewCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         
+        authorPictureUrl = ""
+        pictureUrl = ""
+        
         let avatarPlaceholderImage = UIImage(named: "avatar_placeholder")
         articleHeaderView.authorAvatarImageView.image = avatarPlaceholderImage
         
