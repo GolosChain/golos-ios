@@ -17,6 +17,9 @@ class FeedMediator: NSObject {
     weak var pageViewController: UIPageViewController!
     
     weak var delegate: FeedMediatorDelegate?
+    
+    private var viewControllersArray = NSPointerArray.weakObjects()
+    private var cachedViewControllers = [PostsFeedViewController]()
 
     func configure(pageViewController: UIPageViewController) {
         pageViewController.dataSource = self
@@ -32,8 +35,16 @@ class FeedMediator: NSObject {
         let direction: UIPageViewControllerNavigationDirection = index < previousIndex
             ? .reverse
             : .forward
-        let viewController = PostsFeedViewController.nibInstance(with: type)
         
+        var viewController: PostsFeedViewController
+        let cached = cachedViewControllers.first(where: { $0.postsFeedType == type })
+        if let cached = cached {
+            viewController = cached
+        } else {
+            viewController = PostsFeedViewController.nibInstance(with: type)
+            cachedViewControllers.append(viewController)
+        }
+
         pageViewController.setViewControllers([viewController],
                                               direction: direction,
                                               animated: animated,
@@ -46,9 +57,17 @@ extension FeedMediator: UIPageViewControllerDataSource {
                             viewControllerBefore viewController: UIViewController) -> UIViewController? {
         guard let currentViewController = viewController as? PostsFeedViewController else { return nil }
         guard let previousType = presenter.previousPostsFeedType(currentViewController.postsFeedType) else { return nil }
+
+        var viewController: PostsFeedViewController
+        let cached = cachedViewControllers.first(where: { $0.postsFeedType == previousType })
+        if let cached = cached {
+            viewController = cached
+        } else {
+            viewController = PostsFeedViewController.nibInstance(with: previousType)
+            cachedViewControllers.append(viewController)
+        }
         
-        let previousViewController = PostsFeedViewController.nibInstance(with: previousType)
-        return previousViewController
+        return viewController
     }
     
     func pageViewController(_ pageViewController: UIPageViewController,
@@ -56,8 +75,16 @@ extension FeedMediator: UIPageViewControllerDataSource {
         guard let currentViewController = viewController as? PostsFeedViewController else { return nil }
         guard let nextType = presenter.nextPostsFeedType(currentViewController.postsFeedType) else { return nil }
         
-        let nextViewController = PostsFeedViewController.nibInstance(with: nextType)
-        return nextViewController
+        var viewController: PostsFeedViewController
+        let cached = cachedViewControllers.first(where: { $0.postsFeedType == nextType })
+        if let cached = cached {
+            viewController = cached
+        } else {
+            viewController = PostsFeedViewController.nibInstance(with: nextType)
+            cachedViewControllers.append(viewController)
+        }
+        
+        return viewController
     }
 }
 

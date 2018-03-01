@@ -38,9 +38,9 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="post_picture_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="cNc-UC-tpt">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cNc-UC-tpt">
                                 <rect key="frame" x="0.0" y="53.5" width="375" height="212"/>
-                                <color key="backgroundColor" red="0.8817963606" green="1" blue="0.18576353370000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" priority="999" constant="212" id="Ra8-JN-wFO"/>
                                 </constraints>
@@ -142,6 +142,5 @@
     <resources>
         <image name="article_comments_icon" width="20" height="20"/>
         <image name="article_upvote_icon" width="20" height="20"/>
-        <image name="post_picture_placeholder" width="150" height="150"/>
     </resources>
 </document>

@@ -47,12 +47,13 @@ class PostsFeedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        presenter.fetchPosts()
+        presenter.loadPosts()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        presenter.fetchPosts()
-        presenter.loadPosts()
+        tableView.reloadData()
     }
     
     // MARK: SetupUI
@@ -63,6 +64,19 @@ class PostsFeedViewController: UIViewController {
             self.automaticallyAdjustsScrollViewInsets = false
         }
         mediator.configure(tableView: tableView)
+        
+        let spinner = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+        spinner.startAnimating()
+        spinner.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: tableView.bounds.width, height: CGFloat(44))
+        tableView.tableFooterView = spinner
+    }
+    
+    func loadingStarted() {
+        let spinner = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+        spinner.startAnimating()
+        spinner.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: tableView.bounds.width, height: CGFloat(44))
+        
+        tableView.tableFooterView?.isHidden = false
     }
 }
 
@@ -75,12 +89,34 @@ extension PostsFeedViewController: PostsFeedViewProtocol {
     
     func didLoadPosts() {
         tableView.reloadData()
+        tableView.tableFooterView?.isHidden = true
     }
+    
+    func didLoadPostsAuthors() {
+        let visibleCellsIndex = tableView.visibleCells.flatMap { cell -> IndexPath? in
+            self.tableView.indexPath(for: cell)
+        }
+        
+        tableView.beginUpdates()
+        tableView.reloadRows(at: visibleCellsIndex, with: .none)
+        tableView.endUpdates()
+    }
+    
+    func didLoadPostReplies(at index: Int) {
+        let indexPath = IndexPath(row: index, section: 0)
+        tableView.beginUpdates()
+        tableView.reloadRows(at: [indexPath], with: .none)
+        tableView.endUpdates()
+    }
+    
 }
 
 extension PostsFeedViewController: PostsFeedMediatorDelegate {
     func didSelectArticle(at index: Int) {
         let articleViewController = ArticleViewController.nibInstance()
+        let tuple = presenter.getPostPermalinkAndAuthorName(at: index)
+        articleViewController.permalink = tuple.0
+        articleViewController.authorName = tuple.1
         navigationController?.pushViewController(articleViewController, animated: true)
     }
     
@@ -115,5 +151,9 @@ extension PostsFeedViewController: PostsFeedMediatorDelegate {
     
     func didScroll(tableView: UITableView) {
         delegate?.didScrollItem(self)
+    }
+    
+    func didStartLoadingNextPage() {
+        loadingStarted()
     }
 }

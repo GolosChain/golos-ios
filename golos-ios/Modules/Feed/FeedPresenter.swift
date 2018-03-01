@@ -13,6 +13,7 @@ protocol FeedPresenterProtocol: class {
     func nextPostsFeedType(_ current: PostsFeedType) -> PostsFeedType?
     func previousPostsFeedType(_ current: PostsFeedType) -> PostsFeedType?
     func getPostsFeedType(at index: Int) -> PostsFeedType?
+    func getIndex(for type: PostsFeedType) -> Int?
 }
 
 protocol FeedViewProtocol: class {
@@ -43,7 +44,7 @@ extension FeedPresenter: FeedPresenterProtocol {
     }
     
     func getPostsFeedType(at index: Int) -> PostsFeedType? {
-        guard index < postsFeedTypeArray.count - 1 else { return nil }
+        guard index < postsFeedTypeArray.count else { return nil }
         return postsFeedTypeArray[index]
     }
     
@@ -61,5 +62,13 @@ extension FeedPresenter: FeedPresenterProtocol {
         
         let previousType = postsFeedTypeArray[currentIndex - 1]
         return previousType
+    }
+    
+    func getIndex(for type: PostsFeedType) -> Int? {
+        guard let index = postsFeedTypeArray.index(of: type) else {
+            return nil
+        }
+        
+        return index
     }
 }

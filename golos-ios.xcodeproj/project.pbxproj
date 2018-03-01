@@ -46,9 +46,9 @@
 		7D911D162035CDA800F19D3C /* WebSocketRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D911D152035CDA800F19D3C /* WebSocketRequest.swift */; };
 		7D911D182035DDD300F19D3C /* WebSocketResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D911D172035DDD300F19D3C /* WebSocketResponse.swift */; };
 		7D911D1A2035DE5D00F19D3C /* String+Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D911D192035DE5D00F19D3C /* String+Dictionary.swift */; };
-		7D911D1D2035ED0200F19D3C /* PostsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D911D1C2035ED0200F19D3C /* PostsManager.swift */; };
+		7D911D1D2035ED0200F19D3C /* PostsFeedManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D911D1C2035ED0200F19D3C /* PostsFeedManager.swift */; };
 		7D911D202035F0A600F19D3C /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D911D1F2035F0A600F19D3C /* PostModel.swift */; };
-		7D911D222035F5AA00F19D3C /* PostCommentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D911D212035F5AA00F19D3C /* PostCommentModel.swift */; };
+		7D911D222035F5AA00F19D3C /* PostReplyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D911D212035F5AA00F19D3C /* PostReplyModel.swift */; };
 		7D911D242035F5C900F19D3C /* PostVoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D911D232035F5C900F19D3C /* PostVoteModel.swift */; };
 		7D911D262035F6EA00F19D3C /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D911D252035F6EA00F19D3C /* UserModel.swift */; };
 		7D95CFA5203A119B00C1AE0A /* GSImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D95CFA2203A119B00C1AE0A /* GSImageLoader.swift */; };
@@ -70,6 +70,10 @@
 		7DFA6CAE2036D76000F59494 /* PostsFeedImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DFA6CAC2036D76000F59494 /* PostsFeedImageTableViewCell.xib */; };
 		7DFA6CB12036D76B00F59494 /* PostsFeedTextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFA6CAF2036D76B00F59494 /* PostsFeedTextTableViewCell.swift */; };
 		7DFA6CB22036D76B00F59494 /* PostsFeedTextTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DFA6CB02036D76B00F59494 /* PostsFeedTextTableViewCell.xib */; };
+		7DFE7C44204639390057F144 /* ReplyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFE7C43204639390057F144 /* ReplyManager.swift */; };
+		7DFE7C462046395B0057F144 /* ReplyRequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFE7C452046395B0057F144 /* ReplyRequestType.swift */; };
+		7DFE7C4920464C1E0057F144 /* PostsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFE7C4820464C1E0057F144 /* PostsManager.swift */; };
+		7DFE7C4B20464C680057F144 /* PostRequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFE7C4A20464C680057F144 /* PostRequestType.swift */; };
 		99AA4A81C46AA503973BA77F /* Pods_Golos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D3CE7EF617BA80468724899 /* Pods_Golos.framework */; };
 		EC07F4A22014093E00560CF0 /* HorizontalSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC07F4A12014093E00560CF0 /* HorizontalSelectorView.swift */; };
 		EC07F4A620141E8D00560CF0 /* PostsFeedType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC07F4A520141E8D00560CF0 /* PostsFeedType.swift */; };
@@ -193,9 +197,9 @@
 		7D911D152035CDA800F19D3C /* WebSocketRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketRequest.swift; sourceTree = "<group>"; };
 		7D911D172035DDD300F19D3C /* WebSocketResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketResponse.swift; sourceTree = "<group>"; };
 		7D911D192035DE5D00F19D3C /* String+Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Dictionary.swift"; sourceTree = "<group>"; };
-		7D911D1C2035ED0200F19D3C /* PostsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsManager.swift; sourceTree = "<group>"; };
+		7D911D1C2035ED0200F19D3C /* PostsFeedManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsFeedManager.swift; sourceTree = "<group>"; };
 		7D911D1F2035F0A600F19D3C /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
-		7D911D212035F5AA00F19D3C /* PostCommentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCommentModel.swift; sourceTree = "<group>"; };
+		7D911D212035F5AA00F19D3C /* PostReplyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostReplyModel.swift; sourceTree = "<group>"; };
 		7D911D232035F5C900F19D3C /* PostVoteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostVoteModel.swift; sourceTree = "<group>"; };
 		7D911D252035F6EA00F19D3C /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		7D95CFA2203A119B00C1AE0A /* GSImageLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GSImageLoader.swift; sourceTree = "<group>"; };
@@ -217,6 +221,10 @@
 		7DFA6CAC2036D76000F59494 /* PostsFeedImageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostsFeedImageTableViewCell.xib; sourceTree = "<group>"; };
 		7DFA6CAF2036D76B00F59494 /* PostsFeedTextTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsFeedTextTableViewCell.swift; sourceTree = "<group>"; };
 		7DFA6CB02036D76B00F59494 /* PostsFeedTextTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostsFeedTextTableViewCell.xib; sourceTree = "<group>"; };
+		7DFE7C43204639390057F144 /* ReplyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyManager.swift; sourceTree = "<group>"; };
+		7DFE7C452046395B0057F144 /* ReplyRequestType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyRequestType.swift; sourceTree = "<group>"; };
+		7DFE7C4820464C1E0057F144 /* PostsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsManager.swift; sourceTree = "<group>"; };
+		7DFE7C4A20464C680057F144 /* PostRequestType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRequestType.swift; sourceTree = "<group>"; };
 		8D3CE7EF617BA80468724899 /* Pods_Golos.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Golos.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		974FDF6AE6B94E5A2BFC2FDE /* Pods-Golos.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Golos.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Golos/Pods-Golos.debug.xcconfig"; sourceTree = "<group>"; };
 		DECBC36021F31D8D6F619C11 /* Pods-golos-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-golos-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-golos-ios/Pods-golos-ios.release.xcconfig"; sourceTree = "<group>"; };
@@ -448,7 +456,7 @@
 		7D911D1B2035ECF000F19D3C /* PostsFeedManager */ = {
 			isa = PBXGroup;
 			children = (
-				7D911D1C2035ED0200F19D3C /* PostsManager.swift */,
+				7D911D1C2035ED0200F19D3C /* PostsFeedManager.swift */,
 			);
 			path = PostsFeedManager;
 			sourceTree = "<group>";
@@ -457,7 +465,7 @@
 			isa = PBXGroup;
 			children = (
 				7D911D1F2035F0A600F19D3C /* PostModel.swift */,
-				7D911D212035F5AA00F19D3C /* PostCommentModel.swift */,
+				7D911D212035F5AA00F19D3C /* PostReplyModel.swift */,
 				7D911D232035F5C900F19D3C /* PostVoteModel.swift */,
 				7D911D252035F6EA00F19D3C /* UserModel.swift */,
 				7D7D564320368028003E06A6 /* PostItem.swift */,
@@ -500,6 +508,24 @@
 				7DCF74A3201FE1E400D46495 /* ArticleCommentsSectionHeader.xib */,
 			);
 			path = TableHeaders;
+			sourceTree = "<group>";
+		};
+		7DFE7C422046392C0057F144 /* ReplyManager */ = {
+			isa = PBXGroup;
+			children = (
+				7DFE7C43204639390057F144 /* ReplyManager.swift */,
+				7DFE7C452046395B0057F144 /* ReplyRequestType.swift */,
+			);
+			path = ReplyManager;
+			sourceTree = "<group>";
+		};
+		7DFE7C4720464C110057F144 /* PostsManager */ = {
+			isa = PBXGroup;
+			children = (
+				7DFE7C4820464C1E0057F144 /* PostsManager.swift */,
+				7DFE7C4A20464C680057F144 /* PostRequestType.swift */,
+			);
+			path = PostsManager;
 			sourceTree = "<group>";
 		};
 		EC07F4A0201408FF00560CF0 /* HorizontalSelectorView */ = {
@@ -566,10 +592,12 @@
 		EC24FF29200BFA9300A0AE15 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				7D911D1B2035ECF000F19D3C /* PostsFeedManager */,
+				7DFE7C4720464C110057F144 /* PostsManager */,
+				7DFE7C422046392C0057F144 /* ReplyManager */,
 				7D95CFA8203A53D900C1AE0A /* UserManager */,
 				7D95CFA1203A118D00C1AE0A /* GSImageLoader */,
 				7D7D564020367F7C003E06A6 /* Parser */,
-				7D911D1B2035ECF000F19D3C /* PostsFeedManager */,
 				7D79C34D2034F28B00794447 /* WebSocketManager */,
 				EC24FF4E200C064B00A0AE15 /* StateMachine */,
 				EC24FF2A200BFAA100A0AE15 /* Validator.swift */,
@@ -1103,7 +1131,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7D911D1D2035ED0200F19D3C /* PostsManager.swift in Sources */,
+				7D911D1D2035ED0200F19D3C /* PostsFeedManager.swift in Sources */,
 				7D911D202035F0A600F19D3C /* PostModel.swift in Sources */,
 				7D95CFAA203A53E500C1AE0A /* UserManager.swift in Sources */,
 				EC9ABBE82018036E00AF8597 /* Device+Size.swift in Sources */,
@@ -1127,6 +1155,7 @@
 				7D4597AC2031AD63007BA90C /* AppDelegate+HockeyApp.swift in Sources */,
 				7D25B4CA201FABD8004A3400 /* ArticleFooterTableViewCell.swift in Sources */,
 				7D25B483201F479B004A3400 /* TagTokenButton.swift in Sources */,
+				7DFE7C462046395B0057F144 /* ReplyRequestType.swift in Sources */,
 				EC24FF5B200C30C500A0AE15 /* MainContainerPresenter.swift in Sources */,
 				EC24FF79200C497800A0AE15 /* FeedViewController.swift in Sources */,
 				EC07F4B12014404200560CF0 /* PostsFeedViewController.swift in Sources */,
@@ -1135,11 +1164,13 @@
 				ECF2808C200A9A210000D949 /* UIButton+Intro.swift in Sources */,
 				ECA8E3512018A626003B8ABA /* ProfileInfoView.swift in Sources */,
 				EC24FF2B200BFAA100A0AE15 /* Validator.swift in Sources */,
+				7DFE7C4920464C1E0057F144 /* PostsManager.swift in Sources */,
 				EC9ABBEA2018072600AF8597 /* GSTableView.swift in Sources */,
 				ECF31727200A9E0B00F7B703 /* Utils.swift in Sources */,
 				EC9ABBBF20179CEF00AF8597 /* Images.swift in Sources */,
 				EC24FF26200BEA8800A0AE15 /* AppDelegate+IQKeyboardManager.swift in Sources */,
 				EC07F4AA20141F0C00560CF0 /* FeedPresenter.swift in Sources */,
+				7DFE7C4B20464C680057F144 /* PostRequestType.swift in Sources */,
 				EC07F4A22014093E00560CF0 /* HorizontalSelectorView.swift in Sources */,
 				EC07F4A820141F0200560CF0 /* FeedMediator.swift in Sources */,
 				7D95CFA6203A119B00C1AE0A /* GSImageLoadOperation.swift in Sources */,
@@ -1154,6 +1185,7 @@
 				7D95CFA5203A119B00C1AE0A /* GSImageLoader.swift in Sources */,
 				EC9B2AE6201550F4008335C8 /* FeedArticleTableViewCell.swift in Sources */,
 				7DA0632C203315A300B5630C /* PassthroughView.swift in Sources */,
+				7DFE7C44204639390057F144 /* ReplyManager.swift in Sources */,
 				EC24FF84200C635600A0AE15 /* DropDownMediator.swift in Sources */,
 				7D95CFA7203A119B00C1AE0A /* GSOperation.swift in Sources */,
 				EC24FF70200C433700A0AE15 /* ProfileViewController.swift in Sources */,
@@ -1171,7 +1203,7 @@
 				7D25B48F201F5E88004A3400 /* CollectionViewCenteredLayout.swift in Sources */,
 				7D7D564420368028003E06A6 /* PostItem.swift in Sources */,
 				EC9ABBC32017D17000AF8597 /* UIImageEffects.swift in Sources */,
-				7D911D222035F5AA00F19D3C /* PostCommentModel.swift in Sources */,
+				7D911D222035F5AA00F19D3C /* PostReplyModel.swift in Sources */,
 				EC24FF52200C06E300A0AE15 /* StateMachine.swift in Sources */,
 				7D95CFAC203A546500C1AE0A /* UserRequestType.swift in Sources */,
 				EC24FF5F200C3B8100A0AE15 /* AppDelegate+RootViewController.swift in Sources */,

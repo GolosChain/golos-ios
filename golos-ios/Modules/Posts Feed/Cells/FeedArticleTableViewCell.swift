@@ -62,7 +62,10 @@ class FeedArticleTableViewCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         
-        postImageView.image = UIImage(named: "post_picture_placeholder")
+        let avatarPlaceholderImage = UIImage(named: "avatar_placeholder")
+        articleHeaderView.authorAvatarImageView.image = avatarPlaceholderImage
+        
+        postImageView.image = nil
     }
     
     override func layoutSubviews() {
@@ -93,13 +96,24 @@ class FeedArticleTableViewCell: UITableViewCell {
             return
         }
         
+        titleLabel.text = viewModel.articleTitle
         descriptionTextView.text = viewModel.postDescription
         articleHeaderView.authorLabel.text = viewModel.authorName
         articleHeaderView.themeLabel.text = viewModel.theme
         articleHeaderView.reblogAuthorLabel.text = viewModel.reblogAuthorName
         upvoteButton.tintColor = viewModel.didUpvote ? UIColor.Project.articleButtonsGreenColor : UIColor.Project.articleButtonsGrayColor
-        commentsButton.tintColor = viewModel.didComment ? UIColor.Project.articleButtonsGreenColor : UIColor.Project.articleButtonsGrayColor
         upvoteButton.setTitle(viewModel.upvoteAmount, for: .normal)
+        commentsButton.tintColor = viewModel.didComment ? UIColor.Project.articleButtonsGreenColor : UIColor.Project.articleButtonsGrayColor
+        commentsButton.setTitle(viewModel.commentsAmount, for: .normal)
+        
+        if let reblogAuthor = viewModel.reblogAuthorName {
+            articleHeaderView.reblogAuthorLabel.isHidden = false
+            articleHeaderView.reblogAuthorLabel.text = reblogAuthor
+            articleHeaderView.reblogIconImageView.isHidden = false
+        } else {
+            articleHeaderView.reblogAuthorLabel.isHidden = true
+            articleHeaderView.reblogIconImageView.isHidden = true
+        }
         
         
         let imageHeight: CGFloat = viewModel.imagePictureUrl == nil ? 0 : 212
@@ -107,6 +121,10 @@ class FeedArticleTableViewCell: UITableViewCell {
         contentView.layoutIfNeeded()
         
         if let imageUrl = viewModel.imagePictureUrl {
+            if self.pictureUrl == imageUrl && postImageView.image != nil {
+                return
+            }
+            
             self.pictureUrl = imageUrl
             imageLoader.startLoadImage(with: imageUrl) { (image) in
                 DispatchQueue.main.async {
@@ -118,6 +136,10 @@ class FeedArticleTableViewCell: UITableViewCell {
         }
         
         if let authorPictureUrl = viewModel.authorAvatarUrl {
+            if self.authorPictureUrl == authorPictureUrl && articleHeaderView.authorAvatarImageView.image != nil {
+                return
+            }
+            
             self.authorPictureUrl = authorPictureUrl
             imageLoader.startLoadImage(with: authorPictureUrl) { (image) in
                 DispatchQueue.main.async {
@@ -126,6 +148,9 @@ class FeedArticleTableViewCell: UITableViewCell {
                     }
                 }
             }
+        } else {
+            let avatarPlaceholderImage = UIImage(named: "avatar_placeholder")
+            articleHeaderView.authorAvatarImageView.image = avatarPlaceholderImage
         }
     }
 

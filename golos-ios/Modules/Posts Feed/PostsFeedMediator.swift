@@ -16,6 +16,7 @@ protocol PostsFeedMediatorDelegate: class {
     func didPressAuthor(at index: Int)
     func didPressReblogAuthor(at index: Int)
     func didSelectArticle(at index: Int)
+    func didStartLoadingNextPage()
 }
 
 extension PostsFeedMediatorDelegate {
@@ -60,6 +61,11 @@ extension PostsFeedMediator: UITableViewDataSource {
         
         let viewModel = postsFeedPresenter.getPostViewModel(at: indexPath.row)
         cell.configure(with: viewModel)
+        
+        if indexPath.row == postsFeedPresenter.getPostsViewModels().count - 1 {
+            postsFeedPresenter.loadNext()
+            delegate?.didStartLoadingNextPage()
+        }
                 
         return cell
     }

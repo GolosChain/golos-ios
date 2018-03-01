@@ -16,10 +16,15 @@ struct PostModel {
     let pictureUrl: String?
     let category: String
     let authorName: String
+    var reblogAuthorName: String? = nil
     let isVoteAllow: Bool
     let isCommentAllow: Bool
+    let permalink: String
+//    let tags: [String]
     let votes: [PostVoteModel]
+    var replies: [PostReplyModel]?
     var author: UserModel?
+    
     
     
     init?(postDictionary: [String: Any]) {
@@ -42,6 +47,7 @@ struct PostModel {
         self.authorName = postDictionary["author"] as? String ?? ""
         self.isCommentAllow = (postDictionary["allow_replies"] as? Int) == 1 ? true : false
         self.isVoteAllow = (postDictionary["allow_votes"] as? Int) == 1 ? true : false
+        self.permalink = postDictionary["permlink"] as? String ?? ""
         
         if let votes = postDictionary["active_votes"] as? [[String: Any]] {
             let voteModels = votes.map({ voteDictionary -> PostVoteModel in
@@ -52,5 +58,14 @@ struct PostModel {
         } else {
             votes = []
         }
+        
+//
+//        if let metadataString = postDictionary["json_metadata"] as? String,
+//            let data = metadataString.data(using: .utf8),
+//            let json = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any] {
+//
+//        } else {
+//            self.tags = []()
+//        }
     }
 }

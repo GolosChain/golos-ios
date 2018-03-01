@@ -15,13 +15,21 @@ protocol PostsFeedPresenterProtocol: class {
     func fetchPosts()
     func loadPosts()
     
+    func loadNext()
+    
     func getPostsViewModels() -> [PostsFeedViewModel]
     func getPostViewModel(at index: Int) -> PostsFeedViewModel?
+    
+    func getPostPermalinkAndAuthorName(at index: Int) -> (String, String)
+    
+//    func loadRepliesForPost(at index: Int)
 }
 
 protocol PostsFeedViewProtocol: class {
     func didFetchPosts()
     func didLoadPosts()
+    func didLoadPostsAuthors()
+    func didLoadPostReplies(at index: Int)
 }
 
 class PostsFeedPresenter: NSObject {
@@ -29,12 +37,21 @@ class PostsFeedPresenter: NSObject {
     
     private var postsFeedType: PostsFeedType = .new
     private var postsItems = [PostsFeedViewModel]()
+    private var posts = [PostModel]()
+    private var postsAmount = 10
+    private let batchCount = 10
     
-    private let postsManager = PostsManager()
+    private let postsFeedManager = PostsFeedManager()
     private let userManager = UserManager()
+    private let replyManager = ReplyManager()
 }
 
 extension PostsFeedPresenter: PostsFeedPresenterProtocol {
+    func getPostPermalinkAndAuthorName(at index: Int) -> (String, String) {
+        let post = posts[index]
+        return (post.permalink, post.authorName)
+    }
+    
     func setPostsFeedType(_ type: PostsFeedType) {
         self.postsFeedType = type
     }
@@ -48,17 +65,28 @@ extension PostsFeedPresenter: PostsFeedPresenterProtocol {
     }
     
     func loadPosts() {
-        postsManager.loadFeed(with: postsFeedType, amount: 10) { [weak self] posts, error in
+        postsFeedManager.loadFeed(with: postsFeedType, amount: postsAmount) { [weak self] posts, error in
             guard let strongSelf = self else { return }
             guard  error == nil else {
                 return
             }
             
-            strongSelf.postsItems = strongSelf.parse(posts: posts)
+            let newPosts = posts.filter({ model -> Bool in
+                !strongSelf.posts.contains(where: {$0.postId == model.postId})
+            })
+            
+            strongSelf.posts.append(contentsOf: newPosts)
+            
+            strongSelf.postsItems = strongSelf.parse(posts: strongSelf.posts)
             strongSelf.postsFeedView.didLoadPosts()
 
-            strongSelf.loadUsers(for: posts)
+            strongSelf.loadUsers(for: strongSelf.posts)
         }
+    }
+    
+    func loadNext() {
+        postsAmount += batchCount
+        loadPosts()
     }
     
     private func loadUsers(for posts: [PostModel]) {
@@ -68,19 +96,36 @@ extension PostsFeedPresenter: PostsFeedPresenterProtocol {
         
         userManager.loadUsers(usernames) { [weak self] users, error in
             guard let strongSelf = self else { return }
-            guard  error == nil else {
+            guard error == nil else {
                 return
             }
             
-            let updatedWithUserPosts = posts.map({ post -> PostModel in
+            for (index, post) in strongSelf.posts.enumerated() {
                 let postUser = users.first(where: {$0.name == post.authorName})
-                var newPost = post
-                newPost.author = postUser
-                return newPost
-            })
+                strongSelf.posts[index].author = postUser
+            }
             
-            strongSelf.postsItems = strongSelf.parse(posts: updatedWithUserPosts)
-            strongSelf.postsFeedView.didLoadPosts()
+            strongSelf.postsItems = strongSelf.parse(posts: strongSelf.posts)
+            strongSelf.postsFeedView.didLoadPostsAuthors()
+            
+            for (index, _) in strongSelf.posts.enumerated() {
+                strongSelf.loadRepliesForPost(at: index)
+            }
+        }
+    }
+    
+    func loadRepliesForPost(at index: Int) {
+        let post = self.posts[index]
+        replyManager.loadRepliesForPost(withPermalink: post.permalink,
+                                        authorUsername: post.authorName) { [weak self] replies, error in
+            guard let strongSelf = self else {return}
+            guard error == nil else {
+                return
+            }
+            
+            strongSelf.posts[index].replies = replies
+            strongSelf.postsItems[index] = strongSelf.parsePostModel(strongSelf.posts[index])
+            strongSelf.postsFeedView.didLoadPostReplies(at: index)
         }
     }
     
@@ -94,22 +139,24 @@ extension PostsFeedPresenter: PostsFeedPresenterProtocol {
     }
     
     // TEMPORARY
+    func parsePostModel(_ postModel: PostModel) -> PostsFeedViewModel {
+        return PostsFeedViewModel(authorName: postModel.authorName,
+                                  authorAvatarUrl: postModel.author?.pictureUrl,
+                                  articleTitle: postModel.title,
+                                  reblogAuthorName: postModel.reblogAuthorName,
+                                  theme: postModel.category,
+                                  articleBody: postModel.body,
+                                  postDescription: postModel.description,
+                                  imagePictureUrl: postModel.pictureUrl,
+                                  upvoteAmount: "\(postModel.votes.count)",
+            commentsAmount: postModel.replies == nil ? "-" :"\(postModel.replies!.count)",
+            didUpvote: postModel.isVoteAllow,
+            didComment: postModel.isCommentAllow)
+    }
+    
     func parse(posts: [PostModel]) -> [PostsFeedViewModel] {
         return posts.map({ model -> PostsFeedViewModel in
-          
-            
-            return PostsFeedViewModel(authorName: model.authorName,
-                                      authorAvatarUrl: model.author?.pictureUrl,
-                                      articleTitle: model.title,
-                                      reblogAuthorName: "b",
-                                      theme: model.category,
-                                      articleBody: model.body,
-                                      postDescription: model.description,
-                                      imagePictureUrl: model.pictureUrl,
-                                      upvoteAmount: "\(model.votes.count)",
-                                      commentsAmount: "2",
-                                      didUpvote: model.isVoteAllow,
-                                      didComment: model.isCommentAllow)
+            return parsePostModel(model)
         })
     }
 }

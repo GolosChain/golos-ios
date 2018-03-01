@@ -8,7 +8,7 @@
 
 import Foundation
 
-class PostsManager {
+class PostsFeedManager {
     let webSocket = WebSocketManager.shared
     
     func loadFeed(with type: PostsFeedType, amount: Int, completion: @escaping ([PostModel], NSError?) -> Void) {
@@ -41,7 +41,7 @@ class PostsManager {
         case .hot: return WebSocketMethod.getDiscussionsActual
         case .new: return WebSocketMethod.getDiscussionsNew
         case .popular: return WebSocketMethod.getDiscussionsPopular
-        case .promoted: return WebSocketMethod.getDiscussionsPromo
+        case .promoted: return WebSocketMethod.getDiscussionsActual
         }
     }
 }
