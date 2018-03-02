@@ -138,6 +138,12 @@ class LoginViewController: UIViewController {
         let navigationController = UINavigationController(rootViewController: qrScannerViewController)
         present(navigationController, animated: true, completion: nil)
     }
+    
+    @IBAction func helpButtonPressed(_ sender: Any) {
+        let loginHelpViewController = LoginHelpViewController.nibInstance()
+        loginHelpViewController.modalPresentationStyle = .overCurrentContext
+        present(loginHelpViewController, animated: true, completion: nil)
+    }
 }
 
 

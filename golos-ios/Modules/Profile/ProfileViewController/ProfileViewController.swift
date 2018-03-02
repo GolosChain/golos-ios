@@ -144,7 +144,6 @@ extension ProfileViewController: ProfileHeaderViewDelegate {
     }
     
     func didPressSettingsButton() {
-//        Utils.inDevelopmentAlert()
         let alert = UIAlertController(title: "Выход", message: "Уверены?", preferredStyle: .alert)
         let cancel = UIAlertAction(title: "Нет", style: .destructive, handler: nil)
         let ok = UIAlertAction(title: "Да", style: .default) { _ in

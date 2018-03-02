@@ -66,6 +66,8 @@
 		7DCF74A720200AA700D46495 /* ArticleCommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF74A520200AA700D46495 /* ArticleCommentTableViewCell.swift */; };
 		7DCF74A820200AA700D46495 /* ArticleCommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DCF74A620200AA700D46495 /* ArticleCommentTableViewCell.xib */; };
 		7DE353172048A84C00C04CB2 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE353162048A84C00C04CB2 /* ProfileViewModel.swift */; };
+		7DE3531B2048CA3400C04CB2 /* LoginHelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE353192048CA3400C04CB2 /* LoginHelpViewController.swift */; };
+		7DE3531C2048CA3400C04CB2 /* LoginHelpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DE3531A2048CA3400C04CB2 /* LoginHelpViewController.xib */; };
 		7DF16A72201D6043000F5529 /* ProfileMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF16A71201D6043000F5529 /* ProfileMediator.swift */; };
 		7DFA6CAD2036D76000F59494 /* PostsFeedImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFA6CAB2036D76000F59494 /* PostsFeedImageTableViewCell.swift */; };
 		7DFA6CAE2036D76000F59494 /* PostsFeedImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DFA6CAC2036D76000F59494 /* PostsFeedImageTableViewCell.xib */; };
@@ -218,6 +220,8 @@
 		7DCF74A520200AA700D46495 /* ArticleCommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCommentTableViewCell.swift; sourceTree = "<group>"; };
 		7DCF74A620200AA700D46495 /* ArticleCommentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleCommentTableViewCell.xib; sourceTree = "<group>"; };
 		7DE353162048A84C00C04CB2 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		7DE353192048CA3400C04CB2 /* LoginHelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginHelpViewController.swift; sourceTree = "<group>"; };
+		7DE3531A2048CA3400C04CB2 /* LoginHelpViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginHelpViewController.xib; sourceTree = "<group>"; };
 		7DF16A71201D6043000F5529 /* ProfileMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMediator.swift; sourceTree = "<group>"; };
 		7DFA6CAB2036D76000F59494 /* PostsFeedImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsFeedImageTableViewCell.swift; sourceTree = "<group>"; };
 		7DFA6CAC2036D76000F59494 /* PostsFeedImageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostsFeedImageTableViewCell.xib; sourceTree = "<group>"; };
@@ -510,6 +514,15 @@
 				7DCF74A3201FE1E400D46495 /* ArticleCommentsSectionHeader.xib */,
 			);
 			path = TableHeaders;
+			sourceTree = "<group>";
+		};
+		7DE353182048CA1E00C04CB2 /* LoginHelp */ = {
+			isa = PBXGroup;
+			children = (
+				7DE353192048CA3400C04CB2 /* LoginHelpViewController.swift */,
+				7DE3531A2048CA3400C04CB2 /* LoginHelpViewController.xib */,
+			);
+			path = LoginHelp;
 			sourceTree = "<group>";
 		};
 		7DFE7C422046392C0057F144 /* ReplyManager */ = {
@@ -807,6 +820,7 @@
 		ECC15F9B200975680099BBC9 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				7DE353182048CA1E00C04CB2 /* LoginHelp */,
 				7D79C3362034673500794447 /* Answers */,
 				7D25B484201F4967004A3400 /* Article */,
 				EC07F4AE2014402E00560CF0 /* Posts Feed */,
@@ -1010,6 +1024,7 @@
 				7D25B4BF201FABB2004A3400 /* ArticleTitleTableViewCell.xib in Resources */,
 				EC1DFB9920063C400080BC50 /* LaunchScreen.storyboard in Resources */,
 				7DCF74A820200AA700D46495 /* ArticleCommentTableViewCell.xib in Resources */,
+				7DE3531C2048CA3400C04CB2 /* LoginHelpViewController.xib in Resources */,
 				EC24FF7F200C4E2C00A0AE15 /* NavigationDropDownView.xib in Resources */,
 				7D79C33B2034675C00794447 /* AnswersFeedViewController.xib in Resources */,
 				EC6FD5A3200AE1A200DCB824 /* QRScannerViewController.xib in Resources */,
@@ -1183,6 +1198,7 @@
 				EC9B2AE920155B9C008335C8 /* PostsFeedMediator.swift in Sources */,
 				7D25B4C2201FABBD004A3400 /* ArticleImageTableViewCell.swift in Sources */,
 				EC24FF28200BEBE600A0AE15 /* ViewProtocol.swift in Sources */,
+				7DE3531B2048CA3400C04CB2 /* LoginHelpViewController.swift in Sources */,
 				7DCF74A720200AA700D46495 /* ArticleCommentTableViewCell.swift in Sources */,
 				7D911D1A2035DE5D00F19D3C /* String+Dictionary.swift in Sources */,
 				7D95CFA5203A119B00C1AE0A /* GSImageLoader.swift in Sources */,
