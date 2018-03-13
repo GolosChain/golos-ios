@@ -7,8 +7,7 @@
 //
 
 import UIKit
-import MarkdownView
-import MarkedView
+
 
 class ArticleViewController: UIViewController {
     
@@ -23,9 +22,7 @@ class ArticleViewController: UIViewController {
     @IBOutlet weak var articleHeaderView: ArticleHeaderView!
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
-    var markdownView = MarkdownView()
-    var mdView = UIMarkedView()
-    
+
 
     //Module properties
     lazy var mediator: ArticleMediator = {
@@ -114,7 +111,7 @@ class ArticleViewController: UIViewController {
             self.automaticallyAdjustsScrollViewInsets = false
         }
         
-        markdownView.isScrollEnabled = false
+//        markdownView.isScrollEnabled = false
     }
     
     

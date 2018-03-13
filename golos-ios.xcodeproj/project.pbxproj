@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A4D6077118CAF827A738599 /* libPods-Golos.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 49B3343D7A082E2FEB570B6F /* libPods-Golos.a */; };
 		7D1783DD201FD9B600B75979 /* ArticlePostedInTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1783DB201FD9B600B75979 /* ArticlePostedInTableViewCell.swift */; };
 		7D1783DE201FD9B600B75979 /* ArticlePostedInTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D1783DC201FD9B600B75979 /* ArticlePostedInTableViewCell.xib */; };
 		7D25B47F201F4714004A3400 /* TagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D25B47E201F4714004A3400 /* TagsView.swift */; };
@@ -61,6 +62,10 @@
 		7DA06328203256D700B5630C /* PropertyStoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA06327203256D700B5630C /* PropertyStoring.swift */; };
 		7DA0632A2032583F00B5630C /* PostsFeedViewController+ProfileFeedContainerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA063292032583F00B5630C /* PostsFeedViewController+ProfileFeedContainerItem.swift */; };
 		7DA0632C203315A300B5630C /* PassthroughView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA0632B203315A300B5630C /* PassthroughView.swift */; };
+		7DCF55CD205881C1002FE7C3 /* IQKeyboardManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DCF55CB205881C1002FE7C3 /* IQKeyboardManager.framework */; };
+		7DCF55CE205881C1002FE7C3 /* IQKeyboardManagerSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DCF55CC205881C1002FE7C3 /* IQKeyboardManagerSwift.framework */; };
+		7DCF55D620588592002FE7C3 /* Down.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DCF55D420588592002FE7C3 /* Down.framework */; };
+		7DCF55D720588592002FE7C3 /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DCF55D520588592002FE7C3 /* Starscream.framework */; };
 		7DCF74A2201FE1C700D46495 /* ArticleCommentsSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF74A1201FE1C700D46495 /* ArticleCommentsSectionHeader.swift */; };
 		7DCF74A4201FE1E400D46495 /* ArticleCommentsSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DCF74A3201FE1E400D46495 /* ArticleCommentsSectionHeader.xib */; };
 		7DCF74A720200AA700D46495 /* ArticleCommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF74A520200AA700D46495 /* ArticleCommentTableViewCell.swift */; };
@@ -77,7 +82,6 @@
 		7DFE7C462046395B0057F144 /* ReplyRequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFE7C452046395B0057F144 /* ReplyRequestType.swift */; };
 		7DFE7C4920464C1E0057F144 /* PostsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFE7C4820464C1E0057F144 /* PostsManager.swift */; };
 		7DFE7C4B20464C680057F144 /* PostRequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFE7C4A20464C680057F144 /* PostRequestType.swift */; };
-		99AA4A81C46AA503973BA77F /* Pods_Golos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D3CE7EF617BA80468724899 /* Pods_Golos.framework */; };
 		EC07F4A22014093E00560CF0 /* HorizontalSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC07F4A12014093E00560CF0 /* HorizontalSelectorView.swift */; };
 		EC07F4A620141E8D00560CF0 /* PostsFeedType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC07F4A520141E8D00560CF0 /* PostsFeedType.swift */; };
 		EC07F4A820141F0200560CF0 /* FeedMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC07F4A720141F0200560CF0 /* FeedMediator.swift */; };
@@ -159,6 +163,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		49B3343D7A082E2FEB570B6F /* libPods-Golos.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Golos.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		617A00E81BE0A996F90DD4BB /* Pods_golos_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_golos_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BD44B1209B5C64C3D1EF768 /* Pods-golos-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-golos-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-golos-ios/Pods-golos-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		7D1783DB201FD9B600B75979 /* ArticlePostedInTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlePostedInTableViewCell.swift; sourceTree = "<group>"; };
@@ -215,6 +220,11 @@
 		7DA06327203256D700B5630C /* PropertyStoring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyStoring.swift; sourceTree = "<group>"; };
 		7DA063292032583F00B5630C /* PostsFeedViewController+ProfileFeedContainerItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PostsFeedViewController+ProfileFeedContainerItem.swift"; sourceTree = "<group>"; };
 		7DA0632B203315A300B5630C /* PassthroughView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassthroughView.swift; sourceTree = "<group>"; };
+		7DCF55CB205881C1002FE7C3 /* IQKeyboardManager.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IQKeyboardManager.framework; path = Carthage/Build/iOS/IQKeyboardManager.framework; sourceTree = "<group>"; };
+		7DCF55CC205881C1002FE7C3 /* IQKeyboardManagerSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IQKeyboardManagerSwift.framework; path = Carthage/Build/iOS/IQKeyboardManagerSwift.framework; sourceTree = "<group>"; };
+		7DCF55D0205883B5002FE7C3 /* Golos-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Golos-Bridging-Header.h"; sourceTree = "<group>"; };
+		7DCF55D420588592002FE7C3 /* Down.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Down.framework; path = Carthage/Build/iOS/Down.framework; sourceTree = "<group>"; };
+		7DCF55D520588592002FE7C3 /* Starscream.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Starscream.framework; path = Carthage/Build/iOS/Starscream.framework; sourceTree = "<group>"; };
 		7DCF74A1201FE1C700D46495 /* ArticleCommentsSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCommentsSectionHeader.swift; sourceTree = "<group>"; };
 		7DCF74A3201FE1E400D46495 /* ArticleCommentsSectionHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleCommentsSectionHeader.xib; sourceTree = "<group>"; };
 		7DCF74A520200AA700D46495 /* ArticleCommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCommentTableViewCell.swift; sourceTree = "<group>"; };
@@ -231,7 +241,6 @@
 		7DFE7C452046395B0057F144 /* ReplyRequestType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyRequestType.swift; sourceTree = "<group>"; };
 		7DFE7C4820464C1E0057F144 /* PostsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsManager.swift; sourceTree = "<group>"; };
 		7DFE7C4A20464C680057F144 /* PostRequestType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRequestType.swift; sourceTree = "<group>"; };
-		8D3CE7EF617BA80468724899 /* Pods_Golos.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Golos.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		974FDF6AE6B94E5A2BFC2FDE /* Pods-Golos.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Golos.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Golos/Pods-Golos.debug.xcconfig"; sourceTree = "<group>"; };
 		DECBC36021F31D8D6F619C11 /* Pods-golos-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-golos-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-golos-ios/Pods-golos-ios.release.xcconfig"; sourceTree = "<group>"; };
 		EC07F4A12014093E00560CF0 /* HorizontalSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalSelectorView.swift; sourceTree = "<group>"; };
@@ -314,7 +323,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				99AA4A81C46AA503973BA77F /* Pods_Golos.framework in Frameworks */,
+				7DCF55CD205881C1002FE7C3 /* IQKeyboardManager.framework in Frameworks */,
+				7DCF55CE205881C1002FE7C3 /* IQKeyboardManagerSwift.framework in Frameworks */,
+				7DCF55D620588592002FE7C3 /* Down.framework in Frameworks */,
+				7DCF55D720588592002FE7C3 /* Starscream.framework in Frameworks */,
+				0A4D6077118CAF827A738599 /* libPods-Golos.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -331,8 +344,12 @@
 		486C2A5A1B72C10663D9DAB3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7DCF55D420588592002FE7C3 /* Down.framework */,
+				7DCF55D520588592002FE7C3 /* Starscream.framework */,
+				7DCF55CB205881C1002FE7C3 /* IQKeyboardManager.framework */,
+				7DCF55CC205881C1002FE7C3 /* IQKeyboardManagerSwift.framework */,
 				617A00E81BE0A996F90DD4BB /* Pods_golos_ios.framework */,
-				8D3CE7EF617BA80468724899 /* Pods_Golos.framework */,
+				49B3343D7A082E2FEB570B6F /* libPods-Golos.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -600,6 +617,7 @@
 				EC1DFB9520063C400080BC50 /* Assets.xcassets */,
 				EC1DFB9720063C400080BC50 /* LaunchScreen.storyboard */,
 				EC1DFB9A20063C400080BC50 /* Info.plist */,
+				7DCF55D0205883B5002FE7C3 /* Golos-Bridging-Header.h */,
 			);
 			path = "golos-ios";
 			sourceTree = "<group>";
@@ -937,6 +955,7 @@
 				60A1024D6273CE5A42A1ADAB /* [CP] Embed Pods Frameworks */,
 				F1798BD0C66927B5A490FD17 /* [CP] Copy Pods Resources */,
 				7D4597AA2031ABEA007BA90C /* ShellScript */,
+				7DCF55CF205881D5002FE7C3 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -977,6 +996,7 @@
 				TargetAttributes = {
 					EC1DFB8A20063C400080BC50 = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Manual;
 					};
 					EC24FF40200C038D00A0AE15 = {
@@ -1078,20 +1098,16 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Golos/Pods-Golos-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Down/Down.framework",
-				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/MarkdownView/MarkdownView.framework",
 				"${BUILT_PRODUCTS_DIR}/MarkedView/MarkedView.framework",
 				"${BUILT_PRODUCTS_DIR}/PINCache/PINCache.framework",
-				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Down.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MarkdownView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MarkedView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINCache.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1110,6 +1126,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "FILE=\"${SRCROOT}/HockeySDK-iOS/BuildAgent\"\nif [ -f \"$FILE\" ]; then\n\"$FILE\"\nfi";
+		};
+		7DCF55CF205881D5002FE7C3 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/IQKeyboardManager.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/IQKeyboardManagerSwift.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Starscream.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Down.framework",
+			);
+			outputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/IQKeyboardManager.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/IQKeyboardManagerSwift.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Starscream.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Down.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
 		};
 		7DD6B76C2020E0F3004D0830 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1403,8 +1440,13 @@
 			baseConfigurationReference = 974FDF6AE6B94E5A2BFC2FDE /* Pods-Golos.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 29QBR47DMW;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				HOCKEY_APP_ID = cd188c0839d94ff483eed5944117e7f9;
 				INFOPLIST_FILE = "golos-ios/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
@@ -1412,6 +1454,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "io.golos.testing.golos-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "golos-ios/Golos-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WEBSOCKET_URL = "wss://ws.golos.io";
@@ -1423,9 +1467,14 @@
 			baseConfigurationReference = F860D859C40BCA60C8DE58EE /* Pods-Golos.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 29QBR47DMW;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				HOCKEY_APP_ID = cd188c0839d94ff483eed5944117e7f9;
 				INFOPLIST_FILE = "golos-ios/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
@@ -1434,6 +1483,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "e1c57c95-437b-4933-9bae-8cad4514d8cd";
 				PROVISIONING_PROFILE_SPECIFIER = GolosTestAdHocProfile;
+				SWIFT_OBJC_BRIDGING_HEADER = "golos-ios/Golos-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WEBSOCKET_URL = "wss://ws.golos.io";

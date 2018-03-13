@@ -3,12 +3,12 @@
 
 target 'Golos' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
-  use_frameworks!
+  #use_frameworks!
 
   # Pods for golos-ios
 
   # IQKeyboardManager
-  pod 'IQKeyboardManagerSwift'
+  #pod 'IQKeyboardManagerSwift'
 
   # SwiftLint
   pod 'SwiftLint'
@@ -17,14 +17,17 @@ target 'Golos' do
   pod 'HockeySDK', '~> 5.1.2'
 
   # Starscream
-  pod 'Starscream', '~> 3.0.2'
+  #pod 'Starscream', '~> 3.0.2'
 
   # PINCache
   pod 'PINCache'
 
+  # CoreBitcoin
+  pod 'CoreBitcoin', :podspec => 'https://raw.github.com/oleganza/CoreBitcoin/master/CoreBitcoin.podspec'
+
   # Markdown / HTML
-  pod "MarkdownView"
-  pod "Down"
-  pod 'MarkedView'
+  #pod "MarkdownView"
+  #pod "Down"
+  #pod 'MarkedView'
 
 end
