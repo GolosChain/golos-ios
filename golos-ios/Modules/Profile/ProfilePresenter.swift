@@ -9,8 +9,10 @@
 import UIKit
 
 protocol ProfilePresenterProtocol: class {
-    func setUsername(username: String)
-    func setUser(_ userModel: UserModel)
+    func setUsername(username: String?)
+    // TODO: Remove userModel from presenter when add local cache
+    func setUser(_ userModel: UserModel?)
+    
     func getProfileViewModel() -> ProfileViewModel?
     func fetchUser()
     func loadUser()
@@ -26,10 +28,12 @@ class ProfilePresenter: NSObject {
     // MARK: View
     weak var profileView: ProfileViewProtocol!
     
-    private var username: String!
-    private var user: UserModel! {
+    private var username: String?
+    private var user: UserModel? {
         didSet {
-            self.viewModel = ProfileViewModel(userModel: user)
+            if let user = user {
+                self.viewModel = ProfileViewModel(userModel: user)
+            }
         }
     }
     
@@ -48,24 +52,28 @@ extension ProfilePresenter: ProfilePresenterProtocol {
         StateMachine.load().changeState(.loggedOut)
     }
     
-    func setUsername(username: String) {
+    func setUsername(username: String?) {
         self.username = username
     }
     
-    func setUser(_ userModel: UserModel) {
+    func setUser(_ userModel: UserModel?) {
         self.user = userModel
-    }
-    
-    func fetchUser() {
-        profileView.didRefreshUser()
     }
     
     func getProfileViewModel() -> ProfileViewModel? {
         return viewModel
     }
     
+    func fetchUser() {
+        profileView.didRefreshUser()
+    }
+    
     func loadUser() {
-        userManager.loadUser(with: self.username) { [weak self] user, error in
+        guard let username = self.username else {
+            return
+        }
+        
+        userManager.loadUser(with: username) { [weak self] user, error in
             guard let strongSelf = self else { return }
             guard error == nil else {
                 strongSelf.profileView.didFail(with: error!.localizedDescription)

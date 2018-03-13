@@ -43,8 +43,8 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     
     var isNeedToStartRefreshing = false
     
-    var username: String!
-    var user: UserModel!
+    var username: String?
+    var user: UserModel?
     
     // MARK: Module properties
     lazy var presenter: ProfilePresenterProtocol = {
@@ -67,8 +67,8 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
         super.viewDidLoad()
         setupUI()
         
-//        self.presenter.setUsername(username: self.username)
         self.presenter.setUser(self.user)
+        self.presenter.setUsername(username: self.username)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -77,8 +77,8 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
         navigationController?.setNavigationBarHidden(true, animated: true)
         navigationController?.interactivePopGestureRecognizer?.delegate = self
         
-//        self.presenter.loadUser()
         self.presenter.fetchUser()
+        self.presenter.loadUser()
     }
     
     // MARK: Setup UI
@@ -194,9 +194,6 @@ extension ProfileViewController: ProfileViewProtocol {
                 strongSelf.profileHeaderView.avatarImage = image
             }
         }
-        
-        
-        
     }
 }
 
