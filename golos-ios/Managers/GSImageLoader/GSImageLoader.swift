@@ -46,7 +46,7 @@ class GSImageLoader {
     }
     
     func stopLoadImage(with urlString: String) {
-        guard let url = URL(string: urlString) else {
+        guard URL(string: urlString) != nil else {
             return
         }
         

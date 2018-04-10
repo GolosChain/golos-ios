@@ -145,13 +145,14 @@ extension ProfileViewController: ProfileHeaderViewDelegate {
     
     func didPressSettingsButton() {
         let alert = UIAlertController(title: "Выход", message: "Уверены?", preferredStyle: .alert)
-        let cancel = UIAlertAction(title: "Нет", style: .destructive, handler: nil)
-        let ok = UIAlertAction(title: "Да", style: .default) { _ in
+        let actionCancel = UIAlertAction(title: "Нет", style: .destructive, handler: nil)
+       
+        let actionOk = UIAlertAction(title: "Да", style: .default) { _ in
             self.presenter.logout()
         }
         
-        alert.addAction(cancel)
-        alert.addAction(ok)
+        alert.addAction(actionCancel)
+        alert.addAction(actionOk)
         
         present(alert, animated: true, completion: nil)
     }

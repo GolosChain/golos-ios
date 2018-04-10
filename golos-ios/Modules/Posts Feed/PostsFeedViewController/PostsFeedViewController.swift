@@ -93,7 +93,7 @@ extension PostsFeedViewController: PostsFeedViewProtocol {
     }
     
     func didLoadPostsAuthors() {
-        let visibleCellsIndex = tableView.visibleCells.flatMap { cell -> IndexPath? in
+        let visibleCellsIndex = tableView.visibleCells.compactMap { cell -> IndexPath? in
             self.tableView.indexPath(for: cell)
         }
         

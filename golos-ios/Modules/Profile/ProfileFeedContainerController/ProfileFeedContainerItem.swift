@@ -14,9 +14,8 @@ protocol ProfileFeedContainerItemDelegate: class {
 
 protocol ProfileFeedContainerItem {
     var itemScrollView: UIScrollView { get }
-    weak var delegate: ProfileFeedContainerItemDelegate? { get set }
-    func setHeaderHeight(_ headerHeight: CGFloat,
-                         minimizedHeaderHeight: CGFloat)
+    var delegate: ProfileFeedContainerItemDelegate? { get set }
+    
+    func setHeaderHeight(_ headerHeight: CGFloat, minimizedHeaderHeight: CGFloat)
     func changeItemScrollViewOffset(_ offset: CGPoint)
 }
-

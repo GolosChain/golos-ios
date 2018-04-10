@@ -16,7 +16,7 @@ struct PostModel {
     let pictureUrl: String?
     let category: String
     let authorName: String
-    var reblogAuthorName: String? = nil
+    var reblogAuthorName: String?
     let isVoteAllow: Bool
     let isCommentAllow: Bool
     let permalink: String
@@ -28,7 +28,7 @@ struct PostModel {
     
     
     init?(postDictionary: [String: Any]) {
-        guard let id = postDictionary["id"] as? Int,
+        guard let codeID = postDictionary["id"] as? Int,
             let title = postDictionary["title"] as? String,
             let body = postDictionary["body"] as? String else {
                 return nil
@@ -38,7 +38,7 @@ struct PostModel {
         let desciption = parser.getDescription(from: body)
         let pictureUrl = parser.getPictureUrl(from: body)
         
-        self.postId = id
+        self.postId = codeID
         self.title = title
         self.body = body
         self.pictureUrl = pictureUrl

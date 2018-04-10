@@ -82,6 +82,7 @@
 		7DFE7C462046395B0057F144 /* ReplyRequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFE7C452046395B0057F144 /* ReplyRequestType.swift */; };
 		7DFE7C4920464C1E0057F144 /* PostsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFE7C4820464C1E0057F144 /* PostsManager.swift */; };
 		7DFE7C4B20464C680057F144 /* PostRequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFE7C4A20464C680057F144 /* PostRequestType.swift */; };
+		B1E0CE11207A465900261EA7 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E0CE10207A465900261EA7 /* Logger.swift */; };
 		EC07F4A22014093E00560CF0 /* HorizontalSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC07F4A12014093E00560CF0 /* HorizontalSelectorView.swift */; };
 		EC07F4A620141E8D00560CF0 /* PostsFeedType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC07F4A520141E8D00560CF0 /* PostsFeedType.swift */; };
 		EC07F4A820141F0200560CF0 /* FeedMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC07F4A720141F0200560CF0 /* FeedMediator.swift */; };
@@ -94,7 +95,6 @@
 		EC24FF20200BC69400A0AE15 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC24FF1F200BC69400A0AE15 /* LoginPresenter.swift */; };
 		EC24FF22200BC69B00A0AE15 /* LoginType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC24FF21200BC69B00A0AE15 /* LoginType.swift */; };
 		EC24FF24200BC72F00A0AE15 /* LoginUIStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC24FF23200BC72F00A0AE15 /* LoginUIStrings.swift */; };
-		EC24FF26200BEA8800A0AE15 /* AppDelegate+IQKeyboardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC24FF25200BEA8800A0AE15 /* AppDelegate+IQKeyboardManager.swift */; };
 		EC24FF28200BEBE600A0AE15 /* ViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC24FF27200BEBE600A0AE15 /* ViewProtocol.swift */; };
 		EC24FF2B200BFAA100A0AE15 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC24FF2A200BFAA100A0AE15 /* Validator.swift */; };
 		EC24FF4D200C03E100A0AE15 /* ValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC24FF4C200C03E100A0AE15 /* ValidatorTests.swift */; };
@@ -105,7 +105,6 @@
 		EC24FF59200C30B800A0AE15 /* MainContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC24FF58200C30B800A0AE15 /* MainContainerViewController.swift */; };
 		EC24FF5B200C30C500A0AE15 /* MainContainerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC24FF5A200C30C500A0AE15 /* MainContainerPresenter.swift */; };
 		EC24FF5D200C30CF00A0AE15 /* MainContainerMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC24FF5C200C30CF00A0AE15 /* MainContainerMediator.swift */; };
-		EC24FF5F200C3B8100A0AE15 /* AppDelegate+RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC24FF5E200C3B8100A0AE15 /* AppDelegate+RootViewController.swift */; };
 		EC24FF6C200C400300A0AE15 /* GSTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC24FF6B200C400300A0AE15 /* GSTabBarController.swift */; };
 		EC24FF70200C433700A0AE15 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC24FF6E200C433700A0AE15 /* ProfileViewController.swift */; };
 		EC24FF71200C433700A0AE15 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC24FF6F200C433700A0AE15 /* ProfileViewController.xib */; };
@@ -148,7 +147,6 @@
 		ECF3172A200AA0B200F7B703 /* IntroPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF31729200AA0B200F7B703 /* IntroPresenter.swift */; };
 		ECF3172E200AB22E00F7B703 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF3172C200AB22E00F7B703 /* LoginViewController.swift */; };
 		ECF3172F200AB22E00F7B703 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECF3172D200AB22E00F7B703 /* LoginViewController.xib */; };
-		ECF31732200ABB7C00F7B703 /* AppDelegate+SetupAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF31731200ABB7C00F7B703 /* AppDelegate+SetupAppearance.swift */; };
 		ECFF44E8200BC42F00DAF74C /* QRScannerViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFF44E7200BC42F00DAF74C /* QRScannerViewControllerDelegate.swift */; };
 /* End PBXBuildFile section */
 
@@ -242,6 +240,7 @@
 		7DFE7C4820464C1E0057F144 /* PostsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsManager.swift; sourceTree = "<group>"; };
 		7DFE7C4A20464C680057F144 /* PostRequestType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRequestType.swift; sourceTree = "<group>"; };
 		974FDF6AE6B94E5A2BFC2FDE /* Pods-Golos.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Golos.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Golos/Pods-Golos.debug.xcconfig"; sourceTree = "<group>"; };
+		B1E0CE10207A465900261EA7 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		DECBC36021F31D8D6F619C11 /* Pods-golos-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-golos-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-golos-ios/Pods-golos-ios.release.xcconfig"; sourceTree = "<group>"; };
 		EC07F4A12014093E00560CF0 /* HorizontalSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalSelectorView.swift; sourceTree = "<group>"; };
 		EC07F4A520141E8D00560CF0 /* PostsFeedType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsFeedType.swift; sourceTree = "<group>"; };
@@ -257,7 +256,6 @@
 		EC24FF1F200BC69400A0AE15 /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
 		EC24FF21200BC69B00A0AE15 /* LoginType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginType.swift; sourceTree = "<group>"; };
 		EC24FF23200BC72F00A0AE15 /* LoginUIStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUIStrings.swift; sourceTree = "<group>"; };
-		EC24FF25200BEA8800A0AE15 /* AppDelegate+IQKeyboardManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+IQKeyboardManager.swift"; sourceTree = "<group>"; };
 		EC24FF27200BEBE600A0AE15 /* ViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewProtocol.swift; sourceTree = "<group>"; };
 		EC24FF2A200BFAA100A0AE15 /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
 		EC24FF41200C038D00A0AE15 /* GolosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GolosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -270,7 +268,6 @@
 		EC24FF58200C30B800A0AE15 /* MainContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContainerViewController.swift; sourceTree = "<group>"; };
 		EC24FF5A200C30C500A0AE15 /* MainContainerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContainerPresenter.swift; sourceTree = "<group>"; };
 		EC24FF5C200C30CF00A0AE15 /* MainContainerMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContainerMediator.swift; sourceTree = "<group>"; };
-		EC24FF5E200C3B8100A0AE15 /* AppDelegate+RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+RootViewController.swift"; sourceTree = "<group>"; };
 		EC24FF6B200C400300A0AE15 /* GSTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GSTabBarController.swift; sourceTree = "<group>"; };
 		EC24FF6E200C433700A0AE15 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		EC24FF6F200C433700A0AE15 /* ProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
@@ -313,7 +310,6 @@
 		ECF31729200AA0B200F7B703 /* IntroPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroPresenter.swift; sourceTree = "<group>"; };
 		ECF3172C200AB22E00F7B703 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		ECF3172D200AB22E00F7B703 /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
-		ECF31731200ABB7C00F7B703 /* AppDelegate+SetupAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+SetupAppearance.swift"; sourceTree = "<group>"; };
 		ECFF44E7200BC42F00DAF74C /* QRScannerViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerViewControllerDelegate.swift; sourceTree = "<group>"; };
 		F860D859C40BCA60C8DE58EE /* Pods-Golos.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Golos.release.xcconfig"; path = "Pods/Target Support Files/Pods-Golos/Pods-Golos.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -560,6 +556,14 @@
 			path = PostsManager;
 			sourceTree = "<group>";
 		};
+		B1E0CE0F207A464300261EA7 /* Logging */ = {
+			isa = PBXGroup;
+			children = (
+				B1E0CE10207A465900261EA7 /* Logger.swift */,
+			);
+			path = Logging;
+			sourceTree = "<group>";
+		};
 		EC07F4A0201408FF00560CF0 /* HorizontalSelectorView */ = {
 			isa = PBXGroup;
 			children = (
@@ -605,9 +609,6 @@
 			isa = PBXGroup;
 			children = (
 				EC1DFB8E20063C400080BC50 /* AppDelegate.swift */,
-				EC24FF5E200C3B8100A0AE15 /* AppDelegate+RootViewController.swift */,
-				EC24FF25200BEA8800A0AE15 /* AppDelegate+IQKeyboardManager.swift */,
-				ECF31731200ABB7C00F7B703 /* AppDelegate+SetupAppearance.swift */,
 				7D4597AB2031AD63007BA90C /* AppDelegate+HockeyApp.swift */,
 				ECC15F9B200975680099BBC9 /* Modules */,
 				EC24FF29200BFA9300A0AE15 /* Managers */,
@@ -625,15 +626,16 @@
 		EC24FF29200BFA9300A0AE15 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				7D95CFA1203A118D00C1AE0A /* GSImageLoader */,
+				B1E0CE0F207A464300261EA7 /* Logging */,
+				7D7D564020367F7C003E06A6 /* Parser */,
 				7D911D1B2035ECF000F19D3C /* PostsFeedManager */,
 				7DFE7C4720464C110057F144 /* PostsManager */,
 				7DFE7C422046392C0057F144 /* ReplyManager */,
-				7D95CFA8203A53D900C1AE0A /* UserManager */,
-				7D95CFA1203A118D00C1AE0A /* GSImageLoader */,
-				7D7D564020367F7C003E06A6 /* Parser */,
-				7D79C34D2034F28B00794447 /* WebSocketManager */,
 				EC24FF4E200C064B00A0AE15 /* StateMachine */,
+				7D95CFA8203A53D900C1AE0A /* UserManager */,
 				EC24FF2A200BFAA100A0AE15 /* Validator.swift */,
+				7D79C34D2034F28B00794447 /* WebSocketManager */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -838,17 +840,17 @@
 		ECC15F9B200975680099BBC9 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				7DE353182048CA1E00C04CB2 /* LoginHelp */,
 				7D79C3362034673500794447 /* Answers */,
 				7D25B484201F4967004A3400 /* Article */,
-				EC07F4AE2014402E00560CF0 /* Posts Feed */,
 				EC24FF75200C495F00A0AE15 /* Feed */,
-				EC24FF6D200C432700A0AE15 /* Profile */,
-				EC24FF6A200C3FE700A0AE15 /* Tab */,
-				EC24FF57200C30A300A0AE15 /* MainContainer */,
-				EC6FD59F200AE18E00DCB824 /* QRScanner */,
-				ECF3172B200AB22000F7B703 /* Login */,
 				ECC15F9D2009757A0099BBC9 /* Intro */,
+				ECF3172B200AB22000F7B703 /* Login */,
+				7DE353182048CA1E00C04CB2 /* LoginHelp */,
+				EC24FF57200C30A300A0AE15 /* MainContainer */,
+				EC07F4AE2014402E00560CF0 /* Posts Feed */,
+				EC24FF6D200C432700A0AE15 /* Profile */,
+				EC6FD59F200AE18E00DCB824 /* QRScanner */,
+				EC24FF6A200C3FE700A0AE15 /* Tab */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -949,12 +951,11 @@
 			buildPhases = (
 				55A88D3868FC3CC3DBEF14AF /* [CP] Check Pods Manifest.lock */,
 				7DD6B76C2020E0F3004D0830 /* ShellScript */,
+				B192DBD32074F4CE0056A08F /* ShellScript */,
 				EC1DFB8720063C400080BC50 /* Sources */,
 				EC1DFB8820063C400080BC50 /* Frameworks */,
 				EC1DFB8920063C400080BC50 /* Resources */,
-				60A1024D6273CE5A42A1ADAB /* [CP] Embed Pods Frameworks */,
 				F1798BD0C66927B5A490FD17 /* [CP] Copy Pods Resources */,
-				7D4597AA2031ABEA007BA90C /* ShellScript */,
 				7DCF55CF205881D5002FE7C3 /* ShellScript */,
 			);
 			buildRules = (
@@ -991,13 +992,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = golos;
 				TargetAttributes = {
 					EC1DFB8A20063C400080BC50 = {
 						CreatedOnToolsVersion = 9.2;
 						LastSwiftMigration = 0920;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 					};
 					EC24FF40200C038D00A0AE15 = {
 						CreatedOnToolsVersion = 9.2;
@@ -1090,43 +1091,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		60A1024D6273CE5A42A1ADAB /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Golos/Pods-Golos-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Down/Down.framework",
-				"${BUILT_PRODUCTS_DIR}/MarkdownView/MarkdownView.framework",
-				"${BUILT_PRODUCTS_DIR}/MarkedView/MarkedView.framework",
-				"${BUILT_PRODUCTS_DIR}/PINCache/PINCache.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Down.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MarkdownView.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MarkedView.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINCache.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Golos/Pods-Golos-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7D4597AA2031ABEA007BA90C /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "FILE=\"${SRCROOT}/HockeySDK-iOS/BuildAgent\"\nif [ -f \"$FILE\" ]; then\n\"$FILE\"\nfi";
-		};
 		7DCF55CF205881D5002FE7C3 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1161,6 +1125,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
 		};
+		B192DBD32074F4CE0056A08F /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 66b650c16716d55977dc8aa10a4b2bf5d633a186 44762b8046ea9d6327dd2329233a8d8099933b028f16b848d960c5322815883a";
+		};
 		F1798BD0C66927B5A490FD17 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1168,11 +1145,11 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Golos/Pods-Golos-resources.sh",
-				"${PODS_CONFIGURATION_BUILD_DIR}/HockeySDK/HockeySDKResources.bundle",
+				"${PODS_ROOT}/IQKeyboardManagerSwift/IQKeyboardManagerSwift/Resources/IQKeyboardManager.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/HockeySDKResources.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IQKeyboardManager.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1203,6 +1180,7 @@
 				7DF16A72201D6043000F5529 /* ProfileMediator.swift in Sources */,
 				7D25B4BE201FABB2004A3400 /* ArticleTitleTableViewCell.swift in Sources */,
 				EC24FF74200C43B500A0AE15 /* ProfilePresenter.swift in Sources */,
+				B1E0CE11207A465900261EA7 /* Logger.swift in Sources */,
 				7D7D564220367F8B003E06A6 /* PostParser.swift in Sources */,
 				7DA0632A2032583F00B5630C /* PostsFeedViewController+ProfileFeedContainerItem.swift in Sources */,
 				EC9B2AE220154DE9008335C8 /* PostsFeedViewModel.swift in Sources */,
@@ -1223,7 +1201,6 @@
 				EC9ABBEA2018072600AF8597 /* GSTableView.swift in Sources */,
 				ECF31727200A9E0B00F7B703 /* Utils.swift in Sources */,
 				EC9ABBBF20179CEF00AF8597 /* Images.swift in Sources */,
-				EC24FF26200BEA8800A0AE15 /* AppDelegate+IQKeyboardManager.swift in Sources */,
 				EC07F4AA20141F0C00560CF0 /* FeedPresenter.swift in Sources */,
 				7DFE7C4B20464C680057F144 /* PostRequestType.swift in Sources */,
 				EC07F4A22014093E00560CF0 /* HorizontalSelectorView.swift in Sources */,
@@ -1254,7 +1231,6 @@
 				7D911D242035F5C900F19D3C /* PostVoteModel.swift in Sources */,
 				ECC15FA62009794E0099BBC9 /* Fonts.swift in Sources */,
 				ECA8E35E2018D119003B8ABA /* UIView+Shadow.swift in Sources */,
-				ECF31732200ABB7C00F7B703 /* AppDelegate+SetupAppearance.swift in Sources */,
 				7D79C3482034686B00794447 /* ReusableCell.swift in Sources */,
 				7D25B48F201F5E88004A3400 /* CollectionViewCenteredLayout.swift in Sources */,
 				7D7D564420368028003E06A6 /* PostItem.swift in Sources */,
@@ -1262,7 +1238,6 @@
 				7D911D222035F5AA00F19D3C /* PostReplyModel.swift in Sources */,
 				EC24FF52200C06E300A0AE15 /* StateMachine.swift in Sources */,
 				7D95CFAC203A546500C1AE0A /* UserRequestType.swift in Sources */,
-				EC24FF5F200C3B8100A0AE15 /* AppDelegate+RootViewController.swift in Sources */,
 				EC6FD5A2200AE1A200DCB824 /* QRScannerViewController.swift in Sources */,
 				7D25B47F201F4714004A3400 /* TagsView.swift in Sources */,
 				EC24FF24200BC72F00A0AE15 /* LoginUIStrings.swift in Sources */,
@@ -1342,6 +1317,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -1349,6 +1325,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -1376,7 +1353,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1399,6 +1376,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -1406,6 +1384,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -1427,7 +1406,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -1441,15 +1420,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = 29QBR47DMW;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				HOCKEY_APP_ID = cd188c0839d94ff483eed5944117e7f9;
 				INFOPLIST_FILE = "golos-ios/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "io.golos.testing.golos-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1457,7 +1438,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "golos-ios/Golos-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				WEBSOCKET_URL = "wss://ws.golos.io";
 			};
 			name = Debug;
@@ -1468,24 +1449,25 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = 29QBR47DMW;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				HOCKEY_APP_ID = cd188c0839d94ff483eed5944117e7f9;
 				INFOPLIST_FILE = "golos-ios/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "io.golos.testing.golos-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "e1c57c95-437b-4933-9bae-8cad4514d8cd";
-				PROVISIONING_PROFILE_SPECIFIER = GolosTestAdHocProfile;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "golos-ios/Golos-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				WEBSOCKET_URL = "wss://ws.golos.io";
 			};
 			name = Release;
@@ -1496,6 +1478,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = YS34WB4Z9W;
 				INFOPLIST_FILE = GolosTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

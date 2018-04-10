@@ -76,9 +76,9 @@ class IntroViewController: UIViewController {
         super.viewDidLayoutSubviews()
         
         for (index, label) in scrollLabels.enumerated() {
-            let x = scrollView.bounds.size.width * CGFloat(index)
+            let pointX = scrollView.bounds.size.width * CGFloat(index)
             var scrollViewBounds = scrollView.bounds
-            scrollViewBounds.origin.x = x
+            scrollViewBounds.origin.x = pointX
             label.frame = scrollViewBounds
         }
         scrollView.contentSize = CGSize(width: scrollView.bounds.size.width * CGFloat(scrollLabels.count), height: scrollView.bounds.size.height)

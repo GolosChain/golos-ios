@@ -95,13 +95,13 @@ extension PostsFeedMediator: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        guard let cell = cell as? FeedArticleTableViewCell else {
+        guard cell is FeedArticleTableViewCell else {
             return
         }
     }
     
     func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        guard let cell = cell as? FeedArticleTableViewCell else {
+        guard cell is FeedArticleTableViewCell else {
             return
         }
     }

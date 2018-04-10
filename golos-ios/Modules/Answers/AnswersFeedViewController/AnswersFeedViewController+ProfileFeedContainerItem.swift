@@ -12,7 +12,7 @@ extension AnswersFeedViewController: ProfileFeedContainerItem, PropertyStoring {
     typealias StorePropertyType = ProfileFeedContainerItemDelegate?
     
     private struct CustomProperties {
-        static var delegate: ProfileFeedContainerItemDelegate? = nil
+        static var delegate: ProfileFeedContainerItemDelegate?
     }
     
     var itemScrollView: UIScrollView {

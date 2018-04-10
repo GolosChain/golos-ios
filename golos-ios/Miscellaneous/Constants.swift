@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import CoreGraphics
+//import CoreGraphics
 
 struct Constants {
     struct ButtonParameters {

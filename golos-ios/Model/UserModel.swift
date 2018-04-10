@@ -18,13 +18,13 @@ struct UserModel {
     
     
     init?(userDictionary: [String: Any]) {
-        guard let id = userDictionary["id"] as? Int,
+        guard let codeID = userDictionary["id"] as? Int,
             let name = userDictionary["name"] as? String
             else {
                 return nil
         }
         
-        self.userId = id
+        self.userId = codeID
         self.name = name
         
         self.postCount = userDictionary["post_count"] as? Int ?? 0

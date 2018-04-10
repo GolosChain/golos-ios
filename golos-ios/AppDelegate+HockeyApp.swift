@@ -7,14 +7,14 @@
 //
 
 import UIKit
-import HockeySDK
+//import HockeySDK
 
-extension AppDelegate {
-    func setupHockeyApp() {
-        let hockeyAppId = Bundle.main.object(forInfoDictionaryKey: Constants.InfoDictionaryKey.hockeyAppIdKey) as! String
-        BITHockeyManager.shared().configure(withIdentifier: hockeyAppId)
-        BITHockeyManager.shared().start()
-        BITHockeyManager.shared().authenticator.authenticateInstallation()
-        BITHockeyManager.shared().testIdentifier()
-    }
-}
+//extension AppDelegate {
+//    func setupHockeyApp() {
+//        let hockeyAppId = Bundle.main.object(forInfoDictionaryKey: Constants.InfoDictionaryKey.hockeyAppIdKey) as! String
+//        BITHockeyManager.shared().configure(withIdentifier: hockeyAppId)
+//        BITHockeyManager.shared().start()
+//        BITHockeyManager.shared().authenticator.authenticateInstallation()
+//        BITHockeyManager.shared().testIdentifier()
+//    }
+//}

@@ -25,7 +25,7 @@ class UserManager {
                 return
             }
             
-            let users = userArray.flatMap({ userDictionary -> UserModel? in
+            let users = userArray.compactMap({ userDictionary -> UserModel? in
                 UserModel(userDictionary: userDictionary)
             })
 

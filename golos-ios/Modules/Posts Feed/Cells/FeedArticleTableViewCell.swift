@@ -94,6 +94,7 @@ class FeedArticleTableViewCell: UITableViewCell {
         descriptionTextView.textContainerInset = UIEdgeInsets(top: 5, left: 13, bottom: 0, right: 13)
     }
     
+    // swiftlint:disable function_body_length
     func configure(with viewModel: PostsFeedViewModel?) {
         guard let viewModel = viewModel else {
             return
@@ -113,7 +114,9 @@ class FeedArticleTableViewCell: UITableViewCell {
             articleHeaderView.reblogAuthorLabel.isHidden = false
             articleHeaderView.reblogAuthorLabel.text = reblogAuthor
             articleHeaderView.reblogIconImageView.isHidden = false
-        } else {
+        }
+        
+        else {
             articleHeaderView.reblogAuthorLabel.isHidden = true
             articleHeaderView.reblogIconImageView.isHidden = true
         }
@@ -127,7 +130,9 @@ class FeedArticleTableViewCell: UITableViewCell {
         if isNsfw {
             let nsfwImage = UIImage(named: "nsfw")
             self.postImageView.image = nsfwImage
-        } else if let imageUrl = viewModel.imagePictureUrl {
+        }
+        
+        else if let imageUrl = viewModel.imagePictureUrl {
             if self.pictureUrl == imageUrl && postImageView.image != nil {
                 return
             }
@@ -155,12 +160,14 @@ class FeedArticleTableViewCell: UITableViewCell {
                     }
                 }
             }
-        } else {
+        }
+        
+        else {
             let avatarPlaceholderImage = UIImage(named: "avatar_placeholder")
             articleHeaderView.authorAvatarImageView.image = avatarPlaceholderImage
         }
     }
-
+    // swiftlint:enable function_body_length
     
     // MARK: Actions
     @IBAction func didPressUpvoteButton(_ sender: Any) {

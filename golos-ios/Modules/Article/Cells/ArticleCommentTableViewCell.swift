@@ -38,7 +38,7 @@ class ArticleCommentTableViewCell: UITableViewCell {
     
     // MARK: Setup
     private func setup() {
-        let greenColor = UIColor.Project.articleButtonsGreenColor
+//        let greenColor = UIColor.Project.articleButtonsGreenColor
         let grayColor = UIColor.Project.articleButtonsGrayColor
         let blackColor = UIColor.Project.articleBlackColor
         
@@ -94,31 +94,27 @@ class ArticleCommentTableViewCell: UITableViewCell {
 // MARK: Setters
 extension ArticleCommentTableViewCell {
     var upvoteString: String? {
-        get {return upvoteButton.title(for: .normal)}
-        set {upvoteButton.setTitle(newValue, for: .normal) }
+        get { return upvoteButton.title(for: .normal) }
+        set { upvoteButton.setTitle(newValue, for: .normal) }
     }
     
     var upvoteAmountString: String? {
-        get {return upvoteAmountButton.title(for: .normal)}
-        set {upvoteAmountButton.setTitle(newValue, for: .normal) }
+        get { return upvoteAmountButton.title(for: .normal)}
+        set { upvoteAmountButton.setTitle(newValue, for: .normal) }
     }
     
     var commentsAmountString: String? {
-        get {return commentsButton.title(for: .normal)}
-        set {commentsButton.setTitle(newValue, for: .normal) }
+        get { return commentsButton.title(for: .normal) }
+        set { commentsButton.setTitle(newValue, for: .normal) }
     }
     
     var isUpvote: Bool {
-        get {return false}
-        set {upvoteButton.tintColor = newValue
-            ? UIColor.Project.articleButtonsGreenColor
-            : UIColor.Project.articleButtonsGrayColor}
+        get { return false }
+        set { upvoteButton.tintColor = newValue ? UIColor.Project.articleButtonsGreenColor : UIColor.Project.articleButtonsGrayColor }
     }
     
     var isComment: Bool {
-        get {return false}
-        set {commentsButton.tintColor = newValue
-            ? UIColor.Project.articleButtonsGreenColor
-            : UIColor.Project.articleButtonsGrayColor}
+        get { return false }
+        set { commentsButton.tintColor = newValue ? UIColor.Project.articleButtonsGreenColor : UIColor.Project.articleButtonsGrayColor }
     }
 }

@@ -14,13 +14,13 @@ struct PostReplyModel: Codable {
     let body: String
     
     init?(replyDictionary: [String: Any]) {
-        guard let id = replyDictionary["id"] as? Int,
+        guard let codeID = replyDictionary["id"] as? Int,
             let author = replyDictionary["author"] as? String,
             let body = replyDictionary["body"] as? String else {
                 return nil
         }
         
-        self.replyId = id
+        self.replyId = codeID
         self.author = author
         self.body = body
     }

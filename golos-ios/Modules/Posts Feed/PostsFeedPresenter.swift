@@ -113,7 +113,8 @@ extension PostsFeedPresenter: PostsFeedPresenterProtocol {
             strongSelf.postsItems = strongSelf.parse(posts: strongSelf.posts)
             strongSelf.postsFeedView.didLoadPostsAuthors()
             
-            for (index, _) in strongSelf.posts.enumerated() {
+            for index in 0..<strongSelf.posts.count {
+//                for (index, _) in strongSelf.posts.enumerated() {
                 strongSelf.loadRepliesForPost(at: index)
             }
         }
@@ -197,4 +198,3 @@ extension PostsFeedPresenter: PostsFeedPresenterProtocol {
 //    }
 //    // swiftlint:enable line_length
 //}
-

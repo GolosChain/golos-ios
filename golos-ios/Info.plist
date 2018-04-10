@@ -17,7 +17,21 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
-	<string>3</string>
+	<string>6</string>
+	<key>Fabric</key>
+	<dict>
+		<key>APIKey</key>
+		<string>66b650c16716d55977dc8aa10a4b2bf5d633a186</string>
+		<key>Kits</key>
+		<array>
+			<dict>
+				<key>KitInfo</key>
+				<dict/>
+				<key>KitName</key>
+				<string>Crashlytics</string>
+			</dict>
+		</array>
+	</dict>
 	<key>HockeyAppId</key>
 	<string>$(HOCKEY_APP_ID)</string>
 	<key>LSRequiresIPhoneOS</key>

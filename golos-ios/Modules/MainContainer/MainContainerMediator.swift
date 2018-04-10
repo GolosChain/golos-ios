@@ -11,6 +11,7 @@ import UIKit
 class MainContainerMediator: NSObject {
     func getViewController(forState state: AppState) -> UIViewController {
         let viewController: UIViewController
+        
         switch state {
         case .loggedIn:
 //            viewController = UIViewController()

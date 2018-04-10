@@ -1,33 +1,35 @@
 # Uncomment the next line to define a global platform for your project
-# platform :ios, '9.0'
+platform :ios, '10.0'
+#use_frameworks!
 
 target 'Golos' do
-  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
-  #use_frameworks!
+    
+    # IQKeyboardManager
+    pod 'IQKeyboardManagerSwift', '~> 5.0'
+    
+    # SwiftLint
+    pod 'SwiftLint'
+    
+    # HockeyApp
+    #  pod 'HockeySDK', '~> 5.1.2'
+    
+    # Starscream
+    pod 'Starscream', '~> 3.0'
+    
+    # PINCache
+    pod 'PINCache'
+    
+    # CoreBitcoin
+    pod 'CoreBitcoin', :podspec => 'https://raw.github.com/oleganza/CoreBitcoin/master/CoreBitcoin.podspec'
 
-  # Pods for golos-ios
-
-  # IQKeyboardManager
-  #pod 'IQKeyboardManagerSwift'
-
-  # SwiftLint
-  pod 'SwiftLint'
-
-  # HockeyApp
-  pod 'HockeySDK', '~> 5.1.2'
-
-  # Starscream
-  #pod 'Starscream', '~> 3.0.2'
-
-  # PINCache
-  pod 'PINCache'
-
-  # CoreBitcoin
-  pod 'CoreBitcoin', :podspec => 'https://raw.github.com/oleganza/CoreBitcoin/master/CoreBitcoin.podspec'
-
-  # Markdown / HTML
-  #pod "MarkdownView"
-  #pod "Down"
-  #pod 'MarkedView'
+    # Distribution & Crash report
+    pod 'Fabric'
+    pod 'Crashlytics'
+    
+    # Design
+    pod 'LayoutKit', '~> 7.0'
+    
+    
+    # Pods for golos-ios
 
 end

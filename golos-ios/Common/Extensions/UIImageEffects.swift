@@ -125,9 +125,9 @@ public extension UIImage {
         let componentCount = tintColor.cgColor.numberOfComponents
 
         if componentCount == 2 {
-            var b: CGFloat = 0
-            if tintColor.getWhite(&b, alpha: nil) {
-                effectColor = UIColor(white: b, alpha: effectColorAlpha)
+            var bbb: CGFloat = 0
+            if tintColor.getWhite(&bbb, alpha: nil) {
+                effectColor = UIColor(white: bbb, alpha: effectColorAlpha)
             }
         } else {
             var red: CGFloat = 0
@@ -160,13 +160,13 @@ public extension UIImage {
             return nil
         }
 
-        let __FLT_EPSILON__ = CGFloat(Float.ulpOfOne)
+        let epsilonFlat = CGFloat(Float.ulpOfOne)
         let screenScale = UIScreen.main.scale
         let imageRect = CGRect(origin: CGPoint.zero, size: size)
         var effectImage = self
 
-        let hasBlur = blurRadius > __FLT_EPSILON__
-        let hasSaturationChange = fabs(saturationDeltaFactor - 1.0) > __FLT_EPSILON__
+        let hasBlur = blurRadius > epsilonFlat
+        let hasSaturationChange = fabs(saturationDeltaFactor - 1.0) > epsilonFlat
 
         if hasBlur || hasSaturationChange {
             func createEffectBuffer(_ context: CGContext) -> vImage_Buffer {
@@ -209,8 +209,8 @@ public extension UIImage {
                 //
 
                 let inputRadius = blurRadius * screenScale
-                let d = floor(inputRadius * 3.0 * CGFloat(sqrt(2 * .pi) / 4 + 0.5))
-                var radius = UInt32(d)
+                let ddd = floor(inputRadius * 3.0 * CGFloat(sqrt(2 * .pi) / 4 + 0.5))
+                var radius = UInt32(ddd)
                 if radius % 2 != 1 {
                     radius += 1 // force radius to be odd so that the three box-blur methodology works.
                 }
@@ -225,11 +225,11 @@ public extension UIImage {
             var effectImageBuffersAreSwapped = false
 
             if hasSaturationChange {
-                let s: CGFloat = saturationDeltaFactor
+                let sss: CGFloat = saturationDeltaFactor
                 let floatingPointSaturationMatrix: [CGFloat] = [
-                    0.0722 + 0.9278 * s, 0.0722 - 0.0722 * s, 0.0722 - 0.0722 * s, 0,
-                    0.7152 - 0.7152 * s, 0.7152 + 0.2848 * s, 0.7152 - 0.7152 * s, 0,
-                    0.2126 - 0.2126 * s, 0.2126 - 0.2126 * s, 0.2126 + 0.7873 * s, 0,
+                    0.0722 + 0.9278 * sss, 0.0722 - 0.0722 * sss, 0.0722 - 0.0722 * sss, 0,
+                    0.7152 - 0.7152 * sss, 0.7152 + 0.2848 * sss, 0.7152 - 0.7152 * sss, 0,
+                    0.2126 - 0.2126 * sss, 0.2126 - 0.2126 * sss, 0.2126 + 0.7873 * sss, 0,
                     0, 0, 0, 1
                 ]
 
@@ -237,8 +237,8 @@ public extension UIImage {
                 let matrixSize = floatingPointSaturationMatrix.count
                 var saturationMatrix = [Int16](repeating: 0, count: matrixSize)
 
-                for i: Int in 0 ..< matrixSize {
-                    saturationMatrix[i] = Int16(round(floatingPointSaturationMatrix[i] * divisor))
+                for index: Int in 0 ..< matrixSize {
+                    saturationMatrix[index] = Int16(round(floatingPointSaturationMatrix[index] * divisor))
                 }
 
                 if hasBlur {

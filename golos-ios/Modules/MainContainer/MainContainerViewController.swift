@@ -9,7 +9,6 @@
 import UIKit
 
 class MainContainerViewController: UIViewController {
-    
     // MARK: Module properties
     lazy var presenter: MainContainerPresenter = {
         let presenter = MainContainerPresenter()
@@ -61,11 +60,15 @@ class MainContainerViewController: UIViewController {
     
     private func presentViewController(_ viewController: UIViewController, fromTop: Bool) {
         addChildViewController(viewController)
+        
         if fromTop {
             view.insertSubview(viewController.view, aboveSubview: activeViewController.view)
-        } else {
+        }
+        
+        else {
             view.insertSubview(viewController.view, belowSubview: activeViewController.view)
         }
+        
         viewController.didMove(toParentViewController: self)
         
         let startFrame = fromTop
@@ -85,13 +88,12 @@ class MainContainerViewController: UIViewController {
             self.activeViewController.removeFromParentViewController()
             self.activeViewController = viewController
         }
-        
     }
 }
 
+
 extension MainContainerViewController: MainContainerView {
-    func didChange(newState: AppState,
-                   from oldState: AppState) {
-        present(newState: newState, oldState: oldState)
+    func didChange(newState: AppState, from oldState: AppState) {
+        self.present(newState: newState, oldState: oldState)
     }
 }

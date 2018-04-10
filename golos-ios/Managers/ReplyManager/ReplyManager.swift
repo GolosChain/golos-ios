@@ -27,7 +27,7 @@ class ReplyManager {
                 return
             }
             
-            let replies = replyArray.flatMap({ replyDictionary -> PostReplyModel? in
+            let replies = replyArray.compactMap({ replyDictionary -> PostReplyModel? in
                 PostReplyModel(replyDictionary: replyDictionary)
             })
 

@@ -9,9 +9,10 @@
 import UIKit
 
 class GSTabBarController: UITabBarController {
-
+    // MARK: - Class Functions
     override func viewDidLoad() {
         super.viewDidLoad()
+       
         configureViewControllers()
     }
     
@@ -23,17 +24,17 @@ class GSTabBarController: UITabBarController {
         feedNavigationViewController.tabBarItem = UITabBarItem(title: "",
                                                      image: UIImage(named: "tab_home"),
                                                      selectedImage: nil)
-        let v2 = UIViewController()
-        v2.view.backgroundColor = .red
-        v2.tabBarItem = UITabBarItem(title: "", image: UIImage.init(named: "tab_search"), selectedImage: nil)
+        let vc2 = UIViewController()
+        vc2.view.backgroundColor = .red
+        vc2.tabBarItem = UITabBarItem(title: "", image: UIImage.init(named: "tab_search"), selectedImage: nil)
         
-        let v3 = UIViewController()
-        v3.view.backgroundColor = .red
-        v3.tabBarItem = UITabBarItem(title: "", image: UIImage.init(named: "tab_add"), selectedImage: nil)
+        let vc3 = UIViewController()
+        vc3.view.backgroundColor = .blue
+        vc3.tabBarItem = UITabBarItem(title: "", image: UIImage.init(named: "tab_add"), selectedImage: nil)
         
-        let v4 = UIViewController()
-        v4.view.backgroundColor = .red
-        v4.tabBarItem = UITabBarItem(title: "", image: UIImage.init(named: "tab_notifications"), selectedImage: nil)
+        let vc4 = UIViewController()
+        vc4.view.backgroundColor = .orange
+        vc4.tabBarItem = UITabBarItem(title: "", image: UIImage.init(named: "tab_notifications"), selectedImage: nil)
         
         let profileViewController = ProfileViewController.nibInstance()
         let profileNavigationController = UINavigationController(rootViewController: profileViewController)
@@ -43,9 +44,9 @@ class GSTabBarController: UITabBarController {
         
         viewControllers = [
             feedNavigationViewController,
-            v2,
-            v3,
-            v4,
+            vc2,
+            vc3,
+            vc4,
             profileNavigationController
         ]
     }

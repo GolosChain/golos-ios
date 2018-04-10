@@ -28,7 +28,7 @@ class PostsFeedManager {
                 return
             }
             
-            let posts = postsDictinary.flatMap({ postDictionary -> PostModel? in
+            let posts = postsDictinary.compactMap({ postDictionary -> PostModel? in
                 PostModel(postDictionary: postDictionary)
             })
             

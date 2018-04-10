@@ -23,6 +23,7 @@ class WebSocketManager {
     
         let webSocket = WebSocket(url: webSocketUrl)
         webSocket.delegate = self
+       
         return webSocket
     }()
     
@@ -99,6 +100,7 @@ extension WebSocketManager: WebSocketDelegate {
         
     }
 }
+
 
 // Temprorary !!!
 extension WebSocketManager {

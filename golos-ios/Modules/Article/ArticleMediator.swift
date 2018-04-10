@@ -57,59 +57,76 @@ class ArticleMediator: NSObject {
 
 // MARK: UITableViewCellDataSource
 extension ArticleMediator: UITableViewDataSource {
+    // swiftlint:disable function_body_length
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var resultCell: UITableViewCell!
+        
         if indexPath.section == 0 {
             switch indexPath.row {
             case 0:
                 let cell = tableView.dequeueReusableCell(withIdentifier: articleTitleCellIdentifier) as! ArticleTitleTableViewCell
                 resultCell = cell
+            
             case 1:
                 let cell = tableView.dequeueReusableCell(withIdentifier: articleImageCellIdentifier) as! ArticleImageTableViewCell
                 resultCell = cell
+            
             case 2:
                 let cell = tableView.dequeueReusableCell(withIdentifier: articleTextCellIdentifier) as! ArticleTextTableViewCell
                 resultCell = cell
+            
             case 3:
                 let cell = tableView.dequeueReusableCell(withIdentifier: articleImageCellIdentifier) as! ArticleImageTableViewCell
                 resultCell = cell
+            
             case 4:
                 let cell = tableView.dequeueReusableCell(withIdentifier: articleTextCellIdentifier) as! ArticleTextTableViewCell
                 resultCell = cell
+            
             case 5:
                 let cell = tableView.dequeueReusableCell(withIdentifier: articleFooterCellIdentifier) as! ArticleFooterTableViewCell
                 cell.tags = ["Путешествия", "Творчество", "Блокчейн", "Жизнь", "Мираж"]
                 cell.delegate = self
                 resultCell = cell
+            
             default:
                 resultCell = UITableViewCell()
             }
-        } else if indexPath.section == 1 {
+        }
+        
+        else if indexPath.section == 1 {
             switch indexPath.row {
             case 0:
                 let cell = tableView.dequeueReusableCell(withIdentifier: articlePostedInCellIdentifier) as! ArticlePostedInTableViewCell
                 cell.isAuthor = false
                 cell.delegate = self
                 resultCell = cell
+        
             case 1:
                 let cell = tableView.dequeueReusableCell(withIdentifier: articlePostedInCellIdentifier) as! ArticlePostedInTableViewCell
                 cell.isAuthor = true
                 cell.delegate = self
                 cell.topLabel.text = "Mike Davidson"
                 resultCell = cell
+            
             default:
                 resultCell = UITableViewCell()
             }
-        } else if indexPath.section == 2 {
+        }
+        
+        else if indexPath.section == 2 {
             let cell = tableView.dequeueReusableCell(withIdentifier: articleCommentCellIdentifier) as! ArticleCommentTableViewCell
             cell.delegate = self
             resultCell = cell
-        } else {
+        }
+        
+        else {
             return UITableViewCell()
         }
         
         return resultCell
     }
+    // swiftlint:enable function_body_length
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 3
@@ -176,27 +193,27 @@ extension ArticleMediator: ArticleCommentsSectionHeaderDelegate {
 // MARK: ArticleFooterTableViewCellDelegate
 extension ArticleMediator: ArticleFooterTableViewCellDelegate {
     func didPressUpvote(at cell: ArticleFooterTableViewCell) {
-        guard let indexPath = tableView.indexPath(for: cell) else {return}
+        guard tableView.indexPath(for: cell) != nil else {return}
         Utils.inDevelopmentAlert()
     }
     
     func didPressComments(at cell: ArticleFooterTableViewCell) {
-        guard let indexPath = tableView.indexPath(for: cell) else {return}
+        guard tableView.indexPath(for: cell) != nil else {return}
         Utils.inDevelopmentAlert()
     }
     
     func didPressFavorite(at cell: ArticleFooterTableViewCell) {
-        guard let indexPath = tableView.indexPath(for: cell) else {return}
+        guard tableView.indexPath(for: cell) != nil else {return}
         Utils.inDevelopmentAlert()
     }
     
     func didPressPromote(at cell: ArticleFooterTableViewCell) {
-        guard let indexPath = tableView.indexPath(for: cell) else {return}
+        guard tableView.indexPath(for: cell) != nil else {return}
         Utils.inDevelopmentAlert()
     }
     
     func didPressDonate(at cell: ArticleFooterTableViewCell) {
-        guard let indexPath = tableView.indexPath(for: cell) else {return}
+        guard tableView.indexPath(for: cell) != nil else {return}
         Utils.inDevelopmentAlert()
     }
 }
@@ -205,7 +222,7 @@ extension ArticleMediator: ArticleFooterTableViewCellDelegate {
 // MARK: ArticlePostedInTableViewCellDelegate
 extension ArticleMediator: ArticlePostedInTableViewCellDelegate {
     func didPressSubsribeButton(at cell: ArticlePostedInTableViewCell) {
-        guard let indexPath = tableView.indexPath(for: cell) else {return}
+        guard tableView.indexPath(for: cell) != nil else {return}
         Utils.inDevelopmentAlert()
     }
 }
@@ -214,17 +231,17 @@ extension ArticleMediator: ArticlePostedInTableViewCellDelegate {
 // MARK: ArticleCommentTableViewCellDelegate
 extension ArticleMediator: ArticleCommentTableViewCellDelegate {
     func didPressUpvote(at cell: ArticleCommentTableViewCell) {
-        guard let indexPath = tableView.indexPath(for: cell) else {return}
+        guard tableView.indexPath(for: cell) != nil else {return}
         Utils.inDevelopmentAlert()
     }
     
     func didPressComments(at cell: ArticleCommentTableViewCell) {
-        guard let indexPath = tableView.indexPath(for: cell) else {return}
+        guard tableView.indexPath(for: cell) != nil else {return}
         Utils.inDevelopmentAlert()
     }
     
     func didPressReply(at cell: ArticleCommentTableViewCell) {
-        guard let indexPath = tableView.indexPath(for: cell) else {return}
+        guard tableView.indexPath(for: cell) != nil else {return}
         Utils.inDevelopmentAlert()
     }
 }
