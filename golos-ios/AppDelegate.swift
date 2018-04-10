@@ -26,7 +26,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.setupTabBarAppearance()
         self.setupKeyboardManager()
         self.configureMainContainer()
-//        setupHockeyApp()
         
         // Run Fabric
         Fabric.with([Crashlytics.self])

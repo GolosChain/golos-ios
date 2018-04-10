@@ -29,7 +29,6 @@
 		7D25B4CA201FABD8004A3400 /* ArticleFooterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D25B4C8201FABD8004A3400 /* ArticleFooterTableViewCell.swift */; };
 		7D25B4CB201FABD8004A3400 /* ArticleFooterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D25B4C9201FABD8004A3400 /* ArticleFooterTableViewCell.xib */; };
 		7D25B4CD201FAE93004A3400 /* ArticleMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D25B4CC201FAE93004A3400 /* ArticleMediator.swift */; };
-		7D4597AC2031AD63007BA90C /* AppDelegate+HockeyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4597AB2031AD63007BA90C /* AppDelegate+HockeyApp.swift */; };
 		7D79C33A2034675C00794447 /* AnswersFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D79C3382034675C00794447 /* AnswersFeedViewController.swift */; };
 		7D79C33B2034675C00794447 /* AnswersFeedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D79C3392034675C00794447 /* AnswersFeedViewController.xib */; };
 		7D79C33D203467B600794447 /* AnswersFeedPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D79C33C203467B600794447 /* AnswersFeedPresenter.swift */; };
@@ -185,7 +184,6 @@
 		7D25B4C8201FABD8004A3400 /* ArticleFooterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleFooterTableViewCell.swift; sourceTree = "<group>"; };
 		7D25B4C9201FABD8004A3400 /* ArticleFooterTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleFooterTableViewCell.xib; sourceTree = "<group>"; };
 		7D25B4CC201FAE93004A3400 /* ArticleMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleMediator.swift; sourceTree = "<group>"; };
-		7D4597AB2031AD63007BA90C /* AppDelegate+HockeyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+HockeyApp.swift"; sourceTree = "<group>"; };
 		7D79C3382034675C00794447 /* AnswersFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswersFeedViewController.swift; sourceTree = "<group>"; };
 		7D79C3392034675C00794447 /* AnswersFeedViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AnswersFeedViewController.xib; sourceTree = "<group>"; };
 		7D79C33C203467B600794447 /* AnswersFeedPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswersFeedPresenter.swift; sourceTree = "<group>"; };
@@ -609,7 +607,6 @@
 			isa = PBXGroup;
 			children = (
 				EC1DFB8E20063C400080BC50 /* AppDelegate.swift */,
-				7D4597AB2031AD63007BA90C /* AppDelegate+HockeyApp.swift */,
 				ECC15F9B200975680099BBC9 /* Modules */,
 				EC24FF29200BFA9300A0AE15 /* Managers */,
 				7D911D1E2035ED7C00F19D3C /* Model */,
@@ -1188,7 +1185,6 @@
 				7DA0632A2032583F00B5630C /* PostsFeedViewController+ProfileFeedContainerItem.swift in Sources */,
 				EC9B2AE220154DE9008335C8 /* PostsFeedViewModel.swift in Sources */,
 				EC9ABBC62017D55800AF8597 /* ProfileHeaderView.swift in Sources */,
-				7D4597AC2031AD63007BA90C /* AppDelegate+HockeyApp.swift in Sources */,
 				7D25B4CA201FABD8004A3400 /* ArticleFooterTableViewCell.swift in Sources */,
 				7D25B483201F479B004A3400 /* TagTokenButton.swift in Sources */,
 				7DFE7C462046395B0057F144 /* ReplyRequestType.swift in Sources */,

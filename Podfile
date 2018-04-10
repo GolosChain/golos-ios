@@ -10,9 +10,6 @@ target 'Golos' do
     # SwiftLint
     pod 'SwiftLint'
     
-    # HockeyApp
-    #  pod 'HockeySDK', '~> 5.1.2'
-    
     # Starscream
     pod 'Starscream', '~> 3.0'
     
