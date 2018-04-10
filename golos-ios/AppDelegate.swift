@@ -8,13 +8,16 @@
 
 import UIKit
 import Fabric
+import Starscream
 import Crashlytics
 import IQKeyboardManagerSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    // MARK: - Properties
     var window: UIWindow? = UIWindow(frame: UIScreen.main.bounds)
 
+    
     // MARK: - Class Functions
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         Logger.log(message: "Success", event: .severe)
@@ -34,13 +37,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillResignActive(_ application: UIApplication) {
         Logger.log(message: "Success", event: .severe)
         
-        WebSocketManager.shared.disconnect()
+        webSocket.disconnect()
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
         Logger.log(message: "Success", event: .severe)
        
-        WebSocketManager.shared.connect()
+        webSocket.connect()
     }
 }
 

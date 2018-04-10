@@ -12,71 +12,75 @@ import AVFoundation
 private let qrCodeNotFoundString = "QR код не обнаружен"
 
 class QRScannerViewController: UIViewController {
+    // MARK: - Properties
+    var captureSession = AVCaptureSession()
+    var videoPreviewLayer: AVCaptureVideoPreviewLayer?
+    var qrCodeFrameView: UIView?
+    weak var delegate: QRScannerViewControllerDelegate?
     
-    // MARK: Outlets
+    
+    // MARK: - IBOutlets
     @IBOutlet weak var cameraView: UIView!
     @IBOutlet weak var statusLabel: UILabel!
     
     
-    // MARK: Camera properties
-    var captureSession = AVCaptureSession()
-    
-    var videoPreviewLayer: AVCaptureVideoPreviewLayer?
-    var qrCodeFrameView: UIView?
-    
-    
-    // MARK: Delegate
-    weak var delegate: QRScannerViewControllerDelegate?
-    
-   
-    // MARK: Life cycle
+    // MARK: - Class Functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        Logger.log(message: "Success", event: .severe)
+
         setupUI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-       
+        Logger.log(message: "Success", event: .severe)
+
         startScanning()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
+        Logger.log(message: "Success", event: .severe)
+
         stopScanning()
     }
     
     
     // MARK: Setup UI
     private func setupUI() {
+        Logger.log(message: "Success", event: .severe)
+        
         title = "QR сканнер"
         
         let closeButton = UIBarButtonItem(title: "Отмена",
                                           style: .done,
                                           target: self,
                                           action: #selector(didPressCancelButton))
-        navigationItem.leftBarButtonItem = closeButton
         
+        navigationItem.leftBarButtonItem = closeButton
         statusLabel.text = qrCodeNotFoundString
     }
     
     
-    // MARK: View layout
+    // MARK: - Layout
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        Logger.log(message: "Success", event: .severe)
+        
         videoPreviewLayer?.frame = cameraView.bounds
     }
     
     
-    // MARK: Camera
+    // MARK: - Custom Functions
     private func startScanning() {
+        Logger.log(message: "Success", event: .severe)
+        
         let deviceDiscoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera],
                                                                       mediaType: AVMediaType.video,
                                                                       position: .back)
         guard let captureDevice = deviceDiscoverySession.devices.first else {
-            print("Failed to get the camera device")
+            Logger.log(message: "Failed to get the camera device", event: .error)
             return
         }
         
@@ -90,9 +94,8 @@ class QRScannerViewController: UIViewController {
             
             captureMetadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
             captureMetadataOutput.metadataObjectTypes = [.qr]
-            
         } catch {
-            print(error)
+            Logger.log(message: "\(error.localizedDescription)", event: .error)
             return
         }
         
@@ -104,6 +107,7 @@ class QRScannerViewController: UIViewController {
         captureSession.startRunning()
         
         qrCodeFrameView = UIView()
+      
         if let qrCodeFrameView = qrCodeFrameView {
             qrCodeFrameView.layer.borderColor = UIColor.green.cgColor
             qrCodeFrameView.layer.borderWidth = 2
@@ -113,22 +117,29 @@ class QRScannerViewController: UIViewController {
     }
     
     private func stopScanning() {
+        Logger.log(message: "Success", event: .severe)
+
         captureSession.stopRunning()
     }
     
     private func didScanQRCode(code: String) {
+        Logger.log(message: "Success", event: .severe)
+
         delegate?.didScanQRCode(with: code)
         dismiss(animated: true, completion: nil)
     }
     
     
-    // MARK: Actions
-    @objc
-    func didPressCancelButton() {
+    // MARK: - Actions
+    @objc func didPressCancelButton() {
+        Logger.log(message: "Success", event: .severe)
+
         dismiss(animated: true, completion: nil)
     }
 }
 
+
+// MARK: - AVCaptureMetadataOutputObjectsDelegate
 extension QRScannerViewController: AVCaptureMetadataOutputObjectsDelegate {
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
         if metadataObjects.count == 0 {

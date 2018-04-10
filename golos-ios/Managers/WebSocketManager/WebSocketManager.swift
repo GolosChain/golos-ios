@@ -10,44 +10,53 @@ import Foundation
 import Starscream
 
 class WebSocketManager {
+    // MARK: - Properties
     static let shared = WebSocketManager()
-    
     private var requests = [Int: WebSocketRequest]()
-    
     var usedRequestIds = [Int]()
     
     lazy var webSocket: WebSocket = {
         let infoDictionary = Bundle.main.infoDictionary!
         let webSocketUrlString = infoDictionary[Constants.InfoDictionaryKey.webSocketUrlKey] as! String
         let webSocketUrl = URL(string: webSocketUrlString)!
-    
+        
         let webSocket = WebSocket(url: webSocketUrl)
         webSocket.delegate = self
-       
+        
         return webSocket
     }()
     
+    
+    // MARK: - Custom Functions
     func connect() {
+        Logger.log(message: "Success", event: .severe)
+
         if webSocket.isConnected { return }
         webSocket.connect()
     }
     
     func disconnect() {
+        Logger.log(message: "Success", event: .severe)
+
         if !webSocket.isConnected { return }
+        
         requests = [Int: WebSocketRequest]()
         usedRequestIds = [Int]()
         webSocket.disconnect()
     }
     
     func sendMessage(_ message: String) {
+        Logger.log(message: "Success", event: .severe)
         webSocket.write(string: message)
     }
     
     func sendRequestWith(method: WebSocketMethod,
                          parameters: Any,
                          completion: @escaping (Any?, NSError?) -> Void) {
-        
+        Logger.log(message: "Success", event: .severe)
+
         let requestId = randomUniqueId()
+        
         let request = WebSocketRequest(requestId: requestId,
                                        method: method,
                                        parameters: parameters,
@@ -57,15 +66,20 @@ class WebSocketManager {
         
         if webSocket.isConnected {
             sendMessage(request.messageString)
-        } else {
+        }
+            
+        else {
             webSocket.connect()
         }
     }
 }
 
+
+// MARK: - WebSocketDelegate
 extension WebSocketManager: WebSocketDelegate {
     func websocketDidConnect(socket: WebSocketClient) {
-        print("Websocket did connect")
+        Logger.log(message: "Success", event: .severe)
+
         guard requests.count > 0 else {
             return
         }
@@ -76,10 +90,12 @@ extension WebSocketManager: WebSocketDelegate {
     }
     
     func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
-        print("Websocket did disconnect")
+        Logger.log(message: "Success", event: .severe)
     }
     
     func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
+        Logger.log(message: "Success", event: .severe)
+
         guard let response = WebSocketResponse(responseText: text) else {
             return
         }
@@ -89,6 +105,7 @@ extension WebSocketManager: WebSocketDelegate {
         }
         
         requests[response.requestId] = nil
+
         if let idIndex = usedRequestIds.index(of: response.requestId) {
             usedRequestIds.remove(at: idIndex)
         }
@@ -97,7 +114,7 @@ extension WebSocketManager: WebSocketDelegate {
     }
     
     func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
-        
+        Logger.log(message: "Success", event: .severe)
     }
 }
 
@@ -105,7 +122,9 @@ extension WebSocketManager: WebSocketDelegate {
 // Temprorary !!!
 extension WebSocketManager {
     func randomUniqueId() -> Int {
+        Logger.log(message: "Success", event: .severe)
         var generatedId = 0
+        
         repeat {
             generatedId = Int(arc4random_uniform(1000))
         } while usedRequestIds.contains(generatedId)

@@ -10,6 +10,8 @@ import Foundation
 
 extension String {
     func toDictionary() -> [String: Any]? {
+        Logger.log(message: "Success", event: .severe)
+
         guard let data = self.data(using: .utf8) else {
             return nil
         }
@@ -18,7 +20,7 @@ extension String {
             let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any]
             return json
         } catch {
-            print(error.localizedDescription)
+            Logger.log(message: "\(error.localizedDescription)", event: .error)
         }
         
         return nil

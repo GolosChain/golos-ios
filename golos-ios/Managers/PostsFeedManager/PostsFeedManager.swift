@@ -9,8 +9,7 @@
 import Foundation
 
 class PostsFeedManager {
-    let webSocket = WebSocketManager.shared
-    
+    // MARK: - Custom Functions
     func loadFeed(with type: PostsFeedType, amount: Int, completion: @escaping ([PostModel], NSError?) -> Void) {
         let method = methodForPostsFeed(type: type)
         let parameters = ["limit": amount]
@@ -38,10 +37,17 @@ class PostsFeedManager {
     
     private func methodForPostsFeed(type: PostsFeedType) -> WebSocketMethod {
         switch type {
-        case .hot: return WebSocketMethod.getDiscussionsActual
-        case .new: return WebSocketMethod.getDiscussionsNew
-        case .popular: return WebSocketMethod.getDiscussionsPopular
-        case .promoted: return WebSocketMethod.getDiscussionsActual
+        case .hot:
+            return WebSocketMethod.getDiscussionsActual
+        
+        case .new:
+            return WebSocketMethod.getDiscussionsNew
+        
+        case .popular:
+            return WebSocketMethod.getDiscussionsPopular
+        
+        case .promoted:
+            return WebSocketMethod.getDiscussionsActual
         }
     }
 }

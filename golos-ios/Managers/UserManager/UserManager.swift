@@ -9,8 +9,7 @@
 import Foundation
 
 class UserManager {
-    let webSocket = WebSocketManager.shared
-    
+    // MARK: - Custom Functions
     func loadUsers(_ userNames: [String], completion: @escaping ([UserModel], NSError?) -> Void) {
         let method = methodForUserRequest(.getUsers)
         let parameters = [userNames]
@@ -48,7 +47,8 @@ class UserManager {
 
     private func methodForUserRequest(_ request: UserRequestType) -> WebSocketMethod {
         switch request {
-        case .getUsers: return WebSocketMethod.getAccounts
+        case .getUsers:
+            return WebSocketMethod.getAccounts
         }
     }
 }

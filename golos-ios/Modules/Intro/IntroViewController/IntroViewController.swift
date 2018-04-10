@@ -9,43 +9,48 @@
 import UIKit
 
 class IntroViewController: UIViewController {
+    // MARK: - Properties
+    var scrollLabels = [UILabel]()
+    let presenter = IntroPresenter()
 
-    // MARK: Outlets
+    
+    // MARK: - IBOutlets
     @IBOutlet weak var enterButton: UIButton!
     @IBOutlet weak var registerButton: UIButton!
     @IBOutlet weak var moreInfoButton: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
     
-    // MARK: UI
-    var scrollLabels = [UILabel]()
     
-    // MARK: Module
-    let presenter = IntroPresenter()
-    
-    
-    // MARK: Life cycle
+    // MARK: - Class Functions
     override func viewDidLoad() {
         super.viewDidLoad()
+        Logger.log(message: "Success", event: .severe)
+
         setupUI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        Logger.log(message: "Success", event: .severe)
+
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        Logger.log(message: "Success", event: .severe)
+
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
-    // MARK: SetupUI
+    
+    // MARK: - Custom Functions
     private func setupUI() {
+        Logger.log(message: "Success", event: .severe)
+
         title = ""
-        
         configureBackButton()
-        
         enterButton.setBlueButtonRoundEdges()
         registerButton.setBorderButtonRoundEdges()
         moreInfoButton.setTitleColor(UIColor.Project.buttonTextGray, for: .normal)
@@ -56,8 +61,11 @@ class IntroViewController: UIViewController {
     }
     
     private func setupScrollView() {
+        Logger.log(message: "Success", event: .severe)
+
         scrollView.delegate = self
         let strings = presenter.scrollStrings
+        
         for string in strings {
             let label = UILabel()
             label.font = Fonts.shared.regular(with: 16.0)
@@ -71,26 +79,32 @@ class IntroViewController: UIViewController {
     }
     
     
-    // MARK: Layout
+    // MARK: - Layout
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
+        Logger.log(message: "Success", event: .severe)
+
         for (index, label) in scrollLabels.enumerated() {
             let pointX = scrollView.bounds.size.width * CGFloat(index)
             var scrollViewBounds = scrollView.bounds
             scrollViewBounds.origin.x = pointX
             label.frame = scrollViewBounds
         }
+        
         scrollView.contentSize = CGSize(width: scrollView.bounds.size.width * CGFloat(scrollLabels.count), height: scrollView.bounds.size.height)
     }
     
     
-    // MARK: Actions
+    // MARK: - Actions
     @IBAction func enterButtonPressed(_ sender: Any) {
+        Logger.log(message: "Success", event: .severe)
+
         openLoginScreen()
     }
     
     @IBAction func registerButtonPressed(_ sender: Any) {
+        Logger.log(message: "Success", event: .severe)
+
         guard let moreUrl = URL.init(string: Constants.Urls.registration) else {
             Utils.showAlert(title: "Wrong registration url", message: "Developer error!")
             return
@@ -100,6 +114,8 @@ class IntroViewController: UIViewController {
     }
     
     @IBAction func moreInfoButtonPressed(_ sender: Any) {
+        Logger.log(message: "Success", event: .severe)
+
         guard let moreUrl = URL.init(string: Constants.Urls.moreInfoAbout) else {
             Utils.showAlert(title: "Wrong more info url", message: "Developer error!")
             return
@@ -109,21 +125,25 @@ class IntroViewController: UIViewController {
     }
     
     
-    // MARK: Navigation
+    // MARK: - Navigation
     func openLoginScreen() {
+        Logger.log(message: "Success", event: .severe)
+
         let loginViewController = LoginViewController.nibInstance()
         navigationController?.pushViewController(loginViewController, animated: true)
     }
 }
 
 
-// MARK: UIScrollViewDelegate
+// MARK: - UIScrollViewDelegate
 extension IntroViewController: UIScrollViewDelegate {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let scrollViewWidth = scrollView.bounds.size.width
         let pageNumber = scrollView.contentOffset.x / scrollViewWidth
+        
         pageControl.currentPage = Int(pageNumber)
-        print(scrollView.contentOffset.x / scrollViewWidth)
-        print(scrollView.contentOffset)
+        
+        Logger.log(message: "\(scrollView.contentOffset.x / scrollViewWidth)", event: .verbose)
+        Logger.log(message: "\(scrollView.contentOffset)", event: .verbose)
     }
 }

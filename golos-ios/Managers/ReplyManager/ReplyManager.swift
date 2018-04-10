@@ -9,11 +9,8 @@
 import Foundation
 
 class ReplyManager {
-    let webSocket = WebSocketManager.shared
-    
-    func loadRepliesForPost(withPermalink permalink: String,
-                            authorUsername: String,
-                            completion: @escaping ([PostReplyModel], NSError?) -> Void) {
+    // MARK: - Custom Functions
+    func loadRepliesForPost(withPermalink permalink: String, authorUsername: String, completion: @escaping ([PostReplyModel], NSError?) -> Void) {
         let method = methodForUserRequest(.getPostReplies)
         let parameters = [authorUsername, permalink]
         
@@ -37,7 +34,8 @@ class ReplyManager {
 
     private func methodForUserRequest(_ request: ReplyRequestType) -> WebSocketMethod {
         switch request {
-        case .getPostReplies: return WebSocketMethod.getPostReplies
+        case .getPostReplies:
+            return WebSocketMethod.getPostReplies
         }
     }
 }

@@ -28,3 +28,5 @@ struct Constants {
         static let webSocketUrlKey = "WebSocketUrl"
     }
 }
+
+let webSocket = WebSocketManager.shared

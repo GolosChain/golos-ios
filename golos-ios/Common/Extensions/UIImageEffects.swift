@@ -145,18 +145,20 @@ public extension UIImage {
     // swiftlint:disable cyclomatic_complexity
     // swiftlint:disable function_body_length
     public func applyBlurWithRadius(_ blurRadius: CGFloat, tintColor: UIColor?, saturationDeltaFactor: CGFloat, maskImage: UIImage? = nil) -> UIImage? {
-        
         // Check pre-conditions.
         if size.width < 1 || size.height < 1 {
-            print("*** error: invalid size: \(size.width) x \(size.height). Both dimensions must be >= 1: \(self)")
+            Logger.log(message: "*** error: invalid size: \(size.width) x \(size.height). Both dimensions must be >= 1: \(self)", event: .verbose)
+
             return nil
         }
+        
         guard let cgImage = self.cgImage else {
-            print("*** error: image must be backed by a CGImage: \(self)")
+            Logger.log(message: "*** error: image must be backed by a CGImage: \(self)", event: .error)
             return nil
         }
+
         if maskImage != nil && maskImage!.cgImage == nil {
-            print("*** error: maskImage must be backed by a CGImage: \(String(describing: maskImage))")
+            Logger.log(message: "*** error: maskImage must be backed by a CGImage: \(String(describing: maskImage))", event: .error)
             return nil
         }
 
@@ -187,12 +189,10 @@ public extension UIImage {
 
             var effectInBuffer = createEffectBuffer(effectInContext)
 
-
             UIGraphicsBeginImageContextWithOptions(size, false, screenScale)
 
             guard let effectOutContext = UIGraphicsGetCurrentContext() else { return  nil }
             var effectOutBuffer = createEffectBuffer(effectOutContext)
-
 
             if hasBlur {
                 // A description of how to compute the box kernel width from the Gaussian
@@ -211,6 +211,7 @@ public extension UIImage {
                 let inputRadius = blurRadius * screenScale
                 let ddd = floor(inputRadius * 3.0 * CGFloat(sqrt(2 * .pi) / 4 + 0.5))
                 var radius = UInt32(ddd)
+                
                 if radius % 2 != 1 {
                     radius += 1 // force radius to be odd so that the three box-blur methodology works.
                 }

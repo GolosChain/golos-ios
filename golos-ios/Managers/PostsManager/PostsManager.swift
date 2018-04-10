@@ -9,11 +9,8 @@
 import Foundation
 
 class PostsManager {
-    let webSocket = WebSocketManager.shared
-    
-    func loadPost(withPermalink permalink: String,
-                  authorUsername: String,
-                  completion: @escaping (PostModel?, NSError?) -> Void) {
+    // MARK: - Custom Functions
+    func loadPost(withPermalink permalink: String, authorUsername: String, completion: @escaping (PostModel?, NSError?) -> Void) {
         let method = methodForPostRequest(.getPost)
         let parameters = [authorUsername, permalink]
         
@@ -34,10 +31,12 @@ class PostsManager {
     
     private func methodForPostRequest(_ request: PostRequestType) -> WebSocketMethod {
         switch request {
-        case .getPost: return WebSocketMethod.getPost
+        case .getPost:
+            return WebSocketMethod.getPost
         }
     }
-//    
+
+//
 //    func loadRepliesForPost(withPermalink permalink: String,
 //                            authorUsername: String,
 //                            completion: @escaping ([PostReplyModel], NSError?) -> Void) {

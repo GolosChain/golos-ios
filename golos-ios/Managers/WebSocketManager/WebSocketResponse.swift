@@ -32,15 +32,20 @@ extension WebSocketResponse {
         if let errorDictionary = json["error"] as? [String: Any] {
             let code = errorDictionary["code"] as! Int
             let message = errorDictionary["message"] as! String
+            
             error = NSError(domain: "io.golos.websocket",
                             code: code,
                             userInfo: [NSLocalizedDescriptionKey: message])
-        } else if let res = json["result"] {
+        }
+            
+        else if let res = json["result"] {
             result = res
-        } else {
+        }
+            
+        else {
             error = NSError(domain: "io.golos.websocket",
-                                code: 666,
-                                userInfo: [NSLocalizedDescriptionKey: "Unknown error g"])
+                            code: 666,
+                            userInfo: [NSLocalizedDescriptionKey: "Unknown error g"])
         }
         
         self.error = error

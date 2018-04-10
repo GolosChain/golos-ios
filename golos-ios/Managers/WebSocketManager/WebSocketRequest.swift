@@ -16,6 +16,7 @@ struct WebSocketRequest {
     
     var messageString: String {
         var parametersString = ""
+        
         if let dictionary = parameters as? [String: Any] {
             for (key, parameter) in dictionary {
                 let parameterString = (parameter is String) ? "\"\(parameter)\"" : "\(parameter)"
@@ -23,16 +24,20 @@ struct WebSocketRequest {
                 parametersString.append(keyParameterString)
             }
             parametersString = "[{\(parametersString)}]"
-        } else if let array = parameters as? [Any] {
+        }
+        
+        else if let array = parameters as? [Any] {
             for (index, parameter) in array.enumerated() {
                 var str = (parameter is String) ? "\"\(parameter)\"" : "\(parameter)"
                 if index != 0 { str = "," + str}
                 parametersString.append(str)
             }
+           
             parametersString = "[\(parametersString)]"
         }
         
         let resultString = "{\"method\":\"\(method.rawValue)\", \"params\":\(parametersString), \"id\":\(requestId)}"
+        
         return resultString
     }
 }
