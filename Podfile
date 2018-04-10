@@ -31,5 +31,6 @@ target 'Golos' do
     
     
     # Pods for golos-ios
+    pod 'GolosBlockchain', :git => "https://github.com/Monserg/GolosBlockchain.git", :tag => "1.0.0"
 
 end
