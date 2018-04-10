@@ -15,17 +15,17 @@ struct Constants {
     }
     
     struct Urls {
-        static let moreInfoAbout = "https://golos.io/welcome"
-        static let registration = "https://golos.io/create_account"
+        static let moreInfoAbout    =   "https://golos.io/welcome"
+        static let registration     =   "https://golos.io/create_account"
     }
     
     struct StateMachine {
-        static let oldStateKey = "oldStateKey"
+        static let oldStateKey      =   "oldStateKey"
     }
     
     struct InfoDictionaryKey {
-        static let hockeyAppIdKey = "HockeyAppId"
-        static let webSocketUrlKey = "WebSocketUrl"
+        static let hockeyAppIdKey   =   "HockeyAppId"
+        static let webSocketUrlKey  =   "WebSocketUrl"
     }
 }
 

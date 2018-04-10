@@ -23,3 +23,4 @@ disabled_rules:
 - multiple_closures_with_trailing_closure
 - statement_position
 - todo
+- colon

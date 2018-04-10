@@ -14,9 +14,7 @@ class PostsFeedManager {
         let method = methodForPostsFeed(type: type)
         let parameters = ["limit": amount]
         
-        webSocket.sendRequestWith(
-            method: method,
-            parameters: parameters
+        webSocket.sendRequestWith(method: method, parameters: parameters
         ) { (result, error) in
             guard error == nil else {
                 completion([], error!)

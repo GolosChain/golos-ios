@@ -23,6 +23,7 @@ struct WebSocketRequest {
                 let keyParameterString = "\"\(key)\":\(parameterString)"
                 parametersString.append(keyParameterString)
             }
+            
             parametersString = "[{\(parametersString)}]"
         }
         
@@ -37,6 +38,7 @@ struct WebSocketRequest {
         }
         
         let resultString = "{\"method\":\"\(method.rawValue)\", \"params\":\(parametersString), \"id\":\(requestId)}"
+        Logger.log(message: "resultString = \(resultString)", event: .debug)
         
         return resultString
     }

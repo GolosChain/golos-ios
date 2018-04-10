@@ -17,6 +17,7 @@ class WebSocketManager {
     
     lazy var webSocket: WebSocket = {
         let infoDictionary = Bundle.main.infoDictionary!
+        Logger.log(message: "infoDictionary = \(infoDictionary)", event: .debug)
         let webSocketUrlString = infoDictionary[Constants.InfoDictionaryKey.webSocketUrlKey] as! String
         let webSocketUrl = URL(string: webSocketUrlString)!
         
@@ -38,10 +39,11 @@ class WebSocketManager {
     func disconnect() {
         Logger.log(message: "Success", event: .severe)
 
-        if !webSocket.isConnected { return }
+        guard webSocket.isConnected else { return }
         
         requests = [Int: WebSocketRequest]()
         usedRequestIds = [Int]()
+       
         webSocket.disconnect()
     }
     
@@ -57,20 +59,18 @@ class WebSocketManager {
 
         let requestId = randomUniqueId()
         
-        let request = WebSocketRequest(requestId: requestId,
-                                       method: method,
-                                       parameters: parameters,
-                                       completion: completion)
+        let request = WebSocketRequest(requestId:   requestId,
+                                       method:      method,
+                                       parameters:  parameters,
+                                       completion:  completion)
         
         requests[requestId] = request
         
-        if webSocket.isConnected {
-            sendMessage(request.messageString)
-        }
-            
-        else {
+        if !webSocket.isConnected {
             webSocket.connect()
         }
+            
+        sendMessage(request.messageString)
     }
 }
 
