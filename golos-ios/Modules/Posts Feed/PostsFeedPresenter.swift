@@ -33,12 +33,13 @@ protocol PostsFeedViewProtocol: class {
 }
 
 class PostsFeedPresenter: NSObject {
+    // MARK: - Properties
     weak var postsFeedView: PostsFeedViewProtocol!
     
     private var postsFeedType: PostsFeedType = .new
     private var postsItems = [PostsFeedViewModel]()
     private var posts = [PostModel]()
-    private var postsAmount = 10
+    private var postsAmount = webSocketLimit
     private let batchCount = 10
     
     private let postsFeedManager = PostsFeedManager()
@@ -48,31 +49,44 @@ class PostsFeedPresenter: NSObject {
 
 extension PostsFeedPresenter: PostsFeedPresenterProtocol {
     func getUser(at index: Int) -> UserModel? {
+        Logger.log(message: "Success", event: .severe)
+
         let post = posts[index]
         return post.author
     }
     
     func getPostPermalinkAndAuthorName(at index: Int) -> (permalink: String, author: String) {
+        Logger.log(message: "Success", event: .severe)
+
         let post = posts[index]
         return (post.permalink, post.authorName)
     }
     
     func setPostsFeedType(_ type: PostsFeedType) {
+        Logger.log(message: "Success", event: .severe)
+
         self.postsFeedType = type
     }
     
     func getPostsFeedType() -> PostsFeedType {
+        Logger.log(message: "Success", event: .severe)
+
         return self.postsFeedType
     }
     
     func fetchPosts() {
-        
+        Logger.log(message: "Success", event: .severe)
+
     }
     
     func loadPosts() {
+        Logger.log(message: "Success", event: .severe)
+
         postsFeedManager.loadFeed(with: postsFeedType, amount: postsAmount) { [weak self] posts, error in
             guard let strongSelf = self else { return }
-            guard  error == nil else {
+            
+            guard error == nil else {
+                Logger.log(message: "\(error!.localizedDescription)", event: .error)
                 return
             }
             
@@ -90,18 +104,24 @@ extension PostsFeedPresenter: PostsFeedPresenterProtocol {
     }
     
     func loadNext() {
+        Logger.log(message: "Success", event: .severe)
+
         postsAmount += batchCount
         loadPosts()
     }
     
     private func loadUsers(for posts: [PostModel]) {
+        Logger.log(message: "Success", event: .severe)
+
         let usernames = posts.map { post -> String in
             return post.authorName
         }
         
         userManager.loadUsers(usernames) { [weak self] users, error in
             guard let strongSelf = self else { return }
+           
             guard error == nil else {
+                Logger.log(message: "\(error!.localizedDescription)", event: .error)
                 return
             }
             
@@ -121,11 +141,14 @@ extension PostsFeedPresenter: PostsFeedPresenterProtocol {
     }
     
     func loadRepliesForPost(at index: Int) {
+        Logger.log(message: "Success", event: .severe)
+
         let post = self.posts[index]
-        replyManager.loadRepliesForPost(withPermalink: post.permalink,
-                                        authorUsername: post.authorName) { [weak self] replies, error in
+        replyManager.loadRepliesForPost(withPermalink: post.permalink, authorUsername: post.authorName) { [weak self] replies, error in
             guard let strongSelf = self else {return}
+
             guard error == nil else {
+                Logger.log(message: "\(error!.localizedDescription)", event: .error)
                 return
             }
             
@@ -140,6 +163,8 @@ extension PostsFeedPresenter: PostsFeedPresenterProtocol {
     }
     
     func getPostViewModel(at index: Int) -> PostsFeedViewModel? {
+        Logger.log(message: "Success", event: .severe)
+
         guard index < postsItems.count else { return nil }
         return postsItems[index]
     }

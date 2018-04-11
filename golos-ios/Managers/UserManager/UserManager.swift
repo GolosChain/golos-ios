@@ -14,27 +14,29 @@ class UserManager {
         let method = methodForUserRequest(.getUsers)
         let parameters = [userNames]
         
-        webSocket.sendRequestWith(method: method, parameters: parameters) { result, error in
-            guard error == nil else {
-                completion([], error!)
-                return
-            }
-            
-            guard let userArray = result as? [[String: Any]] else {
-                return
-            }
-            
-            let users = userArray.compactMap({ userDictionary -> UserModel? in
-                UserModel(userDictionary: userDictionary)
-            })
-
-            completion(users, nil)
-        }
+//        webSocket.sendRequestWith(method: method, parameters: parameters) { result, error in
+//            guard error == nil else {
+//                Logger.log(message: "\(error!.localizedDescription)", event: .error)
+//                completion([], error!)
+//                return
+//            }
+//            
+//            guard let userArray = result as? [[String: Any]] else {
+//                return
+//            }
+//            
+//            let users = userArray.compactMap({ userDictionary -> UserModel? in
+//                UserModel(userDictionary: userDictionary)
+//            })
+//
+//            completion(users, nil)
+//        }
     }
     
     func loadUser(with name: String, completion: @escaping (UserModel?, NSError?) -> Void) {
         loadUsers([name]) { users, error in
             guard error == nil else {
+                Logger.log(message: "\(error!.localizedDescription)", event: .error)
                 completion(nil, error!)
                 return
             }

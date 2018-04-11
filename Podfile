@@ -4,17 +4,11 @@ platform :ios, '10.0'
 
 target 'Golos' do
     
-    # IQKeyboardManager
-    pod 'IQKeyboardManagerSwift', '~> 5.0'
-    
-    # SwiftLint
-    pod 'SwiftLint'
-    
-    # Starscream
-    pod 'Starscream', '~> 3.0'
-    
-    # PINCache
+    pod 'Down'
     pod 'PINCache'
+    pod 'SwiftLint'
+    pod 'Starscream', '~> 3.0'
+    pod 'IQKeyboardManagerSwift', '~> 5.0'
     
     # CoreBitcoin
     pod 'CoreBitcoin', :podspec => 'https://raw.github.com/oleganza/CoreBitcoin/master/CoreBitcoin.podspec'
@@ -25,7 +19,6 @@ target 'Golos' do
     
     # Design
     pod 'LayoutKit', '~> 7.0'
-    
     
     # Pods for golos-ios
     pod 'GolosBlockchain', :git => "https://github.com/Monserg/GolosBlockchain.git", :tag => "1.0.0"

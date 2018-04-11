@@ -12,11 +12,14 @@ import Starscream
 import Crashlytics
 import IQKeyboardManagerSwift
 
+let webSocket = WebSocket(url: URL(string: Bundle.main.infoDictionary![Constants.InfoDictionaryKey.webSocketUrlKey] as! String)!)
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Properties
     var window: UIWindow? = UIWindow(frame: UIScreen.main.bounds)
-
+    let manager = WebSocketManager()
+    
     
     // MARK: - Class Functions
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -42,7 +45,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidBecomeActive(_ application: UIApplication) {
         Logger.log(message: "Success", event: .severe)
        
-        webSocket.connect()
+        if !webSocket.isConnected {
+            webSocket.connect()
+            
+            if webSocket.delegate == nil {
+                webSocket.delegate = self.manager
+            }
+        }
     }
 }
 
@@ -50,7 +59,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 // MARK: - Extensions
 extension AppDelegate {
     // RootViewController
-    func configureMainContainer() {
+    private func configureMainContainer() {
         if window != nil {
             Logger.log(message: "Success", event: .severe)
 
@@ -61,7 +70,7 @@ extension AppDelegate {
     }
     
     // IQKeyboardManagerSwift
-    func setupKeyboardManager() {
+    private func setupKeyboardManager() {
         Logger.log(message: "Success", event: .severe)
        
         IQKeyboardManager.sharedManager().enable = true
@@ -69,7 +78,7 @@ extension AppDelegate {
     }
 
     // Setup Appearance
-    func setupNavigationBarAppearance() {
+    private func setupNavigationBarAppearance() {
         Logger.log(message: "Success", event: .severe)
 
         let appearance = UINavigationBar.appearance()
@@ -85,7 +94,7 @@ extension AppDelegate {
         appearance.setBackgroundImage(UIImage(), for: .default)
     }
     
-    func setupTabBarAppearance() {
+    private func setupTabBarAppearance() {
         Logger.log(message: "Success", event: .severe)
 
         UITabBar.appearance().barTintColor = UIColor.white

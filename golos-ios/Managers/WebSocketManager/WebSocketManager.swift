@@ -11,23 +11,29 @@ import Starscream
 
 class WebSocketManager {
     // MARK: - Properties
-    static let shared = WebSocketManager()
+//    static let shared = WebSocketManager()
     private var requests = [Int: WebSocketRequest]()
     var usedRequestIds = [Int]()
     
-    lazy var webSocket: WebSocket = {
-        let infoDictionary = Bundle.main.infoDictionary!
-        Logger.log(message: "infoDictionary = \(infoDictionary)", event: .debug)
-        let webSocketUrlString = infoDictionary[Constants.InfoDictionaryKey.webSocketUrlKey] as! String
-        let webSocketUrl = URL(string: webSocketUrlString)!
-        
-        let webSocket = WebSocket(url: webSocketUrl)
-        webSocket.delegate = self
-        
-        return webSocket
-    }()
+//    lazy var webSocket333: WebSocket = {
+//        let infoDictionary = Bundle.main.infoDictionary!
+//        Logger.log(message: "infoDictionary = \(infoDictionary)", event: .debug)
+//        let webSocketUrlString = infoDictionary[Constants.InfoDictionaryKey.webSocketUrlKey] as! String
+//        let webSocketUrl = URL(string: webSocketUrlString)!
+//
+//        let webSocket = WebSocket(url: webSocketUrl)
+//        webSocket.delegate = self
+//
+//        return webSocket
+//    }()
     
     
+    // MARK: - Class Initialization
+    deinit {
+            Logger.log(message: "Success", event: .severe)
+    }
+    
+
     // MARK: - Custom Functions
     func connect() {
         Logger.log(message: "Success", event: .severe)
@@ -57,7 +63,7 @@ class WebSocketManager {
                          completion: @escaping (Any?, NSError?) -> Void) {
         Logger.log(message: "Success", event: .severe)
 
-        let requestId = randomUniqueId()
+        let requestId = 111 // randomUniqueId()
         
         let request = WebSocketRequest(requestId:   requestId,
                                        method:      method,
@@ -66,11 +72,7 @@ class WebSocketManager {
         
         requests[requestId] = request
         
-        if !webSocket.isConnected {
-            webSocket.connect()
-        }
-            
-        sendMessage(request.messageString)
+        webSocket.isConnected ? sendMessage(request.messageString) : webSocket.connect()
     }
 }
 
@@ -84,19 +86,17 @@ extension WebSocketManager: WebSocketDelegate {
             return
         }
         
+        Logger.log(message: "requests = \(requests)", event: .debug)
+        
         for (_, request) in requests {
             sendMessage(request.messageString)
         }
     }
     
-    func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
-        Logger.log(message: "Success", event: .severe)
-    }
-    
     func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
         Logger.log(message: "Success", event: .severe)
 
-        guard let response = WebSocketResponse(responseText: text) else {
+        guard let response = WebSocketResponse(withText: text) else {
             return
         }
         
@@ -113,24 +113,31 @@ extension WebSocketManager: WebSocketDelegate {
         request.completion(response.result, response.error)
     }
     
+    // Not used
+    func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
+        Logger.log(message: "Success", event: .severe)
+        
+        self.disconnect()
+    }
+    
     func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
         Logger.log(message: "Success", event: .severe)
     }
 }
 
-
-// Temprorary !!!
-extension WebSocketManager {
-    func randomUniqueId() -> Int {
-        Logger.log(message: "Success", event: .severe)
-        var generatedId = 0
-        
-        repeat {
-            generatedId = Int(arc4random_uniform(1000))
-        } while usedRequestIds.contains(generatedId)
-        
-        usedRequestIds.append(generatedId)
-        
-        return generatedId
-    }
-}
+//
+//// Temprorary !!!
+//extension WebSocketManager {
+//    func randomUniqueId() -> Int {
+//        Logger.log(message: "Success", event: .severe)
+//        var generatedId = 0
+//
+//        repeat {
+//            generatedId = Int(arc4random_uniform(1000))
+//        } while usedRequestIds.contains(generatedId)
+//
+//        usedRequestIds.append(generatedId)
+//
+//        return generatedId
+//    }
+//}

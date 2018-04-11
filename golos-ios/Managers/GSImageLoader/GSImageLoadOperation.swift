@@ -28,6 +28,7 @@ class GSImageLoadOperation: GSOperation {
         
         URLSession.shared.dataTask(with: self.imageUrl) { [weak self] data, _, error in
             guard let strongSelf = self else { return }
+          
             guard let data = data, error == nil else {
                 strongSelf.error = error! as NSError
                 strongSelf.executing(false)

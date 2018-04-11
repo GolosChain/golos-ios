@@ -14,22 +14,23 @@ class ReplyManager {
         let method = methodForUserRequest(.getPostReplies)
         let parameters = [authorUsername, permalink]
         
-        webSocket.sendRequestWith(method: method, parameters: parameters) { result, error in
-            guard error == nil else {
-                completion([], error!)
-                return
-            }
-            
-            guard let replyArray = result as? [[String: Any]] else {
-                return
-            }
-            
-            let replies = replyArray.compactMap({ replyDictionary -> PostReplyModel? in
-                PostReplyModel(replyDictionary: replyDictionary)
-            })
-
-            completion(replies, nil)
-        }
+//        webSocket.sendRequestWith(method: method, parameters: parameters) { result, error in
+//            guard error == nil else {
+//                Logger.log(message: "\(error!.localizedDescription)", event: .error)
+//                completion([], error!)
+//                return
+//            }
+//            
+//            guard let replyArray = result as? [[String: Any]] else {
+//                return
+//            }
+//            
+//            let replies = replyArray.compactMap({ replyDictionary -> PostReplyModel? in
+//                PostReplyModel(replyDictionary: replyDictionary)
+//            })
+//
+//            completion(replies, nil)
+//        }
     }
 
     private func methodForUserRequest(_ request: ReplyRequestType) -> WebSocketMethod {

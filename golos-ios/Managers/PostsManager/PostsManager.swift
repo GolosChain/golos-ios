@@ -14,19 +14,20 @@ class PostsManager {
         let method = methodForPostRequest(.getPost)
         let parameters = [authorUsername, permalink]
         
-        webSocket.sendRequestWith(method: method, parameters: parameters) { result, error in
-            guard error == nil else {
-                completion(nil, error!)
-                return
-            }
-
-            guard let result = result as? [String: Any] else {
-                return
-            }
-            
-            let post = PostModel(postDictionary: result)
-            completion(post, nil)
-        }
+//        webSocket.sendRequestWith(method: method, parameters: parameters) { result, error in
+//            guard error == nil else {
+//                Logger.log(message: "\(error!.localizedDescription)", event: .error)
+//                completion(nil, error!)
+//                return
+//            }
+//
+//            guard let result = result as? [String: Any] else {
+//                return
+//            }
+//            
+//            let post = PostModel(postDictionary: result)
+//            completion(post, nil)
+//        }
     }
     
     private func methodForPostRequest(_ request: PostRequestType) -> WebSocketMethod {

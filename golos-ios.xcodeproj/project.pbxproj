@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0A4D6077118CAF827A738599 /* libPods-Golos.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 49B3343D7A082E2FEB570B6F /* libPods-Golos.a */; };
 		7D1783DD201FD9B600B75979 /* ArticlePostedInTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1783DB201FD9B600B75979 /* ArticlePostedInTableViewCell.swift */; };
 		7D1783DE201FD9B600B75979 /* ArticlePostedInTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D1783DC201FD9B600B75979 /* ArticlePostedInTableViewCell.xib */; };
 		7D25B47F201F4714004A3400 /* TagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D25B47E201F4714004A3400 /* TagsView.swift */; };
@@ -61,10 +60,6 @@
 		7DA06328203256D700B5630C /* PropertyStoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA06327203256D700B5630C /* PropertyStoring.swift */; };
 		7DA0632A2032583F00B5630C /* PostsFeedViewController+ProfileFeedContainerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA063292032583F00B5630C /* PostsFeedViewController+ProfileFeedContainerItem.swift */; };
 		7DA0632C203315A300B5630C /* PassthroughView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA0632B203315A300B5630C /* PassthroughView.swift */; };
-		7DCF55CD205881C1002FE7C3 /* IQKeyboardManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DCF55CB205881C1002FE7C3 /* IQKeyboardManager.framework */; };
-		7DCF55CE205881C1002FE7C3 /* IQKeyboardManagerSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DCF55CC205881C1002FE7C3 /* IQKeyboardManagerSwift.framework */; };
-		7DCF55D620588592002FE7C3 /* Down.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DCF55D420588592002FE7C3 /* Down.framework */; };
-		7DCF55D720588592002FE7C3 /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DCF55D520588592002FE7C3 /* Starscream.framework */; };
 		7DCF74A2201FE1C700D46495 /* ArticleCommentsSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF74A1201FE1C700D46495 /* ArticleCommentsSectionHeader.swift */; };
 		7DCF74A4201FE1E400D46495 /* ArticleCommentsSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DCF74A3201FE1E400D46495 /* ArticleCommentsSectionHeader.xib */; };
 		7DCF74A720200AA700D46495 /* ArticleCommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF74A520200AA700D46495 /* ArticleCommentTableViewCell.swift */; };
@@ -160,8 +155,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		49B3343D7A082E2FEB570B6F /* libPods-Golos.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Golos.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		617A00E81BE0A996F90DD4BB /* Pods_golos_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_golos_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BD44B1209B5C64C3D1EF768 /* Pods-golos-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-golos-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-golos-ios/Pods-golos-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		7D1783DB201FD9B600B75979 /* ArticlePostedInTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlePostedInTableViewCell.swift; sourceTree = "<group>"; };
 		7D1783DC201FD9B600B75979 /* ArticlePostedInTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticlePostedInTableViewCell.xib; sourceTree = "<group>"; };
@@ -216,11 +209,7 @@
 		7DA06327203256D700B5630C /* PropertyStoring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyStoring.swift; sourceTree = "<group>"; };
 		7DA063292032583F00B5630C /* PostsFeedViewController+ProfileFeedContainerItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PostsFeedViewController+ProfileFeedContainerItem.swift"; sourceTree = "<group>"; };
 		7DA0632B203315A300B5630C /* PassthroughView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassthroughView.swift; sourceTree = "<group>"; };
-		7DCF55CB205881C1002FE7C3 /* IQKeyboardManager.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IQKeyboardManager.framework; path = Carthage/Build/iOS/IQKeyboardManager.framework; sourceTree = "<group>"; };
-		7DCF55CC205881C1002FE7C3 /* IQKeyboardManagerSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IQKeyboardManagerSwift.framework; path = Carthage/Build/iOS/IQKeyboardManagerSwift.framework; sourceTree = "<group>"; };
 		7DCF55D0205883B5002FE7C3 /* Golos-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Golos-Bridging-Header.h"; sourceTree = "<group>"; };
-		7DCF55D420588592002FE7C3 /* Down.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Down.framework; path = Carthage/Build/iOS/Down.framework; sourceTree = "<group>"; };
-		7DCF55D520588592002FE7C3 /* Starscream.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Starscream.framework; path = Carthage/Build/iOS/Starscream.framework; sourceTree = "<group>"; };
 		7DCF74A1201FE1C700D46495 /* ArticleCommentsSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCommentsSectionHeader.swift; sourceTree = "<group>"; };
 		7DCF74A3201FE1E400D46495 /* ArticleCommentsSectionHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleCommentsSectionHeader.xib; sourceTree = "<group>"; };
 		7DCF74A520200AA700D46495 /* ArticleCommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCommentTableViewCell.swift; sourceTree = "<group>"; };
@@ -317,11 +306,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7DCF55CD205881C1002FE7C3 /* IQKeyboardManager.framework in Frameworks */,
-				7DCF55CE205881C1002FE7C3 /* IQKeyboardManagerSwift.framework in Frameworks */,
-				7DCF55D620588592002FE7C3 /* Down.framework in Frameworks */,
-				7DCF55D720588592002FE7C3 /* Starscream.framework in Frameworks */,
-				0A4D6077118CAF827A738599 /* libPods-Golos.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -335,19 +319,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		486C2A5A1B72C10663D9DAB3 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				7DCF55D420588592002FE7C3 /* Down.framework */,
-				7DCF55D520588592002FE7C3 /* Starscream.framework */,
-				7DCF55CB205881C1002FE7C3 /* IQKeyboardManager.framework */,
-				7DCF55CC205881C1002FE7C3 /* IQKeyboardManagerSwift.framework */,
-				617A00E81BE0A996F90DD4BB /* Pods_golos_ios.framework */,
-				49B3343D7A082E2FEB570B6F /* libPods-Golos.a */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		4C8254C4C6C021D08A08DBAD /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -590,7 +561,6 @@
 				EC24FF42200C038D00A0AE15 /* GolosTests */,
 				EC1DFB8C20063C400080BC50 /* Products */,
 				4C8254C4C6C021D08A08DBAD /* Pods */,
-				486C2A5A1B72C10663D9DAB3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -947,13 +917,12 @@
 			buildConfigurationList = EC1DFB9D20063C400080BC50 /* Build configuration list for PBXNativeTarget "Golos" */;
 			buildPhases = (
 				55A88D3868FC3CC3DBEF14AF /* [CP] Check Pods Manifest.lock */,
+				B192DBD32074F4CE0056A08F /* Run Fabric Script */,
 				7DD6B76C2020E0F3004D0830 /* Run SwiftLint Script */,
 				EC1DFB8720063C400080BC50 /* Sources */,
 				EC1DFB8820063C400080BC50 /* Frameworks */,
 				EC1DFB8920063C400080BC50 /* Resources */,
-				F1798BD0C66927B5A490FD17 /* [CP] Copy Pods Resources */,
-				7DCF55CF205881D5002FE7C3 /* Run Carthage Script */,
-				B192DBD32074F4CE0056A08F /* Run Fabric Script */,
+				09432ECB6BEC638B24E2F58F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1070,6 +1039,26 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		09432ECB6BEC638B24E2F58F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Golos/Pods-Golos-resources.sh",
+				"${PODS_ROOT}/Down/Resources/DownView.bundle",
+				"${PODS_ROOT}/IQKeyboardManagerSwift/IQKeyboardManagerSwift/Resources/IQKeyboardManager.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/DownView.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IQKeyboardManager.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Golos/Pods-Golos-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		55A88D3868FC3CC3DBEF14AF /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1088,31 +1077,9 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		7DCF55CF205881D5002FE7C3 /* Run Carthage Script */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 8;
-			files = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/IQKeyboardManager.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/IQKeyboardManagerSwift.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/Starscream.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/Down.framework",
-			);
-			name = "Run Carthage Script";
-			outputPaths = (
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/IQKeyboardManager.framework",
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/IQKeyboardManagerSwift.framework",
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Starscream.framework",
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Down.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
-		};
 		7DD6B76C2020E0F3004D0830 /* Run SwiftLint Script */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 8;
+			buildActionMask = 12;
 			files = (
 			);
 			inputPaths = (
@@ -1120,13 +1087,13 @@
 			name = "Run SwiftLint Script";
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
 		};
 		B192DBD32074F4CE0056A08F /* Run Fabric Script */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 8;
+			buildActionMask = 12;
 			files = (
 			);
 			inputPaths = (
@@ -1134,27 +1101,9 @@
 			name = "Run Fabric Script";
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 1;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Fabric/run\" 66b650c16716d55977dc8aa10a4b2bf5d633a186 44762b8046ea9d6327dd2329233a8d8099933b028f16b848d960c5322815883a";
-		};
-		F1798BD0C66927B5A490FD17 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Golos/Pods-Golos-resources.sh",
-				"${PODS_ROOT}/IQKeyboardManagerSwift/IQKeyboardManagerSwift/Resources/IQKeyboardManager.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IQKeyboardManager.bundle",
-			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Golos/Pods-Golos-resources.sh\"\n";
-			showEnvVarsInLog = 0;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 66b650c16716d55977dc8aa10a4b2bf5d633a186 44762b8046ea9d6327dd2329233a8d8099933b028f16b848d960c5322815883a";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1427,7 +1376,6 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				HOCKEY_APP_ID = cd188c0839d94ff483eed5944117e7f9;
 				INFOPLIST_FILE = "golos-ios/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1455,7 +1403,6 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				HOCKEY_APP_ID = cd188c0839d94ff483eed5944117e7f9;
 				INFOPLIST_FILE = "golos-ios/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

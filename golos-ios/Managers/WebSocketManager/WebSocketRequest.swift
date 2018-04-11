@@ -9,6 +9,7 @@
 import Foundation
 
 struct WebSocketRequest {
+    // MARK: - Properties
     let requestId: Int
     let method: WebSocketMethod
     let parameters: Any

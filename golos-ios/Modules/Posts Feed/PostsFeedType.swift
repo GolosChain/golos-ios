@@ -9,8 +9,8 @@
 import Foundation
 
 enum PostsFeedType: String {
-    case new = "Новое"
-    case hot = "Актуальное"
-    case popular = "Популярное"
-    case promoted = "Промо"
+    case new        =   "Новое"
+    case hot        =   "Актуальное"
+    case popular    =   "Популярное"
+    case promoted   =   "Промо"
 }

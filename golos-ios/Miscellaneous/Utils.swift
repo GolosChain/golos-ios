@@ -10,11 +10,14 @@ import UIKit
 
 struct Utils {
     static func showAlert(title: String? = "Alert", message: String) {
-        let alertController = UIAlertController(title: title,
-                                                message: message,
-                                                preferredStyle: .alert)
+        let alertController = UIAlertController(title:              title,
+                                                message:            message,
+                                                preferredStyle:     .alert)
+       
         let action = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+        
         alertController.addAction(action)
+        
         alertController.show()
     }
     

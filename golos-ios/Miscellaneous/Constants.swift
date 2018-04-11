@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import Starscream
+
 //import CoreGraphics
 
 struct Constants {
@@ -24,9 +26,9 @@ struct Constants {
     }
     
     struct InfoDictionaryKey {
-        static let hockeyAppIdKey   =   "HockeyAppId"
         static let webSocketUrlKey  =   "WebSocketUrl"
     }
 }
 
-let webSocket = WebSocketManager.shared
+let webSocketLimit      =   10
+//let webSocket = WebSocket(url: URL(string: "wss://ws.golos.io")!)

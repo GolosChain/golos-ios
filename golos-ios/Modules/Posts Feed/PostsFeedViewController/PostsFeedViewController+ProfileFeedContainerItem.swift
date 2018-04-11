@@ -46,6 +46,7 @@ extension PostsFeedViewController: ProfileFeedContainerItem, PropertyStoring {
             bottom: 0,
             right: 0
         )
+        
         itemScrollView.scrollIndicatorInsets = UIEdgeInsets(
             top: headerHeight - minimizedHeaderHeight,
             left: 0,

@@ -9,14 +9,17 @@
 import Foundation
 
 struct WebSocketResponse {
+    // MARK: - Properties
     let requestId: Int
-    let result: Any?
-    let error: NSError?
-}
+    var result: Any?
+    var error: NSError?
 
-extension WebSocketResponse {
-    init?(responseText: String) {
-        guard let json = responseText.toDictionary() else {
+
+    // MARK: - Structure Initialization
+    init?(withText text: String) {
+        Logger.log(message: "Success", event: .severe)
+
+        guard let json = text.toDictionary() else {
             return nil
         }
         
@@ -26,29 +29,20 @@ extension WebSocketResponse {
         
         self.requestId = requestId
         
-        var result: Any?
-        var error: NSError?
-        
-        if let errorDictionary = json["error"] as? [String: Any] {
-            let code = errorDictionary["code"] as! Int
-            let message = errorDictionary["message"] as! String
-            
-            error = NSError(domain: "io.golos.websocket",
-                            code: code,
-                            userInfo: [NSLocalizedDescriptionKey: message])
+        if let errorDictionary = json["error"] as? [String: Any], let code = errorDictionary["code"] as? Int, let message = errorDictionary["message"] as? String {
+            self.error = NSError(domain:    "io.golos.websocket",
+                                 code:      code,
+                                 userInfo:  [NSLocalizedDescriptionKey: message])
         }
             
         else if let res = json["result"] {
-            result = res
+            self.result = res
         }
             
         else {
-            error = NSError(domain: "io.golos.websocket",
-                            code: 666,
-                            userInfo: [NSLocalizedDescriptionKey: "Unknown error g"])
+            self.error = NSError(domain:    "io.golos.websocket",
+                                 code:      666,
+                                 userInfo:  [NSLocalizedDescriptionKey: "Unknown error golos.io"])
         }
-        
-        self.error = error
-        self.result = result
     }
 }

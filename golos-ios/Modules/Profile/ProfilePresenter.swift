@@ -75,7 +75,9 @@ extension ProfilePresenter: ProfilePresenterProtocol {
         
         userManager.loadUser(with: username) { [weak self] user, error in
             guard let strongSelf = self else { return }
+            
             guard error == nil else {
+                Logger.log(message: "\(error!.localizedDescription)", event: .error)
                 strongSelf.profileView.didFail(with: error!.localizedDescription)
                 return
             }

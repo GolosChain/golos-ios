@@ -9,15 +9,11 @@
 import UIKit
 
 class PostsFeedViewController: UIViewController {
-    
-    // MARK: Outlets properties
-    @IBOutlet weak var tableView: UITableView!
-    
-
-    // MARK: Module properties
+    // MARK: - Properties
     lazy var presenter: PostsFeedPresenterProtocol = {
         let presenter = PostsFeedPresenter()
         presenter.postsFeedView = self
+      
         return presenter
     }()
     
@@ -25,6 +21,7 @@ class PostsFeedViewController: UIViewController {
         let mediator = PostsFeedMediator()
         mediator.postsFeedPresenter = presenter
         mediator.delegate = self
+     
         return mediator
     }()
     
@@ -32,20 +29,31 @@ class PostsFeedViewController: UIViewController {
         get {
             return presenter.getPostsFeedType()
         }
+        
         set {
             presenter.setPostsFeedType(newValue)
         }
     }
     
+    
+    // MARK: - IBOutlets
+    @IBOutlet weak var tableView: UITableView!
+    
+
+    // MARK: - Class Functions
     class func nibInstance(with feedType: PostsFeedType) -> PostsFeedViewController {
+        Logger.log(message: "Success", event: .severe)
+
         let viewController = super.nibInstance() as! PostsFeedViewController
         viewController.postsFeedType = feedType
+        
         return viewController
     }
     
-    // MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        Logger.log(message: "Success", event: .severe)
+
         setupUI()
         presenter.fetchPosts()
         presenter.loadPosts()
@@ -53,16 +61,25 @@ class PostsFeedViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        Logger.log(message: "Success", event: .severe)
+
         tableView.reloadData()
     }
     
-    // MARK: SetupUI
+    
+    
+    // MARK: - Custom Functions
     private func setupUI() {
+        Logger.log(message: "Success", event: .severe)
+
         if #available(iOS 11.0, *) {
             tableView.contentInsetAdjustmentBehavior = .never
-        } else {
+        }
+        
+        else {
             self.automaticallyAdjustsScrollViewInsets = false
         }
+        
         mediator.configure(tableView: tableView)
         
         let spinner = UIActivityIndicatorView(activityIndicatorStyle: .gray)
@@ -72,6 +89,8 @@ class PostsFeedViewController: UIViewController {
     }
     
     func loadingStarted() {
+        Logger.log(message: "Success", event: .severe)
+
         let spinner = UIActivityIndicatorView(activityIndicatorStyle: .gray)
         spinner.startAnimating()
         spinner.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: tableView.bounds.width, height: CGFloat(44))
@@ -81,18 +100,22 @@ class PostsFeedViewController: UIViewController {
 }
 
 
-// MARK: PostsFeedViewProtocol
+// MARK: - PostsFeedViewProtocol implementation
 extension PostsFeedViewController: PostsFeedViewProtocol {
     func didFetchPosts() {
-        
+        Logger.log(message: "Success", event: .severe)
     }
     
     func didLoadPosts() {
+        Logger.log(message: "Success", event: .severe)
+
         tableView.reloadData()
         tableView.tableFooterView?.isHidden = true
     }
     
     func didLoadPostsAuthors() {
+        Logger.log(message: "Success", event: .severe)
+
         let visibleCellsIndex = tableView.visibleCells.compactMap { cell -> IndexPath? in
             self.tableView.indexPath(for: cell)
         }
@@ -103,24 +126,32 @@ extension PostsFeedViewController: PostsFeedViewProtocol {
     }
     
     func didLoadPostReplies(at index: Int) {
+        Logger.log(message: "Success", event: .severe)
+
         let indexPath = IndexPath(row: index, section: 0)
         tableView.beginUpdates()
         tableView.reloadRows(at: [indexPath], with: .none)
         tableView.endUpdates()
     }
-    
 }
 
+
+// MARK: - PostsFeedMediatorDelegate
 extension PostsFeedViewController: PostsFeedMediatorDelegate {
     func didSelectArticle(at index: Int) {
+        Logger.log(message: "Success", event: .severe)
+
         let articleViewController = ArticleViewController.nibInstance()
         let tuple = presenter.getPostPermalinkAndAuthorName(at: index)
         articleViewController.permalink = tuple.0
         articleViewController.authorName = tuple.1
+
         navigationController?.pushViewController(articleViewController, animated: true)
     }
     
     func didPressAuthor(at index: Int) {
+        Logger.log(message: "Success", event: .severe)
+        
         let user = presenter.getUser(at: index)
         let profileViewController = ProfileViewController.nibInstance()
         profileViewController.user = user
@@ -130,34 +161,44 @@ extension PostsFeedViewController: PostsFeedMediatorDelegate {
     }
     
     func didPressReblogAuthor(at index: Int) {
+        Logger.log(message: "Success", event: .severe)
+        
         let profileViewController = ProfileViewController.nibInstance()
         navigationController?.pushViewController(profileViewController, animated: true)
     }
     
     func didPressUpvote(at index: Int) {
+        Logger.log(message: "Success", event: .severe)
+        
         Utils.inDevelopmentAlert()
     }
     
     func didPressComments(at index: Int) {
+        Logger.log(message: "Success", event: .severe)
+        
         Utils.inDevelopmentAlert()
     }
     
     func didPressExpand(at index: Int) {
+        Logger.log(message: "Success", event: .severe)
+        
         UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut, animations: {
             self.tableView.beginUpdates()
             self.tableView.endUpdates()
             self.tableView.layer.removeAllAnimations()
             self.tableView.scrollToRow(at: IndexPath(row: index, section: 0), at: .top, animated: true)
-        }) { (_) in
-            
-        }
+        }) { (_) in }
     }
     
     func didScroll(tableView: UITableView) {
+        Logger.log(message: "Success", event: .severe)
+        
         delegate?.didScrollItem(self)
     }
     
     func didStartLoadingNextPage() {
+        Logger.log(message: "Success", event: .severe)
+        
         loadingStarted()
     }
 }
