@@ -12,24 +12,43 @@ protocol HorizontalSelectorViewDelegate: class {
     func didChangeSelectedIndex(_ index: Int, previousIndex: Int)
 }
 
+struct HorizontalSelectorItem {
+    let title: String
+}
+
 class HorizontalSelectorView: UIView {
-    
-    // MARK: Constants
+    // MARK: - Constants
     private let edgesOffset: CGFloat = 16.0
     private let interButtonsOffset: CGFloat = 24.0
     private let animationDuration: TimeInterval = 0.3
     private let selectionViewHeight: CGFloat = 2.0
     
     
-    // MARK: UI properties
+    // MARK: - Properties
+    weak var delegate: HorizontalSelectorViewDelegate?
+
     let scrollView = UIScrollView()
     var buttons = [UIButton]()
     
     var selectedButton: UIButton?
     let selectionView = UIView()
+    var selectedItem: HorizontalSelectorItem?
+   
+    var selectedIndex: Int? {
+        didSet {
+            guard let index = selectedIndex,
+                index < buttons.count else {
+                    return
+            }
+            
+            let item = items[index]
+            selectedItem = item
+            
+            let button = buttons[index]
+            setButtonActive(button)
+        }
+    }
 
-    
-    // MARK: Data properties
     var items = [HorizontalSelectorItem]() {
         didSet {
             selectedItem = items.first
@@ -40,27 +59,8 @@ class HorizontalSelectorView: UIView {
         }
     }
     
-    var selectedItem: HorizontalSelectorItem?
-    var selectedIndex: Int? {
-        didSet {
-            guard let index = selectedIndex,
-            index < buttons.count else {
-                return
-            }
-            
-            let item = items[index]
-            selectedItem = item
-            
-            let button = buttons[index]
-            setButtonActive(button)
-        }
-    }
     
-    
-    // MARK: Delegate
-    weak var delegate: HorizontalSelectorViewDelegate?
-    
-    
+    // MARK: - Class Initialization
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -71,7 +71,35 @@ class HorizontalSelectorView: UIView {
         commonInit()
     }
     
+    deinit {
+        Logger.log(message: "Success", event: .severe)
+    }
+    
+
+    // MARK: - Layout
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        Logger.log(message: "Success", event: .severe)
+        
+        var scrollViewContentWidth: CGFloat = edgesOffset
+        
+        for button in buttons {
+            scrollViewContentWidth += button.bounds.width
+        }
+        
+        scrollView.contentSize = CGSize(width: scrollViewContentWidth, height: self.bounds.height)
+        
+        var selectionFrame = selectionView.frame
+        selectionFrame.size.height = selectionViewHeight
+        selectionFrame.origin.y = bounds.size.height - selectionViewHeight
+        selectionView.frame = selectionFrame
+    }
+
+
+    // MARK: - Custom Functions
     private func commonInit() {
+        Logger.log(message: "Success", event: .severe)
+
         backgroundColor = UIColor.Project.darkBlueHeader
         
         scrollView.delaysContentTouches = false
@@ -86,10 +114,11 @@ class HorizontalSelectorView: UIView {
         scrollView.addSubview(selectionView)
     }
     
-    
-    // MARK: Buttons
     private func addItemsButtons() {
+        Logger.log(message: "Success", event: .severe)
+
         var originX: CGFloat = edgesOffset
+
         for item in items {
             let button = createButton(with: item.title)
             button.sizeToFit()
@@ -100,47 +129,45 @@ class HorizontalSelectorView: UIView {
             button.frame = buttonFrame
             
             buttons.append(button)
-            
             scrollView.addSubview(button)
         }
         
         selectedButton = buttons.first
-        
         moveSelectionViewToButton(selectedButton, animated: false)
     }
     
     private func removeAllButtons() {
+        Logger.log(message: "Success", event: .severe)
+
         for button in buttons {
             button.removeFromSuperview()
         }
     }
     
     private func createButton(with title: String) -> UIButton {
+        Logger.log(message: "Success", event: .severe)
+
         let button = UIButton(type: .custom)
-        button.setTitleColor(.white,
-                             for: .selected)
-        button.setTitleColor(UIColor.Project.unselectedButtonColor,
-                             for: .normal)
-        button.setTitleColor(.white,
-                             for: .highlighted)
-        button.setTitle(title,
-                        for: .normal)
+        button.setTitleColor(.white, for: .selected)
+        button.setTitleColor(UIColor.Project.unselectedButtonColor, for: .normal)
+        button.setTitleColor(.white, for: .highlighted)
+        button.setTitle(title, for: .normal)
         button.titleLabel?.font = Fonts.shared.regular(with: 13.0)
-        button.addTarget(self,
-                         action: #selector(didPressedButton(_:)),
-                         for: .touchUpInside)
+        button.addTarget(self, action: #selector(didPressedButton(_:)), for: .touchUpInside)
+        
         return button
     }
     
     private func setButtonActive(_ button: UIButton) {
+        Logger.log(message: "Success", event: .severe)
+
         buttons.forEach {$0.isSelected = $0 == button}
         moveSelectionViewToButton(button, animated: true)
     }
     
-    
-    // MARK: Selection view
-    private func moveSelectionViewToButton(_ button: UIButton?,
-                                           animated: Bool) {
+    private func moveSelectionViewToButton(_ button: UIButton?, animated: Bool) {
+        Logger.log(message: "Success", event: .severe)
+        
         guard let button = button else {return}
 
         var frame = selectionView.frame
@@ -158,21 +185,23 @@ class HorizontalSelectorView: UIView {
                        options: .curveEaseInOut,
                        animations: animation,
                        completion: nil)
-        } else {
+        }
+        
+        else {
             animation()
         }
     }
     
     
-    // MARK: Actions
-    @objc
-    private func didPressedButton(_ button: UIButton) {
+    // MARK: - Actions
+    @objc private func didPressedButton(_ button: UIButton) {
+        Logger.log(message: "Success", event: .severe)
+        
         guard let selectedButtonIndex = buttons.index(of: button) else {
             return
         }
         
-        guard let previousIndex = selectedIndex,
-            previousIndex != selectedButtonIndex else {return}
+        guard let previousIndex = selectedIndex, previousIndex != selectedButtonIndex else {return}
         
         let selectedItem = items[selectedButtonIndex]
         self.selectedItem = selectedItem
@@ -181,26 +210,4 @@ class HorizontalSelectorView: UIView {
         
         delegate?.didChangeSelectedIndex(selectedButtonIndex, previousIndex: previousIndex)
     }
-    
-    
-    // MARK: Layout
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        var scrollViewContentWidth: CGFloat = edgesOffset
-        for button in buttons {
-            scrollViewContentWidth += button.bounds.width
-        }
-        
-        scrollView.contentSize = CGSize(width: scrollViewContentWidth, height: self.bounds.height)
-        
-        var selectionFrame = selectionView.frame
-        selectionFrame.size.height = selectionViewHeight
-        selectionFrame.origin.y = bounds.size.height - selectionViewHeight
-        selectionView.frame = selectionFrame
-    }
-}
-
-struct HorizontalSelectorItem {
-    let title: String
 }

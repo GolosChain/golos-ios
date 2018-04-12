@@ -24,3 +24,10 @@ enum WebSocketMethod: String {
     
     // Network Brodcast & Login API's. Part 4 (https://wiki.golos.io/golosd/api/api-golos-ch4.html)
 }
+
+
+/// API methods.
+public enum MethodApiType2 {
+    /// Displays a limited number of publications beginning with the most expensive of the award.
+    case getDiscussionsByTrending(limit: Int)
+}

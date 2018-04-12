@@ -9,21 +9,15 @@
 import UIKit
 
 class FeedViewController: UIViewController {
+    // MARK: - Properties
+    let pageViewController = UIPageViewController(transitionStyle:          .scroll,
+                                                  navigationOrientation:    .horizontal,
+                                                  options:                  nil)
 
-    // MARK: UI Outlets
-    @IBOutlet weak var horizontalSelector: HorizontalSelectorView!
-    
-    
-    // MARK: UI properties
-    let pageViewController = UIPageViewController(transitionStyle: .scroll,
-                                                  navigationOrientation: .horizontal,
-                                                  options: nil)
-    
-    
-    // MARK: Module properties
     lazy var presenter: FeedPresenterProtocol = {
         let presenter = FeedPresenter()
         presenter.feedView = self
+       
         return presenter
     }()
     
@@ -31,22 +25,35 @@ class FeedViewController: UIViewController {
         let mediator = FeedMediator()
         mediator.presenter = self.presenter
         mediator.delegate = self
+       
         return mediator
     }()
+
+    
+    // MARK: - IBOutlets
+    @IBOutlet weak var horizontalSelector: HorizontalSelectorView!
     
     
-    // MARK: Life cycle
+    // MARK: - Class Initialization
+    deinit {
+        Logger.log(message: "Success", event: .severe)
+    }
+    
+
+    // MARK: - Class Functions
     override func viewDidLoad() {
         super.viewDidLoad()
+        Logger.log(message: "Success", event: .severe)
+        
         setupUI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         UIApplication.shared.statusBarStyle = .lightContent
         navigationController?.setNavigationBarHidden(false, animated: true)
         navigationController?.navigationBar.barTintColor = UIColor.Project.darkBlueHeader
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -54,8 +61,10 @@ class FeedViewController: UIViewController {
     }
     
     
-    // MARK: Setup UI
+   // MARK: - Custom Functions
     private func setupUI() {
+        Logger.log(message: "Success", event: .severe)
+
         setupPageViewController()
         configureBackButton()
         
@@ -68,10 +77,12 @@ class FeedViewController: UIViewController {
         
         if let navigationBar = navigationController?.navigationBar {
             let dropDownMenu = NavigationDropDownView()
-            dropDownMenu.frame = CGRect(x: 0,
-                                        y: 0,
-                                        width: navigationBar.bounds.width,
-                                        height: navigationBar.bounds.height)
+           
+            dropDownMenu.frame = CGRect(x:          0,
+                                        y:          0,
+                                        width:      navigationBar.bounds.width,
+                                        height:     navigationBar.bounds.height)
+           
             navigationItem.titleView = dropDownMenu
         }
         
@@ -84,6 +95,8 @@ class FeedViewController: UIViewController {
     }
     
     private func setupPageViewController() {
+        Logger.log(message: "Success", event: .severe)
+
         addChildViewController(pageViewController)
         view.addSubview(pageViewController.view)
         pageViewController.didMove(toParentViewController: self)
@@ -99,20 +112,26 @@ class FeedViewController: UIViewController {
     }
 }
 
+
+// MARK: - FeedMediatorDelegate
 extension FeedViewController: FeedMediatorDelegate {
     func didChangePage(at index: Int) {
+        Logger.log(message: "Success", event: .severe)
+
         horizontalSelector.selectedIndex = index
     }
 }
 
 
-// MARK: FeedViewProtocol
+// MARK: - FeedViewProtocol
 extension FeedViewController: FeedViewProtocol {}
 
 
-// MARK: HorizontalSelectorViewDelegate
+// MARK: - HorizontalSelectorViewDelegate
 extension FeedViewController: HorizontalSelectorViewDelegate {
     func didChangeSelectedIndex(_ index: Int, previousIndex: Int) {
+        Logger.log(message: "Success", event: .severe)
+
         mediator.setViewController(at: index, previousIndex: previousIndex)
     }
 }

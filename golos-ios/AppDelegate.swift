@@ -13,12 +13,12 @@ import Crashlytics
 import IQKeyboardManagerSwift
 
 let webSocket = WebSocket(url: URL(string: Bundle.main.infoDictionary![Constants.InfoDictionaryKey.webSocketUrlKey] as! String)!)
+let webSocketManager = WebSocketManager()
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Properties
     var window: UIWindow? = UIWindow(frame: UIScreen.main.bounds)
-    let manager = WebSocketManager()
     
     
     // MARK: - Class Functions
@@ -49,7 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             webSocket.connect()
             
             if webSocket.delegate == nil {
-                webSocket.delegate = self.manager
+                webSocket.delegate = webSocketManager
             }
         }
     }

@@ -76,7 +76,6 @@ extension PostsFeedPresenter: PostsFeedPresenterProtocol {
     
     func fetchPosts() {
         Logger.log(message: "Success", event: .severe)
-
     }
     
     func loadPosts() {

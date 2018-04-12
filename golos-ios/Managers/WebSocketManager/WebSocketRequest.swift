@@ -13,7 +13,7 @@ struct WebSocketRequest {
     let requestId: Int
     let method: WebSocketMethod
     let parameters: Any
-    let completion: (Any?, NSError?) -> Void
+    let completion: (_ hh: Any?, _ jj: NSError?) -> Void
     
     var messageString: String {
         var parametersString = ""

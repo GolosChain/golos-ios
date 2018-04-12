@@ -9,11 +9,7 @@
 import UIKit
 
 class AnswersFeedViewController: UIViewController {
-    
-    // MARK: Outlets properties
-    @IBOutlet weak var tableView: UITableView!
-    
-    // MARK: Module properties
+    // MARK: - Properties
     lazy var presenter: AnswersFeedPresenterProtocol = {
         let presenter = AnswersFeedPresenter()
         presenter.answersFeedView = self
@@ -27,9 +23,22 @@ class AnswersFeedViewController: UIViewController {
         return mediator
     }()
     
-    // MARK: Life cycle
+
+    // MARK: - IBOutlets
+    @IBOutlet weak var tableView: UITableView!
+    
+    
+    // MARK: - Class Initialization
+    deinit {
+        Logger.log(message: "Success", event: .severe)
+    }
+    
+
+    // MARK: - Class Functions
     override func viewDidLoad() {
         super.viewDidLoad()
+        Logger.log(message: "Success", event: .severe)
+        
         setupUI()
     }
     
@@ -39,23 +48,35 @@ class AnswersFeedViewController: UIViewController {
         presenter.fetchAnswers()
     }
     
-    // MARK: SetupUI
+    
+    // MARK: - Custom Functions
     private func setupUI() {
+        Logger.log(message: "Success", event: .severe)
+
         if #available(iOS 11.0, *) {
             tableView.contentInsetAdjustmentBehavior = .never
-        } else {
+        }
+        
+        else {
             self.automaticallyAdjustsScrollViewInsets = false
         }
+        
         mediator.configure(tableView: self.tableView)
     }
 }
 
+
+// MARK: - AnswersFeedViewProtocol
 extension AnswersFeedViewController: AnswersFeedViewProtocol {
     
 }
 
+
+// MARK: - AnswersFeedMediatorDelegate
 extension AnswersFeedViewController: AnswersFeedMediatorDelegate {
     func didScroll(tableView: UITableView) {
+        Logger.log(message: "Success", event: .severe)
+        
         delegate?.didScrollItem(self)
     }
 }

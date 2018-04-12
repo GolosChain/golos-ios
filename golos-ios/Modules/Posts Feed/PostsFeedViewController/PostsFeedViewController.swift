@@ -1,4 +1,4 @@
-//
+ //
 //  FeedTabViewController.swift
 //  Golos
 //
@@ -55,7 +55,7 @@ class PostsFeedViewController: UIViewController {
         Logger.log(message: "Success", event: .severe)
 
         setupUI()
-        presenter.fetchPosts()
+//        presenter.fetchPosts()
         presenter.loadPosts()
     }
     
@@ -65,7 +65,6 @@ class PostsFeedViewController: UIViewController {
 
         tableView.reloadData()
     }
-    
     
     
     // MARK: - Custom Functions

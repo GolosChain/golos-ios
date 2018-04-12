@@ -21,6 +21,6 @@ target 'Golos' do
     pod 'LayoutKit', '~> 7.0'
     
     # Pods for golos-ios
-    pod 'GolosBlockchain', :git => "https://github.com/Monserg/GolosBlockchain.git", :tag => "1.0.0"
+    # pod 'GolosBlockchain', :git => "https://github.com/Monserg/GolosBlockchain.git", :tag => "1.0.0"
 
 end

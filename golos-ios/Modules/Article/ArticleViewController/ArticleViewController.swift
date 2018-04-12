@@ -33,9 +33,17 @@ class ArticleViewController: UIViewController {
     }()
     
     
-    // MARK: Life cycle
+    // MARK: - Class Initialization
+    deinit {
+        Logger.log(message: "Success", event: .severe)
+    }
+    
+
+    // MARK: - Class Functions
     override func viewDidLoad() {
         super.viewDidLoad()
+        Logger.log(message: "Success", event: .severe)
+        
         setupUI()
         
 //        markdownView.addObserver(self, forKeyPath: "frame", options: .new, context: nil)
@@ -51,10 +59,9 @@ class ArticleViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         UIApplication.shared.statusBarStyle = .default
         navigationController?.setNavigationBarHidden(true, animated: true)
-        
-        
     }
 //
 //    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
@@ -97,17 +104,22 @@ class ArticleViewController: UIViewController {
     }
     
     
-    // MARK: SetupUI
+    // MARK: - Custom Functions
     private func setupUI() {
+        Logger.log(message: "Success", event: .severe)
+
         navigationController?.interactivePopGestureRecognizer?.delegate = self as? UIGestureRecognizerDelegate
         backButton.tintColor = UIColor.Project.backButtonBlackColor
         topBarView.addBottomShadow()
         
         mediator.configure(tableView: tableView)
         tableView.contentInset = UIEdgeInsets(top: -35, left: 0, bottom: 0, right: 0)
+        
         if #available(iOS 11.0, *) {
             tableView.contentInsetAdjustmentBehavior = .never
-        } else {
+        }
+        
+        else {
             self.automaticallyAdjustsScrollViewInsets = false
         }
         
@@ -115,8 +127,10 @@ class ArticleViewController: UIViewController {
     }
     
     
-    // MARK: Actions
+    // MARK: - Actions
     @IBAction func backButtonPressed(_ sender: Any) {
+        Logger.log(message: "Success", event: .severe)
+
         navigationController?.popViewController(animated: true)
     }
 }
