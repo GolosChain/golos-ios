@@ -6,6 +6,9 @@ line_length:
 - 200 #warning
 - 300 #error
 
+identifier_name:
+  min_length: 2 #only min_length
+
 cyclomatic_complexity:
 - 13
 

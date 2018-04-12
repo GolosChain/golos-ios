@@ -46,13 +46,14 @@ public class GolosBlockchainManager {
         }
         
         let codeID              =   generateUniqueId()
+        let requestParamsType   =   method.introduced()
         
         let requestAPI          =   RequestAPI(id:          codeID,
                                                method:      "call",
                                                jsonrpc:     "2.0",
-                                               params:      ["social_network", "get_discussions_by_trending"])
+                                               params:      requestParamsType.paramsFirst)
         
-        let requestParams       =   ["limit":10]
+        let requestParams       =   requestParamsType.paramsSecond
 
         do {
             // Encode data

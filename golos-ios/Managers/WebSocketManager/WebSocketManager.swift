@@ -48,7 +48,7 @@ class WebSocketManager {
         webSocket.write(string: message)
     }
     
-    ///
+    /// Websocket: send message
     func sendRequest(withType type: RequestAPIType, completion: @escaping (ResponseAPIType) -> Void) {
         Logger.log(message: "Success", event: .severe)
         

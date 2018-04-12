@@ -1,4 +1,4 @@
- //
+//
 //  FeedTabViewController.swift
 //  Golos
 //

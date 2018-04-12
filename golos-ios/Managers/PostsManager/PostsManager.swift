@@ -11,8 +11,8 @@ import Foundation
 class PostsManager {
     // MARK: - Custom Functions
     func loadPost(withPermalink permalink: String, authorUsername: String, completion: @escaping (PostModel?, NSError?) -> Void) {
-        let method = methodForPostRequest(.getPost)
-        let parameters = [authorUsername, permalink]
+//        let method = methodForPostRequest(.getPost)
+//        let parameters = [authorUsername, permalink]
         
 //        webSocket.sendRequestWith(method: method, parameters: parameters) { result, error in
 //            guard error == nil else {

@@ -16,28 +16,29 @@ class PostsFeedManager {
         let requestAPIType = GolosBlockchainManager.prepareToFetchData(byMethod: .getDiscussionsByTrending(limit: 10))!
         Logger.log(message: "requestAPIType = \(requestAPIType)", event: .debug)
         
-        webSocketManager.sendRequest(withType: requestAPIType) { (responseAPIType) in
-            Logger.log(message: "responseAPIType: \(responseAPIType)", event: .debug)
-            
-            guard responseAPIType.error == nil else {
-                Logger.log(message: "\(responseAPIType.error!.localizedDescription)", event: .error)
-                completion([], responseAPIType.error! as NSError)
-                return
+        // API
+        DispatchQueue.main.async {
+            webSocketManager.sendRequest(withType: requestAPIType) { (responseAPIType) in
+                Logger.log(message: "responseAPIType: \(responseAPIType)", event: .debug)
+                
+                guard responseAPIType.error == nil else {
+                    Logger.log(message: "\(responseAPIType.error!.localizedDescription)", event: .error)
+                    completion([], responseAPIType.error! as NSError)
+                    return
+                }
+                
+                guard let postsDictinary = responseAPIType.response else {
+                    return
+                }
+                
+                let posts = postsDictinary.compactMap({ postDictionary -> PostModel? in
+                    PostModel(postDictionary: postDictionary)
+                })
+                
+                completion(posts, nil)
             }
-            
-            guard let postsDictinary = responseAPIType.response as? [[String: Any]] else {
-                return
-            }
-            
-            let posts = postsDictinary.compactMap({ postDictionary -> PostModel? in
-                PostModel(postDictionary: postDictionary)
-            })
-            
-            completion(posts, nil)
         }
-        
-        
-        
+
         
         // DELETE
 //        let method = methodForPostsFeed(type: type)

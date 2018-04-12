@@ -9,10 +9,12 @@
 import UIKit
 
 class GSImageLoader {
-    
+    // MARK: - Properties
     let cache = PINCache.shared()
     let operationQueue = OperationQueue()
     
+    
+    // MARK: - Custom Functions
     func startLoadImage(with urlString: String,
                         resize: CGSize? = .zero,
                         completion: @escaping (UIImage?) -> Void) {
@@ -28,8 +30,7 @@ class GSImageLoader {
         if let cacheImage = cache.object(forKey: correctedUrlString) as? UIImage {
             completion(cacheImage)
             return
-        }
-        
+        }        
         
         let imageOperation = GSImageLoadOperation(with: url)
         imageOperation.completionBlock = {

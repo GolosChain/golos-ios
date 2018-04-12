@@ -11,8 +11,8 @@ import Foundation
 class UserManager {
     // MARK: - Custom Functions
     func loadUsers(_ userNames: [String], completion: @escaping ([UserModel], NSError?) -> Void) {
-        let method = methodForUserRequest(.getUsers)
-        let parameters = [userNames]
+//        let method = methodForUserRequest(.getUsers)
+//        let parameters = [userNames]
         
 //        webSocket.sendRequestWith(method: method, parameters: parameters) { result, error in
 //            guard error == nil else {

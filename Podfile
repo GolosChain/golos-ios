@@ -8,8 +8,9 @@ target 'Golos' do
     pod 'PINCache'
     pod 'SwiftLint'
     pod 'Starscream', '~> 3.0'
+    pod 'BeyovaJSON', '~> 0.0'
     pod 'IQKeyboardManagerSwift', '~> 5.0'
-    
+
     # CoreBitcoin
     pod 'CoreBitcoin', :podspec => 'https://raw.github.com/oleganza/CoreBitcoin/master/CoreBitcoin.podspec'
 

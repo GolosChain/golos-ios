@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		00F14AE08CCDA11F7EB0ACE7 /* libPods-Golos.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 490B4743380453347F136E02 /* libPods-Golos.a */; };
 		7D1783DD201FD9B600B75979 /* ArticlePostedInTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1783DB201FD9B600B75979 /* ArticlePostedInTableViewCell.swift */; };
 		7D1783DE201FD9B600B75979 /* ArticlePostedInTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D1783DC201FD9B600B75979 /* ArticlePostedInTableViewCell.xib */; };
 		7D25B47F201F4714004A3400 /* TagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D25B47E201F4714004A3400 /* TagsView.swift */; };
@@ -313,6 +314,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00F14AE08CCDA11F7EB0ACE7 /* libPods-Golos.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -944,12 +946,12 @@
 			buildConfigurationList = EC1DFB9D20063C400080BC50 /* Build configuration list for PBXNativeTarget "Golos" */;
 			buildPhases = (
 				55A88D3868FC3CC3DBEF14AF /* [CP] Check Pods Manifest.lock */,
-				B192DBD32074F4CE0056A08F /* Run Fabric Script */,
 				7DD6B76C2020E0F3004D0830 /* Run SwiftLint Script */,
 				EC1DFB8720063C400080BC50 /* Sources */,
 				EC1DFB8820063C400080BC50 /* Frameworks */,
 				EC1DFB8920063C400080BC50 /* Resources */,
 				09432ECB6BEC638B24E2F58F /* [CP] Copy Pods Resources */,
+				B192DBD32074F4CE0056A08F /* Run Fabric Script */,
 			);
 			buildRules = (
 			);
@@ -1402,13 +1404,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 29QBR47DMW;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "golos-ios/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "io.golos.testing.golos-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1429,13 +1429,11 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 29QBR47DMW;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "golos-ios/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "io.golos.testing.golos-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
