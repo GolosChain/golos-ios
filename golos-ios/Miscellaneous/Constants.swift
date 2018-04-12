@@ -31,4 +31,6 @@ struct Constants {
 }
 
 let webSocketLimit      =   10
-//let webSocket = WebSocket(url: URL(string: "wss://ws.golos.io")!)
+
+/// Websocket response max timeout, in seconds
+let webSocketTimeout    =   60.0

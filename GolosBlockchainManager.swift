@@ -9,7 +9,7 @@
 import Foundation
 
 public var requestIDs               =   [Int]()
-public typealias RequestAPIType     =   (id: Int, message: String)
+public typealias RequestAPIType     =   (id: Int, message: String, startTime: Date)
 public typealias ResponseAPIType    =   (response: [[String: Any]]?, error: Error?)
 public typealias RequestApiStore    =   (type: RequestAPIType, completion: (ResponseAPIType) -> Void)
 
@@ -66,7 +66,7 @@ public class GolosBlockchainManager {
             
             Logger.log(message: "\nEncoded JSON -> String:\n\t " + jsonString, event: .debug)
             
-            return (id: codeID, message: jsonString)
+            return (id: codeID, message: jsonString, startTime: Date())
         } catch {
             Logger.log(message: "Error: \(error.localizedDescription)", event: .error)
             return nil

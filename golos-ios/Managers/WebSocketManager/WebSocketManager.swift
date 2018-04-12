@@ -130,20 +130,33 @@ extension WebSocketManager: WebSocketDelegate {
             return
         }
         
+        // Check request by sended ID
         guard let requestApiStore = requestsApiStore[response.requestId] else {
             return
         }
         
-        // Remove requestStore
-        requestsApiStore[requestApiStore.type.id] = nil
-
-        // Remove unique request ID
-        if let requestID = requestIDs.index(of: response.requestId) {
-            requestIDs.remove(at: requestID)
+        // Check websocket timeout: resend current request message
+        let timeout = Double(Date().timeIntervalSince(requestApiStore.type.startTime))
+        Logger.log(message: "webSocket timeout = \(timeout) sec", event: .debug)
+        
+        if timeout >= webSocketTimeout {
+            let requestStore = (type: (id: requestApiStore.type.id, message: requestApiStore.type.message, startTime: Date()), completion: requestApiStore.completion)
+            requestsApiStore[response.requestId] = requestStore
+            self.sendMessage(requestApiStore.type.message)
         }
         
-        requestApiStore.completion((response: response.result as? [[String : Any]], error: response.error))
-//        request.completion(response.result, response.error)
+        // Check websocket timeout: handler completion
+        else {
+            // Remove requestStore
+            requestsApiStore[requestApiStore.type.id] = nil
+            
+            // Remove unique request ID
+            if let requestID = requestIDs.index(of: response.requestId) {
+                requestIDs.remove(at: requestID)
+            }
+            
+            requestApiStore.completion((response: response.result as? [[String : Any]], error: response.error))
+        }
     }
     
     // Not used
