@@ -74,7 +74,29 @@ extension WebSocketManager: WebSocketDelegate {
     
     func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
         Logger.log(message: "Success", event: .severe)
+        var error: NSError?
+        
+        if let jsonData = text.data(using: .utf8), let json = try? JSONSerialization.jsonObject(with: jsonData, options: .mutableLeaves) as! [String: Any] {
+//            Logger.log(message: "json:\n\t\(json)", event: .debug)
 
+            // Check error.
+            if let jsonError = json["error"] as? [String: Any], let errorCode = jsonError["code"] as? Int, let errorMessage = jsonError["message"] as? String {
+                error = NSError(domain:    "io.golos.websocket",
+                                code:      errorCode,
+                                userInfo:  [NSLocalizedDescriptionKey: errorMessage])
+            }
+                
+            do {
+                let jsonDecoder = JSONDecoder()
+                let responseAPIResult = try jsonDecoder.decode(ResponseAPIResult.self, from: jsonData)
+                print("responseAPIResult model:\n\t\(responseAPIResult)")
+            } catch {
+                print("Error responseAPI model...")
+            }
+        }
+        
+        
+        
         guard let response = WebSocketResponse(withText: text) else {
             return
         }
@@ -104,7 +126,7 @@ extension WebSocketManager: WebSocketDelegate {
                 requestIDs.remove(at: requestID)
             }
             
-            requestApiStore.completion((response: response.result as? [[String : Any]], error: response.error))
+            requestApiStore.completion((response: response.result as? [[String: Any]], error: response.error))
         }
     }
     

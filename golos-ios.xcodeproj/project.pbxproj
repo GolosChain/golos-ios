@@ -79,6 +79,7 @@
 		B199DF92207F48870022C5FA /* GolosBlockchainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B199DF91207F48870022C5FA /* GolosBlockchainManager.swift */; };
 		B199DF95207F49230022C5FA /* MethodAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B199DF94207F49230022C5FA /* MethodAPI.swift */; };
 		B199DF97207F8A420022C5FA /* RequestAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B199DF96207F8A420022C5FA /* RequestAPI.swift */; };
+		B1D33FC22080E12600655759 /* ResponseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D33FC12080E12600655759 /* ResponseAPI.swift */; };
 		B1E0CE11207A465900261EA7 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E0CE10207A465900261EA7 /* Logger.swift */; };
 		EC07F4A22014093E00560CF0 /* HorizontalSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC07F4A12014093E00560CF0 /* HorizontalSelectorView.swift */; };
 		EC07F4A620141E8D00560CF0 /* PostsFeedType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC07F4A520141E8D00560CF0 /* PostsFeedType.swift */; };
@@ -233,6 +234,7 @@
 		B199DF91207F48870022C5FA /* GolosBlockchainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GolosBlockchainManager.swift; sourceTree = "<group>"; };
 		B199DF94207F49230022C5FA /* MethodAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MethodAPI.swift; sourceTree = "<group>"; };
 		B199DF96207F8A420022C5FA /* RequestAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestAPI.swift; sourceTree = "<group>"; };
+		B1D33FC12080E12600655759 /* ResponseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseAPI.swift; sourceTree = "<group>"; };
 		B1E0CE10207A465900261EA7 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		DECBC36021F31D8D6F619C11 /* Pods-golos-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-golos-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-golos-ios/Pods-golos-ios.release.xcconfig"; sourceTree = "<group>"; };
 		EC07F4A12014093E00560CF0 /* HorizontalSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalSelectorView.swift; sourceTree = "<group>"; };
@@ -543,18 +545,12 @@
 			isa = PBXGroup;
 			children = (
 				B199DF91207F48870022C5FA /* GolosBlockchainManager.swift */,
+				B1E0CE10207A465900261EA7 /* Logger.swift */,
 				B199DF94207F49230022C5FA /* MethodAPI.swift */,
 				B199DF96207F8A420022C5FA /* RequestAPI.swift */,
+				B1D33FC12080E12600655759 /* ResponseAPI.swift */,
 			);
 			name = GologBlockchainLibrary;
-			sourceTree = "<group>";
-		};
-		B1E0CE0F207A464300261EA7 /* Logging */ = {
-			isa = PBXGroup;
-			children = (
-				B1E0CE10207A465900261EA7 /* Logger.swift */,
-			);
-			path = Logging;
 			sourceTree = "<group>";
 		};
 		EC07F4A0201408FF00560CF0 /* HorizontalSelectorView */ = {
@@ -620,7 +616,6 @@
 			isa = PBXGroup;
 			children = (
 				7D95CFA1203A118D00C1AE0A /* GSImageLoader */,
-				B1E0CE0F207A464300261EA7 /* Logging */,
 				7D7D564020367F7C003E06A6 /* Parser */,
 				7D911D1B2035ECF000F19D3C /* PostsFeedManager */,
 				7DFE7C4720464C110057F144 /* PostsManager */,
@@ -1195,6 +1190,7 @@
 				7DFE7C44204639390057F144 /* ReplyManager.swift in Sources */,
 				EC24FF84200C635600A0AE15 /* DropDownMediator.swift in Sources */,
 				7D95CFA7203A119B00C1AE0A /* GSOperation.swift in Sources */,
+				B1D33FC22080E12600655759 /* ResponseAPI.swift in Sources */,
 				EC24FF70200C433700A0AE15 /* ProfileViewController.swift in Sources */,
 				EC24FF82200C625800A0AE15 /* DropDownViewController.swift in Sources */,
 				ECA8E35A2018CA17003B8ABA /* ProfileHorizontalSelectorView.swift in Sources */,

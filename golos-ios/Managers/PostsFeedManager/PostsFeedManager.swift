@@ -10,6 +10,7 @@ import Foundation
 
 class PostsFeedManager {
     // MARK: - Custom Functions
+    
     func loadFeed(withType type: PostsFeedType, andLimit limit: Int, completion: @escaping ([PostModel], NSError?) -> Void) {
         Logger.log(message: "Success", event: .severe)
         
@@ -38,29 +39,6 @@ class PostsFeedManager {
                 completion(posts, nil)
             }
         }
-
-        
-        // DELETE
-//        let method = methodForPostsFeed(type: type)
-//        let parameters = ["limit": amount]
-
-//        webSocket.sendRequestWith(method: method, parameters: parameters, completion: { (result, error) in
-//            guard error == nil else {
-//                Logger.log(message: "\(error!.localizedDescription)", event: .error)
-//                completion([], error!)
-//                return
-//            }
-//
-//            guard let postsDictinary = result as? [[String: Any]] else {
-//                return
-//            }
-//
-//            let posts = postsDictinary.compactMap({ postDictionary -> PostModel? in
-//                PostModel(postDictionary: postDictionary)
-//            })
-//
-//            completion(posts, nil)
-//        })
     }
 
     /**

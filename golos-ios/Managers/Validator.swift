@@ -29,4 +29,16 @@ class Validator {
         
         return true
     }
+    
+    /**
+ 
+    */
+    class func validate(json: [String: Any], completion: @escaping (_ success: Bool, _ error: NSError?) -> Void) {
+        if let jsonError = json["error"] as? [String: Any], let errorCode = jsonError["code"] as? Int, let errorMessage = jsonError["message"] as? String {
+            let error = NSError(domain:    "io.golos.websocket",
+                            code:      errorCode,
+                            userInfo:  [NSLocalizedDescriptionKey: errorMessage])
+        }
+        
+    }
 }

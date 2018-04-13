@@ -25,7 +25,6 @@ public enum MethodApiType {
     
     /// Displays a limited number of publications sorted by an increased balance amount.
     case getDiscussionsByPromoted(limit: Int)
-
     
     
     /// This method return request parameters from selected enum case.
