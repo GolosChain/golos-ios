@@ -11,8 +11,8 @@ import Foundation
 class ReplyManager {
     // MARK: - Custom Functions
     func loadRepliesForPost(withPermalink permalink: String, authorUsername: String, completion: @escaping ([PostReplyModel], NSError?) -> Void) {
-//        let method = methodForUserRequest(.getPostReplies)
-//        let parameters = [authorUsername, permalink]
+        let method = methodForUserRequest(.getPostReplies)
+        let parameters = [authorUsername, permalink]
         
 //        webSocket.sendRequestWith(method: method, parameters: parameters) { result, error in
 //            guard error == nil else {

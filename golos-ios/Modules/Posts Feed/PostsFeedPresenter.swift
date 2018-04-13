@@ -39,7 +39,7 @@ class PostsFeedPresenter: NSObject {
     private var postsFeedType: PostsFeedType = .new
     private var postsItems = [PostsFeedViewModel]()
     private var posts = [PostModel]()
-    private var postsAmount = webSocketLimit
+    private var postsLimit = webSocketLimit
     private let batchCount = 10
     
     private let postsFeedManager = PostsFeedManager()
@@ -81,7 +81,7 @@ extension PostsFeedPresenter: PostsFeedPresenterProtocol {
     func loadPosts() {
         Logger.log(message: "Success", event: .severe)
 
-        postsFeedManager.loadFeed(with: postsFeedType, amount: postsAmount) { [weak self] posts, error in
+        postsFeedManager.loadFeed(withType: postsFeedType, andLimit: postsLimit) { [weak self] posts, error in
             guard let strongSelf = self else { return }
             
             guard error == nil else {
@@ -105,7 +105,7 @@ extension PostsFeedPresenter: PostsFeedPresenterProtocol {
     func loadNext() {
         Logger.log(message: "Success", event: .severe)
 
-        postsAmount += batchCount
+        postsLimit += batchCount
         loadPosts()
     }
     

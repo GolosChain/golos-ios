@@ -43,7 +43,6 @@
 		7D7D564220367F8B003E06A6 /* PostParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7D564120367F8B003E06A6 /* PostParser.swift */; };
 		7D7D564420368028003E06A6 /* PostItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7D564320368028003E06A6 /* PostItem.swift */; };
 		7D911D142035CCAE00F19D3C /* WebSocketMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D911D132035CCAE00F19D3C /* WebSocketMethod.swift */; };
-		7D911D162035CDA800F19D3C /* WebSocketRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D911D152035CDA800F19D3C /* WebSocketRequest.swift */; };
 		7D911D182035DDD300F19D3C /* WebSocketResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D911D172035DDD300F19D3C /* WebSocketResponse.swift */; };
 		7D911D1A2035DE5D00F19D3C /* String+Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D911D192035DE5D00F19D3C /* String+Dictionary.swift */; };
 		7D911D1D2035ED0200F19D3C /* PostsFeedManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D911D1C2035ED0200F19D3C /* PostsFeedManager.swift */; };
@@ -196,7 +195,6 @@
 		7D7D564120367F8B003E06A6 /* PostParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostParser.swift; sourceTree = "<group>"; };
 		7D7D564320368028003E06A6 /* PostItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostItem.swift; sourceTree = "<group>"; };
 		7D911D132035CCAE00F19D3C /* WebSocketMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketMethod.swift; sourceTree = "<group>"; };
-		7D911D152035CDA800F19D3C /* WebSocketRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketRequest.swift; sourceTree = "<group>"; };
 		7D911D172035DDD300F19D3C /* WebSocketResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketResponse.swift; sourceTree = "<group>"; };
 		7D911D192035DE5D00F19D3C /* String+Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Dictionary.swift"; sourceTree = "<group>"; };
 		7D911D1C2035ED0200F19D3C /* PostsFeedManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsFeedManager.swift; sourceTree = "<group>"; };
@@ -436,7 +434,6 @@
 			children = (
 				7D79C34E2034F29900794447 /* WebSocketManager.swift */,
 				7D911D132035CCAE00F19D3C /* WebSocketMethod.swift */,
-				7D911D152035CDA800F19D3C /* WebSocketRequest.swift */,
 				7D911D172035DDD300F19D3C /* WebSocketResponse.swift */,
 			);
 			path = WebSocketManager;
@@ -1145,7 +1142,6 @@
 				7D911D202035F0A600F19D3C /* PostModel.swift in Sources */,
 				7D95CFAA203A53E500C1AE0A /* UserManager.swift in Sources */,
 				EC9ABBE82018036E00AF8597 /* Device+Size.swift in Sources */,
-				7D911D162035CDA800F19D3C /* WebSocketRequest.swift in Sources */,
 				7D79C34A20346B5500794447 /* AnswerType.swift in Sources */,
 				7DA06328203256D700B5630C /* PropertyStoring.swift in Sources */,
 				EC24FF59200C30B800A0AE15 /* MainContainerViewController.swift in Sources */,

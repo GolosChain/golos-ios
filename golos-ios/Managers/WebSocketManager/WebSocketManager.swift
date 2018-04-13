@@ -12,8 +12,6 @@ import Starscream
 class WebSocketManager {
     // MARK: - Properties
     private var requestsApiStore = [Int: RequestApiStore]()
-//    private var requests = [Int: WebSocketRequest]()
-//    private var requestsID = [Int]()
     
     
     // MARK: - Class Initialization
@@ -37,7 +35,6 @@ class WebSocketManager {
         
         // Clean store lists
         requestsApiStore = [Int: RequestApiStore]()
-//        requests = [Int: WebSocketRequest]()
         requestIDs = [Int]()
        
         webSocket.disconnect()
@@ -56,39 +53,6 @@ class WebSocketManager {
         requestsApiStore[type.id] = requestStore
         
         webSocket.isConnected ? sendMessage(type.message) : webSocket.connect()
-
-        // Handler
-
-        
-//        let requestId = 111 // randomUniqueId()
-//
-//        let request = WebSocketRequest(requestId:   requestId,
-//                                       method:      method,
-//                                       parameters:  parameters,
-//                                       completion:  completion)
-//
-//        requests[requestId] = request
-
-//        webSocket.isConnected ? sendMessage(request.messageString) : webSocket.connect()
-    }
-
-    
-    /// DELETE AFTER TEST
-    func sendRequestWith(method: WebSocketMethod,
-                         parameters: Any,
-                         completion: @escaping (Any?, NSError?) -> Void) {
-//        Logger.log(message: "Success", event: .severe)
-
-//        let requestId = 111 // randomUniqueId()
-//
-//        let request = WebSocketRequest(requestId:   requestId,
-//                                       method:      method,
-//                                       parameters:  parameters,
-//                                       completion:  completion)
-//
-//        requests[requestId] = request
-//
-//        webSocket.isConnected ? sendMessage(request.messageString) : webSocket.connect()
     }
 }
 
@@ -107,21 +71,6 @@ extension WebSocketManager: WebSocketDelegate {
             sendMessage(requestApiStore.type.message)
         }
     }
-
-    // DELETE AFTER TEST
-//    func websocketDidConnect(socket: WebSocketClient) {
-//        Logger.log(message: "Success", event: .severe)
-//
-//        guard requests.count > 0 else {
-//            return
-//        }
-//
-//        Logger.log(message: "requests = \(requests)", event: .debug)
-//
-//        for (_, request) in requests {
-//            sendMessage(request.messageString)
-//        }
-//    }
     
     func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
         Logger.log(message: "Success", event: .severe)

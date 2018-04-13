@@ -10,10 +10,10 @@ import Foundation
 
 class PostsFeedManager {
     // MARK: - Custom Functions
-    func loadFeed(with type: PostsFeedType, amount: Int, completion: @escaping ([PostModel], NSError?) -> Void) {
+    func loadFeed(withType type: PostsFeedType, andLimit limit: Int, completion: @escaping ([PostModel], NSError?) -> Void) {
         Logger.log(message: "Success", event: .severe)
         
-        let requestAPIType = GolosBlockchainManager.prepareToFetchData(byMethod: .getDiscussionsByTrending(limit: 10))!
+        let requestAPIType = GolosBlockchainManager.prepareToFetchData(byMethod: self.methodForPostsFeed(fotType: type, andLimit: limit))!
         Logger.log(message: "requestAPIType = \(requestAPIType)", event: .debug)
         
         // API
@@ -62,22 +62,34 @@ class PostsFeedManager {
 //            completion(posts, nil)
 //        })
     }
-    
-    private func methodForPostsFeed(type: PostsFeedType) -> WebSocketMethod {
-        Logger.log(message: "Success", event: .severe)
 
+    /**
+     This method prepare API method by type.
+     
+     - Parameter type: The case value of discussion type.
+     - Parameter limit: The limit value.
+     - Returns: Return `MethodApiType` case value of enum.
+     
+    */
+    private func methodForPostsFeed(fotType type: PostsFeedType, andLimit limit: Int) -> MethodApiType {
+        Logger.log(message: "Success", event: .severe)
+        
         switch type {
-        case .hot:
-            return WebSocketMethod.getDiscussionsActual
-        
+        /// Hot (actual) discussions.
+        case .actual:
+            return MethodApiType.getDiscussionsByHot(limit: limit)
+            
+        /// New discussions.
         case .new:
-            return WebSocketMethod.getDiscussionsNew
-        
+            return MethodApiType.getDiscussionsByCreated(limit: limit)
+
+        /// Popular discussions.
         case .popular:
-            return WebSocketMethod.getDiscussionsPopular
-        
+            return MethodApiType.getDiscussionsByTrending(limit: limit)
+
+        /// Promoted discussions.
         case .promoted:
-            return WebSocketMethod.getDiscussionsActual
+            return MethodApiType.getDiscussionsByPromoted(limit: limit)
         }
     }
 }

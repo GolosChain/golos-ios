@@ -29,7 +29,7 @@ class FeedPresenter: NSObject {
         
         postsFeedTypeArray = [
             .popular,
-            .hot,
+            .actual,
             .new,
             .promoted
         ]

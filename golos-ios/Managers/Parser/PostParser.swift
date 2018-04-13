@@ -47,9 +47,9 @@ class PostParser {
         cleanBody = cleanBody.replacingOccurrences(of: linkPatter, with: "", options: .regularExpression, range: nil)
         
         let index = cleanBody.index(cleanBody.startIndex, offsetBy: min(200, cleanBody.count))
-//        cleanBody = cleanBody.substring(to: index)
+        cleanBody = cleanBody.substring(to: index)
         
-        return String(cleanBody[...index])
+        return cleanBody //String(cleanBody[...index])
     }
     
     func repairBody(_ body: String) -> String {
