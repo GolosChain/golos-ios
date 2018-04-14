@@ -87,19 +87,17 @@ struct ResponseAPIActiveVote: Decodable {
 /// [Multiple types](https://stackoverflow.com/questions/46759044/swift-structures-handling-multiple-types-for-a-single-property)
 struct Conflicted: Codable {
     let stringValue: String?
-    let intValue: Int64?
-    
+
     // Where we determine what type the value is
     init(from decoder: Decoder) throws {
         let container       =   try decoder.singleValueContainer()
-        
+
         do {
             stringValue     =   try container.decode(String.self)
-            intValue        =   nil
         } catch {
             // Check for an integer
-            intValue        =   try container.decode(Int64.self)
-            stringValue     =   nil
+            let intValue    =   try container.decode(Int64.self)
+            stringValue     =   "\(intValue)"
         }
     }
 //
