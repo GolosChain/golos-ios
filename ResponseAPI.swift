@@ -100,10 +100,10 @@ struct Conflicted: Codable {
             stringValue     =   "\(intValue)"
         }
     }
-//
-//    // We need to go back to a dynamic type, so based on the data we have stored, encode to the proper type
-//    func encode(to encoder: Encoder) throws {
-//        var container       =   encoder.singleValueContainer()
-//        try stringValue ? container.encode(editedTime) : container.encode(false)
-//    }
+
+    // We need to go back to a dynamic type, so based on the data we have stored, encode to the proper type
+    func encode(to encoder: Encoder) throws {
+        var container       =   encoder.singleValueContainer()
+        try container.encode(stringValue)
+    }
 }
