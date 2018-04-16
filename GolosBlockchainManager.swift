@@ -13,9 +13,9 @@ public var requestIDs               =   [Int]()
 /// Type of request API
 public typealias RequestAPIType     =   (id: Int, message: String, startTime: Date)
 /// Type of response API
-public typealias ResponseAPIType    =   (response: [[String: Any]]?, error: Error?)
+public typealias ResponseAPIType    =   (responseType: Decodable, hasError: Bool)
 /// Type of stored request API
-public typealias RequestApiStore    =   (type: RequestAPIType, completion: (ResponseAPIType) -> Void)
+public typealias RequestAPIStore    =   (type: RequestAPIType, completion: (ResponseAPIType) -> Void)
 
 public class GolosBlockchainManager {
     // MARK: - Class Initialization

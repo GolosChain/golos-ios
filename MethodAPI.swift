@@ -36,7 +36,7 @@ public enum MethodApiType {
         case .getDiscussionsByCreated(let limit):   return (paramsFirst:        ["social_network", "get_discussions_by_created"],
                                                             paramsSecond:       ["limit":limit])
             
-        case .getDiscussionsByTrending(let limit):  return (paramsFirst:        ["social_network", "get_discussions_by_trending"],
+        case .getDiscussionsByTrending(let limit):  return (paramsFirst:        ["social_network", "get_discussions_by_trending2"],
                                                             paramsSecond:       ["limit":limit])
 
         case .getDiscussionsByPromoted(let limit):  return (paramsFirst:        ["social_network", "get_discussions_by_promoted"],

@@ -8,9 +8,25 @@
 
 import Foundation
 
+struct ResponseAPIResultError: Decodable {
+    // MARK: - Properties
+    let error: ResponseAPIError
+    let id: Int64
+    let jsonrpc: String
+    
+    
+    // MARK: - Custom Functions
+    func createError() -> NSError {
+        return NSError(domain:      "io.golos.websocket",
+                       code:        Int(error.code),
+                       userInfo:    [NSLocalizedDescriptionKey: error.message.components(separatedBy: "second.end(): ").last!])
+    }
+}
+
 struct ResponseAPIError: Decodable {
     // MARK: - Properties
-//    let 
+    let code: Int64
+    let message: String
 }
 
 struct ResponseAPIResult: Decodable {

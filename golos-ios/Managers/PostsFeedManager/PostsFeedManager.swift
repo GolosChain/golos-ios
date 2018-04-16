@@ -22,21 +22,21 @@ class PostsFeedManager {
             webSocketManager.sendRequest(withType: requestAPIType) { (responseAPIType) in
                 Logger.log(message: "responseAPIType: \(responseAPIType)", event: .debug)
                 
-                guard responseAPIType.error == nil else {
-                    Logger.log(message: "\(responseAPIType.error!.localizedDescription)", event: .error)
-                    completion([], responseAPIType.error! as NSError)
+                guard !responseAPIType.hasError else {
+                    Logger.log(message: "\((responseAPIType.responseType as! ResponseAPIResultError).error.message)", event: .error)
+                    completion([], (responseAPIType.responseType as! ResponseAPIResultError).createError())
                     return
                 }
                 
-                guard let postsDictinary = responseAPIType.response else {
-                    return
-                }
-                
-                let posts = postsDictinary.compactMap({ postDictionary -> PostModel? in
-                    PostModel(postDictionary: postDictionary)
-                })
-                
-                completion(posts, nil)
+//                guard let postsDictinary = responseAPIType.response else {
+//                    return
+//                }
+//
+//                let posts = postsDictinary.compactMap({ postDictionary -> PostModel? in
+//                    PostModel(postDictionary: postDictionary)
+//                })
+//
+//                completion(posts, nil)
             }
         }
     }
