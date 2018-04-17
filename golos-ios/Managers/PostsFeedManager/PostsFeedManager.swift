@@ -11,7 +11,7 @@ import Foundation
 class PostsFeedManager {
     // MARK: - Custom Functions
     
-    func loadFeed(withType type: PostsFeedType, andLimit limit: Int, completion: @escaping ([PostModel], NSError?) -> Void) {
+    func loadFeed(withType type: PostsFeedType, andLimit limit: Int, completion: @escaping ([PostModel], ErrorAPI?) -> Void) {
         Logger.log(message: "Success", event: .severe)
         
         let requestAPIType = GolosBlockchainManager.prepareToFetchData(byMethod: self.methodForPostsFeed(fotType: type, andLimit: limit))!
@@ -23,8 +23,7 @@ class PostsFeedManager {
 //                Logger.log(message: "responseAPIType: \(responseAPIType)", event: .debug)
                 
                 guard !responseAPIType.hasError else {
-                    Logger.log(message: "\((responseAPIType.responseType as! ResponseAPIResultError).error.message)", event: .error)
-                    completion([], (responseAPIType.responseType as! ResponseAPIResultError).createError())
+                    completion([], ErrorAPI.requestFailed(message: (responseAPIType.responseType as! ResponseAPIResultError).error.message.components(separatedBy: "second.end(): ").last!))
                     return
                 }
                 

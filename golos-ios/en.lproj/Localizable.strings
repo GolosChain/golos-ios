@@ -23,3 +23,8 @@
 
 // Error message
 "Developer error!"                          =   "Developer error!";
+"Request Failed"                            =   "Request Failed";
+"Invalid Data"                              =   "Invalid Data";
+"Response Unsuccessful"                     =   "Response Unsuccessful";
+"JSON Parsing Failure"                      =   "JSON Parsing Failure";
+"JSON Conversion Failure"                   =   "JSON Conversion Failure";

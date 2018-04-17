@@ -10,19 +10,6 @@ import UIKit
 import Localize_Swift
 
 struct Utils {
-    // DELETE AFTER TEST
-//    static func showAlert(title: String = "Alert", message: String) {
-//        let alertController = UIAlertController(title:              title.localized(),
-//                                                message:            message.localized(),
-//                                                preferredStyle:     .alert)
-//
-//        let action = UIAlertAction(title: "Ok".localized(), style: .cancel, handler: nil)
-//
-//        alertController.addAction(action)
-//
-//        alertController.show()
-//    }
-    
     static func showAlertView(withTitle title: String, andMessage message: String, needCancel cancel: Bool, completion: @escaping ((Bool) -> Void)) {
         let alertViewController = UIAlertController.init(title: title.localized(), message: message.localized(), preferredStyle: .alert)
         

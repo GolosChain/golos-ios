@@ -23,3 +23,8 @@
 
 // Error message
 "Developer error!"                          =   "Ошибка разработчика!";
+"Request Failed"                            =   "Ошибка запроса";
+"Invalid Data"                              =   "Неверные данные";
+"Response Unsuccessful"                     =   "Ошибка обработки ответа сервера";
+"JSON Parsing Failure"                      =   "Ошибка анализа JSON структуры";
+"JSON Conversion Failure"                   =   "Ошибка конвертации JSON структуры в модель";

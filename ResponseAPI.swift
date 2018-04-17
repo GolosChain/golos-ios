@@ -16,11 +16,11 @@ struct ResponseAPIResultError: Decodable {
     
     
     // MARK: - Custom Functions
-    func createError() -> NSError {
-        return NSError(domain:      "io.golos.websocket",
-                       code:        Int(error.code),
-                       userInfo:    [NSLocalizedDescriptionKey: error.message.components(separatedBy: "second.end(): ").last!])
-    }
+//    func createError() -> NSError {
+//        return NSError(domain:      "io.golos.websocket",
+//                       code:        Int(error.code),
+//                       userInfo:    [NSLocalizedDescriptionKey: error.message.components(separatedBy: "second.end(): ").last!])
+//    }
 }
 
 struct ResponseAPIError: Decodable {
