@@ -58,7 +58,7 @@ class WebSocketManager {
     private func decode(from jsonData: Data, byMethodAPIType methodAPIType: MethodAPIType) throws -> Decodable? {
         do {
             switch methodAPIType {
-            case .getDiscussionsByTrending(_):
+            case .getDiscussionsByHot(_), .getDiscussionsByCreated(_), .getDiscussionsByTrending(_), .getDiscussionsByPromoted(_):
                 return try JSONDecoder().decode(ResponseAPIResult.self, from: jsonData)
             }
         } catch {
@@ -108,7 +108,7 @@ extension WebSocketManager: WebSocketDelegate {
                         responseAPIResult = try self.decode(from: jsonData, byMethodAPIType: requestAPIStore.type.methodAPIType)
                     }
 
-                    Logger.log(message: "responseAPIResult model:\n\t\(responseAPIResult)", event: .debug)
+//                    Logger.log(message: "responseAPIResult model:\n\t\(responseAPIResult)", event: .debug)
                     
                     // Check websocket timeout: resend current request message
                     let timeout = Double(Date().timeIntervalSince(requestAPIStore.type.startTime))
