@@ -31,8 +31,14 @@ class Validator {
     }
     
     /**
- 
-    */
+     Checks `JSON` for an error.
+     
+     - Parameter json: Input response dictionary.
+     - Parameter completion: Return two values:
+     - Parameter codeID: Request ID.
+     - Parameter hasError: Error indicator.
+
+     */
     class func validate(json: [String: Any], completion: @escaping (_ codeID: Int, _ hasError: Bool) -> Void) {
         completion(json["id"] as! Int, json["error"] != nil)
     }
