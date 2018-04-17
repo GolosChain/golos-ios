@@ -1,0 +1,25 @@
+/* 
+  Localizable.strings
+  golos-ios
+
+  Created by msm72 on 17.04.2018.
+  Copyright © 2018 golos. All rights reserved.
+*/
+
+// Labels
+
+
+// Buttons
+"ActionOk"                                  =   "Ok";
+"ActionYes"                                 =   "Yes";
+"ActionCancel"                              =   "Cancel";
+
+
+// Titles
+"Info"                                      =   "Info";
+"Error"                                     =   "Error";
+"In development"                            =   "In development";
+
+
+// Error message
+"Developer error!"                          =   "Developer error!";
