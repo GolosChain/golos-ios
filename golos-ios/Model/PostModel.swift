@@ -36,7 +36,7 @@ struct PostModel {
         
         let parser = PostParser()
         let desciption = parser.getDescription(from: body)
-        let pictureUrl = parser.getPictureUrl(from: body)
+        let pictureUrl = parser.getPictureURL(from: body)
         
         self.postId = codeID
         self.title = title

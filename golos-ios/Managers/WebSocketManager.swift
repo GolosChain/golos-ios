@@ -59,6 +59,9 @@ class WebSocketManager {
     private func decode(from jsonData: Data, byMethodAPIType methodAPIType: MethodAPIType) throws -> Decodable? {
         do {
             switch methodAPIType {
+            case .getAccounts(_):
+                return try JSONDecoder().decode(ResponseAPIResult.self, from: jsonData)
+                
             case .getDiscussionsByHot(_), .getDiscussionsByCreated(_), .getDiscussionsByTrending(_), .getDiscussionsByPromoted(_):
                 return try JSONDecoder().decode(ResponseAPIResult.self, from: jsonData)
             }

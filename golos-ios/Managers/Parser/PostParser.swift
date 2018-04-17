@@ -10,7 +10,7 @@ import Foundation
 import Down
 
 class PostParser {
-    func getPictureUrl(from body: String) -> String? {
+    func getPictureURL(from body: String) -> String? {
         var imageUrl: String?
         
 //        let golosImgPatter = "\\bhttps?:[^)''\"]+\\.(?:jpg|jpeg|gif|png)"

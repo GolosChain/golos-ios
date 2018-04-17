@@ -27,7 +27,7 @@ class PostsFeedViewController: UIViewController {
     
     var postsFeedType: PostsFeedType {
         get {
-            return presenter.getPostsFeedType()
+            return presenter.getFeedPostsType()
         }
         
         set {
@@ -55,8 +55,7 @@ class PostsFeedViewController: UIViewController {
         Logger.log(message: "Success", event: .severe)
 
         setupUI()
-//        presenter.fetchPosts()
-        presenter.loadPosts()
+        self.presenter.loadPostsFeed()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -151,12 +150,12 @@ extension PostsFeedViewController: PostsFeedMediatorDelegate {
     func didPressAuthor(at index: Int) {
         Logger.log(message: "Success", event: .severe)
         
-        let user = presenter.getUser(at: index)
-        let profileViewController = ProfileViewController.nibInstance()
-        profileViewController.user = user
-        profileViewController.username = user?.name
+//        let user = presenter.getUser(at: index)
+//        let profileViewController = ProfileViewController.nibInstance()
+//        profileViewController.user = user
+//        profileViewController.username = user?.name
         
-        navigationController?.pushViewController(profileViewController, animated: true)
+//        navigationController?.pushViewController(profileViewController, animated: true)
     }
     
     func didPressReblogAuthor(at index: Int) {

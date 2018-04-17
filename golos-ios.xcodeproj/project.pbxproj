@@ -78,6 +78,7 @@
 		7DFE7C4B20464C680057F144 /* PostRequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFE7C4A20464C680057F144 /* PostRequestType.swift */; };
 		B18DB44E2085D22A00BA5D50 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B18DB4502085D22A00BA5D50 /* Localizable.strings */; };
 		B18DB4532085DB8F00BA5D50 /* ErrorAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18DB4522085DB8F00BA5D50 /* ErrorAPI.swift */; };
+		B18DB455208619A000BA5D50 /* DisplayedPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18DB454208619A000BA5D50 /* DisplayedPost.swift */; };
 		B199DF92207F48870022C5FA /* GolosBlockchainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B199DF91207F48870022C5FA /* GolosBlockchainManager.swift */; };
 		B199DF95207F49230022C5FA /* MethodAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B199DF94207F49230022C5FA /* MethodAPI.swift */; };
 		B199DF97207F8A420022C5FA /* RequestAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B199DF96207F8A420022C5FA /* RequestAPI.swift */; };
@@ -237,6 +238,7 @@
 		B18DB44F2085D22A00BA5D50 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B18DB4512085D22C00BA5D50 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B18DB4522085DB8F00BA5D50 /* ErrorAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorAPI.swift; sourceTree = "<group>"; };
+		B18DB454208619A000BA5D50 /* DisplayedPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayedPost.swift; sourceTree = "<group>"; };
 		B199DF91207F48870022C5FA /* GolosBlockchainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GolosBlockchainManager.swift; sourceTree = "<group>"; };
 		B199DF94207F49230022C5FA /* MethodAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MethodAPI.swift; sourceTree = "<group>"; };
 		B199DF96207F8A420022C5FA /* RequestAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestAPI.swift; sourceTree = "<group>"; };
@@ -440,7 +442,6 @@
 		7D79C34D2034F28B00794447 /* WebSocketManager */ = {
 			isa = PBXGroup;
 			children = (
-				7D79C34E2034F29900794447 /* WebSocketManager.swift */,
 				7D911D132035CCAE00F19D3C /* WebSocketMethod.swift */,
 				7D911D172035DDD300F19D3C /* WebSocketResponse.swift */,
 			);
@@ -455,18 +456,11 @@
 			path = Parser;
 			sourceTree = "<group>";
 		};
-		7D911D1B2035ECF000F19D3C /* PostsFeedManager */ = {
-			isa = PBXGroup;
-			children = (
-				7D911D1C2035ED0200F19D3C /* PostsFeedManager.swift */,
-			);
-			path = PostsFeedManager;
-			sourceTree = "<group>";
-		};
 		7D911D1E2035ED7C00F19D3C /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				7D911D1F2035F0A600F19D3C /* PostModel.swift */,
+				B18DB454208619A000BA5D50 /* DisplayedPost.swift */,
 				7D911D212035F5AA00F19D3C /* PostReplyModel.swift */,
 				7D911D232035F5C900F19D3C /* PostVoteModel.swift */,
 				7D911D252035F6EA00F19D3C /* UserModel.swift */,
@@ -488,7 +482,6 @@
 		7D95CFA8203A53D900C1AE0A /* UserManager */ = {
 			isa = PBXGroup;
 			children = (
-				7D95CFA9203A53E500C1AE0A /* UserManager.swift */,
 				7D95CFAB203A546500C1AE0A /* UserRequestType.swift */,
 			);
 			path = UserManager;
@@ -573,8 +566,8 @@
 			children = (
 				EC9B2AE3201550E1008335C8 /* Cells */,
 				EC9B2ADE201535AE008335C8 /* PostsFeedViewController */,
-				EC9B2ADF20154B62008335C8 /* PostsFeedPresenter.swift */,
 				EC9B2AE820155B9C008335C8 /* PostsFeedMediator.swift */,
+				EC9B2ADF20154B62008335C8 /* PostsFeedPresenter.swift */,
 				EC07F4A520141E8D00560CF0 /* PostsFeedType.swift */,
 				EC9B2AE120154DE9008335C8 /* PostsFeedViewModel.swift */,
 			);
@@ -623,14 +616,15 @@
 		EC24FF29200BFA9300A0AE15 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				7D95CFA9203A53E500C1AE0A /* UserManager.swift */,
+				7D911D1C2035ED0200F19D3C /* PostsFeedManager.swift */,
+				7D79C34E2034F29900794447 /* WebSocketManager.swift */,
 				7D95CFA1203A118D00C1AE0A /* GSImageLoader */,
 				7D7D564020367F7C003E06A6 /* Parser */,
-				7D911D1B2035ECF000F19D3C /* PostsFeedManager */,
 				7DFE7C4720464C110057F144 /* PostsManager */,
 				7DFE7C422046392C0057F144 /* ReplyManager */,
 				EC24FF4E200C064B00A0AE15 /* StateMachine */,
 				7D95CFA8203A53D900C1AE0A /* UserManager */,
-				EC24FF2A200BFAA100A0AE15 /* Validator.swift */,
 				7D79C34D2034F28B00794447 /* WebSocketManager */,
 			);
 			path = Managers;
@@ -824,11 +818,12 @@
 			children = (
 				ECB2C0D22008E55500AF1AF5 /* Colors.swift */,
 				ECB2C0D42008E56300AF1AF5 /* Constants.swift */,
-				ECC15FA52009794E0099BBC9 /* Fonts.swift */,
-				ECF31726200A9E0B00F7B703 /* Utils.swift */,
-				EC24FF53200C080300A0AE15 /* Notifications.swift */,
-				EC9ABBBE20179CEF00AF8597 /* Images.swift */,
 				EC9ABBE72018036E00AF8597 /* Device+Size.swift */,
+				ECC15FA52009794E0099BBC9 /* Fonts.swift */,
+				EC9ABBBE20179CEF00AF8597 /* Images.swift */,
+				EC24FF53200C080300A0AE15 /* Notifications.swift */,
+				ECF31726200A9E0B00F7B703 /* Utils.swift */,
+				EC24FF2A200BFAA100A0AE15 /* Validator.swift */,
 			);
 			path = Miscellaneous;
 			sourceTree = "<group>";
@@ -1182,6 +1177,7 @@
 				ECF31727200A9E0B00F7B703 /* Utils.swift in Sources */,
 				EC9ABBBF20179CEF00AF8597 /* Images.swift in Sources */,
 				EC07F4AA20141F0C00560CF0 /* FeedPresenter.swift in Sources */,
+				B18DB455208619A000BA5D50 /* DisplayedPost.swift in Sources */,
 				7DFE7C4B20464C680057F144 /* PostRequestType.swift in Sources */,
 				EC07F4A22014093E00560CF0 /* HorizontalSelectorView.swift in Sources */,
 				EC07F4A820141F0200560CF0 /* FeedMediator.swift in Sources */,

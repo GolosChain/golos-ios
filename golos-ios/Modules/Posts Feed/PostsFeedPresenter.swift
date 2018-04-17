@@ -9,24 +9,20 @@
 import Foundation
 
 protocol PostsFeedPresenterProtocol: class {
-    func setPostsFeedType(_ type: PostsFeedType)
-    func getPostsFeedType() -> PostsFeedType
-    
-    func fetchPosts()
-    func loadPosts()
-    
     func loadNext()
-    
+    func loadPostsFeed()
+
+    func getFeedPostsType() -> PostsFeedType
+//    func getUser(at index: Int) -> UserModel?
+    func setPostsFeedType(_ type: PostsFeedType)
     func getPostsViewModels() -> [PostsFeedViewModel]
     func getPostViewModel(at index: Int) -> PostsFeedViewModel?
-    
     func getPostPermalinkAndAuthorName(at index: Int) -> (permalink: String, author: String)
-    func getUser(at index: Int) -> UserModel?
+    
 //    func loadRepliesForPost(at index: Int)
 }
 
 protocol PostsFeedViewProtocol: class {
-    func didFetchPosts()
     func didLoadPosts()
     func didLoadPostsAuthors()
     func didLoadPostReplies(at index: Int)
@@ -38,7 +34,7 @@ class PostsFeedPresenter: NSObject {
     
     private var postsFeedType: PostsFeedType = .new
     private var postsItems = [PostsFeedViewModel]()
-    private var posts = [PostModel]()
+    private var displayedPosts = [DisplayedPost]()
     private var postsLimit = webSocketLimit
     private let batchCount = 10
     
@@ -47,19 +43,21 @@ class PostsFeedPresenter: NSObject {
     private let replyManager = ReplyManager()
 }
 
-extension PostsFeedPresenter: PostsFeedPresenterProtocol {
-    func getUser(at index: Int) -> UserModel? {
-        Logger.log(message: "Success", event: .severe)
 
-        let post = posts[index]
-        return post.author
-    }
+// MARK: - PostsFeedPresenterProtocol
+extension PostsFeedPresenter: PostsFeedPresenterProtocol {
+//    func getUser(at index: Int) -> UserModel? {
+//        Logger.log(message: "Success", event: .severe)
+//
+//        let displayedPost = displayedPosts[index]
+//        return displayedPost.author
+//    }
     
     func getPostPermalinkAndAuthorName(at index: Int) -> (permalink: String, author: String) {
         Logger.log(message: "Success", event: .severe)
 
-        let post = posts[index]
-        return (post.permalink, post.authorName)
+        let displayedPost = displayedPosts[index]
+        return (displayedPost.permlink, displayedPost.authorName)
     }
     
     func setPostsFeedType(_ type: PostsFeedType) {
@@ -68,20 +66,17 @@ extension PostsFeedPresenter: PostsFeedPresenterProtocol {
         self.postsFeedType = type
     }
     
-    func getPostsFeedType() -> PostsFeedType {
+    func getFeedPostsType() -> PostsFeedType {
         Logger.log(message: "Success", event: .severe)
 
         return self.postsFeedType
     }
     
-    func fetchPosts() {
-        Logger.log(message: "Success", event: .severe)
-    }
-    
-    func loadPosts() {
+    /// Load Feed posts
+    func loadPostsFeed() {
         Logger.log(message: "Success", event: .severe)
 
-        postsFeedManager.loadFeed(withType: postsFeedType, andLimit: postsLimit) { [weak self] posts, errorAPI in
+        postsFeedManager.loadPostsFeed(withType: postsFeedType, andLimit: postsLimit) { [weak self] (displayedPosts, errorAPI) in
             guard let strongSelf = self else { return }
             
             guard errorAPI == nil else {
@@ -89,16 +84,16 @@ extension PostsFeedPresenter: PostsFeedPresenterProtocol {
                 return
             }
             
-            let newPosts = posts.filter({ model -> Bool in
-                !strongSelf.posts.contains(where: {$0.postId == model.postId})
+            let newDisplayedPosts = displayedPosts!.filter({ displayedPost -> Bool in
+                !strongSelf.displayedPosts.contains(where: { $0.id == displayedPost.id })
             })
-            
-            strongSelf.posts.append(contentsOf: newPosts)
-            
-            strongSelf.postsItems = strongSelf.parse(posts: strongSelf.posts)
-            strongSelf.postsFeedView.didLoadPosts()
 
-            strongSelf.loadUsers(for: strongSelf.posts)
+            strongSelf.displayedPosts.append(contentsOf: newDisplayedPosts)
+            
+//            strongSelf.postsItems = strongSelf.parse(posts: strongSelf.displayedPosts)
+//            strongSelf.postsFeedView.didLoadPosts()
+
+            strongSelf.loadUsers(forDisplayedPosts: strongSelf.displayedPosts)
         }
     }
     
@@ -106,17 +101,15 @@ extension PostsFeedPresenter: PostsFeedPresenterProtocol {
         Logger.log(message: "Success", event: .severe)
 
         postsLimit += batchCount
-        loadPosts()
+        loadPostsFeed()
     }
     
-    private func loadUsers(for posts: [PostModel]) {
+    private func loadUsers(forDisplayedPosts displayedPost: [DisplayedPost]) {
         Logger.log(message: "Success", event: .severe)
 
-        let usernames = posts.map { post -> String in
-            return post.authorName
-        }
+        let authorNames = displayedPost.map({ $0.authorName })
         
-        userManager.loadUsers(usernames) { [weak self] users, error in
+        self.userManager.loadUsers(byNames: authorNames) { [weak self] (users, error) in
             guard let strongSelf = self else { return }
            
             guard error == nil else {
@@ -124,15 +117,15 @@ extension PostsFeedPresenter: PostsFeedPresenterProtocol {
                 return
             }
             
-            for (index, post) in strongSelf.posts.enumerated() {
-                let postUser = users.first(where: {$0.name == post.authorName})
-                strongSelf.posts[index].author = postUser
+            for (index, post) in strongSelf.displayedPosts.enumerated() {
+                let postUser = users!.first(where: {$0.name == post.authorName})
+//                strongSelf.displayedPosts[index].author = postUser
             }
             
-            strongSelf.postsItems = strongSelf.parse(posts: strongSelf.posts)
-            strongSelf.postsFeedView.didLoadPostsAuthors()
+//            strongSelf.postsItems = strongSelf.parse(posts: strongSelf.displayedPosts)
+//            strongSelf.postsFeedView.didLoadPostsAuthors()
             
-            for index in 0..<strongSelf.posts.count {
+            for index in 0..<strongSelf.displayedPosts.count {
 //                for (index, _) in strongSelf.posts.enumerated() {
                 strongSelf.loadRepliesForPost(at: index)
             }
@@ -142,8 +135,8 @@ extension PostsFeedPresenter: PostsFeedPresenterProtocol {
     func loadRepliesForPost(at index: Int) {
         Logger.log(message: "Success", event: .severe)
 
-        let post = self.posts[index]
-        replyManager.loadRepliesForPost(withPermalink: post.permalink, authorUsername: post.authorName) { [weak self] replies, error in
+        let displayedPost = self.displayedPosts[index]
+        replyManager.loadRepliesForPost(withPermalink: displayedPost.permlink, authorUsername: displayedPost.authorName) { [weak self] replies, error in
             guard let strongSelf = self else {return}
 
             guard error == nil else {
@@ -151,9 +144,9 @@ extension PostsFeedPresenter: PostsFeedPresenterProtocol {
                 return
             }
             
-            strongSelf.posts[index].replies = replies
-            strongSelf.postsItems[index] = strongSelf.parsePostModel(strongSelf.posts[index])
-            strongSelf.postsFeedView.didLoadPostReplies(at: index)
+//            strongSelf.displayedPosts[index].replies = replies
+//            strongSelf.postsItems[index] = strongSelf.parsePostModel(strongSelf.displayedPosts[index])
+//            strongSelf.postsFeedView.didLoadPostReplies(at: index)
         }
     }
     
@@ -191,34 +184,3 @@ extension PostsFeedPresenter: PostsFeedPresenterProtocol {
         })
     }
 }
-
-////FAKE DATA
-//extension PostsFeedPresenter {
-//    // swiftlint:disable line_length
-//    private func fetchFakeAcrticles() -> [PostsFeedViewModel] {
-//        let fakeArticle1 = PostsFeedViewModel(authorName: "digitalbeauty",
-//                                               authorAvatarUrl: "https://cdn.pixabay.com/photo/2016/08/20/05/38/avatar-1606916_1280.png",
-//                                               articleTitle: "Когда женственность настолько крута, что дух захватывает ...",
-//                                               reblogAuthorName: "egorfedorov",
-//                                               theme: "Технологии",
-//                                               articleImageUrl: "https://cdn.theatlantic.com/assets/media/img/mt/2017/06/GettyImages_675371680/lead_960.jpg?1498239007",
-//                                               articleBody: "Японская культура настолько загадочна и самобытна, что понять её может не каждый. Традиции и нравы, искусство и обычаи Страны восходящего солнца интересно познавать.\n\nИскусство Японии способно передать многие особенности культуры и менталитета, показать сущность национального характера жителей, населяющих эту страну. Сегодня расскажу об истории увлекательных кукольных представлений, которые получили своё развитие ещё в эпоху Эдо. В те сложные для Японии годы, театр не был доступен всем слоям общества, и только кукольные театры могли посещать бедные жители.",
-//                                               upvoteAmount: "$23.22",
-//                                               commentsAmount: "32",
-//                                               didUpvote: true,
-//                                               didComment: false)
-//        let fakeArticle2 = PostsFeedViewModel(authorName: "innusik",
-//                                                authorAvatarUrl: "https://cdn.pixabay.com/photo/2016/08/20/05/38/avatar-1606916_1280.png",
-//                                                articleTitle: "Покушение на президента СССР Михаила Горбачева",
-//                                                reblogAuthorName: nil,
-//                                                theme: "psk",
-//                                                articleImageUrl: "https://cdn.theatlantic.com/assets/media/img/mt/2017/06/GettyImages_675371680/lead_960.jpg?1498239007",
-//                                                articleBody: "Мировая история знает множество покушений на лидеров государств. Многие из них были удачными, многие закончились провалом. Российская история также насыщена подобными фактами. Одной из самых ярких и как не печально это признать удачных, террористических попыток ликвидации против главы государства в России считается смерть императора Александра II в 1881 году. До этого на него были совершены ещё несколько, но неудачных попыток убийства. Последним же покушением на главу государства в России стало попытка ликвидировать последнего генерального секретаря СССР М.С. Горбачёва в 1990 году.",
-//                                                upvoteAmount: "$233.22",
-//                                                commentsAmount: "100",
-//                                                didUpvote: false,
-//                                                didComment: true)
-//        return [fakeArticle1, fakeArticle2, fakeArticle1, fakeArticle2, fakeArticle1, fakeArticle2, fakeArticle1, fakeArticle2, fakeArticle1, fakeArticle2, fakeArticle1, fakeArticle2, fakeArticle1, fakeArticle2, fakeArticle1, fakeArticle2]
-//    }
-//    // swiftlint:enable line_length
-//}

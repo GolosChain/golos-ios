@@ -10,7 +10,15 @@ import Foundation
 
 class PostsFeedManager {
     // MARK: - Custom Functions
-    func loadFeed(withType type: PostsFeedType, andLimit limit: Int, completion: @escaping ([PostModel], ErrorAPI?) -> Void) {
+    /**
+     This method load posts by Feed type.
+     
+     - Parameter type: The case value of Feed type.
+     - Parameter limit: The limit value.
+     - Parameter completion: Return two values.
+
+     */
+    func loadPostsFeed(withType type: PostsFeedType, andLimit limit: Int, completion: @escaping ((_ displayedPosts: [DisplayedPost]?, _ errorAPI: ErrorAPI?) -> Void)) {
         Logger.log(message: "Success", event: .severe)
         
         let requestAPIType = GolosBlockchainManager.fetchData(byMethod: self.methodForPostsFeed(fotType: type, andLimit: limit))!
@@ -21,20 +29,14 @@ class PostsFeedManager {
             webSocketManager.sendRequest(withType: requestAPIType) { (responseAPIType) in
 //                Logger.log(message: "responseAPIType: \(responseAPIType)", event: .debug)
                 
-                guard let responseAPI = responseAPIType.responseAPI else {
-                    completion([], responseAPIType.errorAPI)
+                guard let responseAPI = responseAPIType.responseAPI, let responseAPIResult = responseAPI as? ResponseAPIResult else {
+                    completion(nil, responseAPIType.errorAPI)
                     return
                 }
                 
-//                guard let postsDictinary = responseAPIType.response else {
-//                    return
-//                }
-//
-//                let posts = postsDictinary.compactMap({ postDictionary -> PostModel? in
-//                    PostModel(postDictionary: postDictionary)
-//                })
-//
-//                completion(posts, nil)
+                let displayedPosts = responseAPIResult.result.compactMap({ DisplayedPost(fromPostsFeed: $0) })
+                
+                completion(displayedPosts, nil)
             }
         }
     }

@@ -9,6 +9,7 @@
 import Foundation
 import Localize_Swift
 
+/// Feed type
 enum PostsFeedType: String {
     case new
     case actual

@@ -39,7 +39,7 @@ struct ResponseAPIFeed: Decodable {
     let allow_replies: Bool
     let allow_votes: Bool
     let author: String
-    let author_reputation: String
+    let author_reputation: Conflicted
     let author_rewards: Int
 //    beneficiaries =             ();       // ???
     let body: String
@@ -53,7 +53,7 @@ struct ResponseAPIFeed: Decodable {
     let curator_payout_value: String
     let depth: Int
     let id: Int64
-    let json_metadata: String
+    let json_metadata: String?
     let last_payout: String                 // "1970-01-01T00:00:00"
     let last_update: String                 // "2018-04-13T11:03:12"
     let max_accepted_payout: String
@@ -75,7 +75,7 @@ struct ResponseAPIFeed: Decodable {
     let title: String
     let total_payout_value: String
     let total_pending_payout_value: String
-    let total_vote_weight: String
+    let total_vote_weight: Conflicted
     let url: String
     let vote_rshares: Conflicted
     // swiftlint:enable identifier_name

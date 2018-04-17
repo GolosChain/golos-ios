@@ -14,6 +14,9 @@ typealias RequestParametersType = (methodAPIType: MethodAPIType, paramsFirst: [S
 
 /// API methods.
 public enum MethodAPIType {
+    /// Displays information about the users specified in the request.
+    case getAccounts(names: [String])
+
     /// Displays a limited number of publications, sorted by popularity.
     case getDiscussionsByHot(limit: Int)
 
@@ -30,6 +33,10 @@ public enum MethodAPIType {
     /// This method return request parameters from selected enum case.
     func introduced() -> RequestParametersType {
         switch self {
+        case .getAccounts(let names):               return (methodAPIType:      self,
+                                                            paramsFirst:        ["social_network", "get_accounts"],
+                                                            paramsSecond:       ["names":names])
+            
         case .getDiscussionsByHot(let limit):       return (methodAPIType:      self,
                                                             paramsFirst:        ["social_network", "get_discussions_by_hot"],
                                                             paramsSecond:       ["limit":limit])
