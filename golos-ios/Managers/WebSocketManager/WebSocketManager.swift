@@ -54,6 +54,17 @@ class WebSocketManager {
         
         webSocket.isConnected ? sendMessage(type.message) : webSocket.connect()
     }
+    
+    private func decode(from jsonData: Data, byMethodAPIType methodAPIType: MethodAPIType) throws -> Decodable? {
+        do {
+            switch methodAPIType {
+            case .getDiscussionsByTrending(_):
+                return try JSONDecoder().decode(ResponseAPIResult.self, from: jsonData)
+            }
+        } catch {
+            return nil
+        }
+    }
 }
 
 
@@ -94,17 +105,17 @@ extension WebSocketManager: WebSocketDelegate {
                     }
                         
                     else {
-                        responseAPIResult = try jsonDecoder.decode(ResponseAPIResult.self, from: jsonData)
+                        responseAPIResult = try self.decode(from: jsonData, byMethodAPIType: requestAPIStore.type.methodAPIType)
                     }
 
-                    print("responseAPIResult model:\n\t\(responseAPIResult)")
+                    Logger.log(message: "responseAPIResult model:\n\t\(responseAPIResult)", event: .debug)
                     
                     // Check websocket timeout: resend current request message
                     let timeout = Double(Date().timeIntervalSince(requestAPIStore.type.startTime))
                     Logger.log(message: "webSocket timeout = \(timeout) sec", event: .debug)
                     
                     if timeout >= webSocketTimeout {
-                        let newRequestAPIStore = (type: (id: requestAPIStore.type.id, message: requestAPIStore.type.message, startTime: Date()), completion: requestAPIStore.completion)
+                        let newRequestAPIStore = (type: (id: requestAPIStore.type.id, message: requestAPIStore.type.message, startTime: Date(), methodAPIType: requestAPIStore.type.methodAPIType), completion: requestAPIStore.completion)
                         self.requestsAPIStore[codeID] = newRequestAPIStore
                         self.sendMessage(newRequestAPIStore.type.message)
                     }
@@ -122,21 +133,12 @@ extension WebSocketManager: WebSocketDelegate {
                         requestAPIStore.completion((responseType: responseAPIResult, hasError: hasError))
                     }
                 } catch {
-                    print("Error responseAPI model...")
+                    Logger.log(message: "Decode jsonData error: \(error.localizedDescription)", event: .error)
+                    let responseAPIResultError = ResponseAPIResultError(error: ResponseAPIError(code: 666, message: "Error decode jsonData"), id: Int64(codeID), jsonrpc: "2.0")
+                    requestAPIStore.completion((responseType: responseAPIResultError, hasError: true))
                 }
             })
-//            if let jsonError = json["error"] as? [String: Any], let errorCode = jsonError["code"] as? Int, let errorMessage = jsonError["message"] as? String {
-//                error = NSError(domain:    "io.golos.websocket",
-//                                code:      errorCode,
-//                                userInfo:  [NSLocalizedDescriptionKey: errorMessage])
-//            }
-            
         }
-        
-//        guard let response = WebSocketResponse(withText: text) else {
-//            return
-//        }
-        
     }
     
     // Not used

@@ -49,25 +49,28 @@ class PostsFeedManager {
      - Returns: Return `MethodApiType` case value of enum.
      
     */
-    private func methodForPostsFeed(fotType type: PostsFeedType, andLimit limit: Int) -> MethodApiType {
+    private func methodForPostsFeed(fotType type: PostsFeedType, andLimit limit: Int) -> MethodAPIType {
         Logger.log(message: "Success", event: .severe)
         
         switch type {
         /// Hot (actual) discussions.
         case .actual:
-            return MethodApiType.getDiscussionsByHot(limit: limit)
-            
+//            return MethodAPIType.getDiscussionsByHot(limit: limit)
+            return MethodAPIType.getDiscussionsByTrending(limit: limit)
+
         /// New discussions.
         case .new:
-            return MethodApiType.getDiscussionsByCreated(limit: limit)
+//            return MethodAPIType.getDiscussionsByCreated(limit: limit)
+            return MethodAPIType.getDiscussionsByTrending(limit: limit)
 
         /// Popular discussions.
         case .popular:
-            return MethodApiType.getDiscussionsByTrending(limit: limit)
+            return MethodAPIType.getDiscussionsByTrending(limit: limit)
 
         /// Promoted discussions.
         case .promoted:
-            return MethodApiType.getDiscussionsByPromoted(limit: limit)
+//            return MethodAPIType.getDiscussionsByPromoted(limit: limit)
+            return MethodAPIType.getDiscussionsByTrending(limit: limit)
         }
     }
 }

@@ -11,7 +11,7 @@ import Foundation
 /// Array of request unique IDs
 public var requestIDs               =   [Int]()
 /// Type of request API
-public typealias RequestAPIType     =   (id: Int, message: String, startTime: Date)
+public typealias RequestAPIType     =   (id: Int, message: String, startTime: Date, methodAPIType: MethodAPIType)
 /// Type of response API
 public typealias ResponseAPIType    =   (responseType: Decodable, hasError: Bool)
 /// Type of stored request API
@@ -30,7 +30,7 @@ public class GolosBlockchainManager {
      - Returns: Return `RequestAPIType` tuple.
 
      */
-    public static func prepareToFetchData(byMethod method: MethodApiType) -> RequestAPIType? {
+    public static func prepareToFetchData(byMethod method: MethodAPIType) -> RequestAPIType? {
         Logger.log(message: "Success", event: .severe)
         
         /**
@@ -71,7 +71,7 @@ public class GolosBlockchainManager {
             let jsonString          =   String(data: jsonData, encoding: .utf8)!.replacingOccurrences(of: "]}", with: ",\(jsonParamsString)]}")
             Logger.log(message: "\nEncoded JSON -> String:\n\t " + jsonString, event: .debug)
             
-            return (id: codeID, message: jsonString, startTime: Date())
+            return (id: codeID, message: jsonString, startTime: Date(), methodAPIType: requestParamsType.methodAPIType)
         } catch {
             Logger.log(message: "Error: \(error.localizedDescription)", event: .error)
             return nil
