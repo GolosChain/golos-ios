@@ -20,7 +20,7 @@ class PostsFeedManager {
         // API
         DispatchQueue.main.async {
             webSocketManager.sendRequest(withType: requestAPIType) { (responseAPIType) in
-                Logger.log(message: "responseAPIType: \(responseAPIType)", event: .debug)
+//                Logger.log(message: "responseAPIType: \(responseAPIType)", event: .debug)
                 
                 guard !responseAPIType.hasError else {
                     Logger.log(message: "\((responseAPIType.responseType as! ResponseAPIResultError).error.message)", event: .error)
@@ -55,13 +55,11 @@ class PostsFeedManager {
         switch type {
         /// Hot (actual) discussions.
         case .actual:
-//            return MethodAPIType.getDiscussionsByHot(limit: limit)
-            return MethodAPIType.getDiscussionsByTrending(limit: limit)
+            return MethodAPIType.getDiscussionsByHot(limit: limit)
 
         /// New discussions.
         case .new:
-//            return MethodAPIType.getDiscussionsByCreated(limit: limit)
-            return MethodAPIType.getDiscussionsByTrending(limit: limit)
+            return MethodAPIType.getDiscussionsByCreated(limit: limit)
 
         /// Popular discussions.
         case .popular:
@@ -69,8 +67,7 @@ class PostsFeedManager {
 
         /// Promoted discussions.
         case .promoted:
-//            return MethodAPIType.getDiscussionsByPromoted(limit: limit)
-            return MethodAPIType.getDiscussionsByTrending(limit: limit)
+            return MethodAPIType.getDiscussionsByPromoted(limit: limit)
         }
     }
 }

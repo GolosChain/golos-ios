@@ -7,21 +7,43 @@
 //
 
 import UIKit
+import Localize_Swift
 
 struct Utils {
-    static func showAlert(title: String? = "Alert", message: String) {
-        let alertController = UIAlertController(title:              title,
-                                                message:            message,
-                                                preferredStyle:     .alert)
-       
-        let action = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
-        
-        alertController.addAction(action)
-        
-        alertController.show()
-    }
+    // DELETE AFTER TEST
+//    static func showAlert(title: String = "Alert", message: String) {
+//        let alertController = UIAlertController(title:              title.localized(),
+//                                                message:            message.localized(),
+//                                                preferredStyle:     .alert)
+//
+//        let action = UIAlertAction(title: "Ok".localized(), style: .cancel, handler: nil)
+//
+//        alertController.addAction(action)
+//
+//        alertController.show()
+//    }
     
+    static func showAlertView(withTitle title: String, andMessage message: String, needCancel cancel: Bool, completion: @escaping ((Bool) -> Void)) {
+        let alertViewController = UIAlertController.init(title: title.localized(), message: message.localized(), preferredStyle: .alert)
+        
+        let alertViewControllerOkAction = UIAlertAction.init(title: (cancel ? "ActionYes".localized() : "ActionOk".localized()), style: .default, handler: { _ in
+            return completion(true)
+        })
+        
+        alertViewController.addAction(alertViewControllerOkAction)
+        
+        if cancel {
+            let alertViewControllerCancelAction = UIAlertAction.init(title: "ActionCancel".localized(), style: .default, handler: { _ in
+                return completion(false)
+            })
+            
+            alertViewController.addAction(alertViewControllerCancelAction)
+        }
+        
+        alertViewController.show()
+    }
+
     static func inDevelopmentAlert() {
-        showAlert(message: "In development")
+        self.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
     }
 }

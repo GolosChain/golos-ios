@@ -174,7 +174,7 @@ extension ProfileViewController: ProfileHeaderViewDelegate {
 // MARK: ProfileViewProtocol
 extension ProfileViewController: ProfileViewProtocol {
     func didFail(with errorMessage: String) {
-        Utils.showAlert(message: errorMessage)
+        Utils.showAlertView(withTitle: "Error", andMessage: errorMessage, needCancel: false, completion: { _ in })
     }
     
     func didRefreshUser() {

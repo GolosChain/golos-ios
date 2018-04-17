@@ -76,6 +76,7 @@
 		7DFE7C462046395B0057F144 /* ReplyRequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFE7C452046395B0057F144 /* ReplyRequestType.swift */; };
 		7DFE7C4920464C1E0057F144 /* PostsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFE7C4820464C1E0057F144 /* PostsManager.swift */; };
 		7DFE7C4B20464C680057F144 /* PostRequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFE7C4A20464C680057F144 /* PostRequestType.swift */; };
+		B18DB44E2085D22A00BA5D50 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B18DB4502085D22A00BA5D50 /* Localizable.strings */; };
 		B199DF92207F48870022C5FA /* GolosBlockchainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B199DF91207F48870022C5FA /* GolosBlockchainManager.swift */; };
 		B199DF95207F49230022C5FA /* MethodAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B199DF94207F49230022C5FA /* MethodAPI.swift */; };
 		B199DF97207F8A420022C5FA /* RequestAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B199DF96207F8A420022C5FA /* RequestAPI.swift */; };
@@ -231,6 +232,9 @@
 		7DFE7C4820464C1E0057F144 /* PostsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsManager.swift; sourceTree = "<group>"; };
 		7DFE7C4A20464C680057F144 /* PostRequestType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRequestType.swift; sourceTree = "<group>"; };
 		974FDF6AE6B94E5A2BFC2FDE /* Pods-Golos.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Golos.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Golos/Pods-Golos.debug.xcconfig"; sourceTree = "<group>"; };
+		B18DB44B2085D1DB00BA5D50 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		B18DB44F2085D22A00BA5D50 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B18DB4512085D22C00BA5D50 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B199DF91207F48870022C5FA /* GolosBlockchainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GolosBlockchainManager.swift; sourceTree = "<group>"; };
 		B199DF94207F49230022C5FA /* MethodAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MethodAPI.swift; sourceTree = "<group>"; };
 		B199DF96207F8A420022C5FA /* RequestAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestAPI.swift; sourceTree = "<group>"; };
@@ -608,6 +612,7 @@
 				EC1DFB9720063C400080BC50 /* LaunchScreen.storyboard */,
 				EC1DFB9A20063C400080BC50 /* Info.plist */,
 				7DCF55D0205883B5002FE7C3 /* Golos-Bridging-Header.h */,
+				B18DB4502085D22A00BA5D50 /* Localizable.strings */,
 			);
 			path = "golos-ios";
 			sourceTree = "<group>";
@@ -1002,6 +1007,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = EC1DFB8220063C400080BC50;
 			productRefGroup = EC1DFB8C20063C400080BC50 /* Products */;
@@ -1041,6 +1047,7 @@
 				7DFA6CAE2036D76000F59494 /* PostsFeedImageTableViewCell.xib in Resources */,
 				ECA8E35C2018CA30003B8ABA /* ProfileHorizontalSelectorView.xib in Resources */,
 				EC1DFB9620063C400080BC50 /* Assets.xcassets in Resources */,
+				B18DB44E2085D22A00BA5D50 /* Localizable.strings in Resources */,
 				7D25B488201F4978004A3400 /* ArticleViewController.xib in Resources */,
 				ECC15FA4200976770099BBC9 /* IntroViewController.xib in Resources */,
 				7DCF74A4201FE1E400D46495 /* ArticleCommentsSectionHeader.xib in Resources */,
@@ -1264,10 +1271,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		B18DB4502085D22A00BA5D50 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B18DB44F2085D22A00BA5D50 /* en */,
+				B18DB4512085D22C00BA5D50 /* ru */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		EC1DFB9720063C400080BC50 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				EC1DFB9820063C400080BC50 /* Base */,
+				B18DB44B2085D1DB00BA5D50 /* ru */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -1279,6 +1296,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1338,6 +1356,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

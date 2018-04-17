@@ -39,7 +39,7 @@ public enum MethodAPIType {
                                                             paramsSecond:       ["limit":limit])
 
         case .getDiscussionsByTrending(let limit):  return (methodAPIType:      self,
-                                                            paramsFirst:        ["social_network", "get_discussions_by_trending"],
+                                                            paramsFirst:        ["social_network", "get_discussions_by_trending2"],
                                                             paramsSecond:       ["limit":limit])
 
         case .getDiscussionsByPromoted(let limit):  return (methodAPIType:      self,

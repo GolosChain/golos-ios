@@ -85,7 +85,7 @@ extension PostsFeedPresenter: PostsFeedPresenterProtocol {
             guard let strongSelf = self else { return }
             
             guard error == nil else {
-                Logger.log(message: "\(error!.localizedDescription)", event: .error)
+                Utils.showAlertView(withTitle: "Error", andMessage: "\(error!.localizedDescription)", needCancel: false, completion: { _ in })
                 return
             }
             
@@ -120,7 +120,7 @@ extension PostsFeedPresenter: PostsFeedPresenterProtocol {
             guard let strongSelf = self else { return }
            
             guard error == nil else {
-                Logger.log(message: "\(error!.localizedDescription)", event: .error)
+                Utils.showAlertView(withTitle: "Error", andMessage: "\(error!.localizedDescription)", needCancel: false, completion: { _ in })
                 return
             }
             
@@ -147,7 +147,7 @@ extension PostsFeedPresenter: PostsFeedPresenterProtocol {
             guard let strongSelf = self else {return}
 
             guard error == nil else {
-                Logger.log(message: "\(error!.localizedDescription)", event: .error)
+                Utils.showAlertView(withTitle: "Error", andMessage: "\(error!.localizedDescription)", needCancel: false, completion: { _ in })
                 return
             }
             
@@ -170,19 +170,19 @@ extension PostsFeedPresenter: PostsFeedPresenterProtocol {
     
     // TEMPORARY
     func parsePostModel(_ postModel: PostModel) -> PostsFeedViewModel {
-        return PostsFeedViewModel(authorName: postModel.authorName,
-                                  authorAvatarUrl: postModel.author?.pictureUrl,
-                                  articleTitle: postModel.title,
-                                  reblogAuthorName: postModel.reblogAuthorName,
-                                  theme: postModel.category,
-                                  articleBody: postModel.body,
-                                  postDescription: postModel.description,
-                                  imagePictureUrl: postModel.pictureUrl,
-                                  tags: postModel.tags,
-                                  upvoteAmount: "\(postModel.votes.count)",
-            commentsAmount: postModel.replies == nil ? "-" :"\(postModel.replies!.count)",
-            didUpvote: postModel.isVoteAllow,
-            didComment: postModel.isCommentAllow)
+        return  PostsFeedViewModel(authorName:          postModel.authorName,
+                                   authorAvatarUrl:     postModel.author?.pictureUrl,
+                                   articleTitle:        postModel.title,
+                                   reblogAuthorName:    postModel.reblogAuthorName,
+                                   theme:               postModel.category,
+                                   articleBody:         postModel.body,
+                                   postDescription:     postModel.description,
+                                   imagePictureUrl:     postModel.pictureUrl,
+                                   tags:                postModel.tags,
+                                   upvoteAmount:        "\(postModel.votes.count)",
+                                   commentsAmount:      postModel.replies == nil ? "-" :"\(postModel.replies!.count)",
+                                   didUpvote:           postModel.isVoteAllow,
+                                   didComment:          postModel.isCommentAllow)
     }
     
     func parse(posts: [PostModel]) -> [PostsFeedViewModel] {

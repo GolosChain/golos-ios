@@ -114,7 +114,7 @@ class LoginViewController: UIViewController {
     
     @IBAction func registerButtonPressed(_ sender: Any) {
         guard let moreUrl = URL.init(string: Constants.Urls.registration) else {
-            Utils.showAlert(title: "Wrong registration url", message: "Developer error!")
+            Utils.showAlertView(withTitle: "Error", andMessage: "Developer error!", needCancel: false, completion: { _ in })
             return
         }
         

@@ -106,7 +106,7 @@ class IntroViewController: UIViewController {
         Logger.log(message: "Success", event: .severe)
 
         guard let moreUrl = URL.init(string: Constants.Urls.registration) else {
-            Utils.showAlert(title: "Wrong registration url", message: "Developer error!")
+            Utils.showAlertView(withTitle: "Error", andMessage: "Developer error!", needCancel: false, completion: { _ in })
             return
         }
         
@@ -117,7 +117,7 @@ class IntroViewController: UIViewController {
         Logger.log(message: "Success", event: .severe)
 
         guard let moreUrl = URL.init(string: Constants.Urls.moreInfoAbout) else {
-            Utils.showAlert(title: "Wrong more info url", message: "Developer error!")
+            Utils.showAlertView(withTitle: "Error", andMessage: "Developer error!", needCancel: false, completion: { _ in })
             return
         }
         
