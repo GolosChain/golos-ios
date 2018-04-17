@@ -3,7 +3,7 @@ excluded:
 - Carthage
 
 line_length:
-- 200 #warning
+- 250 #warning
 - 300 #error
 
 identifier_name:
@@ -27,3 +27,4 @@ disabled_rules:
 - statement_position
 - todo
 - colon
+- empty_enum_arguments

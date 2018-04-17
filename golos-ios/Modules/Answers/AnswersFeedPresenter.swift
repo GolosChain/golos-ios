@@ -54,12 +54,10 @@ class AnswersFeedPresenter: NSObject, AnswersFeedPresenterProtocol {
 
 // MARK: - Extensions
 extension AnswersFeedPresenter {
-    // swiftlint:disable line_length
     private func fetchFakeAnswers() -> [AnswersFeedViewModel] {
         let fakeAnswer1 = AnswersFeedViewModel(authorName: "digitalbeauty", authorPictureUrl: nil, authorVoicePower: "23", text: "Услышав, что приговор остается в силе Слободан Пральяк совершил что-то там", time: "4 дн назад", type: .comment)
         let fakeAnswer2 = AnswersFeedViewModel(authorName: "konstantin konstantinopolskiy", authorPictureUrl: nil, authorVoicePower: "23", text: "Макларен призвал МОК применить к России коллективные санкции", time: "5 дн назад", type: .post)
         
         return [fakeAnswer1, fakeAnswer2, fakeAnswer1, fakeAnswer2, fakeAnswer1, fakeAnswer2, fakeAnswer1, fakeAnswer2]
     }
-    // swiftlint:enable line_length
 }
