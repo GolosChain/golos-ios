@@ -13,14 +13,6 @@ struct ResponseAPIResultError: Decodable {
     let error: ResponseAPIError
     let id: Int64
     let jsonrpc: String
-    
-    
-    // MARK: - Custom Functions
-//    func createError() -> NSError {
-//        return NSError(domain:      "io.golos.websocket",
-//                       code:        Int(error.code),
-//                       userInfo:    [NSLocalizedDescriptionKey: error.message.components(separatedBy: "second.end(): ").last!])
-//    }
 }
 
 struct ResponseAPIError: Decodable {
@@ -39,7 +31,7 @@ struct ResponseAPIResult: Decodable {
 struct ResponseAPIFeed: Decodable {
     // MARK: - Properties
     // swiftlint:disable identifier_name
-    let abs_rshares: String
+    let abs_rshares: Conflicted
     let active: String
     let active_votes: [ResponseAPIActiveVote]
 
@@ -55,7 +47,7 @@ struct ResponseAPIFeed: Decodable {
     let cashout_time: String                // "2018-04-20T10:19:54"
     let category: String
     let children: Int
-    let children_abs_rshares: String
+    let children_abs_rshares: Conflicted
     let children_rshares2: String
     let created: String                     // "2018-04-13T10:19:54"
     let curator_payout_value: String
@@ -67,7 +59,7 @@ struct ResponseAPIFeed: Decodable {
     let max_accepted_payout: String
     let max_cashout_time: String            // "1969-12-31T23:59:59"
     let mode: String
-    let net_rshares: String
+    let net_rshares: Conflicted
     let net_votes: Int64
     let parent_author: String?
     let parent_permlink: String
@@ -85,9 +77,8 @@ struct ResponseAPIFeed: Decodable {
     let total_pending_payout_value: String
     let total_vote_weight: String
     let url: String
-    let vote_rshares: String
+    let vote_rshares: Conflicted
     // swiftlint:enable identifier_name
-
 }
 
 struct ResponseAPIActiveVote: Decodable {

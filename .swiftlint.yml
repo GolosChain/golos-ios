@@ -3,8 +3,8 @@ excluded:
 - Carthage
 
 line_length:
-- 250 #warning
-- 300 #error
+- 350 #warning
+- 400 #error
 
 identifier_name:
   min_length: 2 #only min_length

@@ -69,8 +69,8 @@ class FeedViewController: UIViewController {
         configureBackButton()
         
         let selectorItems = presenter.getPostsFeedTypeArray()
-            .map { $0.rawValue }
-            .map { HorizontalSelectorItem(title: $0) }
+//            .map { $0.rawValue }
+            .map { HorizontalSelectorItem(title: $0.caseTitle()) }
         
         horizontalSelector.items = selectorItems
         horizontalSelector.delegate = self

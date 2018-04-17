@@ -10,11 +10,10 @@ import Foundation
 
 class PostsFeedManager {
     // MARK: - Custom Functions
-    
     func loadFeed(withType type: PostsFeedType, andLimit limit: Int, completion: @escaping ([PostModel], ErrorAPI?) -> Void) {
         Logger.log(message: "Success", event: .severe)
         
-        let requestAPIType = GolosBlockchainManager.prepareToFetchData(byMethod: self.methodForPostsFeed(fotType: type, andLimit: limit))!
+        let requestAPIType = GolosBlockchainManager.fetchData(byMethod: self.methodForPostsFeed(fotType: type, andLimit: limit))!
         Logger.log(message: "requestAPIType = \(requestAPIType)", event: .debug)
         
         // API
@@ -22,8 +21,8 @@ class PostsFeedManager {
             webSocketManager.sendRequest(withType: requestAPIType) { (responseAPIType) in
 //                Logger.log(message: "responseAPIType: \(responseAPIType)", event: .debug)
                 
-                guard !responseAPIType.hasError else {
-                    completion([], ErrorAPI.requestFailed(message: (responseAPIType.responseType as! ResponseAPIResultError).error.message.components(separatedBy: "second.end(): ").last!))
+                guard let responseAPI = responseAPIType.responseAPI else {
+                    completion([], responseAPIType.errorAPI)
                     return
                 }
                 

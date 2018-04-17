@@ -7,10 +7,20 @@
 //
 
 import Foundation
+import Localize_Swift
 
 enum PostsFeedType: String {
-    case new        =   "Новое"
-    case actual     =   "Актуальное"
-    case popular    =   "Популярное"
-    case promoted   =   "Промо"
+    case new
+    case actual
+    case popular
+    case promoted
+    
+    func caseTitle() -> String {
+        switch self {
+        case .new:          return "New".localized()
+        case .actual:       return "Actual".localized()
+        case .popular:      return "Popular".localized()
+        case .promoted:     return "Promoted".localized()
+        }
+    }
 }

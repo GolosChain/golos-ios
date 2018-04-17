@@ -81,11 +81,11 @@ extension PostsFeedPresenter: PostsFeedPresenterProtocol {
     func loadPosts() {
         Logger.log(message: "Success", event: .severe)
 
-        postsFeedManager.loadFeed(withType: postsFeedType, andLimit: postsLimit) { [weak self] posts, error in
+        postsFeedManager.loadFeed(withType: postsFeedType, andLimit: postsLimit) { [weak self] posts, errorAPI in
             guard let strongSelf = self else { return }
             
-            guard error == nil else {
-                Utils.showAlertView(withTitle: "Error", andMessage: "\(error!.localizedDescription)", needCancel: false, completion: { _ in })
+            guard errorAPI == nil else {
+                Utils.showAlertView(withTitle: "Error", andMessage: errorAPI!.localizedDescription, needCancel: false, completion: { _ in })
                 return
             }
             

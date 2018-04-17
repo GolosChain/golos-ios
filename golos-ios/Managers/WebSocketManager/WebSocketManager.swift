@@ -11,6 +11,7 @@ import Starscream
 
 class WebSocketManager {
     // MARK: - Properties
+    private var errorAPI: ErrorAPI?
     private var requestsAPIStore = [Int: RequestAPIStore]()
     
     
@@ -52,7 +53,7 @@ class WebSocketManager {
         let requestStore = (type: type, completion: completion)
         requestsAPIStore[type.id] = requestStore
         
-        webSocket.isConnected ? sendMessage(type.message) : webSocket.connect()
+        webSocket.isConnected ? sendMessage(type.requestMessage) : webSocket.connect()
     }
     
     private func decode(from jsonData: Data, byMethodAPIType methodAPIType: MethodAPIType) throws -> Decodable? {
@@ -62,6 +63,8 @@ class WebSocketManager {
                 return try JSONDecoder().decode(ResponseAPIResult.self, from: jsonData)
             }
         } catch {
+            Logger.log(message: "\(error)", event: .error)
+            self.errorAPI = ErrorAPI.jsonParsingFailure(message: error.localizedDescription)
             return nil
         }
     }
@@ -79,7 +82,7 @@ extension WebSocketManager: WebSocketDelegate {
         
         Logger.log(message: "requestsApiStore = \(requestsAPIStore)", event: .debug)
         for (_, requestApiStore) in requestsAPIStore {
-            sendMessage(requestApiStore.type.message)
+            sendMessage(requestApiStore.type.requestMessage)
         }
     }
     
@@ -101,11 +104,16 @@ extension WebSocketManager: WebSocketDelegate {
                     let jsonDecoder = JSONDecoder()
                     
                     if hasError {
-                        responseAPIResult = try jsonDecoder.decode(ResponseAPIResultError.self, from: jsonData)
+                        let responseAPIResultError = try jsonDecoder.decode(ResponseAPIResultError.self, from: jsonData)
+                        self.errorAPI = ErrorAPI.requestFailed(message: responseAPIResultError.error.message.components(separatedBy: "second.end(): ").last!)
                     }
                         
                     else {
                         responseAPIResult = try self.decode(from: jsonData, byMethodAPIType: requestAPIStore.type.methodAPIType)
+                        
+                        guard responseAPIResult != nil else {
+                            return requestAPIStore.completion((responseAPI: nil, errorAPI: self.errorAPI))
+                        }
                     }
 
 //                    Logger.log(message: "responseAPIResult model:\n\t\(responseAPIResult)", event: .debug)
@@ -115,9 +123,9 @@ extension WebSocketManager: WebSocketDelegate {
                     Logger.log(message: "webSocket timeout = \(timeout) sec", event: .debug)
                     
                     if timeout >= webSocketTimeout {
-                        let newRequestAPIStore = (type: (id: requestAPIStore.type.id, message: requestAPIStore.type.message, startTime: Date(), methodAPIType: requestAPIStore.type.methodAPIType), completion: requestAPIStore.completion)
+                        let newRequestAPIStore = (type: (id: requestAPIStore.type.id, requestMessage: requestAPIStore.type.requestMessage, startTime: Date(), methodAPIType: requestAPIStore.type.methodAPIType), completion: requestAPIStore.completion)
                         self.requestsAPIStore[codeID] = newRequestAPIStore
-                        self.sendMessage(newRequestAPIStore.type.message)
+                        self.sendMessage(newRequestAPIStore.type.requestMessage)
                     }
                         
                     // Check websocket timeout: handler completion
@@ -130,12 +138,12 @@ extension WebSocketManager: WebSocketDelegate {
                             requestIDs.remove(at: requestID)
                         }
                         
-                        requestAPIStore.completion((responseType: responseAPIResult, hasError: hasError))
+                        requestAPIStore.completion((responseAPI: responseAPIResult, errorAPI: self.errorAPI))
                     }
                 } catch {
-                    Logger.log(message: "Decode jsonData error: \(error.localizedDescription)", event: .error)
-                    let responseAPIResultError = ResponseAPIResultError(error: ResponseAPIError(code: 666, message: "Error decode jsonData"), id: Int64(codeID), jsonrpc: "2.0")
-                    requestAPIStore.completion((responseType: responseAPIResultError, hasError: true))
+                    Logger.log(message: "Response Unsuccessful: \(error.localizedDescription)", event: .error)
+                    self.errorAPI = ErrorAPI.responseUnsuccessful(message: error.localizedDescription)
+                    requestAPIStore.completion((responseAPI: nil, errorAPI: self.errorAPI))
                 }
             })
         }

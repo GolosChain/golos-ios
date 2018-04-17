@@ -9,7 +9,7 @@
 import Foundation
 import Localize_Swift
 
-enum ErrorAPI: Error {
+public enum ErrorAPI: Error {
     case requestFailed(message: String)
     case jsonConversionFailure(message: String)
     case invalidData(message: String)
