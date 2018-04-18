@@ -23,7 +23,7 @@ struct PostModel {
     let tags: [String]
     let votes: [PostVoteModel]
     var replies: [PostReplyModel]?
-    var author: UserModel?
+    var author: DisplayedUser?
     
     
     

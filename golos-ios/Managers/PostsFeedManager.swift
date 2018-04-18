@@ -15,7 +15,9 @@ class PostsFeedManager {
      
      - Parameter type: The case value of Feed type.
      - Parameter limit: The limit value.
-     - Parameter completion: Return two values.
+     - Parameter completion: Contains two values:
+     - Parameter displayedPosts: Array of `DisplayedPost`.
+     - Parameter errorAPI: Type `ErrorAPI`.
 
      */
     func loadPostsFeed(withType type: PostsFeedType, andLimit limit: Int, completion: @escaping ((_ displayedPosts: [DisplayedPost]?, _ errorAPI: ErrorAPI?) -> Void)) {
@@ -24,7 +26,7 @@ class PostsFeedManager {
         let requestAPIType = GolosBlockchainManager.fetchData(byMethod: self.methodForPostsFeed(fotType: type, andLimit: limit))!
         Logger.log(message: "requestAPIType = \(requestAPIType)", event: .debug)
         
-        // API
+        // API 'get_discussions_by_' 4 types
         DispatchQueue.main.async {
             webSocketManager.sendRequest(withType: requestAPIType) { (responseAPIType) in
 //                Logger.log(message: "responseAPIType: \(responseAPIType)", event: .debug)
@@ -34,8 +36,9 @@ class PostsFeedManager {
                     return
                 }
                 
-                let displayedPosts = responseAPIResult.result.compactMap({ DisplayedPost(fromPostsFeed: $0) })
+                let displayedPosts = responseAPIResult.result.compactMap({ DisplayedPost(fromResponseAPIFeed: $0) })
                 
+                // Return to file `PostsFeedPresenter.swift`
                 completion(displayedPosts, nil)
             }
         }

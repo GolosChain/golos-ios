@@ -11,7 +11,7 @@ import UIKit
 protocol ProfilePresenterProtocol: class {
     func setUsername(username: String?)
     // TODO: Remove userModel from presenter when add local cache
-    func setUser(_ userModel: UserModel?)
+    func setUser(_ userModel: DisplayedUser?)
     
     func getProfileViewModel() -> ProfileViewModel?
     func fetchUser()
@@ -29,7 +29,7 @@ class ProfilePresenter: NSObject {
     weak var profileView: ProfileViewProtocol!
     
     private var username: String?
-    private var user: UserModel? {
+    private var user: DisplayedUser? {
         didSet {
             if let user = user {
                 self.viewModel = ProfileViewModel(userModel: user)
@@ -56,7 +56,7 @@ extension ProfilePresenter: ProfilePresenterProtocol {
         self.username = username
     }
     
-    func setUser(_ userModel: UserModel?) {
+    func setUser(_ userModel: DisplayedUser?) {
         self.user = userModel
     }
     

@@ -38,7 +38,7 @@ struct DisplayedPost {
     
     
     // MARK: - Class Initialization
-    init(fromPostsFeed feed: ResponseAPIFeed) {
+    init(fromResponseAPIFeed feed: ResponseAPIFeed) {
         let parser              =   PostParser()
 
         self.id                 =   feed.id

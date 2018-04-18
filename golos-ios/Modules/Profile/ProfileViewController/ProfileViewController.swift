@@ -44,7 +44,7 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
     var isNeedToStartRefreshing = false
     
     var username: String?
-    var user: UserModel?
+    var user: DisplayedUser?
     
     // MARK: Module properties
     lazy var presenter: ProfilePresenterProtocol = {

@@ -164,7 +164,7 @@ extension PostsFeedPresenter: PostsFeedPresenterProtocol {
     // TEMPORARY
     func parsePostModel(_ postModel: PostModel) -> PostsFeedViewModel {
         return  PostsFeedViewModel(authorName:          postModel.authorName,
-                                   authorAvatarUrl:     postModel.author?.pictureUrl,
+                                   authorAvatarUrl:     postModel.author?.pictureURL,
                                    articleTitle:        postModel.title,
                                    reblogAuthorName:    postModel.reblogAuthorName,
                                    theme:               postModel.category,
