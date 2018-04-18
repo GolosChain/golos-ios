@@ -34,8 +34,8 @@ public enum MethodAPIType {
     func introduced() -> RequestParametersType {
         switch self {
         case .getAccounts(let names):               return (methodAPIType:      self,
-                                                            paramsFirst:        ["social_network", "get_accounts"],
-                                                            paramsSecond:       ["names":names])
+                                                            paramsFirst:        ["database_api", "get_accounts"],
+                                                            paramsSecond:       [names])
             
         case .getDiscussionsByHot(let limit):       return (methodAPIType:      self,
                                                             paramsFirst:        ["social_network", "get_discussions_by_hot"],

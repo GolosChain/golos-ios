@@ -29,7 +29,7 @@ class PostsFeedManager {
             webSocketManager.sendRequest(withType: requestAPIType) { (responseAPIType) in
 //                Logger.log(message: "responseAPIType: \(responseAPIType)", event: .debug)
                 
-                guard let responseAPI = responseAPIType.responseAPI, let responseAPIResult = responseAPI as? ResponseAPIResult else {
+                guard let responseAPI = responseAPIType.responseAPI, let responseAPIResult = responseAPI as? ResponseAPIFeedResult else {
                     completion(nil, responseAPIType.errorAPI)
                     return
                 }

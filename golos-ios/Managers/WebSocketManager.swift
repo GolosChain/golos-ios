@@ -60,10 +60,10 @@ class WebSocketManager {
         do {
             switch methodAPIType {
             case .getAccounts(_):
-                return try JSONDecoder().decode(ResponseAPIResult.self, from: jsonData)
+                return try JSONDecoder().decode(ResponseAPIUserResult.self, from: jsonData)
                 
             case .getDiscussionsByHot(_), .getDiscussionsByCreated(_), .getDiscussionsByTrending(_), .getDiscussionsByPromoted(_):
-                return try JSONDecoder().decode(ResponseAPIResult.self, from: jsonData)
+                return try JSONDecoder().decode(ResponseAPIFeedResult.self, from: jsonData)
             }
         } catch {
             Logger.log(message: "\(error)", event: .error)

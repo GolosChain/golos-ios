@@ -68,7 +68,8 @@ public class GolosBlockchainManager {
             let jsonParamsString    =   "[\(String(data: jsonData, encoding: .utf8)!)]"
             
             jsonData                =   try jsonEncoder.encode(requestAPI)
-            let jsonString          =   String(data: jsonData, encoding: .utf8)!.replacingOccurrences(of: "]}", with: ",\(jsonParamsString)]}")
+            var jsonString          =   String(data: jsonData, encoding: .utf8)!.replacingOccurrences(of: "]}", with: ",\(jsonParamsString)]}")
+            jsonString              =   jsonString.replacingOccurrences(of: "[[[", with: "[[").replacingOccurrences(of: "]]]", with: "]]")
             Logger.log(message: "\nEncoded JSON -> String:\n\t " + jsonString, event: .debug)
             
             return (id: codeID, requestMessage: jsonString, startTime: Date(), methodAPIType: requestParamsType.methodAPIType)

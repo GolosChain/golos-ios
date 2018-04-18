@@ -9,7 +9,6 @@
 import Foundation
 
 //reblogAuthorName:    postModel.reblogAuthorName,          String?
-//tags:                postModel.tags,                      [String]
 //commentsAmount:      postModel.replies == nil ? "-" :"\(postModel.replies!.count)",   String
 //didComment:          postModel.isCommentAllow)            Bool
 
