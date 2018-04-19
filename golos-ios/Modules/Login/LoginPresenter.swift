@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Locksmith
 
 protocol LoginView: ViewProtocol {
     func didStartLogin()
@@ -14,25 +15,33 @@ protocol LoginView: ViewProtocol {
 }
 
 class LoginPresenter: NSObject {
+    // MARK: - Properties
     weak var view: LoginView!
-    
+    var loginUIStrings: LoginUIStrings!
+    let stateMachine = StateMachine.load()
+
     var loginType = LoginType.postingKey {
         didSet {
             refreshUIStrings()
         }
     }
-    var loginUIStrings: LoginUIStrings!
     
-    let stateMachine = StateMachine.load()
     
+    // MARK: - Class Initialization
     override init() {
         super.init()
         refreshUIStrings()
     }
     
-    func login(with login: String?,
-               key: String?) {
+    deinit {
+        Logger.log(message: "Success", event: .severe)
+    }
+    
+
+    // MARK: - Custom Functions
+    func login(with login: String?, key: String?) {
         var errorMessage: String?
+        
         defer {
             if let errorMessage = errorMessage {
                 view.didFail(with: errorMessage)
@@ -56,16 +65,32 @@ class LoginPresenter: NSObject {
         stateMachine.changeState(.loggedIn)
     }
     
-    private func startLogin(with login: String,
-                            key: String) {
+    private func startLogin(with login: String, key: String) {
         view.didStartLogin()
         
+        // Delete stored data from Keychain
+        do {
+            try Locksmith.deleteDataForUserAccount(userAccount: "UserDataInfo")
+            Logger.log(message: "Successfully delete Login data from Keychain.", event: .severe)
+        } catch {
+            Logger.log(message: "Delete Login data from Keychain error.", event: .error)
+        }
+
         let delayTime = DispatchTime.now() + .seconds(1)
+       
         DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: delayTime) { [weak self] in
             guard let strongSelf = self else {return}
             
             DispatchQueue.main.async {
                 strongSelf.view.didLoginSuccessed()
+                
+                // Save login data to Keychain
+                do {
+                    try Locksmith.saveData(data: [ "login": login, "key": key], forUserAccount: "UserAuthInfo")
+                    Logger.log(message: "Successfully save Login data to Keychain.", event: .severe)
+                } catch {
+                    Logger.log(message: "Save Login data to Keychain error.", event: .error)
+                }
             }
         }
     }
