@@ -94,6 +94,7 @@ extension WebSocketManager: WebSocketDelegate {
         var responseAPIResult: Decodable!
         
         if let jsonData = text.data(using: .utf8), let json = try? JSONSerialization.jsonObject(with: jsonData, options: .mutableLeaves) as! [String: Any] {
+//            Logger.log(message: "text:\n\(text)", event: .debug)
 //            Logger.log(message: "json:\n\t\(json)", event: .debug)
 
             // Check error.

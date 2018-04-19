@@ -17,7 +17,7 @@ protocol PostsFeedPresenterProtocol: class {
     func setPostsFeedType(_ type: PostsFeedType)
     func getPostsViewModels() -> [PostsFeedViewModel]
     func getPostViewModel(at index: Int) -> PostsFeedViewModel?
-    func getPostPermalinkAndAuthorName(at index: Int) -> (permalink: String, author: String)
+    func getPostPermalinkAndAuthorName(at index: Int) -> (permlink: String, authorName: String)
     
 //    func loadRepliesForPost(at index: Int)
 }
@@ -32,32 +32,31 @@ class PostsFeedPresenter: NSObject {
     // MARK: - Properties
     weak var postsFeedView: PostsFeedViewProtocol!
     
-    private var postsFeedType: PostsFeedType = .new
-    private var postsItems = [PostsFeedViewModel]()
-    private var displayedPosts = [DisplayedPost]()
-    private var postsLimit = webSocketLimit
     private let batchCount = 10
-    
-    private let postsFeedManager = PostsFeedManager()
+    private var postsLimit = webSocketLimit
+    private var displayedPosts = [DisplayedPost]()
+    private var postsItems = [PostsFeedViewModel]()
+    private var postsFeedType: PostsFeedType = .new
+
     private let userManager = UserManager()
     private let replyManager = ReplyManager()
+    private let postsFeedManager = PostsFeedManager()
 }
 
 
 // MARK: - PostsFeedPresenterProtocol
 extension PostsFeedPresenter: PostsFeedPresenterProtocol {
-//    func getUser(at index: Int) -> UserModel? {
-//        Logger.log(message: "Success", event: .severe)
-//
-//        let displayedPost = displayedPosts[index]
-//        return displayedPost.author
-//    }
+    func getUser(at index: Int) -> DisplayedUser? {
+        Logger.log(message: "Success", event: .severe)
+        
+        return displayedPosts[index].author
+    }
     
-    func getPostPermalinkAndAuthorName(at index: Int) -> (permalink: String, author: String) {
+    func getPostPermalinkAndAuthorName(at index: Int) -> (permlink: String, authorName: String) {
         Logger.log(message: "Success", event: .severe)
 
         let displayedPost = displayedPosts[index]
-        return (displayedPost.permlink, displayedPost.authorName)
+        return (permlink: displayedPost.permlink, authorName: displayedPost.authorName)
     }
     
     func setPostsFeedType(_ type: PostsFeedType) {
@@ -93,7 +92,7 @@ extension PostsFeedPresenter: PostsFeedPresenterProtocol {
 //            strongSelf.postsItems = strongSelf.parse(posts: strongSelf.displayedPosts)
 //            strongSelf.postsFeedView.didLoadPosts()
 
-            strongSelf.loadUsers(forDisplayedPosts: strongSelf.displayedPosts)
+            strongSelf.loadUsers(byNames: strongSelf.displayedPosts.map({ $0.authorName }))
         }
     }
     
@@ -104,34 +103,35 @@ extension PostsFeedPresenter: PostsFeedPresenterProtocol {
         loadPostsFeed()
     }
     
-    private func loadUsers(forDisplayedPosts displayedPost: [DisplayedPost]) {
+    /// Load Users from Posts in Feed
+    private func loadUsers(byNames userNames: [String]) {
         Logger.log(message: "Success", event: .severe)
 
-        let authorNames = displayedPost.map({ $0.authorName })
-        
-        self.userManager.loadUsers(byNames: authorNames) { [weak self] (users, error) in
+        self.userManager.loadUsers(byNames: userNames) { [weak self] (displayedUsers, errorAPI) in
             guard let strongSelf = self else { return }
            
-            guard error == nil else {
-                Utils.showAlertView(withTitle: "Error", andMessage: "\(error!.localizedDescription)", needCancel: false, completion: { _ in })
+            guard errorAPI == nil else {
+                Utils.showAlertView(withTitle: "Error", andMessage: errorAPI!.localizedDescription, needCancel: false, completion: { _ in })
                 return
             }
             
             for (index, post) in strongSelf.displayedPosts.enumerated() {
-                let postUser = users!.first(where: {$0.name == post.authorName})
-//                strongSelf.displayedPosts[index].author = postUser
+                let postUser = displayedUsers!.first(where: { $0.name == post.authorName })
+                strongSelf.displayedPosts[index].author = postUser
             }
             
 //            strongSelf.postsItems = strongSelf.parse(posts: strongSelf.displayedPosts)
 //            strongSelf.postsFeedView.didLoadPostsAuthors()
             
-            for index in 0..<strongSelf.displayedPosts.count {
-//                for (index, _) in strongSelf.posts.enumerated() {
-                strongSelf.loadRepliesForPost(at: index)
-            }
+//            for index in 0..<strongSelf.displayedPosts.count {
+//                strongSelf.loadRepliesForPost(at: index)
+//            }
         }
     }
     
+    
+    // FIXME: - REMOVE COMMENTS AFTER ADD REPLIES
+    /*
     func loadRepliesForPost(at index: Int) {
         Logger.log(message: "Success", event: .severe)
 
@@ -144,11 +144,12 @@ extension PostsFeedPresenter: PostsFeedPresenterProtocol {
                 return
             }
             
-//            strongSelf.displayedPosts[index].replies = replies
-//            strongSelf.postsItems[index] = strongSelf.parsePostModel(strongSelf.displayedPosts[index])
-//            strongSelf.postsFeedView.didLoadPostReplies(at: index)
+            strongSelf.displayedPosts[index].replies = replies
+            strongSelf.postsItems[index] = strongSelf.parsePostModel(strongSelf.displayedPosts[index])
+            strongSelf.postsFeedView.didLoadPostReplies(at: index)
         }
     }
+    */
     
     func getPostsViewModels() -> [PostsFeedViewModel] {
         return postsItems

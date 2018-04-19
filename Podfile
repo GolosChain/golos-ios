@@ -7,6 +7,7 @@ target 'Golos' do
     pod 'Down'
     pod 'PINCache'
     pod 'SwiftLint'
+    pod 'Locksmith'
     pod 'Starscream', '~> 3.0'
     pod 'BeyovaJSON', '~> 0.0'
     pod 'Localize-Swift', '~> 2.0'

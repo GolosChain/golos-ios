@@ -457,10 +457,10 @@
 		7D911D1E2035ED7C00F19D3C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				7D911D1F2035F0A600F19D3C /* PostModel.swift */,
 				B18DB454208619A000BA5D50 /* DisplayedPost.swift */,
 				7D911D252035F6EA00F19D3C /* DisplayedUser.swift */,
 				7D7D564320368028003E06A6 /* PostItem.swift */,
-				7D911D1F2035F0A600F19D3C /* PostModel.swift */,
 				7D911D212035F5AA00F19D3C /* PostReplyModel.swift */,
 				7D911D232035F5C900F19D3C /* PostVoteModel.swift */,
 			);

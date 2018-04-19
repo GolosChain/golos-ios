@@ -11,28 +11,17 @@ import Down
 
 class PostParser {
     func getPictureURL(from body: String) -> String? {
-        var imageUrl: String?
+        let pattern     =   "(http(s?):)([/|.|\\w|\\s|-])*\\.(?:jpg|gif|png)(!d)?"
         
-//        let golosImgPatter = "\\bhttps?:[^)''\"]+\\.(?:jpg|jpeg|gif|png)"
-//        let golosRegex = try! NSRegularExpression(pattern: golosImgPatter)
-//        let golosResults = golosRegex.matches(in: body,
-//                                         range: NSRange.init(location: 0, length: body.count))
-//        if let match = golosResults.first {
-//            imageUrl = (body as NSString).substring(with: match.range)
-//            return imageUrl
-//        }
+        let regex       =   try! NSRegularExpression(pattern: pattern)
+        let results     =   regex.matches(in:       body,
+                                          range:    NSRange.init(location: 0, length: body.count))
         
-        let pattern = "(http(s?):)([/|.|\\w|\\s|-])*\\.(?:jpg|gif|png)(!d)?"
-        
-        let regex = try! NSRegularExpression(pattern: pattern)
-        let results = regex.matches(in: body,
-                                    range: NSRange.init(location: 0, length: body.count))
-        
-        if let match = results.first {
-            imageUrl = (body as NSString).substring(with: match.range)
+        guard let match = results.first else {
+            return nil
         }
-        
-        return imageUrl
+
+        return (body as NSString).substring(with: match.range)
     }
     
     func getDescription(from body: String) -> String {

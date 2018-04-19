@@ -19,7 +19,7 @@ struct DisplayedPost {
     let title: String
     let category: String
     let authorName: String
-    let authorAvatarURL: String?
+    let authorCoverImageURL: String?
     let imagePictureURL: String?
     let body: String
 
@@ -32,34 +32,34 @@ struct DisplayedPost {
     let activeVotesCount: String
     var tags: [String]?
 
+    var author: DisplayedUser?
     let activeVotes: [ResponseAPIActiveVote]
 //    var replies: [PostReplyModel]?
-//    var author: UserModel?
     
     
     // MARK: - Class Initialization
     init(fromResponseAPIFeed feed: ResponseAPIFeed) {
-        let parser              =   PostParser()
+        let parser                  =   PostParser()
 
-        self.id                 =   feed.id
-        self.title              =   feed.title
-        self.body               =   feed.body
-        self.category           =   feed.category
-        self.authorName         =   feed.author
-        self.authorAvatarURL    =   nil
-        self.imagePictureURL    =   parser.getPictureURL(from: feed.body)
-        self.allowVotes         =   feed.allow_votes
-        self.allowReplies       =   feed.allow_replies
-        self.permlink           =   feed.permlink
-        self.description        =   parser.getDescription(from: feed.body)
+        self.id                     =   feed.id
+        self.title                  =   feed.title
+        self.body                   =   feed.body
+        self.category               =   feed.category
+        self.authorName             =   feed.author
+        self.authorCoverImageURL    =   author?.coverImageURL
+        self.imagePictureURL        =   parser.getPictureURL(from: feed.body)
+        self.allowVotes             =   feed.allow_votes
+        self.allowReplies           =   feed.allow_replies
+        self.permlink               =   feed.permlink
+        self.description            =   parser.getDescription(from: feed.body)
 
-        self.activeVotes        =   feed.active_votes
-        self.activeVotesCount   =   String(format: "%i", feed.active_votes.count)
+        self.activeVotes            =   feed.active_votes
+        self.activeVotesCount       =   String(format: "%i", feed.active_votes.count)
         
         if let jsonMetaData = feed.json_metadata, let jsonData = jsonMetaData.data(using: .utf8) {
             do {
                 if let json = try JSONSerialization.jsonObject(with: jsonData, options: .allowFragments) as? [String: Any] {
-                    self.tags   =   json["tags"] as? [String]
+                    self.tags       =   json["tags"] as? [String]
                 }
             } catch {
                 Logger.log(message: "JSON serialization error", event: .error)

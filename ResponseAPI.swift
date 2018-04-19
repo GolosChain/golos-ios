@@ -140,7 +140,7 @@ struct ResponseAPIUser: Decodable {
 //    };
 
     let active_challenged: Bool
-    let average_bandwidth: Int64
+    let average_bandwidth: Conflicted
     let average_market_bandwidth: Conflicted
     let balance: String
 //    "blog_category" =     {
@@ -206,11 +206,11 @@ struct ResponseAPIUser: Decodable {
 //    };
     
     let posting_rewards: Int64
-    let proxied_vsf_votes: [Int64]
+    let proxied_vsf_votes: [Conflicted]
     let proxy: String?
     let received_vesting_shares: String
     let recovery_account: String
-    let reputation: String
+    let reputation: Conflicted
     let reset_account: String?
     let savings_balance: String
     let savings_sbd_balance: String

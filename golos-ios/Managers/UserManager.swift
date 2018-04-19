@@ -37,7 +37,7 @@ class UserManager {
                 
                 let displayedUsers = responseAPIResult.result.compactMap({ DisplayedUser(fromResponseAPIUser: $0) })
                 
-                // Return to file `UserPresenter.swift`
+                // Return to files: `UserPresenter.swift`, `PostsFeedPresenter.swift`
                 completion(displayedUsers, nil)
             }
         }
