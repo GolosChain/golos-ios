@@ -79,7 +79,7 @@ extension PostsFeedPresenter: PostsFeedPresenterProtocol {
             guard let strongSelf = self else { return }
             
             guard errorAPI == nil else {
-                Utils.showAlertView(withTitle: "Error", andMessage: errorAPI!.localizedDescription, needCancel: false, completion: { _ in })
+                Utils.showAlertView(withTitle: errorAPI!.caseInfo.title, andMessage: errorAPI!.caseInfo.message, needCancel: false, completion: { _ in })
                 return
             }
             
@@ -111,7 +111,7 @@ extension PostsFeedPresenter: PostsFeedPresenterProtocol {
             guard let strongSelf = self else { return }
            
             guard errorAPI == nil else {
-                Utils.showAlertView(withTitle: "Error", andMessage: errorAPI!.localizedDescription, needCancel: false, completion: { _ in })
+                Utils.showAlertView(withTitle: errorAPI!.caseInfo.title, andMessage: errorAPI!.caseInfo.message, needCancel: false, completion: { _ in })
                 return
             }
             
@@ -140,7 +140,7 @@ extension PostsFeedPresenter: PostsFeedPresenterProtocol {
             guard let strongSelf = self else {return}
 
             guard error == nil else {
-                Utils.showAlertView(withTitle: "Error", andMessage: "\(error!.localizedDescription)", needCancel: false, completion: { _ in })
+                Utils.showAlertView(withTitle: errorAPI!.caseInfo.title, andMessage: errorAPI!.caseInfo.message, needCancel: false, completion: { _ in })
                 return
             }
             
