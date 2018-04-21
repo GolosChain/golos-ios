@@ -19,6 +19,7 @@ struct ResponseAPIResultError: Decodable {
 /// Response: Error
 struct ResponseAPIError: Decodable {
     // MARK: - Properties
+    // In work
     let code: Int64
     let message: String
 }
@@ -35,30 +36,36 @@ struct ResponseAPIFeedResult: Decodable {
 /// Response: Feed
 struct ResponseAPIFeed: Decodable {
     // MARK: - Properties
+    // In work
     // swiftlint:disable identifier_name
-    let abs_rshares: Conflicted
-    let active: String
+    let id: Int64
+    let body: String
+    let title: String
+    let author: String
+    let category: String
+    let permlink: String
+    let allow_votes: Bool
+    let allow_replies: Bool
+    let json_metadata: String?
     let active_votes: [ResponseAPIActiveVote]
 
+    // In reserve
+    /*
+    let abs_rshares: Conflicted
+    let active: String
+
     let allow_curation_rewards: Bool
-    let allow_replies: Bool
-    let allow_votes: Bool
-    let author: String
     let author_reputation: Conflicted
     let author_rewards: Int
 //    beneficiaries =             ();       // ???
-    let body: String
     let body_length: Int64
     let cashout_time: String                // "2018-04-20T10:19:54"
-    let category: String
     let children: Int
     let children_abs_rshares: Conflicted
     let children_rshares2: String
     let created: String                     // "2018-04-13T10:19:54"
     let curator_payout_value: String
     let depth: Int
-    let id: Int64
-    let json_metadata: String?
     let last_payout: String                 // "1970-01-01T00:00:00"
     let last_update: String                 // "2018-04-13T11:03:12"
     let max_accepted_payout: String
@@ -70,19 +77,18 @@ struct ResponseAPIFeed: Decodable {
     let parent_permlink: String
     let pending_payout_value: String
     let percent_steem_dollars: Int64
-    let permlink: String
     let promoted: String
 //    "reblogged_by" =             ();      // ???
 //    replies =             ();             // ???
     let reward_weight: Int64
     let root_comment: Int64
     let root_title: String
-    let title: String
     let total_payout_value: String
     let total_pending_payout_value: String
     let total_vote_weight: Conflicted
     let url: String
     let vote_rshares: Conflicted
+    */
     // swiftlint:enable identifier_name
 }
 
@@ -90,6 +96,7 @@ struct ResponseAPIFeed: Decodable {
 /// Response: Active Vote
 struct ResponseAPIActiveVote: Decodable {
     // MARK: - Properties
+    // In work
     let percent: Int16
     let reputation: Conflicted
     let rshares: Conflicted
@@ -135,7 +142,16 @@ struct ResponseAPIUserResult: Decodable {
 /// Response: User
 struct ResponseAPIUser: Decodable {
     // MARK: - Properties
+    // In work
     // swiftlint:disable identifier_name
+    let id: Int64
+    let name: String
+    let post_count: Int64
+    let json_metadata: String?
+
+    // In reserve
+    /*
+
 //    let active: =     {
 //    "account_auths" =         (
 //    );
@@ -163,8 +179,6 @@ struct ResponseAPIUser: Decodable {
     let delegated_vesting_shares: String
 //    "guest_bloggers" =     (
 //    );
-    let id: Int64
-    let json_metadata: String?
     let last_account_recovery: String                   // "1970-01-01T00:00:00"
     let last_account_update: String                     // "2017-10-09T21:15:21"
     let last_active_proved: String                      // "1970-01-01T00:00:00"
@@ -180,7 +194,6 @@ struct ResponseAPIUser: Decodable {
     let market_history: [String]?
     let memo_key: String
     let mined: Bool
-    let name: String
     let new_average_bandwidth: String
     let new_average_market_bandwidth: Conflicted
     let next_vesting_withdrawal: String                 // "1969-12-31T23:59:59"
@@ -200,7 +213,6 @@ struct ResponseAPIUser: Decodable {
     
     let owner_challenged: Bool
     let post_bandwidth: Int64
-    let post_count: Int64
     let post_history: [String]?
     
 //    posting =     {
@@ -244,6 +256,7 @@ struct ResponseAPIUser: Decodable {
     let withdrawn: Conflicted
     let witness_votes: [String]?
     let witnesses_voted_for: Int64
+    */
     // swiftlint:enable identifier_name
 }
 
@@ -260,10 +273,14 @@ struct ResponseAPIDynamicGlobalPropertiesResult: Decodable {
 /// Response: DynamicGlobalProperty
 struct ResponseAPIDynamicGlobalProperty: Decodable {
     // MARK: - Properties
+    // In work
     // swiftlint:disable identifier_name
     let id: Int64
-    let head_block_number: Int64
     let head_block_id: String
+    let head_block_number: Int64
+
+    // In reserve
+    /*
     let time: String
     let current_witness: String
     let total_pow: Int64
@@ -288,5 +305,6 @@ struct ResponseAPIDynamicGlobalProperty: Decodable {
     let max_virtual_bandwidth: String
     let current_reserve_ratio: Int64
     let vote_regeneration_per_day: Int64
+    */
     // swiftlint:enable identifier_name
 }
