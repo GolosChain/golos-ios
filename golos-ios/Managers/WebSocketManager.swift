@@ -62,6 +62,9 @@ class WebSocketManager {
             case .getAccounts(_):
                 return try JSONDecoder().decode(ResponseAPIUserResult.self, from: jsonData)
                 
+            case .getDynamicGlobalProperties():
+                return try JSONDecoder().decode(ResponseAPIDynamicGlobalPropertiesResult.self, from: jsonData)
+                
             case .getDiscussionsByHot(_), .getDiscussionsByCreated(_), .getDiscussionsByTrending(_), .getDiscussionsByPromoted(_):
                 return try JSONDecoder().decode(ResponseAPIFeedResult.self, from: jsonData)
             }
@@ -83,7 +86,7 @@ extension WebSocketManager: WebSocketDelegate {
             return
         }
         
-        Logger.log(message: "requestsApiStore = \(requestsAPIStore)", event: .debug)
+        Logger.log(message: "requestsAPIStore = \(requestsAPIStore)", event: .debug)
         for (_, requestApiStore) in requestsAPIStore {
             sendMessage(requestApiStore.type.requestMessage)
         }

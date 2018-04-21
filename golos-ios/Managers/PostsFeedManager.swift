@@ -23,10 +23,11 @@ class PostsFeedManager {
     func loadPostsFeed(withType type: PostsFeedType, andLimit limit: Int, completion: @escaping ((_ displayedPosts: [DisplayedPost]?, _ errorAPI: ErrorAPI?) -> Void)) {
         Logger.log(message: "Success", event: .severe)
         
+        // API 'get_discussions_by_' 4 types
         let requestAPIType = GolosBlockchainManager.fetchData(byMethod: self.methodForPostsFeed(fotType: type, andLimit: limit))!
         Logger.log(message: "requestAPIType = \(requestAPIType)", event: .debug)
         
-        // API 'get_discussions_by_' 4 types
+        // Network Layer (WebSocketManager)
         DispatchQueue.main.async {
             webSocketManager.sendRequest(withType: requestAPIType) { (responseAPIType) in
 //                Logger.log(message: "responseAPIType: \(responseAPIType)", event: .debug)

@@ -15,10 +15,9 @@ class GSImageLoader {
     
     
     // MARK: - Custom Functions
-    func startLoadImage(with urlString: String,
-                        resize: CGSize? = .zero,
-                        completion: @escaping (UIImage?) -> Void) {
+    func startLoadImage(with urlString: String, resize: CGSize? = .zero, completion: @escaping (UIImage?) -> Void) {
         let csCopy = CharacterSet(bitmapRepresentation: CharacterSet.urlPathAllowed.bitmapRepresentation)
+        
         guard let correctedUrlString = urlString.addingPercentEncoding(withAllowedCharacters: csCopy) else {
             return
         }
@@ -33,6 +32,7 @@ class GSImageLoader {
         }        
         
         let imageOperation = GSImageLoadOperation(with: url)
+       
         imageOperation.completionBlock = {
             if let image = imageOperation.image {
                 PINCache.shared().setObject(image, forKey: correctedUrlString)

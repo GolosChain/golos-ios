@@ -75,7 +75,7 @@ extension PostsFeedPresenter: PostsFeedPresenterProtocol {
     func loadPostsFeed() {
         Logger.log(message: "Success", event: .severe)
 
-        postsFeedManager.loadPostsFeed(withType: postsFeedType, andLimit: postsLimit) { [weak self] (displayedPosts, errorAPI) in
+        postsFeedManager.loadPostsFeed(withType: postsFeedType, andLimit: postsLimit, completion: { [weak self] (displayedPosts, errorAPI) in
             guard let strongSelf = self else { return }
             
             guard errorAPI == nil else {
@@ -93,7 +93,7 @@ extension PostsFeedPresenter: PostsFeedPresenterProtocol {
 //            strongSelf.postsFeedView.didLoadPosts()
 
             strongSelf.loadUsers(byNames: strongSelf.displayedPosts.map({ $0.authorName }))
-        }
+        })
     }
     
     func loadNext() {

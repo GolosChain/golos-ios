@@ -78,4 +78,17 @@ public class GolosBlockchainManager {
             return nil
         }
     }
+    
+    
+    /**
+     Call any of `GET` API methods.
+     
+     - Parameter method: The name of used API method with needed parameters.
+     - Returns: Return `RequestAPIType` tuple.
+     
+     */
+//    public static func fetchData(byMethod method: MethodAPIType) -> RequestAPIType? {
+//        Logger.log(message: "Success", event: .severe)
+//    
+//    }
 }

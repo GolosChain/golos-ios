@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Response: Error Result
 struct ResponseAPIResultError: Decodable {
     // MARK: - Properties
     let error: ResponseAPIError
@@ -15,12 +16,15 @@ struct ResponseAPIResultError: Decodable {
     let jsonrpc: String
 }
 
+/// Response: Error
 struct ResponseAPIError: Decodable {
     // MARK: - Properties
     let code: Int64
     let message: String
 }
 
+
+/// Response: Feed Result
 struct ResponseAPIFeedResult: Decodable {
     // MARK: - Properties
     let id: Int64
@@ -28,6 +32,7 @@ struct ResponseAPIFeedResult: Decodable {
     let result: [ResponseAPIFeed]
 }
 
+/// Response: Feed
 struct ResponseAPIFeed: Decodable {
     // MARK: - Properties
     // swiftlint:disable identifier_name
@@ -81,6 +86,8 @@ struct ResponseAPIFeed: Decodable {
     // swiftlint:enable identifier_name
 }
 
+
+/// Response: Active Vote
 struct ResponseAPIActiveVote: Decodable {
     // MARK: - Properties
     let percent: Int16
@@ -90,6 +97,7 @@ struct ResponseAPIActiveVote: Decodable {
     let voter: String
     let weight: Conflicted
 }
+
 
 /// [Multiple types](https://stackoverflow.com/questions/46759044/swift-structures-handling-multiple-types-for-a-single-property)
 struct Conflicted: Codable {
@@ -116,6 +124,7 @@ struct Conflicted: Codable {
 }
 
 
+/// Response: User result
 struct ResponseAPIUserResult: Decodable {
     // MARK: - Properties
     let id: Int64
@@ -123,6 +132,7 @@ struct ResponseAPIUserResult: Decodable {
     let result: [ResponseAPIUser]
 }
 
+/// Response: User
 struct ResponseAPIUser: Decodable {
     // MARK: - Properties
     // swiftlint:disable identifier_name
@@ -237,3 +247,46 @@ struct ResponseAPIUser: Decodable {
     // swiftlint:enable identifier_name
 }
 
+
+/// Response: DynamicGlobalProperties Result
+struct ResponseAPIDynamicGlobalPropertiesResult: Decodable {
+    // MARK: - Properties
+    let id: Int64
+    let jsonrpc: String
+    let result: [ResponseAPIDynamicGlobalProperty]
+}
+
+
+/// Response: DynamicGlobalProperty
+struct ResponseAPIDynamicGlobalProperty: Decodable {
+    // MARK: - Properties
+    // swiftlint:disable identifier_name
+    let id: Int64
+    let head_block_number: Int64
+    let head_block_id: String
+    let time: String
+    let current_witness: String
+    let total_pow: Int64
+    let num_pow_witnesses: Int64
+    let virtual_supply: String
+    let current_supply: String
+    let confidential_supply: String
+    let current_sbd_supply: String
+    let confidential_sbd_supply: String
+    let total_vesting_fund_steem: String
+    let total_vesting_shares: String
+    let total_reward_fund_steem: String
+    let total_reward_shares2: String
+    let sbd_interest_rate: Int64
+    let sbd_print_rate: Int64
+    let average_block_size: Int64
+    let maximum_block_size: Int64
+    let current_aslot: Int64
+    let recent_slots_filled: String
+    let participation_count: Int64
+    let last_irreversible_block_num: Int64
+    let max_virtual_bandwidth: String
+    let current_reserve_ratio: Int64
+    let vote_regeneration_per_day: Int64
+    // swiftlint:enable identifier_name
+}

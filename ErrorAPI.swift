@@ -34,23 +34,4 @@ public enum ErrorAPI: Error {
             return (title: "JSON Conversion Failure".localized(), message: message)
         }
     }
-    
-//    var localizedDescription: String {
-//        switch self {
-//        case .requestFailed(let message):
-//            return "Request Failed".localized() + ": \(message)"
-//        
-//        case .invalidData(let message):
-//            return "Invalid Data".localized() + ": \(message)"
-//        
-//        case .responseUnsuccessful(let message):
-//            return "Response Unsuccessful".localized() + ": \(message)"
-//        
-//        case .jsonParsingFailure(let message):
-//            return "JSON Parsing Failure".localized() + ": \(message)"
-//        
-//        case .jsonConversionFailure(let message):
-//            return "JSON Conversion Failure".localized() + ": \(message)"
-//        }
-//    }
 }

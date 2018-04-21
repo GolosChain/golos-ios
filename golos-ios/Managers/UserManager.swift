@@ -22,10 +22,11 @@ class UserManager {
     func loadUsers(byNames userNames: [String], completion: @escaping (_ displayedUsers: [DisplayedUser]?, _ errorAPI: ErrorAPI?) -> Void) {
         Logger.log(message: "Success", event: .severe)
 
+        // API 'get_accounts'
         let requestAPIType = GolosBlockchainManager.fetchData(byMethod: MethodAPIType.getAccounts(names: userNames))!
         Logger.log(message: "requestAPIType = \(requestAPIType)", event: .debug)
 
-        // API 'get_accounts'
+        // Network Layer (WebSocketManager)
         DispatchQueue.main.async {
             webSocketManager.sendRequest(withType: requestAPIType) { (responseAPIType) in
                 Logger.log(message: "responseAPIType: \(responseAPIType)", event: .debug)
