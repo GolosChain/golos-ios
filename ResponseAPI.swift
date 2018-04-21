@@ -253,7 +253,7 @@ struct ResponseAPIDynamicGlobalPropertiesResult: Decodable {
     // MARK: - Properties
     let id: Int64
     let jsonrpc: String
-    let result: [ResponseAPIDynamicGlobalProperty]
+    let result: ResponseAPIDynamicGlobalProperty
 }
 
 

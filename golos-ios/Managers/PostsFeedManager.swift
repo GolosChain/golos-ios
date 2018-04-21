@@ -24,7 +24,7 @@ class PostsFeedManager {
         Logger.log(message: "Success", event: .severe)
         
         // API 'get_discussions_by_' 4 types
-        let requestAPIType = GolosBlockchainManager.fetchData(byMethod: self.methodForPostsFeed(fotType: type, andLimit: limit))!
+        let requestAPIType = GolosBlockchainManager.fetchData(byMethod: self.methodForPostsFeed(forType: type, andLimit: limit))!
         Logger.log(message: "requestAPIType = \(requestAPIType)", event: .debug)
         
         // Network Layer (WebSocketManager)
@@ -53,7 +53,7 @@ class PostsFeedManager {
      - Returns: Return `MethodApiType` case value of enum.
      
     */
-    private func methodForPostsFeed(fotType type: PostsFeedType, andLimit limit: Int) -> MethodAPIType {
+    private func methodForPostsFeed(forType type: PostsFeedType, andLimit limit: Int) -> MethodAPIType {
         Logger.log(message: "Success", event: .severe)
         
         switch type {

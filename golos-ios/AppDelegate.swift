@@ -25,13 +25,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         Logger.log(message: "Success", event: .severe)
 
-        self.setupNavigationBarAppearance()
-        self.setupTabBarAppearance()
-        self.setupKeyboardManager()
-        self.configureMainContainer()
+        // DELETE AFTER TEST
+        self.testGetDynamicGlobalProperties()
+        
+//        self.setupNavigationBarAppearance()
+//        self.setupTabBarAppearance()
+//        self.setupKeyboardManager()
+//        self.configureMainContainer()
         
         // Run Fabric
-        Fabric.with([Crashlytics.self])
+//        Fabric.with([Crashlytics.self])
 
         return true
     }
@@ -100,5 +103,26 @@ extension AppDelegate {
         UITabBar.appearance().barTintColor = UIColor.white
         UITabBar.appearance().tintColor = UIColor.Project.darkBlueTabSelected
         UITabBar.appearance().isTranslucent = false
+    }
+    
+    // DELETE AFTER TEST
+    private func testGetDynamicGlobalProperties() {
+        // API 'get_discussions_by_' 4 types
+        let requestAPIType = GolosBlockchainManager.fetchData(byMethod: .getDynamicGlobalProperties())
+        Logger.log(message: "requestAPIType = \(requestAPIType!)", event: .debug)
+        
+        // Network Layer (WebSocketManager)
+        DispatchQueue.main.async {
+            webSocketManager.sendRequest(withType: requestAPIType!) { (responseAPIType) in
+                Logger.log(message: "responseAPIType: \(responseAPIType)", event: .debug)
+                
+                guard let responseAPI = responseAPIType.responseAPI, let responseAPIResult = responseAPI as? ResponseAPIDynamicGlobalPropertiesResult else {
+                    Logger.log(message: responseAPIType.errorAPI!.caseInfo.message, event: .error)
+                    return
+                }
+             
+                Logger.log(message: "\(responseAPIResult.result)", event: .debug)
+            }
+        }
     }
 }

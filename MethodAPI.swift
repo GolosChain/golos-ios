@@ -42,7 +42,7 @@ public enum MethodAPIType {
             
         case .getDynamicGlobalProperties():                 return (methodAPIType:      self,
                                                                     paramsFirst:        ["database_api", "get_dynamic_global_properties"],
-                                                                    paramsSecond:       nil)
+                                                                    paramsSecond:       ["nil"])
             
         case .getDiscussionsByHot(let limit):               return (methodAPIType:      self,
                                                                     paramsFirst:        ["social_network", "get_discussions_by_hot"],
