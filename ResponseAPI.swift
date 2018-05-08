@@ -276,12 +276,12 @@ struct ResponseAPIDynamicGlobalProperty: Decodable {
     // In work
     // swiftlint:disable identifier_name
     let id: Int64
+    let time: String                            // "2018-04-20T19:01:12"
     let head_block_id: String
     let head_block_number: Int64
 
     // In reserve
     /*
-    let time: String
     let current_witness: String
     let total_pow: Int64
     let num_pow_witnesses: Int64

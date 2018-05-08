@@ -11,6 +11,7 @@ import Fabric
 import Starscream
 import Crashlytics
 import IQKeyboardManagerSwift
+import CoreBitcoin
 
 let webSocket = WebSocket(url: URL(string: Bundle.main.infoDictionary![Constants.InfoDictionaryKey.webSocketUrlKey] as! String)!)
 let webSocketManager = WebSocketManager()
@@ -28,14 +29,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // DELETE AFTER TEST
         self.testGetDynamicGlobalProperties()
         
-//        self.setupNavigationBarAppearance()
-//        self.setupTabBarAppearance()
-//        self.setupKeyboardManager()
-//        self.configureMainContainer()
+        self.setupNavigationBarAppearance()
+        self.setupTabBarAppearance()
+        self.setupKeyboardManager()
+        self.configureMainContainer()
         
         // Run Fabric
-//        Fabric.with([Crashlytics.self])
-
+        Fabric.with([Crashlytics.self])
+        BTCBase58
         return true
     }
     
@@ -120,8 +121,11 @@ extension AppDelegate {
                     Logger.log(message: responseAPIType.errorAPI!.caseInfo.message, event: .error)
                     return
                 }
-             
-                Logger.log(message: "\(responseAPIResult.result)", event: .debug)
+                
+                // Get globalProperties (page 5)
+                let globalProperties = responseAPIResult.result
+                Logger.log(message: "globalProperties:\n\t\(globalProperties)", event: .debug)
+//                let ref_block_num = 
             }
         }
     }

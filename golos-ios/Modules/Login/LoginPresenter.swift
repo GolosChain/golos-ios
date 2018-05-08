@@ -86,7 +86,7 @@ class LoginPresenter: NSObject {
                 
                 // Save login data to Keychain
                 do {
-                    try Locksmith.saveData(data: [ "login": login, "key": key], forUserAccount: "UserAuthInfo")
+                    try Locksmith.saveData(data: [ "login": login, "secretKey": key], forUserAccount: "UserDataInfo")
                     Logger.log(message: "Successfully save Login data to Keychain.", event: .severe)
                 } catch {
                     Logger.log(message: "Save Login data to Keychain error.", event: .error)

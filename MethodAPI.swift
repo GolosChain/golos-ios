@@ -37,7 +37,7 @@ public enum MethodAPIType {
     func introduced() -> RequestParametersType {
         switch self {
         case .getAccounts(let names):                       return (methodAPIType:      self,
-                                                                    paramsFirst:        ["database_api", "get_accounts2"],
+                                                                    paramsFirst:        ["database_api", "get_accounts"],
                                                                     paramsSecond:       [names])
             
         case .getDynamicGlobalProperties():                 return (methodAPIType:      self,

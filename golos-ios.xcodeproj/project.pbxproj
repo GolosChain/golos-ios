@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00F14AE08CCDA11F7EB0ACE7 /* libPods-Golos.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 490B4743380453347F136E02 /* libPods-Golos.a */; };
+		2E74511CE6F7C901E3E25689 /* Pods_Golos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAA1E32F181BB1BB221B985A /* Pods_Golos.framework */; };
 		7D1783DD201FD9B600B75979 /* ArticlePostedInTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1783DB201FD9B600B75979 /* ArticlePostedInTableViewCell.swift */; };
 		7D1783DE201FD9B600B75979 /* ArticlePostedInTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D1783DC201FD9B600B75979 /* ArticlePostedInTableViewCell.xib */; };
 		7D25B47F201F4714004A3400 /* TagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D25B47E201F4714004A3400 /* TagsView.swift */; };
@@ -161,7 +161,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		490B4743380453347F136E02 /* libPods-Golos.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Golos.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BD44B1209B5C64C3D1EF768 /* Pods-golos-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-golos-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-golos-ios/Pods-golos-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		7D1783DB201FD9B600B75979 /* ArticlePostedInTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlePostedInTableViewCell.swift; sourceTree = "<group>"; };
 		7D1783DC201FD9B600B75979 /* ArticlePostedInTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticlePostedInTableViewCell.xib; sourceTree = "<group>"; };
@@ -242,6 +241,7 @@
 		B199DF96207F8A420022C5FA /* RequestAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestAPI.swift; sourceTree = "<group>"; };
 		B1D33FC12080E12600655759 /* ResponseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseAPI.swift; sourceTree = "<group>"; };
 		B1E0CE10207A465900261EA7 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		CAA1E32F181BB1BB221B985A /* Pods_Golos.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Golos.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DECBC36021F31D8D6F619C11 /* Pods-golos-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-golos-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-golos-ios/Pods-golos-ios.release.xcconfig"; sourceTree = "<group>"; };
 		EC07F4A12014093E00560CF0 /* HorizontalSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalSelectorView.swift; sourceTree = "<group>"; };
 		EC07F4A520141E8D00560CF0 /* PostsFeedType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsFeedType.swift; sourceTree = "<group>"; };
@@ -320,7 +320,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00F14AE08CCDA11F7EB0ACE7 /* libPods-Golos.a in Frameworks */,
+				2E74511CE6F7C901E3E25689 /* Pods_Golos.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -525,7 +525,7 @@
 		968B010EA40FABFAAC4629AF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				490B4743380453347F136E02 /* libPods-Golos.a */,
+				CAA1E32F181BB1BB221B985A /* Pods_Golos.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -934,8 +934,8 @@
 				EC1DFB8720063C400080BC50 /* Sources */,
 				EC1DFB8820063C400080BC50 /* Frameworks */,
 				EC1DFB8920063C400080BC50 /* Resources */,
-				09432ECB6BEC638B24E2F58F /* [CP] Copy Pods Resources */,
 				B192DBD32074F4CE0056A08F /* Run Fabric Script */,
+				D7C5A34B5F80F9041B8E6F48 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1054,26 +1054,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		09432ECB6BEC638B24E2F58F /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Golos/Pods-Golos-resources.sh",
-				"${PODS_ROOT}/Down/Resources/DownView.bundle",
-				"${PODS_ROOT}/IQKeyboardManagerSwift/IQKeyboardManagerSwift/Resources/IQKeyboardManager.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/DownView.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IQKeyboardManager.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Golos/Pods-Golos-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		55A88D3868FC3CC3DBEF14AF /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1119,6 +1099,42 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Fabric/run\" 66b650c16716d55977dc8aa10a4b2bf5d633a186 44762b8046ea9d6327dd2329233a8d8099933b028f16b848d960c5322815883a";
+		};
+		D7C5A34B5F80F9041B8E6F48 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Golos/Pods-Golos-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/BeyovaJSON/BeyovaJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/CoreBitcoin/CoreBitcoin.framework",
+				"${BUILT_PRODUCTS_DIR}/Down/Down.framework",
+				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/ISO8601DateFormatter/ISO8601DateFormatter.framework",
+				"${BUILT_PRODUCTS_DIR}/LayoutKit/LayoutKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Localize-Swift/Localize_Swift.framework",
+				"${BUILT_PRODUCTS_DIR}/Locksmith/Locksmith.framework",
+				"${BUILT_PRODUCTS_DIR}/PINCache/PINCache.framework",
+				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BeyovaJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CoreBitcoin.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Down.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ISO8601DateFormatter.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LayoutKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Localize_Swift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Locksmith.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINCache.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Golos/Pods-Golos-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
