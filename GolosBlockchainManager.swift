@@ -96,6 +96,14 @@ public class GolosBlockchainManager {
 //    }
     
     
+    /**
+     Decode blockchain response.
+     
+     - Parameter jsonData: The `Data` of response.
+     - Parameter methodAPIType: The type of API method.
+     - Returns: Return `RequestAPIType` tuple.
+     
+     */
     public static func decode(from jsonData: Data, byMethodAPIType methodAPIType: MethodAPIType) throws -> ResponseAPIType {
         do {
             switch methodAPIType {
