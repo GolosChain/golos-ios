@@ -11,7 +11,7 @@ import Fabric
 import Starscream
 import Crashlytics
 import IQKeyboardManagerSwift
-import CoreBitcoin
+//import CoreBitcoin
 
 let webSocket = WebSocket(url: URL(string: Bundle.main.infoDictionary![Constants.InfoDictionaryKey.webSocketUrlKey] as! String)!)
 let webSocketManager = WebSocketManager()
@@ -29,14 +29,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // DELETE AFTER TEST
         self.testGetDynamicGlobalProperties()
         
-        self.setupNavigationBarAppearance()
-        self.setupTabBarAppearance()
-        self.setupKeyboardManager()
-        self.configureMainContainer()
+//        self.setupNavigationBarAppearance()
+//        self.setupTabBarAppearance()
+//        self.setupKeyboardManager()
+//        self.configureMainContainer()
         
         // Run Fabric
         Fabric.with([Crashlytics.self])
-        BTCBase58
+        
         return true
     }
     
@@ -108,10 +108,10 @@ extension AppDelegate {
     
     // DELETE AFTER TEST
     private func testGetDynamicGlobalProperties() {
-        // API 'get_discussions_by_' 4 types
-        let requestAPIType = GolosBlockchainManager.fetchData(byMethod: .getDynamicGlobalProperties())
-        Logger.log(message: "requestAPIType = \(requestAPIType!)", event: .debug)
-        
+        // API 'get_dynamic_global_properties'
+        let requestAPIType = GolosBlockchainManager.prepareGET(requestByMethodType: .getDynamicGlobalProperties())
+        Logger.log(message: "\nrequestAPIType =\n\t\(requestAPIType!)", event: .debug)
+
         // Network Layer (WebSocketManager)
         DispatchQueue.main.async {
             webSocketManager.sendRequest(withType: requestAPIType!) { (responseAPIType) in
@@ -125,7 +125,6 @@ extension AppDelegate {
                 // Get globalProperties (page 5)
                 let globalProperties = responseAPIResult.result
                 Logger.log(message: "globalProperties:\n\t\(globalProperties)", event: .debug)
-//                let ref_block_num = 
             }
         }
     }

@@ -23,7 +23,7 @@ class UserManager {
         Logger.log(message: "Success", event: .severe)
 
         // API 'get_accounts'
-        let requestAPIType = GolosBlockchainManager.fetchData(byMethod: MethodAPIType.getAccounts(names: userNames))!
+        let requestAPIType = GolosBlockchainManager.prepareGET(requestByMethodType: MethodAPIType.getAccounts(names: userNames))!
         Logger.log(message: "requestAPIType = \(requestAPIType)", event: .debug)
 
         // Network Layer (WebSocketManager)

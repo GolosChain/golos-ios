@@ -1,14 +1,23 @@
 # Uncomment the next line to define a global platform for your project
 platform :ios, '10.0'
-use_frameworks!
+#use_frameworks!
 
 target 'Golos' do
     
     pod 'Down'
+    
+    # Fast, non-deadlocking parallel object cache for iOS, tvOS and OS X
     pod 'PINCache'
+    
+    # A tool to enforce Swift style and conventions
     pod 'SwiftLint'
+    
+    # A powerful, protocol-oriented library for working with the keychain in Swift
     pod 'Locksmith'
+    
+    # Websockets in swift for iOS and OSX
     pod 'Starscream', '~> 3.0'
+    
     pod 'BeyovaJSON', '~> 0.0'
     pod 'Localize-Swift', '~> 2.0'
     pod 'IQKeyboardManagerSwift', '~> 5.0'
@@ -24,7 +33,7 @@ target 'Golos' do
     pod 'LayoutKit', '~> 7.0'
     
     # Pods for golos-ios
-    # pod 'GolosBlockchain', :git => "https://github.com/Monserg/GolosBlockchain.git", :tag => "1.0.0"
+#     pod 'GolosBlockchain', :git => "https://github.com/Monserg/GolosBlockchain.git", :tag => "1.0.0"
 
 end
 

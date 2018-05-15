@@ -24,7 +24,7 @@ class PostsFeedManager {
         Logger.log(message: "Success", event: .severe)
         
         // API 'get_discussions_by_' 4 types
-        let requestAPIType = GolosBlockchainManager.fetchData(byMethod: self.methodForPostsFeed(forType: type, andLimit: limit))!
+        let requestAPIType = GolosBlockchainManager.prepareGET(requestByMethodType: self.methodForPostsFeed(forType: type, andLimit: limit))!
         Logger.log(message: "requestAPIType = \(requestAPIType)", event: .debug)
         
         // Network Layer (WebSocketManager)

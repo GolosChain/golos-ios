@@ -54,26 +54,7 @@ class WebSocketManager {
         requestsAPIStore[type.id] = requestStore
         
         webSocket.isConnected ? sendMessage(type.requestMessage) : webSocket.connect()
-    }
-    
-    private func decode(from jsonData: Data, byMethodAPIType methodAPIType: MethodAPIType) throws -> Decodable? {
-        do {
-            switch methodAPIType {
-            case .getAccounts(_):
-                return try JSONDecoder().decode(ResponseAPIUserResult.self, from: jsonData)
-                
-            case .getDynamicGlobalProperties():
-                return try JSONDecoder().decode(ResponseAPIDynamicGlobalPropertiesResult.self, from: jsonData)
-                
-            case .getDiscussionsByHot(_), .getDiscussionsByCreated(_), .getDiscussionsByTrending(_), .getDiscussionsByPromoted(_):
-                return try JSONDecoder().decode(ResponseAPIFeedResult.self, from: jsonData)
-            }
-        } catch {
-            Logger.log(message: "\(error)", event: .error)
-            self.errorAPI = ErrorAPI.jsonParsingFailure(message: error.localizedDescription)
-            return nil
-        }
-    }
+    }    
 }
 
 
@@ -87,6 +68,7 @@ extension WebSocketManager: WebSocketDelegate {
         }
         
         Logger.log(message: "requestsAPIStore = \(requestsAPIStore)", event: .debug)
+        
         for (_, requestApiStore) in requestsAPIStore {
             sendMessage(requestApiStore.type.requestMessage)
         }
@@ -94,13 +76,13 @@ extension WebSocketManager: WebSocketDelegate {
     
     func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
         Logger.log(message: "Success", event: .severe)
-        var responseAPIResult: Decodable!
+        var responseAPIType: ResponseAPIType
         
         if let jsonData = text.data(using: .utf8), let json = try? JSONSerialization.jsonObject(with: jsonData, options: .mutableLeaves) as! [String: Any] {
 //            Logger.log(message: "text:\n\(text)", event: .debug)
 //            Logger.log(message: "json:\n\t\(json)", event: .debug)
 
-            // Check error.
+            // Check error
             Validator.validate(json: json, completion: { (codeID, hasError) in
                 // Check request by sended ID
                 guard let requestAPIStore = self.requestsAPIStore[codeID] else {
@@ -115,12 +97,11 @@ extension WebSocketManager: WebSocketDelegate {
                         self.errorAPI = ErrorAPI.requestFailed(message: responseAPIResultError.error.message.components(separatedBy: "second.end(): ").last!)
                     }
                         
-                    else {
-                        responseAPIResult = try self.decode(from: jsonData, byMethodAPIType: requestAPIStore.type.methodAPIType)
-                        
-                        guard responseAPIResult != nil else {
-                            return requestAPIStore.completion((responseAPI: nil, errorAPI: self.errorAPI))
-                        }
+                    responseAPIType = try GolosBlockchainManager.decode(from: jsonData, byMethodAPIType: requestAPIStore.type.methodAPIType)
+                    
+                    guard let responseAPIResult = responseAPIType.responseAPI else {
+                        self.errorAPI = responseAPIType.errorAPI
+                        return requestAPIStore.completion((responseAPI: nil, errorAPI: self.errorAPI))
                     }
 
 //                    Logger.log(message: "responseAPIResult model:\n\t\(responseAPIResult)", event: .debug)

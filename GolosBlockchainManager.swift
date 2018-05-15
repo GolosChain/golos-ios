@@ -30,7 +30,7 @@ public class GolosBlockchainManager {
      - Returns: Return `RequestAPIType` tuple.
 
     */
-    public static func fetchData(byMethod method: MethodAPIType) -> RequestAPIType? {
+    public static func prepareGET(requestByMethodType methodType: MethodAPIType) -> RequestAPIType? {
         Logger.log(message: "Success", event: .severe)
         
         /**
@@ -52,7 +52,7 @@ public class GolosBlockchainManager {
         }
         
         let codeID                  =   generateUniqueId()
-        let requestParamsType       =   method.introduced()
+        let requestParamsType       =   methodType.introduced()
         
         let requestAPI              =   RequestAPI(id:          codeID,
                                                    method:      "call",
@@ -94,4 +94,23 @@ public class GolosBlockchainManager {
 //        Logger.log(message: "Success", event: .severe)
 //    
 //    }
+    
+    
+    public static func decode(from jsonData: Data, byMethodAPIType methodAPIType: MethodAPIType) throws -> ResponseAPIType {
+        do {
+            switch methodAPIType {
+            case .getAccounts(_):
+                return (responseAPI: try JSONDecoder().decode(ResponseAPIUserResult.self, from: jsonData), errorAPI: nil)
+                
+            case .getDynamicGlobalProperties():
+                return (responseAPI: try JSONDecoder().decode(ResponseAPIDynamicGlobalPropertiesResult.self, from: jsonData), errorAPI: nil)
+                
+            case .getDiscussionsByHot(_), .getDiscussionsByCreated(_), .getDiscussionsByTrending(_), .getDiscussionsByPromoted(_):
+                return (responseAPI: try JSONDecoder().decode(ResponseAPIFeedResult.self, from: jsonData), errorAPI: nil)
+            }
+        } catch {
+            Logger.log(message: "\(error)", event: .error)
+            return (responseAPI: nil, errorAPI: ErrorAPI.jsonParsingFailure(message: error.localizedDescription))
+        }
+    }
 }
