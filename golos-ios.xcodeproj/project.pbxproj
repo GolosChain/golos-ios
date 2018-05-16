@@ -74,7 +74,6 @@
 		7DFE7C462046395B0057F144 /* ReplyRequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFE7C452046395B0057F144 /* ReplyRequestType.swift */; };
 		7DFE7C4920464C1E0057F144 /* PostsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFE7C4820464C1E0057F144 /* PostsManager.swift */; };
 		7DFE7C4B20464C680057F144 /* PostRequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFE7C4A20464C680057F144 /* PostRequestType.swift */; };
-		927AD3CEC04147180BFB16CC /* libPods-Golos.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 794CD2E94752D81A90A9F006 /* libPods-Golos.a */; };
 		B18DB44E2085D22A00BA5D50 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B18DB4502085D22A00BA5D50 /* Localizable.strings */; };
 		B18DB4532085DB8F00BA5D50 /* ErrorAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18DB4522085DB8F00BA5D50 /* ErrorAPI.swift */; };
 		B18DB455208619A000BA5D50 /* DisplayedPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18DB454208619A000BA5D50 /* DisplayedPost.swift */; };
@@ -115,6 +114,7 @@
 		EC24FF7F200C4E2C00A0AE15 /* NavigationDropDownView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC24FF7E200C4E2C00A0AE15 /* NavigationDropDownView.xib */; };
 		EC24FF82200C625800A0AE15 /* DropDownViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC24FF81200C625800A0AE15 /* DropDownViewController.swift */; };
 		EC24FF84200C635600A0AE15 /* DropDownMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC24FF83200C635600A0AE15 /* DropDownMediator.swift */; };
+		EC42E64A43BFF61A174EF217 /* Pods_Golos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C95BB4735E4A91B9024F13C /* Pods_Golos.framework */; };
 		EC5B2BFD201A443C007A4335 /* String+Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5B2BFC201A443C007A4335 /* String+Size.swift */; };
 		EC6FD59E200AD53100DCB824 /* ViewController+BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6FD59D200AD53100DCB824 /* ViewController+BackButton.swift */; };
 		EC6FD5A2200AE1A200DCB824 /* QRScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6FD5A0200AE1A200DCB824 /* QRScannerViewController.swift */; };
@@ -160,8 +160,21 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		B1D900C020ABDD8300AECE51 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		794CD2E94752D81A90A9F006 /* libPods-Golos.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Golos.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C95BB4735E4A91B9024F13C /* Pods_Golos.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Golos.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BD44B1209B5C64C3D1EF768 /* Pods-golos-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-golos-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-golos-ios/Pods-golos-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		7D1783DB201FD9B600B75979 /* ArticlePostedInTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlePostedInTableViewCell.swift; sourceTree = "<group>"; };
 		7D1783DC201FD9B600B75979 /* ArticlePostedInTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticlePostedInTableViewCell.xib; sourceTree = "<group>"; };
@@ -320,7 +333,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				927AD3CEC04147180BFB16CC /* libPods-Golos.a in Frameworks */,
+				EC42E64A43BFF61A174EF217 /* Pods_Golos.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -525,7 +538,7 @@
 		968B010EA40FABFAAC4629AF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				794CD2E94752D81A90A9F006 /* libPods-Golos.a */,
+				2C95BB4735E4A91B9024F13C /* Pods_Golos.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -935,7 +948,8 @@
 				EC1DFB8820063C400080BC50 /* Frameworks */,
 				EC1DFB8920063C400080BC50 /* Resources */,
 				B192DBD32074F4CE0056A08F /* Run Fabric Script */,
-				129E527F8AB8DE6FC9DD18A6 /* [CP] Copy Pods Resources */,
+				0186019DEFFDAB32052BA566 /* [CP] Embed Pods Frameworks */,
+				B1D900C020ABDD8300AECE51 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1054,24 +1068,42 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		129E527F8AB8DE6FC9DD18A6 /* [CP] Copy Pods Resources */ = {
+		0186019DEFFDAB32052BA566 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Golos/Pods-Golos-resources.sh",
-				"${PODS_ROOT}/Down/Resources/DownView.bundle",
-				"${PODS_ROOT}/IQKeyboardManagerSwift/IQKeyboardManagerSwift/Resources/IQKeyboardManager.bundle",
+				"${SRCROOT}/Pods/Target Support Files/Pods-Golos/Pods-Golos-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/BeyovaJSON/BeyovaJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Down/Down.framework",
+				"${BUILT_PRODUCTS_DIR}/GoloSwift/GoloSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/LayoutKit/LayoutKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Localize-Swift/Localize_Swift.framework",
+				"${BUILT_PRODUCTS_DIR}/Locksmith/Locksmith.framework",
+				"${BUILT_PRODUCTS_DIR}/PINCache/PINCache.framework",
+				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
+				"${BUILT_PRODUCTS_DIR}/secp256k1.swift/secp256k1.framework",
 			);
-			name = "[CP] Copy Pods Resources";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/DownView.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IQKeyboardManager.bundle",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BeyovaJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Down.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoloSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LayoutKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Localize_Swift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Locksmith.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINCache.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/secp256k1.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Golos/Pods-Golos-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Golos/Pods-Golos-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		55A88D3868FC3CC3DBEF14AF /* [CP] Check Pods Manifest.lock */ = {
@@ -1403,7 +1435,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 29QBR47DMW;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "golos-ios/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1428,7 +1463,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 29QBR47DMW;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "golos-ios/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

@@ -27,12 +27,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Logger.log(message: "Success", event: .severe)
 
         // DELETE AFTER TEST
-        self.testGetDynamicGlobalProperties()
+//        self.testGetDynamicGlobalProperties()
         
-//        self.setupNavigationBarAppearance()
-//        self.setupTabBarAppearance()
-//        self.setupKeyboardManager()
-//        self.configureMainContainer()
+        self.setupNavigationBarAppearance()
+        self.setupTabBarAppearance()
+        self.setupKeyboardManager()
+        self.configureMainContainer()
         
         // Run Fabric
         Fabric.with([Crashlytics.self])
