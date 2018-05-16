@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import GoloSwift
 
 protocol AnswersFeedPresenterProtocol: class {
     func fetchAnswers()

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import GoloSwift
 
 class UserManager {
     // MARK: - Custom Functions
@@ -23,13 +24,14 @@ class UserManager {
         Logger.log(message: "Success", event: .severe)
 
         // API 'get_accounts'
-        let requestAPIType = GolosBlockchainManager.prepareGET(requestByMethodType: MethodAPIType.getAccounts(names: userNames))!
-        Logger.log(message: "requestAPIType = \(requestAPIType)", event: .debug)
+        let requestAPIType = broadcast.prepareGET(requestByMethodType: MethodAPIType.getAccounts(names: userNames))!
+        // GolosBlockchainManager.prepareGET(requestByMethodType: MethodAPIType.getAccounts(names: userNames))!
+        Logger.log(message: "\nrequestAPIType =\n\t\(requestAPIType)", event: .debug)
 
         // Network Layer (WebSocketManager)
         DispatchQueue.main.async {
             webSocketManager.sendRequest(withType: requestAPIType) { (responseAPIType) in
-                Logger.log(message: "responseAPIType: \(responseAPIType)", event: .debug)
+                Logger.log(message: "\nresponseAPIType:\n\t\(responseAPIType)", event: .debug)
                 
                 guard let responseAPI = responseAPIType.responseAPI, let responseAPIResult = responseAPI as? ResponseAPIUserResult else {
                     completion(nil, responseAPIType.errorAPI)

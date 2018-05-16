@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import GoloSwift
 
 class ArticleViewController: UIViewController {
     

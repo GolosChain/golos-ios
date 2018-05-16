@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import GoloSwift
 
 class StateMachine {
     // MARK: - Properties
@@ -46,7 +47,7 @@ class StateMachine {
        
         NotificationCenter.default.post(name: NSNotification.Name.appStateChanged,
                                         object: nil,
-                                        userInfo: [Constants.StateMachine.oldStateKey: currentState])
+                                        userInfo: [ConstantsApp.StateMachine.oldStateKey: currentState])
        
         Logger.log(message: "State changed notification sent", event: .info)
     }

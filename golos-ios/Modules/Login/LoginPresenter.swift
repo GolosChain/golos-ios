@@ -8,6 +8,7 @@
 
 import Foundation
 import Locksmith
+import GoloSwift
 
 protocol LoginView: ViewProtocol {
     func didStartLogin()

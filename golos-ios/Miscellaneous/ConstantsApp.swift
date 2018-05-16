@@ -11,7 +11,7 @@ import Starscream
 
 //import CoreGraphics
 
-struct Constants {
+struct ConstantsApp {
     struct ButtonParameters {
         static let cornerRadius: CGFloat = 22.0
     }

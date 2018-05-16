@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import GoloSwift
 
 //reblogAuthorName:    postModel.reblogAuthorName,          String?
 //commentsAmount:      postModel.replies == nil ? "-" :"\(postModel.replies!.count)",   String

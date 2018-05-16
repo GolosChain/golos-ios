@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import GoloSwift
 
 class PostsFeedManager {
     // MARK: - Custom Functions
@@ -24,13 +25,14 @@ class PostsFeedManager {
         Logger.log(message: "Success", event: .severe)
         
         // API 'get_discussions_by_' 4 types
-        let requestAPIType = GolosBlockchainManager.prepareGET(requestByMethodType: self.methodForPostsFeed(forType: type, andLimit: limit))!
-        Logger.log(message: "requestAPIType = \(requestAPIType)", event: .debug)
+        let requestAPIType = broadcast.prepareGET(requestByMethodType: self.methodForPostsFeed(forType: type, andLimit: limit))!
+        // GolosBlockchainManager.prepareGET(requestByMethodType: self.methodForPostsFeed(forType: type, andLimit: limit))!
+        Logger.log(message: "\nrequestAPIType =\n\t\(requestAPIType)", event: .debug)
         
         // Network Layer (WebSocketManager)
         DispatchQueue.main.async {
             webSocketManager.sendRequest(withType: requestAPIType) { (responseAPIType) in
-//                Logger.log(message: "responseAPIType: \(responseAPIType)", event: .debug)
+//                Logger.log(message: "\nresponseAPIType:\n\t\(responseAPIType)", event: .debug)
                 
                 guard let responseAPI = responseAPIType.responseAPI, let responseAPIResult = responseAPI as? ResponseAPIFeedResult else {
                     completion(nil, responseAPIType.errorAPI)

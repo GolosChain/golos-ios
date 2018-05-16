@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GoloSwift
 
 class IntroViewController: UIViewController {
     // MARK: - Properties
@@ -105,7 +106,7 @@ class IntroViewController: UIViewController {
     @IBAction func registerButtonPressed(_ sender: Any) {
         Logger.log(message: "Success", event: .severe)
 
-        guard let moreUrl = URL.init(string: Constants.Urls.registration) else {
+        guard let moreUrl = URL.init(string: ConstantsApp.Urls.registration) else {
             Utils.showAlertView(withTitle: "Error", andMessage: "Developer error!", needCancel: false, completion: { _ in })
             return
         }
@@ -116,7 +117,7 @@ class IntroViewController: UIViewController {
     @IBAction func moreInfoButtonPressed(_ sender: Any) {
         Logger.log(message: "Success", event: .severe)
 
-        guard let moreUrl = URL.init(string: Constants.Urls.moreInfoAbout) else {
+        guard let moreUrl = URL.init(string: ConstantsApp.Urls.moreInfoAbout) else {
             Utils.showAlertView(withTitle: "Error", andMessage: "Developer error!", needCancel: false, completion: { _ in })
             return
         }

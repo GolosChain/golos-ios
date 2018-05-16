@@ -10,14 +10,14 @@ import UIKit
 
 extension UIButton {
     func setBlueButtonRoundEdges() {
-        setRoundEdges(cornerRadius: Constants.ButtonParameters.cornerRadius)
+        setRoundEdges(cornerRadius: ConstantsApp.ButtonParameters.cornerRadius)
         backgroundColor = UIColor.Project.buttonBgBlue
         setTitleColor(.white, for: .normal)
         titleLabel?.font = Fonts.shared.medium(with: 16)
     }
     
     func setBorderButtonRoundEdges() {
-        setRoundEdges(cornerRadius: Constants.ButtonParameters.cornerRadius)
+        setRoundEdges(cornerRadius: ConstantsApp.ButtonParameters.cornerRadius)
         backgroundColor = .white
         layer.borderColor = UIColor.Project.buttonBorderGray.cgColor
         layer.borderWidth = 1.0

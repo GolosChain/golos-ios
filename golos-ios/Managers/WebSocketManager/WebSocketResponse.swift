@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import GoloSwift
 
 struct WebSocketResponse {
     // MARK: - Properties

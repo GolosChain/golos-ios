@@ -48,7 +48,7 @@ class MainContainerPresenter: NSObject {
     @objc
     private func stateDidChange(_ notification: Notification) {
         guard let userInfo = notification.userInfo,
-            let oldState = userInfo[Constants.StateMachine.oldStateKey] as? AppState else {
+            let oldState = userInfo[ConstantsApp.StateMachine.oldStateKey] as? AppState else {
                 return
         }
         

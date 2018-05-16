@@ -8,12 +8,14 @@
 
 import UIKit
 import Fabric
+import GoloSwift
 import Starscream
 import Crashlytics
 import IQKeyboardManagerSwift
+
 //import CoreBitcoin
 
-let webSocket = WebSocket(url: URL(string: Bundle.main.infoDictionary![Constants.InfoDictionaryKey.webSocketUrlKey] as! String)!)
+let webSocket = WebSocket(url: URL(string: Bundle.main.infoDictionary![ConstantsApp.InfoDictionaryKey.webSocketUrlKey] as! String)!)
 let webSocketManager = WebSocketManager()
 
 @UIApplicationMain
@@ -109,13 +111,14 @@ extension AppDelegate {
     // DELETE AFTER TEST
     private func testGetDynamicGlobalProperties() {
         // API 'get_dynamic_global_properties'
-        let requestAPIType = GolosBlockchainManager.prepareGET(requestByMethodType: .getDynamicGlobalProperties())
+        let requestAPIType = broadcast.prepareGET(requestByMethodType: .getDynamicGlobalProperties())
+        // prepareGET(requestByMethodType: t.prepareGET(requestByMethodType: .getDynamicGlobalProperties())
         Logger.log(message: "\nrequestAPIType =\n\t\(requestAPIType!)", event: .debug)
 
         // Network Layer (WebSocketManager)
         DispatchQueue.main.async {
             webSocketManager.sendRequest(withType: requestAPIType!) { (responseAPIType) in
-                Logger.log(message: "responseAPIType: \(responseAPIType)", event: .debug)
+                Logger.log(message: "\nresponseAPIType:\n\t\(responseAPIType)", event: .debug)
                 
                 guard let responseAPI = responseAPIType.responseAPI, let responseAPIResult = responseAPI as? ResponseAPIDynamicGlobalPropertiesResult else {
                     Logger.log(message: responseAPIType.errorAPI!.caseInfo.message, event: .error)
@@ -124,7 +127,7 @@ extension AppDelegate {
                 
                 // Get globalProperties (page 5)
                 let globalProperties = responseAPIResult.result
-                Logger.log(message: "globalProperties:\n\t\(globalProperties)", event: .debug)
+                Logger.log(message: "\nglobalProperties:\n\t\(globalProperties)", event: .debug)
             }
         }
     }

@@ -103,6 +103,7 @@
 //
 
 import UIKit
+import GoloSwift
 import Accelerate
 
 public extension UIImage {

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GoloSwift
 
 class AnswersFeedViewController: UIViewController {
     // MARK: - Properties

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GoloSwift
 import AVFoundation
 
 private let qrCodeNotFoundString = "QR код не обнаружен"

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import GoloSwift
 
 extension String {
     func toDictionary() -> [String: Any]? {

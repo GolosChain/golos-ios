@@ -75,13 +75,7 @@
 		7DFE7C4920464C1E0057F144 /* PostsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFE7C4820464C1E0057F144 /* PostsManager.swift */; };
 		7DFE7C4B20464C680057F144 /* PostRequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFE7C4A20464C680057F144 /* PostRequestType.swift */; };
 		B18DB44E2085D22A00BA5D50 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B18DB4502085D22A00BA5D50 /* Localizable.strings */; };
-		B18DB4532085DB8F00BA5D50 /* ErrorAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18DB4522085DB8F00BA5D50 /* ErrorAPI.swift */; };
 		B18DB455208619A000BA5D50 /* DisplayedPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18DB454208619A000BA5D50 /* DisplayedPost.swift */; };
-		B199DF92207F48870022C5FA /* GolosBlockchainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B199DF91207F48870022C5FA /* GolosBlockchainManager.swift */; };
-		B199DF95207F49230022C5FA /* MethodAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B199DF94207F49230022C5FA /* MethodAPI.swift */; };
-		B199DF97207F8A420022C5FA /* RequestAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B199DF96207F8A420022C5FA /* RequestAPI.swift */; };
-		B1D33FC22080E12600655759 /* ResponseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D33FC12080E12600655759 /* ResponseAPI.swift */; };
-		B1E0CE11207A465900261EA7 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E0CE10207A465900261EA7 /* Logger.swift */; };
 		EC07F4A22014093E00560CF0 /* HorizontalSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC07F4A12014093E00560CF0 /* HorizontalSelectorView.swift */; };
 		EC07F4A620141E8D00560CF0 /* PostsFeedType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC07F4A520141E8D00560CF0 /* PostsFeedType.swift */; };
 		EC07F4A820141F0200560CF0 /* FeedMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC07F4A720141F0200560CF0 /* FeedMediator.swift */; };
@@ -136,7 +130,7 @@
 		ECA8E35C2018CA30003B8ABA /* ProfileHorizontalSelectorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECA8E35B2018CA30003B8ABA /* ProfileHorizontalSelectorView.xib */; };
 		ECA8E35E2018D119003B8ABA /* UIView+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA8E35D2018D119003B8ABA /* UIView+Shadow.swift */; };
 		ECB2C0D32008E55500AF1AF5 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2C0D22008E55500AF1AF5 /* Colors.swift */; };
-		ECB2C0D52008E56300AF1AF5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2C0D42008E56300AF1AF5 /* Constants.swift */; };
+		ECB2C0D52008E56300AF1AF5 /* ConstantsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2C0D42008E56300AF1AF5 /* ConstantsApp.swift */; };
 		ECC15FA3200976770099BBC9 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC15FA1200976770099BBC9 /* IntroViewController.swift */; };
 		ECC15FA4200976770099BBC9 /* IntroViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECC15FA2200976770099BBC9 /* IntroViewController.xib */; };
 		ECC15FA62009794E0099BBC9 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC15FA52009794E0099BBC9 /* Fonts.swift */; };
@@ -248,13 +242,7 @@
 		B18DB44B2085D1DB00BA5D50 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		B18DB44F2085D22A00BA5D50 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B18DB4512085D22C00BA5D50 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
-		B18DB4522085DB8F00BA5D50 /* ErrorAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorAPI.swift; sourceTree = "<group>"; };
 		B18DB454208619A000BA5D50 /* DisplayedPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayedPost.swift; sourceTree = "<group>"; };
-		B199DF91207F48870022C5FA /* GolosBlockchainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GolosBlockchainManager.swift; sourceTree = "<group>"; };
-		B199DF94207F49230022C5FA /* MethodAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MethodAPI.swift; sourceTree = "<group>"; };
-		B199DF96207F8A420022C5FA /* RequestAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestAPI.swift; sourceTree = "<group>"; };
-		B1D33FC12080E12600655759 /* ResponseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseAPI.swift; sourceTree = "<group>"; };
-		B1E0CE10207A465900261EA7 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		DECBC36021F31D8D6F619C11 /* Pods-golos-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-golos-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-golos-ios/Pods-golos-ios.release.xcconfig"; sourceTree = "<group>"; };
 		EC07F4A12014093E00560CF0 /* HorizontalSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalSelectorView.swift; sourceTree = "<group>"; };
 		EC07F4A520141E8D00560CF0 /* PostsFeedType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsFeedType.swift; sourceTree = "<group>"; };
@@ -313,7 +301,7 @@
 		ECA8E35B2018CA30003B8ABA /* ProfileHorizontalSelectorView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileHorizontalSelectorView.xib; sourceTree = "<group>"; };
 		ECA8E35D2018D119003B8ABA /* UIView+Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shadow.swift"; sourceTree = "<group>"; };
 		ECB2C0D22008E55500AF1AF5 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
-		ECB2C0D42008E56300AF1AF5 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		ECB2C0D42008E56300AF1AF5 /* ConstantsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstantsApp.swift; sourceTree = "<group>"; };
 		ECC15FA1200976770099BBC9 /* IntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
 		ECC15FA2200976770099BBC9 /* IntroViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IntroViewController.xib; sourceTree = "<group>"; };
 		ECC15FA52009794E0099BBC9 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
@@ -543,19 +531,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		B199DF93207F48E80022C5FA /* GologBlockchainLibrary */ = {
-			isa = PBXGroup;
-			children = (
-				B18DB4522085DB8F00BA5D50 /* ErrorAPI.swift */,
-				B199DF91207F48870022C5FA /* GolosBlockchainManager.swift */,
-				B1E0CE10207A465900261EA7 /* Logger.swift */,
-				B199DF94207F49230022C5FA /* MethodAPI.swift */,
-				B199DF96207F8A420022C5FA /* RequestAPI.swift */,
-				B1D33FC12080E12600655759 /* ResponseAPI.swift */,
-			);
-			name = GologBlockchainLibrary;
-			sourceTree = "<group>";
-		};
 		EC07F4A0201408FF00560CF0 /* HorizontalSelectorView */ = {
 			isa = PBXGroup;
 			children = (
@@ -580,7 +555,6 @@
 		EC1DFB8220063C400080BC50 = {
 			isa = PBXGroup;
 			children = (
-				B199DF93207F48E80022C5FA /* GologBlockchainLibrary */,
 				EC1DFB8D20063C400080BC50 /* golos-ios */,
 				EC24FF42200C038D00A0AE15 /* GolosTests */,
 				EC1DFB8C20063C400080BC50 /* Products */,
@@ -819,7 +793,7 @@
 			isa = PBXGroup;
 			children = (
 				ECB2C0D22008E55500AF1AF5 /* Colors.swift */,
-				ECB2C0D42008E56300AF1AF5 /* Constants.swift */,
+				ECB2C0D42008E56300AF1AF5 /* ConstantsApp.swift */,
 				EC9ABBE72018036E00AF8597 /* Device+Size.swift */,
 				ECC15FA52009794E0099BBC9 /* Fonts.swift */,
 				EC9ABBBE20179CEF00AF8597 /* Images.swift */,
@@ -1175,7 +1149,6 @@
 				7DF16A72201D6043000F5529 /* ProfileMediator.swift in Sources */,
 				7D25B4BE201FABB2004A3400 /* ArticleTitleTableViewCell.swift in Sources */,
 				EC24FF74200C43B500A0AE15 /* ProfilePresenter.swift in Sources */,
-				B1E0CE11207A465900261EA7 /* Logger.swift in Sources */,
 				7D7D564220367F8B003E06A6 /* PostParser.swift in Sources */,
 				7DA0632A2032583F00B5630C /* PostsFeedViewController+ProfileFeedContainerItem.swift in Sources */,
 				EC9B2AE220154DE9008335C8 /* PostsFeedViewModel.swift in Sources */,
@@ -1188,8 +1161,6 @@
 				EC07F4B12014404200560CF0 /* PostsFeedViewController.swift in Sources */,
 				EC24FF22200BC69B00A0AE15 /* LoginType.swift in Sources */,
 				ECB2C0D32008E55500AF1AF5 /* Colors.swift in Sources */,
-				B18DB4532085DB8F00BA5D50 /* ErrorAPI.swift in Sources */,
-				B199DF92207F48870022C5FA /* GolosBlockchainManager.swift in Sources */,
 				ECF2808C200A9A210000D949 /* UIButton+Intro.swift in Sources */,
 				ECA8E3512018A626003B8ABA /* ProfileInfoView.swift in Sources */,
 				EC24FF2B200BFAA100A0AE15 /* Validator.swift in Sources */,
@@ -1218,7 +1189,6 @@
 				7DFE7C44204639390057F144 /* ReplyManager.swift in Sources */,
 				EC24FF84200C635600A0AE15 /* DropDownMediator.swift in Sources */,
 				7D95CFA7203A119B00C1AE0A /* GSOperation.swift in Sources */,
-				B1D33FC22080E12600655759 /* ResponseAPI.swift in Sources */,
 				EC24FF70200C433700A0AE15 /* ProfileViewController.swift in Sources */,
 				EC24FF82200C625800A0AE15 /* DropDownViewController.swift in Sources */,
 				ECA8E35A2018CA17003B8ABA /* ProfileHorizontalSelectorView.swift in Sources */,
@@ -1249,10 +1219,9 @@
 				7DFA6CAD2036D76000F59494 /* PostsFeedImageTableViewCell.swift in Sources */,
 				7D911D142035CCAE00F19D3C /* WebSocketMethod.swift in Sources */,
 				7D25B4B8201F980A004A3400 /* ArticleHeaderView.swift in Sources */,
-				B199DF95207F49230022C5FA /* MethodAPI.swift in Sources */,
 				7D79C33A2034675C00794447 /* AnswersFeedViewController.swift in Sources */,
 				7D79C3452034685900794447 /* AnswersFeedTableViewCell.swift in Sources */,
-				ECB2C0D52008E56300AF1AF5 /* Constants.swift in Sources */,
+				ECB2C0D52008E56300AF1AF5 /* ConstantsApp.swift in Sources */,
 				EC24FF7D200C4DE300A0AE15 /* NavigationDropDownView.swift in Sources */,
 				7D79C33F203467C000794447 /* AnswersFeedMediator.swift in Sources */,
 				7D911D262035F6EA00F19D3C /* DisplayedUser.swift in Sources */,
@@ -1266,7 +1235,6 @@
 				7D25B4CD201FAE93004A3400 /* ArticleMediator.swift in Sources */,
 				ECF3172E200AB22E00F7B703 /* LoginViewController.swift in Sources */,
 				7D25B487201F4978004A3400 /* ArticleViewController.swift in Sources */,
-				B199DF97207F8A420022C5FA /* RequestAPI.swift in Sources */,
 				7D79C34F2034F29900794447 /* WebSocketManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

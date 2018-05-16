@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GoloSwift
 
 protocol HorizontalSelectorViewDelegate: class {
     func didChangeSelectedIndex(_ index: Int, previousIndex: Int)

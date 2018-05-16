@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import GoloSwift
 
 class Validator {
     // MARK: - Custom Functions

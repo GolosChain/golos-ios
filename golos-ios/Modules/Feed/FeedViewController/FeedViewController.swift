@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GoloSwift
 
 class FeedViewController: UIViewController {
     // MARK: - Properties

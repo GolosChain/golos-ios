@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import GoloSwift
 import Starscream
 
 class WebSocketManager {
@@ -67,7 +68,7 @@ extension WebSocketManager: WebSocketDelegate {
             return
         }
         
-        Logger.log(message: "requestsAPIStore = \(requestsAPIStore)", event: .debug)
+        Logger.log(message: "\nrequestsAPIStore =\n\t\(requestsAPIStore)", event: .debug)
         
         for (_, requestApiStore) in requestsAPIStore {
             sendMessage(requestApiStore.type.requestMessage)
@@ -79,7 +80,7 @@ extension WebSocketManager: WebSocketDelegate {
         var responseAPIType: ResponseAPIType
         
         if let jsonData = text.data(using: .utf8), let json = try? JSONSerialization.jsonObject(with: jsonData, options: .mutableLeaves) as! [String: Any] {
-//            Logger.log(message: "text:\n\(text)", event: .debug)
+//            Logger.log(message: "\ntext:\n\t\(text)", event: .debug)
 //            Logger.log(message: "json:\n\t\(json)", event: .debug)
 
             // Check error
@@ -97,18 +98,19 @@ extension WebSocketManager: WebSocketDelegate {
                         self.errorAPI = ErrorAPI.requestFailed(message: responseAPIResultError.error.message.components(separatedBy: "second.end(): ").last!)
                     }
                         
-                    responseAPIType = try GolosBlockchainManager.decode(from: jsonData, byMethodAPIType: requestAPIStore.type.methodAPIType)
+                    responseAPIType = try broadcast.decode(from: jsonData, byMethodAPIType: requestAPIStore.type.methodAPIType)
+                    // GolosBlockchainManager.decode(from: jsonData, byMethodAPIType: requestAPIStore.type.methodAPIType)
                     
                     guard let responseAPIResult = responseAPIType.responseAPI else {
                         self.errorAPI = responseAPIType.errorAPI
                         return requestAPIStore.completion((responseAPI: nil, errorAPI: self.errorAPI))
                     }
 
-//                    Logger.log(message: "responseAPIResult model:\n\t\(responseAPIResult)", event: .debug)
+//                    Logger.log(message: "\nresponseAPIResult model:\n\t\(responseAPIResult)", event: .debug)
                     
                     // Check websocket timeout: resend current request message
                     let timeout = Double(Date().timeIntervalSince(requestAPIStore.type.startTime))
-                    Logger.log(message: "webSocket timeout = \(timeout) sec", event: .debug)
+                    Logger.log(message: "\nwebSocket timeout =\n\t\(timeout) sec", event: .debug)
                     
                     if timeout >= webSocketTimeout {
                         let newRequestAPIStore = (type: (id: requestAPIStore.type.id, requestMessage: requestAPIStore.type.requestMessage, startTime: Date(), methodAPIType: requestAPIStore.type.methodAPIType), completion: requestAPIStore.completion)
@@ -129,7 +131,7 @@ extension WebSocketManager: WebSocketDelegate {
                         requestAPIStore.completion((responseAPI: responseAPIResult, errorAPI: self.errorAPI))
                     }
                 } catch {
-                    Logger.log(message: "Response Unsuccessful: \(error.localizedDescription)", event: .error)
+                    Logger.log(message: "\nResponse Unsuccessful:\n\t\(error.localizedDescription)", event: .error)
                     self.errorAPI = ErrorAPI.responseUnsuccessful(message: error.localizedDescription)
                     requestAPIStore.completion((responseAPI: nil, errorAPI: self.errorAPI))
                 }
