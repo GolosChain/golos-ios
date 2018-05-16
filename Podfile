@@ -16,8 +16,8 @@ target 'Golos' do
 #    pod 'Locksmith'
 
     # Websockets in swift for iOS and OSX
-    pod 'Starscream', '~> 3.0'
-    
+#    pod 'Starscream', '~> 3.0'
+
 #    pod 'BeyovaJSON', '~> 0.0'
 #    pod 'Localize-Swift', '~> 2.0'
     pod 'IQKeyboardManagerSwift', '~> 5.0'

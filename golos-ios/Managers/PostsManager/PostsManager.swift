@@ -11,9 +11,9 @@ import Foundation
 class PostsManager {
     // MARK: - Custom Functions
     func loadPost(withPermalink permalink: String, authorUsername: String, completion: @escaping (PostModel?, NSError?) -> Void) {
-        let method = methodForPostRequest(.getPost)
-        let parameters = [authorUsername, permalink]
-        
+//        let method = methodForPostRequest(.getPost)
+//        let parameters = [authorUsername, permalink]
+//        
 //        webSocket.sendRequestWith(method: method, parameters: parameters) { result, error in
 //            guard error == nil else {
 //                Logger.log(message: "\(error!.localizedDescription)", event: .error)
@@ -30,12 +30,12 @@ class PostsManager {
 //        }
     }
     
-    private func methodForPostRequest(_ request: PostRequestType) -> WebSocketMethod {
-        switch request {
-        case .getPost:
-            return WebSocketMethod.getPost
-        }
-    }
+//    private func methodForPostRequest(_ request: PostRequestType) -> WebSocketMethod {
+//        switch request {
+//        case .getPost:
+//            return WebSocketMethod.getPost
+//        }
+//    }
 
 //
 //    func loadRepliesForPost(withPermalink permalink: String,

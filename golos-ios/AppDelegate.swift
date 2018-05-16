@@ -9,14 +9,14 @@
 import UIKit
 import Fabric
 import GoloSwift
-import Starscream
+//import Starscream
 import Crashlytics
 import IQKeyboardManagerSwift
 
 //import CoreBitcoin
 
-let webSocket = WebSocket(url: URL(string: Bundle.main.infoDictionary![ConstantsApp.InfoDictionaryKey.webSocketUrlKey] as! String)!)
-let webSocketManager = WebSocketManager()
+//let webSocket = WebSocket(url: URL(string: Bundle.main.infoDictionary![ConstantsApp.InfoDictionaryKey.webSocketUrlKey] as! String)!)
+//let webSocketManager = WebSocketManager()
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -28,13 +28,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         Logger.log(message: "Success", event: .severe)
 
-        // DELETE AFTER TEST
-//        self.testGetDynamicGlobalProperties()
+        // TODO: - TEST POST REQUEST
+        /// API `get_dynamic_global_properties`
+        broadcast.getDynamicGlobalProperties(completion: { success in
+            guard success else {
+                // ADD AlertView
+                return
+            }
+            
+            /// Create operation
+            let operationType: OperationType = OperationType.vote(fields: (voter: voter, author: author, permlink: permlink, weight: weight))
+            let operation: [Any] = operationType.getFields()
+            
+            /// Create tx
+            var tx: Transaction = Transaction(withOperations: operation)
+            Logger.log(message: "\ntransaction:\n\t\(tx)\n", event: .debug)
+            
+            // Transaction: serialize & SHA256 & ECC signing
+            let errorAPI = tx.serialize(byOperationType: operationType)
+            
+            guard errorAPI == nil else {
+                // Show alert error
+                Logger.log(message: "\(errorAPI!.localizedDescription)", event: .error)
+                return
+            }
+            
+        })
         
-        self.setupNavigationBarAppearance()
-        self.setupTabBarAppearance()
-        self.setupKeyboardManager()
-        self.configureMainContainer()
+        
+//        self.setupNavigationBarAppearance()
+//        self.setupTabBarAppearance()
+//        self.setupKeyboardManager()
+//        self.configureMainContainer()
         
         // Run Fabric
         Fabric.with([Crashlytics.self])
@@ -109,26 +134,26 @@ extension AppDelegate {
     }
     
     // DELETE AFTER TEST
-    private func testGetDynamicGlobalProperties() {
-        // API 'get_dynamic_global_properties'
-        let requestAPIType = broadcast.prepareGET(requestByMethodType: .getDynamicGlobalProperties())
-        // prepareGET(requestByMethodType: t.prepareGET(requestByMethodType: .getDynamicGlobalProperties())
-        Logger.log(message: "\nrequestAPIType =\n\t\(requestAPIType!)", event: .debug)
-
-        // Network Layer (WebSocketManager)
-        DispatchQueue.main.async {
-            webSocketManager.sendRequest(withType: requestAPIType!) { (responseAPIType) in
-                Logger.log(message: "\nresponseAPIType:\n\t\(responseAPIType)", event: .debug)
-                
-                guard let responseAPI = responseAPIType.responseAPI, let responseAPIResult = responseAPI as? ResponseAPIDynamicGlobalPropertiesResult else {
-                    Logger.log(message: responseAPIType.errorAPI!.caseInfo.message, event: .error)
-                    return
-                }
-                
-                // Get globalProperties (page 5)
-                let globalProperties = responseAPIResult.result
-                Logger.log(message: "\nglobalProperties:\n\t\(globalProperties)", event: .debug)
-            }
-        }
-    }
+//    private func testGetDynamicGlobalProperties() {
+//        // API 'get_dynamic_global_properties'
+//        let requestAPIType = broadcast.prepareGET(requestByMethodType: .getDynamicGlobalProperties())
+//        // prepareGET(requestByMethodType: t.prepareGET(requestByMethodType: .getDynamicGlobalProperties())
+//        Logger.log(message: "\nrequestAPIType =\n\t\(requestAPIType!)", event: .debug)
+//
+//        // Network Layer (WebSocketManager)
+//        DispatchQueue.main.async {
+//            webSocketManager.sendRequest(withType: requestAPIType!) { (responseAPIType) in
+//                Logger.log(message: "\nresponseAPIType:\n\t\(responseAPIType)", event: .debug)
+//
+//                guard let responseAPI = responseAPIType.responseAPI, let responseAPIResult = responseAPI as? ResponseAPIDynamicGlobalPropertiesResult else {
+//                    Logger.log(message: responseAPIType.errorAPI!.caseInfo.message, event: .error)
+//                    return
+//                }
+//
+//                // Get globalProperties (page 5)
+//                let globalProperties = responseAPIResult.result
+//                Logger.log(message: "\nglobalProperties:\n\t\(globalProperties)", event: .debug)
+//            }
+//        }
+//    }
 }
