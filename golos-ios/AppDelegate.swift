@@ -54,10 +54,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
             
             // Create POST message
-            let requestMessage = broadcast.preparePOST(requestByMethodType: .verifyAuthorityVote, byTransaction: tx)
-            Logger.log(message: "\nrequestAPIType:\n\t\(requestMessage ?? "XXX")\n", event: .debug)
+            if let requestAPIType = broadcast.preparePOST(requestByMethodType: .verifyAuthorityVote, byTransaction: tx) {
+                Logger.log(message: "\nrequestAPIType:\n\t\(requestAPIType.requestMessage)\n", event: .debug)
 
-            
+                // Send POST message to blockchain
+                webSocketManager.sendRequest(withType: requestAPIType, completion: { responseAPIType in
+                    if  let responseModel = responseAPIType.responseAPI as? ResponseAPIVerifyAuthorityResult, let result = responseModel.result {
+                        if responseModel.error == nil {
+                            Logger.log(message: "\nresponseResult = \(result)\n", event: .debug)
+                        }
+                        
+                        else {
+                            Logger.log(message: "\nerrorAPI = \(responseModel.error!.message)\n", event: .error)
+                        }
+                    }
+                })
+            }
         })
         
         
