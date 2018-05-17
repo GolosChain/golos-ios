@@ -33,7 +33,7 @@ target 'Golos' do
     pod 'LayoutKit', '~> 7.0'
     
     # Pods for golos-ios
-    pod 'GoloSwift', :git => "https://github.com/Monserg/GoloSwift.git"
+    pod 'GoloSwift', :git => "https://github.com/GolosChain/GoloSwift.git"
 #    pod 'GoloSwift', :git => "https://github.com/Monserg/GoloSwift.git", :tag => "1.0.5"
 
 end
