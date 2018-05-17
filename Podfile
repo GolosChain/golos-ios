@@ -34,7 +34,7 @@ target 'Golos' do
     
     # Pods for golos-ios
     pod 'GoloSwift', :git => "https://github.com/Monserg/GoloSwift.git"
-#    pod 'GoloSwift', :git => "https://github.com/Monserg/GoloSwift.git", :tag => "1.0.4"
+#    pod 'GoloSwift', :git => "https://github.com/Monserg/GoloSwift.git", :tag => "1.0.5"
 
 end
 

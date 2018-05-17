@@ -29,18 +29,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Logger.log(message: "Success", event: .severe)
 
         // TODO: - TEST POST REQUEST
-        /// API `get_dynamic_global_properties`
+        // API `get_dynamic_global_properties`
         broadcast.getDynamicGlobalProperties(completion: { success in
             guard success else {
                 // ADD AlertView
                 return
             }
             
-            /// Create operation
+            // Create operation
             let operationType: OperationType = OperationType.vote(fields: (voter: voter, author: author, permlink: permlink, weight: weight))
             let operation: [Any] = operationType.getFields()
             
-            /// Create tx
+            // Create tx
             var tx: Transaction = Transaction(withOperations: operation)
             Logger.log(message: "\ntransaction:\n\t\(tx)\n", event: .debug)
             
@@ -52,6 +52,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 Logger.log(message: "\(errorAPI!.localizedDescription)", event: .error)
                 return
             }
+            
+            // Create POST message
+            let requestMessage = broadcast.preparePOST(requestByMethodType: .verifyAuthorityVote, byTransaction: tx)
+            Logger.log(message: "\nrequestAPIType:\n\t\(requestMessage ?? "XXX")\n", event: .debug)
+
             
         })
         
@@ -132,28 +137,4 @@ extension AppDelegate {
         UITabBar.appearance().tintColor = UIColor.Project.darkBlueTabSelected
         UITabBar.appearance().isTranslucent = false
     }
-    
-    // DELETE AFTER TEST
-//    private func testGetDynamicGlobalProperties() {
-//        // API 'get_dynamic_global_properties'
-//        let requestAPIType = broadcast.prepareGET(requestByMethodType: .getDynamicGlobalProperties())
-//        // prepareGET(requestByMethodType: t.prepareGET(requestByMethodType: .getDynamicGlobalProperties())
-//        Logger.log(message: "\nrequestAPIType =\n\t\(requestAPIType!)", event: .debug)
-//
-//        // Network Layer (WebSocketManager)
-//        DispatchQueue.main.async {
-//            webSocketManager.sendRequest(withType: requestAPIType!) { (responseAPIType) in
-//                Logger.log(message: "\nresponseAPIType:\n\t\(responseAPIType)", event: .debug)
-//
-//                guard let responseAPI = responseAPIType.responseAPI, let responseAPIResult = responseAPI as? ResponseAPIDynamicGlobalPropertiesResult else {
-//                    Logger.log(message: responseAPIType.errorAPI!.caseInfo.message, event: .error)
-//                    return
-//                }
-//
-//                // Get globalProperties (page 5)
-//                let globalProperties = responseAPIResult.result
-//                Logger.log(message: "\nglobalProperties:\n\t\(globalProperties)", event: .debug)
-//            }
-//        }
-//    }
 }
