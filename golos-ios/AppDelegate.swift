@@ -29,50 +29,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Logger.log(message: "Success", event: .severe)
 
         // TODO: - TEST POST REQUEST
-        // API `get_dynamic_global_properties`
-        broadcast.getDynamicGlobalProperties(completion: { success in
-            guard success else {
-                // ADD AlertView
-                return
-            }
-            
-            // Create operation
-            let operationType: OperationType = OperationType.vote(fields: (voter: voter, author: author, permlink: permlink, weight: weight))
-            let operation: [Any] = operationType.getFields()
-            Logger.log(message: "\noperation:\n\t\(operation)\n", event: .debug)
+        self.testPOSTRequest()
 
-            // Create tx
-            var tx: Transaction = Transaction(withOperations: operation)
-            Logger.log(message: "\ntransaction:\n\t\(tx)\n", event: .debug)
-            
-            // Transaction: serialize & SHA256 & ECC signing
-            let errorAPI = tx.serialize(byOperationType: operationType)
-            
-            guard errorAPI == nil else {
-                // Show alert error
-                Logger.log(message: "\(errorAPI!.localizedDescription)", event: .error)
-                return
-            }
-            
-            // Create POST message
-            if let requestAPIType = broadcast.preparePOST(requestByMethodType: .verifyAuthorityVote, byTransaction: tx) {
-                Logger.log(message: "\nrequestAPIType:\n\t\(requestAPIType.requestMessage)\n", event: .debug)
-                
-                // Send POST message to blockchain
-                webSocketManager.sendRequest(withType: requestAPIType, completion: { responseAPIType in
-                    if  let responseModel = responseAPIType.responseAPI as? ResponseAPIVerifyAuthorityResult, let result = responseModel.result {
-                        if responseModel.error == nil {
-                            Logger.log(message: "\nresponseResult = \(result)\n", event: .debug)
-                        }
-                    }
-                    
-                    else {
-                        Logger.log(message: "\nerrorAPI = \((responseAPIType.responseAPI as! ResponseAPIVerifyAuthorityResult).error!.message)\n", event: .error)
-                    }
-                })
-            }
-        })
-        
         
 //        self.setupNavigationBarAppearance()
 //        self.setupTabBarAppearance()
@@ -149,5 +107,25 @@ extension AppDelegate {
         UITabBar.appearance().barTintColor = UIColor.white
         UITabBar.appearance().tintColor = UIColor.Project.darkBlueTabSelected
         UITabBar.appearance().isTranslucent = false
+    }
+    
+    
+    // TESTED
+    func testPOSTRequest() {
+        // Create OperationType
+        let operationType: OperationType = OperationType.vote(fields: (voter: voter, author: author, permlink: permlink, weight: weight))
+        
+        // POST Request
+        broadcast.executePOST(byOperationType: operationType, completion: { responseAPIType in
+            if  let responseModel = responseAPIType?.responseAPI as? ResponseAPIVerifyAuthorityResult, let result = responseModel.result {
+                if responseModel.error == nil {
+                    Logger.log(message: "\nresponse Result = \(result)\n", event: .debug)
+                }
+            }
+                
+            else {
+                Logger.log(message: "nresponse ErrorAPI = \((responseAPIType!.responseAPI as! ResponseAPIVerifyAuthorityResult).error!.message)\n", event: .error)
+            }
+        })
     }
 }
