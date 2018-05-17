@@ -39,7 +39,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // Create operation
             let operationType: OperationType = OperationType.vote(fields: (voter: voter, author: author, permlink: permlink, weight: weight))
             let operation: [Any] = operationType.getFields()
-            
+            Logger.log(message: "\noperation:\n\t\(operation)\n", event: .debug)
+
             // Create tx
             var tx: Transaction = Transaction(withOperations: operation)
             Logger.log(message: "\ntransaction:\n\t\(tx)\n", event: .debug)
@@ -56,17 +57,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // Create POST message
             if let requestAPIType = broadcast.preparePOST(requestByMethodType: .verifyAuthorityVote, byTransaction: tx) {
                 Logger.log(message: "\nrequestAPIType:\n\t\(requestAPIType.requestMessage)\n", event: .debug)
-
+                
                 // Send POST message to blockchain
                 webSocketManager.sendRequest(withType: requestAPIType, completion: { responseAPIType in
                     if  let responseModel = responseAPIType.responseAPI as? ResponseAPIVerifyAuthorityResult, let result = responseModel.result {
                         if responseModel.error == nil {
                             Logger.log(message: "\nresponseResult = \(result)\n", event: .debug)
                         }
-                        
-                        else {
-                            Logger.log(message: "\nerrorAPI = \(responseModel.error!.message)\n", event: .error)
-                        }
+                    }
+                    
+                    else {
+                        Logger.log(message: "\nerrorAPI = \((responseAPIType.responseAPI as! ResponseAPIVerifyAuthorityResult).error!.message)\n", event: .error)
                     }
                 })
             }
