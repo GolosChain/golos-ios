@@ -524,6 +524,17 @@
 			path = Storyboards;
 			sourceTree = "<group>";
 		};
+		B13F360320AEAD5D003CA33D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				EC1DFB9520063C400080BC50 /* Assets.xcassets */,
+				EC1DFB9A20063C400080BC50 /* Info.plist */,
+				7DCF55D0205883B5002FE7C3 /* Golos-Bridging-Header.h */,
+				B18DB4502085D22A00BA5D50 /* Localizable.strings */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		EC07F4A0201408FF00560CF0 /* HorizontalSelectorView */ = {
 			isa = PBXGroup;
 			children = (
@@ -569,16 +580,13 @@
 			isa = PBXGroup;
 			children = (
 				EC1DFB8E20063C400080BC50 /* AppDelegate.swift */,
-				EC1DFB9520063C400080BC50 /* Assets.xcassets */,
 				ECF28084200A941F0000D949 /* Common */,
 				EC24FF29200BFA9300A0AE15 /* Managers */,
 				ECB2C0D12008E54000AF1AF5 /* Miscellaneous */,
 				7D911D1E2035ED7C00F19D3C /* Model */,
 				ECC15F9B200975680099BBC9 /* Modules */,
+				B13F360320AEAD5D003CA33D /* Resources */,
 				B13F360220AEAD09003CA33D /* Storyboards */,
-				7DCF55D0205883B5002FE7C3 /* Golos-Bridging-Header.h */,
-				EC1DFB9A20063C400080BC50 /* Info.plist */,
-				B18DB4502085D22A00BA5D50 /* Localizable.strings */,
 			);
 			path = "golos-ios";
 			sourceTree = "<group>";
@@ -1395,14 +1403,14 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				INFOPLIST_FILE = "golos-ios/Info.plist";
+				INFOPLIST_FILE = "golos-ios/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "io.golos.testing.golos-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "golos-ios/Golos-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "golos-ios/Resources/Golos-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1423,7 +1431,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				INFOPLIST_FILE = "golos-ios/Info.plist";
+				INFOPLIST_FILE = "golos-ios/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
@@ -1431,7 +1439,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "golos-ios/Golos-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "golos-ios/Resources/Golos-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				WEBSOCKET_URL = "wss://ws.golos.io";
