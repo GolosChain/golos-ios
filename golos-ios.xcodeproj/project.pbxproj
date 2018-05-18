@@ -516,6 +516,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		B13F360220AEAD09003CA33D /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				EC1DFB9720063C400080BC50 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
 		EC07F4A0201408FF00560CF0 /* HorizontalSelectorView */ = {
 			isa = PBXGroup;
 			children = (
@@ -561,15 +569,15 @@
 			isa = PBXGroup;
 			children = (
 				EC1DFB8E20063C400080BC50 /* AppDelegate.swift */,
-				ECC15F9B200975680099BBC9 /* Modules */,
-				EC24FF29200BFA9300A0AE15 /* Managers */,
-				7D911D1E2035ED7C00F19D3C /* Model */,
-				ECF28084200A941F0000D949 /* Common */,
-				ECB2C0D12008E54000AF1AF5 /* Miscellaneous */,
 				EC1DFB9520063C400080BC50 /* Assets.xcassets */,
-				EC1DFB9720063C400080BC50 /* LaunchScreen.storyboard */,
-				EC1DFB9A20063C400080BC50 /* Info.plist */,
+				ECF28084200A941F0000D949 /* Common */,
+				EC24FF29200BFA9300A0AE15 /* Managers */,
+				ECB2C0D12008E54000AF1AF5 /* Miscellaneous */,
+				7D911D1E2035ED7C00F19D3C /* Model */,
+				ECC15F9B200975680099BBC9 /* Modules */,
+				B13F360220AEAD09003CA33D /* Storyboards */,
 				7DCF55D0205883B5002FE7C3 /* Golos-Bridging-Header.h */,
+				EC1DFB9A20063C400080BC50 /* Info.plist */,
 				B18DB4502085D22A00BA5D50 /* Localizable.strings */,
 			);
 			path = "golos-ios";
