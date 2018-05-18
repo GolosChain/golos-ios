@@ -24,25 +24,25 @@ class UserManager {
         Logger.log(message: "Success", event: .severe)
 
         // API 'get_accounts'
-        let requestAPIType = broadcast.prepareGET(requestByMethodType: MethodAPIType.getAccounts(names: userNames))!
-        // GolosBlockchainManager.prepareGET(requestByMethodType: MethodAPIType.getAccounts(names: userNames))!
-        Logger.log(message: "\nrequestAPIType =\n\t\(requestAPIType)", event: .debug)
-
-        // Network Layer (WebSocketManager)
-        DispatchQueue.main.async {
-            webSocketManager.sendRequest(withType: requestAPIType) { (responseAPIType) in
-                Logger.log(message: "\nresponseAPIType:\n\t\(responseAPIType)", event: .debug)
-                
-                guard let responseAPI = responseAPIType.responseAPI, let responseAPIResult = responseAPI as? ResponseAPIUserResult else {
-                    completion(nil, responseAPIType.errorAPI)
-                    return
-                }
-                
-                let displayedUsers = responseAPIResult.result.compactMap({ DisplayedUser(fromResponseAPIUser: $0) })
-                
-                // Return to files: `UserPresenter.swift`, `PostsFeedPresenter.swift`
-                completion(displayedUsers, nil)
-            }
-        }
+//        let requestAPIType = broadcast.prepareGET(requestByMethodType: MethodAPIType.getAccounts(names: userNames))!
+//        // GolosBlockchainManager.prepareGET(requestByMethodType: MethodAPIType.getAccounts(names: userNames))!
+//        Logger.log(message: "\nrequestAPIType =\n\t\(requestAPIType)", event: .debug)
+//
+//        // Network Layer (WebSocketManager)
+//        DispatchQueue.main.async {
+//            webSocketManager.sendRequest(withType: requestAPIType) { (responseAPIType) in
+//                Logger.log(message: "\nresponseAPIType:\n\t\(responseAPIType)", event: .debug)
+//                
+//                guard let responseAPI = responseAPIType.responseAPI, let responseAPIResult = responseAPI as? ResponseAPIUserResult else {
+//                    completion(nil, responseAPIType.errorAPI)
+//                    return
+//                }
+//                
+//                let displayedUsers = responseAPIResult.result.compactMap({ DisplayedUser(fromResponseAPIUser: $0) })
+//                
+//                // Return to files: `UserPresenter.swift`, `PostsFeedPresenter.swift`
+//                completion(displayedUsers, nil)
+//            }
+//        }
     }
 }

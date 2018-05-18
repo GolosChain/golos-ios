@@ -111,17 +111,32 @@ extension AppDelegate {
     }
     
     
-    // TESTED
+    /// GET
     func testGETRequest() {
+        // Create MethodAPIType
+        let methodAPIType = MethodAPIType.getAccounts(names: ["inertia"])
         
+        // API 'get_accounts'
+        broadcast.executeGET(byMethodAPIType: methodAPIType, completion: { responseAPIType in
+            if let responseModel = responseAPIType?.responseAPI as? ResponseAPIUserResult, let result = responseModel.result {
+                if responseModel.error == nil {
+                    Logger.log(message: "\nresponse Result = \(result)\n", event: .debug)
+                }
+            }
+                
+            else {
+                Logger.log(message: "nresponse ErrorAPI = \((responseAPIType!.responseAPI as! ResponseAPIUserResult).error!.message)\n", event: .error)
+            }
+        })
     }
-    
+
+    /// POST
     func testPOSTRequest() {
         // Create OperationType
-        let operationType: OperationType = OperationType.vote(fields: (voter: voter, author: author, permlink: permlink, weight: weight))
+        let operationAPIType: OperationAPIType = OperationAPIType.vote(fields: (voter: voter, author: author, permlink: permlink, weight: weight))
         
         // POST Request
-        broadcast.executePOST(byOperationType: operationType, completion: { responseAPIType in
+        broadcast.executePOST(byOperationAPIType: operationAPIType, completion: { responseAPIType in
             if  let responseModel = responseAPIType?.responseAPI as? ResponseAPIVerifyAuthorityResult, let result = responseModel.result {
                 if responseModel.error == nil {
                     Logger.log(message: "\nresponse Result = \(result)\n", event: .debug)
