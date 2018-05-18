@@ -38,11 +38,8 @@
 		7D79C3482034686B00794447 /* ReusableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D79C3472034686B00794447 /* ReusableCell.swift */; };
 		7D79C34A20346B5500794447 /* AnswerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D79C34920346B5500794447 /* AnswerType.swift */; };
 		7D79C34C20347DCE00794447 /* AnswersFeedViewController+ProfileFeedContainerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D79C34B20347DCE00794447 /* AnswersFeedViewController+ProfileFeedContainerItem.swift */; };
-		7D79C34F2034F29900794447 /* WebSocketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D79C34E2034F29900794447 /* WebSocketManager.swift */; };
 		7D7D564220367F8B003E06A6 /* PostParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7D564120367F8B003E06A6 /* PostParser.swift */; };
 		7D7D564420368028003E06A6 /* PostItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7D564320368028003E06A6 /* PostItem.swift */; };
-		7D911D142035CCAE00F19D3C /* WebSocketMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D911D132035CCAE00F19D3C /* WebSocketMethod.swift */; };
-		7D911D182035DDD300F19D3C /* WebSocketResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D911D172035DDD300F19D3C /* WebSocketResponse.swift */; };
 		7D911D1A2035DE5D00F19D3C /* String+Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D911D192035DE5D00F19D3C /* String+Dictionary.swift */; };
 		7D911D1D2035ED0200F19D3C /* PostsFeedManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D911D1C2035ED0200F19D3C /* PostsFeedManager.swift */; };
 		7D911D202035F0A600F19D3C /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D911D1F2035F0A600F19D3C /* PostModel.swift */; };
@@ -201,11 +198,8 @@
 		7D79C3472034686B00794447 /* ReusableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableCell.swift; sourceTree = "<group>"; };
 		7D79C34920346B5500794447 /* AnswerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerType.swift; sourceTree = "<group>"; };
 		7D79C34B20347DCE00794447 /* AnswersFeedViewController+ProfileFeedContainerItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnswersFeedViewController+ProfileFeedContainerItem.swift"; sourceTree = "<group>"; };
-		7D79C34E2034F29900794447 /* WebSocketManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketManager.swift; sourceTree = "<group>"; };
 		7D7D564120367F8B003E06A6 /* PostParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostParser.swift; sourceTree = "<group>"; };
 		7D7D564320368028003E06A6 /* PostItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostItem.swift; sourceTree = "<group>"; };
-		7D911D132035CCAE00F19D3C /* WebSocketMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketMethod.swift; sourceTree = "<group>"; };
-		7D911D172035DDD300F19D3C /* WebSocketResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketResponse.swift; sourceTree = "<group>"; };
 		7D911D192035DE5D00F19D3C /* String+Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Dictionary.swift"; sourceTree = "<group>"; };
 		7D911D1C2035ED0200F19D3C /* PostsFeedManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsFeedManager.swift; sourceTree = "<group>"; };
 		7D911D1F2035F0A600F19D3C /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
@@ -438,15 +432,6 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
-		7D79C34D2034F28B00794447 /* WebSocketManager */ = {
-			isa = PBXGroup;
-			children = (
-				7D911D132035CCAE00F19D3C /* WebSocketMethod.swift */,
-				7D911D172035DDD300F19D3C /* WebSocketResponse.swift */,
-			);
-			path = WebSocketManager;
-			sourceTree = "<group>";
-		};
 		7D7D564020367F7C003E06A6 /* Parser */ = {
 			isa = PBXGroup;
 			children = (
@@ -595,13 +580,11 @@
 			children = (
 				7D95CFA9203A53E500C1AE0A /* UserManager.swift */,
 				7D911D1C2035ED0200F19D3C /* PostsFeedManager.swift */,
-				7D79C34E2034F29900794447 /* WebSocketManager.swift */,
 				7D95CFA1203A118D00C1AE0A /* GSImageLoader */,
 				7D7D564020367F7C003E06A6 /* Parser */,
 				7DFE7C4720464C110057F144 /* PostsManager */,
 				7DFE7C422046392C0057F144 /* ReplyManager */,
 				EC24FF4E200C064B00A0AE15 /* StateMachine */,
-				7D79C34D2034F28B00794447 /* WebSocketManager */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -1208,7 +1191,6 @@
 				EC6FD5A2200AE1A200DCB824 /* QRScannerViewController.swift in Sources */,
 				7D25B47F201F4714004A3400 /* TagsView.swift in Sources */,
 				EC24FF24200BC72F00A0AE15 /* LoginUIStrings.swift in Sources */,
-				7D911D182035DDD300F19D3C /* WebSocketResponse.swift in Sources */,
 				7D25B4B5201F9218004A3400 /* GSNavigationBar.swift in Sources */,
 				EC5B2BFD201A443C007A4335 /* String+Size.swift in Sources */,
 				ECF28087200A94550000D949 /* ViewController+Nib.swift in Sources */,
@@ -1217,7 +1199,6 @@
 				7D79C34C20347DCE00794447 /* AnswersFeedViewController+ProfileFeedContainerItem.swift in Sources */,
 				EC24FF6C200C400300A0AE15 /* GSTabBarController.swift in Sources */,
 				7DFA6CAD2036D76000F59494 /* PostsFeedImageTableViewCell.swift in Sources */,
-				7D911D142035CCAE00F19D3C /* WebSocketMethod.swift in Sources */,
 				7D25B4B8201F980A004A3400 /* ArticleHeaderView.swift in Sources */,
 				7D79C33A2034675C00794447 /* AnswersFeedViewController.swift in Sources */,
 				7D79C3452034685900794447 /* AnswersFeedTableViewCell.swift in Sources */,
@@ -1235,7 +1216,6 @@
 				7D25B4CD201FAE93004A3400 /* ArticleMediator.swift in Sources */,
 				ECF3172E200AB22E00F7B703 /* LoginViewController.swift in Sources */,
 				7D25B487201F4978004A3400 /* ArticleViewController.swift in Sources */,
-				7D79C34F2034F29900794447 /* WebSocketManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

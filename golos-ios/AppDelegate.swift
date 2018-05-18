@@ -29,7 +29,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Logger.log(message: "Success", event: .severe)
 
         // TODO: - TEST POST REQUEST
-        self.testPOSTRequest()
+        self.testGETRequest()
+//        self.testPOSTRequest()
 
         
 //        self.setupNavigationBarAppearance()
@@ -111,6 +112,10 @@ extension AppDelegate {
     
     
     // TESTED
+    func testGETRequest() {
+        
+    }
+    
     func testPOSTRequest() {
         // Create OperationType
         let operationType: OperationType = OperationType.vote(fields: (voter: voter, author: author, permlink: permlink, weight: weight))
