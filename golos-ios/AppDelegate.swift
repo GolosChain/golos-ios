@@ -29,8 +29,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Logger.log(message: "Success", event: .severe)
 
         // TODO: - TEST POST REQUEST
-        self.testGETRequest()
-//        self.testPOSTRequest()
+//        self.testGETRequest()
+        self.testPOSTRequest()
 
         
 //        self.setupNavigationBarAppearance()
