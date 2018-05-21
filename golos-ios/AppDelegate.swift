@@ -117,35 +117,27 @@ extension AppDelegate {
         let methodAPIType = MethodAPIType.getAccounts(names: ["inertia"])
         
         // API 'get_accounts'
-        broadcast.executeGET(byMethodAPIType: methodAPIType, completion: { responseAPIType in
-            if let responseModel = responseAPIType?.responseAPI as? ResponseAPIUserResult, let result = responseModel.result {
-                if responseModel.error == nil {
-                    Logger.log(message: "\nresponse Result = \(result)\n", event: .debug)
-                }
-            }
-                
-            else {
-                Logger.log(message: "nresponse ErrorAPI = \((responseAPIType!.responseAPI as! ResponseAPIUserResult).error!.message)\n", event: .error)
-            }
+        broadcast.executeGET(byMethodAPIType: methodAPIType,
+                             onResult: { [weak self] result in
+                                Logger.log(message: "\nresponse Result = \(result)\n", event: .debug)
+            },
+                             onError: { [weak self] errorAPI in
+                                Logger.log(message: "nresponse ErrorAPI = \(errorAPI.caseInfo.message)\n", event: .error)
         })
     }
 
     /// POST
     func testPOSTRequest() {
         // Create OperationType
-        let operationAPIType: OperationAPIType = OperationAPIType.vote(fields: (voter: voter, author: author, permlink: permlink, weight: weight))
+        let operationType: OperationAPIType = OperationAPIType.vote(fields: (voter: voter, author: author, permlink: permlink, weight: weight))
         
         // POST Request
-        broadcast.executePOST(byOperationAPIType: operationAPIType, completion: { responseAPIType in
-            if  let responseModel = responseAPIType?.responseAPI as? ResponseAPIVerifyAuthorityResult, let result = responseModel.result {
-                if responseModel.error == nil {
-                    Logger.log(message: "\nresponse Result = \(result)\n", event: .debug)
-                }
-            }
-                
-            else {
-                Logger.log(message: "nresponse ErrorAPI = \((responseAPIType!.responseAPI as! ResponseAPIVerifyAuthorityResult).error!.message)\n", event: .error)
-            }
+        broadcast.executePOST(byOperationAPIType: operationType,
+                              onResult: { [weak self] result in
+                                Logger.log(message: "\nresponse Result = \(result)\n", event: .debug)
+            },
+                              onError: { [weak self] errorAPI in
+                                Logger.log(message: "nresponse ErrorAPI = \(errorAPI.caseInfo.message)\n", event: .error)
         })
     }
 }
