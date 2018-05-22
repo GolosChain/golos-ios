@@ -10,6 +10,7 @@ import UIKit
 import Fabric
 import GoloSwift
 import Crashlytics
+import FirebaseCore
 import IQKeyboardManagerSwift
 
 
@@ -33,6 +34,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        self.setupTabBarAppearance()
 //        self.setupKeyboardManager()
 //        self.configureMainContainer()
+        
+        // Run Firebase
+        FirebaseApp.configure()
         
         // Run Fabric
         Fabric.with([Crashlytics.self])
@@ -110,7 +114,7 @@ extension AppDelegate {
     /// GET
     func testGETRequest() {
         // Create MethodAPIType
-        let methodAPIType = MethodAPIType.getAccounts(names: ["inertia"])
+        let methodAPIType = MethodAPIType.getAccounts(names: ["qwerty"])
         
         // API 'get_accounts'
         broadcast.executeGET(byMethodAPIType: methodAPIType,

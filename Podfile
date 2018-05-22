@@ -29,6 +29,9 @@ target 'Golos' do
     pod 'Fabric'
     pod 'Crashlytics'
     
+    # Firebase
+    pod 'Firebase/Core'
+    
     # Design
     pod 'LayoutKit', '~> 7.0'
     
