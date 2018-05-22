@@ -12,8 +12,12 @@
 	<string>6.0</string>
 	<key>CFBundleName</key>
 	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundleDisplayName</key>
+	<string>$(IS_APP_NAME)</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
+	<key>Config</key>
+	<string>$(CONFIGURATION)</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>

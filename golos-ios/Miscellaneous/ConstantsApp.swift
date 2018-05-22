@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import GoloSwift
 
 struct ConstantsApp {
     struct ButtonParameters {
@@ -21,16 +22,9 @@ struct ConstantsApp {
     struct StateMachine {
         static let oldStateKey      =   "oldStateKey"
     }
-    
-//    struct InfoDictionaryKey {
-//        static let webSocketUrlKey  =   "WebSocketUrl"
-//    }
 }
 
-//let webSocketLimit      =   10
-
-/// Websocket response max timeout, in seconds
-//let webSocketTimeout    =   60.0
+let broadcast: Broadcast            =   Broadcast.shared
 
 
 

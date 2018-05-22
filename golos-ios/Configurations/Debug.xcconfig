@@ -1,0 +1,10 @@
+//
+//  Debug.xcconfig
+//  golos-ios
+//
+//  Created by msm72 on 21.05.2018.
+//  Copyright © 2018 golos. All rights reserved.
+//
+
+IS_APP_ICON     =   AppIconDebug
+IS_APP_NAME     =   Golos Debug

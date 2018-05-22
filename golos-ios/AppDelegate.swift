@@ -9,14 +9,9 @@
 import UIKit
 import Fabric
 import GoloSwift
-//import Starscream
 import Crashlytics
 import IQKeyboardManagerSwift
 
-//import CoreBitcoin
-
-//let webSocket = WebSocket(url: URL(string: Bundle.main.infoDictionary![ConstantsApp.InfoDictionaryKey.webSocketUrlKey] as! String)!)
-//let webSocketManager = WebSocketManager()
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -28,9 +23,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         Logger.log(message: "Success", event: .severe)
 
+        
         // TODO: - TEST POST REQUEST
-//        self.testGETRequest()
-        self.testPOSTRequest()
+        self.testGETRequest()
+//        self.testPOSTRequest()
 
         
 //        self.setupNavigationBarAppearance()
