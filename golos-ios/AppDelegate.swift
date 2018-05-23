@@ -40,7 +40,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Run Firebase
         FirebaseApp.configure()
-        
+        Messaging.messaging().delegate                      =   self
+
         // Run Fabric
         Fabric.with([Crashlytics.self])
         
@@ -82,6 +83,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 webSocket.delegate = webSocketManager
             }
         }
+    }
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        let token = deviceToken.reduce("") { $0 + String(format: "%02x", $1) }
+        Logger.log(message: "\ndeviceToken:\n\t\(token)", event: .severe)
+        
+//        if Token.current == nil {
+//            _ = CoreDataManager.instance.createEntity("Token")
+//        }
+//
+//        Token.current!.device = token
+//        Token.current!.save()
+        
+        let type: MessagingAPNSTokenType
+        #if DEBUG
+            type = .sandbox
+        #else
+            type = .prod
+        #endif
+        
+        Messaging.messaging().setAPNSToken(deviceToken, type: type)
+    }
+    
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        Logger.log(message: "Register for Remote Notifications failed: \(error.localizedDescription)", event: .error)
+    }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        // App in Active mode & after tap on notification
+        Logger.log(message: "Received Remote Notification message: \(userInfo)", event: .severe)
     }
 }
 
