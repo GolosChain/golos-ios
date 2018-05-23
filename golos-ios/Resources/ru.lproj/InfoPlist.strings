@@ -1,0 +1,11 @@
+/*
+ InfoPlist.strings
+ golos-ios
+ 
+ Created by msm72 on 23.05.2018.
+ Copyright © 2018 golos. All rights reserved.
+ 
+ https://developer.apple.com/library/content/documentation/General/Reference/InfoPlistKeyReference/Articles/AboutInformationPropertyListFiles.html
+ */
+
+NSCameraUsageDescription        =   "Нам нужен доступ к камере вашего устройства для сканирования QR-кода";

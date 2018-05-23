@@ -118,7 +118,13 @@ class LoginViewController: UIViewController {
             return
         }
         
-        UIApplication.shared.open(moreUrl, options: [:], completionHandler: nil)
+        if #available(iOS 10.0, *) {
+            UIApplication.shared.open(moreUrl, options: [:], completionHandler: nil)
+        }
+        
+        else {
+            UIApplication.shared.openURL(moreUrl)
+        }
     }
     
     @IBAction func changeKeyTypePressed(_ sender: Any) {

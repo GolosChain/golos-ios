@@ -76,10 +76,19 @@ class QRScannerViewController: UIViewController {
     // MARK: - Custom Functions
     private func startScanning() {
         Logger.log(message: "Success", event: .severe)
+        /*
+        var deviceDiscoverySession: AVCaptureDevice.DiscoverySession!
         
-        let deviceDiscoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera],
-                                                                      mediaType: AVMediaType.video,
-                                                                      position: .back)
+        if #available(iOS 10.0, *) {
+            deviceDiscoverySession  =   AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera],
+                                                                         mediaType: AVMediaType.video,
+                                                                         position: .back)
+        }
+        
+        else {
+            // Fallback on earlier versions
+        }
+       
         guard let captureDevice = deviceDiscoverySession.devices.first else {
             Logger.log(message: "Failed to get the camera device", event: .error)
             return
@@ -100,13 +109,12 @@ class QRScannerViewController: UIViewController {
             return
         }
         
-        videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-        videoPreviewLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill
-        videoPreviewLayer?.frame = view.layer.bounds
+        videoPreviewLayer                   =   AVCaptureVideoPreviewLayer(session: captureSession)
+        videoPreviewLayer?.videoGravity     =   AVLayerVideoGravity.resizeAspectFill
+        videoPreviewLayer?.frame            =   view.layer.bounds
+        
         cameraView.layer.addSublayer(videoPreviewLayer!)
-        
         captureSession.startRunning()
-        
         qrCodeFrameView = UIView()
       
         if let qrCodeFrameView = qrCodeFrameView {
@@ -114,7 +122,7 @@ class QRScannerViewController: UIViewController {
             qrCodeFrameView.layer.borderWidth = 2
             view.addSubview(qrCodeFrameView)
             view.bringSubview(toFront: qrCodeFrameView)
-        }
+        } */
     }
     
     private func stopScanning() {

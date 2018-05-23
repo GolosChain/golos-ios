@@ -74,6 +74,7 @@
 		B12A577420B432C8000CF8BF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B12A577320B432C7000CF8BF /* GoogleService-Info.plist */; };
 		B18DB44E2085D22A00BA5D50 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B18DB4502085D22A00BA5D50 /* Localizable.strings */; };
 		B18DB455208619A000BA5D50 /* DisplayedPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18DB454208619A000BA5D50 /* DisplayedPost.swift */; };
+		B1918FF720B5421800F6CE63 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B1918FF920B5421800F6CE63 /* InfoPlist.strings */; };
 		EC07F4A22014093E00560CF0 /* HorizontalSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC07F4A12014093E00560CF0 /* HorizontalSelectorView.swift */; };
 		EC07F4A620141E8D00560CF0 /* PostsFeedType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC07F4A520141E8D00560CF0 /* PostsFeedType.swift */; };
 		EC07F4A820141F0200560CF0 /* FeedMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC07F4A720141F0200560CF0 /* FeedMediator.swift */; };
@@ -239,10 +240,14 @@
 		B12A576D20B410D8000CF8BF /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
 		B12A576E20B410E6000CF8BF /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
 		B12A577320B432C7000CF8BF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		B12A577520B43496000CF8BF /* Golos.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Golos.entitlements; sourceTree = "<group>"; };
 		B18DB44B2085D1DB00BA5D50 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		B18DB44F2085D22A00BA5D50 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B18DB4512085D22C00BA5D50 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B18DB454208619A000BA5D50 /* DisplayedPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayedPost.swift; sourceTree = "<group>"; };
+		B1918FF320B5419A00F6CE63 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B1918FF820B5421800F6CE63 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B1918FFA20B5421A00F6CE63 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		DECBC36021F31D8D6F619C11 /* Pods-golos-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-golos-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-golos-ios/Pods-golos-ios.release.xcconfig"; sourceTree = "<group>"; };
 		EC07F4A12014093E00560CF0 /* HorizontalSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalSelectorView.swift; sourceTree = "<group>"; };
 		EC07F4A520141E8D00560CF0 /* PostsFeedType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsFeedType.swift; sourceTree = "<group>"; };
@@ -254,7 +259,6 @@
 		EC1DFB8E20063C400080BC50 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EC1DFB9520063C400080BC50 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EC1DFB9820063C400080BC50 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		EC1DFB9A20063C400080BC50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EC24FF1F200BC69400A0AE15 /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
 		EC24FF21200BC69B00A0AE15 /* LoginType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginType.swift; sourceTree = "<group>"; };
 		EC24FF23200BC72F00A0AE15 /* LoginUIStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUIStrings.swift; sourceTree = "<group>"; };
@@ -547,9 +551,10 @@
 			children = (
 				B12A576C20B410B4000CF8BF /* Configurations */,
 				EC1DFB9520063C400080BC50 /* Assets.xcassets */,
-				EC1DFB9A20063C400080BC50 /* Info.plist */,
+				B1918FF320B5419A00F6CE63 /* Info.plist */,
 				B12A577320B432C7000CF8BF /* GoogleService-Info.plist */,
 				7DCF55D0205883B5002FE7C3 /* Golos-Bridging-Header.h */,
+				B1918FF920B5421800F6CE63 /* InfoPlist.strings */,
 				B18DB4502085D22A00BA5D50 /* Localizable.strings */,
 			);
 			path = Resources;
@@ -579,6 +584,7 @@
 		EC1DFB8220063C400080BC50 = {
 			isa = PBXGroup;
 			children = (
+				B12A577520B43496000CF8BF /* Golos.entitlements */,
 				EC1DFB8D20063C400080BC50 /* golos-ios */,
 				EC24FF42200C038D00A0AE15 /* GolosTests */,
 				EC1DFB8C20063C400080BC50 /* Products */,
@@ -985,6 +991,11 @@
 						CreatedOnToolsVersion = 9.2;
 						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					EC24FF40200C038D00A0AE15 = {
 						CreatedOnToolsVersion = 9.2;
@@ -1020,6 +1031,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D1783DE201FD9B600B75979 /* ArticlePostedInTableViewCell.xib in Resources */,
+				B1918FF720B5421800F6CE63 /* InfoPlist.strings in Resources */,
 				7D25B4BA201F9821004A3400 /* ArticleHeaderView.xib in Resources */,
 				EC24FF71200C433700A0AE15 /* ProfileViewController.xib in Resources */,
 				7D79C3462034685900794447 /* AnswersFeedTableViewCell.xib in Resources */,
@@ -1079,6 +1091,7 @@
 				"${BUILT_PRODUCTS_DIR}/Localize-Swift/Localize_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/Locksmith/Locksmith.framework",
 				"${BUILT_PRODUCTS_DIR}/PINCache/PINCache.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 				"${BUILT_PRODUCTS_DIR}/secp256k1.swift/secp256k1.framework",
@@ -1095,6 +1108,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Localize_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Locksmith.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINCache.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/secp256k1.framework",
@@ -1289,6 +1303,15 @@
 			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
+		B1918FF920B5421800F6CE63 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B1918FF820B5421800F6CE63 /* en */,
+				B1918FFA20B5421A00F6CE63 /* ru */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		EC1DFB9720063C400080BC50 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1354,7 +1377,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				IS_APP_ICON = "${IS_APP_ICON}";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1368,8 +1391,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5ED8FA08BD52B2CABB53E429 /* Pods-Golos.development.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "${IS_APP_ICON}";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconDebug;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Golos.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -1379,7 +1404,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "golos-ios/Resources/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "io.golos.testing.golos-ios";
@@ -1465,7 +1490,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				IS_APP_ICON = "${IS_APP_ICON}";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1522,7 +1547,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				IS_APP_ICON = "${IS_APP_ICON}";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
@@ -1535,8 +1560,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 974FDF6AE6B94E5A2BFC2FDE /* Pods-Golos.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "${IS_APP_ICON}";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconDebug;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Golos.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -1546,7 +1573,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "golos-ios/Resources/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "io.golos.testing.golos-ios";
@@ -1564,8 +1591,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F860D859C40BCA60C8DE58EE /* Pods-Golos.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "${IS_APP_ICON}";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconDebug;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Golos.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 29QBR47DMW;
@@ -1574,7 +1603,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "golos-ios/Resources/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "io.golos.testing.golos-ios";
