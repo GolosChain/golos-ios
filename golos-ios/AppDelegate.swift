@@ -33,14 +33,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        self.testPOSTRequest()
 
         
-//        self.setupNavigationBarAppearance()
-//        self.setupTabBarAppearance()
-//        self.setupKeyboardManager()
-//        self.configureMainContainer()
+        self.setupNavigationBarAppearance()
+        self.setupTabBarAppearance()
+        self.setupKeyboardManager()
+        self.configureMainContainer()
         
         // Run Firebase
         FirebaseApp.configure()
-        Messaging.messaging().delegate                      =   self
+        
+        if Messaging.messaging().fcmToken != nil {
+            Messaging.messaging().subscribe(toTopic: "yuri-vlad-second")
+        }
+        
+        Messaging.messaging().delegate = self
 
         // Run Fabric
         Fabric.with([Crashlytics.self])
@@ -89,14 +94,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let token = deviceToken.reduce("") { $0 + String(format: "%02x", $1) }
         Logger.log(message: "\ndeviceToken:\n\t\(token)", event: .severe)
         
-//        if Token.current == nil {
-//            _ = CoreDataManager.instance.createEntity("Token")
-//        }
-//
-//        Token.current!.device = token
-//        Token.current!.save()
-        
         let type: MessagingAPNSTokenType
+
         #if DEBUG
             type = .sandbox
         #else
@@ -104,15 +103,50 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         #endif
         
         Messaging.messaging().setAPNSToken(deviceToken, type: type)
+        Messaging.messaging().subscribe(toTopic: "yuri-vlad-second")
+    }
+    
+    func messaging(_ messaging: Messaging, didRefreshRegistrationToken fcmToken: String) {
+        Messaging.messaging().subscribe(toTopic: "yuri-vlad-second")
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         Logger.log(message: "Register for Remote Notifications failed: \(error.localizedDescription)", event: .error)
     }
     
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
+        // If you are receiving a notification message while your app is in the background,
+        // this callback will not be fired till the user taps on the notification launching the application.
+        // TODO: Handle data of notification
+        
+        // With swizzling disabled you must let Messaging know about the message, for Analytics
+        // Messaging.messaging().appDidReceiveMessage(userInfo)
+        
+        // Print message ID.
+        if let messageID = userInfo[gcmMessageIDKey] {
+            Logger.log(message: "Received Remote Notification messageID: \(messageID)", event: .debug)
+        }
+        
+        // Print full message.
+        Logger.log(message: "Received Remote Notification userInfo: \(userInfo)", event: .debug)
+    }
+
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        // App in Active mode & after tap on notification
-        Logger.log(message: "Received Remote Notification message: \(userInfo)", event: .severe)
+        // If you are receiving a notification message while your app is in the background,
+        // this callback will not be fired till the user taps on the notification launching the application.
+        // TODO: Handle data of notification
+        
+        // With swizzling disabled you must let Messaging know about the message, for Analytics
+        // Messaging.messaging().appDidReceiveMessage(userInfo)
+        
+        // Print message ID.
+        if let messageID = userInfo[gcmMessageIDKey] {
+            Logger.log(message: "Received Remote Notification messageID: \(messageID)", event: .debug)
+        }
+        
+        // Print full message.
+        Logger.log(message: "Received Remote Notification userInfo: \(userInfo)", event: .debug)
+        completionHandler(UIBackgroundFetchResult.newData)
     }
 }
 
@@ -200,18 +234,11 @@ extension AppDelegate {
 // MARK: - MessagingDelegate
 extension AppDelegate: MessagingDelegate {
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
-//        if Token.current == nil {
-//            _ = CoreDataManager.instance.createEntity("Token")
-//        }
-//
-//        Token.current!.firebase = fcmToken
-//        Token.current!.lastMessageID = 0
-//        Token.current!.save()
-        Logger.log(message: "Received Firebase token: \(fcmToken)", event: .severe)
+        Logger.log(message: "Received Firebase token: \(fcmToken)", event: .debug)
     }
     
     func application(received remoteMessage: MessagingRemoteMessage) {
-        Logger.log(message: "Received Remote message: \(remoteMessage.appData)", event: .severe)
+        Logger.log(message: "Received Remote message: \(remoteMessage.appData)", event: .debug)
     }
 }
 
@@ -223,13 +250,13 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Swift.Void) {
         UIApplication.shared.applicationIconBadgeNumber += 1
-        Logger.log(message: "Present User Notification, badge = \(UIApplication.shared.applicationIconBadgeNumber)", event: .severe)
+        Logger.log(message: "Present User Notification, badge = \(UIApplication.shared.applicationIconBadgeNumber)", event: .debug)
     }
     
     @available(iOS 10.0, *)
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 didReceive response: UNNotificationResponse,
                                 withCompletionHandler completionHandler: @escaping () -> Swift.Void) {
-        Logger.log(message: "Receive User Notification, badge = \(UIApplication.shared.applicationIconBadgeNumber)", event: .severe)
+        Logger.log(message: "Receive User Notification, badge = \(UIApplication.shared.applicationIconBadgeNumber)", event: .debug)
     }
 }
