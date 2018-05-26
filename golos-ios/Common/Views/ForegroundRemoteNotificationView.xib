@@ -23,27 +23,26 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oKU-RA-IcV" userLabel="Content View">
-                    <rect key="frame" x="67" y="269" width="240" height="128"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <view opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oKU-RA-IcV" userLabel="Content View">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cmq-dx-gwi" userLabel="Left Image View">
-                            <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="article_upvote_icon" translatesAutoresizingMaskIntoConstraints="NO" id="cmq-dx-gwi" userLabel="Left Image View">
+                            <rect key="frame" x="16" y="15" width="40" height="40"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         </imageView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PEb-vK-1x7" userLabel="Rigth Image View">
-                            <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon-close-button-normal" translatesAutoresizingMaskIntoConstraints="NO" id="PEb-vK-1x7" userLabel="Rigth Image View">
+                            <rect key="frame" x="339" y="28" width="14" height="14"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wcq-if-VMV" userLabel="Title Label">
-                            <rect key="frame" x="99" y="53" width="42" height="21"/>
+                            <rect key="frame" x="78" y="11" width="42" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cLG-ui-0JJ" userLabel="Note Label">
-                            <rect key="frame" x="99" y="53" width="42" height="21"/>
+                            <rect key="frame" x="80" y="43" width="42" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
@@ -53,11 +52,21 @@
                     <color key="backgroundColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="0.70701635730000001" green="1" blue="0.72281387580000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" red="0.93944048879999997" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="oKU-RA-IcV" secondAttribute="bottom" id="Dp4-zQ-9om"/>
+                <constraint firstAttribute="trailing" secondItem="oKU-RA-IcV" secondAttribute="trailing" id="MLD-ss-rgB"/>
+                <constraint firstItem="oKU-RA-IcV" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="WnF-mk-YGz"/>
+                <constraint firstItem="oKU-RA-IcV" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="iVP-HN-mto"/>
+            </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="33.5" y="-243"/>
         </view>
     </objects>
+    <resources>
+        <image name="article_upvote_icon" width="20" height="20"/>
+        <image name="icon-close-button-normal" width="14" height="14"/>
+    </resources>
 </document>

@@ -29,7 +29,7 @@ class ForegroundRemoteNotificationView: UIView {
     
     // MARK: - Class Initialization
     init() {
-        let frame = CGRect.init(x: 0.0, y: -100.0, width: UIScreen.main.bounds.width * widthRatio, height: 70.0 * UIScreen.main.bounds.height)
+        let frame = CGRect.init(x: 0.0, y: 0.0, width: UIScreen.main.bounds.width, height: 70.0 * heightRatio)
         super.init(frame: frame)
         
         isDisplay = false
@@ -55,40 +55,6 @@ class ForegroundRemoteNotificationView: UIView {
 
         addSubview(view)
         view.frame = frame
-    }
-    
-    func display(onView superView: UIView) {
-        if !isDisplay {
-            superView.addSubview(self)
-            
-            UIView.animate(withDuration: 0.5,
-                           animations: { [weak self] in
-                            self?.transform = CGAffineTransform(translationX: 0.0, y: 100.0)
-                },
-                           completion: { [weak self] success in
-                            if success {
-                                self?.isDisplay = true
-                                
-                                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.5) {
-                                    self?.hide()
-                                }
-                            }
-            })
-        }
-    }
-    
-    func hide() {
-        if isDisplay {
-            UIView.animate(withDuration: 0.5,
-                           animations: {[weak self] in
-                            self?.transform = CGAffineTransform.identity
-                },
-                           completion: { [weak self] success in
-                            if success {
-                                self?.isDisplay = false
-                                self?.removeFromSuperview()
-                            }
-            })
-        }
+        self.frame.origin.y = -100.0
     }
 }

@@ -139,11 +139,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             localNotification.alertBody     =   "message"
             localNotification.fireDate      =   Date()
             
-//            application.scheduleLocalNotification(localNotification)
-            
-            if let currentVC = getCurrentViewController(forRootViewController: UIApplication.shared.keyWindow?.rootViewController) {
-                let foregroundRemoteNotificationView = ForegroundRemoteNotificationView()
-                foregroundRemoteNotificationView.display(onView: currentVC.view)
+            // Display Remote Notification as Local when App is in Foreground mode
+            if let currentVC = getCurrentViewController(forRootViewController: UIApplication.shared.keyWindow?.rootViewController) as? BaseViewController {
+                currentVC.foregroundRemoteNotificationView = ForegroundRemoteNotificationView()
+                currentVC.displayLocalNotification()
             }
         }
         
