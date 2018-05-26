@@ -72,6 +72,14 @@
 		7DFE7C4920464C1E0057F144 /* PostsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFE7C4820464C1E0057F144 /* PostsManager.swift */; };
 		7DFE7C4B20464C680057F144 /* PostRequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFE7C4A20464C680057F144 /* PostRequestType.swift */; };
 		B12A577420B432C8000CF8BF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B12A577320B432C7000CF8BF /* GoogleService-Info.plist */; };
+		B157660A20B59D80009619A6 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B157660920B59D80009619A6 /* UserNotifications.framework */; };
+		B157660C20B59D80009619A6 /* UserNotificationsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B157660B20B59D80009619A6 /* UserNotificationsUI.framework */; };
+		B157660F20B59D80009619A6 /* RemoteNotificationTransferViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B157660E20B59D80009619A6 /* RemoteNotificationTransferViewController.swift */; };
+		B157661220B59D80009619A6 /* RemoteNotificationTransfer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B157661020B59D80009619A6 /* RemoteNotificationTransfer.storyboard */; };
+		B157661620B59D80009619A6 /* RemoteNotificationTransfer.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = B157660820B59D80009619A6 /* RemoteNotificationTransfer.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		B157661E20B59EB4009619A6 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B157661320B59D80009619A6 /* Info.plist */; };
+		B18B937220B91D4E000CF503 /* ForegroundRemoteNotificationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B18B937120B91D4E000CF503 /* ForegroundRemoteNotificationView.xib */; };
+		B18B937420B91DB8000CF503 /* ForegroundRemoteNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18B937320B91DB8000CF503 /* ForegroundRemoteNotificationView.swift */; };
 		B18DB44E2085D22A00BA5D50 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B18DB4502085D22A00BA5D50 /* Localizable.strings */; };
 		B18DB455208619A000BA5D50 /* DisplayedPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18DB454208619A000BA5D50 /* DisplayedPost.swift */; };
 		B1918FF720B5421800F6CE63 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B1918FF920B5421800F6CE63 /* InfoPlist.strings */; };
@@ -144,6 +152,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		B157661420B59D80009619A6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EC1DFB8320063C400080BC50 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B157660720B59D80009619A6;
+			remoteInfo = RemoteNotificationTransfer;
+		};
 		EC24FF46200C038D00A0AE15 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = EC1DFB8320063C400080BC50 /* Project object */;
@@ -154,6 +169,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		B157661B20B59D80009619A6 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				B157661620B59D80009619A6 /* RemoteNotificationTransfer.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B1D900C020ABDD8300AECE51 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -241,6 +267,14 @@
 		B12A576E20B410E6000CF8BF /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
 		B12A577320B432C7000CF8BF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B12A577520B43496000CF8BF /* Golos.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Golos.entitlements; sourceTree = "<group>"; };
+		B157660820B59D80009619A6 /* RemoteNotificationTransfer.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = RemoteNotificationTransfer.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		B157660920B59D80009619A6 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		B157660B20B59D80009619A6 /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = SDKROOT; };
+		B157660E20B59D80009619A6 /* RemoteNotificationTransferViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteNotificationTransferViewController.swift; sourceTree = "<group>"; };
+		B157661120B59D80009619A6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/RemoteNotificationTransfer.storyboard; sourceTree = "<group>"; };
+		B157661320B59D80009619A6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B18B937120B91D4E000CF503 /* ForegroundRemoteNotificationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ForegroundRemoteNotificationView.xib; sourceTree = "<group>"; };
+		B18B937320B91DB8000CF503 /* ForegroundRemoteNotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForegroundRemoteNotificationView.swift; sourceTree = "<group>"; };
 		B18DB44B2085D1DB00BA5D50 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		B18DB44F2085D22A00BA5D50 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B18DB4512085D22C00BA5D50 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -321,6 +355,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		B157660520B59D80009619A6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B157660C20B59D80009619A6 /* UserNotificationsUI.framework in Frameworks */,
+				B157660A20B59D80009619A6 /* UserNotifications.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EC1DFB8820063C400080BC50 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -523,6 +566,8 @@
 			isa = PBXGroup;
 			children = (
 				2C95BB4735E4A91B9024F13C /* Pods_Golos.framework */,
+				B157660920B59D80009619A6 /* UserNotifications.framework */,
+				B157660B20B59D80009619A6 /* UserNotificationsUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -558,6 +603,33 @@
 				B18DB4502085D22A00BA5D50 /* Localizable.strings */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		B157660320B59CEF009619A6 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				B157660D20B59D80009619A6 /* RemoteNotificationTransfer */,
+			);
+			path = Notifications;
+			sourceTree = "<group>";
+		};
+		B157660D20B59D80009619A6 /* RemoteNotificationTransfer */ = {
+			isa = PBXGroup;
+			children = (
+				B157660E20B59D80009619A6 /* RemoteNotificationTransferViewController.swift */,
+				B157661020B59D80009619A6 /* RemoteNotificationTransfer.storyboard */,
+				B157661320B59D80009619A6 /* Info.plist */,
+			);
+			path = RemoteNotificationTransfer;
+			sourceTree = "<group>";
+		};
+		B18B937520B91DC3000CF503 /* Overlays */ = {
+			isa = PBXGroup;
+			children = (
+				B18B937320B91DB8000CF503 /* ForegroundRemoteNotificationView.swift */,
+				B18B937120B91D4E000CF503 /* ForegroundRemoteNotificationView.xib */,
+			);
+			name = Overlays;
 			sourceTree = "<group>";
 		};
 		EC07F4A0201408FF00560CF0 /* HorizontalSelectorView */ = {
@@ -598,6 +670,7 @@
 			children = (
 				EC1DFB8B20063C400080BC50 /* Golos.app */,
 				EC24FF41200C038D00A0AE15 /* GolosTests.xctest */,
+				B157660820B59D80009619A6 /* RemoteNotificationTransfer.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -613,6 +686,7 @@
 				ECC15F9B200975680099BBC9 /* Modules */,
 				B13F360320AEAD5D003CA33D /* Resources */,
 				B13F360220AEAD09003CA33D /* Storyboards */,
+				B157660320B59CEF009619A6 /* Notifications */,
 			);
 			path = "golos-ios";
 			sourceTree = "<group>";
@@ -924,11 +998,12 @@
 			isa = PBXGroup;
 			children = (
 				7D25B4B6201F97FA004A3400 /* ArticleHeaderView */,
-				7D25B47D201F46FF004A3400 /* TagsView */,
 				EC07F4A0201408FF00560CF0 /* HorizontalSelectorView */,
 				EC24FF7B200C4CE500A0AE15 /* NavigationDropDownView */,
-				EC9ABBE92018072600AF8597 /* GSTableView.swift */,
+				B18B937520B91DC3000CF503 /* Overlays */,
+				7D25B47D201F46FF004A3400 /* TagsView */,
 				7D25B4B4201F9218004A3400 /* GSNavigationBar.swift */,
+				EC9ABBE92018072600AF8597 /* GSTableView.swift */,
 				7DA0632B203315A300B5630C /* PassthroughView.swift */,
 			);
 			path = Views;
@@ -937,6 +1012,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		B157660720B59D80009619A6 /* RemoteNotificationTransfer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B157661720B59D80009619A6 /* Build configuration list for PBXNativeTarget "RemoteNotificationTransfer" */;
+			buildPhases = (
+				B157660420B59D80009619A6 /* Sources */,
+				B157660520B59D80009619A6 /* Frameworks */,
+				B157660620B59D80009619A6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RemoteNotificationTransfer;
+			productName = RemoteNotificationTransfer;
+			productReference = B157660820B59D80009619A6 /* RemoteNotificationTransfer.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		EC1DFB8A20063C400080BC50 /* Golos */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = EC1DFB9D20063C400080BC50 /* Build configuration list for PBXNativeTarget "Golos" */;
@@ -949,10 +1041,12 @@
 				B192DBD32074F4CE0056A08F /* Run Fabric Script */,
 				0186019DEFFDAB32052BA566 /* [CP] Embed Pods Frameworks */,
 				B1D900C020ABDD8300AECE51 /* Embed Frameworks */,
+				B157661B20B59D80009619A6 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				B157661520B59D80009619A6 /* PBXTargetDependency */,
 			);
 			name = Golos;
 			productName = "golos-ios";
@@ -983,15 +1077,22 @@
 		EC1DFB8320063C400080BC50 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0920;
+				LastSwiftUpdateCheck = 0930;
 				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = golos;
 				TargetAttributes = {
+					B157660720B59D80009619A6 = {
+						CreatedOnToolsVersion = 9.3.1;
+						ProvisioningStyle = Automatic;
+					};
 					EC1DFB8A20063C400080BC50 = {
 						CreatedOnToolsVersion = 9.2;
 						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.Push = {
 								enabled = 1;
 							};
@@ -1021,11 +1122,21 @@
 			targets = (
 				EC1DFB8A20063C400080BC50 /* Golos */,
 				EC24FF40200C038D00A0AE15 /* GolosTests */,
+				B157660720B59D80009619A6 /* RemoteNotificationTransfer */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		B157660620B59D80009619A6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B157661E20B59EB4009619A6 /* Info.plist in Resources */,
+				B157661220B59D80009619A6 /* RemoteNotificationTransfer.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EC1DFB8920063C400080BC50 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1060,6 +1171,7 @@
 				7DCF74A4201FE1E400D46495 /* ArticleCommentsSectionHeader.xib in Resources */,
 				7D25B4C7201FABCB004A3400 /* ArticleTextTableViewCell.xib in Resources */,
 				ECA8E3532018A62E003B8ABA /* ProfileInfoView.xib in Resources */,
+				B18B937220B91D4E000CF503 /* ForegroundRemoteNotificationView.xib in Resources */,
 				7D25B48D201F5700004A3400 /* TagCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1167,6 +1279,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		B157660420B59D80009619A6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B157660F20B59D80009619A6 /* RemoteNotificationTransferViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EC1DFB8720063C400080BC50 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1180,6 +1300,7 @@
 				EC24FF59200C30B800A0AE15 /* MainContainerViewController.swift in Sources */,
 				EC24FF54200C080300A0AE15 /* Notifications.swift in Sources */,
 				7D1783DD201FD9B600B75979 /* ArticlePostedInTableViewCell.swift in Sources */,
+				B18B937420B91DB8000CF503 /* ForegroundRemoteNotificationView.swift in Sources */,
 				EC9B2AE020154B62008335C8 /* PostsFeedPresenter.swift in Sources */,
 				EC24FF5D200C30CF00A0AE15 /* MainContainerMediator.swift in Sources */,
 				EC24FF20200BC69400A0AE15 /* LoginPresenter.swift in Sources */,
@@ -1286,6 +1407,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		B157661520B59D80009619A6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B157660720B59D80009619A6 /* RemoteNotificationTransfer */;
+			targetProxy = B157661420B59D80009619A6 /* PBXContainerItemProxy */;
+		};
 		EC24FF47200C038D00A0AE15 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = EC1DFB8A20063C400080BC50 /* Golos */;
@@ -1294,6 +1420,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		B157661020B59D80009619A6 /* RemoteNotificationTransfer.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B157661120B59D80009619A6 /* Base */,
+			);
+			name = RemoteNotificationTransfer.storyboard;
+			sourceTree = "<group>";
+		};
 		B18DB4502085D22A00BA5D50 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1391,6 +1525,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5ED8FA08BD52B2CABB53E429 /* Pods-Golos.development.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconDebug;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
@@ -1436,6 +1571,60 @@
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Golos.app/Golos";
 			};
 			name = Development;
+		};
+		B157661820B59D80009619A6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 29QBR47DMW;
+				INFOPLIST_FILE = "golos-ios/Notifications/RemoteNotificationTransfer/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.golos.testing.golos-ios.RemoteNotificationTransfer";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B157661920B59D80009619A6 /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 29QBR47DMW;
+				INFOPLIST_FILE = "golos-ios/Notifications/RemoteNotificationTransfer/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.golos.testing.golos-ios.RemoteNotificationTransfer";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Development;
+		};
+		B157661A20B59D80009619A6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 29QBR47DMW;
+				INFOPLIST_FILE = "golos-ios/Notifications/RemoteNotificationTransfer/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.golos.testing.golos-ios.RemoteNotificationTransfer";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
 		};
 		EC1DFB9B20063C400080BC50 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -1560,6 +1749,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 974FDF6AE6B94E5A2BFC2FDE /* Pods-Golos.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconDebug;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
@@ -1591,6 +1781,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F860D859C40BCA60C8DE58EE /* Pods-Golos.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconDebug;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
@@ -1656,6 +1847,16 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		B157661720B59D80009619A6 /* Build configuration list for PBXNativeTarget "RemoteNotificationTransfer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B157661820B59D80009619A6 /* Debug */,
+				B157661920B59D80009619A6 /* Development */,
+				B157661A20B59D80009619A6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		EC1DFB8620063C400080BC50 /* Build configuration list for PBXProject "golos-ios" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

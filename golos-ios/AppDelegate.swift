@@ -26,12 +26,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Class Functions
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         Logger.log(message: "Success", event: .severe)
-
+        
         
         // TODO: - TEST POST REQUEST
-//        self.testGETRequest()
-//        self.testPOSTRequest()
-
+        //        self.testGETRequest()
+        //        self.testPOSTRequest()
+        
         
         self.setupNavigationBarAppearance()
         self.setupTabBarAppearance()
@@ -46,29 +46,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         Messaging.messaging().delegate = self
-
+        
         // Run Fabric
         Fabric.with([Crashlytics.self])
         
-        // Register for remote notifications. This shows a permission dialog on first run, to
-        // show the dialog at a more appropriate time move this registration accordingly.
-        // [START register_for_notifications]
-        if #available(iOS 10.0, *) {
-            // For iOS 10 display notification (sent via APNS)
-            UNUserNotificationCenter.current().delegate     =   self
-            let authOptions: UNAuthorizationOptions         =   [ .alert, .badge, .sound ]
-            
-            UNUserNotificationCenter.current().requestAuthorization(options: authOptions, completionHandler: {_, _ in })
-        }
+        // APNs
+        self.registerForPushNotifications()
         
-        else {
-            let settings: UIUserNotificationSettings        =   UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
-            application.registerUserNotificationSettings(settings)
-        }
-        
-        application.registerForRemoteNotifications()
-        // [END register_for_notifications]
-
         return true
     }
     
@@ -80,7 +64,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationDidBecomeActive(_ application: UIApplication) {
         Logger.log(message: "Success", event: .severe)
-       
+        
+        application.applicationIconBadgeNumber = 0
+
         if !webSocket.isConnected {
             webSocket.connect()
             
@@ -92,14 +78,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         let token = deviceToken.reduce("") { $0 + String(format: "%02x", $1) }
-        Logger.log(message: "\ndeviceToken:\n\t\(token)", event: .severe)
+        Logger.log(message: "\nAPNs device token:\n\t\(token)", event: .severe)
         
         let type: MessagingAPNSTokenType
-
+        
         #if DEBUG
-            type = .sandbox
+        type = .sandbox
         #else
-            type = .prod
+        type = .prod
         #endif
         
         Messaging.messaging().setAPNSToken(deviceToken, type: type)
@@ -111,10 +97,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-        Logger.log(message: "Register for Remote Notifications failed: \(error.localizedDescription)", event: .error)
+        Logger.log(message: "APNs registration failed: \(error.localizedDescription)", event: .error)
     }
     
-    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
+//    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
+//        // If you are receiving a notification message while your app is in the background,
+//        // this callback will not be fired till the user taps on the notification launching the application.
+//        // TODO: Handle data of notification
+//
+//        // With swizzling disabled you must let Messaging know about the message, for Analytics
+//        // Messaging.messaging().appDidReceiveMessage(userInfo)
+//
+//        // Print message ID.
+//        if let messageID = userInfo[gcmMessageIDKey] {
+//            Logger.log(message: "Received Remote Notification messageID: \(messageID)", event: .debug)
+//        }
+//
+//        // Print full message.
+//        Logger.log(message: "Received Remote Notification userInfo: \(userInfo)", event: .debug)
+//    }
+    
+    // For iOS 9.0
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         // If you are receiving a notification message while your app is in the background,
         // this callback will not be fired till the user taps on the notification launching the application.
         // TODO: Handle data of notification
@@ -127,21 +131,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             Logger.log(message: "Received Remote Notification messageID: \(messageID)", event: .debug)
         }
         
-        // Print full message.
-        Logger.log(message: "Received Remote Notification userInfo: \(userInfo)", event: .debug)
-    }
-
-    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        // If you are receiving a notification message while your app is in the background,
-        // this callback will not be fired till the user taps on the notification launching the application.
-        // TODO: Handle data of notification
-        
-        // With swizzling disabled you must let Messaging know about the message, for Analytics
-        // Messaging.messaging().appDidReceiveMessage(userInfo)
-        
-        // Print message ID.
-        if let messageID = userInfo[gcmMessageIDKey] {
-            Logger.log(message: "Received Remote Notification messageID: \(messageID)", event: .debug)
+        // Check Foreground (active) mode of App & display Local Notification
+        if application.applicationState == .active {
+            let localNotification           =   UILocalNotification()
+            localNotification.userInfo      =   userInfo
+            localNotification.soundName     =   UILocalNotificationDefaultSoundName
+            localNotification.alertBody     =   "message"
+            localNotification.fireDate      =   Date()
+            
+//            application.scheduleLocalNotification(localNotification)
+            
+            if let currentVC = getCurrentViewController(forRootViewController: UIApplication.shared.keyWindow?.rootViewController) {
+                let foregroundRemoteNotificationView = ForegroundRemoteNotificationView()
+                foregroundRemoteNotificationView.display(onView: currentVC.view)
+            }
         }
         
         // Print full message.
@@ -157,7 +160,7 @@ extension AppDelegate {
     private func configureMainContainer() {
         if window != nil {
             Logger.log(message: "Success", event: .severe)
-
+            
             let mainContainerViewController = MainContainerViewController()
             window!.rootViewController = mainContainerViewController
             window!.makeKeyAndVisible()
@@ -167,15 +170,15 @@ extension AppDelegate {
     // IQKeyboardManagerSwift
     private func setupKeyboardManager() {
         Logger.log(message: "Success", event: .severe)
-       
+        
         IQKeyboardManager.sharedManager().enable = true
         IQKeyboardManager.sharedManager().shouldResignOnTouchOutside = true
     }
-
+    
     // Setup Appearance
     private func setupNavigationBarAppearance() {
         Logger.log(message: "Success", event: .severe)
-
+        
         let appearance = UINavigationBar.appearance()
         appearance.barTintColor = .white
         appearance.tintColor = UIColor.Project.backButtonBlackColor
@@ -191,7 +194,7 @@ extension AppDelegate {
     
     private func setupTabBarAppearance() {
         Logger.log(message: "Success", event: .severe)
-
+        
         UITabBar.appearance().barTintColor = UIColor.white
         UITabBar.appearance().tintColor = UIColor.Project.darkBlueTabSelected
         UITabBar.appearance().isTranslucent = false
@@ -212,7 +215,7 @@ extension AppDelegate {
                                 Logger.log(message: "nresponse ErrorAPI = \(errorAPI.caseInfo.message)\n", event: .error)
         })
     }
-
+    
     /// POST
     func testPOSTRequest() {
         // Create OperationType
@@ -227,8 +230,137 @@ extension AppDelegate {
                                 Logger.log(message: "nresponse ErrorAPI = \(errorAPI.caseInfo.message)\n", event: .error)
         })
     }
+    
+    // APNs
+    private func registerForPushNotifications() {
+        // Register for remote notifications
+        if #available(iOS 10.0, *) {
+            let center = UNUserNotificationCenter.current()
+            center.delegate = self
+            
+            center.requestAuthorization(options: [ .alert, .badge, .sound ], completionHandler: { (granted, _) in
+                Logger.log(message: (granted) ? "User notifications are allowed." : "User notifications are not allowed.", event: .debug)
+                
+                let viewAction = UNNotificationAction(identifier: "viewActionIdentifier",
+                                                      title: "View",
+                                                      options: [.foreground])
+                
+                let newsCategory = UNNotificationCategory(identifier: "newsCategoryIdentifier",
+                                                          actions: [viewAction],
+                                                          intentIdentifiers: [],
+                                                          options: [])
+                
+                UNUserNotificationCenter.current().setNotificationCategories([newsCategory])
+            })
+        }
+            
+        else {
+            // Create `Restart` action
+            let restartAction                       =   UIMutableUserNotificationAction()
+            restartAction.identifier                =   "RESTART_ACTION"
+            restartAction.isDestructive             =   true
+            restartAction.title                     =   "Restart"
+            restartAction.activationMode            =   .background
+            restartAction.isAuthenticationRequired  =   false
+            
+            // Create `Snooze` action
+            let snoozeAction                        =   UIMutableUserNotificationAction()
+            snoozeAction.identifier                 =   "SNOOZE_ACTION"
+            snoozeAction.isDestructive              =   false
+            snoozeAction.title                      =   "Snooze"
+            snoozeAction.activationMode             =   .background
+            snoozeAction.isAuthenticationRequired   =   false
+            
+            // Create `Edit` action
+            let editAction                          =   UIMutableUserNotificationAction()
+            editAction.identifier                   =   "EDIT_ACTION"
+            editAction.isDestructive                =   false
+            editAction.title                        =   "Edit"
+            editAction.activationMode               =   .background
+            editAction.isAuthenticationRequired     =   false
+            
+            // Create the category
+            let category                            =   UIMutableUserNotificationCategory()
+            category.identifier                     =   "TEST_CATEGORY"
+            
+            // Set actions for the default context
+            category.setActions([ restartAction, snoozeAction, editAction ], for: .default)
+            
+            // Set actions for the minimal context
+            category.setActions([ restartAction, snoozeAction ], for: .minimal)
+            
+            // Notification Registration for all iOS versions
+            let settings = UIUserNotificationSettings(types: [ .alert, .badge, .sound ], categories: NSSet(array: [category]) as? Set<UIUserNotificationCategory>)
+            
+            DispatchQueue.main.async {
+                UIApplication.shared.registerUserNotificationSettings(settings)
+            }
+        }
+        
+        DispatchQueue.main.async {
+            UIApplication.shared.registerForRemoteNotifications()
+        }
+    }
+    
+    func application(_ application: UIApplication, handleActionWithIdentifier identifier: String?, forRemoteNotification userInfo: [AnyHashable : Any], withResponseInfo responseInfo: [AnyHashable : Any], completionHandler: @escaping () -> Void) {
+        if let identifier = identifier {
+            switch identifier {
+            case "RESTART_ACTION":
+                print("1")
+                
+            case "SNOOZE_ACTION":
+                print("2")
+                
+            case "EDIT_ACTION":
+                print("3")
+                
+            default:
+                print("Unrecognised Identifier")
+            }
+        }
+    }
+    
+    func application(_ application: UIApplication, handleActionWithIdentifier identifier: String?, for notification: UILocalNotification, completionHandler: @escaping () -> Void) {
+        if let identifier = identifier {
+            switch identifier {
+            case "RESTART_ACTION":
+                print("1")
+                
+            case "SNOOZE_ACTION":
+                print("2")
+                
+            case "EDIT_ACTION":
+                print("3")
+                
+            default:
+                print("Unrecognised Identifier")
+            }
+        }
+    }
+    
+    private func getCurrentViewController(forRootViewController rootViewController: UIViewController?) -> UIViewController? {
+        guard let rootViewController = rootViewController else {
+            return nil
+        }
+        
+        guard let presented = rootViewController.presentedViewController else {
+            return rootViewController
+        }
+        
+        switch presented {
+        case is UINavigationController:
+            let navigationController: UINavigationController = presented as! UINavigationController
+            return getCurrentViewController(forRootViewController: navigationController.viewControllers.last)
+            
+        case is UITabBarController:
+            let tabBarController: UITabBarController = presented as! UITabBarController
+            return getCurrentViewController(forRootViewController: tabBarController.selectedViewController)
+            
+        default:
+            return getCurrentViewController(forRootViewController: presented)
+        }
+    }
 }
-
 
 
 // MARK: - MessagingDelegate
@@ -239,6 +371,11 @@ extension AppDelegate: MessagingDelegate {
     
     func application(received remoteMessage: MessagingRemoteMessage) {
         Logger.log(message: "Received Remote message: \(remoteMessage.appData)", event: .debug)
+    }
+    
+    // For iOS 10
+    func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
+        print(remoteMessage)
     }
 }
 
@@ -258,5 +395,25 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
                                 didReceive response: UNNotificationResponse,
                                 withCompletionHandler completionHandler: @escaping () -> Swift.Void) {
         Logger.log(message: "Receive User Notification, badge = \(UIApplication.shared.applicationIconBadgeNumber)", event: .debug)
+        
+        // https://medium.com/@lucasgoesvalle/custom-push-notification-with-image-and-interactions-on-ios-swift-4-ffdbde1f457
+        switch response.actionIdentifier {
+        case UNNotificationDismissActionIdentifier:
+            Logger.log(message: "Dismiss Action", event: .debug)
+            
+        case UNNotificationDefaultActionIdentifier:
+            Logger.log(message: "Open Action", event: .debug)
+            
+        case "Snooze":
+            Logger.log(message: "Snooze Action", event: .debug)
+            
+        case "Delete":
+            Logger.log(message: "Delete Action", event: .debug)
+            
+        default:
+            Logger.log(message: "Default Action", event: .debug)
+        }
+        
+        completionHandler()
     }
 }
