@@ -9,21 +9,26 @@
 import UIKit
 
 class NavigationDropDownView: UIView {
-    
+    // MARK: - IBOutlets
     @IBOutlet weak var titleButton: UIButton!
     @IBOutlet weak var arrowImage: UIImageView!
     
     
+    // MARK: - Class Initialization
     override init(frame: CGRect) {
         super.init(frame: frame)
+
         commonInit()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+
         commonInit()
     }
+
     
+    // MARK: - Custom Functions
     func commonInit() {
         let nib = UINib(nibName: String(describing: NavigationDropDownView.self), bundle: nil)
         let view = nib.instantiate(withOwner: self, options: nil).first as! UIView
@@ -37,12 +42,13 @@ class NavigationDropDownView: UIView {
     }
     
     
-    // MARK: Actions
+    // MARK: - Actions
     @IBAction func didPressTitleButton(_ sender: Any) {
         rotateArrow()
     }
     
-    // MARK: UI
+    
+    // MARK: - UI
     private func rotateArrow() {
         UIView.animate(withDuration: 0.3, animations: {
             self.arrowImage.transform = self.arrowImage.transform.rotated(by: 180 * CGFloat(Double.pi/180))
@@ -52,5 +58,4 @@ class NavigationDropDownView: UIView {
     override var intrinsicContentSize: CGSize {
         return UILayoutFittingExpandedSize
     }
-    
 }

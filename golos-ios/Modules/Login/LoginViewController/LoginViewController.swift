@@ -10,8 +10,7 @@ import UIKit
 import IQKeyboardManagerSwift
 
 class LoginViewController: UIViewController {
-
-    // MARK: Outlets
+    // MARK: - IBOutlets
     @IBOutlet weak var registrationButton: UIButton!
     @IBOutlet weak var notRegisteredLabel: UILabel!
     @IBOutlet weak var cancelButton: UIButton!
@@ -22,7 +21,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     
-    // MARK: Module
+    // MARK: - Modules
     lazy var presenter: LoginPresenter = {
         let presenter = LoginPresenter()
         presenter.view = self
@@ -39,7 +38,7 @@ class LoginViewController: UIViewController {
     }
     
     
-    // MARK: Life cycle
+    // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -55,7 +54,7 @@ class LoginViewController: UIViewController {
     }
     
     
-    // MARK: SetupUI
+    // MARK: - SetupUI
     private func setupUI() {
         
         refreshLabelContent()
@@ -103,7 +102,7 @@ class LoginViewController: UIViewController {
     }
     
     
-    // MARK: Actions
+    // MARK: - Actions
     @IBAction func enterButtonPressed(_ sender: Any) {
         presenter.login(with: loginTextField.text, key: keyTextField.text)
     }
@@ -153,7 +152,7 @@ class LoginViewController: UIViewController {
 }
 
 
-// MARK: QRScannerViewControllerDelegate
+// MARK: - QRScannerViewControllerDelegate
 extension LoginViewController: QRScannerViewControllerDelegate {
     func didScanQRCode(with value: String) {
         keyTextField.text = value
@@ -161,7 +160,7 @@ extension LoginViewController: QRScannerViewControllerDelegate {
 }
 
 
-// MARK: LoginView
+// MARK: - LoginView
 extension LoginViewController: LoginView {
     func didStartLogin() {
         startLogin()
@@ -178,7 +177,7 @@ extension LoginViewController: LoginView {
 }
 
 
-// MARK: UITextFieldDelegate
+// MARK: - UITextFieldDelegate
 extension LoginViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         switch textField {

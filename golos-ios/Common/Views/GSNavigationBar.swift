@@ -9,11 +9,13 @@
 import UIKit
 
 class GSNavigationBar: UINavigationBar {
-
+    // MARK: - Class Functions
     override func layoutSubviews() {
         super.layoutSubviews()
+        
         for subview in subviews {
             let classString = String(describing: subview.self)
+        
             if classString.contains("BarBackground") {
                 subview.backgroundColor = barTintColor
             }
