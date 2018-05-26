@@ -27,7 +27,7 @@ class BaseViewController: UIViewController {
                             if success {
                                 subview.isDisplay = true
 
-                                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 5.5) {
+                                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 6.5) {
                                     self.hideLocalNotification()
                                 }
                             }
@@ -35,7 +35,7 @@ class BaseViewController: UIViewController {
         }
     }
     
-    private func hideLocalNotification() {
+    func hideLocalNotification() {
         if let subview = self.foregroundRemoteNotificationView, subview.isDisplay {
             UIView.animate(withDuration: 0.5,
                            animations: {

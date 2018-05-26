@@ -57,11 +57,6 @@ class PostsFeedViewController: BaseViewController {
 
         setupUI()
         self.presenter.loadPostsFeed()
-        
-        
-        // DELETE AFTER TEST!!!
-        self.foregroundRemoteNotificationView = ForegroundRemoteNotificationView()
-        self.displayLocalNotification()
     }
     
     override func viewWillAppear(_ animated: Bool) {
