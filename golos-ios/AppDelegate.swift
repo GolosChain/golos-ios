@@ -181,10 +181,10 @@ extension AppDelegate {
         let appearance = UINavigationBar.appearance()
         appearance.barTintColor = .white
         appearance.tintColor = UIColor.Project.backButtonBlackColor
-        appearance.titleTextAttributes = [
-            NSAttributedStringKey.foregroundColor: UIColor.Project.navigationBarTextBlack,
-            NSAttributedStringKey.font: Fonts.shared.regular(with: 16.0)
-        ]
+        appearance.titleTextAttributes =    [
+                                                NSAttributedStringKey.foregroundColor: UIColor.Project.navigationBarTextBlack,
+                                                NSAttributedStringKey.font: Fonts.shared.regular(with: 16.0)
+                                            ]
         
         appearance.isTranslucent = false
         appearance.shadowImage = UIImage()

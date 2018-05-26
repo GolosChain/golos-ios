@@ -9,7 +9,7 @@
 import UIKit
 import GoloSwift
 
-class PostsFeedViewController: UIViewController {
+class PostsFeedViewController: BaseViewController {
     // MARK: - Properties
     lazy var presenter: PostsFeedPresenterProtocol = {
         let presenter = PostsFeedPresenter()
@@ -57,6 +57,11 @@ class PostsFeedViewController: UIViewController {
 
         setupUI()
         self.presenter.loadPostsFeed()
+        
+        
+        // DELETE AFTER TEST!!!
+        self.foregroundRemoteNotificationView = ForegroundRemoteNotificationView()
+        self.displayLocalNotification()
     }
     
     override func viewWillAppear(_ animated: Bool) {

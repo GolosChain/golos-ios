@@ -59,5 +59,9 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+	<key>UIAppFonts</key>
+	<array>
+		<string>SF-Pro-Display-Regular.otf</string>
+	</array>
 </dict>
 </plist>
