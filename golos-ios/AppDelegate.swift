@@ -144,7 +144,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 guard lastVC.foregroundRemoteNotificationView == nil else { return }
 
                 lastVC.foregroundRemoteNotificationView = ForegroundRemoteNotificationView.init(completionHandler: {
-                    lastVC.hideLocalNotification()
+                    lastVC.hide(localNotification: lastVC.foregroundRemoteNotificationView!)
                 })
                 
                 lastVC.displayLocalNotification()
