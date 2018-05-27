@@ -21,7 +21,6 @@ import IQKeyboardManagerSwift
 class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Properties
     var window: UIWindow? = UIWindow(frame: UIScreen.main.bounds)
-    var currentVC: BaseViewController?
     
     
     // MARK: - Class Functions
@@ -141,14 +140,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             localNotification.fireDate      =   Date()
             
             // Display Remote Notification as Local when App is in Foreground mode
-            guard currentVC == nil else { return }
-            
             if let lastVC = getCurrentViewController(forRootViewController: UIApplication.shared.keyWindow?.rootViewController) as? BaseViewController {
-                self.currentVC = lastVC
-                
-                lastVC.foregroundRemoteNotificationView = ForegroundRemoteNotificationView.init(completionHandler: { [weak self] in
+                guard lastVC.foregroundRemoteNotificationView == nil else { return }
+
+                lastVC.foregroundRemoteNotificationView = ForegroundRemoteNotificationView.init(completionHandler: {
                     lastVC.hideLocalNotification()
-                    self?.currentVC = nil
                 })
                 
                 lastVC.displayLocalNotification()
