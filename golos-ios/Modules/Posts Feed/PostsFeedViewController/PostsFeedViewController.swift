@@ -55,7 +55,7 @@ class PostsFeedViewController: BaseViewController {
         super.viewDidLoad()
         Logger.log(message: "Success", event: .severe)
 
-        setupUI()
+        self.setupUI()
         self.presenter.loadPostsFeed()
     }
     
@@ -72,11 +72,11 @@ class PostsFeedViewController: BaseViewController {
         Logger.log(message: "Success", event: .severe)
 
         if #available(iOS 11.0, *) {
-            tableView.contentInsetAdjustmentBehavior = .never
+            tableView.contentInsetAdjustmentBehavior    =   .never
         }
         
         else {
-            self.automaticallyAdjustsScrollViewInsets = false
+            self.automaticallyAdjustsScrollViewInsets   =   false
         }
         
         mediator.configure(tableView: tableView)

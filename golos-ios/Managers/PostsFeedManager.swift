@@ -24,23 +24,40 @@ class PostsFeedManager {
     func loadPostsFeed(withType type: PostsFeedType, andLimit limit: Int, completion: @escaping ((_ displayedPosts: [DisplayedPost]?, _ errorAPI: ErrorAPI?) -> Void)) {
         Logger.log(message: "Success", event: .severe)
         
+        // Create MethodAPIType
+        let methodAPIType = MethodAPIType.getDiscussions(type: type, limit: limit)
+        
         // API 'get_discussions_by_' 4 types
+        broadcast.executeGET(byMethodAPIType: methodAPIType,
+                             onResult: { responseAPIResult in
+                                Logger.log(message: "\nresponse API Result = \(responseAPIResult)\n", event: .debug)
+                                
+                                let displayedPosts = (responseAPIResult as! ResponseAPIFeedResult).result!.compactMap({ DisplayedPost(fromResponseAPIFeed: $0) })
+                                completion(displayedPosts, nil)
+            },
+                             onError: { errorAPI in
+                                Logger.log(message: "nresponse API Error = \(errorAPI.caseInfo.message)\n", event: .error)
+                                completion(nil, errorAPI)
+        })
+
+
+        /// DELETE AFTER TEST !!!
 //        let requestAPIType = broadcast.prepareGET(requestByMethodType: self.methodForPostsFeed(forType: type, andLimit: limit))!
 //        // GolosBlockchainManager.prepareGET(requestByMethodType: self.methodForPostsFeed(forType: type, andLimit: limit))!
 //        Logger.log(message: "\nrequestAPIType =\n\t\(requestAPIType)", event: .debug)
-//        
+//
 //        // Network Layer (WebSocketManager)
 //        DispatchQueue.main.async {
 //            webSocketManager.sendRequest(withType: requestAPIType) { (responseAPIType) in
 ////                Logger.log(message: "\nresponseAPIType:\n\t\(responseAPIType)", event: .debug)
-//                
+//
 //                guard let responseAPI = responseAPIType.responseAPI, let responseAPIResult = responseAPI as? ResponseAPIFeedResult else {
 //                    completion(nil, responseAPIType.errorAPI)
 //                    return
 //                }
-//                
+//
 //                let displayedPosts = responseAPIResult.result.compactMap({ DisplayedPost(fromResponseAPIFeed: $0) })
-//                
+//
 //                // Return to file `PostsFeedPresenter.swift`
 //                completion(displayedPosts, nil)
 //            }
@@ -55,25 +72,28 @@ class PostsFeedManager {
      - Returns: Return `MethodApiType` case value of enum.
      
     */
-    private func methodForPostsFeed(forType type: PostsFeedType, andLimit limit: Int) -> MethodAPIType {
-        Logger.log(message: "Success", event: .severe)
-        
-        switch type {
-        /// Hot (actual) discussions.
-        case .actual:
-            return MethodAPIType.getDiscussionsByHot(limit: limit)
+    
+    /// DELETE AFTER TEST !!!
 
-        /// New discussions.
-        case .new:
-            return MethodAPIType.getDiscussionsByCreated(limit: limit)
-
-        /// Popular discussions.
-        case .popular:
-            return MethodAPIType.getDiscussionsByTrending(limit: limit)
-
-        /// Promoted discussions.
-        case .promoted:
-            return MethodAPIType.getDiscussionsByPromoted(limit: limit)
-        }
-    }
+//    private func methodForPostsFeed(forType type: PostsFeedType, andLimit limit: Int) -> MethodAPIType {
+//        Logger.log(message: "Success", event: .severe)
+//
+//        switch type {
+//        /// Hot (actual) discussions.
+//        case .actual:
+//            return MethodAPIType.getDiscussionsByHot(limit: limit)
+//
+//        /// New discussions.
+//        case .new:
+//            return MethodAPIType.getDiscussionsByCreated(limit: limit)
+//
+//        /// Popular discussions.
+//        case .popular:
+//            return MethodAPIType.getDiscussionsByTrending(limit: limit)
+//
+//        /// Promoted discussions.
+//        case .promoted:
+//            return MethodAPIType.getDiscussionsByPromoted(limit: limit)
+//        }
+//    }
 }

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import GoloSwift
 
 protocol FeedPresenterProtocol: class {
     func getPostsFeedTypeArray() -> [PostsFeedType]
