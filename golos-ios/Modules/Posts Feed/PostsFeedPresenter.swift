@@ -93,9 +93,8 @@ extension PostsFeedPresenter: PostsFeedPresenterProtocol {
                 !selfStrong.displayedPosts.contains(where: { $0.id == displayedPost.id })
             })
 
+            // Prepare & Display feed posts
             selfStrong.displayedPosts.append(contentsOf: newDisplayedPosts)
-
-//            selfStrong.postsItems = selfStrong.parse(posts: selfStrong.displayedPosts)
             selfStrong.postsFeedView.didLoadPosts()
 
 //            selfStrong.loadUsers(byNames: selfStrong.displayedPosts.map({ $0.authorName }))
@@ -168,27 +167,4 @@ extension PostsFeedPresenter: PostsFeedPresenterProtocol {
         
         return self.displayedPosts[index]
     }
-    
-    // TEMPORARY
-//    func parsePostModel(_ postModel: DisplayedPost) -> PostsFeedViewModel {
-//        return PostsFeedViewModel(authorName:          postModel.authorName,
-//                                  authorAvatarUrl:     postModel.author?.pictureURL,
-//                                  articleTitle:        postModel.title,
-//                                  reblogAuthorName:    nil, //postModel.reblogAuthorName,
-//                                  theme:               postModel.category,
-//                                  articleBody:         postModel.body,
-//                                  postDescription:     postModel.description,
-//                                  imagePictureUrl:     nil, //postModel.pictureUrl,
-//                                  tags:                postModel.tags!,
-//                                  upvoteAmount:        "\(postModel.votes.count)",
-//            commentsAmount:      postModel.replies == nil ? "-" :"\(postModel.replies!.count)",
-//            didUpvote:           postModel.isVoteAllow,
-//            didComment:          postModel.isCommentAllow)
-//    }
-//    
-//    func parse(posts: [DisplayedPost]) -> [PostsFeedViewModel] {
-//        return posts.map({ model -> PostsFeedViewModel in
-//            return parsePostModel(model)
-//        })
-//    }
 }

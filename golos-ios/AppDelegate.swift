@@ -29,14 +29,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         // TODO: - TEST POST REQUEST
-        //        self.testGETRequest()
-        //        self.testPOSTRequest()
+        self.testGETRequest()
+//        self.testPOSTRequest()
         
         
-        self.setupNavigationBarAppearance()
-        self.setupTabBarAppearance()
-        self.setupKeyboardManager()
-        self.configureMainContainer()
+//        self.setupNavigationBarAppearance()
+//        self.setupTabBarAppearance()
+//        self.setupKeyboardManager()
+//        self.configureMainContainer()
         
         // Run Firebase
         FirebaseApp.configure()
@@ -183,33 +183,36 @@ extension AppDelegate {
     private func setupNavigationBarAppearance() {
         Logger.log(message: "Success", event: .severe)
         
-        let appearance = UINavigationBar.appearance()
-        appearance.barTintColor = .white
-        appearance.tintColor = UIColor.Project.backButtonBlackColor
-        appearance.titleTextAttributes =    [
+        let appearance                  =   UINavigationBar.appearance()
+        appearance.barTintColor         =   .white
+        appearance.tintColor            =   UIColor.Project.backButtonBlackColor
+        
+        appearance.titleTextAttributes  =   [
                                                 NSAttributedStringKey.foregroundColor: UIColor.Project.navigationBarTextBlack,
                                                 NSAttributedStringKey.font: Fonts.shared.regular(with: 16.0)
                                             ]
         
-        appearance.isTranslucent = false
-        appearance.shadowImage = UIImage()
+        appearance.isTranslucent        =   false
+        appearance.shadowImage          =   UIImage()
         appearance.setBackgroundImage(UIImage(), for: .default)
     }
     
     private func setupTabBarAppearance() {
         Logger.log(message: "Success", event: .severe)
         
-        UITabBar.appearance().barTintColor = UIColor.white
-        UITabBar.appearance().tintColor = UIColor.Project.darkBlueTabSelected
-        UITabBar.appearance().isTranslucent = false
+        UITabBar.appearance().barTintColor      =   UIColor.white
+        UITabBar.appearance().tintColor         =   UIColor.Project.darkBlueTabSelected
+        UITabBar.appearance().isTranslucent     =   false
     }
     
     
     /// GET
     func testGETRequest() {
         // Create MethodAPIType
-        let methodAPIType = MethodAPIType.getAccounts(names: ["qwerty"])
-        
+//        let methodAPIType = MethodAPIType.getDiscussions(type: .actual, parameters: RequestParameterAPI.Discussion.init(limit: 10))
+        let methodAPIType = MethodAPIType.getAllContentReplies(author: "psk", permlink: "psk01061")
+//        let methodAPIType = MethodAPIType.getAccounts(names: ["msm72"])
+
         // API 'get_accounts'
         broadcast.executeGET(byMethodAPIType: methodAPIType,
                              onResult: { [weak self] result in
