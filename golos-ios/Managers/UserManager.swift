@@ -20,6 +20,8 @@ class UserManager {
      - Parameter errorAPI: Type `ErrorAPI`.
 
     */
+    // FIXME: - ADD LOAD USERS AVATARS
+    /*
     func loadUsers(byNames userNames: [String], completion: @escaping (_ displayedUsers: [DisplayedUser]?, _ errorAPI: ErrorAPI?) -> Void) {
         Logger.log(message: "Success", event: .severe)
 
@@ -45,4 +47,5 @@ class UserManager {
 //            }
 //        }
     }
+ */
 }

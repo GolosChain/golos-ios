@@ -97,6 +97,7 @@ extension PostsFeedPresenter: PostsFeedPresenterProtocol {
             selfStrong.displayedPosts.append(contentsOf: newDisplayedPosts)
             selfStrong.postsFeedView.didLoadPosts()
 
+            // FIXME: - ADD LOAD USERS AVATARS
 //            selfStrong.loadUsers(byNames: selfStrong.displayedPosts.map({ $0.authorName }))
         })
     }
@@ -108,7 +109,9 @@ extension PostsFeedPresenter: PostsFeedPresenterProtocol {
         self.loadPostsFeed(withDiscussion: RequestParameterAPI.Discussion.init(limit: 10))
     }
     
-    /// Load Users from Posts in Feed
+
+    // FIXME: - ADD LOAD USERS AVATARS
+    /*
     private func loadUsers(byNames userNames: [String]) {
         Logger.log(message: "Success", event: .severe)
 
@@ -125,14 +128,15 @@ extension PostsFeedPresenter: PostsFeedPresenterProtocol {
                 strongSelf.displayedPosts[index].author = postUser
             }
             
-//            strongSelf.postsItems = strongSelf.parse(posts: strongSelf.displayedPosts)
-//            strongSelf.postsFeedView.didLoadPostsAuthors()
+            strongSelf.postsItems = strongSelf.parse(posts: strongSelf.displayedPosts)
+            strongSelf.postsFeedView.didLoadPostsAuthors()
             
-//            for index in 0..<strongSelf.displayedPosts.count {
-//                strongSelf.loadRepliesForPost(at: index)
-//            }
+            for index in 0..<strongSelf.displayedPosts.count {
+                strongSelf.loadRepliesForPost(at: index)
+            }
         }
     }
+    */
     
     
     // FIXME: - REMOVE COMMENTS AFTER ADD REPLIES

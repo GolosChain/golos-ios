@@ -29,14 +29,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         // TODO: - TEST POST REQUEST
-        self.testGETRequest()
+//        self.testGETRequest()
 //        self.testPOSTRequest()
         
         
-//        self.setupNavigationBarAppearance()
-//        self.setupTabBarAppearance()
-//        self.setupKeyboardManager()
-//        self.configureMainContainer()
+        self.setupNavigationBarAppearance()
+        self.setupTabBarAppearance()
+        self.setupKeyboardManager()
+        self.configureMainContainer()
         
         // Run Firebase
         FirebaseApp.configure()
