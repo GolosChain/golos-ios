@@ -52,17 +52,17 @@ class PostsFeedMediator: NSObject {
 // MARK: UITableViewDataSource
 extension PostsFeedMediator: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return postsFeedPresenter.getPostsViewModels().count
+        return postsFeedPresenter.getDisplayedPosts().count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: feedArticleTableViewCellIdentifier) as! FeedArticleTableViewCell
         cell.delegate = self
         
-        let viewModel = postsFeedPresenter.getPostViewModel(at: indexPath.row)
-        cell.configure(with: viewModel)
+        let displayedModel = postsFeedPresenter.getDisplayedPost(byIndex: indexPath.row)
+        cell.configure(withDisplayedModel: displayedModel)
         
-        if indexPath.row == postsFeedPresenter.getPostsViewModels().count - 1 {
+        if indexPath.row == postsFeedPresenter.getDisplayedPosts().count - 1 {
             postsFeedPresenter.loadNext()
             delegate?.didStartLoadingNextPage()
         }
@@ -75,14 +75,16 @@ extension PostsFeedMediator: UITableViewDataSource {
 // MARK: UITableViewDelegate
 extension PostsFeedMediator: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let viewModel = postsFeedPresenter.getPostViewModel(at: indexPath.row)
-        let isImage = viewModel?.imagePictureUrl == nil ? false : true
+        let displayedModel = postsFeedPresenter.getDisplayedPost(byIndex: indexPath.row)
+        let isImage = displayedModel?.imagePictureURL == nil ? false : true
+        
         return FeedArticleTableViewCell.height(withImage: isImage)
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        let viewModel = postsFeedPresenter.getPostViewModel(at: indexPath.row)
-        let isImage = viewModel?.imagePictureUrl == nil ? false : true
+        let displayedModel = postsFeedPresenter.getDisplayedPost(byIndex: indexPath.row)
+        let isImage = displayedModel?.imagePictureURL == nil ? false : true
+        
         return FeedArticleTableViewCell.height(withImage: isImage)
     }
     
@@ -112,6 +114,7 @@ extension PostsFeedMediator: UITableViewDelegate {
 extension PostsFeedMediator: FeedArticleTableViewCellDelegate {
     func didPressCommentsButton(at cell: FeedArticleTableViewCell) {
         guard let indexPath = tableView.indexPath(for: cell) else {return}
+        
         delegate?.didPressComments(at: indexPath.row)
     }
     
@@ -123,16 +126,19 @@ extension PostsFeedMediator: FeedArticleTableViewCellDelegate {
     func didPressExpandButton(at cell: FeedArticleTableViewCell) {
         guard let indexPath = tableView.indexPath(for: cell) else {return}
         self.selectedIndex = indexPath
+        
         delegate?.didPressExpand(at: indexPath.row)
     }
     
     func didPressAuthor(at cell: FeedArticleTableViewCell) {
         guard let indexPath = tableView.indexPath(for: cell) else {return}
+        
         delegate?.didPressAuthor(at: indexPath.row)
     }
     
     func didPressReblogAuthor(at cell: FeedArticleTableViewCell) {
         guard let indexPath = tableView.indexPath(for: cell) else {return}
+        
         delegate?.didPressReblogAuthor(at: indexPath.row)
     }
 }

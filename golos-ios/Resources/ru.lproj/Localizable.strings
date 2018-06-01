@@ -30,5 +30,6 @@
 "Request Failed"                            =   "Ошибка запроса";
 "Invalid Data"                              =   "Неверные данные";
 "Response Unsuccessful"                     =   "Ошибка обработки ответа сервера";
+"Response Result is empty"                  =   "Сервер вернул пустое значение";
 "JSON Parsing Failure"                      =   "Ошибка анализа JSON структуры";
 "JSON Conversion Failure"                   =   "Ошибка конвертации JSON структуры в модель";

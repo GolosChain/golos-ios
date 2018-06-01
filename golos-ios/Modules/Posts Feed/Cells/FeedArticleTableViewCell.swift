@@ -21,16 +21,22 @@ extension FeedArticleTableViewCellDelegate {
 }
 
 class FeedArticleTableViewCell: UITableViewCell {
-    
+    // MARK: - Properties
     let imageLoader = GSImageLoader()
-    
-    // MARK: Constants
+    let gradientLayer = CAGradientLayer()
+   
+    weak var delegate: FeedArticleTableViewCellDelegate?
+
     private static let bodyFont = Fonts.shared.regular(with: 13.0)
     private static let bodyEdgesOffset: CGFloat = 12.0
+
+    private var pictureURL: String = ""
+    private var authorPictureURL: String = ""
+
     static let minimizedHeight: CGFloat = 180
     
     
-    // MARK: UI Outlets
+    // MARK: - IBOutlets
     @IBOutlet private weak var articleHeaderView: ArticleHeaderView!
     @IBOutlet private weak var articleContentView: UIView!
     @IBOutlet private weak var bottomView: UIView!
@@ -43,27 +49,19 @@ class FeedArticleTableViewCell: UITableViewCell {
     
     @IBOutlet weak var imageViewHeightConstraint: NSLayoutConstraint!
     
-    private var pictureUrl: String = ""
-    private var authorPictureUrl: String = ""
     
-    
-    // MARK: UI properties
-    let gradientLayer = CAGradientLayer()
-    
-    // MARK: Delegate
-    weak var delegate: FeedArticleTableViewCellDelegate?
-    
-    
+    // MARK: - Class Initialization
     override func awakeFromNib() {
         super.awakeFromNib()
+
         setupUI()
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
         
-        authorPictureUrl = ""
-        pictureUrl = ""
+        authorPictureURL = ""
+        pictureURL = ""
         
         let avatarPlaceholderImage = UIImage(named: "avatar_placeholder")
         articleHeaderView.authorAvatarImageView.image = avatarPlaceholderImage
@@ -75,7 +73,8 @@ class FeedArticleTableViewCell: UITableViewCell {
         super.layoutSubviews()
     }
     
-    // MARK: Setup UI
+    
+    // MARK: - Setup UI
     private func setupUI() {
         titleLabel.textColor = UIColor.Project.articleBlackColor
         titleLabel.font = Fonts.shared.regular(with: 16.0)
@@ -94,82 +93,90 @@ class FeedArticleTableViewCell: UITableViewCell {
         descriptionTextView.textContainerInset = UIEdgeInsets(top: 5, left: 13, bottom: 0, right: 13)
     }
     
-    // swiftlint:disable function_body_length
-    func configure(with viewModel: PostsFeedViewModel?) {
-        guard let viewModel = viewModel else {
+    func configure(withDisplayedModel displayedModel: DisplayedPost?) {
+        guard let displayedPost = displayedModel else {
             return
         }
         
-        titleLabel.text = viewModel.articleTitle
-        descriptionTextView.text = viewModel.postDescription
-        articleHeaderView.authorLabel.text = viewModel.authorName
-        articleHeaderView.themeLabel.text = viewModel.theme
-        articleHeaderView.reblogAuthorLabel.text = viewModel.reblogAuthorName
-        upvoteButton.tintColor = viewModel.didUpvote ? UIColor.Project.articleButtonsGreenColor : UIColor.Project.articleButtonsGrayColor
-        upvoteButton.setTitle(viewModel.upvoteAmount, for: .normal)
-        commentsButton.tintColor = viewModel.didComment ? UIColor.Project.articleButtonsGreenColor : UIColor.Project.articleButtonsGrayColor
-        commentsButton.setTitle(viewModel.commentsAmount, for: .normal)
+        titleLabel.text                             =   displayedPost.title
+        descriptionTextView.text                    =   displayedPost.description
+        articleHeaderView.authorLabel.text          =   displayedPost.authorName
+        articleHeaderView.themeLabel.text           =   displayedPost.category
+//        articleHeaderView.reblogAuthorLabel.text    =   displayedPost.reblogAuthorName
+        upvoteButton.tintColor                      =   displayedPost.allowVotes ?  UIColor.Project.articleButtonsGreenColor :
+                                                                                    UIColor.Project.articleButtonsGrayColor
         
-        if let reblogAuthor = viewModel.reblogAuthorName {
-            articleHeaderView.reblogAuthorLabel.isHidden = false
-            articleHeaderView.reblogAuthorLabel.text = reblogAuthor
-            articleHeaderView.reblogIconImageView.isHidden = false
-        }
+        upvoteButton.setTitle(displayedPost.activeVotesCount, for: .normal)
+        commentsButton.tintColor = displayedPost.allowReplies ? UIColor.Project.articleButtonsGreenColor : UIColor.Project.articleButtonsGrayColor
         
-        else {
-            articleHeaderView.reblogAuthorLabel.isHidden = true
-            articleHeaderView.reblogIconImageView.isHidden = true
-        }
+        // TODO: - PRECISE
+//        commentsButton.setTitle(displayedPost.commentsAmount, for: .normal)
         
-        let isNsfw = viewModel.tags.map {$0.lowercased()}.contains("nsfw")
+//        if let reblogAuthor = displayedPost.reblogAuthorName {
+//            articleHeaderView.reblogAuthorLabel.isHidden    =   false
+//            articleHeaderView.reblogAuthorLabel.text        =   reblogAuthor
+//            articleHeaderView.reblogIconImageView.isHidden  =   false
+//        }
+//
+//        else {
+//            articleHeaderView.reblogAuthorLabel.isHidden    =   true
+//            articleHeaderView.reblogIconImageView.isHidden  =   true
+//        }
         
-        let imageHeight: CGFloat = viewModel.imagePictureUrl != nil || isNsfw ? 212 : 0
+        guard let tags = displayedPost.tags else { return }
+        
+        let isNsfw = tags.map({ $0.lowercased() }).contains("nsfw")
+        
+        //
+        let imageHeight: CGFloat = (displayedPost.imagePictureURL != nil || isNsfw) ? 212.0 : 0.0
         imageViewHeightConstraint.constant = imageHeight
         contentView.layoutIfNeeded()
-        
+
         if isNsfw {
             let nsfwImage = UIImage(named: "nsfw")
             self.postImageView.image = nsfwImage
         }
-        
-        else if let imageUrl = viewModel.imagePictureUrl {
-            if self.pictureUrl == imageUrl && postImageView.image != nil {
+
+        else if let imageURL = displayedPost.imagePictureURL {
+            if self.pictureURL == imageURL && postImageView.image != nil {
                 return
             }
+
+            self.pictureURL = imageURL
             
-            self.pictureUrl = imageUrl
-            imageLoader.startLoadImage(with: imageUrl) { (image) in
+            imageLoader.startLoadImage(with: imageURL) { (image) in
                 DispatchQueue.main.async {
-                    if let image = image, imageUrl == self.pictureUrl {
+                    if let image = image, imageURL == self.pictureURL {
                         self.postImageView.image = image
                     }
                 }
             }
         }
         
-        if let authorPictureUrl = viewModel.authorAvatarUrl {
-            if self.authorPictureUrl == authorPictureUrl && articleHeaderView.authorAvatarImageView.image != nil {
+        if let authorPictureURL = displayedPost.authorAvatarURL {
+            if self.authorPictureURL == authorPictureURL && articleHeaderView.authorAvatarImageView.image != nil {
                 return
             }
-            
-            self.authorPictureUrl = authorPictureUrl
-            imageLoader.startLoadImage(with: authorPictureUrl) { (image) in
+
+            self.authorPictureURL = authorPictureURL
+           
+            imageLoader.startLoadImage(with: authorPictureURL) { (image) in
                 DispatchQueue.main.async {
-                    if let image = image, authorPictureUrl == self.authorPictureUrl {
+                    if let image = image, authorPictureURL == self.authorPictureURL {
                         self.articleHeaderView.authorAvatarImageView.image = image
                     }
                 }
             }
         }
-        
+
         else {
             let avatarPlaceholderImage = UIImage(named: "avatar_placeholder")
             articleHeaderView.authorAvatarImageView.image = avatarPlaceholderImage
         }
     }
-    // swiftlint:enable function_body_length
     
-    // MARK: Actions
+    
+    // MARK: - Actions
     @IBAction func didPressUpvoteButton(_ sender: Any) {
         delegate?.didPressUpvoteButton(at: self)
     }
@@ -198,7 +205,7 @@ class FeedArticleTableViewCell: UITableViewCell {
 }
 
 
-// MARK: ArticleHeaderViewDelegate
+// MARK: - ArticleHeaderViewDelegate
 extension FeedArticleTableViewCell: ArticleHeaderViewDelegate {
     func didPressAuthor() {
         delegate?.didPressAuthor(at: self)

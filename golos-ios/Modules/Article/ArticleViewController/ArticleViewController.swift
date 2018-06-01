@@ -10,27 +10,27 @@ import UIKit
 import GoloSwift
 
 class ArticleViewController: UIViewController {
-    
+    // MARK: - Properties
     var authorName: String = ""
     var permalink: String = ""
     
     private var postsManager = PostsManager()
-    private var post: PostModel?
+    private var post: DisplayedPost?
     
-    //Outlets properties
-    @IBOutlet weak var topBarView: UIView!
-    @IBOutlet weak var articleHeaderView: ArticleHeaderView!
-    @IBOutlet weak var backButton: UIButton!
-    @IBOutlet weak var tableView: UITableView!
-
-
-    //Module properties
     lazy var mediator: ArticleMediator = {
         let mediator = ArticleMediator()
 //        mediator.feedTabPresenter = presenter
 //        mediator.delegate = self
+
         return mediator
     }()
+
+    
+    // MARK: - IBOutlets
+    @IBOutlet weak var topBarView: UIView!
+    @IBOutlet weak var articleHeaderView: ArticleHeaderView!
+    @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var tableView: UITableView!
     
     
     // MARK: - Class Initialization

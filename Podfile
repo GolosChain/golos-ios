@@ -5,7 +5,7 @@ use_frameworks!
 target 'Golos' do
     
     pod 'Down'
-    
+
     # Fast, non-deadlocking parallel object cache for iOS, tvOS and OS X
     pod 'PINCache'
     
@@ -31,7 +31,7 @@ target 'Golos' do
     # Pods for golos-ios
     pod 'GoloSwift', '~> 1.1'
 #    pod 'GoloSwift', :git => "https://github.com/GolosChain/GoloSwift.git"
-#    pod 'GoloSwift', :git => "https://github.com/Monserg/GoloSwift.git", :tag => "1.0.5"
+#    pod 'GoloSwift', :git => "https://github.com/GolosChain/GoloSwift.git", :tag => "1.1.7"
 
 end
 

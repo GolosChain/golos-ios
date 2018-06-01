@@ -25,6 +25,7 @@ extension PostsFeedViewController: ProfileFeedContainerItem, PropertyStoring {
             return getAssociatedObject(&CustomProperties.delegate,
                                        defaultValue: CustomProperties.delegate)
         }
+        
         set {
             objc_setAssociatedObject(self,
                                      &CustomProperties.delegate,

@@ -21,9 +21,11 @@ struct DisplayedPost {
     let category: String
     let authorName: String
     let authorCoverImageURL: String?
+    let authorAvatarURL: String?
     let imagePictureURL: String?
     let body: String
 
+    // TODO: - PRECISE
 //    var reblogAuthorName: String?
 
     let allowVotes: Bool
@@ -32,15 +34,16 @@ struct DisplayedPost {
     let description: String
     let activeVotesCount: String
     var tags: [String]?
-
+//    let repliesCount: String
+    
     var author: DisplayedUser?
-    let activeVotes: [ResponseAPIActiveVote]
-//    var replies: [PostReplyModel]?
+    let activeVotes: [ResponseAPIActiveVote]?
+//    let replies: [PostReplyModel]?
     
     
     // MARK: - Class Initialization
     init(fromResponseAPIFeed feed: ResponseAPIFeed) {
-        let parser                  =   PostParser()
+        let parser                  =   Parser()
 
         self.id                     =   feed.id
         self.title                  =   feed.title
@@ -48,14 +51,18 @@ struct DisplayedPost {
         self.category               =   feed.category
         self.authorName             =   feed.author
         self.authorCoverImageURL    =   author?.coverImageURL
+        self.authorAvatarURL        =   author?.pictureURL
         self.imagePictureURL        =   parser.getPictureURL(from: feed.body)
         self.allowVotes             =   feed.allow_votes
         self.allowReplies           =   feed.allow_replies
         self.permlink               =   feed.permlink
         self.description            =   parser.getDescription(from: feed.body)
-
+        
+//        self.reblogAuthorName       =   feed.
+        
         self.activeVotes            =   feed.active_votes
         self.activeVotesCount       =   String(format: "%i", feed.active_votes.count)
+//        self.repliesCount           =   String(format: "%i", feed.replies.count)
         
         if let jsonMetaData = feed.json_metadata, let jsonData = jsonMetaData.data(using: .utf8) {
             do {
@@ -68,3 +75,9 @@ struct DisplayedPost {
         }
     }
 }
+
+
+//struct PostsFeedViewModel {
+//    let tags: [String]
+//    let commentsAmount: String
+//}

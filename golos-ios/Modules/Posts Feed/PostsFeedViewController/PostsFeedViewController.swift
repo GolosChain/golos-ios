@@ -56,7 +56,7 @@ class PostsFeedViewController: BaseViewController {
         Logger.log(message: "Success", event: .severe)
 
         self.setupUI()
-        self.presenter.loadPostsFeed()
+        self.presenter.loadPostsFeed(withDiscussion: RequestParameterAPI.Discussion.init(limit: 10))
     }
     
     override func viewWillAppear(_ animated: Bool) {

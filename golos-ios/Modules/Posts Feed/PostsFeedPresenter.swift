@@ -11,13 +11,14 @@ import GoloSwift
 
 protocol PostsFeedPresenterProtocol: class {
     func loadNext()
-    func loadPostsFeed()
-
+//    func loadPostsFeed()
+    func loadPostsFeed(withDiscussion discussion: RequestParameterAPI.Discussion)
+    
     func getFeedPostsType() -> PostsFeedType
 //    func getUser(at index: Int) -> UserModel?
     func setPostsFeedType(_ type: PostsFeedType)
-    func getPostsViewModels() -> [PostsFeedViewModel]
-    func getPostViewModel(at index: Int) -> PostsFeedViewModel?
+    func getDisplayedPosts() -> [DisplayedPost]
+    func getDisplayedPost(byIndex index: Int) -> DisplayedPost?
     func getPostPermalinkAndAuthorName(at index: Int) -> (permlink: String, authorName: String)
     
 //    func loadRepliesForPost(at index: Int)
@@ -33,10 +34,10 @@ class PostsFeedPresenter: NSObject {
     // MARK: - Properties
     weak var postsFeedView: PostsFeedViewProtocol!
     
-    private let batchCount = 10
-    private var postsLimit = webSocketLimit
+    private let batchCount: UInt = 10
+    private var postsLimit: UInt = webSocketLimit
     private var displayedPosts = [DisplayedPost]()
-    private var postsItems = [PostsFeedViewModel]()
+//    private var postsItems = [PostsFeedViewModel]()
     private var postsFeedType: PostsFeedType = .new
 
     private let userManager = UserManager()
@@ -73,27 +74,31 @@ extension PostsFeedPresenter: PostsFeedPresenterProtocol {
     }
     
     /// Load Feed posts
-    func loadPostsFeed() {
+    func loadPostsFeed(withDiscussion discussion: RequestParameterAPI.Discussion) {
         Logger.log(message: "Success", event: .severe)
 
-        postsFeedManager.loadPostsFeed(withType: postsFeedType, andLimit: postsLimit, completion: { [weak self] (displayedPosts, errorAPI) in
-            guard let strongSelf = self else { return }
+        postsFeedManager.loadPostsFeed(withType: postsFeedType, andDiscussion: discussion, completion: { [weak self] (displayedPosts, errorAPI) in
+            guard let selfStrong = self else { return }
             
             guard errorAPI == nil else {
                 Utils.showAlertView(withTitle: errorAPI!.caseInfo.title, andMessage: errorAPI!.caseInfo.message, needCancel: false, completion: { _ in })
                 return
             }
             
+            guard displayedPosts!.count > 0 else {
+                return
+            }
+            
             let newDisplayedPosts = displayedPosts!.filter({ displayedPost -> Bool in
-                !strongSelf.displayedPosts.contains(where: { $0.id == displayedPost.id })
+                !selfStrong.displayedPosts.contains(where: { $0.id == displayedPost.id })
             })
 
-            strongSelf.displayedPosts.append(contentsOf: newDisplayedPosts)
-            
-//            strongSelf.postsItems = strongSelf.parse(posts: strongSelf.displayedPosts)
-//            strongSelf.postsFeedView.didLoadPosts()
+            selfStrong.displayedPosts.append(contentsOf: newDisplayedPosts)
 
-            strongSelf.loadUsers(byNames: strongSelf.displayedPosts.map({ $0.authorName }))
+//            selfStrong.postsItems = selfStrong.parse(posts: selfStrong.displayedPosts)
+            selfStrong.postsFeedView.didLoadPosts()
+
+//            selfStrong.loadUsers(byNames: selfStrong.displayedPosts.map({ $0.authorName }))
         })
     }
     
@@ -101,7 +106,7 @@ extension PostsFeedPresenter: PostsFeedPresenterProtocol {
         Logger.log(message: "Success", event: .severe)
 
         postsLimit += batchCount
-        loadPostsFeed()
+        self.loadPostsFeed(withDiscussion: RequestParameterAPI.Discussion.init(limit: 10))
     }
     
     /// Load Users from Posts in Feed
@@ -152,37 +157,38 @@ extension PostsFeedPresenter: PostsFeedPresenterProtocol {
     }
     */
     
-    func getPostsViewModels() -> [PostsFeedViewModel] {
-        return postsItems
+    func getDisplayedPosts() -> [DisplayedPost] {
+        return self.displayedPosts
     }
     
-    func getPostViewModel(at index: Int) -> PostsFeedViewModel? {
+    func getDisplayedPost(byIndex index: Int) -> DisplayedPost? {
         Logger.log(message: "Success", event: .severe)
 
-        guard index < postsItems.count else { return nil }
-        return postsItems[index]
+        guard index < self.displayedPosts.count else { return nil }
+        
+        return self.displayedPosts[index]
     }
     
     // TEMPORARY
-    func parsePostModel(_ postModel: PostModel) -> PostsFeedViewModel {
-        return  PostsFeedViewModel(authorName:          postModel.authorName,
-                                   authorAvatarUrl:     postModel.author?.pictureURL,
-                                   articleTitle:        postModel.title,
-                                   reblogAuthorName:    postModel.reblogAuthorName,
-                                   theme:               postModel.category,
-                                   articleBody:         postModel.body,
-                                   postDescription:     postModel.description,
-                                   imagePictureUrl:     postModel.pictureUrl,
-                                   tags:                postModel.tags,
-                                   upvoteAmount:        "\(postModel.votes.count)",
-                                   commentsAmount:      postModel.replies == nil ? "-" :"\(postModel.replies!.count)",
-                                   didUpvote:           postModel.isVoteAllow,
-                                   didComment:          postModel.isCommentAllow)
-    }
-    
-    func parse(posts: [PostModel]) -> [PostsFeedViewModel] {
-        return posts.map({ model -> PostsFeedViewModel in
-            return parsePostModel(model)
-        })
-    }
+//    func parsePostModel(_ postModel: DisplayedPost) -> PostsFeedViewModel {
+//        return PostsFeedViewModel(authorName:          postModel.authorName,
+//                                  authorAvatarUrl:     postModel.author?.pictureURL,
+//                                  articleTitle:        postModel.title,
+//                                  reblogAuthorName:    nil, //postModel.reblogAuthorName,
+//                                  theme:               postModel.category,
+//                                  articleBody:         postModel.body,
+//                                  postDescription:     postModel.description,
+//                                  imagePictureUrl:     nil, //postModel.pictureUrl,
+//                                  tags:                postModel.tags!,
+//                                  upvoteAmount:        "\(postModel.votes.count)",
+//            commentsAmount:      postModel.replies == nil ? "-" :"\(postModel.replies!.count)",
+//            didUpvote:           postModel.isVoteAllow,
+//            didComment:          postModel.isCommentAllow)
+//    }
+//    
+//    func parse(posts: [DisplayedPost]) -> [PostsFeedViewModel] {
+//        return posts.map({ model -> PostsFeedViewModel in
+//            return parsePostModel(model)
+//        })
+//    }
 }

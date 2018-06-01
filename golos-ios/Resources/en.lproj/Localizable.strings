@@ -30,5 +30,6 @@
 "Request Failed"                            =   "Request Failed";
 "Invalid Data"                              =   "Invalid Data";
 "Response Unsuccessful"                     =   "Response Unsuccessful";
+"Response Result is empty"                  =   "The blockchain returned an empty value";
 "JSON Parsing Failure"                      =   "JSON Parsing Failure";
 "JSON Conversion Failure"                   =   "JSON Conversion Failure";

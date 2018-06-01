@@ -9,7 +9,7 @@
 import Foundation
 import Down
 
-class PostParser {
+class Parser {
     func getPictureURL(from body: String) -> String? {
         let pattern     =   "(http(s?):)([/|.|\\w|\\s|-])*\\.(?:jpg|gif|png)(!d)?"
         
@@ -52,6 +52,7 @@ class PostParser {
         
         var newString = ""
         var start = 0
+        
         while start < body.count {
             if let match = mdImageRegex.firstMatch(in: body, options: [], range: NSRange(location: start, length: body.count-start)) {
                 
@@ -68,9 +69,12 @@ class PostParser {
                 newString.append(text)
                 newString.append(img)
                 start = match.range.location + match.range.length
-            } else {
+            }
+            
+            else {
                 let range = NSRange.init(location: start, length: body.count-start)
                 let text = mutableString.substring(with: range)
+               
                 newString.append(text)
                 start += body.count-start
             }

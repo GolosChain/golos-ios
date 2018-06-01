@@ -10,7 +10,7 @@ import Foundation
 
 class PostsManager {
     // MARK: - Custom Functions
-    func loadPost(withPermalink permalink: String, authorUsername: String, completion: @escaping (PostModel?, NSError?) -> Void) {
+    func loadPost(withPermalink permalink: String, authorUsername: String, completion: @escaping (DisplayedPost?, NSError?) -> Void) {
 //        let method = methodForPostRequest(.getPost)
 //        let parameters = [authorUsername, permalink]
 //        
