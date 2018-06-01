@@ -69,26 +69,28 @@ extension ProfilePresenter: ProfilePresenterProtocol {
     }
     
     func loadUser() {
+        // TODO: - CHANGE TO USE LOADUSERS FUNC
+        /*
         guard let username = self.username else {
             return
         }
         
-        // TODO: - CHANGE TO USE LOADUSERS FUNC
-//        userManager.loadUser(with: username) { [weak self] user, error in
-//            guard let strongSelf = self else { return }
-//
-//            guard error == nil else {
-//                Logger.log(message: "\(error!.localizedDescription)", event: .error)
-//                strongSelf.profileView.didFail(with: error!.localizedDescription)
-//                return
-//            }
-//
-//            guard let user = user else {
-//                return
-//            }
-//
-//            strongSelf.user = user
-//            strongSelf.profileView.didRefreshUser()
-//        }
+        userManager.loadUser(with: username) { [weak self] user, error in
+            guard let strongSelf = self else { return }
+
+            guard error == nil else {
+                Logger.log(message: "\(error!.localizedDescription)", event: .error)
+                strongSelf.profileView.didFail(with: error!.localizedDescription)
+                return
+            }
+
+            guard let user = user else {
+                return
+            }
+
+            strongSelf.user = user
+            strongSelf.profileView.didRefreshUser()
+        }
+    */
     }
 }

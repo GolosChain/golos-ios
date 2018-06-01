@@ -6,6 +6,10 @@ line_length:
 - 350 #warning
 - 400 #error
 
+file_length:
+- 500 #warning
+- 550 #error
+
 identifier_name:
   min_length: 2 #only min_length
 
@@ -28,3 +32,5 @@ disabled_rules:
 - todo
 - colon
 - empty_enum_arguments
+- function_body_length
+

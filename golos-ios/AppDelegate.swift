@@ -215,10 +215,10 @@ extension AppDelegate {
 
         // API 'get_accounts'
         broadcast.executeGET(byMethodAPIType: methodAPIType,
-                             onResult: { [weak self] result in
+                             onResult: { result in
                                 Logger.log(message: "\nresponse Result = \(result)\n", event: .debug)
             },
-                             onError: { [weak self] errorAPI in
+                             onError: { errorAPI in
                                 Logger.log(message: "nresponse ErrorAPI = \(errorAPI.caseInfo.message)\n", event: .error)
         })
     }
@@ -230,10 +230,10 @@ extension AppDelegate {
         
         // POST Request
         broadcast.executePOST(byOperationAPIType: operationType,
-                              onResult: { [weak self] result in
+                              onResult: { result in
                                 Logger.log(message: "\nresponse Result = \(result)\n", event: .debug)
             },
-                              onError: { [weak self] errorAPI in
+                              onError: { errorAPI in
                                 Logger.log(message: "nresponse ErrorAPI = \(errorAPI.caseInfo.message)\n", event: .error)
         })
     }
