@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="5zl-Nf-AHJ">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Root Show View Controller-->
+        <scene sceneID="rAz-y9-9mp">
+            <objects>
+                <viewController storyboardIdentifier="RootShowVC" id="iy7-83-sEH" customClass="RootShowViewController" customModule="Golos" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wmV-Pf-tKu">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="golos_intro_icon" translatesAutoresizingMaskIntoConstraints="NO" id="z6b-B9-s90">
+                                <rect key="frame" x="147.5" y="293.5" width="80" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="z6b-B9-s90" secondAttribute="height" multiplier="1:1" id="Ypj-rX-HgR"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="z6b-B9-s90" firstAttribute="centerX" secondItem="wmV-Pf-tKu" secondAttribute="centerX" id="4YW-6k-FGr"/>
+                            <constraint firstItem="z6b-B9-s90" firstAttribute="width" secondItem="wmV-Pf-tKu" secondAttribute="width" multiplier="80:375" id="doG-rL-FEX"/>
+                            <constraint firstItem="z6b-B9-s90" firstAttribute="centerY" secondItem="wmV-Pf-tKu" secondAttribute="centerY" id="zl7-ZO-kYh"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="1fH-S4-zys"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="9yl-BK-1cs"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Q0B-xI-j9r" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="970" y="173"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="evN-bk-hDh">
+            <objects>
+                <navigationController storyboardIdentifier="RootShowNC" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="5zl-Nf-AHJ" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="kef-hU-7NE">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="iy7-83-sEH" kind="relationship" relationship="rootViewController" id="GUW-KC-zWD"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Fdc-Rw-Uul" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="181.59999999999999" y="173.16341829085459"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="golos_intro_icon" width="80" height="80"/>
+    </resources>
+</document>

@@ -36,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.setupNavigationBarAppearance()
         self.setupTabBarAppearance()
         self.setupKeyboardManager()
-        self.configureMainContainer()
+//        self.configureMainContainer()
         
         // Run Firebase
         FirebaseApp.configure()
