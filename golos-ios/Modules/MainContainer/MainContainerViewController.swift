@@ -9,22 +9,19 @@
 import UIKit
 
 class MainContainerViewController: BaseViewController {
-    // MARK: Module properties
+    // MARK: - Properties
     lazy var presenter: MainContainerPresenter = {
-        let presenter = MainContainerPresenter()
-        presenter.view = self
+        let presenter       =   MainContainerPresenter()
+        presenter.view      =   self
         
         return presenter
     }()
     
     let mediator = MainContainerMediator()
-    
-    
-    // MARK: UI Properties
     var activeViewController: UIViewController!
     
     
-    // MARK: Life cycle
+    // MARK: - Class Functions
     override func viewDidLoad() {
         super.viewDidLoad()
      
@@ -32,20 +29,18 @@ class MainContainerViewController: BaseViewController {
     }
     
     
-    // MARK: Setup UI
+    // MARK: - Custom Functions
     private func setupUI() {
-        let currentState = presenter.currentState
-        let viewController = mediator.getViewController(forState: currentState)
+        let currentState        =   presenter.currentState
+        let viewController      =   mediator.getViewController(forState: currentState)
         
         addChildViewController(viewController)
         view.addSubview(viewController.view)
         viewController.didMove(toParentViewController: self)
         
-        activeViewController = viewController
+        activeViewController    =   viewController
     }
     
-    
-    // MARK: Presenting view controllers
     private func present(newState: AppState, oldState: AppState) {
         let viewController = mediator.getViewController(forState: newState)
         
@@ -92,6 +87,7 @@ class MainContainerViewController: BaseViewController {
 }
 
 
+// MARK: - MainContainerView
 extension MainContainerViewController: MainContainerView {
     func didChange(newState: AppState, from oldState: AppState) {
         self.present(newState: newState, oldState: oldState)

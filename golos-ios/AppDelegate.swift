@@ -165,8 +165,8 @@ extension AppDelegate {
         if window != nil {
             Logger.log(message: "Success", event: .severe)
             
-            let mainContainerViewController = MainContainerViewController()
-            window!.rootViewController = mainContainerViewController
+            let mainContainerViewController     =   MainContainerViewController()
+            window!.rootViewController          =   mainContainerViewController
             window!.makeKeyAndVisible()
         }
     }
