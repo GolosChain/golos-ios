@@ -70,6 +70,7 @@
 		7DFE7C4920464C1E0057F144 /* PostsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFE7C4820464C1E0057F144 /* PostsManager.swift */; };
 		7DFE7C4B20464C680057F144 /* PostRequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFE7C4A20464C680057F144 /* PostRequestType.swift */; };
 		B12A577420B432C8000CF8BF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B12A577320B432C7000CF8BF /* GoogleService-Info.plist */; };
+		B139EB9B20C3D3DC0065F6F9 /* CircularProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B139EB9A20C3D3DC0065F6F9 /* CircularProgressBarView.swift */; };
 		B157660A20B59D80009619A6 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B157660920B59D80009619A6 /* UserNotifications.framework */; };
 		B157660C20B59D80009619A6 /* UserNotificationsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B157660B20B59D80009619A6 /* UserNotificationsUI.framework */; };
 		B157660F20B59D80009619A6 /* RemoteNotificationTransferViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B157660E20B59D80009619A6 /* RemoteNotificationTransferViewController.swift */; };
@@ -271,6 +272,7 @@
 		B12A576E20B410E6000CF8BF /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
 		B12A577320B432C7000CF8BF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B12A577520B43496000CF8BF /* Golos.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Golos.entitlements; sourceTree = "<group>"; };
+		B139EB9A20C3D3DC0065F6F9 /* CircularProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressBarView.swift; sourceTree = "<group>"; };
 		B157660820B59D80009619A6 /* RemoteNotificationTransfer.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = RemoteNotificationTransfer.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		B157660920B59D80009619A6 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		B157660B20B59D80009619A6 /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = SDKROOT; };
@@ -587,6 +589,14 @@
 			path = "New Group";
 			sourceTree = "<group>";
 		};
+		B139EB9920C3D3B80065F6F9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B139EB9A20C3D3DC0065F6F9 /* CircularProgressBarView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		B13F360220AEAD09003CA33D /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
@@ -657,6 +667,7 @@
 		B1F3747620C2B4DE005EF767 /* RootShow */ = {
 			isa = PBXGroup;
 			children = (
+				B139EB9920C3D3B80065F6F9 /* Views */,
 				B1F3747E20C2C5E1005EF767 /* RootShowInteractor.swift */,
 				B1F3747C20C2C5E1005EF767 /* RootShowModels.swift */,
 				B1F3747920C2C5E1005EF767 /* RootShowPresenter.swift */,
@@ -716,7 +727,7 @@
 				EC24FF29200BFA9300A0AE15 /* Managers */,
 				ECB2C0D12008E54000AF1AF5 /* Miscellaneous */,
 				7D911D1E2035ED7C00F19D3C /* Model */,
-				ECC15F9B200975680099BBC9 /* Modules */,
+				ECC15F9B200975680099BBC9 /* Scenes */,
 				B13F360320AEAD5D003CA33D /* Resources */,
 				B13F360220AEAD09003CA33D /* Storyboards */,
 				B157660320B59CEF009619A6 /* Notifications */,
@@ -936,7 +947,7 @@
 			path = Miscellaneous;
 			sourceTree = "<group>";
 		};
-		ECC15F9B200975680099BBC9 /* Modules */ = {
+		ECC15F9B200975680099BBC9 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
 				7D79C3362034673500794447 /* Answers */,
@@ -952,7 +963,7 @@
 				B1F3747620C2B4DE005EF767 /* RootShow */,
 				EC24FF6A200C3FE700A0AE15 /* Tab */,
 			);
-			path = Modules;
+			path = Scenes;
 			sourceTree = "<group>";
 		};
 		ECC15F9D2009757A0099BBC9 /* Intro */ = {
@@ -1410,6 +1421,7 @@
 				7D25B4B5201F9218004A3400 /* GSNavigationBar.swift in Sources */,
 				B1F3748220C2C5E1005EF767 /* RootShowModels.swift in Sources */,
 				B198DB9120B9A21A008011A3 /* UIColor+Extensions.swift in Sources */,
+				B139EB9B20C3D3DC0065F6F9 /* CircularProgressBarView.swift in Sources */,
 				EC5B2BFD201A443C007A4335 /* String+Size.swift in Sources */,
 				ECF28087200A94550000D949 /* ViewController+Nib.swift in Sources */,
 				7DFA6CB12036D76B00F59494 /* PostsFeedTextTableViewCell.swift in Sources */,

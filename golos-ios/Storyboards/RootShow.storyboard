@@ -20,6 +20,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F2I-9F-Ifm" userLabel="Progress Bar View" customClass="CircularProgressBarView" customModule="Golos" customModuleProvider="target">
+                                <rect key="frame" x="149.66666666666666" y="310.66666666666669" width="114.66666666666666" height="114.66666666666669"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="F2I-9F-Ifm" secondAttribute="height" multiplier="1:1" id="pOn-x1-acb"/>
+                                </constraints>
+                            </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="golos_intro_icon" translatesAutoresizingMaskIntoConstraints="NO" id="z6b-B9-s90">
                                 <rect key="frame" x="163" y="324" width="88" height="88"/>
                                 <constraints>
@@ -30,6 +36,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="z6b-B9-s90" firstAttribute="centerX" secondItem="wmV-Pf-tKu" secondAttribute="centerX" id="4YW-6k-FGr"/>
+                            <constraint firstItem="F2I-9F-Ifm" firstAttribute="height" secondItem="z6b-B9-s90" secondAttribute="height" multiplier="1.3" id="AVk-6h-c4N"/>
+                            <constraint firstItem="F2I-9F-Ifm" firstAttribute="centerX" secondItem="wmV-Pf-tKu" secondAttribute="centerX" id="JN3-ja-BiN"/>
+                            <constraint firstItem="F2I-9F-Ifm" firstAttribute="centerY" secondItem="wmV-Pf-tKu" secondAttribute="centerY" id="djY-gt-Avq"/>
                             <constraint firstItem="z6b-B9-s90" firstAttribute="width" secondItem="wmV-Pf-tKu" secondAttribute="width" multiplier="80:375" id="doG-rL-FEX"/>
                             <constraint firstItem="z6b-B9-s90" firstAttribute="height" secondItem="wmV-Pf-tKu" secondAttribute="height" multiplier="80:375" id="iQC-JK-cA2"/>
                             <constraint firstItem="z6b-B9-s90" firstAttribute="centerY" secondItem="wmV-Pf-tKu" secondAttribute="centerY" id="zl7-ZO-kYh"/>
@@ -58,6 +67,9 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" id="9yl-BK-1cs"/>
+                    <connections>
+                        <outlet property="circularProgressBarView" destination="F2I-9F-Ifm" id="933-Mk-TsC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q0B-xI-j9r" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

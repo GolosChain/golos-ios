@@ -20,13 +20,12 @@ protocol RootShowDisplayLogic: class {
 
 class RootShowViewController: UIViewController {
     // MARK: - Properties
-    @objc let shapeLayer = CAShapeLayer()
-
     var interactor: RootShowBusinessLogic?
     var router: (NSObjectProtocol & RootShowRoutingLogic & RootShowDataPassing)?
     
     
     // MARK: - IBOutlets
+    @IBOutlet weak var circularProgressBarView: CircularProgressBarView!
     
     
     // MARK: - Class Initialization
@@ -79,52 +78,22 @@ class RootShowViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.setupShapeLayer()
         self.loadViewSettings()
     }
     
 
     // MARK: - Custom Functions
     private func loadViewSettings() {
-        self.startShapeLayerAnimate()
+        self.circularProgressBarView.startAnimation()
+        
+        // End progress bar animation
+        self.circularProgressBarView.endAnimationCompletion = { [weak self] in
+            // FIXME: - CHECK END DOWNLOAD DATA
+            self?.circularProgressBarView.startAnimation()
+        }
         
         let requestModel = RootShowModels.Something.RequestModel()
         interactor?.doSomething(withRequestModel: requestModel)
-    }
-    
-    private func setupShapeLayer() {
-        let circularPath        =   UIBezierPath(arcCenter:     self.view.center,
-                                                 radius:        60.0 * widthRatio,
-                                                 startAngle:    -CGFloat.pi / 2,
-                                                 endAngle:      2 * CGFloat.pi,
-                                                 clockwise:     true)
-        
-        shapeLayer.path         =   circularPath.cgPath
-        shapeLayer.strokeColor  =   UIColor(hexString: "#2F73B5").cgColor
-        shapeLayer.lineWidth    =   4.0 * widthRatio
-        shapeLayer.fillColor    =   UIColor.clear.cgColor
-        shapeLayer.lineCap      =   kCALineCapRound
-        shapeLayer.strokeEnd    =   0.0
-        
-        view.layer.addSublayer(shapeLayer)
-    }
-    
-    private func startShapeLayerAnimate() {
-        let basicAnimation                      =   CABasicAnimation(keyPath: "strokeEnd")
-        basicAnimation.toValue                  =   1
-        basicAnimation.duration                 =   5.0
-        basicAnimation.fillMode                 =   kCAFillModeForwards
-        basicAnimation.isRemovedOnCompletion    =   false
-        basicAnimation.timingFunction           =   CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-        basicAnimation.repeatCount              =   1
-        
-        basicAnimation.delegate                 =   self
-        
-        shapeLayer.add(basicAnimation, forKey: "strokeEnd")
-    }
-    
-    private func endShapeLayerAnimate() {
-        shapeLayer.removeAllAnimations()
     }
 }
 
@@ -134,17 +103,5 @@ extension RootShowViewController: RootShowDisplayLogic {
     func displaySomething(fromViewModel viewModel: RootShowModels.Something.ViewModel) {
         // NOTE: Display the result from the Presenter
 //        self.endShapeLayerAnimate()
-    }
-}
-
-
-// MARK: - CAAnimationDelegate
-extension RootShowViewController: CAAnimationDelegate {
-    func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
-        // TODO: - ADD TRANSITION TO NEXT SCENE
-        
-        endShapeLayerAnimate()
-        Logger.log(message: "Animation did stop.", event: .severe)
-        startShapeLayerAnimate()
     }
 }
