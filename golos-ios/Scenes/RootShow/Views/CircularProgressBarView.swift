@@ -51,7 +51,7 @@ class CircularProgressBarView: UIView {
     func startAnimation() {
         let basicAnimation                      =   CABasicAnimation(keyPath: "strokeEnd")
         basicAnimation.toValue                  =   1
-        basicAnimation.duration                 =   5.0
+        basicAnimation.duration                 =   (appState == .loggedOut) ? 2.0 : 5.0
         basicAnimation.fillMode                 =   kCAFillModeForwards
         basicAnimation.isRemovedOnCompletion    =   false
         basicAnimation.timingFunction           =   CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)

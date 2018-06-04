@@ -25,7 +25,6 @@ protocol RootShowDataStore {
 class RootShowInteractor: RootShowBusinessLogic, RootShowDataStore {
     // MARK: - Properties
     var presenter: RootShowPresentationLogic?
-    var worker: RootShowWorker?
     
     // ... protocol implementation
 //    var name: String = ""
@@ -39,9 +38,7 @@ class RootShowInteractor: RootShowBusinessLogic, RootShowDataStore {
 
     // MARK: - Business logic implementation
     func doSomething(withRequestModel requestModel: RootShowModels.Something.RequestModel) {
-        worker = RootShowWorker()
-        worker?.doSomeWork()
-        
+        // 
         let responseModel = RootShowModels.Something.ResponseModel()
         presenter?.presentSomething(fromResponseModel: responseModel)
     }

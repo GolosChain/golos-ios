@@ -66,14 +66,14 @@ class MainContainerViewController: BaseViewController {
         
         viewController.didMove(toParentViewController: self)
         
-        let startFrame = fromTop
-            ? activeViewController.view.frame.offsetBy(dx: 0, dy: -UIScreen.main.bounds.size.height)
-            : activeViewController.view.frame
-        let finalFrame = fromTop
-            ? activeViewController.view.frame
-            : activeViewController.view.frame.offsetBy(dx: 0, dy: -UIScreen.main.bounds.size.height)
+        let startFrame = fromTop ?  activeViewController.view.frame.offsetBy(dx: 0, dy: -UIScreen.main.bounds.size.height) :
+                                    activeViewController.view.frame
+        
+        let finalFrame = fromTop ?  activeViewController.view.frame :
+                                    activeViewController.view.frame.offsetBy(dx: 0, dy: -UIScreen.main.bounds.size.height)
         
         let movingViewController = fromTop ? viewController : activeViewController
+        
         movingViewController?.view.frame = startFrame
         
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn, animations: {

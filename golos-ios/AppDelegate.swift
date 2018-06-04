@@ -17,11 +17,12 @@ import UserNotifications
 import FirebaseInstanceID
 import IQKeyboardManagerSwift
 
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Properties
     var window: UIWindow? = UIWindow(frame: UIScreen.main.bounds)
-    
+
     
     // MARK: - Class Functions
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -52,6 +53,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // APNs
         self.registerForPushNotifications()
+        
+        // Main window
+        window?.backgroundColor = .white
+        window?.makeKeyAndVisible()
         
         return true
     }
@@ -162,13 +167,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 extension AppDelegate {
     // RootViewController
     private func configureMainContainer() {
-        if window != nil {
-            Logger.log(message: "Success", event: .severe)
-            
-            let mainContainerViewController     =   MainContainerViewController()
-            window!.rootViewController          =   mainContainerViewController
-            window!.makeKeyAndVisible()
-        }
+//        if window != nil {
+//            Logger.log(message: "Success", event: .severe)
+//
+//            let mainContainerViewController     =   MainContainerViewController()
+//            window!.rootViewController          =   mainContainerViewController
+//            window!.makeKeyAndVisible()
+//        }
     }
     
     // IQKeyboardManagerSwift

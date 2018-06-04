@@ -89,7 +89,10 @@ class RootShowViewController: UIViewController {
         // End progress bar animation
         self.circularProgressBarView.endAnimationCompletion = { [weak self] in
             // FIXME: - CHECK END DOWNLOAD DATA
-            self?.circularProgressBarView.startAnimation()
+//            self?.circularProgressBarView.startAnimation()
+            
+            // Router
+            self?.router?.routeToNextScene()
         }
         
         let requestModel = RootShowModels.Something.RequestModel()

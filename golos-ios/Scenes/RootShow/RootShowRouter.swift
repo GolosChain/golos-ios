@@ -15,7 +15,7 @@ import GoloSwift
 
 // MARK: - Input & Output protocols
 @objc protocol RootShowRoutingLogic {
-//    func routeToSomewhere(segue: UIStoryboardSegue?)
+    func routeToNextScene()
 }
 
 protocol RootShowDataPassing {
@@ -35,25 +35,28 @@ class RootShowRouter: NSObject, RootShowRoutingLogic, RootShowDataPassing {
     
 
     // MARK: - Routing
-//    func routeToSomewhere(segue: UIStoryboardSegue?) {
-//        if let segue = segue {
-//            let destinationVC = segue.destination as! SomewhereViewController
-//            var destinationDS = destinationVC.router!.dataStore!
-//            passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-//        } else {
-//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//            let destinationVC = storyboard.instantiateViewController(withIdentifier: "SomewhereViewController") as! SomewhereViewController
-//            var destinationDS = destinationVC.router!.dataStore!
-//            passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-//            navigateToSomewhere(source: viewController!, destination: destinationVC)
-//        }
-//    }
+    func routeToNextScene() {
+        let destinationVC: MainContainerViewController      =   MainContainerViewController()
+        destinationVC.modalTransitionStyle                  =   .crossDissolve
+        
+        // Pass displayedPosts
+        if appState == .loggedIn {
+            //        let destinationDS                                   =   destinationVC.router!.dataStore!
+            //            passDataToSomewhere(source: dataStore!, destination: &destinationDS)
+        }
+
+        (UIApplication.shared.delegate as! AppDelegate).window?.addSubview(destinationVC.view)
+        
+        navigateToNextScene(source: viewController!, destination: destinationVC)
+    }
     
     
     // MARK: - Navigation
-//    func navigateToSomewhere(source: RootShowViewController, destination: SomewhereViewController) {
-//        source.show(destination, sender: nil)
-//    }
+    func navigateToNextScene(source: RootShowViewController, destination: MainContainerViewController) {
+        DispatchQueue.main.async {
+            source.present(destination, animated: true, completion: nil)
+        }
+    }
     
     
     // MARK: - Passing data

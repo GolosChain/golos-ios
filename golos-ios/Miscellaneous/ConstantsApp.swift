@@ -41,3 +41,5 @@ let weight: Int64                       =   10_000
 
 let heightRatio: CGFloat                =   UIScreen.main.bounds.height / 667       // iPhone 6, iPhone 8 as design template
 let widthRatio: CGFloat                 =   UIScreen.main.bounds.width / 375
+
+let appState: AppState                  =   StateMachine.load().state

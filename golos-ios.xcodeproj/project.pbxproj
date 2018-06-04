@@ -86,7 +86,6 @@
 		B198DB9420B9C560008011A3 /* SF-Pro-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = B198DB9320B9C560008011A3 /* SF-Pro-Display-Regular.otf */; };
 		B1F3747520C2B483005EF767 /* RootShow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1F3747420C2B483005EF767 /* RootShow.storyboard */; };
 		B1F3747F20C2C5E1005EF767 /* RootShowPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F3747920C2C5E1005EF767 /* RootShowPresenter.swift */; };
-		B1F3748020C2C5E1005EF767 /* RootShowWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F3747A20C2C5E1005EF767 /* RootShowWorker.swift */; };
 		B1F3748120C2C5E1005EF767 /* RootShowRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F3747B20C2C5E1005EF767 /* RootShowRouter.swift */; };
 		B1F3748220C2C5E1005EF767 /* RootShowModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F3747C20C2C5E1005EF767 /* RootShowModels.swift */; };
 		B1F3748320C2C5E1005EF767 /* RootShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F3747D20C2C5E1005EF767 /* RootShowViewController.swift */; };
@@ -293,7 +292,6 @@
 		B198DB9320B9C560008011A3 /* SF-Pro-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Regular.otf"; sourceTree = "<group>"; };
 		B1F3747420C2B483005EF767 /* RootShow.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RootShow.storyboard; sourceTree = "<group>"; };
 		B1F3747920C2C5E1005EF767 /* RootShowPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootShowPresenter.swift; sourceTree = "<group>"; };
-		B1F3747A20C2C5E1005EF767 /* RootShowWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootShowWorker.swift; sourceTree = "<group>"; };
 		B1F3747B20C2C5E1005EF767 /* RootShowRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootShowRouter.swift; sourceTree = "<group>"; };
 		B1F3747C20C2C5E1005EF767 /* RootShowModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootShowModels.swift; sourceTree = "<group>"; };
 		B1F3747D20C2C5E1005EF767 /* RootShowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootShowViewController.swift; sourceTree = "<group>"; };
@@ -673,7 +671,6 @@
 				B1F3747920C2C5E1005EF767 /* RootShowPresenter.swift */,
 				B1F3747B20C2C5E1005EF767 /* RootShowRouter.swift */,
 				B1F3747D20C2C5E1005EF767 /* RootShowViewController.swift */,
-				B1F3747A20C2C5E1005EF767 /* RootShowWorker.swift */,
 			);
 			path = RootShow;
 			sourceTree = "<group>";
@@ -954,7 +951,7 @@
 				7D25B484201F4967004A3400 /* Article */,
 				EC24FF75200C495F00A0AE15 /* Feed */,
 				ECC15F9D2009757A0099BBC9 /* Intro */,
-				ECF3172B200AB22000F7B703 /* Login */,
+				ECF3172B200AB22000F7B703 /* LoginShow */,
 				7DE353182048CA1E00C04CB2 /* LoginHelp */,
 				EC24FF57200C30A300A0AE15 /* MainContainer */,
 				EC07F4AE2014402E00560CF0 /* Posts Feed */,
@@ -1021,7 +1018,7 @@
 			path = IntroViewController;
 			sourceTree = "<group>";
 		};
-		ECF3172B200AB22000F7B703 /* Login */ = {
+		ECF3172B200AB22000F7B703 /* LoginShow */ = {
 			isa = PBXGroup;
 			children = (
 				ECF31730200AB23200F7B703 /* LoginViewController */,
@@ -1029,7 +1026,7 @@
 				EC24FF21200BC69B00A0AE15 /* LoginType.swift */,
 				EC24FF23200BC72F00A0AE15 /* LoginUIStrings.swift */,
 			);
-			path = Login;
+			path = LoginShow;
 			sourceTree = "<group>";
 		};
 		ECF31730200AB23200F7B703 /* LoginViewController */ = {
@@ -1348,7 +1345,6 @@
 				EC24FF54200C080300A0AE15 /* Notifications.swift in Sources */,
 				7D1783DD201FD9B600B75979 /* ArticlePostedInTableViewCell.swift in Sources */,
 				B18B937420B91DB8000CF503 /* ForegroundRemoteNotificationView.swift in Sources */,
-				B1F3748020C2C5E1005EF767 /* RootShowWorker.swift in Sources */,
 				EC9B2AE020154B62008335C8 /* PostsFeedPresenter.swift in Sources */,
 				EC24FF5D200C30CF00A0AE15 /* MainContainerMediator.swift in Sources */,
 				EC24FF20200BC69400A0AE15 /* LoginPresenter.swift in Sources */,
