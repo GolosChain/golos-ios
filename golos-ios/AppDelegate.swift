@@ -27,13 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Class Functions
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         Logger.log(message: "Success", event: .severe)
-        
-        
-        // TODO: - TEST POST REQUEST
-//        self.testGETRequest()
-//        self.testPOSTRequest()
-        
-        
+                
         self.setupNavigationBarAppearance()
         self.setupTabBarAppearance()
         self.setupKeyboardManager()
@@ -210,38 +204,6 @@ extension AppDelegate {
         UITabBar.appearance().isTranslucent     =   false
     }
     
-    
-    /// GET
-    func testGETRequest() {
-        // Create MethodAPIType
-//        let methodAPIType = MethodAPIType.getDiscussions(type: .actual, parameters: RequestParameterAPI.Discussion.init(limit: 10))
-        let methodAPIType = MethodAPIType.getAllContentReplies(author: "psk", permlink: "psk01061")
-//        let methodAPIType = MethodAPIType.getAccounts(names: ["msm72"])
-
-        // API 'get_accounts'
-        broadcast.executeGET(byMethodAPIType: methodAPIType,
-                             onResult: { result in
-                                Logger.log(message: "\nresponse Result = \(result)\n", event: .debug)
-            },
-                             onError: { errorAPI in
-                                Logger.log(message: "nresponse ErrorAPI = \(errorAPI.caseInfo.message)\n", event: .error)
-        })
-    }
-    
-    /// POST
-    func testPOSTRequest() {
-        // Create OperationType
-        let operationType: OperationAPIType = OperationAPIType.vote(fields: (voter: voter, author: author, permlink: permlink, weight: weight))
-        
-        // POST Request
-        broadcast.executePOST(byOperationAPIType: operationType,
-                              onResult: { result in
-                                Logger.log(message: "\nresponse Result = \(result)\n", event: .debug)
-            },
-                              onError: { errorAPI in
-                                Logger.log(message: "nresponse ErrorAPI = \(errorAPI.caseInfo.message)\n", event: .error)
-        })
-    }
     
     // APNs
     private func registerForPushNotifications() {

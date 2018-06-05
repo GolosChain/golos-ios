@@ -15,7 +15,7 @@ import GoloSwift
 
 // MARK: - Presentation Logic protocols
 protocol RootShowPresentationLogic {
-    func presentSomething(fromResponseModel responseModel: RootShowModels.Something.ResponseModel)
+    func presentPosts(fromResponseModel responseModel: RootShowModels.Items.ResponseModel)
 }
 
 class RootShowPresenter: RootShowPresentationLogic {
@@ -30,8 +30,8 @@ class RootShowPresenter: RootShowPresentationLogic {
     
 
     // MARK: - Presentation Logic implementation
-    func presentSomething(fromResponseModel responseModel: RootShowModels.Something.ResponseModel) {
-        let viewModel = RootShowModels.Something.ViewModel()
-        viewController?.displaySomething(fromViewModel: viewModel)
+    func presentPosts(fromResponseModel responseModel: RootShowModels.Items.ResponseModel) {
+        let viewModel = RootShowModels.Items.ViewModel()
+        viewController?.displayPosts(fromViewModel: viewModel)
     }
 }

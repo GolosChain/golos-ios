@@ -39,14 +39,7 @@ class RootShowRouter: NSObject, RootShowRoutingLogic, RootShowDataPassing {
         let destinationVC: MainContainerViewController      =   MainContainerViewController()
         destinationVC.modalTransitionStyle                  =   .crossDissolve
         
-        // Pass displayedPosts
-        if appState == .loggedIn {
-            //        let destinationDS                                   =   destinationVC.router!.dataStore!
-            //            passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-        }
-
-        (UIApplication.shared.delegate as! AppDelegate).window?.addSubview(destinationVC.view)
-        
+        (UIApplication.shared.delegate as! AppDelegate).window?.addSubview(destinationVC.view)        
         navigateToNextScene(source: viewController!, destination: destinationVC)
     }
     
@@ -57,10 +50,4 @@ class RootShowRouter: NSObject, RootShowRoutingLogic, RootShowDataPassing {
             source.present(destination, animated: true, completion: nil)
         }
     }
-    
-    
-    // MARK: - Passing data
-//    func passDataToSomewhere(source: RootShowDataStore, destination: inout SomewhereDataStore) {
-//        destination.name = source.name
-//    }
 }

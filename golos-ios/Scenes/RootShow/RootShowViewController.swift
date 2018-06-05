@@ -15,7 +15,7 @@ import GoloSwift
 
 // MARK: - Input & Output protocols
 protocol RootShowDisplayLogic: class {
-    func displaySomething(fromViewModel viewModel: RootShowModels.Something.ViewModel)
+    func displayPosts(fromViewModel viewModel: RootShowModels.Items.ViewModel)
 }
 
 class RootShowViewController: UIViewController {
@@ -88,23 +88,25 @@ class RootShowViewController: UIViewController {
         
         // End progress bar animation
         self.circularProgressBarView.endAnimationCompletion = { [weak self] in
-            // FIXME: - CHECK END DOWNLOAD DATA
-//            self?.circularProgressBarView.startAnimation()
+            // Check download data end
+            if displayedPostsItems.count == 0, appState == .loggedIn {
+                self?.circularProgressBarView.startAnimation()
+            }
             
             // Router
             self?.router?.routeToNextScene()
         }
         
-        let requestModel = RootShowModels.Something.RequestModel()
-        interactor?.doSomething(withRequestModel: requestModel)
+        // API 'get_discussions_by_hot'
+        if appState == .loggedIn {
+            let requestModel = RootShowModels.Items.RequestModel()
+            interactor?.loadPosts(withRequestModel: requestModel)
+        }
     }
 }
 
 
 // MARK: - RootShowDisplayLogic
 extension RootShowViewController: RootShowDisplayLogic {
-    func displaySomething(fromViewModel viewModel: RootShowModels.Something.ViewModel) {
-        // NOTE: Display the result from the Presenter
-//        self.endShapeLayerAnimate()
-    }
+    func displayPosts(fromViewModel viewModel: RootShowModels.Items.ViewModel) {}
 }

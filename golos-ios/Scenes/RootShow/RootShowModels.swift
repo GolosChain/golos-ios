@@ -15,7 +15,7 @@ import UIKit
 // MARK: - Data models
 enum RootShowModels {
     // MARK: - Use cases
-    enum Something {
+    enum Items {
         struct RequestModel {
         }
         

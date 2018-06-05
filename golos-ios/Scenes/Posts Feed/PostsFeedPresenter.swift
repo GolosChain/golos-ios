@@ -77,29 +77,37 @@ extension PostsFeedPresenter: PostsFeedPresenterProtocol {
     func loadPostsFeed(withDiscussion discussion: RequestParameterAPI.Discussion) {
         Logger.log(message: "Success", event: .severe)
 
-        postsFeedManager.loadPostsFeed(withType: postsFeedType, andDiscussion: discussion, completion: { [weak self] (displayedPosts, errorAPI) in
-            guard let selfStrong = self else { return }
-            
-            guard errorAPI == nil else {
-                Utils.showAlertView(withTitle: errorAPI!.caseInfo.title, andMessage: errorAPI!.caseInfo.message, needCancel: false, completion: { _ in })
-                return
-            }
-            
-            guard displayedPosts!.count > 0 else {
-                return
-            }
-            
-            let newDisplayedPosts = displayedPosts!.filter({ displayedPost -> Bool in
-                !selfStrong.displayedPosts.contains(where: { $0.id == displayedPost.id })
-            })
-
+        if postsFeedType == .popular {
             // Prepare & Display feed posts
-            selfStrong.displayedPosts.append(contentsOf: newDisplayedPosts)
-            selfStrong.postsFeedView.didLoadPosts()
+            self.displayedPosts.append(contentsOf: displayedPostsItems)
+            self.postsFeedView.didLoadPosts()
+        }
 
-            // FIXME: - ADD LOAD USERS AVATARS
+        else {
+            postsFeedManager.loadPostsFeed(withType: postsFeedType, andDiscussion: discussion, completion: { [weak self] (displayedPosts, errorAPI) in
+                guard let selfStrong = self else { return }
+                
+                guard errorAPI == nil else {
+                    Utils.showAlertView(withTitle: errorAPI!.caseInfo.title, andMessage: errorAPI!.caseInfo.message, needCancel: false, completion: { _ in })
+                    return
+                }
+                
+                guard displayedPosts!.count > 0 else {
+                    return
+                }
+                
+                let newDisplayedPosts = displayedPosts!.filter({ displayedPost -> Bool in
+                    !selfStrong.displayedPosts.contains(where: { $0.id == displayedPost.id })
+                })
+                
+                // Prepare & Display feed posts
+                selfStrong.displayedPosts.append(contentsOf: newDisplayedPosts)
+                selfStrong.postsFeedView.didLoadPosts()
+                
+                // FIXME: - ADD LOAD USERS AVATARS
 //            selfStrong.loadUsers(byNames: selfStrong.displayedPosts.map({ $0.authorName }))
-        })
+            })
+        }
     }
     
     func loadNext() {

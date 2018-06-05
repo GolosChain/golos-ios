@@ -14,7 +14,7 @@ class MainContainerMediator: NSObject {
         
         switch state {
         case .loggedIn:
-            viewController = GSTabBarController()
+            viewController              =   GSTabBarController()
             
         case .loggedOut:
             let introViewController     =   IntroViewController.nibInstance()

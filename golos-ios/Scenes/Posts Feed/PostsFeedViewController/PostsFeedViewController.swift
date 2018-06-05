@@ -1,4 +1,4 @@
-//
+
 //  FeedTabViewController.swift
 //  Golos
 //
@@ -107,9 +107,9 @@ extension PostsFeedViewController: PostsFeedViewProtocol {
     
     func didLoadPosts() {
         Logger.log(message: "Success", event: .severe)
-
-        tableView.reloadData()
-        tableView.tableFooterView?.isHidden = true
+        
+        self.tableView.reloadData()
+        self.tableView.tableFooterView?.isHidden = true
     }
     
     func didLoadPostsAuthors() {

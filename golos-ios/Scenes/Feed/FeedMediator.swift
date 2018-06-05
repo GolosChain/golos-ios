@@ -32,15 +32,18 @@ class FeedMediator: NSObject {
         guard let type = presenter.getPostsFeedType(at: index) else { return }
         
         let animated = index != previousIndex
-        let direction: UIPageViewControllerNavigationDirection = index < previousIndex
-            ? .reverse
-            : .forward
+        
+        let direction: UIPageViewControllerNavigationDirection = index < previousIndex ? .reverse : .forward
         
         var viewController: PostsFeedViewController
+        
         let cached = cachedViewControllers.first(where: { $0.postsFeedType == type })
+        
         if let cached = cached {
             viewController = cached
-        } else {
+        }
+        
+        else {
             viewController = PostsFeedViewController.nibInstance(with: type)
             cachedViewControllers.append(viewController)
         }
@@ -77,9 +80,12 @@ extension FeedMediator: UIPageViewControllerDataSource {
         
         var viewController: PostsFeedViewController
         let cached = cachedViewControllers.first(where: { $0.postsFeedType == nextType })
+        
         if let cached = cached {
             viewController = cached
-        } else {
+        }
+        
+        else {
             viewController = PostsFeedViewController.nibInstance(with: nextType)
             cachedViewControllers.append(viewController)
         }

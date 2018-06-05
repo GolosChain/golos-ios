@@ -15,19 +15,19 @@ import GoloSwift
 
 // MARK: - Business Logic protocols
 protocol RootShowBusinessLogic {
-    func doSomething(withRequestModel requestModel: RootShowModels.Something.RequestModel)
+    func loadPosts(withRequestModel requestModel: RootShowModels.Items.RequestModel)
 }
 
 protocol RootShowDataStore {
-//     var name: String { get set }
+//     var displayedPosts: [DisplayedPost]? { get set }
 }
 
 class RootShowInteractor: RootShowBusinessLogic, RootShowDataStore {
     // MARK: - Properties
     var presenter: RootShowPresentationLogic?
     
-    // ... protocol implementation
-//    var name: String = ""
+    // RootShowDataStore protocol implementation
+//    var displayedPosts: [DisplayedPost]?
     
     
     // MARK: - Class Initialization
@@ -37,9 +37,25 @@ class RootShowInteractor: RootShowBusinessLogic, RootShowDataStore {
     
 
     // MARK: - Business logic implementation
-    func doSomething(withRequestModel requestModel: RootShowModels.Something.RequestModel) {
-        // 
-        let responseModel = RootShowModels.Something.ResponseModel()
-        presenter?.presentSomething(fromResponseModel: responseModel)
+    func loadPosts(withRequestModel requestModel: RootShowModels.Items.RequestModel) {
+        // API 'get_discussions_by_trending'
+        PostsFeedManager().loadPostsFeed(withType: PostsFeedType.popular, andDiscussion: RequestParameterAPI.Discussion.init(limit: 10), completion: { [weak self] (items, errorAPI) in
+            guard let selfStrong = self else { return }
+            
+            guard errorAPI == nil else {
+                Utils.showAlertView(withTitle: errorAPI!.caseInfo.title, andMessage: errorAPI!.caseInfo.message, needCancel: false, completion: { _ in })
+                return
+            }
+            
+            guard items!.count > 0 else {
+                return
+            }
+            
+            // Prepare & Display feed posts
+            displayedPostsItems.append(contentsOf: items!)
+
+            let responseModel = RootShowModels.Items.ResponseModel()
+            selfStrong.presenter?.presentPosts(fromResponseModel: responseModel)
+        })
     }
 }
