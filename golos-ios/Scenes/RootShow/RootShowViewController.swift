@@ -99,6 +99,7 @@ class RootShowViewController: UIViewController {
         
         // API 'get_discussions_by_hot'
         if appState == .loggedIn {
+            print("start = \(Date())")
             let requestModel = RootShowModels.Items.RequestModel()
             interactor?.loadPosts(withRequestModel: requestModel)
         }
@@ -108,5 +109,10 @@ class RootShowViewController: UIViewController {
 
 // MARK: - RootShowDisplayLogic
 extension RootShowViewController: RootShowDisplayLogic {
-    func displayPosts(fromViewModel viewModel: RootShowModels.Items.ViewModel) {}
+    func displayPosts(fromViewModel viewModel: RootShowModels.Items.ViewModel) {
+        print("finish = \(Date())")
+        self.circularProgressBarView.endAnimation()
+        Logger.log(message: "Animation did stop.", event: .severe)
+        self.circularProgressBarView.endAnimationCompletion!()
+    }
 }

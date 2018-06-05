@@ -49,27 +49,27 @@ class CircularProgressBarView: UIView {
     }
     
     func startAnimation() {
-        CATransaction.begin()
-        
         let basicAnimation                      =   CABasicAnimation(keyPath: "strokeEnd")
+
         basicAnimation.toValue                  =   1
-        basicAnimation.duration                 =   (appState == .loggedOut) ? 2.0 : 5.0
+        basicAnimation.duration                 =   (appState == .loggedOut) ? 3.0 : 11.0
         basicAnimation.fillMode                 =   kCAFillModeForwards
         basicAnimation.isRemovedOnCompletion    =   false
-        basicAnimation.timingFunction           =   CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
         
-        CATransaction.setCompletionBlock { [weak self] in
-            self?.endAnimation()
-            Logger.log(message: "Animation did stop.", event: .severe)
-            self?.endAnimationCompletion!()
-        }
-
+        basicAnimation.delegate                 =   self
+        
         shapeLayer.add(basicAnimation, forKey: "strokeEnd")
-
-        CATransaction.commit()
     }
     
     func endAnimation() {
         shapeLayer.removeAllAnimations()
+    }
+}
+
+
+// MARK: - CAAnimationDelegate
+extension CircularProgressBarView: CAAnimationDelegate {
+    func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+        self.endAnimationCompletion!()
     }
 }

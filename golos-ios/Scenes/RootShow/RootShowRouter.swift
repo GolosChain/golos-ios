@@ -46,8 +46,14 @@ class RootShowRouter: NSObject, RootShowRoutingLogic, RootShowDataPassing {
     
     // MARK: - Navigation
     func navigateToNextScene(source: RootShowViewController, destination: MainContainerViewController) {
-        DispatchQueue.main.async {
-            source.present(destination, animated: true, completion: nil)
-        }
+        let transition              =   CATransition()
+        
+        transition.duration         =   1.2
+        transition.timingFunction   =   CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        transition.type             =   kCATransitionPush
+        transition.subtype          =   kCAGravityCenter
+        
+        source.navigationController?.view.layer.add(transition, forKey: kCATransition)
+        source.navigationController?.pushViewController(destination, animated: false)
     }
 }
