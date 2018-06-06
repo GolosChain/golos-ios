@@ -15,6 +15,7 @@ extension UIAlertController {
         get {
             return objc_getAssociatedObject(self, &kAlertControllerWindow) as? UIWindow
         }
+        
         set {
             objc_setAssociatedObject(self, &kAlertControllerWindow, newValue, .OBJC_ASSOCIATION_RETAIN)
         }

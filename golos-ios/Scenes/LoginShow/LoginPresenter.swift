@@ -46,7 +46,9 @@ class LoginPresenter: NSObject {
         defer {
             if let errorMessage = errorMessage {
                 view.didFail(with: errorMessage)
-            } else {
+            }
+            
+            else {
                 startLogin(with: login!, key: key!)
             }
         }
@@ -110,26 +112,27 @@ class LoginPresenter: NSObject {
 }
 
 
-//Login UI strings
+// MARK: - Login UI strings
 extension LoginPresenter {
     private func getLoginUIStrings(forType type: LoginType) -> LoginUIStrings {
         switch type {
         case .activeKey:
             return getLoginUIStringsForActiveKey()
+        
         case .postingKey:
             return getLoginUIStringsForPostingKey()
         }
     }
     
     private func getLoginUIStringsForActiveKey() -> LoginUIStrings {
-        return LoginUIStrings(keyPlaceholder: "Ваш активный ключ",
-                              loginTypeString: "Войти через постинг ключ",
-                              titleString: "Войти с активным ключем")
+        return LoginUIStrings(keyPlaceholder:   "Ваш активный ключ",
+                              loginTypeString:  "Войти через постинг ключ",
+                              titleString:      "Войти с активным ключем")
     }
     
     private func getLoginUIStringsForPostingKey() -> LoginUIStrings {
-        return LoginUIStrings(keyPlaceholder: "Приватный постинг ключ",
-                              loginTypeString: "Войти с активным ключем",
-                              titleString: "Войти")
+        return LoginUIStrings(keyPlaceholder:   "Приватный постинг ключ",
+                              loginTypeString:  "Войти с активным ключем",
+                              titleString:      "Войти")
     }
 }

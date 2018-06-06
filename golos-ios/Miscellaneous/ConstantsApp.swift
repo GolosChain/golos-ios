@@ -43,5 +43,5 @@ let heightRatio: CGFloat                =   UIScreen.main.bounds.height / 667   
 let widthRatio: CGFloat                 =   UIScreen.main.bounds.width / 375
 
 let appState: AppState                  =   StateMachine.load().state
-
+let loadDataLimit: UInt                 =   20
 var displayedPostsItems                 =   [DisplayedPost]()

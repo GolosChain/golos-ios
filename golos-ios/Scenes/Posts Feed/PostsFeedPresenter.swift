@@ -34,10 +34,7 @@ class PostsFeedPresenter: NSObject {
     // MARK: - Properties
     weak var postsFeedView: PostsFeedViewProtocol!
     
-    private let batchCount: UInt = 10
-    private var postsLimit: UInt = webSocketLimit
     private var displayedPosts = [DisplayedPost]()
-//    private var postsItems = [PostsFeedViewModel]()
     private var postsFeedType: PostsFeedType = .new
 
     private let userManager = UserManager()
@@ -77,7 +74,7 @@ extension PostsFeedPresenter: PostsFeedPresenterProtocol {
     func loadPostsFeed(withDiscussion discussion: RequestParameterAPI.Discussion) {
         Logger.log(message: "Success", event: .severe)
 
-        if postsFeedType == .popular {
+        if postsFeedType == .popular && displayedPostsItems.count > 0 && discussion.start_author == nil {
             // Prepare & Display feed posts
             self.displayedPosts.append(contentsOf: displayedPostsItems)
             self.postsFeedView.didLoadPosts()
@@ -113,8 +110,12 @@ extension PostsFeedPresenter: PostsFeedPresenterProtocol {
     func loadNext() {
         Logger.log(message: "Success", event: .severe)
 
-        postsLimit += batchCount
-        self.loadPostsFeed(withDiscussion: RequestParameterAPI.Discussion.init(limit: 10))
+        // Load last post
+        if let lastFeedPost = self.displayedPosts.last {
+            self.loadPostsFeed(withDiscussion: RequestParameterAPI.Discussion.init(limit:           loadDataLimit,
+                                                                                   startAuthor:     lastFeedPost.authorName,
+                                                                                   startPermlink:   lastFeedPost.permlink))
+        }
     }
     
 

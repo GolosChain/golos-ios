@@ -16,9 +16,9 @@ extension UIViewController {
         self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = backImage
         
         self.navigationItem.backBarButtonItem = UIBarButtonItem(
-            title: "",
-            style: UIBarButtonItemStyle.plain,
-            target: nil,
-            action: nil)
+                                                                title:      "",
+                                                                style:      UIBarButtonItemStyle.plain,
+                                                                target:     nil,
+                                                                action:     nil)
     }
 }

@@ -32,6 +32,7 @@ class LoginViewController: UIViewController {
         get {
             return presenter.loginType
         }
+        
         set {
             presenter.loginType = newValue
         }
@@ -56,23 +57,19 @@ class LoginViewController: UIViewController {
     
     // MARK: - SetupUI
     private func setupUI() {
-        
         refreshLabelContent()
-        
         configureBackButton()
         
         enterButton.setBlueButtonRoundEdges()
         cancelButton.setBorderButtonRoundEdges()
         
-        registrationButton.setTitleColor(UIColor.Project.buttonBgBlue,
-                                         for: .normal)
+        registrationButton.setTitleColor(UIColor.Project.buttonBgBlue, for: .normal)
         registrationButton.titleLabel?.font = Fonts.shared.medium(with: 16.0)
         
         notRegisteredLabel.font = Fonts.shared.regular(with: 16.0)
         notRegisteredLabel.textColor = UIColor.Project.buttonTextGray
         
-        changeKeyTypeButton.setTitleColor(UIColor.Project.textBlack,
-                                          for: .normal)
+        changeKeyTypeButton.setTitleColor(UIColor.Project.textBlack, for: .normal)
         changeKeyTypeButton.titleLabel?.font = Fonts.shared.regular(with: 13.0)
         
         loginTextField.font = Fonts.shared.regular(with: 16.0)
@@ -130,6 +127,7 @@ class LoginViewController: UIViewController {
         switch loginType {
         case .activeKey:
             navigationController?.popViewController(animated: true)
+        
         case .postingKey:
             let activeLoginViewController = LoginViewController.nibInstance()
             activeLoginViewController.loginType = .activeKey
@@ -140,6 +138,7 @@ class LoginViewController: UIViewController {
     @IBAction func scanQRButtonPressed(_ sender: Any) {
         let qrScannerViewController = QRScannerViewController.nibInstance()
         qrScannerViewController.delegate = self
+        
         let navigationController = UINavigationController(rootViewController: qrScannerViewController)
         present(navigationController, animated: true, completion: nil)
     }
@@ -183,8 +182,10 @@ extension LoginViewController: UITextFieldDelegate {
         switch textField {
         case loginTextField:
             IQKeyboardManager.sharedManager().goNext()
+        
         case keyTextField:
             presenter.login(with: loginTextField.text, key: keyTextField.text)
+        
         default:
             break
         }

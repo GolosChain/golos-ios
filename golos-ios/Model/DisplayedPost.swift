@@ -24,6 +24,7 @@ struct DisplayedPost {
     let authorAvatarURL: String?
     let imagePictureURL: String?
     let body: String
+    
 
     // TODO: - PRECISE
 //    var reblogAuthorName: String?
@@ -58,11 +59,8 @@ struct DisplayedPost {
         self.permlink               =   feed.permlink
         self.description            =   parser.getDescription(from: feed.body)
         
-//        self.reblogAuthorName       =   feed.
-        
         self.activeVotes            =   feed.active_votes
         self.activeVotesCount       =   String(format: "%i", feed.active_votes.count)
-//        self.repliesCount           =   String(format: "%i", feed.replies.count)
         
         if let jsonMetaData = feed.json_metadata, let jsonData = jsonMetaData.data(using: .utf8) {
             do {
