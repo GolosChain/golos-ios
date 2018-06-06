@@ -106,7 +106,7 @@ class FeedArticleTableViewCell: UITableViewCell {
         upvoteButton.tintColor                      =   displayedPost.allowVotes ?  UIColor.Project.articleButtonsGreenColor :
                                                                                     UIColor.Project.articleButtonsGrayColor
         
-        upvoteButton.setTitle(displayedPost.activeVotesCount, for: .normal)
+//        upvoteButton.setTitle(displayedPost.activeVotesCount, for: .normal)
         commentsButton.tintColor = displayedPost.allowReplies ? UIColor.Project.articleButtonsGreenColor : UIColor.Project.articleButtonsGrayColor
         
         // TODO: - PRECISE

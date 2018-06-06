@@ -27,6 +27,7 @@ class GSTabBarController: UITabBarController {
                                                                          image: UIImage(named: "tab_home"),
                                                                          selectedImage: nil)
        
+        /*
         let vc2                     =   UIViewController()
         vc2.view.backgroundColor    =   .red
         vc2.tabBarItem              =   UITabBarItem(title: "", image: UIImage.init(named: "tab_search"), selectedImage: nil)
@@ -38,6 +39,7 @@ class GSTabBarController: UITabBarController {
         let vc4                     =   UIViewController()
         vc4.view.backgroundColor    =   .orange
         vc4.tabBarItem              =   UITabBarItem(title: "", image: UIImage.init(named: "tab_notifications"), selectedImage: nil)
+        */
         
         let profileViewController               =   ProfileViewController.nibInstance()
         let profileNavigationController         =   UINavigationController(rootViewController: profileViewController)
@@ -48,9 +50,9 @@ class GSTabBarController: UITabBarController {
         
         viewControllers     =   [
                                     feedNavigationViewController,
-                                    vc2,
-                                    vc3,
-                                    vc4,
+//                                    vc2,
+//                                    vc3,
+//                                    vc4,
                                     profileNavigationController
                                 ]
     }

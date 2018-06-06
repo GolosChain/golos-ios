@@ -39,11 +39,13 @@ class PostsFeedMediator: NSObject {
     weak var postsFeedPresenter: PostsFeedPresenterProtocol!
     
     func configure(tableView: UITableView) {
-        tableView.tableFooterView = UIView(frame: CGRect.zero)
+        // FIXME: - DELETE AFTER TEST (INFINITY LOADER)
+//        tableView.tableFooterView   =   UIView(frame: CGRect.zero)
         let nib = UINib(nibName: feedArticleTableViewCellIdentifier, bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: feedArticleTableViewCellIdentifier)
-        tableView.dataSource = self
-        tableView.delegate = self
+        
+        tableView.dataSource        =   self
+        tableView.delegate          =   self
 
         self.tableView = tableView
     }

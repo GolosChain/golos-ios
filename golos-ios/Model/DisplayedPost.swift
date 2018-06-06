@@ -33,12 +33,12 @@ struct DisplayedPost {
     let allowReplies: Bool
     let permlink: String
     let description: String
-    let activeVotesCount: String
+//    let activeVotesCount: String
     var tags: [String]?
 //    let repliesCount: String
     
     var author: DisplayedUser?
-    let activeVotes: [ResponseAPIActiveVote]?
+//    let activeVotes: [ResponseAPIActiveVote]?
 //    let replies: [PostReplyModel]?
     
     
@@ -59,8 +59,8 @@ struct DisplayedPost {
         self.permlink               =   feed.permlink
         self.description            =   parser.getDescription(from: feed.body)
         
-        self.activeVotes            =   feed.active_votes
-        self.activeVotesCount       =   String(format: "%i", feed.active_votes.count)
+//        self.activeVotes            =   feed.active_votes
+//        self.activeVotesCount       =   String(format: "%i", feed.active_votes.count)
         
         if let jsonMetaData = feed.json_metadata, let jsonData = jsonMetaData.data(using: .utf8) {
             do {
