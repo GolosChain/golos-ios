@@ -31,11 +31,13 @@ class GSTabBarController: UITabBarController {
         let vc2                     =   UIViewController()
         vc2.view.backgroundColor    =   .red
         vc2.tabBarItem              =   UITabBarItem(title: "", image: UIImage.init(named: "tab_search"), selectedImage: nil)
+         */
         
         let vc3                     =   UIViewController()
         vc3.view.backgroundColor    =   .blue
         vc3.tabBarItem              =   UITabBarItem(title: "", image: UIImage.init(named: "tab_add"), selectedImage: nil)
         
+        /*
         let vc4                     =   UIViewController()
         vc4.view.backgroundColor    =   .orange
         vc4.tabBarItem              =   UITabBarItem(title: "", image: UIImage.init(named: "tab_notifications"), selectedImage: nil)
@@ -51,7 +53,7 @@ class GSTabBarController: UITabBarController {
         viewControllers     =   [
                                     feedNavigationViewController,
 //                                    vc2,
-//                                    vc3,
+                                    vc3,
 //                                    vc4,
                                     profileNavigationController
                                 ]
