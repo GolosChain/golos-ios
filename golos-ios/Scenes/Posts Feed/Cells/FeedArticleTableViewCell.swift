@@ -127,14 +127,15 @@ class FeedArticleTableViewCell: UITableViewCell {
         
         let isNsfw = tags.map({ $0.lowercased() }).contains("nsfw")
         
-        //
-        let imageHeight: CGFloat = (displayedPost.imagePictureURL != nil || isNsfw) ? 212.0 : 0.0
-        imageViewHeightConstraint.constant = imageHeight
+        // Images: set height
+        let imageHeight: CGFloat            =   (displayedPost.imagePictureURL != nil || isNsfw) ? 212.0 : 0.0
+        imageViewHeightConstraint.constant  =   imageHeight
         contentView.layoutIfNeeded()
 
+        // Images: upload
         if isNsfw {
-            let nsfwImage = UIImage(named: "nsfw")
-            self.postImageView.image = nsfwImage
+            let nsfwImage                   =   UIImage(named: "nsfw")
+            self.postImageView.image        =   nsfwImage
         }
 
         else if let imageURL = displayedPost.imagePictureURL {
@@ -142,13 +143,18 @@ class FeedArticleTableViewCell: UITableViewCell {
                 return
             }
 
-            self.pictureURL = imageURL
+            // Add proxy
+            if imageURL.hasPrefix("https://images.golos.io") {
+                self.pictureURL     =   imageURL
+            }
             
-            imageLoader.startLoadImage(with: imageURL) { (image) in
+            else {
+                self.pictureURL     =   "https://imgp.golos.io" + String(format: "/%dx%d/", self.postImageView.frame.width, self.postImageView.frame.height) + imageURL
+            }
+            
+            imageLoader.startLoadImage(with: self.pictureURL) { (image) in
                 DispatchQueue.main.async {
-                    if let image = image, imageURL == self.pictureURL {
-                        self.postImageView.image = image
-                    }
+                    self.postImageView.image = image ?? UIImage(named: "XXX")
                 }
             }
         }

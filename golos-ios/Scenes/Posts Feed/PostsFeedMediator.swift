@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GoloSwift
 
 protocol PostsFeedMediatorDelegate: class {
     func didScroll(tableView: UITableView)
@@ -56,15 +57,18 @@ extension PostsFeedMediator: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: feedArticleTableViewCellIdentifier) as! FeedArticleTableViewCell
-        cell.delegate = self
+        let cell        =   tableView.dequeueReusableCell(withIdentifier: feedArticleTableViewCellIdentifier) as! FeedArticleTableViewCell
+        cell.delegate   =   self
         
         let displayedModel = postsFeedPresenter.getDisplayedPost(byIndex: indexPath.row)
         cell.configure(withDisplayedModel: displayedModel)
         
-        if indexPath.row == postsFeedPresenter.getDisplayedPosts().count - 1 {
-            postsFeedPresenter.loadNext()
-            delegate?.didStartLoadingNextPage()
+        // Pagination
+        if indexPath.row == postsFeedPresenter.getDisplayedPosts().count - Int(loadDataLimit / 2) {
+            DispatchQueue.main.async {
+                self.postsFeedPresenter.loadNext()
+//                self.delegate?.didStartLoadingNextPage()
+            }
         }
                 
         return cell
@@ -72,18 +76,18 @@ extension PostsFeedMediator: UITableViewDataSource {
 }
 
 
-// MARK: UITableViewDelegate
+// MARK: - UITableViewDelegate
 extension PostsFeedMediator: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let displayedModel = postsFeedPresenter.getDisplayedPost(byIndex: indexPath.row)
-        let isImage = displayedModel?.imagePictureURL == nil ? false : true
+        let displayedModel  =   postsFeedPresenter.getDisplayedPost(byIndex: indexPath.row)
+        let isImage         =   displayedModel?.imagePictureURL == nil ? false : true
         
         return FeedArticleTableViewCell.height(withImage: isImage)
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        let displayedModel = postsFeedPresenter.getDisplayedPost(byIndex: indexPath.row)
-        let isImage = displayedModel?.imagePictureURL == nil ? false : true
+        let displayedModel  =   postsFeedPresenter.getDisplayedPost(byIndex: indexPath.row)
+        let isImage         =   displayedModel?.imagePictureURL == nil ? false : true
         
         return FeedArticleTableViewCell.height(withImage: isImage)
     }
@@ -120,6 +124,7 @@ extension PostsFeedMediator: FeedArticleTableViewCellDelegate {
     
     func didPressUpvoteButton(at cell: FeedArticleTableViewCell) {
         guard let indexPath = tableView.indexPath(for: cell) else {return}
+        
         delegate?.didPressUpvote(at: indexPath.row)
     }
     

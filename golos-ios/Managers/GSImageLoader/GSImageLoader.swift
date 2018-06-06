@@ -10,8 +10,8 @@ import UIKit
 
 class GSImageLoader {
     // MARK: - Properties
-    let cache = PINCache.shared()
-    let operationQueue = OperationQueue()
+    let cache           =   PINCache.shared()
+    let operationQueue  =   OperationQueue()
     
     
     // MARK: - Custom Functions
