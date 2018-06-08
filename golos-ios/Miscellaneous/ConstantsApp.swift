@@ -39,8 +39,9 @@ let author: String                      =   "yuri-vlad-second"
 let permlink: String                    =   "sdgsdgsdg234234"
 let weight: Int64                       =   10_000
 
-let heightRatio: CGFloat                =   UIScreen.main.bounds.height / 667       // iPhone 6, iPhone 8 as design template
-let widthRatio: CGFloat                 =   UIScreen.main.bounds.width / 375
+// iPhone 6, iPhone 8 as design template
+let heightRatio: CGFloat                =   UIScreen.main.bounds.height / (UIDeviceOrientationIsPortrait(UIDevice.current.orientation)  ?   667 : 375)
+let widthRatio: CGFloat                 =   UIScreen.main.bounds.width / (UIDeviceOrientationIsPortrait(UIDevice.current.orientation)   ?   375 : 667)
 
 let appState: AppState                  =   StateMachine.load().state
 var displayedPostsItems                 =   [DisplayedPost]()

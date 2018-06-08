@@ -84,10 +84,10 @@ class RootShowViewController: UIViewController {
 
     // MARK: - Custom Functions
     private func loadViewSettings() {
-        self.circularProgressBarView.startAnimation()
+        circularProgressBarView.startAnimation()
         
         // End progress bar animation
-        self.circularProgressBarView.endAnimationCompletion = { [weak self] in
+        circularProgressBarView.endAnimationCompletion = { [weak self] in
             // Check download data end
             if displayedPostsItems.count == 0, appState == .loggedIn {
                 self?.circularProgressBarView.startAnimation()

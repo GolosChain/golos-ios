@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="5zl-Nf-AHJ">
-    <device id="retina5_5" orientation="portrait">
+    <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -17,17 +17,17 @@
             <objects>
                 <viewController storyboardIdentifier="RootShowVC" id="iy7-83-sEH" customClass="RootShowViewController" customModule="Golos" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wmV-Pf-tKu">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F2I-9F-Ifm" userLabel="Progress Bar View" customClass="CircularProgressBarView" customModule="Golos" customModuleProvider="target">
-                                <rect key="frame" x="149.66666666666666" y="310.66666666666669" width="114.66666666666666" height="114.66666666666669"/>
+                                <rect key="frame" x="135.5" y="281.5" width="104" height="104"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="F2I-9F-Ifm" secondAttribute="height" multiplier="1:1" id="pOn-x1-acb"/>
                                 </constraints>
                             </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="golos_intro_icon" translatesAutoresizingMaskIntoConstraints="NO" id="z6b-B9-s90">
-                                <rect key="frame" x="163" y="324" width="88" height="88"/>
+                                <rect key="frame" x="147.5" y="293.5" width="80" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="z6b-B9-s90" secondAttribute="height" multiplier="1:1" id="Ypj-rX-HgR"/>
                                 </constraints>
@@ -68,7 +68,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="9yl-BK-1cs"/>
                     <connections>
-                        <outlet property="circularProgressBarView" destination="F2I-9F-Ifm" id="933-Mk-TsC"/>
+                        <outlet property="circularProgressBarView" destination="F2I-9F-Ifm" id="X7b-oD-t1C"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q0B-xI-j9r" userLabel="First Responder" sceneMemberID="firstResponder"/>
