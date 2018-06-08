@@ -9,7 +9,7 @@
 import UIKit
 import IQKeyboardManagerSwift
 
-class LoginViewController: UIViewController {
+class LoginViewController: BaseViewController {
     // MARK: - IBOutlets
     @IBOutlet weak var registrationButton: UIButton!
     @IBOutlet weak var notRegisteredLabel: UILabel!
@@ -110,7 +110,7 @@ class LoginViewController: UIViewController {
     
     @IBAction func registerButtonPressed(_ sender: Any) {
         guard let moreUrl = URL.init(string: ConstantsApp.Urls.registration) else {
-            Utils.showAlertView(withTitle: "Error", andMessage: "Developer error!", needCancel: false, completion: { _ in })
+            self.showAlertView(withTitle: "Error", andMessage: "Developer error!", needCancel: false, completion: { _ in })
             return
         }
         

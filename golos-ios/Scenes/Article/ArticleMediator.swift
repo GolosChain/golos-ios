@@ -194,27 +194,27 @@ extension ArticleMediator: ArticleCommentsSectionHeaderDelegate {
 extension ArticleMediator: ArticleFooterTableViewCellDelegate {
     func didPressUpvote(at cell: ArticleFooterTableViewCell) {
         guard tableView.indexPath(for: cell) != nil else {return}
-        Utils.inDevelopmentAlert()
+//        Utils.inDevelopmentAlert()
     }
     
     func didPressComments(at cell: ArticleFooterTableViewCell) {
         guard tableView.indexPath(for: cell) != nil else {return}
-        Utils.inDevelopmentAlert()
+//        Utils.inDevelopmentAlert()
     }
     
     func didPressFavorite(at cell: ArticleFooterTableViewCell) {
         guard tableView.indexPath(for: cell) != nil else {return}
-        Utils.inDevelopmentAlert()
+//        Utils.inDevelopmentAlert()
     }
     
     func didPressPromote(at cell: ArticleFooterTableViewCell) {
         guard tableView.indexPath(for: cell) != nil else {return}
-        Utils.inDevelopmentAlert()
+//        Utils.inDevelopmentAlert()
     }
     
     func didPressDonate(at cell: ArticleFooterTableViewCell) {
         guard tableView.indexPath(for: cell) != nil else {return}
-        Utils.inDevelopmentAlert()
+//        Utils.inDevelopmentAlert()
     }
 }
 
@@ -223,7 +223,7 @@ extension ArticleMediator: ArticleFooterTableViewCellDelegate {
 extension ArticleMediator: ArticlePostedInTableViewCellDelegate {
     func didPressSubsribeButton(at cell: ArticlePostedInTableViewCell) {
         guard tableView.indexPath(for: cell) != nil else {return}
-        Utils.inDevelopmentAlert()
+//        Utils.inDevelopmentAlert()
     }
 }
 
@@ -232,16 +232,16 @@ extension ArticleMediator: ArticlePostedInTableViewCellDelegate {
 extension ArticleMediator: ArticleCommentTableViewCellDelegate {
     func didPressUpvote(at cell: ArticleCommentTableViewCell) {
         guard tableView.indexPath(for: cell) != nil else {return}
-        Utils.inDevelopmentAlert()
+//        Utils.inDevelopmentAlert()
     }
     
     func didPressComments(at cell: ArticleCommentTableViewCell) {
         guard tableView.indexPath(for: cell) != nil else {return}
-        Utils.inDevelopmentAlert()
+//        Utils.inDevelopmentAlert()
     }
     
     func didPressReply(at cell: ArticleCommentTableViewCell) {
         guard tableView.indexPath(for: cell) != nil else {return}
-        Utils.inDevelopmentAlert()
+//        Utils.inDevelopmentAlert()
     }
 }

@@ -168,13 +168,13 @@ extension PostsFeedViewController: PostsFeedMediatorDelegate {
     func didPressUpvote(at index: Int) {
         Logger.log(message: "Success", event: .severe)
         
-        Utils.inDevelopmentAlert()
+        self.inDevelopmentAlert()
     }
     
     func didPressComments(at index: Int) {
         Logger.log(message: "Success", event: .severe)
         
-        Utils.inDevelopmentAlert()
+        self.inDevelopmentAlert()
     }
     
     func didPressExpand(at index: Int) {

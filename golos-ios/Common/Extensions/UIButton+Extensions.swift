@@ -1,5 +1,5 @@
 //
-//  UIButton+Intro.swift
+//  UIButton+Extensions.swift
 //  golos-ios
 //
 //  Created by Grigory Serebryanyy on 13/01/2018.

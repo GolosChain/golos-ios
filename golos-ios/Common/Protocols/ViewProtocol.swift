@@ -16,7 +16,7 @@ protocol ViewProtocol: class {
 extension ViewProtocol {
     func didFail(with errorMessage: String) {
         stopAllActivity()
-        Utils.showAlertView(withTitle: "Error", andMessage: errorMessage, needCancel: false, completion: { _ in })
+//        Utils.showAlertView(withTitle: "Error", andMessage: errorMessage, needCancel: false, completion: { _ in })
     }
     
     func stopAllActivity() {}

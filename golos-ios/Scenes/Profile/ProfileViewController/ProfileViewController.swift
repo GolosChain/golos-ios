@@ -13,7 +13,7 @@ private let middleViewHeight: CGFloat = 145.0
 private let bottomViewHeight: CGFloat = 43.0
 private let topViewMinimizedHeight: CGFloat = UIDevice.getDeviceScreenSize() == .iphoneX ? 35.0 : 20.0
 
-class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
+class ProfileViewController: BaseViewController, UIGestureRecognizerDelegate {
     var headerHeight: CGFloat {
         return topViewHeight + middleViewHeight + bottomViewHeight
     }
@@ -140,7 +140,7 @@ class ProfileViewController: UIViewController, UIGestureRecognizerDelegate {
 // MARK: ProfileHeaderViewDelegate
 extension ProfileViewController: ProfileHeaderViewDelegate {
     func didPressEditProfileButton() {
-        Utils.inDevelopmentAlert()
+        self.inDevelopmentAlert()
     }
     
     func didPressSettingsButton() {
@@ -158,11 +158,11 @@ extension ProfileViewController: ProfileHeaderViewDelegate {
     }
     
     func didPressSubsribeButton() {
-        Utils.inDevelopmentAlert()
+        self.inDevelopmentAlert()
     }
     
     func didPressSendMessageButton() {
-        Utils.inDevelopmentAlert()
+        self.inDevelopmentAlert()
     }
     
     func didPressBackButton() {
@@ -174,7 +174,7 @@ extension ProfileViewController: ProfileHeaderViewDelegate {
 // MARK: ProfileViewProtocol
 extension ProfileViewController: ProfileViewProtocol {
     func didFail(with errorMessage: String) {
-        Utils.showAlertView(withTitle: "Error", andMessage: errorMessage, needCancel: false, completion: { _ in })
+        self.showAlertView(withTitle: "Error", andMessage: errorMessage, needCancel: false, completion: { _ in })
     }
     
     func didRefreshUser() {
