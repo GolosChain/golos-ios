@@ -26,8 +26,9 @@ target 'Golos' do
     pod 'Firebase/Messaging'
     
     # Design
+    pod 'SnapKit', '~> 4.0'
     pod 'LayoutKit', '~> 7.0'
-    
+
     # Pods for golos-ios
 #    pod 'GoloSwift', '~> 1.1'
     pod 'GoloSwift', :git => "https://github.com/GolosChain/GoloSwift.git"
