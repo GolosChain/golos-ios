@@ -26,4 +26,8 @@ extension String {
         
         return nil
     }
+    
+    mutating func localize() {
+        self = self.localized()
+    }
 }

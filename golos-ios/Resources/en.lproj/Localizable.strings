@@ -11,12 +11,17 @@
 "Blog Platform 1"                           =   "Blog Platform 2\nthe next generation";
 "Blog Platform 2"                           =   "Blog Platform 3\nthe next generation";
 "Blog Platform 3"                           =   "Blog Platform 4\nthe next generation";
+"Welcome"                                   =   "Welcome";
+"in Golos.io"                               =   "in Golos.io";
 
 
 // Buttons
 "ActionOk"                                  =   "Ok";
 "ActionYes"                                 =   "Yes";
 "ActionCancel"                              =   "Cancel";
+"Log In"                                    =   "Log In";
+"Sign In"                                   =   "Sign In";
+"More Info"                                 =   "More about Golos.io";
 
 
 // Titles

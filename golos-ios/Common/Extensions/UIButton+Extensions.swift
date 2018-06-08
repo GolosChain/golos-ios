@@ -10,19 +10,19 @@ import UIKit
 
 extension UIButton {
     func setBlueButtonRoundEdges() {
-        setRoundEdges(cornerRadius: ConstantsApp.ButtonParameters.cornerRadius)
-        backgroundColor = UIColor.Project.buttonBgBlue
+        setRoundEdges(cornerRadius: self.frame.height / 2)
+        backgroundColor = UIColor(hexString: "#1298FF")
         setTitleColor(.white, for: .normal)
-        titleLabel?.font = Fonts.shared.medium(with: 16)
+        titleLabel?.font = UIFont(name: "SFUIDisplay-Regular", size: 16.0 * widthRatio)
     }
     
     func setBorderButtonRoundEdges() {
-        setRoundEdges(cornerRadius: ConstantsApp.ButtonParameters.cornerRadius)
+        setRoundEdges(cornerRadius: self.frame.height / 2)
         backgroundColor = .white
-        layer.borderColor = UIColor.Project.buttonBorderGray.cgColor
+        layer.borderColor = UIColor(hexString: "#DBDBDB").cgColor
         layer.borderWidth = 1.0
-        setTitleColor(UIColor.Project.buttonTextGray, for: .normal)
-        titleLabel?.font = Fonts.shared.medium(with: 16)
+        setTitleColor(UIColor(hexString: "#7D7D7D"), for: .normal)
+        titleLabel?.font = UIFont(name: "SFUIDisplay-Regular", size: 16.0 * widthRatio)
     }
     
     func setProfileHeaderButton() {

@@ -17,8 +17,13 @@ class MainContainerMediator: NSObject {
             viewController      =   GSTabBarController()
             
         case .loggedOut:
-            let welcomeShowVC   =   WelcomeShowViewController.nibInstance()
-            viewController      =   UINavigationController(rootViewController: welcomeShowVC)
+            // Storyboard
+            let storyboard      =   UIStoryboard(name: "WelcomeShow", bundle: nil)
+            viewController      =   storyboard.instantiateViewController(withIdentifier: "WelcomeShowNC") as! UINavigationController
+            
+            // XIB
+//            let welcomeShowVC   =   WelcomeShowViewController.nibInstance()
+//            viewController      =   UINavigationController(rootViewController: welcomeShowVC)
         }
         
         return viewController

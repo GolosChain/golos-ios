@@ -44,10 +44,11 @@
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>We need access to your device's camera to scan the QR code</string>
+	<string>We need access to your device&apos;s camera to scan the QR code</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>SF-Pro-Display-Regular.otf</string>
+		<string>SF-UI-Display-Regular.otf</string>
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>

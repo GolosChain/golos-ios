@@ -11,12 +11,17 @@
 "Blog Platform 1"                           =   "Блог Платформа 2\nследующего поколения";
 "Blog Platform 2"                           =   "Блог Платформа 3\nследующего поколения";
 "Blog Platform 3"                           =   "Блог Платформа 4\nследующего поколения";
+"Welcome"                                   =   "Добро пожаловать";
+"in Golos.io"                               =   "в Golos.io";
 
 
 // Buttons
 "ActionOk"                                  =   "Ok";
 "ActionYes"                                 =   "Да";
 "ActionCancel"                              =   "Отмена";
+"Log In"                                    =   "Войти";
+"Sign In"                                   =   "Регистрация";
+"More Info"                                 =   "Больше о Golos.io";
 
 
 // Titles

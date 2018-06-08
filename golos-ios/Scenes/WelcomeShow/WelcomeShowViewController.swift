@@ -31,12 +31,63 @@ class WelcomeShowViewController: BaseViewController {
     
     
     // MARK: - IBOutlets
-    @IBOutlet weak var enterButton: UIButton!
-    @IBOutlet weak var registerButton: UIButton!
-    @IBOutlet weak var moreInfoButton: UIButton!
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var pageControl: UIPageControl!
+    @IBOutlet weak var welcomeLabel: UILabel! {
+        didSet {
+            welcomeLabel.text!.localize()
+            
+            welcomeLabel.font           =   UIFont.init(name: "SFUIDisplay-Regular", size: 25.0 * widthRatio)
+            welcomeLabel.textColor      =   UIColor(hexString: "#000000")
+            welcomeLabel.numberOfLines  =   1
+            welcomeLabel.textAlignment  =   .center
+        }
+    }
+    
+    @IBOutlet weak var inGolosLabel: UILabel! {
+        didSet {
+            inGolosLabel.text!.localize()
+            
+            inGolosLabel.font           =   UIFont.init(name: "SFUIDisplay-Regular", size: 40.0 * widthRatio)
+            inGolosLabel.textColor      =   UIColor(hexString: "#333333")
+            inGolosLabel.numberOfLines  =   1
+            inGolosLabel.textAlignment  =   .center
+        }
+    }
+    
+    @IBOutlet weak var titlesScrollView: UIScrollView! {
+        didSet {
+            titlesScrollView.delegate   =   self
+            
+            for string in self.scrollStrings {
+                let titleLabel              =   UILabel()
+                
+                titleLabel.text             =   string
+                titleLabel.font             =   UIFont.init(name: "SFUIDisplay-Regular", size: 16.0 * widthRatio)
+                titleLabel.textColor        =   UIColor(hexString: "#333333")
+                titleLabel.numberOfLines    =   2
+                titleLabel.textAlignment    =   .center
+                
+                titlesScrollView.addSubview(titleLabel)
+                scrollLabels.append(titleLabel)
+            }
+        }
+    }
+    
+    @IBOutlet weak var titlesPageControl: UIPageControl! {
+        didSet {
+            titlesPageControl.numberOfPages = scrollStrings.count
+        }
+    }
 
+    @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var signInButton: UIButton!
+    @IBOutlet weak var moreInfoButton: UIButton!
+
+    @IBOutlet weak var actionButtonHeightConstraint: NSLayoutConstraint! {
+        didSet {
+            actionButtonHeightConstraint.constant = 102.0 * heightRatio
+        }
+    }
+    
     
     // MARK: - Class Initialization
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -102,32 +153,7 @@ class WelcomeShowViewController: BaseViewController {
     
     // MARK: - Custom Functions
     private func loadViewSettings() {
-        title = ""
         configureBackButton()
-        enterButton.setBlueButtonRoundEdges()
-        registerButton.setBorderButtonRoundEdges()
-        moreInfoButton.setTitleColor(UIColor.Project.buttonTextGray, for: .normal)
-        
-        pageControl.numberOfPages = scrollStrings.count
-        setupScrollView()
-    }
-    
-    private func setupScrollView() {
-        Logger.log(message: "Success", event: .severe)
-        
-        scrollView.delegate = self
-        
-        for string in self.scrollStrings {
-            let label               =   UILabel()
-            label.font              =   Fonts.shared.regular(with: 16.0)
-            label.textColor         =   UIColor.Project.textBlack
-            label.text              =   string
-            label.numberOfLines     =   0
-            label.textAlignment     =   .center
-            
-            scrollView.addSubview(label)
-            scrollLabels.append(label)
-        }
     }
     
     
@@ -137,24 +163,33 @@ class WelcomeShowViewController: BaseViewController {
         Logger.log(message: "Success", event: .severe)
         
         for (index, label) in scrollLabels.enumerated() {
-            let pointX                  =   scrollView.bounds.size.width * CGFloat(index)
-            var scrollViewBounds        =   scrollView.bounds
+            let pointX                  =   titlesScrollView.bounds.size.width * CGFloat(index)
+            var scrollViewBounds        =   titlesScrollView.bounds
             
             scrollViewBounds.origin.x   =   pointX
             label.frame                 =   scrollViewBounds
         }
         
-        scrollView.contentSize          =   CGSize(width: scrollView.bounds.size.width * CGFloat(scrollLabels.count),
-                                                   height: scrollView.bounds.size.height)
+        titlesScrollView.contentSize    =   CGSize(width:   titlesScrollView.bounds.size.width * CGFloat(scrollLabels.count),
+                                                   height:  titlesScrollView.bounds.size.height)
+        
+        loginButton.setTitle("Log In".localized(), for: .normal)
+        loginButton.setBlueButtonRoundEdges()
+
+        signInButton.setTitle("Sign In".localized(), for: .normal)
+        signInButton.setBorderButtonRoundEdges()
+
+        moreInfoButton.setTitle("More Info".localized(), for: .normal)
+        moreInfoButton.setTitleColor(UIColor(hexString: "#7D7D7D"), for: .normal)
     }
     
     
     // MARK: - Actions
-    @IBAction func enterButtonPressed(_ sender: Any) {
+    @IBAction func loginButtonPressed(_ sender: Any) {
         router?.routeToLoginShowScene()
     }
     
-    @IBAction func registerButtonPressed(_ sender: Any) {
+    @IBAction func signInButtonPressed(_ sender: Any) {
         router?.showRegisterFormOnline()
     }
     
@@ -174,7 +209,7 @@ extension WelcomeShowViewController: UIScrollViewDelegate {
         let scrollViewWidth = scrollView.bounds.size.width
         let pageNumber = scrollView.contentOffset.x / scrollViewWidth
         
-        pageControl.currentPage = Int(pageNumber)
+        titlesPageControl.currentPage = Int(pageNumber)
         
         Logger.log(message: "\(scrollView.contentOffset.x / scrollViewWidth)", event: .verbose)
         Logger.log(message: "\(scrollView.contentOffset)", event: .verbose)
