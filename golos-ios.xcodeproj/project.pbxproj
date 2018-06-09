@@ -73,6 +73,7 @@
 		B11AA80020CB04AA00212713 /* WelcomeShowRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11AA7FA20CB04AA00212713 /* WelcomeShowRouter.swift */; };
 		B11AA80220CB04AA00212713 /* WelcomeShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11AA7FC20CB04AA00212713 /* WelcomeShowViewController.swift */; };
 		B11AA80520CB13BA00212713 /* SF-UI-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = B11AA80420CB13BA00212713 /* SF-UI-Display-Regular.otf */; };
+		B11AA80720CB9FC800212713 /* UILabel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11AA80620CB9FC800212713 /* UILabel+Extensions.swift */; };
 		B12A577420B432C8000CF8BF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B12A577320B432C7000CF8BF /* GoogleService-Info.plist */; };
 		B139EB9B20C3D3DC0065F6F9 /* CircularProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B139EB9A20C3D3DC0065F6F9 /* CircularProgressBarView.swift */; };
 		B157660A20B59D80009619A6 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B157660920B59D80009619A6 /* UserNotifications.framework */; };
@@ -271,6 +272,7 @@
 		B11AA7FA20CB04AA00212713 /* WelcomeShowRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeShowRouter.swift; sourceTree = "<group>"; };
 		B11AA7FC20CB04AA00212713 /* WelcomeShowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeShowViewController.swift; sourceTree = "<group>"; };
 		B11AA80420CB13BA00212713 /* SF-UI-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Display-Regular.otf"; sourceTree = "<group>"; };
+		B11AA80620CB9FC800212713 /* UILabel+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extensions.swift"; sourceTree = "<group>"; };
 		B12A576B20B3F7BC000CF8BF /* Development.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Development.xcconfig; sourceTree = "<group>"; };
 		B12A576D20B410D8000CF8BF /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
 		B12A576E20B410E6000CF8BF /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
@@ -994,11 +996,12 @@
 				EC5B2BFC201A443C007A4335 /* String+Size.swift */,
 				ECF31724200A9D2800F7B703 /* UIAlertController+Window.swift */,
 				ECF2808B200A9A210000D949 /* UIButton+Extensions.swift */,
+				B198DB9020B9A21A008011A3 /* UIColor+Extensions.swift */,
 				EC9ABBC22017D17000AF8597 /* UIImageEffects.swift */,
+				B11AA80620CB9FC800212713 /* UILabel+Extensions.swift */,
 				ECA8E35D2018D119003B8ABA /* UIView+Shadow.swift */,
 				EC6FD59D200AD53100DCB824 /* ViewController+BackButton.swift */,
 				ECF28086200A94550000D949 /* ViewController+Nib.swift */,
-				B198DB9020B9A21A008011A3 /* UIColor+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1413,6 +1416,7 @@
 				EC24FF52200C06E300A0AE15 /* StateMachine.swift in Sources */,
 				EC6FD5A2200AE1A200DCB824 /* QRScannerViewController.swift in Sources */,
 				7D25B47F201F4714004A3400 /* TagsView.swift in Sources */,
+				B11AA80720CB9FC800212713 /* UILabel+Extensions.swift in Sources */,
 				EC24FF24200BC72F00A0AE15 /* LoginUIStrings.swift in Sources */,
 				7D25B4B5201F9218004A3400 /* GSNavigationBar.swift in Sources */,
 				B1F3748220C2C5E1005EF767 /* RootShowModels.swift in Sources */,

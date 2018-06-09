@@ -33,23 +33,21 @@ class WelcomeShowViewController: BaseViewController {
     // MARK: - IBOutlets
     @IBOutlet weak var welcomeLabel: UILabel! {
         didSet {
-            welcomeLabel.text!.localize()
-            
-            welcomeLabel.font           =   UIFont.init(name: "SFUIDisplay-Regular", size: 25.0 * widthRatio)
-            welcomeLabel.textColor      =   UIColor(hexString: "#000000")
-            welcomeLabel.numberOfLines  =   1
-            welcomeLabel.textAlignment  =   .center
+            welcomeLabel.tune(withText:         welcomeLabel.text ?? "Zorro",
+                              color:            UIColor(hexString: "#000000"),
+                              font:             UIFont.init(name: "SFUIDisplay-Regular", size: 25.0 * widthRatio),
+                              alignment:        .center,
+                              isMultiLines:     false)
         }
     }
     
     @IBOutlet weak var inGolosLabel: UILabel! {
         didSet {
-            inGolosLabel.text!.localize()
-            
-            inGolosLabel.font           =   UIFont.init(name: "SFUIDisplay-Regular", size: 40.0 * widthRatio)
-            inGolosLabel.textColor      =   UIColor(hexString: "#333333")
-            inGolosLabel.numberOfLines  =   1
-            inGolosLabel.textAlignment  =   .center
+            inGolosLabel.tune(withText:         inGolosLabel.text ?? "Zorro",
+                              color:            UIColor(hexString: "#333333"),
+                              font:             UIFont.init(name: "SFUIDisplay-Regular", size: 40.0 * widthRatio),
+                              alignment:        .center,
+                              isMultiLines:     false)
         }
     }
     
@@ -60,11 +58,11 @@ class WelcomeShowViewController: BaseViewController {
             for string in self.scrollStrings {
                 let titleLabel              =   UILabel()
                 
-                titleLabel.text             =   string
-                titleLabel.font             =   UIFont.init(name: "SFUIDisplay-Regular", size: 16.0 * widthRatio)
-                titleLabel.textColor        =   UIColor(hexString: "#333333")
-                titleLabel.numberOfLines    =   2
-                titleLabel.textAlignment    =   .center
+                titleLabel.tune(withText:       string,
+                                color:          UIColor(hexString: "#333333"),
+                                font:           UIFont.init(name: "SFUIDisplay-Regular", size: 16.0 * widthRatio),
+                                alignment:      .center,
+                                isMultiLines:   true)
                 
                 titlesScrollView.addSubview(titleLabel)
                 scrollLabels.append(titleLabel)
