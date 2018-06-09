@@ -154,6 +154,21 @@ class WelcomeShowViewController: BaseViewController {
         configureBackButton()
     }
     
+    fileprivate func showNext(_ page: Int?) {
+        let scrollViewWidth     =   titlesScrollView.bounds.size.width
+        let pageNumber          =   titlesScrollView.contentOffset.x / scrollViewWidth
+        
+        titlesPageControl.currentPage = page ?? Int(pageNumber)
+        
+        if let currentPage = page {
+            self.titlesScrollView.scrollRectToVisible(CGRect(origin:    CGPoint(x: scrollViewWidth * CGFloat(currentPage), y: 0.0),
+                                                             size:      titlesScrollView.frame.size), animated: true)
+        }
+        
+        Logger.log(message: "\(titlesScrollView.contentOffset.x / scrollViewWidth)", event: .verbose)
+        Logger.log(message: "\(titlesScrollView.contentOffset)", event: .verbose)
+    }
+    
     
     // MARK: - Layout
     override func viewDidLayoutSubviews() {
@@ -171,6 +186,7 @@ class WelcomeShowViewController: BaseViewController {
         titlesScrollView.contentSize    =   CGSize(width:   titlesScrollView.bounds.size.width * CGFloat(scrollLabels.count),
                                                    height:  titlesScrollView.bounds.size.height)
         
+        // Tune buttons
         loginButton.setTitle("Log In".localized(), for: .normal)
         loginButton.setBlueButtonRoundEdges()
 
@@ -194,6 +210,10 @@ class WelcomeShowViewController: BaseViewController {
     @IBAction func moreInfoButtonPressed(_ sender: Any) {
         router?.showMoreInfoPageOnline()
     }
+    
+    @IBAction func handlerSelectNewPage(_ sender: UIPageControl) {
+        self.showNext(sender.currentPage)
+    }
 }
 
 
@@ -204,12 +224,6 @@ extension WelcomeShowViewController: WelcomeShowDisplayLogic {}
 // MARK: - UIScrollViewDelegate
 extension WelcomeShowViewController: UIScrollViewDelegate {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        let scrollViewWidth = scrollView.bounds.size.width
-        let pageNumber = scrollView.contentOffset.x / scrollViewWidth
-        
-        titlesPageControl.currentPage = Int(pageNumber)
-        
-        Logger.log(message: "\(scrollView.contentOffset.x / scrollViewWidth)", event: .verbose)
-        Logger.log(message: "\(scrollView.contentOffset)", event: .verbose)
+        self.showNext(nil)
     }
 }

@@ -52,7 +52,7 @@ class MainContainerPresenter: NSObject {
                 return
         }
         
-        view?.didChange(newState: stateMachine.state,
-                        from: oldState)
+        view?.didChange(newState:   stateMachine.state,
+                        from:       oldState)
     }
 }

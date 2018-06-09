@@ -50,10 +50,10 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jRo-F6-aEm" userLabel="Titles View">
-                                                <rect key="frame" x="76" y="349" width="175" height="39"/>
+                                                <rect key="frame" x="71" y="349" width="185" height="39"/>
                                                 <subviews>
                                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E2y-ns-DzP" userLabel="Titles Scroll View">
-                                                        <rect key="frame" x="0.0" y="0.0" width="175" height="39"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="185" height="39"/>
                                                     </scrollView>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -64,11 +64,14 @@
                                                     <constraint firstAttribute="bottom" secondItem="E2y-ns-DzP" secondAttribute="bottom" id="cXe-3P-Gb0"/>
                                                 </constraints>
                                             </view>
-                                            <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="8Nq-kE-QJu" userLabel="Titles Page Control">
+                                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="8Nq-kE-QJu" userLabel="Titles Page Control">
                                                 <rect key="frame" x="0.0" y="421" width="327" height="8"/>
                                                 <viewLayoutGuide key="safeArea" id="K9w-oa-9hG"/>
                                                 <color key="pageIndicatorTintColor" red="0.85882352939999995" green="0.85882352939999995" blue="0.85882352939999995" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="currentPageIndicatorTintColor" red="0.49019607840000001" green="0.49019607840000001" blue="0.49019607840000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <connections>
+                                                    <action selector="handlerSelectNewPage:" destination="Lf4-WS-m1Z" eventType="valueChanged" id="FtV-zE-ir1"/>
+                                                </connections>
                                             </pageControl>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="AfB-bh-IxG">
                                                 <rect key="frame" x="0.0" y="480" width="327" height="102"/>
@@ -147,8 +150,8 @@
                             <constraint firstItem="jRo-F6-aEm" firstAttribute="height" secondItem="JF0-Yf-EPZ" secondAttribute="height" multiplier="39:667" id="VNA-rp-X0S"/>
                             <constraint firstItem="eEs-Xc-jd5" firstAttribute="height" secondItem="JF0-Yf-EPZ" secondAttribute="height" multiplier="48:667" id="WjT-51-2TY"/>
                             <constraint firstItem="nWl-Yg-qF2" firstAttribute="height" secondItem="JF0-Yf-EPZ" secondAttribute="height" multiplier="17:375" id="YVv-50-v0j"/>
-                            <constraint firstItem="jRo-F6-aEm" firstAttribute="width" secondItem="JF0-Yf-EPZ" secondAttribute="width" multiplier="175:375" id="azP-xY-Qxk"/>
-                            <constraint firstItem="jRo-F6-aEm" firstAttribute="width" secondItem="JF0-Yf-EPZ" secondAttribute="width" multiplier="175:667" id="cLq-1n-tgR"/>
+                            <constraint firstItem="jRo-F6-aEm" firstAttribute="width" secondItem="JF0-Yf-EPZ" secondAttribute="width" multiplier="185:375" id="azP-xY-Qxk"/>
+                            <constraint firstItem="jRo-F6-aEm" firstAttribute="width" secondItem="JF0-Yf-EPZ" secondAttribute="width" multiplier="185:667" id="cLq-1n-tgR"/>
                             <constraint firstItem="8Nq-kE-QJu" firstAttribute="height" secondItem="JF0-Yf-EPZ" secondAttribute="height" multiplier="8:667" id="cWV-RW-25w"/>
                             <constraint firstItem="jRo-F6-aEm" firstAttribute="height" secondItem="JF0-Yf-EPZ" secondAttribute="height" multiplier="39:375" id="mBe-ls-PKA"/>
                             <constraint firstItem="eEs-Xc-jd5" firstAttribute="height" secondItem="JF0-Yf-EPZ" secondAttribute="height" multiplier="48:375" id="obm-G6-ArI"/>
