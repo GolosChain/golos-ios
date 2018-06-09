@@ -8,8 +8,27 @@
 //  https://stackoverflow.com/questions/24263007/how-to-use-hex-colour-values
 
 import Foundation
+import SwiftTheme
+
+let whiteColorPickers: ThemeColorPicker             =   [ "#ffffff", "#ffffff" ]
+let whiteBlackColorPickers: ThemeColorPicker        =   [ "#ffffff", "#000000" ]
+let blackWhiteColorPickers: ThemeColorPicker        =   [ "#000000", "#ffffff" ]
+let darkGrayWhiteColorPickers: ThemeColorPicker     =   [ "#7d7d7d", "#7d7d7d" ]
+let vividBlueWhiteColorPickers: ThemeColorPicker    =   [ "#1298ff", "#1298ff" ]
+
+
 
 extension UIColor {
+    static var myAppRed: UIColor {
+        return UIColor(red: 1, green: 0.1, blue: 0.1, alpha: 1)
+    }
+    static var myAppGreen: UIColor {
+        return UIColor(red: 0, green: 1, blue: 0, alpha: 1)
+    }
+    static var myAppBlue: UIColor {
+        return UIColor(red: 0, green: 0.2, blue: 0.9, alpha: 1)
+    }
+
     convenience init(hexString: String) {
         let hex = hexString.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
         var int = UInt32()

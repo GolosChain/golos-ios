@@ -16,7 +16,7 @@
         <scene sceneID="MpO-fb-zJl">
             <objects>
                 <viewController storyboardIdentifier="WelcomeShowVC" id="Lf4-WS-m1Z" customClass="WelcomeShowViewController" customModule="Golos" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="JF0-Yf-EPZ">
+                    <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="JF0-Yf-EPZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -28,6 +28,7 @@
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="golos_intro_icon" translatesAutoresizingMaskIntoConstraints="NO" id="5fH-5e-8P5" userLabel="Logo Image View">
                                                 <rect key="frame" x="123.5" y="48" width="80" height="80"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="5fH-5e-8P5" secondAttribute="height" multiplier="1:1" id="q4V-mv-axu"/>
                                                 </constraints>
@@ -54,9 +55,10 @@
                                                 <subviews>
                                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E2y-ns-DzP" userLabel="Titles Scroll View">
                                                         <rect key="frame" x="0.0" y="0.0" width="185" height="39"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </scrollView>
                                                 </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstItem="E2y-ns-DzP" firstAttribute="top" secondItem="jRo-F6-aEm" secondAttribute="top" id="A8C-Jp-my8"/>
                                                     <constraint firstAttribute="trailing" secondItem="E2y-ns-DzP" secondAttribute="trailing" id="Ng1-Mi-Men"/>
@@ -64,8 +66,9 @@
                                                     <constraint firstAttribute="bottom" secondItem="E2y-ns-DzP" secondAttribute="bottom" id="cXe-3P-Gb0"/>
                                                 </constraints>
                                             </view>
-                                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="8Nq-kE-QJu" userLabel="Titles Page Control">
+                                            <pageControl clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="8Nq-kE-QJu" userLabel="Titles Page Control">
                                                 <rect key="frame" x="0.0" y="421" width="327" height="8"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <viewLayoutGuide key="safeArea" id="K9w-oa-9hG"/>
                                                 <color key="pageIndicatorTintColor" red="0.85882352939999995" green="0.85882352939999995" blue="0.85882352939999995" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="currentPageIndicatorTintColor" red="0.49019607840000001" green="0.49019607840000001" blue="0.49019607840000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -73,30 +76,34 @@
                                                     <action selector="handlerSelectNewPage:" destination="Lf4-WS-m1Z" eventType="valueChanged" id="FtV-zE-ir1"/>
                                                 </connections>
                                             </pageControl>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="AfB-bh-IxG">
+                                            <stackView clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="AfB-bh-IxG">
                                                 <rect key="frame" x="0.0" y="480" width="327" height="102"/>
                                                 <subviews>
-                                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n04-8W-lqo" userLabel="Log In Button">
+                                                    <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n04-8W-lqo" userLabel="Log In Button">
                                                         <rect key="frame" x="0.0" y="0.0" width="327" height="44"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <state key="normal" title="Log In"/>
                                                         <connections>
                                                             <action selector="loginButtonPressed:" destination="Lf4-WS-m1Z" eventType="touchUpInside" id="76p-ii-rqS"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nbr-ET-bGL" userLabel="Sign In Button">
+                                                    <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nbr-ET-bGL" userLabel="Sign In Button">
                                                         <rect key="frame" x="0.0" y="58" width="327" height="44"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <state key="normal" title="Sign In"/>
                                                         <connections>
                                                             <action selector="signInButtonPressed:" destination="Lf4-WS-m1Z" eventType="touchUpInside" id="b2e-G9-D8o"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="102" id="ovS-8t-eVv"/>
                                                 </constraints>
                                             </stackView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nWl-Yg-qF2" userLabel="More Info Button">
+                                            <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nWl-Yg-qF2" userLabel="More Info Button">
                                                 <rect key="frame" x="134.5" y="606" width="58" height="17"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                 <state key="normal" title="More Info"/>
                                                 <connections>
@@ -104,7 +111,7 @@
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="nWl-Yg-qF2" firstAttribute="top" secondItem="AfB-bh-IxG" secondAttribute="bottom" constant="24" id="0ru-sS-o2q"/>
                                             <constraint firstAttribute="trailing" secondItem="AfB-bh-IxG" secondAttribute="trailing" id="1zB-KH-4DK"/>
@@ -128,6 +135,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="Bma-G1-7FW" secondAttribute="bottom" id="Hvt-we-V0S"/>
                                     <constraint firstAttribute="trailing" secondItem="Bma-G1-7FW" secondAttribute="trailing" constant="24" id="bsL-bY-Zh8"/>

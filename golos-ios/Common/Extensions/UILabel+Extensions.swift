@@ -7,13 +7,17 @@
 //
 
 import UIKit
+import SwiftTheme
 
 extension UILabel {
-    func tune(withText text: String, color: UIColor, font: UIFont?, alignment: NSTextAlignment, isMultiLines: Bool) {
-        self.text           =   text.localized()
-        self.font           =   font
-        self.textColor      =   color
-        self.numberOfLines  =   isMultiLines ? 0 : 1
-        self.textAlignment  =   alignment
+    func tune(withText text: String, hexColors: ThemeColorPicker?, font: UIFont?, alignment: NSTextAlignment, isMultiLines: Bool) {
+        ThemeManager.setTheme(index: isAppThemeDark ? 1 : 0)
+        
+        self.text               =   text.localized()
+        self.font               =   font
+        self.theme_textColor    =   hexColors
+
+        self.numberOfLines      =   isMultiLines ? 0 : 1
+        self.textAlignment      =   alignment
     }
 }

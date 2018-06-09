@@ -7,22 +7,25 @@
 //
 
 import UIKit
+import SwiftTheme
 
 extension UIButton {
     func setBlueButtonRoundEdges() {
         setRoundEdges(cornerRadius: self.frame.height / 2)
-        backgroundColor = UIColor(hexString: "#1298FF")
-        setTitleColor(.white, for: .normal)
-        titleLabel?.font = UIFont(name: "SFUIDisplay-Regular", size: 16.0 * widthRatio)
+
+        self.titleLabel?.font       =   UIFont(name: "SFUIDisplay-Regular", size: 16.0 * widthRatio)
+        self.theme_backgroundColor  =   vividBlueWhiteColorPickers
+        self.theme_setTitleColor(whiteColorPickers, forState: .normal)
     }
     
     func setBorderButtonRoundEdges() {
         setRoundEdges(cornerRadius: self.frame.height / 2)
-        backgroundColor = .white
-        layer.borderColor = UIColor(hexString: "#DBDBDB").cgColor
-        layer.borderWidth = 1.0
-        setTitleColor(UIColor(hexString: "#7D7D7D"), for: .normal)
-        titleLabel?.font = UIFont(name: "SFUIDisplay-Regular", size: 16.0 * widthRatio)
+
+        self.layer.borderColor      =   UIColor(hexString: "#DBDBDB").cgColor
+        self.layer.borderWidth      =   1.0
+        self.titleLabel?.font       =   UIFont(name: "SFUIDisplay-Regular", size: 16.0 * widthRatio)
+        self.theme_backgroundColor  =   whiteColorPickers
+        self.theme_setTitleColor(darkGrayWhiteColorPickers, forState: .normal)
     }
     
     func setProfileHeaderButton() {

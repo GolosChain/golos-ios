@@ -34,7 +34,7 @@ class WelcomeShowViewController: BaseViewController {
     @IBOutlet weak var welcomeLabel: UILabel! {
         didSet {
             welcomeLabel.tune(withText:         welcomeLabel.text ?? "Zorro",
-                              color:            UIColor(hexString: "#000000"),
+                              hexColors:        blackWhiteColorPickers,
                               font:             UIFont.init(name: "SFUIDisplay-Regular", size: 25.0 * widthRatio),
                               alignment:        .center,
                               isMultiLines:     false)
@@ -44,7 +44,7 @@ class WelcomeShowViewController: BaseViewController {
     @IBOutlet weak var inGolosLabel: UILabel! {
         didSet {
             inGolosLabel.tune(withText:         inGolosLabel.text ?? "Zorro",
-                              color:            UIColor(hexString: "#333333"),
+                              hexColors:        blackWhiteColorPickers,
                               font:             UIFont.init(name: "SFUIDisplay-Regular", size: 40.0 * widthRatio),
                               alignment:        .center,
                               isMultiLines:     false)
@@ -59,7 +59,7 @@ class WelcomeShowViewController: BaseViewController {
                 let titleLabel              =   UILabel()
                 
                 titleLabel.tune(withText:       string,
-                                color:          UIColor(hexString: "#333333"),
+                                hexColors:      blackWhiteColorPickers,
                                 font:           UIFont.init(name: "SFUIDisplay-Regular", size: 16.0 * widthRatio),
                                 alignment:      .center,
                                 isMultiLines:   true)
@@ -152,6 +152,7 @@ class WelcomeShowViewController: BaseViewController {
     // MARK: - Custom Functions
     private func loadViewSettings() {
         configureBackButton()
+        tuneView()
     }
     
     fileprivate func showNext(_ page: Int?) {

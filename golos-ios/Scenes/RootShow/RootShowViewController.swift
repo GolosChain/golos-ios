@@ -18,7 +18,7 @@ protocol RootShowDisplayLogic: class {
     func displayPosts(fromViewModel viewModel: RootShowModels.Items.ViewModel)
 }
 
-class RootShowViewController: UIViewController {
+class RootShowViewController: BaseViewController {
     // MARK: - Properties
     var interactor: RootShowBusinessLogic?
     var router: (NSObjectProtocol & RootShowRoutingLogic & RootShowDataPassing)?
@@ -84,10 +84,11 @@ class RootShowViewController: UIViewController {
 
     // MARK: - Custom Functions
     private func loadViewSettings() {
-        circularProgressBarView.startAnimation()
+        self.tuneView()
+        self.circularProgressBarView.startAnimation()
         
         // End progress bar animation
-        circularProgressBarView.endAnimationCompletion = { [weak self] in
+        self.circularProgressBarView.endAnimationCompletion = { [weak self] in
             // Check download data end
             if displayedPostsItems.count == 0, appState == .loggedIn {
                 self?.circularProgressBarView.startAnimation()
@@ -101,7 +102,7 @@ class RootShowViewController: UIViewController {
         if appState == .loggedIn {
             print("start = \(Date())")
             let requestModel = RootShowModels.Items.RequestModel()
-            interactor?.loadPosts(withRequestModel: requestModel)
+            self.interactor?.loadPosts(withRequestModel: requestModel)
         }
     }
 }

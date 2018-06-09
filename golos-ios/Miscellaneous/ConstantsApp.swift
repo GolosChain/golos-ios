@@ -45,3 +45,25 @@ let widthRatio: CGFloat                 =   UIScreen.main.bounds.width / (UIDevi
 
 let appState: AppState                  =   StateMachine.load().state
 var displayedPostsItems                 =   [DisplayedPost]()
+
+var isAppThemeDark: Bool {
+    set { }
+    
+    get {
+        return UserDefaults.standard.object(forKey: appThemeKey) as? Bool ?? true
+    }
+}
+
+var isNetworkAvailable: Bool {
+    set { }
+    
+    get {
+//        let reachabilityManager = Alamofire.NetworkReachabilityManager(host: "www.google.com")
+//        return reachabilityManager!.isReachable
+        return true
+    }
+}
+
+
+// Keys
+let appThemeKey                         =   "AppTheme"
