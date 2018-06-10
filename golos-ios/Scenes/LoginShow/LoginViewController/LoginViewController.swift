@@ -144,9 +144,9 @@ class LoginViewController: BaseViewController {
     }
     
     @IBAction func helpButtonPressed(_ sender: Any) {
-        let loginHelpViewController = LoginHelpViewController.nibInstance()
-        loginHelpViewController.modalPresentationStyle = .overCurrentContext
-        present(loginHelpViewController, animated: true, completion: nil)
+        let loginHelpShowVC = LoginHelpShowViewController.nibInstance()
+        loginHelpShowVC.modalPresentationStyle = .overCurrentContext
+        present(loginHelpShowVC, animated: true, completion: nil)
     }
 }
 

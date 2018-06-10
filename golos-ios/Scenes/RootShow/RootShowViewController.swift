@@ -84,7 +84,7 @@ class RootShowViewController: BaseViewController {
 
     // MARK: - Custom Functions
     private func loadViewSettings() {
-        self.tuneView()
+        self.view.tune()
         self.circularProgressBarView.startAnimation()
         
         // End progress bar animation

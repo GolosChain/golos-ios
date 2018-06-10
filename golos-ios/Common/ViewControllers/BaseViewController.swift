@@ -7,20 +7,12 @@
 //
 
 import UIKit
-import SwiftTheme
 
 class BaseViewController: UIViewController {
     // MARK: - Properties
     var foregroundRemoteNotificationView: ForegroundRemoteNotificationView?
     
 
-    // MARK: - Class Functions
-    func tuneView() {
-        ThemeManager.setTheme(index: isAppThemeDark ? 1 : 0)
-        self.view.theme_backgroundColor = whiteBlackColorPickers
-    }
-    
-    
     // MARK: - Custom Functions
     func displayLocalNotification() {
         if let subview = self.foregroundRemoteNotificationView, !subview.isDisplay {

@@ -152,7 +152,7 @@ class WelcomeShowViewController: BaseViewController {
     // MARK: - Custom Functions
     private func loadViewSettings() {
         configureBackButton()
-        tuneView()
+        self.view.tune()
     }
     
     fileprivate func showNext(_ page: Int?) {

@@ -7,8 +7,14 @@
 //
 
 import UIKit
+import SwiftTheme
 
 extension UIView {
+    func tune() {
+        ThemeManager.setTheme(index: isAppThemeDark ? 1 : 0)
+        self.theme_backgroundColor = whiteBlackColorPickers
+    }
+
     func addBottomShadow() {
         layer.shadowColor = UIColor.black.withAlphaComponent(0.3).cgColor
         layer.shadowOffset = CGSize(width: 0, height: 4)

@@ -50,7 +50,7 @@ var isAppThemeDark: Bool {
     set { }
     
     get {
-        return UserDefaults.standard.object(forKey: appThemeKey) as? Bool ?? true
+        return UserDefaults.standard.object(forKey: appThemeKey) as? Bool ?? false
     }
 }
 

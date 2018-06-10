@@ -13,6 +13,10 @@
 "Blog Platform 3"                           =   "Блог Платформа 4\nследующего поколения";
 "Welcome"                                   =   "Добро пожаловать";
 "in Golos.io"                               =   "в Golos.io";
+"Login Help Step Title 1"                   =   "1. Заходим на сайт https://golos.io";
+"Login Help Step Title 2"                   =   "2. Переходим во вкладку “Кошелёк“";
+"Login Help Step Title 3"                   =   "3. В разделе “Разрешения“ нажмите\nпоказать приватный постинг ключ.\n(он начинается с 5 или 1)";
+"Login Help Step Title 4"                   =   "4. Его нужно скопировать или\nсканировать через QR-код";
 
 
 // Buttons
@@ -22,6 +26,7 @@
 "Log In"                                    =   "Войти";
 "Sign In"                                   =   "Регистрация";
 "More Info"                                 =   "Больше о Golos.io";
+"Thanks understood"                         =   "Спасибо, я всё понял";
 
 
 // Titles

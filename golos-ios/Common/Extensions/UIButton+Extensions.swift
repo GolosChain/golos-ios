@@ -18,6 +18,14 @@ extension UIButton {
         self.theme_setTitleColor(whiteColorPickers, forState: .normal)
     }
     
+    func setBlueButtonRoundCorners() {
+        setRoundEdges(cornerRadius: 4.0)
+        
+        self.titleLabel?.font       =   UIFont(name: "SFProDisplay-Regular", size: 16.0 * widthRatio)
+        self.theme_backgroundColor  =   vividBlueWhiteColorPickers
+        self.theme_setTitleColor(whiteColorPickers, forState: .normal)
+    }
+    
     func setBorderButtonRoundEdges() {
         setRoundEdges(cornerRadius: self.frame.height / 2)
 

@@ -16,8 +16,29 @@ extension UILabel {
         self.text               =   text.localized()
         self.font               =   font
         self.theme_textColor    =   hexColors
-
+        
         self.numberOfLines      =   isMultiLines ? 0 : 1
         self.textAlignment      =   alignment
     }
+    
+    func tune(withAttributedText text: String, hexColors: ThemeColorPicker?, font: UIFont?, alignment: NSTextAlignment, isMultiLines: Bool) {
+        ThemeManager.setTheme(index: isAppThemeDark ? 1 : 0)
+        
+        let attributedString    =   NSMutableAttributedString(string:      text.localized(),
+                                                              attributes:  [ NSAttributedStringKey.font: font! ])
+        
+        let style               =   NSMutableParagraphStyle()
+        style.lineSpacing       =   1.5 * widthRatio
+        style.minimumLineHeight =   20.0 * widthRatio
+        
+        attributedString.addAttributes([NSAttributedStringKey.paragraphStyle: style], range: NSRange(location: 0, length: text.localized().count))
+        self.attributedText     =   attributedString
+        
+        self.font               =   font
+        self.theme_textColor    =   hexColors
+        
+        self.numberOfLines      =   isMultiLines ? 0 : 1
+        self.textAlignment      =   alignment
+    }
+
 }

@@ -13,6 +13,10 @@
 "Blog Platform 3"                           =   "Blog Platform 4\nthe next generation";
 "Welcome"                                   =   "Welcome";
 "in Golos.io"                               =   "in Golos.io";
+"Login Help Step Title 1"                   =   "1. Go to website https://golos.io";
+"Login Help Step Title 2"                   =   "2. Proceed to ”Wallet“ section";
+"Login Help Step Title 3"                   =   "3. In “Permissions“ section press show private posting key (it starts from 5 or 1)";
+"Login Help Step Title 4"                   =   "4. You can copy-paste it, or\nscan through QR-code.";
 
 
 // Buttons
@@ -22,6 +26,7 @@
 "Log In"                                    =   "Log In";
 "Sign In"                                   =   "Sign In";
 "More Info"                                 =   "More about Golos.io";
+"Thanks understood"                         =   "Got it";
 
 
 // Titles
