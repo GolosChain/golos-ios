@@ -40,6 +40,11 @@ class WelcomeShowRouter: NSObject, WelcomeShowRoutingLogic, WelcomeShowDataPassi
     }
     
     func showRegisterFormOnline() {
+        guard isNetworkAvailable else {
+            viewController?.showAlertView(withTitle: "Info", andMessage: "No Internet Connection", needCancel: false, completion: { _ in })
+            return
+        }
+        
         guard let moreUrl = URL.init(string: ConstantsApp.Urls.registration) else {
             viewController?.showAlertView(withTitle: "Error", andMessage: "Developer error!", needCancel: false, completion: { _ in })
             return
@@ -55,6 +60,11 @@ class WelcomeShowRouter: NSObject, WelcomeShowRoutingLogic, WelcomeShowDataPassi
     }
     
     func showMoreInfoPageOnline() {
+        guard isNetworkAvailable else {
+            viewController?.showAlertView(withTitle: "Info", andMessage: "No Internet Connection", needCancel: false, completion: { _ in })
+            return
+        }
+        
         guard let moreUrl = URL.init(string: ConstantsApp.Urls.moreInfoAbout) else {
             viewController?.showAlertView(withTitle: "Error", andMessage: "Developer error!", needCancel: false, completion: { _ in })
             return

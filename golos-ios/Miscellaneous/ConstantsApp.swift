@@ -58,9 +58,7 @@ var isNetworkAvailable: Bool {
     set { }
     
     get {
-//        let reachabilityManager = Alamofire.NetworkReachabilityManager(host: "www.google.com")
-//        return reachabilityManager!.isReachable
-        return true
+        return ReachabilityManager.connection()
     }
 }
 

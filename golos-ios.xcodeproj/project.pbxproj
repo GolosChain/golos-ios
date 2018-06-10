@@ -69,6 +69,7 @@
 		7DFE7C462046395B0057F144 /* ReplyRequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFE7C452046395B0057F144 /* ReplyRequestType.swift */; };
 		7DFE7C4920464C1E0057F144 /* PostsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFE7C4820464C1E0057F144 /* PostsManager.swift */; };
 		7DFE7C4B20464C680057F144 /* PostRequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFE7C4A20464C680057F144 /* PostRequestType.swift */; };
+		B114192820CD1E260025B07F /* ReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B114192720CD1E260025B07F /* ReachabilityManager.swift */; };
 		B11AA7F720CB018E00212713 /* WelcomeShow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B11AA7F620CB018E00212713 /* WelcomeShow.storyboard */; };
 		B11AA80020CB04AA00212713 /* WelcomeShowRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11AA7FA20CB04AA00212713 /* WelcomeShowRouter.swift */; };
 		B11AA80220CB04AA00212713 /* WelcomeShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11AA7FC20CB04AA00212713 /* WelcomeShowViewController.swift */; };
@@ -265,6 +266,7 @@
 		7DFE7C4820464C1E0057F144 /* PostsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsManager.swift; sourceTree = "<group>"; };
 		7DFE7C4A20464C680057F144 /* PostRequestType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRequestType.swift; sourceTree = "<group>"; };
 		974FDF6AE6B94E5A2BFC2FDE /* Pods-Golos.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Golos.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Golos/Pods-Golos.debug.xcconfig"; sourceTree = "<group>"; };
+		B114192720CD1E260025B07F /* ReachabilityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityManager.swift; sourceTree = "<group>"; };
 		B11AA7F620CB018E00212713 /* WelcomeShow.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WelcomeShow.storyboard; sourceTree = "<group>"; };
 		B11AA7FA20CB04AA00212713 /* WelcomeShowRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeShowRouter.swift; sourceTree = "<group>"; };
 		B11AA7FC20CB04AA00212713 /* WelcomeShowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeShowViewController.swift; sourceTree = "<group>"; };
@@ -737,6 +739,7 @@
 			children = (
 				B1F6A36D20C130780096C393 /* Parser.swift */,
 				7D911D1C2035ED0200F19D3C /* PostsFeedManager.swift */,
+				B114192720CD1E260025B07F /* ReachabilityManager.swift */,
 				7D95CFA9203A53E500C1AE0A /* UserManager.swift */,
 				7D95CFA1203A118D00C1AE0A /* GSImageLoader */,
 				7DFE7C4720464C110057F144 /* PostsManager */,
@@ -1409,6 +1412,7 @@
 				EC6FD5A2200AE1A200DCB824 /* QRScannerViewController.swift in Sources */,
 				7D25B47F201F4714004A3400 /* TagsView.swift in Sources */,
 				B11AA80720CB9FC800212713 /* UILabel+Extensions.swift in Sources */,
+				B114192820CD1E260025B07F /* ReachabilityManager.swift in Sources */,
 				EC24FF24200BC72F00A0AE15 /* LoginUIStrings.swift in Sources */,
 				7D25B4B5201F9218004A3400 /* GSNavigationBar.swift in Sources */,
 				B1F3748220C2C5E1005EF767 /* RootShowModels.swift in Sources */,
