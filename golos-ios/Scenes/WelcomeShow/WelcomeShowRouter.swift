@@ -35,8 +35,10 @@ class WelcomeShowRouter: NSObject, WelcomeShowRoutingLogic, WelcomeShowDataPassi
 
     // MARK: - Routing
     func routeToLoginShowScene() {
-        let loginViewController: LoginViewController = LoginViewController.nibInstance()
-        viewController?.show(loginViewController, sender: nil)
+        let storyboard      =   UIStoryboard(name: "LogInShow", bundle: nil)
+        let destinationVC   =   storyboard.instantiateViewController(withIdentifier: "LogInShowVC") as! LogInShowViewController
+
+        viewController?.show(destinationVC, sender: nil)
     }
     
     func showRegisterFormOnline() {

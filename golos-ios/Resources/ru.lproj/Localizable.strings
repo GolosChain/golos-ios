@@ -17,6 +17,7 @@
 "Login Help Step Title 2"                   =   "2. Переходим во вкладку “Кошелёк“";
 "Login Help Step Title 3"                   =   "3. В разделе “Разрешения“ нажмите\nпоказать приватный постинг ключ.\n(он начинается с 5 или 1)";
 "Login Help Step Title 4"                   =   "4. Его нужно скопировать или\nсканировать через QR-код";
+"Do Not Registered"                         =   "Вы ещё не зарегистрированы?";
 
 
 // Buttons
@@ -27,6 +28,9 @@
 "Sign In"                                   =   "Регистрация";
 "More Info"                                 =   "Больше о Golos.io";
 "Thanks understood"                         =   "Спасибо, я всё понял";
+"Registration"                              =   "Регистрация";
+"Enter With Active Key"                     =   "Войти с активным ключём";
+"Enter With Posting Key"                    =   "Войти с постинг ключём";
 
 
 // Titles
@@ -37,6 +41,8 @@
 "Actual"                                    =   "Актуальное";
 "Popular"                                   =   "Популярное";
 "Promoted"                                  =   "Промо";
+"Enter Title"                               =   "Войти";
+"Cancel Title"                              =   "Отмена";
 
 
 // Error message

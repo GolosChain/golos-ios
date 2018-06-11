@@ -17,6 +17,7 @@
 "Login Help Step Title 2"                   =   "2. Proceed to ”Wallet“ section";
 "Login Help Step Title 3"                   =   "3. In “Permissions“ section press show private posting key (it starts from 5 or 1)";
 "Login Help Step Title 4"                   =   "4. You can copy-paste it, or\nscan through QR-code.";
+"Do Not Registered"                         =   "Don’t have an account?";
 
 
 // Buttons
@@ -27,6 +28,9 @@
 "Sign In"                                   =   "Sign In";
 "More Info"                                 =   "More about Golos.io";
 "Thanks understood"                         =   "Got it";
+"Registration"                              =   "Sign Up here";
+"Enter With Active Key"                     =   "Log In with active key";
+"Enter With Posting Key"                    =   "Log In with posting key";
 
 
 // Titles
@@ -37,6 +41,8 @@
 "Actual"                                    =   "Actual";
 "Popular"                                   =   "Popular";
 "Promoted"                                  =   "Promoted";
+"Enter Title"                               =   "Enter";
+"Cancel Title"                              =   "Cancel";
 
 
 // Error message

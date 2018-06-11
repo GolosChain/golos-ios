@@ -13,7 +13,8 @@ import SwiftTheme
 let whiteColorPickers: ThemeColorPicker             =   [ "#ffffff", "#ffffff" ]
 let whiteBlackColorPickers: ThemeColorPicker        =   [ "#ffffff", "#000000" ]
 let blackWhiteColorPickers: ThemeColorPicker        =   [ "#000000", "#ffffff" ]
-let darkGrayWhiteColorPickers: ThemeColorPicker     =   [ "#7d7d7d", "#7d7d7d" ]
+let darkGrayWhiteColorPickers: ThemeColorPicker     =   [ "#7d7d7d", "#ffffff" ]
+let veryDarkGrayWhiteColorPickers: ThemeColorPicker =   [ "#333333", "#ffffff" ]
 let vividBlueWhiteColorPickers: ThemeColorPicker    =   [ "#1298ff", "#1298ff" ]
 
 

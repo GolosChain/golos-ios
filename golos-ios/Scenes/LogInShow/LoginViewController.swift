@@ -63,11 +63,11 @@ class LoginViewController: BaseViewController {
         enterButton.setBlueButtonRoundEdges()
         cancelButton.setBorderButtonRoundEdges()
         
-        registrationButton.setTitleColor(UIColor.Project.buttonBgBlue, for: .normal)
-        registrationButton.titleLabel?.font = Fonts.shared.medium(with: 16.0)
+//        registrationButton.setTitleColor(UIColor.Project.buttonBgBlue, for: .normal)
+//        registrationButton.titleLabel?.font = Fonts.shared.medium(with: 16.0)
         
-        notRegisteredLabel.font = Fonts.shared.regular(with: 16.0)
-        notRegisteredLabel.textColor = UIColor.Project.buttonTextGray
+//        notRegisteredLabel.font = Fonts.shared.regular(with: 16.0)
+//        notRegisteredLabel.textColor = UIColor.Project.buttonTextGray
         
         changeKeyTypeButton.setTitleColor(UIColor.Project.textBlack, for: .normal)
         changeKeyTypeButton.titleLabel?.font = Fonts.shared.regular(with: 13.0)
@@ -100,40 +100,40 @@ class LoginViewController: BaseViewController {
     
     
     // MARK: - Actions
-    @IBAction func enterButtonPressed(_ sender: Any) {
-        presenter.login(with: loginTextField.text, key: keyTextField.text)
-    }
+//    @IBAction func enterButtonPressed(_ sender: Any) {
+//        presenter.login(with: loginTextField.text, key: keyTextField.text)
+//    }
+//    
+//    @IBAction func cancelButtonPressed(_ sender: Any) {
+//        navigationController?.popToRootViewController(animated: true)
+//    }
     
-    @IBAction func cancelButtonPressed(_ sender: Any) {
-        navigationController?.popToRootViewController(animated: true)
-    }
+//    @IBAction func registerButtonPressed(_ sender: Any) {
+//        guard let moreUrl = URL.init(string: ConstantsApp.Urls.registration) else {
+//            self.showAlertView(withTitle: "Error", andMessage: "Developer error!", needCancel: false, completion: { _ in })
+//            return
+//        }
+//
+//        if #available(iOS 10.0, *) {
+//            UIApplication.shared.open(moreUrl, options: [:], completionHandler: nil)
+//        }
+//
+//        else {
+//            UIApplication.shared.openURL(moreUrl)
+//        }
+//    }
     
-    @IBAction func registerButtonPressed(_ sender: Any) {
-        guard let moreUrl = URL.init(string: ConstantsApp.Urls.registration) else {
-            self.showAlertView(withTitle: "Error", andMessage: "Developer error!", needCancel: false, completion: { _ in })
-            return
-        }
-        
-        if #available(iOS 10.0, *) {
-            UIApplication.shared.open(moreUrl, options: [:], completionHandler: nil)
-        }
-        
-        else {
-            UIApplication.shared.openURL(moreUrl)
-        }
-    }
-    
-    @IBAction func changeKeyTypePressed(_ sender: Any) {
-        switch loginType {
-        case .activeKey:
-            navigationController?.popViewController(animated: true)
-        
-        case .postingKey:
-            let activeLoginViewController = LoginViewController.nibInstance()
-            activeLoginViewController.loginType = .activeKey
-            navigationController?.pushViewController(activeLoginViewController, animated: true)
-        }
-    }
+//    @IBAction func changeKeyTypePressed(_ sender: Any) {
+//        switch loginType {
+//        case .activeKey:
+//            navigationController?.popViewController(animated: true)
+//
+//        case .postingKey:
+//            let activeLoginViewController = LoginViewController.nibInstance()
+//            activeLoginViewController.loginType = .activeKey
+//            navigationController?.pushViewController(activeLoginViewController, animated: true)
+//        }
+//    }
     
     @IBAction func scanQRButtonPressed(_ sender: Any) {
         let qrScannerViewController = QRScannerViewController.nibInstance()

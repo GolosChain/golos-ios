@@ -14,8 +14,6 @@ import UIKit
 import GoloSwift
 
 // MARK: - Input & Output protocols
-protocol WelcomeShowDisplayLogic: class {}
-
 class WelcomeShowViewController: BaseViewController {
     // MARK: - Properties
     var scrollLabels    =   [UILabel]()
@@ -80,9 +78,9 @@ class WelcomeShowViewController: BaseViewController {
     @IBOutlet weak var signInButton: UIButton!
     @IBOutlet weak var moreInfoButton: UIButton!
 
-    @IBOutlet weak var actionButtonHeightConstraint: NSLayoutConstraint! {
+    @IBOutlet var heightConstraintsCollection: [NSLayoutConstraint]! {
         didSet {
-            actionButtonHeightConstraint.constant = 102.0 * heightRatio
+//            _ = heightConstraintsCollection.map({ $0.constant = $0.constant * heightRatio })
         }
     }
     
@@ -176,6 +174,8 @@ class WelcomeShowViewController: BaseViewController {
         super.viewDidLayoutSubviews()
         Logger.log(message: "Success", event: .severe)
         
+        self.titlesScrollView.layoutIfNeeded()
+
         for (index, label) in scrollLabels.enumerated() {
             let pointX                  =   titlesScrollView.bounds.size.width * CGFloat(index)
             var scrollViewBounds        =   titlesScrollView.bounds
@@ -196,6 +196,7 @@ class WelcomeShowViewController: BaseViewController {
 
         moreInfoButton.setTitle("More Info".localized(), for: .normal)
         moreInfoButton.setTitleColor(UIColor(hexString: "#7D7D7D"), for: .normal)
+        moreInfoButton.titleLabel?.font =   UIFont(name: "SFUIDisplay-Regular", size: 14.0 * widthRatio)
     }
     
     
@@ -216,10 +217,6 @@ class WelcomeShowViewController: BaseViewController {
         self.showNext(sender.currentPage)
     }
 }
-
-
-// MARK: - WelcomeShowDisplayLogic
-extension WelcomeShowViewController: WelcomeShowDisplayLogic {}
 
 
 // MARK: - UIScrollViewDelegate
