@@ -15,7 +15,8 @@
 "in Golos.io"                               =   "в Golos.io";
 "Login Help Step Title 1"                   =   "1. Заходим на сайт https://golos.io";
 "Login Help Step Title 2"                   =   "2. Переходим во вкладку “Кошелёк“";
-"Login Help Step Title 3"                   =   "3. В разделе “Разрешения“ нажмите\nпоказать приватный постинг ключ.\n(он начинается с 5 или 1)";
+"Login Help Step Title 3 Posting"           =   "3. В разделе “Разрешения“ нажмите\nпоказать приватный постинг ключ.\n(он начинается с 5 или 1)";
+"Login Help Step Title 3 Active"            =   "3. В разделе “Разрешения“ нажмите\nпоказать приватный активный ключ.\n(он начинается с 5 или 1)";
 "Login Help Step Title 4"                   =   "4. Его нужно скопировать или\nсканировать через QR-код";
 "Do Not Registered"                         =   "Вы ещё не зарегистрированы?";
 
@@ -45,6 +46,12 @@
 "Cancel Title"                              =   "Отмена";
 
 
+// Placeholders
+"Enter Login Placeholder"                   =   "Введите ваш логин";
+"Enter Posting Key Placeholder"             =   "Приватный постинг ключ";
+"Enter Active Key Placeholder"              =   "Приватный активный ключ";
+
+
 // Error message
 "Developer error!"                          =   "Ошибка разработчика!";
 "Request Failed"                            =   "Ошибка запроса";
@@ -54,3 +61,6 @@
 "JSON Parsing Failure"                      =   "Ошибка анализа JSON структуры";
 "JSON Conversion Failure"                   =   "Ошибка конвертации JSON структуры в модель";
 "No Internet Connection"                    =   "Отсутствует связь с интернетом";
+"Login Hint"                                =   "Введите логин";
+"Posting Key Hint"                          =   "Введите приватный постинг ключ";
+"Active Key Hint"                           =   "Введите приватный активный ключ";

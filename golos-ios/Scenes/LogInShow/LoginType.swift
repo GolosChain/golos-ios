@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum LoginType {
-    case postingKey
-    case activeKey
-}
+//enum LoginType {
+//    case postingKey
+//    case activeKey
+//}

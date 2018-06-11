@@ -39,6 +39,11 @@ class LogInShowRouter: NSObject, LogInShowRoutingLogic {
         self.viewController?.postingKeyShowVC = UIStoryboard(name: "LogInShow", bundle: nil).instantiateViewController(withIdentifier: "PostingKeyShowVC") as? PostingKeyShowViewController
         
         self.viewController?.activeViewController = viewController?.postingKeyShowVC
+        
+        // Handler Return completion
+        self.viewController?.postingKeyShowVC?.handlerReturnComletion = { [weak self] collection in
+            self?.viewController?.textFieldsCollection = collection
+        }
     }
     
     func routeToActiveKeyScene() {
@@ -46,6 +51,11 @@ class LogInShowRouter: NSObject, LogInShowRoutingLogic {
         self.viewController?.activeKeyShowVC = UIStoryboard(name: "LogInShow", bundle: nil).instantiateViewController(withIdentifier: "ActiveKeyShowVC") as? ActiveKeyShowViewController
         
         self.viewController?.activeViewController = viewController?.activeKeyShowVC
+        
+        // Handler Return completion
+        self.viewController?.activeKeyShowVC?.handlerReturnComletion = { [weak self] collection in
+            self?.viewController?.textFieldsCollection = collection
+        }
     }
 
     

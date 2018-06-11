@@ -40,5 +40,4 @@ extension UILabel {
         self.numberOfLines      =   isMultiLines ? 0 : 1
         self.textAlignment      =   alignment
     }
-
 }

@@ -15,7 +15,7 @@ import GoloSwift
 
 // MARK: - Input & Output protocols
 @objc protocol PostingKeyShowRoutingLogic {
-//    func routeToSomewhere(segue: UIStoryboardSegue?)
+    func showLoginHelpShowScene()
 }
 
 class PostingKeyShowRouter: NSObject, PostingKeyShowRoutingLogic {
@@ -30,29 +30,11 @@ class PostingKeyShowRouter: NSObject, PostingKeyShowRoutingLogic {
     
 
     // MARK: - Routing
-//    func routeToSomewhere(segue: UIStoryboardSegue?) {
-//        if let segue = segue {
-//            let destinationVC = segue.destination as! SomewhereViewController
-//            var destinationDS = destinationVC.router!.dataStore!
-//            passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-//        } else {
-//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//            let destinationVC = storyboard.instantiateViewController(withIdentifier: "SomewhereViewController") as! SomewhereViewController
-//            var destinationDS = destinationVC.router!.dataStore!
-//            passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-//            navigateToSomewhere(source: viewController!, destination: destinationVC)
-//        }
-//    }
-    
-    
-    // MARK: - Navigation
-//    func navigateToSomewhere(source: PostingKeyShowViewController, destination: SomewhereViewController) {
-//        source.show(destination, sender: nil)
-//    }
-    
-    
-    // MARK: - Passing data
-//    func passDataToSomewhere(source: PostingKeyShowDataStore, destination: inout SomewhereDataStore) {
-//        destination.name = source.name
-//    }
+    func showLoginHelpShowScene() {
+        let logInHelpShowVC                     =   LogInHelpShowViewController.nibInstance()
+        logInHelpShowVC.modalPresentationStyle  =   .overCurrentContext
+        logInHelpShowVC.loginType               =   .postingKey
+        
+        viewController?.present(logInHelpShowVC, animated: true, completion: nil)
+    }
 }

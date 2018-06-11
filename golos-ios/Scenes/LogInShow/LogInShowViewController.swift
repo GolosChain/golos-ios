@@ -18,9 +18,15 @@ enum AnimationDirection {
     case fromRightToLeft
 }
 
+enum LoginType {
+    case postingKey
+    case activeKey
+}
+
 // MARK: - Input & Output protocols
 class LogInShowViewController: BaseViewController {
     // MARK: - Properties
+    var textFieldsCollection: [UITextField]?
     var animationDirection: AnimationDirection?
 
     var router: (NSObjectProtocol & LogInShowRoutingLogic)?
@@ -143,6 +149,26 @@ class LogInShowViewController: BaseViewController {
     
     
     // MARK: - Custom Functions
+    private func isRequestAvailable() -> Bool {
+        guard let collection = self.textFieldsCollection, collection.count > 0  else {
+            self.showAlertView(withTitle: "Error", andMessage: "Login Hint", needCancel: false, completion: { _ in })
+            return false
+        }
+        
+        let emptyTextField = self.textFieldsCollection?.first(where: { ($0.text?.isEmpty)! })
+        
+        guard emptyTextField == nil else {
+            self.showAlertView(withTitle: "Error", andMessage: emptyTextField!.accessibilityHint ?? "Zorro", needCancel: false, completion: { _ in })
+            return false
+        }
+        
+        guard isNetworkAvailable else {
+            self.showAlertView(withTitle: "Info", andMessage: "", needCancel: false, completion: { _ in })
+            return false
+        }
+        
+        return true
+    }
     
     
     // MARK: - Actions
@@ -154,20 +180,13 @@ class LogInShowViewController: BaseViewController {
         default:
             self.router?.routeToActiveKeyScene()
         }
-        
-//        switch loginType {
-//        case .activeKey:
-//            navigationController?.popViewController(animated: true)
-//
-//        case .postingKey:
-//            let activeLoginViewController = LoginViewController.nibInstance()
-//            activeLoginViewController.loginType = .activeKey
-//            navigationController?.pushViewController(activeLoginViewController, animated: true)
-//        }
     }
 
     @IBAction func enterButtonPressed(_ sender: Any) {
-//        presenter.login(with: loginTextField.text, key: keyTextField.text)
+        if self.isRequestAvailable() {
+            // ADD API
+            print("XXX")
+        }
     }
     
     @IBAction func cancelButtonPressed(_ sender: Any) {

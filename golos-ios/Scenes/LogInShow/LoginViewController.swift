@@ -72,10 +72,10 @@ class LoginViewController: BaseViewController {
         changeKeyTypeButton.setTitleColor(UIColor.Project.textBlack, for: .normal)
         changeKeyTypeButton.titleLabel?.font = Fonts.shared.regular(with: 13.0)
         
-        loginTextField.font = Fonts.shared.regular(with: 16.0)
+//        loginTextField.font = Fonts.shared.regular(with: 16.0)
         keyTextField.font = Fonts.shared.regular(with: 16.0)
         
-        loginTextField.delegate = self
+//        loginTextField.delegate = self
         keyTextField.delegate = self
     }
     
@@ -135,19 +135,19 @@ class LoginViewController: BaseViewController {
 //        }
 //    }
     
-    @IBAction func scanQRButtonPressed(_ sender: Any) {
-        let qrScannerViewController = QRScannerViewController.nibInstance()
-        qrScannerViewController.delegate = self
-        
-        let navigationController = UINavigationController(rootViewController: qrScannerViewController)
-        present(navigationController, animated: true, completion: nil)
-    }
-    
-    @IBAction func helpButtonPressed(_ sender: Any) {
-        let loginHelpShowVC = LoginHelpShowViewController.nibInstance()
-        loginHelpShowVC.modalPresentationStyle = .overCurrentContext
-        present(loginHelpShowVC, animated: true, completion: nil)
-    }
+//    @IBAction func scanQRButtonPressed(_ sender: Any) {
+//        let qrScannerViewController = QRScannerViewController.nibInstance()
+//        qrScannerViewController.delegate = self
+//        
+//        let navigationController = UINavigationController(rootViewController: qrScannerViewController)
+//        present(navigationController, animated: true, completion: nil)
+//    }
+//    
+//    @IBAction func helpButtonPressed(_ sender: Any) {
+//        let loginHelpShowVC = LoginHelpShowViewController.nibInstance()
+//        loginHelpShowVC.modalPresentationStyle = .overCurrentContext
+//        present(loginHelpShowVC, animated: true, completion: nil)
+//    }
 }
 
 

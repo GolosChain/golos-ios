@@ -15,7 +15,8 @@
 "in Golos.io"                               =   "in Golos.io";
 "Login Help Step Title 1"                   =   "1. Go to website https://golos.io";
 "Login Help Step Title 2"                   =   "2. Proceed to ”Wallet“ section";
-"Login Help Step Title 3"                   =   "3. In “Permissions“ section press show private posting key (it starts from 5 or 1)";
+"Login Help Step Title 3 Posting"           =   "3. In “Permissions“ section press show private posting key (it starts from 5 or 1)";
+"Login Help Step Title 3 Active"            =   "3. In “Permissions“ section press show private active key (it starts from 5 or 1)";
 "Login Help Step Title 4"                   =   "4. You can copy-paste it, or\nscan through QR-code.";
 "Do Not Registered"                         =   "Don’t have an account?";
 
@@ -45,6 +46,12 @@
 "Cancel Title"                              =   "Cancel";
 
 
+// Placeholders
+"Enter Login Placeholder"                   =   "Enter your login";
+"Enter Posting Key Placeholder"             =   "Private posting key";
+"Enter Active Key Placeholder"              =   "Private active key";
+
+
 // Error message
 "Developer error!"                          =   "Developer error!";
 "Request Failed"                            =   "Request Failed";
@@ -54,3 +61,6 @@
 "JSON Parsing Failure"                      =   "JSON Parsing Failure";
 "JSON Conversion Failure"                   =   "JSON Conversion Failure";
 "No Internet Connection"                    =   "There is no internet connection";
+"Login Hint"                                =   "Enter login";
+"Posting Key Hint"                          =   "Enter private posting key";
+"Active Key Hint"                           =   "Enter private active key";
