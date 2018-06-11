@@ -113,9 +113,6 @@
 		EC1DFB8F20063C400080BC50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1DFB8E20063C400080BC50 /* AppDelegate.swift */; };
 		EC1DFB9620063C400080BC50 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC1DFB9520063C400080BC50 /* Assets.xcassets */; };
 		EC1DFB9920063C400080BC50 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC1DFB9720063C400080BC50 /* LaunchScreen.storyboard */; };
-		EC24FF20200BC69400A0AE15 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC24FF1F200BC69400A0AE15 /* LoginPresenter.swift */; };
-		EC24FF22200BC69B00A0AE15 /* LoginType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC24FF21200BC69B00A0AE15 /* LoginType.swift */; };
-		EC24FF24200BC72F00A0AE15 /* LoginUIStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC24FF23200BC72F00A0AE15 /* LoginUIStrings.swift */; };
 		EC24FF28200BEBE600A0AE15 /* ViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC24FF27200BEBE600A0AE15 /* ViewProtocol.swift */; };
 		EC24FF2B200BFAA100A0AE15 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC24FF2A200BFAA100A0AE15 /* Validator.swift */; };
 		EC24FF4D200C03E100A0AE15 /* ValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC24FF4C200C03E100A0AE15 /* ValidatorTests.swift */; };
@@ -160,8 +157,6 @@
 		ECC15FA62009794E0099BBC9 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC15FA52009794E0099BBC9 /* Fonts.swift */; };
 		ECF2808C200A9A210000D949 /* UIButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF2808B200A9A210000D949 /* UIButton+Extensions.swift */; };
 		ECF31725200A9D2800F7B703 /* UIAlertController+Window.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF31724200A9D2800F7B703 /* UIAlertController+Window.swift */; };
-		ECF3172E200AB22E00F7B703 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF3172C200AB22E00F7B703 /* LoginViewController.swift */; };
-		ECF3172F200AB22E00F7B703 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECF3172D200AB22E00F7B703 /* LoginViewController.xib */; };
 		ECFF44E8200BC42F00DAF74C /* QRScannerViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFF44E7200BC42F00DAF74C /* QRScannerViewControllerDelegate.swift */; };
 /* End PBXBuildFile section */
 
@@ -329,9 +324,6 @@
 		EC1DFB8E20063C400080BC50 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EC1DFB9520063C400080BC50 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EC1DFB9820063C400080BC50 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		EC24FF1F200BC69400A0AE15 /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
-		EC24FF21200BC69B00A0AE15 /* LoginType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginType.swift; sourceTree = "<group>"; };
-		EC24FF23200BC72F00A0AE15 /* LoginUIStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUIStrings.swift; sourceTree = "<group>"; };
 		EC24FF27200BEBE600A0AE15 /* ViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewProtocol.swift; sourceTree = "<group>"; };
 		EC24FF2A200BFAA100A0AE15 /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
 		EC24FF41200C038D00A0AE15 /* GolosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GolosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -377,8 +369,6 @@
 		ECC15FA52009794E0099BBC9 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		ECF2808B200A9A210000D949 /* UIButton+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extensions.swift"; sourceTree = "<group>"; };
 		ECF31724200A9D2800F7B703 /* UIAlertController+Window.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Window.swift"; sourceTree = "<group>"; };
-		ECF3172C200AB22E00F7B703 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		ECF3172D200AB22E00F7B703 /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		ECFF44E7200BC42F00DAF74C /* QRScannerViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerViewControllerDelegate.swift; sourceTree = "<group>"; };
 		F860D859C40BCA60C8DE58EE /* Pods-Golos.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Golos.release.xcconfig"; path = "Pods/Target Support Files/Pods-Golos/Pods-Golos.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -592,25 +582,13 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		B114193720CD26790025B07F /* Old */ = {
-			isa = PBXGroup;
-			children = (
-				EC24FF1F200BC69400A0AE15 /* LoginPresenter.swift */,
-				EC24FF21200BC69B00A0AE15 /* LoginType.swift */,
-				EC24FF23200BC72F00A0AE15 /* LoginUIStrings.swift */,
-				ECF3172C200AB22E00F7B703 /* LoginViewController.swift */,
-				ECF3172D200AB22E00F7B703 /* LoginViewController.xib */,
-			);
-			name = Old;
-			sourceTree = "<group>";
-		};
 		B114193820CD51500025B07F /* ActiveKeyShow */ = {
 			isa = PBXGroup;
 			children = (
 				B114193B20CD51740025B07F /* ActiveKeyShowRouter.swift */,
 				B114193D20CD51740025B07F /* ActiveKeyShowViewController.swift */,
 			);
-			name = ActiveKeyShow;
+			path = ActiveKeyShow;
 			sourceTree = "<group>";
 		};
 		B114194520CD51910025B07F /* PostingKeyShow */ = {
@@ -619,7 +597,7 @@
 				B111321E20CD51EA00BC7F33 /* PostingKeyShowRouter.swift */,
 				B111322020CD51EA00BC7F33 /* PostingKeyShowViewController.swift */,
 			);
-			name = PostingKeyShow;
+			path = PostingKeyShow;
 			sourceTree = "<group>";
 		};
 		B12A576C20B410B4000CF8BF /* Configurations */ = {
@@ -1055,7 +1033,6 @@
 			children = (
 				B114194520CD51910025B07F /* PostingKeyShow */,
 				B114193820CD51500025B07F /* ActiveKeyShow */,
-				B114193720CD26790025B07F /* Old */,
 				B114192D20CD26710025B07F /* LogInShowRouter.swift */,
 				B114192F20CD26710025B07F /* LogInShowViewController.swift */,
 			);
@@ -1216,7 +1193,6 @@
 				EC24FF71200C433700A0AE15 /* ProfileViewController.xib in Resources */,
 				B11AA7F720CB018E00212713 /* WelcomeShow.storyboard in Resources */,
 				7D79C3462034685900794447 /* AnswersFeedTableViewCell.xib in Resources */,
-				ECF3172F200AB22E00F7B703 /* LoginViewController.xib in Resources */,
 				7D25B4C3201FABBD004A3400 /* ArticleImageTableViewCell.xib in Resources */,
 				7DFA6CB22036D76B00F59494 /* PostsFeedTextTableViewCell.xib in Resources */,
 				7D25B4CB201FABD8004A3400 /* ArticleFooterTableViewCell.xib in Resources */,
@@ -1377,7 +1353,6 @@
 				B18B937420B91DB8000CF503 /* ForegroundRemoteNotificationView.swift in Sources */,
 				EC9B2AE020154B62008335C8 /* PostsFeedPresenter.swift in Sources */,
 				EC24FF5D200C30CF00A0AE15 /* MainContainerMediator.swift in Sources */,
-				EC24FF20200BC69400A0AE15 /* LoginPresenter.swift in Sources */,
 				7D79C341203467D500794447 /* AnswersFeedViewModel.swift in Sources */,
 				7DF16A72201D6043000F5529 /* ProfileMediator.swift in Sources */,
 				7D25B4BE201FABB2004A3400 /* ArticleTitleTableViewCell.swift in Sources */,
@@ -1392,7 +1367,6 @@
 				EC24FF5B200C30C500A0AE15 /* MainContainerPresenter.swift in Sources */,
 				EC24FF79200C497800A0AE15 /* FeedViewController.swift in Sources */,
 				EC07F4B12014404200560CF0 /* PostsFeedViewController.swift in Sources */,
-				EC24FF22200BC69B00A0AE15 /* LoginType.swift in Sources */,
 				ECB2C0D32008E55500AF1AF5 /* Colors.swift in Sources */,
 				B1F3748420C2C5E1005EF767 /* RootShowInteractor.swift in Sources */,
 				ECF2808C200A9A210000D949 /* UIButton+Extensions.swift in Sources */,
@@ -1450,7 +1424,6 @@
 				B11AA80720CB9FC800212713 /* UILabel+Extensions.swift in Sources */,
 				B114192820CD1E260025B07F /* ReachabilityManager.swift in Sources */,
 				B111322420CD51EA00BC7F33 /* PostingKeyShowRouter.swift in Sources */,
-				EC24FF24200BC72F00A0AE15 /* LoginUIStrings.swift in Sources */,
 				7D25B4B5201F9218004A3400 /* GSNavigationBar.swift in Sources */,
 				B1F3748220C2C5E1005EF767 /* RootShowModels.swift in Sources */,
 				B198DB9120B9A21A008011A3 /* UIColor+Extensions.swift in Sources */,
@@ -1476,7 +1449,6 @@
 				7D25B48C201F5700004A3400 /* TagCollectionViewCell.swift in Sources */,
 				7D25B4CD201FAE93004A3400 /* ArticleMediator.swift in Sources */,
 				B1F3748120C2C5E1005EF767 /* RootShowRouter.swift in Sources */,
-				ECF3172E200AB22E00F7B703 /* LoginViewController.swift in Sources */,
 				7D25B487201F4978004A3400 /* ArticleViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
