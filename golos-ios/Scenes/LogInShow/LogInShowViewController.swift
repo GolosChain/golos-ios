@@ -189,10 +189,6 @@ class LogInShowViewController: BaseViewController {
         }
     }
     
-    @IBAction func cancelButtonPressed(_ sender: Any) {
-//        navigationController?.popToRootViewController(animated: true)
-    }
-
     @IBAction func registerButtonPressed(_ sender: Any) {
         router?.showRegisterFormOnline()
     }

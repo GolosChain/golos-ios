@@ -16,6 +16,7 @@ import GoloSwift
 // MARK: - Input & Output protocols
 @objc protocol PostingKeyShowRoutingLogic {
     func showLoginHelpShowScene()
+    func showQRScannerShowScene()
 }
 
 class PostingKeyShowRouter: NSObject, PostingKeyShowRoutingLogic {
@@ -36,5 +37,12 @@ class PostingKeyShowRouter: NSObject, PostingKeyShowRoutingLogic {
         logInHelpShowVC.loginType               =   .postingKey
         
         viewController?.present(logInHelpShowVC, animated: true, completion: nil)
+    }
+    
+    func showQRScannerShowScene() {
+        let qrScannerVC = QRScannerViewController.nibInstance()
+//        qrScannerViewController.delegate        =   self
+        
+        viewController?.present(qrScannerVC, animated: true, completion: nil)
     }
 }

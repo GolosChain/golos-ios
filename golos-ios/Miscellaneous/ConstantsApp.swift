@@ -46,6 +46,20 @@ let widthRatio: CGFloat                 =   UIScreen.main.bounds.width / (UIDevi
 let appState: AppState                  =   StateMachine.load().state
 var displayedPostsItems                 =   [DisplayedPost]()
 
+var isUserAnonymous: Bool {
+    set {
+        UserDefaults.standard.set(newValue, forKey: userStateKey)
+    }
+    
+    get {
+        guard let state = UserDefaults.standard.object(forKey: userStateKey) as? Bool else {
+            return false
+        }
+        
+        return state
+    }
+}
+
 var isAppThemeDark: Bool {
     set { }
     
@@ -65,3 +79,4 @@ var isNetworkAvailable: Bool {
 
 // Keys
 let appThemeKey                         =   "AppTheme"
+let userStateKey                        =   "UserState"

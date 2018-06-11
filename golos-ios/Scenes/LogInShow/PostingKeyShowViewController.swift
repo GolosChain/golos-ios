@@ -43,6 +43,12 @@ class PostingKeyShowViewController: BaseViewController {
         }
     }
 
+    @IBOutlet weak var postingKeyTextFieldTopConstraint: NSLayoutConstraint! {
+        didSet {
+            postingKeyTextFieldTopConstraint.constant *= (heightRatio < 1) ? heightRatio : 1
+        }
+    }
+    
     @IBOutlet var textFieldsCollection: [UITextField]!
     
     
@@ -96,11 +102,7 @@ class PostingKeyShowViewController: BaseViewController {
     
     // MARK: - Actions
     @IBAction func scanQRButtonPressed(_ sender: Any) {
-//        let qrScannerViewController = QRScannerViewController.nibInstance()
-//        qrScannerViewController.delegate = self
-//
-//        let navigationController = UINavigationController(rootViewController: qrScannerViewController)
-//        present(navigationController, animated: true, completion: nil)
+//        self.router?.showQRScannerShowScene()
     }
     
     @IBAction func helpButtonPressed(_ sender: Any) {

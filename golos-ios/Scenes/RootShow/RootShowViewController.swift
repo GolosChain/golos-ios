@@ -99,10 +99,21 @@ class RootShowViewController: BaseViewController {
         }
         
         // API 'get_discussions_by_hot'
-        if appState == .loggedIn {
+        if appState == .loggedIn || isUserAnonymous {
             print("start = \(Date())")
             let requestModel = RootShowModels.Items.RequestModel()
             self.interactor?.loadPosts(withRequestModel: requestModel)
+        }
+    }
+    
+    
+    // MARK: - Actions
+    @IBAction func unwindFromLogInShowScene(segue: UIStoryboardSegue) {
+        if segue.source.isKind(of: LogInShowViewController.self) {
+            isUserAnonymous = true
+            
+            self.navigationController?.viewControllers.remove(at: 1)
+            self.loadViewSettings()
         }
     }
 }

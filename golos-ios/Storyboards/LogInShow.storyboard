@@ -51,7 +51,7 @@
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Cancel Title"/>
                                                 <connections>
-                                                    <action selector="cancelButtonPressed:" destination="sM0-dq-nwN" eventType="touchUpInside" id="f6g-Hc-GQr"/>
+                                                    <segue destination="g0c-Do-kYb" kind="unwind" identifier="" unwindAction="unwindFromLogInShowSceneWithSegue:" id="I8M-mW-ITk"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -198,6 +198,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b0q-Zb-TDh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="g0c-Do-kYb" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="74" y="172"/>
         </scene>
@@ -232,16 +233,19 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="go" smartDashesType="no"/>
                             </textField>
-                            <button clipsSubviews="YES" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wjG-Fd-23r" userLabel="QR Code Reader Button">
-                                <rect key="frame" x="297" y="67" width="39" height="39"/>
+                            <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wjG-Fd-23r" userLabel="QR Code Reader Button">
+                                <rect key="frame" x="295" y="66" width="40" height="40"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="wjG-Fd-23r" secondAttribute="height" multiplier="1:1" id="xeH-tj-ueC"/>
+                                </constraints>
                                 <state key="normal" image="scan_qr_button"/>
                                 <connections>
                                     <action selector="scanQRButtonPressed:" destination="1eb-M4-CWc" eventType="touchUpInside" id="5AX-bi-0Gq"/>
                                 </connections>
                             </button>
-                            <button clipsSubviews="YES" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dqh-Vu-hHU" userLabel="Help Button">
-                                <rect key="frame" x="336" y="66" width="39" height="39"/>
+                            <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dqh-Vu-hHU" userLabel="Help Button">
+                                <rect key="frame" x="335" y="66" width="40" height="40"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="dqh-Vu-hHU" secondAttribute="height" multiplier="1:1" id="rqe-IS-f8V"/>
@@ -261,18 +265,18 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="wjG-Fd-23r" firstAttribute="centerY" secondItem="StO-Px-L68" secondAttribute="centerY" id="1hl-uk-3yK"/>
                             <constraint firstItem="KdC-76-vzd" firstAttribute="leading" secondItem="yDK-qr-3dr" secondAttribute="leading" id="1ta-TB-2m2"/>
                             <constraint firstItem="StO-Px-L68" firstAttribute="height" secondItem="KdC-76-vzd" secondAttribute="height" id="4W9-xO-fv3"/>
                             <constraint firstItem="dqh-Vu-hHU" firstAttribute="trailing" secondItem="StO-Px-L68" secondAttribute="trailing" id="5T8-gC-wZW"/>
+                            <constraint firstItem="dqh-Vu-hHU" firstAttribute="height" secondItem="StO-Px-L68" secondAttribute="height" id="8oA-Uo-EVd"/>
                             <constraint firstItem="wjG-Fd-23r" firstAttribute="bottom" secondItem="StO-Px-L68" secondAttribute="bottom" id="8wY-Dl-vj7"/>
-                            <constraint firstItem="dqh-Vu-hHU" firstAttribute="height" secondItem="wjG-Fd-23r" secondAttribute="height" id="9Jg-Wt-AAC"/>
-                            <constraint firstItem="yDK-qr-3dr" firstAttribute="bottom" secondItem="dqh-Vu-hHU" secondAttribute="bottom" id="E4U-Xo-EVM"/>
-                            <constraint firstItem="dqh-Vu-hHU" firstAttribute="width" secondItem="wjG-Fd-23r" secondAttribute="width" id="Hqu-AA-H7m"/>
+                            <constraint firstItem="StO-Px-L68" firstAttribute="bottom" secondItem="dqh-Vu-hHU" secondAttribute="bottom" id="E4U-Xo-EVM"/>
                             <constraint firstItem="KdC-76-vzd" firstAttribute="height" secondItem="Wuq-ZQ-uoB" secondAttribute="height" multiplier="40:105" id="VQP-qB-Iw4"/>
-                            <constraint firstItem="dqh-Vu-hHU" firstAttribute="top" secondItem="k0H-e6-jdA" secondAttribute="bottom" constant="25" id="Yuj-uW-b4y"/>
                             <constraint firstItem="KdC-76-vzd" firstAttribute="height" secondItem="Wuq-ZQ-uoB" secondAttribute="height" multiplier="40:105" id="bUO-A3-PYn"/>
                             <constraint firstAttribute="trailing" secondItem="1hd-FM-mmX" secondAttribute="trailing" id="cLK-q7-OYO"/>
                             <constraint firstItem="dqh-Vu-hHU" firstAttribute="leading" secondItem="wjG-Fd-23r" secondAttribute="trailing" id="ceV-mf-1uj"/>
+                            <constraint firstItem="dqh-Vu-hHU" firstAttribute="centerY" secondItem="StO-Px-L68" secondAttribute="centerY" id="ggV-y6-EhG"/>
                             <constraint firstItem="k0H-e6-jdA" firstAttribute="top" secondItem="KdC-76-vzd" secondAttribute="bottom" id="jFT-Iw-LWb"/>
                             <constraint firstItem="yDK-qr-3dr" firstAttribute="trailing" secondItem="KdC-76-vzd" secondAttribute="trailing" id="kua-VO-uen"/>
                             <constraint firstItem="yDK-qr-3dr" firstAttribute="trailing" secondItem="StO-Px-L68" secondAttribute="trailing" id="pe8-au-Yg1"/>
@@ -280,6 +284,7 @@
                             <constraint firstItem="StO-Px-L68" firstAttribute="top" secondItem="k0H-e6-jdA" secondAttribute="bottom" constant="25" id="t9p-TD-rif"/>
                             <constraint firstAttribute="bottom" secondItem="1hd-FM-mmX" secondAttribute="bottom" id="vbP-vq-oUf"/>
                             <constraint firstItem="k0H-e6-jdA" firstAttribute="leading" secondItem="Wuq-ZQ-uoB" secondAttribute="leading" id="w8w-pA-isL"/>
+                            <constraint firstItem="wjG-Fd-23r" firstAttribute="height" secondItem="StO-Px-L68" secondAttribute="height" id="wN0-Fq-W2U"/>
                             <constraint firstItem="1hd-FM-mmX" firstAttribute="leading" secondItem="Wuq-ZQ-uoB" secondAttribute="leading" id="y4a-h3-xCh"/>
                             <constraint firstItem="StO-Px-L68" firstAttribute="leading" secondItem="yDK-qr-3dr" secondAttribute="leading" id="yu4-G2-kcj"/>
                             <constraint firstAttribute="trailing" secondItem="k0H-e6-jdA" secondAttribute="trailing" id="zar-f8-sGD"/>
@@ -304,13 +309,14 @@
                     <connections>
                         <outlet property="loginTextField" destination="KdC-76-vzd" id="ijz-TS-NBv"/>
                         <outlet property="postingKeyTextField" destination="StO-Px-L68" id="Itg-4z-huR"/>
+                        <outlet property="postingKeyTextFieldTopConstraint" destination="t9p-TD-rif" id="I5s-7B-Xd8"/>
                         <outletCollection property="textFieldsCollection" destination="KdC-76-vzd" collectionClass="NSMutableArray" id="5da-Os-6Sy"/>
                         <outletCollection property="textFieldsCollection" destination="StO-Px-L68" collectionClass="NSMutableArray" id="PdQ-eU-Fa5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="toT-6M-6Px" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="916" y="173"/>
+            <point key="canvasLocation" x="916" y="172.26386806596702"/>
         </scene>
         <!--Active Key Show View Controller-->
         <scene sceneID="m56-Ef-vPo">
@@ -344,15 +350,18 @@
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="go" smartDashesType="no"/>
                             </textField>
                             <button clipsSubviews="YES" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P9b-Qs-MNU" userLabel="QR Code Reader Button">
-                                <rect key="frame" x="297" y="67" width="39" height="39"/>
+                                <rect key="frame" x="295" y="66" width="40" height="40"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="P9b-Qs-MNU" secondAttribute="height" multiplier="1:1" id="IsX-lc-eiQ"/>
+                                </constraints>
                                 <state key="normal" image="scan_qr_button"/>
                                 <connections>
                                     <action selector="scanQRButtonPressed:" destination="WuC-9p-LOc" eventType="touchUpInside" id="pYL-yv-DcI"/>
                                 </connections>
                             </button>
                             <button clipsSubviews="YES" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T8y-8p-uhP" userLabel="Help Button">
-                                <rect key="frame" x="336" y="66" width="39" height="39"/>
+                                <rect key="frame" x="335" y="66" width="40" height="40"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="T8y-8p-uhP" secondAttribute="height" multiplier="1:1" id="72F-Cb-cn6"/>
@@ -376,24 +385,25 @@
                             <constraint firstAttribute="bottom" secondItem="hi6-0p-SnG" secondAttribute="bottom" id="4IX-QZ-LJl"/>
                             <constraint firstItem="Q1Z-Uy-lks" firstAttribute="trailing" secondItem="5mg-Ux-OaM" secondAttribute="trailing" id="AkO-uy-0xp"/>
                             <constraint firstItem="kkk-tS-2Cg" firstAttribute="top" secondItem="IGA-Ot-ZvI" secondAttribute="bottom" id="CYP-NK-6up"/>
-                            <constraint firstItem="T8y-8p-uhP" firstAttribute="top" secondItem="kkk-tS-2Cg" secondAttribute="bottom" constant="25" id="Cz1-dI-mt8"/>
-                            <constraint firstItem="T8y-8p-uhP" firstAttribute="height" secondItem="P9b-Qs-MNU" secondAttribute="height" id="FBe-gz-P67"/>
+                            <constraint firstItem="T8y-8p-uhP" firstAttribute="centerY" secondItem="5mg-Ux-OaM" secondAttribute="centerY" id="EsL-nK-WYP"/>
                             <constraint firstItem="T8y-8p-uhP" firstAttribute="leading" secondItem="P9b-Qs-MNU" secondAttribute="trailing" id="G1j-bj-5oZ"/>
                             <constraint firstItem="IGA-Ot-ZvI" firstAttribute="height" secondItem="bZT-DQ-pCs" secondAttribute="height" multiplier="40:105" id="Gwb-ne-dZw"/>
                             <constraint firstItem="IGA-Ot-ZvI" firstAttribute="leading" secondItem="Q1Z-Uy-lks" secondAttribute="leading" id="Jc1-oO-5La"/>
                             <constraint firstAttribute="trailing" secondItem="hi6-0p-SnG" secondAttribute="trailing" id="LmK-IE-P81"/>
                             <constraint firstItem="IGA-Ot-ZvI" firstAttribute="height" secondItem="bZT-DQ-pCs" secondAttribute="height" multiplier="40:105" id="Loa-Uv-Qoh"/>
-                            <constraint firstItem="Q1Z-Uy-lks" firstAttribute="bottom" secondItem="T8y-8p-uhP" secondAttribute="bottom" id="MWs-uG-S3B"/>
+                            <constraint firstItem="5mg-Ux-OaM" firstAttribute="bottom" secondItem="T8y-8p-uhP" secondAttribute="bottom" id="MWs-uG-S3B"/>
                             <constraint firstItem="kkk-tS-2Cg" firstAttribute="leading" secondItem="bZT-DQ-pCs" secondAttribute="leading" id="OYk-wI-MS8"/>
                             <constraint firstItem="P9b-Qs-MNU" firstAttribute="bottom" secondItem="5mg-Ux-OaM" secondAttribute="bottom" id="Rbr-Xm-F8p"/>
                             <constraint firstItem="IGA-Ot-ZvI" firstAttribute="top" secondItem="bZT-DQ-pCs" secondAttribute="top" id="Tb0-yT-FWC"/>
                             <constraint firstItem="5mg-Ux-OaM" firstAttribute="leading" secondItem="Q1Z-Uy-lks" secondAttribute="leading" id="Uom-DH-hwJ"/>
                             <constraint firstItem="Q1Z-Uy-lks" firstAttribute="trailing" secondItem="IGA-Ot-ZvI" secondAttribute="trailing" id="Z57-Af-b3d"/>
                             <constraint firstItem="5mg-Ux-OaM" firstAttribute="top" secondItem="kkk-tS-2Cg" secondAttribute="bottom" constant="25" id="dFy-jc-QIX"/>
+                            <constraint firstItem="P9b-Qs-MNU" firstAttribute="height" secondItem="5mg-Ux-OaM" secondAttribute="height" id="grx-br-hjJ"/>
                             <constraint firstAttribute="trailing" secondItem="kkk-tS-2Cg" secondAttribute="trailing" id="kwe-Ix-ho7"/>
                             <constraint firstItem="5mg-Ux-OaM" firstAttribute="height" secondItem="IGA-Ot-ZvI" secondAttribute="height" id="nAh-y3-5rr"/>
+                            <constraint firstItem="T8y-8p-uhP" firstAttribute="height" secondItem="5mg-Ux-OaM" secondAttribute="height" id="oUR-nq-GpA"/>
                             <constraint firstItem="T8y-8p-uhP" firstAttribute="trailing" secondItem="5mg-Ux-OaM" secondAttribute="trailing" id="rlC-Xg-h85"/>
-                            <constraint firstItem="T8y-8p-uhP" firstAttribute="width" secondItem="P9b-Qs-MNU" secondAttribute="width" id="zcM-fe-Vc9"/>
+                            <constraint firstItem="P9b-Qs-MNU" firstAttribute="centerY" secondItem="5mg-Ux-OaM" secondAttribute="centerY" id="zbJ-2l-JJk"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Q1Z-Uy-lks"/>
                         <variation key="default">
@@ -414,6 +424,7 @@
                     <size key="freeformSize" width="375" height="105"/>
                     <connections>
                         <outlet property="activeKeyTextField" destination="5mg-Ux-OaM" id="Rvh-uF-SZe"/>
+                        <outlet property="activeKeyTextFieldTopConstraint" destination="dFy-jc-QIX" id="GW3-k3-Uzp"/>
                         <outlet property="loginTextField" destination="IGA-Ot-ZvI" id="WDF-Fu-RZc"/>
                         <outletCollection property="textFieldsCollection" destination="IGA-Ot-ZvI" collectionClass="NSMutableArray" id="nny-FH-mVX"/>
                         <outletCollection property="textFieldsCollection" destination="5mg-Ux-OaM" collectionClass="NSMutableArray" id="ZeF-bZ-P1U"/>

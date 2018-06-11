@@ -22,6 +22,20 @@
                 <outletCollection property="titlesCollection" destination="Ym8-Y0-eqj" collectionClass="NSMutableArray" id="xG7-VV-bzj"/>
                 <outletCollection property="titlesCollection" destination="Q6p-nL-n2O" collectionClass="NSMutableArray" id="VBM-Pp-8o8"/>
                 <outletCollection property="titlesCollection" destination="TKt-9v-tM3" collectionClass="NSMutableArray" id="YXJ-1Q-Geb"/>
+                <outletCollection property="topConstraintsCollection" destination="cjk-hH-9Jq" collectionClass="NSMutableArray" id="uUv-DG-PLY"/>
+                <outletCollection property="topConstraintsCollection" destination="52A-GL-WWD" collectionClass="NSMutableArray" id="mg8-XO-GQH"/>
+                <outletCollection property="topConstraintsCollection" destination="1rb-4U-PMJ" collectionClass="NSMutableArray" id="1kp-06-b7V"/>
+                <outletCollection property="topConstraintsCollection" destination="NYX-9s-ZYh" collectionClass="NSMutableArray" id="ZN8-p3-3mP"/>
+                <outletCollection property="topConstraintsCollection" destination="Lq2-9w-kwp" collectionClass="NSMutableArray" id="lxA-cX-eca"/>
+                <outletCollection property="topConstraintsCollection" destination="3mh-34-Gxn" collectionClass="NSMutableArray" id="rrO-2F-sad"/>
+                <outletCollection property="leadingConstraintsCollection" destination="i9X-Lq-dsP" collectionClass="NSMutableArray" id="TOm-y4-rNM"/>
+                <outletCollection property="leadingConstraintsCollection" destination="ebd-Ji-4ju" collectionClass="NSMutableArray" id="lzS-Y1-Yvq"/>
+                <outletCollection property="leadingConstraintsCollection" destination="EHg-U6-5mp" collectionClass="NSMutableArray" id="U6l-zC-GY6"/>
+                <outletCollection property="leadingConstraintsCollection" destination="n4s-XY-EPB" collectionClass="NSMutableArray" id="vC6-ld-K2s"/>
+                <outletCollection property="leadingConstraintsCollection" destination="06D-Hg-Pwm" collectionClass="NSMutableArray" id="kij-Py-73g"/>
+                <outletCollection property="leadingConstraintsCollection" destination="eUi-1B-YSg" collectionClass="NSMutableArray" id="nv2-if-8Ej"/>
+                <outletCollection property="leadingConstraintsCollection" destination="oBS-QS-2NO" collectionClass="NSMutableArray" id="Hhs-ib-P1H"/>
+                <outletCollection property="leadingConstraintsCollection" destination="a3g-n7-YOB" collectionClass="NSMutableArray" id="eIF-wB-O5i"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -52,6 +66,7 @@
                         </label>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wallet" translatesAutoresizingMaskIntoConstraints="NO" id="qUS-yf-D96">
                             <rect key="frame" x="28.5" y="125" width="30" height="29.5"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="qUS-yf-D96" secondAttribute="height" multiplier="30:29.7" id="4VE-xv-qGw"/>
                             </constraints>

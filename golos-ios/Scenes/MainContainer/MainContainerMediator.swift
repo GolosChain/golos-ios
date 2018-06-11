@@ -14,12 +14,17 @@ class MainContainerMediator: NSObject {
         
         switch state {
         case .loggedIn:
-            viewController  =   GSTabBarController()
+            viewController      =   GSTabBarController()
             
         case .loggedOut:
-            // Storyboard
-            let storyboard  =   UIStoryboard(name: "WelcomeShow", bundle: nil)
-            viewController  =   storyboard.instantiateViewController(withIdentifier: "WelcomeShowNC") as! UINavigationController
+            if isUserAnonymous {
+                viewController  =   GSTabBarController()
+            }
+            
+            else {
+                let storyboard  =   UIStoryboard(name: "WelcomeShow", bundle: nil)
+                viewController  =   storyboard.instantiateViewController(withIdentifier: "WelcomeShowNC") as! UINavigationController
+            }
         }
         
         return viewController

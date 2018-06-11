@@ -47,6 +47,18 @@ class LogInHelpShowViewController: BaseViewController {
         }
     }
     
+    @IBOutlet var topConstraintsCollection: [NSLayoutConstraint]! {
+        didSet {
+            _ = topConstraintsCollection.map({ $0.constant *= heightRatio })
+        }
+    }
+    
+    @IBOutlet var leadingConstraintsCollection: [NSLayoutConstraint]! {
+        didSet {
+            _ = leadingConstraintsCollection.map({ $0.constant *= widthRatio })
+        }
+    }
+    
     
     // MARK: - Class Functions
     override func viewDidLoad() {

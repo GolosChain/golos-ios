@@ -54,10 +54,10 @@ class QRScannerViewController: UIViewController {
         
         title = "QR сканнер"
         
-        let closeButton = UIBarButtonItem(title: "Отмена",
-                                          style: .done,
-                                          target: self,
-                                          action: #selector(didPressCancelButton))
+        let closeButton = UIBarButtonItem(title:    "Отмена",
+                                          style:    .done,
+                                          target:   self,
+                                          action:   #selector(didPressCancelButton))
         
         navigationItem.leftBarButtonItem = closeButton
         statusLabel.text = qrCodeNotFoundString

@@ -52,7 +52,7 @@ class CircularProgressBarView: UIView {
         let basicAnimation                      =   CABasicAnimation(keyPath: "strokeEnd")
 
         basicAnimation.toValue                  =   1
-        basicAnimation.duration                 =   (appState == .loggedOut) ? 3.0 : 11.0
+        basicAnimation.duration                 =   (appState == .loggedOut && !isUserAnonymous) ? 3.0 : 11.0
         basicAnimation.fillMode                 =   kCAFillModeForwards
         basicAnimation.isRemovedOnCompletion    =   false
         

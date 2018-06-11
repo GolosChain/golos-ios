@@ -43,6 +43,12 @@ class ActiveKeyShowViewController: BaseViewController {
         }
     }
     
+    @IBOutlet weak var activeKeyTextFieldTopConstraint: NSLayoutConstraint! {
+        didSet {
+            activeKeyTextFieldTopConstraint.constant *= (heightRatio < 1) ? heightRatio : 1
+        }
+    }
+
     @IBOutlet var textFieldsCollection: [UITextField]!
     
     

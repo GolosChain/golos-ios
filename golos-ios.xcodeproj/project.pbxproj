@@ -901,22 +901,14 @@
 			path = DropDownTable;
 			sourceTree = "<group>";
 		};
-		EC6FD59F200AE18E00DCB824 /* QRScanner */ = {
-			isa = PBXGroup;
-			children = (
-				EC6FD5A4200AE1A700DCB824 /* QRScannerViewController */,
-				ECFF44E7200BC42F00DAF74C /* QRScannerViewControllerDelegate.swift */,
-			);
-			path = QRScanner;
-			sourceTree = "<group>";
-		};
-		EC6FD5A4200AE1A700DCB824 /* QRScannerViewController */ = {
+		EC6FD59F200AE18E00DCB824 /* QRScannerShow */ = {
 			isa = PBXGroup;
 			children = (
 				EC6FD5A0200AE1A200DCB824 /* QRScannerViewController.swift */,
 				EC6FD5A1200AE1A200DCB824 /* QRScannerViewController.xib */,
+				ECFF44E7200BC42F00DAF74C /* QRScannerViewControllerDelegate.swift */,
 			);
-			path = QRScannerViewController;
+			path = QRScannerShow;
 			sourceTree = "<group>";
 		};
 		EC9ABBC42017D54900AF8597 /* Views */ = {
@@ -1004,7 +996,7 @@
 				EC24FF57200C30A300A0AE15 /* MainContainer */,
 				EC07F4AE2014402E00560CF0 /* Posts Feed */,
 				EC24FF6D200C432700A0AE15 /* Profile */,
-				EC6FD59F200AE18E00DCB824 /* QRScanner */,
+				EC6FD59F200AE18E00DCB824 /* QRScannerShow */,
 				B1F3747620C2B4DE005EF767 /* RootShow */,
 				EC24FF6A200C3FE700A0AE15 /* Tab */,
 				ECC15F9D2009757A0099BBC9 /* WelcomeShow */,
