@@ -37,10 +37,9 @@ class GSTabBarController: UITabBarController {
          vc2.tabBarItem.tag         =   1
          */
         
-        let vc3                     =   UIViewController()
-        vc3.view.backgroundColor    =   .blue
-        vc3.tabBarItem              =   UITabBarItem(title: "", image: UIImage.init(named: "tab_add"), selectedImage: nil)
-        vc3.tabBarItem.tag          =   2
+        let postCreateNC            =   UIStoryboard(name: "PostCreate", bundle: nil).instantiateViewController(withIdentifier: "PostCreateNC")
+        postCreateNC.tabBarItem     =   UITabBarItem(title: "", image: UIImage.init(named: "tab_add"), selectedImage: nil)
+        postCreateNC.tabBarItem.tag =   2
         
         /*
         let vc4                     =   UIViewController()
@@ -61,7 +60,7 @@ class GSTabBarController: UITabBarController {
         viewControllers     =   [
                                     feedNavigationViewController,
 //                                    vc2,
-                                    vc3,
+                                    postCreateNC,
 //                                    vc4,
                                     profileNavigationController
                                 ]

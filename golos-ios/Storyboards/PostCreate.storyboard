@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_5" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Post Create View Controller-->
+        <scene sceneID="1Bc-4N-yCj">
+            <objects>
+                <viewController storyboardIdentifier="PostCreateVC" id="K52-Ba-FnU" customClass="PostCreateViewController" customModule="Golos" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="Sw0-IZ-LYW">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bi0-tW-R0r" userLabel="Toolbar View">
+                                <rect key="frame" x="0.0" y="609.66666666666663" width="414" height="62.333333333333371"/>
+                                <subviews>
+                                    <toolbar clipsSubviews="YES" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lht-lc-sJ7">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="62.333333333333336"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <items>
+                                            <barButtonItem style="plain" systemItem="flexibleSpace" id="tN1-1g-MF4"/>
+                                            <barButtonItem enabled="NO" image="icon-button-bold-normal" id="CSk-db-KpH" userLabel="Bold Bar Button Item">
+                                                <connections>
+                                                    <action selector="boldBarButtonTapped:" destination="K52-Ba-FnU" id="WlP-db-KeK"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem style="plain" systemItem="flexibleSpace" id="c8t-FC-fBg"/>
+                                            <barButtonItem tag="1" enabled="NO" image="icon-button-italic-normal" id="SEP-6X-RJL" userLabel="Italic Bar Button Item">
+                                                <connections>
+                                                    <action selector="italicBarButtonTapped:" destination="K52-Ba-FnU" id="UTJ-xu-uvu"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem style="plain" systemItem="flexibleSpace" id="IPR-f5-C01"/>
+                                            <barButtonItem tag="2" enabled="NO" image="icon-button-underline-normal" id="hwX-qX-1Ng" userLabel="Underline Bar Button Item">
+                                                <connections>
+                                                    <action selector="underlineBarButtonTapped:" destination="K52-Ba-FnU" id="dXk-sO-fqt"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem style="plain" systemItem="flexibleSpace" id="ajQ-dm-mlQ"/>
+                                            <barButtonItem tag="3" enabled="NO" image="icon-button-left-alignment-normal" id="Yja-U1-Efg" userLabel="Left Bar Button Item">
+                                                <connections>
+                                                    <action selector="leftAlignBarButtonTapped:" destination="K52-Ba-FnU" id="w5x-lg-g3i"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem style="plain" systemItem="flexibleSpace" id="n6k-X6-AsN"/>
+                                            <barButtonItem tag="4" enabled="NO" image="icon-button-center-alignment-normal" id="rhe-UF-Q6D" userLabel="Center Bar Button Item">
+                                                <connections>
+                                                    <action selector="centerAlignBarButtonTapped:" destination="K52-Ba-FnU" id="UY8-3k-0GV"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem style="plain" systemItem="flexibleSpace" id="Iwm-Oy-TD9"/>
+                                            <barButtonItem tag="5" enabled="NO" image="icon-button-right-alignment-normal" id="5nG-Ck-pG7" userLabel="Right Bar Button Item">
+                                                <connections>
+                                                    <action selector="rightAlignBarButtonTapped:" destination="K52-Ba-FnU" id="40i-I2-78a"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem style="plain" systemItem="flexibleSpace" id="QuE-CB-rVH"/>
+                                            <barButtonItem tag="6" enabled="NO" image="icon-button-email-normal" id="WoP-ud-svP" userLabel="Email Bar Button Item">
+                                                <connections>
+                                                    <action selector="emailBarButtonTapped:" destination="K52-Ba-FnU" id="WD4-hR-pli"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem style="plain" systemItem="flexibleSpace" id="PUg-oA-D03"/>
+                                            <barButtonItem tag="7" enabled="NO" image="icon-button-link-normal" id="LPY-OE-cS1" userLabel="Link Bar Button Item">
+                                                <connections>
+                                                    <action selector="linkBarButtonTapped:" destination="K52-Ba-FnU" id="51h-Jk-PSL"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem style="plain" systemItem="flexibleSpace" id="xTe-lb-xTY"/>
+                                            <barButtonItem tag="8" image="icon-button-picture-frame-normal" id="FOG-p9-vsY" userLabel="Picture Bar Button Item">
+                                                <connections>
+                                                    <action selector="imageBarButtonTapped:" destination="K52-Ba-FnU" id="fgs-ax-EcJ"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem style="plain" systemItem="flexibleSpace" id="bvx-CM-jep"/>
+                                            <barButtonItem tag="9" enabled="NO" image="icon-button-happy-normal" id="XOX-VY-Bjk" userLabel="Happy Bar Button Item">
+                                                <connections>
+                                                    <action selector="happyBarButtonTapped:" destination="K52-Ba-FnU" id="wgU-WW-BAL"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem style="plain" systemItem="flexibleSpace" id="2CI-NW-767"/>
+                                        </items>
+                                        <color key="tintColor" red="0.73333333333333328" green="0.73333333333333328" blue="0.73333333333333328" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </toolbar>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="lht-lc-sJ7" secondAttribute="bottom" id="7lJ-4y-bIC"/>
+                                    <constraint firstItem="lht-lc-sJ7" firstAttribute="top" secondItem="bi0-tW-R0r" secondAttribute="top" id="BHm-Vp-g0g"/>
+                                    <constraint firstAttribute="trailing" secondItem="lht-lc-sJ7" secondAttribute="trailing" id="RXc-Mw-6xr"/>
+                                    <constraint firstItem="lht-lc-sJ7" firstAttribute="leading" secondItem="bi0-tW-R0r" secondAttribute="leading" id="j1e-Az-VKz"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="bi0-tW-R0r" firstAttribute="height" secondItem="Sw0-IZ-LYW" secondAttribute="height" multiplier="56:343" id="GJN-KR-o2P"/>
+                            <constraint firstItem="Jhp-G8-l53" firstAttribute="trailing" secondItem="bi0-tW-R0r" secondAttribute="trailing" id="HGW-pc-PiQ"/>
+                            <constraint firstItem="bi0-tW-R0r" firstAttribute="leading" secondItem="Jhp-G8-l53" secondAttribute="leading" id="Pmp-rl-VOU"/>
+                            <constraint firstItem="bi0-tW-R0r" firstAttribute="height" secondItem="Sw0-IZ-LYW" secondAttribute="height" multiplier="56:603" id="gGf-pn-MoQ"/>
+                            <constraint firstItem="bi0-tW-R0r" firstAttribute="height" secondItem="Sw0-IZ-LYW" secondAttribute="height" multiplier="56:331" id="hmR-wk-VLD"/>
+                            <constraint firstItem="Jhp-G8-l53" firstAttribute="bottom" secondItem="bi0-tW-R0r" secondAttribute="bottom" id="jAd-Lx-xqF"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Jhp-G8-l53"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="gGf-pn-MoQ"/>
+                                <exclude reference="hmR-wk-VLD"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact-widthClass=regular">
+                            <mask key="constraints">
+                                <exclude reference="GJN-KR-o2P"/>
+                                <include reference="hmR-wk-VLD"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="constraints">
+                                <exclude reference="GJN-KR-o2P"/>
+                                <include reference="gGf-pn-MoQ"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <navigationItem key="navigationItem" id="VFN-aw-MbQ">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="icon-close-button-normal" id="m9z-jO-zud">
+                            <color key="tintColor" red="0.49019607843137253" green="0.49019607843137253" blue="0.49019607843137253" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="cancelBarButtonTapped:" destination="K52-Ba-FnU" id="lxR-7k-sX0"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="icon-button-publish-normal" id="odW-AC-b4Z">
+                            <connections>
+                                <action selector="publishBarButtonTapped:" destination="K52-Ba-FnU" id="338-RI-kGu"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="toolbarView" destination="bi0-tW-R0r" id="lWm-g7-Tp2"/>
+                        <outlet property="toolbarViewBottomConstraint" destination="jAd-Lx-xqF" id="YNq-dh-Uta"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Py4-Cv-jeL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1062" y="151"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="WmF-ZW-K11">
+            <objects>
+                <navigationController storyboardIdentifier="PostCreateNC" automaticallyAdjustsScrollViewInsets="NO" id="dOc-BC-nu1" sceneMemberID="viewController">
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="RCw-X0-0Y1">
+                        <rect key="frame" x="0.0" y="20" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="LxL-wZ-juC">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
+                    <connections>
+                        <segue destination="K52-Ba-FnU" kind="relationship" relationship="rootViewController" id="ryq-VY-dgd"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZC0-T8-XJ6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="289" y="151"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="icon-button-bold-normal" width="14" height="18"/>
+        <image name="icon-button-center-alignment-normal" width="18" height="18"/>
+        <image name="icon-button-email-normal" width="18" height="18"/>
+        <image name="icon-button-happy-normal" width="22" height="22"/>
+        <image name="icon-button-italic-normal" width="8" height="18"/>
+        <image name="icon-button-left-alignment-normal" width="18" height="18"/>
+        <image name="icon-button-link-normal" width="18" height="18"/>
+        <image name="icon-button-picture-frame-normal" width="22" height="18"/>
+        <image name="icon-button-publish-normal" width="24" height="24"/>
+        <image name="icon-button-right-alignment-normal" width="18" height="18"/>
+        <image name="icon-button-underline-normal" width="18" height="18"/>
+        <image name="icon-close-button-normal" width="14" height="14"/>
+    </resources>
+</document>

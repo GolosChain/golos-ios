@@ -19,6 +19,7 @@
 "Login Help Step Title 3 Active"            =   "3. In “Permissions“ section press show private active key (it starts from 5 or 1)";
 "Login Help Step Title 4"                   =   "4. You can copy-paste it, or\nscan through QR-code.";
 "Do Not Registered"                         =   "Don’t have an account?";
+"Add Max 5 Tags"                            =   "Add tags (max 5)";
 
 
 // Buttons
@@ -32,6 +33,7 @@
 "Registration"                              =   "Sign Up here";
 "Enter With Active Key"                     =   "Log In with active key";
 "Enter With Posting Key"                    =   "Log In with posting key";
+"Select topic"                              =   "Select a topic";
 
 
 // Titles
@@ -47,12 +49,17 @@
 "Exit"                                      =   "Exit";
 "Are Your Sure?"                            =   "Are you sure?";
 "Please Login in App"                       =   "Please\nregister in the application";
+"Publish Title"                             =   "Publish";
+"Comment Title"                             =   "Comment";
 
 
 // Placeholders
 "Enter Login Placeholder"                   =   "Enter your login";
 "Enter Posting Key Placeholder"             =   "Private posting key";
 "Enter Active Key Placeholder"              =   "Private active key";
+"Enter Post Title Placeholder"              =   "Add an interesting title";
+"Enter Text Placeholder"                    =   "Enter message text";
+"Enter Comment Placeholder"                 =   "Enter your comment";
 
 
 // Error message

@@ -75,5 +75,4 @@ class BaseViewController: UIViewController {
     func inDevelopmentAlert() {
         self.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
     }
-
 }

@@ -41,7 +41,7 @@ class MainContainerViewController: BaseViewController {
         activeViewController    =   viewController
         
         if let tabbar = viewController as? GSTabBarController {
-            tabbar.delegate     =   self as? UITabBarControllerDelegate
+            tabbar.delegate     =   self
         }
     }
     
@@ -108,7 +108,7 @@ extension MainContainerViewController: UITabBarControllerDelegate {
         }
         
         switch viewController.tabBarItem.tag {
-        case 2, 4:
+        case 4: //2, 4:
             self.showAlertView(withTitle: "Info", andMessage: "Please Login in App", needCancel: true, completion: { success in
                 if success {
                     NotificationCenter.default.post(name:       NSNotification.Name.appStateChanged,
@@ -118,6 +118,15 @@ extension MainContainerViewController: UITabBarControllerDelegate {
             })
             
         default:
+            let fromView: UIView    =   tabBarController.selectedViewController!.view
+            let toView: UIView      =   viewController.view
+            
+            if fromView == toView {
+                return false
+            }
+            
+            UIView.transition(from: fromView, to: toView, duration: 0.5, options: .transitionCrossDissolve) { _ in }
+            
             return true
         }
 

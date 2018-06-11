@@ -19,6 +19,7 @@
 "Login Help Step Title 3 Active"            =   "3. В разделе “Разрешения“ нажмите\nпоказать приватный активный ключ.\n(он начинается с 5 или 1)";
 "Login Help Step Title 4"                   =   "4. Его нужно скопировать или\nсканировать через QR-код";
 "Do Not Registered"                         =   "Вы ещё не зарегистрированы?";
+"Add Max 5 Tags"                            =   "Напишите 5 тегов";
 
 
 // Buttons
@@ -32,6 +33,7 @@
 "Registration"                              =   "Регистрация";
 "Enter With Active Key"                     =   "Войти с активным ключём";
 "Enter With Posting Key"                    =   "Войти с постинг ключём";
+"Select topic"                              =   "Выберите тему";
 
 
 // Titles
@@ -47,12 +49,17 @@
 "Exit"                                      =   "Выход";
 "Are Your Sure?"                            =   "Вы уверены?";
 "Please Login in App"                       =   "Пожалуйста,\nзарегистрируйтесь в приложении";
+"Publish Title"                             =   "Опубликовать";
+"Comment Title"                             =   "Комментировать";
 
 
 // Placeholders
 "Enter Login Placeholder"                   =   "Введите ваш логин";
 "Enter Posting Key Placeholder"             =   "Приватный постинг ключ";
 "Enter Active Key Placeholder"              =   "Приватный активный ключ";
+"Enter Post Title Placeholder"              =   "Напишите заголовок";
+"Enter Text Placeholder"                    =   "Напишите текст сообщения";
+"Enter Comment Placeholder"                 =   "Напишите ваш комментарий";
 
 
 // Error message
