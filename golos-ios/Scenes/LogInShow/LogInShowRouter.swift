@@ -15,6 +15,7 @@ import GoloSwift
 
 // MARK: - Input & Output protocols
 @objc protocol LogInShowRoutingLogic {
+    func routeToActiveKeyScene()
     func routeToPostingKeyScene()
     func showRegisterFormOnline()
     func updateActiveViewController()
@@ -40,6 +41,13 @@ class LogInShowRouter: NSObject, LogInShowRoutingLogic {
         self.viewController?.activeViewController = viewController?.postingKeyShowVC
     }
     
+    func routeToActiveKeyScene() {
+        self.tuneTitles()
+        self.viewController?.activeKeyShowVC = UIStoryboard(name: "LogInShow", bundle: nil).instantiateViewController(withIdentifier: "ActiveKeyShowVC") as? ActiveKeyShowViewController
+        
+        self.viewController?.activeViewController = viewController?.activeKeyShowVC
+    }
+
     
     // MARK: - UIContainerView
     func remove(inactiveViewController: BaseViewController?) {
@@ -68,7 +76,7 @@ class LogInShowRouter: NSObject, LogInShowRoutingLogic {
                 self.addActiveViewController(activeVC)
                 
                 UIView.animate(withDuration: 0.2, animations: {
-                    activeVC.view.transform = CGAffineTransform(translationX: (self.viewController?.animationDirection == .fromRightToLeft) ? -1000 : 0, y: 0)
+                    activeVC.view.transform = CGAffineTransform(translationX: (self.viewController?.animationDirection == .fromRightToLeft) ? -1000 : 1000, y: 0)
                 })
             }
         }

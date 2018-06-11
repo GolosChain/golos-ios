@@ -41,13 +41,6 @@ class LogInShowViewController: BaseViewController {
         }
     }
     
-    @IBOutlet weak var changeKeyTypeButton: UIButton! {
-        didSet {
-            changeKeyTypeButton.theme_setTitleColor(veryDarkGrayWhiteColorPickers, forState: .normal)
-            changeKeyTypeButton.titleLabel?.font = UIFont(name: "SFUIDisplay-Regular", size: 14.0 * widthRatio)
-        }
-    }
-
     
     // MARK: - IBOutlets
     @IBOutlet weak var containerView: UIView!
@@ -58,6 +51,13 @@ class LogInShowViewController: BaseViewController {
         }
     }
     
+    @IBOutlet weak var changeKeyTypeButton: UIButton! {
+        didSet {
+            changeKeyTypeButton.theme_setTitleColor(veryDarkGrayWhiteColorPickers, forState: .normal)
+            changeKeyTypeButton.titleLabel?.font = UIFont(name: "SFUIDisplay-Regular", size: 14.0 * widthRatio)
+        }
+    }
+
     @IBOutlet weak var notRegisteredLabel: UILabel! {
         didSet {
             notRegisteredLabel.tune(withText:           notRegisteredLabel.text ?? "Zorro",
@@ -147,6 +147,14 @@ class LogInShowViewController: BaseViewController {
     
     // MARK: - Actions
     @IBAction func changeKeyTypePressed(_ sender: Any) {
+        switch self.activeViewController {
+        case is ActiveKeyShowViewController:
+            self.router?.routeToPostingKeyScene()
+            
+        default:
+            self.router?.routeToActiveKeyScene()
+        }
+        
 //        switch loginType {
 //        case .activeKey:
 //            navigationController?.popViewController(animated: true)

@@ -11,6 +11,7 @@ import SwiftTheme
 
 extension UIButton {
     func setBlueButtonRoundEdges() {
+        self.layoutIfNeeded()
         setRoundEdges(cornerRadius: self.frame.height / 2)
 
         self.titleLabel?.font       =   UIFont(name: "SFUIDisplay-Regular", size: 16.0 * widthRatio)
@@ -19,6 +20,7 @@ extension UIButton {
     }
     
     func setBlueButtonRoundCorners() {
+        self.layoutIfNeeded()
         setRoundEdges(cornerRadius: 4.0)
         
         self.titleLabel?.font       =   UIFont(name: "SFProDisplay-Regular", size: 16.0 * widthRatio)
@@ -27,6 +29,7 @@ extension UIButton {
     }
     
     func setBorderButtonRoundEdges() {
+        self.layoutIfNeeded()
         setRoundEdges(cornerRadius: self.frame.height / 2)
 
         self.layer.borderColor      =   UIColor(hexString: "#DBDBDB").cgColor
@@ -37,6 +40,7 @@ extension UIButton {
     }
     
     func setProfileHeaderButton() {
+        self.layoutIfNeeded()
         setRoundEdges(cornerRadius: 4.0)
         backgroundColor = .white
         setTitleColor(UIColor.Project.textBlack, for: .normal)
