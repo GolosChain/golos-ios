@@ -39,6 +39,10 @@ class MainContainerViewController: BaseViewController {
         viewController.didMove(toParentViewController: self)
         
         activeViewController    =   viewController
+        
+        if let tabbar = viewController as? GSTabBarController {
+            tabbar.delegate     =   self as? UITabBarControllerDelegate
+        }
     }
     
     private func present(newState: AppState, oldState: AppState) {
@@ -91,5 +95,32 @@ class MainContainerViewController: BaseViewController {
 extension MainContainerViewController: MainContainerView {
     func didChange(newState: AppState, from oldState: AppState) {
         self.present(newState: newState, oldState: oldState)
+    }
+}
+
+
+// MARK: - UITabBarControllerDelegate
+extension MainContainerViewController: UITabBarControllerDelegate {
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        // 0: Lenta, 1: Search, 2: Add Post, 3: Notifications, 4: Profile
+        guard isUserAnonymous else {
+            return true
+        }
+        
+        switch viewController.tabBarItem.tag {
+        case 2, 4:
+            self.showAlertView(withTitle: "Info", andMessage: "Please Login in App", needCancel: true, completion: { success in
+                if success {
+                    NotificationCenter.default.post(name:       NSNotification.Name.appStateChanged,
+                                                    object:     nil,
+                                                    userInfo:   nil)
+                }
+            })
+            
+        default:
+            return true
+        }
+
+        return false
     }
 }

@@ -811,12 +811,12 @@
 			path = MainContainer;
 			sourceTree = "<group>";
 		};
-		EC24FF6A200C3FE700A0AE15 /* Tab */ = {
+		EC24FF6A200C3FE700A0AE15 /* TabBarShow */ = {
 			isa = PBXGroup;
 			children = (
 				EC24FF6B200C400300A0AE15 /* GSTabBarController.swift */,
 			);
-			path = Tab;
+			path = TabBarShow;
 			sourceTree = "<group>";
 		};
 		EC24FF6D200C432700A0AE15 /* UserProfile */ = {
@@ -976,7 +976,7 @@
 				EC24FF6D200C432700A0AE15 /* UserProfile */,
 				EC6FD59F200AE18E00DCB824 /* QRScannerShow */,
 				B1F3747620C2B4DE005EF767 /* RootShow */,
-				EC24FF6A200C3FE700A0AE15 /* Tab */,
+				EC24FF6A200C3FE700A0AE15 /* TabBarShow */,
 				ECC15F9D2009757A0099BBC9 /* WelcomeShow */,
 			);
 			path = Scenes;

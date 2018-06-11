@@ -43,6 +43,7 @@ class RootShowViewController: BaseViewController {
 
     deinit {
         Logger.log(message: "Success", event: .severe)
+        NotificationCenter.default.removeObserver(self)
     }
     
     
@@ -84,12 +85,6 @@ class RootShowViewController: BaseViewController {
                                                selector:    #selector(stateDidChange(_:)),
                                                name:        NSNotification.Name.appStateChanged,
                                                object:      nil)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        NotificationCenter.default.removeObserver(self)
     }
     
     

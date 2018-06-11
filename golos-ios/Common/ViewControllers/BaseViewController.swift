@@ -62,7 +62,7 @@ class BaseViewController: UIViewController {
         alertViewController.addAction(alertViewControllerOkAction)
         
         if cancel {
-            let alertViewControllerCancelAction = UIAlertAction.init(title: "ActionCancel".localized(), style: .default, handler: { _ in
+            let alertViewControllerCancelAction = UIAlertAction.init(title: "ActionCancel".localized(), style: .destructive, handler: { _ in
                 return completion(false)
             })
             

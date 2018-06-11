@@ -18,29 +18,35 @@ class GSTabBarController: UITabBarController {
     
     private func configureViewControllers() {
         let feedViewController                          =   FeedViewController.nibInstance()
-        let feedNavigationViewController                =   UINavigationController(navigationBarClass: GSNavigationBar.self,
-                                                                                   toolbarClass: nil)
+        
+        let feedNavigationViewController                =   UINavigationController(navigationBarClass:  GSNavigationBar.self,
+                                                                                   toolbarClass:        nil)
         
         feedNavigationViewController.viewControllers    =   [feedViewController]
-        
-        feedNavigationViewController.tabBarItem         =   UITabBarItem(title: "",
-                                                                         image: UIImage(named: "tab_home"),
-                                                                         selectedImage: nil)
+
+        feedNavigationViewController.tabBarItem         =   UITabBarItem(title:             "",
+                                                                         image:             UIImage(named: "tab_home"),
+                                                                         selectedImage:     nil)
        
+        feedNavigationViewController.tabBarItem.tag     =   0
+        
         /*
         let vc2                     =   UIViewController()
         vc2.view.backgroundColor    =   .red
         vc2.tabBarItem              =   UITabBarItem(title: "", image: UIImage.init(named: "tab_search"), selectedImage: nil)
+         vc2.tabBarItem.tag         =   1
          */
         
         let vc3                     =   UIViewController()
         vc3.view.backgroundColor    =   .blue
         vc3.tabBarItem              =   UITabBarItem(title: "", image: UIImage.init(named: "tab_add"), selectedImage: nil)
+        vc3.tabBarItem.tag          =   2
         
         /*
         let vc4                     =   UIViewController()
         vc4.view.backgroundColor    =   .orange
         vc4.tabBarItem              =   UITabBarItem(title: "", image: UIImage.init(named: "tab_notifications"), selectedImage: nil)
+         vc4.tabBarItem.tag          =   3
         */
         
         let profileViewController               =   ProfileViewController.nibInstance()
@@ -49,6 +55,8 @@ class GSTabBarController: UITabBarController {
         profileNavigationController.tabBarItem  =   UITabBarItem(title: "",
                                                                  image: UIImage.init(named: "tab_profile"),
                                                                  selectedImage: nil)
+        
+        profileNavigationController.tabBarItem.tag  =   4
         
         viewControllers     =   [
                                     feedNavigationViewController,
