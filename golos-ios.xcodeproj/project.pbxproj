@@ -819,7 +819,7 @@
 			path = Tab;
 			sourceTree = "<group>";
 		};
-		EC24FF6D200C432700A0AE15 /* Profile */ = {
+		EC24FF6D200C432700A0AE15 /* UserProfile */ = {
 			isa = PBXGroup;
 			children = (
 				7DA063202032511D00B5630C /* ProfileFeedContainerController */,
@@ -829,7 +829,7 @@
 				7DF16A71201D6043000F5529 /* ProfileMediator.swift */,
 				7DE353162048A84C00C04CB2 /* ProfileViewModel.swift */,
 			);
-			path = Profile;
+			path = UserProfile;
 			sourceTree = "<group>";
 		};
 		EC24FF72200C439E00A0AE15 /* ProfileViewController */ = {
@@ -973,7 +973,7 @@
 				ECF3172B200AB22000F7B703 /* LogInShow */,
 				EC24FF57200C30A300A0AE15 /* MainContainer */,
 				EC07F4AE2014402E00560CF0 /* Posts Feed */,
-				EC24FF6D200C432700A0AE15 /* Profile */,
+				EC24FF6D200C432700A0AE15 /* UserProfile */,
 				EC6FD59F200AE18E00DCB824 /* QRScannerShow */,
 				B1F3747620C2B4DE005EF767 /* RootShow */,
 				EC24FF6A200C3FE700A0AE15 /* Tab */,

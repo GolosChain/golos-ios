@@ -79,9 +79,20 @@ class RootShowViewController: BaseViewController {
         super.viewDidLoad()
         
         self.loadViewSettings()
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector:    #selector(stateDidChange(_:)),
+                                               name:        NSNotification.Name.appStateChanged,
+                                               object:      nil)
     }
     
-
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    
     // MARK: - Custom Functions
     private func loadViewSettings() {
         self.view.tune()
@@ -106,13 +117,21 @@ class RootShowViewController: BaseViewController {
         }
     }
     
+    @objc
+    private func stateDidChange(_ notification: Notification) {
+        isUserAnonymous = false
+        
+        self.navigationController?.viewControllers.removeLast((self.navigationController?.viewControllers.count)! - 1)
+        self.loadViewSettings()
+    }
+
     
     // MARK: - Actions
     @IBAction func unwindFromLogInShowScene(segue: UIStoryboardSegue) {
         if segue.source.isKind(of: LogInShowViewController.self) {
             isUserAnonymous = true
             
-            self.navigationController?.viewControllers.remove(at: 1)
+            self.navigationController?.viewControllers.removeLast((self.navigationController?.viewControllers.count)! - 1)
             self.loadViewSettings()
         }
     }

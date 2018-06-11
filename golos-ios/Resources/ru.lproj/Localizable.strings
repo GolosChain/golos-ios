@@ -44,6 +44,8 @@
 "Promoted"                                  =   "Промо";
 "Enter Title"                               =   "Войти";
 "Cancel Title"                              =   "Отмена";
+"Exit"                                      =   "Выход";
+"Are Your Sure?"                            =   "Вы уверены?";
 
 
 // Placeholders

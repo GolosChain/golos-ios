@@ -16,13 +16,12 @@ protocol ProfileHeaderViewDelegate: class {
     func didPressBackButton()
 }
 
-
 class ProfileHeaderView: PassthroughView {
-    
-    // MARK: Size properties
+    // MARK: - Size properties
     var minimizedHeaderHeight: CGFloat = 0
 
-    // MARK: Setter properties
+    
+    // MARK: - Setter properties
     var backgroundImage: UIImage? {
         didSet {
             updateBackground()
@@ -69,7 +68,7 @@ class ProfileHeaderView: PassthroughView {
     }
     
     
-    // MARK: Outlet properties
+    // MARK: - IBOutlets
     @IBOutlet private weak var backgroundImageView: UIImageView!
     @IBOutlet private weak var blurImageView: UIImageView!
     @IBOutlet private weak var avatarImageView: UIImageView!
@@ -83,14 +82,14 @@ class ProfileHeaderView: PassthroughView {
     @IBOutlet private weak var activityView: UIActivityIndicatorView!
     @IBOutlet private weak var backButton: UIButton!
     @IBOutlet private weak var editProfileButton: UIButton!
-    
-    
     @IBOutlet private weak var imageViewTopConstraint: NSLayoutConstraint!
-    // MARK: Delegate
+    
+    
+    // MARK: - Delegate
     weak var delegate: ProfileHeaderViewDelegate?
     
     
-    // MARK: Init
+    // MARK: - Initialization
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -116,7 +115,7 @@ class ProfileHeaderView: PassthroughView {
     }
     
     
-    // MARK: Setup UI
+    // MARK: - Setup UI
     private func setupUI() {
         avatarImageView.layer.masksToBounds = true
         
@@ -133,14 +132,14 @@ class ProfileHeaderView: PassthroughView {
     }
     
     
-    // MARK: Layout
+    // MARK: - Layout
     override func layoutSubviews() {
         super.layoutSubviews()
         avatarImageView.layer.cornerRadius = avatarImageView.bounds.size.width / 2
     }
     
     
-    // MARK: Background images
+    // MARK: - Background images
     private func updateBackground() {
         backgroundImageView.image = backgroundImage
         blurImageView.image = backgroundImage?.applyBlurWithRadius(10.0,
@@ -157,7 +156,7 @@ class ProfileHeaderView: PassthroughView {
     }
 
     
-    // MARK: Activity
+    // MARK: - Activity
     func startLoading() {
         activityView.startAnimating()
     }
@@ -167,7 +166,7 @@ class ProfileHeaderView: PassthroughView {
     }
     
     
-    // MARK: Actions
+    // MARK: - Actions
     @IBAction func editButtonPressed(_ sender: Any) {
         delegate?.didPressEditProfileButton()
     }

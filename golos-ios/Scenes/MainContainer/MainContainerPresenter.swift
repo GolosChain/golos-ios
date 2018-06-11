@@ -35,10 +35,10 @@ class MainContainerPresenter: NSObject {
     
     // MARK: Notifications
     func subscribeNotifications() {
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(stateDidChange(_:)),
-                                               name: NSNotification.Name.appStateChanged,
-                                               object: nil)
+//        NotificationCenter.default.addObserver(self,
+//                                               selector: #selector(stateDidChange(_:)),
+//                                               name: NSNotification.Name.appStateChanged,
+//                                               object: nil)
     }
     
     func unsubscribeNotifications() {

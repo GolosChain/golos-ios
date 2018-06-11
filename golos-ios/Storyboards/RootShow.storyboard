@@ -69,7 +69,7 @@
                     <navigationItem key="navigationItem" id="9yl-BK-1cs"/>
                     <connections>
                         <outlet property="circularProgressBarView" destination="F2I-9F-Ifm" id="X7b-oD-t1C"/>
-                        <segue destination="WId-dD-j5Q" kind="unwind" unwindAction="unwindFromLogInShowSceneWithSegue:" id="loy-sQ-mxN"/>
+                        <segue destination="WId-dD-j5Q" kind="unwind" identifier="test" unwindAction="unwindFromLogInShowSceneWithSegue:" id="loy-sQ-mxN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q0B-xI-j9r" userLabel="First Responder" sceneMemberID="firstResponder"/>
