@@ -31,7 +31,12 @@ class HorizontalSelectorView: UIView {
     let scrollView = UIScrollView()
     var buttons = [UIButton]()
     
-    var selectedButton: UIButton?
+    var selectedButton: UIButton? {
+        didSet {
+            buttons.forEach { $0.isSelected = $0 == selectedButton }
+        }
+    }
+    
     let selectionView = UIView()
     var selectedItem: HorizontalSelectorItem?
    
@@ -87,15 +92,15 @@ class HorizontalSelectorView: UIView {
         var scrollViewContentWidth: CGFloat = edgesOffset
         
         for button in buttons {
-            scrollViewContentWidth += button.bounds.width
+            scrollViewContentWidth      +=  button.bounds.width
         }
         
-        scrollView.contentSize = CGSize(width: scrollViewContentWidth, height: self.bounds.height)
+        scrollView.contentSize          =   CGSize(width: scrollViewContentWidth, height: 35.0 * heightRatio)
         
-        var selectionFrame = selectionView.frame
-        selectionFrame.size.height = selectionViewHeight
-        selectionFrame.origin.y = bounds.size.height - selectionViewHeight
-        selectionView.frame = selectionFrame
+        var selectionFrame              =   selectionView.frame
+        selectionFrame.size.height      =   selectionViewHeight
+        selectionFrame.origin.y         =   scrollView.frame.height - selectionViewHeight
+        selectionView.frame             =   selectionFrame
     }
 
 
@@ -108,11 +113,12 @@ class HorizontalSelectorView: UIView {
         
         scrollView.delaysContentTouches = false
         addSubview(scrollView)
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        scrollView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-        scrollView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-        scrollView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
+        
+        scrollView.translatesAutoresizingMaskIntoConstraints                                =   false
+        scrollView.leftAnchor.constraint(equalTo: leftAnchor).isActive                      =   true
+        scrollView.rightAnchor.constraint(equalTo: rightAnchor).isActive                    =   true
+        scrollView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive                  =   true
+        scrollView.heightAnchor.constraint(equalToConstant: 35.0 * heightRatio).isActive    =   true
         
         selectionView.backgroundColor = .white
         scrollView.addSubview(selectionView)
@@ -156,7 +162,7 @@ class HorizontalSelectorView: UIView {
         button.setTitleColor(UIColor.Project.unselectedButtonColor, for: .normal)
         button.setTitleColor(.white, for: .highlighted)
         button.setTitle(title, for: .normal)
-        button.titleLabel?.font = Fonts.shared.regular(with: 13.0)
+        button.titleLabel?.font = Fonts.shared.regular(with: 13.0 * widthRatio)
         button.addTarget(self, action: #selector(didPressedButton(_:)), for: .touchUpInside)
         
         return button
@@ -165,7 +171,7 @@ class HorizontalSelectorView: UIView {
     private func setButtonActive(_ button: UIButton) {
         Logger.log(message: "Success", event: .severe)
 
-        buttons.forEach {$0.isSelected = $0 == button}
+        buttons.forEach { $0.isSelected = $0 == button }
         moveSelectionViewToButton(button, animated: true)
     }
     
@@ -178,17 +184,18 @@ class HorizontalSelectorView: UIView {
         frame.origin.x = button.frame.origin.x
         frame.size.width = button.frame.size.width
         
-        let animation = {[weak self] in
+        let animation = { [weak self] in
             guard let strongSelf = self else {return}
+            
             strongSelf.selectionView.frame = frame
         }
         
         if animated {
-        UIView.animate(withDuration: animationDuration,
-                       delay: 0,
-                       options: .curveEaseInOut,
-                       animations: animation,
-                       completion: nil)
+            UIView.animate(withDuration:    animationDuration,
+                           delay:           0,
+                           options:         .curveEaseInOut,
+                           animations:      animation,
+                           completion:      nil)
         }
         
         else {
@@ -205,12 +212,13 @@ class HorizontalSelectorView: UIView {
             return
         }
         
-        guard let previousIndex = selectedIndex, previousIndex != selectedButtonIndex else {return}
+        guard let previousIndex = selectedIndex, previousIndex != selectedButtonIndex else { return }
         
-        let selectedItem = items[selectedButtonIndex]
-        self.selectedItem = selectedItem
-        self.selectedIndex = selectedButtonIndex
-        setButtonActive(button)
+        let selectedItem    =   items[selectedButtonIndex]
+        self.selectedItem   =   selectedItem
+        self.selectedIndex  =   selectedButtonIndex
+        
+        self.setButtonActive(button)
         
         delegate?.didChangeSelectedIndex(selectedButtonIndex, previousIndex: previousIndex)
     }
