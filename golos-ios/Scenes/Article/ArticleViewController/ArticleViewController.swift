@@ -110,7 +110,7 @@ class ArticleViewController: UIViewController {
 
         navigationController?.interactivePopGestureRecognizer?.delegate = self as? UIGestureRecognizerDelegate
         backButton.tintColor = UIColor.Project.backButtonBlackColor
-        topBarView.addBottomShadow()
+        topBarView.add(shadow: true, onside: .bottom)
         
         mediator.configure(tableView: tableView)
         tableView.contentInset = UIEdgeInsets(top: -35, left: 0, bottom: 0, right: 0)

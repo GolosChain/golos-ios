@@ -69,23 +69,22 @@ class FeedViewController: UIViewController {
         setupPageViewController()
         configureBackButton()
         
-        let selectorItems = presenter.getPostsFeedTypeArray()
-//            .map { $0.rawValue }
-            .map { HorizontalSelectorItem(title: $0.caseTitle()) }
+        let selectorItems = presenter.getPostsFeedTypeArray().map ({ HorizontalSelectorItem(title: $0.caseTitle()) })
         
-        horizontalSelector.items = selectorItems
-        horizontalSelector.delegate = self
+        horizontalSelector.items        =   selectorItems
+        horizontalSelector.delegate     =   self
         
-        if let navigationBar = navigationController?.navigationBar {
-            let dropDownMenu = NavigationDropDownView()
-           
-            dropDownMenu.frame = CGRect(x:          0,
-                                        y:          0,
-                                        width:      navigationBar.bounds.width,
-                                        height:     navigationBar.bounds.height)
-           
-            navigationItem.titleView = dropDownMenu
-        }
+        // TODO: - DELETE AFTER TEST
+//        if let navigationBar = navigationController?.navigationBar {
+//            let dropDownMenu = NavigationDropDownView()
+//
+//            dropDownMenu.frame = CGRect(x:          0,
+//                                        y:          0,
+//                                        width:      navigationBar.bounds.width,
+//                                        height:     navigationBar.bounds.height)
+//
+//            navigationItem.titleView = dropDownMenu
+//        }
         
     //        let dropDownViewController = DropDownViewController()
     //        dropDownViewController.view.frame = dropDownViewController.view.frame.offsetBy(dx: 0, dy: 100)

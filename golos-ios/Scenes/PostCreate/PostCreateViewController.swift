@@ -28,13 +28,7 @@ class PostCreateViewController: UIViewController {
     // MARK: - IBOutlets
     @IBOutlet weak var toolbarView: UIView! {
         didSet {
-            toolbarView.layer.shadowColor       =   UIColor.gray.cgColor
-            toolbarView.layer.shadowOpacity     =   4
-            toolbarView.layer.shadowOffset      =   CGSize(width: 0.0, height: -2.0)
-            toolbarView.layer.shadowRadius      =   4
-            
-            toolbarView.layer.shadowPath        =   UIBezierPath(rect: toolbarView.bounds).cgPath
-            toolbarView.layer.shouldRasterize   =   true
+            toolbarView.add(shadow: true, onside: .top)
         }
     }
     
@@ -101,7 +95,7 @@ class PostCreateViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.navigationController?.add(shadow: true)
+        self.navigationController?.add(shadow: true, withBarTintColor: .white)
     }
     
     
@@ -128,6 +122,7 @@ class PostCreateViewController: UIViewController {
         UIView.animate(withDuration: 0.3,
                        animations: {
                         self.navigationController?.navigationBar.barTintColor = UIColor(hexString: "#4469af")
+                        self.navigationController?.navigationBar.isHidden = true
         }, completion: { _ in
             UIView.transition(from: fromView, to: toView, duration: 0.5, options: .transitionCrossDissolve) { [weak self] _ in
                 self?.navigationController?.tabBarController?.selectedIndex = 0

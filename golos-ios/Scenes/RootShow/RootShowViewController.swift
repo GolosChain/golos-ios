@@ -81,10 +81,13 @@ class RootShowViewController: BaseViewController {
         
         self.loadViewSettings()
         
-        NotificationCenter.default.addObserver(self,
-                                               selector:    #selector(stateDidChange(_:)),
-                                               name:        NSNotification.Name.appStateChanged,
-                                               object:      nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(stateDidChange(_:)), name: NSNotification.Name.appStateChanged, object: nil)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        UIApplication.shared.statusBarStyle = .default
     }
     
     

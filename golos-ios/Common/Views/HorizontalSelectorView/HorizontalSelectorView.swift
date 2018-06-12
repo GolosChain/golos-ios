@@ -64,11 +64,13 @@ class HorizontalSelectorView: UIView {
     // MARK: - Class Initialization
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
         commonInit()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        
         commonInit()
     }
     
@@ -101,6 +103,7 @@ class HorizontalSelectorView: UIView {
     private func commonInit() {
         Logger.log(message: "Success", event: .severe)
 
+        add(shadow: true, onside: .bottom)
         backgroundColor = UIColor.Project.darkBlueHeader
         
         scrollView.delaysContentTouches = false

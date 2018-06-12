@@ -65,7 +65,7 @@ class LogInHelpShowViewController: BaseViewController {
         super.viewDidLoad()
         
         self.contentView.tune()
-        contentView.addBottomShadow()
+        contentView.add(shadow: true, onside: .bottom)
     }
     
     

@@ -17,19 +17,20 @@ class GSTabBarController: UITabBarController {
     }
     
     private func configureViewControllers() {
-        let feedViewController                          =   FeedViewController.nibInstance()
+        let feedViewController                              =   FeedViewController.nibInstance()
         
-        let feedNavigationViewController                =   UINavigationController(navigationBarClass:  GSNavigationBar.self,
-                                                                                   toolbarClass:        nil)
+        let feedNavigationViewController                    =   UINavigationController(navigationBarClass:  GSNavigationBar.self,
+                                                                                       toolbarClass:        nil)
         
-        feedNavigationViewController.viewControllers    =   [feedViewController]
+        feedNavigationViewController.viewControllers        =   [feedViewController]
 
-        feedNavigationViewController.tabBarItem         =   UITabBarItem(title:             "",
-                                                                         image:             UIImage(named: "tab_home"),
-                                                                         selectedImage:     nil)
+        feedNavigationViewController.tabBarItem             =   UITabBarItem(title:             "",
+                                                                             image:             UIImage(named: "tab_home"),
+                                                                             selectedImage:     nil)
        
-        feedNavigationViewController.tabBarItem.tag     =   0
-        
+        feedNavigationViewController.tabBarItem.tag         =   0
+        feedNavigationViewController.navigationBar.isHidden =   true
+
         /*
         let vc2                     =   UIViewController()
         vc2.view.backgroundColor    =   .red

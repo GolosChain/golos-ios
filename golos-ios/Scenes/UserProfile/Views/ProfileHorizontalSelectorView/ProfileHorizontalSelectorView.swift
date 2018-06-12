@@ -86,7 +86,7 @@ class ProfileHorizontalSelectorView: PassthroughView {
         
         postsButton.isSelected = true
         selectedButton = postsButton
-        addBottomShadow()
+        add(shadow: true, onside: .bottom)
     }
 
     // MARK: Layout

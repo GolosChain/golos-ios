@@ -24,13 +24,19 @@ enum LoginType {
 }
 
 // MARK: - Input & Output protocols
+protocol LogInShowDisplayLogic: class {
+    func displaySomething(fromViewModel viewModel: LogInShowModels.Something.ViewModel)
+}
+
+// MARK: - Input & Output protocols
 class LogInShowViewController: BaseViewController {
     // MARK: - Properties
     var textFieldsCollection: [UITextField]?
     var animationDirection: AnimationDirection?
 
+    var interactor: LogInShowBusinessLogic?
     var router: (NSObjectProtocol & LogInShowRoutingLogic)?
-    
+
     // Container childVC
     var activeKeyShowVC: ActiveKeyShowViewController?
     var postingKeyShowVC: PostingKeyShowViewController?
@@ -82,6 +88,13 @@ class LogInShowViewController: BaseViewController {
         }
     }
 
+    @IBOutlet weak var enterButtonSpinnerTrailingConstraint: NSLayoutConstraint! {
+        didSet {
+        enterButtonSpinnerTrailingConstraint.constant *= widthRatio
+        }
+    }
+    
+    @IBOutlet weak var enterButtonSpinner: UIActivityIndicatorView!
     @IBOutlet weak var enterButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
 
@@ -107,9 +120,14 @@ class LogInShowViewController: BaseViewController {
     // MARK: - Setup
     private func setup() {
         let viewController          =   self
+        let interactor              =   LogInShowInteractor()
+        let presenter               =   LogInShowPresenter()
         let router                  =   LogInShowRouter()
         
+        viewController.interactor   =   interactor
         viewController.router       =   router
+        interactor.presenter        =   presenter
+        presenter.viewController    =   viewController
         router.viewController       =   viewController
     }
     
@@ -184,12 +202,28 @@ class LogInShowViewController: BaseViewController {
 
     @IBAction func enterButtonPressed(_ sender: Any) {
         if self.isRequestAvailable() {
-            // ADD API
-            print("XXX")
+            self.enterButtonSpinner.startAnimating()
+            self.enterButton.isEnabled      =   false
+            self.cancelButton.isEnabled     =   false
+
+            // API 'login'
+            let requestModel = LogInShowModels.Something.RequestModel()
+            interactor?.doSomething(withRequestModel: requestModel)
         }
     }
     
     @IBAction func registerButtonPressed(_ sender: Any) {
         router?.showRegisterFormOnline()
+    }
+}
+
+
+// MARK: - LogInShowDisplayLogic
+extension LogInShowViewController: LogInShowDisplayLogic {
+    func displaySomething(fromViewModel viewModel: LogInShowModels.Something.ViewModel) {
+        // NOTE: Display the result from the Presenter
+        self.enterButtonSpinner.stopAnimating()
+        self.enterButton.isEnabled      =   true
+        self.cancelButton.isEnabled     =   true
     }
 }
