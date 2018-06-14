@@ -51,6 +51,7 @@
 "Please Login in App"                       =   "Пожалуйста,\nзарегистрируйтесь в приложении";
 "Publish Title"                             =   "Опубликовать";
 "Comment Title"                             =   "Комментировать";
+"Add Link Title"                            =   "Добавить гиперссылку";
 
 
 // Placeholders
@@ -60,6 +61,8 @@
 "Enter Post Title Placeholder"              =   "Напишите заголовок";
 "Enter Text Placeholder"                    =   "Напишите текст сообщения";
 "Enter Comment Placeholder"                 =   "Напишите ваш комментарий";
+"Enter your text"                           =   "Напишите имя ссылки";
+"Enter your link"                           =   "Напишите адрес ссылки";
 
 
 // Error message

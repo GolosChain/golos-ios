@@ -24,7 +24,7 @@ class PostingKeyShowViewController: BaseViewController {
     @IBOutlet weak var loginTextField: UITextField! {
         didSet {
             loginTextField.tune(withPlaceholder:        "Enter Login Placeholder",
-                                textColors:             veryDarkGrayWhiteColorPickers,
+                                textColors:             blackWhiteColorPickers,
                                 font:                   UIFont.init(name: "SFUIDisplay-Regular", size: 16.0 * widthRatio),
                                 alignment:              .left)
             

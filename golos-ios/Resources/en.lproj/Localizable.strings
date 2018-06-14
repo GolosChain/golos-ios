@@ -51,6 +51,7 @@
 "Please Login in App"                       =   "Please\nregister in the application";
 "Publish Title"                             =   "Publish";
 "Comment Title"                             =   "Comment";
+"Add Link Title"                            =   "Add link";
 
 
 // Placeholders
@@ -60,6 +61,8 @@
 "Enter Post Title Placeholder"              =   "Add an interesting title";
 "Enter Text Placeholder"                    =   "Enter message text";
 "Enter Comment Placeholder"                 =   "Enter your comment";
+"Enter your text"                           =   "Enter name of link";
+"Enter your link"                           =   "Enter link address";
 
 
 // Error message

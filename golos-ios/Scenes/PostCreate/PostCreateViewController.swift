@@ -14,6 +14,12 @@ import UIKit
 import GoloSwift
 import IQKeyboardManagerSwift
 
+enum SceneType: Int {
+    case create = 0
+    case comment
+    case reply
+}
+
 // MARK: - Input & Output protocols
 protocol PostCreateDisplayLogic: class {
     func displaySomething(fromViewModel viewModel: PostCreateModels.Something.ViewModel)
@@ -21,18 +27,39 @@ protocol PostCreateDisplayLogic: class {
 
 class PostCreateViewController: UIViewController {
     // MARK: - Properties
+    var sceneType: SceneType = .create {
+        didSet {
+            stackViewTopConstraint.constant = (sceneType == .comment) ? -70.0 * widthRatio : 0.0
+            
+            _ = sceneViewsCollection.map({ $0.isHidden = ($0.tag == sceneType.rawValue) ? false : true })
+        }
+    }
+    
     var interactor: PostCreateBusinessLogic?
     var router: (NSObjectProtocol & PostCreateRoutingLogic & PostCreateDataPassing)?
     
     
     // MARK: - IBOutlets
-    @IBOutlet weak var toolbarView: UIView! {
+    @IBOutlet weak var tagsTitleLabel: UILabel! {
         didSet {
-            toolbarView.add(shadow: true, onside: .top)
+            tagsTitleLabel.tune(withText:           "Add Max 5 Tags",
+                                hexColors:          darkGrayWhiteColorPickers,
+                                font:               UIFont(name: "SFUIDisplay-Regular", size: 13.0 * widthRatio),
+                                alignment:          .left,
+                                isMultiLines:       false)
         }
     }
     
-    @IBOutlet weak var toolbarViewBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var contentTextView: UITextView! {
+        didSet {
+            contentTextView.delegate = self
+        }
+    }
+    
+    
+    @IBOutlet var sceneViewsCollection: [UIView]!
+    
+    @IBOutlet weak var stackViewTopConstraint: NSLayoutConstraint!
     
     
     // MARK: - Class Initialization
@@ -88,14 +115,18 @@ class PostCreateViewController: UIViewController {
         self.view.tune()
         self.navigationItem.title = "Publish Title".localized()
         
+        sceneType = .create
+        
+        IQKeyboardManager.sharedManager().enable = false
+
 //        self.loadViewSettings()
-        self.moveToolbarView(up: false)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         self.navigationController?.add(shadow: true, withBarTintColor: .white)
+        self.navigationController?.hidesBarsOnTap = false
     }
     
     
@@ -103,14 +134,6 @@ class PostCreateViewController: UIViewController {
     private func loadViewSettings() {
         let requestModel = PostCreateModels.Something.RequestModel()
         interactor?.doSomething(withRequestModel: requestModel)
-    }
-    
-    private func moveToolbarView(up: Bool) {
-        self.toolbarViewBottomConstraint.constant = up ? 260.0 : 0.0
-        
-        UIView.animate(withDuration: 0.5) {
-            self.view.layoutIfNeeded()
-        }
     }
     
     
@@ -132,36 +155,6 @@ class PostCreateViewController: UIViewController {
     
     @IBAction func publishBarButtonTapped(_ sender: UIBarButtonItem) {
     }
-    
-    @IBAction func boldBarButtonTapped(_ sender: UIBarButtonItem) {
-    }
-    
-    @IBAction func italicBarButtonTapped(_ sender: UIBarButtonItem) {
-    }
- 
-    @IBAction func underlineBarButtonTapped(_ sender: UIBarButtonItem) {
-    }
-    
-    @IBAction func leftAlignBarButtonTapped(_ sender: UIBarButtonItem) {
-    }
-
-    @IBAction func centerAlignBarButtonTapped(_ sender: UIBarButtonItem) {
-    }
-  
-    @IBAction func rightAlignBarButtonTapped(_ sender: UIBarButtonItem) {
-    }
-    
-    @IBAction func emailBarButtonTapped(_ sender: UIBarButtonItem) {
-    }
-    
-    @IBAction func linkBarButtonTapped(_ sender: UIBarButtonItem) {
-    }
-    
-    @IBAction func imageBarButtonTapped(_ sender: UIBarButtonItem) {
-    }
-    
-    @IBAction func happyBarButtonTapped(_ sender: UIBarButtonItem) {
-    }
 }
 
 
@@ -170,5 +163,61 @@ extension PostCreateViewController: PostCreateDisplayLogic {
     func displaySomething(fromViewModel viewModel: PostCreateModels.Something.ViewModel) {
         // NOTE: Display the result from the Presenter
 
+    }
+}
+
+
+// MARK: -
+extension PostCreateViewController: UITextViewDelegate {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        self.contentTextView.showToolbar { [weak self] tag in
+            switch tag {
+            // Add link
+            case 7:
+                let linkAlert = UIAlertController(title: "Add Link Title".localized(), message: nil, preferredStyle: .alert)
+
+                // Text
+                linkAlert.addTextField { (textField) in
+                    textField.placeholder = "Enter your text".localized()
+                    textField.borderStyle = .none
+                }
+
+                // Link
+                linkAlert.addTextField { (textField) in
+                    textField.placeholder = "Enter your link".localized()
+                    textField.borderStyle = .none
+                }
+
+                let actionOk = UIAlertAction(title: "ActionOk".localized(), style: .default) { [unowned linkAlert] _ in
+                    guard let linkName = linkAlert.textFields![0].text, !linkName.isEmpty else {
+                        return
+                    }
+                    
+                    guard let linkAddress = linkAlert.textFields![1].text, !linkAddress.isEmpty else {
+                        return
+                    }
+                    
+                    let linkAttributes: [NSAttributedStringKey: Any] =  [
+                                                                            .link:              NSURL(string: linkAddress)!,
+                                                                            .foregroundColor:   UIColor.blue
+                                                                        ]
+                    
+                    let attributedString = NSMutableAttributedString(string: linkName)
+                    attributedString.setAttributes(linkAttributes, range: NSRange(location: 0, length: linkName.count))
+                    
+                    self?.contentTextView.attributedText = attributedString
+                }
+                
+                linkAlert.addAction(actionOk)
+                self?.present(linkAlert, animated: true)
+                
+            // Add image
+            case 8:
+                print("Add image")
+                
+            default:
+                break
+            }
+        }
     }
 }

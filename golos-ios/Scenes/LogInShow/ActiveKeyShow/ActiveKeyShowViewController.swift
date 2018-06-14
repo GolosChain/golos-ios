@@ -24,7 +24,7 @@ class ActiveKeyShowViewController: BaseViewController {
     @IBOutlet weak var loginTextField: UITextField! {
         didSet {
             loginTextField.tune(withPlaceholder:        "Enter Login Placeholder",
-                                textColors:             veryDarkGrayWhiteColorPickers,
+                                textColors:             blackWhiteColorPickers,
                                 font:                   UIFont.init(name: "SFUIDisplay-Regular", size: 16.0 * widthRatio),
                                 alignment:              .left)
             
@@ -35,7 +35,7 @@ class ActiveKeyShowViewController: BaseViewController {
     @IBOutlet weak var activeKeyTextField: UITextField! {
         didSet {
             activeKeyTextField.tune(withPlaceholder:        "Enter Active Key Placeholder",
-                                     textColors:             veryDarkGrayWhiteColorPickers,
+                                     textColors:             blackWhiteColorPickers,
                                      font:                   UIFont.init(name: "SFUIDisplay-Regular", size: 16.0 * widthRatio),
                                      alignment:              .left)
             

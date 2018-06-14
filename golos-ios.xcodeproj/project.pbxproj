@@ -75,18 +75,6 @@
 		B1050CA320CECF75003CE4EE /* PostCreateModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1050C9D20CECF75003CE4EE /* PostCreateModels.swift */; };
 		B1050CA420CECF75003CE4EE /* PostCreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1050C9E20CECF75003CE4EE /* PostCreateViewController.swift */; };
 		B1050CA520CECF75003CE4EE /* PostCreateInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1050C9F20CECF75003CE4EE /* PostCreateInteractor.swift */; };
-		B1050CAC20CECF8C003CE4EE /* PostCommentPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1050CA620CECF8C003CE4EE /* PostCommentPresenter.swift */; };
-		B1050CAD20CECF8C003CE4EE /* PostCommentWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1050CA720CECF8C003CE4EE /* PostCommentWorker.swift */; };
-		B1050CAE20CECF8C003CE4EE /* PostCommentRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1050CA820CECF8C003CE4EE /* PostCommentRouter.swift */; };
-		B1050CAF20CECF8C003CE4EE /* PostCommentModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1050CA920CECF8C003CE4EE /* PostCommentModels.swift */; };
-		B1050CB020CECF8C003CE4EE /* PostCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1050CAA20CECF8C003CE4EE /* PostCommentViewController.swift */; };
-		B1050CB120CECF8C003CE4EE /* PostCommentInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1050CAB20CECF8C003CE4EE /* PostCommentInteractor.swift */; };
-		B1050CB820CECF9B003CE4EE /* PostCommentReplayPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1050CB220CECF9B003CE4EE /* PostCommentReplayPresenter.swift */; };
-		B1050CB920CECF9B003CE4EE /* PostCommentReplayWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1050CB320CECF9B003CE4EE /* PostCommentReplayWorker.swift */; };
-		B1050CBA20CECF9B003CE4EE /* PostCommentReplayRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1050CB420CECF9B003CE4EE /* PostCommentReplayRouter.swift */; };
-		B1050CBB20CECF9B003CE4EE /* PostCommentReplayModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1050CB520CECF9B003CE4EE /* PostCommentReplayModels.swift */; };
-		B1050CBC20CECF9B003CE4EE /* PostCommentReplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1050CB620CECF9B003CE4EE /* PostCommentReplayViewController.swift */; };
-		B1050CBD20CECF9B003CE4EE /* PostCommentReplayInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1050CB720CECF9B003CE4EE /* PostCommentReplayInteractor.swift */; };
 		B1050CBF20CECFBE003CE4EE /* PostCreate.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1050CBE20CECFBE003CE4EE /* PostCreate.storyboard */; };
 		B1050CDF20CEE89C003CE4EE /* UINavigationController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1050CDE20CEE89C003CE4EE /* UINavigationController+Extensions.swift */; };
 		B111322420CD51EA00BC7F33 /* PostingKeyShowRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B111321E20CD51EA00BC7F33 /* PostingKeyShowRouter.swift */; };
@@ -121,6 +109,10 @@
 		B1C1DFDF20CF887F00D1A837 /* LogInShowPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C1DFD920CF887F00D1A837 /* LogInShowPresenter.swift */; };
 		B1C1DFE220CF887F00D1A837 /* LogInShowModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C1DFDC20CF887F00D1A837 /* LogInShowModels.swift */; };
 		B1C1DFE420CF887F00D1A837 /* LogInShowInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C1DFDE20CF887F00D1A837 /* LogInShowInteractor.swift */; };
+		B1EE684620D243F5006BF802 /* PostCreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EE684520D243F5006BF802 /* PostCreateView.swift */; };
+		B1EE684820D243FF006BF802 /* PostCreateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1EE684720D243FF006BF802 /* PostCreateView.xib */; };
+		B1EE684A20D261C4006BF802 /* UITextView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EE684920D261C4006BF802 /* UITextView+Extensions.swift */; };
+		B1EE684C20D27628006BF802 /* UIBarButtonItem+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EE684B20D27628006BF802 /* UIBarButtonItem+Extensions.swift */; };
 		B1F3747520C2B483005EF767 /* RootShow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1F3747420C2B483005EF767 /* RootShow.storyboard */; };
 		B1F3747F20C2C5E1005EF767 /* RootShowPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F3747920C2C5E1005EF767 /* RootShowPresenter.swift */; };
 		B1F3748120C2C5E1005EF767 /* RootShowRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F3747B20C2C5E1005EF767 /* RootShowRouter.swift */; };
@@ -298,18 +290,6 @@
 		B1050C9D20CECF75003CE4EE /* PostCreateModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCreateModels.swift; sourceTree = "<group>"; };
 		B1050C9E20CECF75003CE4EE /* PostCreateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCreateViewController.swift; sourceTree = "<group>"; };
 		B1050C9F20CECF75003CE4EE /* PostCreateInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCreateInteractor.swift; sourceTree = "<group>"; };
-		B1050CA620CECF8C003CE4EE /* PostCommentPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCommentPresenter.swift; sourceTree = "<group>"; };
-		B1050CA720CECF8C003CE4EE /* PostCommentWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCommentWorker.swift; sourceTree = "<group>"; };
-		B1050CA820CECF8C003CE4EE /* PostCommentRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCommentRouter.swift; sourceTree = "<group>"; };
-		B1050CA920CECF8C003CE4EE /* PostCommentModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCommentModels.swift; sourceTree = "<group>"; };
-		B1050CAA20CECF8C003CE4EE /* PostCommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCommentViewController.swift; sourceTree = "<group>"; };
-		B1050CAB20CECF8C003CE4EE /* PostCommentInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCommentInteractor.swift; sourceTree = "<group>"; };
-		B1050CB220CECF9B003CE4EE /* PostCommentReplayPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCommentReplayPresenter.swift; sourceTree = "<group>"; };
-		B1050CB320CECF9B003CE4EE /* PostCommentReplayWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCommentReplayWorker.swift; sourceTree = "<group>"; };
-		B1050CB420CECF9B003CE4EE /* PostCommentReplayRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCommentReplayRouter.swift; sourceTree = "<group>"; };
-		B1050CB520CECF9B003CE4EE /* PostCommentReplayModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCommentReplayModels.swift; sourceTree = "<group>"; };
-		B1050CB620CECF9B003CE4EE /* PostCommentReplayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCommentReplayViewController.swift; sourceTree = "<group>"; };
-		B1050CB720CECF9B003CE4EE /* PostCommentReplayInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCommentReplayInteractor.swift; sourceTree = "<group>"; };
 		B1050CBE20CECFBE003CE4EE /* PostCreate.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PostCreate.storyboard; sourceTree = "<group>"; };
 		B1050CDE20CEE89C003CE4EE /* UINavigationController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Extensions.swift"; sourceTree = "<group>"; };
 		B111321E20CD51EA00BC7F33 /* PostingKeyShowRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingKeyShowRouter.swift; sourceTree = "<group>"; };
@@ -353,6 +333,10 @@
 		B1C1DFD920CF887F00D1A837 /* LogInShowPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInShowPresenter.swift; sourceTree = "<group>"; };
 		B1C1DFDC20CF887F00D1A837 /* LogInShowModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInShowModels.swift; sourceTree = "<group>"; };
 		B1C1DFDE20CF887F00D1A837 /* LogInShowInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInShowInteractor.swift; sourceTree = "<group>"; };
+		B1EE684520D243F5006BF802 /* PostCreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCreateView.swift; sourceTree = "<group>"; };
+		B1EE684720D243FF006BF802 /* PostCreateView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostCreateView.xib; sourceTree = "<group>"; };
+		B1EE684920D261C4006BF802 /* UITextView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+Extensions.swift"; sourceTree = "<group>"; };
+		B1EE684B20D27628006BF802 /* UIBarButtonItem+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Extensions.swift"; sourceTree = "<group>"; };
 		B1F3747420C2B483005EF767 /* RootShow.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RootShow.storyboard; sourceTree = "<group>"; };
 		B1F3747920C2C5E1005EF767 /* RootShowPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootShowPresenter.swift; sourceTree = "<group>"; };
 		B1F3747B20C2C5E1005EF767 /* RootShowRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootShowRouter.swift; sourceTree = "<group>"; };
@@ -631,6 +615,7 @@
 		B1050C9720CECF0C003CE4EE /* PostCreate */ = {
 			isa = PBXGroup;
 			children = (
+				B1EE684420D243D3006BF802 /* Views */,
 				B1050C9F20CECF75003CE4EE /* PostCreateInteractor.swift */,
 				B1050C9D20CECF75003CE4EE /* PostCreateModels.swift */,
 				B1050C9A20CECF75003CE4EE /* PostCreatePresenter.swift */,
@@ -639,32 +624,6 @@
 				B1050C9B20CECF75003CE4EE /* PostCreateWorker.swift */,
 			);
 			path = PostCreate;
-			sourceTree = "<group>";
-		};
-		B1050C9820CECF26003CE4EE /* PostComment */ = {
-			isa = PBXGroup;
-			children = (
-				B1050CAB20CECF8C003CE4EE /* PostCommentInteractor.swift */,
-				B1050CA920CECF8C003CE4EE /* PostCommentModels.swift */,
-				B1050CA620CECF8C003CE4EE /* PostCommentPresenter.swift */,
-				B1050CA820CECF8C003CE4EE /* PostCommentRouter.swift */,
-				B1050CAA20CECF8C003CE4EE /* PostCommentViewController.swift */,
-				B1050CA720CECF8C003CE4EE /* PostCommentWorker.swift */,
-			);
-			path = PostComment;
-			sourceTree = "<group>";
-		};
-		B1050C9920CECF32003CE4EE /* PostCommentReplay */ = {
-			isa = PBXGroup;
-			children = (
-				B1050CB720CECF9B003CE4EE /* PostCommentReplayInteractor.swift */,
-				B1050CB520CECF9B003CE4EE /* PostCommentReplayModels.swift */,
-				B1050CB220CECF9B003CE4EE /* PostCommentReplayPresenter.swift */,
-				B1050CB420CECF9B003CE4EE /* PostCommentReplayRouter.swift */,
-				B1050CB620CECF9B003CE4EE /* PostCommentReplayViewController.swift */,
-				B1050CB320CECF9B003CE4EE /* PostCommentReplayWorker.swift */,
-			);
-			path = PostCommentReplay;
 			sourceTree = "<group>";
 		};
 		B114193820CD51500025B07F /* ActiveKeyShow */ = {
@@ -773,6 +732,15 @@
 				B198DB9320B9C560008011A3 /* SF-Pro-Display-Regular.otf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		B1EE684420D243D3006BF802 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B1EE684520D243F5006BF802 /* PostCreateView.swift */,
+				B1EE684720D243FF006BF802 /* PostCreateView.xib */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		B1F3747620C2B4DE005EF767 /* RootShow */ = {
@@ -1058,8 +1026,6 @@
 				7DE353182048CA1E00C04CB2 /* LogInHelpShow */,
 				ECF3172B200AB22000F7B703 /* LogInShow */,
 				EC24FF57200C30A300A0AE15 /* MainContainer */,
-				B1050C9820CECF26003CE4EE /* PostComment */,
-				B1050C9920CECF32003CE4EE /* PostCommentReplay */,
 				B1050C9720CECF0C003CE4EE /* PostCreate */,
 				EC07F4AE2014402E00560CF0 /* Posts Feed */,
 				EC6FD59F200AE18E00DCB824 /* QRScannerShow */,
@@ -1097,11 +1063,13 @@
 				7D911D192035DE5D00F19D3C /* String+Extensions.swift */,
 				ECF31724200A9D2800F7B703 /* UIAlertController+Window.swift */,
 				ECF2808B200A9A210000D949 /* UIButton+Extensions.swift */,
+				B1EE684B20D27628006BF802 /* UIBarButtonItem+Extensions.swift */,
 				B198DB9020B9A21A008011A3 /* UIColor+Extensions.swift */,
 				EC9ABBC22017D17000AF8597 /* UIImageEffects.swift */,
 				B11AA80620CB9FC800212713 /* UILabel+Extensions.swift */,
 				B1050CDE20CEE89C003CE4EE /* UINavigationController+Extensions.swift */,
 				B123C5BA20CE4C8B00747989 /* UITextField+Extensions.swift */,
+				B1EE684920D261C4006BF802 /* UITextView+Extensions.swift */,
 				ECA8E35D2018D119003B8ABA /* UIView+Shadow.swift */,
 				EC6FD59D200AD53100DCB824 /* UIViewController+Extensions.swift */,
 			);
@@ -1301,6 +1269,7 @@
 				EC6FD5A3200AE1A200DCB824 /* QRScannerViewController.xib in Resources */,
 				B12A577420B432C8000CF8BF /* GoogleService-Info.plist in Resources */,
 				EC9ABBC82017D56800AF8597 /* ProfileHeaderView.xib in Resources */,
+				B1EE684820D243FF006BF802 /* PostCreateView.xib in Resources */,
 				EC07F4B22014404200560CF0 /* PostsFeedViewController.xib in Resources */,
 				7DFA6CAE2036D76000F59494 /* PostsFeedImageTableViewCell.xib in Resources */,
 				ECA8E35C2018CA30003B8ABA /* ProfileHorizontalSelectorView.xib in Resources */,
@@ -1441,6 +1410,7 @@
 				EC9ABBE82018036E00AF8597 /* Device+Size.swift in Sources */,
 				7D79C34A20346B5500794447 /* AnswerType.swift in Sources */,
 				7DA06328203256D700B5630C /* PropertyStoring.swift in Sources */,
+				B1EE684C20D27628006BF802 /* UIBarButtonItem+Extensions.swift in Sources */,
 				EC24FF59200C30B800A0AE15 /* MainContainerViewController.swift in Sources */,
 				EC24FF54200C080300A0AE15 /* Notifications.swift in Sources */,
 				7D1783DD201FD9B600B75979 /* ArticlePostedInTableViewCell.swift in Sources */,
@@ -1448,7 +1418,6 @@
 				EC9B2AE020154B62008335C8 /* PostsFeedPresenter.swift in Sources */,
 				EC24FF5D200C30CF00A0AE15 /* MainContainerMediator.swift in Sources */,
 				7D79C341203467D500794447 /* AnswersFeedViewModel.swift in Sources */,
-				B1050CB020CECF8C003CE4EE /* PostCommentViewController.swift in Sources */,
 				7DF16A72201D6043000F5529 /* ProfileMediator.swift in Sources */,
 				7D25B4BE201FABB2004A3400 /* ArticleTitleTableViewCell.swift in Sources */,
 				EC24FF74200C43B500A0AE15 /* ProfilePresenter.swift in Sources */,
@@ -1459,16 +1428,16 @@
 				7D25B4CA201FABD8004A3400 /* ArticleFooterTableViewCell.swift in Sources */,
 				7D25B483201F479B004A3400 /* TagTokenButton.swift in Sources */,
 				7DFE7C462046395B0057F144 /* ReplyRequestType.swift in Sources */,
+				B1EE684620D243F5006BF802 /* PostCreateView.swift in Sources */,
 				EC24FF5B200C30C500A0AE15 /* MainContainerPresenter.swift in Sources */,
 				EC24FF79200C497800A0AE15 /* FeedViewController.swift in Sources */,
-				B1050CAC20CECF8C003CE4EE /* PostCommentPresenter.swift in Sources */,
-				B1050CB120CECF8C003CE4EE /* PostCommentInteractor.swift in Sources */,
 				EC07F4B12014404200560CF0 /* PostsFeedViewController.swift in Sources */,
 				B1C1DFE220CF887F00D1A837 /* LogInShowModels.swift in Sources */,
 				ECB2C0D32008E55500AF1AF5 /* Colors.swift in Sources */,
 				B1050CDF20CEE89C003CE4EE /* UINavigationController+Extensions.swift in Sources */,
 				B1F3748420C2C5E1005EF767 /* RootShowInteractor.swift in Sources */,
 				B1050CA220CECF75003CE4EE /* PostCreateRouter.swift in Sources */,
+				B1EE684A20D261C4006BF802 /* UITextView+Extensions.swift in Sources */,
 				ECF2808C200A9A210000D949 /* UIButton+Extensions.swift in Sources */,
 				ECA8E3512018A626003B8ABA /* ProfileInfoView.swift in Sources */,
 				B114193320CD26710025B07F /* LogInShowRouter.swift in Sources */,
@@ -1485,17 +1454,12 @@
 				EC07F4A22014093E00560CF0 /* HorizontalSelectorView.swift in Sources */,
 				EC07F4A820141F0200560CF0 /* FeedMediator.swift in Sources */,
 				B181586020B976FD00835034 /* BaseViewController.swift in Sources */,
-				B1050CBA20CECF9B003CE4EE /* PostCommentReplayRouter.swift in Sources */,
-				B1050CBC20CECF9B003CE4EE /* PostCommentReplayViewController.swift in Sources */,
 				7D95CFA6203A119B00C1AE0A /* GSImageLoadOperation.swift in Sources */,
 				7DA063242032517D00B5630C /* ProfileFeedContainerItem.swift in Sources */,
-				B1050CBD20CECF9B003CE4EE /* PostCommentReplayInteractor.swift in Sources */,
 				7DA063222032513A00B5630C /* ProfileFeedContainerController.swift in Sources */,
-				B1050CB820CECF9B003CE4EE /* PostCommentReplayPresenter.swift in Sources */,
 				7D25B4C6201FABCB004A3400 /* ArticleTextTableViewCell.swift in Sources */,
 				EC9B2AE920155B9C008335C8 /* PostsFeedMediator.swift in Sources */,
 				7D25B4C2201FABBD004A3400 /* ArticleImageTableViewCell.swift in Sources */,
-				B1050CAD20CECF8C003CE4EE /* PostCommentWorker.swift in Sources */,
 				EC24FF28200BEBE600A0AE15 /* ViewProtocol.swift in Sources */,
 				7DE3531B2048CA3400C04CB2 /* LogInHelpShowViewController.swift in Sources */,
 				7DCF74A720200AA700D46495 /* ArticleCommentTableViewCell.swift in Sources */,
@@ -1509,7 +1473,6 @@
 				EC24FF70200C433700A0AE15 /* ProfileViewController.swift in Sources */,
 				B11AA80220CB04AA00212713 /* WelcomeShowViewController.swift in Sources */,
 				EC24FF82200C625800A0AE15 /* DropDownViewController.swift in Sources */,
-				B1050CAF20CECF8C003CE4EE /* PostCommentModels.swift in Sources */,
 				B1F3747F20C2C5E1005EF767 /* RootShowPresenter.swift in Sources */,
 				ECA8E35A2018CA17003B8ABA /* ProfileHorizontalSelectorView.swift in Sources */,
 				EC6FD59E200AD53100DCB824 /* UIViewController+Extensions.swift in Sources */,
@@ -1531,8 +1494,6 @@
 				B1050CA320CECF75003CE4EE /* PostCreateModels.swift in Sources */,
 				EC6FD5A2200AE1A200DCB824 /* QRScannerViewController.swift in Sources */,
 				B111322620CD51EA00BC7F33 /* PostingKeyShowViewController.swift in Sources */,
-				B1050CAE20CECF8C003CE4EE /* PostCommentRouter.swift in Sources */,
-				B1050CBB20CECF9B003CE4EE /* PostCommentReplayModels.swift in Sources */,
 				7D25B47F201F4714004A3400 /* TagsView.swift in Sources */,
 				B11AA80720CB9FC800212713 /* UILabel+Extensions.swift in Sources */,
 				B114192820CD1E260025B07F /* ReachabilityManager.swift in Sources */,
@@ -1556,7 +1517,6 @@
 				B1050CA520CECF75003CE4EE /* PostCreateInteractor.swift in Sources */,
 				EC24FF7D200C4DE300A0AE15 /* NavigationDropDownView.swift in Sources */,
 				7D79C33F203467C000794447 /* AnswersFeedMediator.swift in Sources */,
-				B1050CB920CECF9B003CE4EE /* PostCommentReplayWorker.swift in Sources */,
 				7D911D262035F6EA00F19D3C /* DisplayedUser.swift in Sources */,
 				EC24FF50200C065F00A0AE15 /* AppState.swift in Sources */,
 				7DE353172048A84C00C04CB2 /* ProfileViewModel.swift in Sources */,

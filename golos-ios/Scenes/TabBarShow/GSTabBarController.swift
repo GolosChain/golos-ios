@@ -52,9 +52,9 @@ class GSTabBarController: UITabBarController {
         let profileViewController               =   ProfileViewController.nibInstance()
         let profileNavigationController         =   UINavigationController(rootViewController: profileViewController)
         
-        profileNavigationController.tabBarItem  =   UITabBarItem(title: "",
-                                                                 image: UIImage.init(named: "tab_profile"),
-                                                                 selectedImage: nil)
+        profileNavigationController.tabBarItem  =   UITabBarItem(title:             "",
+                                                                 image:             UIImage.init(named: "tab_profile"),
+                                                                 selectedImage:     nil)
         
         profileNavigationController.tabBarItem.tag  =   4
         

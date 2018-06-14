@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PostCreateView" customModule="Golos" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="ks4-3C-ZSP" id="hxe-cW-amq"/>
+                <outlet property="titleTextField" destination="Qzi-bL-P1g" id="7Z1-mf-Mpc"/>
+                <outlet property="view" destination="iN0-l3-epB" id="tsp-QJ-LCl"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clipsSubviews="YES" contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ks4-3C-ZSP" userLabel="Content View">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
+                    <subviews>
+                        <textField clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Post Title Placeholder" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qzi-bL-P1g" userLabel="Title Round Style Text Field">
+                            <rect key="frame" x="0.0" y="50" width="375" height="20"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="igH-dY-0so"/>
+                            </constraints>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="name"/>
+                        </textField>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="Qzi-bL-P1g" firstAttribute="leading" secondItem="ks4-3C-ZSP" secondAttribute="leading" id="Sbb-k1-L70"/>
+                        <constraint firstAttribute="trailing" secondItem="Qzi-bL-P1g" secondAttribute="trailing" id="SxB-EM-wpP"/>
+                        <constraint firstAttribute="bottom" secondItem="Qzi-bL-P1g" secondAttribute="bottom" id="k8K-Gj-aJb"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="ks4-3C-ZSP" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="cl6-E1-uIb"/>
+                <constraint firstItem="ks4-3C-ZSP" firstAttribute="leading" secondItem="AMF-yt-iMm" secondAttribute="leading" id="lD7-o8-l2A"/>
+                <constraint firstItem="ks4-3C-ZSP" firstAttribute="trailing" secondItem="AMF-yt-iMm" secondAttribute="trailing" id="mFU-xO-jrL"/>
+                <constraint firstAttribute="bottom" secondItem="ks4-3C-ZSP" secondAttribute="bottom" id="zqC-UW-6xM"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="AMF-yt-iMm"/>
+        </view>
+    </objects>
+</document>

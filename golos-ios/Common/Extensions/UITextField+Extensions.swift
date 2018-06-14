@@ -19,5 +19,5 @@ extension UITextField {
         
         self.attributedPlaceholder  =   NSAttributedString(string:      placeholder.localized(),
                                                            attributes:  [ NSAttributedStringKey.foregroundColor: UIColor(hexString: "#7d7d7d") ])
-    }
+    }    
 }
