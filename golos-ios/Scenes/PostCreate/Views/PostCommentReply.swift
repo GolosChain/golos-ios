@@ -1,5 +1,5 @@
 //
-//  PostCreateView.swift
+//  PostCommentReply.swift
 //  Golos
 //
 //  Created by msm72 on 14.06.2018.
@@ -8,28 +8,31 @@
 
 import UIKit
 import GoloSwift
-import IQKeyboardManagerSwift
+import SwiftTheme
 
-class PostCreateView: UIView {
+class PostCommentReply: UIView {
     // MARK: - IBOutlets
     @IBOutlet var view: UIView! {
         didSet {
             view.backgroundColor = UIColor.clear
         }
     }
-
+    
     @IBOutlet weak var contentView: UIView! {
         didSet {
             contentView.tune()
         }
     }
-    
-    @IBOutlet weak var titleTextField: UITextField! {
+
+    @IBOutlet weak var commentLabel: UILabel! {
         didSet {
-            titleTextField.tune(withPlaceholder:        "Enter Post Title Placeholder",
-                                textColors:             blackWhiteColorPickers,
-                                font:                   UIFont(name: "SFUIDisplay-Regular", size: 16.0 * widthRatio),
-                                alignment:              .left)
+            commentLabel.tune(withText:             "Вот так выглядит женская половина (а по факту пятая часть) команды проекта 50/50.",
+                              hexColors:            darkGrayWhiteColorPickers,
+                              font:                 UIFont(name: "SFUIDisplay-Regular", size: 13.0 * widthRatio),
+                              alignment:            .left,
+                              isMultiLines:         true)
+            
+            commentLabel.numberOfLines = 2
         }
     }
     
@@ -60,7 +63,7 @@ class PostCreateView: UIView {
     
     // MARK: - Class Functions
     func createFromXIB() {
-        UINib(nibName: String(describing: PostCreateView.self), bundle: Bundle(for: PostCreateView.self)).instantiate(withOwner: self, options: nil)
+        UINib(nibName: String(describing: PostCommentReply.self), bundle: Bundle(for: PostCommentReply.self)).instantiate(withOwner: self, options: nil)
         addSubview(view)
         view.frame = frame
     }

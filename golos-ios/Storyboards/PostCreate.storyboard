@@ -19,32 +19,62 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="1yk-b9-MRG">
-                                <rect key="frame" x="16" y="0.0" width="382" height="85"/>
+                            <stackView clipsSubviews="YES" contentMode="scaleAspectFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="1yk-b9-MRG">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="85"/>
                                 <subviews>
-                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="euM-zm-r1G" userLabel="Post View" customClass="PostCreateView" customModule="Golos" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="382" height="28.333333333333332"/>
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="euM-zm-r1G" userLabel="Top View">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="28.333333333333332"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nPS-aX-y2M" customClass="PostCreateView" customModule="Golos" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="28.333333333333332"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="nPS-aX-y2M" secondAttribute="trailing" id="GP6-SW-c5W"/>
+                                            <constraint firstItem="nPS-aX-y2M" firstAttribute="leading" secondItem="euM-zm-r1G" secondAttribute="leading" id="ScC-Aa-cnc"/>
+                                            <constraint firstItem="nPS-aX-y2M" firstAttribute="top" secondItem="euM-zm-r1G" secondAttribute="top" id="iAd-VE-KjE"/>
+                                            <constraint firstAttribute="bottom" secondItem="nPS-aX-y2M" secondAttribute="bottom" id="z88-rH-o0v"/>
+                                        </constraints>
+                                    </view>
+                                    <view clipsSubviews="YES" tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gd2-e9-6oL" userLabel="Middle View">
+                                        <rect key="frame" x="0.0" y="28.333333333333329" width="414" height="28.333333333333329"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
-                                    <view clipsSubviews="YES" tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gd2-e9-6oL" userLabel="Comment View">
-                                        <rect key="frame" x="0.0" y="28.333333333333329" width="382" height="28.333333333333329"/>
-                                        <color key="backgroundColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </view>
-                                    <view clipsSubviews="YES" tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L1e-X9-0TS" userLabel="Reply Comment View">
-                                        <rect key="frame" x="0.0" y="56.666666666666679" width="382" height="28.333333333333336"/>
-                                        <color key="backgroundColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <view clipsSubviews="YES" tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L1e-X9-0TS" userLabel="Bottom View">
+                                        <rect key="frame" x="0.0" y="56.666666666666679" width="414" height="28.333333333333336"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B39-tc-q2y" customClass="PostCommentReply" customModule="Golos" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="-0.6666666666666714" width="414" height="29"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="B39-tc-q2y" firstAttribute="leading" secondItem="L1e-X9-0TS" secondAttribute="leading" id="GZ3-R0-f0i"/>
+                                            <constraint firstItem="B39-tc-q2y" firstAttribute="top" secondItem="L1e-X9-0TS" secondAttribute="top" id="QTr-sD-Vgq"/>
+                                            <constraint firstAttribute="bottom" secondItem="B39-tc-q2y" secondAttribute="bottom" id="nQK-1o-jvN"/>
+                                            <constraint firstAttribute="trailing" secondItem="B39-tc-q2y" secondAttribute="trailing" id="unu-Kv-6u5"/>
+                                        </constraints>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </stackView>
-                            <textView clipsSubviews="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="doW-uc-lK0" userLabel="Content Text View">
+                            <textView clipsSubviews="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="doW-uc-lK0" userLabel="Content Text View">
                                 <rect key="frame" x="16" y="101" width="382" height="458"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" link="YES" image="YES"/>
                                 </accessibility>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <attributedString key="attributedText">
+                                    <fragment>
+                                        <string key="content">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                        <attributes>
+                                            <font key="NSFont" metaFont="system" size="14"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                             </textView>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tte-BZ-PFa" userLabel="Bottom View">
@@ -68,8 +98,8 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="1yk-b9-MRG" firstAttribute="leading" secondItem="Jhp-G8-l53" secondAttribute="leading" constant="16" id="1dd-nc-sgl"/>
-                            <constraint firstItem="1yk-b9-MRG" firstAttribute="trailing" secondItem="Jhp-G8-l53" secondAttribute="trailing" constant="-16" id="9C1-lc-N48"/>
+                            <constraint firstItem="1yk-b9-MRG" firstAttribute="leading" secondItem="Jhp-G8-l53" secondAttribute="leading" id="1dd-nc-sgl"/>
+                            <constraint firstItem="1yk-b9-MRG" firstAttribute="trailing" secondItem="Jhp-G8-l53" secondAttribute="trailing" id="9C1-lc-N48"/>
                             <constraint firstItem="doW-uc-lK0" firstAttribute="top" secondItem="1yk-b9-MRG" secondAttribute="bottom" constant="16" id="Hmh-EF-sLe"/>
                             <constraint firstItem="Jhp-G8-l53" firstAttribute="trailing" secondItem="doW-uc-lK0" secondAttribute="trailing" constant="16" id="IWD-rY-84t"/>
                             <constraint firstItem="1yk-b9-MRG" firstAttribute="height" secondItem="Sw0-IZ-LYW" secondAttribute="height" multiplier="70:321" id="M1S-Eb-FnZ"/>
@@ -126,7 +156,10 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="commentReplyView" destination="B39-tc-q2y" id="G1Z-Cl-q1c"/>
                         <outlet property="contentTextView" destination="doW-uc-lK0" id="V1x-g0-CG3"/>
+                        <outlet property="contentViewBottomConstraint" destination="q4O-KT-Lla" id="MuT-1Y-RPP"/>
+                        <outlet property="stackView" destination="1yk-b9-MRG" id="5EE-Nt-85S"/>
                         <outlet property="stackViewTopConstraint" destination="gy1-fP-ajC" id="3w2-wW-4UN"/>
                         <outlet property="tagsTitleLabel" destination="mLA-QB-vdt" id="hZ2-xt-aeQ"/>
                         <outletCollection property="sceneViewsCollection" destination="euM-zm-r1G" collectionClass="NSMutableArray" id="DY9-rV-lFh"/>

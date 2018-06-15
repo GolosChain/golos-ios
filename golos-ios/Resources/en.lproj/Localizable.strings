@@ -52,6 +52,9 @@
 "Publish Title"                             =   "Publish";
 "Comment Title"                             =   "Comment";
 "Add Link Title"                            =   "Add link";
+"Take Photo Title"                          =   "Take photo";
+"Open Photo Title"                          =   "Open photo";
+"Image saved to Photo Library"              =   "Your image has been saved to Photo Library!";
 
 
 // Placeholders
@@ -77,3 +80,6 @@
 "Login Hint"                                =   "Enter login";
 "Posting Key Hint"                          =   "Enter private posting key";
 "Active Key Hint"                           =   "Enter private active key";
+"Camera is not available"                   =   "Your device's camera is not available";
+"Album is not available"                    =   "Your device's album is not available";
+"No image found"                            =   "No image found";

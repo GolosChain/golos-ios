@@ -25,13 +25,20 @@ protocol PostCreateDisplayLogic: class {
     func displaySomething(fromViewModel viewModel: PostCreateModels.Something.ViewModel)
 }
 
-class PostCreateViewController: UIViewController {
+class PostCreateViewController: BaseViewController {
     // MARK: - Properties
+    var isKeyboardShow = false
+    
     var sceneType: SceneType = .create {
         didSet {
-            stackViewTopConstraint.constant = (sceneType == .comment) ? -70.0 * widthRatio : 0.0
+            self.navigationItem.title           =   (sceneType == .create) ? "Publish Title".localized() : "Comment Title".localized()
+            stackViewTopConstraint.constant     =   (sceneType == .comment) ? -70.0 * widthRatio : 0.0
             
             _ = sceneViewsCollection.map({ $0.isHidden = ($0.tag == sceneType.rawValue) ? false : true })
+            
+            if sceneType == .reply {
+//                self.commentReplyView.commentLabel.text = self.router?.dataStore?.commentText
+            }
         }
     }
     
@@ -40,11 +47,18 @@ class PostCreateViewController: UIViewController {
     
     
     // MARK: - IBOutlets
+    @IBOutlet weak var stackView: UIStackView!
+
+    @IBOutlet weak var commentReplyView: PostCommentReply! {
+        didSet {
+        }
+    }
+    
     @IBOutlet weak var tagsTitleLabel: UILabel! {
         didSet {
             tagsTitleLabel.tune(withText:           "Add Max 5 Tags",
                                 hexColors:          darkGrayWhiteColorPickers,
-                                font:               UIFont(name: "SFUIDisplay-Regular", size: 13.0 * widthRatio),
+                                font:               UIFont(name: "SFUIDisplay-Regular", size: 12.0 * widthRatio),
                                 alignment:          .left,
                                 isMultiLines:       false)
         }
@@ -52,14 +66,15 @@ class PostCreateViewController: UIViewController {
     
     @IBOutlet weak var contentTextView: UITextView! {
         didSet {
-            contentTextView.delegate = self
+            contentTextView.contentInset    =   UIEdgeInsets(top: 0.0, left: -4.0, bottom: 8.0, right: 0.0)
+            contentTextView.delegate        =   self
         }
     }
-    
     
     @IBOutlet var sceneViewsCollection: [UIView]!
     
     @IBOutlet weak var stackViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var contentViewBottomConstraint: NSLayoutConstraint!
     
     
     // MARK: - Class Initialization
@@ -109,13 +124,19 @@ class PostCreateViewController: UIViewController {
     
     
     // MARK: - Class Functions
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        Logger.log(message: "Success", event: .severe)
+        
+        self.setConstraint()
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.tune()
-        self.navigationItem.title = "Publish Title".localized()
         
-        sceneType = .create
+        sceneType = .comment
         
         IQKeyboardManager.sharedManager().enable = false
 
@@ -127,6 +148,18 @@ class PostCreateViewController: UIViewController {
         
         self.navigationController?.add(shadow: true, withBarTintColor: .white)
         self.navigationController?.hidesBarsOnTap = false
+        
+        // Placeholder
+        contentTextView.tune(withPlaceholder:   sceneType == .create ? "Enter Text Placeholder" : "Enter Comment Placeholder",
+                             textColors:        darkGrayWhiteColorPickers,
+                             font:              UIFont(name: "SFUIDisplay-Regular", size: 13.0 * widthRatio),
+                             alignment:         .left)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        self.contentTextView.text = nil
     }
     
     
@@ -134,6 +167,26 @@ class PostCreateViewController: UIViewController {
     private func loadViewSettings() {
         let requestModel = PostCreateModels.Something.RequestModel()
         interactor?.doSomething(withRequestModel: requestModel)
+    }
+    
+    private func saveToAlbum(image: UIImage) {
+        if let imageData = UIImageJPEGRepresentation(image, 0.6), let compressedJPGImage = UIImage(data: imageData) {
+            UIImageWriteToSavedPhotosAlbum(compressedJPGImage, nil, nil, nil)
+            
+            self.showAlertView(withTitle: "Info", andMessage: "Image saved to Photo Library", needCancel: false, completion: { [weak self] _ in
+                self?.contentTextView.add(object: image)
+            })
+        }
+    }
+    
+    private func setConstraint() {
+        if UIDeviceOrientationIsPortrait(UIDevice.current.orientation) {
+            self.contentViewBottomConstraint.constant = (self.isKeyboardShow ? 140 : 16.0) * heightRatio
+        }
+        
+        else {
+            self.contentViewBottomConstraint.constant = (self.isKeyboardShow ? 100.0 : 16.0) * heightRatio
+        }
     }
     
     
@@ -167,10 +220,37 @@ extension PostCreateViewController: PostCreateDisplayLogic {
 }
 
 
-// MARK: -
+// MARK: - UITextViewDelegate
 extension PostCreateViewController: UITextViewDelegate {
+    @available(iOS 10.0, *)
+    func textView(_ textView: UITextView, shouldInteractWith textAttachment: NSTextAttachment, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+        return true
+    }
+    
     func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.text == "Enter Text Placeholder".localized() {
+            textView.text               =   nil
+            textView.theme_textColor    =   blackWhiteColorPickers
+        }
+        
+        self.isKeyboardShow             =   true
+        self.setConstraint()
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.text               =   "Enter Text Placeholder".localized()
+            textView.theme_textColor    =   darkGrayWhiteColorPickers
+        }
+
+        self.isKeyboardShow             =   false
+        self.setConstraint()
+    }
+
+    func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
         self.contentTextView.showToolbar { [weak self] tag in
+            textView.resignFirstResponder()
+            
             switch tag {
             // Add link
             case 7:
@@ -197,15 +277,7 @@ extension PostCreateViewController: UITextViewDelegate {
                         return
                     }
                     
-                    let linkAttributes: [NSAttributedStringKey: Any] =  [
-                                                                            .link:              NSURL(string: linkAddress)!,
-                                                                            .foregroundColor:   UIColor.blue
-                                                                        ]
-                    
-                    let attributedString = NSMutableAttributedString(string: linkName)
-                    attributedString.setAttributes(linkAttributes, range: NSRange(location: 0, length: linkName.count))
-                    
-                    self?.contentTextView.attributedText = attributedString
+                    self?.contentTextView.add(object: (linkName, linkAddress))
                 }
                 
                 linkAlert.addAction(actionOk)
@@ -213,11 +285,83 @@ extension PostCreateViewController: UITextViewDelegate {
                 
             // Add image
             case 8:
-                print("Add image")
+                let photoAlert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+                
+                photoAlert.addAction(UIAlertAction(title: "Take Photo Title".localized(), style: .default, handler: { _ in
+                    if UIImagePickerController.isSourceTypeAvailable(.camera) {
+                        let imagePicker             =   UIImagePickerController()
+                        imagePicker.delegate        =   self
+                        imagePicker.sourceType      =   .camera
+                        imagePicker.allowsEditing   =   true
+                        
+                        textView.resignFirstResponder()
+                        
+                        self?.present(imagePicker, animated: true, completion: nil)
+                    }
+                    
+                    else {
+                        self?.showAlertView(withTitle: "Error", andMessage: "Camera is not available", needCancel: false, completion: { _ in
+                            self?.contentTextView.becomeFirstResponder()
+                        })
+                    }
+                }))
+
+                photoAlert.addAction(UIAlertAction(title: "Open Photo Title".localized(), style: .default, handler: { _ in
+                    if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+                        let imagePicker             =   UIImagePickerController()
+                        imagePicker.delegate        =   self
+                        imagePicker.sourceType      =   .photoLibrary
+                        imagePicker.allowsEditing   =   true
+                        
+                        self?.present(imagePicker, animated: true, completion: nil)
+                    }
+                    
+                    else {
+                        self?.showAlertView(withTitle: "Error", andMessage: "Album is not available", needCancel: false, completion: { _ in })
+                    }
+                }))
+                
+                photoAlert.addAction(UIAlertAction(title: "ActionCancel".localized(), style: .destructive))
+                
+                photoAlert.popoverPresentationController?.barButtonItem = self?.navigationItem.rightBarButtonItem
+                
+                self?.present(photoAlert, animated: true)
                 
             default:
                 break
             }
+        }
+        
+        return true
+    }
+}
+
+
+// MARK: - UINavigationControllerDelegate
+extension PostCreateViewController: UINavigationControllerDelegate {
+    func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
+        navigationController.navigationBar.add(shadow: true, onside: .bottom)
+    }
+}
+
+
+// MARK: - UIImagePickerControllerDelegate
+extension PostCreateViewController: UIImagePickerControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: Any]) {
+        picker.dismiss(animated: true)
+        
+        guard let image = info[UIImagePickerControllerEditedImage] as? UIImage else {
+            showAlertView(withTitle: "Error", andMessage: "No image found", needCancel: false, completion: { _ in })
+
+            return
+        }
+
+        if picker.sourceType == .camera {
+            self.saveToAlbum(image: image)
+        }
+        
+        else {
+            self.contentTextView.add(object: image)
         }
     }
 }

@@ -19,7 +19,7 @@ protocol PostCreateBusinessLogic {
 }
 
 protocol PostCreateDataStore {
-//     var name: String { get set }
+     var commentText: String { get set }
 }
 
 class PostCreateInteractor: PostCreateBusinessLogic, PostCreateDataStore {
@@ -27,8 +27,8 @@ class PostCreateInteractor: PostCreateBusinessLogic, PostCreateDataStore {
     var presenter: PostCreatePresentationLogic?
     var worker: PostCreateWorker?
     
-    // ... protocol implementation
-//    var name: String = ""
+    // PostCreateDataStore protocol implementation
+    var commentText: String = ""
     
     
     // MARK: - Class Initialization

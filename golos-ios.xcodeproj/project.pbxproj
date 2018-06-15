@@ -106,6 +106,7 @@
 		B1918FF720B5421800F6CE63 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B1918FF920B5421800F6CE63 /* InfoPlist.strings */; };
 		B198DB9120B9A21A008011A3 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B198DB9020B9A21A008011A3 /* UIColor+Extensions.swift */; };
 		B198DB9420B9C560008011A3 /* SF-Pro-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = B198DB9320B9C560008011A3 /* SF-Pro-Display-Regular.otf */; };
+		B1B6B39520D37F3100284387 /* PostCommentReply.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1B6B39420D37F3100284387 /* PostCommentReply.xib */; };
 		B1C1DFDF20CF887F00D1A837 /* LogInShowPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C1DFD920CF887F00D1A837 /* LogInShowPresenter.swift */; };
 		B1C1DFE220CF887F00D1A837 /* LogInShowModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C1DFDC20CF887F00D1A837 /* LogInShowModels.swift */; };
 		B1C1DFE420CF887F00D1A837 /* LogInShowInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C1DFDE20CF887F00D1A837 /* LogInShowInteractor.swift */; };
@@ -113,6 +114,7 @@
 		B1EE684820D243FF006BF802 /* PostCreateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1EE684720D243FF006BF802 /* PostCreateView.xib */; };
 		B1EE684A20D261C4006BF802 /* UITextView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EE684920D261C4006BF802 /* UITextView+Extensions.swift */; };
 		B1EE684C20D27628006BF802 /* UIBarButtonItem+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EE684B20D27628006BF802 /* UIBarButtonItem+Extensions.swift */; };
+		B1EE686C20D2D713006BF802 /* PostCommentReply.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EE686B20D2D713006BF802 /* PostCommentReply.swift */; };
 		B1F3747520C2B483005EF767 /* RootShow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1F3747420C2B483005EF767 /* RootShow.storyboard */; };
 		B1F3747F20C2C5E1005EF767 /* RootShowPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F3747920C2C5E1005EF767 /* RootShowPresenter.swift */; };
 		B1F3748120C2C5E1005EF767 /* RootShowRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F3747B20C2C5E1005EF767 /* RootShowRouter.swift */; };
@@ -330,6 +332,7 @@
 		B1918FFA20B5421A00F6CE63 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B198DB9020B9A21A008011A3 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		B198DB9320B9C560008011A3 /* SF-Pro-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Regular.otf"; sourceTree = "<group>"; };
+		B1B6B39420D37F3100284387 /* PostCommentReply.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostCommentReply.xib; sourceTree = "<group>"; };
 		B1C1DFD920CF887F00D1A837 /* LogInShowPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInShowPresenter.swift; sourceTree = "<group>"; };
 		B1C1DFDC20CF887F00D1A837 /* LogInShowModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInShowModels.swift; sourceTree = "<group>"; };
 		B1C1DFDE20CF887F00D1A837 /* LogInShowInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInShowInteractor.swift; sourceTree = "<group>"; };
@@ -337,6 +340,7 @@
 		B1EE684720D243FF006BF802 /* PostCreateView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostCreateView.xib; sourceTree = "<group>"; };
 		B1EE684920D261C4006BF802 /* UITextView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+Extensions.swift"; sourceTree = "<group>"; };
 		B1EE684B20D27628006BF802 /* UIBarButtonItem+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Extensions.swift"; sourceTree = "<group>"; };
+		B1EE686B20D2D713006BF802 /* PostCommentReply.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCommentReply.swift; sourceTree = "<group>"; };
 		B1F3747420C2B483005EF767 /* RootShow.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RootShow.storyboard; sourceTree = "<group>"; };
 		B1F3747920C2C5E1005EF767 /* RootShowPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootShowPresenter.swift; sourceTree = "<group>"; };
 		B1F3747B20C2C5E1005EF767 /* RootShowRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootShowRouter.swift; sourceTree = "<group>"; };
@@ -737,6 +741,8 @@
 		B1EE684420D243D3006BF802 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B1EE686B20D2D713006BF802 /* PostCommentReply.swift */,
+				B1B6B39420D37F3100284387 /* PostCommentReply.xib */,
 				B1EE684520D243F5006BF802 /* PostCreateView.swift */,
 				B1EE684720D243FF006BF802 /* PostCreateView.xib */,
 			);
@@ -1258,6 +1264,7 @@
 				7DFA6CB22036D76B00F59494 /* PostsFeedTextTableViewCell.xib in Resources */,
 				7D25B4CB201FABD8004A3400 /* ArticleFooterTableViewCell.xib in Resources */,
 				EC24FF7A200C497800A0AE15 /* FeedViewController.xib in Resources */,
+				B1B6B39520D37F3100284387 /* PostCommentReply.xib in Resources */,
 				EC9B2AE7201550F4008335C8 /* FeedArticleTableViewCell.xib in Resources */,
 				7D25B4BF201FABB2004A3400 /* ArticleTitleTableViewCell.xib in Resources */,
 				EC1DFB9920063C400080BC50 /* LaunchScreen.storyboard in Resources */,
@@ -1457,6 +1464,7 @@
 				7D95CFA6203A119B00C1AE0A /* GSImageLoadOperation.swift in Sources */,
 				7DA063242032517D00B5630C /* ProfileFeedContainerItem.swift in Sources */,
 				7DA063222032513A00B5630C /* ProfileFeedContainerController.swift in Sources */,
+				B1EE686C20D2D713006BF802 /* PostCommentReply.swift in Sources */,
 				7D25B4C6201FABCB004A3400 /* ArticleTextTableViewCell.swift in Sources */,
 				EC9B2AE920155B9C008335C8 /* PostsFeedMediator.swift in Sources */,
 				7D25B4C2201FABBD004A3400 /* ArticleImageTableViewCell.swift in Sources */,

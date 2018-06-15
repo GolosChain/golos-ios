@@ -8,4 +8,5 @@
   https://developer.apple.com/library/content/documentation/General/Reference/InfoPlistKeyReference/Articles/AboutInformationPropertyListFiles.html
 */
 
-NSCameraUsageDescription        =   "We need access to your device's camera to scan the QR code";
+NSCameraUsageDescription            =   "We need access to your device's camera to scan the QR code";
+NSPhotoLibraryAddUsageDescription   =   "We need access to your device's album to show photos";

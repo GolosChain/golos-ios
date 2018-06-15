@@ -10,18 +10,17 @@ import UIKit
 import SwiftTheme
 
 extension UITextView {
-//    @IBInspectable var toolbarAccessory: Bool {
-//        get {
-//            return self.toolbarAccessory
-//        }
-//
-//        set (hasToolbar) {
-//            if hasToolbar {
-//                addToolbarOnKeyboard()
-//            }
-//        }
-//    }
-//
+    func tune(withPlaceholder placeholder: String, textColors: ThemeColorPicker?, font: UIFont?, alignment: NSTextAlignment) {
+        ThemeManager.setTheme(index: isAppThemeDark ? 1 : 0)
+        
+        self.font                       =   font
+        self.theme_textColor            =   textColors
+        self.textAlignment              =   alignment
+        
+        self.attributedText             =   NSAttributedString(string:      placeholder.localized(),
+                                                               attributes:  [ NSAttributedStringKey.foregroundColor: UIColor(hexString: "#828282") ])
+    }
+    
     func showToolbar(handlerAction: ((Int) -> Void)?) {
         let toolbar: UIToolbar          =   UIToolbar(frame: CGRect.init(x: 0.0, y: 0.0,
                                                                          width: UIScreen.main.bounds.width * widthRatio, height: 56.0 * heightRatio))
@@ -129,5 +128,42 @@ extension UITextView {
         
         toolbar.items                   =   items
         self.inputAccessoryView         =   toolbar
+    }
+    
+    func add(object: Any) {
+        var attributedString    =   NSAttributedString()
+        
+        // Create and NSTextAttachment and add your image to it.
+        let attachment          =   NSTextAttachment()
+        
+        if let image = object as? UIImage {
+            attachment.image    =   image
+            
+            // Calculate new size
+            let newImageWidth   =   self.bounds.size.width
+            let scale           =   newImageWidth/image.size.width
+            let newImageHeight  =   image.size.height * scale
+            
+            // Resize this
+            attachment.bounds   =   CGRect.init(x: 0, y: 0, width: newImageWidth, height: newImageHeight)
+            
+            // Put your NSTextAttachment into and attributedString
+            attributedString    =   NSAttributedString(attachment: attachment)
+        }
+        
+        if let link = object as? (String, String) {
+            let linkAttributes: [NSAttributedStringKey: Any] =  [
+                                                                    .link:              NSURL(string: link.1)!,
+                                                                    .foregroundColor:   UIColor.blue
+                                                                ]
+            
+            let linkAttributedString = NSMutableAttributedString(string: link.0)
+            linkAttributedString.setAttributes(linkAttributes, range: NSRange(location: 0, length: link.0.count))
+            
+            attributedString    =   linkAttributedString
+        }
+        
+        // Add this attributed string to the current position.
+        self.textStorage.insert(attributedString, at: self.selectedRange.location)
     }
 }

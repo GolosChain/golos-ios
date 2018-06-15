@@ -52,6 +52,9 @@
 "Publish Title"                             =   "Опубликовать";
 "Comment Title"                             =   "Комментировать";
 "Add Link Title"                            =   "Добавить гиперссылку";
+"Take Photo Title"                          =   "Создать фотографию";
+"Open Photo Title"                          =   "Открыть фотографию";
+"Image saved to Photo Library"              =   "Ваша фотография сохранена в Альбоме!";
 
 
 // Placeholders
@@ -77,3 +80,6 @@
 "Login Hint"                                =   "Введите логин";
 "Posting Key Hint"                          =   "Введите приватный постинг ключ";
 "Active Key Hint"                           =   "Введите приватный активный ключ";
+"Camera is not available"                   =   "Камера вашего устройства недоступна";
+"Album is not available"                    =   "Альбом вашего устройства недоступен";
+"No image found"                            =   "Фотография не найдена";
