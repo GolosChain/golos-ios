@@ -26,9 +26,11 @@ target 'Golos' do
     pod 'Firebase/Messaging'
     
     # Design
+    pod 'Tags'
     pod 'SwiftTheme'
     pod 'SnapKit', '~> 4.0'
     pod 'LayoutKit', '~> 7.0'
+    pod 'AlignedCollectionViewFlowLayout'
 
     # Pods for golos-ios
 #    pod 'GoloSwift', '~> 1.1'

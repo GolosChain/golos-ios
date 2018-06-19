@@ -87,12 +87,26 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <containerView clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G0A-uk-2YJ">
+                                        <rect key="frame" x="16" y="38" width="382" height="48"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="48" id="M6M-UF-6Lc"/>
+                                        </constraints>
+                                        <connections>
+                                            <segue destination="izW-sT-RmV" kind="embed" identifier="routeToTagsViewControllerWithSegue" id="0iZ-jO-Mdo"/>
+                                        </connections>
+                                    </containerView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="G0A-uk-2YJ" secondAttribute="bottom" constant="9" id="1Xq-Tj-Z0h"/>
                                     <constraint firstAttribute="trailing" secondItem="mLA-QB-vdt" secondAttribute="trailing" constant="16" id="1bi-3y-482"/>
+                                    <constraint firstItem="G0A-uk-2YJ" firstAttribute="leading" secondItem="Tte-BZ-PFa" secondAttribute="leading" constant="16" id="1sM-r3-NEZ"/>
+                                    <constraint firstAttribute="trailing" secondItem="G0A-uk-2YJ" secondAttribute="trailing" constant="16" id="4CJ-Bg-owS"/>
                                     <constraint firstItem="mLA-QB-vdt" firstAttribute="leading" secondItem="Tte-BZ-PFa" secondAttribute="leading" constant="16" id="Usr-a7-PE0"/>
                                     <constraint firstItem="mLA-QB-vdt" firstAttribute="top" secondItem="Tte-BZ-PFa" secondAttribute="top" constant="9" id="gVb-Ta-fTw"/>
+                                    <constraint firstItem="G0A-uk-2YJ" firstAttribute="top" secondItem="mLA-QB-vdt" secondAttribute="bottom" constant="9" id="lkh-gS-M4d"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -110,7 +124,7 @@
                             <constraint firstItem="1yk-b9-MRG" firstAttribute="top" secondItem="Jhp-G8-l53" secondAttribute="top" id="gy1-fP-ajC"/>
                             <constraint firstItem="1yk-b9-MRG" firstAttribute="height" secondItem="Sw0-IZ-LYW" secondAttribute="height" multiplier="70:554" id="iHB-Ad-tmE"/>
                             <constraint firstItem="1yk-b9-MRG" firstAttribute="height" secondItem="Sw0-IZ-LYW" secondAttribute="height" multiplier="70:311" id="l6c-to-ADr"/>
-                            <constraint firstItem="Tte-BZ-PFa" firstAttribute="height" secondItem="Sw0-IZ-LYW" secondAttribute="height" multiplier="80:554" id="oIW-Uf-4yH"/>
+                            <constraint firstItem="Tte-BZ-PFa" firstAttribute="height" secondItem="Sw0-IZ-LYW" secondAttribute="height" multiplier="80:554" priority="750" id="oIW-Uf-4yH"/>
                             <constraint firstItem="Tte-BZ-PFa" firstAttribute="top" secondItem="doW-uc-lK0" secondAttribute="bottom" constant="16" id="q4O-KT-Lla"/>
                             <constraint firstItem="Tte-BZ-PFa" firstAttribute="height" secondItem="Sw0-IZ-LYW" secondAttribute="height" multiplier="80:311" id="uFX-aC-1sO"/>
                             <constraint firstItem="Jhp-G8-l53" firstAttribute="trailing" secondItem="Tte-BZ-PFa" secondAttribute="trailing" id="wff-d6-qht"/>
@@ -157,11 +171,13 @@
                     </navigationItem>
                     <connections>
                         <outlet property="commentReplyView" destination="B39-tc-q2y" id="G1Z-Cl-q1c"/>
+                        <outlet property="containerViewHeightConstraint" destination="M6M-UF-6Lc" id="A0Y-oQ-y0f"/>
                         <outlet property="contentTextView" destination="doW-uc-lK0" id="V1x-g0-CG3"/>
                         <outlet property="contentViewBottomConstraint" destination="q4O-KT-Lla" id="MuT-1Y-RPP"/>
                         <outlet property="stackView" destination="1yk-b9-MRG" id="5EE-Nt-85S"/>
                         <outlet property="stackViewTopConstraint" destination="gy1-fP-ajC" id="3w2-wW-4UN"/>
                         <outlet property="tagsTitleLabel" destination="mLA-QB-vdt" id="hZ2-xt-aeQ"/>
+                        <outlet property="tagsViewBottomConstraint" destination="OLz-1c-pK1" id="Ezs-xl-tVI"/>
                         <outletCollection property="sceneViewsCollection" destination="euM-zm-r1G" collectionClass="NSMutableArray" id="DY9-rV-lFh"/>
                         <outletCollection property="sceneViewsCollection" destination="gd2-e9-6oL" collectionClass="NSMutableArray" id="Tsb-lI-hN0"/>
                         <outletCollection property="sceneViewsCollection" destination="L1e-X9-0TS" collectionClass="NSMutableArray" id="SNc-t7-RdB"/>
@@ -169,7 +185,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Py4-Cv-jeL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1062" y="151"/>
+            <point key="canvasLocation" x="1060.8695652173915" y="150.81521739130437"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="WmF-ZW-K11">
@@ -193,6 +209,42 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZC0-T8-XJ6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="289" y="151"/>
+        </scene>
+        <!--Tags Collection View Controller-->
+        <scene sceneID="vmx-0v-XSc">
+            <objects>
+                <viewController storyboardIdentifier="TagsCollectionVC" id="izW-sT-RmV" customClass="TagsCollectionViewController" customModule="Golos" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="pZi-oN-AS7">
+                        <rect key="frame" x="0.0" y="0.0" width="382" height="48"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="LMj-c3-wGd">
+                                <rect key="frame" x="0.0" y="0.0" width="382" height="48"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="9" minimumInteritemSpacing="6" id="PHo-U7-sol" customClass="AlignedCollectionViewFlowLayout" customModule="AlignedCollectionViewFlowLayout">
+                                    <size key="itemSize" width="50" height="30"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="LMj-c3-wGd" secondAttribute="bottom" id="0gV-xc-wMf"/>
+                            <constraint firstItem="LMj-c3-wGd" firstAttribute="top" secondItem="pZi-oN-AS7" secondAttribute="top" id="BKZ-gJ-ILg"/>
+                            <constraint firstItem="LMj-c3-wGd" firstAttribute="leading" secondItem="pZi-oN-AS7" secondAttribute="leading" id="e3J-LM-aOf"/>
+                            <constraint firstAttribute="trailing" secondItem="LMj-c3-wGd" secondAttribute="trailing" id="eRP-Yf-o0C"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="LMj-c3-wGd" id="faO-Fc-rYY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hCQ-h3-idQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1061" y="582"/>
         </scene>
     </scenes>
     <resources>

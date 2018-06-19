@@ -12,6 +12,11 @@ protocol ReusableCell {
     static var reuseIdentifier: String { get }
 }
 
+protocol ConfigureCell {
+    func setup(withItem item: Any?, andIndexPath indexPath: IndexPath)
+}
+
+
 extension ReusableCell {
     static var reuseIdentifier: String {
         return String(describing: self)

@@ -74,7 +74,14 @@ class PostCreateViewController: BaseViewController {
     @IBOutlet var sceneViewsCollection: [UIView]!
     
     @IBOutlet weak var stackViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var tagsViewBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var contentViewBottomConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var containerViewHeightConstraint: NSLayoutConstraint! {
+        didSet {
+            containerViewHeightConstraint.constant = 48.0 * heightRatio
+        }
+    }
     
     
     // MARK: - Class Initialization
@@ -113,6 +120,20 @@ class PostCreateViewController: BaseViewController {
     
     // MARK: - Routing
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "routeToTagsViewControllerWithSegue" {
+            let tagsVC = segue.destination  as! TagsCollectionViewController
+            
+            // Handler change frame
+            tagsVC.complationCollectionViewChangeHeight = { [weak self] height in
+                self?.containerViewHeightConstraint.constant = height
+            }
+            
+            // Handler start editing tags
+            tagsVC.completionStartEndEditing = { [weak self] constant in
+                self?.tagsViewBottomConstraint.constant = constant
+            }
+        }
+        
         if let scene = segue.identifier {
             let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
             
@@ -139,7 +160,7 @@ class PostCreateViewController: BaseViewController {
         sceneType = .comment
         
         IQKeyboardManager.sharedManager().enable = false
-
+        
 //        self.loadViewSettings()
     }
     

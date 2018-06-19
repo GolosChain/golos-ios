@@ -55,6 +55,7 @@
 "Take Photo Title"                          =   "Take photo";
 "Open Photo Title"                          =   "Open photo";
 "Image saved to Photo Library"              =   "Your image has been saved to Photo Library!";
+"Tag"                                       =   "Tag";
 
 
 // Placeholders
@@ -83,3 +84,4 @@
 "Camera is not available"                   =   "Your device's camera is not available";
 "Album is not available"                    =   "Your device's album is not available";
 "No image found"                            =   "No image found";
+"You can add up to 5 tags"                  =   "You can add up to 5 tags";

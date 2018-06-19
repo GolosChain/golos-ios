@@ -55,6 +55,7 @@
 "Take Photo Title"                          =   "Создать фотографию";
 "Open Photo Title"                          =   "Открыть фотографию";
 "Image saved to Photo Library"              =   "Ваша фотография сохранена в Альбоме!";
+"Tag"                                       =   "Тег";
 
 
 // Placeholders
@@ -83,3 +84,4 @@
 "Camera is not available"                   =   "Камера вашего устройства недоступна";
 "Album is not available"                    =   "Альбом вашего устройства недоступен";
 "No image found"                            =   "Фотография не найдена";
+"You can add up to 5 tags"                  =   "Вы можете создать не более 5 тегов";
