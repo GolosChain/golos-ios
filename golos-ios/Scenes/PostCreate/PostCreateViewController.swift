@@ -22,7 +22,9 @@ enum SceneType: Int {
 
 // MARK: - Input & Output protocols
 protocol PostCreateDisplayLogic: class {
-    func displaySomething(fromViewModel viewModel: PostCreateModels.Something.ViewModel)
+    func displayPostCreate(fromViewModel viewModel: PostCreateModels.Something.ViewModel)
+    func displayPostComment(fromViewModel viewModel: PostCreateModels.Something.ViewModel)
+    func displayPostCommentReply(fromViewModel viewModel: PostCreateModels.Something.ViewModel)
 }
 
 class PostCreateViewController: BaseViewController {
@@ -160,8 +162,6 @@ class PostCreateViewController: BaseViewController {
         sceneType = .comment
         
         IQKeyboardManager.sharedManager().enable = false
-        
-//        self.loadViewSettings()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -185,11 +185,6 @@ class PostCreateViewController: BaseViewController {
     
     
     // MARK: - Custom Functions
-    private func loadViewSettings() {
-        let requestModel = PostCreateModels.Something.RequestModel()
-        interactor?.doSomething(withRequestModel: requestModel)
-    }
-    
     private func saveToAlbum(image: UIImage) {
         if let imageData = UIImageJPEGRepresentation(image, 0.6), let compressedJPGImage = UIImage(data: imageData) {
             UIImageWriteToSavedPhotosAlbum(compressedJPGImage, nil, nil, nil)
@@ -228,13 +223,36 @@ class PostCreateViewController: BaseViewController {
     }
     
     @IBAction func publishBarButtonTapped(_ sender: UIBarButtonItem) {
+        switch sceneType {
+        case .create:
+            let postCreateRequestModel = PostCreateModels.Something.RequestModel()
+            interactor?.postCreate(withRequestModel: postCreateRequestModel)
+
+        case .comment:
+            let postCommentRequestModel = PostCreateModels.Something.RequestModel()
+            interactor?.postComment(withRequestModel: postCommentRequestModel)
+
+        case .reply:
+            let postCommentReplyRequestModel = PostCreateModels.Something.RequestModel()
+            interactor?.postCommentReply(withRequestModel: postCommentReplyRequestModel)
+        }
     }
 }
 
 
 // MARK: - PostCreateDisplayLogic
 extension PostCreateViewController: PostCreateDisplayLogic {
-    func displaySomething(fromViewModel viewModel: PostCreateModels.Something.ViewModel) {
+    func displayPostCreate(fromViewModel viewModel: PostCreateModels.Something.ViewModel) {
+        // NOTE: Display the result from the Presenter
+
+    }
+    
+    func displayPostComment(fromViewModel viewModel: PostCreateModels.Something.ViewModel) {
+        // NOTE: Display the result from the Presenter
+
+    }
+    
+    func displayPostCommentReply(fromViewModel viewModel: PostCreateModels.Something.ViewModel) {
         // NOTE: Display the result from the Presenter
 
     }

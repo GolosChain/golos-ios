@@ -15,7 +15,9 @@ import GoloSwift
 
 // MARK: - Presentation Logic protocols
 protocol PostCreatePresentationLogic {
-    func presentSomething(fromResponseModel responseModel: PostCreateModels.Something.ResponseModel)
+    func presentPostCreate(fromResponseModel responseModel: PostCreateModels.Something.ResponseModel)
+    func presentPostComment(fromResponseModel responseModel: PostCreateModels.Something.ResponseModel)
+    func presentPostCommentReply(fromResponseModel responseModel: PostCreateModels.Something.ResponseModel)
 }
 
 class PostCreatePresenter: PostCreatePresentationLogic {
@@ -30,8 +32,18 @@ class PostCreatePresenter: PostCreatePresentationLogic {
     
 
     // MARK: - Presentation Logic implementation
-    func presentSomething(fromResponseModel responseModel: PostCreateModels.Something.ResponseModel) {
+    func presentPostCreate(fromResponseModel responseModel: PostCreateModels.Something.ResponseModel) {
         let viewModel = PostCreateModels.Something.ViewModel()
-        viewController?.displaySomething(fromViewModel: viewModel)
+        viewController?.displayPostCreate(fromViewModel: viewModel)
+    }
+    
+    func presentPostComment(fromResponseModel responseModel: PostCreateModels.Something.ResponseModel) {
+        let viewModel = PostCreateModels.Something.ViewModel()
+        viewController?.displayPostComment(fromViewModel: viewModel)
+    }
+    
+    func presentPostCommentReply(fromResponseModel responseModel: PostCreateModels.Something.ResponseModel) {
+        let viewModel = PostCreateModels.Something.ViewModel()
+        viewController?.displayPostCommentReply(fromViewModel: viewModel)
     }
 }

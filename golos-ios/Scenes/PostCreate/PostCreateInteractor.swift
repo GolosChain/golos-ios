@@ -15,7 +15,9 @@ import GoloSwift
 
 // MARK: - Business Logic protocols
 protocol PostCreateBusinessLogic {
-    func doSomething(withRequestModel requestModel: PostCreateModels.Something.RequestModel)
+    func postCreate(withRequestModel requestModel: PostCreateModels.Something.RequestModel)
+    func postComment(withRequestModel requestModel: PostCreateModels.Something.RequestModel)
+    func postCommentReply(withRequestModel requestModel: PostCreateModels.Something.RequestModel)
 }
 
 protocol PostCreateDataStore {
@@ -25,7 +27,6 @@ protocol PostCreateDataStore {
 class PostCreateInteractor: PostCreateBusinessLogic, PostCreateDataStore {
     // MARK: - Properties
     var presenter: PostCreatePresentationLogic?
-    var worker: PostCreateWorker?
     
     // PostCreateDataStore protocol implementation
     var commentText: String = ""
@@ -38,11 +39,18 @@ class PostCreateInteractor: PostCreateBusinessLogic, PostCreateDataStore {
     
 
     // MARK: - Business logic implementation
-    func doSomething(withRequestModel requestModel: PostCreateModels.Something.RequestModel) {
-        worker = PostCreateWorker()
-        worker?.doSomeWork()
-        
+    func postCreate(withRequestModel requestModel: PostCreateModels.Something.RequestModel) {
         let responseModel = PostCreateModels.Something.ResponseModel()
-        presenter?.presentSomething(fromResponseModel: responseModel)
+        presenter?.presentPostCreate(fromResponseModel: responseModel)
+    }
+    
+    func postComment(withRequestModel requestModel: PostCreateModels.Something.RequestModel) {
+        let responseModel = PostCreateModels.Something.ResponseModel()
+        presenter?.presentPostComment(fromResponseModel: responseModel)
+    }
+    
+    func postCommentReply(withRequestModel requestModel: PostCreateModels.Something.RequestModel) {
+        let responseModel = PostCreateModels.Something.ResponseModel()
+        presenter?.presentPostCommentReply(fromResponseModel: responseModel)
     }
 }

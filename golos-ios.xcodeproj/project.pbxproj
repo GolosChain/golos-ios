@@ -70,7 +70,6 @@
 		7DFE7C4920464C1E0057F144 /* PostsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFE7C4820464C1E0057F144 /* PostsManager.swift */; };
 		7DFE7C4B20464C680057F144 /* PostRequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFE7C4A20464C680057F144 /* PostRequestType.swift */; };
 		B1050CA020CECF75003CE4EE /* PostCreatePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1050C9A20CECF75003CE4EE /* PostCreatePresenter.swift */; };
-		B1050CA120CECF75003CE4EE /* PostCreateWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1050C9B20CECF75003CE4EE /* PostCreateWorker.swift */; };
 		B1050CA220CECF75003CE4EE /* PostCreateRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1050C9C20CECF75003CE4EE /* PostCreateRouter.swift */; };
 		B1050CA320CECF75003CE4EE /* PostCreateModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1050C9D20CECF75003CE4EE /* PostCreateModels.swift */; };
 		B1050CA420CECF75003CE4EE /* PostCreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1050C9E20CECF75003CE4EE /* PostCreateViewController.swift */; };
@@ -293,7 +292,6 @@
 		7DFE7C4A20464C680057F144 /* PostRequestType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRequestType.swift; sourceTree = "<group>"; };
 		974FDF6AE6B94E5A2BFC2FDE /* Pods-Golos.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Golos.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Golos/Pods-Golos.debug.xcconfig"; sourceTree = "<group>"; };
 		B1050C9A20CECF75003CE4EE /* PostCreatePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCreatePresenter.swift; sourceTree = "<group>"; };
-		B1050C9B20CECF75003CE4EE /* PostCreateWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCreateWorker.swift; sourceTree = "<group>"; };
 		B1050C9C20CECF75003CE4EE /* PostCreateRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCreateRouter.swift; sourceTree = "<group>"; };
 		B1050C9D20CECF75003CE4EE /* PostCreateModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCreateModels.swift; sourceTree = "<group>"; };
 		B1050C9E20CECF75003CE4EE /* PostCreateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCreateViewController.swift; sourceTree = "<group>"; };
@@ -637,7 +635,6 @@
 				B1050C9A20CECF75003CE4EE /* PostCreatePresenter.swift */,
 				B1050C9C20CECF75003CE4EE /* PostCreateRouter.swift */,
 				B1050C9E20CECF75003CE4EE /* PostCreateViewController.swift */,
-				B1050C9B20CECF75003CE4EE /* PostCreateWorker.swift */,
 			);
 			path = PostCreate;
 			sourceTree = "<group>";
@@ -1544,7 +1541,6 @@
 				7D25B48F201F5E88004A3400 /* CollectionViewCenteredLayout.swift in Sources */,
 				7D7D564420368028003E06A6 /* PostItem.swift in Sources */,
 				EC9ABBC32017D17000AF8597 /* UIImageEffects.swift in Sources */,
-				B1050CA120CECF75003CE4EE /* PostCreateWorker.swift in Sources */,
 				B1050CA020CECF75003CE4EE /* PostCreatePresenter.swift in Sources */,
 				7D911D222035F5AA00F19D3C /* PostReplyModel.swift in Sources */,
 				B11AA80020CB04AA00212713 /* WelcomeShowRouter.swift in Sources */,
