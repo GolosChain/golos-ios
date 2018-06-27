@@ -132,13 +132,13 @@ class PostCreateViewController: BaseViewController {
             }
             
             // Handler start editing tags
-            tagsVC.completionStartEndEditing = { [weak self] constant in
+            tagsVC.completionStartEndEditing = { [weak self] (constant, maxY) in
                 self?.tagsViewBottomConstraint.constant = constant
                 
                 // End editing
                 if constant == 0.0 {
                     self?.interactor?.save(tags: self?.tagsVC.tags)
-                    self?.containerViewHeightConstraint.constant -= 30.0 * heightRatio
+                    self?.containerViewHeightConstraint.constant = maxY! + 18.0 * heightRatio
                 }
             }
         }
@@ -246,6 +246,10 @@ class PostCreateViewController: BaseViewController {
         self.interactor?.save(commentTitle: self.postCreateView.titleTextField.text!)
         
         return true
+    }
+    
+    private func changeTagsTitle(withCount count: Int) {
+        self.tagsTitleLabel.text = String(format: "")
     }
     
     

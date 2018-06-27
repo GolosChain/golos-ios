@@ -85,9 +85,7 @@ extension ThemeTagCollectionViewCell: UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        if let text = textField.text, !text.isEmpty {
-            self.completionEndEditing!()
-        }
+        self.completionEndEditing!()
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

@@ -14,6 +14,11 @@ class BaseViewController: UIViewController {
     
 
     // MARK: - Custom Functions
+    func registerForKeyboardNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(adjustForKeyboard), name: Notification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(adjustForKeyboard), name: Notification.Name.UIKeyboardWillChangeFrame, object: nil)
+    }
+
     func displayLocalNotification() {
         if let subview = self.foregroundRemoteNotificationView, !subview.isDisplay {
             self.view.addSubview(subview)
@@ -78,5 +83,9 @@ class BaseViewController: UIViewController {
     
     func inDevelopmentAlert() {
         self.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+    }
+    
+    // MARK: - Actions
+    @objc func adjustForKeyboard(notification: Notification) {
     }
 }

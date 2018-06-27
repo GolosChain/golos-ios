@@ -17,7 +17,7 @@ class TagsCollectionViewController: BaseViewController {
     var offsetIndex: Int    =   -1
     var addButtonTapped     =   false
 
-    var completionStartEndEditing: ((CGFloat) -> Void)?
+    var completionStartEndEditing: ((CGFloat, CGFloat?) -> Void)?
     var complationCollectionViewChangeHeight: ((CGFloat) -> Void)?
 
     
@@ -145,7 +145,7 @@ extension TagsCollectionViewController: UICollectionViewDataSource {
             
             // Handler start editing
             (cell as! ThemeTagCollectionViewCell).completionStartEditing = {
-                self.completionStartEndEditing!((UIDeviceOrientationIsPortrait(UIDevice.current.orientation) ? 150.0 : 100.0) * heightRatio)
+                self.completionStartEndEditing!((UIDeviceOrientationIsPortrait(UIDevice.current.orientation) ? 150.0 : 100.0) * heightRatio, nil)
             }
 
             // Handler end editing
@@ -156,8 +156,8 @@ extension TagsCollectionViewController: UICollectionViewDataSource {
                     }
                 })
                 
-                if !self.addButtonTapped {
-                    self.completionStartEndEditing!(0.0)
+                if let addTagCell = self.collectionView.visibleCells.first(where: { $0 is AddTagCollectionViewCell }) {
+                    self.completionStartEndEditing!(0.0, addTagCell.frame.maxY)
                 }
             }
             
