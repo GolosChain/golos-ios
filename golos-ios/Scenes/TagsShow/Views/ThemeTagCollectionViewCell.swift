@@ -92,7 +92,7 @@ extension ThemeTagCollectionViewCell: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-        self.completionEndEditing!()
+//        self.completionEndEditing!()
         
         return true
     }

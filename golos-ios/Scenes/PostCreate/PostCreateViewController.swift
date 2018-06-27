@@ -138,6 +138,7 @@ class PostCreateViewController: BaseViewController {
                 // End editing
                 if constant == 0.0 {
                     self?.interactor?.save(tags: self?.tagsVC.tags)
+                    self?.containerViewHeightConstraint.constant -= 30.0 * heightRatio
                 }
             }
         }
@@ -251,19 +252,6 @@ class PostCreateViewController: BaseViewController {
     // MARK: - Actions
     @IBAction func cancelBarButtonTapped(_ sender: UIBarButtonItem) {
         self.router?.routeToMainScene()
-//
-//        let fromView: UIView    =   self.view
-//        let toView: UIView      =   (self.navigationController!.tabBarController?.viewControllers?.first!.view)!
-//
-//        UIView.animate(withDuration: 0.3,
-//                       animations: {
-//                        self.navigationController?.navigationBar.barTintColor = UIColor(hexString: "#4469af")
-//                        self.navigationController?.navigationBar.isHidden = true
-//        }, completion: { _ in
-//            UIView.transition(from: fromView, to: toView, duration: 0.5, options: .transitionCrossDissolve) { [weak self] _ in
-//                self?.navigationController?.tabBarController?.selectedIndex = 0
-//            }
-//        })
     }
     
     @IBAction func publishBarButtonTapped(_ sender: UIBarButtonItem) {
