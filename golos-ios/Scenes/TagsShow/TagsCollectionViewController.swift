@@ -12,7 +12,7 @@ import AlignedCollectionViewFlowLayout
 
 class TagsCollectionViewController: BaseViewController {
     // MARK: - Properties
-    var tags: [Tag] = [Tag]()
+    var tags: [Tag]!
     var tagIndex: Int       =   1
     var offsetIndex: Int    =   -1
     var addButtonTapped     =   false
@@ -50,14 +50,23 @@ class TagsCollectionViewController: BaseViewController {
 
         self.collectionView!.register(UINib(nibName:                        "AddTagCollectionViewCell", bundle: nil),
                                       forCellWithReuseIdentifier:           "AddTagCollectionViewCell")
-        
-        // Create first tag
-        let tag = Tag(placeholder: "Tag".localized() + " 1", id: tagIndex, isFirst: true)
-        self.tags.append(tag)
-    }
 
+        // Create first tag
+        self.createFirstTab()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    
+    // MARK: - Custom Functions
+    func createFirstTab() {
+        self.tags   =   [Tag]()
+        let tag     =   Tag(placeholder: "Tag".localized() + " 1", id: tagIndex, isFirst: true)
+        
+        self.tags.append(tag)
+        self.collectionView.reloadData()
     }
 }
 
@@ -67,7 +76,6 @@ extension TagsCollectionViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
-
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.tags.count + 1

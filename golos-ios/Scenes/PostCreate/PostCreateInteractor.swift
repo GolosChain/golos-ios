@@ -15,9 +15,9 @@ import GoloSwift
 
 // MARK: - Business Logic protocols
 protocol PostCreateBusinessLogic {
-    func save(tags: [Tag])
-    func save(commentBody: String)
-    func save(commentTitle: String)
+    func save(tags: [Tag]?)
+    func save(commentBody: String?)
+    func save(commentTitle: String?)
     func postCreate(withRequestModel requestModel: PostCreateModels.Something.RequestModel)
     func postComment(withRequestModel requestModel: PostCreateModels.Something.RequestModel)
     func postCommentReply(withRequestModel requestModel: PostCreateModels.Something.RequestModel)
@@ -46,15 +46,15 @@ class PostCreateInteractor: PostCreateBusinessLogic, PostCreateDataStore {
     
 
     // MARK: - Business logic implementation
-    func save(tags: [Tag]) {
+    func save(tags: [Tag]?) {
         self.tags = tags
     }
     
-    func save(commentBody: String) {
+    func save(commentBody: String?) {
         self.commentBody = commentBody
     }
     
-    func save(commentTitle: String) {
+    func save(commentTitle: String?) {
         self.commentTitle = commentTitle
     }
     

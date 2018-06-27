@@ -40,6 +40,9 @@ class PostCreateRouter: NSObject, PostCreateRoutingLogic, PostCreateDataPassing 
         let fromView: UIView    =   self.viewController!.view
         let toView: UIView      =   (self.viewController!.navigationController!.tabBarController?.viewControllers?.first!.view)!
         
+        // Clean all tags only by tapped Cancel button
+        viewController?.tagsVC.createFirstTab()
+        
         UIView.animate(withDuration: 0.3,
                        animations: {
                         self.viewController!.navigationController!.navigationBar.barTintColor = UIColor(hexString: "#4469af")

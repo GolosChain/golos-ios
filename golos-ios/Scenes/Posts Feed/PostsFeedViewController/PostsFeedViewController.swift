@@ -62,6 +62,7 @@ class PostsFeedViewController: BaseViewController {
         super.viewWillAppear(animated)
         Logger.log(message: "Success", event: .severe)
 
+        self.hideNavigationBar()
         tableView.reloadData()
     }
     

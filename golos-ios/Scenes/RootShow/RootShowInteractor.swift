@@ -35,9 +35,9 @@ class RootShowInteractor: RootShowBusinessLogic, RootShowDataStore {
     func loadPosts(withRequestModel requestModel: RootShowModels.Items.RequestModel) {
         // API 'get_discussions_by_trending' or 'get_discussions_by_blog'
         // FIXME: - ADD USER STATE CHECK & USER NAME
-        let type        =   (2/3 == 1) ?    PostsFeedType.popular : PostsFeedType.lenta
+        let type        =   (2/2 == 1) ?    PostsFeedType.popular : PostsFeedType.lenta
         
-        let discussion  =   (2/3 == 1) ?    RequestParameterAPI.Discussion.init(limit:          loadDataLimit) :
+        let discussion  =   (2/2 == 1) ?    RequestParameterAPI.Discussion.init(limit:          loadDataLimit) :
                                             RequestParameterAPI.Discussion.init(limit:          loadDataLimit,
                                                                                 truncateBody:   0,
                                                                                 selectAuthors:  ["yuri-vlad-second"])

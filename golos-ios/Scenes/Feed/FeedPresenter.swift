@@ -43,7 +43,7 @@ class FeedPresenter: NSObject {
 extension FeedPresenter: FeedPresenterProtocol {
     func getPostsFeedTypeArray() -> [PostsFeedType] {
         // FIXME: - ADD REAL USER STATE
-        if 2/3 == 1 {
+        if 2/2 == 1 {
             postsFeedTypeArray.remove(at: 0)
         }
         

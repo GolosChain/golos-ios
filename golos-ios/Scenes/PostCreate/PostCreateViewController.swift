@@ -30,7 +30,8 @@ protocol PostCreateDisplayLogic: class {
 class PostCreateViewController: BaseViewController {
     // MARK: - Properties
     var isKeyboardShow = false
-    
+    var tagsVC: TagsCollectionViewController!
+
     var sceneType: SceneType = .create {
         didSet {
             self.navigationItem.title           =   (sceneType == .create) ? "Publish Title".localized() : "Comment Title".localized()
@@ -123,7 +124,7 @@ class PostCreateViewController: BaseViewController {
     // MARK: - Routing
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "routeToTagsViewControllerWithSegue" {
-            let tagsVC = segue.destination  as! TagsCollectionViewController
+            self.tagsVC = segue.destination as! TagsCollectionViewController
             
             // Handler change frame
             tagsVC.complationCollectionViewChangeHeight = { [weak self] height in
@@ -136,7 +137,7 @@ class PostCreateViewController: BaseViewController {
                 
                 // End editing
                 if constant == 0.0 {
-                    self?.interactor?.save(tags: tagsVC.tags)
+                    self?.interactor?.save(tags: self?.tagsVC.tags)
                 }
             }
         }
@@ -185,7 +186,12 @@ class PostCreateViewController: BaseViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
-        self.contentTextView.text = nil
+        self.interactor?.save(tags: nil)
+        self.interactor?.save(commentBody: nil)
+        self.interactor?.save(commentTitle: nil)
+
+        self.contentTextView.text                   =   nil
+        self.postCreateView.titleTextField.text     =   nil
     }
     
     
