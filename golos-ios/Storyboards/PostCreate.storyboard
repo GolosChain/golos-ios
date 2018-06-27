@@ -174,7 +174,7 @@
                         <outlet property="containerViewHeightConstraint" destination="M6M-UF-6Lc" id="A0Y-oQ-y0f"/>
                         <outlet property="contentTextView" destination="doW-uc-lK0" id="V1x-g0-CG3"/>
                         <outlet property="contentViewBottomConstraint" destination="q4O-KT-Lla" id="MuT-1Y-RPP"/>
-                        <outlet property="stackView" destination="1yk-b9-MRG" id="5EE-Nt-85S"/>
+                        <outlet property="postCreateView" destination="nPS-aX-y2M" id="SMe-Ux-6Dv"/>
                         <outlet property="stackViewTopConstraint" destination="gy1-fP-ajC" id="3w2-wW-4UN"/>
                         <outlet property="tagsTitleLabel" destination="mLA-QB-vdt" id="hZ2-xt-aeQ"/>
                         <outlet property="tagsViewBottomConstraint" destination="OLz-1c-pK1" id="Ezs-xl-tVI"/>
@@ -237,6 +237,7 @@
                             <constraint firstItem="LMj-c3-wGd" firstAttribute="leading" secondItem="pZi-oN-AS7" secondAttribute="leading" id="e3J-LM-aOf"/>
                             <constraint firstAttribute="trailing" secondItem="LMj-c3-wGd" secondAttribute="trailing" id="eRP-Yf-o0C"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="bgn-Rw-bxk"/>
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="LMj-c3-wGd" id="faO-Fc-rYY"/>

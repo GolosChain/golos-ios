@@ -29,6 +29,7 @@ class FeedPresenter: NSObject {
         super.init()
         
         postsFeedTypeArray = [
+            .lenta,
             .popular,
             .actual,
             .new,
@@ -41,6 +42,11 @@ class FeedPresenter: NSObject {
 // MARK: FeedPresenterProtocol
 extension FeedPresenter: FeedPresenterProtocol {
     func getPostsFeedTypeArray() -> [PostsFeedType] {
+        // FIXME: - ADD REAL USER STATE
+        if 2/3 == 1 {
+            postsFeedTypeArray.remove(at: 0)
+        }
+        
         return postsFeedTypeArray
     }
     

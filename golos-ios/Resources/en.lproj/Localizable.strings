@@ -44,6 +44,7 @@
 "Actual"                                    =   "Actual";
 "Popular"                                   =   "Popular";
 "Promoted"                                  =   "Promoted";
+"Lenta"                                     =   "Lenta";
 "Enter Title"                               =   "Enter";
 "Cancel Title"                              =   "Cancel";
 "Exit"                                      =   "Exit";
@@ -67,6 +68,7 @@
 "Enter Comment Placeholder"                 =   "Enter your comment";
 "Enter your text"                           =   "Enter name of link";
 "Enter your link"                           =   "Enter link address";
+"Enter prefix"                              =   "Enter";
 
 
 // Error message
@@ -85,3 +87,5 @@
 "Album is not available"                    =   "Your device's album is not available";
 "No image found"                            =   "No image found";
 "You can add up to 5 tags"                  =   "You can add up to 5 tags";
+"Create Post Title Hint"                    =   "Enter an interesting title";
+"Post Text Body Hint"                       =   "Enter message text";

@@ -15,13 +15,18 @@ import GoloSwift
 
 // MARK: - Business Logic protocols
 protocol PostCreateBusinessLogic {
+    func save(tags: [Tag])
+    func save(commentBody: String)
+    func save(commentTitle: String)
     func postCreate(withRequestModel requestModel: PostCreateModels.Something.RequestModel)
     func postComment(withRequestModel requestModel: PostCreateModels.Something.RequestModel)
     func postCommentReply(withRequestModel requestModel: PostCreateModels.Something.RequestModel)
 }
 
 protocol PostCreateDataStore {
-     var commentText: String { get set }
+    var tags: [Tag]? { get set }
+    var commentBody: String? { get set }
+    var commentTitle: String? { get set }
 }
 
 class PostCreateInteractor: PostCreateBusinessLogic, PostCreateDataStore {
@@ -29,8 +34,10 @@ class PostCreateInteractor: PostCreateBusinessLogic, PostCreateDataStore {
     var presenter: PostCreatePresentationLogic?
     
     // PostCreateDataStore protocol implementation
-    var commentText: String = ""
-    
+    var tags: [Tag]?
+    var commentBody: String?
+    var commentTitle: String?
+
     
     // MARK: - Class Initialization
     deinit {
@@ -39,9 +46,51 @@ class PostCreateInteractor: PostCreateBusinessLogic, PostCreateDataStore {
     
 
     // MARK: - Business logic implementation
+    func save(tags: [Tag]) {
+        self.tags = tags
+    }
+    
+    func save(commentBody: String) {
+        self.commentBody = commentBody
+    }
+    
+    func save(commentTitle: String) {
+        self.commentTitle = commentTitle
+    }
+    
     func postCreate(withRequestModel requestModel: PostCreateModels.Something.RequestModel) {
-        let responseModel = PostCreateModels.Something.ResponseModel()
-        presenter?.presentPostCreate(fromResponseModel: responseModel)
+        let stringTags: [String]  =   self.tags!.compactMap({ $0.title })
+
+        let comment =   RequestParameterAPI.Comment(parentAuthor:       "",
+                                                    parentPermlink:     self.tags!.first!.title,
+                                                    author:             "msm72",
+                                                    title:              self.commentTitle!,
+                                                    body:               self.commentBody!,
+                                                    jsonMetadata: [RequestParameterAPI.CommentMetadata(tags: stringTags)])
+        
+//        let commentOptions  =   RequestParameterAPI.CommentOptions(author: <#T##String#>,
+//                                                                   permlink: <#T##String#>,
+//                                                                   maxAcceptedPayout: <#T##String#>,
+//                                                                   percentSteemDollars: <#T##UInt#>,
+//                                                                   allowVotes: <#T##Bool#>,
+//                                                                   allowCurationRewards: <#T##Bool#>,
+//                                                                   extensions: <#T##[String]#>)
+        
+        // API 'Create new post'
+        broadcast.executePOST(byOperationAPIType: OperationAPIType.create(post: comment),
+                              onResult: { [weak self] responseAPIResult in
+                                guard let result = (responseAPIResult as! ResponseAPIFeedResult).result, result.count > 0 else {
+//                                    completion([], nil)
+                                    return
+                                }
+
+                                let responseModel = PostCreateModels.Something.ResponseModel()
+                                self?.presenter?.presentPostCreate(fromResponseModel: responseModel)
+        },
+                              onError: { errorAPI in
+                                Logger.log(message: "nresponse API Error = \(errorAPI.caseInfo.message)\n", event: .error)
+//                                completion(nil, errorAPI)
+        })
     }
     
     func postComment(withRequestModel requestModel: PostCreateModels.Something.RequestModel) {

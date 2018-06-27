@@ -30,6 +30,9 @@ class PostCreateView: UIView {
                                 textColors:             blackWhiteColorPickers,
                                 font:                   UIFont(name: "SFUIDisplay-Regular", size: 16.0 * widthRatio),
                                 alignment:              .left)
+            
+            titleTextField.inputAccessoryView    =   UIView()
+            titleTextField.delegate              =   self
         }
     }
     
@@ -63,5 +66,15 @@ class PostCreateView: UIView {
         UINib(nibName: String(describing: PostCreateView.self), bundle: Bundle(for: PostCreateView.self)).instantiate(withOwner: self, options: nil)
         addSubview(view)
         view.frame = frame
+    }
+}
+
+
+// MARK: - UITextFieldDelegate
+extension PostCreateView: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        
+        return true
     }
 }

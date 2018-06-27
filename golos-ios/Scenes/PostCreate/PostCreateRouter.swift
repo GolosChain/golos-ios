@@ -15,6 +15,7 @@ import GoloSwift
 
 // MARK: - Input & Output protocols
 @objc protocol PostCreateRoutingLogic {
+    func routeToMainScene()
 //    func routeToSomewhere(segue: UIStoryboardSegue?)
 }
 
@@ -35,6 +36,21 @@ class PostCreateRouter: NSObject, PostCreateRoutingLogic, PostCreateDataPassing 
     
 
     // MARK: - Routing
+    func routeToMainScene() {
+        let fromView: UIView    =   self.viewController!.view
+        let toView: UIView      =   (self.viewController!.navigationController!.tabBarController?.viewControllers?.first!.view)!
+        
+        UIView.animate(withDuration: 0.3,
+                       animations: {
+                        self.viewController!.navigationController!.navigationBar.barTintColor = UIColor(hexString: "#4469af")
+                        self.viewController!.navigationController!.navigationBar.isHidden = true
+        }, completion: { _ in
+            UIView.transition(from: fromView, to: toView, duration: 0.5, options: .transitionCrossDissolve) { [weak self] _ in
+                self?.viewController!.navigationController!.tabBarController!.selectedIndex = 0
+            }
+        })
+    }
+    
 //    func routeToSomewhere(segue: UIStoryboardSegue?) {
 //        if let segue = segue {
 //            let destinationVC = segue.destination as! SomewhereViewController

@@ -49,8 +49,8 @@ class PostCreateViewController: BaseViewController {
     
     
     // MARK: - IBOutlets
-    @IBOutlet weak var stackView: UIStackView!
-
+    @IBOutlet weak var postCreateView: PostCreateView!
+    
     @IBOutlet weak var commentReplyView: PostCommentReply! {
         didSet {
         }
@@ -133,6 +133,11 @@ class PostCreateViewController: BaseViewController {
             // Handler start editing tags
             tagsVC.completionStartEndEditing = { [weak self] constant in
                 self?.tagsViewBottomConstraint.constant = constant
+                
+                // End editing
+                if constant == 0.0 {
+                    self?.interactor?.save(tags: tagsVC.tags)
+                }
             }
         }
         
@@ -159,7 +164,7 @@ class PostCreateViewController: BaseViewController {
         
         self.view.tune()
         
-        sceneType = .comment
+        sceneType = .create
         
         IQKeyboardManager.sharedManager().enable = false
     }
@@ -205,24 +210,61 @@ class PostCreateViewController: BaseViewController {
         }
     }
     
+    private func isRequestAvailable() -> Bool {
+        // Check title
+        if sceneType == .create && (self.postCreateView.titleTextField.text?.isEmpty)! {
+            self.showAlertView(withTitle: "Info", andMessage: "Create Post Title Hint", needCancel: false, completion: { _ in })
+            return false
+        }
+        
+        // Check text body
+        else if self.contentTextView.text.hasPrefix("Enter prefix".localized()) {
+            self.showAlertView(withTitle: "Info", andMessage: "Post Text Body Hint", needCancel: false, completion: { _ in })
+            return false
+        }
+        
+        // Check tags
+        else if self.router?.dataStore?.tags == nil {
+            self.showAlertView(withTitle: "Info", andMessage: "Select topic", needCancel: false, completion: { _ in })
+            return false
+        }
+        
+        // Check network connection
+        guard isNetworkAvailable else {
+            self.showAlertView(withTitle: "Info", andMessage: "No Internet Connection", needCancel: false, completion: { _ in })
+            return false
+        }
+        
+        self.interactor?.save(commentBody: self.contentTextView.text!)
+        self.interactor?.save(commentTitle: self.postCreateView.titleTextField.text!)
+        
+        return true
+    }
+    
     
     // MARK: - Actions
     @IBAction func cancelBarButtonTapped(_ sender: UIBarButtonItem) {
-        let fromView: UIView    =   self.view
-        let toView: UIView      =   (self.navigationController!.tabBarController?.viewControllers?.first!.view)!
-        
-        UIView.animate(withDuration: 0.3,
-                       animations: {
-                        self.navigationController?.navigationBar.barTintColor = UIColor(hexString: "#4469af")
-                        self.navigationController?.navigationBar.isHidden = true
-        }, completion: { _ in
-            UIView.transition(from: fromView, to: toView, duration: 0.5, options: .transitionCrossDissolve) { [weak self] _ in
-                self?.navigationController?.tabBarController?.selectedIndex = 0
-            }
-        })
+        self.router?.routeToMainScene()
+//
+//        let fromView: UIView    =   self.view
+//        let toView: UIView      =   (self.navigationController!.tabBarController?.viewControllers?.first!.view)!
+//
+//        UIView.animate(withDuration: 0.3,
+//                       animations: {
+//                        self.navigationController?.navigationBar.barTintColor = UIColor(hexString: "#4469af")
+//                        self.navigationController?.navigationBar.isHidden = true
+//        }, completion: { _ in
+//            UIView.transition(from: fromView, to: toView, duration: 0.5, options: .transitionCrossDissolve) { [weak self] _ in
+//                self?.navigationController?.tabBarController?.selectedIndex = 0
+//            }
+//        })
     }
     
     @IBAction func publishBarButtonTapped(_ sender: UIBarButtonItem) {
+        guard isRequestAvailable() else {
+            return
+        }
+        
         switch sceneType {
         case .create:
             let postCreateRequestModel = PostCreateModels.Something.RequestModel()
@@ -245,16 +287,19 @@ extension PostCreateViewController: PostCreateDisplayLogic {
     func displayPostCreate(fromViewModel viewModel: PostCreateModels.Something.ViewModel) {
         // NOTE: Display the result from the Presenter
 
+        // TODO: - ADD IF VIEWMODEL SUCCESS = ROUTE TO NEW POST SCENE
     }
     
     func displayPostComment(fromViewModel viewModel: PostCreateModels.Something.ViewModel) {
         // NOTE: Display the result from the Presenter
 
+        // TODO: - ADD IF VIEWMODEL SUCCESS = ROUTE TO NEW POST SCENE
     }
     
     func displayPostCommentReply(fromViewModel viewModel: PostCreateModels.Something.ViewModel) {
         // NOTE: Display the result from the Presenter
 
+        // TODO: - ADD IF VIEWMODEL SUCCESS = ROUTE TO NEW POST SCENE
     }
 }
 

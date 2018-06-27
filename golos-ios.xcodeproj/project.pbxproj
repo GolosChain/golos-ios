@@ -673,6 +673,7 @@
 			children = (
 				B136D4F520D8B9B8003AD279 /* Model */,
 				B136D4F620D8B9BE003AD279 /* Views */,
+				B136D50120D8BBEA003AD279 /* TagsCollectionViewController.swift */,
 			);
 			path = TagsShow;
 			sourceTree = "<group>";
@@ -1075,7 +1076,6 @@
 				B1F3747620C2B4DE005EF767 /* RootShow */,
 				EC24FF6A200C3FE700A0AE15 /* TabBarShow */,
 				B136D4F420D8B986003AD279 /* TagsShow */,
-				B136D50120D8BBEA003AD279 /* TagsCollectionViewController.swift */,
 				EC24FF6D200C432700A0AE15 /* UserProfile */,
 				ECC15F9D2009757A0099BBC9 /* WelcomeShow */,
 			);

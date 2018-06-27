@@ -44,6 +44,7 @@
 "Actual"                                    =   "Актуальное";
 "Popular"                                   =   "Популярное";
 "Promoted"                                  =   "Промо";
+"Lenta"                                     =   "Лента";
 "Enter Title"                               =   "Войти";
 "Cancel Title"                              =   "Отмена";
 "Exit"                                      =   "Выход";
@@ -67,6 +68,7 @@
 "Enter Comment Placeholder"                 =   "Напишите ваш комментарий";
 "Enter your text"                           =   "Напишите имя ссылки";
 "Enter your link"                           =   "Напишите адрес ссылки";
+"Enter prefix"                              =   "Напишите";
 
 
 // Error message
@@ -85,3 +87,5 @@
 "Album is not available"                    =   "Альбом вашего устройства недоступен";
 "No image found"                            =   "Фотография не найдена";
 "You can add up to 5 tags"                  =   "Вы можете создать не более 5 тегов";
+"Create Post Title Hint"                    =   "Введите название заголовка";
+"Post Text Body Hint"                       =   "Введите текст сообщения";
