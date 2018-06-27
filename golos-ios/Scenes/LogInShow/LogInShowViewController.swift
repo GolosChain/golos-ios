@@ -25,7 +25,7 @@ enum LoginType {
 
 // MARK: - Input & Output protocols
 protocol LogInShowDisplayLogic: class {
-    func displaySomething(fromViewModel viewModel: LogInShowModels.Something.ViewModel)
+    func displayAuthorizeUser(fromViewModel viewModel: LogInShowModels.Something.ViewModel)
 }
 
 // MARK: - Input & Output protocols
@@ -208,7 +208,7 @@ class LogInShowViewController: BaseViewController {
 
             // API 'login'
             let requestModel = LogInShowModels.Something.RequestModel()
-            interactor?.doSomething(withRequestModel: requestModel)
+            interactor?.authorizeUser(withRequestModel: requestModel)
         }
     }
     
@@ -220,10 +220,12 @@ class LogInShowViewController: BaseViewController {
 
 // MARK: - LogInShowDisplayLogic
 extension LogInShowViewController: LogInShowDisplayLogic {
-    func displaySomething(fromViewModel viewModel: LogInShowModels.Something.ViewModel) {
+    func displayAuthorizeUser(fromViewModel viewModel: LogInShowModels.Something.ViewModel) {
         // NOTE: Display the result from the Presenter
         self.enterButtonSpinner.stopAnimating()
         self.enterButton.isEnabled      =   true
         self.cancelButton.isEnabled     =   true
+        
+        self.performSegue(withIdentifier: "FeedPostsShowSceneSegue", sender: nil)
     }
 }

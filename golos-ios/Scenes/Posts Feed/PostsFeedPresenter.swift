@@ -74,10 +74,11 @@ extension PostsFeedPresenter: PostsFeedPresenterProtocol {
     func loadPostsFeed(withDiscussion discussion: RequestParameterAPI.Discussion) {
         Logger.log(message: "Success", event: .severe)
 
-        if postsFeedType == .popular && displayedPostsItems.count > 0 && discussion.start_author == nil {
+        if (postsFeedType == .popular || postsFeedType == .lenta) && displayedPostsItems.count > 0 && discussion.start_author == nil {
             // Prepare & Display feed posts
             self.displayedPosts.append(contentsOf: displayedPostsItems)
             self.postsFeedView.didLoadPosts()
+            displayedPostsItems = [DisplayedPost]()
         }
 
         else {

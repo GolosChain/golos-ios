@@ -15,7 +15,7 @@ import GoloSwift
 
 // MARK: - Business Logic protocols
 protocol LogInShowBusinessLogic {
-    func doSomething(withRequestModel requestModel: LogInShowModels.Something.RequestModel)
+    func authorizeUser(withRequestModel requestModel: LogInShowModels.Something.RequestModel)
 }
 
 class LogInShowInteractor: LogInShowBusinessLogic {
@@ -30,8 +30,8 @@ class LogInShowInteractor: LogInShowBusinessLogic {
     
 
     // MARK: - Business logic implementation
-    func doSomething(withRequestModel requestModel: LogInShowModels.Something.RequestModel) {        
+    func authorizeUser(withRequestModel requestModel: LogInShowModels.Something.RequestModel) {        
         let responseModel = LogInShowModels.Something.ResponseModel()
-        presenter?.presentSomething(fromResponseModel: responseModel)
+        presenter?.presentAuthorizeUser(fromResponseModel: responseModel)
     }
 }

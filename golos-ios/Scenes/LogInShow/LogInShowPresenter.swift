@@ -15,7 +15,7 @@ import GoloSwift
 
 // MARK: - Presentation Logic protocols
 protocol LogInShowPresentationLogic {
-    func presentSomething(fromResponseModel responseModel: LogInShowModels.Something.ResponseModel)
+    func presentAuthorizeUser(fromResponseModel responseModel: LogInShowModels.Something.ResponseModel)
 }
 
 class LogInShowPresenter: LogInShowPresentationLogic {
@@ -30,8 +30,8 @@ class LogInShowPresenter: LogInShowPresentationLogic {
     
 
     // MARK: - Presentation Logic implementation
-    func presentSomething(fromResponseModel responseModel: LogInShowModels.Something.ResponseModel) {
+    func presentAuthorizeUser(fromResponseModel responseModel: LogInShowModels.Something.ResponseModel) {
         let viewModel = LogInShowModels.Something.ViewModel()
-        viewController?.displaySomething(fromViewModel: viewModel)
+        viewController?.displayAuthorizeUser(fromViewModel: viewModel)
     }
 }

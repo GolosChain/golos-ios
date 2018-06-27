@@ -33,8 +33,16 @@ class RootShowInteractor: RootShowBusinessLogic, RootShowDataStore {
 
     // MARK: - Business logic implementation
     func loadPosts(withRequestModel requestModel: RootShowModels.Items.RequestModel) {
-        // API 'get_discussions_by_trending'
-        PostsFeedManager().loadPostsFeed(withType: PostsFeedType.popular, andDiscussion: RequestParameterAPI.Discussion.init(limit: loadDataLimit), completion: { [weak self] (items, errorAPI) in
+        // API 'get_discussions_by_trending' or 'get_discussions_by_blog'
+        // FIXME: - ADD USER STATE CHECK & USER NAME
+        let type        =   (2/3 == 1) ?    PostsFeedType.popular : PostsFeedType.lenta
+        
+        let discussion  =   (2/3 == 1) ?    RequestParameterAPI.Discussion.init(limit:          loadDataLimit) :
+                                            RequestParameterAPI.Discussion.init(limit:          loadDataLimit,
+                                                                                truncateBody:   0,
+                                                                                selectAuthors:  ["yuri-vlad-second"])
+        
+        PostsFeedManager().loadPostsFeed(withType: type, andDiscussion: discussion, completion: { [weak self] (items, errorAPI) in
             guard let selfStrong = self else { return }
             
             guard errorAPI == nil else {

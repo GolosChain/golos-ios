@@ -70,6 +70,8 @@ class CircularProgressBarView: UIView {
 // MARK: - CAAnimationDelegate
 extension CircularProgressBarView: CAAnimationDelegate {
     func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
-        self.endAnimationCompletion!()
+        if flag {
+            self.endAnimationCompletion!()
+        }
     }
 }

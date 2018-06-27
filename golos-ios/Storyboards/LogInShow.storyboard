@@ -55,7 +55,7 @@
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Cancel Title"/>
                                                 <connections>
-                                                    <segue destination="g0c-Do-kYb" kind="unwind" identifier="" unwindAction="unwindFromLogInShowSceneWithSegue:" id="I8M-mW-ITk"/>
+                                                    <segue destination="g0c-Do-kYb" kind="unwind" identifier="FeedPostsShowSceneSegue" unwindAction="unwindFromLogInShowSceneWithSegue:" id="I8M-mW-ITk"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -440,7 +440,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uxK-YC-2Aa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1594" y="172"/>
+            <point key="canvasLocation" x="916" y="406"/>
         </scene>
     </scenes>
     <resources>
