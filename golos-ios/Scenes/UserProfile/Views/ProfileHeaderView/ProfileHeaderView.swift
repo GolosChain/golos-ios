@@ -75,7 +75,16 @@ class ProfileHeaderView: PassthroughView {
     @IBOutlet private weak var backgroundImageView: UIImageView!
     @IBOutlet private weak var blurImageView: UIImageView!
     @IBOutlet private weak var avatarImageView: UIImageView!
-    @IBOutlet private weak var nameLabel: UILabel!
+    
+    @IBOutlet private weak var nameLabel: UILabel! {
+        didSet {
+            nameLabel.font              =   UIFont(name: "SFUIDisplay-Regular", size: 18.0 * widthRatio)
+            nameLabel.theme_textColor   =   whiteBlackColorPickers
+            nameLabel.textAlignment     =   .left
+            nameLabel.numberOfLines     =   1
+        }
+    }
+    
     @IBOutlet private weak var starsImageView: UIImageView!
     @IBOutlet private weak var starsLabel: UILabel!
     @IBOutlet private weak var rankLabel: UILabel!
@@ -87,9 +96,21 @@ class ProfileHeaderView: PassthroughView {
     @IBOutlet private weak var editProfileButton: UIButton!
     @IBOutlet weak var whiteStatusBarView: UIView!
     
+    @IBOutlet var labelsCollection: [UILabel]! {
+        didSet {
+            _ = labelsCollection.map({
+                $0.text?.localize()
+                $0.font                 =   UIFont(name: "SFUIDisplay-Regular", size: 12.0 * widthRatio)
+                $0.theme_textColor      =   whiteBlackColorPickers
+                $0.textAlignment        =   .left
+                $0.numberOfLines        =   1
+            })
+        }
+    }
+    
     @IBOutlet private weak var imageViewTopConstraint: NSLayoutConstraint!
     
-    
+
     // MARK: - Delegate
     weak var delegate: ProfileHeaderViewDelegate?
     
