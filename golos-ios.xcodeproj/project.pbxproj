@@ -979,9 +979,9 @@
 		EC9ABBC42017D54900AF8597 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				ECA8E3582018C9F5003B8ABA /* ProfileHorizontalSelectorView */,
 				ECA8E34F2018A619003B8ABA /* ProfileInfoView */,
 				ECA8E34E2018A5E2003B8ABA /* ProfileHeaderView */,
+				ECA8E3582018C9F5003B8ABA /* ProfileHorizontalSelectorView */,
 			);
 			path = Views;
 			sourceTree = "<group>";

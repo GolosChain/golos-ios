@@ -16,19 +16,12 @@ class ProfileInfoView: PassthroughView {
         get {
             return informationLabel.text
         }
+        
         set {
             informationLabel.text = newValue
 
-            if (newValue?.isEmpty)! {
-                self.stackViewTopConstraint.constant = 0.0
-                self.frame = CGRect(origin: .zero, size: CGSize(width: self.frame.width, height: stackViewHeightConstraint.constant))
-            }
-            
-            else {
-                informationLabel.sizeToFit()
-
-//                self.frame = CGRect(origin: .zero, size: CGSize(width: self.frame.width, height: stackViewHeightConstraint.constant + self.infoLabelView.frame.height))
-            }
+            self.informationLabel.sizeToFit()
+            self.infoLabelView.isHidden = (newValue?.isEmpty)! ? true : false
             
             setNeedsLayout()
             layoutIfNeeded()
@@ -71,6 +64,12 @@ class ProfileInfoView: PassthroughView {
     @IBOutlet private weak var subscribersAmountLabel: UILabel!
     @IBOutlet private weak var subscribtionsAmountLabel: UILabel!
     
+    @IBOutlet weak var infoLabelView: UIView! {
+        didSet {
+            infoLabelView.isHidden = true
+        }
+    }
+    
     @IBOutlet private weak var informationLabel: UILabel! {
         didSet {
             informationLabel.font               =   UIFont(name: "SFUIDisplay-Regular", size: 13.0 * widthRatio)
@@ -84,10 +83,10 @@ class ProfileInfoView: PassthroughView {
         didSet {
             _ = labelsCollection.map({
                 $0.text?.localize()
-                $0.font                 =   UIFont(name: "SFUIDisplay-Regular", size: 12.0 * widthRatio)
-                $0.theme_textColor      =   darkGrayWhiteColorPickers
-                $0.textAlignment        =   .left
-                $0.numberOfLines        =   1
+                $0.font                         =   UIFont(name: "SFUIDisplay-Regular", size: 12.0 * widthRatio)
+                $0.theme_textColor              =   darkGrayWhiteColorPickers
+                $0.textAlignment                =   .left
+                $0.numberOfLines                =   1
             })
         }
     }
@@ -95,10 +94,10 @@ class ProfileInfoView: PassthroughView {
     @IBOutlet var valuesCollection: [UILabel]! {
         didSet {
             _ = valuesCollection.map({
-                $0.font                 =   UIFont(name: "SFUIDisplay-Regular", size: 16.0 * widthRatio)
-                $0.theme_textColor      =   veryDarkGrayWhiteColorPickers
-                $0.textAlignment        =   .left
-                $0.numberOfLines        =   1
+                $0.font                         =   UIFont(name: "SFUIDisplay-Regular", size: 16.0 * widthRatio)
+                $0.theme_textColor              =   veryDarkGrayWhiteColorPickers
+                $0.textAlignment                =   .left
+                $0.numberOfLines                =   1
             })
         }
     }
@@ -108,8 +107,6 @@ class ProfileInfoView: PassthroughView {
             stackViewHeightConstraint.constant *= heightRatio
         }
     }
-    
-    @IBOutlet weak var stackViewTopConstraint: NSLayoutConstraint!
     
     
     // MARK: - Initialization

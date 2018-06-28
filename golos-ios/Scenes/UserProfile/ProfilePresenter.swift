@@ -76,8 +76,8 @@ extension ProfilePresenter: ProfilePresenterProtocol {
 //            return
 //        }
         
-//        let userName = "msm72"
-        let userName = "yuri-vlad-second"
+        let userName = "msm72"
+//        let userName = "yuri-vlad-second"
 
         userManager.loadUsers(byNames: [userName]) { [weak self] (displayedUsers, errorAPI) in
             guard let strongSelf = self else { return }

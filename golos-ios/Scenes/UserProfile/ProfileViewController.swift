@@ -10,7 +10,7 @@ import UIKit
 import GoloSwift
 
 private let topViewHeight: CGFloat              =   180.0 * heightRatio
-private let middleViewHeight: CGFloat           =   158.0 * heightRatio
+private var middleViewHeight: CGFloat           =   58.0 * heightRatio
 private let bottomViewHeight: CGFloat           =   43.0 * heightRatio
 private let topViewMinimizedHeight: CGFloat     =   (UIDevice.getDeviceScreenSize() == .iphoneX ? 35.0 : 20.0) * heightRatio
 
@@ -43,16 +43,19 @@ class ProfileViewController: BaseViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var statusImageView: UIImageView!
     @IBOutlet weak var profileHeaderView: ProfileHeaderView!
     @IBOutlet weak var profileHorizontalSelector: ProfileHorizontalSelectorView!
-    @IBOutlet weak var statusBarImageViewBottomConstraint: NSLayoutConstraint!
-    
 
-    // MARK: - Constraints
+    @IBOutlet weak var statusBarImageViewBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var profileHeaderViewTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var profileHeaderViewHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var profileInfoViewTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var profileInfoViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var horizontalSelectorTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var horizontalSelectorHeightConstraint: NSLayoutConstraint!
+
+    @IBOutlet weak var profileInfoViewTopConstraint: NSLayoutConstraint! {
+        didSet {
+            profileInfoViewTopConstraint.constant = topViewHeight
+        }
+    }
     
     
     // MARK: - Class Functions
@@ -120,7 +123,7 @@ class ProfileViewController: BaseViewController, UIGestureRecognizerDelegate {
         }
         
         profileHeaderViewHeightConstraint.constant      =   topViewHeight
-//        profileInfoViewHeightConstraint.constant        =   middleViewHeight
+        profileInfoViewHeightConstraint.constant        =   middleViewHeight
         profileInfoViewTopConstraint.constant           =   topViewHeight
         horizontalSelectorHeightConstraint.constant     =   bottomViewHeight
         horizontalSelectorTopConstraint.constant        =   topViewHeight + middleViewHeight
@@ -178,7 +181,8 @@ extension ProfileViewController: ProfileViewProtocol {
         
         // Change profileInfoView height
         if !viewModel.information.isEmpty {
-//            profileInfoViewHeightConstraint.constant = profileInfoView.infoLabelView.frame.height + 58.0 * heightRatio
+            middleViewHeight *= 2
+            profileInfoViewHeightConstraint.constant = middleViewHeight
         }
         
         if let pictureUrlString = viewModel.pictureUrl {
