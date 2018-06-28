@@ -20,11 +20,14 @@ class ProfileInfoView: PassthroughView {
             informationLabel.text = newValue
 
             if (newValue?.isEmpty)! {
+                self.stackViewTopConstraint.constant = 0.0
                 self.frame = CGRect(origin: .zero, size: CGSize(width: self.frame.width, height: stackViewHeightConstraint.constant))
             }
             
             else {
-                self.infoLabelView.isHidden = false
+                informationLabel.sizeToFit()
+
+//                self.frame = CGRect(origin: .zero, size: CGSize(width: self.frame.width, height: stackViewHeightConstraint.constant + self.infoLabelView.frame.height))
             }
             
             setNeedsLayout()
@@ -68,12 +71,6 @@ class ProfileInfoView: PassthroughView {
     @IBOutlet private weak var subscribersAmountLabel: UILabel!
     @IBOutlet private weak var subscribtionsAmountLabel: UILabel!
     
-    @IBOutlet weak var infoLabelView: UIView! {
-        didSet {
-            infoLabelView.isHidden = true
-        }
-    }
-    
     @IBOutlet private weak var informationLabel: UILabel! {
         didSet {
             informationLabel.font               =   UIFont(name: "SFUIDisplay-Regular", size: 13.0 * widthRatio)
@@ -111,6 +108,8 @@ class ProfileInfoView: PassthroughView {
             stackViewHeightConstraint.constant *= heightRatio
         }
     }
+    
+    @IBOutlet weak var stackViewTopConstraint: NSLayoutConstraint!
     
     
     // MARK: - Initialization

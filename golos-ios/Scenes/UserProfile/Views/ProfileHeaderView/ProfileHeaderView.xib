@@ -26,6 +26,7 @@
                 <outlet property="starsImageView" destination="GYK-T0-5RT" id="thR-nK-FaL"/>
                 <outlet property="starsLabel" destination="V8g-ut-yLv" id="rD5-Tf-J1J"/>
                 <outlet property="subscribeButton" destination="d0u-Zn-tmK" id="iTj-cO-rEI"/>
+                <outlet property="whiteStatusBarView" destination="aIP-Ah-peY" id="wT1-1s-EbN"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -147,13 +148,23 @@
                         <action selector="backButtonPressed:" destination="-1" eventType="touchUpInside" id="HQZ-Jw-AEw"/>
                     </connections>
                 </button>
+                <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aIP-Ah-peY" userLabel="White Status View">
+                    <rect key="frame" x="0.0" y="150" width="375" height="30"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="Luy-qx-8Go"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstAttribute="bottom" secondItem="aIP-Ah-peY" secondAttribute="bottom" id="0Op-fY-kuL"/>
                 <constraint firstItem="mTm-oF-ogX" firstAttribute="top" secondItem="bRX-hm-6zh" secondAttribute="top" constant="20" id="1Cd-od-8T7"/>
+                <constraint firstItem="aIP-Ah-peY" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="2AJ-Xu-VCh"/>
                 <constraint firstAttribute="trailing" secondItem="pNd-xN-Zbi" secondAttribute="trailing" id="2Yw-we-9Mp"/>
                 <constraint firstItem="V8g-ut-yLv" firstAttribute="centerY" secondItem="GYK-T0-5RT" secondAttribute="centerY" id="2Z0-o1-Zua"/>
                 <constraint firstItem="Sjy-q5-k3d" firstAttribute="leading" secondItem="bRX-hm-6zh" secondAttribute="leading" id="2xa-Xr-PVK"/>
+                <constraint firstAttribute="trailing" secondItem="aIP-Ah-peY" secondAttribute="trailing" id="3Qz-Jv-U9V"/>
                 <constraint firstItem="Sjy-q5-k3d" firstAttribute="top" secondItem="bRX-hm-6zh" secondAttribute="top" id="4og-Az-t8z"/>
                 <constraint firstAttribute="bottom" secondItem="bRX-hm-6zh" secondAttribute="bottom" id="6Iw-zM-lHo"/>
                 <constraint firstItem="V8g-ut-yLv" firstAttribute="leading" secondItem="GYK-T0-5RT" secondAttribute="trailing" constant="5" id="7ne-gg-T79"/>

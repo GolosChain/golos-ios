@@ -10,7 +10,7 @@ import UIKit
 import GoloSwift
 
 private let topViewHeight: CGFloat              =   180.0 * heightRatio
-private let middleViewHeight: CGFloat           =   58.0 * heightRatio
+private let middleViewHeight: CGFloat           =   158.0 * heightRatio
 private let bottomViewHeight: CGFloat           =   43.0 * heightRatio
 private let topViewMinimizedHeight: CGFloat     =   (UIDevice.getDeviceScreenSize() == .iphoneX ? 35.0 : 20.0) * heightRatio
 
@@ -68,9 +68,11 @@ class ProfileViewController: BaseViewController, UIGestureRecognizerDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        UIApplication.shared.statusBarStyle = .lightContent
         navigationController?.setNavigationBarHidden(true, animated: true)
         navigationController?.interactivePopGestureRecognizer?.delegate = self
+        
+        // Set status bar
+        UIApplication.shared.statusBarStyle = profileHeaderView.whiteStatusBarView.isHidden ? .lightContent : .default
         
         self.presenter.fetchUser()
 
@@ -118,7 +120,7 @@ class ProfileViewController: BaseViewController, UIGestureRecognizerDelegate {
         }
         
         profileHeaderViewHeightConstraint.constant      =   topViewHeight
-        profileInfoViewHeightConstraint.constant        =   middleViewHeight
+//        profileInfoViewHeightConstraint.constant        =   middleViewHeight
         profileInfoViewTopConstraint.constant           =   topViewHeight
         horizontalSelectorHeightConstraint.constant     =   bottomViewHeight
         horizontalSelectorTopConstraint.constant        =   topViewHeight + middleViewHeight
@@ -174,6 +176,11 @@ extension ProfileViewController: ProfileViewProtocol {
         profileInfoView.information             =   viewModel.information
         profileInfoView.postsAmountString       =   viewModel.postsCount
         
+        // Change profileInfoView height
+        if !viewModel.information.isEmpty {
+//            profileInfoViewHeightConstraint.constant = profileInfoView.infoLabelView.frame.height + 58.0 * heightRatio
+        }
+        
         if let pictureUrlString = viewModel.pictureUrl {
             imageLoader.startLoadImage(with: pictureUrlString) { [weak self] image in
                 guard let strongSelf = self else { return }
@@ -196,6 +203,10 @@ extension ProfileViewController: ProfileFeedContainerControllerDelegate {
         profileHeaderViewTopConstraint.constant     =   -(min(yOffset, topViewHeight - topViewMinimizedHeight))
         profileInfoViewTopConstraint.constant       =   -(min(yOffset - topViewHeight, middleViewHeight))
         horizontalSelectorTopConstraint.constant    =   -(min(yOffset - middleViewHeight - topViewHeight, -topViewMinimizedHeight))
+        
+        // Change status bar
+        profileHeaderView.whiteStatusBarView.isHidden   =   profileHeaderViewTopConstraint.constant == -160.0 ? false : true
+        UIApplication.shared.statusBarStyle             =   profileHeaderViewTopConstraint.constant == -160.0 ? .default : .lightContent
         
         profileHeaderView.didChangeOffset(yOffset)
     }

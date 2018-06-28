@@ -40,8 +40,8 @@ let permlink: String                    =   "sdgsdgsdg234234"
 let weight: Int64                       =   10_000
 
 // iPhone 6, iPhone 8 as design template
-let heightRatio: CGFloat                =   UIScreen.main.bounds.height / (UIDeviceOrientationIsPortrait(UIDevice.current.orientation)  ?   667 : 375)
-let widthRatio: CGFloat                 =   UIScreen.main.bounds.width / (UIDeviceOrientationIsPortrait(UIDevice.current.orientation)   ?   375 : 667)
+let heightRatio: CGFloat                =   UIScreen.main.bounds.height / (UIApplication.shared.statusBarOrientation.isPortrait ? 667 : 375)
+let widthRatio: CGFloat                 =   UIScreen.main.bounds.width / (UIApplication.shared.statusBarOrientation.isPortrait ? 375 : 667)
 
 let appState: AppState                  =   StateMachine.load().state
 var displayedPostsItems                 =   [DisplayedPost]()

@@ -32,6 +32,7 @@ class ProfileHeaderView: PassthroughView {
         get {
             return nameLabel.text
         }
+        
         set {
             nameLabel.text = newValue
         }
@@ -41,6 +42,7 @@ class ProfileHeaderView: PassthroughView {
         get {
             return starsLabel.text
         }
+        
         set {
             starsLabel.text = newValue
         }
@@ -50,6 +52,7 @@ class ProfileHeaderView: PassthroughView {
         get {
             return rankLabel.text
         }
+        
         set {
             rankLabel.text = newValue
         }
@@ -82,6 +85,8 @@ class ProfileHeaderView: PassthroughView {
     @IBOutlet private weak var activityView: UIActivityIndicatorView!
     @IBOutlet private weak var backButton: UIButton!
     @IBOutlet private weak var editProfileButton: UIButton!
+    @IBOutlet weak var whiteStatusBarView: UIView!
+    
     @IBOutlet private weak var imageViewTopConstraint: NSLayoutConstraint!
     
     
@@ -92,11 +97,13 @@ class ProfileHeaderView: PassthroughView {
     // MARK: - Initialization
     override init(frame: CGRect) {
         super.init(frame: frame)
+       
         commonInit()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        
         commonInit()
     }
     
@@ -135,6 +142,7 @@ class ProfileHeaderView: PassthroughView {
     // MARK: - Layout
     override func layoutSubviews() {
         super.layoutSubviews()
+       
         avatarImageView.layer.cornerRadius = avatarImageView.bounds.size.width / 2
     }
     
@@ -142,6 +150,7 @@ class ProfileHeaderView: PassthroughView {
     // MARK: - Background images
     private func updateBackground() {
         backgroundImageView.image = backgroundImage
+        
         blurImageView.image = backgroundImage?.applyBlurWithRadius(10.0,
                                                                    tintColor: nil,
                                                                    saturationDeltaFactor: 1.0)
