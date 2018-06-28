@@ -10,7 +10,7 @@ import UIKit
 import GoloSwift
 
 private let topViewHeight: CGFloat              =   180.0 * heightRatio
-private let middleViewHeight: CGFloat           =   145.0 * heightRatio
+private let middleViewHeight: CGFloat           =   58.0 * heightRatio
 private let bottomViewHeight: CGFloat           =   43.0 * heightRatio
 private let topViewMinimizedHeight: CGFloat     =   (UIDevice.getDeviceScreenSize() == .iphoneX ? 35.0 : 20.0) * heightRatio
 
@@ -117,10 +117,8 @@ class ProfileViewController: BaseViewController, UIGestureRecognizerDelegate {
             profileHeaderView.showBackButton(navigationController.viewControllers.count > 1)
         }
         
-        profileHeaderViewHeightConstraint.constant = topViewHeight
-        
-//        profileInfoViewHeightConstraint.constant = middleViewHeight
-        
+        profileHeaderViewHeightConstraint.constant      =   topViewHeight
+        profileInfoViewHeightConstraint.constant        =   middleViewHeight
         profileInfoViewTopConstraint.constant           =   topViewHeight
         horizontalSelectorHeightConstraint.constant     =   bottomViewHeight
         horizontalSelectorTopConstraint.constant        =   topViewHeight + middleViewHeight

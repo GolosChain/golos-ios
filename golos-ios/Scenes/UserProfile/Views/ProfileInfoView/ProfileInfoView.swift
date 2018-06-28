@@ -19,6 +19,10 @@ class ProfileInfoView: PassthroughView {
         set {
             informationLabel.text = newValue
 
+            if (newValue?.isEmpty)! {
+                self.frame = CGRect(origin: .zero, size: CGSize(width: self.frame.width, height: stackViewHeightConstraint.constant))
+            }
+            
             setNeedsLayout()
             layoutIfNeeded()
         }
@@ -56,11 +60,19 @@ class ProfileInfoView: PassthroughView {
     
     
     // MARK: - IBOutlets
-    @IBOutlet private weak var informationLabel: UILabel!
     @IBOutlet private weak var postsAmountLabel: UILabel!
     @IBOutlet private weak var subscribersAmountLabel: UILabel!
     @IBOutlet private weak var subscribtionsAmountLabel: UILabel!
     
+    @IBOutlet private weak var informationLabel: UILabel! {
+        didSet {
+            informationLabel.font               =   UIFont(name: "SFUIDisplay-Regular", size: 13.0 * widthRatio)
+            informationLabel.theme_textColor    =   veryDarkGrayWhiteColorPickers
+            informationLabel.textAlignment      =   .left
+            informationLabel.numberOfLines      =   0
+        }
+    }
+
     @IBOutlet var labelsCollection: [UILabel]! {
         didSet {
             _ = labelsCollection.map({
@@ -72,6 +84,24 @@ class ProfileInfoView: PassthroughView {
             })
         }
     }
+
+    @IBOutlet var valuesCollection: [UILabel]! {
+        didSet {
+            _ = valuesCollection.map({
+                $0.font                 =   UIFont(name: "SFUIDisplay-Regular", size: 16.0 * widthRatio)
+                $0.theme_textColor      =   veryDarkGrayWhiteColorPickers
+                $0.textAlignment        =   .left
+                $0.numberOfLines        =   1
+            })
+        }
+    }
+
+    @IBOutlet weak var stackViewHeightConstraint: NSLayoutConstraint! {
+        didSet {
+            stackViewHeightConstraint.constant *= heightRatio
+        }
+    }
+    
     
     // MARK: - Initialization
     override init(frame: CGRect) {
@@ -89,8 +119,8 @@ class ProfileInfoView: PassthroughView {
     
     // MARK: - Custom Functions
     private func commonInit() {
-        let nib = UINib(nibName: String(describing: ProfileInfoView.self), bundle: nil)
-        let view = nib.instantiate(withOwner: self, options: nil).first as! UIView
+        let nib     =   UINib(nibName: String(describing: ProfileInfoView.self), bundle: nil)
+        let view    =   nib.instantiate(withOwner: self, options: nil).first as! UIView
         
         addSubview(view)
         
