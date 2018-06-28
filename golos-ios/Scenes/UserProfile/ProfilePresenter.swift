@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GoloSwift
 
 protocol ProfilePresenterProtocol: class {
     func setUsername(username: String?)
@@ -68,29 +69,30 @@ extension ProfilePresenter: ProfilePresenterProtocol {
         profileView.didRefreshUser()
     }
     
+    /// API
     func loadUser() {
-        // TODO: - CHANGE TO USE LOADUSERS FUNC
-        /*
-        guard let username = self.username else {
-            return
-        }
+        // TODO: - RECOMMENT AFTER CREATE USER MODEL
+//        guard let userName = self.username else {
+//            return
+//        }
         
-        userManager.loadUser(with: username) { [weak self] user, error in
+        let userName = "msm72"
+//        let userName = "yuri-vlad-second"
+
+        userManager.loadUsers(byNames: [userName]) { [weak self] (displayedUsers, errorAPI) in
             guard let strongSelf = self else { return }
 
-            guard error == nil else {
-                Logger.log(message: "\(error!.localizedDescription)", event: .error)
-                strongSelf.profileView.didFail(with: error!.localizedDescription)
+            guard errorAPI == nil else {
                 return
             }
-
-            guard let user = user else {
+            
+            guard let user = displayedUsers?.first else {
                 return
             }
-
+            
+            // Prepare & Display user
             strongSelf.user = user
             strongSelf.profileView.didRefreshUser()
         }
-    */
     }
 }

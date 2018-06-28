@@ -20,10 +20,10 @@ struct ProfileViewModel {
 
 extension ProfileViewModel {
     init(userModel: DisplayedUser) {
-        self.name = userModel.name
-        self.pictureUrl = userModel.pictureURL
-        self.backgroundImageUrl = userModel.coverImageURL
-        self.information = userModel.about ?? ""
-        self.postsCount = "\(userModel.postCount)"
+        self.name                   =   userModel.name
+        self.pictureUrl             =   userModel.pictureURL
+        self.backgroundImageUrl     =   userModel.coverImageURL
+        self.information            =   userModel.about ?? ""
+        self.postsCount             =   "\(userModel.postCount)"
     }
 }

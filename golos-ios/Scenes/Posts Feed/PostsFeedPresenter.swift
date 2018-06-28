@@ -86,7 +86,6 @@ extension PostsFeedPresenter: PostsFeedPresenterProtocol {
                 guard let selfStrong = self else { return }
                 
                 guard errorAPI == nil else {
-//                    Utils.showAlertView(withTitle: errorAPI!.caseInfo.title, andMessage: errorAPI!.caseInfo.message, needCancel: false, completion: { _ in })
                     return
                 }
                 

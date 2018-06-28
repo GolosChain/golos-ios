@@ -14,38 +14,35 @@ class UserManager {
     /**
      Load Users profiles by names.
      
-     - Parameter userNames: User name.
+     - Parameter names: Array of `User` names.
      - Parameter completion: Contains two values:
      - Parameter displayedUsers: Array of `DisplayedUser`.
      - Parameter errorAPI: Type `ErrorAPI`.
 
     */
     // FIXME: - ADD LOAD USERS AVATARS
-    /*
-    func loadUsers(byNames userNames: [String], completion: @escaping (_ displayedUsers: [DisplayedUser]?, _ errorAPI: ErrorAPI?) -> Void) {
+    func loadUsers(byNames names: [String], completion: @escaping (_ displayedUsers: [DisplayedUser]?, _ errorAPI: ErrorAPI?) -> Void) {
         Logger.log(message: "Success", event: .severe)
-
+        
+        // Create MethodAPIType
+        let methodAPIType = MethodAPIType.getAccounts(names: RequestParameterAPI.User(names: names))
+        
         // API 'get_accounts'
-//        let requestAPIType = broadcast.prepareGET(requestByMethodType: MethodAPIType.getAccounts(names: userNames))!
-//        // GolosBlockchainManager.prepareGET(requestByMethodType: MethodAPIType.getAccounts(names: userNames))!
-//        Logger.log(message: "\nrequestAPIType =\n\t\(requestAPIType)", event: .debug)
-//
-//        // Network Layer (WebSocketManager)
-//        DispatchQueue.main.async {
-//            webSocketManager.sendRequest(withType: requestAPIType) { (responseAPIType) in
-//                Logger.log(message: "\nresponseAPIType:\n\t\(responseAPIType)", event: .debug)
-//                
-//                guard let responseAPI = responseAPIType.responseAPI, let responseAPIResult = responseAPI as? ResponseAPIUserResult else {
-//                    completion(nil, responseAPIType.errorAPI)
-//                    return
-//                }
-//                
-//                let displayedUsers = responseAPIResult.result.compactMap({ DisplayedUser(fromResponseAPIUser: $0) })
-//                
-//                // Return to files: `UserPresenter.swift`, `PostsFeedPresenter.swift`
-//                completion(displayedUsers, nil)
-//            }
-//        }
+        broadcast.executeGET(byMethodAPIType: methodAPIType,
+                             onResult: { responseAPIResult in
+                                Logger.log(message: "\nresponse API Result = \(responseAPIResult)\n", event: .debug)
+                                
+                                guard let result = (responseAPIResult as! ResponseAPIUserResult).result, result.count > 0 else {
+                                    completion([], nil)
+                                    return
+                                }
+                                
+                                let displayedUsers = result.compactMap({ DisplayedUser(fromResponseAPIUser: $0) })
+                                completion(displayedUsers, nil)
+        },
+                             onError: { errorAPI in
+                                Logger.log(message: "nresponse API Error = \(errorAPI.caseInfo.message)\n", event: .error)
+                                completion(nil, errorAPI)
+        })
     }
- */
 }

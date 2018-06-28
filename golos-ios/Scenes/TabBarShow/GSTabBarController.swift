@@ -19,6 +19,7 @@ class GSTabBarController: UITabBarController {
     private func configureViewControllers() {
         let feedViewController                              =   FeedViewController.nibInstance()
         
+        // Home
         let feedNavigationViewController                    =   UINavigationController(navigationBarClass:  GSNavigationBar.self,
                                                                                        toolbarClass:        nil)
         
@@ -38,17 +39,20 @@ class GSTabBarController: UITabBarController {
          vc2.tabBarItem.tag         =   1
          */
         
+        // Create Post
         let postCreateNC            =   UIStoryboard(name: "PostCreate", bundle: nil).instantiateViewController(withIdentifier: "PostCreateNC")
         postCreateNC.tabBarItem     =   UITabBarItem(title: "", image: UIImage.init(named: "tab_add"), selectedImage: nil)
         postCreateNC.tabBarItem.tag =   2
         
         /*
+        // Notifications
         let vc4                     =   UIViewController()
         vc4.view.backgroundColor    =   .orange
         vc4.tabBarItem              =   UITabBarItem(title: "", image: UIImage.init(named: "tab_notifications"), selectedImage: nil)
          vc4.tabBarItem.tag          =   3
         */
         
+        // User Profile
         let profileViewController               =   ProfileViewController.nibInstance()
         let profileNavigationController         =   UINavigationController(rootViewController: profileViewController)
         
