@@ -23,6 +23,10 @@ class ProfileInfoView: PassthroughView {
                 self.frame = CGRect(origin: .zero, size: CGSize(width: self.frame.width, height: stackViewHeightConstraint.constant))
             }
             
+            else {
+                self.infoLabelView.isHidden = false
+            }
+            
             setNeedsLayout()
             layoutIfNeeded()
         }
@@ -63,6 +67,12 @@ class ProfileInfoView: PassthroughView {
     @IBOutlet private weak var postsAmountLabel: UILabel!
     @IBOutlet private weak var subscribersAmountLabel: UILabel!
     @IBOutlet private weak var subscribtionsAmountLabel: UILabel!
+    
+    @IBOutlet weak var infoLabelView: UIView! {
+        didSet {
+            infoLabelView.isHidden = true
+        }
+    }
     
     @IBOutlet private weak var informationLabel: UILabel! {
         didSet {

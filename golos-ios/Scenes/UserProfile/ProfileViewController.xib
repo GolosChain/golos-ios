@@ -45,10 +45,10 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kMl-fy-C8P" customClass="ProfileInfoView" customModule="Golos" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="180" width="375" height="145"/>
+                    <rect key="frame" x="0.0" y="180" width="375" height="58"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="145" id="GcT-74-XTr"/>
+                        <constraint firstAttribute="height" constant="58" id="GcT-74-XTr"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3bD-aF-YjH" customClass="ProfileHorizontalSelectorView" customModule="Golos" customModuleProvider="target">
