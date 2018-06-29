@@ -46,14 +46,14 @@ class ProfileViewController: BaseViewController, UIGestureRecognizerDelegate {
 
     @IBOutlet weak var statusBarImageViewBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var profileHeaderViewTopConstraint: NSLayoutConstraint!
-    @IBOutlet weak var profileHeaderViewHeightConstraint: NSLayoutConstraint!
+//    @IBOutlet weak var profileHeaderViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var profileInfoViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var horizontalSelectorTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var horizontalSelectorHeightConstraint: NSLayoutConstraint!
 
     @IBOutlet weak var profileInfoViewTopConstraint: NSLayoutConstraint! {
         didSet {
-            profileInfoViewTopConstraint.constant = topViewHeight
+//            profileInfoViewTopConstraint.constant = topViewHeight
         }
     }
     
@@ -122,9 +122,9 @@ class ProfileViewController: BaseViewController, UIGestureRecognizerDelegate {
             profileHeaderView.showBackButton(navigationController.viewControllers.count > 1)
         }
         
-        profileHeaderViewHeightConstraint.constant      =   topViewHeight
+//        profileHeaderViewHeightConstraint.constant      =   topViewHeight
         profileInfoViewHeightConstraint.constant        =   middleViewHeight
-        profileInfoViewTopConstraint.constant           =   topViewHeight
+//        profileInfoViewTopConstraint.constant           =   topViewHeight
         horizontalSelectorHeightConstraint.constant     =   bottomViewHeight
         horizontalSelectorTopConstraint.constant        =   topViewHeight + middleViewHeight
         profileHeaderView.backgroundImage               =   Images.Profile.getProfileHeaderBackground()

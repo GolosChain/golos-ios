@@ -89,12 +89,23 @@ class ProfileHeaderView: PassthroughView {
     @IBOutlet private weak var starsLabel: UILabel!
     @IBOutlet private weak var rankLabel: UILabel!
     @IBOutlet private weak var rankImageVIew: UIImageView!
-    @IBOutlet private weak var subscribeButton: UIButton!
-    @IBOutlet private weak var sendMessageButton: UIButton!
     @IBOutlet private weak var activityView: UIActivityIndicatorView!
+    @IBOutlet weak var whiteStatusBarView: UIView!
+
     @IBOutlet private weak var backButton: UIButton!
     @IBOutlet private weak var editProfileButton: UIButton!
-    @IBOutlet weak var whiteStatusBarView: UIView!
+    
+    @IBOutlet var actionButtonsCollection: [UIButton]! {
+        didSet {
+            _ = actionButtonsCollection.map({
+                $0.titleLabel?.font             =   UIFont(name: "SFUIDisplay-Regular", size: 12.0 * widthRatio)!
+                $0.titleLabel?.textAlignment    =   .center
+                $0.setTitle($0.titleLabel?.text?.localized(), for: .normal)
+                $0.theme_setTitleColor(veryDarkGrayWhiteColorPickers, forState: .normal)
+                $0.setProfileHeaderButton()
+            })
+        }
+    }
     
     @IBOutlet var labelsCollection: [UILabel]! {
         didSet {
@@ -147,11 +158,8 @@ class ProfileHeaderView: PassthroughView {
     private func setupUI() {
         avatarImageView.layer.masksToBounds = true
         
-        backgroundColor = .white
-        blurImageView.alpha = 0
-        
-        subscribeButton.setProfileHeaderButton()
-        sendMessageButton.setProfileHeaderButton()
+        backgroundColor         =   .white
+        blurImageView.alpha     =   0
     }
     
     func showBackButton(_ showBackButton: Bool) {
@@ -172,16 +180,15 @@ class ProfileHeaderView: PassthroughView {
     private func updateBackground() {
         backgroundImageView.image = backgroundImage
         
-        blurImageView.image = backgroundImage?.applyBlurWithRadius(10.0,
-                                                                   tintColor: nil,
-                                                                   saturationDeltaFactor: 1.0)
+        blurImageView.image = backgroundImage?.applyBlurWithRadius(10.0, tintColor: nil, saturationDeltaFactor: 1.0)
     }
     
     func didChangeOffset(_ offset: CGFloat) {
         if offset + minimizedHeaderHeight < 0 {
             imageViewTopConstraint.constant = offset + minimizedHeaderHeight
+            print(imageViewTopConstraint.constant)
         }
-
+        
         blurImageView.alpha = -((offset + minimizedHeaderHeight) / 100)
     }
 
@@ -209,7 +216,7 @@ class ProfileHeaderView: PassthroughView {
         delegate?.didPressSubsribeButton()
     }
     
-    @IBAction func sendMessageButtonPressed(_ sender: Any) {
+    @IBAction func writeButtonPressed(_ sender: Any) {
         delegate?.didPressSendMessageButton()
     }
     
