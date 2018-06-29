@@ -26,10 +26,9 @@ protocol ProfileViewProtocol: class {
 }
 
 class ProfilePresenter: NSObject {
-    // MARK: View
+    // MARK: - View
     weak var profileView: ProfileViewProtocol!
     
-    private var username: String?
     private var user: DisplayedUser? {
         didSet {
             if let user = user {
@@ -38,8 +37,8 @@ class ProfilePresenter: NSObject {
         }
     }
     
+    private var username: String?
     private var viewModel: ProfileViewModel?
-    
     private var userManager = UserManager()
     
     override init() {
@@ -76,8 +75,8 @@ extension ProfilePresenter: ProfilePresenterProtocol {
 //            return
 //        }
         
-        let userName = "msm72"
-//        let userName = "yuri-vlad-second"
+//        let userName = "msm72"
+        let userName = "yuri-vlad-second"
 
         userManager.loadUsers(byNames: [userName]) { [weak self] (displayedUsers, errorAPI) in
             guard let strongSelf = self else { return }

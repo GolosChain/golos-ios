@@ -17,14 +17,22 @@ struct DisplayedUser {
     let postCount: Int64
     var pictureURL: String?
     var coverImageURL: String?
-    
+    let memoKey: String?
+    let ownerKey: String?
+    let activeKey: String?
+    let postingKey: String?
+
     
     // MARK: - Class Initialization
     init(fromResponseAPIUser user: ResponseAPIUser) {
         self.id                 =   user.id
         self.name               =   user.name
         self.postCount          =   user.post_count
-        
+        self.memoKey            =   String(describing: user.memo?.key_auths.first?.first)
+        self.ownerKey           =   String(describing: user.owner?.key_auths.first?.first)
+        self.activeKey          =   String(describing: user.active?.key_auths.first?.first)
+        self.postingKey         =   String(describing: user.posting?.key_auths.first?.first)
+
         if  let metaData        =   user.json_metadata,
             let data            =   metaData.data(using: .utf8),
             let json            =   try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any],

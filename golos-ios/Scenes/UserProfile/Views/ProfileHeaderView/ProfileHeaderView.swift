@@ -186,7 +186,6 @@ class ProfileHeaderView: PassthroughView {
     func didChangeOffset(_ offset: CGFloat) {
         if offset + minimizedHeaderHeight < 0 {
             imageViewTopConstraint.constant = offset + minimizedHeaderHeight
-            print(imageViewTopConstraint.constant)
         }
         
         blurImageView.alpha = -((offset + minimizedHeaderHeight) / 100)

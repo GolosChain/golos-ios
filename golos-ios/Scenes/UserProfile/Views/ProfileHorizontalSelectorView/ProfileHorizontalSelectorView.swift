@@ -12,100 +12,110 @@ protocol ProfileHorizontalSelectorViewDelegate: class {
     func didSelectItem(at index: Int)
 }
 
+struct ProfileHorizontalSelectorItem {
+    let title: String
+}
+
 class ProfileHorizontalSelectorView: PassthroughView {
-    
-    // MARK: Constants
+    // MARK: - Constants
     private let selectionViewHeight: CGFloat = 2.0
     
-    // MARK: Outlets properties
+    
+    // MARK: - Properties
+    let selectionView = UIView()
+    var selectedButton: UIButton?
+
+    
+    // MARK: - Delegate
+    weak var delegate: ProfileHorizontalSelectorViewDelegate?
+
+
+    // MARK: - IBOutlets
     @IBOutlet weak var postsButton: UIButton!
     @IBOutlet weak var answersButton: UIButton!
     @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet weak var infoButton: UIButton!
-    @IBOutlet var buttons: [UIButton]!
+    
+    @IBOutlet var actionButtonsCollection: [UIButton]! {
+        didSet {
+            _ = actionButtonsCollection.map({
+                $0.titleLabel?.font             =   UIFont(name: "SFProDisplay-Regular", size: 13.0 * widthRatio)!
+                $0.titleLabel?.textAlignment    =   .center
+                $0.setTitle($0.titleLabel?.text?.localized(), for: .normal)
+                $0.theme_setTitleColor(darkGrayWhiteColorPickers, forState: .normal)
+                $0.theme_setTitleColor(blackWhiteColorPickers, forState: .highlighted)
+                $0.theme_setTitleColor(blackWhiteColorPickers, forState: .selected)
+                $0.setProfileHeaderButton()
+            })
+        }
+    }
     
     
-    // MARK: UI Properties
-    let selectionView = UIView()
     
-    var selectedButton: UIButton?
-    
-    
-//    var items = [ProfileHorizontalSelectorItem]()
-    
-    // MARK: Delegate
-    weak var delegate: ProfileHorizontalSelectorViewDelegate?
-    
-    // MARK: Init
+    // MARK: - Initialization
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
         commonInit()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        
         commonInit()
     }
     
+    
+    // MARK: - Layout
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        guard let selectedButton = selectedButton else { return }
+        
+        moveSelectionView(to: selectedButton, animated: false)
+    }
+    
+
+    // MARK: - Custom Functions
     private func commonInit() {
         let nib = UINib(nibName: String(describing: ProfileHorizontalSelectorView.self), bundle: nil)
         let view = nib.instantiate(withOwner: self, options: nil).first as! UIView
         addSubview(view)
         
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        view.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-        view.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-        view.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        view.translatesAutoresizingMaskIntoConstraints                  =   false
+        view.topAnchor.constraint(equalTo: topAnchor).isActive          =   true
+        view.rightAnchor.constraint(equalTo: rightAnchor).isActive      =   true
+        view.leftAnchor.constraint(equalTo: leftAnchor).isActive        =   true
+        view.bottomAnchor.constraint(equalTo: bottomAnchor).isActive    =   true
         
         setupUI()
     }
     
     
-    // MARK: Setup UI
+    // MARK: - Setup UI
     private func setupUI() {
         selectionView.backgroundColor = UIColor.Project.profileSelectionViewBackground
-        let frame = CGRect(x: postsButton.frame.origin.x,
-                           y: bounds.size.height - selectionViewHeight,
-                           width: postsButton.frame.width,
-                           height: selectionViewHeight)
+       
+        let frame = CGRect(x:       postsButton.frame.origin.x,
+                           y:       bounds.size.height - selectionViewHeight,
+                           width:   postsButton.frame.width,
+                           height:  selectionViewHeight)
+        
         selectionView.frame = frame
         addSubview(selectionView)
         
-        postsButton.setTitleColor(UIColor.Project.textPlaceholderGray, for: .normal)
-        postsButton.setTitleColor(UIColor.Project.textBlack, for: .highlighted)
-        postsButton.setTitleColor(UIColor.Project.textBlack, for: .selected)
+        postsButton.isSelected  =   true
+        selectedButton          =   postsButton
         
-        answersButton.setTitleColor(UIColor.Project.textPlaceholderGray, for: .normal)
-        answersButton.setTitleColor(UIColor.Project.textBlack, for: .highlighted)
-        answersButton.setTitleColor(UIColor.Project.textBlack, for: .selected)
-        
-        favoriteButton.setTitleColor(UIColor.Project.textPlaceholderGray, for: .normal)
-        favoriteButton.setTitleColor(UIColor.Project.textBlack, for: .highlighted)
-        favoriteButton.setTitleColor(UIColor.Project.textBlack, for: .selected)
-        
-        postsButton.isSelected = true
-        selectedButton = postsButton
         add(shadow: true, onside: .bottom)
     }
-
-    // MARK: Layout
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        guard let selectedButton = selectedButton else {
-            return
-        }
-        moveSelectionView(to: selectedButton, animated: false)
-    }
     
-    
-    private func moveSelectionView(to button: UIButton,
-                                   progress: CGFloat = 1,
-                                   animated: Bool) {
-        var frame = selectionView.frame
-        frame.origin.x = button.frame.origin.x
-        frame.size.width = button.frame.size.width
-        frame.origin.y = bounds.size.height - selectionViewHeight
+    private func moveSelectionView(to button: UIButton, progress: CGFloat = 1, animated: Bool) {
+        var frame               =   selectionView.frame
+        
+        frame.origin.x          =   button.frame.origin.x
+        frame.size.width        =   button.frame.size.width
+        frame.origin.y          =   bounds.size.height - selectionViewHeight
         
         let animation = {
             self.selectionView.frame = frame
@@ -113,36 +123,37 @@ class ProfileHorizontalSelectorView: PassthroughView {
         
         if animated {
             UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: animation, completion: nil)
-        } else {
+        }
+        
+        else {
             animation()
         }
     }
     
-    // MARK: Actions
-    @IBAction func didPressButton(_ sender: UIButton) {
+    
+    // MARK: - Actions
+    @IBAction func handlerActionButtonTapped(_ sender: UIButton) {
         guard sender != selectedButton else {
             return
         }
-        buttons.forEach {$0.isSelected = $0 == sender}
+        
+        actionButtonsCollection.forEach {$0.isSelected = $0 == sender}
         selectedButton = sender
         moveSelectionView(to: sender, animated: true)
         
-        guard let buttonIndex = buttons.index(of: sender) else {
+        guard let buttonIndex = actionButtonsCollection.index(of: sender) else {
             return
         }
+        
         delegate?.didSelectItem(at: buttonIndex)
     }
     
-    // MARK: Scrolling
+    
+    // MARK: - Scrolling
     func changeSelectedButton(at index: Int, progress: CGFloat = 0) {
-        let button = buttons[index]
+        let button = actionButtonsCollection[index]
         moveSelectionView(to: button, progress: progress, animated: true)
         selectedButton = button
-        buttons.forEach { $0.isSelected = $0 == button }
-//        delegate?.didSelectItem(at: index)
+        actionButtonsCollection.forEach { $0.isSelected = $0 == button }
     }
-}
-
-struct ProfileHorizontalSelectorItem {
-    let title: String
 }

@@ -30,8 +30,27 @@ class LogInShowInteractor: LogInShowBusinessLogic {
     
 
     // MARK: - Business logic implementation
-    func authorizeUser(withRequestModel requestModel: LogInShowModels.Something.RequestModel) {        
+    func authorizeUser(withRequestModel requestModel: LogInShowModels.Something.RequestModel) {
+//        let publicKey = self.createPublic()
+        
         let responseModel = LogInShowModels.Something.ResponseModel()
         presenter?.presentAuthorizeUser(fromResponseModel: responseModel)
+    }
+    
+}
+
+
+public struct PublicKey {
+    // MARK: - Properties
+    public let key: Data
+    public let prefix: String
+
+    
+    // MARK: - Class Initialization
+    init?(key: Data, prefix: String) {
+        guard key.count == 33 else { return nil }
+        
+        self.key        =   key
+        self.prefix     =   prefix
     }
 }

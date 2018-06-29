@@ -23,8 +23,8 @@ class ProfileViewController: BaseViewController, UIGestureRecognizerDelegate {
     private var imageLoader = GSImageLoader()
 
     lazy var presenter: ProfilePresenterProtocol = {
-        let presenter = ProfilePresenter()
-        presenter.profileView = self
+        let presenter           =   ProfilePresenter()
+        presenter.profileView   =   self
 
         return presenter
     }()
@@ -50,12 +50,7 @@ class ProfileViewController: BaseViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var profileInfoViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var horizontalSelectorTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var horizontalSelectorHeightConstraint: NSLayoutConstraint!
-
-    @IBOutlet weak var profileInfoViewTopConstraint: NSLayoutConstraint! {
-        didSet {
-//            profileInfoViewTopConstraint.constant = topViewHeight
-        }
-    }
+    @IBOutlet weak var profileInfoViewTopConstraint: NSLayoutConstraint!
     
     
     // MARK: - Class Functions

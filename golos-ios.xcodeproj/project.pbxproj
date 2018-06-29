@@ -102,6 +102,13 @@
 		B157660F20B59D80009619A6 /* RemoteNotificationTransferViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B157660E20B59D80009619A6 /* RemoteNotificationTransferViewController.swift */; };
 		B157661220B59D80009619A6 /* RemoteNotificationTransfer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B157661020B59D80009619A6 /* RemoteNotificationTransfer.storyboard */; };
 		B157661620B59D80009619A6 /* RemoteNotificationTransfer.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = B157660820B59D80009619A6 /* RemoteNotificationTransfer.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		B164F04220E62AE600C5CDD3 /* UserProfileShowPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B164F03C20E62AE600C5CDD3 /* UserProfileShowPresenter.swift */; };
+		B164F04320E62AE600C5CDD3 /* UserProfileShowWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B164F03D20E62AE600C5CDD3 /* UserProfileShowWorker.swift */; };
+		B164F04420E62AE600C5CDD3 /* UserProfileShowRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B164F03E20E62AE600C5CDD3 /* UserProfileShowRouter.swift */; };
+		B164F04520E62AE600C5CDD3 /* UserProfileShowModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B164F03F20E62AE600C5CDD3 /* UserProfileShowModels.swift */; };
+		B164F04620E62AE600C5CDD3 /* UserProfileShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B164F04020E62AE600C5CDD3 /* UserProfileShowViewController.swift */; };
+		B164F04720E62AE600C5CDD3 /* UserProfileShowInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B164F04120E62AE600C5CDD3 /* UserProfileShowInteractor.swift */; };
+		B164F04920E62B5A00C5CDD3 /* UserProfileShow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B164F04820E62B5A00C5CDD3 /* UserProfileShow.storyboard */; };
 		B181586020B976FD00835034 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B181585F20B976FD00835034 /* BaseViewController.swift */; };
 		B18B937220B91D4E000CF503 /* ForegroundRemoteNotificationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B18B937120B91D4E000CF503 /* ForegroundRemoteNotificationView.xib */; };
 		B18B937420B91DB8000CF503 /* ForegroundRemoteNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18B937320B91DB8000CF503 /* ForegroundRemoteNotificationView.swift */; };
@@ -328,6 +335,13 @@
 		B157660E20B59D80009619A6 /* RemoteNotificationTransferViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteNotificationTransferViewController.swift; sourceTree = "<group>"; };
 		B157661120B59D80009619A6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/RemoteNotificationTransfer.storyboard; sourceTree = "<group>"; };
 		B157661320B59D80009619A6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B164F03C20E62AE600C5CDD3 /* UserProfileShowPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileShowPresenter.swift; sourceTree = "<group>"; };
+		B164F03D20E62AE600C5CDD3 /* UserProfileShowWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileShowWorker.swift; sourceTree = "<group>"; };
+		B164F03E20E62AE600C5CDD3 /* UserProfileShowRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileShowRouter.swift; sourceTree = "<group>"; };
+		B164F03F20E62AE600C5CDD3 /* UserProfileShowModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileShowModels.swift; sourceTree = "<group>"; };
+		B164F04020E62AE600C5CDD3 /* UserProfileShowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileShowViewController.swift; sourceTree = "<group>"; };
+		B164F04120E62AE600C5CDD3 /* UserProfileShowInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileShowInteractor.swift; sourceTree = "<group>"; };
+		B164F04820E62B5A00C5CDD3 /* UserProfileShow.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UserProfileShow.storyboard; sourceTree = "<group>"; };
 		B181585F20B976FD00835034 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		B18B937120B91D4E000CF503 /* ForegroundRemoteNotificationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ForegroundRemoteNotificationView.xib; sourceTree = "<group>"; };
 		B18B937320B91DB8000CF503 /* ForegroundRemoteNotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForegroundRemoteNotificationView.swift; sourceTree = "<group>"; };
@@ -711,6 +725,7 @@
 				B1050CBE20CECFBE003CE4EE /* PostCreate.storyboard */,
 				B1F3747420C2B483005EF767 /* RootShow.storyboard */,
 				B11AA7F620CB018E00212713 /* WelcomeShow.storyboard */,
+				B164F04820E62B5A00C5CDD3 /* UserProfileShow.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -746,6 +761,19 @@
 				B157661320B59D80009619A6 /* Info.plist */,
 			);
 			path = RemoteNotificationTransfer;
+			sourceTree = "<group>";
+		};
+		B164F03B20E62A7300C5CDD3 /* UserProfileShow */ = {
+			isa = PBXGroup;
+			children = (
+				B164F04120E62AE600C5CDD3 /* UserProfileShowInteractor.swift */,
+				B164F03F20E62AE600C5CDD3 /* UserProfileShowModels.swift */,
+				B164F03C20E62AE600C5CDD3 /* UserProfileShowPresenter.swift */,
+				B164F03E20E62AE600C5CDD3 /* UserProfileShowRouter.swift */,
+				B164F04020E62AE600C5CDD3 /* UserProfileShowViewController.swift */,
+				B164F03D20E62AE600C5CDD3 /* UserProfileShowWorker.swift */,
+			);
+			path = UserProfileShow;
 			sourceTree = "<group>";
 		};
 		B181585E20B976E700835034 /* ViewControllers */ = {
@@ -1065,6 +1093,7 @@
 				B1F3747620C2B4DE005EF767 /* RootShow */,
 				EC24FF6A200C3FE700A0AE15 /* TabBarShow */,
 				B136D4F420D8B986003AD279 /* TagsShow */,
+				B164F03B20E62A7300C5CDD3 /* UserProfileShow */,
 				EC24FF6D200C432700A0AE15 /* UserProfile */,
 				ECC15F9D2009757A0099BBC9 /* WelcomeShow */,
 			);
@@ -1310,6 +1339,7 @@
 				7DFA6CAE2036D76000F59494 /* PostsFeedImageTableViewCell.xib in Resources */,
 				ECA8E35C2018CA30003B8ABA /* ProfileHorizontalSelectorView.xib in Resources */,
 				EC1DFB9620063C400080BC50 /* Assets.xcassets in Resources */,
+				B164F04920E62B5A00C5CDD3 /* UserProfileShow.storyboard in Resources */,
 				B18DB44E2085D22A00BA5D50 /* Localizable.strings in Resources */,
 				B1F3747520C2B483005EF767 /* RootShow.storyboard in Resources */,
 				7D25B488201F4978004A3400 /* ArticleViewController.xib in Resources */,
@@ -1496,7 +1526,9 @@
 				B181586020B976FD00835034 /* BaseViewController.swift in Sources */,
 				7D95CFA6203A119B00C1AE0A /* GSImageLoadOperation.swift in Sources */,
 				7DA063242032517D00B5630C /* ProfileFeedContainerItem.swift in Sources */,
+				B164F04620E62AE600C5CDD3 /* UserProfileShowViewController.swift in Sources */,
 				7DA063222032513A00B5630C /* ProfileFeedContainerController.swift in Sources */,
+				B164F04320E62AE600C5CDD3 /* UserProfileShowWorker.swift in Sources */,
 				B136D4FF20D8BA2E003AD279 /* ThemeTagCollectionViewCell.swift in Sources */,
 				B1EE686C20D2D713006BF802 /* PostCommentReply.swift in Sources */,
 				7D25B4C6201FABCB004A3400 /* ArticleTextTableViewCell.swift in Sources */,
@@ -1506,6 +1538,7 @@
 				B136D4FB20D8BA14003AD279 /* AddTagCollectionViewCell.swift in Sources */,
 				7DE3531B2048CA3400C04CB2 /* LogInHelpShowViewController.swift in Sources */,
 				7DCF74A720200AA700D46495 /* ArticleCommentTableViewCell.swift in Sources */,
+				B164F04220E62AE600C5CDD3 /* UserProfileShowPresenter.swift in Sources */,
 				7D911D1A2035DE5D00F19D3C /* String+Extensions.swift in Sources */,
 				7D95CFA5203A119B00C1AE0A /* GSImageLoader.swift in Sources */,
 				EC9B2AE6201550F4008335C8 /* FeedArticleTableViewCell.swift in Sources */,
@@ -1542,6 +1575,7 @@
 				B111322420CD51EA00BC7F33 /* PostingKeyShowRouter.swift in Sources */,
 				7D25B4B5201F9218004A3400 /* GSNavigationBar.swift in Sources */,
 				B1F3748220C2C5E1005EF767 /* RootShowModels.swift in Sources */,
+				B164F04420E62AE600C5CDD3 /* UserProfileShowRouter.swift in Sources */,
 				B136D4F820D8B9E8003AD279 /* Tag.swift in Sources */,
 				B198DB9120B9A21A008011A3 /* UIColor+Extensions.swift in Sources */,
 				B139EB9B20C3D3DC0065F6F9 /* CircularProgressBarView.swift in Sources */,
@@ -1550,6 +1584,7 @@
 				7D79C34C20347DCE00794447 /* AnswersFeedViewController+ProfileFeedContainerItem.swift in Sources */,
 				B114194120CD51740025B07F /* ActiveKeyShowRouter.swift in Sources */,
 				EC24FF6C200C400300A0AE15 /* GSTabBarController.swift in Sources */,
+				B164F04520E62AE600C5CDD3 /* UserProfileShowModels.swift in Sources */,
 				7DFA6CAD2036D76000F59494 /* PostsFeedImageTableViewCell.swift in Sources */,
 				B1050CA420CECF75003CE4EE /* PostCreateViewController.swift in Sources */,
 				7D25B4B8201F980A004A3400 /* ArticleHeaderView.swift in Sources */,
@@ -1563,6 +1598,7 @@
 				7D79C33F203467C000794447 /* AnswersFeedMediator.swift in Sources */,
 				7D911D262035F6EA00F19D3C /* DisplayedUser.swift in Sources */,
 				EC24FF50200C065F00A0AE15 /* AppState.swift in Sources */,
+				B164F04720E62AE600C5CDD3 /* UserProfileShowInteractor.swift in Sources */,
 				7DE353172048A84C00C04CB2 /* ProfileViewModel.swift in Sources */,
 				B123C5BB20CE4C8B00747989 /* UITextField+Extensions.swift in Sources */,
 				ECF31725200A9D2800F7B703 /* UIAlertController+Window.swift in Sources */,

@@ -1,4 +1,3 @@
-
 //
 //  AppDelegate.swift
 //  golos-ios
@@ -18,6 +17,8 @@ import UserNotifications
 import FirebaseInstanceID
 import IQKeyboardManagerSwift
 
+// TEST
+import secp256k1
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -28,7 +29,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Class Functions
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         Logger.log(message: "Success", event: .severe)
-                
+        
+        // TEST
+        self.createPublicKey()
+        
         self.setupNavigationBarAppearance()
         self.setupTabBarAppearance()
         self.setupKeyboardManager()
@@ -160,6 +164,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 // MARK: - Extensions
 extension AppDelegate {
+    // TEST
+    public func createPublicKey(prefix: String = "GLS") {
+        let postingKey  =   "5Jj6qFdJLGKFFFQbfTwv6JNQmXzCidnjgSFNYKhrgqhzigH4sFp"
+        let ctx         =   secp256k1_context_create(UInt32(SECP256K1_CONTEXT_SIGN | SECP256K1_CONTEXT_VERIFY))
+        var pubkey      =   secp256k1_pubkey()
+        
+        let isPK        =   (secp256k1_ec_pubkey_create(ctx!, &pubkey, postingKey) as NSNumber).boolValue
+        
+        print(isPK)
+        
+        let data = (NSData(bytes: &pubkey.data, length: 64) as Data).toHexString()
+        print(data)
+    }
+
+    
     // RootViewController
     private func configureMainContainer() {
 //        if window != nil {
