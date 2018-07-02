@@ -145,7 +145,7 @@ extension TagsCollectionViewController: UICollectionViewDataSource {
             
             // Handler start editing
             (cell as! ThemeTagCollectionViewCell).completionStartEditing = {
-                self.completionStartEndEditing!((UIDeviceOrientationIsPortrait(UIDevice.current.orientation) ? 150.0 : 100.0) * heightRatio, nil)
+                self.completionStartEndEditing!((UIApplication.shared.statusBarOrientation.isPortrait ? 150.0 : 100.0) * heightRatio, nil)
             }
 
             // Handler end editing

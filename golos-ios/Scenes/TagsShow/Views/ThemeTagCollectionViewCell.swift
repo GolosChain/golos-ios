@@ -33,7 +33,7 @@ class ThemeTagCollectionViewCell: UICollectionViewCell {
             textField.leftViewMode          =   .always
             
             textField.delegate              =   self
-            
+
             UIView.animate(withDuration: 0.3) {
                 self.textField.alpha  =   1
             }
@@ -90,7 +90,6 @@ extension ThemeTagCollectionViewCell: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-//        self.completionEndEditing!()
         
         return true
     }

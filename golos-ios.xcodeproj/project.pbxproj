@@ -166,8 +166,6 @@
 		EC24FF84200C635600A0AE15 /* DropDownMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC24FF83200C635600A0AE15 /* DropDownMediator.swift */; };
 		EC42E64A43BFF61A174EF217 /* Pods_Golos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C95BB4735E4A91B9024F13C /* Pods_Golos.framework */; };
 		EC6FD59E200AD53100DCB824 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6FD59D200AD53100DCB824 /* UIViewController+Extensions.swift */; };
-		EC6FD5A2200AE1A200DCB824 /* QRScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6FD5A0200AE1A200DCB824 /* QRScannerViewController.swift */; };
-		EC6FD5A3200AE1A200DCB824 /* QRScannerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC6FD5A1200AE1A200DCB824 /* QRScannerViewController.xib */; };
 		EC9ABBBF20179CEF00AF8597 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9ABBBE20179CEF00AF8597 /* Images.swift */; };
 		EC9ABBC32017D17000AF8597 /* UIImageEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9ABBC22017D17000AF8597 /* UIImageEffects.swift */; };
 		EC9ABBC62017D55800AF8597 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9ABBC52017D55800AF8597 /* ProfileHeaderView.swift */; };
@@ -188,7 +186,6 @@
 		ECC15FA62009794E0099BBC9 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC15FA52009794E0099BBC9 /* Fonts.swift */; };
 		ECF2808C200A9A210000D949 /* UIButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF2808B200A9A210000D949 /* UIButton+Extensions.swift */; };
 		ECF31725200A9D2800F7B703 /* UIAlertController+Window.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF31724200A9D2800F7B703 /* UIAlertController+Window.swift */; };
-		ECFF44E8200BC42F00DAF74C /* QRScannerViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFF44E7200BC42F00DAF74C /* QRScannerViewControllerDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -409,8 +406,6 @@
 		EC24FF81200C625800A0AE15 /* DropDownViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownViewController.swift; sourceTree = "<group>"; };
 		EC24FF83200C635600A0AE15 /* DropDownMediator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownMediator.swift; sourceTree = "<group>"; };
 		EC6FD59D200AD53100DCB824 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
-		EC6FD5A0200AE1A200DCB824 /* QRScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerViewController.swift; sourceTree = "<group>"; };
-		EC6FD5A1200AE1A200DCB824 /* QRScannerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QRScannerViewController.xib; sourceTree = "<group>"; };
 		EC9ABBBE20179CEF00AF8597 /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
 		EC9ABBC22017D17000AF8597 /* UIImageEffects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageEffects.swift; sourceTree = "<group>"; };
 		EC9ABBC52017D55800AF8597 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
@@ -431,7 +426,6 @@
 		ECC15FA52009794E0099BBC9 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		ECF2808B200A9A210000D949 /* UIButton+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extensions.swift"; sourceTree = "<group>"; };
 		ECF31724200A9D2800F7B703 /* UIAlertController+Window.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Window.swift"; sourceTree = "<group>"; };
-		ECFF44E7200BC42F00DAF74C /* QRScannerViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerViewControllerDelegate.swift; sourceTree = "<group>"; };
 		F860D859C40BCA60C8DE58EE /* Pods-Golos.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Golos.release.xcconfig"; path = "Pods/Target Support Files/Pods-Golos/Pods-Golos.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1010,16 +1004,6 @@
 			path = DropDownTable;
 			sourceTree = "<group>";
 		};
-		EC6FD59F200AE18E00DCB824 /* QRScannerShow */ = {
-			isa = PBXGroup;
-			children = (
-				EC6FD5A0200AE1A200DCB824 /* QRScannerViewController.swift */,
-				EC6FD5A1200AE1A200DCB824 /* QRScannerViewController.xib */,
-				ECFF44E7200BC42F00DAF74C /* QRScannerViewControllerDelegate.swift */,
-			);
-			path = QRScannerShow;
-			sourceTree = "<group>";
-		};
 		EC9ABBC42017D54900AF8597 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -1106,7 +1090,6 @@
 				B1050C9720CECF0C003CE4EE /* PostCreate */,
 				EC07F4AE2014402E00560CF0 /* Posts Feed */,
 				B12F43F920EA0175003FFF58 /* ScannerShow */,
-				EC6FD59F200AE18E00DCB824 /* QRScannerShow */,
 				B1F3747620C2B4DE005EF767 /* RootShow */,
 				EC24FF6A200C3FE700A0AE15 /* TabBarShow */,
 				B136D4F420D8B986003AD279 /* TagsShow */,
@@ -1348,7 +1331,6 @@
 				EC24FF7F200C4E2C00A0AE15 /* NavigationDropDownView.xib in Resources */,
 				B1050CBF20CECFBE003CE4EE /* PostCreate.storyboard in Resources */,
 				7D79C33B2034675C00794447 /* AnswersFeedViewController.xib in Resources */,
-				EC6FD5A3200AE1A200DCB824 /* QRScannerViewController.xib in Resources */,
 				B12A577420B432C8000CF8BF /* GoogleService-Info.plist in Resources */,
 				EC9ABBC82017D56800AF8597 /* ProfileHeaderView.xib in Resources */,
 				B1EE684820D243FF006BF802 /* PostCreateView.xib in Resources */,
@@ -1575,7 +1557,6 @@
 				EC6FD59E200AD53100DCB824 /* UIViewController+Extensions.swift in Sources */,
 				7DCF74A2201FE1C700D46495 /* ArticleCommentsSectionHeader.swift in Sources */,
 				7D79C33D203467B600794447 /* AnswersFeedPresenter.swift in Sources */,
-				ECFF44E8200BC42F00DAF74C /* QRScannerViewControllerDelegate.swift in Sources */,
 				7D911D242035F5C900F19D3C /* PostVoteModel.swift in Sources */,
 				ECC15FA62009794E0099BBC9 /* Fonts.swift in Sources */,
 				ECA8E35E2018D119003B8ABA /* UIView+Shadow.swift in Sources */,
@@ -1588,7 +1569,6 @@
 				B11AA80020CB04AA00212713 /* WelcomeShowRouter.swift in Sources */,
 				EC24FF52200C06E300A0AE15 /* StateMachine.swift in Sources */,
 				B1050CA320CECF75003CE4EE /* PostCreateModels.swift in Sources */,
-				EC6FD5A2200AE1A200DCB824 /* QRScannerViewController.swift in Sources */,
 				B111322620CD51EA00BC7F33 /* PostingKeyShowViewController.swift in Sources */,
 				7D25B47F201F4714004A3400 /* TagsView.swift in Sources */,
 				B11AA80720CB9FC800212713 /* UILabel+Extensions.swift in Sources */,

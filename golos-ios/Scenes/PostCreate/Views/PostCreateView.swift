@@ -8,7 +8,6 @@
 
 import UIKit
 import GoloSwift
-import IQKeyboardManagerSwift
 
 class PostCreateView: UIView {
     // MARK: - IBOutlets

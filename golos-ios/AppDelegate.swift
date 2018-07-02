@@ -235,8 +235,8 @@ extension AppDelegate {
     private func setupKeyboardManager() {
         Logger.log(message: "Success", event: .severe)
         
-        IQKeyboardManager.sharedManager().enable = true
-        IQKeyboardManager.sharedManager().shouldResignOnTouchOutside = true
+        IQKeyboardManager.sharedManager().enable                        =   true
+        IQKeyboardManager.sharedManager().shouldResignOnTouchOutside    =   true
     }
     
     // Setup Appearance

@@ -175,8 +175,8 @@ class PostCreateViewController: BaseViewController {
         super.viewWillAppear(animated)
         
         self.navigationController?.add(shadow: true, withBarTintColor: .white)
-        self.navigationController?.hidesBarsOnTap = false
-        
+        self.navigationController?.hidesBarsOnTap   =   false
+
         // Placeholder
         contentTextView.tune(withPlaceholder:   sceneType == .create ? "Enter Text Placeholder" : "Enter Comment Placeholder",
                              textColors:        darkGrayWhiteColorPickers,
@@ -208,7 +208,7 @@ class PostCreateViewController: BaseViewController {
     }
     
     private func setConstraint() {
-        if UIDeviceOrientationIsPortrait(UIDevice.current.orientation) {
+        if UIApplication.shared.statusBarOrientation.isPortrait {
             self.contentViewBottomConstraint.constant = (self.isKeyboardShow ? 140 : 16.0) * heightRatio
         }
         
