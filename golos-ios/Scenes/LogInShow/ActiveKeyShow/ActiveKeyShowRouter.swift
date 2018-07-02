@@ -16,6 +16,7 @@ import GoloSwift
 // MARK: - Input & Output protocols
 @objc protocol ActiveKeyShowRoutingLogic {
     func showLoginHelpShowScene()
+    func routeToScannerShowScene()
 }
 
 class ActiveKeyShowRouter: NSObject, ActiveKeyShowRoutingLogic {
@@ -36,5 +37,16 @@ class ActiveKeyShowRouter: NSObject, ActiveKeyShowRoutingLogic {
         logInHelpShowVC.loginType               =   .activeKey
         
         viewController?.present(logInHelpShowVC, animated: true, completion: nil)
+    }
+    
+    func routeToScannerShowScene() {
+        let scannerShowNC   =   UIStoryboard(name: "ScannerShow", bundle: nil).instantiateViewController(withIdentifier: "ScannerShowNC") as! UINavigationController
+        
+        viewController?.present(scannerShowNC, animated: true, completion: nil)
+        
+        // Handler QR Code
+        (scannerShowNC.viewControllers.first as! ScannerShowViewController).completionDetectQRCode = { [weak self] qrCode in
+            self?.viewController?.activeKeyTextField.text = qrCode
+        }
     }
 }

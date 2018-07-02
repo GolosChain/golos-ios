@@ -39,7 +39,11 @@ class ActiveKeyShowViewController: BaseViewController {
                                      font:                   UIFont.init(name: "SFUIDisplay-Regular", size: 16.0 * widthRatio),
                                      alignment:              .left)
             
-            activeKeyTextField.delegate = self
+            let rightView                       =   UIView(frame: CGRect(x: 0.0, y: 0.0, width: 90.0 * widthRatio, height: activeKeyTextField.frame.height))
+            activeKeyTextField.rightView        =   rightView
+            activeKeyTextField.rightViewMode    =   .always
+            
+            activeKeyTextField.delegate         =   self
         }
     }
     
@@ -102,11 +106,7 @@ class ActiveKeyShowViewController: BaseViewController {
     
     // MARK: - Actions
     @IBAction func scanQRButtonPressed(_ sender: Any) {
-        //        let qrScannerViewController = QRScannerViewController.nibInstance()
-        //        qrScannerViewController.delegate = self
-        //
-        //        let navigationController = UINavigationController(rootViewController: qrScannerViewController)
-        //        present(navigationController, animated: true, completion: nil)
+        self.router?.routeToScannerShowScene()
     }
     
     @IBAction func helpButtonPressed(_ sender: Any) {
