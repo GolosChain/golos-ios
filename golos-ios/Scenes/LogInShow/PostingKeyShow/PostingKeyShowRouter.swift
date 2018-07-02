@@ -40,12 +40,13 @@ class PostingKeyShowRouter: NSObject, PostingKeyShowRoutingLogic {
     }
     
     func routeToScannerShowScene() {
-        let scannerVC   =   UIStoryboard(name: "ScannerShow", bundle: nil).instantiateViewController(withIdentifier: "ScannerShowVC") as! ScannerShowViewController
+        let scannerShowNC   =   UIStoryboard(name: "ScannerShow", bundle: nil).instantiateViewController(withIdentifier: "ScannerShowNC") as! UINavigationController
         
-        viewController?.present(scannerVC, animated: true, completion: nil)
+//        viewController?.show(scannerShowNC, sender: nil)
+        viewController?.present(scannerShowNC, animated: true, completion: nil)
         
         // Handler QR Code
-        scannerVC.completionDetectQRCode = { [weak self] qrCode in
+        (scannerShowNC.viewControllers.first as! ScannerShowViewController).completionDetectQRCode = { [weak self] qrCode in
             self?.viewController?.postingKeyTextField.text = qrCode
         }
     }

@@ -57,15 +57,8 @@ class ScannerShowViewController: BaseViewController {
         super.viewDidLoad()
         
         // Navigation Bar
-        let closeButton     =   UIBarButtonItem(title:    "Cancel Title".localized(),
-                                                style:    .done,
-                                                target:   self,
-                                                action:   #selector(handlerCancelBarButtonTapped))
-        
-        navigationItem.leftBarButtonItem    =   closeButton
-//        navigationItem.title                =   "QR сканнер".localized()
-        title                               =   "QR сканнер".localized()
-        self.showNavigationBar()
+        title                               =   "QR сканер".localized()
+        self.navigationController?.navigationBar.isTranslucent = true
         
         self.loadViewSettings()
     }
@@ -152,14 +145,14 @@ class ScannerShowViewController: BaseViewController {
             self?.completionDetectQRCode!(code)
             
             // Route
-            self?.router?.dismiss()
+            self?.router?.routeToPreviousScene()
         })
     }
     
     
     // MARK: - Actions
-    @objc func handlerCancelBarButtonTapped(_ sender: UIBarButtonItem) {
-        self.router?.dismiss()
+    @IBAction func cancelBarButtonTapped(_ sender: UIBarButtonItem) {
+        self.router?.routeToPreviousScene()
     }
 }
 

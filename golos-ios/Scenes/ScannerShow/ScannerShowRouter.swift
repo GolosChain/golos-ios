@@ -15,7 +15,7 @@ import GoloSwift
 
 // MARK: - Input & Output protocols
 @objc protocol ScannerShowRoutingLogic {
-    func dismiss()
+    func routeToPreviousScene()
 }
 
 class ScannerShowRouter: NSObject, ScannerShowRoutingLogic {
@@ -30,7 +30,8 @@ class ScannerShowRouter: NSObject, ScannerShowRoutingLogic {
     
 
     // MARK: - Routing
-    func dismiss() {
+    func routeToPreviousScene() {
+//        viewController?.navigationController?.popViewController(animated: true)
         viewController?.dismiss(animated: true, completion: nil)
     }
 }
