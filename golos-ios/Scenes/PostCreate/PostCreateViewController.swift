@@ -183,18 +183,7 @@ class PostCreateViewController: BaseViewController {
                              font:              UIFont(name: "SFUIDisplay-Regular", size: 13.0 * widthRatio),
                              alignment:         .left)
     }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
         
-        self.interactor?.save(tags: nil)
-        self.interactor?.save(commentBody: nil)
-        self.interactor?.save(commentTitle: nil)
-
-        self.contentTextView.text                   =   nil
-        self.postCreateView.titleTextField.text     =   nil
-    }
-    
     
     // MARK: - Custom Functions
     private func saveToAlbum(image: UIImage) {
