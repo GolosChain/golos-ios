@@ -39,7 +39,11 @@ class PostingKeyShowViewController: BaseViewController {
                                      font:                   UIFont.init(name: "SFUIDisplay-Regular", size: 16.0 * widthRatio),
                                      alignment:              .left)
             
-            postingKeyTextField.delegate = self
+            let rightView                       =   UIView(frame: CGRect(x: 0.0, y: 0.0, width: 90.0 * widthRatio, height: postingKeyTextField.frame.height))
+            postingKeyTextField.rightView       =   rightView
+            postingKeyTextField.rightViewMode   =   .always
+
+            postingKeyTextField.delegate        =   self
         }
     }
 
