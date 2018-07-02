@@ -141,12 +141,20 @@ class ScannerShowViewController: BaseViewController {
     }
     
     private func found(code: String) {
-        self.showAlertView(withTitle: "Info", andMessage: "QR code is detected", needCancel: false, completion: { [weak self] _ in
-            self?.completionDetectQRCode!(code)
+        if code.hasPrefix("5") || code.hasPrefix("1") {
+            self.showAlertView(withTitle: "Info", andMessage: "QR code is detected", needCancel: false, completion: { [weak self] _ in
+                self?.completionDetectQRCode!(code)
+                
+                // Route
+                self?.router?.routeToPreviousScene()
+            })
+        }
             
-            // Route
-            self?.router?.routeToPreviousScene()
-        })
+        else {
+            self.showAlertView(withTitle: "Error", andMessage: "Scanner Key Code error", needCancel: false, completion: { [weak self] _ in
+                self?.captureSession.startRunning()
+            })
+        }
     }
     
     

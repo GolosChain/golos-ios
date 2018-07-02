@@ -103,3 +103,4 @@
 "Create Post Title Hint"                    =   "Enter an interesting title";
 "Post Text Body Hint"                       =   "Enter message text";
 "Scanner device error"                      =   "Your device does not support scanning a code from an item. Please use a device with a camera.";
+"Scanner Key Code error"                    =   "The code of the scanned key\n must begin with 5 or 1";
