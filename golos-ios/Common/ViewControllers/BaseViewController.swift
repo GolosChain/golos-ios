@@ -61,6 +61,10 @@ class BaseViewController: UIViewController {
         self.navigationController?.navigationBar.isHidden = true
     }
     
+    func showNavigationBar() {
+        self.navigationController?.navigationBar.isHidden = false
+    }
+    
     func showAlertView(withTitle title: String, andMessage message: String, needCancel cancel: Bool, completion: @escaping ((Bool) -> Void)) {
         let alertViewController = UIAlertController.init(title: title.localized(), message: message.localized(), preferredStyle: .alert)
         

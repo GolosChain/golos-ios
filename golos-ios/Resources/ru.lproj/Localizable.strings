@@ -20,6 +20,8 @@
 "Login Help Step Title 4"                   =   "4. Его нужно скопировать или\nсканировать через QR-код";
 "Do Not Registered"                         =   "Вы ещё не зарегистрированы?";
 "Add Max 5 Tags"                            =   "Напишите 5 тегов";
+"No QR code is detected"                    =   "QR-код не обнаружен";
+"QR code is detected"                       =   "QR-код обнаружен";
 
 
 // Buttons
@@ -67,6 +69,7 @@
 "Subscribers"                               =   "Подписчиков";
 "Subscriptions"                             =   "Подписок";
 "Dolphin"                                   =   "Дельфин";
+"QR Scanner"                                =   "QR сканнер";
 
 
 // Placeholders
@@ -99,3 +102,4 @@
 "You can add up to 5 tags"                  =   "Вы можете создать не более 5 тегов";
 "Create Post Title Hint"                    =   "Введите название заголовка";
 "Post Text Body Hint"                       =   "Введите текст сообщения";
+"Scanner device error"                      =   "Ваше устройство не поддерживает сканирование кода. Пожалуйста, используйте устройство с камерой.";

@@ -102,7 +102,7 @@ class PostingKeyShowViewController: BaseViewController {
     
     // MARK: - Actions
     @IBAction func scanQRButtonPressed(_ sender: Any) {
-//        self.router?.showQRScannerShowScene()
+        self.router?.routeToScannerShowScene()
     }
     
     @IBAction func helpButtonPressed(_ sender: Any) {

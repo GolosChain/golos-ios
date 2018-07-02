@@ -16,7 +16,7 @@ import GoloSwift
 // MARK: - Input & Output protocols
 @objc protocol PostingKeyShowRoutingLogic {
     func showLoginHelpShowScene()
-    func showQRScannerShowScene()
+    func routeToScannerShowScene()
 }
 
 class PostingKeyShowRouter: NSObject, PostingKeyShowRoutingLogic {
@@ -39,10 +39,14 @@ class PostingKeyShowRouter: NSObject, PostingKeyShowRoutingLogic {
         viewController?.present(logInHelpShowVC, animated: true, completion: nil)
     }
     
-    func showQRScannerShowScene() {
-        let qrScannerVC = QRScannerViewController.nibInstance()
-//        qrScannerViewController.delegate        =   self
+    func routeToScannerShowScene() {
+        let scannerVC   =   UIStoryboard(name: "ScannerShow", bundle: nil).instantiateViewController(withIdentifier: "ScannerShowVC") as! ScannerShowViewController
         
-        viewController?.present(qrScannerVC, animated: true, completion: nil)
+        viewController?.present(scannerVC, animated: true, completion: nil)
+        
+        // Handler QR Code
+        scannerVC.completionDetectQRCode = { [weak self] qrCode in
+            self?.viewController?.postingKeyTextField.text = qrCode
+        }
     }
 }

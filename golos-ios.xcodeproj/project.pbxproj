@@ -90,6 +90,9 @@
 		B11AA80720CB9FC800212713 /* UILabel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11AA80620CB9FC800212713 /* UILabel+Extensions.swift */; };
 		B123C5BB20CE4C8B00747989 /* UITextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B123C5BA20CE4C8B00747989 /* UITextField+Extensions.swift */; };
 		B12A577420B432C8000CF8BF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B12A577320B432C7000CF8BF /* GoogleService-Info.plist */; };
+		B12F43FB20EA0192003FFF58 /* ScannerShow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B12F43FA20EA0191003FFF58 /* ScannerShow.storyboard */; };
+		B12F440420EA01F9003FFF58 /* ScannerShowRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12F43FE20EA01F9003FFF58 /* ScannerShowRouter.swift */; };
+		B12F440620EA01F9003FFF58 /* ScannerShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12F440020EA01F9003FFF58 /* ScannerShowViewController.swift */; };
 		B136D4F820D8B9E8003AD279 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = B136D4F720D8B9E8003AD279 /* Tag.swift */; };
 		B136D4FB20D8BA14003AD279 /* AddTagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B136D4F920D8BA14003AD279 /* AddTagCollectionViewCell.swift */; };
 		B136D4FC20D8BA14003AD279 /* AddTagCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B136D4FA20D8BA14003AD279 /* AddTagCollectionViewCell.xib */; };
@@ -322,6 +325,9 @@
 		B12A576E20B410E6000CF8BF /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
 		B12A577320B432C7000CF8BF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B12A577520B43496000CF8BF /* Golos.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Golos.entitlements; sourceTree = "<group>"; };
+		B12F43FA20EA0191003FFF58 /* ScannerShow.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ScannerShow.storyboard; sourceTree = "<group>"; };
+		B12F43FE20EA01F9003FFF58 /* ScannerShowRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerShowRouter.swift; sourceTree = "<group>"; };
+		B12F440020EA01F9003FFF58 /* ScannerShowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerShowViewController.swift; sourceTree = "<group>"; };
 		B136D4F720D8B9E8003AD279 /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		B136D4F920D8BA14003AD279 /* AddTagCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTagCollectionViewCell.swift; sourceTree = "<group>"; };
 		B136D4FA20D8BA14003AD279 /* AddTagCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddTagCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -680,6 +686,15 @@
 			path = "New Group";
 			sourceTree = "<group>";
 		};
+		B12F43F920EA0175003FFF58 /* ScannerShow */ = {
+			isa = PBXGroup;
+			children = (
+				B12F43FE20EA01F9003FFF58 /* ScannerShowRouter.swift */,
+				B12F440020EA01F9003FFF58 /* ScannerShowViewController.swift */,
+			);
+			path = ScannerShow;
+			sourceTree = "<group>";
+		};
 		B136D4F420D8B986003AD279 /* TagsShow */ = {
 			isa = PBXGroup;
 			children = (
@@ -726,6 +741,7 @@
 				B1F3747420C2B483005EF767 /* RootShow.storyboard */,
 				B11AA7F620CB018E00212713 /* WelcomeShow.storyboard */,
 				B164F04820E62B5A00C5CDD3 /* UserProfileShow.storyboard */,
+				B12F43FA20EA0191003FFF58 /* ScannerShow.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -1089,6 +1105,7 @@
 				EC24FF57200C30A300A0AE15 /* MainContainer */,
 				B1050C9720CECF0C003CE4EE /* PostCreate */,
 				EC07F4AE2014402E00560CF0 /* Posts Feed */,
+				B12F43F920EA0175003FFF58 /* ScannerShow */,
 				EC6FD59F200AE18E00DCB824 /* QRScannerShow */,
 				B1F3747620C2B4DE005EF767 /* RootShow */,
 				EC24FF6A200C3FE700A0AE15 /* TabBarShow */,
@@ -1339,6 +1356,7 @@
 				7DFA6CAE2036D76000F59494 /* PostsFeedImageTableViewCell.xib in Resources */,
 				ECA8E35C2018CA30003B8ABA /* ProfileHorizontalSelectorView.xib in Resources */,
 				EC1DFB9620063C400080BC50 /* Assets.xcassets in Resources */,
+				B12F43FB20EA0192003FFF58 /* ScannerShow.storyboard in Resources */,
 				B164F04920E62B5A00C5CDD3 /* UserProfileShow.storyboard in Resources */,
 				B18DB44E2085D22A00BA5D50 /* Localizable.strings in Resources */,
 				B1F3747520C2B483005EF767 /* RootShow.storyboard in Resources */,
@@ -1374,6 +1392,7 @@
 				"${BUILT_PRODUCTS_DIR}/BeyovaJSON/BeyovaJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Down/Down.framework",
+				"${BUILT_PRODUCTS_DIR}/GoloCrypto/GoloCrypto.framework",
 				"${BUILT_PRODUCTS_DIR}/GoloSwift/GoloSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
@@ -1395,6 +1414,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BeyovaJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Down.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoloCrypto.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoloSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
@@ -1537,6 +1557,7 @@
 				EC24FF28200BEBE600A0AE15 /* ViewProtocol.swift in Sources */,
 				B136D4FB20D8BA14003AD279 /* AddTagCollectionViewCell.swift in Sources */,
 				7DE3531B2048CA3400C04CB2 /* LogInHelpShowViewController.swift in Sources */,
+				B12F440620EA01F9003FFF58 /* ScannerShowViewController.swift in Sources */,
 				7DCF74A720200AA700D46495 /* ArticleCommentTableViewCell.swift in Sources */,
 				B164F04220E62AE600C5CDD3 /* UserProfileShowPresenter.swift in Sources */,
 				7D911D1A2035DE5D00F19D3C /* String+Extensions.swift in Sources */,
@@ -1573,6 +1594,7 @@
 				B11AA80720CB9FC800212713 /* UILabel+Extensions.swift in Sources */,
 				B114192820CD1E260025B07F /* ReachabilityManager.swift in Sources */,
 				B111322420CD51EA00BC7F33 /* PostingKeyShowRouter.swift in Sources */,
+				B12F440420EA01F9003FFF58 /* ScannerShowRouter.swift in Sources */,
 				7D25B4B5201F9218004A3400 /* GSNavigationBar.swift in Sources */,
 				B1F3748220C2C5E1005EF767 /* RootShowModels.swift in Sources */,
 				B164F04420E62AE600C5CDD3 /* UserProfileShowRouter.swift in Sources */,

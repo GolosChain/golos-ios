@@ -38,19 +38,3 @@ class LogInShowInteractor: LogInShowBusinessLogic {
     }
     
 }
-
-
-public struct PublicKey {
-    // MARK: - Properties
-    public let key: Data
-    public let prefix: String
-
-    
-    // MARK: - Class Initialization
-    init?(key: Data, prefix: String) {
-        guard key.count == 33 else { return nil }
-        
-        self.key        =   key
-        self.prefix     =   prefix
-    }
-}

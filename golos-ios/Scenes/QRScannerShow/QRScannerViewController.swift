@@ -122,7 +122,7 @@ class QRScannerViewController: UIViewController {
             qrCodeFrameView.layer.borderWidth = 2
             view.addSubview(qrCodeFrameView)
             view.bringSubview(toFront: qrCodeFrameView)
-        } */
+        }*/
     }
     
     private func stopScanning() {

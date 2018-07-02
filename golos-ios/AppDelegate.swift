@@ -18,7 +18,8 @@ import FirebaseInstanceID
 import IQKeyboardManagerSwift
 
 // TEST
-import secp256k1
+
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -162,20 +163,60 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 
+//public struct PublicKey {
+//    // MARK: - Properties
+//    public let key: Data
+//    public let prefix: String
+//
+//
+//    // MARK: - Class Initialization
+//    init?(key: Data, prefix: String) {
+//        guard key.count == 33 else { return nil }
+//
+//        self.key        =   key
+//        self.prefix     =   prefix
+//    }
+//
+////    public var address: String {
+////        return String(self.prefix) + Base58.base58Decode(self.key)
+////    }
+//}
+
+
 // MARK: - Extensions
 extension AppDelegate {
     // TEST
     public func createPublicKey(prefix: String = "GLS") {
-        let postingKey  =   "5Jj6qFdJLGKFFFQbfTwv6JNQmXzCidnjgSFNYKhrgqhzigH4sFp"
-        let ctx         =   secp256k1_context_create(UInt32(SECP256K1_CONTEXT_SIGN | SECP256K1_CONTEXT_VERIFY))
-        var pubkey      =   secp256k1_pubkey()
+        let privateKey  =   PrivateKey.init("5Jj6qFdJLGKFFFQbfTwv6JNQmXzCidnjgSFNYKhrgqhzigH4sFp")
+
+        let publicKey   =   privateKey?.createPublic(prefix: .mainNet)
+        print(publicKey?.key.toHexString())
         
-        let isPK        =   (secp256k1_ec_pubkey_create(ctx!, &pubkey, postingKey) as NSNumber).boolValue
         
-        print(isPK)
         
-        let data = (NSData(bytes: &pubkey.data, length: 64) as Data).toHexString()
-        print(data)
+        
+//        let postingKey  =   "5Jj6qFdJLGKFFFQbfTwv6JNQmXzCidnjgSFNYKhrgqhzigH4sFp"
+//        let ctx         =   secp256k1_context_create(UInt32(SECP256K1_CONTEXT_SIGN | SECP256K1_CONTEXT_VERIFY))
+//        var pubkey      =   secp256k1_pubkey()
+//
+//        let isPK        =   (secp256k1_ec_pubkey_create(ctx!, &pubkey, postingKey) as NSNumber).boolValue
+//
+//        print(isPK)
+//
+//        let data        =   NSData(bytes: &pubkey.data, length: 64) as Data
+//        var dataString  =   data.toHexString()
+//        print(dataString)
+        
+        
+//        public func createPublic(prefix: PublicKey.AddressPrefix = .mainNet) -> PublicKey {
+//            let result = try! Secp256k1Context.shared.createPublic(fromSecret: self.secret)
+        
+        
+//        if let publicKey = PublicKey(key: Data(base58CheckEncoded.data, prefix: .mainNet) {
+//            dataString = publicKey.key.toHexString()
+//            print(dataString)
+//        }
+        
     }
 
     

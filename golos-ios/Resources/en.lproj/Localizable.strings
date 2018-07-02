@@ -20,6 +20,8 @@
 "Login Help Step Title 4"                   =   "4. You can copy-paste it, or\nscan through QR-code.";
 "Do Not Registered"                         =   "Don’t have an account?";
 "Add Max 5 Tags"                            =   "Add tags (max 5)";
+"No QR code is detected"                    =   "No QR code is detected";
+"QR code is detected"                       =   "QR code is detected";
 
 
 // Buttons
@@ -67,6 +69,7 @@
 "Subscribers"                               =   "Subscribers";
 "Subscriptions"                             =   "Subscriptions";
 "Dolphin"                                   =   "Dolphin";
+"QR Scanner"                                =   "QR Scanner";
 
 
 // Placeholders
@@ -99,3 +102,4 @@
 "You can add up to 5 tags"                  =   "You can add up to 5 tags";
 "Create Post Title Hint"                    =   "Enter an interesting title";
 "Post Text Body Hint"                       =   "Enter message text";
+"Scanner device error"                      =   "Your device does not support scanning a code from an item. Please use a device with a camera.";
