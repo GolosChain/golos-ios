@@ -22,6 +22,6 @@ extension UserSecretOwnerKey {
     @NSManaged public var account_auths: [String]?
     @NSManaged public var key_auths: [[String]]?
 
-    @NSManaged public var owner: User?
+    @NSManaged public var user: User?
 
 }

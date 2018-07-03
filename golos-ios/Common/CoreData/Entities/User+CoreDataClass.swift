@@ -37,9 +37,9 @@ public class User: NSManagedObject {
         self.json_metadata      =   userModel.json_metadata
         
         // UserSecretMemoKey
-        let userSecretKeyMemosEntity    =   UserSecretMemosKey.instance(byUserID: userModel.id)
-        userSecretKeyMemosEntity.updateEntity(fromResponseAPI: userModel.memo)
-        self.memos                      =   userSecretKeyMemosEntity
+        let userSecretKeyMemoEntity     =   UserSecretMemoKey.instance(byUserID: userModel.id)
+        userSecretKeyMemoEntity.updateEntity(fromResponseAPI: userModel.memo)
+        self.memo                       =   userSecretKeyMemoEntity
 
         // UserSecretPostingKey
         let userSecretKeyPostingEntity  =   UserSecretPostingKey.instance(byUserID: userModel.id)
@@ -50,6 +50,11 @@ public class User: NSManagedObject {
         let userSecretKeyOwnerEntity    =   UserSecretOwnerKey.instance(byUserID: userModel.id)
         userSecretKeyOwnerEntity.updateEntity(fromResponseAPI: userModel.owner)
         self.owner                      =   userSecretKeyOwnerEntity
+        
+        // UserSecretActiveKey
+        let userSecretKeyActiveEntity   =   UserSecretActiveKey.instance(byUserID: userModel.id)
+        userSecretKeyActiveEntity.updateEntity(fromResponseAPI: userModel.owner)
+        self.active                     =   userSecretKeyActiveEntity
         
         // Extensions
         self.save()

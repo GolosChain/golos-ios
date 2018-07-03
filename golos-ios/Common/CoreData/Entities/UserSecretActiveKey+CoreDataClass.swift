@@ -1,5 +1,5 @@
 //
-//  UserSecretKey+CoreDataClass.swift
+//  UserSecretActiveKey+CoreDataClass.swift
 //  Golos
 //
 //  Created by msm72 on 03.07.2018.
@@ -11,20 +11,20 @@ import CoreData
 import GoloSwift
 import Foundation
 
-@objc(UserSecretMemosKey)
-public class UserSecretMemosKey: NSManagedObject {
+@objc(UserSecretActiveKey)
+public class UserSecretActiveKey: NSManagedObject {
     // MARK: - Class Functions
-    class func instance(byUserID userID: Int64) -> UserSecretMemosKey {
-        if let userSecretMemosKey = CoreDataManager.instance.readEntity(withName: "UserSecretMemosKey", andPredicateParameters: NSPredicate.init(format: "userID == \(userID)")) as? UserSecretMemosKey {
-            return userSecretMemosKey
+    class func instance(byUserID userID: Int64) -> UserSecretActiveKey {
+        if let userSecretActiveKey = CoreDataManager.instance.readEntity(withName: "UserSecretActiveKey", andPredicateParameters: NSPredicate.init(format: "userID == \(userID)")) as? UserSecretActiveKey {
+            return userSecretActiveKey
         }
         
-        let userSecretMemosKeyEntity     =   CoreDataManager.instance.createEntity("UserSecretMemosKey") as! UserSecretMemosKey
-        userSecretMemosKeyEntity.userID  =   userID
+        let userSecretActiveKeyEntity       =   CoreDataManager.instance.createEntity("UserSecretActiveKey") as! UserSecretActiveKey
+        userSecretActiveKeyEntity.userID    =   userID
         
-        return userSecretMemosKeyEntity
+        return userSecretActiveKeyEntity
     }
-
+    
     func updateEntity(fromResponseAPI responseAPI: Decodable) {
         if let userSecretKeyModel = responseAPI as? ResponseAPIUserSecretKey {
             self.account_auths      =   userSecretKeyModel.account_auths

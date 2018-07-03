@@ -5,21 +5,34 @@
         <attribute name="json_metadata" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" attributeType="String" defaultValueString="Zorro" syncable="YES"/>
         <attribute name="post_count" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <relationship name="memos" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserSecretMemosKey" inverseName="memos" inverseEntity="UserSecretMemosKey" syncable="YES"/>
-        <relationship name="owner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserSecretOwnerKey" inverseName="owner" inverseEntity="UserSecretOwnerKey" syncable="YES"/>
-        <relationship name="posting" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserSecretPostingKey" inverseName="posting" inverseEntity="UserSecretPostingKey" syncable="YES"/>
+        <relationship name="active" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserSecretActiveKey" inverseName="user" inverseEntity="UserSecretActiveKey" syncable="YES"/>
+        <relationship name="memo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserSecretMemoKey" inverseName="user" inverseEntity="UserSecretMemoKey" syncable="YES"/>
+        <relationship name="owner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserSecretOwnerKey" inverseName="user" inverseEntity="UserSecretOwnerKey" syncable="YES"/>
+        <relationship name="posting" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserSecretPostingKey" inverseName="user" inverseEntity="UserSecretPostingKey" syncable="YES"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
                 <constraint value="id"/>
             </uniquenessConstraint>
         </uniquenessConstraints>
     </entity>
-    <entity name="UserSecretMemosKey" representedClassName="UserSecretMemosKey" syncable="YES">
+    <entity name="UserSecretActiveKey" representedClassName="UserSecretActiveKey" syncable="YES">
         <attribute name="account_auths" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="key_auths" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="userID" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="weight_threshold" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <relationship name="memos" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="memos" inverseEntity="User" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="active" inverseEntity="User" syncable="YES"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="userID"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="UserSecretMemoKey" representedClassName="UserSecretMemoKey" syncable="YES">
+        <attribute name="account_auths" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="key_auths" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="userID" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="weight_threshold" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="memo" inverseEntity="User" syncable="YES"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
                 <constraint value="userID"/>
@@ -31,7 +44,7 @@
         <attribute name="key_auths" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="userID" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="weight_threshold" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <relationship name="owner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="owner" inverseEntity="User" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="owner" inverseEntity="User" syncable="YES"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
                 <constraint value="userID"/>
@@ -43,7 +56,7 @@
         <attribute name="key_auths" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="userID" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="weight_threshold" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <relationship name="posting" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="posting" inverseEntity="User" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="posting" inverseEntity="User" syncable="YES"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
                 <constraint value="userID"/>
@@ -52,8 +65,9 @@
     </entity>
     <elements>
         <element name="UserSecretOwnerKey" positionX="-243" positionY="-234" width="128" height="120"/>
-        <element name="User" positionX="-666" positionY="-90" width="128" height="150"/>
-        <element name="UserSecretMemosKey" positionX="-54" positionY="72" width="128" height="120"/>
+        <element name="User" positionX="-666" positionY="-90" width="128" height="165"/>
+        <element name="UserSecretMemoKey" positionX="-54" positionY="72" width="128" height="120"/>
         <element name="UserSecretPostingKey" positionX="-45" positionY="63" width="128" height="120"/>
+        <element name="UserSecretActiveKey" positionX="-459" positionY="-81" width="128" height="120"/>
     </elements>
 </model>

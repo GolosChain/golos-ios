@@ -11,10 +11,10 @@ import Foundation
 import CoreData
 
 
-extension UserSecretMemosKey {
+extension UserSecretMemoKey {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<UserSecretMemosKey> {
-        return NSFetchRequest<UserSecretMemosKey>(entityName: "UserSecretMemosKey")
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<UserSecretMemoKey> {
+        return NSFetchRequest<UserSecretMemoKey>(entityName: "UserSecretMemoKey")
     }
 
     @NSManaged public var userID: Int64
@@ -22,6 +22,6 @@ extension UserSecretMemosKey {
     @NSManaged public var account_auths: [String]?
     @NSManaged public var key_auths: [[String]]?
 
-    @NSManaged public var memo: User?
+    @NSManaged public var user: User?
 
 }
