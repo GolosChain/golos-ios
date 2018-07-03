@@ -48,28 +48,29 @@ class UserProfileShowInteractor: UserProfileShowBusinessLogic, UserProfileShowDa
                                  onResult: { [weak self] responseAPIResult in
                                     Logger.log(message: "\nresponse API Result = \(responseAPIResult)\n", event: .debug)
                                     
-                                    guard let result = (responseAPIResult as! ResponseAPIUserResult).result, result.count > 0 else {
-//                                        completion([], nil)
-                                        let responseModel = UserProfileShowModels.User.ResponseModel()
+                                    guard let userResult = (responseAPIResult as! ResponseAPIUserResult).result, userResult.count > 0 else {
+                                        // Send empry User profile
+                                        let responseModel = UserProfileShowModels.User.ResponseModel(userResult: [], error: nil)
                                         self?.presenter?.presentUserProfile(fromResponseModel: responseModel)
                                         
                                         return
                                     }
                                     
                                     // Update User entity
-//                                    if let personalData = self.appDependency.coreDataManager.createEntity("PersonalData") as? PersonalData {
-//                                        personalData.updateEntity(fromJSON: personalDataJSON)
-//                                    }
+                                    if let userEntity = CoreDataManager.instance.createEntity("User") as? User {
+                                        userEntity.updateEntity(fromResponseAPI: userResult.first)
+                                    }
 
 //                                    let displayedUsers = result.compactMap({ DisplayedUser(fromResponseAPIUser: $0) })
-//                                    completion(displayedUsers, nil)
-                                    let responseModel = UserProfileShowModels.User.ResponseModel()
+                                    // Send User profile
+                                    let responseModel = UserProfileShowModels.User.ResponseModel(userResult: userResult, error: nil)
                                     self?.presenter?.presentUserProfile(fromResponseModel: responseModel)
                 },
                                  onError: { [weak self] errorAPI in
                                     Logger.log(message: "nresponse API Error = \(errorAPI.caseInfo.message)\n", event: .error)
-//                                    completion(nil, errorAPI)
-                                    let responseModel = UserProfileShowModels.User.ResponseModel()
+                                    
+                                    // Send error
+                                    let responseModel = UserProfileShowModels.User.ResponseModel(userResult: nil, error: errorAPI)
                                     self?.presenter?.presentUserProfile(fromResponseModel: responseModel)
             })
         }

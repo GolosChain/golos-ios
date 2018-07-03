@@ -28,30 +28,28 @@ public class User: NSManagedObject {
     
     
     // MARK: - Class Functions
-    func updateEntity(fromJSON json: [String: Any]) {
-        self.id                 =   json["id"] as! Int64
-        self.name               =   json["name"] as! String
-        self.post_count         =   json["post_count"] as! Int64
-        self.json_metadata      =   json["json_metadata"] as? String
+    func updateEntity(fromResponseAPI responseAPI: Decodable) {
+        let userModel           =   responseAPI as! ResponseAPIUser
         
-//        @NSManaged public var memo: UserSecretKey?
-//        @NSManaged public var owner: UserSecretKey?
-//        @NSManaged public var active: UserSecretKey?
-//        @NSManaged public var posting: UserSecretKey?
+        self.id                 =   userModel.id
+        self.name               =   userModel.name
+        self.post_count         =   userModel.post_count
+        self.json_metadata      =   userModel.json_metadata
+        
+        // UserSecretMemoKey
+        let userSecretKeyMemosEntity    =   UserSecretMemosKey.instance(byUserID: userModel.id)
+        userSecretKeyMemosEntity.updateEntity(fromResponseAPI: userModel.memo)
+        self.memos                      =   userSecretKeyMemosEntity
 
-//        self.addressLine2       =   json["AddressLine2"] as? String
-//        self.adv                =   json["Adv"] as! String
-//        self.cardCVV            =   json["CardCVV"] as? String
-//        self.cardExpired     =   json["CardExpired"] as? String
-//        self.cardNumber      =   json["CardNumber"] as? String
-//        self.cityId          =   json["CityId"] as! String
-//        self.clientId        =   json["ClientId"] as! Int16
-//        self.email           =   json["Email"] as! String
-//        self.firstName       =   json["FirstName"] as! String
-//        self.lastName        =   json["LastName"] as! String
-//        self.laundryId       =   json["LaundryId"] as! Int16
-//        self.mobilePhone     =   json["MobilePhone"] as! String
-//        self.postCode        =   json["PostCode"] as? String
+        // UserSecretPostingKey
+        let userSecretKeyPostingEntity  =   UserSecretPostingKey.instance(byUserID: userModel.id)
+        userSecretKeyPostingEntity.updateEntity(fromResponseAPI: userModel.posting)
+        self.posting                    =   userSecretKeyPostingEntity
+        
+        // UserSecretOwnerKey
+        let userSecretKeyOwnerEntity    =   UserSecretOwnerKey.instance(byUserID: userModel.id)
+        userSecretKeyOwnerEntity.updateEntity(fromResponseAPI: userModel.owner)
+        self.owner                      =   userSecretKeyOwnerEntity
         
         // Extensions
         self.save()

@@ -21,9 +21,9 @@ extension User {
     @NSManaged public var name: String
     @NSManaged public var post_count: Int64
     @NSManaged public var json_metadata: String?
-    @NSManaged public var memo: UserSecretKey?
-    @NSManaged public var owner: UserSecretKey?
-    @NSManaged public var active: UserSecretKey?
-    @NSManaged public var posting: UserSecretKey?
+
+    @NSManaged public var memos: UserSecretMemosKey?
+    @NSManaged public var owner: UserSecretOwnerKey?
+    @NSManaged public var posting: UserSecretPostingKey?
 
 }

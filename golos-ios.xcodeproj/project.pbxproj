@@ -89,6 +89,8 @@
 		B11AA80520CB13BA00212713 /* SF-UI-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = B11AA80420CB13BA00212713 /* SF-UI-Display-Regular.otf */; };
 		B11AA80720CB9FC800212713 /* UILabel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11AA80620CB9FC800212713 /* UILabel+Extensions.swift */; };
 		B123C5BB20CE4C8B00747989 /* UITextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B123C5BA20CE4C8B00747989 /* UITextField+Extensions.swift */; };
+		B127A87620EB822F007133AB /* UserSecretOwnerKey+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B127A87420EB822F007133AB /* UserSecretOwnerKey+CoreDataClass.swift */; };
+		B127A87720EB822F007133AB /* UserSecretOwnerKey+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B127A87520EB822F007133AB /* UserSecretOwnerKey+CoreDataProperties.swift */; };
 		B12A577420B432C8000CF8BF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B12A577320B432C7000CF8BF /* GoogleService-Info.plist */; };
 		B12F43FB20EA0192003FFF58 /* ScannerShow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B12F43FA20EA0191003FFF58 /* ScannerShow.storyboard */; };
 		B12F440420EA01F9003FFF58 /* ScannerShowRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12F43FE20EA01F9003FFF58 /* ScannerShowRouter.swift */; };
@@ -113,6 +115,8 @@
 		B164F04620E62AE600C5CDD3 /* UserProfileShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B164F04020E62AE600C5CDD3 /* UserProfileShowViewController.swift */; };
 		B164F04720E62AE600C5CDD3 /* UserProfileShowInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B164F04120E62AE600C5CDD3 /* UserProfileShowInteractor.swift */; };
 		B164F04920E62B5A00C5CDD3 /* UserProfileShow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B164F04820E62B5A00C5CDD3 /* UserProfileShow.storyboard */; };
+		B17D81A020EB7DC40062C3FC /* UserSecretMemosKey+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17D819E20EB7DC30062C3FC /* UserSecretMemosKey+CoreDataProperties.swift */; };
+		B17D81A120EB7DC40062C3FC /* UserSecretMemosKey+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17D819F20EB7DC30062C3FC /* UserSecretMemosKey+CoreDataClass.swift */; };
 		B181586020B976FD00835034 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B181585F20B976FD00835034 /* BaseViewController.swift */; };
 		B18B937220B91D4E000CF503 /* ForegroundRemoteNotificationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B18B937120B91D4E000CF503 /* ForegroundRemoteNotificationView.xib */; };
 		B18B937420B91DB8000CF503 /* ForegroundRemoteNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18B937320B91DB8000CF503 /* ForegroundRemoteNotificationView.swift */; };
@@ -125,8 +129,8 @@
 		B1C1DFDF20CF887F00D1A837 /* LogInShowPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C1DFD920CF887F00D1A837 /* LogInShowPresenter.swift */; };
 		B1C1DFE220CF887F00D1A837 /* LogInShowModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C1DFDC20CF887F00D1A837 /* LogInShowModels.swift */; };
 		B1C1DFE420CF887F00D1A837 /* LogInShowInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C1DFDE20CF887F00D1A837 /* LogInShowInteractor.swift */; };
-		B1EBAFB920EB55690050B1A2 /* UserSecretKey+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EBAFB520EB55690050B1A2 /* UserSecretKey+CoreDataClass.swift */; };
-		B1EBAFBA20EB55690050B1A2 /* UserSecretKey+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EBAFB620EB55690050B1A2 /* UserSecretKey+CoreDataProperties.swift */; };
+		B1D7EFAD20EB704000819401 /* UserSecretPostingKey+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D7EFAB20EB704000819401 /* UserSecretPostingKey+CoreDataClass.swift */; };
+		B1D7EFAE20EB704000819401 /* UserSecretPostingKey+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D7EFAC20EB704000819401 /* UserSecretPostingKey+CoreDataProperties.swift */; };
 		B1EBAFBB20EB55690050B1A2 /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EBAFB720EB55690050B1A2 /* User+CoreDataClass.swift */; };
 		B1EBAFBC20EB55690050B1A2 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EBAFB820EB55690050B1A2 /* User+CoreDataProperties.swift */; };
 		B1EBAFBE20EB56910050B1A2 /* NSManagedObject+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EBAFBD20EB56910050B1A2 /* NSManagedObject+Extensions.swift */; };
@@ -323,6 +327,8 @@
 		B11AA80420CB13BA00212713 /* SF-UI-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Display-Regular.otf"; sourceTree = "<group>"; };
 		B11AA80620CB9FC800212713 /* UILabel+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extensions.swift"; sourceTree = "<group>"; };
 		B123C5BA20CE4C8B00747989 /* UITextField+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extensions.swift"; sourceTree = "<group>"; };
+		B127A87420EB822F007133AB /* UserSecretOwnerKey+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserSecretOwnerKey+CoreDataClass.swift"; sourceTree = "<group>"; };
+		B127A87520EB822F007133AB /* UserSecretOwnerKey+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserSecretOwnerKey+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		B12A576B20B3F7BC000CF8BF /* Development.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Development.xcconfig; sourceTree = "<group>"; };
 		B12A576D20B410D8000CF8BF /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
 		B12A576E20B410E6000CF8BF /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
@@ -352,6 +358,8 @@
 		B164F04020E62AE600C5CDD3 /* UserProfileShowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileShowViewController.swift; sourceTree = "<group>"; };
 		B164F04120E62AE600C5CDD3 /* UserProfileShowInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileShowInteractor.swift; sourceTree = "<group>"; };
 		B164F04820E62B5A00C5CDD3 /* UserProfileShow.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UserProfileShow.storyboard; sourceTree = "<group>"; };
+		B17D819E20EB7DC30062C3FC /* UserSecretMemosKey+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserSecretMemosKey+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B17D819F20EB7DC30062C3FC /* UserSecretMemosKey+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserSecretMemosKey+CoreDataClass.swift"; sourceTree = "<group>"; };
 		B181585F20B976FD00835034 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		B18B937120B91D4E000CF503 /* ForegroundRemoteNotificationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ForegroundRemoteNotificationView.xib; sourceTree = "<group>"; };
 		B18B937320B91DB8000CF503 /* ForegroundRemoteNotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForegroundRemoteNotificationView.swift; sourceTree = "<group>"; };
@@ -368,8 +376,8 @@
 		B1C1DFD920CF887F00D1A837 /* LogInShowPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInShowPresenter.swift; sourceTree = "<group>"; };
 		B1C1DFDC20CF887F00D1A837 /* LogInShowModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInShowModels.swift; sourceTree = "<group>"; };
 		B1C1DFDE20CF887F00D1A837 /* LogInShowInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInShowInteractor.swift; sourceTree = "<group>"; };
-		B1EBAFB520EB55690050B1A2 /* UserSecretKey+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserSecretKey+CoreDataClass.swift"; sourceTree = "<group>"; };
-		B1EBAFB620EB55690050B1A2 /* UserSecretKey+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserSecretKey+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B1D7EFAB20EB704000819401 /* UserSecretPostingKey+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserSecretPostingKey+CoreDataClass.swift"; sourceTree = "<group>"; };
+		B1D7EFAC20EB704000819401 /* UserSecretPostingKey+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserSecretPostingKey+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		B1EBAFB720EB55690050B1A2 /* User+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = "<group>"; };
 		B1EBAFB820EB55690050B1A2 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		B1EBAFBD20EB56910050B1A2 /* NSManagedObject+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+Extensions.swift"; sourceTree = "<group>"; };
@@ -716,8 +724,12 @@
 			children = (
 				B1EBAFB720EB55690050B1A2 /* User+CoreDataClass.swift */,
 				B1EBAFB820EB55690050B1A2 /* User+CoreDataProperties.swift */,
-				B1EBAFB520EB55690050B1A2 /* UserSecretKey+CoreDataClass.swift */,
-				B1EBAFB620EB55690050B1A2 /* UserSecretKey+CoreDataProperties.swift */,
+				B17D819F20EB7DC30062C3FC /* UserSecretMemosKey+CoreDataClass.swift */,
+				B17D819E20EB7DC30062C3FC /* UserSecretMemosKey+CoreDataProperties.swift */,
+				B127A87420EB822F007133AB /* UserSecretOwnerKey+CoreDataClass.swift */,
+				B127A87520EB822F007133AB /* UserSecretOwnerKey+CoreDataProperties.swift */,
+				B1D7EFAB20EB704000819401 /* UserSecretPostingKey+CoreDataClass.swift */,
+				B1D7EFAC20EB704000819401 /* UserSecretPostingKey+CoreDataProperties.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -1534,6 +1546,7 @@
 				7D25B4CA201FABD8004A3400 /* ArticleFooterTableViewCell.swift in Sources */,
 				7D25B483201F479B004A3400 /* TagTokenButton.swift in Sources */,
 				7DFE7C462046395B0057F144 /* ReplyRequestType.swift in Sources */,
+				B1D7EFAD20EB704000819401 /* UserSecretPostingKey+CoreDataClass.swift in Sources */,
 				B1EE684620D243F5006BF802 /* PostCreateView.swift in Sources */,
 				EC24FF5B200C30C500A0AE15 /* MainContainerPresenter.swift in Sources */,
 				EC24FF79200C497800A0AE15 /* FeedViewController.swift in Sources */,
@@ -1546,14 +1559,17 @@
 				B1EE684A20D261C4006BF802 /* UITextView+Extensions.swift in Sources */,
 				ECF2808C200A9A210000D949 /* UIButton+Extensions.swift in Sources */,
 				ECA8E3512018A626003B8ABA /* ProfileInfoView.swift in Sources */,
+				B1D7EFAE20EB704000819401 /* UserSecretPostingKey+CoreDataProperties.swift in Sources */,
 				B114193320CD26710025B07F /* LogInShowRouter.swift in Sources */,
 				EC24FF2B200BFAA100A0AE15 /* Validator.swift in Sources */,
 				7DFE7C4920464C1E0057F144 /* PostsManager.swift in Sources */,
 				B1C1DFDF20CF887F00D1A837 /* LogInShowPresenter.swift in Sources */,
 				B1F6A36E20C130780096C393 /* Parser.swift in Sources */,
 				EC9ABBEA2018072600AF8597 /* GSTableView.swift in Sources */,
+				B127A87720EB822F007133AB /* UserSecretOwnerKey+CoreDataProperties.swift in Sources */,
 				EC9ABBBF20179CEF00AF8597 /* Images.swift in Sources */,
 				B1C1DFE420CF887F00D1A837 /* LogInShowInteractor.swift in Sources */,
+				B127A87620EB822F007133AB /* UserSecretOwnerKey+CoreDataClass.swift in Sources */,
 				EC07F4AA20141F0C00560CF0 /* FeedPresenter.swift in Sources */,
 				B12F442D20EB4AFC003FFF58 /* GolosModels.xcdatamodeld in Sources */,
 				B18DB455208619A000BA5D50 /* DisplayedPost.swift in Sources */,
@@ -1590,6 +1606,7 @@
 				EC24FF82200C625800A0AE15 /* DropDownViewController.swift in Sources */,
 				B1F3747F20C2C5E1005EF767 /* RootShowPresenter.swift in Sources */,
 				ECA8E35A2018CA17003B8ABA /* ProfileHorizontalSelectorView.swift in Sources */,
+				B17D81A120EB7DC40062C3FC /* UserSecretMemosKey+CoreDataClass.swift in Sources */,
 				EC6FD59E200AD53100DCB824 /* UIViewController+Extensions.swift in Sources */,
 				7DCF74A2201FE1C700D46495 /* ArticleCommentsSectionHeader.swift in Sources */,
 				7D79C33D203467B600794447 /* AnswersFeedPresenter.swift in Sources */,
@@ -1598,6 +1615,7 @@
 				ECA8E35E2018D119003B8ABA /* UIView+Shadow.swift in Sources */,
 				7D79C3482034686B00794447 /* ReusableCell.swift in Sources */,
 				B1EBAFBE20EB56910050B1A2 /* NSManagedObject+Extensions.swift in Sources */,
+				B17D81A020EB7DC40062C3FC /* UserSecretMemosKey+CoreDataProperties.swift in Sources */,
 				7D25B48F201F5E88004A3400 /* CollectionViewCenteredLayout.swift in Sources */,
 				7D7D564420368028003E06A6 /* PostItem.swift in Sources */,
 				EC9ABBC32017D17000AF8597 /* UIImageEffects.swift in Sources */,
@@ -1626,7 +1644,6 @@
 				EC24FF6C200C400300A0AE15 /* GSTabBarController.swift in Sources */,
 				B164F04520E62AE600C5CDD3 /* UserProfileShowModels.swift in Sources */,
 				7DFA6CAD2036D76000F59494 /* PostsFeedImageTableViewCell.swift in Sources */,
-				B1EBAFBA20EB55690050B1A2 /* UserSecretKey+CoreDataProperties.swift in Sources */,
 				B1050CA420CECF75003CE4EE /* PostCreateViewController.swift in Sources */,
 				7D25B4B8201F980A004A3400 /* ArticleHeaderView.swift in Sources */,
 				7D79C33A2034675C00794447 /* AnswersFeedViewController.swift in Sources */,
@@ -1641,7 +1658,6 @@
 				EC24FF50200C065F00A0AE15 /* AppState.swift in Sources */,
 				B164F04720E62AE600C5CDD3 /* UserProfileShowInteractor.swift in Sources */,
 				7DE353172048A84C00C04CB2 /* ProfileViewModel.swift in Sources */,
-				B1EBAFB920EB55690050B1A2 /* UserSecretKey+CoreDataClass.swift in Sources */,
 				B123C5BB20CE4C8B00747989 /* UITextField+Extensions.swift in Sources */,
 				ECF31725200A9D2800F7B703 /* UIAlertController+Window.swift in Sources */,
 				7D25B48C201F5700004A3400 /* TagCollectionViewCell.swift in Sources */,

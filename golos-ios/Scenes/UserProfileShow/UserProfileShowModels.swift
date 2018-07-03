@@ -11,6 +11,7 @@
 //
 
 import UIKit
+import GoloSwift
 
 // MARK: - Data models
 enum UserProfileShowModels {
@@ -20,6 +21,8 @@ enum UserProfileShowModels {
         }
         
         struct ResponseModel {
+            let userResult: [ResponseAPIUser]?
+            let error: ErrorAPI?
         }
         
         struct ViewModel {
