@@ -733,9 +733,9 @@
 				B114192920CD21530025B07F /* LogInShow.storyboard */,
 				B1050CBE20CECFBE003CE4EE /* PostCreate.storyboard */,
 				B1F3747420C2B483005EF767 /* RootShow.storyboard */,
-				B11AA7F620CB018E00212713 /* WelcomeShow.storyboard */,
-				B164F04820E62B5A00C5CDD3 /* UserProfileShow.storyboard */,
 				B12F43FA20EA0191003FFF58 /* ScannerShow.storyboard */,
+				B164F04820E62B5A00C5CDD3 /* UserProfileShow.storyboard */,
+				B11AA7F620CB018E00212713 /* WelcomeShow.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";

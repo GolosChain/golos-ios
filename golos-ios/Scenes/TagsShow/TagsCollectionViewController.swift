@@ -212,25 +212,25 @@ extension TagsCollectionViewController: UICollectionViewDelegate {
 extension TagsCollectionViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         if let height = collectionView.cellForItem(at: IndexPath(row: self.tags.count, section: 0))?.frame.maxY {
-            self.complationCollectionViewChangeHeight!(height + 48.0)
+            self.complationCollectionViewChangeHeight!((height + 18.0) * heightRatio)
         }
 
-        return 6.0
+        return 6.0 * widthRatio
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 9.0
+        return 9.0 * heightRatio
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         // Add button cell
         if indexPath.row > self.tags.count - 1 {
-            return CGSize(width: 46.0, height: 30.0)
+            return CGSize(width: 46.0 * widthRatio, height: 30.0 * heightRatio)
         }
         
         // Tag cell
         else {
-            return CGSize.init(width: self.tags[indexPath.row].cellWidth, height: 30.0)
+            return CGSize.init(width: self.tags[indexPath.row].cellWidth, height: 30.0 * heightRatio)
         }
     }
 }
