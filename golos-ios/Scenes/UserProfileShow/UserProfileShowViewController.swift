@@ -15,7 +15,7 @@ import GoloSwift
 
 // MARK: - Input & Output protocols
 protocol UserProfileShowDisplayLogic: class {
-    func displaySomething(fromViewModel viewModel: UserProfileShowModels.Something.ViewModel)
+    func displayUserProfile(fromViewModel viewModel: UserProfileShowModels.User.ViewModel)
 }
 
 class UserProfileShowViewController: UIViewController {
@@ -80,18 +80,27 @@ class UserProfileShowViewController: UIViewController {
         self.loadViewSettings()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Load User profile
+        self.loadUserProfile()
+    }
     
     // MARK: - Custom Functions
     private func loadViewSettings() {
-        let requestModel = UserProfileShowModels.Something.RequestModel()
-        interactor?.doSomething(withRequestModel: requestModel)
+    }
+    
+    private func loadUserProfile() {
+        let requestModel = UserProfileShowModels.User.RequestModel()
+        interactor?.loadUserProfile(withRequestModel: requestModel)
     }
 }
 
 
 // MARK: - UserProfileShowDisplayLogic
 extension UserProfileShowViewController: UserProfileShowDisplayLogic {
-    func displaySomething(fromViewModel viewModel: UserProfileShowModels.Something.ViewModel) {
+    func displayUserProfile(fromViewModel viewModel: UserProfileShowModels.User.ViewModel) {
         // NOTE: Display the result from the Presenter
 
     }

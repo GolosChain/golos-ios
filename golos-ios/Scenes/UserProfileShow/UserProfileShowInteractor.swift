@@ -15,7 +15,7 @@ import GoloSwift
 
 // MARK: - Business Logic protocols
 protocol UserProfileShowBusinessLogic {
-    func doSomething(withRequestModel requestModel: UserProfileShowModels.Something.RequestModel)
+    func loadUserProfile(withRequestModel requestModel: UserProfileShowModels.User.RequestModel)
 }
 
 protocol UserProfileShowDataStore {
@@ -25,7 +25,6 @@ protocol UserProfileShowDataStore {
 class UserProfileShowInteractor: UserProfileShowBusinessLogic, UserProfileShowDataStore {
     // MARK: - Properties
     var presenter: UserProfileShowPresentationLogic?
-    var worker: UserProfileShowWorker?
     
     // ... protocol implementation
 //    var name: String = ""
@@ -38,11 +37,46 @@ class UserProfileShowInteractor: UserProfileShowBusinessLogic, UserProfileShowDa
     
 
     // MARK: - Business logic implementation
-    func doSomething(withRequestModel requestModel: UserProfileShowModels.Something.RequestModel) {
-        worker = UserProfileShowWorker()
-        worker?.doSomeWork()
+    func loadUserProfile(withRequestModel requestModel: UserProfileShowModels.User.RequestModel) {
+        // API 'get_accounts'
+        if isNetworkAvailable {
+            // Create MethodAPIType
+            let names           =   User.current?.name ?? "yuri-vlad-second"
+            let methodAPIType   =   MethodAPIType.getAccounts(names: RequestParameterAPI.User(names: [names]))
+            
+            broadcast.executeGET(byMethodAPIType: methodAPIType,
+                                 onResult: { [weak self] responseAPIResult in
+                                    Logger.log(message: "\nresponse API Result = \(responseAPIResult)\n", event: .debug)
+                                    
+                                    guard let result = (responseAPIResult as! ResponseAPIUserResult).result, result.count > 0 else {
+//                                        completion([], nil)
+                                        let responseModel = UserProfileShowModels.User.ResponseModel()
+                                        self?.presenter?.presentUserProfile(fromResponseModel: responseModel)
+                                        
+                                        return
+                                    }
+                                    
+                                    // Update User entity
+//                                    if let personalData = self.appDependency.coreDataManager.createEntity("PersonalData") as? PersonalData {
+//                                        personalData.updateEntity(fromJSON: personalDataJSON)
+//                                    }
+
+//                                    let displayedUsers = result.compactMap({ DisplayedUser(fromResponseAPIUser: $0) })
+//                                    completion(displayedUsers, nil)
+                                    let responseModel = UserProfileShowModels.User.ResponseModel()
+                                    self?.presenter?.presentUserProfile(fromResponseModel: responseModel)
+                },
+                                 onError: { [weak self] errorAPI in
+                                    Logger.log(message: "nresponse API Error = \(errorAPI.caseInfo.message)\n", event: .error)
+//                                    completion(nil, errorAPI)
+                                    let responseModel = UserProfileShowModels.User.ResponseModel()
+                                    self?.presenter?.presentUserProfile(fromResponseModel: responseModel)
+            })
+        }
         
-        let responseModel = UserProfileShowModels.Something.ResponseModel()
-        presenter?.presentSomething(fromResponseModel: responseModel)
+        // CoreData
+        else {
+            
+        }
     }
 }

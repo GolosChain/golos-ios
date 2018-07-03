@@ -108,7 +108,6 @@
 		B157661220B59D80009619A6 /* RemoteNotificationTransfer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B157661020B59D80009619A6 /* RemoteNotificationTransfer.storyboard */; };
 		B157661620B59D80009619A6 /* RemoteNotificationTransfer.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = B157660820B59D80009619A6 /* RemoteNotificationTransfer.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		B164F04220E62AE600C5CDD3 /* UserProfileShowPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B164F03C20E62AE600C5CDD3 /* UserProfileShowPresenter.swift */; };
-		B164F04320E62AE600C5CDD3 /* UserProfileShowWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B164F03D20E62AE600C5CDD3 /* UserProfileShowWorker.swift */; };
 		B164F04420E62AE600C5CDD3 /* UserProfileShowRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B164F03E20E62AE600C5CDD3 /* UserProfileShowRouter.swift */; };
 		B164F04520E62AE600C5CDD3 /* UserProfileShowModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B164F03F20E62AE600C5CDD3 /* UserProfileShowModels.swift */; };
 		B164F04620E62AE600C5CDD3 /* UserProfileShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B164F04020E62AE600C5CDD3 /* UserProfileShowViewController.swift */; };
@@ -130,6 +129,7 @@
 		B1EBAFBA20EB55690050B1A2 /* UserSecretKey+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EBAFB620EB55690050B1A2 /* UserSecretKey+CoreDataProperties.swift */; };
 		B1EBAFBB20EB55690050B1A2 /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EBAFB720EB55690050B1A2 /* User+CoreDataClass.swift */; };
 		B1EBAFBC20EB55690050B1A2 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EBAFB820EB55690050B1A2 /* User+CoreDataProperties.swift */; };
+		B1EBAFBE20EB56910050B1A2 /* NSManagedObject+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EBAFBD20EB56910050B1A2 /* NSManagedObject+Extensions.swift */; };
 		B1EE684620D243F5006BF802 /* PostCreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EE684520D243F5006BF802 /* PostCreateView.swift */; };
 		B1EE684820D243FF006BF802 /* PostCreateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1EE684720D243FF006BF802 /* PostCreateView.xib */; };
 		B1EE684A20D261C4006BF802 /* UITextView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EE684920D261C4006BF802 /* UITextView+Extensions.swift */; };
@@ -347,7 +347,6 @@
 		B157661120B59D80009619A6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/RemoteNotificationTransfer.storyboard; sourceTree = "<group>"; };
 		B157661320B59D80009619A6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B164F03C20E62AE600C5CDD3 /* UserProfileShowPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileShowPresenter.swift; sourceTree = "<group>"; };
-		B164F03D20E62AE600C5CDD3 /* UserProfileShowWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileShowWorker.swift; sourceTree = "<group>"; };
 		B164F03E20E62AE600C5CDD3 /* UserProfileShowRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileShowRouter.swift; sourceTree = "<group>"; };
 		B164F03F20E62AE600C5CDD3 /* UserProfileShowModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileShowModels.swift; sourceTree = "<group>"; };
 		B164F04020E62AE600C5CDD3 /* UserProfileShowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileShowViewController.swift; sourceTree = "<group>"; };
@@ -373,6 +372,7 @@
 		B1EBAFB620EB55690050B1A2 /* UserSecretKey+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserSecretKey+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		B1EBAFB720EB55690050B1A2 /* User+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = "<group>"; };
 		B1EBAFB820EB55690050B1A2 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B1EBAFBD20EB56910050B1A2 /* NSManagedObject+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+Extensions.swift"; sourceTree = "<group>"; };
 		B1EE684520D243F5006BF802 /* PostCreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCreateView.swift; sourceTree = "<group>"; };
 		B1EE684720D243FF006BF802 /* PostCreateView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostCreateView.xib; sourceTree = "<group>"; };
 		B1EE684920D261C4006BF802 /* UITextView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+Extensions.swift"; sourceTree = "<group>"; };
@@ -814,7 +814,6 @@
 				B164F03C20E62AE600C5CDD3 /* UserProfileShowPresenter.swift */,
 				B164F03E20E62AE600C5CDD3 /* UserProfileShowRouter.swift */,
 				B164F04020E62AE600C5CDD3 /* UserProfileShowViewController.swift */,
-				B164F03D20E62AE600C5CDD3 /* UserProfileShowWorker.swift */,
 			);
 			path = UserProfileShow;
 			sourceTree = "<group>";
@@ -1157,10 +1156,11 @@
 		ECF28085200A94360000D949 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				B1EBAFBD20EB56910050B1A2 /* NSManagedObject+Extensions.swift */,
 				7D911D192035DE5D00F19D3C /* String+Extensions.swift */,
 				ECF31724200A9D2800F7B703 /* UIAlertController+Window.swift */,
-				ECF2808B200A9A210000D949 /* UIButton+Extensions.swift */,
 				B1EE684B20D27628006BF802 /* UIBarButtonItem+Extensions.swift */,
+				ECF2808B200A9A210000D949 /* UIButton+Extensions.swift */,
 				B198DB9020B9A21A008011A3 /* UIColor+Extensions.swift */,
 				EC9ABBC22017D17000AF8597 /* UIImageEffects.swift */,
 				B11AA80620CB9FC800212713 /* UILabel+Extensions.swift */,
@@ -1565,7 +1565,6 @@
 				7DA063242032517D00B5630C /* ProfileFeedContainerItem.swift in Sources */,
 				B164F04620E62AE600C5CDD3 /* UserProfileShowViewController.swift in Sources */,
 				7DA063222032513A00B5630C /* ProfileFeedContainerController.swift in Sources */,
-				B164F04320E62AE600C5CDD3 /* UserProfileShowWorker.swift in Sources */,
 				B12F443020EB4B1F003FFF58 /* CoreDataManager.swift in Sources */,
 				B136D4FF20D8BA2E003AD279 /* ThemeTagCollectionViewCell.swift in Sources */,
 				B1EE686C20D2D713006BF802 /* PostCommentReply.swift in Sources */,
@@ -1598,6 +1597,7 @@
 				ECC15FA62009794E0099BBC9 /* Fonts.swift in Sources */,
 				ECA8E35E2018D119003B8ABA /* UIView+Shadow.swift in Sources */,
 				7D79C3482034686B00794447 /* ReusableCell.swift in Sources */,
+				B1EBAFBE20EB56910050B1A2 /* NSManagedObject+Extensions.swift in Sources */,
 				7D25B48F201F5E88004A3400 /* CollectionViewCenteredLayout.swift in Sources */,
 				7D7D564420368028003E06A6 /* PostItem.swift in Sources */,
 				EC9ABBC32017D17000AF8597 /* UIImageEffects.swift in Sources */,

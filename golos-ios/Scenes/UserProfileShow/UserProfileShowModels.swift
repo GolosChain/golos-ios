@@ -15,7 +15,7 @@ import UIKit
 // MARK: - Data models
 enum UserProfileShowModels {
     // MARK: - Use cases
-    enum Something {
+    enum User {
         struct RequestModel {
         }
         
