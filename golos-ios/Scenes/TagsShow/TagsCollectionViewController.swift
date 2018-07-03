@@ -9,6 +9,7 @@
 import UIKit
 import GoloSwift
 import AlignedCollectionViewFlowLayout
+import IQKeyboardManagerSwift
 
 class TagsCollectionViewController: BaseViewController {
     // MARK: - Properties
@@ -16,7 +17,8 @@ class TagsCollectionViewController: BaseViewController {
     var tagIndex: Int       =   1
     var offsetIndex: Int    =   -1
     var addButtonTapped     =   false
-
+    var isKeyboardShow      =   false
+    
     var completionStartEndEditing: ((CGFloat, CGFloat?) -> Void)?
     var complationCollectionViewChangeHeight: ((CGFloat) -> Void)?
 
@@ -123,31 +125,30 @@ extension TagsCollectionViewController: UICollectionViewDataSource {
             (cell as! ConfigureCell).setup(withItem: item, andIndexPath: indexPath)
             
             // Handler clear button
-            (cell as! ThemeTagCollectionViewCell).completionClearButton = {
-                let deleteIndex = self.tags.index(where: { $0.id == item?.id })!
-                let deleteIndexPath = IndexPath(row: deleteIndex, section: 0)
-                self.tags.remove(at: deleteIndex)
+            (cell as! ThemeTagCollectionViewCell).completionClearButton = { [weak self] isKeyboardShow in
+                let deleteIndex         =   self?.tags.index(where: { $0.id == item?.id })!
+                let deleteIndexPath     =   IndexPath(row: deleteIndex!, section: 0)
+                self?.tags.remove(at: deleteIndex!)
                 
-                for (index, tag) in self.tags.enumerated() {
+                for (index, tag) in (self?.tags.enumerated())! {
                     tag.placeholder     =   "Tag".localized() + " \(index + 1)"
-                    self.tags[index]    =   tag
+                    self?.tags[index]   =   tag
                 }
                 
-                self.collectionView?.deleteItems(at: [deleteIndexPath])
+                self?.collectionView?.deleteItems(at: [deleteIndexPath])
                 
-                if deleteIndex == self.offsetIndex {
-                    self.offsetIndex    =   -1
+                if deleteIndex == self?.offsetIndex {
+                    self?.offsetIndex   =   -1
                 }
                 
-                self.view.endEditing(true)
-                self.collectionView.collectionViewLayout.invalidateLayout()
+                // Last tag becomeFirstResponder
+                if isKeyboardShow {
+                    (self?.collectionView.cellForItem(at: IndexPath(row: (self?.tags.count)! - 1, section: 0)) as! ThemeTagCollectionViewCell).textField.becomeFirstResponder()
+                }
+                
+                self?.collectionView.collectionViewLayout.invalidateLayout()
             }
             
-            // Handler start editing
-            (cell as! ThemeTagCollectionViewCell).completionStartEditing = {
-                self.completionStartEndEditing!((UIApplication.shared.statusBarOrientation.isPortrait ? 150.0 : 100.0) * heightRatio, nil)
-            }
-
             // Handler end editing
             (cell as! ThemeTagCollectionViewCell).completionEndEditing = {
                 _ = self.tags.map({
@@ -156,9 +157,14 @@ extension TagsCollectionViewController: UICollectionViewDataSource {
                     }
                 })
                 
-                if let addTagCell = self.collectionView.visibleCells.first(where: { $0 is AddTagCollectionViewCell }) {
+                if let addTagCell = self.collectionView.visibleCells.first(where: { $0 is AddTagCollectionViewCell }), !IQKeyboardManager.sharedManager().keyboardShowing {
                     self.completionStartEndEditing!(0.0, addTagCell.frame.maxY)
                 }
+            }
+            
+            // Handler start editing
+            (cell as! ThemeTagCollectionViewCell).completionStartEditing = {
+                self.completionStartEndEditing!((UIApplication.shared.statusBarOrientation.isPortrait ? 150.0 : 100.0) * heightRatio, nil)
             }
             
             // Handler change title

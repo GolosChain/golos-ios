@@ -183,7 +183,7 @@ class PostCreateViewController: BaseViewController {
                              font:              UIFont(name: "SFUIDisplay-Regular", size: 13.0 * widthRatio),
                              alignment:         .left)
     }
-        
+    
     
     // MARK: - Custom Functions
     private func saveToAlbum(image: UIImage) {

@@ -8,12 +8,14 @@
 
 import UIKit
 import SwiftTheme
+import IQKeyboardManagerSwift
 
 class ThemeTagCollectionViewCell: UICollectionViewCell {
     // MARK: - Properties
+    var isClearbuttonTaped: Bool = false
     var firstResponderWidth: CGFloat = 78.0
     var completionEndEditing: (() -> Void)?
-    var completionClearButton: (() -> Void)?
+    var completionClearButton: ((Bool) -> Void)?    // Bool = keyboard show or hide
     var completionChangeTitle: ((CGFloat) -> Void)?
     var completionStartEditing: (() -> Void)?
 
@@ -56,7 +58,8 @@ class ThemeTagCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Actions
     @IBAction func clearButtonTapped(_ sender: UIButton) {
-        self.completionClearButton!()
+        self.isClearbuttonTaped = true
+        self.completionClearButton!(IQKeyboardManager.sharedManager().keyboardShowing)
     }
 }
 
@@ -77,15 +80,18 @@ extension ThemeTagCollectionViewCell: ConfigureCell {
 // MARK: - UITextFieldDelegate
 extension ThemeTagCollectionViewCell: UITextFieldDelegate {
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        self.firstResponderWidth = textField.frame.width
-        
+        self.firstResponderWidth    =   textField.frame.width
+        self.isClearbuttonTaped     =   false
+
         self.completionStartEditing!()
         
         return true
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        self.completionEndEditing!()
+        if !self.isClearbuttonTaped {
+            self.completionEndEditing!()
+        }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
