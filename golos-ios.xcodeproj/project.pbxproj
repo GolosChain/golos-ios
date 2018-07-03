@@ -93,6 +93,8 @@
 		B12F43FB20EA0192003FFF58 /* ScannerShow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B12F43FA20EA0191003FFF58 /* ScannerShow.storyboard */; };
 		B12F440420EA01F9003FFF58 /* ScannerShowRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12F43FE20EA01F9003FFF58 /* ScannerShowRouter.swift */; };
 		B12F440620EA01F9003FFF58 /* ScannerShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12F440020EA01F9003FFF58 /* ScannerShowViewController.swift */; };
+		B12F442D20EB4AFC003FFF58 /* GolosModels.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B12F442B20EB4AFC003FFF58 /* GolosModels.xcdatamodeld */; };
+		B12F443020EB4B1F003FFF58 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12F442F20EB4B1F003FFF58 /* CoreDataManager.swift */; };
 		B136D4F820D8B9E8003AD279 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = B136D4F720D8B9E8003AD279 /* Tag.swift */; };
 		B136D4FB20D8BA14003AD279 /* AddTagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B136D4F920D8BA14003AD279 /* AddTagCollectionViewCell.swift */; };
 		B136D4FC20D8BA14003AD279 /* AddTagCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B136D4FA20D8BA14003AD279 /* AddTagCollectionViewCell.xib */; };
@@ -325,6 +327,8 @@
 		B12F43FA20EA0191003FFF58 /* ScannerShow.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ScannerShow.storyboard; sourceTree = "<group>"; };
 		B12F43FE20EA01F9003FFF58 /* ScannerShowRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerShowRouter.swift; sourceTree = "<group>"; };
 		B12F440020EA01F9003FFF58 /* ScannerShowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerShowViewController.swift; sourceTree = "<group>"; };
+		B12F442C20EB4AFC003FFF58 /* Golos.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Golos.xcdatamodel; sourceTree = "<group>"; };
+		B12F442F20EB4B1F003FFF58 /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		B136D4F720D8B9E8003AD279 /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		B136D4F920D8BA14003AD279 /* AddTagCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTagCollectionViewCell.swift; sourceTree = "<group>"; };
 		B136D4FA20D8BA14003AD279 /* AddTagCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddTagCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -687,6 +691,23 @@
 				B12F440020EA01F9003FFF58 /* ScannerShowViewController.swift */,
 			);
 			path = ScannerShow;
+			sourceTree = "<group>";
+		};
+		B12F442A20EB4AE0003FFF58 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				B12F442E20EB4B02003FFF58 /* Entities */,
+				B12F442B20EB4AFC003FFF58 /* GolosModels.xcdatamodeld */,
+				B12F442F20EB4B1F003FFF58 /* CoreDataManager.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		B12F442E20EB4B02003FFF58 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Entities;
 			sourceTree = "<group>";
 		};
 		B136D4F420D8B986003AD279 /* TagsShow */ = {
@@ -1112,6 +1133,7 @@
 		ECF28084200A941F0000D949 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				B12F442A20EB4AE0003FFF58 /* CoreData */,
 				ECF28085200A94360000D949 /* Extensions */,
 				ECF28088200A95730000D949 /* Protocols */,
 				B181585E20B976E700835034 /* ViewControllers */,
@@ -1521,6 +1543,7 @@
 				EC9ABBBF20179CEF00AF8597 /* Images.swift in Sources */,
 				B1C1DFE420CF887F00D1A837 /* LogInShowInteractor.swift in Sources */,
 				EC07F4AA20141F0C00560CF0 /* FeedPresenter.swift in Sources */,
+				B12F442D20EB4AFC003FFF58 /* GolosModels.xcdatamodeld in Sources */,
 				B18DB455208619A000BA5D50 /* DisplayedPost.swift in Sources */,
 				7DFE7C4B20464C680057F144 /* PostRequestType.swift in Sources */,
 				EC07F4A22014093E00560CF0 /* HorizontalSelectorView.swift in Sources */,
@@ -1531,6 +1554,7 @@
 				B164F04620E62AE600C5CDD3 /* UserProfileShowViewController.swift in Sources */,
 				7DA063222032513A00B5630C /* ProfileFeedContainerController.swift in Sources */,
 				B164F04320E62AE600C5CDD3 /* UserProfileShowWorker.swift in Sources */,
+				B12F443020EB4B1F003FFF58 /* CoreDataManager.swift in Sources */,
 				B136D4FF20D8BA2E003AD279 /* ThemeTagCollectionViewCell.swift in Sources */,
 				B1EE686C20D2D713006BF802 /* PostCommentReply.swift in Sources */,
 				7D25B4C6201FABCB004A3400 /* ArticleTextTableViewCell.swift in Sources */,
@@ -2104,6 +2128,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		B12F442B20EB4AFC003FFF58 /* GolosModels.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				B12F442C20EB4AFC003FFF58 /* Golos.xcdatamodel */,
+			);
+			currentVersion = B12F442C20EB4AFC003FFF58 /* Golos.xcdatamodel */;
+			path = GolosModels.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = EC1DFB8320063C400080BC50 /* Project object */;
 }
