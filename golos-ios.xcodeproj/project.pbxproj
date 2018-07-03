@@ -126,6 +126,10 @@
 		B1C1DFDF20CF887F00D1A837 /* LogInShowPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C1DFD920CF887F00D1A837 /* LogInShowPresenter.swift */; };
 		B1C1DFE220CF887F00D1A837 /* LogInShowModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C1DFDC20CF887F00D1A837 /* LogInShowModels.swift */; };
 		B1C1DFE420CF887F00D1A837 /* LogInShowInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C1DFDE20CF887F00D1A837 /* LogInShowInteractor.swift */; };
+		B1EBAFB920EB55690050B1A2 /* UserSecretKey+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EBAFB520EB55690050B1A2 /* UserSecretKey+CoreDataClass.swift */; };
+		B1EBAFBA20EB55690050B1A2 /* UserSecretKey+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EBAFB620EB55690050B1A2 /* UserSecretKey+CoreDataProperties.swift */; };
+		B1EBAFBB20EB55690050B1A2 /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EBAFB720EB55690050B1A2 /* User+CoreDataClass.swift */; };
+		B1EBAFBC20EB55690050B1A2 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EBAFB820EB55690050B1A2 /* User+CoreDataProperties.swift */; };
 		B1EE684620D243F5006BF802 /* PostCreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EE684520D243F5006BF802 /* PostCreateView.swift */; };
 		B1EE684820D243FF006BF802 /* PostCreateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1EE684720D243FF006BF802 /* PostCreateView.xib */; };
 		B1EE684A20D261C4006BF802 /* UITextView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EE684920D261C4006BF802 /* UITextView+Extensions.swift */; };
@@ -365,6 +369,10 @@
 		B1C1DFD920CF887F00D1A837 /* LogInShowPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInShowPresenter.swift; sourceTree = "<group>"; };
 		B1C1DFDC20CF887F00D1A837 /* LogInShowModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInShowModels.swift; sourceTree = "<group>"; };
 		B1C1DFDE20CF887F00D1A837 /* LogInShowInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInShowInteractor.swift; sourceTree = "<group>"; };
+		B1EBAFB520EB55690050B1A2 /* UserSecretKey+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserSecretKey+CoreDataClass.swift"; sourceTree = "<group>"; };
+		B1EBAFB620EB55690050B1A2 /* UserSecretKey+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserSecretKey+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B1EBAFB720EB55690050B1A2 /* User+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = "<group>"; };
+		B1EBAFB820EB55690050B1A2 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		B1EE684520D243F5006BF802 /* PostCreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCreateView.swift; sourceTree = "<group>"; };
 		B1EE684720D243FF006BF802 /* PostCreateView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostCreateView.xib; sourceTree = "<group>"; };
 		B1EE684920D261C4006BF802 /* UITextView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+Extensions.swift"; sourceTree = "<group>"; };
@@ -706,6 +714,10 @@
 		B12F442E20EB4B02003FFF58 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				B1EBAFB720EB55690050B1A2 /* User+CoreDataClass.swift */,
+				B1EBAFB820EB55690050B1A2 /* User+CoreDataProperties.swift */,
+				B1EBAFB520EB55690050B1A2 /* UserSecretKey+CoreDataClass.swift */,
+				B1EBAFB620EB55690050B1A2 /* UserSecretKey+CoreDataProperties.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -1559,6 +1571,7 @@
 				B1EE686C20D2D713006BF802 /* PostCommentReply.swift in Sources */,
 				7D25B4C6201FABCB004A3400 /* ArticleTextTableViewCell.swift in Sources */,
 				EC9B2AE920155B9C008335C8 /* PostsFeedMediator.swift in Sources */,
+				B1EBAFBB20EB55690050B1A2 /* User+CoreDataClass.swift in Sources */,
 				7D25B4C2201FABBD004A3400 /* ArticleImageTableViewCell.swift in Sources */,
 				EC24FF28200BEBE600A0AE15 /* ViewProtocol.swift in Sources */,
 				B136D4FB20D8BA14003AD279 /* AddTagCollectionViewCell.swift in Sources */,
@@ -1597,6 +1610,7 @@
 				7D25B47F201F4714004A3400 /* TagsView.swift in Sources */,
 				B11AA80720CB9FC800212713 /* UILabel+Extensions.swift in Sources */,
 				B114192820CD1E260025B07F /* ReachabilityManager.swift in Sources */,
+				B1EBAFBC20EB55690050B1A2 /* User+CoreDataProperties.swift in Sources */,
 				B111322420CD51EA00BC7F33 /* PostingKeyShowRouter.swift in Sources */,
 				B12F440420EA01F9003FFF58 /* ScannerShowRouter.swift in Sources */,
 				7D25B4B5201F9218004A3400 /* GSNavigationBar.swift in Sources */,
@@ -1612,6 +1626,7 @@
 				EC24FF6C200C400300A0AE15 /* GSTabBarController.swift in Sources */,
 				B164F04520E62AE600C5CDD3 /* UserProfileShowModels.swift in Sources */,
 				7DFA6CAD2036D76000F59494 /* PostsFeedImageTableViewCell.swift in Sources */,
+				B1EBAFBA20EB55690050B1A2 /* UserSecretKey+CoreDataProperties.swift in Sources */,
 				B1050CA420CECF75003CE4EE /* PostCreateViewController.swift in Sources */,
 				7D25B4B8201F980A004A3400 /* ArticleHeaderView.swift in Sources */,
 				7D79C33A2034675C00794447 /* AnswersFeedViewController.swift in Sources */,
@@ -1626,6 +1641,7 @@
 				EC24FF50200C065F00A0AE15 /* AppState.swift in Sources */,
 				B164F04720E62AE600C5CDD3 /* UserProfileShowInteractor.swift in Sources */,
 				7DE353172048A84C00C04CB2 /* ProfileViewModel.swift in Sources */,
+				B1EBAFB920EB55690050B1A2 /* UserSecretKey+CoreDataClass.swift in Sources */,
 				B123C5BB20CE4C8B00747989 /* UITextField+Extensions.swift in Sources */,
 				ECF31725200A9D2800F7B703 /* UIAlertController+Window.swift in Sources */,
 				7D25B48C201F5700004A3400 /* TagCollectionViewCell.swift in Sources */,
