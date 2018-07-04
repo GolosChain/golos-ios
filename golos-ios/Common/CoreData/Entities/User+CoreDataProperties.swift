@@ -20,6 +20,7 @@ extension User {
     @NSManaged public var id: Int64
     @NSManaged public var name: String
     @NSManaged public var post_count: Int64
+    @NSManaged public var isAuthorized: Bool
     @NSManaged public var json_metadata: String?
 
     @NSManaged public var memo: UserSecretMemoKey?

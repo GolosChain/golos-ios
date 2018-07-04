@@ -106,3 +106,4 @@
 "Scanner Key Code error"                    =   "The code of the scanned key\n must begin with 5 or 1";
 "CoreData saved error"                      =   "There was an error creating or loading the application's saved data";
 "CoreData init error"                       =   "Failed to initialize the application's saved data";
+"User is not found"                         =   "User is not found";

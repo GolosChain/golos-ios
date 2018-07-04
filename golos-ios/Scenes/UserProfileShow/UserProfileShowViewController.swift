@@ -15,7 +15,8 @@ import GoloSwift
 
 // MARK: - Input & Output protocols
 protocol UserProfileShowDisplayLogic: class {
-    func displayUserProfile(fromViewModel viewModel: UserProfileShowModels.User.ViewModel)
+    func displayUserInfo(fromViewModel viewModel: UserProfileShowModels.UserInfo.ViewModel)
+    func displayUserDetails(fromViewModel viewModel: UserProfileShowModels.UserDetails.ViewModel)
 }
 
 class UserProfileShowViewController: UIViewController {
@@ -83,24 +84,37 @@ class UserProfileShowViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        // Load User profile
-        self.loadUserProfile()
+        // Load User info
+        self.loadUserInfo()
     }
+    
     
     // MARK: - Custom Functions
     private func loadViewSettings() {
     }
     
-    private func loadUserProfile() {
-        let requestModel = UserProfileShowModels.User.RequestModel()
-        interactor?.loadUserProfile(withRequestModel: requestModel)
+    private func loadUserInfo() {
+        let userInfoRequestModel = UserProfileShowModels.UserInfo.RequestModel()
+        interactor?.loadUserInfo(withRequestModel: userInfoRequestModel)
+    }
+    
+    private func loadUserDetails() {
+        let userDetailsRequestModel = UserProfileShowModels.UserDetails.RequestModel()
+        interactor?.loadUserDetails(withRequestModel: userDetailsRequestModel)
     }
 }
 
 
 // MARK: - UserProfileShowDisplayLogic
 extension UserProfileShowViewController: UserProfileShowDisplayLogic {
-    func displayUserProfile(fromViewModel viewModel: UserProfileShowModels.User.ViewModel) {
+    func displayUserInfo(fromViewModel viewModel: UserProfileShowModels.UserInfo.ViewModel) {
+        // NOTE: Display the result from the Presenter
+
+        // Load User details
+        self.loadUserDetails()
+    }
+    
+    func displayUserDetails(fromViewModel viewModel: UserProfileShowModels.UserDetails.ViewModel) {
         // NOTE: Display the result from the Presenter
 
     }

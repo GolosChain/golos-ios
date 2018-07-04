@@ -125,6 +125,23 @@ class ProfileViewController: BaseViewController, UIGestureRecognizerDelegate {
         profileHeaderView.backgroundImage               =   Images.Profile.getProfileHeaderBackground()
         profileHorizontalSelector.backgroundColor       =   .green
     }
+    
+    
+    // MARK: - Custom Functions
+    func routeToMainScene() {
+        let fromView: UIView    =   self.view
+        let toView: UIView      =   (self.navigationController!.tabBarController?.viewControllers?.first!.view)!
+        
+        UIView.animate(withDuration: 0.3,
+                       animations: {
+                        self.navigationController!.navigationBar.barTintColor = UIColor(hexString: "#4469af")
+                        self.navigationController!.navigationBar.isHidden = true
+        }, completion: { _ in
+            UIView.transition(from: fromView, to: toView, duration: 0.5, options: .transitionCrossDissolve) { [weak self] _ in
+                self?.navigationController!.tabBarController!.selectedIndex = 0
+            }
+        })
+    }
 }
 
 
@@ -159,7 +176,9 @@ extension ProfileViewController: ProfileHeaderViewDelegate {
 // MARK: - ProfileViewProtocol
 extension ProfileViewController: ProfileViewProtocol {
     func didFail(with errorMessage: String) {
-        self.showAlertView(withTitle: "Error", andMessage: errorMessage, needCancel: false, completion: { _ in })
+        self.showAlertView(withTitle: "Error", andMessage: errorMessage, needCancel: false, completion: { [weak self] _ in
+            self?.routeToMainScene()
+        })
     }
     
     func didRefreshUser() {

@@ -16,7 +16,9 @@ public class User: NSManagedObject {
     // MARK: - Properties
     class var current: User? {
         get {
-            return (CoreDataManager.instance.readEntity(withName: "User", andPredicateParameters: nil)) as? User
+            return CoreDataManager.instance.readEntities(withName:                  "User",
+                                                         withPredicateParameters:   NSPredicate(format: "isAuthorized = 1"),
+                                                         andSortDescriptor:         nil)?.first as? User
         }
     }
     
@@ -28,6 +30,17 @@ public class User: NSManagedObject {
     
     
     // MARK: - Class Functions
+    class func instance(byUserID userID: Int64) -> User {
+        if let user = CoreDataManager.instance.readEntity(withName: "User", andPredicateParameters: NSPredicate.init(format: "id == \(userID)")) as? User {
+            return user
+        }
+        
+        let userEntity          =   CoreDataManager.instance.createEntity("User") as! User
+        userEntity.id           =   userID
+        
+        return userEntity
+    }
+
     func updateEntity(fromResponseAPI responseAPI: Decodable) {
         let userModel           =   responseAPI as! ResponseAPIUser
         

@@ -106,3 +106,4 @@
 "Scanner Key Code error"                    =   "Код сканируемого ключа\nдолжен начинаться с 5 или 1";
 "CoreData saved error"                      =   "There was an error creating or loading the application's saved data";
 "CoreData init error"                       =   "Failed to initialize the application's saved data";
+"User is not found"                         =   "Пользователь не найден";

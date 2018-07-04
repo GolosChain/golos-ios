@@ -15,7 +15,8 @@ import GoloSwift
 
 // MARK: - Presentation Logic protocols
 protocol UserProfileShowPresentationLogic {
-    func presentUserProfile(fromResponseModel responseModel: UserProfileShowModels.User.ResponseModel)
+    func presentUserInfo(fromResponseModel responseModel: UserProfileShowModels.UserInfo.ResponseModel)
+    func presentUserDetails(fromResponseModel responseModel: UserProfileShowModels.UserDetails.ResponseModel)
 }
 
 class UserProfileShowPresenter: UserProfileShowPresentationLogic {
@@ -30,8 +31,13 @@ class UserProfileShowPresenter: UserProfileShowPresentationLogic {
     
 
     // MARK: - Presentation Logic implementation
-    func presentUserProfile(fromResponseModel responseModel: UserProfileShowModels.User.ResponseModel) {
-        let viewModel = UserProfileShowModels.User.ViewModel()
-        viewController?.displayUserProfile(fromViewModel: viewModel)
+    func presentUserInfo(fromResponseModel responseModel: UserProfileShowModels.UserInfo.ResponseModel) {
+        let userInfoViewModel = UserProfileShowModels.UserInfo.ViewModel()
+        viewController?.displayUserInfo(fromViewModel: userInfoViewModel)
+    }
+    
+    func presentUserDetails(fromResponseModel responseModel: UserProfileShowModels.UserDetails.ResponseModel) {
+        let userDetailsViewModel = UserProfileShowModels.UserDetails.ViewModel()
+        viewController?.displayUserDetails(fromViewModel: userDetailsViewModel)
     }
 }

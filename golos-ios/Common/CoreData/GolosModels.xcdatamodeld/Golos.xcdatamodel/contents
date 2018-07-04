@@ -2,6 +2,7 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14135" systemVersion="17F77" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="User" representedClassName="User" syncable="YES">
         <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="isAuthorized" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="json_metadata" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" attributeType="String" defaultValueString="Zorro" syncable="YES"/>
         <attribute name="post_count" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -64,10 +65,10 @@
         </uniquenessConstraints>
     </entity>
     <elements>
-        <element name="UserSecretOwnerKey" positionX="-243" positionY="-234" width="128" height="120"/>
-        <element name="User" positionX="-666" positionY="-90" width="128" height="165"/>
-        <element name="UserSecretMemoKey" positionX="-54" positionY="72" width="128" height="120"/>
-        <element name="UserSecretPostingKey" positionX="-45" positionY="63" width="128" height="120"/>
+        <element name="User" positionX="-666" positionY="-90" width="128" height="180"/>
         <element name="UserSecretActiveKey" positionX="-459" positionY="-81" width="128" height="120"/>
+        <element name="UserSecretMemoKey" positionX="-54" positionY="72" width="128" height="120"/>
+        <element name="UserSecretOwnerKey" positionX="-243" positionY="-234" width="128" height="120"/>
+        <element name="UserSecretPostingKey" positionX="-45" positionY="63" width="128" height="120"/>
     </elements>
 </model>

@@ -86,6 +86,7 @@ extension ProfilePresenter: ProfilePresenterProtocol {
             }
             
             guard let user = displayedUsers?.first else {
+                strongSelf.profileView.didFail(with: "User is not found")
                 return
             }
             

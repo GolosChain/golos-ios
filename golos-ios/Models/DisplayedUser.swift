@@ -21,6 +21,7 @@ struct DisplayedUser {
     let ownerKey: String?
     let activeKey: String?
     let postingKey: String?
+    var isAuthorized: Bool = false
 
     
     // MARK: - Class Initialization
@@ -32,11 +33,32 @@ struct DisplayedUser {
         self.ownerKey           =   String(describing: user.owner?.key_auths.first?.first)
         self.activeKey          =   String(describing: user.active?.key_auths.first?.first)
         self.postingKey         =   String(describing: user.posting?.key_auths.first?.first)
-
-        if  let metaData        =   user.json_metadata,
-            let data            =   metaData.data(using: .utf8),
-            let json            =   try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any],
-            let profile         =   json?["profile"] as? [String: Any] {
+        
+        if  let metaData = user.json_metadata {
+            self.parse(metaData: metaData)
+        }
+    }
+    
+    init(fromUser user: User) {
+        self.id                 =   user.id
+        self.name               =   user.name
+        self.postCount          =   user.post_count
+        self.memoKey            =   user.memo?.key_auths?.first?.first
+        self.ownerKey           =   user.owner?.key_auths?.first?.first
+        self.activeKey          =   user.active?.key_auths?.first?.first
+        self.postingKey         =   user.posting?.key_auths?.first?.first
+        
+        if let metaData = user.json_metadata {
+            self.parse(metaData: metaData)
+        }
+    }
+    
+    
+    // MARK: - Custom Functions
+    private mutating func parse(metaData: String) {
+        if  let data    =   metaData.data(using: .utf8),
+            let json    =   try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any],
+            let profile =   json?["profile"] as? [String: Any] {
             self.about          =   profile["about"] as? String
             self.pictureURL     =   profile["profile_image"] as? String
             self.coverImageURL  =   profile["cover_image"] as? String

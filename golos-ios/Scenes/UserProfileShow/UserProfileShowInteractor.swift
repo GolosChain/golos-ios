@@ -11,11 +11,13 @@
 //
 
 import UIKit
+import CoreData
 import GoloSwift
 
 // MARK: - Business Logic protocols
 protocol UserProfileShowBusinessLogic {
-    func loadUserProfile(withRequestModel requestModel: UserProfileShowModels.User.RequestModel)
+    func loadUserInfo(withRequestModel requestModel: UserProfileShowModels.UserInfo.RequestModel)
+    func loadUserDetails(withRequestModel requestModel: UserProfileShowModels.UserDetails.RequestModel)
 }
 
 protocol UserProfileShowDataStore {
@@ -37,7 +39,7 @@ class UserProfileShowInteractor: UserProfileShowBusinessLogic, UserProfileShowDa
     
 
     // MARK: - Business logic implementation
-    func loadUserProfile(withRequestModel requestModel: UserProfileShowModels.User.RequestModel) {
+    func loadUserInfo(withRequestModel requestModel: UserProfileShowModels.UserInfo.RequestModel) {
         // API 'get_accounts'
         if isNetworkAvailable {
             // Create MethodAPIType
@@ -49,9 +51,9 @@ class UserProfileShowInteractor: UserProfileShowBusinessLogic, UserProfileShowDa
                                     Logger.log(message: "\nresponse API Result = \(responseAPIResult)\n", event: .debug)
                                     
                                     guard let userResult = (responseAPIResult as! ResponseAPIUserResult).result, userResult.count > 0 else {
-                                        // Send empry User profile
-                                        let responseModel = UserProfileShowModels.User.ResponseModel(userResult: [], error: nil)
-                                        self?.presenter?.presentUserProfile(fromResponseModel: responseModel)
+                                        // Send empty User info
+                                        let responseModel = UserProfileShowModels.UserInfo.ResponseModel(user: nil, error: nil)
+                                        self?.presenter?.presentUserInfo(fromResponseModel: responseModel)
                                         
                                         return
                                     }
@@ -59,25 +61,84 @@ class UserProfileShowInteractor: UserProfileShowBusinessLogic, UserProfileShowDa
                                     // Update User entity
                                     if let userEntity = CoreDataManager.instance.createEntity("User") as? User {
                                         userEntity.updateEntity(fromResponseAPI: userResult.first)
+                                        
+                                        // Send User info
+                                        let responseModel = UserProfileShowModels.UserInfo.ResponseModel(user: userEntity, error: nil)
+                                        self?.presenter?.presentUserInfo(fromResponseModel: responseModel)
                                     }
 
 //                                    let displayedUsers = result.compactMap({ DisplayedUser(fromResponseAPIUser: $0) })
-                                    // Send User profile
-                                    let responseModel = UserProfileShowModels.User.ResponseModel(userResult: userResult, error: nil)
-                                    self?.presenter?.presentUserProfile(fromResponseModel: responseModel)
                 },
                                  onError: { [weak self] errorAPI in
                                     Logger.log(message: "nresponse API Error = \(errorAPI.caseInfo.message)\n", event: .error)
                                     
                                     // Send error
-                                    let responseModel = UserProfileShowModels.User.ResponseModel(userResult: nil, error: errorAPI)
-                                    self?.presenter?.presentUserProfile(fromResponseModel: responseModel)
+                                    let responseModel = UserProfileShowModels.UserInfo.ResponseModel(user: nil, error: errorAPI)
+                                    self?.presenter?.presentUserInfo(fromResponseModel: responseModel)
             })
         }
         
         // CoreData
         else {
+            // Send User info
+            if let userEntity = User.current {
+                let responseModel = UserProfileShowModels.UserInfo.ResponseModel(user: userEntity, error: nil)
+                self.presenter?.presentUserInfo(fromResponseModel: responseModel)
+            }
+        }
+    }
+    
+    func loadUserDetails(withRequestModel requestModel: UserProfileShowModels.UserDetails.RequestModel) {
+        // API 'get_discussions_by_blog'
+        if isNetworkAvailable {
+            // Create MethodAPIType
+            let discussion      =   RequestParameterAPI.Discussion.init(limit:          loadDataLimit,
+                                                                        truncateBody:   0,
+                                                                        selectAuthors:  ["yuri-vlad-second"])
+
+            let methodAPIType   =   MethodAPIType.getDiscussions(type: .lenta, parameters: discussion)
             
+            // API 'get_discussions_by_blog'
+            broadcast.executeGET(byMethodAPIType: methodAPIType,
+                                 onResult: { [weak self] responseAPIResult in
+                                    Logger.log(message: "\nresponse API Result = \(responseAPIResult)\n", event: .debug)
+                                    
+                                    guard let result = (responseAPIResult as! ResponseAPIFeedResult).result, result.count > 0 else {
+//                                        completion([], nil)
+                                        // Send empty User info
+                                        let userDetailsResponseModel = UserProfileShowModels.UserDetails.ResponseModel(error: nil)
+                                        self?.presenter?.presentUserDetails(fromResponseModel: userDetailsResponseModel)
+
+                                        return
+                                    }
+                                    
+                                    // Update User blog entity
+//                                    if let userEntity = CoreDataManager.instance.createEntity("User") as? User {
+//                                        userEntity.updateEntity(fromResponseAPI: userResult.first)
+//
+//                                        // Send User info
+//                                        let userDetailsResponseModel = UserProfileShowModels.UserDetails.ResponseModel(error: nil)
+//                                        self?.presenter?.presentUserDetails(fromResponseModel: userDetailsResponseModel)
+//                                    }
+
+//                                    let displayedPosts = result.compactMap({ DisplayedPost(fromResponseAPIFeed: $0) })
+            },
+                                 onError: { [weak self] errorAPI in
+                                    Logger.log(message: "nresponse API Error = \(errorAPI.caseInfo.message)\n", event: .error)
+
+                                    // Send error
+                                    let userDetailsResponseModel = UserProfileShowModels.UserDetails.ResponseModel(error: errorAPI)
+                                    self?.presenter?.presentUserDetails(fromResponseModel: userDetailsResponseModel)
+            })
+        }
+        
+        // CoreData
+        else {
+            // Send User details
+//            if let userEntity = User.current {
+//                let responseModel = UserProfileShowModels.UserInfo.ResponseModel(user: userEntity, error: nil)
+//                self.presenter?.presentUserProfile(fromResponseModel: responseModel)
+//            }
         }
     }
 }

@@ -12,16 +12,30 @@
 
 import UIKit
 import GoloSwift
+import CoreData
 
 // MARK: - Data models
 enum UserProfileShowModels {
     // MARK: - Use cases
-    enum User {
+    enum UserInfo {
         struct RequestModel {
         }
         
         struct ResponseModel {
-            let userResult: [ResponseAPIUser]?
+            let user: User?
+            let error: ErrorAPI?
+        }
+        
+        struct ViewModel {
+        }
+    }
+
+    enum UserDetails {
+        struct RequestModel {
+        }
+        
+        struct ResponseModel {
+//            let user: User?
             let error: ErrorAPI?
         }
         
