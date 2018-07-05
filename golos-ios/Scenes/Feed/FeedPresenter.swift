@@ -6,8 +6,9 @@
 //  Copyright © 2018 golos. All rights reserved.
 //
 
-import Foundation
+import CoreData
 import GoloSwift
+import Foundation
 
 protocol FeedPresenterProtocol: class {
     func getPostsFeedTypeArray() -> [PostsFeedType]
@@ -43,7 +44,7 @@ class FeedPresenter: NSObject {
 extension FeedPresenter: FeedPresenterProtocol {
     func getPostsFeedTypeArray() -> [PostsFeedType] {
         // FIXME: - ADD REAL USER STATE
-        if 2/2 == 1 {
+        if User.current == nil {
             postsFeedTypeArray.remove(at: 0)
         }
         

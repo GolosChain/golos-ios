@@ -24,9 +24,9 @@ class ProfileFeedContainerController: UIViewController {
     
     // MARK: - Main Scrolling
     private var startIndex: Int = 0
-    private var lastContentOffsetX: CGFloat = 0
     private var needToDelegateUse = true
-    
+    private var lastContentOffsetX: CGFloat = 0
+
     weak var delegate: ProfileFeedContainerControllerDelegate?
     
     
@@ -90,11 +90,11 @@ class ProfileFeedContainerController: UIViewController {
     
     // MARK: - Change active item
     func setActiveItem(at index: Int) {
-        let width = mainScrollView.bounds.width
-        let xOffset = width * CGFloat(index)
-        let contentOffset = CGPoint(x: xOffset, y: 0)
+        let width               =   mainScrollView.bounds.width
+        let xOffset             =   width * CGFloat(index)
+        let contentOffset       =   CGPoint(x: xOffset, y: 0)
         
-        self.needToDelegateUse = false
+        self.needToDelegateUse  =   false
         
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
             self.mainScrollView.contentOffset = contentOffset

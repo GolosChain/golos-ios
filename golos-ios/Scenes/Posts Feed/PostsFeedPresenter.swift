@@ -10,9 +10,9 @@ import Foundation
 import GoloSwift
 
 protocol PostsFeedPresenterProtocol: class {
-    func loadNext()
+    func loadNext(withType type: PostsFeedType)
 //    func loadPostsFeed()
-    func loadPostsFeed(withDiscussion discussion: RequestParameterAPI.Discussion)
+    func loadPostsFeed(withType type: PostsFeedType, andDiscussion discussion: RequestParameterAPI.Discussion)
     
     func getFeedPostsType() -> PostsFeedType
 //    func getUser(at index: Int) -> UserModel?
@@ -71,10 +71,10 @@ extension PostsFeedPresenter: PostsFeedPresenterProtocol {
     }
     
     /// Load Feed posts
-    func loadPostsFeed(withDiscussion discussion: RequestParameterAPI.Discussion) {
+    func loadPostsFeed(withType type: PostsFeedType, andDiscussion discussion: RequestParameterAPI.Discussion) {
         Logger.log(message: "Success", event: .severe)
 
-        if (postsFeedType == .popular || postsFeedType == .lenta) && displayedPostsItems.count > 0 && discussion.start_author == nil {
+        if (type == .popular || type == .lenta) && displayedPostsItems.count > 0 && discussion.start_author == nil {
             // Prepare & Display feed posts
             self.displayedPosts.append(contentsOf: displayedPostsItems)
             self.postsFeedView.didLoadPosts()
@@ -82,7 +82,7 @@ extension PostsFeedPresenter: PostsFeedPresenterProtocol {
         }
 
         else {
-            postsFeedManager.loadPostsFeed(withType: postsFeedType, andDiscussion: discussion, completion: { [weak self] (displayedPosts, errorAPI) in
+            postsFeedManager.loadPostsFeed(withType: type, andDiscussion: discussion, completion: { [weak self] (displayedPosts, errorAPI) in
                 guard let selfStrong = self else { return }
                 
                 guard errorAPI == nil else {
@@ -107,14 +107,15 @@ extension PostsFeedPresenter: PostsFeedPresenterProtocol {
         }
     }
     
-    func loadNext() {
+    func loadNext(withType type: PostsFeedType) {
         Logger.log(message: "Success", event: .severe)
 
         // Load last post
         if let lastFeedPost = self.displayedPosts.last {
-            self.loadPostsFeed(withDiscussion: RequestParameterAPI.Discussion.init(limit:           loadDataLimit,
-                                                                                   startAuthor:     lastFeedPost.authorName,
-                                                                                   startPermlink:   lastFeedPost.permlink))
+            self.loadPostsFeed(withType:        type,
+                               andDiscussion:   RequestParameterAPI.Discussion.init(limit:           loadDataLimit,
+                                                                                    startAuthor:     lastFeedPost.authorName,
+                                                                                    startPermlink:   lastFeedPost.permlink))
         }
     }
     

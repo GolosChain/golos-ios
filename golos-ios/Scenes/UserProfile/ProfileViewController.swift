@@ -112,15 +112,19 @@ class ProfileViewController: BaseViewController, UIGestureRecognizerDelegate {
         profileFeedContainer.delegate   =   self
         
         // TODO: Move to mediator
-        let postsFeedViewController     =   PostsFeedViewController.nibInstance()
-        let answersFeedViewController   =   AnswersFeedViewController.nibInstance()
-        let postsFeedViewController1    =   PostsFeedViewController.nibInstance()
-        let postsFeedViewController2    =   PostsFeedViewController.nibInstance()
+        let lentaPostsFeedVC        =   PostsFeedViewController.nibInstance()
+        let answersFeedVC           =   AnswersFeedViewController.nibInstance()
+        let favoritesPostsFeedVC    =   PostsFeedViewController.nibInstance()
+        let infoPostsFeedVC         =   PostsFeedViewController.nibInstance()
         
-        let feedItems: [UIViewController & ProfileFeedContainerItem] = [postsFeedViewController,
-                                                                        answersFeedViewController,
-                                                                        postsFeedViewController1,
-                                                                        postsFeedViewController2]
+        lentaPostsFeedVC.presenter.setPostsFeedType(.lenta)
+        
+        let feedItems: [UIViewController & ProfileFeedContainerItem]    =   [
+                                                                                lentaPostsFeedVC,
+                                                                                answersFeedVC,
+                                                                                favoritesPostsFeedVC,
+                                                                                infoPostsFeedVC
+                                                                            ]
         
         profileFeedContainer.setFeedItems(feedItems, headerHeight: headerHeight, minimizedHeaderHeight: headerMinimizedHeight)
         
@@ -143,7 +147,7 @@ class ProfileViewController: BaseViewController, UIGestureRecognizerDelegate {
 //        horizontalSelectorTopConstraint.constant        =   topViewHeight + middleViewHeight
         profileHeaderView.backgroundImage               =   Images.Profile.getProfileHeaderBackground()
         
-        
+        // Wallet Balance View show/hide
         if !walletBalanceView.isHidden {
             view.bringSubview(toFront: walletBalanceView)
             walletBalanceViewTopConstraint.constant = 0.0

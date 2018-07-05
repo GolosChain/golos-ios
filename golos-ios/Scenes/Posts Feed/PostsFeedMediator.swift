@@ -68,7 +68,7 @@ extension PostsFeedMediator: UITableViewDataSource {
         // Pagination
         if indexPath.row == postsFeedPresenter.getDisplayedPosts().count - Int(loadDataLimit / 2) {
             DispatchQueue.main.async {
-                self.postsFeedPresenter.loadNext()
+                self.postsFeedPresenter.loadNext(withType: self.postsFeedPresenter.getFeedPostsType())
 //                self.delegate?.didStartLoadingNextPage()
             }
         }

@@ -55,7 +55,16 @@ class PostsFeedViewController: BaseViewController {
         Logger.log(message: "Success", event: .severe)
 
         self.setupUI()
-        self.presenter.loadPostsFeed(withDiscussion: RequestParameterAPI.Discussion.init(limit: loadDataLimit))
+        
+        // Load PostsFeed by User state
+        let type        =   presenter.getFeedPostsType()
+        
+        let discussion  =   (User.current != nil && type == .lenta) ?   RequestParameterAPI.Discussion.init(limit:          loadDataLimit,
+                                                                                                            truncateBody:   0,
+                                                                                                            selectAuthors:  ["yuri-vlad-second"]) :
+                                                                        RequestParameterAPI.Discussion.init(limit:          loadDataLimit)
+
+        self.presenter.loadPostsFeed(withType: type, andDiscussion: discussion)
     }
     
     override func viewWillAppear(_ animated: Bool) {
