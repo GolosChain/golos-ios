@@ -43,14 +43,32 @@ class ProfileViewController: BaseViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var statusImageView: UIImageView!
     @IBOutlet weak var profileHeaderView: ProfileHeaderView!
     @IBOutlet weak var profileHorizontalSelector: ProfileHorizontalSelectorView!
+    
+    @IBOutlet weak var walletBalanceView: UIView! {
+        didSet {
+            walletBalanceView.isHidden = true
+        }
+    }
+    
 
     @IBOutlet weak var statusBarImageViewBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var profileHeaderViewTopConstraint: NSLayoutConstraint!
-//    @IBOutlet weak var profileHeaderViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var profileInfoViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var horizontalSelectorTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var horizontalSelectorHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var profileInfoViewTopConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var walletBalanceViewHeightConstraint: NSLayoutConstraint! {
+        didSet {
+            walletBalanceViewHeightConstraint.constant = 44.0 * heightRatio
+        }
+    }
+    
+    @IBOutlet weak var walletBalanceViewTopConstraint: NSLayoutConstraint! {
+        didSet {
+            walletBalanceViewTopConstraint.constant = walletBalanceView.isHidden ? -walletBalanceViewHeightConstraint.constant : 0.0
+        }
+    }
     
     
     // MARK: - Class Functions
@@ -121,9 +139,15 @@ class ProfileViewController: BaseViewController, UIGestureRecognizerDelegate {
         profileInfoViewHeightConstraint.constant        =   middleViewHeight
 //        profileInfoViewTopConstraint.constant           =   topViewHeight
         horizontalSelectorHeightConstraint.constant     =   bottomViewHeight
-        horizontalSelectorTopConstraint.constant        =   topViewHeight + middleViewHeight
+//        horizontalSelectorTopConstraint.constant        =   profileInfoView.frame.maxY
+//        horizontalSelectorTopConstraint.constant        =   topViewHeight + middleViewHeight
         profileHeaderView.backgroundImage               =   Images.Profile.getProfileHeaderBackground()
-        profileHorizontalSelector.backgroundColor       =   .green
+        
+        
+        if !walletBalanceView.isHidden {
+            view.bringSubview(toFront: walletBalanceView)
+            walletBalanceViewTopConstraint.constant = 0.0
+        }
     }
     
     
@@ -218,10 +242,12 @@ extension ProfileViewController: ProfileFeedContainerControllerDelegate {
     }
     
     func didChangeYOffset(_ yOffset: CGFloat) {
-        profileHeaderViewTopConstraint.constant     =   -(min(yOffset, topViewHeight - topViewMinimizedHeight))
-        profileInfoViewTopConstraint.constant       =   -(min(yOffset - topViewHeight, middleViewHeight))
-        horizontalSelectorTopConstraint.constant    =   -(min(yOffset - middleViewHeight - topViewHeight, -topViewMinimizedHeight))
+        profileHeaderViewTopConstraint.constant         =   -(min(yOffset, topViewHeight - topViewMinimizedHeight))
+        profileInfoViewTopConstraint.constant           =   -(min(yOffset - topViewHeight, middleViewHeight))
+        horizontalSelectorTopConstraint.constant        =   -(min(yOffset - middleViewHeight - topViewHeight, -topViewMinimizedHeight))
         
+//        walletBalanceViewTopConstraint.constant         =   -(min(yOffset - walletBalanceViewHeightConstraint.constant, 44.0 * heightRatio))
+
         // Change status bar
         profileHeaderView.whiteStatusBarView.isHidden   =   profileHeaderViewTopConstraint.constant == -160.0 ? false : true
         UIApplication.shared.statusBarStyle             =   profileHeaderViewTopConstraint.constant == -160.0 ? .default : .lightContent
