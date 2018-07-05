@@ -99,7 +99,7 @@ class RootShowViewController: BaseViewController {
         // End progress bar animation
         self.circularProgressBarView.endAnimationCompletion = { [weak self] in
             // Check download data end
-            if displayedPostsItems.count == 0, appState == .loggedIn {
+            if displayedPostsItems.count == 0, User.isAnonymous {
                 self?.circularProgressBarView.startAnimation()
             }
             
@@ -108,8 +108,7 @@ class RootShowViewController: BaseViewController {
         }
         
         // API 'get_discussions_by_hot'
-        if appState == .loggedIn || isUserAnonymous {
-            print("start = \(Date())")
+        if !AppSettings.instance().startWithWelcomeScene {
             let requestModel = RootShowModels.Items.RequestModel()
             self.interactor?.loadPosts(withRequestModel: requestModel)
         }
@@ -117,7 +116,7 @@ class RootShowViewController: BaseViewController {
     
     @objc
     private func stateDidChange(_ notification: Notification) {
-        isUserAnonymous = false
+        AppSettings.instance().setStartWithWelcomeScene(true)
         
         self.navigationController?.viewControllers.removeLast((self.navigationController?.viewControllers.count)! - 1)
         self.loadViewSettings()
@@ -127,8 +126,8 @@ class RootShowViewController: BaseViewController {
     // MARK: - Actions
     @IBAction func unwindFromLogInShowScene(segue: UIStoryboardSegue) {
         if segue.source.isKind(of: LogInShowViewController.self) {
-            isUserAnonymous = true
-            
+            AppSettings.instance().setStartWithWelcomeScene(false)
+
             self.navigationController?.viewControllers.removeLast((self.navigationController?.viewControllers.count)! - 1)
             self.loadViewSettings()
         }
@@ -139,7 +138,6 @@ class RootShowViewController: BaseViewController {
 // MARK: - RootShowDisplayLogic
 extension RootShowViewController: RootShowDisplayLogic {
     func displayPosts(fromViewModel viewModel: RootShowModels.Items.ViewModel) {
-        print("finish = \(Date())")
         self.circularProgressBarView.endAnimation()
         Logger.log(message: "Animation did stop.", event: .severe)
         self.circularProgressBarView.endAnimationCompletion!()

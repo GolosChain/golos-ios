@@ -25,7 +25,7 @@ enum LoginType {
 
 // MARK: - Input & Output protocols
 protocol LogInShowDisplayLogic: class {
-    func displayAuthorizeUser(fromViewModel viewModel: LogInShowModels.Something.ViewModel)
+    func displayAuthorizeUser(fromViewModel viewModel: LogInShowModels.Parameters.ViewModel)
 }
 
 // MARK: - Input & Output protocols
@@ -90,7 +90,7 @@ class LogInShowViewController: BaseViewController {
 
     @IBOutlet weak var enterButtonSpinnerTrailingConstraint: NSLayoutConstraint! {
         didSet {
-        enterButtonSpinnerTrailingConstraint.constant *= widthRatio
+            enterButtonSpinnerTrailingConstraint.constant *= widthRatio
         }
     }
     
@@ -207,7 +207,9 @@ class LogInShowViewController: BaseViewController {
             self.cancelButton.isEnabled     =   false
 
             // API 'login'
-            let requestModel = LogInShowModels.Something.RequestModel()
+            let requestModel = LogInShowModels.Parameters.RequestModel(userName:    self.textFieldsCollection!.first!.text!,
+                                                                       wif:         self.textFieldsCollection!.last!.text!,
+                                                                       wifType:     self.textFieldsCollection!.last!.tag)
             interactor?.authorizeUser(withRequestModel: requestModel)
         }
     }
@@ -220,8 +222,16 @@ class LogInShowViewController: BaseViewController {
 
 // MARK: - LogInShowDisplayLogic
 extension LogInShowViewController: LogInShowDisplayLogic {
-    func displayAuthorizeUser(fromViewModel viewModel: LogInShowModels.Something.ViewModel) {
+    func displayAuthorizeUser(fromViewModel viewModel: LogInShowModels.Parameters.ViewModel) {
         // NOTE: Display the result from the Presenter
+        guard viewModel.success else {
+            self.showAlertView(withTitle: "Error", andMessage: "Login error", needCancel: false, completion: { _ in
+                self.enterButtonSpinner.stopAnimating()
+            })
+            
+            return
+        }
+        
         self.enterButtonSpinner.stopAnimating()
         self.enterButton.isEnabled      =   true
         self.cancelButton.isEnabled     =   true

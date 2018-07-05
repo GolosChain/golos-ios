@@ -233,7 +233,7 @@
                                     <constraint firstAttribute="height" constant="1" id="RQn-Oq-Tdk"/>
                                 </constraints>
                             </view>
-                            <textField clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Posting Key Placeholder" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="StO-Px-L68" userLabel="Posting Key Text Field">
+                            <textField clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Posting Key Placeholder" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="StO-Px-L68" userLabel="Posting Key Text Field">
                                 <rect key="frame" x="0.0" y="66" width="375" height="40"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <accessibility key="accessibilityConfiguration" hint="Posting Key Hint"/>
@@ -349,7 +349,7 @@
                                     <constraint firstAttribute="height" constant="1" id="ZZ0-fk-Uly"/>
                                 </constraints>
                             </view>
-                            <textField clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Active Key Placeholder" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5mg-Ux-OaM" userLabel="Active Key Text Field">
+                            <textField clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Active Key Placeholder" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5mg-Ux-OaM" userLabel="Active Key Text Field">
                                 <rect key="frame" x="0.0" y="66" width="375" height="40"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <accessibility key="accessibilityConfiguration" hint="Active Key Hint"/>

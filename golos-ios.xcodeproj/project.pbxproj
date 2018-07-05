@@ -98,7 +98,6 @@
 		B12F440420EA01F9003FFF58 /* ScannerShowRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12F43FE20EA01F9003FFF58 /* ScannerShowRouter.swift */; };
 		B12F440620EA01F9003FFF58 /* ScannerShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12F440020EA01F9003FFF58 /* ScannerShowViewController.swift */; };
 		B12F442D20EB4AFC003FFF58 /* GolosModels.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B12F442B20EB4AFC003FFF58 /* GolosModels.xcdatamodeld */; };
-		B12F443020EB4B1F003FFF58 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12F442F20EB4B1F003FFF58 /* CoreDataManager.swift */; };
 		B136D4F820D8B9E8003AD279 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = B136D4F720D8B9E8003AD279 /* Tag.swift */; };
 		B136D4FB20D8BA14003AD279 /* AddTagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B136D4F920D8BA14003AD279 /* AddTagCollectionViewCell.swift */; };
 		B136D4FC20D8BA14003AD279 /* AddTagCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B136D4FA20D8BA14003AD279 /* AddTagCollectionViewCell.xib */; };
@@ -111,6 +110,11 @@
 		B157660F20B59D80009619A6 /* RemoteNotificationTransferViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B157660E20B59D80009619A6 /* RemoteNotificationTransferViewController.swift */; };
 		B157661220B59D80009619A6 /* RemoteNotificationTransfer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B157661020B59D80009619A6 /* RemoteNotificationTransfer.storyboard */; };
 		B157661620B59D80009619A6 /* RemoteNotificationTransfer.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = B157660820B59D80009619A6 /* RemoteNotificationTransfer.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		B15F227E20EE943200C44282 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15F227D20EE943200C44282 /* CoreDataManager.swift */; };
+		B15F228220EEB16500C44282 /* StateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15F228120EEB16500C44282 /* StateMachine.swift */; };
+		B15F228420EEB16C00C44282 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15F228320EEB16C00C44282 /* AppState.swift */; };
+		B15F228720EEB31C00C44282 /* AppSettings+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15F228520EEB31C00C44282 /* AppSettings+CoreDataClass.swift */; };
+		B15F228820EEB31C00C44282 /* AppSettings+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15F228620EEB31C00C44282 /* AppSettings+CoreDataProperties.swift */; };
 		B164F04220E62AE600C5CDD3 /* UserProfileShowPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B164F03C20E62AE600C5CDD3 /* UserProfileShowPresenter.swift */; };
 		B164F04420E62AE600C5CDD3 /* UserProfileShowRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B164F03E20E62AE600C5CDD3 /* UserProfileShowRouter.swift */; };
 		B164F04520E62AE600C5CDD3 /* UserProfileShowModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B164F03F20E62AE600C5CDD3 /* UserProfileShowModels.swift */; };
@@ -159,8 +163,6 @@
 		EC24FF28200BEBE600A0AE15 /* ViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC24FF27200BEBE600A0AE15 /* ViewProtocol.swift */; };
 		EC24FF2B200BFAA100A0AE15 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC24FF2A200BFAA100A0AE15 /* Validator.swift */; };
 		EC24FF4D200C03E100A0AE15 /* ValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC24FF4C200C03E100A0AE15 /* ValidatorTests.swift */; };
-		EC24FF50200C065F00A0AE15 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC24FF4F200C065F00A0AE15 /* AppState.swift */; };
-		EC24FF52200C06E300A0AE15 /* StateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC24FF51200C06E300A0AE15 /* StateMachine.swift */; };
 		EC24FF54200C080300A0AE15 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC24FF53200C080300A0AE15 /* Notifications.swift */; };
 		EC24FF56200C0C1900A0AE15 /* StateMachineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC24FF55200C0C1900A0AE15 /* StateMachineTests.swift */; };
 		EC24FF59200C30B800A0AE15 /* MainContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC24FF58200C30B800A0AE15 /* MainContainerViewController.swift */; };
@@ -342,7 +344,6 @@
 		B12F43FE20EA01F9003FFF58 /* ScannerShowRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerShowRouter.swift; sourceTree = "<group>"; };
 		B12F440020EA01F9003FFF58 /* ScannerShowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerShowViewController.swift; sourceTree = "<group>"; };
 		B12F442C20EB4AFC003FFF58 /* Golos.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Golos.xcdatamodel; sourceTree = "<group>"; };
-		B12F442F20EB4B1F003FFF58 /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		B136D4F720D8B9E8003AD279 /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		B136D4F920D8BA14003AD279 /* AddTagCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTagCollectionViewCell.swift; sourceTree = "<group>"; };
 		B136D4FA20D8BA14003AD279 /* AddTagCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddTagCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -356,6 +357,11 @@
 		B157660E20B59D80009619A6 /* RemoteNotificationTransferViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteNotificationTransferViewController.swift; sourceTree = "<group>"; };
 		B157661120B59D80009619A6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/RemoteNotificationTransfer.storyboard; sourceTree = "<group>"; };
 		B157661320B59D80009619A6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B15F227D20EE943200C44282 /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		B15F228120EEB16500C44282 /* StateMachine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateMachine.swift; sourceTree = "<group>"; };
+		B15F228320EEB16C00C44282 /* AppState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		B15F228520EEB31C00C44282 /* AppSettings+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppSettings+CoreDataClass.swift"; sourceTree = "<group>"; };
+		B15F228620EEB31C00C44282 /* AppSettings+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppSettings+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		B164F03C20E62AE600C5CDD3 /* UserProfileShowPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileShowPresenter.swift; sourceTree = "<group>"; };
 		B164F03E20E62AE600C5CDD3 /* UserProfileShowRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileShowRouter.swift; sourceTree = "<group>"; };
 		B164F03F20E62AE600C5CDD3 /* UserProfileShowModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileShowModels.swift; sourceTree = "<group>"; };
@@ -412,8 +418,6 @@
 		EC24FF41200C038D00A0AE15 /* GolosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GolosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC24FF45200C038D00A0AE15 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EC24FF4C200C03E100A0AE15 /* ValidatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidatorTests.swift; sourceTree = "<group>"; };
-		EC24FF4F200C065F00A0AE15 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
-		EC24FF51200C06E300A0AE15 /* StateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateMachine.swift; sourceTree = "<group>"; };
 		EC24FF53200C080300A0AE15 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		EC24FF55200C0C1900A0AE15 /* StateMachineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateMachineTests.swift; sourceTree = "<group>"; };
 		EC24FF58200C30B800A0AE15 /* MainContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContainerViewController.swift; sourceTree = "<group>"; };
@@ -718,7 +722,7 @@
 			children = (
 				B12F442E20EB4B02003FFF58 /* Entities */,
 				B12F442B20EB4AFC003FFF58 /* GolosModels.xcdatamodeld */,
-				B12F442F20EB4B1F003FFF58 /* CoreDataManager.swift */,
+				B15F227D20EE943200C44282 /* CoreDataManager.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -726,6 +730,8 @@
 		B12F442E20EB4B02003FFF58 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				B15F228520EEB31C00C44282 /* AppSettings+CoreDataClass.swift */,
+				B15F228620EEB31C00C44282 /* AppSettings+CoreDataProperties.swift */,
 				B1EBAFB720EB55690050B1A2 /* User+CoreDataClass.swift */,
 				B1EBAFB820EB55690050B1A2 /* User+CoreDataProperties.swift */,
 				B127A87820EB8ABF007133AB /* UserSecretActiveKey+CoreDataClass.swift */,
@@ -822,6 +828,15 @@
 				B157661320B59D80009619A6 /* Info.plist */,
 			);
 			path = RemoteNotificationTransfer;
+			sourceTree = "<group>";
+		};
+		B15F228020EEB14700C44282 /* StateMachine */ = {
+			isa = PBXGroup;
+			children = (
+				B15F228320EEB16C00C44282 /* AppState.swift */,
+				B15F228120EEB16500C44282 /* StateMachine.swift */,
+			);
+			path = StateMachine;
 			sourceTree = "<group>";
 		};
 		B164F03B20E62A7300C5CDD3 /* UserProfileShow */ = {
@@ -953,7 +968,7 @@
 				7D95CFA1203A118D00C1AE0A /* GSImageLoader */,
 				7DFE7C4720464C110057F144 /* PostsManager */,
 				7DFE7C422046392C0057F144 /* ReplyManager */,
-				EC24FF4E200C064B00A0AE15 /* StateMachine */,
+				B15F228020EEB14700C44282 /* StateMachine */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -974,15 +989,6 @@
 				EC24FF55200C0C1900A0AE15 /* StateMachineTests.swift */,
 			);
 			path = Managers;
-			sourceTree = "<group>";
-		};
-		EC24FF4E200C064B00A0AE15 /* StateMachine */ = {
-			isa = PBXGroup;
-			children = (
-				EC24FF4F200C065F00A0AE15 /* AppState.swift */,
-				EC24FF51200C06E300A0AE15 /* StateMachine.swift */,
-			);
-			path = StateMachine;
 			sourceTree = "<group>";
 		};
 		EC24FF57200C30A300A0AE15 /* MainContainer */ = {
@@ -1548,6 +1554,7 @@
 				7DA0632A2032583F00B5630C /* PostsFeedViewController+ProfileFeedContainerItem.swift in Sources */,
 				B1F3748320C2C5E1005EF767 /* RootShowViewController.swift in Sources */,
 				EC9ABBC62017D55800AF8597 /* ProfileHeaderView.swift in Sources */,
+				B15F227E20EE943200C44282 /* CoreDataManager.swift in Sources */,
 				B114194320CD51740025B07F /* ActiveKeyShowViewController.swift in Sources */,
 				7D25B4CA201FABD8004A3400 /* ArticleFooterTableViewCell.swift in Sources */,
 				7D25B483201F479B004A3400 /* TagTokenButton.swift in Sources */,
@@ -1587,7 +1594,6 @@
 				7DA063242032517D00B5630C /* ProfileFeedContainerItem.swift in Sources */,
 				B164F04620E62AE600C5CDD3 /* UserProfileShowViewController.swift in Sources */,
 				7DA063222032513A00B5630C /* ProfileFeedContainerController.swift in Sources */,
-				B12F443020EB4B1F003FFF58 /* CoreDataManager.swift in Sources */,
 				B127A87B20EB8ABF007133AB /* UserSecretActiveKey+CoreDataProperties.swift in Sources */,
 				B136D4FF20D8BA2E003AD279 /* ThemeTagCollectionViewCell.swift in Sources */,
 				B1EE686C20D2D713006BF802 /* PostCommentReply.swift in Sources */,
@@ -1598,6 +1604,7 @@
 				7D25B4C2201FABBD004A3400 /* ArticleImageTableViewCell.swift in Sources */,
 				EC24FF28200BEBE600A0AE15 /* ViewProtocol.swift in Sources */,
 				B136D4FB20D8BA14003AD279 /* AddTagCollectionViewCell.swift in Sources */,
+				B15F228720EEB31C00C44282 /* AppSettings+CoreDataClass.swift in Sources */,
 				7DE3531B2048CA3400C04CB2 /* LogInHelpShowViewController.swift in Sources */,
 				B12F440620EA01F9003FFF58 /* ScannerShowViewController.swift in Sources */,
 				7DCF74A720200AA700D46495 /* ArticleCommentTableViewCell.swift in Sources */,
@@ -1609,6 +1616,7 @@
 				7DFE7C44204639390057F144 /* ReplyManager.swift in Sources */,
 				EC24FF84200C635600A0AE15 /* DropDownMediator.swift in Sources */,
 				7D95CFA7203A119B00C1AE0A /* GSOperation.swift in Sources */,
+				B15F228420EEB16C00C44282 /* AppState.swift in Sources */,
 				EC24FF70200C433700A0AE15 /* ProfileViewController.swift in Sources */,
 				B11AA80220CB04AA00212713 /* WelcomeShowViewController.swift in Sources */,
 				EC24FF82200C625800A0AE15 /* DropDownViewController.swift in Sources */,
@@ -1630,7 +1638,6 @@
 				B1050CA020CECF75003CE4EE /* PostCreatePresenter.swift in Sources */,
 				7D911D222035F5AA00F19D3C /* PostReplyModel.swift in Sources */,
 				B11AA80020CB04AA00212713 /* WelcomeShowRouter.swift in Sources */,
-				EC24FF52200C06E300A0AE15 /* StateMachine.swift in Sources */,
 				B1050CA320CECF75003CE4EE /* PostCreateModels.swift in Sources */,
 				B111322620CD51EA00BC7F33 /* PostingKeyShowViewController.swift in Sources */,
 				7D25B47F201F4714004A3400 /* TagsView.swift in Sources */,
@@ -1653,6 +1660,7 @@
 				B164F04520E62AE600C5CDD3 /* UserProfileShowModels.swift in Sources */,
 				7DFA6CAD2036D76000F59494 /* PostsFeedImageTableViewCell.swift in Sources */,
 				B1050CA420CECF75003CE4EE /* PostCreateViewController.swift in Sources */,
+				B15F228820EEB31C00C44282 /* AppSettings+CoreDataProperties.swift in Sources */,
 				7D25B4B8201F980A004A3400 /* ArticleHeaderView.swift in Sources */,
 				7D79C33A2034675C00794447 /* AnswersFeedViewController.swift in Sources */,
 				7D79C3452034685900794447 /* AnswersFeedTableViewCell.swift in Sources */,
@@ -1663,7 +1671,6 @@
 				EC24FF7D200C4DE300A0AE15 /* NavigationDropDownView.swift in Sources */,
 				7D79C33F203467C000794447 /* AnswersFeedMediator.swift in Sources */,
 				7D911D262035F6EA00F19D3C /* DisplayedUser.swift in Sources */,
-				EC24FF50200C065F00A0AE15 /* AppState.swift in Sources */,
 				B164F04720E62AE600C5CDD3 /* UserProfileShowInteractor.swift in Sources */,
 				7DE353172048A84C00C04CB2 /* ProfileViewModel.swift in Sources */,
 				B123C5BB20CE4C8B00747989 /* UITextField+Extensions.swift in Sources */,
@@ -1671,6 +1678,7 @@
 				7D25B48C201F5700004A3400 /* TagCollectionViewCell.swift in Sources */,
 				7D25B4CD201FAE93004A3400 /* ArticleMediator.swift in Sources */,
 				B1F3748120C2C5E1005EF767 /* RootShowRouter.swift in Sources */,
+				B15F228220EEB16500C44282 /* StateMachine.swift in Sources */,
 				7D25B487201F4978004A3400 /* ArticleViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -17,10 +17,6 @@ import UserNotifications
 import FirebaseInstanceID
 import IQKeyboardManagerSwift
 
-// TEST
-
-
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Properties
@@ -32,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Logger.log(message: "Success", event: .severe)
         
         // TEST
-        self.createPublicKey()
+//        self.createPublicKey()
         
         self.setupNavigationBarAppearance()
         self.setupTabBarAppearance()
@@ -42,8 +38,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Run Firebase
         FirebaseApp.configure()
         
-        if Messaging.messaging().fcmToken != nil {
-            Messaging.messaging().subscribe(toTopic: "yuri-vlad-second")
+        if let user = User.current, Messaging.messaging().fcmToken != nil {
+            Messaging.messaging().subscribe(toTopic: user.name)
         }
         
         Messaging.messaging().delegate = self
@@ -94,11 +90,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         #endif
         
         Messaging.messaging().setAPNSToken(deviceToken, type: type)
-        Messaging.messaging().subscribe(toTopic: "yuri-vlad-second")
+        
+        if let user = User.current {
+            Messaging.messaging().subscribe(toTopic: user.name)
+        }
     }
     
     func messaging(_ messaging: Messaging, didRefreshRegistrationToken fcmToken: String) {
-        Messaging.messaging().subscribe(toTopic: "yuri-vlad-second")
+        if let user = User.current {
+            Messaging.messaging().subscribe(toTopic: user.name)
+        }
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
@@ -187,36 +188,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 extension AppDelegate {
     // TEST
     public func createPublicKey(prefix: String = "GLS") {
-        let privateKey  =   PrivateKey.init("5Jj6qFdJLGKFFFQbfTwv6JNQmXzCidnjgSFNYKhrgqhzigH4sFp")
-
-        let publicKey   =   privateKey?.createPublic(prefix: .mainNet)
-        print(publicKey?.key.toHexString())
-        
-        
-        
-        
-//        let postingKey  =   "5Jj6qFdJLGKFFFQbfTwv6JNQmXzCidnjgSFNYKhrgqhzigH4sFp"
-//        let ctx         =   secp256k1_context_create(UInt32(SECP256K1_CONTEXT_SIGN | SECP256K1_CONTEXT_VERIFY))
-//        var pubkey      =   secp256k1_pubkey()
+//        let privateKey  =   PrivateKey.init("5KCSABB64zJXKjghZD6QDNvhBNXbCJjZir5EXqTp9DqwjYSejrB")
 //
-//        let isPK        =   (secp256k1_ec_pubkey_create(ctx!, &pubkey, postingKey) as NSNumber).boolValue
-//
-//        print(isPK)
-//
-//        let data        =   NSData(bytes: &pubkey.data, length: 64) as Data
-//        var dataString  =   data.toHexString()
-//        print(dataString)
-        
-        
-//        public func createPublic(prefix: PublicKey.AddressPrefix = .mainNet) -> PublicKey {
-//            let result = try! Secp256k1Context.shared.createPublic(fromSecret: self.secret)
-        
-        
-//        if let publicKey = PublicKey(key: Data(base58CheckEncoded.data, prefix: .mainNet) {
-//            dataString = publicKey.key.toHexString()
-//            print(dataString)
-//        }
-        
+//        let publicKey   =   privateKey?.createPublic(prefix: .mainNet)
+//        print(publicKey?.key.toHexString())
+//        print(publicKey?.address)
     }
 
     

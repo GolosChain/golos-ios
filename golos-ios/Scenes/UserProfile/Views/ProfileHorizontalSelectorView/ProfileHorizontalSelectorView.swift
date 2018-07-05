@@ -50,6 +50,11 @@ class ProfileHorizontalSelectorView: PassthroughView {
         }
     }
     
+    @IBOutlet var widthsCollection: [NSLayoutConstraint]! {
+        didSet {
+            _ = widthsCollection.map({ $0.constant *= widthRatio })
+        }
+    }
     
     
     // MARK: - Initialization

@@ -60,7 +60,7 @@
                 </view>
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3bD-aF-YjH" customClass="ProfileHorizontalSelectorView" customModule="Golos" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="282" width="375" height="44"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="0lP-7R-ks0"/>
                     </constraints>

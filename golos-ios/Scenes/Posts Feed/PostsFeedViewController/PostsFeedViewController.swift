@@ -61,7 +61,7 @@ class PostsFeedViewController: BaseViewController {
         
         let discussion  =   (User.current != nil && type == .lenta) ?   RequestParameterAPI.Discussion.init(limit:          loadDataLimit,
                                                                                                             truncateBody:   0,
-                                                                                                            selectAuthors:  ["yuri-vlad-second"]) :
+                                                                                                            selectAuthors:  [ User.current!.name ]) :
                                                                         RequestParameterAPI.Discussion.init(limit:          loadDataLimit)
 
         self.presenter.loadPostsFeed(withType: type, andDiscussion: discussion)

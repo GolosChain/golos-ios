@@ -104,6 +104,7 @@
 "Post Text Body Hint"                       =   "Введите текст сообщения";
 "Scanner device error"                      =   "Ваше устройство не поддерживает сканирование кода. Пожалуйста, используйте устройство с камерой.";
 "Scanner Key Code error"                    =   "Код сканируемого ключа\nдолжен начинаться с 5 или 1";
-"CoreData saved error"                      =   "There was an error creating or loading the application's saved data";
-"CoreData init error"                       =   "Failed to initialize the application's saved data";
+"CoreData saved error"                      =   "Произошла ошибка при создании или загрузке сохраненных данных приложения";
+"CoreData init error"                       =   "Не удалось инициализировать сохраненные данные приложения";
 "User is not found"                         =   "Пользователь не найден";
+"Login error"                               =   "Ошибка авторизации. Если повториться - попробуйте выйти и зайти в свой аккаунт";

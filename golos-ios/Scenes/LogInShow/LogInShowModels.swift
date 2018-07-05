@@ -15,14 +15,19 @@ import UIKit
 // MARK: - Data models
 enum LogInShowModels {
     // MARK: - Use cases
-    enum Something {
+    enum Parameters {
         struct RequestModel {
+            let userName: String
+            let wif: String
+            let wifType: Int
         }
         
         struct ResponseModel {
+            let success: Bool
         }
         
         struct ViewModel {
+            let success: Bool
         }
     }
 }

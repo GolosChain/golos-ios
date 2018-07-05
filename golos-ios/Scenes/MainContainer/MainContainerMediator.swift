@@ -9,21 +9,21 @@
 import UIKit
 
 class MainContainerMediator: NSObject {
-    func getViewController(forState state: AppState) -> UIViewController {
+    func getViewController() -> UIViewController {
         let viewController: UIViewController
         
-        switch state {
-        case .loggedIn:
+        switch User.isAnonymous {
+        case false:
             viewController      =   GSTabBarController()
             
-        case .loggedOut:
-            if isUserAnonymous {
-                viewController  =   GSTabBarController()
+        case true:
+            if AppSettings.instance().startWithWelcomeScene {
+                let storyboard  =   UIStoryboard(name: "WelcomeShow", bundle: nil)
+                viewController  =   storyboard.instantiateViewController(withIdentifier: "WelcomeShowNC") as! UINavigationController
             }
             
             else {
-                let storyboard  =   UIStoryboard(name: "WelcomeShow", bundle: nil)
-                viewController  =   storyboard.instantiateViewController(withIdentifier: "WelcomeShowNC") as! UINavigationController
+                viewController  =   GSTabBarController()
             }
         }
         

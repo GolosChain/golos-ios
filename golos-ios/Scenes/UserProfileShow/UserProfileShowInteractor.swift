@@ -43,7 +43,7 @@ class UserProfileShowInteractor: UserProfileShowBusinessLogic, UserProfileShowDa
         // API 'get_accounts'
         if isNetworkAvailable {
             // Create MethodAPIType
-            let names           =   User.current?.name ?? "yuri-vlad-second"
+            let names           =   User.current!.name
             let methodAPIType   =   MethodAPIType.getAccounts(names: RequestParameterAPI.User(names: [names]))
             
             broadcast.executeGET(byMethodAPIType: methodAPIType,
@@ -94,7 +94,7 @@ class UserProfileShowInteractor: UserProfileShowBusinessLogic, UserProfileShowDa
             // Create MethodAPIType
             let discussion      =   RequestParameterAPI.Discussion.init(limit:          loadDataLimit,
                                                                         truncateBody:   0,
-                                                                        selectAuthors:  ["yuri-vlad-second"])
+                                                                        selectAuthors:  [ User.current!.name ])
 
             let methodAPIType   =   MethodAPIType.getDiscussions(type: .lenta, parameters: discussion)
             

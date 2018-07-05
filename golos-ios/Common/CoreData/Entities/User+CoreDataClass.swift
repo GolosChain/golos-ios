@@ -14,6 +14,14 @@ import Foundation
 @objc(User)
 public class User: NSManagedObject {
     // MARK: - Properties
+    class var isAnonymous: Bool {
+        get {
+            return CoreDataManager.instance.readEntities(withName:                  "User",
+                                                         withPredicateParameters:   NSPredicate(format: "isAuthorized = 1"),
+                                                         andSortDescriptor:         nil)?.first == nil
+        }
+    }
+    
     class var current: User? {
         get {
             return CoreDataManager.instance.readEntities(withName:                  "User",
@@ -70,6 +78,13 @@ public class User: NSManagedObject {
         self.active                     =   userSecretKeyActiveEntity
         
         // Extensions
+        self.save()
+    }
+    
+    
+    // MARK: - Custom Functions
+    func setIsAuthorized(_ value: Bool) {
+        self.isAuthorized = value
         self.save()
     }
 }

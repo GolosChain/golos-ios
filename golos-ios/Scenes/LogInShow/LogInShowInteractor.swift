@@ -15,7 +15,7 @@ import GoloSwift
 
 // MARK: - Business Logic protocols
 protocol LogInShowBusinessLogic {
-    func authorizeUser(withRequestModel requestModel: LogInShowModels.Something.RequestModel)
+    func authorizeUser(withRequestModel requestModel: LogInShowModels.Parameters.RequestModel)
 }
 
 class LogInShowInteractor: LogInShowBusinessLogic {
@@ -30,11 +30,42 @@ class LogInShowInteractor: LogInShowBusinessLogic {
     
 
     // MARK: - Business logic implementation
-    func authorizeUser(withRequestModel requestModel: LogInShowModels.Something.RequestModel) {
-//        let publicKey = self.createPublic()
-        
-        let responseModel = LogInShowModels.Something.ResponseModel()
-        presenter?.presentAuthorizeUser(fromResponseModel: responseModel)
+    func authorizeUser(withRequestModel requestModel: LogInShowModels.Parameters.RequestModel) {
+        // AP 'get_accounts'
+        UserManager().loadUsers(byNames: [requestModel.userName], completion: { [weak self] (displayedUsers, errorAPI) in
+            guard errorAPI == nil else {
+                return
+            }
+            
+            guard let user = displayedUsers?.first else {
+                return
+            }
+            
+            // Prepare & Display user info
+            let privateKey  =   PrivateKey.init(requestModel.wif)
+            let publicKey   =   privateKey!.createPublic(prefix: .mainNet)
+            var success     =   false
+            
+            switch requestModel.wifType {
+            // Posting key
+            case 1:
+                success     =   (user.postingKey?.contains(publicKey.address))!
+                
+            // Active key
+            case 2:
+                success     =   (user.activeKey?.contains(publicKey.address))!
+
+            default:
+                break
+            }
+            
+            // Save Private key in Keychain
+            if success {
+                _ = KeychainManager.save(requestModel.wif, forUserName: requestModel.userName)
+            }
+
+            let responseModel = LogInShowModels.Parameters.ResponseModel(success: success)
+            self?.presenter?.presentAuthorizeUser(fromResponseModel: responseModel)
+        })
     }
-    
 }

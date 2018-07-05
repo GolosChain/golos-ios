@@ -19,6 +19,13 @@
                 <outletCollection property="actionButtonsCollection" destination="xZG-iS-3Xs" collectionClass="NSMutableArray" id="S61-nc-kWq"/>
                 <outletCollection property="actionButtonsCollection" destination="0ru-8H-on4" collectionClass="NSMutableArray" id="fN6-tc-0O8"/>
                 <outletCollection property="actionButtonsCollection" destination="Yh5-U2-LkE" collectionClass="NSMutableArray" id="zwU-Za-QTQ"/>
+                <outletCollection property="widthsCollection" destination="iek-eo-OnA" collectionClass="NSMutableArray" id="yHG-oU-0Rg"/>
+                <outletCollection property="widthsCollection" destination="Ylu-si-IpI" collectionClass="NSMutableArray" id="aHM-wA-l2N"/>
+                <outletCollection property="widthsCollection" destination="54g-rk-awL" collectionClass="NSMutableArray" id="h8l-AE-Na4"/>
+                <outletCollection property="widthsCollection" destination="Pxd-Zn-DWM" collectionClass="NSMutableArray" id="y0h-Py-qBr"/>
+                <outletCollection property="widthsCollection" destination="80d-VB-Tt7" collectionClass="NSMutableArray" id="iXk-dw-bVJ"/>
+                <outletCollection property="widthsCollection" destination="1aa-zV-XwS" collectionClass="NSMutableArray" id="TyP-ch-LWV"/>
+                <outletCollection property="widthsCollection" destination="0Js-Zh-5DK" collectionClass="NSMutableArray" id="u9B-Pn-Ove"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -26,31 +33,32 @@
             <rect key="frame" x="0.0" y="0.0" width="421" height="75"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s95-ju-qtz" userLabel="InterSpaceView">
-                    <rect key="frame" x="56" y="0.0" width="49.5" height="75"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s95-ju-qtz" userLabel="InterSpaceView">
+                    <rect key="frame" x="66" y="0.0" width="45.5" height="75"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="width" priority="999" constant="37" id="Ylu-si-IpI"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vD0-C8-XHv" userLabel="InterSpaceView">
-                    <rect key="frame" x="152.5" y="0.0" width="50" height="75"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vD0-C8-XHv" userLabel="InterSpaceView">
+                    <rect key="frame" x="161.5" y="0.0" width="45" height="75"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="width" priority="999" constant="37" id="Pxd-Zn-DWM"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AV9-A2-7D1" userLabel="InterSpaceView">
-                    <rect key="frame" x="272.5" y="0.0" width="49.5" height="75"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AV9-A2-7D1" userLabel="InterSpaceView">
+                    <rect key="frame" x="276.5" y="0.0" width="45.5" height="75"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="width" priority="999" constant="37" id="1aa-zV-XwS"/>
                     </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wAb-W4-aEK">
-                    <rect key="frame" x="16" y="0.0" width="40" height="75"/>
+                <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wAb-W4-aEK">
+                    <rect key="frame" x="16" y="-1" width="50" height="76"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="40" id="iek-eo-OnA"/>
+                        <constraint firstAttribute="width" constant="50" id="iek-eo-OnA"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <state key="normal" title="Posts">
@@ -60,10 +68,11 @@
                         <action selector="handlerActionButtonTapped:" destination="-1" eventType="touchUpInside" id="cIe-86-t32"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xZG-iS-3Xs">
-                    <rect key="frame" x="105.5" y="0.0" width="47" height="75"/>
+                <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xZG-iS-3Xs">
+                    <rect key="frame" x="111.5" y="-1" width="50" height="76"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="47" id="54g-rk-awL"/>
+                        <constraint firstAttribute="width" constant="50" id="54g-rk-awL"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <state key="normal" title="Answers">
@@ -73,8 +82,9 @@
                         <action selector="handlerActionButtonTapped:" destination="-1" eventType="touchUpInside" id="54h-lQ-rbm"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0ru-8H-on4">
-                    <rect key="frame" x="202.5" y="0.0" width="70" height="75"/>
+                <button hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="252" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0ru-8H-on4">
+                    <rect key="frame" x="206.5" y="-1" width="70" height="76"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="70" id="80d-VB-Tt7"/>
                     </constraints>
@@ -86,8 +96,9 @@
                         <action selector="handlerActionButtonTapped:" destination="-1" eventType="touchUpInside" id="If4-3i-ThY"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="253" horizontalCompressionResistancePriority="752" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yh5-U2-LkE">
-                    <rect key="frame" x="322" y="0.0" width="83" height="75"/>
+                <button hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="253" horizontalCompressionResistancePriority="752" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yh5-U2-LkE">
+                    <rect key="frame" x="322" y="-1" width="83" height="76"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="83" id="0Js-Zh-5DK"/>
                     </constraints>
@@ -100,20 +111,20 @@
                     </connections>
                 </button>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="s95-ju-qtz" firstAttribute="leading" secondItem="wAb-W4-aEK" secondAttribute="trailing" id="0gP-y6-AlK"/>
-                <constraint firstItem="Yh5-U2-LkE" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="1JT-sq-ePC"/>
+                <constraint firstItem="Yh5-U2-LkE" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="-1" id="1JT-sq-ePC"/>
                 <constraint firstItem="AV9-A2-7D1" firstAttribute="width" secondItem="s95-ju-qtz" secondAttribute="width" id="24c-1k-aQp"/>
                 <constraint firstItem="AV9-A2-7D1" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="36x-kI-Box"/>
                 <constraint firstItem="s95-ju-qtz" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="5hj-Nz-iiO"/>
                 <constraint firstItem="vD0-C8-XHv" firstAttribute="leading" secondItem="xZG-iS-3Xs" secondAttribute="trailing" id="7UD-ZP-F8w"/>
                 <constraint firstItem="xZG-iS-3Xs" firstAttribute="leading" secondItem="s95-ju-qtz" secondAttribute="trailing" id="8uk-Oa-P3H"/>
                 <constraint firstItem="0ru-8H-on4" firstAttribute="leading" secondItem="vD0-C8-XHv" secondAttribute="trailing" id="CWC-4y-nsi"/>
-                <constraint firstItem="0ru-8H-on4" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Eyw-Fi-s2R"/>
+                <constraint firstItem="0ru-8H-on4" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="-1" id="Eyw-Fi-s2R"/>
                 <constraint firstAttribute="trailing" secondItem="Yh5-U2-LkE" secondAttribute="trailing" constant="16" id="FRd-At-ElM"/>
                 <constraint firstAttribute="bottom" secondItem="Yh5-U2-LkE" secondAttribute="bottom" id="GLF-7O-sHG"/>
-                <constraint firstItem="xZG-iS-3Xs" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="QdL-cL-vKa"/>
+                <constraint firstItem="xZG-iS-3Xs" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="-1" id="QdL-cL-vKa"/>
                 <constraint firstItem="AV9-A2-7D1" firstAttribute="bottom" secondItem="iN0-l3-epB" secondAttribute="bottom" id="Vrg-ri-uGs"/>
                 <constraint firstItem="wAb-W4-aEK" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="a9B-iV-bAf"/>
                 <constraint firstItem="s95-ju-qtz" firstAttribute="bottom" secondItem="iN0-l3-epB" secondAttribute="bottom" id="ayB-07-rm5"/>
@@ -125,7 +136,7 @@
                 <constraint firstItem="vD0-C8-XHv" firstAttribute="bottom" secondItem="iN0-l3-epB" secondAttribute="bottom" id="sb9-Er-54k"/>
                 <constraint firstItem="AV9-A2-7D1" firstAttribute="leading" secondItem="0ru-8H-on4" secondAttribute="trailing" id="tnY-eR-NGC"/>
                 <constraint firstAttribute="bottom" secondItem="xZG-iS-3Xs" secondAttribute="bottom" id="us1-fa-Yf6"/>
-                <constraint firstItem="wAb-W4-aEK" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="z1n-qi-0hr"/>
+                <constraint firstItem="wAb-W4-aEK" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="-1" id="z1n-qi-0hr"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="241.5" y="-189.5"/>

@@ -31,8 +31,8 @@ class MainContainerViewController: BaseViewController {
     
     // MARK: - Custom Functions
     private func setupUI() {
-        let currentState        =   presenter.currentState
-        let viewController      =   mediator.getViewController(forState: currentState)
+//        let currentState        =   presenter.currentState
+        let viewController      =   mediator.getViewController()
         
         addChildViewController(viewController)
         view.addSubview(viewController.view)
@@ -46,7 +46,7 @@ class MainContainerViewController: BaseViewController {
     }
     
     private func present(newState: AppState, oldState: AppState) {
-        let viewController = mediator.getViewController(forState: newState)
+        let viewController = mediator.getViewController()
         
         if newState == .loggedIn && oldState == .loggedOut {
             presentViewController(viewController, fromTop: false)
@@ -103,12 +103,12 @@ extension MainContainerViewController: MainContainerView {
 extension MainContainerViewController: UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         // 0: Lenta, 1: Search, 2: Add Post, 3: Notifications, 4: Profile
-        guard isUserAnonymous else {
+        guard User.isAnonymous else {
             return true
         }
         
         switch viewController.tabBarItem.tag {
-        case 44: //2, 4:
+        case 2, 4:
             self.showAlertView(withTitle: "Info", andMessage: "Please Login in App", needCancel: true, completion: { success in
                 if success {
                     NotificationCenter.default.post(name:       NSNotification.Name.appStateChanged,

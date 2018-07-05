@@ -44,6 +44,7 @@ class PostingKeyShowViewController: BaseViewController {
             postingKeyTextField.rightViewMode   =   .always
 
             postingKeyTextField.delegate        =   self
+            postingKeyTextField.text            =   "5Jj6qFdJLGKFFFQbfTwv6JNQmXzCidnjgSFNYKhrgqhzigH4sFp"
         }
     }
 

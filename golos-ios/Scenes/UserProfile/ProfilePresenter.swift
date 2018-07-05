@@ -50,6 +50,7 @@ class ProfilePresenter: NSObject {
 extension ProfilePresenter: ProfilePresenterProtocol {
     func logout() {
         StateMachine.load().changeState(.loggedOut)
+        User.current!.setIsAuthorized(false)
     }
     
     func setUsername(username: String?) {
@@ -70,29 +71,21 @@ extension ProfilePresenter: ProfilePresenterProtocol {
     
     /// API
     func loadUser() {
-        // TODO: - RECOMMENT AFTER CREATE USER MODEL
-//        guard let userName = self.username else {
-//            return
-//        }
-        
-//        let userName = "msm72"
-        let userName = "yuri-vlad-second"
-
-        userManager.loadUsers(byNames: [userName]) { [weak self] (displayedUsers, errorAPI) in
-            guard let strongSelf = self else { return }
-
-            guard errorAPI == nil else {
-                return
+        if let user = User.current {
+            userManager.loadUsers(byNames: [user.name]) { [weak self] (displayedUsers, errorAPI) in
+                guard errorAPI == nil else {
+                    return
+                }
+                
+                guard let user = displayedUsers?.first else {
+                    self?.profileView.didFail(with: "User is not found")
+                    return
+                }
+                
+                // Prepare & Display user
+                self?.user = user
+                self?.profileView.didRefreshUser()
             }
-            
-            guard let user = displayedUsers?.first else {
-                strongSelf.profileView.didFail(with: "User is not found")
-                return
-            }
-            
-            // Prepare & Display user
-            strongSelf.user = user
-            strongSelf.profileView.didRefreshUser()
         }
     }
 }
