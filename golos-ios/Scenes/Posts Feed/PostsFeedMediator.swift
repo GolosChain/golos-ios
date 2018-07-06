@@ -31,7 +31,7 @@ class PostsFeedMediator: NSObject {
     
     var array = [IndexPath]()
     
-    // MARK: Delegate
+    // MARK: - Delegate
     weak var delegate: PostsFeedMediatorDelegate?
     
     // MARK: Module properties

@@ -90,6 +90,7 @@ extension PostsFeedPresenter: PostsFeedPresenterProtocol {
                 }
                 
                 guard displayedPosts!.count > 0 else {
+                    selfStrong.postsFeedView.didLoadPosts()
                     return
                 }
                 

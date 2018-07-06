@@ -10,6 +10,8 @@ import GoloSwift
 
 class PostsFeedViewController: BaseViewController {
     // MARK: - Properties
+    var spinner: UIActivityIndicatorView!
+    
     lazy var presenter: PostsFeedPresenterProtocol = {
         let presenter = PostsFeedPresenter()
         presenter.postsFeedView = self
@@ -37,15 +39,15 @@ class PostsFeedViewController: BaseViewController {
     
     
     // MARK: - IBOutlets
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableView: GSTableView!
     
 
     // MARK: - Class Functions
     class func nibInstance(with feedType: PostsFeedType) -> PostsFeedViewController {
         Logger.log(message: "Success", event: .severe)
 
-        let viewController = super.nibInstance() as! PostsFeedViewController
-        viewController.postsFeedType = feedType
+        let viewController              =   super.nibInstance() as! PostsFeedViewController
+        viewController.postsFeedType    =   feedType
         
         return viewController
     }
@@ -72,6 +74,7 @@ class PostsFeedViewController: BaseViewController {
         Logger.log(message: "Success", event: .severe)
 
         self.hideNavigationBar()
+        self.showSpinner()
         tableView.reloadData()
     }
     
@@ -90,25 +93,43 @@ class PostsFeedViewController: BaseViewController {
         
         mediator.configure(tableView: tableView)
         
-        let spinner = UIActivityIndicatorView(activityIndicatorStyle: .gray)
-        spinner.startAnimating()
-        spinner.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: tableView.bounds.width, height: CGFloat(44))
-        tableView.tableFooterView = spinner
+//        // Create TableViewHeader/Footer with spinner
+//        let spinner                 =   UIActivityIndicatorView(activityIndicatorStyle: .gray)
+//        spinner.frame               =   CGRect(x: 0.0, y: 0.0, width: tableView.bounds.width, height: 44.0 * heightRatio)
+//        tableView.tableFooterView   =   spinner
+//
+//        spinner.startAnimating()
+        
+//        self.showSpinner()
+    }
+    
+    private func showSpinner() {
+        if self.spinner == nil {
+            self.spinner                =   UIActivityIndicatorView(activityIndicatorStyle: .gray)
+            spinner.frame               =   CGRect(origin: .zero, size: CGSize(width: tableView.bounds.width, height: 44.0 * heightRatio))
+            tableView.tableFooterView   =   self.spinner
+            
+            spinner.startAnimating()
+        }
+        
+        else {
+            spinner.stopAnimating()
+        }
     }
     
     func loadingStarted() {
         Logger.log(message: "Success", event: .severe)
 
-        let spinner = UIActivityIndicatorView(activityIndicatorStyle: .gray)
-        spinner.startAnimating()
-        spinner.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: tableView.bounds.width, height: CGFloat(44))
+        let spinner                             =   UIActivityIndicatorView(activityIndicatorStyle: .gray)
+        spinner.frame                           =   CGRect(x: 0.0, y: 0.0, width: tableView.bounds.width, height: 44.0 * heightRatio)
+        tableView.tableFooterView?.isHidden     =   false
         
-        tableView.tableFooterView?.isHidden = false
+        spinner.startAnimating()
     }
 }
 
 
-// MARK: - PostsFeedViewProtocol implementation
+// MARK: - PostsFeedViewProtocol
 extension PostsFeedViewController: PostsFeedViewProtocol {
     func didFetchPosts() {
         Logger.log(message: "Success", event: .severe)

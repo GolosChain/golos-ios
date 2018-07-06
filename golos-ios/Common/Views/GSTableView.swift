@@ -7,9 +7,10 @@
 //
 
 import UIKit
+import GoloSwift
 
 class GSTableView: UITableView {
-    
+    // MARK: - Class Initialization
     override init(frame: CGRect, style: UITableViewStyle) {
         super.init(frame: frame, style: style)
         setup()
@@ -20,6 +21,12 @@ class GSTableView: UITableView {
         setup()
     }
     
+    deinit {
+        Logger.log(message: "Success", event: .severe)
+    }
+    
+
+    // MARK: - Custom Functions
     private func setup() {
         delaysContentTouches = false
     }
@@ -33,12 +40,8 @@ class GSTableView: UITableView {
     }
 }
 
+
 class GSScrollView: UIScrollView {
-//    override init() {
-//        super.init()
-//        setup()
-//    }
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()

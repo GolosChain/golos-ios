@@ -9,7 +9,6 @@
 import UIKit
 
 extension PostsFeedViewController: ProfileFeedContainerItem, PropertyStoring {
-    
     typealias StorePropertyType = ProfileFeedContainerItemDelegate?
     
     private struct CustomProperties {
@@ -35,24 +34,23 @@ extension PostsFeedViewController: ProfileFeedContainerItem, PropertyStoring {
     }
    
     func setHeaderHeight(_ headerHeight: CGFloat, minimizedHeaderHeight: CGFloat) {
-        let tableHeader = UIView(frame: CGRect(x: 0,
-                                               y: 0,
-                                               width: UIScreen.main.bounds.width,
-                                               height: minimizedHeaderHeight))
+        let tableHeader = UIView(frame: CGRect(x:       0.0,
+                                               y:       0.0,
+                                               width:   UIScreen.main.bounds.width,
+                                               height:  minimizedHeaderHeight))
+        
         tableView.tableHeaderView = tableHeader
         
-        itemScrollView.contentInset = UIEdgeInsets(
-            top: headerHeight - minimizedHeaderHeight,
-            left: 0,
-            bottom: 0,
-            right: 0
+        itemScrollView.contentInset = UIEdgeInsets(top:     headerHeight - minimizedHeaderHeight,
+                                                   left:    0.0,
+                                                   bottom:  0.0,
+                                                   right:   0.0
         )
         
-        itemScrollView.scrollIndicatorInsets = UIEdgeInsets(
-            top: headerHeight - minimizedHeaderHeight,
-            left: 0,
-            bottom: 0,
-            right: 0)
+        itemScrollView.scrollIndicatorInsets = UIEdgeInsets(top:        headerHeight - minimizedHeaderHeight,
+                                                            left:       0.0,
+                                                            bottom:     0.0,
+                                                            right:      0.0)
     }
     
     func changeItemScrollViewOffset(_ offset: CGPoint) {
