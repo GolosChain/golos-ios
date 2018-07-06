@@ -224,18 +224,16 @@ class LogInShowViewController: BaseViewController {
 extension LogInShowViewController: LogInShowDisplayLogic {
     func displayAuthorizeUser(fromViewModel viewModel: LogInShowModels.Parameters.ViewModel) {
         // NOTE: Display the result from the Presenter
-        guard viewModel.success else {
-            self.showAlertView(withTitle: "Error", andMessage: "Login error", needCancel: false, completion: { _ in
-                self.enterButtonSpinner.stopAnimating()
-            })
-            
-            return
+        if viewModel.success {
+            self.performSegue(withIdentifier: "FeedPostsShowSceneSegue", sender: nil)
         }
         
+        else {
+            self.showAlertView(withTitle: "Error", andMessage: "Login error", needCancel: false, completion: { _ in })
+        }
+
         self.enterButtonSpinner.stopAnimating()
         self.enterButton.isEnabled      =   true
         self.cancelButton.isEnabled     =   true
-        
-        self.performSegue(withIdentifier: "FeedPostsShowSceneSegue", sender: nil)
     }
 }

@@ -29,7 +29,7 @@ struct DisplayedUser {
         self.id                 =   user.id
         self.name               =   user.name
         self.postCount          =   user.post_count
-        self.memoKey            =   String(describing: user.memo?.key_auths.first?.first)
+        self.memoKey            =   user.memo_key
         self.ownerKey           =   String(describing: user.owner?.key_auths.first?.first)
         self.activeKey          =   String(describing: user.active?.key_auths.first?.first)
         self.postingKey         =   String(describing: user.posting?.key_auths.first?.first)
@@ -43,7 +43,7 @@ struct DisplayedUser {
         self.id                 =   user.id
         self.name               =   user.name
         self.postCount          =   user.post_count
-        self.memoKey            =   user.memo?.key_auths?.first?.first
+        self.memoKey            =   user.memoKey
         self.ownerKey           =   user.owner?.key_auths?.first?.first
         self.activeKey          =   user.active?.key_auths?.first?.first
         self.postingKey         =   user.posting?.key_auths?.first?.first

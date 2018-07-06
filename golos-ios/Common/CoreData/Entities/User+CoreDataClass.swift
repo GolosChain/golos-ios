@@ -56,12 +56,8 @@ public class User: NSManagedObject {
         self.name               =   userModel.name
         self.post_count         =   userModel.post_count
         self.json_metadata      =   userModel.json_metadata
+        self.memoKey            =   userModel.memo_key
         
-        // UserSecretMemoKey
-        let userSecretKeyMemoEntity     =   UserSecretMemoKey.instance(byUserID: userModel.id)
-        userSecretKeyMemoEntity.updateEntity(fromResponseAPI: userModel.memo)
-        self.memo                       =   userSecretKeyMemoEntity
-
         // UserSecretPostingKey
         let userSecretKeyPostingEntity  =   UserSecretPostingKey.instance(byUserID: userModel.id)
         userSecretKeyPostingEntity.updateEntity(fromResponseAPI: userModel.posting)
