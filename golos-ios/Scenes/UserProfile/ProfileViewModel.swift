@@ -12,8 +12,8 @@ struct ProfileViewModel {
     let name: String
     let pictureUrl: String?
     let backgroundImageUrl: String?
-    let starsAmount: String = "80"
-    let rank: String = "Дельфин"
+    var starsAmount: String = "80"
+    var rank: String = ""
     let information: String
     let postsCount: String
 }
@@ -25,5 +25,6 @@ extension ProfileViewModel {
         self.backgroundImageUrl     =   userModel.coverImageURL
         self.information            =   userModel.about ?? ""
         self.postsCount             =   "\(userModel.postCount)"
+        self.rank                   =   userModel.voicePower
     }
 }

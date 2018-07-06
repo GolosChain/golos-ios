@@ -26,9 +26,9 @@ enum VoicePower: String {
 public class User: NSManagedObject {
     // MARK: - Properties
     var voicePower: VoicePower {
-        let num = arc4random() % 10_000_000
+        let powerVoice  =   Int64(self.vestingShares.components(separatedBy: ".").first!)! % 10_000_000
         
-        switch num {
+        switch powerVoice {
         case 0..<10_000_000:
             return VoicePower.gudgeon
        
@@ -83,9 +83,10 @@ public class User: NSManagedObject {
         
         self.id                 =   userModel.id
         self.name               =   userModel.name
-        self.post_count         =   userModel.post_count
+        self.postCount          =   userModel.post_count
         self.json_metadata      =   userModel.json_metadata
         self.memoKey            =   userModel.memo_key
+        self.vestingShares      =   userModel.vesting_shares
         
         // UserSecretPostingKey
         let userSecretKeyPostingEntity  =   UserSecretPostingKey.instance(byUserID: userModel.id)

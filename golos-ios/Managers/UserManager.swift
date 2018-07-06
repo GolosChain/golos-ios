@@ -29,6 +29,7 @@ class UserManager {
             
             broadcast.executeGET(byMethodAPIType: methodAPIType,
                                  onResult: { responseAPIResult in
+                                    var displayedUsers: [DisplayedUser] = [DisplayedUser]()
                                     Logger.log(message: "\nresponse API Result = \(responseAPIResult)\n", event: .debug)
                                     
                                     guard let usersResult = (responseAPIResult as! ResponseAPIUserResult).result, usersResult.count > 0 else {
@@ -46,14 +47,8 @@ class UserManager {
                                         }
                                         
                                         userEntity.updateEntity(fromResponseAPI: $0)
+                                        displayedUsers.append(DisplayedUser(fromUser: userEntity))
                                     })
-                                    
-                                    // Send Users info
-                                    var displayedUsers = usersResult.compactMap({ DisplayedUser(fromResponseAPIUser: $0) })
-                                    
-                                    if displayedUsers.count == 1 {
-                                        displayedUsers[0].isAuthorized = true
-                                    }
                                     
                                     completion(displayedUsers, nil)
                 },
