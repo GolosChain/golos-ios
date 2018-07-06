@@ -44,7 +44,6 @@ class PostingKeyShowViewController: BaseViewController {
             postingKeyTextField.rightViewMode   =   .always
 
             postingKeyTextField.delegate        =   self
-            postingKeyTextField.text            =   "5Jj6qFdJLGKFFFQbfTwv6JNQmXzCidnjgSFNYKhrgqhzigH4sFp"
         }
     }
 
@@ -118,10 +117,6 @@ class PostingKeyShowViewController: BaseViewController {
 
 // MARK: - UITextFieldDelegate
 extension PostingKeyShowViewController: UITextFieldDelegate {
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        self.handlerReturnComletion!(self.textFieldsCollection)
-    }
-    
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
         if textField == postingKeyTextField, let text = textField.text, !text.isEmpty {
             return (text.hasPrefix("1") || text.hasPrefix("5")) ? true : false
@@ -131,6 +126,8 @@ extension PostingKeyShowViewController: UITextFieldDelegate {
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        self.handlerReturnComletion!(self.textFieldsCollection)
+        
         if textField == postingKeyTextField, let text = textField.text, text.count == 0 {
             return (string == "1" || string == "5") ? true : false
         }

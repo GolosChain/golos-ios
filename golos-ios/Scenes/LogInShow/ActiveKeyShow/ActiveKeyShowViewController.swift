@@ -117,10 +117,6 @@ class ActiveKeyShowViewController: BaseViewController {
 
 // MARK: - UITextFieldDelegate
 extension ActiveKeyShowViewController: UITextFieldDelegate {
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        self.handlerReturnComletion!(self.textFieldsCollection)
-    }
-    
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
         if textField == activeKeyTextField, let text = textField.text, !text.isEmpty {
             return (text.hasPrefix("1") || text.hasPrefix("5")) ? true : false
@@ -130,6 +126,8 @@ extension ActiveKeyShowViewController: UITextFieldDelegate {
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        self.handlerReturnComletion!(self.textFieldsCollection)
+        
         if textField == activeKeyTextField, let text = textField.text, text.count == 0 {
             return (string == "1" || string == "5") ? true : false
         }

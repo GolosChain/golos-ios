@@ -181,7 +181,7 @@ class LogInShowViewController: BaseViewController {
         }
         
         guard isNetworkAvailable else {
-            self.showAlertView(withTitle: "Info", andMessage: "", needCancel: false, completion: { _ in })
+            self.showAlertView(withTitle: "Info", andMessage: "No Internet Connection", needCancel: false, completion: { _ in })
             return false
         }
         
