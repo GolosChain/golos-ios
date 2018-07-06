@@ -11,9 +11,38 @@ import CoreData
 import GoloSwift
 import Foundation
 
+enum VoicePower: String {
+    case whale          =   "Whale"
+    case gudgeon        =   "Gudgeon"
+    case dolphin        =   "Dolphin"
+    case killerWhale    =   "Killer Whale"
+    
+    func introduced() -> String {
+        return self.rawValue.localized()
+    }
+}
+
 @objc(User)
 public class User: NSManagedObject {
     // MARK: - Properties
+    var voicePower: VoicePower {
+        let num = arc4random() % 10_000_000
+        
+        switch num {
+        case 0..<10_000_000:
+            return VoicePower.gudgeon
+       
+        case 10_000_000..<100_000_000:
+            return VoicePower.dolphin
+        
+        case 100_000_000..<1_000_000_000:
+            return VoicePower.killerWhale
+            
+        default:
+            return VoicePower.whale
+        }
+    }
+
     class var isAnonymous: Bool {
         get {
             return CoreDataManager.instance.readEntities(withName:                  "User",

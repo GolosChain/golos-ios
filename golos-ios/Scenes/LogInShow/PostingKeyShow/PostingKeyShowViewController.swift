@@ -28,7 +28,7 @@ class PostingKeyShowViewController: BaseViewController {
                                 font:                   UIFont.init(name: "SFUIDisplay-Regular", size: 16.0 * widthRatio),
                                 alignment:              .left)
             
-            loginTextField.delegate = self
+            loginTextField.delegate     =   self
         }
     }
     
@@ -53,7 +53,13 @@ class PostingKeyShowViewController: BaseViewController {
         }
     }
     
-    @IBOutlet var textFieldsCollection: [UITextField]!
+    @IBOutlet var textFieldsCollection: [UITextField]! {
+        didSet {
+            // FIXME: - DELETE AFTER TEST
+            textFieldsCollection.first!.text    =   "destroyer2k"
+            textFieldsCollection.last!.text     =   "5JjQWZmWj36xbVdcX96gjMs5BRip7TPPCNFFnm19TPEviqnG5Ke"
+        }
+    }
     
     
     // MARK: - Class Initialization
@@ -147,6 +153,9 @@ extension PostingKeyShowViewController: UITextFieldDelegate {
             break
         }
         
+        // FIXME: - DELETE AFTER TEST
+        self.handlerReturnComletion!(self.textFieldsCollection)
+
         return true
     }
 }

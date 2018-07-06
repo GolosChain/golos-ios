@@ -27,7 +27,7 @@ public class UserSecretPostingKey: NSManagedObject {
     
     func updateEntity(fromResponseAPI responseAPI: Decodable) {
         if let userSecretKeyModel = responseAPI as? ResponseAPIUserSecretKey {
-            self.account_auths      =   userSecretKeyModel.account_auths
+            self.account_auths      =   userSecretKeyModel.account_auths.compactMap({ $0.stringValue ?? "" })
             self.weight_threshold   =   userSecretKeyModel.weight_threshold ?? 0
             
             if userSecretKeyModel.key_auths.count > 0 {
