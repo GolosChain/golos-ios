@@ -12,7 +12,9 @@
 
 import UIKit
 import GoloSwift
+import SwiftTheme
 import MXParallaxHeader
+import SWSegmentedControl
 
 // MARK: - Input & Output protocols
 protocol UserProfileShowDisplayLogic: class {
@@ -28,20 +30,91 @@ class UserProfileShowViewController: BaseViewController {
     
     // MARK: - IBOutlets
     @IBOutlet weak var contentView: UIView!
-    @IBOutlet var headerView: UserProfileInfoView!
+    
+    @IBOutlet var userProfileHeaderView: UserProfileHeaderView! {
+        didSet {
+            // Handlers
+            userProfileHeaderView.handlerBackButtonTapped       =   { [weak self] in
+                self?.navigationController?.popViewController(animated: true)
+            }
+            
+            userProfileHeaderView.handlerEditButtonTapped       =   { [weak self] in
+                self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+            }
+            
+            userProfileHeaderView.handlerWriteButtonTapped      =   { [weak self] in
+                self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+            }
 
+            userProfileHeaderView.handlerSettingsButtonTapped   =   { [weak self] in
+                self?.showAlertView(withTitle: "Exit", andMessage: "Are Your Sure?", needCancel: true, completion: { [weak self] success in
+                    if success {
+                        self?.router?.routeToLoginShowScene()
+                    }
+                })
+            }
+            
+            userProfileHeaderView.handlerSubscribeButtonTapped  =   { [weak self] in 
+                self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+            }
+        }
+    }
+    
     @IBOutlet weak var scrollView: UIScrollView! {
         didSet {
             // Parallax Header
-            scrollView.parallaxHeader.view              =   headerView
+            scrollView.parallaxHeader.view              =   userProfileHeaderView
             scrollView.parallaxHeader.height            =   180.0 * heightRatio
             scrollView.parallaxHeader.mode              =   MXParallaxHeaderMode.fill
             scrollView.parallaxHeader.minimumHeight     =   20.0
 
             scrollView.parallaxHeader.delegate          =   self
+            scrollView.delegate                         =   self
         }
     }
     
+    @IBOutlet weak var segmentedControlView: UIView! {
+        didSet {
+            let segmentedControl                        =   SWSegmentedControl(frame: CGRect(origin: .zero, size: segmentedControlView.frame.size))
+            
+            segmentedControl.items                      =   [ "Posts", "Answers" ].map({ $0.localized() })
+            segmentedControl.selectedSegmentIndex       =   0
+            segmentedControl.titleColor                 =   UIColor(hexString: "#333333")
+            segmentedControl.indicatorColor             =   UIColor(hexString: "#1298FF")
+            segmentedControl.font                       =   UIFont(name: "SFProDisplay-Medium", size: 13.0 * widthRatio)!
+            segmentedControl.indicatorThickness         =   2.0 * heightRatio
+            
+            segmentedControl.delegate                   =   self
+            
+            segmentedControlView.addSubview(segmentedControl)
+            segmentedControlView.tune()
+        }
+    }
+
+    @IBOutlet weak var walletBalanceView: UIView! {
+        didSet {
+            walletBalanceView.isHidden = true
+            walletBalanceView.tune()
+        }
+    }
+
+    @IBOutlet weak var walletBalanceViewHeightConstraint: NSLayoutConstraint! {
+        didSet {
+            walletBalanceViewHeightConstraint.constant = 44.0 * heightRatio
+        }
+    }
+    
+    @IBOutlet weak var walletBalanceViewTopConstraint: NSLayoutConstraint! {
+        didSet {
+            walletBalanceViewTopConstraint.constant = walletBalanceView.isHidden ? -walletBalanceViewHeightConstraint.constant : 0.0
+        }
+    }
+
+    @IBOutlet weak var userProfileInfoControlViewTopConstraint: NSLayoutConstraint! {
+        didSet {
+            userProfileInfoControlViewTopConstraint.constant = 0.0
+        }
+    }
     
     // MARK: - Class Initialization
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -94,7 +167,7 @@ class UserProfileShowViewController: BaseViewController {
         super.viewDidLoad()
         
         self.hideNavigationBar()
-//        self.loadViewSettings()
+        self.loadViewSettings()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -107,6 +180,13 @@ class UserProfileShowViewController: BaseViewController {
     
     // MARK: - Custom Functions
     private func loadViewSettings() {
+        // Wallet Balance View show/hide
+        if !walletBalanceView.isHidden {
+            view.bringSubview(toFront: walletBalanceView)
+            walletBalanceViewTopConstraint.constant             =   0.0
+            userProfileInfoControlViewTopConstraint.constant    =   10.0 * heightRatio
+            walletBalanceView.add(shadow: true, onside: .bottom)
+        }
     }
     
     private func loadUserInfo() {
@@ -137,12 +217,45 @@ extension UserProfileShowViewController: UserProfileShowDisplayLogic {
 }
 
 
+// MARK: - UIScrollViewDelegate
+extension UserProfileShowViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        Logger.log(message: String(format: "scrollView.contentOffset.y %f", scrollView.contentOffset.y), event: .debug)
+        Logger.log(message: String(format: "segmentedControlView.frame.origin.y %f", view.convert(segmentedControlView.frame, from: contentView).origin.y), event: .debug)
+    }
+}
+
+
 // MARK: - MXParallaxHeaderDelegate
 extension UserProfileShowViewController: MXParallaxHeaderDelegate {
     func parallaxHeaderDidScroll(_ parallaxHeader: MXParallaxHeader) {
         Logger.log(message: String(format: "progress %f", parallaxHeader.progress), event: .debug)
 
-        UIApplication.shared.statusBarStyle             =   parallaxHeader.progress == 0.0 ? .default : .lightContent
-        self.headerView.whiteStatusBarView.isHidden     =   parallaxHeader.progress != 0.0
+        UIApplication.shared.statusBarStyle                     =   parallaxHeader.progress == 0.0 ? .default : .lightContent
+        self.userProfileHeaderView.whiteStatusBarView.isHidden  =   parallaxHeader.progress != 0.0
+    }
+}
+
+
+// MARK: - SWSegmentedControlDelegate
+extension UserProfileShowViewController: SWSegmentedControlDelegate {
+    func segmentedControl(_ control: SWSegmentedControl, willSelectItemAtIndex index: Int) {
+        print("will select \(index)")
+    }
+    
+    func segmentedControl(_ control: SWSegmentedControl, didSelectItemAtIndex index: Int) {
+        print("did select \(index)")
+    }
+    
+    func segmentedControl(_ control: SWSegmentedControl, willDeselectItemAtIndex index: Int) {
+        print("will deselect \(index)")
+    }
+    
+    func segmentedControl(_ control: SWSegmentedControl, didDeselectItemAtIndex index: Int) {
+        print("did deselect \(index)")
+    }
+    
+    func segmentedControl(_ control: SWSegmentedControl, canSelectItemAtIndex index: Int) -> Bool {
+        return true
     }
 }

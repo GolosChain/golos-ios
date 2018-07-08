@@ -29,6 +29,7 @@ target 'Golos' do
     pod 'Tags'
     pod 'SwiftTheme'
     pod 'SnapKit', '~> 4.0'
+    pod 'SWSegmentedControl'
     pod 'LayoutKit', '~> 7.0'
     pod 'MXParallaxHeader', '~> 0.6'
     pod 'AlignedCollectionViewFlowLayout'

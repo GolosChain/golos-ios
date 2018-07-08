@@ -176,7 +176,7 @@ class ProfileViewController: BaseViewController, UIGestureRecognizerDelegate {
 // MARK: - ProfileHeaderViewDelegate
 extension ProfileViewController: ProfileHeaderViewDelegate {
     func didPressEditProfileButton() {
-        self.inDevelopmentAlert()
+//        self.inDevelopmentAlert()
     }
     
     func didPressSettingsButton() {
@@ -188,11 +188,11 @@ extension ProfileViewController: ProfileHeaderViewDelegate {
     }
     
     func didPressSubsribeButton() {
-        self.inDevelopmentAlert()
+//        self.inDevelopmentAlert()
     }
     
     func didPressSendMessageButton() {
-        self.inDevelopmentAlert()
+//        self.inDevelopmentAlert()
     }
     
     func didPressBackButton() {

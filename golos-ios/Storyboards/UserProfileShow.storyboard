@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -23,7 +24,49 @@
                                 <subviews>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EqR-p6-NO1" userLabel="Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="667"/>
+                                        <subviews>
+                                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gKv-wz-hea" userLabel="User Profile Info Title View">
+                                                <rect key="frame" x="0.0" y="0.0" width="374" height="58"/>
+                                                <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </view>
+                                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nQR-xd-4LM" userLabel="User Profile Info Wallet View">
+                                                <rect key="frame" x="0.0" y="58" width="374" height="44"/>
+                                                <color key="backgroundColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="44" id="OCZ-c0-g1n"/>
+                                                </constraints>
+                                            </view>
+                                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vAN-NO-FcT" userLabel="User Profile Info Control View">
+                                                <rect key="frame" x="16" y="112" width="178" height="44"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="44" id="aRF-PN-7sa"/>
+                                                </constraints>
+                                            </view>
+                                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oTo-xI-SFK" userLabel="User Profile Info Control Bottom Line View">
+                                                <rect key="frame" x="0.0" y="156" width="374" height="1"/>
+                                                <color key="backgroundColor" red="0.85882352941176465" green="0.85882352941176465" blue="0.85882352941176465" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="1" id="R54-AI-al2"/>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="1" id="nU8-J6-NCN"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="gKv-wz-hea" firstAttribute="leading" secondItem="EqR-p6-NO1" secondAttribute="leading" id="0E6-KH-K3p"/>
+                                            <constraint firstItem="oTo-xI-SFK" firstAttribute="leading" secondItem="EqR-p6-NO1" secondAttribute="leading" id="423-zh-J7g"/>
+                                            <constraint firstItem="vAN-NO-FcT" firstAttribute="top" secondItem="nQR-xd-4LM" secondAttribute="bottom" constant="10" id="AzG-NT-1sW"/>
+                                            <constraint firstAttribute="trailing" secondItem="gKv-wz-hea" secondAttribute="trailing" id="GXy-7Z-EZ5"/>
+                                            <constraint firstItem="vAN-NO-FcT" firstAttribute="leading" secondItem="EqR-p6-NO1" secondAttribute="leading" constant="16" id="UY2-rH-BeL"/>
+                                            <constraint firstAttribute="trailing" secondItem="oTo-xI-SFK" secondAttribute="trailing" id="XNN-6f-fp5"/>
+                                            <constraint firstAttribute="trailing" secondItem="nQR-xd-4LM" secondAttribute="trailing" id="cn3-qD-MvL"/>
+                                            <constraint firstAttribute="trailing" secondItem="vAN-NO-FcT" secondAttribute="trailing" constant="180" id="hbO-9L-cIM"/>
+                                            <constraint firstItem="nQR-xd-4LM" firstAttribute="leading" secondItem="EqR-p6-NO1" secondAttribute="leading" id="jZG-sB-bi9"/>
+                                            <constraint firstItem="oTo-xI-SFK" firstAttribute="top" secondItem="vAN-NO-FcT" secondAttribute="bottom" id="jvc-Xt-W3t"/>
+                                            <constraint firstItem="nQR-xd-4LM" firstAttribute="top" secondItem="gKv-wz-hea" secondAttribute="bottom" id="k1R-e6-PbC"/>
+                                            <constraint firstItem="gKv-wz-hea" firstAttribute="top" secondItem="EqR-p6-NO1" secondAttribute="top" id="nzi-wg-x53"/>
+                                        </constraints>
                                     </view>
                                 </subviews>
                                 <constraints>
@@ -36,23 +79,42 @@
                             </scrollView>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="gKv-wz-hea" firstAttribute="height" secondItem="43m-gv-AxQ" secondAttribute="height" multiplier="58:667" priority="750" id="E40-AJ-8Td"/>
+                            <constraint firstItem="gKv-wz-hea" firstAttribute="height" secondItem="43m-gv-AxQ" secondAttribute="height" multiplier="58:375" priority="750" id="JMj-Ht-qUc"/>
                             <constraint firstItem="6ju-JF-dqe" firstAttribute="leading" secondItem="NRq-2g-ooI" secondAttribute="leading" id="JaX-Di-LAa"/>
                             <constraint firstItem="6ju-JF-dqe" firstAttribute="top" secondItem="43m-gv-AxQ" secondAttribute="top" id="QiK-Qm-elv"/>
+                            <constraint firstItem="vAN-NO-FcT" firstAttribute="top" relation="greaterThanOrEqual" secondItem="NRq-2g-ooI" secondAttribute="top" id="VBX-Or-s5V"/>
                             <constraint firstItem="NRq-2g-ooI" firstAttribute="bottom" secondItem="6ju-JF-dqe" secondAttribute="bottom" id="lq4-YV-UJ4"/>
                             <constraint firstItem="NRq-2g-ooI" firstAttribute="trailing" secondItem="6ju-JF-dqe" secondAttribute="trailing" id="ocs-fa-SvV"/>
-                            <constraint firstItem="EqR-p6-NO1" firstAttribute="height" secondItem="43m-gv-AxQ" secondAttribute="height" priority="750" id="qhF-q3-J7A"/>
+                            <constraint firstItem="EqR-p6-NO1" firstAttribute="height" secondItem="43m-gv-AxQ" secondAttribute="height" priority="250" id="qhF-q3-J7A"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="NRq-2g-ooI"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="E40-AJ-8Td"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="constraints">
+                                <include reference="E40-AJ-8Td"/>
+                                <exclude reference="JMj-Ht-qUc"/>
+                            </mask>
+                        </variation>
                     </view>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="contentView" destination="EqR-p6-NO1" id="ICQ-4T-Ev7"/>
-                        <outlet property="headerView" destination="8oU-dO-Jsg" id="RKO-P8-i7E"/>
                         <outlet property="scrollView" destination="6ju-JF-dqe" id="QLq-no-G9L"/>
+                        <outlet property="segmentedControlView" destination="vAN-NO-FcT" id="Aec-P5-Ddt"/>
+                        <outlet property="userProfileHeaderView" destination="8oU-dO-Jsg" id="RKO-P8-i7E"/>
+                        <outlet property="userProfileInfoControlViewTopConstraint" destination="AzG-NT-1sW" id="w9K-eP-aDh"/>
+                        <outlet property="walletBalanceView" destination="nQR-xd-4LM" id="SGW-eD-tUj"/>
+                        <outlet property="walletBalanceViewHeightConstraint" destination="OCZ-c0-g1n" id="9wB-jf-fsf"/>
+                        <outlet property="walletBalanceViewTopConstraint" destination="k1R-e6-PbC" id="9Qr-uG-o8g"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wTl-V5-NJX" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <view clipsSubviews="YES" contentMode="scaleToFill" id="8oU-dO-Jsg" userLabel="Header View" customClass="UserProfileInfoView" customModule="Golos" customModuleProvider="target">
+                <view clipsSubviews="YES" contentMode="scaleToFill" id="8oU-dO-Jsg" userLabel="Header View" customClass="UserProfileHeaderView" customModule="Golos" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="180"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

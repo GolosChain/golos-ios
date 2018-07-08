@@ -10,7 +10,15 @@
 import GoloSwift
 import Foundation
 
-class UserProfileInfoView: UIView {
+class UserProfileHeaderView: UIView {
+    // MARK: - Properties
+    var handlerBackButtonTapped: (() -> Void)?
+    var handlerEditButtonTapped: (() -> Void)?
+    var handlerWriteButtonTapped: (() -> Void)?
+    var handlerSettingsButtonTapped: (() -> Void)?
+    var handlerSubscribeButtonTapped: (() -> Void)?
+
+
     // MARK: - IBOutlets
     @IBOutlet private weak var blurImageView: UIImageView!
     @IBOutlet private weak var avatarImageView: UIImageView!
@@ -76,7 +84,7 @@ class UserProfileInfoView: UIView {
     }
     
     private func commonInit() {
-        let nib     =   UINib(nibName: String(describing: UserProfileInfoView.self), bundle: nil)
+        let nib     =   UINib(nibName: String(describing: UserProfileHeaderView.self), bundle: nil)
         let view    =   nib.instantiate(withOwner: self, options: nil).first as! UIView
         addSubview(view)
         
@@ -98,9 +106,9 @@ class UserProfileInfoView: UIView {
         blurImageView.alpha     =   0
     }
     
-    func showBackButton(_ showBackButton: Bool) {
-        backButton.isHidden         =   !showBackButton
-        editProfileButton.isHidden  =   showBackButton
+    func showBackButton(_ isShow: Bool) {
+        backButton.isHidden         =   !isShow
+        editProfileButton.isHidden  =   isShow
     }
     
     
@@ -123,23 +131,23 @@ class UserProfileInfoView: UIView {
     
     
     // MARK: - Actions
-    @IBAction func editButtonPressed(_ sender: Any) {
-//        delegate?.didPressEditProfileButton()
+    @IBAction func editButtonTapped(_ sender: UIButton) {
+        self.handlerEditButtonTapped!()
     }
     
-    @IBAction func settingsButtonPressed(_ sender: Any) {
-//        delegate?.didPressSettingsButton()
+    @IBAction func settingsButtonTapped(_ sender: UIButton) {
+        self.handlerSettingsButtonTapped!()
     }
     
-    @IBAction func subscribeButtonPressed(_ sender: Any) {
-//        delegate?.didPressSubsribeButton()
+    @IBAction func subscribeButtonTapped(_ sender: UIButton) {
+        self.handlerSubscribeButtonTapped!()
     }
     
-    @IBAction func writeButtonPressed(_ sender: Any) {
-//        delegate?.didPressSendMessageButton()
+    @IBAction func writeButtonTapped(_ sender: UIButton) {
+        self.handlerWriteButtonTapped!()
     }
     
-    @IBAction func backButtonPressed(_ sender: Any) {
-//        delegate?.didPressBackButton()
+    @IBAction func backButtonTapped(_ sender: UIButton) {
+        self.handlerBackButtonTapped!()
     }
 }

@@ -25,8 +25,8 @@ extension UIView {
 
     func add(shadow: Bool, onside: SideType) {
         layer.shadowColor           =   shadow ? UIColor.lightGray.cgColor : UIColor.white.cgColor
-        layer.shadowOpacity         =   shadow ? 4.0 : 0.0
-        layer.shadowRadius          =   shadow ? 4.0 : 0.0
+        layer.shadowOpacity         =   Float((shadow ? 4.0 : 0.0) * heightRatio)
+        layer.shadowRadius          =   (shadow ? 4.0 : 0.0) * heightRatio
         layer.masksToBounds         =   false
         layer.shouldRasterize       =   true
         
@@ -37,16 +37,16 @@ extension UIView {
         
         switch onside {
         case .top:
-            layer.shadowOffset      =   CGSize(width: 0, height: -4)
+            layer.shadowOffset      =   CGSize(width: 0, height: -4.0 * heightRatio)
 
         case .left:
-            layer.shadowOffset      =   CGSize(width: -4, height: 0)
+            layer.shadowOffset      =   CGSize(width: -4, height: 0.0)
             
         case .right:
-            layer.shadowOffset      =   CGSize(width: 4, height: 0)
+            layer.shadowOffset      =   CGSize(width: 4, height: 0.0)
             
         case .bottom:
-            layer.shadowOffset      =   CGSize(width: 0, height: 4)
+            layer.shadowOffset      =   CGSize(width: 0, height: 4.0 * heightRatio)
             
         case .around:
             layer.shadowOffset      =   .zero

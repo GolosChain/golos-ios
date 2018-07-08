@@ -35,4 +35,5 @@ disabled_rules:
 - function_body_length
 - identifier_name
 - implicit_getter
+- opening_brace
 

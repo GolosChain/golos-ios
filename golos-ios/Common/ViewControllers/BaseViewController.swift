@@ -85,9 +85,6 @@ class BaseViewController: UIViewController {
         alertViewController.show()
     }
     
-    func inDevelopmentAlert() {
-        self.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
-    }
     
     // MARK: - Actions
     @objc func adjustForKeyboard(notification: Notification) {
