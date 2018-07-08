@@ -34,9 +34,9 @@ class UserProfileHeaderView: UIView {
     
     @IBOutlet weak var whiteStatusBarView: UIView!
 
-    @IBOutlet private weak var rankLabel: UILabel!
+    @IBOutlet private weak var voicePowerLabel: UILabel!
     @IBOutlet private weak var starsLabel: UILabel!
-    @IBOutlet private weak var rankImageVIew: UIImageView!
+    @IBOutlet private weak var voicePowerImageView: UIImageView!
     @IBOutlet private weak var starsImageView: UIImageView!
     @IBOutlet private weak var activityView: UIActivityIndicatorView!
 
@@ -117,6 +117,24 @@ class UserProfileHeaderView: UIView {
         super.layoutSubviews()
         
         avatarImageView.layer.cornerRadius = avatarImageView.bounds.size.width / 2
+    }
+    
+    
+    // MARK: - Custom Functions
+    func updateUI(fromUserInfo userInfo: DisplayedUser) {
+        self.nameLabel.text                 =   userInfo.name
+        self.voicePowerLabel.text           =   userInfo.voicePower
+        self.voicePowerImageView.image      =   UIImage(named: userInfo.voicePowerImageName)
+        self.starsLabel.text                =   "\(userInfo.postCount)"
+        
+        if let pictureURL = userInfo.pictureURL {
+            GSImageLoader().startLoadImage(with: pictureURL) { [weak self] image in
+                guard let strongSelf = self else { return }
+                
+                let image = image ?? UIImage(named: "avatar_placeholder")
+                strongSelf.avatarImageView.image = image
+            }
+        }
     }
     
     

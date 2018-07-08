@@ -60,14 +60,13 @@ class UserProfileShowInteractor: UserProfileShowBusinessLogic, UserProfileShowDa
                                     
                                     // Update User entity
                                     if let userEntity = CoreDataManager.instance.createEntity("User") as? User {
+                                        userEntity.isAuthorized = true
                                         userEntity.updateEntity(fromResponseAPI: userResult.first)
                                         
                                         // Send User info
-                                        let responseModel = UserProfileShowModels.UserInfo.ResponseModel(user: userEntity, error: nil)
+                                        let responseModel = UserProfileShowModels.UserInfo.ResponseModel(user: User.current, error: nil)
                                         self?.presenter?.presentUserInfo(fromResponseModel: responseModel)
                                     }
-
-//                                    let displayedUsers = result.compactMap({ DisplayedUser(fromResponseAPIUser: $0) })
                 },
                                  onError: { [weak self] errorAPI in
                                     Logger.log(message: "nresponse API Error = \(errorAPI.caseInfo.message)\n", event: .error)

@@ -205,9 +205,16 @@ class UserProfileShowViewController: BaseViewController {
 extension UserProfileShowViewController: UserProfileShowDisplayLogic {
     func displayUserInfo(fromViewModel viewModel: UserProfileShowModels.UserInfo.ViewModel) {
         // NOTE: Display the result from the Presenter
-
-        // Load User details
-//        self.loadUserDetails()
+        if let error = viewModel.error {
+            self.showAlertView(withTitle: "Error", andMessage: error.localizedDescription, needCancel: false, completion: { _ in })
+        }
+        
+        else if let displayedUser = viewModel.displayedUser {
+            self.userProfileHeaderView.updateUI(fromUserInfo: displayedUser)
+            
+            // Load User details
+//            self.loadUserDetails()
+        }
     }
     
     func displayUserDetails(fromViewModel viewModel: UserProfileShowModels.UserDetails.ViewModel) {

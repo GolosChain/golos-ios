@@ -15,10 +15,10 @@ enum VoicePower: String {
     case whale          =   "Whale"
     case gudgeon        =   "Gudgeon"
     case dolphin        =   "Dolphin"
-    case killerWhale    =   "Killer Whale"
+    case killerWhale    =   "Killer-Whale"
     
     func introduced() -> String {
-        return self.rawValue.localized()
+        return self.rawValue
     }
 }
 

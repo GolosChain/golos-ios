@@ -27,6 +27,8 @@ enum UserProfileShowModels {
         }
         
         struct ViewModel {
+            let displayedUser: DisplayedUser?
+            let error: ErrorAPI?
         }
     }
 

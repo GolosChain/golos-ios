@@ -20,10 +20,10 @@
                 <outlet property="editProfileButton" destination="Rmb-0P-j3P" id="UQg-TI-nUf"/>
                 <outlet property="imageViewTopConstraint" destination="PwS-bm-ERx" id="Iuf-Sr-BwY"/>
                 <outlet property="nameLabel" destination="FaU-67-Zn3" id="MdH-Pg-0DV"/>
-                <outlet property="rankImageVIew" destination="SJ5-yn-dOL" id="3eN-Zl-kj9"/>
-                <outlet property="rankLabel" destination="Tbu-zp-zfg" id="YVh-Rb-1U4"/>
                 <outlet property="starsImageView" destination="GYK-T0-5RT" id="thR-nK-FaL"/>
                 <outlet property="starsLabel" destination="V8g-ut-yLv" id="rD5-Tf-J1J"/>
+                <outlet property="voicePowerImageView" destination="SJ5-yn-dOL" id="73A-1n-0gc"/>
+                <outlet property="voicePowerLabel" destination="Tbu-zp-zfg" id="nvB-TO-Vda"/>
                 <outlet property="whiteStatusBarView" destination="aIP-Ah-peY" id="wT1-1s-EbN"/>
                 <outletCollection property="labelsCollection" destination="V8g-ut-yLv" collectionClass="NSMutableArray" id="1ts-nW-JC2"/>
                 <outletCollection property="labelsCollection" destination="Tbu-zp-zfg" collectionClass="NSMutableArray" id="1wR-sl-gMZ"/>
@@ -48,28 +48,20 @@
                     </constraints>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_star_icon" translatesAutoresizingMaskIntoConstraints="NO" id="GYK-T0-5RT">
-                    <rect key="frame" x="153" y="105.5" width="14" height="14"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="14" id="F1n-Nf-QSd"/>
-                        <constraint firstAttribute="height" constant="14" id="jL3-FK-pcC"/>
-                    </constraints>
+                    <rect key="frame" x="153" y="105.5" width="15" height="14"/>
                 </imageView>
                 <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V8g-ut-yLv">
-                    <rect key="frame" x="172" y="105.5" width="36" height="14.5"/>
+                    <rect key="frame" x="173" y="105.5" width="36" height="14.5"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_doplhin_icon" translatesAutoresizingMaskIntoConstraints="NO" id="SJ5-yn-dOL" userLabel="Rank Image View">
-                    <rect key="frame" x="225" y="105.5" width="14" height="14"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="14" id="9pK-9S-Xon"/>
-                        <constraint firstAttribute="height" constant="14" id="ruq-0M-9jx"/>
-                    </constraints>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="right" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-voice-power-doplhin" translatesAutoresizingMaskIntoConstraints="NO" id="SJ5-yn-dOL" userLabel="Voice Power Image View">
+                    <rect key="frame" x="226" y="105.5" width="14" height="14"/>
                 </imageView>
-                <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dolphin" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tbu-zp-zfg" userLabel="Rank Label">
-                    <rect key="frame" x="244" y="105.5" width="43.5" height="14.5"/>
+                <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dolphin" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tbu-zp-zfg" userLabel="Voice Power Label">
+                    <rect key="frame" x="248" y="105.5" width="43.5" height="14.5"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -200,7 +192,7 @@
                 <constraint firstItem="h2m-l8-ZoS" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="80:667" id="dF8-Ux-LUq"/>
                 <constraint firstItem="fsq-NL-sVQ" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="f3d-rz-gMb"/>
                 <constraint firstItem="FaU-67-Zn3" firstAttribute="leading" secondItem="d0u-Zn-tmK" secondAttribute="leading" id="jBY-yG-qpv"/>
-                <constraint firstItem="Tbu-zp-zfg" firstAttribute="leading" secondItem="SJ5-yn-dOL" secondAttribute="trailing" constant="5" id="jpb-Kh-IvK"/>
+                <constraint firstItem="Tbu-zp-zfg" firstAttribute="leading" secondItem="SJ5-yn-dOL" secondAttribute="trailing" constant="8" id="jpb-Kh-IvK"/>
                 <constraint firstItem="acw-MW-GSz" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="80:375" id="kgF-Td-05S"/>
                 <constraint firstItem="h2m-l8-ZoS" firstAttribute="leading" secondItem="d0u-Zn-tmK" secondAttribute="trailing" constant="5" id="kgy-Ul-pPh"/>
                 <constraint firstItem="Rmb-0P-j3P" firstAttribute="top" secondItem="bRX-hm-6zh" secondAttribute="top" constant="25" id="ljc-xa-VRI"/>
@@ -246,7 +238,7 @@
         <image name="avatar_placeholder" width="13" height="13"/>
         <image name="back_button" width="17" height="16"/>
         <image name="icon-button-profile-settings" width="24" height="24"/>
-        <image name="profile_doplhin_icon" width="14" height="14"/>
+        <image name="icon-voice-power-doplhin" width="14" height="14"/>
         <image name="profile_edit_button_icon" width="15" height="14"/>
         <image name="profile_header_bg" width="375" height="181"/>
         <image name="profile_star_icon" width="15" height="14"/>

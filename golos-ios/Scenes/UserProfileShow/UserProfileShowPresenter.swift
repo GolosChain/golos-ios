@@ -32,7 +32,13 @@ class UserProfileShowPresenter: UserProfileShowPresentationLogic {
 
     // MARK: - Presentation Logic implementation
     func presentUserInfo(fromResponseModel responseModel: UserProfileShowModels.UserInfo.ResponseModel) {
-        let userInfoViewModel = UserProfileShowModels.UserInfo.ViewModel()
+        var displayedUser: DisplayedUser?
+        
+        if let userModel = responseModel.user {
+            displayedUser = DisplayedUser(fromUser: userModel)
+        }
+        
+        let userInfoViewModel = UserProfileShowModels.UserInfo.ViewModel(displayedUser: displayedUser, error: responseModel.error)
         viewController?.displayUserInfo(fromViewModel: userInfoViewModel)
     }
     
