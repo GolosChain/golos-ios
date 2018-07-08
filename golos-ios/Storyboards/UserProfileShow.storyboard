@@ -17,11 +17,47 @@
                     <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="43m-gv-AxQ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6ju-JF-dqe">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EqR-p6-NO1" userLabel="Content View">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="667"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="EqR-p6-NO1" firstAttribute="centerX" secondItem="6ju-JF-dqe" secondAttribute="centerX" id="TZF-JD-fu3"/>
+                                    <constraint firstAttribute="trailing" secondItem="EqR-p6-NO1" secondAttribute="trailing" id="hQO-sr-RCl"/>
+                                    <constraint firstItem="EqR-p6-NO1" firstAttribute="leading" secondItem="6ju-JF-dqe" secondAttribute="leading" id="hRD-ca-XGh"/>
+                                    <constraint firstAttribute="bottom" secondItem="EqR-p6-NO1" secondAttribute="bottom" id="shb-rD-FPV"/>
+                                    <constraint firstItem="EqR-p6-NO1" firstAttribute="top" secondItem="6ju-JF-dqe" secondAttribute="top" id="wcl-z6-3Wi"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="6ju-JF-dqe" firstAttribute="leading" secondItem="NRq-2g-ooI" secondAttribute="leading" id="JaX-Di-LAa"/>
+                            <constraint firstItem="6ju-JF-dqe" firstAttribute="top" secondItem="43m-gv-AxQ" secondAttribute="top" id="QiK-Qm-elv"/>
+                            <constraint firstItem="NRq-2g-ooI" firstAttribute="bottom" secondItem="6ju-JF-dqe" secondAttribute="bottom" id="lq4-YV-UJ4"/>
+                            <constraint firstItem="NRq-2g-ooI" firstAttribute="trailing" secondItem="6ju-JF-dqe" secondAttribute="trailing" id="ocs-fa-SvV"/>
+                            <constraint firstItem="EqR-p6-NO1" firstAttribute="height" secondItem="43m-gv-AxQ" secondAttribute="height" priority="750" id="qhF-q3-J7A"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="NRq-2g-ooI"/>
                     </view>
                     <nil key="simulatedTopBarMetrics"/>
+                    <connections>
+                        <outlet property="contentView" destination="EqR-p6-NO1" id="ICQ-4T-Ev7"/>
+                        <outlet property="headerView" destination="8oU-dO-Jsg" id="RKO-P8-i7E"/>
+                        <outlet property="scrollView" destination="6ju-JF-dqe" id="QLq-no-G9L"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wTl-V5-NJX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view clipsSubviews="YES" contentMode="scaleToFill" id="8oU-dO-Jsg" userLabel="Header View" customClass="UserProfileInfoView" customModule="Golos" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="180"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <viewLayoutGuide key="safeArea" id="3ui-jC-vek"/>
+                </view>
             </objects>
             <point key="canvasLocation" x="20" y="84"/>
         </scene>

@@ -12,6 +12,7 @@
 
 import UIKit
 import GoloSwift
+import MXParallaxHeader
 
 // MARK: - Input & Output protocols
 protocol UserProfileShowDisplayLogic: class {
@@ -19,13 +20,27 @@ protocol UserProfileShowDisplayLogic: class {
     func displayUserDetails(fromViewModel viewModel: UserProfileShowModels.UserDetails.ViewModel)
 }
 
-class UserProfileShowViewController: UIViewController {
+class UserProfileShowViewController: BaseViewController {
     // MARK: - Properties
     var interactor: UserProfileShowBusinessLogic?
     var router: (NSObjectProtocol & UserProfileShowRoutingLogic & UserProfileShowDataPassing)?
     
     
     // MARK: - IBOutlets
+    @IBOutlet weak var contentView: UIView!
+    @IBOutlet var headerView: UserProfileInfoView!
+
+    @IBOutlet weak var scrollView: UIScrollView! {
+        didSet {
+            // Parallax Header
+            scrollView.parallaxHeader.view              =   headerView
+            scrollView.parallaxHeader.height            =   180.0 * heightRatio
+            scrollView.parallaxHeader.mode              =   MXParallaxHeaderMode.fill
+            scrollView.parallaxHeader.minimumHeight     =   20.0
+
+            scrollView.parallaxHeader.delegate          =   self
+        }
+    }
     
     
     // MARK: - Class Initialization
@@ -78,7 +93,8 @@ class UserProfileShowViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.loadViewSettings()
+        self.hideNavigationBar()
+//        self.loadViewSettings()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -111,11 +127,22 @@ extension UserProfileShowViewController: UserProfileShowDisplayLogic {
         // NOTE: Display the result from the Presenter
 
         // Load User details
-        self.loadUserDetails()
+//        self.loadUserDetails()
     }
     
     func displayUserDetails(fromViewModel viewModel: UserProfileShowModels.UserDetails.ViewModel) {
         // NOTE: Display the result from the Presenter
 
+    }
+}
+
+
+// MARK: - MXParallaxHeaderDelegate
+extension UserProfileShowViewController: MXParallaxHeaderDelegate {
+    func parallaxHeaderDidScroll(_ parallaxHeader: MXParallaxHeader) {
+        Logger.log(message: String(format: "progress %f", parallaxHeader.progress), event: .debug)
+
+        UIApplication.shared.statusBarStyle             =   parallaxHeader.progress == 0.0 ? .default : .lightContent
+        self.headerView.whiteStatusBarView.isHidden     =   parallaxHeader.progress != 0.0
     }
 }

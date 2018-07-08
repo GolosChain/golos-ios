@@ -30,9 +30,10 @@ target 'Golos' do
     pod 'SwiftTheme'
     pod 'SnapKit', '~> 4.0'
     pod 'LayoutKit', '~> 7.0'
+    pod 'MXParallaxHeader', '~> 0.6'
     pod 'AlignedCollectionViewFlowLayout'
 
-    # Pods for golos-ios
+# Pods for golos-ios
 #    pod 'GoloSwift', '~> 1.1'
     pod 'GoloSwift', :git => "https://github.com/GolosChain/GoloSwift.git"
 #    pod 'GoloSwift', :git => "https://github.com/GolosChain/GoloSwift.git", :tag => "1.1.7"
