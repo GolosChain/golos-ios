@@ -17,19 +17,14 @@ import GoloSwift
 // MARK: - Business Logic protocols
 protocol UserProfileShowBusinessLogic {
     func loadUserInfo(withRequestModel requestModel: UserProfileShowModels.UserInfo.RequestModel)
-    func loadUserDetails(withRequestModel requestModel: UserProfileShowModels.UserDetails.RequestModel)
+    func loadUserBlogDetails(withRequestModel requestModel: UserProfileShowModels.UserDetails.RequestModel)
 }
 
-protocol UserProfileShowDataStore {
-//     var name: String { get set }
-}
+protocol UserProfileShowDataStore {}
 
 class UserProfileShowInteractor: UserProfileShowBusinessLogic, UserProfileShowDataStore {
     // MARK: - Properties
     var presenter: UserProfileShowPresentationLogic?
-    
-    // ... protocol implementation
-//    var name: String = ""
     
     
     // MARK: - Class Initialization
@@ -52,42 +47,34 @@ class UserProfileShowInteractor: UserProfileShowBusinessLogic, UserProfileShowDa
                                     
                                     guard let userResult = (responseAPIResult as! ResponseAPIUserResult).result, userResult.count > 0 else {
                                         // Send empty User info
-                                        let responseModel = UserProfileShowModels.UserInfo.ResponseModel(user: nil, error: nil)
+                                        let responseModel = UserProfileShowModels.UserInfo.ResponseModel(error: nil)
                                         self?.presenter?.presentUserInfo(fromResponseModel: responseModel)
                                         
                                         return
                                     }
                                     
                                     // Update User entity
-                                    if let userEntity = CoreDataManager.instance.createEntity("User") as? User {
-                                        userEntity.isAuthorized = true
-                                        userEntity.updateEntity(fromResponseAPI: userResult.first)
-                                        
-                                        // Send User info
-                                        let responseModel = UserProfileShowModels.UserInfo.ResponseModel(user: User.current, error: nil)
-                                        self?.presenter?.presentUserInfo(fromResponseModel: responseModel)
+                                    if let userResponseAPI = userResult.first {
+                                        let userEntity              =   User.instance(byUserID: userResponseAPI.id)
+                                        userEntity.isAuthorized     =   true
+                                        userEntity.updateEntity(fromResponseAPI: userResponseAPI)
                                     }
+                                    
+                                    // Send User info
+                                    let responseModel = UserProfileShowModels.UserInfo.ResponseModel(error: nil)
+                                    self?.presenter?.presentUserInfo(fromResponseModel: responseModel)
                 },
                                  onError: { [weak self] errorAPI in
                                     Logger.log(message: "nresponse API Error = \(errorAPI.caseInfo.message)\n", event: .error)
                                     
                                     // Send error
-                                    let responseModel = UserProfileShowModels.UserInfo.ResponseModel(user: nil, error: errorAPI)
+                                    let responseModel = UserProfileShowModels.UserInfo.ResponseModel(error: errorAPI)
                                     self?.presenter?.presentUserInfo(fromResponseModel: responseModel)
             })
         }
-        
-        // CoreData
-        else {
-            // Send User info
-            if let userEntity = User.current {
-                let responseModel = UserProfileShowModels.UserInfo.ResponseModel(user: userEntity, error: nil)
-                self.presenter?.presentUserInfo(fromResponseModel: responseModel)
-            }
-        }
     }
     
-    func loadUserDetails(withRequestModel requestModel: UserProfileShowModels.UserDetails.RequestModel) {
+    func loadUserBlogDetails(withRequestModel requestModel: UserProfileShowModels.UserDetails.RequestModel) {
         // API 'get_discussions_by_blog'
         if isNetworkAvailable {
             // Create MethodAPIType
@@ -103,10 +90,9 @@ class UserProfileShowInteractor: UserProfileShowBusinessLogic, UserProfileShowDa
                                     Logger.log(message: "\nresponse API Result = \(responseAPIResult)\n", event: .debug)
                                     
                                     guard let result = (responseAPIResult as! ResponseAPIFeedResult).result, result.count > 0 else {
-//                                        completion([], nil)
-                                        // Send empty User info
+                                        // Send User info
                                         let userDetailsResponseModel = UserProfileShowModels.UserDetails.ResponseModel(error: nil)
-                                        self?.presenter?.presentUserDetails(fromResponseModel: userDetailsResponseModel)
+                                        self?.presenter?.presentUserBlogDetails(fromResponseModel: userDetailsResponseModel)
 
                                         return
                                     }
@@ -127,17 +113,8 @@ class UserProfileShowInteractor: UserProfileShowBusinessLogic, UserProfileShowDa
 
                                     // Send error
                                     let userDetailsResponseModel = UserProfileShowModels.UserDetails.ResponseModel(error: errorAPI)
-                                    self?.presenter?.presentUserDetails(fromResponseModel: userDetailsResponseModel)
+                                    self?.presenter?.presentUserBlogDetails(fromResponseModel: userDetailsResponseModel)
             })
-        }
-        
-        // CoreData
-        else {
-            // Send User details
-//            if let userEntity = User.current {
-//                let responseModel = UserProfileShowModels.UserInfo.ResponseModel(user: userEntity, error: nil)
-//                self.presenter?.presentUserProfile(fromResponseModel: responseModel)
-//            }
         }
     }
 }

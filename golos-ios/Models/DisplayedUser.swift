@@ -14,7 +14,9 @@ struct DisplayedUser {
     let id: Int64
     let name: String
     var about: String?
-    let postCount: Int64
+    let postsAmount: Int64
+    let subscribersAmount: Int64
+    let subscribtionsAmount: Int64
     var pictureURL: String?
     var coverImageURL: String?
     let memoKey: String?
@@ -30,7 +32,9 @@ struct DisplayedUser {
     init(fromUser user: User) {
         self.id                     =   user.id
         self.name                   =   user.name
-        self.postCount              =   user.postCount
+        self.postsAmount            =   user.postsAmount
+        self.subscribersAmount      =   user.postsAmount
+        self.subscribtionsAmount    =   user.postsAmount
         self.memoKey                =   user.memoKey
         self.ownerKey               =   user.owner?.key_auths?.first?.first
         self.activeKey              =   user.active?.key_auths?.first?.first

@@ -83,7 +83,7 @@ public class User: NSManagedObject {
         
         self.id                 =   userModel.id
         self.name               =   userModel.name
-        self.postCount          =   userModel.post_count
+        self.postsAmount        =   userModel.post_count
         self.json_metadata      =   userModel.json_metadata
         self.memoKey            =   userModel.memo_key
         self.vestingShares      =   userModel.vesting_shares

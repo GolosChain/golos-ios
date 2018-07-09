@@ -108,6 +108,8 @@
 		B146891420F1F30E00D36794 /* UserProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B146891320F1F30E00D36794 /* UserProfileHeaderView.swift */; };
 		B146891820F1F5D000D36794 /* UserProfileHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B146891720F1F5D000D36794 /* UserProfileHeaderView.xib */; };
 		B146891A20F2013F00D36794 /* SFProDisplay-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = B146891920F2013F00D36794 /* SFProDisplay-Medium.otf */; };
+		B146891D20F234BE00D36794 /* UserProfileInfoTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B146891B20F234BD00D36794 /* UserProfileInfoTitleView.swift */; };
+		B146891E20F234BE00D36794 /* UserProfileInfoTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B146891C20F234BD00D36794 /* UserProfileInfoTitleView.xib */; };
 		B157660A20B59D80009619A6 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B157660920B59D80009619A6 /* UserNotifications.framework */; };
 		B157660C20B59D80009619A6 /* UserNotificationsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B157660B20B59D80009619A6 /* UserNotificationsUI.framework */; };
 		B157660F20B59D80009619A6 /* RemoteNotificationTransferViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B157660E20B59D80009619A6 /* RemoteNotificationTransferViewController.swift */; };
@@ -355,6 +357,8 @@
 		B146891320F1F30E00D36794 /* UserProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileHeaderView.swift; sourceTree = "<group>"; };
 		B146891720F1F5D000D36794 /* UserProfileHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserProfileHeaderView.xib; sourceTree = "<group>"; };
 		B146891920F2013F00D36794 /* SFProDisplay-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Medium.otf"; sourceTree = "<group>"; };
+		B146891B20F234BD00D36794 /* UserProfileInfoTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileInfoTitleView.swift; sourceTree = "<group>"; };
+		B146891C20F234BD00D36794 /* UserProfileInfoTitleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserProfileInfoTitleView.xib; sourceTree = "<group>"; };
 		B157660820B59D80009619A6 /* RemoteNotificationTransfer.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = RemoteNotificationTransfer.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		B157660920B59D80009619A6 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		B157660B20B59D80009619A6 /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = SDKROOT; };
@@ -817,6 +821,8 @@
 			children = (
 				B146891320F1F30E00D36794 /* UserProfileHeaderView.swift */,
 				B146891720F1F5D000D36794 /* UserProfileHeaderView.xib */,
+				B146891B20F234BD00D36794 /* UserProfileInfoTitleView.swift */,
+				B146891C20F234BD00D36794 /* UserProfileInfoTitleView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1392,6 +1398,7 @@
 				7D25B4CB201FABD8004A3400 /* ArticleFooterTableViewCell.xib in Resources */,
 				EC24FF7A200C497800A0AE15 /* FeedViewController.xib in Resources */,
 				B1B6B39520D37F3100284387 /* PostCommentReply.xib in Resources */,
+				B146891E20F234BE00D36794 /* UserProfileInfoTitleView.xib in Resources */,
 				EC9B2AE7201550F4008335C8 /* FeedArticleTableViewCell.xib in Resources */,
 				7D25B4BF201FABB2004A3400 /* ArticleTitleTableViewCell.xib in Resources */,
 				EC1DFB9920063C400080BC50 /* LaunchScreen.storyboard in Resources */,
@@ -1571,6 +1578,7 @@
 				7DA0632A2032583F00B5630C /* PostsFeedViewController+ProfileFeedContainerItem.swift in Sources */,
 				B1F3748320C2C5E1005EF767 /* RootShowViewController.swift in Sources */,
 				EC9ABBC62017D55800AF8597 /* ProfileHeaderView.swift in Sources */,
+				B146891D20F234BE00D36794 /* UserProfileInfoTitleView.swift in Sources */,
 				B15F227E20EE943200C44282 /* CoreDataManager.swift in Sources */,
 				B114194320CD51740025B07F /* ActiveKeyShowViewController.swift in Sources */,
 				7D25B4CA201FABD8004A3400 /* ArticleFooterTableViewCell.swift in Sources */,

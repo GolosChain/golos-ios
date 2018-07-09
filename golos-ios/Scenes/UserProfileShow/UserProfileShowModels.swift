@@ -22,12 +22,10 @@ enum UserProfileShowModels {
         }
         
         struct ResponseModel {
-            let user: User?
             let error: ErrorAPI?
         }
         
         struct ViewModel {
-            let displayedUser: DisplayedUser?
             let error: ErrorAPI?
         }
     }

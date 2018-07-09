@@ -11,6 +11,7 @@
 //
 
 import UIKit
+import CoreData
 import GoloSwift
 import SwiftTheme
 import MXParallaxHeader
@@ -19,7 +20,7 @@ import SWSegmentedControl
 // MARK: - Input & Output protocols
 protocol UserProfileShowDisplayLogic: class {
     func displayUserInfo(fromViewModel viewModel: UserProfileShowModels.UserInfo.ViewModel)
-    func displayUserDetails(fromViewModel viewModel: UserProfileShowModels.UserDetails.ViewModel)
+    func displayUserBlogDetails(fromViewModel viewModel: UserProfileShowModels.UserDetails.ViewModel)
 }
 
 class UserProfileShowViewController: BaseViewController {
@@ -27,9 +28,33 @@ class UserProfileShowViewController: BaseViewController {
     var interactor: UserProfileShowBusinessLogic?
     var router: (NSObjectProtocol & UserProfileShowRoutingLogic & UserProfileShowDataPassing)?
     
+    lazy var fetchedResultsController: NSFetchedResultsController   =   { () -> NSFetchedResultsController<NSFetchRequestResult> in
+        let usersFetchRequest                   =   NSFetchRequest<NSFetchRequestResult>(entityName: "User")
+        let primarySortDescriptor               =   NSSortDescriptor(key: "id", ascending: true)
+        let secondarySortDescriptor             =   NSSortDescriptor(key: "name", ascending: true)
+        
+        usersFetchRequest.sortDescriptors       =   [primarySortDescriptor, secondarySortDescriptor]
+        
+        let frc         =   NSFetchedResultsController(fetchRequest:            usersFetchRequest,
+                                                       managedObjectContext:    CoreDataManager.instance.managedObjectContext,
+                                                       sectionNameKeyPath:      nil,
+                                                       cacheName:               nil)
+        
+        frc.delegate    =   self
+        
+        return frc
+    }()
+    
     
     // MARK: - IBOutlets
     @IBOutlet weak var contentView: UIView!
+   
+    @IBOutlet weak var tableView: UITableView! {
+        didSet {
+            tableView.delegate      =   self
+            tableView.dataSource    =   self
+        }
+    }
     
     @IBOutlet var userProfileHeaderView: UserProfileHeaderView! {
         didSet {
@@ -57,6 +82,12 @@ class UserProfileShowViewController: BaseViewController {
             userProfileHeaderView.handlerSubscribeButtonTapped  =   { [weak self] in 
                 self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
             }
+        }
+    }
+    
+    @IBOutlet weak var userProfileInfoTitleView: UserProfileInfoTitleView! {
+        didSet {
+            userProfileInfoTitleView.tune()
         }
     }
     
@@ -116,6 +147,13 @@ class UserProfileShowViewController: BaseViewController {
         }
     }
     
+    @IBOutlet weak var userProfileInfoTitleViewHeightConstraint: NSLayoutConstraint! {
+        didSet {
+            userProfileInfoTitleViewHeightConstraint.constant *= heightRatio
+        }
+    }
+
+    
     // MARK: - Class Initialization
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -168,6 +206,14 @@ class UserProfileShowViewController: BaseViewController {
         
         self.hideNavigationBar()
         self.loadViewSettings()
+        
+        
+        // TEST
+        do {
+            try fetchedResultsController.performFetch()
+        } catch {
+            print("An error occurred")
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -188,15 +234,87 @@ class UserProfileShowViewController: BaseViewController {
             walletBalanceView.add(shadow: true, onside: .bottom)
         }
     }
-    
+}
+
+
+// MARK: - Load data from Blockchain by API
+extension UserProfileShowViewController {
+    // User Profile
     private func loadUserInfo() {
         let userInfoRequestModel = UserProfileShowModels.UserInfo.RequestModel()
         interactor?.loadUserInfo(withRequestModel: userInfoRequestModel)
     }
     
-    private func loadUserDetails() {
+    // Blogs
+    private func loadUserBlogsDetails() {
         let userDetailsRequestModel = UserProfileShowModels.UserDetails.RequestModel()
-        interactor?.loadUserDetails(withRequestModel: userDetailsRequestModel)
+        interactor?.loadUserBlogDetails(withRequestModel: userDetailsRequestModel)
+    }
+    
+    // Answers
+    private func loadUserAnswersDetails() {
+        let userDetailsRequestModel = UserProfileShowModels.UserDetails.RequestModel()
+        interactor?.loadUserBlogDetails(withRequestModel: userDetailsRequestModel)
+    }
+
+    // Comments
+    private func loadUserCommentsDetails() {
+
+    }
+    
+    // Favorites
+    private func loadUserFavoritesDetails() {
+
+    }
+
+    // Information
+    private func loadUserInformationDetails() {
+
+    }
+}
+
+
+// MARK: - Fetch data from CoreData
+extension UserProfileShowViewController {
+    // User Profile
+    private func fetchUserInfo() {
+        if let userEntity = User.current {
+            let displayedUser = DisplayedUser(fromUser: userEntity)
+            
+            self.userProfileHeaderView.updateUI(fromUserInfo: displayedUser)
+            self.userProfileInfoTitleView.updateUI(fromUserInfo: displayedUser)
+            
+            // Change profileInfoView height
+            if let info = displayedUser.about, !info.isEmpty {
+                userProfileInfoTitleViewHeightConstraint.constant *= 2
+            }
+        }
+    }
+    
+    // Blogs
+    private func fetchUserBlogsDetails() {
+        
+    }
+
+    // Answers
+    private func fetchUserAnswersDetails() {
+        let userDetailsRequestModel = UserProfileShowModels.UserDetails.RequestModel()
+        interactor?.loadUserBlogDetails(withRequestModel: userDetailsRequestModel)
+    }
+    
+    // Comments
+    private func fetchUserCommentsDetails() {
+        
+    }
+    
+    // Favorites
+    private func fetchUserFavoritesDetails() {
+        
+    }
+    
+    // Information
+    private func fetchUserInformationDetails() {
+        
     }
 }
 
@@ -208,16 +326,15 @@ extension UserProfileShowViewController: UserProfileShowDisplayLogic {
         if let error = viewModel.error {
             self.showAlertView(withTitle: "Error", andMessage: error.localizedDescription, needCancel: false, completion: { _ in })
         }
+
+        // CoreData
+        self.fetchUserInfo()
         
-        else if let displayedUser = viewModel.displayedUser {
-            self.userProfileHeaderView.updateUI(fromUserInfo: displayedUser)
-            
-            // Load User details
-//            self.loadUserDetails()
-        }
+        // Load User details
+//        self.loadUserDetails()
     }
     
-    func displayUserDetails(fromViewModel viewModel: UserProfileShowModels.UserDetails.ViewModel) {
+    func displayUserBlogDetails(fromViewModel viewModel: UserProfileShowModels.UserDetails.ViewModel) {
         // NOTE: Display the result from the Presenter
 
     }
@@ -265,4 +382,68 @@ extension UserProfileShowViewController: SWSegmentedControlDelegate {
     func segmentedControl(_ control: SWSegmentedControl, canSelectItemAtIndex index: Int) -> Bool {
         return true
     }
+}
+
+
+// MARK: - UITableViewDataSource
+extension UserProfileShowViewController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        if let sections = fetchedResultsController.sections {
+            return sections.count
+        }
+        
+        return 0
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if let sections = fetchedResultsController.sections {
+            let currentSection = sections[section]
+           
+            return currentSection.numberOfObjects
+        }
+        
+        return 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell    =   tableView.dequeueReusableCell(withIdentifier: "BlogCell", for: indexPath)
+        let user    =   fetchedResultsController.object(at: indexPath) as! User
+
+        cell.textLabel?.text        =   user.name
+//        cell.detailTextLabel?.text  =   animal.habitat
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if let sections = fetchedResultsController.sections {
+            let currentSection = sections[section]
+            
+            return currentSection.name
+        }
+        
+        return nil
+    }
+}
+
+
+// MARK: - UITableViewDelegate
+extension UserProfileShowViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        
+    }
+}
+
+
+// MARK: - NSFetchedResultsControllerDelegate
+extension UserProfileShowViewController: NSFetchedResultsControllerDelegate {
+    
 }

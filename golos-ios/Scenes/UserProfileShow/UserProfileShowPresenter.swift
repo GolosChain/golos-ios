@@ -16,7 +16,7 @@ import GoloSwift
 // MARK: - Presentation Logic protocols
 protocol UserProfileShowPresentationLogic {
     func presentUserInfo(fromResponseModel responseModel: UserProfileShowModels.UserInfo.ResponseModel)
-    func presentUserDetails(fromResponseModel responseModel: UserProfileShowModels.UserDetails.ResponseModel)
+    func presentUserBlogDetails(fromResponseModel responseModel: UserProfileShowModels.UserDetails.ResponseModel)
 }
 
 class UserProfileShowPresenter: UserProfileShowPresentationLogic {
@@ -32,18 +32,12 @@ class UserProfileShowPresenter: UserProfileShowPresentationLogic {
 
     // MARK: - Presentation Logic implementation
     func presentUserInfo(fromResponseModel responseModel: UserProfileShowModels.UserInfo.ResponseModel) {
-        var displayedUser: DisplayedUser?
-        
-        if let userModel = responseModel.user {
-            displayedUser = DisplayedUser(fromUser: userModel)
-        }
-        
-        let userInfoViewModel = UserProfileShowModels.UserInfo.ViewModel(displayedUser: displayedUser, error: responseModel.error)
+        let userInfoViewModel = UserProfileShowModels.UserInfo.ViewModel(error: responseModel.error)
         viewController?.displayUserInfo(fromViewModel: userInfoViewModel)
     }
     
-    func presentUserDetails(fromResponseModel responseModel: UserProfileShowModels.UserDetails.ResponseModel) {
-        let userDetailsViewModel = UserProfileShowModels.UserDetails.ViewModel()
-        viewController?.displayUserDetails(fromViewModel: userDetailsViewModel)
+    func presentUserBlogDetails(fromResponseModel responseModel: UserProfileShowModels.UserDetails.ResponseModel) {
+        let userBlogDetailsViewModel = UserProfileShowModels.UserDetails.ViewModel()
+        viewController?.displayUserBlogDetails(fromViewModel: userBlogDetailsViewModel)
     }
 }

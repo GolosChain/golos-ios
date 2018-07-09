@@ -10,7 +10,7 @@
 import GoloSwift
 import Foundation
 
-class UserProfileHeaderView: UIView {
+class UserProfileHeaderView: PassthroughView {
     // MARK: - Properties
     var handlerBackButtonTapped: (() -> Void)?
     var handlerEditButtonTapped: (() -> Void)?
@@ -125,7 +125,7 @@ class UserProfileHeaderView: UIView {
         self.nameLabel.text                 =   userInfo.name
         self.voicePowerLabel.text           =   userInfo.voicePower
         self.voicePowerImageView.image      =   UIImage(named: userInfo.voicePowerImageName)
-        self.starsLabel.text                =   "\(userInfo.postCount)"
+        self.starsLabel.text                =   "\(userInfo.postsAmount)"
         
         if let pictureURL = userInfo.pictureURL {
             GSImageLoader().startLoadImage(with: pictureURL) { [weak self] image in
@@ -135,6 +135,8 @@ class UserProfileHeaderView: UIView {
                 strongSelf.avatarImageView.image = image
             }
         }
+        
+        self.showLabelsForAnimationCollection()
     }
     
     
