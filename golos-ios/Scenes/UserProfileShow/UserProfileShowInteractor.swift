@@ -47,8 +47,8 @@ class UserProfileShowInteractor: UserProfileShowBusinessLogic, UserProfileShowDa
                                     
                                     guard let userResult = (responseAPIResult as! ResponseAPIUserResult).result, userResult.count > 0 else {
                                         // Send empty User info
-                                        let responseModel = UserProfileShowModels.UserInfo.ResponseModel(error: nil)
-                                        self?.presenter?.presentUserInfo(fromResponseModel: responseModel)
+                                        let userInfoResponseModel = UserProfileShowModels.UserInfo.ResponseModel(error: nil)
+                                        self?.presenter?.presentUserInfo(fromResponseModel: userInfoResponseModel)
                                         
                                         return
                                     }
@@ -61,16 +61,22 @@ class UserProfileShowInteractor: UserProfileShowBusinessLogic, UserProfileShowDa
                                     }
                                     
                                     // Send User info
-                                    let responseModel = UserProfileShowModels.UserInfo.ResponseModel(error: nil)
-                                    self?.presenter?.presentUserInfo(fromResponseModel: responseModel)
+                                    let userInfoResponseModel = UserProfileShowModels.UserInfo.ResponseModel(error: nil)
+                                    self?.presenter?.presentUserInfo(fromResponseModel: userInfoResponseModel)
                 },
                                  onError: { [weak self] errorAPI in
                                     Logger.log(message: "nresponse API Error = \(errorAPI.caseInfo.message)\n", event: .error)
                                     
                                     // Send error
-                                    let responseModel = UserProfileShowModels.UserInfo.ResponseModel(error: errorAPI)
-                                    self?.presenter?.presentUserInfo(fromResponseModel: responseModel)
+                                    let userInfoResponseModel = UserProfileShowModels.UserInfo.ResponseModel(error: errorAPI)
+                                    self?.presenter?.presentUserInfo(fromResponseModel: userInfoResponseModel)
             })
+        }
+        
+        else {
+            // Send User info
+            let userInfoResponseModel = UserProfileShowModels.UserInfo.ResponseModel(error: nil)
+            self.presenter?.presentUserInfo(fromResponseModel: userInfoResponseModel)
         }
     }
     
