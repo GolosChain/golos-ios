@@ -25,6 +25,7 @@ protocol UserProfileShowDisplayLogic: class {
 
 class UserProfileShowViewController: BaseViewController {
     // MARK: - Properties
+    var refreshData: Bool           =   false
     var reloadData: Bool            =   false
     var fetchOffset: UInt           =   0
     var segmentedControlIndex: Int  =   0
@@ -33,6 +34,13 @@ class UserProfileShowViewController: BaseViewController {
     var router: (NSObjectProtocol & UserProfileShowRoutingLogic & UserProfileShowDataPassing)?
     
     var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult>!
+    
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl          =   UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(handlerTableViewRefresh), for: .valueChanged)
+        
+        return refreshControl
+    }()
     
     
     // MARK: - IBOutlets
@@ -217,6 +225,12 @@ class UserProfileShowViewController: BaseViewController {
     
     // MARK: - Custom Functions
     private func loadViewSettings() {
+        if #available(iOS 10.0, *) {
+            tableView.refreshControl = refreshControl
+        } else {
+            tableView.addSubview(refreshControl)
+        }
+        
         // Wallet Balance View show/hide
         if !walletBalanceView.isHidden {
             view.bringSubview(toFront: walletBalanceView)
@@ -232,6 +246,13 @@ class UserProfileShowViewController: BaseViewController {
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
+    }
+    
+    
+    // MARK: - Actions
+    @objc func handlerTableViewRefresh(refreshControl: UIRefreshControl) {
+        self.refreshData = !self.refreshData
+        self.loadUserDetails()
     }
 }
 
@@ -303,6 +324,24 @@ extension UserProfileShowViewController {
             primarySortDescriptor       =   NSSortDescriptor(key: "id", ascending: true)
             secondarySortDescriptor     =   NSSortDescriptor(key: "name", ascending: true)
             
+        // Comments
+        case 2:
+            fetchRequest                =   NSFetchRequest<NSFetchRequestResult>(entityName: "User")
+            primarySortDescriptor       =   NSSortDescriptor(key: "id", ascending: true)
+            secondarySortDescriptor     =   NSSortDescriptor(key: "name", ascending: true)
+
+        // Favorites
+        case 3:
+            fetchRequest                =   NSFetchRequest<NSFetchRequestResult>(entityName: "User")
+            primarySortDescriptor       =   NSSortDescriptor(key: "id", ascending: true)
+            secondarySortDescriptor     =   NSSortDescriptor(key: "name", ascending: true)
+
+        // Information
+        case 4:
+            fetchRequest                =   NSFetchRequest<NSFetchRequestResult>(entityName: "User")
+            primarySortDescriptor       =   NSSortDescriptor(key: "id", ascending: true)
+            secondarySortDescriptor     =   NSSortDescriptor(key: "name", ascending: true)
+
         // Lenta (blogs)
         default:
             fetchRequest                =   NSFetchRequest<NSFetchRequestResult>(entityName: "Post")
@@ -325,30 +364,16 @@ extension UserProfileShowViewController {
         do {
             try fetchedResultsController.performFetch()
             self.tableView.reloadData()
+            
+            if refreshData {
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.9) {
+                    self.refreshControl.endRefreshing()
+                    self.refreshData = !self.refreshData
+                }
+            }
         } catch {
             Logger.log(message: error.localizedDescription, event: .error)
         }
-    }
-
-    // Answers
-    private func fetchUserAnswersDetails() {
-        let userDetailsRequestModel = UserProfileShowModels.UserDetails.RequestModel()
-        interactor?.loadUserDetailsLenta(withRequestModel: userDetailsRequestModel)
-    }
-    
-    // Comments
-    private func fetchUserCommentsDetails() {
-        
-    }
-    
-    // Favorites
-    private func fetchUserFavoritesDetails() {
-        
-    }
-    
-    // Information
-    private func fetchUserInformationDetails() {
-        
     }
 }
 
@@ -492,4 +517,5 @@ extension UserProfileShowViewController: UITableViewDelegate {
 
 
 // MARK: - NSFetchedResultsControllerDelegate
-extension UserProfileShowViewController: NSFetchedResultsControllerDelegate {}
+extension UserProfileShowViewController: NSFetchedResultsControllerDelegate {
+}

@@ -7,8 +7,8 @@ line_length:
 - 400 #error
 
 file_length:
-- 500 #warning
-- 550 #error
+- 550 #warning
+- 650 #error
 
 identifier_name:
   min_length: 2 #only min_length
