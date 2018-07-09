@@ -24,10 +24,10 @@ class PassthroughView: UIView {
         return view != self && view is UIControl ? view : nil
     }
     
-    func showLabelsForAnimationCollection() {
+    func showLabelsForAnimationCollection(_ isShow: Bool) {
         _ = self.labelsForAnimationCollection.map({ label in
             UIView.animate(withDuration: 0.3, animations: {
-                label.alpha = 1.0
+                label.alpha = isShow ? 1.0 : 0.0
             })
         })
     }

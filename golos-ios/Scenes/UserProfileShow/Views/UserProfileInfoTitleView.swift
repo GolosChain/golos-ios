@@ -95,6 +95,6 @@ class UserProfileInfoTitleView: PassthroughView {
         self.subscribersAmountLabel.text        =   String(format: "%i", userInfo.subscribersAmount)
         self.subscribtionsAmountLabel.text      =   String(format: "%i", userInfo.subscribtionsAmount)
         
-        self.showLabelsForAnimationCollection()
+        self.showLabelsForAnimationCollection(true)
     }
 }

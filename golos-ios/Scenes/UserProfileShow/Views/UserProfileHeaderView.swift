@@ -136,7 +136,7 @@ class UserProfileHeaderView: PassthroughView {
             }
         }
         
-        self.showLabelsForAnimationCollection()
+        self.showLabelsForAnimationCollection(true)
     }
     
     

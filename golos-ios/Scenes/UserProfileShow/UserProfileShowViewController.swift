@@ -223,6 +223,13 @@ class UserProfileShowViewController: BaseViewController {
         self.loadUserInfo()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+    
+        self.userProfileHeaderView.showLabelsForAnimationCollection(false)
+        self.userProfileInfoTitleView.showLabelsForAnimationCollection(false)
+    }
+    
     
     // MARK: - Custom Functions
     private func loadViewSettings() {
