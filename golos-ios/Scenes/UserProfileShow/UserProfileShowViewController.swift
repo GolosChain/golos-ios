@@ -382,13 +382,6 @@ extension UserProfileShowViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         Logger.log(message: String(format: "scrollView.contentOffset.y %f", scrollView.contentOffset.y), event: .debug)
         Logger.log(message: String(format: "segmentedControlView.frame.origin.y %f", view.convert(segmentedControlView.frame, from: contentView).origin.y), event: .debug)
-//        tableView.contentOffset = scrollView.contentOffset
-    }
-    
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        if scrollView.tag != 1 {
-            self.scrollView.bounces = false
-        }
     }
 }
 
