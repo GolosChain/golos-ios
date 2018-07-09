@@ -25,6 +25,9 @@ protocol UserProfileShowDisplayLogic: class {
 
 class UserProfileShowViewController: BaseViewController {
     // MARK: - Properties
+    var reloadData: Bool = false
+    var segmentedControlIndex: Int = 0
+    
     var interactor: UserProfileShowBusinessLogic?
     var router: (NSObjectProtocol & UserProfileShowRoutingLogic & UserProfileShowDataPassing)?
     
@@ -206,14 +209,6 @@ class UserProfileShowViewController: BaseViewController {
         
         self.hideNavigationBar()
         self.loadViewSettings()
-        
-        
-        // TEST
-        do {
-            try fetchedResultsController.performFetch()
-        } catch {
-            print("An error occurred")
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -221,6 +216,9 @@ class UserProfileShowViewController: BaseViewController {
         
         // Load User info
         self.loadUserInfo()
+        
+        // Load User details
+        self.loadUserDetails()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -241,6 +239,11 @@ class UserProfileShowViewController: BaseViewController {
             walletBalanceView.add(shadow: true, onside: .bottom)
         }
     }
+    
+    private func tableViewClear() {
+        reloadData = !reloadData
+        self.tableView.reloadData()
+    }
 }
 
 
@@ -253,30 +256,38 @@ extension UserProfileShowViewController {
     }
     
     // Blogs
-    private func loadUserBlogsDetails() {
-        let userDetailsRequestModel = UserProfileShowModels.UserDetails.RequestModel()
-        interactor?.loadUserBlogDetails(withRequestModel: userDetailsRequestModel)
-    }
-    
-    // Answers
-    private func loadUserAnswersDetails() {
-        let userDetailsRequestModel = UserProfileShowModels.UserDetails.RequestModel()
-        interactor?.loadUserBlogDetails(withRequestModel: userDetailsRequestModel)
-    }
+    private func loadUserDetails() {
+        switch segmentedControlIndex {
+        // Answers
+        case 1:
+            let userDetailsRequestModel = UserProfileShowModels.UserDetails.RequestModel()
+            interactor?.loadUserBlogDetails(withRequestModel: userDetailsRequestModel)
 
-    // Comments
-    private func loadUserCommentsDetails() {
-
-    }
-    
-    // Favorites
-    private func loadUserFavoritesDetails() {
-
-    }
-
-    // Information
-    private func loadUserInformationDetails() {
-
+        // Comments
+        case 2:
+            print("Comments")
+            
+        // Favorites
+        case 3:
+            print("Favorites")
+            
+        // Information
+        case 4:
+            print("Information")
+            
+        // Blogs
+        default:
+            // FIXME: - DELETE AFTER TEST
+            do {
+                try fetchedResultsController.performFetch()
+                tableView.reloadData()
+            } catch {
+                print("An error occurred")
+            }
+            
+//        let userDetailsRequestModel = UserProfileShowModels.UserDetails.RequestModel()
+//        interactor?.loadUserBlogDetails(withRequestModel: userDetailsRequestModel)
+        }
     }
 }
 
@@ -336,9 +347,6 @@ extension UserProfileShowViewController: UserProfileShowDisplayLogic {
 
         // CoreData
         self.fetchUserInfo()
-        
-        // Load User details
-//        self.loadUserDetails()
     }
     
     func displayUserBlogDetails(fromViewModel viewModel: UserProfileShowModels.UserDetails.ViewModel) {
@@ -384,6 +392,10 @@ extension UserProfileShowViewController: SWSegmentedControlDelegate {
     
     func segmentedControl(_ control: SWSegmentedControl, didDeselectItemAtIndex index: Int) {
         print("did deselect \(index)")
+        
+        self.tableViewClear()
+        self.segmentedControlIndex = index
+        self.loadUserDetails()
     }
     
     func segmentedControl(_ control: SWSegmentedControl, canSelectItemAtIndex index: Int) -> Bool {
@@ -395,21 +407,17 @@ extension UserProfileShowViewController: SWSegmentedControlDelegate {
 // MARK: - UITableViewDataSource
 extension UserProfileShowViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        if let sections = fetchedResultsController.sections {
-            return sections.count
-        }
-        
-        return 0
+        return 1 //fetchedResultsController.sections?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let sections = fetchedResultsController.sections {
-            let currentSection = sections[section]
-           
-            return currentSection.numberOfObjects
+        guard !reloadData else {
+            reloadData = !reloadData
+            return 0
         }
-        
-        return 0
+
+        let sectionInfo = fetchedResultsController.sections![section]
+        return sectionInfo.numberOfObjects
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
