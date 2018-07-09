@@ -9,6 +9,24 @@
             </uniquenessConstraint>
         </uniquenessConstraints>
     </entity>
+    <entity name="Post" representedClassName="Post" syncable="YES">
+        <attribute name="allowReplies" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="allowVotes" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="author" attributeType="String" syncable="YES"/>
+        <attribute name="body" attributeType="String" syncable="YES"/>
+        <attribute name="category" attributeType="String" syncable="YES"/>
+        <attribute name="feedType" attributeType="String" defaultValueString="lenta" syncable="YES"/>
+        <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="jsonMetadata" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="permlink" attributeType="String" syncable="YES"/>
+        <attribute name="title" attributeType="String" syncable="YES"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+                <constraint value="feedType"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
     <entity name="User" representedClassName="User" syncable="YES">
         <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="isAuthorized" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
@@ -62,12 +80,12 @@
             </uniquenessConstraint>
         </uniquenessConstraints>
     </entity>
-    <fetchRequest name="UsersFetchRequest" entity="User"/>
     <elements>
         <element name="AppSettings" positionX="-459" positionY="-81" width="128" height="75"/>
         <element name="User" positionX="-666" positionY="-90" width="128" height="195"/>
         <element name="UserSecretActiveKey" positionX="-459" positionY="-81" width="128" height="120"/>
         <element name="UserSecretOwnerKey" positionX="-243" positionY="-234" width="128" height="120"/>
         <element name="UserSecretPostingKey" positionX="-45" positionY="63" width="128" height="120"/>
+        <element name="Post" positionX="-459" positionY="-81" width="128" height="195"/>
     </elements>
 </model>

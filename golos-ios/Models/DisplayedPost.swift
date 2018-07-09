@@ -43,6 +43,36 @@ struct DisplayedPost {
     
     
     // MARK: - Class Initialization
+    init(fromPost post: Post) {
+        let parser                  =   Parser()
+        
+        self.id                     =   post.id
+        self.title                  =   post.title
+        self.body                   =   post.body
+        self.category               =   post.category
+        self.authorName             =   post.author
+        self.authorCoverImageURL    =   author?.coverImageURL
+        self.authorAvatarURL        =   author?.pictureURL
+        self.imagePictureURL        =   parser.getPictureURL(from: post.body)
+        self.allowVotes             =   post.allowVotes
+        self.allowReplies           =   post.allowReplies
+        self.permlink               =   post.permlink
+        self.description            =   parser.getDescription(from: post.body)
+        
+//        self.activeVotes            =   feed.active_votes
+//        self.activeVotesCount       =   String(format: "%i", feed.active_votes.count)
+        
+        if let jsonMetaData = post.jsonMetadata, let jsonData = jsonMetaData.data(using: .utf8) {
+            do {
+                if let json = try JSONSerialization.jsonObject(with: jsonData, options: .allowFragments) as? [String: Any] {
+                    self.tags       =   json["tags"] as? [String]
+                }
+            } catch {
+                Logger.log(message: "JSON serialization error", event: .error)
+            }
+        }
+    }
+
     init(fromResponseAPIFeed feed: ResponseAPIFeed) {
         let parser                  =   Parser()
 
@@ -73,9 +103,3 @@ struct DisplayedPost {
         }
     }
 }
-
-
-//struct PostsFeedViewModel {
-//    let tags: [String]
-//    let commentsAmount: String
-//}

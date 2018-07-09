@@ -17,7 +17,7 @@ import GoloSwift
 // MARK: - Business Logic protocols
 protocol UserProfileShowBusinessLogic {
     func loadUserInfo(withRequestModel requestModel: UserProfileShowModels.UserInfo.RequestModel)
-    func loadUserBlogDetails(withRequestModel requestModel: UserProfileShowModels.UserDetails.RequestModel)
+    func loadUserDetailsLenta(withRequestModel requestModel: UserProfileShowModels.UserDetails.RequestModel)
 }
 
 protocol UserProfileShowDataStore {}
@@ -53,7 +53,7 @@ class UserProfileShowInteractor: UserProfileShowBusinessLogic, UserProfileShowDa
                                         return
                                     }
                                     
-                                    // Update User entity
+                                    // CoreData: Update User entity
                                     if let userResponseAPI = userResult.first {
                                         let userEntity              =   User.instance(byUserID: userResponseAPI.id)
                                         userEntity.isAuthorized     =   true
@@ -80,7 +80,7 @@ class UserProfileShowInteractor: UserProfileShowBusinessLogic, UserProfileShowDa
         }
     }
     
-    func loadUserBlogDetails(withRequestModel requestModel: UserProfileShowModels.UserDetails.RequestModel) {
+    func loadUserDetailsLenta(withRequestModel requestModel: UserProfileShowModels.UserDetails.RequestModel) {
         // API 'get_discussions_by_blog'
         if isNetworkAvailable {
             // Create MethodAPIType
@@ -96,30 +96,28 @@ class UserProfileShowInteractor: UserProfileShowBusinessLogic, UserProfileShowDa
                                     Logger.log(message: "\nresponse API Result = \(responseAPIResult)\n", event: .debug)
                                     
                                     guard let result = (responseAPIResult as! ResponseAPIFeedResult).result, result.count > 0 else {
-                                        // Send User info
-                                        let userDetailsResponseModel = UserProfileShowModels.UserDetails.ResponseModel(error: nil)
-                                        self?.presenter?.presentUserBlogDetails(fromResponseModel: userDetailsResponseModel)
+                                        // Send User details blogs
+                                        let userDetailsBlogsResponseModel = UserProfileShowModels.UserDetails.ResponseModel(error: nil)
+                                        self?.presenter?.presentUserDetailsLenta(fromResponseModel: userDetailsBlogsResponseModel)
 
                                         return
                                     }
                                     
-                                    // Update User blog entity
-//                                    if let userEntity = CoreDataManager.instance.createEntity("User") as? User {
-//                                        userEntity.updateEntity(fromResponseAPI: userResult.first)
-//
-//                                        // Send User info
-//                                        let userDetailsResponseModel = UserProfileShowModels.UserDetails.ResponseModel(error: nil)
-//                                        self?.presenter?.presentUserDetails(fromResponseModel: userDetailsResponseModel)
-//                                    }
-
-//                                    let displayedPosts = result.compactMap({ DisplayedPost(fromResponseAPIFeed: $0) })
-            },
+                                    // CoreData: Update Post (lenta) entity
+                                    _ = result.map({ responseAPIFeed in
+                                        Post.updateEntity(fromResponseAPI: responseAPIFeed, andPostsFeedType: .lenta)
+                                    })
+                                    
+                                    // Send User details lenta (blogs)
+                                    let userDetailsBlogsResponseModel = UserProfileShowModels.UserDetails.ResponseModel(error: nil)
+                                    self?.presenter?.presentUserDetailsLenta(fromResponseModel: userDetailsBlogsResponseModel)
+                },
                                  onError: { [weak self] errorAPI in
                                     Logger.log(message: "nresponse API Error = \(errorAPI.caseInfo.message)\n", event: .error)
 
                                     // Send error
-                                    let userDetailsResponseModel = UserProfileShowModels.UserDetails.ResponseModel(error: errorAPI)
-                                    self?.presenter?.presentUserBlogDetails(fromResponseModel: userDetailsResponseModel)
+                                    let userDetailsBlogsResponseModel = UserProfileShowModels.UserDetails.ResponseModel(error: errorAPI)
+                                    self?.presenter?.presentUserDetailsLenta(fromResponseModel: userDetailsBlogsResponseModel)
             })
         }
     }

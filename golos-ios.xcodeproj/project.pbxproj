@@ -110,6 +110,8 @@
 		B146891A20F2013F00D36794 /* SFProDisplay-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = B146891920F2013F00D36794 /* SFProDisplay-Medium.otf */; };
 		B146891D20F234BE00D36794 /* UserProfileInfoTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B146891B20F234BD00D36794 /* UserProfileInfoTitleView.swift */; };
 		B146891E20F234BE00D36794 /* UserProfileInfoTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B146891C20F234BD00D36794 /* UserProfileInfoTitleView.xib */; };
+		B146892E20F38A1400D36794 /* Post+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B146892C20F38A1400D36794 /* Post+CoreDataClass.swift */; };
+		B146892F20F38A1400D36794 /* Post+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B146892D20F38A1400D36794 /* Post+CoreDataProperties.swift */; };
 		B157660A20B59D80009619A6 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B157660920B59D80009619A6 /* UserNotifications.framework */; };
 		B157660C20B59D80009619A6 /* UserNotificationsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B157660B20B59D80009619A6 /* UserNotificationsUI.framework */; };
 		B157660F20B59D80009619A6 /* RemoteNotificationTransferViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B157660E20B59D80009619A6 /* RemoteNotificationTransferViewController.swift */; };
@@ -359,6 +361,8 @@
 		B146891920F2013F00D36794 /* SFProDisplay-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Medium.otf"; sourceTree = "<group>"; };
 		B146891B20F234BD00D36794 /* UserProfileInfoTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileInfoTitleView.swift; sourceTree = "<group>"; };
 		B146891C20F234BD00D36794 /* UserProfileInfoTitleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserProfileInfoTitleView.xib; sourceTree = "<group>"; };
+		B146892C20F38A1400D36794 /* Post+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Post+CoreDataClass.swift"; sourceTree = "<group>"; };
+		B146892D20F38A1400D36794 /* Post+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Post+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		B157660820B59D80009619A6 /* RemoteNotificationTransfer.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = RemoteNotificationTransfer.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		B157660920B59D80009619A6 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		B157660B20B59D80009619A6 /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = SDKROOT; };
@@ -738,6 +742,8 @@
 			children = (
 				B15F228520EEB31C00C44282 /* AppSettings+CoreDataClass.swift */,
 				B15F228620EEB31C00C44282 /* AppSettings+CoreDataProperties.swift */,
+				B146892C20F38A1400D36794 /* Post+CoreDataClass.swift */,
+				B146892D20F38A1400D36794 /* Post+CoreDataProperties.swift */,
 				B1EBAFB720EB55690050B1A2 /* User+CoreDataClass.swift */,
 				B1EBAFB820EB55690050B1A2 /* User+CoreDataProperties.swift */,
 				B127A87820EB8ABF007133AB /* UserSecretActiveKey+CoreDataClass.swift */,
@@ -1577,6 +1583,7 @@
 				EC24FF74200C43B500A0AE15 /* ProfilePresenter.swift in Sources */,
 				7DA0632A2032583F00B5630C /* PostsFeedViewController+ProfileFeedContainerItem.swift in Sources */,
 				B1F3748320C2C5E1005EF767 /* RootShowViewController.swift in Sources */,
+				B146892E20F38A1400D36794 /* Post+CoreDataClass.swift in Sources */,
 				EC9ABBC62017D55800AF8597 /* ProfileHeaderView.swift in Sources */,
 				B146891D20F234BE00D36794 /* UserProfileInfoTitleView.swift in Sources */,
 				B15F227E20EE943200C44282 /* CoreDataManager.swift in Sources */,
@@ -1664,6 +1671,7 @@
 				B1050CA320CECF75003CE4EE /* PostCreateModels.swift in Sources */,
 				B111322620CD51EA00BC7F33 /* PostingKeyShowViewController.swift in Sources */,
 				7D25B47F201F4714004A3400 /* TagsView.swift in Sources */,
+				B146892F20F38A1400D36794 /* Post+CoreDataProperties.swift in Sources */,
 				B11AA80720CB9FC800212713 /* UILabel+Extensions.swift in Sources */,
 				B114192820CD1E260025B07F /* ReachabilityManager.swift in Sources */,
 				B1EBAFBC20EB55690050B1A2 /* User+CoreDataProperties.swift in Sources */,

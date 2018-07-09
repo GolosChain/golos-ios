@@ -20,33 +20,19 @@ import SWSegmentedControl
 // MARK: - Input & Output protocols
 protocol UserProfileShowDisplayLogic: class {
     func displayUserInfo(fromViewModel viewModel: UserProfileShowModels.UserInfo.ViewModel)
-    func displayUserBlogDetails(fromViewModel viewModel: UserProfileShowModels.UserDetails.ViewModel)
+    func displayUserDetailsLenta(fromViewModel viewModel: UserProfileShowModels.UserDetails.ViewModel)
 }
 
 class UserProfileShowViewController: BaseViewController {
     // MARK: - Properties
-    var reloadData: Bool = false
-    var segmentedControlIndex: Int = 0
-    
+    var reloadData: Bool            =   false
+    var fetchOffset: UInt           =   0
+    var segmentedControlIndex: Int  =   0
+
     var interactor: UserProfileShowBusinessLogic?
     var router: (NSObjectProtocol & UserProfileShowRoutingLogic & UserProfileShowDataPassing)?
     
-    lazy var fetchedResultsController: NSFetchedResultsController   =   { () -> NSFetchedResultsController<NSFetchRequestResult> in
-        let usersFetchRequest                   =   NSFetchRequest<NSFetchRequestResult>(entityName: "User")
-        let primarySortDescriptor               =   NSSortDescriptor(key: "id", ascending: true)
-        let secondarySortDescriptor             =   NSSortDescriptor(key: "name", ascending: true)
-        
-        usersFetchRequest.sortDescriptors       =   [primarySortDescriptor, secondarySortDescriptor]
-        
-        let frc         =   NSFetchedResultsController(fetchRequest:            usersFetchRequest,
-                                                       managedObjectContext:    CoreDataManager.instance.managedObjectContext,
-                                                       sectionNameKeyPath:      nil,
-                                                       cacheName:               nil)
-        
-        frc.delegate    =   self
-        
-        return frc
-    }()
+    var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult>!
     
     
     // MARK: - IBOutlets
@@ -54,8 +40,8 @@ class UserProfileShowViewController: BaseViewController {
    
     @IBOutlet weak var tableView: UITableView! {
         didSet {
-            tableView.delegate      =   self
-            tableView.dataSource    =   self
+            tableView.delegate              =   self
+            tableView.dataSource            =   self
         }
     }
     
@@ -242,7 +228,10 @@ class UserProfileShowViewController: BaseViewController {
     
     private func tableViewClear() {
         reloadData = !reloadData
-        self.tableView.reloadData()
+        
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
 }
 
@@ -260,8 +249,8 @@ extension UserProfileShowViewController {
         switch segmentedControlIndex {
         // Answers
         case 1:
-            let userDetailsRequestModel = UserProfileShowModels.UserDetails.RequestModel()
-            interactor?.loadUserBlogDetails(withRequestModel: userDetailsRequestModel)
+            let userDetailsAnswersRequestModel = UserProfileShowModels.UserDetails.RequestModel()
+            interactor?.loadUserDetailsLenta(withRequestModel: userDetailsAnswersRequestModel)
 
         // Comments
         case 2:
@@ -275,18 +264,10 @@ extension UserProfileShowViewController {
         case 4:
             print("Information")
             
-        // Blogs
+        // Lenta (blogs)
         default:
-            // FIXME: - DELETE AFTER TEST
-            do {
-                try fetchedResultsController.performFetch()
-                tableView.reloadData()
-            } catch {
-                print("An error occurred")
-            }
-            
-//        let userDetailsRequestModel = UserProfileShowModels.UserDetails.RequestModel()
-//        interactor?.loadUserBlogDetails(withRequestModel: userDetailsRequestModel)
+            let userDetailsLentaRequestModel = UserProfileShowModels.UserDetails.RequestModel()
+            interactor?.loadUserDetailsLenta(withRequestModel: userDetailsLentaRequestModel)
         }
     }
 }
@@ -309,15 +290,50 @@ extension UserProfileShowViewController {
         }
     }
     
-    // Blogs
-    private func fetchUserBlogsDetails() {
+    // User Details
+    private func fetchUserDetails() {
+        var fetchRequest: NSFetchRequest<NSFetchRequestResult>
+        var primarySortDescriptor: NSSortDescriptor
+        var secondarySortDescriptor: NSSortDescriptor
         
+        switch segmentedControlIndex {
+        // Answers
+        case 1:
+            fetchRequest                =   NSFetchRequest<NSFetchRequestResult>(entityName: "User")
+            primarySortDescriptor       =   NSSortDescriptor(key: "id", ascending: true)
+            secondarySortDescriptor     =   NSSortDescriptor(key: "name", ascending: true)
+            
+        // Lenta (blogs)
+        default:
+            fetchRequest                =   NSFetchRequest<NSFetchRequestResult>(entityName: "Post")
+            primarySortDescriptor       =   NSSortDescriptor(key: "id", ascending: true)
+            secondarySortDescriptor     =   NSSortDescriptor(key: "author", ascending: true)
+            fetchRequest.predicate      =   NSPredicate(format: "author == %@ AND feedType == %@", User.current!.name, "lenta")
+        }
+        
+        fetchRequest.sortDescriptors    =   [ primarySortDescriptor, secondarySortDescriptor ]
+        fetchRequest.fetchOffset        =   Int(fetchOffset)
+        fetchRequest.fetchLimit         =   Int(loadDataLimit)
+        
+        fetchedResultsController        =   NSFetchedResultsController(fetchRequest:            fetchRequest,
+                                                                       managedObjectContext:    CoreDataManager.instance.managedObjectContext,
+                                                                       sectionNameKeyPath:      nil,
+                                                                       cacheName:               nil)
+        
+        fetchedResultsController.delegate = self
+        
+        do {
+            try fetchedResultsController.performFetch()
+            self.tableView.reloadData()
+        } catch {
+            Logger.log(message: error.localizedDescription, event: .error)
+        }
     }
 
     // Answers
     private func fetchUserAnswersDetails() {
         let userDetailsRequestModel = UserProfileShowModels.UserDetails.RequestModel()
-        interactor?.loadUserBlogDetails(withRequestModel: userDetailsRequestModel)
+        interactor?.loadUserDetailsLenta(withRequestModel: userDetailsRequestModel)
     }
     
     // Comments
@@ -349,9 +365,14 @@ extension UserProfileShowViewController: UserProfileShowDisplayLogic {
         self.fetchUserInfo()
     }
     
-    func displayUserBlogDetails(fromViewModel viewModel: UserProfileShowModels.UserDetails.ViewModel) {
+    func displayUserDetailsLenta(fromViewModel viewModel: UserProfileShowModels.UserDetails.ViewModel) {
         // NOTE: Display the result from the Presenter
-
+        if let error = viewModel.error {
+            self.showAlertView(withTitle: "Error", andMessage: error.localizedDescription, needCancel: false, completion: { _ in })
+        }
+        
+        // CoreData
+        self.fetchUserDetails()
     }
 }
 
@@ -361,6 +382,13 @@ extension UserProfileShowViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         Logger.log(message: String(format: "scrollView.contentOffset.y %f", scrollView.contentOffset.y), event: .debug)
         Logger.log(message: String(format: "segmentedControlView.frame.origin.y %f", view.convert(segmentedControlView.frame, from: contentView).origin.y), event: .debug)
+//        tableView.contentOffset = scrollView.contentOffset
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        if scrollView.tag != 1 {
+            self.scrollView.bounces = false
+        }
     }
 }
 
@@ -407,7 +435,11 @@ extension UserProfileShowViewController: SWSegmentedControlDelegate {
 // MARK: - UITableViewDataSource
 extension UserProfileShowViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1 //fetchedResultsController.sections?.count ?? 0
+        guard fetchedResultsController != nil else {
+            return 0
+        }
+        
+        return fetchedResultsController.sections?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -422,10 +454,18 @@ extension UserProfileShowViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell    =   tableView.dequeueReusableCell(withIdentifier: "BlogCell", for: indexPath)
-        let user    =   fetchedResultsController.object(at: indexPath) as! User
+        
+        switch segmentedControlIndex {
+        // Answers
+        case 1:
+            let answerEntity        =   fetchedResultsController.object(at: indexPath) as! User
+            cell.textLabel?.text    =   answerEntity.name
 
-        cell.textLabel?.text        =   user.name
-//        cell.detailTextLabel?.text  =   animal.habitat
+        // Lenta (blog)
+        default:
+            let postEntity          =   fetchedResultsController.object(at: indexPath) as! Post
+            cell.textLabel?.text    =   postEntity.author
+        }
         
         return cell
     }
@@ -459,6 +499,4 @@ extension UserProfileShowViewController: UITableViewDelegate {
 
 
 // MARK: - NSFetchedResultsControllerDelegate
-extension UserProfileShowViewController: NSFetchedResultsControllerDelegate {
-    
-}
+extension UserProfileShowViewController: NSFetchedResultsControllerDelegate {}
