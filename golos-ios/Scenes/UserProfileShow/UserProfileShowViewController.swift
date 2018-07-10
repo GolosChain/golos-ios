@@ -29,6 +29,7 @@ class UserProfileShowViewController: BaseViewController {
     var reloadData: Bool                =   false
     var segmentedControlIndex: Int      =   0
     var lastUserProfileDetailsIndexes   =   Array(repeating: 0, count: 2)
+//    var lastVisibleRowIndexes           =   Array(repeating: 0, count: 2)
 
     var interactor: UserProfileShowBusinessLogic?
     var router: (NSObjectProtocol & UserProfileShowRoutingLogic & UserProfileShowDataPassing)?
@@ -46,7 +47,7 @@ class UserProfileShowViewController: BaseViewController {
     // MARK: - IBOutlets
     @IBOutlet weak var contentView: UIView!
    
-    @IBOutlet weak var tableView: UITableView! {
+    @IBOutlet weak var tableView: UITableViewWithReloadCompletion! {
         didSet {
             tableView.delegate              =   self
             tableView.dataSource            =   self
@@ -234,8 +235,8 @@ class UserProfileShowViewController: BaseViewController {
         // Wallet Balance View show/hide
         if !walletBalanceView.isHidden {
             view.bringSubview(toFront: walletBalanceView)
-            walletBalanceViewTopConstraint.constant             =   0.0
-            userProfileInfoControlViewTopConstraint.constant    =   10.0 * heightRatio
+            walletBalanceViewTopConstraint.constant                 =   0.0
+            userProfileInfoControlViewTopConstraint.constant        =   10.0 * heightRatio
             walletBalanceView.add(shadow: true, onside: .bottom)
         }
     }
@@ -251,9 +252,10 @@ class UserProfileShowViewController: BaseViewController {
     
     // MARK: - Actions
     @objc func handlerTableViewRefresh(refreshControl: UIRefreshControl) {
-        self.refreshData    =   !self.refreshData
-        self.lastUserProfileDetailsIndexes[segmentedControlIndex] = 0
-        
+        self.refreshData                                            =   !self.refreshData
+        self.lastUserProfileDetailsIndexes[segmentedControlIndex]   =   0
+//        self.lastVisibleRowIndexes[segmentedControlIndex]           =   0
+
         self.interactor?.save(nil)
         self.loadUserDetails()
     }
@@ -372,7 +374,14 @@ extension UserProfileShowViewController {
         
         do {
             try fetchedResultsController.performFetch()
-            
+
+//            // Reload data completion
+//            self.tableView.reloadDataWithCompletion {
+//                DispatchQueue.main.async { [weak self] () in
+//                    self?.tableView.scrollToRow(at: IndexPath(row: (self?.lastVisibleRowIndexes[(self?.segmentedControlIndex)!])!, section: 0), at: .bottom, animated: false)
+//                }
+//            }
+
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
@@ -451,7 +460,7 @@ extension UserProfileShowViewController: SWSegmentedControlDelegate {
     
     func segmentedControl(_ control: SWSegmentedControl, didDeselectItemAtIndex index: Int) {
         self.tableViewClear()
-        self.segmentedControlIndex = index
+        self.segmentedControlIndex  =   index
         self.loadUserDetails()
     }
     
@@ -501,6 +510,10 @@ extension UserProfileShowViewController: UITableViewDataSource {
             cell.detailTextLabel?.text  =   "\(indexPath.row)"
         }
         
+//        if tableView.numberOfRows(inSection: indexPath.section) - 1 == indexPath.row {
+//            self.lastVisibleRowIndexes[segmentedControlIndex] = indexPath.row
+//        }
+        
         return cell
     }
     
@@ -523,8 +536,8 @@ extension UserProfileShowViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let lastIndex       =   tableView.numberOfRows(inSection: indexPath.section) - 2
-        let lastElement     =   fetchedResultsController.sections![indexPath.section].objects![lastIndex]
+        let lastIndex           =   tableView.numberOfRows(inSection: indexPath.section) - 1
+        let lastElement         =   fetchedResultsController.sections![indexPath.section].objects![lastIndex]
         
         if lastIndex == indexPath.row && lastIndex > self.lastUserProfileDetailsIndexes[segmentedControlIndex] {
             // Lenta (blogs)
@@ -538,7 +551,7 @@ extension UserProfileShowViewController: UITableViewDelegate {
 //            }
 
             // Load more User Profile details
-            self.lastUserProfileDetailsIndexes[segmentedControlIndex] = lastIndex
+            self.lastUserProfileDetailsIndexes[segmentedControlIndex]   =   lastIndex
             self.loadUserDetails()
         }
     }

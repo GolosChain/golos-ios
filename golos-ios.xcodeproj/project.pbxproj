@@ -105,6 +105,7 @@
 		B136D50020D8BA2E003AD279 /* ThemeTagCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B136D4FE20D8BA2E003AD279 /* ThemeTagCollectionViewCell.xib */; };
 		B136D50220D8BBEA003AD279 /* TagsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B136D50120D8BBEA003AD279 /* TagsCollectionViewController.swift */; };
 		B139EB9B20C3D3DC0065F6F9 /* CircularProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B139EB9A20C3D3DC0065F6F9 /* CircularProgressBarView.swift */; };
+		B13FE99F20F49B8300F907BC /* UITableViewWithReloadCompletion.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13FE99E20F49B8300F907BC /* UITableViewWithReloadCompletion.swift */; };
 		B146891420F1F30E00D36794 /* UserProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B146891320F1F30E00D36794 /* UserProfileHeaderView.swift */; };
 		B146891820F1F5D000D36794 /* UserProfileHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B146891720F1F5D000D36794 /* UserProfileHeaderView.xib */; };
 		B146891A20F2013F00D36794 /* SFProDisplay-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = B146891920F2013F00D36794 /* SFProDisplay-Medium.otf */; };
@@ -356,6 +357,7 @@
 		B136D4FE20D8BA2E003AD279 /* ThemeTagCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThemeTagCollectionViewCell.xib; sourceTree = "<group>"; };
 		B136D50120D8BBEA003AD279 /* TagsCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsCollectionViewController.swift; sourceTree = "<group>"; };
 		B139EB9A20C3D3DC0065F6F9 /* CircularProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressBarView.swift; sourceTree = "<group>"; };
+		B13FE99E20F49B8300F907BC /* UITableViewWithReloadCompletion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewWithReloadCompletion.swift; sourceTree = "<group>"; };
 		B146891320F1F30E00D36794 /* UserProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileHeaderView.swift; sourceTree = "<group>"; };
 		B146891720F1F5D000D36794 /* UserProfileHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserProfileHeaderView.xib; sourceTree = "<group>"; };
 		B146891920F2013F00D36794 /* SFProDisplay-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Medium.otf"; sourceTree = "<group>"; };
@@ -1254,6 +1256,7 @@
 				7D25B47D201F46FF004A3400 /* TagsView */,
 				7D25B4B4201F9218004A3400 /* GSNavigationBar.swift */,
 				EC9ABBE92018072600AF8597 /* GSTableView.swift */,
+				B13FE99E20F49B8300F907BC /* UITableViewWithReloadCompletion.swift */,
 				7DA0632B203315A300B5630C /* PassthroughView.swift */,
 			);
 			path = Views;
@@ -1665,6 +1668,7 @@
 				7D25B48F201F5E88004A3400 /* CollectionViewCenteredLayout.swift in Sources */,
 				7D7D564420368028003E06A6 /* PostItem.swift in Sources */,
 				EC9ABBC32017D17000AF8597 /* UIImageEffects.swift in Sources */,
+				B13FE99F20F49B8300F907BC /* UITableViewWithReloadCompletion.swift in Sources */,
 				B1050CA020CECF75003CE4EE /* PostCreatePresenter.swift in Sources */,
 				7D911D222035F5AA00F19D3C /* PostReplyModel.swift in Sources */,
 				B11AA80020CB04AA00212713 /* WelcomeShowRouter.swift in Sources */,

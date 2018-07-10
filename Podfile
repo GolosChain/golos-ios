@@ -18,8 +18,8 @@ target 'Golos' do
 #    pod 'CoreBitcoin', :podspec => 'https://raw.github.com/oleganza/CoreBitcoin/master/CoreBitcoin.podspec'
 
     # Distribution & Crash report
-    pod 'Fabric'
-    pod 'Crashlytics'
+    pod 'Fabric', '~> 1.0'
+    pod 'Crashlytics', '~> 3.10'
     
     # Firebase
     pod 'Firebase/Core'
