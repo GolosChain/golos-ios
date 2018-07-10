@@ -106,6 +106,11 @@
 		B136D50220D8BBEA003AD279 /* TagsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B136D50120D8BBEA003AD279 /* TagsCollectionViewController.swift */; };
 		B139EB9B20C3D3DC0065F6F9 /* CircularProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B139EB9A20C3D3DC0065F6F9 /* CircularProgressBarView.swift */; };
 		B13FE99F20F49B8300F907BC /* UITableViewWithReloadCompletion.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13FE99E20F49B8300F907BC /* UITableViewWithReloadCompletion.swift */; };
+		B13FE9A820F4E90700F907BC /* UserProfileShowWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13FE9A220F4E90700F907BC /* UserProfileShowWorker.swift */; };
+		B13FE9B220F5004F00F907BC /* Reply+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13FE9AE20F5004F00F907BC /* Reply+CoreDataClass.swift */; };
+		B13FE9B320F5004F00F907BC /* Reply+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13FE9AF20F5004F00F907BC /* Reply+CoreDataProperties.swift */; };
+		B13FE9B420F5004F00F907BC /* Lenta+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13FE9B020F5004F00F907BC /* Lenta+CoreDataClass.swift */; };
+		B13FE9B520F5004F00F907BC /* Lenta+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13FE9B120F5004F00F907BC /* Lenta+CoreDataProperties.swift */; };
 		B146891420F1F30E00D36794 /* UserProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B146891320F1F30E00D36794 /* UserProfileHeaderView.swift */; };
 		B146891820F1F5D000D36794 /* UserProfileHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B146891720F1F5D000D36794 /* UserProfileHeaderView.xib */; };
 		B146891A20F2013F00D36794 /* SFProDisplay-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = B146891920F2013F00D36794 /* SFProDisplay-Medium.otf */; };
@@ -358,6 +363,13 @@
 		B136D50120D8BBEA003AD279 /* TagsCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsCollectionViewController.swift; sourceTree = "<group>"; };
 		B139EB9A20C3D3DC0065F6F9 /* CircularProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressBarView.swift; sourceTree = "<group>"; };
 		B13FE99E20F49B8300F907BC /* UITableViewWithReloadCompletion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewWithReloadCompletion.swift; sourceTree = "<group>"; };
+		B13FE9A220F4E90700F907BC /* UserProfileShowWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileShowWorker.swift; sourceTree = "<group>"; };
+		B13FE9AD20F4FFD000F907BC /* Golos 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Golos 2.xcdatamodel"; sourceTree = "<group>"; };
+		B13FE9AE20F5004F00F907BC /* Reply+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reply+CoreDataClass.swift"; sourceTree = "<group>"; };
+		B13FE9AF20F5004F00F907BC /* Reply+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reply+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B13FE9B020F5004F00F907BC /* Lenta+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lenta+CoreDataClass.swift"; sourceTree = "<group>"; };
+		B13FE9B120F5004F00F907BC /* Lenta+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lenta+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B13FE9B620F505D800F907BC /* Golos 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Golos 3.xcdatamodel"; sourceTree = "<group>"; };
 		B146891320F1F30E00D36794 /* UserProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileHeaderView.swift; sourceTree = "<group>"; };
 		B146891720F1F5D000D36794 /* UserProfileHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserProfileHeaderView.xib; sourceTree = "<group>"; };
 		B146891920F2013F00D36794 /* SFProDisplay-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Medium.otf"; sourceTree = "<group>"; };
@@ -744,8 +756,12 @@
 			children = (
 				B15F228520EEB31C00C44282 /* AppSettings+CoreDataClass.swift */,
 				B15F228620EEB31C00C44282 /* AppSettings+CoreDataProperties.swift */,
+				B13FE9B020F5004F00F907BC /* Lenta+CoreDataClass.swift */,
+				B13FE9B120F5004F00F907BC /* Lenta+CoreDataProperties.swift */,
 				B146892C20F38A1400D36794 /* Post+CoreDataClass.swift */,
 				B146892D20F38A1400D36794 /* Post+CoreDataProperties.swift */,
+				B13FE9AE20F5004F00F907BC /* Reply+CoreDataClass.swift */,
+				B13FE9AF20F5004F00F907BC /* Reply+CoreDataProperties.swift */,
 				B1EBAFB720EB55690050B1A2 /* User+CoreDataClass.swift */,
 				B1EBAFB820EB55690050B1A2 /* User+CoreDataProperties.swift */,
 				B127A87820EB8ABF007133AB /* UserSecretActiveKey+CoreDataClass.swift */,
@@ -871,6 +887,7 @@
 				B164F03C20E62AE600C5CDD3 /* UserProfileShowPresenter.swift */,
 				B164F03E20E62AE600C5CDD3 /* UserProfileShowRouter.swift */,
 				B164F04020E62AE600C5CDD3 /* UserProfileShowViewController.swift */,
+				B13FE9A220F4E90700F907BC /* UserProfileShowWorker.swift */,
 			);
 			path = UserProfileShow;
 			sourceTree = "<group>";
@@ -1621,6 +1638,7 @@
 				EC07F4AA20141F0C00560CF0 /* FeedPresenter.swift in Sources */,
 				B12F442D20EB4AFC003FFF58 /* GolosModels.xcdatamodeld in Sources */,
 				B18DB455208619A000BA5D50 /* DisplayedPost.swift in Sources */,
+				B13FE9B420F5004F00F907BC /* Lenta+CoreDataClass.swift in Sources */,
 				7DFE7C4B20464C680057F144 /* PostRequestType.swift in Sources */,
 				EC07F4A22014093E00560CF0 /* HorizontalSelectorView.swift in Sources */,
 				EC07F4A820141F0200560CF0 /* FeedMediator.swift in Sources */,
@@ -1632,11 +1650,13 @@
 				B127A87B20EB8ABF007133AB /* UserSecretActiveKey+CoreDataProperties.swift in Sources */,
 				B136D4FF20D8BA2E003AD279 /* ThemeTagCollectionViewCell.swift in Sources */,
 				B1EE686C20D2D713006BF802 /* PostCommentReply.swift in Sources */,
+				B13FE9B520F5004F00F907BC /* Lenta+CoreDataProperties.swift in Sources */,
 				7D25B4C6201FABCB004A3400 /* ArticleTextTableViewCell.swift in Sources */,
 				EC9B2AE920155B9C008335C8 /* PostsFeedMediator.swift in Sources */,
 				B1EBAFBB20EB55690050B1A2 /* User+CoreDataClass.swift in Sources */,
 				B127A87A20EB8ABF007133AB /* UserSecretActiveKey+CoreDataClass.swift in Sources */,
 				7D25B4C2201FABBD004A3400 /* ArticleImageTableViewCell.swift in Sources */,
+				B13FE9B220F5004F00F907BC /* Reply+CoreDataClass.swift in Sources */,
 				EC24FF28200BEBE600A0AE15 /* ViewProtocol.swift in Sources */,
 				B136D4FB20D8BA14003AD279 /* AddTagCollectionViewCell.swift in Sources */,
 				B15F228720EEB31C00C44282 /* AppSettings+CoreDataClass.swift in Sources */,
@@ -1660,6 +1680,7 @@
 				EC6FD59E200AD53100DCB824 /* UIViewController+Extensions.swift in Sources */,
 				7DCF74A2201FE1C700D46495 /* ArticleCommentsSectionHeader.swift in Sources */,
 				7D79C33D203467B600794447 /* AnswersFeedPresenter.swift in Sources */,
+				B13FE9B320F5004F00F907BC /* Reply+CoreDataProperties.swift in Sources */,
 				7D911D242035F5C900F19D3C /* PostVoteModel.swift in Sources */,
 				ECC15FA62009794E0099BBC9 /* Fonts.swift in Sources */,
 				ECA8E35E2018D119003B8ABA /* UIView+Shadow.swift in Sources */,
@@ -1710,6 +1731,7 @@
 				B164F04720E62AE600C5CDD3 /* UserProfileShowInteractor.swift in Sources */,
 				7DE353172048A84C00C04CB2 /* ProfileViewModel.swift in Sources */,
 				B123C5BB20CE4C8B00747989 /* UITextField+Extensions.swift in Sources */,
+				B13FE9A820F4E90700F907BC /* UserProfileShowWorker.swift in Sources */,
 				ECF31725200A9D2800F7B703 /* UIAlertController+Window.swift in Sources */,
 				7D25B48C201F5700004A3400 /* TagCollectionViewCell.swift in Sources */,
 				7D25B4CD201FAE93004A3400 /* ArticleMediator.swift in Sources */,
@@ -2217,9 +2239,11 @@
 		B12F442B20EB4AFC003FFF58 /* GolosModels.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				B13FE9B620F505D800F907BC /* Golos 3.xcdatamodel */,
+				B13FE9AD20F4FFD000F907BC /* Golos 2.xcdatamodel */,
 				B12F442C20EB4AFC003FFF58 /* Golos.xcdatamodel */,
 			);
-			currentVersion = B12F442C20EB4AFC003FFF58 /* Golos.xcdatamodel */;
+			currentVersion = B13FE9B620F505D800F907BC /* Golos 3.xcdatamodel */;
 			path = GolosModels.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

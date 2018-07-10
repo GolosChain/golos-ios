@@ -16,23 +16,27 @@ import GoloSwift
 
 // MARK: - Business Logic protocols
 protocol UserProfileShowBusinessLogic {
-    func save(_ lastLentaPost: Post?)
+    func saveLastReply(_ post: Reply?)
+    func saveLastLenta(_ post: Lenta?)
     func loadUserInfo(withRequestModel requestModel: UserProfileShowModels.UserInfo.RequestModel)
-    func loadUserDetailsLenta(withRequestModel requestModel: UserProfileShowModels.UserDetails.RequestModel)
+    func loadUserDetails(withRequestModel requestModel: UserProfileShowModels.UserDetails.RequestModel)
 }
 
 protocol UserProfileShowDataStore {
-    var lastLentaPost: Post? { get set }
+    var lastReply: Reply? { get set }
+    var lastLenta: Lenta? { get set }
 }
 
 class UserProfileShowInteractor: UserProfileShowBusinessLogic, UserProfileShowDataStore {
     // MARK: - Properties
     var presenter: UserProfileShowPresentationLogic?
-    
+    var worker: UserProfileShowWorker?
+
     
     // MARK: - UserProfileShowDataStore implementation
-    var lastLentaPost: Post?
-    
+    var lastReply: Reply?
+    var lastLenta: Lenta?
+
     
     // MARK: - Class Initialization
     deinit {
@@ -41,11 +45,17 @@ class UserProfileShowInteractor: UserProfileShowBusinessLogic, UserProfileShowDa
     
 
     // MARK: - Business logic implementation
-    func save(_ lastLentaPost: Post?) {
-        self.lastLentaPost = lastLentaPost
+    func saveLastReply(_ post: Reply?) {
+        self.lastReply  =   post
+    }
+    
+    func saveLastLenta(_ post: Lenta?) {
+        self.lastLenta  =   post
     }
     
     func loadUserInfo(withRequestModel requestModel: UserProfileShowModels.UserInfo.RequestModel) {
+        worker = UserProfileShowWorker()
+
         // API 'get_accounts'
         if isNetworkAvailable {
             // Create MethodAPIType
@@ -92,57 +102,54 @@ class UserProfileShowInteractor: UserProfileShowBusinessLogic, UserProfileShowDa
         }
     }
     
-    func loadUserDetailsLenta(withRequestModel requestModel: UserProfileShowModels.UserDetails.RequestModel) {
-        // API 'get_discussions_by_blog'
+    func loadUserDetails(withRequestModel requestModel: UserProfileShowModels.UserDetails.RequestModel) {
+        // API 'get_discussions_by_blog' & 'get_replies_by_last_update'
         if isNetworkAvailable {
-            // Create MethodAPIType
-            let discussion      =   (lastLentaPost == nil) ?   RequestParameterAPI.Discussion.init(limit:          loadDataLimit,
-                                                                                                   truncateBody:   0,
-                                                                                                   selectAuthors:  [ User.current!.name ]) :
-                                                                RequestParameterAPI.Discussion.init(limit:          loadDataLimit,
-                                                                                                    truncateBody:   0,
-                                                                                                    selectAuthors:  [ User.current!.name ],
-                                                                                                    startAuthor:    lastLentaPost!.author,
-                                                                                                    startPermlink:  lastLentaPost!.permlink)
+            if let methodAPIType = worker?.prepareRequestMethod((type: requestModel.selectedControlIndex, lastLentaPost: lastLenta, lastReplyPost: lastReply)) {
+                broadcast.executeGET(byMethodAPIType: methodAPIType,
+                                     onResult: { [weak self] responseAPIResult in
+                                        Logger.log(message: "\nresponse API Result = \(responseAPIResult)\n", event: .debug)
+                                        
+                                        guard let result = (responseAPIResult as! ResponseAPIFeedResult).result, result.count > 0 else {
+                                            // Send User details
+                                            let userDetailsBlogsResponseModel = UserProfileShowModels.UserDetails.ResponseModel(error: nil)
+                                            self?.presenter?.presentUserDetails(fromResponseModel: userDetailsBlogsResponseModel)
+                                            
+                                            return
+                                        }
+                                        
+                                        // CoreData: Update Post entity
+                                        _ = result.map({ responseAPIFeed in
+                                            switch requestModel.selectedControlIndex {
+                                            // Reply
+                                            case 1:
+                                                Reply.updateEntity(fromResponseAPI: responseAPIFeed)
 
-            let methodAPIType   =   MethodAPIType.getDiscussions(type: .lenta, parameters: discussion)
-            
-            // API 'get_discussions_by_blog'
-            broadcast.executeGET(byMethodAPIType: methodAPIType,
-                                 onResult: { [weak self] responseAPIResult in
-                                    Logger.log(message: "\nresponse API Result = \(responseAPIResult)\n", event: .debug)
-                                    
-                                    guard let result = (responseAPIResult as! ResponseAPIFeedResult).result, result.count > 0 else {
-                                        // Send User details blogs
-                                        let userDetailsBlogsResponseModel = UserProfileShowModels.UserDetails.ResponseModel(error: nil)
-                                        self?.presenter?.presentUserDetailsLenta(fromResponseModel: userDetailsBlogsResponseModel)
-
-                                        return
-                                    }
-                                    
-                                    // CoreData: Update Post (lenta) entity
-                                    _ = result.map({ responseAPIFeed in
-                                        Post.updateEntity(fromResponseAPI: responseAPIFeed, andPostsFeedType: .lenta)
-                                    })
-                                    
-                                    // Send User details lenta (blogs)
-                                    let userDetailsBlogsResponseModel = UserProfileShowModels.UserDetails.ResponseModel(error: nil)
-                                    self?.presenter?.presentUserDetailsLenta(fromResponseModel: userDetailsBlogsResponseModel)
-                },
-                                 onError: { [weak self] errorAPI in
-                                    Logger.log(message: "nresponse API Error = \(errorAPI.caseInfo.message)\n", event: .error)
-
-                                    // Send error
-                                    let userDetailsBlogsResponseModel = UserProfileShowModels.UserDetails.ResponseModel(error: errorAPI)
-                                    self?.presenter?.presentUserDetailsLenta(fromResponseModel: userDetailsBlogsResponseModel)
-            })
+                                            // Lenta (blogs)
+                                            default:
+                                                Lenta.updateEntity(fromResponseAPI: responseAPIFeed)
+                                            }
+                                        })
+                                        
+                                        // Send User details
+                                        let userDetailsResponseModel = UserProfileShowModels.UserDetails.ResponseModel(error: nil)
+                                        self?.presenter?.presentUserDetails(fromResponseModel: userDetailsResponseModel)
+                    },
+                                     onError: { [weak self] errorAPI in
+                                        Logger.log(message: "nresponse API Error = \(errorAPI.caseInfo.message)\n", event: .error)
+                                        
+                                        // Send error
+                                        let userDetailsBlogsResponseModel = UserProfileShowModels.UserDetails.ResponseModel(error: errorAPI)
+                                        self?.presenter?.presentUserDetails(fromResponseModel: userDetailsBlogsResponseModel)
+                })
+            }
         }
         
         // Offline mode
         else {
-            // Send User details lenta (blogs)
+            // Send User details
             let userDetailsBlogsResponseModel = UserProfileShowModels.UserDetails.ResponseModel(error: nil)
-            self.presenter?.presentUserDetailsLenta(fromResponseModel: userDetailsBlogsResponseModel)
+            self.presenter?.presentUserDetails(fromResponseModel: userDetailsBlogsResponseModel)
         }
     }
 }

@@ -14,10 +14,10 @@ import Foundation
 @objc(Post)
 public class Post: NSManagedObject {
     // MARK: - Class Functions
-    class func updateEntity(fromResponseAPI responseAPI: Decodable, andPostsFeedType type: PostsFeedType) {
+    class func updateEntity(fromResponseAPI responseAPI: Decodable) {
         let postModel       =   responseAPI as! ResponseAPIFeed
         var postEntity      =   CoreDataManager.instance.readEntity(withName: "Post",
-                                                                    andPredicateParameters: NSPredicate.init(format: "id == \(postModel.id) AND feedType == %@", type.rawValue)) as? Post
+                                                                    andPredicateParameters: NSPredicate.init(format: "id == \(postModel.id)")) as? Post
         
         // Get Post entity
         if postEntity == nil {
@@ -25,7 +25,6 @@ public class Post: NSManagedObject {
         }
         
         // Update entity
-        postEntity!.feedType        =   type.rawValue
         postEntity!.id              =   postModel.id
         postEntity!.author          =   postModel.author
         postEntity!.category        =   postModel.category
@@ -37,6 +36,8 @@ public class Post: NSManagedObject {
         postEntity!.allowReplies    =   postModel.allow_replies
         postEntity!.jsonMetadata    =   postModel.json_metadata
         postEntity!.created         =   postModel.created.convert(toDateFormat: .expirationDateType)
+        postEntity!.parentAuthor    =   postModel.parent_author
+        postEntity!.parentPermlink  =   postModel.parent_permlink
         
         // Extensions
         postEntity!.save()

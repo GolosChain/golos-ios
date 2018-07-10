@@ -20,7 +20,7 @@ import SWSegmentedControl
 // MARK: - Input & Output protocols
 protocol UserProfileShowDisplayLogic: class {
     func displayUserInfo(fromViewModel viewModel: UserProfileShowModels.UserInfo.ViewModel)
-    func displayUserDetailsLenta(fromViewModel viewModel: UserProfileShowModels.UserDetails.ViewModel)
+    func displayUserDetails(fromViewModel viewModel: UserProfileShowModels.UserDetails.ViewModel)
 }
 
 class UserProfileShowViewController: BaseViewController {
@@ -258,7 +258,16 @@ class UserProfileShowViewController: BaseViewController {
         self.lastUserProfileDetailsIndexes[segmentedControlIndex]   =   0
         self.topVisibleIndexPath[self.segmentedControlIndex]        =   IndexPath(row: 0, section: 0)
         
-        self.interactor?.save(nil)
+        switch segmentedControlIndex {
+        // Reply
+        case 1:
+            self.interactor?.saveLastReply(nil)
+
+        // Lenta (blogs)
+        default:
+            self.interactor?.saveLastLenta(nil)
+        }
+        
         self.loadUserDetails()
     }
 }
@@ -274,29 +283,31 @@ extension UserProfileShowViewController {
     
     // Blogs
     private func loadUserDetails() {
-        switch segmentedControlIndex {
-        // Answers
-        case 1:
-            let userDetailsAnswersRequestModel = UserProfileShowModels.UserDetails.RequestModel()
-            interactor?.loadUserDetailsLenta(withRequestModel: userDetailsAnswersRequestModel)
+        let userDetailsRequestModel = UserProfileShowModels.UserDetails.RequestModel(selectedControlIndex: segmentedControlIndex)
+        interactor?.loadUserDetails(withRequestModel: userDetailsRequestModel)
+        
 
-        // Comments
-        case 2:
-            print("Comments")
-            
-        // Favorites
-        case 3:
-            print("Favorites")
-            
-        // Information
-        case 4:
-            print("Information")
-            
-        // Lenta (blogs)
-        default:
-            let userDetailsLentaRequestModel = UserProfileShowModels.UserDetails.RequestModel()
-            interactor?.loadUserDetailsLenta(withRequestModel: userDetailsLentaRequestModel)
-        }
+//        switch segmentedControlIndex {
+//        // Answers
+//        case 1:
+//            let userDetailsAnswersRequestModel = UserProfileShowModels.UserDetails.RequestModel(selectedControlIndex: segmentedControlIndex)
+//            interactor?.loadUserDetailsAnswers(withRequestModel: userDetailsAnswersRequestModel)
+//
+//        // Comments
+//        case 2:
+//            print("Comments")
+//
+//        // Favorites
+//        case 3:
+//            print("Favorites")
+//
+//        // Information
+//        case 4:
+//            print("Information")
+//
+//        // Lenta (blogs)
+//        default:
+//        }
     }
 }
 
@@ -325,12 +336,13 @@ extension UserProfileShowViewController {
         var secondarySortDescriptor: NSSortDescriptor
         
         switch segmentedControlIndex {
-        // Answers
+        // Replies
         case 1:
-            fetchRequest                =   NSFetchRequest<NSFetchRequestResult>(entityName: "User")
-            primarySortDescriptor       =   NSSortDescriptor(key: "id", ascending: true)
-            secondarySortDescriptor     =   NSSortDescriptor(key: "name", ascending: true)
-            
+            fetchRequest                =   NSFetchRequest<NSFetchRequestResult>(entityName: "Reply")
+            primarySortDescriptor       =   NSSortDescriptor(key: "created", ascending: false)
+            secondarySortDescriptor     =   NSSortDescriptor(key: "author", ascending: true)
+            fetchRequest.predicate      =   NSPredicate(format: "parentAuthor == %@", User.current!.name)
+
         // Comments
         case 2:
             fetchRequest                =   NSFetchRequest<NSFetchRequestResult>(entityName: "User")
@@ -351,10 +363,10 @@ extension UserProfileShowViewController {
 
         // Lenta (blogs)
         default:
-            fetchRequest                =   NSFetchRequest<NSFetchRequestResult>(entityName: "Post")
+            fetchRequest                =   NSFetchRequest<NSFetchRequestResult>(entityName: "Lenta")
             primarySortDescriptor       =   NSSortDescriptor(key: "created", ascending: false)
             secondarySortDescriptor     =   NSSortDescriptor(key: "author", ascending: true)
-            fetchRequest.predicate      =   NSPredicate(format: "author == %@ AND feedType == %@", User.current!.name, "lenta")
+            fetchRequest.predicate      =   NSPredicate(format: "author == %@", User.current!.name)
         }
         
         fetchRequest.sortDescriptors    =   [ primarySortDescriptor, secondarySortDescriptor ]
@@ -377,10 +389,15 @@ extension UserProfileShowViewController {
         do {
             try fetchedResultsController.performFetch()
 
-//            DispatchQueue.main.async {
-//                self.tableView.reloadData()
-//            }
-            
+            // Refresh data
+            if self.refreshData {
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.9) {
+                    self.refreshControl.endRefreshing()
+                    self.refreshData = !self.refreshData
+                    self.tableView.contentOffset = .zero
+                }
+            }
+
             // Reload data completion
             DispatchQueue.main.async {
                 self.tableView.reloadDataWithCompletion {
@@ -388,14 +405,6 @@ extension UserProfileShowViewController {
                         self.tableView.scrollToRow(at: (self.topVisibleIndexPath[self.segmentedControlIndex]), at: .top, animated: false)
                     }
                 }
-            }
-        
-            if self.refreshData {
-                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.9) {
-                    self.refreshControl.endRefreshing()
-                }
-                
-                self.refreshData = !self.refreshData
             }
         } catch {
             Logger.log(message: error.localizedDescription, event: .error)
@@ -416,7 +425,7 @@ extension UserProfileShowViewController: UserProfileShowDisplayLogic {
         self.fetchUserInfo()
     }
     
-    func displayUserDetailsLenta(fromViewModel viewModel: UserProfileShowModels.UserDetails.ViewModel) {
+    func displayUserDetails(fromViewModel viewModel: UserProfileShowModels.UserDetails.ViewModel) {
         // NOTE: Display the result from the Presenter
         if let error = viewModel.error {
             self.showAlertView(withTitle: "Error", andMessage: error.localizedDescription, needCancel: false, completion: { _ in })
@@ -508,21 +517,17 @@ extension UserProfileShowViewController: UITableViewDataSource {
         let cell    =   tableView.dequeueReusableCell(withIdentifier: "BlogCell", for: indexPath)
         
         switch segmentedControlIndex {
-        // Answers
+        // Replies
         case 1:
-            let answerEntity        =   fetchedResultsController.object(at: indexPath) as! User
-            cell.textLabel?.text    =   answerEntity.name
+            let replyEntity             =   fetchedResultsController.object(at: indexPath) as! Reply
+            cell.textLabel?.text        =   replyEntity.body
 
         // Lenta (blog)
         default:
-            let postEntity              =   fetchedResultsController.object(at: indexPath) as! Post
-            cell.textLabel?.text        =   postEntity.body
+            let lentaEntity             =   fetchedResultsController.object(at: indexPath) as! Lenta
+            cell.textLabel?.text        =   lentaEntity.body
             cell.detailTextLabel?.text  =   "\(indexPath.row)"
         }
-        
-//        if tableView.numberOfRows(inSection: indexPath.section) - 1 == indexPath.row {
-//            self.lastVisibleRowIndexes[segmentedControlIndex] = indexPath.row
-//        }
         
         return cell
     }
@@ -551,14 +556,14 @@ extension UserProfileShowViewController: UITableViewDelegate {
         
         if lastIndex == indexPath.row && lastIndex > self.lastUserProfileDetailsIndexes[segmentedControlIndex] {
             // Lenta (blogs)
-            if let post = lastElement as? Post {
-                self.interactor?.save(post)
+            if let lenta = lastElement as? Lenta {
+                self.interactor?.saveLastLenta(lenta)
             }
 
-            // Answers
-//            if let displayedPost = lastElement as? DisplayedPost {
-//                self.interactor?.save(displayedPost)
-//            }
+            // Reply
+            if let reply = lastElement as? Reply {
+                self.interactor?.saveLastReply(reply)
+            }
 
             // Load more User Profile details
             self.topVisibleIndexPath[segmentedControlIndex]             =   self.tableView.indexPathsForVisibleRows![0]

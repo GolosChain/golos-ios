@@ -16,7 +16,6 @@
         <attribute name="body" attributeType="String" syncable="YES"/>
         <attribute name="category" attributeType="String" syncable="YES"/>
         <attribute name="created" attributeType="Date" defaultDateTimeInterval="0" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="feedType" attributeType="String" defaultValueString="lenta" syncable="YES"/>
         <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="jsonMetadata" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="parentAuthor" optional="YES" attributeType="String" syncable="YES"/>
@@ -26,7 +25,7 @@
         <uniquenessConstraints>
             <uniquenessConstraint>
                 <constraint value="id"/>
-                <constraint value="feedType"/>
+                <constraint value="created"/>
             </uniquenessConstraint>
         </uniquenessConstraints>
     </entity>
@@ -37,7 +36,6 @@
         <attribute name="body" attributeType="String" syncable="YES"/>
         <attribute name="category" attributeType="String" syncable="YES"/>
         <attribute name="created" attributeType="Date" defaultDateTimeInterval="0" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="feedType" attributeType="String" defaultValueString="lenta" syncable="YES"/>
         <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="jsonMetadata" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="parentAuthor" optional="YES" attributeType="String" syncable="YES"/>
@@ -47,7 +45,7 @@
         <uniquenessConstraints>
             <uniquenessConstraint>
                 <constraint value="id"/>
-                <constraint value="feedType"/>
+                <constraint value="created"/>
             </uniquenessConstraint>
         </uniquenessConstraints>
     </entity>
@@ -58,7 +56,6 @@
         <attribute name="body" attributeType="String" syncable="YES"/>
         <attribute name="category" attributeType="String" syncable="YES"/>
         <attribute name="created" attributeType="Date" defaultDateTimeInterval="0" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="feedType" attributeType="String" defaultValueString="lenta" syncable="YES"/>
         <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="jsonMetadata" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="parentAuthor" optional="YES" attributeType="String" syncable="YES"/>
@@ -68,7 +65,7 @@
         <uniquenessConstraints>
             <uniquenessConstraint>
                 <constraint value="id"/>
-                <constraint value="feedType"/>
+                <constraint value="created"/>
             </uniquenessConstraint>
         </uniquenessConstraints>
     </entity>
@@ -127,12 +124,12 @@
     </entity>
     <elements>
         <element name="AppSettings" positionX="-459" positionY="-81" width="128" height="75"/>
-        <element name="Post" positionX="-459" positionY="-81" width="128" height="240"/>
+        <element name="Lenta" positionX="-459" positionY="-81" width="128" height="225"/>
+        <element name="Post" positionX="-459" positionY="-81" width="128" height="225"/>
+        <element name="Reply" positionX="-450" positionY="-72" width="128" height="225"/>
         <element name="User" positionX="-666" positionY="-90" width="128" height="195"/>
         <element name="UserSecretActiveKey" positionX="-459" positionY="-81" width="128" height="120"/>
         <element name="UserSecretOwnerKey" positionX="-243" positionY="-234" width="128" height="120"/>
         <element name="UserSecretPostingKey" positionX="-45" positionY="63" width="128" height="120"/>
-        <element name="Lenta" positionX="-459" positionY="-81" width="128" height="240"/>
-        <element name="Reply" positionX="-450" positionY="-72" width="128" height="240"/>
     </elements>
 </model>
