@@ -84,6 +84,7 @@ class UserProfileShowInteractor: UserProfileShowBusinessLogic, UserProfileShowDa
             })
         }
         
+        // Offline mode
         else {
             // Send User info
             let userInfoResponseModel = UserProfileShowModels.UserInfo.ResponseModel(error: nil)
@@ -135,6 +136,13 @@ class UserProfileShowInteractor: UserProfileShowBusinessLogic, UserProfileShowDa
                                     let userDetailsBlogsResponseModel = UserProfileShowModels.UserDetails.ResponseModel(error: errorAPI)
                                     self?.presenter?.presentUserDetailsLenta(fromResponseModel: userDetailsBlogsResponseModel)
             })
+        }
+        
+        // Offline mode
+        else {
+            // Send User details lenta (blogs)
+            let userDetailsBlogsResponseModel = UserProfileShowModels.UserDetails.ResponseModel(error: nil)
+            self.presenter?.presentUserDetailsLenta(fromResponseModel: userDetailsBlogsResponseModel)
         }
     }
 }
