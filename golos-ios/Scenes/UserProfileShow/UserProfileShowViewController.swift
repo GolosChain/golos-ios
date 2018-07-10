@@ -27,9 +27,10 @@ class UserProfileShowViewController: BaseViewController {
     // MARK: - Properties
     var refreshData: Bool               =   false
     var reloadData: Bool                =   false
+    var paginanationData: Bool          =   false
     var segmentedControlIndex: Int      =   0
     var lastUserProfileDetailsIndexes   =   Array(repeating: 0, count: 2)
-//    var lastVisibleRowIndexes           =   Array(repeating: 0, count: 2)
+    var topVisibleIndexPath             =   Array(repeating: IndexPath(row: 0, section: 0), count: 2)
 
     var interactor: UserProfileShowBusinessLogic?
     var router: (NSObjectProtocol & UserProfileShowRoutingLogic & UserProfileShowDataPassing)?
@@ -253,9 +254,10 @@ class UserProfileShowViewController: BaseViewController {
     // MARK: - Actions
     @objc func handlerTableViewRefresh(refreshControl: UIRefreshControl) {
         self.refreshData                                            =   !self.refreshData
+        self.paginanationData                                       =   false
         self.lastUserProfileDetailsIndexes[segmentedControlIndex]   =   0
-//        self.lastVisibleRowIndexes[segmentedControlIndex]           =   0
-
+        self.topVisibleIndexPath[self.segmentedControlIndex]        =   IndexPath(row: 0, section: 0)
+        
         self.interactor?.save(nil)
         self.loadUserDetails()
     }
@@ -375,17 +377,19 @@ extension UserProfileShowViewController {
         do {
             try fetchedResultsController.performFetch()
 
-//            // Reload data completion
-//            self.tableView.reloadDataWithCompletion {
-//                DispatchQueue.main.async { [weak self] () in
-//                    self?.tableView.scrollToRow(at: IndexPath(row: (self?.lastVisibleRowIndexes[(self?.segmentedControlIndex)!])!, section: 0), at: .bottom, animated: false)
-//                }
+//            DispatchQueue.main.async {
+//                self.tableView.reloadData()
 //            }
-
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
             
+            // Reload data completion
+            DispatchQueue.main.async {
+                self.tableView.reloadDataWithCompletion {
+                    if !self.paginanationData {
+                        self.tableView.scrollToRow(at: (self.topVisibleIndexPath[self.segmentedControlIndex]), at: .top, animated: false)
+                    }
+                }
+            }
+        
             if self.refreshData {
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.9) {
                     self.refreshControl.endRefreshing()
@@ -430,6 +434,13 @@ extension UserProfileShowViewController: UIScrollViewDelegate {
         Logger.log(message: String(format: "scrollView.contentOffset.y %f", scrollView.contentOffset.y), event: .debug)
         Logger.log(message: String(format: "segmentedControlView.frame.origin.y %f", view.convert(segmentedControlView.frame, from: contentView).origin.y), event: .debug)
     }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        if scrollView == tableView {
+            self.topVisibleIndexPath[segmentedControlIndex] = self.tableView.indexPathsForVisibleRows![0]
+            self.paginanationData = false
+        }
+    }
 }
 
 
@@ -451,17 +462,16 @@ extension UserProfileShowViewController: SWSegmentedControlDelegate {
     }
     
     func segmentedControl(_ control: SWSegmentedControl, didSelectItemAtIndex index: Int) {
-        print("did select \(index)")
-    }
-    
-    func segmentedControl(_ control: SWSegmentedControl, willDeselectItemAtIndex index: Int) {
-        print("will deselect \(index)")
-    }
-    
-    func segmentedControl(_ control: SWSegmentedControl, didDeselectItemAtIndex index: Int) {
         self.tableViewClear()
         self.segmentedControlIndex  =   index
         self.loadUserDetails()
+    }
+    
+    func segmentedControl(_ control: SWSegmentedControl, willDeselectItemAtIndex index: Int) {
+        self.topVisibleIndexPath[index] = self.tableView.indexPathsForVisibleRows![0]
+    }
+    
+    func segmentedControl(_ control: SWSegmentedControl, didDeselectItemAtIndex index: Int) {
     }
     
     func segmentedControl(_ control: SWSegmentedControl, canSelectItemAtIndex index: Int) -> Bool {
@@ -551,18 +561,16 @@ extension UserProfileShowViewController: UITableViewDelegate {
 //            }
 
             // Load more User Profile details
+            self.topVisibleIndexPath[segmentedControlIndex]             =   self.tableView.indexPathsForVisibleRows![0]
             self.lastUserProfileDetailsIndexes[segmentedControlIndex]   =   lastIndex
+            self.paginanationData                                       =   true
             self.loadUserDetails()
         }
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {}
     
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        
-    }
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {}
 }
 
 
