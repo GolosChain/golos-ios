@@ -36,6 +36,7 @@ public class Post: NSManagedObject {
         postEntity!.allowVotes      =   postModel.allow_votes
         postEntity!.allowReplies    =   postModel.allow_replies
         postEntity!.jsonMetadata    =   postModel.json_metadata
+        postEntity!.created         =   postModel.created.convert(toDateFormat: .expirationDateType)
         
         // Extensions
         postEntity!.save()

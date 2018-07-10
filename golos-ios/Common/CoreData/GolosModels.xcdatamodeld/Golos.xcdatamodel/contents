@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14135" systemVersion="17F77" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14135" systemVersion="17G65" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="AppSettings" representedClassName="AppSettings" syncable="YES">
         <attribute name="name" attributeType="String" defaultValueString="Golos.io" syncable="YES"/>
         <attribute name="startWithWelcomeScene" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES" syncable="YES"/>
@@ -15,6 +15,7 @@
         <attribute name="author" attributeType="String" syncable="YES"/>
         <attribute name="body" attributeType="String" syncable="YES"/>
         <attribute name="category" attributeType="String" syncable="YES"/>
+        <attribute name="created" attributeType="Date" defaultDateTimeInterval="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="feedType" attributeType="String" defaultValueString="lenta" syncable="YES"/>
         <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="jsonMetadata" optional="YES" attributeType="String" syncable="YES"/>
@@ -82,10 +83,10 @@
     </entity>
     <elements>
         <element name="AppSettings" positionX="-459" positionY="-81" width="128" height="75"/>
+        <element name="Post" positionX="-459" positionY="-81" width="128" height="210"/>
         <element name="User" positionX="-666" positionY="-90" width="128" height="195"/>
         <element name="UserSecretActiveKey" positionX="-459" positionY="-81" width="128" height="120"/>
         <element name="UserSecretOwnerKey" positionX="-243" positionY="-234" width="128" height="120"/>
         <element name="UserSecretPostingKey" positionX="-45" positionY="63" width="128" height="120"/>
-        <element name="Post" positionX="-459" positionY="-81" width="128" height="195"/>
     </elements>
 </model>

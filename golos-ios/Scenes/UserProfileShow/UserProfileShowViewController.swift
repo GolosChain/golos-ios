@@ -25,10 +25,10 @@ protocol UserProfileShowDisplayLogic: class {
 
 class UserProfileShowViewController: BaseViewController {
     // MARK: - Properties
-    var refreshData: Bool           =   false
-    var reloadData: Bool            =   false
-    var fetchOffset: UInt           =   0
-    var segmentedControlIndex: Int  =   0
+    var refreshData: Bool               =   false
+    var reloadData: Bool                =   false
+    var segmentedControlIndex: Int      =   0
+    var lastUserProfileDetailsIndexes   =   Array(repeating: 0, count: 2)
 
     var interactor: UserProfileShowBusinessLogic?
     var router: (NSObjectProtocol & UserProfileShowRoutingLogic & UserProfileShowDataPassing)?
@@ -251,7 +251,10 @@ class UserProfileShowViewController: BaseViewController {
     
     // MARK: - Actions
     @objc func handlerTableViewRefresh(refreshControl: UIRefreshControl) {
-        self.refreshData = !self.refreshData
+        self.refreshData    =   !self.refreshData
+        self.lastUserProfileDetailsIndexes[segmentedControlIndex] = 0
+        
+        self.interactor?.save(nil)
         self.loadUserDetails()
     }
 }
@@ -345,15 +348,21 @@ extension UserProfileShowViewController {
         // Lenta (blogs)
         default:
             fetchRequest                =   NSFetchRequest<NSFetchRequestResult>(entityName: "Post")
-            primarySortDescriptor       =   NSSortDescriptor(key: "id", ascending: true)
+            primarySortDescriptor       =   NSSortDescriptor(key: "created", ascending: false)
             secondarySortDescriptor     =   NSSortDescriptor(key: "author", ascending: true)
             fetchRequest.predicate      =   NSPredicate(format: "author == %@ AND feedType == %@", User.current!.name, "lenta")
         }
         
         fetchRequest.sortDescriptors    =   [ primarySortDescriptor, secondarySortDescriptor ]
-        fetchRequest.fetchOffset        =   Int(fetchOffset)
-        fetchRequest.fetchLimit         =   Int(loadDataLimit)
         
+        if self.lastUserProfileDetailsIndexes[segmentedControlIndex] == 0 {
+            fetchRequest.fetchLimit     =   Int(loadDataLimit)
+        }
+        
+        else {
+            fetchRequest.fetchLimit     =   Int(loadDataLimit) + self.lastUserProfileDetailsIndexes[segmentedControlIndex]
+        }
+
         fetchedResultsController        =   NSFetchedResultsController(fetchRequest:            fetchRequest,
                                                                        managedObjectContext:    CoreDataManager.instance.managedObjectContext,
                                                                        sectionNameKeyPath:      nil,
@@ -363,13 +372,17 @@ extension UserProfileShowViewController {
         
         do {
             try fetchedResultsController.performFetch()
-            self.tableView.reloadData()
             
-            if refreshData {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+            
+            if self.refreshData {
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.9) {
                     self.refreshControl.endRefreshing()
-                    self.refreshData = !self.refreshData
                 }
+                
+                self.refreshData = !self.refreshData
             }
         } catch {
             Logger.log(message: error.localizedDescription, event: .error)
@@ -437,14 +450,16 @@ extension UserProfileShowViewController: SWSegmentedControlDelegate {
     }
     
     func segmentedControl(_ control: SWSegmentedControl, didDeselectItemAtIndex index: Int) {
-        print("did deselect \(index)")
-        
         self.tableViewClear()
         self.segmentedControlIndex = index
         self.loadUserDetails()
     }
     
     func segmentedControl(_ control: SWSegmentedControl, canSelectItemAtIndex index: Int) -> Bool {
+        guard !self.refreshData else {
+            return false
+        }
+        
         return true
     }
 }
@@ -481,8 +496,9 @@ extension UserProfileShowViewController: UITableViewDataSource {
 
         // Lenta (blog)
         default:
-            let postEntity          =   fetchedResultsController.object(at: indexPath) as! Post
-            cell.textLabel?.text    =   postEntity.author
+            let postEntity              =   fetchedResultsController.object(at: indexPath) as! Post
+            cell.textLabel?.text        =   postEntity.body
+            cell.detailTextLabel?.text  =   "\(indexPath.row)"
         }
         
         return cell
@@ -502,8 +518,29 @@ extension UserProfileShowViewController: UITableViewDataSource {
 
 // MARK: - UITableViewDelegate
 extension UserProfileShowViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
+    }
+    
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let lastIndex       =   tableView.numberOfRows(inSection: indexPath.section) - 2
+        let lastElement     =   fetchedResultsController.sections![indexPath.section].objects![lastIndex]
         
+        if lastIndex == indexPath.row && lastIndex > self.lastUserProfileDetailsIndexes[segmentedControlIndex] {
+            // Lenta (blogs)
+            if let post = lastElement as? Post {
+                self.interactor?.save(post)
+            }
+
+            // Answers
+//            if let displayedPost = lastElement as? DisplayedPost {
+//                self.interactor?.save(displayedPost)
+//            }
+
+            // Load more User Profile details
+            self.lastUserProfileDetailsIndexes[segmentedControlIndex] = lastIndex
+            self.loadUserDetails()
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

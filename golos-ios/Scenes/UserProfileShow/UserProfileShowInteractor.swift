@@ -16,15 +16,22 @@ import GoloSwift
 
 // MARK: - Business Logic protocols
 protocol UserProfileShowBusinessLogic {
+    func save(_ lastLentaPost: Post?)
     func loadUserInfo(withRequestModel requestModel: UserProfileShowModels.UserInfo.RequestModel)
     func loadUserDetailsLenta(withRequestModel requestModel: UserProfileShowModels.UserDetails.RequestModel)
 }
 
-protocol UserProfileShowDataStore {}
+protocol UserProfileShowDataStore {
+    var lastLentaPost: Post? { get set }
+}
 
 class UserProfileShowInteractor: UserProfileShowBusinessLogic, UserProfileShowDataStore {
     // MARK: - Properties
     var presenter: UserProfileShowPresentationLogic?
+    
+    
+    // MARK: - UserProfileShowDataStore implementation
+    var lastLentaPost: Post?
     
     
     // MARK: - Class Initialization
@@ -34,6 +41,10 @@ class UserProfileShowInteractor: UserProfileShowBusinessLogic, UserProfileShowDa
     
 
     // MARK: - Business logic implementation
+    func save(_ lastLentaPost: Post?) {
+        self.lastLentaPost = lastLentaPost
+    }
+    
     func loadUserInfo(withRequestModel requestModel: UserProfileShowModels.UserInfo.RequestModel) {
         // API 'get_accounts'
         if isNetworkAvailable {
@@ -84,9 +95,14 @@ class UserProfileShowInteractor: UserProfileShowBusinessLogic, UserProfileShowDa
         // API 'get_discussions_by_blog'
         if isNetworkAvailable {
             // Create MethodAPIType
-            let discussion      =   RequestParameterAPI.Discussion.init(limit:          loadDataLimit,
-                                                                        truncateBody:   0,
-                                                                        selectAuthors:  [ User.current!.name ])
+            let discussion      =   (lastLentaPost == nil) ?   RequestParameterAPI.Discussion.init(limit:          loadDataLimit,
+                                                                                                   truncateBody:   0,
+                                                                                                   selectAuthors:  [ User.current!.name ]) :
+                                                                RequestParameterAPI.Discussion.init(limit:          loadDataLimit,
+                                                                                                    truncateBody:   0,
+                                                                                                    selectAuthors:  [ User.current!.name ],
+                                                                                                    startAuthor:    lastLentaPost!.author,
+                                                                                                    startPermlink:  lastLentaPost!.permlink)
 
             let methodAPIType   =   MethodAPIType.getDiscussions(type: .lenta, parameters: discussion)
             

@@ -20,6 +20,7 @@ extension Post {
     @NSManaged public var feedType: String
     @NSManaged public var id: Int64
     @NSManaged public var author: String
+    @NSManaged public var created: Date
     @NSManaged public var category: String
     @NSManaged public var title: String
     @NSManaged public var body: String
