@@ -24,12 +24,19 @@ class FeedArticleTableViewCell: UITableViewCell {
     
     // Handlers
     var handlerShareButtonTapped: (() -> Void)?
-    var handlerExpandButtonTapped: (() -> Void)?
     var handlerUpvotesButtonTapped: (() -> Void)?
     var handlerCommentsButtonTapped: (() -> Void)?
 
 
     // MARK: - IBOutlets
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var articleContentView: UIView!
+    
+    @IBOutlet weak var postImageView: UIImageView!
+    @IBOutlet weak var descriptionTextView: UITextView!
+    
+    @IBOutlet weak var imageViewHeightConstraint: NSLayoutConstraint!
+    
     @IBOutlet private weak var articleHeaderView: ArticleHeaderView! {
         didSet {
             articleHeaderView.tune()
@@ -51,9 +58,6 @@ class FeedArticleTableViewCell: UITableViewCell {
         }
     }
 
-    @IBOutlet private weak var articleContentView: UIView!
-    @IBOutlet private weak var titleLabel: UILabel!
-    
     @IBOutlet private weak var upvotesButton: UIButton! {
         didSet {
             upvotesButton.tune(withTitle:       "",
@@ -71,11 +75,6 @@ class FeedArticleTableViewCell: UITableViewCell {
                                 alignment:      .center)
         }
     }
-    
-    @IBOutlet weak var descriptionTextView: UITextView!
-    @IBOutlet weak var postImageView: UIImageView!
-    
-    @IBOutlet weak var imageViewHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet var widthsCollection: [NSLayoutConstraint]! {
         didSet {
@@ -137,10 +136,6 @@ class FeedArticleTableViewCell: UITableViewCell {
         self.handlerShareButtonTapped!()
     }
     
-    @IBAction func didPressExpandButton(_ sender: Any) {
-        self.handlerExpandButtonTapped!()
-    }
-    
     
     // MARK: - Reuse identifier
     override var reuseIdentifier: String? {
@@ -172,11 +167,11 @@ extension FeedArticleTableViewCell: ConfigureCell {
         self.upvotesButton.isEnabled                =   lenta.allowVotes
         self.commentsButton.isEnabled               =   lenta.allowReplies
 
-        
+//        commentsButton.setTitle(lenta.commentsAmount, for: .normal)
+
         
         
         // TODO: - PRECISE
-        //        commentsButton.setTitle(displayedPost.commentsAmount, for: .normal)
         
         //        if let reblogAuthor = displayedPost.reblogAuthorName {
         //            articleHeaderView.reblogAuthorLabel.isHidden    =   false
@@ -242,7 +237,7 @@ extension FeedArticleTableViewCell: ConfigureCell {
 //        }
 //
 //        else {
-//            let avatarPlaceholderImage                      =   UIImage(named: "avatar_placeholder")
+//            let avatarPlaceholderImage                      =   UIImage(named: "icon-user-profile-image-placeholder")
 //            articleHeaderView.authorProfileImageView.image  =   avatarPlaceholderImage
 //        }
         

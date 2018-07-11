@@ -169,6 +169,10 @@
                 <outletCollection property="heightsCollection" destination="smg-Rx-Uvh" collectionClass="NSMutableArray" id="hNs-gF-CFF"/>
                 <outletCollection property="heightsCollection" destination="gj9-nR-R3l" collectionClass="NSMutableArray" id="DVb-RK-8xF"/>
                 <outletCollection property="widthsCollection" destination="Vfo-EY-ayY" collectionClass="NSMutableArray" id="5up-nU-gQd"/>
+                <outletCollection property="heightsCollection" destination="8oG-Ak-dxR" collectionClass="NSMutableArray" id="PRx-4X-KMC"/>
+                <outletCollection property="heightsCollection" destination="FnC-Tb-Rhx" collectionClass="NSMutableArray" id="rF4-U3-Q8s"/>
+                <outletCollection property="heightsCollection" destination="Ra8-JN-wFO" collectionClass="NSMutableArray" id="WRg-kE-7b5"/>
+                <outletCollection property="heightsCollection" destination="UaF-oW-wCi" collectionClass="NSMutableArray" id="GNi-e2-dO6"/>
             </connections>
             <point key="canvasLocation" x="-280" y="158"/>
         </tableViewCell>

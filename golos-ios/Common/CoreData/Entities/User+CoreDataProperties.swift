@@ -29,6 +29,9 @@ extension User {
     @NSManaged public var coverImageURL: String?
     @NSManaged public var gender: String?
     @NSManaged public var selectTags: [String]?
+    @NSManaged public var canVote: Bool
+    @NSManaged public var created: String
+    @NSManaged public var commentCount: Int64
 
     @NSManaged public var owner: UserSecretOwnerKey?
     @NSManaged public var active: UserSecretActiveKey?

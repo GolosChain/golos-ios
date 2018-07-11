@@ -132,7 +132,7 @@ class UserProfileHeaderView: PassthroughView {
             GSImageLoader().startLoadImage(with: pictureURL) { [weak self] image in
                 guard let strongSelf = self else { return }
                 
-                let image = image ?? UIImage(named: "avatar_placeholder")
+                let image = image ?? UIImage(named: "icon-user-profile-image-placeholder")
                 strongSelf.avatarImageView.image = image
             }
         }

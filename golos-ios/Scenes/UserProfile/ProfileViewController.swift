@@ -231,7 +231,7 @@ extension ProfileViewController: ProfileViewProtocol {
             imageLoader.startLoadImage(with: pictureUrlString) { [weak self] image in
                 guard let strongSelf = self else { return }
                 
-                let image = image ?? UIImage(named: "avatar_placeholder")
+                let image = image ?? UIImage(named: "icon-user-profile-image-placeholder")
                 strongSelf.profileHeaderView.avatarImage = image
             }
         }

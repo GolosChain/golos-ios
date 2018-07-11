@@ -532,10 +532,6 @@ extension UserProfileShowViewController: UITableViewDataSource {
                     self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
                 }
 
-                lentaCell.handlerExpandButtonTapped         =   { [weak self] in
-                    self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
-                }
-
                 lentaCell.handlerUpvotesButtonTapped        =   { [weak self] in
                     self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
                 }

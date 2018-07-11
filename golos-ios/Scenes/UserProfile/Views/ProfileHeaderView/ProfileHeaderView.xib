@@ -41,7 +41,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="180"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </imageView>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="acw-MW-GSz">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-user-profile-image-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="acw-MW-GSz">
                     <rect key="frame" x="39" y="69" width="80" height="80"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
@@ -244,9 +244,9 @@
         </view>
     </objects>
     <resources>
-        <image name="avatar_placeholder" width="13" height="13"/>
         <image name="back_button" width="17" height="16"/>
         <image name="icon-button-profile-settings" width="24" height="24"/>
+        <image name="icon-user-profile-image-placeholder" width="13" height="13"/>
         <image name="icon-voice-power-doplhin" width="14" height="14"/>
         <image name="profile_edit_button_icon" width="15" height="14"/>
         <image name="profile_header_bg" width="375" height="181"/>

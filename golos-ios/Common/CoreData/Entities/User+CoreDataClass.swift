@@ -88,6 +88,9 @@ public class User: NSManagedObject {
         self.memoKey            =   userModel.memo_key
         self.vestingShares      =   userModel.vesting_shares
         self.reputation         =   userModel.reputation.stringValue!
+        self.canVote            =   userModel.can_vote
+        self.commentCount       =   userModel.comment_count
+        self.created            =   userModel.created
         
         // UserSecretPostingKey
         let userSecretKeyPostingEntity  =   UserSecretPostingKey.instance(byUserID: userModel.id)
