@@ -79,19 +79,19 @@ extension PostsFeedMediator: UITableViewDataSource {
 
 // MARK: - UITableViewDelegate
 extension PostsFeedMediator: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let displayedModel  =   postsFeedPresenter.getDisplayedPost(byIndex: indexPath.row)
-        let isImage         =   displayedModel?.imagePictureURL == nil ? false : true
-        
-        return FeedArticleTableViewCell.height(withImage: isImage)
-    }
-    
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        let displayedModel  =   postsFeedPresenter.getDisplayedPost(byIndex: indexPath.row)
-        let isImage         =   displayedModel?.imagePictureURL == nil ? false : true
-        
-        return FeedArticleTableViewCell.height(withImage: isImage)
-    }
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        let displayedModel  =   postsFeedPresenter.getDisplayedPost(byIndex: indexPath.row)
+//        let isImage         =   displayedModel?.imagePictureURL == nil ? false : true
+//        
+//        return FeedArticleTableViewCell.height(withImage: isImage)
+//    }
+//    
+//    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+//        let displayedModel  =   postsFeedPresenter.getDisplayedPost(byIndex: indexPath.row)
+//        let isImage         =   displayedModel?.imagePictureURL == nil ? false : true
+//        
+//        return FeedArticleTableViewCell.height(withImage: isImage)
+//    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         delegate?.didSelectArticle(at: indexPath.row)

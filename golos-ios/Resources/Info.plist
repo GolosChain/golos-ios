@@ -50,8 +50,9 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>SFProDisplay-Regular.otf</string>
-		<string>SFUIDisplay-Regular.otf</string>
 		<string>SFProDisplay-Medium.otf</string>
+		<string>SFUIDisplay-Regular.otf</string>
+		<string>SFUIDisplay-Medium.ttf</string>
 		<string>Roboto-Medium.ttf</string>
 	</array>
 	<key>UIBackgroundModes</key>

@@ -36,13 +36,23 @@ class ArticleHeaderView: UIView {
         }
     }
     
-    @IBOutlet weak var themeLabel: UILabel! {
+    @IBOutlet weak var categoryLabel: UILabel! {
         didSet {
-            themeLabel.tune(withText:          "",
-                            hexColors:         darkGrayWhiteColorPickers,
-                            font:              UIFont(name: "SFUIDisplay-Regular", size: 10.0 * widthRatio),
-                            alignment:         .left,
-                            isMultiLines:      false)
+            categoryLabel.tune(withText:          "",
+                               hexColors:         darkGrayWhiteColorPickers,
+                               font:              UIFont(name: "SFUIDisplay-Regular", size: 10.0 * widthRatio),
+                               alignment:         .left,
+                               isMultiLines:      false)
+        }
+    }
+    
+    @IBOutlet weak var authorReputationLabel: UILabel! {
+        didSet {
+            authorReputationLabel.tune(withText:          "",
+                                       hexColors:         whiteColorPickers,
+                                       font:              UIFont(name: "SFUIDisplay-Medium", size: 6.0 * widthRatio),
+                                       alignment:         .center,
+                                       isMultiLines:      false)
         }
     }
     
@@ -60,6 +70,7 @@ class ArticleHeaderView: UIView {
         }
     }
     
+    @IBOutlet var circleViewsCollection: [UIView]!
     @IBOutlet weak var reblogIconImageView: UIImageView!
     @IBOutlet weak var authorProfileImageView: UIImageView!
 
@@ -98,7 +109,7 @@ class ArticleHeaderView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        authorProfileImageView.layer.cornerRadius = authorProfileImageView.bounds.size.height / 2
+        _ = circleViewsCollection.map({ $0.layer.cornerRadius = $0.bounds.size.height / 2 })
     }
 
     

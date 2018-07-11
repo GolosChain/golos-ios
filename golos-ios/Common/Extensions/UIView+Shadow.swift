@@ -23,6 +23,17 @@ extension UIView {
         self.theme_backgroundColor  =   whiteBlackColorPickers
     }
 
+    func display(withTopConstraint topConstraint: NSLayoutConstraint, height: CGFloat, isShow: Bool) {
+        guard (self.frame.minY < 0 && isShow) || (self.frame.minY >= 0 && !isShow) else {
+            return
+        }
+        
+        UIView.animate(withDuration: 0.3, animations: {
+            topConstraint.constant  =   height * (isShow ? 1 : -1)
+            self.alpha              =   isShow ? 1.0 : 0.0
+        })
+    }
+    
     func add(shadow: Bool, onside: SideType) {
         layer.shadowColor           =   shadow ? UIColor.lightGray.cgColor : UIColor.white.cgColor
         layer.shadowOpacity         =   Float((shadow ? 4.0 : 0.0) * heightRatio)

@@ -117,6 +117,7 @@
 		B13FE9C020F5D97600F907BC /* Development.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = B13FE9BD20F5D97500F907BC /* Development.xcconfig */; };
 		B13FE9C120F5D97600F907BC /* Release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = B13FE9BE20F5D97500F907BC /* Release.xcconfig */; };
 		B13FE9C320F5E74700F907BC /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B13FE9C220F5E74000F907BC /* Roboto-Medium.ttf */; };
+		B14199C220F65A1B00D927DA /* SFUIDisplay-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B14199C120F65A1A00D927DA /* SFUIDisplay-Medium.ttf */; };
 		B146891420F1F30E00D36794 /* UserProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B146891320F1F30E00D36794 /* UserProfileHeaderView.swift */; };
 		B146891820F1F5D000D36794 /* UserProfileHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B146891720F1F5D000D36794 /* UserProfileHeaderView.xib */; };
 		B146891A20F2013F00D36794 /* SFProDisplay-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = B146891920F2013F00D36794 /* SFProDisplay-Medium.otf */; };
@@ -379,6 +380,7 @@
 		B13FE9BD20F5D97500F907BC /* Development.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Development.xcconfig; sourceTree = "<group>"; };
 		B13FE9BE20F5D97500F907BC /* Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
 		B13FE9C220F5E74000F907BC /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
+		B14199C120F65A1A00D927DA /* SFUIDisplay-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIDisplay-Medium.ttf"; sourceTree = "<group>"; };
 		B146891320F1F30E00D36794 /* UserProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileHeaderView.swift; sourceTree = "<group>"; };
 		B146891720F1F5D000D36794 /* UserProfileHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserProfileHeaderView.xib; sourceTree = "<group>"; };
 		B146891920F2013F00D36794 /* SFProDisplay-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Medium.otf"; sourceTree = "<group>"; };
@@ -933,6 +935,7 @@
 				B13FE9C220F5E74000F907BC /* Roboto-Medium.ttf */,
 				B146891920F2013F00D36794 /* SFProDisplay-Medium.otf */,
 				B198DB9320B9C560008011A3 /* SFProDisplay-Regular.otf */,
+				B14199C120F65A1A00D927DA /* SFUIDisplay-Medium.ttf */,
 				B11AA80420CB13BA00212713 /* SFUIDisplay-Regular.otf */,
 			);
 			path = Fonts;
@@ -1476,6 +1479,7 @@
 				B114192A20CD21530025B07F /* LogInShow.storyboard in Resources */,
 				B136D50020D8BA2E003AD279 /* ThemeTagCollectionViewCell.xib in Resources */,
 				B18B937220B91D4E000CF503 /* ForegroundRemoteNotificationView.xib in Resources */,
+				B14199C220F65A1B00D927DA /* SFUIDisplay-Medium.ttf in Resources */,
 				7D25B48D201F5700004A3400 /* TagCollectionViewCell.xib in Resources */,
 				B146891820F1F5D000D36794 /* UserProfileHeaderView.xib in Resources */,
 			);

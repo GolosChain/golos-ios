@@ -30,12 +30,10 @@ class FeedArticleTableViewCell: UITableViewCell {
 
     // MARK: - IBOutlets
     @IBOutlet private weak var titleLabel: UILabel!
-    @IBOutlet private weak var articleContentView: UIView!
-    
     @IBOutlet weak var postImageView: UIImageView!
-    @IBOutlet weak var descriptionTextView: UITextView!
     
-    @IBOutlet weak var imageViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var titleLabelTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var postImageViewTopConstraint: NSLayoutConstraint!
     
     @IBOutlet private weak var articleHeaderView: ArticleHeaderView! {
         didSet {
@@ -99,13 +97,15 @@ class FeedArticleTableViewCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         
-        pictureURL          =   ""
-        authorPictureURL    =   ""
+        self.pictureURL             =   ""
+        self.authorPictureURL       =   ""
         
         let avatarPlaceholderImage                          =   UIImage(named: "image-placeholder")
         articleHeaderView.authorProfileImageView.image      =   avatarPlaceholderImage
         
-        postImageView.image = nil
+        self.postImageView.image                            =   nil
+        self.titleLabelTopConstraint.constant               =   0
+        self.postImageViewTopConstraint.constant            =   0
     }
     
     override func layoutSubviews() {
@@ -117,9 +117,6 @@ class FeedArticleTableViewCell: UITableViewCell {
     private func setupUI() {
         titleLabel.textColor = UIColor.Project.articleBlackColor
         titleLabel.font = Fonts.shared.regular(with: 16.0 * widthRatio)
-    
-        descriptionTextView.textContainer.lineBreakMode     =   .byTruncatingTail
-        descriptionTextView.textContainerInset              =   UIEdgeInsets(top: 5.0, left: 13.0, bottom: 0.0, right: 13.0)
     }
     
     
@@ -146,9 +143,9 @@ class FeedArticleTableViewCell: UITableViewCell {
         return String(describing: self)
     }
     
-    static func height(withImage: Bool) -> CGFloat {
-        return (withImage ? 427.0 : 427.0 - 212.0) * heightRatio
-    }
+//    static func height(withImage: Bool) -> CGFloat {
+//        return (withImage ? 427.0 : 427.0 - 212.0) * heightRatio
+//    }
 }
 
 
@@ -159,16 +156,26 @@ extension FeedArticleTableViewCell: ConfigureCell {
             return
         }
         
-        self.titleLabel.text                        =   lenta.title
-        self.descriptionTextView.text               =   lenta.description
+        // Hide/show title
+        if lenta.title.isEmpty {
+            self.titleLabel.display(withTopConstraint: self.titleLabelTopConstraint, height: self.titleLabel.frame.height, isShow: false)
+        }
+        
+        else {
+            self.titleLabel.text                    =   lenta.title
+        }
+        
         self.articleHeaderView.authorLabel.text     =   lenta.author
-        self.articleHeaderView.themeLabel.text      =   lenta.category
+        self.articleHeaderView.categoryLabel.text   =   lenta.category
 //        articleHeaderView.reblogAuthorLabel.text    =   displayedPost.reblogAuthorName
         self.upvotesButton.isEnabled                =   lenta.allowVotes
         self.commentsButton.isEnabled               =   lenta.allowReplies
 
 //        commentsButton.setTitle(lenta.commentsAmount, for: .normal)
 
+        
+        // Hide/show post image
+//        self.postImageView.display(withTopConstraint: self.postImageViewTopConstraint, height: self.postImageView.frame.height, isShow: false)
         
         
         // TODO: - PRECISE
@@ -226,7 +233,8 @@ extension FeedArticleTableViewCell: ConfigureCell {
 //            }
 //
 //            self.authorPictureURL = authorPictureURL
-//
+              self.articleHeaderView.authorReputationLabel.text = "234"
+        
 //            imageLoader.startLoadImage(with: authorPictureURL) { (image) in
 //                DispatchQueue.main.async {
 //                    if let image = image, authorPictureURL == self.authorPictureURL {
