@@ -29,6 +29,7 @@ class UserProfileShowViewController: BaseViewController {
     var reloadData: Bool                =   false
     var paginanationData: Bool          =   false
     var segmentedControlIndex: Int      =   0
+    var cellIdentifies: [String]        =   [ "LentaCell", "ReplyTableViewCell" ]
     var lastUserProfileDetailsIndexes   =   Array(repeating: 0, count: 2)
     var topVisibleIndexPath             =   Array(repeating: IndexPath(row: 0, section: 0), count: 2)
 
@@ -52,6 +53,13 @@ class UserProfileShowViewController: BaseViewController {
         didSet {
             tableView.delegate              =   self
             tableView.dataSource            =   self
+            
+            // Set automatic dimensions for row height
+            tableView.rowHeight             =   UITableViewAutomaticDimension
+            tableView.estimatedRowHeight    =   UITableViewAutomaticDimension
+            
+            // Add cells from XIB
+            tableView.register(UINib(nibName: "ReplyTableViewCell", bundle: nil), forCellReuseIdentifier: "ReplyTableViewCell")
         }
     }
     
@@ -285,29 +293,6 @@ extension UserProfileShowViewController {
     private func loadUserDetails() {
         let userDetailsRequestModel = UserProfileShowModels.UserDetails.RequestModel(selectedControlIndex: segmentedControlIndex)
         interactor?.loadUserDetails(withRequestModel: userDetailsRequestModel)
-        
-
-//        switch segmentedControlIndex {
-//        // Answers
-//        case 1:
-//            let userDetailsAnswersRequestModel = UserProfileShowModels.UserDetails.RequestModel(selectedControlIndex: segmentedControlIndex)
-//            interactor?.loadUserDetailsAnswers(withRequestModel: userDetailsAnswersRequestModel)
-//
-//        // Comments
-//        case 2:
-//            print("Comments")
-//
-//        // Favorites
-//        case 3:
-//            print("Favorites")
-//
-//        // Information
-//        case 4:
-//            print("Information")
-//
-//        // Lenta (blogs)
-//        default:
-//        }
     }
 }
 
@@ -445,8 +430,8 @@ extension UserProfileShowViewController: UIScrollViewDelegate {
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        if scrollView == tableView {
-            self.topVisibleIndexPath[segmentedControlIndex] = self.tableView.indexPathsForVisibleRows![0]
+        if let indexPathsForVisibleRows = self.tableView.indexPathsForVisibleRows, scrollView == tableView {
+            self.topVisibleIndexPath[segmentedControlIndex] = indexPathsForVisibleRows[0]
             self.paginanationData = false
         }
     }
@@ -514,13 +499,25 @@ extension UserProfileShowViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell    =   tableView.dequeueReusableCell(withIdentifier: "BlogCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: self.cellIdentifies[segmentedControlIndex], for: indexPath)
         
         switch segmentedControlIndex {
         // Replies
         case 1:
-            let replyEntity             =   fetchedResultsController.object(at: indexPath) as! Reply
-            cell.textLabel?.text        =   replyEntity.body
+            let replyEntity = fetchedResultsController.object(at: indexPath) as! Reply
+            
+            if let replyCell = cell as? ReplyTableViewCell {
+                replyCell.setup(withItem: replyEntity, andIndexPath: indexPath)
+                
+                // Handlers comletion
+                replyCell.handlerAnswerButtonTapped     =   { [weak self] in
+                    self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+                }
+                
+                replyCell.handlerReplyTypeButtonTapped  =   { [weak self] in
+                    self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+                }
+            }
 
         // Lenta (blog)
         default:
@@ -546,10 +543,6 @@ extension UserProfileShowViewController: UITableViewDataSource {
 
 // MARK: - UITableViewDelegate
 extension UserProfileShowViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60
-    }
-    
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let lastIndex           =   tableView.numberOfRows(inSection: indexPath.section) - 1
         let lastElement         =   fetchedResultsController.sections![indexPath.section].objects![lastIndex]

@@ -111,6 +111,8 @@
 		B13FE9B320F5004F00F907BC /* Reply+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13FE9AF20F5004F00F907BC /* Reply+CoreDataProperties.swift */; };
 		B13FE9B420F5004F00F907BC /* Lenta+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13FE9B020F5004F00F907BC /* Lenta+CoreDataClass.swift */; };
 		B13FE9B520F5004F00F907BC /* Lenta+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13FE9B120F5004F00F907BC /* Lenta+CoreDataProperties.swift */; };
+		B13FE9BA20F512BA00F907BC /* ReplyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13FE9B820F512BA00F907BC /* ReplyTableViewCell.swift */; };
+		B13FE9BB20F512BA00F907BC /* ReplyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B13FE9B920F512BA00F907BC /* ReplyTableViewCell.xib */; };
 		B146891420F1F30E00D36794 /* UserProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B146891320F1F30E00D36794 /* UserProfileHeaderView.swift */; };
 		B146891820F1F5D000D36794 /* UserProfileHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B146891720F1F5D000D36794 /* UserProfileHeaderView.xib */; };
 		B146891A20F2013F00D36794 /* SFProDisplay-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = B146891920F2013F00D36794 /* SFProDisplay-Medium.otf */; };
@@ -370,6 +372,8 @@
 		B13FE9B020F5004F00F907BC /* Lenta+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lenta+CoreDataClass.swift"; sourceTree = "<group>"; };
 		B13FE9B120F5004F00F907BC /* Lenta+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lenta+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		B13FE9B620F505D800F907BC /* Golos 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Golos 3.xcdatamodel"; sourceTree = "<group>"; };
+		B13FE9B820F512BA00F907BC /* ReplyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplyTableViewCell.swift; sourceTree = "<group>"; };
+		B13FE9B920F512BA00F907BC /* ReplyTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReplyTableViewCell.xib; sourceTree = "<group>"; };
 		B146891320F1F30E00D36794 /* UserProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileHeaderView.swift; sourceTree = "<group>"; };
 		B146891720F1F5D000D36794 /* UserProfileHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserProfileHeaderView.xib; sourceTree = "<group>"; };
 		B146891920F2013F00D36794 /* SFProDisplay-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Medium.otf"; sourceTree = "<group>"; };
@@ -728,8 +732,7 @@
 				B12A576B20B3F7BC000CF8BF /* Development.xcconfig */,
 				B12A576E20B410E6000CF8BF /* Release.xcconfig */,
 			);
-			name = Configurations;
-			path = "New Group";
+			path = Configurations;
 			sourceTree = "<group>";
 		};
 		B12F43F920EA0175003FFF58 /* ScannerShow */ = {
@@ -840,6 +843,15 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		B13FE9B720F512AB00F907BC /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				B13FE9B820F512BA00F907BC /* ReplyTableViewCell.swift */,
+				B13FE9B920F512BA00F907BC /* ReplyTableViewCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		B146891220F1F2DA00D36794 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -881,6 +893,7 @@
 		B164F03B20E62A7300C5CDD3 /* UserProfileShow */ = {
 			isa = PBXGroup;
 			children = (
+				B13FE9B720F512AB00F907BC /* Cells */,
 				B146891220F1F2DA00D36794 /* Views */,
 				B164F04120E62AE600C5CDD3 /* UserProfileShowInteractor.swift */,
 				B164F03F20E62AE600C5CDD3 /* UserProfileShowModels.swift */,
@@ -1420,6 +1433,7 @@
 				7D79C3462034685900794447 /* AnswersFeedTableViewCell.xib in Resources */,
 				B136D4FC20D8BA14003AD279 /* AddTagCollectionViewCell.xib in Resources */,
 				7D25B4C3201FABBD004A3400 /* ArticleImageTableViewCell.xib in Resources */,
+				B13FE9BB20F512BA00F907BC /* ReplyTableViewCell.xib in Resources */,
 				7DFA6CB22036D76B00F59494 /* PostsFeedTextTableViewCell.xib in Resources */,
 				7D25B4CB201FABD8004A3400 /* ArticleFooterTableViewCell.xib in Resources */,
 				EC24FF7A200C497800A0AE15 /* FeedViewController.xib in Resources */,
@@ -1591,6 +1605,7 @@
 				EC9ABBE82018036E00AF8597 /* Device+Size.swift in Sources */,
 				7D79C34A20346B5500794447 /* AnswerType.swift in Sources */,
 				7DA06328203256D700B5630C /* PropertyStoring.swift in Sources */,
+				B13FE9BA20F512BA00F907BC /* ReplyTableViewCell.swift in Sources */,
 				B1EE684C20D27628006BF802 /* UIBarButtonItem+Extensions.swift in Sources */,
 				EC24FF59200C30B800A0AE15 /* MainContainerViewController.swift in Sources */,
 				EC24FF54200C080300A0AE15 /* Notifications.swift in Sources */,

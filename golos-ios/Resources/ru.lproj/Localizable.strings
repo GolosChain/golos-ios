@@ -42,6 +42,8 @@
 "Answers"                                   =   "Ответы";
 "Favorites"                                 =   "Избранное";
 "Information"                               =   "Информация";
+"Post Title"                                =   "Пост";
+"Comment Title"                             =   "Комментарий";
 
 
 // Titles
@@ -75,6 +77,8 @@
 "Killer Whale"                              =   "Касатка";
 "Whale"                                     =   "Кит";
 "Answered your"                             =   "ответил на ваш";
+"Days ago"                                  =   " дн назад";
+"Today ago"                                 =   "сегодня";
 
 
 // Placeholders

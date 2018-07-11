@@ -127,6 +127,7 @@ class UserProfileHeaderView: PassthroughView {
         self.voicePowerImageView.image      =   UIImage(named: userInfo.voicePowerImageName)
         self.starsLabel.text                =   "\(userInfo.postsAmount)"
         
+        // Upload user avatar
         if let pictureURL = userInfo.pictureURL {
             GSImageLoader().startLoadImage(with: pictureURL) { [weak self] image in
                 guard let strongSelf = self else { return }

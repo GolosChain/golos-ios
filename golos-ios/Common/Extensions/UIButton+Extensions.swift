@@ -10,6 +10,16 @@ import UIKit
 import SwiftTheme
 
 extension UIButton {
+    func tune(withTitle title: String, hexColors: ThemeColorPicker?, font: UIFont?, alignment: NSTextAlignment) {
+        ThemeManager.setTheme(index: isAppThemeDark ? 1 : 0)
+        
+        self.titleLabel?.font               =   font
+        self.titleLabel?.textAlignment      =   alignment
+
+        self.setTitle(title.localized(), for: .normal)
+        self.theme_setTitleColor(hexColors, forState: .normal)
+    }
+    
     func setBlueButtonRoundEdges() {
         self.layoutIfNeeded()
         setRoundEdges(cornerRadius: self.frame.height / 2)
