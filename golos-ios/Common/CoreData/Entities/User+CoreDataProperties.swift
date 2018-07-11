@@ -24,6 +24,11 @@ extension User {
     @NSManaged public var isAuthorized: Bool
     @NSManaged public var vestingShares: String
     @NSManaged public var json_metadata: String?
+    @NSManaged public var reputation: String
+    @NSManaged public var profileImageURL: String?
+    @NSManaged public var coverImageURL: String?
+    @NSManaged public var gender: String?
+    @NSManaged public var selectTags: [String]?
 
     @NSManaged public var owner: UserSecretOwnerKey?
     @NSManaged public var active: UserSecretActiveKey?

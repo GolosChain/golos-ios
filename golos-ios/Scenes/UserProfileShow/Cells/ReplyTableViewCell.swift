@@ -12,12 +12,14 @@ import GoloSwift
 
 enum ReplyType: String {
     case post
+    case answer
     case comment
-    
+
     func caseTitle() -> String {
         switch self {
         case .post:         return "Post Title".localized()
-        case .comment:      return "Comment Title".localized()
+        case .answer:       return "Answer Title".localized()
+        case .comment:      return "Comment Title Noun".localized()
         }
     }
 }
@@ -36,6 +38,16 @@ class ReplyTableViewCell: UITableViewCell, ReusableCell {
     
     // MARK: - IBOutlets
     @IBOutlet weak var authorAvatarImageView: UIImageView!
+    
+    @IBOutlet weak var activeVotesCountLabel: UILabel! {
+        didSet {
+            activeVotesCountLabel.tune(withText: "",
+                                       hexColors:           whiteColorPickers,
+                                       font:                UIFont(name: "Roboto-Medium", size: 6.0 * widthRatio),
+                                       alignment:           .center,
+                                       isMultiLines:        false)
+        }
+    }
     
     @IBOutlet weak var authorLabel: UILabel! {
         didSet {
@@ -80,7 +92,7 @@ class ReplyTableViewCell: UITableViewCell, ReusableCell {
     
     @IBOutlet weak var answerButton: UIButton!  {
         didSet {
-            answerButton.tune(withTitle:            "Answer",
+            answerButton.tune(withTitle:            "Reply Title Verb",
                               hexColors:            darkGrayWhiteColorPickers,
                               font:                 UIFont(name: "SFProDisplay-Regular", size: 10.0 * widthRatio),
                               alignment:            .left)
@@ -89,11 +101,11 @@ class ReplyTableViewCell: UITableViewCell, ReusableCell {
     
     @IBOutlet weak var timeLabel: UILabel!  {
         didSet {
-            authorLabel.tune(withText:          "Days ago",
-                             hexColors:         darkGrayWhiteColorPickers,
-                             font:              UIFont(name: "SFProDisplay-Regular", size: 10.0 * widthRatio),
-                             alignment:         .left,
-                             isMultiLines:      false)
+            timeLabel.tune(withText:          "Days ago",
+                           hexColors:         darkGrayWhiteColorPickers,
+                           font:              UIFont(name: "SFProDisplay-Regular", size: 10.0 * widthRatio),
+                           alignment:         .left,
+                           isMultiLines:      false)
         }
     }
     
@@ -109,6 +121,8 @@ class ReplyTableViewCell: UITableViewCell, ReusableCell {
         }
     }
 
+    @IBOutlet var circleViewsCollection: [UIView]!
+    
     
     // MARK: - Class Initialization
     override func awakeFromNib() {
@@ -126,7 +140,7 @@ class ReplyTableViewCell: UITableViewCell, ReusableCell {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        authorAvatarImageView.layer.cornerRadius = authorAvatarImageView.bounds.width / 2
+        _ = circleViewsCollection.map({ $0.layer.cornerRadius = $0.bounds.width / 2 })
     }
     
 
@@ -138,7 +152,21 @@ class ReplyTableViewCell: UITableViewCell, ReusableCell {
     }
     
     private func setReplyType(_ reply: Reply) {
+        // Post: parentPermlink == nil
+        guard let parentPermlink = reply.parentPermlink else {
+            self.replyType = .post
+            return
+        }
         
+        switch parentPermlink {
+        // Answer
+        case let permlink where permlink.hasPrefix(String(format: "re-%@", reply.parentAuthor!)):
+            self.replyType = .answer
+
+        // Comment
+        default:
+            self.replyType = .comment
+        }
     }
     
 
@@ -160,22 +188,35 @@ extension ReplyTableViewCell: ConfigureCell {
             return
         }
         
-        self.authorLabel.text       =   reply.author
-        self.replyTextLabel.text    =   reply.body
-        self.timeLabel.text         =   reply.created.convertToDaysAgo()
+        self.timeLabel.text                 =   reply.created.convertToDaysAgo()
+        self.authorLabel.text               =   reply.author
+        self.replyTextLabel.text            =   reply.body
 
         self.setReplyType(reply)
 
-        // Load author avatar
-        if let imageURL = reply.jsonMetadata {
-            GSImageLoader().startLoadImage(with: imageURL) { [weak self] image in
-                guard let strongSelf = self else { return }
-                
-                let image = image ?? UIImage(named: "image-placeholder")
-                strongSelf.authorAvatarImageView.image = image
+        // Use default LoadUserProtocol implementation
+        self.loadUserInfo(byName: reply.author, completion: { [weak self] (user, errorAPI) in
+            guard errorAPI == nil else {
+                Logger.log(message: errorAPI!.localizedDescription, event: .error)
+                return
             }
-        }
+            
+            self?.activeVotesCountLabel.text = String(format: "%i", reply.activeVotesCount)
+
+            // Load author profile image
+            if let userProfileImageURL = user?.profileImageURL {
+                userProfileImageURL.uploadImage(withSize: CGSize(width: 50.0 * widthRatio, height: 50.0 * widthRatio), completion: { [weak self] image in
+//                    DispatchQueue.main.async {
+                        self?.authorAvatarImageView.image = image
+//                    }
+                })
+            }
+        })
         
-        selectionStyle  =   .none
+        selectionStyle = .none
     }
 }
+
+
+// MARK: - Use default LoadUserProtocol implementation
+extension ReplyTableViewCell: LoadUserProtocol {}

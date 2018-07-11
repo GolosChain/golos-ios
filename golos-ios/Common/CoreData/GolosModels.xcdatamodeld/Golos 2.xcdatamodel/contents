@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14135" systemVersion="17G65" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14135" systemVersion="17G65" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="Golos 2">
     <entity name="AppSettings" representedClassName="AppSettings" syncable="YES">
         <attribute name="name" attributeType="String" defaultValueString="Golos.io" syncable="YES"/>
         <attribute name="startWithWelcomeScene" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES" syncable="YES"/>

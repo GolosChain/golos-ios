@@ -87,6 +87,7 @@ public class User: NSManagedObject {
         self.json_metadata      =   userModel.json_metadata
         self.memoKey            =   userModel.memo_key
         self.vestingShares      =   userModel.vesting_shares
+        self.reputation         =   userModel.reputation.stringValue!
         
         // UserSecretPostingKey
         let userSecretKeyPostingEntity  =   UserSecretPostingKey.instance(byUserID: userModel.id)
@@ -103,6 +104,11 @@ public class User: NSManagedObject {
         userSecretKeyActiveEntity.updateEntity(fromResponseAPI: userModel.owner)
         self.active                     =   userSecretKeyActiveEntity
         
+        // Parse 'json_metadata'
+        if let metaData = userModel.json_metadata {
+            self.parse(metaData: metaData)
+        }
+
         // Extensions
         self.save()
     }
@@ -112,5 +118,16 @@ public class User: NSManagedObject {
     func setIsAuthorized(_ value: Bool) {
         self.isAuthorized = value
         self.save()
+    }
+    
+    private func parse(metaData: String) {
+        if  let data    =   metaData.data(using: .utf8),
+            let json    =   try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any],
+            let profile =   json?["profile"] as? [String: Any] {
+            self.gender             =   profile["gender"] as? String
+            self.profileImageURL    =   profile["profile_image"] as? String
+            self.coverImageURL      =   profile["cover_image"] as? String
+            self.selectTags         =   profile["select_tags"] as? [String]
+        }
     }
 }

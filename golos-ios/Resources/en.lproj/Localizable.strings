@@ -43,7 +43,9 @@
 "Favorites"                                 =   "Favorites";
 "Information"                               =   "Information";
 "Post Title"                                =   "Post";
-"Comment Title"                             =   "Comment";
+"Comment Title Noun"                        =   "Comment";
+"Answer Title"                              =   "Answer";
+"Reply Title Verb"                          =   "Reply";
 
 
 // Titles
@@ -61,7 +63,7 @@
 "Are Your Sure?"                            =   "Are you sure?";
 "Please Login in App"                       =   "Please\nregister in the application";
 "Publish Title"                             =   "Publish";
-"Comment Title"                             =   "Comment";
+"Comment Title Verb"                        =   "Comment";
 "Add Link Title"                            =   "Add link";
 "Take Photo Title"                          =   "Take photo";
 "Open Photo Title"                          =   "Open photo";

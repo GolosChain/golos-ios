@@ -34,7 +34,7 @@ class PostCreateViewController: BaseViewController {
 
     var sceneType: SceneType = .create {
         didSet {
-            self.navigationItem.title           =   (sceneType == .create) ? "Publish Title".localized() : "Comment Title".localized()
+            self.navigationItem.title           =   (sceneType == .create) ? "Publish Title".localized() : "Comment Title Verb".localized()
             stackViewTopConstraint.constant     =   (sceneType == .comment) ? -70.0 * widthRatio : 0.0
             
             _ = sceneViewsCollection.map({ $0.isHidden = ($0.tag == sceneType.rawValue) ? false : true })

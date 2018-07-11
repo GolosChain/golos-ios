@@ -116,6 +116,7 @@
 		B13FE9BF20F5D97600F907BC /* Debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = B13FE9BC20F5D97400F907BC /* Debug.xcconfig */; };
 		B13FE9C020F5D97600F907BC /* Development.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = B13FE9BD20F5D97500F907BC /* Development.xcconfig */; };
 		B13FE9C120F5D97600F907BC /* Release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = B13FE9BE20F5D97500F907BC /* Release.xcconfig */; };
+		B13FE9C320F5E74700F907BC /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B13FE9C220F5E74000F907BC /* Roboto-Medium.ttf */; };
 		B146891420F1F30E00D36794 /* UserProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B146891320F1F30E00D36794 /* UserProfileHeaderView.swift */; };
 		B146891820F1F5D000D36794 /* UserProfileHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B146891720F1F5D000D36794 /* UserProfileHeaderView.xib */; };
 		B146891A20F2013F00D36794 /* SFProDisplay-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = B146891920F2013F00D36794 /* SFProDisplay-Medium.otf */; };
@@ -377,6 +378,7 @@
 		B13FE9BC20F5D97400F907BC /* Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
 		B13FE9BD20F5D97500F907BC /* Development.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Development.xcconfig; sourceTree = "<group>"; };
 		B13FE9BE20F5D97500F907BC /* Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
+		B13FE9C220F5E74000F907BC /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
 		B146891320F1F30E00D36794 /* UserProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileHeaderView.swift; sourceTree = "<group>"; };
 		B146891720F1F5D000D36794 /* UserProfileHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserProfileHeaderView.xib; sourceTree = "<group>"; };
 		B146891920F2013F00D36794 /* SFProDisplay-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Medium.otf"; sourceTree = "<group>"; };
@@ -928,6 +930,7 @@
 		B198DB9220B9C4E6008011A3 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				B13FE9C220F5E74000F907BC /* Roboto-Medium.ttf */,
 				B146891920F2013F00D36794 /* SFProDisplay-Medium.otf */,
 				B198DB9320B9C560008011A3 /* SFProDisplay-Regular.otf */,
 				B11AA80420CB13BA00212713 /* SFUIDisplay-Regular.otf */,
@@ -1443,6 +1446,7 @@
 				7D25B4CB201FABD8004A3400 /* ArticleFooterTableViewCell.xib in Resources */,
 				EC24FF7A200C497800A0AE15 /* FeedViewController.xib in Resources */,
 				B1B6B39520D37F3100284387 /* PostCommentReply.xib in Resources */,
+				B13FE9C320F5E74700F907BC /* Roboto-Medium.ttf in Resources */,
 				B146891E20F234BE00D36794 /* UserProfileInfoTitleView.xib in Resources */,
 				EC9B2AE7201550F4008335C8 /* FeedArticleTableViewCell.xib in Resources */,
 				7D25B4BF201FABB2004A3400 /* ArticleTitleTableViewCell.xib in Resources */,

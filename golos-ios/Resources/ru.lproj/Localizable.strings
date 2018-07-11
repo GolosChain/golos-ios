@@ -43,7 +43,9 @@
 "Favorites"                                 =   "Избранное";
 "Information"                               =   "Информация";
 "Post Title"                                =   "Пост";
-"Comment Title"                             =   "Комментарий";
+"Comment Title Noun"                        =   "Комментарий";
+"Answer Title"                              =   "Ответ";
+"Reply Title Verb"                          =   "Ответить";
 
 
 // Titles
@@ -61,7 +63,7 @@
 "Are Your Sure?"                            =   "Вы уверены?";
 "Please Login in App"                       =   "Пожалуйста,\nзарегистрируйтесь в приложении";
 "Publish Title"                             =   "Опубликовать";
-"Comment Title"                             =   "Комментировать";
+"Comment Title Verb"                        =   "Комментировать";
 "Add Link Title"                            =   "Добавить гиперссылку";
 "Take Photo Title"                          =   "Создать фотографию";
 "Open Photo Title"                          =   "Открыть фотографию";

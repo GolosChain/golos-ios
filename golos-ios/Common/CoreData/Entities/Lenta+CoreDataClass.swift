@@ -38,7 +38,9 @@ public class Lenta: NSManagedObject {
         lentaEntity!.created            =   lentaModel.created.convert(toDateFormat: .expirationDateType)
         lentaEntity!.parentAuthor       =   lentaModel.parent_author
         lentaEntity!.parentPermlink     =   lentaModel.parent_permlink
-        
+        lentaEntity!.activeVotesCount   =   Int16(lentaModel.active_votes.count)
+        lentaEntity!.url                =   lentaModel.url
+
         // Extensions
         lentaEntity!.save()
     }

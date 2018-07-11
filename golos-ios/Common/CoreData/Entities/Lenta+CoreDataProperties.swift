@@ -29,5 +29,7 @@ extension Lenta {
     @NSManaged public var allowVotes: Bool
     @NSManaged public var allowReplies: Bool
     @NSManaged public var jsonMetadata: String?
+    @NSManaged public var activeVotesCount: Int16
+    @NSManaged public var url: String?
 
 }

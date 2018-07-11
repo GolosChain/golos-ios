@@ -56,10 +56,10 @@ class CoreDataManager {
     }()
     
     lazy var managedObjectContext: NSManagedObjectContext = {
-        let coordinator = self.persistentStoreCoordinator
-        var managedObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
-        managedObjectContext.persistentStoreCoordinator = coordinator
-        managedObjectContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+        let coordinator                                     =   self.persistentStoreCoordinator
+        var managedObjectContext                            =   NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
+        managedObjectContext.persistentStoreCoordinator     =   coordinator
+        managedObjectContext.mergePolicy                    =   NSMergeByPropertyObjectTrumpMergePolicy
         
         return managedObjectContext
     }()

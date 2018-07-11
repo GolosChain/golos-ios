@@ -30,14 +30,6 @@ extension String {
         return width
     }
 
-//    func height(with font: UIFont, width: CGFloat) -> CGFloat {
-//        return (self as NSString).height(with: font, width: width)
-//    }
-//
-//    func width(with font: UIFont, height: CGFloat) -> CGFloat {
-//        return (self as NSString).width(with: font, height: height)
-//    }
-
     func toDictionary() -> [String: Any]? {
         Logger.log(message: "Success", event: .severe)
 
@@ -57,5 +49,18 @@ extension String {
     
     mutating func localize() {
         self = self.localized()
+    }
+    
+    func uploadImage(withSize size: CGSize, completion: @escaping (UIImage) -> Void) {
+        var imagePath: String = self
+        
+        // Add proxy
+        if !self.hasPrefix("https://images.golos.io") {
+            imagePath = "https://imgp.golos.io" + String(format: "/%dx%d/", size.width, size.height) + self
+        }
+        
+        GSImageLoader().startLoadImage(with: imagePath) { image in
+            completion(image ?? UIImage(named: "image-placeholder")!)
+        }
     }
 }

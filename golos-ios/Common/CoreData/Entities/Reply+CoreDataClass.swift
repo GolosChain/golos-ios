@@ -38,7 +38,9 @@ public class Reply: NSManagedObject {
         replyEntity!.created            =   replyModel.created.convert(toDateFormat: .expirationDateType)
         replyEntity!.parentAuthor       =   replyModel.parent_author
         replyEntity!.parentPermlink     =   replyModel.parent_permlink
-        
+        replyEntity!.activeVotesCount   =   Int16(replyModel.active_votes.count)
+        replyEntity!.url                =   replyModel.url
+
         // Extensions
         replyEntity!.save()
     }
