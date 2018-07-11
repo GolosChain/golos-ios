@@ -113,6 +113,9 @@
 		B13FE9B520F5004F00F907BC /* Lenta+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13FE9B120F5004F00F907BC /* Lenta+CoreDataProperties.swift */; };
 		B13FE9BA20F512BA00F907BC /* ReplyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13FE9B820F512BA00F907BC /* ReplyTableViewCell.swift */; };
 		B13FE9BB20F512BA00F907BC /* ReplyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B13FE9B920F512BA00F907BC /* ReplyTableViewCell.xib */; };
+		B13FE9BF20F5D97600F907BC /* Debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = B13FE9BC20F5D97400F907BC /* Debug.xcconfig */; };
+		B13FE9C020F5D97600F907BC /* Development.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = B13FE9BD20F5D97500F907BC /* Development.xcconfig */; };
+		B13FE9C120F5D97600F907BC /* Release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = B13FE9BE20F5D97500F907BC /* Release.xcconfig */; };
 		B146891420F1F30E00D36794 /* UserProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B146891320F1F30E00D36794 /* UserProfileHeaderView.swift */; };
 		B146891820F1F5D000D36794 /* UserProfileHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B146891720F1F5D000D36794 /* UserProfileHeaderView.xib */; };
 		B146891A20F2013F00D36794 /* SFProDisplay-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = B146891920F2013F00D36794 /* SFProDisplay-Medium.otf */; };
@@ -348,9 +351,6 @@
 		B127A87520EB822F007133AB /* UserSecretOwnerKey+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserSecretOwnerKey+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		B127A87820EB8ABF007133AB /* UserSecretActiveKey+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserSecretActiveKey+CoreDataClass.swift"; sourceTree = "<group>"; };
 		B127A87920EB8ABF007133AB /* UserSecretActiveKey+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserSecretActiveKey+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		B12A576B20B3F7BC000CF8BF /* Development.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Development.xcconfig; sourceTree = "<group>"; };
-		B12A576D20B410D8000CF8BF /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
-		B12A576E20B410E6000CF8BF /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
 		B12A577320B432C7000CF8BF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B12A577520B43496000CF8BF /* Golos.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Golos.entitlements; sourceTree = "<group>"; };
 		B12F43FA20EA0191003FFF58 /* ScannerShow.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ScannerShow.storyboard; sourceTree = "<group>"; };
@@ -374,6 +374,9 @@
 		B13FE9B620F505D800F907BC /* Golos 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Golos 3.xcdatamodel"; sourceTree = "<group>"; };
 		B13FE9B820F512BA00F907BC /* ReplyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplyTableViewCell.swift; sourceTree = "<group>"; };
 		B13FE9B920F512BA00F907BC /* ReplyTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReplyTableViewCell.xib; sourceTree = "<group>"; };
+		B13FE9BC20F5D97400F907BC /* Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		B13FE9BD20F5D97500F907BC /* Development.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Development.xcconfig; sourceTree = "<group>"; };
+		B13FE9BE20F5D97500F907BC /* Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
 		B146891320F1F30E00D36794 /* UserProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileHeaderView.swift; sourceTree = "<group>"; };
 		B146891720F1F5D000D36794 /* UserProfileHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserProfileHeaderView.xib; sourceTree = "<group>"; };
 		B146891920F2013F00D36794 /* SFProDisplay-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Medium.otf"; sourceTree = "<group>"; };
@@ -728,9 +731,9 @@
 		B12A576C20B410B4000CF8BF /* Configurations */ = {
 			isa = PBXGroup;
 			children = (
-				B12A576D20B410D8000CF8BF /* Debug.xcconfig */,
-				B12A576B20B3F7BC000CF8BF /* Development.xcconfig */,
-				B12A576E20B410E6000CF8BF /* Release.xcconfig */,
+				B13FE9BC20F5D97400F907BC /* Debug.xcconfig */,
+				B13FE9BD20F5D97500F907BC /* Development.xcconfig */,
+				B13FE9BE20F5D97500F907BC /* Release.xcconfig */,
 			);
 			path = Configurations;
 			sourceTree = "<group>";
@@ -1425,7 +1428,9 @@
 			files = (
 				7D1783DE201FD9B600B75979 /* ArticlePostedInTableViewCell.xib in Resources */,
 				B198DB9420B9C560008011A3 /* SFProDisplay-Regular.otf in Resources */,
+				B13FE9BF20F5D97600F907BC /* Debug.xcconfig in Resources */,
 				B11AA80520CB13BA00212713 /* SFUIDisplay-Regular.otf in Resources */,
+				B13FE9C020F5D97600F907BC /* Development.xcconfig in Resources */,
 				B1918FF720B5421800F6CE63 /* InfoPlist.strings in Resources */,
 				7D25B4BA201F9821004A3400 /* ArticleHeaderView.xib in Resources */,
 				EC24FF71200C433700A0AE15 /* ProfileViewController.xib in Resources */,
@@ -1453,6 +1458,7 @@
 				EC07F4B22014404200560CF0 /* PostsFeedViewController.xib in Resources */,
 				7DFA6CAE2036D76000F59494 /* PostsFeedImageTableViewCell.xib in Resources */,
 				ECA8E35C2018CA30003B8ABA /* ProfileHorizontalSelectorView.xib in Resources */,
+				B13FE9C120F5D97600F907BC /* Release.xcconfig in Resources */,
 				EC1DFB9620063C400080BC50 /* Assets.xcassets in Resources */,
 				B12F43FB20EA0192003FFF58 /* ScannerShow.storyboard in Resources */,
 				B146891A20F2013F00D36794 /* SFProDisplay-Medium.otf in Resources */,
@@ -1821,7 +1827,6 @@
 /* Begin XCBuildConfiguration section */
 		B149DACA20B352C3002E7D18 /* Development */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B12A576B20B3F7BC000CF8BF /* Development.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "${IS_APP_ICON}";
@@ -1989,7 +1994,6 @@
 		};
 		EC1DFB9B20063C400080BC50 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B12A576D20B410D8000CF8BF /* Debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "${IS_APP_ICON}";
@@ -2052,7 +2056,6 @@
 		};
 		EC1DFB9C20063C400080BC50 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B12A576E20B410E6000CF8BF /* Release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "${IS_APP_ICON}";
