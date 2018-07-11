@@ -6,8 +6,8 @@
 //  Copyright © 2018 golos. All rights reserved.
 //
 
-import Foundation
 import GoloSwift
+import Foundation
 
 //reblogAuthorName:    postModel.reblogAuthorName,          String?
 //commentsAmount:      postModel.replies == nil ? "-" :"\(postModel.replies!.count)",   String

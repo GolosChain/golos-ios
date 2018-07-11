@@ -29,7 +29,7 @@ class UserProfileShowViewController: BaseViewController {
     var reloadData: Bool                =   false
     var paginanationData: Bool          =   false
     var segmentedControlIndex: Int      =   0
-    var cellIdentifies: [String]        =   [ "LentaCell", "ReplyTableViewCell" ]
+    var cellIdentifies: [String]        =   [ "FeedArticleTableViewCell", "ReplyTableViewCell" ]
     var lastUserProfileDetailsIndexes   =   Array(repeating: 0, count: 2)
     var topVisibleIndexPath             =   Array(repeating: IndexPath(row: 0, section: 0), count: 2)
 
@@ -60,6 +60,7 @@ class UserProfileShowViewController: BaseViewController {
             
             // Add cells from XIB
             tableView.register(UINib(nibName: "ReplyTableViewCell", bundle: nil), forCellReuseIdentifier: "ReplyTableViewCell")
+            tableView.register(UINib(nibName: "FeedArticleTableViewCell", bundle: nil), forCellReuseIdentifier: "FeedArticleTableViewCell")
         }
     }
     
@@ -469,10 +470,7 @@ extension UserProfileShowViewController: SWSegmentedControlDelegate {
     }
     
     func segmentedControl(_ control: SWSegmentedControl, canSelectItemAtIndex index: Int) -> Bool {
-//        guard !self.refreshData else {
-//            return false
-//        }
-        guard self.tableView.contentOffset == .zero else {
+        guard !self.refreshData || self.tableView.contentOffset == .zero else {
             return false
         }
         
@@ -524,9 +522,28 @@ extension UserProfileShowViewController: UITableViewDataSource {
 
         // Lenta (blog)
         default:
-            let lentaEntity             =   fetchedResultsController.object(at: indexPath) as! Lenta
-            cell.textLabel?.text        =   lentaEntity.body
-            cell.detailTextLabel?.text  =   "\(indexPath.row)"
+            let lentaEntity = fetchedResultsController.object(at: indexPath) as! Lenta
+
+            if let lentaCell = cell as? FeedArticleTableViewCell {
+                lentaCell.setup(withItem: lentaEntity, andIndexPath: indexPath)
+                
+                // Handlers comletion
+                lentaCell.handlerShareButtonTapped          =   { [weak self] in
+                    self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+                }
+
+                lentaCell.handlerExpandButtonTapped         =   { [weak self] in
+                    self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+                }
+
+                lentaCell.handlerUpvotesButtonTapped        =   { [weak self] in
+                    self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+                }
+
+                lentaCell.handlerCommentsButtonTapped       =   { [weak self] in
+                    self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+                }
+            }
         }
         
         return cell

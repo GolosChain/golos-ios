@@ -62,7 +62,7 @@ class ForegroundRemoteNotificationView: UIView {
     private func setupUI() {
         // UIImageView's
         let leftImage = SizeLayout<UIImageView>(width: 40.0 * widthRatio, height: 40.0 * widthRatio, config: { imageView in
-            imageView.image         =   UIImage(named: "icon-article-upvote")
+            imageView.image         =   UIImage(named: "icon-article-upvote-big")
             imageView.contentMode   =   .scaleAspectFill
         })
 

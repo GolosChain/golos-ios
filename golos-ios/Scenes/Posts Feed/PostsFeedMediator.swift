@@ -60,10 +60,9 @@ extension PostsFeedMediator: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell        =   tableView.dequeueReusableCell(withIdentifier: feedArticleTableViewCellIdentifier) as! FeedArticleTableViewCell
-        cell.delegate   =   self
         
-        let displayedModel = postsFeedPresenter.getDisplayedPost(byIndex: indexPath.row)
-        cell.configure(withDisplayedModel: displayedModel)
+//        let displayedModel = postsFeedPresenter.getDisplayedPost(byIndex: indexPath.row)
+//        cell.configure(withDisplayedModel: displayedModel)
         
         // Pagination
         if indexPath.row == postsFeedPresenter.getDisplayedPosts().count - Int(loadDataLimit / 2) {
@@ -116,36 +115,38 @@ extension PostsFeedMediator: UITableViewDelegate {
 }
 
 
-// MARK: FeedArticleTableViewCellDelegate
-extension PostsFeedMediator: FeedArticleTableViewCellDelegate {
-    func didPressCommentsButton(at cell: FeedArticleTableViewCell) {
-        guard let indexPath = tableView.indexPath(for: cell) else {return}
-        
-        delegate?.didPressComments(at: indexPath.row)
-    }
-    
-    func didPressUpvoteButton(at cell: FeedArticleTableViewCell) {
-        guard let indexPath = tableView.indexPath(for: cell) else {return}
-        
-        delegate?.didPressUpvote(at: indexPath.row)
-    }
-    
-    func didPressExpandButton(at cell: FeedArticleTableViewCell) {
-        guard let indexPath = tableView.indexPath(for: cell) else {return}
-        self.selectedIndex = indexPath
-        
-        delegate?.didPressExpand(at: indexPath.row)
-    }
-    
-    func didPressAuthor(at cell: FeedArticleTableViewCell) {
-        guard let indexPath = tableView.indexPath(for: cell) else {return}
-        
-        delegate?.didPressAuthor(at: indexPath.row)
-    }
-    
-    func didPressReblogAuthor(at cell: FeedArticleTableViewCell) {
-        guard let indexPath = tableView.indexPath(for: cell) else {return}
-        
-        delegate?.didPressReblogAuthor(at: indexPath.row)
-    }
-}
+// TODO: - ADD FeedArticleTableViewCell HANDLERS
+
+//// MARK: FeedArticleTableViewCellDelegate
+//extension PostsFeedMediator: FeedArticleTableViewCellDelegate {
+//    func didPressCommentsButton(at cell: FeedArticleTableViewCell) {
+//        guard let indexPath = tableView.indexPath(for: cell) else {return}
+//        
+//        delegate?.didPressComments(at: indexPath.row)
+//    }
+//    
+//    func didPressUpvoteButton(at cell: FeedArticleTableViewCell) {
+//        guard let indexPath = tableView.indexPath(for: cell) else {return}
+//        
+//        delegate?.didPressUpvote(at: indexPath.row)
+//    }
+//    
+//    func didPressExpandButton(at cell: FeedArticleTableViewCell) {
+//        guard let indexPath = tableView.indexPath(for: cell) else {return}
+//        self.selectedIndex = indexPath
+//        
+//        delegate?.didPressExpand(at: indexPath.row)
+//    }
+//    
+//    func didPressAuthor(at cell: FeedArticleTableViewCell) {
+//        guard let indexPath = tableView.indexPath(for: cell) else {return}
+//        
+//        delegate?.didPressAuthor(at: indexPath.row)
+//    }
+//    
+//    func didPressReblogAuthor(at cell: FeedArticleTableViewCell) {
+//        guard let indexPath = tableView.indexPath(for: cell) else {return}
+//        
+//        delegate?.didPressReblogAuthor(at: indexPath.row)
+//    }
+//}

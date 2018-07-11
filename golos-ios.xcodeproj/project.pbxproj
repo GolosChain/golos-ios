@@ -574,18 +574,18 @@
 		7D25B4BB201FAB83004A3400 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				7D25B4BC201FABB2004A3400 /* ArticleTitleTableViewCell.swift */,
-				7D25B4BD201FABB2004A3400 /* ArticleTitleTableViewCell.xib */,
-				7D25B4C0201FABBD004A3400 /* ArticleImageTableViewCell.swift */,
-				7D25B4C1201FABBD004A3400 /* ArticleImageTableViewCell.xib */,
-				7D25B4C4201FABCB004A3400 /* ArticleTextTableViewCell.swift */,
-				7D25B4C5201FABCB004A3400 /* ArticleTextTableViewCell.xib */,
-				7D25B4C8201FABD8004A3400 /* ArticleFooterTableViewCell.swift */,
-				7D25B4C9201FABD8004A3400 /* ArticleFooterTableViewCell.xib */,
-				7D1783DB201FD9B600B75979 /* ArticlePostedInTableViewCell.swift */,
-				7D1783DC201FD9B600B75979 /* ArticlePostedInTableViewCell.xib */,
 				7DCF74A520200AA700D46495 /* ArticleCommentTableViewCell.swift */,
 				7DCF74A620200AA700D46495 /* ArticleCommentTableViewCell.xib */,
+				7D25B4C8201FABD8004A3400 /* ArticleFooterTableViewCell.swift */,
+				7D25B4C9201FABD8004A3400 /* ArticleFooterTableViewCell.xib */,
+				7D25B4C0201FABBD004A3400 /* ArticleImageTableViewCell.swift */,
+				7D25B4C1201FABBD004A3400 /* ArticleImageTableViewCell.xib */,
+				7D1783DB201FD9B600B75979 /* ArticlePostedInTableViewCell.swift */,
+				7D1783DC201FD9B600B75979 /* ArticlePostedInTableViewCell.xib */,
+				7D25B4C4201FABCB004A3400 /* ArticleTextTableViewCell.swift */,
+				7D25B4C5201FABCB004A3400 /* ArticleTextTableViewCell.xib */,
+				7D25B4BC201FABB2004A3400 /* ArticleTitleTableViewCell.swift */,
+				7D25B4BD201FABB2004A3400 /* ArticleTitleTableViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
