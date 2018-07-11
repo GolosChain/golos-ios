@@ -32,4 +32,6 @@ extension Reply {
     @NSManaged public var activeVotesCount: Int16
     @NSManaged public var url: String?
 
+    @NSManaged public var commentator: User?
+
 }

@@ -12,7 +12,7 @@ import GoloSwift
 import Foundation
 
 @objc(Reply)
-public class Reply: NSManagedObject {
+public class Reply: NSManagedObject, LoadUserProtocol {
     // MARK: - Class Functions
     class func updateEntity(fromResponseAPI responseAPI: Decodable) {
         let replyModel      =   responseAPI as! ResponseAPIFeed
@@ -41,7 +41,18 @@ public class Reply: NSManagedObject {
         replyEntity!.activeVotesCount   =   Int16(replyModel.active_votes.count)
         replyEntity!.url                =   replyModel.url
 
-        // Extensions
-        replyEntity!.save()
+        // Use default LoadUserProtocol implementation
+        replyEntity!.loadUserInfo(byName: replyModel.author, completion: { user, errorAPI in
+            guard errorAPI == nil else {
+                Logger.log(message: errorAPI!.localizedDescription, event: .error)
+                replyEntity!.save()
+                return
+            }
+
+            replyEntity!.commentator    =   user!
+            
+            // Extensions
+            replyEntity!.save()
+        })
     }
 }

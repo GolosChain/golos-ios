@@ -68,6 +68,7 @@
         <attribute name="permlink" attributeType="String" syncable="YES"/>
         <attribute name="title" attributeType="String" syncable="YES"/>
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="commentator" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="replies" inverseEntity="User" syncable="YES"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
                 <constraint value="id"/>
@@ -91,6 +92,7 @@
         <relationship name="active" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserSecretActiveKey" inverseName="user" inverseEntity="UserSecretActiveKey" syncable="YES"/>
         <relationship name="owner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserSecretOwnerKey" inverseName="user" inverseEntity="UserSecretOwnerKey" syncable="YES"/>
         <relationship name="posting" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserSecretPostingKey" inverseName="user" inverseEntity="UserSecretPostingKey" syncable="YES"/>
+        <relationship name="replies" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Reply" inverseName="commentator" inverseEntity="Reply" syncable="YES"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
                 <constraint value="id"/>
@@ -137,8 +139,8 @@
         <element name="AppSettings" positionX="-459" positionY="-81" width="128" height="75"/>
         <element name="Lenta" positionX="-459" positionY="-81" width="128" height="255"/>
         <element name="Post" positionX="-459" positionY="-81" width="128" height="255"/>
-        <element name="Reply" positionX="-450" positionY="-72" width="128" height="255"/>
-        <element name="User" positionX="-666" positionY="-90" width="128" height="270"/>
+        <element name="Reply" positionX="-450" positionY="-72" width="128" height="270"/>
+        <element name="User" positionX="-666" positionY="-90" width="128" height="285"/>
         <element name="UserSecretActiveKey" positionX="-459" positionY="-81" width="128" height="120"/>
         <element name="UserSecretOwnerKey" positionX="-243" positionY="-234" width="128" height="120"/>
         <element name="UserSecretPostingKey" positionX="-45" positionY="63" width="128" height="120"/>

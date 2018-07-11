@@ -469,7 +469,10 @@ extension UserProfileShowViewController: SWSegmentedControlDelegate {
     }
     
     func segmentedControl(_ control: SWSegmentedControl, canSelectItemAtIndex index: Int) -> Bool {
-        guard !self.refreshData else {
+//        guard !self.refreshData else {
+//            return false
+//        }
+        guard self.tableView.contentOffset == .zero else {
             return false
         }
         

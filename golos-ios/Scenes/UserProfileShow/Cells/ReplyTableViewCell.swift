@@ -191,27 +191,18 @@ extension ReplyTableViewCell: ConfigureCell {
         self.timeLabel.text                 =   reply.created.convertToDaysAgo()
         self.authorLabel.text               =   reply.author
         self.replyTextLabel.text            =   reply.body
+        self.activeVotesCountLabel.text     =   String(format: "%i", reply.activeVotesCount)
 
         self.setReplyType(reply)
-
-        // Use default LoadUserProtocol implementation
-        self.loadUserInfo(byName: reply.author, completion: { [weak self] (user, errorAPI) in
-            guard errorAPI == nil else {
-                Logger.log(message: errorAPI!.localizedDescription, event: .error)
-                return
-            }
-            
-            self?.activeVotesCountLabel.text = String(format: "%i", reply.activeVotesCount)
-
-            // Load author profile image
-            if let userProfileImageURL = user?.profileImageURL {
-                userProfileImageURL.uploadImage(withSize: CGSize(width: 50.0 * widthRatio, height: 50.0 * widthRatio), completion: { [weak self] image in
-//                    DispatchQueue.main.async {
-                        self?.authorAvatarImageView.image = image
-//                    }
-                })
-            }
-        })
+        
+        // Load author profile image
+        if let userProfileImageURL = reply.commentator?.profileImageURL {
+            userProfileImageURL.uploadImage(withSize: CGSize(width: 50.0 * widthRatio, height: 50.0 * widthRatio), completion: { [weak self] image in
+                DispatchQueue.main.async {
+                    self?.authorAvatarImageView.image = image
+                }
+            })
+        }
         
         selectionStyle = .none
     }
