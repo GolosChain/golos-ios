@@ -25,7 +25,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="399" height="107.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="5dM-W2-WiW" userLabel="Author Avatar Image View">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-user-profile-image-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="5dM-W2-WiW" userLabel="Author Avatar Image View">
                         <rect key="frame" x="24" y="15" width="50" height="50.5"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -198,6 +198,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="image-placeholder" width="150" height="150"/>
+        <image name="icon-user-profile-image-placeholder" width="13" height="13"/>
     </resources>
 </document>

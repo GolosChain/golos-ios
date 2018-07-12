@@ -143,7 +143,16 @@ class ReplyTableViewCell: UITableViewCell, ReusableCell {
         _ = circleViewsCollection.map({ $0.layer.cornerRadius = $0.bounds.width / 2 })
     }
     
-
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        self.replyType                      =   .post
+        self.authorLabel.text               =   nil
+        self.reputationLabel.text           =   nil
+        self.authorAvatarImageView.image    =   UIImage(named: "icon-user-profile-image-placeholder")
+    }
+    
+    
     // MARK: - Custom Functions
     private func setup() {
         authorAvatarImageView.layer.masksToBounds = true
@@ -188,26 +197,26 @@ extension ReplyTableViewCell: ConfigureCell {
             return
         }
         
-        self.timeLabel.text                 =   reply.created.convertToDaysAgo()
-        self.authorLabel.text               =   reply.author
-        self.replyTextLabel.text            =   reply.body
-        
-        // Reputation -> Int
-        if let commentator = reply.commentator {
-            self.reputationLabel.text       =   String(format: "%i", commentator.reputation.convertWithLogarithm10())
+        // Get commentator info
+        if let userCommentator = User.fetch(byName: reply.author) {
+            self.authorLabel.text       =   userCommentator.name
+
+            // Reputation -> Int
+            self.reputationLabel.text   =   String(format: "%i", userCommentator.reputation.convertWithLogarithm10())
+
+            // Load author profile image
+            if let userProfileImageURL = userCommentator.profileImageURL {
+                userProfileImageURL.upload(avatarImage: true, size: CGSize(width: 50.0 * widthRatio, height: 50.0 * widthRatio), completion: { [weak self] image in
+                    self?.authorAvatarImageView.image = image
+                })
+            }
         }
+        
+        self.timeLabel.text             =   reply.created.convertToDaysAgo()
+        self.replyTextLabel.text        =   reply.body
+        
+        selectionStyle                  =   .none
 
         self.setReplyType(reply)
-        
-        // Load author profile image
-        if let userProfileImageURL = reply.commentator?.profileImageURL {
-            userProfileImageURL.uploadImage(withSize: CGSize(width: 50.0 * widthRatio, height: 50.0 * widthRatio), completion: { [weak self] image in
-                DispatchQueue.main.async {
-                    self?.authorAvatarImageView.image = image
-                }
-            })
-        }
-        
-        selectionStyle = .none
     }
 }

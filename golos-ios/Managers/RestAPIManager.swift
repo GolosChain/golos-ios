@@ -76,8 +76,9 @@ class RestAPIManager {
                                     })
                                     
                                     // Load authors info
-                                    
-                                    completion(nil)
+                                    loadUsersInfo(byNames: Array(Set(result.compactMap({ $0.author }))), completion: { errorAPI in
+                                        completion(errorAPI)
+                                    })
             },
                                  onError: { errorAPI in
                                     Logger.log(message: "nresponse API Error = \(errorAPI.caseInfo.message)\n", event: .error)

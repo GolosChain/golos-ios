@@ -41,18 +41,7 @@ public class Reply: NSManagedObject {
         replyEntity!.activeVotesCount   =   Int16(replyModel.active_votes.count)
         replyEntity!.url                =   replyModel.url
 
-        // Use default LoadUserProtocol implementation
-//        replyEntity!.loadUserInfo(byName: replyModel.author, completion: { user, errorAPI in
-//            guard errorAPI == nil else {
-//                Logger.log(message: errorAPI!.localizedDescription, event: .error)
-//                replyEntity!.save()
-//                return
-//            }
-//
-//            replyEntity!.commentator    =   user!
-//            
-//            // Extensions
-//            replyEntity!.save()
-//        })
+        // Extensions
+        replyEntity!.save()
     }
 }

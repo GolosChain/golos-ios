@@ -59,7 +59,12 @@ public class User: NSManagedObject {
         }
     }
     
-    
+    class func fetch(byName name: String) -> User? {
+        return CoreDataManager.instance.readEntity(withName:                        "User",
+                                                   andPredicateParameters:           NSPredicate(format: "name == %@", name)) as? User
+    }
+        
+
     // MARK: - Class Initialization
     deinit {
         Logger.log(message: "Success", event: .severe)

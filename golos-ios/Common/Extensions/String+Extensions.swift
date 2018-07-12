@@ -51,7 +51,7 @@ extension String {
         self = self.localized()
     }
     
-    func uploadImage(withSize size: CGSize, completion: @escaping (UIImage) -> Void) {
+    func upload(avatarImage: Bool, size: CGSize, completion: @escaping (UIImage) -> Void) {
         var imagePath: String = self
         
         // Add proxy
@@ -60,7 +60,7 @@ extension String {
         }
         
         GSImageLoader().startLoadImage(with: imagePath) { image in
-            completion(image ?? UIImage(named: "image-placeholder")!)
+            completion(image ?? UIImage(named: avatarImage ? "icon-user-profile-image-placeholder" : "image-placeholder")!)
         }
     }
 }

@@ -36,6 +36,5 @@ extension User {
     @NSManaged public var owner: UserSecretOwnerKey?
     @NSManaged public var active: UserSecretActiveKey?
     @NSManaged public var posting: UserSecretPostingKey?
-    @NSManaged public var replies: Reply?
 
 }
