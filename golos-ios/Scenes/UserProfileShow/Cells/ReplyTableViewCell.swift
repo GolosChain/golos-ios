@@ -39,13 +39,13 @@ class ReplyTableViewCell: UITableViewCell, ReusableCell {
     // MARK: - IBOutlets
     @IBOutlet weak var authorAvatarImageView: UIImageView!
     
-    @IBOutlet weak var activeVotesCountLabel: UILabel! {
+    @IBOutlet weak var reputationLabel: UILabel! {
         didSet {
-            activeVotesCountLabel.tune(withText: "",
-                                       hexColors:           whiteColorPickers,
-                                       font:                UIFont(name: "Roboto-Medium", size: 6.0 * widthRatio),
-                                       alignment:           .center,
-                                       isMultiLines:        false)
+            reputationLabel.tune(withText: "",
+                                 hexColors:           whiteColorPickers,
+                                 font:                UIFont(name: "Roboto-Medium", size: 6.0 * widthRatio),
+                                 alignment:           .center,
+                                 isMultiLines:        false)
         }
     }
     
@@ -191,7 +191,11 @@ extension ReplyTableViewCell: ConfigureCell {
         self.timeLabel.text                 =   reply.created.convertToDaysAgo()
         self.authorLabel.text               =   reply.author
         self.replyTextLabel.text            =   reply.body
-        self.activeVotesCountLabel.text     =   String(format: "%i", reply.activeVotesCount)
+        
+        // Reputation -> Int
+        if let commentator = reply.commentator {
+            self.reputationLabel.text       =   String(format: "%i", commentator.reputation.convertWithLogarithm10())
+        }
 
         self.setReplyType(reply)
         

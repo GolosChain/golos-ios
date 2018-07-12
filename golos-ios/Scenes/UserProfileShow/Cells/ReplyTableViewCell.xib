@@ -39,7 +39,7 @@
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oIT-Sh-GeD" userLabel="Amount Number View">
                                 <rect key="frame" x="1" y="1" width="13" height="13"/>
                                 <subviews>
-                                    <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t2H-N7-b5G" userLabel="Active Votes Count Label">
+                                    <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t2H-N7-b5G" userLabel="User Reputation Label">
                                         <rect key="frame" x="2" y="2" width="9" height="9"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="17"/>
@@ -169,13 +169,13 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="activeVotesCountLabel" destination="t2H-N7-b5G" id="yfc-an-m5s"/>
                 <outlet property="answerButton" destination="Bgm-nf-yUO" id="Y5s-vB-xeo"/>
                 <outlet property="authorAvatarImageView" destination="5dM-W2-WiW" id="glp-S4-H7T"/>
                 <outlet property="authorLabel" destination="Z1W-Iv-j6x" id="aQi-mr-94K"/>
                 <outlet property="authorTitleLabel" destination="xcp-yw-meJ" id="lR6-bF-4C1"/>
                 <outlet property="replyTextLabel" destination="Wbc-GS-MMR" id="myd-q7-MoH"/>
                 <outlet property="replyTypeButton" destination="VLM-nf-vOI" id="hSh-NI-1Ey"/>
+                <outlet property="reputationLabel" destination="t2H-N7-b5G" id="s2x-2l-fB7"/>
                 <outlet property="timeLabel" destination="TiI-Qb-jdB" id="y6L-oF-tyn"/>
                 <outletCollection property="widthCollection" destination="zrk-md-k2b" collectionClass="NSMutableArray" id="Jga-a8-lWm"/>
                 <outletCollection property="heightCollection" destination="SV9-7q-AEL" collectionClass="NSMutableArray" id="whw-sw-qlf"/>
