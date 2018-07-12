@@ -14,7 +14,7 @@ import UIKit
 import CoreData
 import GoloSwift
 
-typealias UserProfileDetailsParams    =   (type: Int, lastLentaPost: Lenta?, lastReplyPost: Reply?)
+typealias UserProfileDetailsParams    =   (type: PostsFeedType, lastLentaPost: Lenta?, lastReplyPost: Reply?)
 
 class UserProfileShowWorker {
     // MARK: - Class Initialization
@@ -29,7 +29,7 @@ class UserProfileShowWorker {
         
         switch parameters.type {
         // Replies
-        case 1:
+        case .reply:
             methodAPIType   =   MethodAPIType.getUserReplies(startAuthor:           User.current!.name,
                                                              startPermlink:         parameters.lastReplyPost?.permlink,
                                                              limit:                 loadDataLimit,

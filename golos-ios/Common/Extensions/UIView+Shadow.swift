@@ -24,7 +24,7 @@ extension UIView {
     }
 
     func display(withTopConstraint topConstraint: NSLayoutConstraint, height: CGFloat, isShow: Bool) {
-        guard (self.frame.minY < 0 && isShow) || (self.frame.minY >= 0 && !isShow) else {
+        guard (self.alpha == 0.0 && isShow) || (self.alpha == 1.0 && !isShow) else {
             return
         }
         

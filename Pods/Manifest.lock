@@ -1,0 +1,156 @@
+PODS:
+  - AlignedCollectionViewFlowLayout (1.1.2)
+  - BeyovaJSON (0.0.7)
+  - Crashlytics (3.10.5):
+    - Fabric (~> 1.7.9)
+  - CryptoSwift (0.10.0)
+  - Down (0.5.2)
+  - Fabric (1.7.9)
+  - Firebase/Core (5.0.1):
+    - Firebase/CoreOnly
+    - FirebaseAnalytics (= 5.0.0)
+  - Firebase/CoreOnly (5.0.1):
+    - FirebaseCore (= 5.0.1)
+  - Firebase/Messaging (5.0.1):
+    - Firebase/CoreOnly
+    - FirebaseMessaging (= 3.0.0)
+  - FirebaseAnalytics (5.0.0):
+    - FirebaseCore (~> 5.0)
+    - FirebaseInstanceID (~> 3.0)
+    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
+    - nanopb (~> 0.3)
+  - FirebaseCore (5.0.1):
+    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
+  - FirebaseInstanceID (3.0.0):
+    - FirebaseCore (~> 5.0)
+  - FirebaseMessaging (3.0.0):
+    - FirebaseCore (~> 5.0)
+    - FirebaseInstanceID (~> 3.0)
+    - GoogleToolboxForMac/Logger (~> 2.1)
+    - Protobuf (~> 3.1)
+  - GoloCrypto (1.0.6)
+  - GoloSwift (1.1.10):
+    - BeyovaJSON (~> 0.0)
+    - CryptoSwift
+    - GoloCrypto
+    - Localize-Swift (~> 2.0)
+    - Locksmith
+    - secp256k1.swift
+    - Starscream (~> 3.0)
+  - GoogleToolboxForMac/Defines (2.1.4)
+  - GoogleToolboxForMac/Logger (2.1.4):
+    - GoogleToolboxForMac/Defines (= 2.1.4)
+  - "GoogleToolboxForMac/NSData+zlib (2.1.4)":
+    - GoogleToolboxForMac/Defines (= 2.1.4)
+  - IQKeyboardManagerSwift (5.0.8)
+  - LayoutKit (7.0.3)
+  - Localize-Swift (2.0.0)
+  - Locksmith (4.0.0)
+  - MXParallaxHeader (0.6.1)
+  - nanopb (0.3.8):
+    - nanopb/decode (= 0.3.8)
+    - nanopb/encode (= 0.3.8)
+  - nanopb/decode (0.3.8)
+  - nanopb/encode (0.3.8)
+  - PINCache (2.3)
+  - Protobuf (3.5.0)
+  - secp256k1.swift (0.1.4)
+  - SnapKit (4.0.0)
+  - Starscream (3.0.5)
+  - SwiftLint (0.25.1)
+  - SwiftTheme (0.4.1)
+  - SWSegmentedControl (2.6.1)
+  - Tags (0.1.4)
+
+DEPENDENCIES:
+  - AlignedCollectionViewFlowLayout
+  - Crashlytics (~> 3.10)
+  - Down
+  - Fabric (~> 1.0)
+  - Firebase/Core
+  - Firebase/Messaging
+  - GoloSwift (from `https://github.com/GolosChain/GoloSwift.git`)
+  - IQKeyboardManagerSwift (~> 5.0)
+  - LayoutKit (~> 7.0)
+  - MXParallaxHeader (~> 0.6)
+  - PINCache
+  - SnapKit (~> 4.0)
+  - SwiftLint
+  - SwiftTheme
+  - SWSegmentedControl
+  - Tags
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - AlignedCollectionViewFlowLayout
+    - BeyovaJSON
+    - Crashlytics
+    - CryptoSwift
+    - Down
+    - Fabric
+    - Firebase
+    - FirebaseAnalytics
+    - FirebaseCore
+    - FirebaseInstanceID
+    - FirebaseMessaging
+    - GoloCrypto
+    - GoogleToolboxForMac
+    - IQKeyboardManagerSwift
+    - LayoutKit
+    - Localize-Swift
+    - Locksmith
+    - MXParallaxHeader
+    - nanopb
+    - PINCache
+    - Protobuf
+    - secp256k1.swift
+    - SnapKit
+    - Starscream
+    - SwiftLint
+    - SwiftTheme
+    - SWSegmentedControl
+    - Tags
+
+EXTERNAL SOURCES:
+  GoloSwift:
+    :git: https://github.com/GolosChain/GoloSwift.git
+
+CHECKOUT OPTIONS:
+  GoloSwift:
+    :commit: 642d7b332d76a8bcc22e386a5a1c2b113d0a3699
+    :git: https://github.com/GolosChain/GoloSwift.git
+
+SPEC CHECKSUMS:
+  AlignedCollectionViewFlowLayout: ee2ef451e741ec08f8e0967d828001e2f051c20a
+  BeyovaJSON: 085c9fa886fa0b13e2964cc8c6965fab5bc7f90f
+  Crashlytics: 7f2e38d302d9da96475b3d64d86fb29e31a542b7
+  CryptoSwift: 6c778d69282bed3b4e975ff97a79d074f20bb011
+  Down: 587371ad58002b06023d9c602519216862c3acbc
+  Fabric: a2917d3895e4c1569b9c3170de7320ea1b1e6661
+  Firebase: d6861c2059d8c32d1e6dd8932e22ada346d90a3a
+  FirebaseAnalytics: 19812b49fa5f283dd6b23edf8a14b5d477029ab8
+  FirebaseCore: cafc814b2d84fc8733f09e653041cc2165332ad7
+  FirebaseInstanceID: 83e0040351565df711a5db3d8ebe5ea21aca998a
+  FirebaseMessaging: f2360a966ecfb0d14facf0fbdf306efc2df0ddbe
+  GoloCrypto: 3f60e824b57ca657be702fb2cf4bd1f7a379257a
+  GoloSwift: 0619c6a7232e27520ff4e1c3f60a60c5b23527be
+  GoogleToolboxForMac: 91c824d21e85b31c2aae9bb011c5027c9b4e738f
+  IQKeyboardManagerSwift: 2e7dc7f98c111458c1ea2b373f893e8cf95e2b97
+  LayoutKit: 5116e931d7ec963c3d5d2bf8b87040068a31b461
+  Localize-Swift: c798ec9286494866f7068f85f7c71283ac5bdab4
+  Locksmith: e9bebbaaa4cee3c511bc358a44f843c3fe00e21f
+  MXParallaxHeader: 858c403532ed933b381556a81ce333d7065ad182
+  nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
+  PINCache: ce36ed282031b92fc7733ffe831f474ff80fddc2
+  Protobuf: 8a9838fba8dae3389230e1b7f8c104aa32389c03
+  secp256k1.swift: a7e7a214f6db6ce5db32cc6b2b45e5c4dd633634
+  SnapKit: a42d492c16e80209130a3379f73596c3454b7694
+  Starscream: faf918b2f2eff7d5dd21180646bf015a669673bd
+  SwiftLint: ce933681be10c3266e82576dad676fa815a602e9
+  SwiftTheme: 36d71c4eed4b2c401c782cf036e4586c749a8173
+  SWSegmentedControl: 5770c91bb4b438be300371221e38f4af5100bba2
+  Tags: b18378f79d8b30c40d4b7ae4d5edfc478434d858
+
+PODFILE CHECKSUM: c2235ed95115319566876b920032fa6832280736
+
+COCOAPODS: 1.5.3

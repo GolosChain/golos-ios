@@ -1,0 +1,6 @@
+framework module BeyovaJSON {
+  umbrella header "BeyovaJSON-umbrella.h"
+
+  export *
+  module * { export * }
+}

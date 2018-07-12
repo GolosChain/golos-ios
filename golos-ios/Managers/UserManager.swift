@@ -25,7 +25,7 @@ class UserManager {
     func loadUsers(byNames names: [String], completion: @escaping (_ displayedUsers: [DisplayedUser]?, _ errorAPI: ErrorAPI?) -> Void) {
         if isNetworkAvailable {
             // Create MethodAPIType
-            let methodAPIType = MethodAPIType.getAccounts(names: RequestParameterAPI.User(names: names))
+            let methodAPIType = MethodAPIType.getAccounts(names: names)
             
             broadcast.executeGET(byMethodAPIType: methodAPIType,
                                  onResult: { responseAPIResult in

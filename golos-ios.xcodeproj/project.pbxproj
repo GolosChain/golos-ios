@@ -75,6 +75,7 @@
 		B1050CA520CECF75003CE4EE /* PostCreateInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1050C9F20CECF75003CE4EE /* PostCreateInteractor.swift */; };
 		B1050CBF20CECFBE003CE4EE /* PostCreate.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1050CBE20CECFBE003CE4EE /* PostCreate.storyboard */; };
 		B1050CDF20CEE89C003CE4EE /* UINavigationController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1050CDE20CEE89C003CE4EE /* UINavigationController+Extensions.swift */; };
+		B10F487E20F793DE00F2BCAC /* RestAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10F487D20F793DE00F2BCAC /* RestAPIManager.swift */; };
 		B111322420CD51EA00BC7F33 /* PostingKeyShowRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B111321E20CD51EA00BC7F33 /* PostingKeyShowRouter.swift */; };
 		B111322620CD51EA00BC7F33 /* PostingKeyShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B111322020CD51EA00BC7F33 /* PostingKeyShowViewController.swift */; };
 		B114192820CD1E260025B07F /* ReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B114192720CD1E260025B07F /* ReachabilityManager.swift */; };
@@ -335,6 +336,7 @@
 		B1050C9F20CECF75003CE4EE /* PostCreateInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCreateInteractor.swift; sourceTree = "<group>"; };
 		B1050CBE20CECFBE003CE4EE /* PostCreate.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PostCreate.storyboard; sourceTree = "<group>"; };
 		B1050CDE20CEE89C003CE4EE /* UINavigationController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Extensions.swift"; sourceTree = "<group>"; };
+		B10F487D20F793DE00F2BCAC /* RestAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestAPIManager.swift; sourceTree = "<group>"; };
 		B111321E20CD51EA00BC7F33 /* PostingKeyShowRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingKeyShowRouter.swift; sourceTree = "<group>"; };
 		B111322020CD51EA00BC7F33 /* PostingKeyShowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingKeyShowViewController.swift; sourceTree = "<group>"; };
 		B114192720CD1E260025B07F /* ReachabilityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityManager.swift; sourceTree = "<group>"; };
@@ -1030,6 +1032,7 @@
 				B1F6A36D20C130780096C393 /* Parser.swift */,
 				7D911D1C2035ED0200F19D3C /* PostsFeedManager.swift */,
 				B114192720CD1E260025B07F /* ReachabilityManager.swift */,
+				B10F487D20F793DE00F2BCAC /* RestAPIManager.swift */,
 				7D95CFA9203A53E500C1AE0A /* UserManager.swift */,
 				7D95CFA1203A118D00C1AE0A /* GSImageLoader */,
 				7DFE7C4720464C110057F144 /* PostsManager */,
@@ -1516,7 +1519,6 @@
 				"${BUILT_PRODUCTS_DIR}/Localize-Swift/Localize_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/Locksmith/Locksmith.framework",
 				"${BUILT_PRODUCTS_DIR}/MXParallaxHeader/MXParallaxHeader.framework",
-				"${BUILT_PRODUCTS_DIR}/MathOperation/MathOperation.framework",
 				"${BUILT_PRODUCTS_DIR}/PINCache/PINCache.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/SWSegmentedControl/SWSegmentedControl.framework",
@@ -1541,7 +1543,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Localize_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Locksmith.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MXParallaxHeader.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MathOperation.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINCache.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SWSegmentedControl.framework",
@@ -1700,6 +1701,7 @@
 				7D911D1A2035DE5D00F19D3C /* String+Extensions.swift in Sources */,
 				7D95CFA5203A119B00C1AE0A /* GSImageLoader.swift in Sources */,
 				EC9B2AE6201550F4008335C8 /* FeedArticleTableViewCell.swift in Sources */,
+				B10F487E20F793DE00F2BCAC /* RestAPIManager.swift in Sources */,
 				7DA0632C203315A300B5630C /* PassthroughView.swift in Sources */,
 				7DFE7C44204639390057F144 /* ReplyManager.swift in Sources */,
 				EC24FF84200C635600A0AE15 /* DropDownMediator.swift in Sources */,

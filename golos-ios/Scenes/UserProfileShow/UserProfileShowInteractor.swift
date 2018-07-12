@@ -54,102 +54,20 @@ class UserProfileShowInteractor: UserProfileShowBusinessLogic, UserProfileShowDa
     }
     
     func loadUserInfo(withRequestModel requestModel: UserProfileShowModels.UserInfo.RequestModel) {
-        worker = UserProfileShowWorker()
-
-        // API 'get_accounts'
-        if isNetworkAvailable {
-            // Create MethodAPIType
-            let names           =   User.current!.name
-            let methodAPIType   =   MethodAPIType.getAccounts(names: RequestParameterAPI.User(names: [names]))
-            
-            broadcast.executeGET(byMethodAPIType: methodAPIType,
-                                 onResult: { [weak self] responseAPIResult in
-                                    Logger.log(message: "\nresponse API Result = \(responseAPIResult)\n", event: .debug)
-                                    
-                                    guard let userResult = (responseAPIResult as! ResponseAPIUserResult).result, userResult.count > 0 else {
-                                        // Send empty User info
-                                        let userInfoResponseModel = UserProfileShowModels.UserInfo.ResponseModel(error: nil)
-                                        self?.presenter?.presentUserInfo(fromResponseModel: userInfoResponseModel)
-                                        
-                                        return
-                                    }
-                                    
-                                    // CoreData: Update User entity
-                                    if let userResponseAPI = userResult.first {
-                                        let userEntity              =   User.instance(byUserID: userResponseAPI.id)
-                                        userEntity.isAuthorized     =   true
-                                        userEntity.updateEntity(fromResponseAPI: userResponseAPI)
-                                    }
-                                    
-                                    // Send User info
-                                    let userInfoResponseModel = UserProfileShowModels.UserInfo.ResponseModel(error: nil)
-                                    self?.presenter?.presentUserInfo(fromResponseModel: userInfoResponseModel)
-                },
-                                 onError: { [weak self] errorAPI in
-                                    Logger.log(message: "nresponse API Error = \(errorAPI.caseInfo.message)\n", event: .error)
-                                    
-                                    // Send error
-                                    let userInfoResponseModel = UserProfileShowModels.UserInfo.ResponseModel(error: errorAPI)
-                                    self?.presenter?.presentUserInfo(fromResponseModel: userInfoResponseModel)
-            })
-        }
-        
-        // Offline mode
-        else {
-            // Send User info
-            let userInfoResponseModel = UserProfileShowModels.UserInfo.ResponseModel(error: nil)
-            self.presenter?.presentUserInfo(fromResponseModel: userInfoResponseModel)
-        }
+        RestAPIManager.loadUsersInfo(byNames: [User.current!.name], completion: { [weak self] errorAPI in
+            let userInfoResponseModel = UserProfileShowModels.UserInfo.ResponseModel(error: errorAPI)
+            self?.presenter?.presentUserInfo(fromResponseModel: userInfoResponseModel)
+        })
     }
     
     func loadUserDetails(withRequestModel requestModel: UserProfileShowModels.UserDetails.RequestModel) {
-        // API 'get_discussions_by_blog' & 'get_replies_by_last_update'
-        if isNetworkAvailable {
-            if let methodAPIType = worker?.prepareRequestMethod((type: requestModel.selectedControlIndex, lastLentaPost: lastLenta, lastReplyPost: lastReply)) {
-                broadcast.executeGET(byMethodAPIType: methodAPIType,
-                                     onResult: { [weak self] responseAPIResult in
-                                        Logger.log(message: "\nresponse API Result = \(responseAPIResult)\n", event: .debug)
-                                        
-                                        guard let result = (responseAPIResult as! ResponseAPIFeedResult).result, result.count > 0 else {
-                                            // Send User details
-                                            let userDetailsBlogsResponseModel = UserProfileShowModels.UserDetails.ResponseModel(error: nil)
-                                            self?.presenter?.presentUserDetails(fromResponseModel: userDetailsBlogsResponseModel)
-                                            
-                                            return
-                                        }
-                                        
-                                        // CoreData: Update Post entity
-                                        _ = result.map({ responseAPIFeed in
-                                            switch requestModel.selectedControlIndex {
-                                            // Reply
-                                            case 1:
-                                                Reply.updateEntity(fromResponseAPI: responseAPIFeed)
+        worker = UserProfileShowWorker()
 
-                                            // Lenta (blogs)
-                                            default:
-                                                Lenta.updateEntity(fromResponseAPI: responseAPIFeed)
-                                            }
-                                        })
-                                        
-                                        // Send User details
-                                        let userDetailsResponseModel = UserProfileShowModels.UserDetails.ResponseModel(error: nil)
-                                        self?.presenter?.presentUserDetails(fromResponseModel: userDetailsResponseModel)
-                    },
-                                     onError: { [weak self] errorAPI in
-                                        Logger.log(message: "nresponse API Error = \(errorAPI.caseInfo.message)\n", event: .error)
-                                        
-                                        // Send error
-                                        let userDetailsBlogsResponseModel = UserProfileShowModels.UserDetails.ResponseModel(error: errorAPI)
-                                        self?.presenter?.presentUserDetails(fromResponseModel: userDetailsBlogsResponseModel)
-                })
-            }
-        }
-        
-        // Offline mode
-        else {
-            // Send User details
-            let userDetailsBlogsResponseModel = UserProfileShowModels.UserDetails.ResponseModel(error: nil)
-            self.presenter?.presentUserDetails(fromResponseModel: userDetailsBlogsResponseModel)
+        if let methodAPIType = worker?.prepareRequestMethod((type: requestModel.postFeedType, lastLentaPost: lastLenta, lastReplyPost: lastReply)) {
+            RestAPIManager.loadPostsFeed(byMethodAPIType: methodAPIType, andPostFeedType: requestModel.postFeedType, completion: { [weak self] errorAPI in
+                let userDetailsResponseModel = UserProfileShowModels.UserDetails.ResponseModel(error: errorAPI)
+                self?.presenter?.presentUserDetails(fromResponseModel: userDetailsResponseModel)
+            })
         }
     }
 }

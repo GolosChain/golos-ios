@@ -32,7 +32,7 @@ enum UserProfileShowModels {
 
     enum UserDetails {
         struct RequestModel {
-            let selectedControlIndex: Int
+            let postFeedType: PostsFeedType
         }
         
         struct ResponseModel {

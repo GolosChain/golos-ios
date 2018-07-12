@@ -32,22 +32,22 @@ class LogInShowInteractor: LogInShowBusinessLogic {
     // MARK: - Business logic implementation
     func authorizeUser(withRequestModel requestModel: LogInShowModels.Parameters.RequestModel) {
         // AP 'get_accounts'
-        UserManager().loadUsers(byNames: [requestModel.userName], completion: { [weak self] (displayedUsers, errorAPI) in
-            var success     =   false
+        RestAPIManager.loadUsersInfo(byNames: [requestModel.userName], completion: { [weak self] errorAPI in
+            var success: Bool   =   false
             
             // Prepare & Display user info
-            if let user = displayedUsers?.first, errorAPI == nil {
+            if errorAPI == nil {
                 let privateKey  =   PrivateKey.init(requestModel.wif)
                 let publicKey   =   privateKey!.createPublic(prefix: .mainNet)
                 
                 switch requestModel.wifType {
                 // Posting key
                 case 1:
-                    success     =   (user.postingKey?.contains(publicKey.address))!
+                    success     =   (User.current?.posting?.key_auths?.first?.first?.contains(publicKey.address))!
                     
                 // Active key
                 case 2:
-                    success     =   (user.activeKey?.contains(publicKey.address))!
+                    success     =   (User.current?.active?.key_auths?.first?.first?.contains(publicKey.address))!
                     
                 default:
                     break

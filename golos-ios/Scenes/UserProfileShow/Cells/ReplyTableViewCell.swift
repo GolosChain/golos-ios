@@ -211,7 +211,3 @@ extension ReplyTableViewCell: ConfigureCell {
         selectionStyle = .none
     }
 }
-
-
-// MARK: - Use default LoadUserProtocol implementation
-extension ReplyTableViewCell: LoadUserProtocol {}

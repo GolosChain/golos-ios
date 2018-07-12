@@ -1,0 +1,6 @@
+framework module GoloSwift {
+  umbrella header "GoloSwift-umbrella.h"
+
+  export *
+  module * { export * }
+}

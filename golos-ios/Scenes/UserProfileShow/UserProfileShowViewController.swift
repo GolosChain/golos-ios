@@ -30,6 +30,7 @@ class UserProfileShowViewController: BaseViewController {
     var paginanationData: Bool          =   false
     var segmentedControlIndex: Int      =   0
     var cellIdentifies: [String]        =   [ "FeedArticleTableViewCell", "ReplyTableViewCell" ]
+    let postFeedTypes: [PostsFeedType]  =   [ .lenta, .reply ]
     var lastUserProfileDetailsIndexes   =   Array(repeating: 0, count: 2)
     var topVisibleIndexPath             =   Array(repeating: IndexPath(row: 0, section: 0), count: 2)
 
@@ -292,7 +293,7 @@ extension UserProfileShowViewController {
     
     // Blogs
     private func loadUserDetails() {
-        let userDetailsRequestModel = UserProfileShowModels.UserDetails.RequestModel(selectedControlIndex: segmentedControlIndex)
+        let userDetailsRequestModel = UserProfileShowModels.UserDetails.RequestModel(postFeedType: postFeedTypes[segmentedControlIndex])
         interactor?.loadUserDetails(withRequestModel: userDetailsRequestModel)
     }
 }

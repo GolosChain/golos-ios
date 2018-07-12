@@ -34,8 +34,6 @@ target 'Golos' do
     pod 'MXParallaxHeader', '~> 0.6'
     pod 'AlignedCollectionViewFlowLayout'
 
-    pod 'MathOperation'
-
 # Pods for golos-ios
 #    pod 'GoloSwift', '~> 1.1'
     pod 'GoloSwift', :git => "https://github.com/GolosChain/GoloSwift.git"
