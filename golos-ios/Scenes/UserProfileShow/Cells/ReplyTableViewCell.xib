@@ -198,6 +198,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="icon-user-profile-image-placeholder" width="13" height="13"/>
+        <image name="icon-user-profile-image-placeholder" width="40" height="40"/>
     </resources>
 </document>

@@ -107,6 +107,13 @@ import GoloSwift
 import Accelerate
 
 public extension UIImage {
+    public func isEqualTo(image: UIImage) -> Bool {
+        let data1: NSData   =   UIImagePNGRepresentation(self)! as NSData
+        let data2: NSData   =   UIImagePNGRepresentation(image)! as NSData
+        
+        return data1.isEqual(data2)
+    }
+
     public func applyLightEffect() -> UIImage? {
         return applyBlurWithRadius(30, tintColor: UIColor(white: 1.0, alpha: 0.3), saturationDeltaFactor: 1.8)
     }

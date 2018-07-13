@@ -31,5 +31,7 @@ extension Reply {
     @NSManaged public var jsonMetadata: String?
     @NSManaged public var activeVotesCount: Int16
     @NSManaged public var url: String?
+    @NSManaged public var tags: [String]?
+    @NSManaged public var coverImageURL: String?
 
 }

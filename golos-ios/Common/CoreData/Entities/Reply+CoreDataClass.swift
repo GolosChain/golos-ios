@@ -41,6 +41,17 @@ public class Reply: NSManagedObject {
         replyEntity!.activeVotesCount   =   Int16(replyModel.active_votes.count)
         replyEntity!.url                =   replyModel.url
 
+        if let jsonMetaData = replyModel.json_metadata, let jsonData = jsonMetaData.data(using: .utf8) {
+            do {
+                if let json = try JSONSerialization.jsonObject(with: jsonData, options: .allowFragments) as? [String: Any] {
+                    replyEntity!.tags           =   json["tags"] as? [String]
+                    replyEntity!.coverImageURL  =   (json["image"] as? [String])?.first
+                }
+            } catch {
+                Logger.log(message: "JSON serialization error", event: .error)
+            }
+        }
+        
         // Extensions
         replyEntity!.save()
     }

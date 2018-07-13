@@ -41,6 +41,17 @@ public class Lenta: NSManagedObject {
         lentaEntity!.activeVotesCount   =   Int16(lentaModel.active_votes.count)
         lentaEntity!.url                =   lentaModel.url
 
+        if let jsonMetaData = lentaModel.json_metadata, let jsonData = jsonMetaData.data(using: .utf8) {
+            do {
+                if let json = try JSONSerialization.jsonObject(with: jsonData, options: .allowFragments) as? [String: Any] {
+                    lentaEntity!.tags           =   json["tags"] as? [String]
+                    lentaEntity!.coverImageURL  =   (json["image"] as? [String])?.first
+                }
+            } catch {
+                Logger.log(message: "JSON serialization error", event: .error)
+            }
+        }
+
         // Extensions
         lentaEntity!.save()
     }

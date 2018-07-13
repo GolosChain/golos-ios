@@ -57,7 +57,7 @@ class UserProfileShowViewController: BaseViewController {
             
             // Set automatic dimensions for row height
             tableView.rowHeight             =   UITableViewAutomaticDimension
-            tableView.estimatedRowHeight    =   UITableViewAutomaticDimension
+            tableView.estimatedRowHeight    =   320.0 * heightRatio
             
             // Add cells from XIB
             tableView.register(UINib(nibName: "ReplyTableViewCell", bundle: nil), forCellReuseIdentifier: "ReplyTableViewCell")
@@ -560,6 +560,10 @@ extension UserProfileShowViewController: UITableViewDataSource {
 
 // MARK: - UITableViewDelegate
 extension UserProfileShowViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let lastIndex           =   tableView.numberOfRows(inSection: indexPath.section) - 1
         let lastElement         =   fetchedResultsController.sections![indexPath.section].objects![lastIndex]

@@ -97,15 +97,17 @@ class FeedArticleTableViewCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         
-        self.pictureURL             =   ""
-        self.authorPictureURL       =   ""
+        self.pictureURL                                         =   ""
+        self.authorPictureURL                                   =   ""
+        self.articleHeaderView.authorProfileImageView.image     =   UIImage(named: "icon-user-profile-image-placeholder")
         
-        let avatarPlaceholderImage                          =   UIImage(named: "image-placeholder")
-        articleHeaderView.authorProfileImageView.image      =   avatarPlaceholderImage
-        
-        self.postImageView.image                            =   nil
-        self.titleLabelTopConstraint.constant               =   0
-        self.postImageViewTopConstraint.constant            =   0
+        self.titleLabel.alpha                                   =   1.0
+        self.titleLabel.text                                    =   nil
+//        self.titleLabelTopConstraint.constant                   =   -40.0 * heightRatio
+
+        self.postImageView.alpha                                =   1.0
+        self.postImageView.image                                =   nil
+//        self.postImageViewTopConstraint.constant                =   -180 * heightRatio
     }
     
     override func layoutSubviews() {
@@ -142,10 +144,6 @@ class FeedArticleTableViewCell: UITableViewCell {
     class var reuseIdentifier: String? {
         return String(describing: self)
     }
-    
-//    static func height(withImage: Bool) -> CGFloat {
-//        return (withImage ? 427.0 : 427.0 - 212.0) * heightRatio
-//    }
 }
 
 
@@ -156,27 +154,56 @@ extension FeedArticleTableViewCell: ConfigureCell {
             return
         }
         
-        // Hide/show title
-        if lenta.title.isEmpty {
-            self.titleLabel.display(withTopConstraint: self.titleLabelTopConstraint, height: self.titleLabel.frame.height, isShow: false)
+        // Get user info
+        if let user = User.fetch(byName: lenta.author) {
+            self.articleHeaderView.authorLabel.text             =   user.name
+            
+            // Reputation -> Int
+            self.articleHeaderView.authorReputationLabel.text   =   String(format: "%i", user.reputation.convertWithLogarithm10())
+            
+            // Load author profile image
+            if let userProfileImageURL = user.profileImageURL {
+                userProfileImageURL.upload(avatarImage: true, size: CGSize(width: 30.0 * widthRatio, height: 30.0 * widthRatio), tags: nil, completion: { [weak self] image in
+                    self?.articleHeaderView.authorProfileImageView.image = image
+                })
+            }
+        }
+        
+        // Load post cover image
+        if let coverImageURL = lenta.coverImageURL {
+            coverImageURL.upload(avatarImage: true, size: CGSize(width: UIScreen.main.bounds.width, height: 180.0 * heightRatio), tags: lenta.tags, completion: { [weak self] image in
+                self?.postImageView.image = image
+                
+                // Hide/show post image
+                self?.postImageView.display(withTopConstraint:      (self?.postImageViewTopConstraint)!,
+                                            height:                 (self?.postImageView.frame.height)!,
+                                            isShow:                 !image.isEqualTo(image: UIImage(named: "image-placeholder")!))
+            })
         }
         
         else {
-            self.titleLabel.text                    =   lenta.title
+            // Hide post image
+            self.postImageView.display(withTopConstraint:      self.postImageViewTopConstraint,
+                                       height:                 self.postImageView.frame.height,
+                                       isShow:                 false)
         }
+
+        // Hide/show title
+        self.titleLabel.text                        =   lenta.title
+        self.titleLabel.display(withTopConstraint: self.titleLabelTopConstraint, height: self.titleLabel.frame.height, isShow: lenta.title.isEmpty)
         
         self.articleHeaderView.authorLabel.text     =   lenta.author
         self.articleHeaderView.categoryLabel.text   =   lenta.category
-//        articleHeaderView.reblogAuthorLabel.text    =   displayedPost.reblogAuthorName
         self.upvotesButton.isEnabled                =   lenta.allowVotes
         self.commentsButton.isEnabled               =   lenta.allowReplies
 
-//        commentsButton.setTitle(lenta.commentsAmount, for: .normal)
+        selectionStyle                              =   .none
 
+        self.layoutIfNeeded()
         
-        // Hide/show post image
-//        self.postImageView.display(withTopConstraint: self.postImageViewTopConstraint, height: self.postImageView.frame.height, isShow: false)
         
+//        commentsButton.setTitle(lenta.commentsAmount, for: .normal)
+//        articleHeaderView.reblogAuthorLabel.text    =   displayedPost.reblogAuthorName
         
         // TODO: - PRECISE
         
@@ -191,74 +218,6 @@ extension FeedArticleTableViewCell: ConfigureCell {
         //            articleHeaderView.reblogIconImageView.isHidden  =   true
         //        }
         
-//        guard let tags = lenta.tags else { return }
-//        
-//        let isNsfw = tags.map({ $0.lowercased() }).contains("nsfw")
-//        
-//        // Images: set height
-//        let imageHeight: CGFloat            =   ((lenta.imagePictureURL != nil || isNsfw) ? 212.0 : 0.0) * heightRatio
-//        imageViewHeightConstraint.constant  =   imageHeight
-//        contentView.layoutIfNeeded()
-//        
-//        // Images: upload
-//        if isNsfw {
-//            let nsfwImage                   =   UIImage(named: "nsfw")
-//            self.postImageView.image        =   nsfwImage
-//        }
-//            
-//        else if let imageURL = lenta.imagePictureURL {
-//            if self.pictureURL == imageURL && postImageView.image != nil {
-//                return
-//            }
-//            
-//            // Add proxy
-//            if imageURL.hasPrefix("https://images.golos.io") {
-//                self.pictureURL     =   imageURL
-//            }
-//                
-//            else {
-//                self.pictureURL     =   "https://imgp.golos.io" + String(format: "/%dx%d/", self.postImageView.frame.width, self.postImageView.frame.height) + imageURL
-//            }
-//            
-//            imageLoader.startLoadImage(with: self.pictureURL) { (image) in
-//                DispatchQueue.main.async {
-//                    self.postImageView.image = image ?? UIImage(named: "XXX")
-//                }
-//            }
-//        }
         
-//        if let authorPictureURL = lenta.authorAvatarURL {
-//            if self.authorPictureURL == authorPictureURL && articleHeaderView.authorProfileImageView.image != nil {
-//                return
-//            }
-//
-//            self.authorPictureURL = authorPictureURL
-              self.articleHeaderView.authorReputationLabel.text = "234"
-        
-//            imageLoader.startLoadImage(with: authorPictureURL) { (image) in
-//                DispatchQueue.main.async {
-//                    if let image = image, authorPictureURL == self.authorPictureURL {
-//                        self.articleHeaderView.authorProfileImageView.image = image
-//                    }
-//                }
-//            }
-//        }
-//
-//        else {
-//            let avatarPlaceholderImage                      =   UIImage(named: "icon-user-profile-image-placeholder")
-//            articleHeaderView.authorProfileImageView.image  =   avatarPlaceholderImage
-//        }
-        
-        
-        // Load author profile image
-//        if let userProfileImageURL = reply.commentator?.profileImageURL {
-//            userProfileImageURL.uploadImage(withSize: CGSize(width: 50.0 * widthRatio, height: 50.0 * widthRatio), completion: { [weak self] image in
-//                DispatchQueue.main.async {
-//                    self?.authorAvatarImageView.image = image
-//                }
-//            })
-//        }
-        
-        selectionStyle = .none
     }
 }
