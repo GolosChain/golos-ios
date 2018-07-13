@@ -84,39 +84,45 @@ public class User: NSManagedObject {
     }
 
     func updateEntity(fromResponseAPI responseAPI: Decodable) {
-        let userModel           =   responseAPI as! ResponseAPIUser
-        
-        self.id                 =   userModel.id
-        self.name               =   userModel.name
-        self.postsCount         =   userModel.post_count
-        self.json_metadata      =   userModel.json_metadata
-        self.memoKey            =   userModel.memo_key
-        self.vestingShares      =   userModel.vesting_shares
-        self.reputation         =   userModel.reputation.stringValue!
-        self.canVote            =   userModel.can_vote
-        self.commentCount       =   userModel.comment_count
-        self.created            =   userModel.created
-        
-        // UserSecretPostingKey
-        let userSecretKeyPostingEntity  =   UserSecretPostingKey.instance(byUserID: userModel.id)
-        userSecretKeyPostingEntity.updateEntity(fromResponseAPI: userModel.posting)
-        self.posting                    =   userSecretKeyPostingEntity
-        
-        // UserSecretOwnerKey
-        let userSecretKeyOwnerEntity    =   UserSecretOwnerKey.instance(byUserID: userModel.id)
-        userSecretKeyOwnerEntity.updateEntity(fromResponseAPI: userModel.owner)
-        self.owner                      =   userSecretKeyOwnerEntity
-        
-        // UserSecretActiveKey
-        let userSecretKeyActiveEntity   =   UserSecretActiveKey.instance(byUserID: userModel.id)
-        userSecretKeyActiveEntity.updateEntity(fromResponseAPI: userModel.owner)
-        self.active                     =   userSecretKeyActiveEntity
-        
-        // Parse 'json_metadata'
-        if let metaData = userModel.json_metadata {
-            self.parse(metaData: metaData)
+        if let userModel = responseAPI as? ResponseAPIUser {
+            self.id             =   userModel.id
+            self.name           =   userModel.name
+            self.postsCount     =   userModel.post_count
+            self.json_metadata  =   userModel.json_metadata
+            self.memoKey        =   userModel.memo_key
+            self.vestingShares  =   userModel.vesting_shares
+            self.reputation     =   userModel.reputation.stringValue!
+            self.canVote        =   userModel.can_vote
+            self.commentCount   =   userModel.comment_count
+            self.created        =   userModel.created
+            
+            // UserSecretPostingKey
+            let userSecretKeyPostingEntity  =   UserSecretPostingKey.instance(byUserID: userModel.id)
+            userSecretKeyPostingEntity.updateEntity(fromResponseAPI: userModel.posting)
+            self.posting                    =   userSecretKeyPostingEntity
+            
+            // UserSecretOwnerKey
+            let userSecretKeyOwnerEntity    =   UserSecretOwnerKey.instance(byUserID: userModel.id)
+            userSecretKeyOwnerEntity.updateEntity(fromResponseAPI: userModel.owner)
+            self.owner                      =   userSecretKeyOwnerEntity
+            
+            // UserSecretActiveKey
+            let userSecretKeyActiveEntity   =   UserSecretActiveKey.instance(byUserID: userModel.id)
+            userSecretKeyActiveEntity.updateEntity(fromResponseAPI: userModel.owner)
+            self.active                     =   userSecretKeyActiveEntity
+            
+            // Parse 'json_metadata'
+            if let metaData = userModel.json_metadata {
+                self.parse(metaData: metaData)
+            }
         }
-
+        
+        if let userFollowModel = responseAPI as? ResponseAPIUserFollowCounts {
+            self.followerCount      =   userFollowModel.follower_count
+            self.followingCount     =   userFollowModel.following_count
+            self.followingLimit     =   userFollowModel.limit
+        }
+        
         // Extensions
         self.save()
     }

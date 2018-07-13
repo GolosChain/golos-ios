@@ -369,3 +369,24 @@ public struct ResponseAPIAllContentReply: Decodable {
      */
     // swiftlint:enable identifier_name
 }
+
+
+// MARK: -
+public struct ResponseAPIUserFollowCountsResult: Decodable {
+    // MARK: - In work
+    public let id: Int64
+    public let jsonrpc: String
+    public let result: ResponseAPIUserFollowCounts?
+    public let error: ResponseAPIError?
+}
+
+
+// MARK: -
+public struct ResponseAPIUserFollowCounts: Decodable {
+    // MARK: - In work
+    // swiftlint:disable identifier_name
+    public let account: String
+    public let follower_count: Int16
+    public let following_count: Int16
+    public let limit: Int64
+}

@@ -33,6 +33,9 @@ extension User {
     @NSManaged public var created: String
     @NSManaged public var commentCount: Int64
     @NSManaged public var about: String?
+    @NSManaged public var followerCount: Int16
+    @NSManaged public var followingCount: Int16
+    @NSManaged public var followingLimit: Int64
 
     @NSManaged public var owner: UserSecretOwnerKey?
     @NSManaged public var active: UserSecretActiveKey?

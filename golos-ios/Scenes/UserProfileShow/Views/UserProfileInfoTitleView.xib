@@ -13,10 +13,10 @@
             <connections>
                 <outlet property="aboutLabel" destination="KHo-KQ-r3F" id="6yM-eM-ujO"/>
                 <outlet property="aboutLabelView" destination="yjh-wY-gCz" id="u4F-jb-Gw1"/>
+                <outlet property="followerCountLabel" destination="PaI-iL-bBT" id="HKz-ax-OJ3"/>
+                <outlet property="followingCountLabel" destination="yOP-1Q-7sN" id="8tb-Xc-vHy"/>
                 <outlet property="postsCountLabel" destination="iNe-nH-SsC" id="e9v-MJ-rhI"/>
                 <outlet property="stackViewHeightConstraint" destination="cP6-qp-gcd" id="6CZ-V0-xU3"/>
-                <outlet property="subscribersAmountLabel" destination="PaI-iL-bBT" id="HKz-ax-OJ3"/>
-                <outlet property="subscribtionsAmountLabel" destination="yOP-1Q-7sN" id="8tb-Xc-vHy"/>
                 <outletCollection property="valuesCollection" destination="iNe-nH-SsC" collectionClass="NSMutableArray" id="BuD-G5-lMl"/>
                 <outletCollection property="labelsCollection" destination="V2F-9v-zY4" collectionClass="NSMutableArray" id="B2i-NH-ONS"/>
                 <outletCollection property="labelsCollection" destination="fQE-6C-8VQ" collectionClass="NSMutableArray" id="WyN-LY-yhi"/>
@@ -106,7 +106,7 @@
                                                 <constraint firstAttribute="width" constant="1" id="ru8-2h-Hpd"/>
                                             </constraints>
                                         </view>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subscribers" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V2F-9v-zY4">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Followers" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V2F-9v-zY4" userLabel="Follower">
                                             <rect key="frame" x="14.5" y="10" width="95.5" height="14.5"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="15" id="hlD-eB-5Pg"/>
@@ -148,7 +148,7 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W7T-fR-uEr" userLabel="Subsribtions View">
                                     <rect key="frame" x="250" y="0.0" width="125" height="58"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subscriptions" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fQE-6C-8VQ">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Followings" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fQE-6C-8VQ" userLabel="Following">
                                             <rect key="frame" x="14.5" y="10" width="95.5" height="14.5"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="15" id="Tbs-mZ-8PW"/>

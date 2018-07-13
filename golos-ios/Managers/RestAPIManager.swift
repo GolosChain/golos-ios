@@ -92,4 +92,39 @@ class RestAPIManager {
             completion(nil)
         }
     }
+    
+    
+    /// Load User Follow counts
+    class func loadUserFollowCounts(byName name: String, completion: @escaping (ErrorAPI?) -> Void) {
+        // API 'get_follow_count'
+        if isNetworkAvailable {
+            let methodAPIType   =   MethodAPIType.getUserFollowCounts(name: name)
+            
+            broadcast.executeGET(byMethodAPIType: methodAPIType,
+                                 onResult: { responseAPIResult in
+                                    Logger.log(message: "\nresponse API Result = \(responseAPIResult)\n", event: .debug)
+                                    
+                                    guard let result = (responseAPIResult as! ResponseAPIUserFollowCountsResult).result else {
+                                        completion(ErrorAPI.requestFailed(message: "User follow counts are not found"))
+                                        return
+                                    }
+                                    
+                                    // CoreData: Update User entity
+                                    if let user = User.fetch(byName: name) {
+                                        user.updateEntity(fromResponseAPI: result)
+                                    }
+                                    
+                                    completion(nil)
+            },
+                                 onError: { errorAPI in
+                                    Logger.log(message: "nresponse API Error = \(errorAPI.caseInfo.message)\n", event: .error)
+                                    completion(errorAPI)
+            })
+        }
+            
+        // Offline mode
+        else {
+            completion(nil)
+        }
+    }
 }

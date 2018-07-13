@@ -96,6 +96,9 @@ public class WebSocketManager {
             case .getAllContentReplies(_):
                 return (responseAPI: try JSONDecoder().decode(ResponseAPIAllContentRepliesResult.self, from: jsonData), errorAPI: nil)
 
+            case .getUserFollowCounts(_):
+                return (responseAPI: try JSONDecoder().decode(ResponseAPIUserFollowCountsResult.self, from: jsonData), errorAPI: nil)
+
                 
             // POST
             case .verifyAuthorityVote:

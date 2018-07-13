@@ -70,8 +70,8 @@
 "Image saved to Photo Library"              =   "Your image has been saved to Photo Library!";
 "Tag"                                       =   "Tag";
 "Posts Title"                               =   "Posts";
-"Subscribers"                               =   "Subscribers";
-"Subscriptions"                             =   "Subscriptions";
+"Followers"                                 =   "Followers";
+"Followings"                                =   "Followings";
 "Dolphin"                                   =   "Dolphin";
 "QR Scanner"                                =   "QR Scanner";
 "Gudgeon"                                   =   "Gudgeon";
@@ -119,5 +119,6 @@
 "CoreData init error"                       =   "Failed to initialize the application's saved data";
 "Login error"                               =   "Auth error. If this repeats, try exit and enter to your account one more time.";
 "User is not found"                         =   "User is not found";
+"User follow counts are not found"          =   "User follow counts are not found";
 "List of users is empty"                    =   "User list is empty";
 "List of posts is empty"                    =   "Post list is empty";

@@ -125,11 +125,11 @@ public class Broadcast {
             switch methodType {
             case .getAccounts(_):
                 jsonData            =   try jsonEncoder.encode(requestParams as? [String])
-                
+
             case .getDiscussions(_):
                 jsonData            =   try jsonEncoder.encode(requestParams as? RequestParameterAPI.Discussion)
 
-            case .getUserReplies(_):
+            case .getUserReplies(_), .getUserFollowCounts(_):
                 jsonData            =   Data((requestParams as! String).utf8)
 
             case .getAllContentReplies(_):

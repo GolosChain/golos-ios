@@ -16,7 +16,7 @@ typealias RequestParametersType = (methodAPIType: MethodAPIType, paramsFirst: [S
 public enum MethodAPIType {
     /// Displays information about the users specified in the request.
     case getAccounts(names: [String])
-
+    
     /// Displays various information about the current status of the GOLOS network.
     case getDynamicGlobalProperties()
     
@@ -28,32 +28,39 @@ public enum MethodAPIType {
     
     /// Displays current user replies
     case getUserReplies(startAuthor: String, startPermlink: String?, limit: UInt, voteLimit: UInt)
+    
+    /// Diplays current user follow counts
+    case getUserFollowCounts(name: String)
 
     /// Save `vote` to blockchain
     case verifyAuthorityVote
     
     // Post: create, add comment & comment reply
     case post(action: PostActionType, parameters: RequestParameterAPI.Comment)
-
+    
     // Create new post comment
-//    case createPostComment(parameters: RequestParameterAPI.Discussion)
-//
-//    // Reply for post comment
-//    case replyPostComment(parameters: RequestParameterAPI.Discussion)
-
+    //    case createPostComment(parameters: RequestParameterAPI.Discussion)
+    //
+    //    // Reply for post comment
+    //    case replyPostComment(parameters: RequestParameterAPI.Discussion)
+    
     
     /// This method return request parameters from selected enum case.
     func introduced() -> RequestParametersType {
         switch self {
         // GET
-        case .getAccounts(let names):                       return (methodAPIType:      self,
-                                                                    paramsFirst:        ["database_api", "get_accounts"],
-                                                                    paramsSecond:       names)
+        case .getAccounts(let names):                       return  (methodAPIType:      self,
+                                                                     paramsFirst:        ["database_api", "get_accounts"],
+                                                                     paramsSecond:       names)
             
-        case .getDynamicGlobalProperties():                 return (methodAPIType:      self,
-                                                                    paramsFirst:        ["database_api", "get_dynamic_global_properties"],
-                                                                    paramsSecond:       nil)
+        case .getDynamicGlobalProperties():                 return  (methodAPIType:      self,
+                                                                     paramsFirst:        ["database_api", "get_dynamic_global_properties"],
+                                                                     paramsSecond:       nil)
             
+        case .getUserFollowCounts(let userName):            return  (methodAPIType:      self,
+                                                                     paramsFirst:        ["follow", "get_follow_count"],
+                                                                     paramsSecond:       String(format: "\"%@\"", userName))
+
         case .getUserReplies(let startAuthor, let startPermlink, let limit, let voteLimit):
             var secondParameters: String
             
@@ -65,10 +72,10 @@ public enum MethodAPIType {
                 secondParameters    =   String(format: "\"%@\",\"\",%i,%i", startAuthor, limit, voteLimit)
             }
             
-            return (methodAPIType:      self,
-                    paramsFirst:        ["social_network", "get_replies_by_last_update"],
-                    paramsSecond:       secondParameters)
-
+            return  (methodAPIType:      self,
+                     paramsFirst:        ["social_network", "get_replies_by_last_update"],
+                     paramsSecond:       secondParameters)
+            
         case .getDiscussions(let type, let discussion):
             // {"id":72,"method":"call","jsonrpc":"2.0","params":["tags","get_discussions_by_hot",[{"limit":20,"truncate_body":1024,"filter_tags":["test","bm-open","bm-ceh23","bm-tasks","bm-taskceh1"]}]]}
             //            var parametersBody: JSON           =   [["limit": discussion.limit], ["truncate_body": discussion.truncateBody!]]
@@ -128,11 +135,11 @@ public enum MethodAPIType {
         case .verifyAuthorityVote:                          return (methodAPIType:      self,
                                                                     paramsFirst:        ["database_api", "verify_authority"],
                                                                     paramsSecond:       nil)
-
+            
         case .post(_, let parameters):                      return (methodAPIType:      self,
                                                                     paramsFirst:        ["network_broadcast_api", "broadcast_transaction"],
                                                                     paramsSecond:       parameters)
-
+            
         }
     }
 }

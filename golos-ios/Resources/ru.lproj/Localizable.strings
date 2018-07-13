@@ -70,8 +70,8 @@
 "Image saved to Photo Library"              =   "Ваша фотография сохранена в Альбоме!";
 "Tag"                                       =   "Тег";
 "Posts Title"                               =   "Постов";
-"Subscribers"                               =   "Подписчиков";
-"Subscriptions"                             =   "Подписок";
+"Followers"                                 =   "Подписчиков";
+"Followings"                                =   "Подписок";
 "Dolphin"                                   =   "Дельфин";
 "QR Scanner"                                =   "QR сканер";
 "Gudgeon"                                   =   "Пескарь";
@@ -119,5 +119,6 @@
 "CoreData init error"                       =   "Не удалось инициализировать сохраненные данные приложения";
 "Login error"                               =   "Ошибка авторизации. Если повториться - попробуйте выйти и зайти в свой аккаунт";
 "User is not found"                         =   "Пользователь не найден";
+"User follow counts are not found"          =   "Информация о подписчиках и подписках не найдена";
 "List of users is empty"                    =   "Список пользователей пустой";
 "List of posts is empty"                    =   "Список постов пустой";
