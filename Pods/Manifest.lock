@@ -43,6 +43,7 @@ PODS:
   - "GoogleToolboxForMac/NSData+zlib (2.1.4)":
     - GoogleToolboxForMac/Defines (= 2.1.4)
   - IQKeyboardManagerSwift (5.0.8)
+  - Kingfisher (4.8.0)
   - LayoutKit (7.0.3)
   - Localize-Swift (2.0.0)
   - Locksmith (4.0.0)
@@ -71,6 +72,7 @@ DEPENDENCIES:
   - Firebase/Messaging
   - GoloSwift (from `https://github.com/GolosChain/GoloSwift.git`)
   - IQKeyboardManagerSwift (~> 5.0)
+  - Kingfisher
   - LayoutKit (~> 7.0)
   - MXParallaxHeader (~> 0.6)
   - PINCache
@@ -96,6 +98,7 @@ SPEC REPOS:
     - GoloCrypto
     - GoogleToolboxForMac
     - IQKeyboardManagerSwift
+    - Kingfisher
     - LayoutKit
     - Localize-Swift
     - Locksmith
@@ -136,6 +139,7 @@ SPEC CHECKSUMS:
   GoloSwift: 0619c6a7232e27520ff4e1c3f60a60c5b23527be
   GoogleToolboxForMac: 91c824d21e85b31c2aae9bb011c5027c9b4e738f
   IQKeyboardManagerSwift: 2e7dc7f98c111458c1ea2b373f893e8cf95e2b97
+  Kingfisher: 976d828df2b24834c6a3f2fc4d82cdbd26552be1
   LayoutKit: 5116e931d7ec963c3d5d2bf8b87040068a31b461
   Localize-Swift: c798ec9286494866f7068f85f7c71283ac5bdab4
   Locksmith: e9bebbaaa4cee3c511bc358a44f843c3fe00e21f
@@ -151,6 +155,6 @@ SPEC CHECKSUMS:
   SWSegmentedControl: 5770c91bb4b438be300371221e38f4af5100bba2
   Tags: b18378f79d8b30c40d4b7ae4d5edfc478434d858
 
-PODFILE CHECKSUM: c2235ed95115319566876b920032fa6832280736
+PODFILE CHECKSUM: 894b26d2640f88dc2a16285c81b1224e538bf195
 
 COCOAPODS: 1.5.3

@@ -206,9 +206,10 @@ extension ReplyTableViewCell: ConfigureCell {
 
             // Load author profile image
             if let userProfileImageURL = userCommentator.profileImageURL {
-                userProfileImageURL.upload(avatarImage: true, size: CGSize(width: 50.0 * widthRatio, height: 50.0 * widthRatio), tags: nil, completion: { [weak self] image in
-                    self?.authorAvatarImageView.image = image
-                })
+                self.authorAvatarImageView.uploadImage(byStringPath:    userProfileImageURL,
+                                                       avatarImage:     true,
+                                                       size:            CGSize(width: 50.0 * widthRatio, height: 50.0 * widthRatio),
+                                                       tags:            nil)
             }
         }
         

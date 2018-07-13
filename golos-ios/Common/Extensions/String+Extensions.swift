@@ -51,21 +51,10 @@ extension String {
         self = self.localized()
     }
     
-    func upload(avatarImage: Bool, size: CGSize, tags: [String]?, completion: @escaping (UIImage) -> Void) {
-        var imagePath: String = self
-        
-        // Cover as 'NSFW'
-        if let tagsTemp = tags, tagsTemp.map({ $0.lowercased() }).contains("nsfw"), !avatarImage {
-            completion(UIImage(named: "nsfw")!)
-        }
-
-        // Add proxy
-        if !self.hasPrefix("https://images.golos.io") {
-            imagePath = "https://imgp.golos.io" + String(format: "/%dx%d/", size.width, size.height) + self
-        }
-        
-        GSImageLoader().startLoadImage(with: imagePath) { image in
-            completion(image ?? UIImage(named: avatarImage ? "icon-user-profile-image-placeholder" : "image-placeholder")!)
-        }
+    
+    /// Add proxy part to image URL
+    func addImageProxy(withSize size: CGSize) -> String {
+        return self.hasPrefix("https://images.golos.io") ?  self :
+                                                            "https://imgp.golos.io" + String(format: "/%dx%d/", size.width, size.height) + self
     }
 }

@@ -126,6 +126,7 @@
 		B146891E20F234BE00D36794 /* UserProfileInfoTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B146891C20F234BD00D36794 /* UserProfileInfoTitleView.xib */; };
 		B146892E20F38A1400D36794 /* Post+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B146892C20F38A1400D36794 /* Post+CoreDataClass.swift */; };
 		B146892F20F38A1400D36794 /* Post+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B146892D20F38A1400D36794 /* Post+CoreDataProperties.swift */; };
+		B14C97CF20F87F6D00569FB1 /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14C97CE20F87F6D00569FB1 /* UIImageView+Extensions.swift */; };
 		B157660A20B59D80009619A6 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B157660920B59D80009619A6 /* UserNotifications.framework */; };
 		B157660C20B59D80009619A6 /* UserNotificationsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B157660B20B59D80009619A6 /* UserNotificationsUI.framework */; };
 		B157660F20B59D80009619A6 /* RemoteNotificationTransferViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B157660E20B59D80009619A6 /* RemoteNotificationTransferViewController.swift */; };
@@ -390,6 +391,7 @@
 		B146891C20F234BD00D36794 /* UserProfileInfoTitleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserProfileInfoTitleView.xib; sourceTree = "<group>"; };
 		B146892C20F38A1400D36794 /* Post+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Post+CoreDataClass.swift"; sourceTree = "<group>"; };
 		B146892D20F38A1400D36794 /* Post+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Post+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B14C97CE20F87F6D00569FB1 /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
 		B157660820B59D80009619A6 /* RemoteNotificationTransfer.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = RemoteNotificationTransfer.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		B157660920B59D80009619A6 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		B157660B20B59D80009619A6 /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = SDKROOT; };
@@ -1256,6 +1258,7 @@
 				ECF2808B200A9A210000D949 /* UIButton+Extensions.swift */,
 				B198DB9020B9A21A008011A3 /* UIColor+Extensions.swift */,
 				EC9ABBC22017D17000AF8597 /* UIImageEffects.swift */,
+				B14C97CE20F87F6D00569FB1 /* UIImageView+Extensions.swift */,
 				B11AA80620CB9FC800212713 /* UILabel+Extensions.swift */,
 				B1050CDE20CEE89C003CE4EE /* UINavigationController+Extensions.swift */,
 				B123C5BA20CE4C8B00747989 /* UITextField+Extensions.swift */,
@@ -1515,6 +1518,7 @@
 				"${BUILT_PRODUCTS_DIR}/GoloSwift/GoloSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/LayoutKit/LayoutKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Localize-Swift/Localize_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/Locksmith/Locksmith.framework",
@@ -1539,6 +1543,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoloSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LayoutKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Localize_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Locksmith.framework",
@@ -1724,6 +1729,7 @@
 				7D25B48F201F5E88004A3400 /* CollectionViewCenteredLayout.swift in Sources */,
 				7D7D564420368028003E06A6 /* PostItem.swift in Sources */,
 				EC9ABBC32017D17000AF8597 /* UIImageEffects.swift in Sources */,
+				B14C97CF20F87F6D00569FB1 /* UIImageView+Extensions.swift in Sources */,
 				B13FE99F20F49B8300F907BC /* UITableViewWithReloadCompletion.swift in Sources */,
 				B1050CA020CECF75003CE4EE /* PostCreatePresenter.swift in Sources */,
 				7D911D222035F5AA00F19D3C /* PostReplyModel.swift in Sources */,

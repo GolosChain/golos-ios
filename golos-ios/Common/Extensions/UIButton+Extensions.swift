@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 import SwiftTheme
 
 extension UIButton {
@@ -60,5 +61,21 @@ extension UIButton {
     private func setRoundEdges(cornerRadius: CGFloat) {
         layer.masksToBounds = true
         layer.cornerRadius = cornerRadius
+    }
+    
+    // Upload image
+    func uploadImage(byStringPath path: String, andSize size: CGSize) {
+        let imagePath = path.addImageProxy(withSize: size)
+
+        self.kf.setImage(with:              ImageResource(downloadURL: URL(string: imagePath)!, cacheKey: imagePath), for: .normal,
+                         placeholder:       UIImage.init(named: "image-placeholder"),
+                         options:           [.transition(ImageTransition.fade(1)),
+                                             .processor(ResizingImageProcessor(referenceSize:       size,
+                                                                               mode:                .aspectFill))],
+                         completionHandler: { _, error, _, _ in
+                            if error == nil {
+                                self.imageView?.kf.cancelDownloadTask()
+                            }
+        })
     }
 }

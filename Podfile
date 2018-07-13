@@ -27,6 +27,7 @@ target 'Golos' do
     
     # Design
     pod 'Tags'
+    pod 'Kingfisher'
     pod 'SwiftTheme'
     pod 'SnapKit', '~> 4.0'
     pod 'SWSegmentedControl'

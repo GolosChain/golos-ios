@@ -29,11 +29,19 @@ class FeedArticleTableViewCell: UITableViewCell {
 
 
     // MARK: - IBOutlets
-    @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet weak var postImageView: UIImageView!
     
-    @IBOutlet weak var titleLabelTopConstraint: NSLayoutConstraint!
-    @IBOutlet weak var postImageViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var titleLabel: UILabel! {
+        didSet {
+            titleLabel.tune(withText:       "",
+                            hexColors:      veryDarkGrayWhiteColorPickers,
+                            font:           UIFont(name: "SFUIDisplay-Regular", size: 14.0 * widthRatio),
+                            alignment:      .left,
+                            isMultiLines:   true)
+        }
+    }
+
+    @IBOutlet weak var postImageViewHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet private weak var articleHeaderView: ArticleHeaderView! {
         didSet {
@@ -88,12 +96,6 @@ class FeedArticleTableViewCell: UITableViewCell {
     
     
     // MARK: - Class Initialization
-    override func awakeFromNib() {
-        super.awakeFromNib()
-
-        setupUI()
-    }
-    
     override func prepareForReuse() {
         super.prepareForReuse()
         
@@ -101,24 +103,9 @@ class FeedArticleTableViewCell: UITableViewCell {
         self.authorPictureURL                                   =   ""
         self.articleHeaderView.authorProfileImageView.image     =   UIImage(named: "icon-user-profile-image-placeholder")
         
-        self.titleLabel.alpha                                   =   1.0
         self.titleLabel.text                                    =   nil
-//        self.titleLabelTopConstraint.constant                   =   -40.0 * heightRatio
-
-        self.postImageView.alpha                                =   1.0
         self.postImageView.image                                =   nil
-//        self.postImageViewTopConstraint.constant                =   -180 * heightRatio
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-    }
-    
-    
-    // MARK: - Setup UI
-    private func setupUI() {
-        titleLabel.textColor = UIColor.Project.articleBlackColor
-        titleLabel.font = Fonts.shared.regular(with: 16.0 * widthRatio)
+        self.postImageViewHeightConstraint.constant             =   180.0 * heightRatio
     }
     
     
@@ -163,35 +150,27 @@ extension FeedArticleTableViewCell: ConfigureCell {
             
             // Load author profile image
             if let userProfileImageURL = user.profileImageURL {
-                userProfileImageURL.upload(avatarImage: true, size: CGSize(width: 30.0 * widthRatio, height: 30.0 * widthRatio), tags: nil, completion: { [weak self] image in
-                    self?.articleHeaderView.authorProfileImageView.image = image
-                })
+                self.articleHeaderView.authorProfileImageView.uploadImage(byStringPath:     userProfileImageURL,
+                                                                          avatarImage:      true,
+                                                                          size:             CGSize(width: 30.0 * widthRatio, height: 30.0 * widthRatio),
+                                                                          tags:             nil)
             }
         }
         
         // Load post cover image
         if let coverImageURL = lenta.coverImageURL {
-            coverImageURL.upload(avatarImage: true, size: CGSize(width: UIScreen.main.bounds.width, height: 180.0 * heightRatio), tags: lenta.tags, completion: { [weak self] image in
-                self?.postImageView.image = image
-                
-                // Hide/show post image
-                self?.postImageView.display(withTopConstraint:      (self?.postImageViewTopConstraint)!,
-                                            height:                 (self?.postImageView.frame.height)!,
-                                            isShow:                 !image.isEqualTo(image: UIImage(named: "image-placeholder")!))
-            })
+            self.postImageView.uploadImage(byStringPath:    coverImageURL,
+                                           avatarImage:     false,
+                                           size:            CGSize(width: UIScreen.main.bounds.width, height: 180.0 * heightRatio),
+                                           tags:            lenta.tags)
         }
         
+        // Hide post image
         else {
-            // Hide post image
-            self.postImageView.display(withTopConstraint:      self.postImageViewTopConstraint,
-                                       height:                 self.postImageView.frame.height,
-                                       isShow:                 false)
+            self.postImageViewHeightConstraint.constant = 0
         }
 
-        // Hide/show title
-        self.titleLabel.text                        =   lenta.title
-        self.titleLabel.display(withTopConstraint: self.titleLabelTopConstraint, height: self.titleLabel.frame.height, isShow: lenta.title.isEmpty)
-        
+        self.titleLabel.text                        =   lenta.title        
         self.articleHeaderView.authorLabel.text     =   lenta.author
         self.articleHeaderView.categoryLabel.text   =   lenta.category
         self.upvotesButton.isEnabled                =   lenta.allowVotes

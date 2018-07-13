@@ -432,7 +432,7 @@ extension UserProfileShowViewController: UIScrollViewDelegate {
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        if let indexPathsForVisibleRows = self.tableView.indexPathsForVisibleRows, scrollView == tableView {
+        if let indexPathsForVisibleRows = self.tableView.indexPathsForVisibleRows, scrollView == tableView, indexPathsForVisibleRows.count > 0 {
             self.topVisibleIndexPath[segmentedControlIndex] = indexPathsForVisibleRows[0]
             self.paginanationData = false
         }
@@ -458,9 +458,16 @@ extension UserProfileShowViewController: SWSegmentedControlDelegate {
     }
     
     func segmentedControl(_ control: SWSegmentedControl, didSelectItemAtIndex index: Int) {
-        self.tableViewClear()
-        self.segmentedControlIndex  =   index
-        self.loadUserDetails()
+        // Scroll content to first row
+        if self.segmentedControlIndex == index {
+            self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+        }
+        
+        else {
+            self.tableViewClear()
+            self.segmentedControlIndex  =   index
+            self.loadUserDetails()
+        }
     }
     
     func segmentedControl(_ control: SWSegmentedControl, willDeselectItemAtIndex index: Int) {
