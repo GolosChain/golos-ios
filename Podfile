@@ -32,6 +32,7 @@ target 'Golos' do
     pod 'SnapKit', '~> 4.0'
     pod 'SWSegmentedControl'
     pod 'LayoutKit', '~> 7.0'
+    pod 'SwiftGifOrigin', '~> 1.6.1'
     pod 'MXParallaxHeader', '~> 0.6'
     pod 'AlignedCollectionViewFlowLayout'
 

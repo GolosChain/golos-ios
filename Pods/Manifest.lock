@@ -58,6 +58,7 @@ PODS:
   - secp256k1.swift (0.1.4)
   - SnapKit (4.0.0)
   - Starscream (3.0.5)
+  - SwiftGifOrigin (1.6.1)
   - SwiftLint (0.25.1)
   - SwiftTheme (0.4.1)
   - SWSegmentedControl (2.6.1)
@@ -77,6 +78,7 @@ DEPENDENCIES:
   - MXParallaxHeader (~> 0.6)
   - PINCache
   - SnapKit (~> 4.0)
+  - SwiftGifOrigin (~> 1.6.1)
   - SwiftLint
   - SwiftTheme
   - SWSegmentedControl
@@ -109,6 +111,7 @@ SPEC REPOS:
     - secp256k1.swift
     - SnapKit
     - Starscream
+    - SwiftGifOrigin
     - SwiftLint
     - SwiftTheme
     - SWSegmentedControl
@@ -150,11 +153,12 @@ SPEC CHECKSUMS:
   secp256k1.swift: a7e7a214f6db6ce5db32cc6b2b45e5c4dd633634
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
   Starscream: faf918b2f2eff7d5dd21180646bf015a669673bd
+  SwiftGifOrigin: d6679d3ebe9df2e049a84bc52582635107b581f6
   SwiftLint: ce933681be10c3266e82576dad676fa815a602e9
   SwiftTheme: 36d71c4eed4b2c401c782cf036e4586c749a8173
   SWSegmentedControl: 5770c91bb4b438be300371221e38f4af5100bba2
   Tags: b18378f79d8b30c40d4b7ae4d5edfc478434d858
 
-PODFILE CHECKSUM: 894b26d2640f88dc2a16285c81b1224e538bf195
+PODFILE CHECKSUM: cba4fb7dbdc6f037cabd3cfb62cdbc2e3b478c62
 
 COCOAPODS: 1.5.3

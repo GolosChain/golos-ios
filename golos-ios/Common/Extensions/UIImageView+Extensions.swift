@@ -9,6 +9,7 @@
 import UIKit
 import GoloSwift
 import Kingfisher
+import SwiftGifOrigin
 
 enum ImageType: String {
     case defaultImage
@@ -27,21 +28,31 @@ extension UIImageView {
         else {
             let imagePath = path.addImageProxy(withSize: size)
             let imagePlaceholderName = imageType == .defaultImage ? "image-placeholder" : (imageType == .userProfileImage ? "icon-user-profile-image-placeholder" : "image-user-cover-placeholder")
+            
+            if imagePath.hasSuffix(".gif") {
+                let gifImage = UIImage.gif(url: imagePath)
                 
-            self.kf.setImage(with:                  ImageResource(downloadURL: URL(string: imagePath)!, cacheKey: imagePath),
-                             placeholder:           UIImage(named: imagePlaceholderName)!,
-                             options:               [.transition(ImageTransition.fade(1)),
-                                                     .processor(ResizingImageProcessor(referenceSize:   size,
-                                                                                       mode:            .aspectFill))],
-                             completionHandler:     { image, error, _, _ in
-                                if error == nil {
-                                    if imageType == .userCoverImage {
-                                        self.contentMode = image!.size.width > image!.size.height ? .scaleAspectFill : .scaleAspectFit
+                DispatchQueue.main.async {
+                    self.image = gifImage
+                }
+            }
+            
+            else {
+                self.kf.setImage(with:                  ImageResource(downloadURL: URL(string: imagePath)!, cacheKey: imagePath),
+                                 placeholder:           UIImage(named: imagePlaceholderName)!,
+                                 options:               [.transition(ImageTransition.fade(1)),
+                                                         .processor(ResizingImageProcessor(referenceSize:   size,
+                                                                                           mode:            .aspectFill))],
+                                 completionHandler:     { image, error, _, _ in
+                                    if error == nil {
+                                        if imageType == .userCoverImage {
+                                            self.contentMode = image!.size.width > image!.size.height ? .scaleAspectFill : .scaleAspectFit
+                                        }
+                                        
+                                        self.kf.cancelDownloadTask()
                                     }
-                                    
-                                    self.kf.cancelDownloadTask()
-                                }
-            })
+                })
+            }
         }
     }
 }
