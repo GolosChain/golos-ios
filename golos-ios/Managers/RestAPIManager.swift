@@ -32,6 +32,9 @@ class RestAPIManager {
                                     _ = result.map({
                                         let userEntity = User.instance(byUserID: $0.id)
                                         userEntity.updateEntity(fromResponseAPI: $0)
+                                        
+                                        // Set User isAuthorized
+                                        User.fetch(byName: names.first!)?.setIsAuthorized(true)
                                     })
                                     
                                     completion(nil)

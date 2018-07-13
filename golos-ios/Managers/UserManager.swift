@@ -40,7 +40,7 @@ class UserManager {
                                     
                                     // Update Users entities
                                     usersResult.forEach({
-                                        let userEntity = User.instance(byUserID: $0.id )
+                                        let userEntity = User.instance(byUserID: $0.id)
                                         
                                         if usersResult.count == 1 {
                                             userEntity.isAuthorized = true
