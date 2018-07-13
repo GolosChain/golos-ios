@@ -88,7 +88,7 @@ public class User: NSManagedObject {
         
         self.id                 =   userModel.id
         self.name               =   userModel.name
-        self.postsAmount        =   userModel.post_count
+        self.postsCount         =   userModel.post_count
         self.json_metadata      =   userModel.json_metadata
         self.memoKey            =   userModel.memo_key
         self.vestingShares      =   userModel.vesting_shares
@@ -132,6 +132,7 @@ public class User: NSManagedObject {
         if  let data    =   metaData.data(using: .utf8),
             let json    =   try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any],
             let profile =   json?["profile"] as? [String: Any] {
+            self.about              =   profile["about"] as? String
             self.gender             =   profile["gender"] as? String
             self.profileImageURL    =   profile["profile_image"] as? String
             self.coverImageURL      =   profile["cover_image"] as? String

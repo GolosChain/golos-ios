@@ -14,14 +14,15 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UserProfileHeaderView" customModule="Golos" customModuleProvider="target">
             <connections>
                 <outlet property="activityView" destination="fsq-NL-sVQ" id="6Hb-YX-HLQ"/>
-                <outlet property="avatarImageView" destination="acw-MW-GSz" id="GLD-Bm-uXq"/>
                 <outlet property="backButton" destination="mTm-oF-ogX" id="dow-vZ-L1c"/>
                 <outlet property="blurImageView" destination="Sjy-q5-k3d" id="Oyt-9j-DbC"/>
                 <outlet property="editProfileButton" destination="Rmb-0P-j3P" id="UQg-TI-nUf"/>
                 <outlet property="imageViewTopConstraint" destination="PwS-bm-ERx" id="Iuf-Sr-BwY"/>
                 <outlet property="nameLabel" destination="FaU-67-Zn3" id="MdH-Pg-0DV"/>
-                <outlet property="starsImageView" destination="GYK-T0-5RT" id="thR-nK-FaL"/>
-                <outlet property="starsLabel" destination="V8g-ut-yLv" id="rD5-Tf-J1J"/>
+                <outlet property="reputationImageView" destination="GYK-T0-5RT" id="Vnb-Qc-wnl"/>
+                <outlet property="reputationLabel" destination="V8g-ut-yLv" id="Xtf-a0-A5k"/>
+                <outlet property="userCoverImageView" destination="bRX-hm-6zh" id="qum-xh-qzv"/>
+                <outlet property="userProfileImageView" destination="acw-MW-GSz" id="GLD-Bm-uXq"/>
                 <outlet property="voicePowerImageView" destination="SJ5-yn-dOL" id="73A-1n-0gc"/>
                 <outlet property="voicePowerLabel" destination="Tbu-zp-zfg" id="nvB-TO-Vda"/>
                 <outlet property="whiteStatusBarView" destination="aIP-Ah-peY" id="wT1-1s-EbN"/>
@@ -39,21 +40,22 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="180"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_header_bg" translatesAutoresizingMaskIntoConstraints="NO" id="bRX-hm-6zh" userLabel="Background Image View">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image-user-cover-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="bRX-hm-6zh" userLabel="User Cover Image View">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="180"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </imageView>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-user-profile-image-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="acw-MW-GSz">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-user-profile-image-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="acw-MW-GSz" userLabel="User Profile Image View">
                     <rect key="frame" x="39" y="69" width="80" height="80"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="acw-MW-GSz" secondAttribute="height" multiplier="1:1" id="ksz-NO-c1g"/>
                     </constraints>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_star_icon" translatesAutoresizingMaskIntoConstraints="NO" id="GYK-T0-5RT">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_star_icon" translatesAutoresizingMaskIntoConstraints="NO" id="GYK-T0-5RT" userLabel="Reputation Image View">
                     <rect key="frame" x="153" y="105.5" width="15" height="14"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </imageView>
-                <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V8g-ut-yLv">
+                <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V8g-ut-yLv" userLabel="Reputation Label">
                     <rect key="frame" x="173" y="105.5" width="36" height="14.5"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -240,8 +242,9 @@
     <resources>
         <image name="back_button" width="17" height="16"/>
         <image name="icon-button-profile-settings" width="24" height="24"/>
-        <image name="icon-user-profile-image-placeholder" width="13" height="13"/>
+        <image name="icon-user-profile-image-placeholder" width="40" height="40"/>
         <image name="icon-voice-power-doplhin" width="14" height="14"/>
+        <image name="image-user-cover-placeholder" width="360" height="286"/>
         <image name="profile_edit_button_icon" width="15" height="14"/>
         <image name="profile_header_bg" width="375" height="181"/>
         <image name="profile_star_icon" width="15" height="14"/>

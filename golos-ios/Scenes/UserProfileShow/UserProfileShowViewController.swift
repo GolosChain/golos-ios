@@ -304,13 +304,11 @@ extension UserProfileShowViewController {
     // User Profile
     private func fetchUserInfo() {
         if let userEntity = User.current {
-            let displayedUser = DisplayedUser(fromUser: userEntity)
-            
-            self.userProfileHeaderView.updateUI(fromUserInfo: displayedUser)
-            self.userProfileInfoTitleView.updateUI(fromUserInfo: displayedUser)
+            self.userProfileHeaderView.updateUI(fromUserInfo: userEntity)
+            self.userProfileInfoTitleView.updateUI(fromUserInfo: userEntity)
             
             // Change profileInfoView height
-            if let info = displayedUser.about, !info.isEmpty {
+            if let info = userEntity.about, !info.isEmpty {
                 userProfileInfoTitleViewHeightConstraint.constant *= 2
             }
         }
@@ -577,6 +575,7 @@ extension UserProfileShowViewController: UITableViewDelegate {
         let lastIndex   =   tableView.numberOfRows(inSection: indexPath.section) - 1
         let lastElement =   fetchedResultsController.sections![indexPath.section].objects![lastIndex]
         
+        // Pagination
         if lastIndex == indexPath.row && lastIndex > self.lastUserProfileDetailsIndexes[segmentedControlIndex] {
             // Lenta (blogs)
             if let lenta = lastElement as? Lenta {

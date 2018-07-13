@@ -14,9 +14,9 @@ struct DisplayedUser {
     let id: Int64
     let name: String
     var about: String?
-    let postsAmount: Int64
-    let subscribersAmount: Int64
-    let subscribtionsAmount: Int64
+    let postsCount: Int64
+    let subscribersCount: Int64
+    let subscribtionsCount: Int64
     var pictureURL: String?
     var coverImageURL: String?
     let memoKey: String?
@@ -26,36 +26,25 @@ struct DisplayedUser {
     let voicePower: String
     let voicePowerImageName: String
     var isAuthorized: Bool = false
+    let selectedTags: [String]?
 
     
     // MARK: - Class Initialization
     init(fromUser user: User) {
         self.id                     =   user.id
         self.name                   =   user.name
-        self.postsAmount            =   user.postsAmount
-        self.subscribersAmount      =   user.postsAmount
-        self.subscribtionsAmount    =   user.postsAmount
+        self.postsCount             =   user.postsCount
+        self.subscribersCount       =   user.postsCount
+        self.subscribtionsCount     =   user.postsCount
         self.memoKey                =   user.memoKey
         self.ownerKey               =   user.owner?.key_auths?.first?.first
         self.activeKey              =   user.active?.key_auths?.first?.first
         self.postingKey             =   user.posting?.key_auths?.first?.first
         self.voicePower             =   user.voicePower.introduced().localized()
         self.voicePowerImageName    =   String(format: "icon-voice-power-%@", user.voicePower.introduced().lowercased())
-        
-        if let metaData = user.json_metadata {
-            self.parse(metaData: metaData)
-        }
-    }
-    
-    
-    // MARK: - Custom Functions
-    private mutating func parse(metaData: String) {
-        if  let data            =   metaData.data(using: .utf8),
-            let json            =   try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any],
-            let profile         =   json?["profile"] as? [String: Any] {
-            self.about          =   profile["about"] as? String
-            self.pictureURL     =   profile["profile_image"] as? String
-            self.coverImageURL  =   profile["cover_image"] as? String
-        }
+        self.about                  =   user.about
+        self.pictureURL             =   user.profileImageURL
+        self.coverImageURL          =   user.coverImageURL
+        self.selectedTags           =   user.selectTags
     }
 }

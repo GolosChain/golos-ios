@@ -82,6 +82,7 @@
         </uniquenessConstraints>
     </entity>
     <entity name="User" representedClassName="User" syncable="YES">
+        <attribute name="about" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="canVote" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="commentCount" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="coverImageURL" optional="YES" attributeType="String" syncable="YES"/>
@@ -92,7 +93,7 @@
         <attribute name="json_metadata" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="memoKey" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" attributeType="String" defaultValueString="Zorro" syncable="YES"/>
-        <attribute name="postsAmount" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="postsCount" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="profileImageURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="reputation" attributeType="String" defaultValueString="&quot;0&quot;" syncable="YES"/>
         <attribute name="selectTags" optional="YES" attributeType="Transformable" syncable="YES"/>
@@ -147,7 +148,7 @@
         <element name="Lenta" positionX="-459" positionY="-81" width="128" height="285"/>
         <element name="Post" positionX="-459" positionY="-81" width="128" height="285"/>
         <element name="Reply" positionX="-450" positionY="-72" width="128" height="285"/>
-        <element name="User" positionX="-666" positionY="-90" width="128" height="315"/>
+        <element name="User" positionX="-666" positionY="-90" width="128" height="330"/>
         <element name="UserSecretActiveKey" positionX="-459" positionY="-81" width="128" height="120"/>
         <element name="UserSecretOwnerKey" positionX="-243" positionY="-234" width="128" height="120"/>
         <element name="UserSecretPostingKey" positionX="-45" positionY="63" width="128" height="120"/>

@@ -12,7 +12,7 @@ import SwiftTheme
 
 class UserProfileInfoTitleView: PassthroughView {
     // MARK: - IBOutlets
-    @IBOutlet private weak var postsAmountLabel: UILabel!
+    @IBOutlet private weak var postsCountLabel: UILabel!
     @IBOutlet private weak var subscribersAmountLabel: UILabel!
     @IBOutlet private weak var subscribtionsAmountLabel: UILabel!
     
@@ -89,11 +89,11 @@ class UserProfileInfoTitleView: PassthroughView {
         view.bottomAnchor.constraint(equalTo: bottomAnchor).isActive    =   true
     }
     
-    func updateUI(fromUserInfo userInfo: DisplayedUser) {
+    func updateUI(fromUserInfo userInfo: User) {
         self.aboutLabel.text                    =   userInfo.about
-        self.postsAmountLabel.text              =   String(format: "%i", userInfo.postsAmount)
-        self.subscribersAmountLabel.text        =   String(format: "%i", userInfo.subscribersAmount)
-        self.subscribtionsAmountLabel.text      =   String(format: "%i", userInfo.subscribtionsAmount)
+        self.postsCountLabel.text               =   String(format: "%i", userInfo.postsCount)
+//        self.subscribersAmountLabel.text        =   String(format: "%i", userInfo.subscribersAmount)
+//        self.subscribtionsAmountLabel.text      =   String(format: "%i", userInfo.subscribtionsAmount)
         
         self.showLabelsForAnimationCollection(true)
     }

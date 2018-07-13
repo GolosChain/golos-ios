@@ -151,7 +151,7 @@ extension FeedArticleTableViewCell: ConfigureCell {
             // Load author profile image
             if let userProfileImageURL = user.profileImageURL {
                 self.articleHeaderView.authorProfileImageView.uploadImage(byStringPath:     userProfileImageURL,
-                                                                          avatarImage:      true,
+                                                                          imageType:        .userProfileImage,
                                                                           size:             CGSize(width: 30.0 * widthRatio, height: 30.0 * widthRatio),
                                                                           tags:             nil)
             }
@@ -160,7 +160,7 @@ extension FeedArticleTableViewCell: ConfigureCell {
         // Load post cover image
         if let coverImageURL = lenta.coverImageURL {
             self.postImageView.uploadImage(byStringPath:    coverImageURL,
-                                           avatarImage:     false,
+                                           imageType:       .userCoverImage,
                                            size:            CGSize(width: UIScreen.main.bounds.width, height: 180.0 * heightRatio),
                                            tags:            lenta.tags)
         }

@@ -13,7 +13,7 @@
             <connections>
                 <outlet property="aboutLabel" destination="KHo-KQ-r3F" id="6yM-eM-ujO"/>
                 <outlet property="aboutLabelView" destination="yjh-wY-gCz" id="u4F-jb-Gw1"/>
-                <outlet property="postsAmountLabel" destination="iNe-nH-SsC" id="XMi-kl-hqV"/>
+                <outlet property="postsCountLabel" destination="iNe-nH-SsC" id="e9v-MJ-rhI"/>
                 <outlet property="stackViewHeightConstraint" destination="cP6-qp-gcd" id="6CZ-V0-xU3"/>
                 <outlet property="subscribersAmountLabel" destination="PaI-iL-bBT" id="HKz-ax-OJ3"/>
                 <outlet property="subscribtionsAmountLabel" destination="yOP-1Q-7sN" id="8tb-Xc-vHy"/>
@@ -78,7 +78,7 @@
                                             <color key="textColor" red="0.49019607843137253" green="0.49019607843137253" blue="0.49019607843137253" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iNe-nH-SsC">
+                                        <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iNe-nH-SsC" userLabel="Posts Count Label">
                                             <rect key="frame" x="15" y="28.5" width="100" height="19.5"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>

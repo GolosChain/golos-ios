@@ -24,7 +24,7 @@ extension ProfileViewModel {
         self.pictureUrl             =   userModel.pictureURL
         self.backgroundImageUrl     =   userModel.coverImageURL
         self.information            =   userModel.about ?? ""
-        self.postsCount             =   "\(userModel.postsAmount)"
+        self.postsCount             =   "\(userModel.postsCount)"
         self.rank                   =   userModel.voicePower
     }
 }

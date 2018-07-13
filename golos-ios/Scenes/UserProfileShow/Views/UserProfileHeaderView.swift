@@ -20,8 +20,9 @@ class UserProfileHeaderView: PassthroughView {
 
 
     // MARK: - IBOutlets
+    @IBOutlet weak var userCoverImageView: UIImageView!
     @IBOutlet private weak var blurImageView: UIImageView!
-    @IBOutlet private weak var avatarImageView: UIImageView!
+    @IBOutlet private weak var userProfileImageView: UIImageView!
     
     @IBOutlet private weak var nameLabel: UILabel! {
         didSet {
@@ -35,9 +36,9 @@ class UserProfileHeaderView: PassthroughView {
     @IBOutlet weak var whiteStatusBarView: UIView!
 
     @IBOutlet private weak var voicePowerLabel: UILabel!
-    @IBOutlet private weak var starsLabel: UILabel!
+    @IBOutlet private weak var reputationLabel: UILabel!
     @IBOutlet private weak var voicePowerImageView: UIImageView!
-    @IBOutlet private weak var starsImageView: UIImageView!
+    @IBOutlet private weak var reputationImageView: UIImageView!
     @IBOutlet private weak var activityView: UIActivityIndicatorView!
 
     @IBOutlet private weak var backButton: UIButton!
@@ -100,7 +101,7 @@ class UserProfileHeaderView: PassthroughView {
     
     // MARK: - Setup UI
     private func setupUI() {
-        avatarImageView.layer.masksToBounds = true
+        userProfileImageView.layer.masksToBounds = true
         
         backgroundColor         =   .white
         blurImageView.alpha     =   0
@@ -116,25 +117,33 @@ class UserProfileHeaderView: PassthroughView {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        avatarImageView.layer.cornerRadius = avatarImageView.bounds.size.width / 2
+        userProfileImageView.layer.cornerRadius = userProfileImageView.bounds.size.width / 2
     }
     
     
     // MARK: - Custom Functions
-    func updateUI(fromUserInfo userInfo: DisplayedUser) {
+    func updateUI(fromUserInfo userInfo: User) {
         self.nameLabel.text                 =   userInfo.name
-        self.voicePowerLabel.text           =   userInfo.voicePower
-        self.voicePowerImageView.image      =   UIImage(named: userInfo.voicePowerImageName)
-        self.starsLabel.text                =   "\(userInfo.postsAmount)"
+        self.voicePowerLabel.text           =   userInfo.voicePower.introduced().localized()
+        self.voicePowerImageView.image      =   UIImage(named: String(format: "icon-voice-power-%@", userInfo.voicePower.introduced().lowercased()))
+
+        // Reputation -> Int
+        self.reputationLabel.text           =   String(format: "%i", userInfo.reputation.convertWithLogarithm10())
         
-        // Upload user avatar
-        if let pictureURL = userInfo.pictureURL {
-            GSImageLoader().startLoadImage(with: pictureURL) { [weak self] image in
-                guard let strongSelf = self else { return }
-                
-                let image = image ?? UIImage(named: "icon-user-profile-image-placeholder")
-                strongSelf.avatarImageView.image = image
-            }
+        // Upload User profile image
+        if let userProfileImageURL = userInfo.profileImageURL {
+            self.userProfileImageView.uploadImage(byStringPath:     userProfileImageURL,
+                                                  imageType:        .userProfileImage,
+                                                  size:             CGSize(width: 80.0 * widthRatio, height: 80.0 * widthRatio),
+                                                  tags:             nil)
+        }
+        
+        // Upload User cover image
+        if let userCoverImagePath = userInfo.coverImageURL {
+            self.userCoverImageView.uploadImage(byStringPath:       userCoverImagePath,
+                                                imageType:          .userCoverImage,
+                                                size:               CGSize(width: 375.0 * widthRatio, height: 240.0 * heightRatio),
+                                                tags:               userInfo.selectTags)
         }
         
         self.showLabelsForAnimationCollection(true)
