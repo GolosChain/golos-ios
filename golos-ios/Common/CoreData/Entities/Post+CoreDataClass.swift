@@ -41,18 +41,26 @@ public class Post: NSManagedObject {
         postEntity!.activeVotesCount    =   Int16(postModel.active_votes.count)
         postEntity!.url                 =   postModel.url
 
-        if let jsonMetaData = postModel.json_metadata, let jsonData = jsonMetaData.data(using: .utf8) {
+        if let jsonMetaData = postModel.json_metadata, !jsonMetaData.isEmpty, let jsonData = jsonMetaData.data(using: .utf8) {
             do {
                 if let json = try JSONSerialization.jsonObject(with: jsonData, options: .allowFragments) as? [String: Any] {
                     postEntity!.tags            =   json["tags"] as? [String]
                     postEntity!.coverImageURL   =   (json["image"] as? [String])?.first
+                    
+                    // Extensions
+                    postEntity!.save()
                 }
             } catch {
                 Logger.log(message: "JSON serialization error", event: .error)
+
+                // Extensions
+                postEntity!.save()
             }
         }
         
-        // Extensions
-        postEntity!.save()
+        else {
+            // Extensions
+            postEntity!.save()
+        }
     }
 }

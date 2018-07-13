@@ -471,7 +471,9 @@ extension UserProfileShowViewController: SWSegmentedControlDelegate {
     }
     
     func segmentedControl(_ control: SWSegmentedControl, willDeselectItemAtIndex index: Int) {
-        self.topVisibleIndexPath[index] = self.tableView.indexPathsForVisibleRows![0]
+        if let indexPathsForVisibleRows = self.tableView.indexPathsForVisibleRows, indexPathsForVisibleRows.count > 0 {
+            self.topVisibleIndexPath[index] = self.tableView.indexPathsForVisibleRows![0]
+        }
     }
     
     func segmentedControl(_ control: SWSegmentedControl, didDeselectItemAtIndex index: Int) {
@@ -572,8 +574,8 @@ extension UserProfileShowViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let lastIndex           =   tableView.numberOfRows(inSection: indexPath.section) - 1
-        let lastElement         =   fetchedResultsController.sections![indexPath.section].objects![lastIndex]
+        let lastIndex   =   tableView.numberOfRows(inSection: indexPath.section) - 1
+        let lastElement =   fetchedResultsController.sections![indexPath.section].objects![lastIndex]
         
         if lastIndex == indexPath.row && lastIndex > self.lastUserProfileDetailsIndexes[segmentedControlIndex] {
             // Lenta (blogs)
@@ -587,7 +589,10 @@ extension UserProfileShowViewController: UITableViewDelegate {
             }
 
             // Load more User Profile details
-            self.topVisibleIndexPath[segmentedControlIndex]             =   self.tableView.indexPathsForVisibleRows![0]
+            if let indexPathsForVisibleRows = self.tableView.indexPathsForVisibleRows, indexPathsForVisibleRows.count > 0 {
+                self.topVisibleIndexPath[segmentedControlIndex]         =   indexPathsForVisibleRows[0]
+            }
+            
             self.lastUserProfileDetailsIndexes[segmentedControlIndex]   =   lastIndex
             self.paginanationData                                       =   true
             self.loadUserDetails()
