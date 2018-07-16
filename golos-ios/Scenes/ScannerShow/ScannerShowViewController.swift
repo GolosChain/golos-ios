@@ -15,7 +15,7 @@ import GoloSwift
 import AVFoundation
 
 // MARK: - Input & Output protocols
-class ScannerShowViewController: BaseViewController {
+class ScannerShowViewController: GSBaseViewController {
     // MARK: - Properties
     var captureSession: AVCaptureSession!
     var previewLayer: AVCaptureVideoPreviewLayer!

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BaseViewController: UIViewController {
+class GSBaseViewController: UIViewController {
     // MARK: - Properties
     var foregroundRemoteNotificationView: ForegroundRemoteNotificationView?
     

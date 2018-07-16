@@ -14,7 +14,7 @@ import UIKit
 import GoloSwift
 
 // MARK: - Input & Output protocols
-class WelcomeShowViewController: BaseViewController {
+class WelcomeShowViewController: GSBaseViewController {
     // MARK: - Properties
     var scrollLabels    =   [UILabel]()
     

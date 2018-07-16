@@ -13,11 +13,6 @@
 import UIKit
 import GoloSwift
 
-enum AnimationDirection {
-    case fromLeftToRight
-    case fromRightToLeft
-}
-
 enum LoginType {
     case postingKey
     case activeKey
@@ -29,7 +24,7 @@ protocol LogInShowDisplayLogic: class {
 }
 
 // MARK: - Input & Output protocols
-class LogInShowViewController: BaseViewController {
+class LogInShowViewController: GSBaseViewController {
     // MARK: - Properties
     var textFieldsCollection: [UITextField]?
     var animationDirection: AnimationDirection?
@@ -41,7 +36,7 @@ class LogInShowViewController: BaseViewController {
     var activeKeyShowVC: ActiveKeyShowViewController?
     var postingKeyShowVC: PostingKeyShowViewController?
     
-    var activeViewController: BaseViewController? {
+    var activeViewController: GSBaseViewController? {
         didSet {
             guard oldValue != nil else {
                 self.router?.updateActiveViewController()

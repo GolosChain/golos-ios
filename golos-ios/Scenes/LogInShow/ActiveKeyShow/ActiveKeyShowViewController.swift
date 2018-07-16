@@ -14,7 +14,7 @@ import UIKit
 import GoloSwift
 import IQKeyboardManagerSwift
 
-class ActiveKeyShowViewController: BaseViewController {
+class ActiveKeyShowViewController: GSBaseViewController {
     // MARK: - Properties
     var router: (NSObjectProtocol & ActiveKeyShowRoutingLogic)?
     var handlerReturnComletion: (([UITextField]) -> Void)?

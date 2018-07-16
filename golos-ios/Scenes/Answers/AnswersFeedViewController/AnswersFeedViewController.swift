@@ -78,6 +78,6 @@ extension AnswersFeedViewController: AnswersFeedMediatorDelegate {
     func didScroll(tableView: UITableView) {
         Logger.log(message: "Success", event: .severe)
         
-        delegate?.didScrollItem(self)
+//        delegate?.didScrollItem(self)
     }
 }

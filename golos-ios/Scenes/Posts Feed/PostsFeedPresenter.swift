@@ -37,8 +37,8 @@ class PostsFeedPresenter: NSObject {
     private var displayedPosts = [DisplayedPost]()
     private var postsFeedType: PostsFeedType = .new
 
-    private let userManager = UserManager()
-    private let replyManager = ReplyManager()
+//    private let userManager = UserManager()
+//    private let replyManager = ReplyManager()
     private let postsFeedManager = PostsFeedManager()
 }
 

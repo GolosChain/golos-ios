@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LogInHelpShowViewController: BaseViewController {
+class LogInHelpShowViewController: GSBaseViewController {
     // MARK: - Properties
     var loginType: LoginType = .postingKey
     

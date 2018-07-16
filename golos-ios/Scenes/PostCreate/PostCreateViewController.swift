@@ -27,7 +27,7 @@ protocol PostCreateDisplayLogic: class {
     func displayPostCommentReply(fromViewModel viewModel: PostCreateModels.Something.ViewModel)
 }
 
-class PostCreateViewController: BaseViewController {
+class PostCreateViewController: GSBaseViewController {
     // MARK: - Properties
     var isKeyboardShow = false
     var tagsVC: TagsCollectionViewController!

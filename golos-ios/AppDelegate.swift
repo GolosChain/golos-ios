@@ -146,7 +146,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             localNotification.fireDate      =   Date()
             
             // Display Remote Notification as Local when App is in Foreground mode
-            if let lastVC = getCurrentViewController(forRootViewController: UIApplication.shared.keyWindow?.rootViewController) as? BaseViewController {
+            if let lastVC = getCurrentViewController(forRootViewController: UIApplication.shared.keyWindow?.rootViewController) as? GSBaseViewController {
                 guard lastVC.foregroundRemoteNotificationView == nil else { return }
 
                 lastVC.foregroundRemoteNotificationView = ForegroundRemoteNotificationView.init(completionHandler: {

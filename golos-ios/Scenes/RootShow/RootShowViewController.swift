@@ -18,7 +18,7 @@ protocol RootShowDisplayLogic: class {
     func displayPosts(fromViewModel viewModel: RootShowModels.Items.ViewModel)
 }
 
-class RootShowViewController: BaseViewController {
+class RootShowViewController: GSBaseViewController {
     // MARK: - Properties
     var interactor: RootShowBusinessLogic?
     var router: (NSObjectProtocol & RootShowRoutingLogic & RootShowDataPassing)?

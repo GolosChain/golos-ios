@@ -6,6 +6,7 @@
 //  Copyright © 2018 golos. All rights reserved.
 //
 
+import CoreData
 import GoloSwift
 import Foundation
 

@@ -8,7 +8,7 @@
 import UIKit
 import GoloSwift
 
-class PostsFeedViewController: BaseViewController {
+class PostsFeedViewController: GSBaseViewController {
     // MARK: - Properties
     var spinner: UIActivityIndicatorView!
     
@@ -192,8 +192,8 @@ extension PostsFeedViewController: PostsFeedMediatorDelegate {
     func didPressReblogAuthor(at index: Int) {
         Logger.log(message: "Success", event: .severe)
         
-        let profileViewController = ProfileViewController.nibInstance()
-        navigationController?.pushViewController(profileViewController, animated: true)
+//        let profileViewController = ProfileViewController.nibInstance()
+//        navigationController?.pushViewController(profileViewController, animated: true)
     }
     
     func didPressUpvote(at index: Int) {
@@ -222,7 +222,7 @@ extension PostsFeedViewController: PostsFeedMediatorDelegate {
     func didScroll(tableView: UITableView) {
         Logger.log(message: "Success", event: .severe)
         
-        delegate?.didScrollItem(self)
+//        delegate?.didScrollItem(self)
     }
     
     func didStartLoadingNextPage() {

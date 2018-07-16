@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 import GoloSwift
 
 class FeedArticleTableViewCell: UITableViewCell {

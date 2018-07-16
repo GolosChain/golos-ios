@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainContainerViewController: BaseViewController {
+class MainContainerViewController: GSBaseViewController {
     // MARK: - Properties
     lazy var presenter: MainContainerPresenter = {
         let presenter       =   MainContainerPresenter()

@@ -14,7 +14,7 @@ import UIKit
 import CoreData
 import GoloSwift
 
-typealias UserProfileDetailsParams    =   (type: PostsFeedType, lastLentaPost: Lenta?, lastReplyPost: Reply?)
+typealias UserProfileDetailsParams    =   (type: PostsFeedType, lastItem: NSManagedObject?)
 
 class UserProfileShowWorker {
     // MARK: - Class Initialization
@@ -26,12 +26,13 @@ class UserProfileShowWorker {
     // MARK: - Business Logic
     func prepareRequestMethod(_ parameters: UserProfileDetailsParams) -> MethodAPIType {
         var methodAPIType: MethodAPIType
+        let lastItem = parameters.lastItem
         
         switch parameters.type {
         // Replies
         case .reply:
             methodAPIType   =   MethodAPIType.getUserReplies(startAuthor:           User.current!.name,
-                                                             startPermlink:         parameters.lastReplyPost?.permlink,
+                                                             startPermlink:         (lastItem as? Reply)?.permlink,
                                                              limit:                 loadDataLimit,
                                                              voteLimit:             0)
 
@@ -40,8 +41,8 @@ class UserProfileShowWorker {
             let discussion  =   RequestParameterAPI.Discussion.init(limit:          loadDataLimit,
                                                                     truncateBody:   0,
                                                                     selectAuthors:  [ User.current!.name ],
-                                                                    startAuthor:    parameters.lastLentaPost?.author,
-                                                                    startPermlink:  parameters.lastLentaPost?.permlink)
+                                                                    startAuthor:    (lastItem as? Lenta)?.author,
+                                                                    startPermlink:  (lastItem as? Lenta)?.permlink)
             
             methodAPIType   =   MethodAPIType.getDiscussions(type: .lenta, parameters: discussion)
         }

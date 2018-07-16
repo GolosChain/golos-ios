@@ -1,21 +1,16 @@
 //
-//  GSTableView.swift
+//  GSScrollView.swift
 //  Golos
 //
-//  Created by Grigory Serebryanyy on 24/01/2018.
+//  Created by msm72 on 14.07.2018.
 //  Copyright © 2018 golos. All rights reserved.
 //
 
 import UIKit
-import GoloSwift
 
-class GSTableView: UITableView {
-    // MARK: - Properties
-    
-    
-    // MARK: - Class Initialization
-    override init(frame: CGRect, style: UITableViewStyle) {
-        super.init(frame: frame, style: style)
+class GSScrollView: UIScrollView {
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         
         setup()
     }
@@ -26,12 +21,6 @@ class GSTableView: UITableView {
         setup()
     }
     
-    deinit {
-        Logger.log(message: "Success", event: .severe)
-    }
-    
-
-    // MARK: - Custom Functions
     private func setup() {
         delaysContentTouches = false
     }
@@ -40,7 +29,7 @@ class GSTableView: UITableView {
         if view is UIButton {
             return true
         }
-
+        
         return super.touchesShouldCancel(in: view)
     }
 }

@@ -11,7 +11,7 @@ import GoloSwift
 import AlignedCollectionViewFlowLayout
 import IQKeyboardManagerSwift
 
-class TagsCollectionViewController: BaseViewController {
+class TagsCollectionViewController: GSBaseViewController {
     // MARK: - Properties
     var tags: [Tag]!
     var tagIndex: Int       =   1

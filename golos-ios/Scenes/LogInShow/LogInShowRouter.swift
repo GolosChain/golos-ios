@@ -19,7 +19,7 @@ import GoloSwift
     func routeToPostingKeyScene()
     func showRegisterFormOnline()
     func updateActiveViewController()
-    func remove(inactiveViewController: BaseViewController?)
+    func remove(inactiveViewController: GSBaseViewController?)
 }
 
 class LogInShowRouter: NSObject, LogInShowRoutingLogic {
@@ -60,7 +60,7 @@ class LogInShowRouter: NSObject, LogInShowRoutingLogic {
 
     
     // MARK: - UIContainerView
-    func remove(inactiveViewController: BaseViewController?) {
+    func remove(inactiveViewController: GSBaseViewController?) {
         if let inactiveVC = inactiveViewController {
             UIView.animate(withDuration: 0.2, animations: {
                 inactiveVC.view.transform = CGAffineTransform(translationX: (self.viewController?.animationDirection == .fromRightToLeft) ? -1000 : 1000, y: 0)
@@ -92,7 +92,7 @@ class LogInShowRouter: NSObject, LogInShowRoutingLogic {
         }
     }
     
-    private func addActiveViewController(_ activeVC: BaseViewController) {
+    private func addActiveViewController(_ activeVC: GSBaseViewController) {
         self.viewController?.addChildViewController(activeVC)
         
         if self.viewController?.animationDirection == nil {

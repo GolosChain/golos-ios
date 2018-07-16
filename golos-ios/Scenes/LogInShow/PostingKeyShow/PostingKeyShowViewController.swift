@@ -14,7 +14,7 @@ import UIKit
 import GoloSwift
 import IQKeyboardManagerSwift
 
-class PostingKeyShowViewController: BaseViewController {
+class PostingKeyShowViewController: GSBaseViewController {
     // MARK: - Properties
     var router: (NSObjectProtocol & PostingKeyShowRoutingLogic)?
     var handlerReturnComletion: (([UITextField]) -> Void)?

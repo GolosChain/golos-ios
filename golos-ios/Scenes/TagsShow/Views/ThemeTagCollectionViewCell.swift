@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 import SwiftTheme
 import IQKeyboardManagerSwift
 
