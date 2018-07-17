@@ -157,8 +157,8 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
     private func getContainerViewControllers() -> [GSTableViewController] {
         let tableViewController1    =   UIStoryboard(name: "PostsShow", bundle: nil)
             .instantiateViewController(withIdentifier: "UserProfileLentaShowVC") as! GSTableViewController
-        tableViewController1.title  =   "Lenta".localized()
-        tableViewController1.cellIdentifier =   "FeedArticleTableViewCell"
+        tableViewController1.title              =   "Lenta".localized()
+        tableViewController1.cellIdentifier     =   "FeedArticleTableViewCell"
         
         let tableViewController2    =   UIStoryboard(name: "PostsShow", bundle: nil)
             .instantiateViewController(withIdentifier: "PopularPostsShowVC") as! GSTableViewController
@@ -166,7 +166,7 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
         tableViewController2.cellIdentifier     =   "PopularPostTableViewCell"
         
         let tableViewController3    =   UIStoryboard(name: "PostsShow", bundle: nil)
-            .instantiateViewController(withIdentifier: "UserProfileLentaShowVC") as! GSTableViewController
+            .instantiateViewController(withIdentifier: "ActualPostsShowVC") as! GSTableViewController
         tableViewController3.title              =   "Actual".localized()
         tableViewController3.cellIdentifier     =   "ActualPostTableViewCell"
         
@@ -176,7 +176,7 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
         tableViewController4.cellIdentifier     =   "NewPostTableViewCell"
         
         let tableViewController5    =   UIStoryboard(name: "PostsShow", bundle: nil)
-            .instantiateViewController(withIdentifier: "UserProfileLentaShowVC") as! GSTableViewController
+            .instantiateViewController(withIdentifier: "PromoPostsShowVC") as! GSTableViewController
         tableViewController5.title              =   "Promoted".localized()
         tableViewController5.cellIdentifier     =   "PromoPostTableViewCell"
         

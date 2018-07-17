@@ -146,11 +146,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rLU-Fe-jLk" userLabel="Lenta Table View" customClass="GSTableViewWithReloadCompletion" customModule="Golos" customModuleProvider="target">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rLU-Fe-jLk" userLabel="Popular Table View" customClass="GSTableViewWithReloadCompletion" customModule="Golos" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FeedArticleTableViewCell" id="65E-nF-aG4" customClass="FeedArticleTableViewCell" customModule="Golos" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PopularPostTableViewCell" id="65E-nF-aG4" customClass="PopularPostTableViewCell" customModule="Golos" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="65E-nF-aG4" id="nCr-XH-rmX">
@@ -160,9 +160,6 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
                                 </prototypes>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="cellIdentifier" value="FeedArticleTableViewCell"/>
-                                </userDefinedRuntimeAttributes>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -190,7 +187,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Mmr-jh-T7i" userLabel="Lenta Table View" customClass="GSTableViewWithReloadCompletion" customModule="Golos" customModuleProvider="target">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Mmr-jh-T7i" userLabel="New Table View" customClass="GSTableViewWithReloadCompletion" customModule="Golos" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
@@ -221,7 +218,89 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ci4-A6-Ics" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2886" y="45"/>
+            <point key="canvasLocation" x="3636" y="47"/>
+        </scene>
+        <!--Actual Posts Show View Controller-->
+        <scene sceneID="R5Z-sr-DTS">
+            <objects>
+                <viewController storyboardIdentifier="ActualPostsShowVC" id="0hG-2t-q4M" customClass="ActualPostsShowViewController" customModule="Golos" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" clipsSubviews="YES" tag="1" contentMode="scaleToFill" id="PYN-8I-CeX">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pXA-hL-jVh" userLabel="Actual Table View" customClass="GSTableViewWithReloadCompletion" customModule="Golos" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ActualPostTableViewCell" id="n9D-u1-NsR" customClass="NewPostTableViewCell" customModule="Golos" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="n9D-u1-NsR" id="kDe-Vt-Ccd">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="pXA-hL-jVh" firstAttribute="trailing" secondItem="li2-Ih-VsW" secondAttribute="trailing" id="6ks-e3-Opr"/>
+                            <constraint firstItem="pXA-hL-jVh" firstAttribute="leading" secondItem="li2-Ih-VsW" secondAttribute="leading" id="IJd-fC-upw"/>
+                            <constraint firstItem="pXA-hL-jVh" firstAttribute="bottom" secondItem="li2-Ih-VsW" secondAttribute="bottom" id="Jmm-LM-ZWZ"/>
+                            <constraint firstItem="pXA-hL-jVh" firstAttribute="top" secondItem="PYN-8I-CeX" secondAttribute="top" id="cJw-Z4-tT4"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="li2-Ih-VsW"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="pXA-hL-jVh" id="bd5-J0-61O"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="o1N-0v-oga" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2889" y="47"/>
+        </scene>
+        <!--Promo Posts Show View Controller-->
+        <scene sceneID="Q97-SZ-KBy">
+            <objects>
+                <viewController storyboardIdentifier="PromoPostsShowVC" id="yqH-OO-YAM" customClass="PromoPostsShowViewController" customModule="Golos" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" clipsSubviews="YES" tag="1" contentMode="scaleToFill" id="F1V-61-Frq">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="V4b-ZX-bd0" userLabel="Promo Table View" customClass="GSTableViewWithReloadCompletion" customModule="Golos" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PromoPostTableViewCell" id="ygG-hL-mkg" customClass="NewPostTableViewCell" customModule="Golos" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ygG-hL-mkg" id="7lt-kF-Rkh">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="V4b-ZX-bd0" firstAttribute="top" secondItem="F1V-61-Frq" secondAttribute="top" id="1m1-Ff-y1y"/>
+                            <constraint firstItem="V4b-ZX-bd0" firstAttribute="bottom" secondItem="hXC-sC-m0r" secondAttribute="bottom" id="UID-ta-BF6"/>
+                            <constraint firstItem="V4b-ZX-bd0" firstAttribute="leading" secondItem="hXC-sC-m0r" secondAttribute="leading" id="t75-Di-vy2"/>
+                            <constraint firstItem="V4b-ZX-bd0" firstAttribute="trailing" secondItem="hXC-sC-m0r" secondAttribute="trailing" id="zcy-9y-UTF"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="hXC-sC-m0r"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="V4b-ZX-bd0" id="r0J-bc-VAU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="THj-co-4d9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4388" y="47"/>
         </scene>
     </scenes>
 </document>

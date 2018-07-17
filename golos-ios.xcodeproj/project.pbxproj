@@ -174,6 +174,14 @@
 		B1EA154B20FE02260015EF76 /* NewPostsShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EA154A20FE02260015EF76 /* NewPostsShowViewController.swift */; };
 		B1EA154E20FE027A0015EF76 /* NewPostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1EA154C20FE02790015EF76 /* NewPostTableViewCell.xib */; };
 		B1EA154F20FE027A0015EF76 /* NewPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EA154D20FE02790015EF76 /* NewPostTableViewCell.swift */; };
+		B1EA155220FE20760015EF76 /* PopularPostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1EA155020FE20740015EF76 /* PopularPostTableViewCell.xib */; };
+		B1EA155320FE20760015EF76 /* PopularPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EA155120FE20750015EF76 /* PopularPostTableViewCell.swift */; };
+		B1EA155620FE22590015EF76 /* ActualPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EA155420FE22590015EF76 /* ActualPostTableViewCell.swift */; };
+		B1EA155720FE22590015EF76 /* ActualPostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1EA155520FE22590015EF76 /* ActualPostTableViewCell.xib */; };
+		B1EA155920FE22980015EF76 /* ActualPostsShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EA155820FE22980015EF76 /* ActualPostsShowViewController.swift */; };
+		B1EA155C20FE23F50015EF76 /* PromoPostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1EA155A20FE23F50015EF76 /* PromoPostTableViewCell.xib */; };
+		B1EA155D20FE23F50015EF76 /* PromoPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EA155B20FE23F50015EF76 /* PromoPostTableViewCell.swift */; };
+		B1EA155F20FE243A0015EF76 /* PromoPostsShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EA155E20FE243A0015EF76 /* PromoPostsShowViewController.swift */; };
 		B1EBAFBB20EB55690050B1A2 /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EBAFB720EB55690050B1A2 /* User+CoreDataClass.swift */; };
 		B1EBAFBC20EB55690050B1A2 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EBAFB820EB55690050B1A2 /* User+CoreDataProperties.swift */; };
 		B1EBAFBE20EB56910050B1A2 /* NSManagedObject+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EBAFBD20EB56910050B1A2 /* NSManagedObject+Extensions.swift */; };
@@ -453,6 +461,14 @@
 		B1EA154A20FE02260015EF76 /* NewPostsShowViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPostsShowViewController.swift; sourceTree = "<group>"; };
 		B1EA154C20FE02790015EF76 /* NewPostTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewPostTableViewCell.xib; sourceTree = "<group>"; };
 		B1EA154D20FE02790015EF76 /* NewPostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPostTableViewCell.swift; sourceTree = "<group>"; };
+		B1EA155020FE20740015EF76 /* PopularPostTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopularPostTableViewCell.xib; sourceTree = "<group>"; };
+		B1EA155120FE20750015EF76 /* PopularPostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopularPostTableViewCell.swift; sourceTree = "<group>"; };
+		B1EA155420FE22590015EF76 /* ActualPostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActualPostTableViewCell.swift; sourceTree = "<group>"; };
+		B1EA155520FE22590015EF76 /* ActualPostTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActualPostTableViewCell.xib; sourceTree = "<group>"; };
+		B1EA155820FE22980015EF76 /* ActualPostsShowViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActualPostsShowViewController.swift; sourceTree = "<group>"; };
+		B1EA155A20FE23F50015EF76 /* PromoPostTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PromoPostTableViewCell.xib; sourceTree = "<group>"; };
+		B1EA155B20FE23F50015EF76 /* PromoPostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromoPostTableViewCell.swift; sourceTree = "<group>"; };
+		B1EA155E20FE243A0015EF76 /* PromoPostsShowViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromoPostsShowViewController.swift; sourceTree = "<group>"; };
 		B1EBAFB720EB55690050B1A2 /* User+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = "<group>"; };
 		B1EBAFB820EB55690050B1A2 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		B1EBAFBD20EB56910050B1A2 /* NSManagedObject+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+Extensions.swift"; sourceTree = "<group>"; };
@@ -763,6 +779,12 @@
 		B12B3ACC20FCC6F000071B97 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				B1EA155B20FE23F50015EF76 /* PromoPostTableViewCell.swift */,
+				B1EA155A20FE23F50015EF76 /* PromoPostTableViewCell.xib */,
+				B1EA155420FE22590015EF76 /* ActualPostTableViewCell.swift */,
+				B1EA155520FE22590015EF76 /* ActualPostTableViewCell.xib */,
+				B1EA155120FE20750015EF76 /* PopularPostTableViewCell.swift */,
+				B1EA155020FE20740015EF76 /* PopularPostTableViewCell.xib */,
 				B1EA154D20FE02790015EF76 /* NewPostTableViewCell.swift */,
 				B1EA154C20FE02790015EF76 /* NewPostTableViewCell.xib */,
 			);
@@ -951,9 +973,11 @@
 		B1742A8F20FD0A2E009AAE5E /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				B1EA155820FE22980015EF76 /* ActualPostsShowViewController.swift */,
 				B1742A8D20FD03EE009AAE5E /* GSPostsSegmentedControlViewController.swift */,
 				B1EA154A20FE02260015EF76 /* NewPostsShowViewController.swift */,
 				B1EA151E20FDC82E0015EF76 /* PopularPostsShowViewController.swift */,
+				B1EA155E20FE243A0015EF76 /* PromoPostsShowViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -1443,6 +1467,7 @@
 			files = (
 				7D1783DE201FD9B600B75979 /* ArticlePostedInTableViewCell.xib in Resources */,
 				B198DB9420B9C560008011A3 /* SFProDisplay-Regular.otf in Resources */,
+				B1EA155C20FE23F50015EF76 /* PromoPostTableViewCell.xib in Resources */,
 				B13FE9BF20F5D97600F907BC /* Debug.xcconfig in Resources */,
 				B11AA80520CB13BA00212713 /* SFUIDisplay-Regular.otf in Resources */,
 				B13FE9C020F5D97600F907BC /* Development.xcconfig in Resources */,
@@ -1464,11 +1489,13 @@
 				7D25B4BF201FABB2004A3400 /* ArticleTitleTableViewCell.xib in Resources */,
 				EC1DFB9920063C400080BC50 /* LaunchScreen.storyboard in Resources */,
 				7DCF74A820200AA700D46495 /* ArticleCommentTableViewCell.xib in Resources */,
+				B1EA155720FE22590015EF76 /* ActualPostTableViewCell.xib in Resources */,
 				7DE3531C2048CA3400C04CB2 /* LogInHelpShowViewController.xib in Resources */,
 				EC24FF7F200C4E2C00A0AE15 /* NavigationDropDownView.xib in Resources */,
 				B1050CBF20CECFBE003CE4EE /* PostCreate.storyboard in Resources */,
 				7D79C33B2034675C00794447 /* AnswersFeedViewController.xib in Resources */,
 				B12A577420B432C8000CF8BF /* GoogleService-Info.plist in Resources */,
+				B1EA155220FE20760015EF76 /* PopularPostTableViewCell.xib in Resources */,
 				B1EE684820D243FF006BF802 /* PostCreateView.xib in Resources */,
 				EC07F4B22014404200560CF0 /* PostsFeedViewController.xib in Resources */,
 				7DFA6CAE2036D76000F59494 /* PostsFeedImageTableViewCell.xib in Resources */,
@@ -1720,6 +1747,7 @@
 				B11AA80220CB04AA00212713 /* WelcomeShowViewController.swift in Sources */,
 				EC24FF82200C625800A0AE15 /* DropDownViewController.swift in Sources */,
 				B1F3747F20C2C5E1005EF767 /* RootShowPresenter.swift in Sources */,
+				B1EA155F20FE243A0015EF76 /* PromoPostsShowViewController.swift in Sources */,
 				EC6FD59E200AD53100DCB824 /* UIViewController+Extensions.swift in Sources */,
 				7DCF74A2201FE1C700D46495 /* ArticleCommentsSectionHeader.swift in Sources */,
 				7D79C33D203467B600794447 /* AnswersFeedPresenter.swift in Sources */,
@@ -1740,12 +1768,14 @@
 				B1EA154520FE007A0015EF76 /* Popular+CoreDataProperties.swift in Sources */,
 				7D911D222035F5AA00F19D3C /* PostReplyModel.swift in Sources */,
 				B11AA80020CB04AA00212713 /* WelcomeShowRouter.swift in Sources */,
+				B1EA155D20FE23F50015EF76 /* PromoPostTableViewCell.swift in Sources */,
 				B1050CA320CECF75003CE4EE /* PostCreateModels.swift in Sources */,
 				B111322620CD51EA00BC7F33 /* PostingKeyShowViewController.swift in Sources */,
 				7D25B47F201F4714004A3400 /* TagsView.swift in Sources */,
 				B1EA154B20FE02260015EF76 /* NewPostsShowViewController.swift in Sources */,
 				B12B3AC820FCBFCA00071B97 /* PostsShowViewController.swift in Sources */,
 				B11AA80720CB9FC800212713 /* UILabel+Extensions.swift in Sources */,
+				B1EA155320FE20760015EF76 /* PopularPostTableViewCell.swift in Sources */,
 				B114192820CD1E260025B07F /* ReachabilityManager.swift in Sources */,
 				B1EBAFBC20EB55690050B1A2 /* User+CoreDataProperties.swift in Sources */,
 				B111322420CD51EA00BC7F33 /* PostingKeyShowRouter.swift in Sources */,
@@ -1756,6 +1786,7 @@
 				B1EA154320FE007A0015EF76 /* New+CoreDataProperties.swift in Sources */,
 				B164F04420E62AE600C5CDD3 /* UserProfileShowRouter.swift in Sources */,
 				B136D4F820D8B9E8003AD279 /* Tag.swift in Sources */,
+				B1EA155620FE22590015EF76 /* ActualPostTableViewCell.swift in Sources */,
 				B198DB9120B9A21A008011A3 /* UIColor+Extensions.swift in Sources */,
 				B139EB9B20C3D3DC0065F6F9 /* CircularProgressBarView.swift in Sources */,
 				7DFA6CB12036D76B00F59494 /* PostsFeedTextTableViewCell.swift in Sources */,
@@ -1786,6 +1817,7 @@
 				B123C5BB20CE4C8B00747989 /* UITextField+Extensions.swift in Sources */,
 				B1EA154920FE007A0015EF76 /* Promo+CoreDataProperties.swift in Sources */,
 				B13FE9A820F4E90700F907BC /* UserProfileShowWorker.swift in Sources */,
+				B1EA155920FE22980015EF76 /* ActualPostsShowViewController.swift in Sources */,
 				ECF31725200A9D2800F7B703 /* UIAlertController+Window.swift in Sources */,
 				7D25B48C201F5700004A3400 /* TagCollectionViewCell.swift in Sources */,
 				7D25B4CD201FAE93004A3400 /* ArticleMediator.swift in Sources */,

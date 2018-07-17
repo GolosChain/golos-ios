@@ -1,5 +1,5 @@
 //
-//  NewPostTableViewCell.swift
+//  ActualPostTableViewCell.swift
 //  Golos
 //
 //  Created by Grigory Serebryanyy on 22/01/2018.
@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 import GoloSwift
 
-class NewPostTableViewCell: UITableViewCell, HandlersCellSupport {
+class ActualPostTableViewCell: UITableViewCell, HandlersCellSupport {
     // MARK: - Properties
     let imageLoader = GSImageLoader()
     let gradientLayer = CAGradientLayer()
@@ -126,7 +126,7 @@ class NewPostTableViewCell: UITableViewCell, HandlersCellSupport {
     
     // MARK: - Reuse identifier
     override var reuseIdentifier: String? {
-        return NewPostTableViewCell.reuseIdentifier
+        return ActualPostTableViewCell.reuseIdentifier
     }
     
     class var reuseIdentifier: String? {
@@ -136,14 +136,14 @@ class NewPostTableViewCell: UITableViewCell, HandlersCellSupport {
 
 
 // MARK: - ConfigureCell implementation
-extension NewPostTableViewCell: ConfigureCell {
+extension ActualPostTableViewCell: ConfigureCell {
     func setup(withItem item: Any?, andIndexPath indexPath: IndexPath) {
-        guard let new = item as? New else {
+        guard let actual = item as? Actual else {
             return
         }
         
         // Get user info
-        if let user = User.fetch(byName: new.author) {
+        if let user = User.fetch(byName: actual.author) {
             self.articleHeaderView.authorLabel.text             =   user.name
             
             // Reputation -> Int
@@ -159,11 +159,11 @@ extension NewPostTableViewCell: ConfigureCell {
         }
         
         // Load post cover image
-        if let coverImageURL = new.coverImageURL {
+        if let coverImageURL = actual.coverImageURL {
             self.postImageView.uploadImage(byStringPath:    coverImageURL,
                                            imageType:       .userCoverImage,
                                            size:            CGSize(width: UIScreen.main.bounds.width, height: 180.0 * heightRatio),
-                                           tags:            new.tags)
+                                           tags:            actual.tags)
         }
         
         // Hide post image
@@ -171,11 +171,11 @@ extension NewPostTableViewCell: ConfigureCell {
             self.postImageViewHeightConstraint.constant = 0
         }
 
-        self.titleLabel.text                        =   new.title
-        self.articleHeaderView.authorLabel.text     =   new.author
-        self.articleHeaderView.categoryLabel.text   =   new.category
-        self.upvotesButton.isEnabled                =   new.allowVotes
-        self.commentsButton.isEnabled               =   new.allowReplies
+        self.titleLabel.text                        =   actual.title
+        self.articleHeaderView.authorLabel.text     =   actual.author
+        self.articleHeaderView.categoryLabel.text   =   actual.category
+        self.upvotesButton.isEnabled                =   actual.allowVotes
+        self.commentsButton.isEnabled               =   actual.allowReplies
 
         selectionStyle                              =   .none
 

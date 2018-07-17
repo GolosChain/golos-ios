@@ -11,6 +11,7 @@
 //
 
 import UIKit
+import GoloSwift
 
 // MARK: - Data models
 enum RootShowModels {
@@ -20,9 +21,11 @@ enum RootShowModels {
         }
         
         struct ResponseModel {
+            let error: ErrorAPI?
         }
         
         struct ViewModel {
+            let error: ErrorAPI?
         }
     }
 }

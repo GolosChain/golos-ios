@@ -41,22 +41,9 @@ class RootShowInteractor: RootShowBusinessLogic, RootShowDataStore {
                                                                                             truncateBody:   0,
                                                                                             selectAuthors:  [ User.current!.name ])
         
-        PostsFeedManager().loadPostsFeed(withType: type, andDiscussion: discussion, completion: { [weak self] (items, errorAPI) in
-            guard let selfStrong = self else { return }
-            
-            guard errorAPI == nil else {
-                return
-            }
-            
-            guard items!.count > 0 else {
-                return
-            }
-            
-            // Prepare & Display feed posts
-            displayedPostsItems.append(contentsOf: items!)
-
-            let responseModel = RootShowModels.Items.ResponseModel()
-            selfStrong.presenter?.presentPosts(fromResponseModel: responseModel)
+        RestAPIManager.loadPostsFeed(byMethodAPIType: MethodAPIType.getDiscussions(type: type, parameters: discussion), andPostFeedType: type, completion: { [weak self] errorAPI in
+            let responseModel = RootShowModels.Items.ResponseModel(error: errorAPI)
+            self?.presenter?.presentPosts(fromResponseModel: responseModel)
         })
     }
 }

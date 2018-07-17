@@ -31,7 +31,7 @@ class RootShowPresenter: RootShowPresentationLogic {
 
     // MARK: - Presentation Logic implementation
     func presentPosts(fromResponseModel responseModel: RootShowModels.Items.ResponseModel) {
-        let viewModel = RootShowModels.Items.ViewModel()
+        let viewModel = RootShowModels.Items.ViewModel(error: responseModel.error)
         viewController?.displayPosts(fromViewModel: viewModel)
     }
 }

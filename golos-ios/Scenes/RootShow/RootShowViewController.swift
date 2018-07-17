@@ -138,6 +138,10 @@ class RootShowViewController: GSBaseViewController {
 // MARK: - RootShowDisplayLogic
 extension RootShowViewController: RootShowDisplayLogic {
     func displayPosts(fromViewModel viewModel: RootShowModels.Items.ViewModel) {
+        if let error = viewModel.error {
+            self.showAlertView(withTitle: "Error", andMessage: error.localizedDescription, needCancel: false, completion: { _ in })
+        }
+
         self.circularProgressBarView.endAnimation()
         Logger.log(message: "Animation did stop.", event: .severe)
         self.circularProgressBarView.endAnimationCompletion!()

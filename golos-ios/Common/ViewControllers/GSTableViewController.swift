@@ -164,42 +164,60 @@ class GSTableViewController: GSBaseViewController {
             fetchRequest                =   NSFetchRequest<NSFetchRequestResult>(entityName: "Reply")
             primarySortDescriptor       =   NSSortDescriptor(key: "created", ascending: false)
             secondarySortDescriptor     =   NSSortDescriptor(key: "author", ascending: true)
-            fetchRequest.predicate      =   NSPredicate(format: "parentAuthor == %@", User.current!.name)
             
+            if let userName = User.current?.name {
+                fetchRequest.predicate  =   NSPredicate(format: "parentAuthor == %@", userName)
+            }
+
         // Popular
         case .popular:
             fetchRequest                =   NSFetchRequest<NSFetchRequestResult>(entityName: "Popular")
             primarySortDescriptor       =   NSSortDescriptor(key: "created", ascending: false)
             secondarySortDescriptor     =   NSSortDescriptor(key: "author", ascending: true)
-            fetchRequest.predicate      =   NSPredicate(format: "author == %@", User.current!.name)
+            
+            if let userName = User.current?.name {
+                fetchRequest.predicate  =   NSPredicate(format: "author == %@", userName)
+            }
         
         // Actual
         case .actual:
             fetchRequest                =   NSFetchRequest<NSFetchRequestResult>(entityName: "Actual")
             primarySortDescriptor       =   NSSortDescriptor(key: "created", ascending: false)
             secondarySortDescriptor     =   NSSortDescriptor(key: "author", ascending: true)
-            fetchRequest.predicate      =   NSPredicate(format: "author == %@", User.current!.name)
+
+            if let userName = User.current?.name {
+                fetchRequest.predicate  =   NSPredicate(format: "author == %@", userName)
+            }
             
         // New
         case .new:
             fetchRequest                =   NSFetchRequest<NSFetchRequestResult>(entityName: "New")
             primarySortDescriptor       =   NSSortDescriptor(key: "created", ascending: false)
             secondarySortDescriptor     =   NSSortDescriptor(key: "author", ascending: true)
-            fetchRequest.predicate      =   NSPredicate(format: "author == %@", User.current!.name)
+            
+            if let userName = User.current?.name {
+                fetchRequest.predicate  =   NSPredicate(format: "author == %@", userName)
+            }
             
         // Promo
         case .promoted:
             fetchRequest                =   NSFetchRequest<NSFetchRequestResult>(entityName: "Promo")
             primarySortDescriptor       =   NSSortDescriptor(key: "created", ascending: false)
             secondarySortDescriptor     =   NSSortDescriptor(key: "author", ascending: true)
-            fetchRequest.predicate      =   NSPredicate(format: "author == %@", User.current!.name)
+            
+            if let userName = User.current?.name {
+                fetchRequest.predicate  =   NSPredicate(format: "author == %@", userName)
+            }
             
         // Lenta (blogs)
         default:
             fetchRequest                =   NSFetchRequest<NSFetchRequestResult>(entityName: "Lenta")
             primarySortDescriptor       =   NSSortDescriptor(key: "created", ascending: false)
             secondarySortDescriptor     =   NSSortDescriptor(key: "author", ascending: true)
-            fetchRequest.predicate      =   NSPredicate(format: "author == %@", User.current!.name)
+            
+            if let userName = User.current?.name {
+                fetchRequest.predicate  =   NSPredicate(format: "author == %@", userName)
+            }
         }
         
         fetchRequest.sortDescriptors    =   [ primarySortDescriptor, secondarySortDescriptor ]
@@ -334,13 +352,70 @@ extension GSTableViewController: UITableViewDataSource {
             
         // Lenta (blog), Popular, Actual, New, Promo
         default:
-            if type(of: entity) == Lenta.self || type(of: entity) == Popular.self || type(of: entity) == Actual.self || type(of: entity) == New.self || type(of: entity) == Promo.self {
-                let cell = tableView.dequeueReusableCell(withIdentifier: self.cellIdentifier, for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: self.cellIdentifier, for: indexPath)
+            
+            (cell as! ConfigureCell).setup(withItem: entity, andIndexPath: indexPath)
+            
+            // Handlers comletion
+            switch entity {
+            // Popular
+            case _ where type(of: entity) == Popular.self:
+                (cell as! PopularPostTableViewCell).handlerShareButtonTapped        =   { [weak self] in
+                    self?.handlerShareButtonTapped!()
+                }
                 
-                (cell as! ConfigureCell).setup(withItem: entity, andIndexPath: indexPath)
+                (cell as! PopularPostTableViewCell).handlerUpvotesButtonTapped      =   { [weak self] in
+                    self?.handlerUpvotesButtonTapped!()
+                }
                 
-                // Handlers comletion
-                (cell as! FeedArticleTableViewCell).handlerShareButtonTapped        = { [weak self] in
+                (cell as! PopularPostTableViewCell).handlerCommentsButtonTapped     =   { [weak self] in
+                    self?.handlerCommentsButtonTapped!()
+                }
+                
+            // Actual
+            case _ where type(of: entity) == Actual.self:
+                (cell as! ActualPostTableViewCell).handlerShareButtonTapped         =   { [weak self] in
+                    self?.handlerShareButtonTapped!()
+                }
+                
+                (cell as! ActualPostTableViewCell).handlerUpvotesButtonTapped       =   { [weak self] in
+                    self?.handlerUpvotesButtonTapped!()
+                }
+                
+                (cell as! ActualPostTableViewCell).handlerCommentsButtonTapped      =   { [weak self] in
+                    self?.handlerCommentsButtonTapped!()
+                }
+                
+            // New
+            case _ where type(of: entity) == New.self:
+                (cell as! NewPostTableViewCell).handlerShareButtonTapped            =   { [weak self] in
+                    self?.handlerShareButtonTapped!()
+                }
+                
+                (cell as! NewPostTableViewCell).handlerUpvotesButtonTapped          =   { [weak self] in
+                    self?.handlerUpvotesButtonTapped!()
+                }
+                
+                (cell as! NewPostTableViewCell).handlerCommentsButtonTapped         =   { [weak self] in
+                    self?.handlerCommentsButtonTapped!()
+                }
+                
+            // Promo
+            case _ where type(of: entity) == Promo.self:
+                (cell as! PromoPostTableViewCell).handlerShareButtonTapped          =   { [weak self] in
+                    self?.handlerShareButtonTapped!()
+                }
+                
+                (cell as! PromoPostTableViewCell).handlerUpvotesButtonTapped        =   { [weak self] in
+                    self?.handlerUpvotesButtonTapped!()
+                }
+                
+                (cell as! PromoPostTableViewCell).handlerCommentsButtonTapped       =   { [weak self] in
+                    self?.handlerCommentsButtonTapped!()
+                }
+                
+            default:
+                (cell as! FeedArticleTableViewCell).handlerShareButtonTapped        =   { [weak self] in
                     self?.handlerShareButtonTapped!()
                 }
                 
@@ -352,8 +427,9 @@ extension GSTableViewController: UITableViewDataSource {
                     self?.handlerCommentsButtonTapped!()
                 }
                 
-                return cell
             }
+            
+            return cell
         }
         
         return UITableViewCell()
@@ -380,7 +456,7 @@ extension GSTableViewController: UITableViewDelegate {
             if let indexPathsForVisibleRows = self.tableView.indexPathsForVisibleRows, indexPathsForVisibleRows.count > 0 {
                 self.topVisibleIndexPath    =   indexPathsForVisibleRows[0]
             }
-
+            
             self.lastIndex          =   lastItemIndex
             self.paginanationData   =   true
             

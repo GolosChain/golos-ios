@@ -34,7 +34,9 @@ class RestAPIManager {
                                         userEntity.updateEntity(fromResponseAPI: $0)
                                         
                                         // Set User isAuthorized
-                                        User.fetch(byName: names.first!)?.setIsAuthorized(true)
+                                        if names.count == 1 {
+                                            User.fetch(byName: names.first!)?.setIsAuthorized(true)
+                                        }
                                     })
                                     
                                     completion(nil)

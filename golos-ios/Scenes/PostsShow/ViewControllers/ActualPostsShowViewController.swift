@@ -1,5 +1,5 @@
 //
-//  PopularPostsShowViewController.swift
+//  ActualPostsShowViewController.swift
 //  golos-ios
 //
 //  Created by msm72 on 29.06.2018.
@@ -13,7 +13,7 @@
 import UIKit
 import GoloSwift
 
-class PopularPostsShowViewController: GSTableViewController {
+class ActualPostsShowViewController: GSTableViewController {
     // MARK: - Class Initialization
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
