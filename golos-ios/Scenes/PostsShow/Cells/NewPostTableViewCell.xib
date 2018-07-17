@@ -28,7 +28,7 @@
                         </constraints>
                     </view>
                     <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalCompressionResistancePriority="1000" text="" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VKV-nZ-kLa" userLabel="Title Label">
-                        <rect key="frame" x="16" y="56" width="340" height="59"/>
+                        <rect key="frame" x="16" y="56" width="340" height="46.5"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <nil key="textColor"/>
@@ -119,7 +119,7 @@
                     <constraint firstItem="VKV-nZ-kLa" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="TZf-fc-GqU"/>
                     <constraint firstItem="x0K-7b-ZlY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="YBj-9B-EKd"/>
                     <constraint firstAttribute="trailing" secondItem="cNc-UC-tpt" secondAttribute="trailing" id="aG2-dG-Iu3"/>
-                    <constraint firstItem="cNc-UC-tpt" firstAttribute="top" secondItem="VKV-nZ-kLa" secondAttribute="bottom" id="ktp-dm-LFz"/>
+                    <constraint firstItem="cNc-UC-tpt" firstAttribute="top" secondItem="VKV-nZ-kLa" secondAttribute="bottom" constant="12" id="ktp-dm-LFz"/>
                     <constraint firstItem="cNc-UC-tpt" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="pqL-1V-tKY"/>
                     <constraint firstAttribute="trailing" secondItem="rgg-s6-oxm" secondAttribute="trailing" id="s1R-fc-8OZ"/>
                     <constraint firstAttribute="trailing" secondItem="x0K-7b-ZlY" secondAttribute="trailing" id="tJq-RC-0f1"/>
@@ -143,6 +143,7 @@
                 <outletCollection property="widthsCollection" destination="Vfo-EY-ayY" collectionClass="NSMutableArray" id="5up-nU-gQd"/>
                 <outletCollection property="heightsCollection" destination="gj9-nR-R3l" collectionClass="NSMutableArray" id="DVb-RK-8xF"/>
                 <outletCollection property="heightsCollection" destination="peV-ev-Tz3" collectionClass="NSMutableArray" id="kll-eq-rdk"/>
+                <outletCollection property="heightsCollection" destination="ktp-dm-LFz" collectionClass="NSMutableArray" id="JXe-My-A44"/>
             </connections>
             <point key="canvasLocation" x="-276" y="246"/>
         </tableViewCell>

@@ -159,7 +159,7 @@ extension PopularPostTableViewCell: ConfigureCell {
         }
         
         // Load post cover image
-        if let coverImageURL = popular.coverImageURL {
+        if let coverImageURL = popular.coverImageURL, !coverImageURL.isEmpty {
             self.postImageView.uploadImage(byStringPath:    coverImageURL,
                                            imageType:       .userCoverImage,
                                            size:            CGSize(width: UIScreen.main.bounds.width, height: 180.0 * heightRatio),

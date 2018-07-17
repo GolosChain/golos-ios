@@ -51,7 +51,7 @@ extension UIImageView {
                     }
                 }
 
-                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
                     self.image = gifImage
                 }
             }
