@@ -14,6 +14,14 @@ import UIKit
 import GoloSwift
 
 class NewPostsShowViewController: GSTableViewController {
+    // MARK: - IBOutlets
+    @IBOutlet override weak var tableView: GSTableViewWithReloadCompletion! {
+        didSet {
+            tableView.register(UINib(nibName: "NewPostTableViewCell", bundle: nil), forCellReuseIdentifier: "NewPostTableViewCell")
+        }
+    }
+    
+    
     // MARK: - Class Initialization
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)

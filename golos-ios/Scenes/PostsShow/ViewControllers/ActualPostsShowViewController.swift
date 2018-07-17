@@ -14,6 +14,24 @@ import UIKit
 import GoloSwift
 
 class ActualPostsShowViewController: GSTableViewController {
+    // MARK: - IBOutlets
+    @IBOutlet override weak var tableView: GSTableViewWithReloadCompletion! {
+        didSet {
+            tableView.register(UINib(nibName: "ActualPostTableViewCell", bundle: nil), forCellReuseIdentifier: "ActualPostTableViewCell")
+            
+//            guard self.activityIndicatorView == nil else {
+//                return
+//            }
+//            
+//            self.activityIndicatorView          =   UIActivityIndicatorView.init(frame: CGRect(origin:  .zero,
+//                                                                                               size:    CGSize(width: tableView.frame.width, height: 64.0 * heightRatio)))
+//            self.activityIndicatorView.activityIndicatorViewStyle = .gray
+//            //            self.activityIndicatorView.color    =   UIColor.blue
+//            self.tableView.tableHeaderView      =   self.activityIndicatorView
+        }
+    }    
+    
+    
     // MARK: - Class Initialization
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)

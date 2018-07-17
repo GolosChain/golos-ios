@@ -26,19 +26,38 @@ extension UIImageView {
         }
         
         else {
-            let imagePath = path.addImageProxy(withSize: size)
-            let imagePlaceholderName = imageType == .defaultImage ? "image-placeholder" : (imageType == .userProfileImage ? "icon-user-profile-image-placeholder" : "image-user-cover-placeholder")
+            let imagePath               =   path.addImageProxy(withSize: size)
+            let imagePlaceholderName    =   imageType == .defaultImage ? "image-placeholder" : (imageType == .userProfileImage ?    "icon-user-profile-image-placeholder" :
+                                                                                                                                    "image-user-cover-placeholder")
+            
+            let imageKey                =   imageType.rawValue + "-" + imagePath
             
             if imagePath.hasSuffix(".gif") {
-                let gifImage = UIImage.gif(url: imagePath)
+                var gifImage: UIImage?
+
+                if isNetworkAvailable {
+                    gifImage = UIImage.gif(url: imagePath)
+                    
+                    let images = [gifImage!] as NSArray
+                    PINCache.shared().setObject(images, forKey: imageKey)
+                }
                 
-                DispatchQueue.main.async {
+                // Cache .gif
+                else {
+                    PINCache.shared().object(forKey: imageKey) { _, _, object in
+                        if let images = object as? [UIImage] {
+                            gifImage = images.first
+                        }
+                    }
+                }
+
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
                     self.image = gifImage
                 }
             }
             
             else {
-                self.kf.setImage(with:                  ImageResource(downloadURL: URL(string: imagePath)!, cacheKey: imagePath),
+                self.kf.setImage(with:                  ImageResource(downloadURL: URL(string: imagePath)!, cacheKey: imageKey),
                                  placeholder:           UIImage(named: imagePlaceholderName)!,
                                  options:               [.transition(ImageTransition.fade(1)),
                                                          .processor(ResizingImageProcessor(referenceSize:   size,

@@ -61,11 +61,15 @@ class GSTableViewController: GSBaseViewController {
                 tableView.addSubview(refreshControl)
             }
             
-            self.activityIndicatorView          =   UIActivityIndicatorView.init(frame: CGRect(origin:  .zero,
-                                                                                               size:    CGSize(width: tableView.frame.width, height: 64.0 * heightRatio)))
-            self.activityIndicatorView.activityIndicatorViewStyle = .gray
-//            self.activityIndicatorView.color    =   UIColor.blue
-            self.tableView.tableHeaderView      =   self.activityIndicatorView
+//            guard self.activityIndicatorView == nil else {
+//                return
+//            }
+//            
+//            self.activityIndicatorView          =   UIActivityIndicatorView.init(frame: CGRect(origin:  .zero,
+//                                                                                               size:    CGSize(width: tableView.frame.width, height: 64.0 * heightRatio)))
+//            self.activityIndicatorView.activityIndicatorViewStyle = .gray
+////            self.activityIndicatorView.color    =   UIColor.blue
+//            self.tableView.tableHeaderView      =   self.activityIndicatorView
         }
     }
 
@@ -102,8 +106,8 @@ class GSTableViewController: GSBaseViewController {
                 self.tableView.alpha = 1.0
             }
 
-            self.tableView.separatorStyle = .none
-            self.activityIndicatorView.startAnimating()
+//            self.tableView.separatorStyle = .none
+//            self.activityIndicatorView.startAnimating()
         }
     }
     
@@ -241,8 +245,8 @@ class GSTableViewController: GSBaseViewController {
             try fetchedResultsController.performFetch()
             
             // Hide activity indicator
-            if self.activityIndicatorView.isAnimating {
-                self.activityIndicatorView.stopAnimating()
+            if let spinner = self.activityIndicatorView, spinner.isAnimating {
+                spinner.stopAnimating()
                 self.tableView.tableHeaderView = nil
                 
                 if fetchedResultsController.sections![0].numberOfObjects == 0 {
@@ -261,7 +265,9 @@ class GSTableViewController: GSBaseViewController {
             
             // Reload data completion
             DispatchQueue.main.async {
-                self.tableView.reloadDataWithCompletion {
+                self.tableView?.reloadDataWithCompletion {
+//                    self.tableView.tableHeaderView = nil
+                    print("XXX")
 //                    if !self.paginanationData && self.lastIndex >= loadDataLimit / 2 {
 //                        self.tableView.scrollToRow(at: self.topVisibleIndexPath, at: .top, animated: false)
 //                    }

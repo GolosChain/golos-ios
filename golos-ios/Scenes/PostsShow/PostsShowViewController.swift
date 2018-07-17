@@ -244,7 +244,6 @@ extension PostsShowViewController {
     private func fetchPosts() {
         if let activeVC = self.containerView.activeVC {
             // Add cells from XIB
-            activeVC.tableView.register(UINib(nibName: activeVC.cellIdentifier, bundle: nil), forCellReuseIdentifier: activeVC.cellIdentifier)
             activeVC.fetchPosts(byType: postFeedTypes[self.selectedSegmentIndex])
             
             // Handler Refresh/Upload data
