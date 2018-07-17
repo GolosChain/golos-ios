@@ -55,7 +55,7 @@
 "New"                                       =   "New";
 "Actual"                                    =   "Actual";
 "Popular"                                   =   "Popular";
-"Promoted"                                  =   "Promoted";
+"Promo"                                     =   "Promo";
 "Lenta"                                     =   "Lenta";
 "Enter Title"                               =   "Enter";
 "Cancel Title"                              =   "Cancel";
@@ -97,7 +97,7 @@
 "Popular List is empty"                     =   "List of Popular Posts\n is empty";
 "Actual List is empty"                      =   "List of Actual Posts\n is empty";
 "New List is empty"                         =   "List of New Posts\n is empty";
-"Promoted List is empty"                    =   "List of Promo Posts\n is empty";
+"Promo List is empty"                       =   "List of Promo Posts\n is empty";
 "Reply List is empty"                       =   "List of Answers\n is empty";
 
 

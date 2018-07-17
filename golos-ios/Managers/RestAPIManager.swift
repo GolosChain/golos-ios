@@ -88,7 +88,7 @@ class RestAPIManager {
                                             New.updateEntity(fromResponseAPI: responseAPIFeed)
 
                                         // Promo
-                                        case .promoted:
+                                        case .promo:
                                             Promo.updateEntity(fromResponseAPI: responseAPIFeed)
 
                                         // Current user Lenta (blogs)

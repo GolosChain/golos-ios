@@ -24,8 +24,8 @@ protocol PostsShowDisplayLogic: class {
 class PostsShowViewController: GSTableViewController, ContainerViewSupport {
     // MARK: - Properties
     var selectedSegmentIndex = 0
-    var postFeedTypes: [PostsFeedType]  =   User.current == nil ?   [ .popular, .actual, .new, .promoted ] :
-                                                                    [ .lenta, .popular, .actual, .new, .promoted ]
+    var postFeedTypes: [PostsFeedType]  =   User.current == nil ?   [ .popular, .actual, .new, .promo ] :
+                                                                    [ .lenta, .popular, .actual, .new, .promo ]
 
     var interactor: PostsShowBusinessLogic?
     var router: (NSObjectProtocol & PostsShowRoutingLogic & PostsShowDataPassing)?
@@ -177,7 +177,7 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
         
         let tableViewController5    =   UIStoryboard(name: "PostsShow", bundle: nil)
             .instantiateViewController(withIdentifier: "PromoPostsShowVC") as! GSTableViewController
-        tableViewController5.title              =   "Promoted".localized()
+        tableViewController5.title              =   "Promo".localized()
         tableViewController5.cellIdentifier     =   "PromoPostTableViewCell"
         
         let segmentControllers      =   User.current == nil ?   [ tableViewController2, tableViewController3, tableViewController4, tableViewController5 ] :
@@ -279,9 +279,7 @@ extension PostsShowViewController: SJSegmentedViewControllerDelegate {
             self.selectedSegmentIndex = index
             self.containerView.setActiveViewController(index: index)
             
-//            if let activeVC = self.containerView.activeVC, activeVC.fetchedResultsController.sections == nil {
             self.loadPosts(false)
-//            }
         }
         
         self.setActiveViewControllerHandlers()

@@ -60,16 +60,6 @@ class GSTableViewController: GSBaseViewController {
             } else {
                 tableView.addSubview(refreshControl)
             }
-            
-//            guard self.activityIndicatorView == nil else {
-//                return
-//            }
-//            
-//            self.activityIndicatorView          =   UIActivityIndicatorView.init(frame: CGRect(origin:  .zero,
-//                                                                                               size:    CGSize(width: tableView.frame.width, height: 64.0 * heightRatio)))
-//            self.activityIndicatorView.activityIndicatorViewStyle = .gray
-////            self.activityIndicatorView.color    =   UIColor.blue
-//            self.tableView.tableHeaderView      =   self.activityIndicatorView
         }
     }
 
@@ -102,12 +92,11 @@ class GSTableViewController: GSBaseViewController {
         super.viewWillAppear(animated)
         
         if self.tableView != nil {
+            self.displaySpinner(true)
+
             UIView.animate(withDuration: 0.7) {
                 self.tableView.alpha = 1.0
             }
-
-//            self.tableView.separatorStyle = .none
-//            self.activityIndicatorView.startAnimating()
         }
     }
     
@@ -131,6 +120,27 @@ class GSTableViewController: GSBaseViewController {
     // MARK: - Custom Functions
     private func setup() {
 
+    }
+    
+    private func displaySpinner(_ show: Bool) {
+        guard self.activityIndicatorView == nil else {
+            return
+        }
+
+        guard show else {
+            self.activityIndicatorView.stopAnimating()
+            self.tableView.tableHeaderView = nil
+            return
+        }
+        
+        self.activityIndicatorView      =   UIActivityIndicatorView.init(frame: CGRect(origin:  .zero,
+                                                                                       size:    CGSize(width: tableView.frame.width, height: 64.0 * heightRatio)))
+        self.activityIndicatorView.activityIndicatorViewStyle = .gray
+//            self.activityIndicatorView.color    =   UIColor.blue
+        self.tableView.separatorStyle   =   .none
+        self.activityIndicatorView.startAnimating()
+        
+        self.tableView.tableHeaderView  =   self.activityIndicatorView
     }
     
     private func diplayEmptyTitle(byType type: PostsFeedType) {
@@ -162,68 +172,24 @@ class GSTableViewController: GSBaseViewController {
         var primarySortDescriptor: NSSortDescriptor
         var secondarySortDescriptor: NSSortDescriptor
         
+        fetchRequest    =   NSFetchRequest<NSFetchRequestResult>(entityName: type.caseTitle())
+
         switch type {
         // Replies
         case .reply:
-            fetchRequest                =   NSFetchRequest<NSFetchRequestResult>(entityName: "Reply")
-            primarySortDescriptor       =   NSSortDescriptor(key: "created", ascending: false)
-            secondarySortDescriptor     =   NSSortDescriptor(key: "author", ascending: true)
-            
             if let userName = User.current?.name {
                 fetchRequest.predicate  =   NSPredicate(format: "parentAuthor == %@", userName)
             }
 
-        // Popular
-        case .popular:
-            fetchRequest                =   NSFetchRequest<NSFetchRequestResult>(entityName: "Popular")
-            primarySortDescriptor       =   NSSortDescriptor(key: "created", ascending: false)
-            secondarySortDescriptor     =   NSSortDescriptor(key: "author", ascending: true)
-            
-            if let userName = User.current?.name {
-                fetchRequest.predicate  =   NSPredicate(format: "author == %@", userName)
-            }
-        
-        // Actual
-        case .actual:
-            fetchRequest                =   NSFetchRequest<NSFetchRequestResult>(entityName: "Actual")
-            primarySortDescriptor       =   NSSortDescriptor(key: "created", ascending: false)
-            secondarySortDescriptor     =   NSSortDescriptor(key: "author", ascending: true)
-
-            if let userName = User.current?.name {
-                fetchRequest.predicate  =   NSPredicate(format: "author == %@", userName)
-            }
-            
-        // New
-        case .new:
-            fetchRequest                =   NSFetchRequest<NSFetchRequestResult>(entityName: "New")
-            primarySortDescriptor       =   NSSortDescriptor(key: "created", ascending: false)
-            secondarySortDescriptor     =   NSSortDescriptor(key: "author", ascending: true)
-            
-            if let userName = User.current?.name {
-                fetchRequest.predicate  =   NSPredicate(format: "author == %@", userName)
-            }
-            
-        // Promo
-        case .promoted:
-            fetchRequest                =   NSFetchRequest<NSFetchRequestResult>(entityName: "Promo")
-            primarySortDescriptor       =   NSSortDescriptor(key: "created", ascending: false)
-            secondarySortDescriptor     =   NSSortDescriptor(key: "author", ascending: true)
-            
-            if let userName = User.current?.name {
-                fetchRequest.predicate  =   NSPredicate(format: "author == %@", userName)
-            }
-            
-        // Lenta (blogs)
+        // Lenta, Popular, Actual, New, Promo
         default:
-            fetchRequest                =   NSFetchRequest<NSFetchRequestResult>(entityName: "Lenta")
-            primarySortDescriptor       =   NSSortDescriptor(key: "created", ascending: false)
-            secondarySortDescriptor     =   NSSortDescriptor(key: "author", ascending: true)
-            
             if let userName = User.current?.name {
                 fetchRequest.predicate  =   NSPredicate(format: "author == %@", userName)
             }
         }
         
+        primarySortDescriptor           =   NSSortDescriptor(key: "created", ascending: false)
+        secondarySortDescriptor         =   NSSortDescriptor(key: "author", ascending: true)
         fetchRequest.sortDescriptors    =   [ primarySortDescriptor, secondarySortDescriptor ]
         
         if self.lastIndex == 0 {
@@ -244,16 +210,6 @@ class GSTableViewController: GSBaseViewController {
         do {
             try fetchedResultsController.performFetch()
             
-            // Hide activity indicator
-            if let spinner = self.activityIndicatorView, spinner.isAnimating {
-                spinner.stopAnimating()
-                self.tableView.tableHeaderView = nil
-                
-                if fetchedResultsController.sections![0].numberOfObjects == 0 {
-                    self.diplayEmptyTitle(byType: type)
-                }
-            }
-
             // Refresh data
             if self.refreshData {
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.9) {
@@ -266,11 +222,18 @@ class GSTableViewController: GSBaseViewController {
             // Reload data completion
             DispatchQueue.main.async {
                 self.tableView?.reloadDataWithCompletion {
-//                    self.tableView.tableHeaderView = nil
-                    print("XXX")
-//                    if !self.paginanationData && self.lastIndex >= loadDataLimit / 2 {
-//                        self.tableView.scrollToRow(at: self.topVisibleIndexPath, at: .top, animated: false)
-//                    }
+                    Logger.log(message: "Load data is finished!!!", event: .debug)
+                    
+                    // Hide activity indicator
+                    self.displaySpinner(false)
+
+                    if self.fetchedResultsController.sections![0].numberOfObjects == 0 {
+                        self.diplayEmptyTitle(byType: type)
+                    }
+
+                    else {
+                        self.tableView.tableHeaderView = nil
+                    }
                 }
             }
         } catch {

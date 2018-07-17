@@ -12,13 +12,6 @@ import GoloSwift
 
 final class GSTableViewWithReloadCompletion: UITableView {
     // MARK: - Properties
-//    @IBInspectable var cellIdentifier: String! {
-//        didSet {
-//            // Add cells from XIB
-//            self.register(UINib(nibName: self.cellIdentifier, bundle: nil), forCellReuseIdentifier: self.cellIdentifier)
-//        }
-//    }
-//
     var tableViewManager: GSTableViewController = GSTableViewController()
     
     private var reloadDataCompletionBlock: (() -> Void)?

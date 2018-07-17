@@ -42,7 +42,7 @@ class GSPostsSegmentedControlViewController: SJSegmentedViewController {
         viewController4.title   =   "New".localized()
 
         let viewController5     =   UIStoryboard(name: "PostsShow", bundle: nil).instantiateViewController(withIdentifier: "UserProfileLentaShowVC") as! GSTableViewController
-        viewController5.title   =   "Promoted".localized()
+        viewController5.title   =   "Promo".localized()
 
         headerViewController    =   User.current == nil ?   viewController2 : viewController1
         

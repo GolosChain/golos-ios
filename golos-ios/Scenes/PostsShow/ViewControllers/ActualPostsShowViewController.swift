@@ -17,19 +17,9 @@ class ActualPostsShowViewController: GSTableViewController {
     // MARK: - IBOutlets
     @IBOutlet override weak var tableView: GSTableViewWithReloadCompletion! {
         didSet {
-            tableView.register(UINib(nibName: "ActualPostTableViewCell", bundle: nil), forCellReuseIdentifier: "ActualPostTableViewCell")
-            
-//            guard self.activityIndicatorView == nil else {
-//                return
-//            }
-//            
-//            self.activityIndicatorView          =   UIActivityIndicatorView.init(frame: CGRect(origin:  .zero,
-//                                                                                               size:    CGSize(width: tableView.frame.width, height: 64.0 * heightRatio)))
-//            self.activityIndicatorView.activityIndicatorViewStyle = .gray
-//            //            self.activityIndicatorView.color    =   UIColor.blue
-//            self.tableView.tableHeaderView      =   self.activityIndicatorView
+//            tableView.register(UINib(nibName: "ActualPostTableViewCell", bundle: nil), forCellReuseIdentifier: "ActualPostTableViewCell")
         }
-    }    
+    }
     
     
     // MARK: - Class Initialization
@@ -49,6 +39,8 @@ class ActualPostsShowViewController: GSTableViewController {
     // MARK: - Class Functions
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.register(UINib(nibName: "ActualPostTableViewCell", bundle: nil), forCellReuseIdentifier: "ActualPostTableViewCell")
     }
     
     override func viewWillAppear(_ animated: Bool) {

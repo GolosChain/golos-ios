@@ -34,7 +34,7 @@ class FeedPresenter: NSObject {
             .popular,
             .actual,
             .new,
-            .promoted
+            .promo
         ]
     }
 }

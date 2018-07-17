@@ -55,7 +55,7 @@
 "New"                                       =   "Новое";
 "Actual"                                    =   "  Актуальное  ";
 "Popular"                                   =   "  Популярное  ";
-"Promoted"                                  =   "Промо";
+"Promo"                                     =   "Промо";
 "Lenta"                                     =   "Лента";
 "Enter Title"                               =   "Войти";
 "Cancel Title"                              =   "Отмена";
@@ -97,7 +97,7 @@
 "Popular List is empty"                     =   "Список Популярных постов\nпуст";
 "Actual List is empty"                      =   "Список Актуальных постов\nпуст";
 "New List is empty"                         =   "Список Новых постов\nпуст";
-"Promoted List is empty"                    =   "Список Промо постов\nпуст";
+"Promo List is empty"                       =   "Список Промо постов\nпуст";
 "Reply List is empty"                       =   "Список Ответов\nпуст";
 
 
