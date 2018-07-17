@@ -43,7 +43,7 @@ struct DisplayedPost {
     
     
     // MARK: - Class Initialization
-    init(fromPost post: Post) {
+    init(fromPost post: Lenta) {
         let parser                  =   Parser()
         
         self.id                     =   post.id

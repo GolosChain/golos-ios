@@ -12,7 +12,17 @@ import GoloSwift
 import Foundation
 
 @objc(Reply)
-public class Reply: NSManagedObject {
+public class Reply: NSManagedObject, PaginationSupport {
+    // MARK: - Properties
+    var authorValue: String? {
+        return self.author
+    }
+    
+    var permlinkValue: String {
+        return self.permlink
+    }
+
+    
     // MARK: - Class Functions
     class func updateEntity(fromResponseAPI responseAPI: Decodable) {
         let replyModel      =   responseAPI as! ResponseAPIFeed

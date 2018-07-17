@@ -40,9 +40,9 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="180"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image-user-cover-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="bRX-hm-6zh" userLabel="User Cover Image View">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image-user-cover-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="bRX-hm-6zh" userLabel="User Cover Image View">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="180"/>
-                    <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </imageView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-user-profile-image-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="acw-MW-GSz" userLabel="User Profile Image View">
                     <rect key="frame" x="39" y="69" width="80" height="80"/>
@@ -161,7 +161,6 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="d0u-Zn-tmK" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="100:375" id="0FY-Ea-0KL"/>
                 <constraint firstAttribute="bottom" secondItem="aIP-Ah-peY" secondAttribute="bottom" id="0Op-fY-kuL"/>

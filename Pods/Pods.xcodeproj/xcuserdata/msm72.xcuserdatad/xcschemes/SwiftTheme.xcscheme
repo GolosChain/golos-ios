@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "518CC56A28765368AB97F8590CA971C1"
+               BlueprintIdentifier = "6C8988FDCD2E14D6BB32B3043A5C8C47"
                BuildableName = "SwiftTheme.framework"
                BlueprintName = "SwiftTheme"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "518CC56A28765368AB97F8590CA971C1"
+            BlueprintIdentifier = "6C8988FDCD2E14D6BB32B3043A5C8C47"
             BuildableName = "SwiftTheme.framework"
             BlueprintName = "SwiftTheme"
             ReferencedContainer = "container:Pods.xcodeproj">

@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 import GoloSwift
 
-class FeedArticleTableViewCell: UITableViewCell, HandlersCellSupport {
+class NewPostTableViewCell: UITableViewCell, HandlersCellSupport {
     // MARK: - Properties
     let imageLoader = GSImageLoader()
     let gradientLayer = CAGradientLayer()
@@ -126,7 +126,7 @@ class FeedArticleTableViewCell: UITableViewCell, HandlersCellSupport {
     
     // MARK: - Reuse identifier
     override var reuseIdentifier: String? {
-        return FeedArticleTableViewCell.reuseIdentifier
+        return NewPostTableViewCell.reuseIdentifier
     }
     
     class var reuseIdentifier: String? {
@@ -136,14 +136,14 @@ class FeedArticleTableViewCell: UITableViewCell, HandlersCellSupport {
 
 
 // MARK: - ConfigureCell implementation
-extension FeedArticleTableViewCell: ConfigureCell {
+extension NewPostTableViewCell: ConfigureCell {
     func setup(withItem item: Any?, andIndexPath indexPath: IndexPath) {
-        guard let post = item as? Lenta else {
+        guard let new = item as? New else {
             return
         }
         
         // Get user info
-        if let user = User.fetch(byName: post.author) {
+        if let user = User.fetch(byName: new.author) {
             self.articleHeaderView.authorLabel.text             =   user.name
             
             // Reputation -> Int
@@ -159,11 +159,11 @@ extension FeedArticleTableViewCell: ConfigureCell {
         }
         
         // Load post cover image
-        if let coverImageURL = post.coverImageURL {
+        if let coverImageURL = new.coverImageURL {
             self.postImageView.uploadImage(byStringPath:    coverImageURL,
                                            imageType:       .userCoverImage,
                                            size:            CGSize(width: UIScreen.main.bounds.width, height: 180.0 * heightRatio),
-                                           tags:            post.tags)
+                                           tags:            new.tags)
         }
         
         // Hide post image
@@ -171,11 +171,11 @@ extension FeedArticleTableViewCell: ConfigureCell {
             self.postImageViewHeightConstraint.constant = 0
         }
 
-        self.titleLabel.text                        =   post.title
-        self.articleHeaderView.authorLabel.text     =   post.author
-        self.articleHeaderView.categoryLabel.text   =   post.category
-        self.upvotesButton.isEnabled                =   post.allowVotes
-        self.commentsButton.isEnabled               =   post.allowReplies
+        self.titleLabel.text                        =   new.title
+        self.articleHeaderView.authorLabel.text     =   new.author
+        self.articleHeaderView.categoryLabel.text   =   new.category
+        self.upvotesButton.isEnabled                =   new.allowVotes
+        self.commentsButton.isEnabled               =   new.allowReplies
 
         selectionStyle                              =   .none
 

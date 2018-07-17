@@ -22,6 +22,10 @@ extension UIView {
         ThemeManager.setTheme(index: isAppThemeDark ? 1 : 0)
         self.theme_backgroundColor  =   whiteBlackColorPickers
     }
+    
+    func tune(withThemeColorPicker themeColorPicker: ThemeColorPicker) {
+        self.theme_backgroundColor  =   themeColorPicker
+    }
 
     func display(withTopConstraint topConstraint: NSLayoutConstraint, height: CGFloat, isShow: Bool) {
 //        guard (self.alpha == 0.0 && isShow) || (self.alpha == 1.0 && !isShow) else {

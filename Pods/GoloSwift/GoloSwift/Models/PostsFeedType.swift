@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Localize_Swift
 
 /// Feed type
 public enum PostsFeedType: String {
@@ -15,17 +14,19 @@ public enum PostsFeedType: String {
     case lenta
     case reply
     case actual
+    case answers
     case popular
     case promoted
 
     public func caseTitle() -> String {
         switch self {
-        case .new:          return "New".localized()
-        case .lenta:        return "Lenta".localized()
-        case .reply:        return "Reply".localized()
-        case .actual:       return "Actual".localized()
-        case .popular:      return "Popular".localized()
-        case .promoted:     return "Promoted".localized()
+        case .new:          return "New"
+        case .lenta:        return "Lenta"
+        case .reply:        return "Reply"
+        case .actual:       return "Actual"
+        case .answers:      return "Answers"
+        case .popular:      return "Popular"
+        case .promoted:     return "Promoted"
         }
     }
     
@@ -35,9 +36,9 @@ public enum PostsFeedType: String {
         case .lenta:        return "get_discussions_by_blog"
         case .reply:        return "get_replies_by_last_update"
         case .actual:       return "get_discussions_by_hot"
+        case .answers:      return ""
         case .popular:      return "get_discussions_by_trending"
         case .promoted:     return "get_discussions_by_promoted"
         }
     }
-
 }

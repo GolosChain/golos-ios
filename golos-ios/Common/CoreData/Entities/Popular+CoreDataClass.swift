@@ -1,8 +1,8 @@
 //
-//  Lenta+CoreDataClass.swift
+//  Popular+CoreDataClass.swift
 //  Golos
 //
-//  Created by msm72 on 10.07.2018.
+//  Created by msm72 on 17.07.2018.
 //  Copyright © 2018 golos. All rights reserved.
 //
 //
@@ -11,13 +11,8 @@ import CoreData
 import GoloSwift
 import Foundation
 
-protocol PaginationSupport {
-    var authorValue: String? { get }
-    var permlinkValue: String { get }
-}
-
-@objc(Lenta)
-public class Lenta: NSManagedObject, PaginationSupport {
+@objc(Popular)
+public class Popular: NSManagedObject, PaginationSupport {
     // MARK: - Properties
     var authorValue: String? {
         return self.author
@@ -26,17 +21,17 @@ public class Lenta: NSManagedObject, PaginationSupport {
     var permlinkValue: String {
         return self.permlink
     }
-
+    
     
     // MARK: - Class Functions
     class func updateEntity(fromResponseAPI responseAPI: Decodable) {
         let model   =   responseAPI as! ResponseAPIFeed
-        var entity  =   CoreDataManager.instance.readEntity(withName:                   "Lenta",
-                                                            andPredicateParameters:     NSPredicate.init(format: "id == \(model.id)")) as? Lenta
+        var entity  =   CoreDataManager.instance.readEntity(withName:                   "Popular",
+                                                            andPredicateParameters:     NSPredicate.init(format: "id == \(model.id)")) as? Popular
         
-        // Get Lenta entity
+        // Get Popular entity
         if entity == nil {
-            entity  =   CoreDataManager.instance.createEntity("Lenta") as? Lenta
+            entity  =   CoreDataManager.instance.createEntity("Popular") as? Popular
         }
         
         // Update entity
@@ -55,7 +50,7 @@ public class Lenta: NSManagedObject, PaginationSupport {
         entity!.parentPermlink      =   model.parent_permlink
         entity!.activeVotesCount    =   Int16(model.active_votes.count)
         entity!.url                 =   model.url
-
+        
         if let jsonMetaData = model.json_metadata, !jsonMetaData.isEmpty, let jsonData = jsonMetaData.data(using: .utf8) {
             do {
                 if let json = try JSONSerialization.jsonObject(with: jsonData, options: .allowFragments) as? [String: Any] {
@@ -72,7 +67,7 @@ public class Lenta: NSManagedObject, PaginationSupport {
                 entity!.save()
             }
         }
-
+            
         else {
             // Extensions
             entity!.save()

@@ -1,5 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14135" systemVersion="17G65" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="Golos 3">
+    <entity name="Actual" representedClassName="Actual" syncable="YES">
+        <attribute name="activeVotesCount" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="allowReplies" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="allowVotes" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="author" attributeType="String" syncable="YES"/>
+        <attribute name="body" attributeType="String" syncable="YES"/>
+        <attribute name="category" attributeType="String" syncable="YES"/>
+        <attribute name="coverImageURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="created" attributeType="Date" defaultDateTimeInterval="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="jsonMetadata" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="parentAuthor" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="parentPermlink" attributeType="String" syncable="YES"/>
+        <attribute name="permlink" attributeType="String" syncable="YES"/>
+        <attribute name="tags" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="title" attributeType="String" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+                <constraint value="created"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
     <entity name="AppSettings" representedClassName="AppSettings" syncable="YES">
         <attribute name="name" attributeType="String" defaultValueString="Golos.io" syncable="YES"/>
         <attribute name="startWithWelcomeScene" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES" syncable="YES"/>
@@ -33,7 +57,55 @@
             </uniquenessConstraint>
         </uniquenessConstraints>
     </entity>
-    <entity name="Post" representedClassName="Post" syncable="YES">
+    <entity name="New" representedClassName="New" syncable="YES">
+        <attribute name="activeVotesCount" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="allowReplies" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="allowVotes" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="author" attributeType="String" syncable="YES"/>
+        <attribute name="body" attributeType="String" syncable="YES"/>
+        <attribute name="category" attributeType="String" syncable="YES"/>
+        <attribute name="coverImageURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="created" attributeType="Date" defaultDateTimeInterval="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="jsonMetadata" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="parentAuthor" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="parentPermlink" attributeType="String" syncable="YES"/>
+        <attribute name="permlink" attributeType="String" syncable="YES"/>
+        <attribute name="tags" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="title" attributeType="String" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+                <constraint value="created"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="Popular" representedClassName="Popular" syncable="YES">
+        <attribute name="activeVotesCount" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="allowReplies" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="allowVotes" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="author" attributeType="String" syncable="YES"/>
+        <attribute name="body" attributeType="String" syncable="YES"/>
+        <attribute name="category" attributeType="String" syncable="YES"/>
+        <attribute name="coverImageURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="created" attributeType="Date" defaultDateTimeInterval="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="jsonMetadata" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="parentAuthor" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="parentPermlink" attributeType="String" syncable="YES"/>
+        <attribute name="permlink" attributeType="String" syncable="YES"/>
+        <attribute name="tags" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="title" attributeType="String" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+                <constraint value="created"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="Promo" representedClassName="Promo" syncable="YES">
         <attribute name="activeVotesCount" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="allowReplies" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="allowVotes" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
@@ -149,11 +221,14 @@
     <elements>
         <element name="AppSettings" positionX="-459" positionY="-81" width="128" height="75"/>
         <element name="Lenta" positionX="-459" positionY="-81" width="128" height="285"/>
-        <element name="Post" positionX="-459" positionY="-81" width="128" height="285"/>
         <element name="Reply" positionX="-450" positionY="-72" width="128" height="285"/>
         <element name="User" positionX="-666" positionY="-90" width="128" height="375"/>
         <element name="UserSecretActiveKey" positionX="-459" positionY="-81" width="128" height="120"/>
         <element name="UserSecretOwnerKey" positionX="-243" positionY="-234" width="128" height="120"/>
         <element name="UserSecretPostingKey" positionX="-45" positionY="63" width="128" height="120"/>
+        <element name="Actual" positionX="-405" positionY="-27" width="128" height="285"/>
+        <element name="Promo" positionX="-459" positionY="-81" width="128" height="285"/>
+        <element name="New" positionX="-450" positionY="-72" width="128" height="285"/>
+        <element name="Popular" positionX="-441" positionY="-63" width="128" height="285"/>
     </elements>
 </model>

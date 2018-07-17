@@ -53,8 +53,8 @@
 "Error"                                     =   "Ошибка";
 "In development"                            =   "В разработке";
 "New"                                       =   "Новое";
-"Actual"                                    =   "Актуальное";
-"Popular"                                   =   "Популярное";
+"Actual"                                    =   "  Актуальное  ";
+"Popular"                                   =   "  Популярное  ";
 "Promoted"                                  =   "Промо";
 "Lenta"                                     =   "Лента";
 "Enter Title"                               =   "Войти";
@@ -93,6 +93,12 @@
 "Enter your text"                           =   "Напишите имя ссылки";
 "Enter your link"                           =   "Напишите адрес ссылки";
 "Enter prefix"                              =   "Напишите";
+"Lenta List is empty"                       =   "Список Моих постов\nпуст";
+"Popular List is empty"                     =   "Список Популярных постов\nпуст";
+"Actual List is empty"                      =   "Список Актуальных постов\nпуст";
+"New List is empty"                         =   "Список Новых постов\nпуст";
+"Promoted List is empty"                    =   "Список Промо постов\nпуст";
+"Reply List is empty"                       =   "Список Ответов\nпуст";
 
 
 // Error message

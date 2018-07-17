@@ -17,20 +17,10 @@ class GSTabBarController: UITabBarController {
     }
     
     private func configureViewControllers() {
-        let feedViewController                              =   FeedViewController.nibInstance()
-        
-        // Home
-        let feedNavigationViewController                    =   UINavigationController(navigationBarClass:  GSNavigationBar.self,
-                                                                                       toolbarClass:        nil)
-        
-        feedNavigationViewController.viewControllers        =   [feedViewController]
-
-        feedNavigationViewController.tabBarItem             =   UITabBarItem(title:             "",
-                                                                             image:             UIImage(named: "tab_home"),
-                                                                             selectedImage:     nil)
-       
-        feedNavigationViewController.tabBarItem.tag         =   0
-        feedNavigationViewController.navigationBar.isHidden =   true
+        let postsShowNC                     =   UIStoryboard(name: "PostsShow", bundle: nil).instantiateViewController(withIdentifier: "PostsShowNC") as! UINavigationController
+        postsShowNC.tabBarItem              =   UITabBarItem(title: "", image: UIImage(named: "tab_home"), selectedImage: nil)
+        postsShowNC.tabBarItem.tag          =   0
+        postsShowNC.navigationBar.isHidden  =   true
 
         /*
         let vc2                     =   UIViewController()
@@ -66,7 +56,7 @@ class GSTabBarController: UITabBarController {
         profileNavigationController.tabBarItem.tag  =   4
         
         viewControllers     =   [
-                                    feedNavigationViewController,
+                                    postsShowNC,
 //                                    vc2,
                                     postCreateNC,
 //                                    vc4,

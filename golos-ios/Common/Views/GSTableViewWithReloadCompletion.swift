@@ -10,15 +10,15 @@ import UIKit
 import CoreData
 import GoloSwift
 
-@IBDesignable final class GSTableViewWithReloadCompletion: UITableView {
+final class GSTableViewWithReloadCompletion: UITableView {
     // MARK: - Properties
-    @IBInspectable var cellIdentifier: String! {
-        didSet {
-            // Add cells from XIB
-            self.register(UINib(nibName: self.cellIdentifier, bundle: nil), forCellReuseIdentifier: self.cellIdentifier)
-        }
-    }
-
+//    @IBInspectable var cellIdentifier: String! {
+//        didSet {
+//            // Add cells from XIB
+//            self.register(UINib(nibName: self.cellIdentifier, bundle: nil), forCellReuseIdentifier: self.cellIdentifier)
+//        }
+//    }
+//
     var tableViewManager: GSTableViewController = GSTableViewController()
     
     private var reloadDataCompletionBlock: (() -> Void)?
@@ -50,13 +50,13 @@ import GoloSwift
         reloadDataCompletionBlock = nil
     }
     
-    override func touchesShouldCancel(in view: UIView) -> Bool {
-        if view is UIButton {
-            return true
-        }
-        
-        return super.touchesShouldCancel(in: view)
-    }
+//    override func touchesShouldCancel(in view: UIView) -> Bool {
+//        if view is UIButton {
+//            return true
+//        }
+//        
+//        return super.touchesShouldCancel(in: view)
+//    }
 
     func reloadDataWithCompletion(completion: @escaping () -> Void) {
         reloadDataCompletionBlock = completion
@@ -74,6 +74,5 @@ import GoloSwift
         // Set automatic dimensions for row height
         self.rowHeight          =   UITableViewAutomaticDimension
         self.estimatedRowHeight =   320.0 * heightRatio
-        
     }
 }

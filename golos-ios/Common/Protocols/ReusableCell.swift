@@ -18,6 +18,12 @@ protocol ConfigureCell {
     func setup(withItem item: Any?, andIndexPath indexPath: IndexPath)
 }
 
+protocol HandlersCellSupport {
+    var handlerShareButtonTapped: (() -> Void)? { get set }
+    var handlerUpvotesButtonTapped: (() -> Void)? { get set }
+    var handlerCommentsButtonTapped: (() -> Void)? { get set }
+}
+
 
 // MARK: - Default implementation of ReusableCell protocol
 extension ReusableCell {

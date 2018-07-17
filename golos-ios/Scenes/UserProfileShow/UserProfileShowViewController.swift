@@ -23,45 +23,49 @@ protocol UserProfileShowDisplayLogic: class {
     func displayUserDetails(fromViewModel viewModel: UserProfileShowModels.UserDetails.ViewModel)
 }
 
-class UserProfileShowViewController: BaseViewController {
+class UserProfileShowViewController: GSBaseViewController, ContainerViewSupport {
     // MARK: - Properties
-    var refreshData: Bool               =   false
-    var reloadData: Bool                =   false
-    var paginanationData: Bool          =   false
-    var segmentedControlIndex: Int      =   0
-    var cellIdentifies: [String]        =   [ "FeedArticleTableViewCell", "ReplyTableViewCell" ]
+    var selectedSegmentIndex = 0
     let postFeedTypes: [PostsFeedType]  =   [ .lenta, .reply ]
-    var lastUserProfileDetailsIndexes   =   Array(repeating: 0, count: 2)
-    var topVisibleIndexPath             =   Array(repeating: IndexPath(row: 0, section: 0), count: 2)
 
     var interactor: UserProfileShowBusinessLogic?
     var router: (NSObjectProtocol & UserProfileShowRoutingLogic & UserProfileShowDataPassing)?
     
-    var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult>!
-    
-    lazy var refreshControl: UIRefreshControl = {
-        let refreshControl          =   UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(handlerTableViewRefresh), for: .valueChanged)
+    lazy var segmentedControl: SWSegmentedControl = {
+        let contolElement       =   SWSegmentedControl(frame: CGRect(origin: .zero, size: segmentedControlView.frame.size))
         
-        return refreshControl
+        contolElement.items                     =   [ "Posts", "Answers" ].map({ $0.localized() })
+        contolElement.selectedSegmentIndex      =   0
+        contolElement.titleColor                =   UIColor(hexString: "#333333")
+        contolElement.indicatorColor            =   UIColor(hexString: "#1298FF")
+        contolElement.font                      =   UIFont(name: "SFProDisplay-Medium", size: 13.0 * widthRatio)!
+        contolElement.indicatorThickness        =   2.0 * heightRatio
+        
+        contolElement.delegate  =   self
+
+        self.setActiveViewControllerHandlers()
+        
+        return contolElement
     }()
-    
+
     
     // MARK: - IBOutlets
     @IBOutlet weak var contentView: UIView!
    
-    @IBOutlet weak var tableView: UITableViewWithReloadCompletion! {
+    // ContainerViewSupport implementation
+    @IBOutlet weak var containerView: GSContainerView! {
         didSet {
-            tableView.delegate              =   self
-            tableView.dataSource            =   self
+            containerView.mainVC                =   self
             
-            // Set automatic dimensions for row height
-            tableView.rowHeight             =   UITableViewAutomaticDimension
-            tableView.estimatedRowHeight    =   320.0 * heightRatio
+            let firstViewController             =   UIStoryboard(name: "UserProfileShow", bundle: nil).instantiateViewController(withIdentifier: "UserProfileLentaShowVC") as! GSTableViewController
+            firstViewController.cellIdentifier  =   "FeedArticleTableViewCell"
+
+            let secondViewController            =   UIStoryboard(name: "UserProfileShow", bundle: nil).instantiateViewController(withIdentifier: "UserProfileReplyShowVC") as! GSTableViewController
+            secondViewController.cellIdentifier =   "ReplyTableViewCell"
             
-            // Add cells from XIB
-            tableView.register(UINib(nibName: "ReplyTableViewCell", bundle: nil), forCellReuseIdentifier: "ReplyTableViewCell")
-            tableView.register(UINib(nibName: "FeedArticleTableViewCell", bundle: nil), forCellReuseIdentifier: "FeedArticleTableViewCell")
+            containerView.viewControllers   =   [ firstViewController, secondViewController ]
+            
+            containerView.setActiveViewController(index: 0)
         }
     }
     
@@ -115,18 +119,7 @@ class UserProfileShowViewController: BaseViewController {
     
     @IBOutlet weak var segmentedControlView: UIView! {
         didSet {
-            let segmentedControl                        =   SWSegmentedControl(frame: CGRect(origin: .zero, size: segmentedControlView.frame.size))
-            
-            segmentedControl.items                      =   [ "Posts", "Answers" ].map({ $0.localized() })
-            segmentedControl.selectedSegmentIndex       =   0
-            segmentedControl.titleColor                 =   UIColor(hexString: "#333333")
-            segmentedControl.indicatorColor             =   UIColor(hexString: "#1298FF")
-            segmentedControl.font                       =   UIFont(name: "SFProDisplay-Medium", size: 13.0 * widthRatio)!
-            segmentedControl.indicatorThickness         =   2.0 * heightRatio
-            
-            segmentedControl.delegate                   =   self
-            
-            segmentedControlView.addSubview(segmentedControl)
+            segmentedControlView.addSubview(self.segmentedControl)
             segmentedControlView.tune()
         }
     }
@@ -197,18 +190,6 @@ class UserProfileShowViewController: BaseViewController {
     }
     
     
-    // MARK: - Routing
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let scene = segue.identifier {
-            let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
-            
-            if let router = router, router.responds(to: selector) {
-                router.perform(selector, with: segue)
-            }
-        }
-    }
-    
-    
     // MARK: - Class Functions
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -219,12 +200,12 @@ class UserProfileShowViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+       
         // Load User info
         self.loadUserInfo()
-        
+
         // Load User details
-        self.loadUserDetails()
+        self.loadUserDetails(false)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -237,12 +218,6 @@ class UserProfileShowViewController: BaseViewController {
     
     // MARK: - Custom Functions
     private func loadViewSettings() {
-        if #available(iOS 10.0, *) {
-            tableView.refreshControl = refreshControl
-        } else {
-            tableView.addSubview(refreshControl)
-        }
-        
         // Wallet Balance View show/hide
         if !walletBalanceView.isHidden {
             view.bringSubview(toFront: walletBalanceView)
@@ -252,33 +227,28 @@ class UserProfileShowViewController: BaseViewController {
         }
     }
     
-    private func tableViewClear() {
-        reloadData = !reloadData
-        
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
+    private func setActiveViewControllerHandlers() {
+        if let activeVC = self.containerView.activeVC {
+            activeVC.handlerAnswerButtonTapped      =   { [weak self] in
+                self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+            }
+            
+            activeVC.handlerReplyTypeButtonTapped   =   { [weak self] in
+                self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+            }
+            
+            activeVC.handlerShareButtonTapped       =   { [weak self] in
+                self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+            }
+            
+            activeVC.handlerUpvotesButtonTapped     =   { [weak self] in
+                self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+            }
+            
+            activeVC.handlerCommentsButtonTapped    =   { [weak self] in
+                self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+            }
         }
-    }
-    
-    
-    // MARK: - Actions
-    @objc func handlerTableViewRefresh(refreshControl: UIRefreshControl) {
-        self.refreshData                                            =   !self.refreshData
-        self.paginanationData                                       =   false
-        self.lastUserProfileDetailsIndexes[segmentedControlIndex]   =   0
-        self.topVisibleIndexPath[self.segmentedControlIndex]        =   IndexPath(row: 0, section: 0)
-        
-        switch segmentedControlIndex {
-        // Reply
-        case 1:
-            self.interactor?.saveLastReply(nil)
-
-        // Lenta (blogs)
-        default:
-            self.interactor?.saveLastLenta(nil)
-        }
-        
-        self.loadUserDetails()
     }
 }
 
@@ -292,9 +262,11 @@ extension UserProfileShowViewController {
     }
     
     // Blogs
-    private func loadUserDetails() {
-        let userDetailsRequestModel = UserProfileShowModels.UserDetails.RequestModel(postFeedType: postFeedTypes[segmentedControlIndex])
-        interactor?.loadUserDetails(withRequestModel: userDetailsRequestModel)
+    private func loadUserDetails(_ isRefresh: Bool) {
+        if self.containerView.activeVC != nil || isRefresh {
+            let userDetailsRequestModel = UserProfileShowModels.UserDetails.RequestModel(postFeedType: postFeedTypes[self.selectedSegmentIndex])
+            interactor?.loadUserDetails(withRequestModel: userDetailsRequestModel)
+        }
     }
 }
 
@@ -316,83 +288,18 @@ extension UserProfileShowViewController {
     
     // User Details
     private func fetchUserDetails() {
-        var fetchRequest: NSFetchRequest<NSFetchRequestResult>
-        var primarySortDescriptor: NSSortDescriptor
-        var secondarySortDescriptor: NSSortDescriptor
-        
-        switch segmentedControlIndex {
-        // Replies
-        case 1:
-            fetchRequest                =   NSFetchRequest<NSFetchRequestResult>(entityName: "Reply")
-            primarySortDescriptor       =   NSSortDescriptor(key: "created", ascending: false)
-            secondarySortDescriptor     =   NSSortDescriptor(key: "author", ascending: true)
-            fetchRequest.predicate      =   NSPredicate(format: "parentAuthor == %@", User.current!.name)
-
-        // Comments
-        case 2:
-            fetchRequest                =   NSFetchRequest<NSFetchRequestResult>(entityName: "User")
-            primarySortDescriptor       =   NSSortDescriptor(key: "id", ascending: true)
-            secondarySortDescriptor     =   NSSortDescriptor(key: "name", ascending: true)
-
-        // Favorites
-        case 3:
-            fetchRequest                =   NSFetchRequest<NSFetchRequestResult>(entityName: "User")
-            primarySortDescriptor       =   NSSortDescriptor(key: "id", ascending: true)
-            secondarySortDescriptor     =   NSSortDescriptor(key: "name", ascending: true)
-
-        // Information
-        case 4:
-            fetchRequest                =   NSFetchRequest<NSFetchRequestResult>(entityName: "User")
-            primarySortDescriptor       =   NSSortDescriptor(key: "id", ascending: true)
-            secondarySortDescriptor     =   NSSortDescriptor(key: "name", ascending: true)
-
-        // Lenta (blogs)
-        default:
-            fetchRequest                =   NSFetchRequest<NSFetchRequestResult>(entityName: "Lenta")
-            primarySortDescriptor       =   NSSortDescriptor(key: "created", ascending: false)
-            secondarySortDescriptor     =   NSSortDescriptor(key: "author", ascending: true)
-            fetchRequest.predicate      =   NSPredicate(format: "author == %@", User.current!.name)
-        }
-        
-        fetchRequest.sortDescriptors    =   [ primarySortDescriptor, secondarySortDescriptor ]
-        
-        if self.lastUserProfileDetailsIndexes[segmentedControlIndex] == 0 {
-            fetchRequest.fetchLimit     =   Int(loadDataLimit)
-        }
-        
-        else {
-            fetchRequest.fetchLimit     =   Int(loadDataLimit) + self.lastUserProfileDetailsIndexes[segmentedControlIndex]
-        }
-
-        fetchedResultsController        =   NSFetchedResultsController(fetchRequest:            fetchRequest,
-                                                                       managedObjectContext:    CoreDataManager.instance.managedObjectContext,
-                                                                       sectionNameKeyPath:      nil,
-                                                                       cacheName:               nil)
-        
-        fetchedResultsController.delegate = self
-        
-        do {
-            try fetchedResultsController.performFetch()
-
-            // Refresh data
-            if self.refreshData {
-                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.9) {
-                    self.refreshControl.endRefreshing()
-                    self.refreshData = !self.refreshData
-                    self.tableView.contentOffset = .zero
+        if let activeVC = self.containerView.activeVC {
+            activeVC.fetchPosts(byType: postFeedTypes[self.selectedSegmentIndex])
+            
+            // Handler Refresh data
+            activeVC.handlerRefreshData  =   { [weak self] lastItem in
+                guard lastItem != nil else {
+                    self?.loadUserDetails(true)
+                    return
                 }
+                
+                self?.interactor?.save(lastItem: lastItem)
             }
-
-            // Reload data completion
-            DispatchQueue.main.async {
-                self.tableView.reloadDataWithCompletion {
-                    if !self.paginanationData {
-                        self.tableView.scrollToRow(at: (self.topVisibleIndexPath[self.segmentedControlIndex]), at: .top, animated: false)
-                    }
-                }
-            }
-        } catch {
-            Logger.log(message: error.localizedDescription, event: .error)
         }
     }
 }
@@ -428,13 +335,6 @@ extension UserProfileShowViewController: UIScrollViewDelegate {
         Logger.log(message: String(format: "scrollView.contentOffset.y %f", scrollView.contentOffset.y), event: .debug)
         Logger.log(message: String(format: "segmentedControlView.frame.origin.y %f", view.convert(segmentedControlView.frame, from: contentView).origin.y), event: .debug)
     }
-    
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        if let indexPathsForVisibleRows = self.tableView.indexPathsForVisibleRows, scrollView == tableView, indexPathsForVisibleRows.count > 0 {
-            self.topVisibleIndexPath[segmentedControlIndex] = indexPathsForVisibleRows[0]
-            self.paginanationData = false
-        }
-    }
 }
 
 
@@ -451,159 +351,32 @@ extension UserProfileShowViewController: MXParallaxHeaderDelegate {
 
 // MARK: - SWSegmentedControlDelegate
 extension UserProfileShowViewController: SWSegmentedControlDelegate {
-    func segmentedControl(_ control: SWSegmentedControl, willSelectItemAtIndex index: Int) {
-        print("will select \(index)")
-    }
-    
     func segmentedControl(_ control: SWSegmentedControl, didSelectItemAtIndex index: Int) {
+        self.containerView.setActiveViewController(index: index)
+        
         // Scroll content to first row
-        if self.segmentedControlIndex == index {
-            self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+        if self.selectedSegmentIndex == index {
+            if let activeVC = self.containerView.activeVC {
+                activeVC.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+            }
         }
         
         else {
-            self.tableViewClear()
-            self.segmentedControlIndex  =   index
-            self.loadUserDetails()
+            self.selectedSegmentIndex = index
+            
+            self.loadUserDetails(false)
         }
+        
+        self.setActiveViewControllerHandlers()
     }
     
     func segmentedControl(_ control: SWSegmentedControl, willDeselectItemAtIndex index: Int) {
-        if let indexPathsForVisibleRows = self.tableView.indexPathsForVisibleRows, indexPathsForVisibleRows.count > 0 {
-            self.topVisibleIndexPath[index] = self.tableView.indexPathsForVisibleRows![0]
-        }
     }
     
     func segmentedControl(_ control: SWSegmentedControl, didDeselectItemAtIndex index: Int) {
     }
     
     func segmentedControl(_ control: SWSegmentedControl, canSelectItemAtIndex index: Int) -> Bool {
-        guard !self.refreshData || self.tableView.contentOffset == .zero else {
-            return false
-        }
-        
         return true
     }
-}
-
-
-// MARK: - UITableViewDataSource
-extension UserProfileShowViewController: UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        guard fetchedResultsController != nil else {
-            return 0
-        }
-        
-        return fetchedResultsController.sections?.count ?? 0
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard !reloadData else {
-            reloadData = !reloadData
-            return 0
-        }
-
-        let sectionInfo = fetchedResultsController.sections![section]
-        return sectionInfo.numberOfObjects
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: self.cellIdentifies[segmentedControlIndex], for: indexPath)
-        
-        switch segmentedControlIndex {
-        // Replies
-        case 1:
-            let replyEntity = fetchedResultsController.object(at: indexPath) as! Reply
-            
-            if let replyCell = cell as? ReplyTableViewCell {
-                replyCell.setup(withItem: replyEntity, andIndexPath: indexPath)
-                
-                // Handlers comletion
-                replyCell.handlerAnswerButtonTapped     =   { [weak self] in
-                    self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
-                }
-                
-                replyCell.handlerReplyTypeButtonTapped  =   { [weak self] in
-                    self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
-                }
-            }
-
-        // Lenta (blog)
-        default:
-            let lentaEntity = fetchedResultsController.object(at: indexPath) as! Lenta
-
-            if let lentaCell = cell as? FeedArticleTableViewCell {
-                lentaCell.setup(withItem: lentaEntity, andIndexPath: indexPath)
-                
-                // Handlers comletion
-                lentaCell.handlerShareButtonTapped          =   { [weak self] in
-                    self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
-                }
-
-                lentaCell.handlerUpvotesButtonTapped        =   { [weak self] in
-                    self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
-                }
-
-                lentaCell.handlerCommentsButtonTapped       =   { [weak self] in
-                    self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
-                }
-            }
-        }
-        
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if let sections = fetchedResultsController.sections {
-            let currentSection = sections[section]
-            
-            return currentSection.name
-        }
-        
-        return nil
-    }
-}
-
-
-// MARK: - UITableViewDelegate
-extension UserProfileShowViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
-    }
-
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let lastIndex   =   tableView.numberOfRows(inSection: indexPath.section) - 1
-        let lastElement =   fetchedResultsController.sections![indexPath.section].objects![lastIndex]
-        
-        // Pagination
-        if lastIndex == indexPath.row && lastIndex > self.lastUserProfileDetailsIndexes[segmentedControlIndex] {
-            // Lenta (blogs)
-            if let lenta = lastElement as? Lenta {
-                self.interactor?.saveLastLenta(lenta)
-            }
-
-            // Reply
-            if let reply = lastElement as? Reply {
-                self.interactor?.saveLastReply(reply)
-            }
-
-            // Load more User Profile details
-            if let indexPathsForVisibleRows = self.tableView.indexPathsForVisibleRows, indexPathsForVisibleRows.count > 0 {
-                self.topVisibleIndexPath[segmentedControlIndex]         =   indexPathsForVisibleRows[0]
-            }
-            
-            self.lastUserProfileDetailsIndexes[segmentedControlIndex]   =   lastIndex
-            self.paginanationData                                       =   true
-            self.loadUserDetails()
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {}
-    
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {}
-}
-
-
-// MARK: - NSFetchedResultsControllerDelegate
-extension UserProfileShowViewController: NSFetchedResultsControllerDelegate {
 }

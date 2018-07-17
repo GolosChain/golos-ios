@@ -28,7 +28,7 @@ class ReplyTableViewCell: UITableViewCell, ReusableCell {
     // MARK: - Properties
     var replyType: ReplyType = .post {
         didSet {
-            self.replyTypeButton.setTitle(replyType.caseTitle().lowercased(), for: .normal)
+            self.replyTypeButton.setTitle(replyType.caseTitle().localized().lowercased(), for: .normal)
         }
     }
     

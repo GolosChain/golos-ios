@@ -1,8 +1,8 @@
 //
-//  Post+CoreDataProperties.swift
+//  Popular+CoreDataProperties.swift
 //  Golos
 //
-//  Created by msm72 on 09.07.2018.
+//  Created by msm72 on 17.07.2018.
 //  Copyright © 2018 golos. All rights reserved.
 //
 //
@@ -11,10 +11,10 @@ import Foundation
 import CoreData
 
 
-extension Post {
+extension Popular {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<Post> {
-        return NSFetchRequest<Post>(entityName: "Post")
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<Popular> {
+        return NSFetchRequest<Popular>(entityName: "Popular")
     }
 
     @NSManaged public var id: Int64

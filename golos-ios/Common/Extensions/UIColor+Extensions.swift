@@ -16,6 +16,7 @@ let blackWhiteColorPickers: ThemeColorPicker        =   [ "#000000", "#ffffff" ]
 let darkGrayWhiteColorPickers: ThemeColorPicker     =   [ "#7d7d7d", "#ffffff" ]
 let veryDarkGrayWhiteColorPickers: ThemeColorPicker =   [ "#333333", "#ffffff" ]
 let vividBlueWhiteColorPickers: ThemeColorPicker    =   [ "#1298ff", "#1298ff" ]
+let darkModerateBlueColorPickers: ThemeColorPicker  =   [ "#4469af", "#4469af" ]
 
 
 
