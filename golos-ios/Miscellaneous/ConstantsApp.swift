@@ -8,6 +8,7 @@
 
 import Foundation
 import GoloSwift
+import CoreData
 
 struct ConstantsApp {
     struct ButtonParameters {
@@ -44,7 +45,7 @@ let heightRatio: CGFloat                =   UIScreen.main.bounds.height / (UIApp
 let widthRatio: CGFloat                 =   UIScreen.main.bounds.width / (UIApplication.shared.statusBarOrientation.isPortrait ? 375 : 667)
 
 //let appState: AppState                  =   StateMachine.load().state
-var displayedPostsItems                 =   [DisplayedPost]()
+var displayedPostsItems                 =   [NSManagedObject]()
 
 //var isUserAnonymous: Bool {
 //    set {

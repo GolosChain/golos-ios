@@ -62,7 +62,7 @@ class CircularProgressBarView: UIView {
     }
     
     func endAnimation() {
-        shapeLayer.removeAllAnimations()
+//        shapeLayer.removeAllAnimations()
     }
 }
 

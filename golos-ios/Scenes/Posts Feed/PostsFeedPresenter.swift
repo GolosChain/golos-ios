@@ -76,9 +76,9 @@ extension PostsFeedPresenter: PostsFeedPresenterProtocol {
 
         if (type == .popular || type == .lenta) && displayedPostsItems.count > 0 && discussion.start_author == nil {
             // Prepare & Display feed posts
-            self.displayedPosts.append(contentsOf: displayedPostsItems)
-            self.postsFeedView.didLoadPosts()
-            displayedPostsItems = [DisplayedPost]()
+//            self.displayedPosts.append(contentsOf: displayedPostsItems)
+//            self.postsFeedView.didLoadPosts()
+//            displayedPostsItems = [DisplayedPost]()
         }
 
         else {

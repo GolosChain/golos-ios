@@ -99,12 +99,14 @@ class RootShowViewController: GSBaseViewController {
         // End progress bar animation
         self.circularProgressBarView.endAnimationCompletion = { [weak self] in
             // Check download data end
-            if displayedPostsItems.count == 0, User.isAnonymous {
-                self?.circularProgressBarView.startAnimation()
-            }
-            
+//            if displayedPostsItems.count == 0, User.isAnonymous {
+//                self?.circularProgressBarView.startAnimation()
+//            }
+//
+//            else {
             // Router
-            self?.router?.routeToNextScene()
+                self?.router?.routeToNextScene()
+//            }
         }
         
         // API 'get_discussions_by_hot'
@@ -144,6 +146,6 @@ extension RootShowViewController: RootShowDisplayLogic {
 
         self.circularProgressBarView.endAnimation()
         Logger.log(message: "Animation did stop.", event: .severe)
-        self.circularProgressBarView.endAnimationCompletion!()
+//        self.circularProgressBarView.endAnimationCompletion!()
     }
 }

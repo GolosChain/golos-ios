@@ -43,6 +43,10 @@ class PopularPostsShowViewController: GSTableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        if !isNetworkAvailable {
+            self.tableView.tableHeaderView = nil
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {

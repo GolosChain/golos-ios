@@ -97,7 +97,7 @@ class GSTableViewController: GSBaseViewController {
             UIView.animate(withDuration: 0.7) {
                 self.tableView.alpha = 1.0
             }
-        }
+        }        
     }
     
     override func viewWillDisappear(_ animated: Bool) {

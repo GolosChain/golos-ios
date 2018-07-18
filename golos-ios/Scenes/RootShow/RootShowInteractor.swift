@@ -42,6 +42,12 @@ class RootShowInteractor: RootShowBusinessLogic, RootShowDataStore {
                                                                                             selectAuthors:  [ User.current!.name ])
         
         RestAPIManager.loadPostsFeed(byMethodAPIType: MethodAPIType.getDiscussions(type: type, parameters: discussion), andPostFeedType: type, completion: { [weak self] errorAPI in
+            if let items = CoreDataManager.instance.readEntities(withName: type.caseTitle(),
+                                                                 withPredicateParameters: nil,
+                                                                 andSortDescriptor: nil) {
+                displayedPostsItems.append(contentsOf: items)
+            }
+            
             let responseModel = RootShowModels.Items.ResponseModel(error: errorAPI)
             self?.presenter?.presentPosts(fromResponseModel: responseModel)
         })
