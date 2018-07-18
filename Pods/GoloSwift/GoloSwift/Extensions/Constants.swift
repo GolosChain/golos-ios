@@ -28,7 +28,7 @@ var chainID: String                     =   (appBuildConfig == AppBuildConfig.Re
 var appBuildConfig: AppBuildConfig      =   AppBuildConfig.Debug
 
 // Websocket
-public var webSocket                    =   WebSocket(url: URL(string: (appBuildConfig == AppBuildConfig.Debug) ? "wss://ws.golos.io" : "wss://ws.testnet.golos.io")!)
+public var webSocket                    =   WebSocket(url: URL(string: (appBuildConfig == AppBuildConfig.Debug) ? "wss://ws.golos.io" : "wss://ws.golos.io")!)
 public let webSocketManager             =   WebSocketManager()
 
 /// Websocket response max timeout, in seconds
