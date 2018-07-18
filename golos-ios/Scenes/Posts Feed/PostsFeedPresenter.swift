@@ -74,14 +74,14 @@ extension PostsFeedPresenter: PostsFeedPresenterProtocol {
     func loadPostsFeed(withType type: PostsFeedType, andDiscussion discussion: RequestParameterAPI.Discussion) {
         Logger.log(message: "Success", event: .severe)
 
-        if (type == .popular || type == .lenta) && displayedPostsItems.count > 0 && discussion.start_author == nil {
-            // Prepare & Display feed posts
-//            self.displayedPosts.append(contentsOf: displayedPostsItems)
-//            self.postsFeedView.didLoadPosts()
-//            displayedPostsItems = [DisplayedPost]()
-        }
-
-        else {
+//        if (type == .popular || type == .lenta) && displayedPostsItems.count > 0 && discussion.start_author == nil {
+//            // Prepare & Display feed posts
+////            self.displayedPosts.append(contentsOf: displayedPostsItems)
+////            self.postsFeedView.didLoadPosts()
+////            displayedPostsItems = [DisplayedPost]()
+//        }
+//
+//        else {
             postsFeedManager.loadPostsFeed(withType: type, andDiscussion: discussion, completion: { [weak self] (displayedPosts, errorAPI) in
                 guard let selfStrong = self else { return }
                 
@@ -105,7 +105,7 @@ extension PostsFeedPresenter: PostsFeedPresenterProtocol {
                 // FIXME: - ADD LOAD USERS AVATARS
 //            selfStrong.loadUsers(byNames: selfStrong.displayedPosts.map({ $0.authorName }))
             })
-        }
+//        }
     }
     
     func loadNext(withType type: PostsFeedType) {

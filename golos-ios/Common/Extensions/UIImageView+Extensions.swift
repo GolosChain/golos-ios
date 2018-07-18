@@ -8,7 +8,7 @@
 
 import UIKit
 import GoloSwift
-import Kingfisher
+//import Kingfisher
 import SwiftGifOrigin
 
 enum ImageType: String {
@@ -18,59 +18,64 @@ enum ImageType: String {
 }
 
 extension UIImageView {
-    /// Upload image
+    /// Download image
     func uploadImage(byStringPath path: String, imageType: ImageType, size: CGSize, tags: [String]?) {
+        let imagePathWithProxy      =   path.addImageProxy(withSize: size)
+        let imageURL                =   URL(string: imagePathWithProxy)
+        let imagePlaceholderName    =   imageType == .defaultImage ? "image-placeholder" : (imageType == .userProfileImage ?    "icon-user-profile-image-placeholder" :
+                                                                                                                                "image-user-cover-placeholder")
+        
+        let imageKey: NSString      =   imageURL!.absoluteString as NSString //imageType.rawValue + "-" + imagePath as NSString
+
         // Cover as 'NSFW'
         if let tagsTemp = tags, tagsTemp.map({ $0.lowercased() }).contains("nsfw"), imageType == .userCoverImage {
             self.image = UIImage(named: "nsfw")!
         }
-        
+
         else {
-            let imagePath               =   path.addImageProxy(withSize: size)
-            let imagePlaceholderName    =   imageType == .defaultImage ? "image-placeholder" : (imageType == .userProfileImage ?    "icon-user-profile-image-placeholder" :
-                                                                                                                                    "image-user-cover-placeholder")
-            
-            let imageKey                =   imageType.rawValue + "-" + imagePath
-            
-            if imagePath.hasSuffix(".gif") {
-                var gifImage: UIImage?
-
-                if isNetworkAvailable {
-                    gifImage = UIImage.gif(url: imagePath)
-                    
-                    let images = [gifImage!] as NSArray
-                    PINCache.shared().setObject(images, forKey: imageKey)
-                }
-                
-                // Cache .gif
-                else {
-                    PINCache.shared().object(forKey: imageKey) { _, _, object in
-                        if let images = object as? [UIImage] {
-                            gifImage = images.first
-                        }
-                    }
-                }
-
-                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
-                    self.image = gifImage
+            // Get image from NSCache
+            if let cachedImage = cacheApp.object(forKey: imageKey) {
+                UIView.animate(withDuration: 0.5) {
+                    self.image = cachedImage
                 }
             }
             
             else {
-                self.kf.setImage(with:                  ImageResource(downloadURL: URL(string: imagePath)!, cacheKey: imageKey),
-                                 placeholder:           UIImage(named: imagePlaceholderName)!,
-                                 options:               [.transition(ImageTransition.fade(1)),
-                                                         .processor(ResizingImageProcessor(referenceSize:   size,
-                                                                                           mode:            .aspectFill))],
-                                 completionHandler:     { image, error, _, _ in
-                                    if error == nil {
-                                        if imageType == .userCoverImage {
-                                            self.contentMode = image!.size.width > image!.size.height ? .scaleAspectFill : .scaleAspectFit
-                                        }
-                                        
-                                        self.kf.cancelDownloadTask()
-                                    }
-                })
+                // Download .gif
+                if imagePathWithProxy.hasSuffix(".gif"), let imageGIF = UIImage.gif(url: imagePathWithProxy) {
+                    // Save image to NSCache
+                    cacheApp.setObject(imageGIF, forKey: imageKey)
+                    
+                    DispatchQueue.main.async {
+                        self.image = imageGIF
+                    }
+                }
+
+                // Download image by URL
+                else {
+                    URLSession.shared.dataTask(with: imageURL!) { data, _, error in
+                        guard error == nil else {
+                            DispatchQueue.main.async {
+                                self.image = imageType != .userCoverImage ? UIImage(named: imagePlaceholderName) : nil
+                            }
+                            
+                            return
+                        }
+                        
+                        if let data = data, let downloadedImage = UIImage(data: data) {
+                            if imageType == .userCoverImage {
+                                self.contentMode = downloadedImage.size.width > downloadedImage.size.height ? .scaleAspectFill : .scaleAspectFit
+                            }
+
+                            // Save image to NSCache
+                            cacheApp.setObject(downloadedImage, forKey: imageKey)
+                            
+                            DispatchQueue.main.async {
+                                self.image = downloadedImage
+                            }
+                        }
+                        }.resume()
+                }
             }
         }
     }

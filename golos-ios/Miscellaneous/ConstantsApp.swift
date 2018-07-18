@@ -44,22 +44,7 @@ let weight: Int64                       =   10_000
 let heightRatio: CGFloat                =   UIScreen.main.bounds.height / (UIApplication.shared.statusBarOrientation.isPortrait ? 667 : 375)
 let widthRatio: CGFloat                 =   UIScreen.main.bounds.width / (UIApplication.shared.statusBarOrientation.isPortrait ? 375 : 667)
 
-//let appState: AppState                  =   StateMachine.load().state
-var displayedPostsItems                 =   [NSManagedObject]()
-
-//var isUserAnonymous: Bool {
-//    set {
-//        UserDefaults.standard.set(newValue, forKey: userStateKey)
-//    }
-//    
-//    get {
-//        guard let state = UserDefaults.standard.object(forKey: userStateKey) as? Bool else {
-//            return false
-//        }
-//        
-//        return state
-//    }
-//}
+let cacheApp                            =   NSCache<NSString, UIImage>()
 
 var isAppThemeDark: Bool {
     set { }
