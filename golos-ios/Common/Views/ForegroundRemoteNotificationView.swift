@@ -67,7 +67,7 @@ class ForegroundRemoteNotificationView: UIView {
         })
 
         let cancelImage = SizeLayout<UIImageView>(width: 24.0 * widthRatio, height: 24.0 * widthRatio, config: { imageView in
-            imageView.image         =   UIImage(named: "icon-close-button-normal")
+            imageView.image         =   UIImage(named: "icon-button-close-normal")
             imageView.contentMode   =   .center
             
             // Add tap gesture

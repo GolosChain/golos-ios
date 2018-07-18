@@ -15,7 +15,7 @@ struct Images {
         }
         
         static func getSettingsButtonImage() -> UIImage {
-            return UIImage.init(named: "profile_settings_button_icon")!
+            return UIImage.init(named: "icon-user-profile-settings-black")!
         }
         
         static func getProfileHeaderBackground() -> UIImage {

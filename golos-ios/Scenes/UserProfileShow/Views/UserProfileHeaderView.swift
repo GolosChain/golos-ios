@@ -27,7 +27,7 @@ class UserProfileHeaderView: PassthroughView {
     @IBOutlet private weak var nameLabel: UILabel! {
         didSet {
             nameLabel.font              =   UIFont(name: "SFUIDisplay-Regular", size: 18.0 * widthRatio)
-            nameLabel.theme_textColor   =   whiteBlackColorPickers
+            nameLabel.theme_textColor   =   blackWhiteColorPickers
             nameLabel.textAlignment     =   .left
             nameLabel.numberOfLines     =   1
         }
@@ -43,6 +43,7 @@ class UserProfileHeaderView: PassthroughView {
 
     @IBOutlet private weak var backButton: UIButton!
     @IBOutlet private weak var editProfileButton: UIButton!
+    @IBOutlet private weak var settingsButton: UIButton!
     
     @IBOutlet var actionButtonsCollection: [UIButton]! {
         didSet {
@@ -61,7 +62,7 @@ class UserProfileHeaderView: PassthroughView {
             _ = labelsCollection.map({
                 $0.text?.localize()
                 $0.font                 =   UIFont(name: "SFUIDisplay-Regular", size: 12.0 * widthRatio)
-                $0.theme_textColor      =   whiteBlackColorPickers
+                $0.theme_textColor      =   blackWhiteColorPickers
                 $0.textAlignment        =   .left
                 $0.numberOfLines        =   1
             })
@@ -140,11 +141,18 @@ class UserProfileHeaderView: PassthroughView {
         
         // Upload User cover image
         if let userCoverImagePath = userInfo.coverImageURL {
+            // Set white color for existing cover image
+            _ = labelsForAnimationCollection.map({ $0.tintColor = UIColor.white })
+            
+            self.editProfileButton.setImage(UIImage(named: "icon-button-edit-white-normal"), for: .normal)
+            self.settingsButton.setImage(UIImage(named: "icon-button-settings-white-normal"), for: .normal)
+
             self.userCoverImageView.uploadImage(byStringPath:       userCoverImagePath,
                                                 imageType:          .userCoverImage,
                                                 size:               CGSize(width: 375.0 * widthRatio, height: 240.0 * heightRatio),
                                                 tags:               userInfo.selectTags)
         }
+        
         
         self.showLabelsForAnimationCollection(true)
     }
