@@ -153,6 +153,8 @@
 		B198DB9120B9A21A008011A3 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B198DB9020B9A21A008011A3 /* UIColor+Extensions.swift */; };
 		B198DB9420B9C560008011A3 /* SFProDisplay-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = B198DB9320B9C560008011A3 /* SFProDisplay-Regular.otf */; };
 		B1B6B39520D37F3100284387 /* PostCommentReply.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1B6B39420D37F3100284387 /* PostCommentReply.xib */; };
+		B1C101B220FF5C0400341F49 /* LentaPostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1C101B020FF5C0300341F49 /* LentaPostTableViewCell.xib */; };
+		B1C101B320FF5C0400341F49 /* LentaPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C101B120FF5C0300341F49 /* LentaPostTableViewCell.swift */; };
 		B1C1DFDF20CF887F00D1A837 /* LogInShowPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C1DFD920CF887F00D1A837 /* LogInShowPresenter.swift */; };
 		B1C1DFE220CF887F00D1A837 /* LogInShowModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C1DFDC20CF887F00D1A837 /* LogInShowModels.swift */; };
 		B1C1DFE420CF887F00D1A837 /* LogInShowInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C1DFDE20CF887F00D1A837 /* LogInShowInteractor.swift */; };
@@ -440,6 +442,8 @@
 		B198DB9020B9A21A008011A3 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		B198DB9320B9C560008011A3 /* SFProDisplay-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Regular.otf"; sourceTree = "<group>"; };
 		B1B6B39420D37F3100284387 /* PostCommentReply.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostCommentReply.xib; sourceTree = "<group>"; };
+		B1C101B020FF5C0300341F49 /* LentaPostTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LentaPostTableViewCell.xib; sourceTree = "<group>"; };
+		B1C101B120FF5C0300341F49 /* LentaPostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LentaPostTableViewCell.swift; sourceTree = "<group>"; };
 		B1C1DFD920CF887F00D1A837 /* LogInShowPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInShowPresenter.swift; sourceTree = "<group>"; };
 		B1C1DFDC20CF887F00D1A837 /* LogInShowModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInShowModels.swift; sourceTree = "<group>"; };
 		B1C1DFDE20CF887F00D1A837 /* LogInShowInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInShowInteractor.swift; sourceTree = "<group>"; };
@@ -604,8 +608,6 @@
 		7D25B4B6201F97FA004A3400 /* ArticleHeaderView */ = {
 			isa = PBXGroup;
 			children = (
-				7D25B4B7201F980A004A3400 /* ArticleHeaderView.swift */,
-				7D25B4B9201F9821004A3400 /* ArticleHeaderView.xib */,
 			);
 			path = ArticleHeaderView;
 			sourceTree = "<group>";
@@ -764,6 +766,7 @@
 		B12B3ABD20FCBF6000071B97 /* PostsShow */ = {
 			isa = PBXGroup;
 			children = (
+				B1C101B420FF5C5F00341F49 /* Views */,
 				B12B3ACC20FCC6F000071B97 /* Cells */,
 				B1742A8F20FD0A2E009AAE5E /* ViewControllers */,
 				B12B3AC320FCBFCA00071B97 /* PostsShowInteractor.swift */,
@@ -779,14 +782,16 @@
 		B12B3ACC20FCC6F000071B97 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				B1EA155B20FE23F50015EF76 /* PromoPostTableViewCell.swift */,
-				B1EA155A20FE23F50015EF76 /* PromoPostTableViewCell.xib */,
 				B1EA155420FE22590015EF76 /* ActualPostTableViewCell.swift */,
 				B1EA155520FE22590015EF76 /* ActualPostTableViewCell.xib */,
-				B1EA155120FE20750015EF76 /* PopularPostTableViewCell.swift */,
-				B1EA155020FE20740015EF76 /* PopularPostTableViewCell.xib */,
+				B1C101B120FF5C0300341F49 /* LentaPostTableViewCell.swift */,
+				B1C101B020FF5C0300341F49 /* LentaPostTableViewCell.xib */,
 				B1EA154D20FE02790015EF76 /* NewPostTableViewCell.swift */,
 				B1EA154C20FE02790015EF76 /* NewPostTableViewCell.xib */,
+				B1EA155120FE20750015EF76 /* PopularPostTableViewCell.swift */,
+				B1EA155020FE20740015EF76 /* PopularPostTableViewCell.xib */,
+				B1EA155B20FE23F50015EF76 /* PromoPostTableViewCell.swift */,
+				B1EA155A20FE23F50015EF76 /* PromoPostTableViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1010,6 +1015,15 @@
 				B11AA80420CB13BA00212713 /* SFUIDisplay-Regular.otf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		B1C101B420FF5C5F00341F49 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7D25B4B7201F980A004A3400 /* ArticleHeaderView.swift */,
+				7D25B4B9201F9821004A3400 /* ArticleHeaderView.xib */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		B1E78A6C20F99C2500B2901D /* ViewControllers */ = {
@@ -1471,6 +1485,7 @@
 				B13FE9BF20F5D97600F907BC /* Debug.xcconfig in Resources */,
 				B11AA80520CB13BA00212713 /* SFUIDisplay-Regular.otf in Resources */,
 				B13FE9C020F5D97600F907BC /* Development.xcconfig in Resources */,
+				B1C101B220FF5C0400341F49 /* LentaPostTableViewCell.xib in Resources */,
 				B1918FF720B5421800F6CE63 /* InfoPlist.strings in Resources */,
 				7D25B4BA201F9821004A3400 /* ArticleHeaderView.xib in Resources */,
 				B11AA7F720CB018E00212713 /* WelcomeShow.storyboard in Resources */,
@@ -1725,6 +1740,7 @@
 				7D25B4C6201FABCB004A3400 /* ArticleTextTableViewCell.swift in Sources */,
 				EC9B2AE920155B9C008335C8 /* PostsFeedMediator.swift in Sources */,
 				B1EBAFBB20EB55690050B1A2 /* User+CoreDataClass.swift in Sources */,
+				B1C101B320FF5C0400341F49 /* LentaPostTableViewCell.swift in Sources */,
 				B127A87A20EB8ABF007133AB /* UserSecretActiveKey+CoreDataClass.swift in Sources */,
 				7D25B4C2201FABBD004A3400 /* ArticleImageTableViewCell.swift in Sources */,
 				B13FE9B220F5004F00F907BC /* Reply+CoreDataClass.swift in Sources */,

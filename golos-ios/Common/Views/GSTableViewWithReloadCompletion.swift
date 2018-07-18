@@ -43,14 +43,6 @@ final class GSTableViewWithReloadCompletion: UITableView {
         reloadDataCompletionBlock = nil
     }
     
-//    override func touchesShouldCancel(in view: UIView) -> Bool {
-//        if view is UIButton {
-//            return true
-//        }
-//        
-//        return super.touchesShouldCancel(in: view)
-//    }
-
     func reloadDataWithCompletion(completion: @escaping () -> Void) {
         reloadDataCompletionBlock = completion
         super.reloadData()

@@ -158,7 +158,7 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
         let tableViewController1    =   UIStoryboard(name: "PostsShow", bundle: nil)
             .instantiateViewController(withIdentifier: "UserProfileLentaShowVC") as! GSTableViewController
         tableViewController1.title              =   "Lenta".localized()
-        tableViewController1.cellIdentifier     =   "FeedArticleTableViewCell"
+        tableViewController1.cellIdentifier     =   "LentaPostTableViewCell"
         
         let tableViewController2    =   UIStoryboard(name: "PostsShow", bundle: nil)
             .instantiateViewController(withIdentifier: "PopularPostsShowVC") as! GSTableViewController
@@ -230,10 +230,8 @@ extension PostsShowViewController: PostsShowDisplayLogic {
 // MARK: - Load data from Blockchain by API
 extension PostsShowViewController {
     private func loadPosts(_ isRefresh: Bool) {
-//        if let activeVC = self.containerView.activeVC, activeVC.fetchedResultsController == nil || isRefresh {
-            let loadPostsRequestModel = PostsShowModels.Items.RequestModel(postFeedType: self.postFeedTypes[self.selectedSegmentIndex])
-            interactor?.loadPosts(withRequestModel: loadPostsRequestModel)
-//        }
+        let loadPostsRequestModel = PostsShowModels.Items.RequestModel(postFeedType: self.postFeedTypes[self.selectedSegmentIndex])
+        interactor?.loadPosts(withRequestModel: loadPostsRequestModel)
     }
 }
 

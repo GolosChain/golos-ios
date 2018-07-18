@@ -18,7 +18,7 @@ class GSTableViewController: GSBaseViewController {
     var paginanationData: Bool  =   false
     var lastIndex: Int          =   0
     var topVisibleIndexPath     =   IndexPath(row: 0, section: 0)
-    var cellIdentifier: String  =   "FeedArticleTableViewCell"
+    var cellIdentifier: String  =   "LentaPostTableViewCell"
     
     // Handlers
     var handlerShareButtonTapped: (() -> Void)?
@@ -384,15 +384,15 @@ extension GSTableViewController: UITableViewDataSource {
                 }
                 
             default:
-                (cell as! FeedArticleTableViewCell).handlerShareButtonTapped        =   { [weak self] in
+                (cell as! LentaPostTableViewCell).handlerShareButtonTapped          =   { [weak self] in
                     self?.handlerShareButtonTapped!()
                 }
                 
-                (cell as! FeedArticleTableViewCell).handlerUpvotesButtonTapped      =   { [weak self] in
+                (cell as! LentaPostTableViewCell).handlerUpvotesButtonTapped        =   { [weak self] in
                     self?.handlerUpvotesButtonTapped!()
                 }
                 
-                (cell as! FeedArticleTableViewCell).handlerCommentsButtonTapped     =   { [weak self] in
+                (cell as! LentaPostTableViewCell).handlerCommentsButtonTapped       =   { [weak self] in
                     self?.handlerCommentsButtonTapped!()
                 }
                 

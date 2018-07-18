@@ -58,7 +58,7 @@ class UserProfileShowViewController: GSBaseViewController, ContainerViewSupport 
             containerView.mainVC                =   self
             
             let firstViewController             =   UIStoryboard(name: "UserProfileShow", bundle: nil).instantiateViewController(withIdentifier: "UserProfileLentaShowVC") as! GSTableViewController
-            firstViewController.cellIdentifier  =   "FeedArticleTableViewCell"
+            firstViewController.cellIdentifier  =   "LentaPostTableViewCell"
 
             let secondViewController            =   UIStoryboard(name: "UserProfileShow", bundle: nil).instantiateViewController(withIdentifier: "UserProfileReplyShowVC") as! GSTableViewController
             secondViewController.cellIdentifier =   "ReplyTableViewCell"
