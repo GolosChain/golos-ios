@@ -19,6 +19,7 @@ class TagsCollectionViewController: GSBaseViewController {
     var addButtonTapped     =   false
     var isKeyboardShow      =   false
     
+    var completionTagsChanged: (() -> Void)?
     var completionStartEndEditing: ((CGFloat, CGFloat?) -> Void)?
     var complationCollectionViewChangeHeight: ((CGFloat) -> Void)?
 
@@ -69,6 +70,32 @@ class TagsCollectionViewController: GSBaseViewController {
         
         self.tags.append(tag)
         self.collectionView.reloadData()
+        self.completionTagsChanged!()
+    }
+    
+    private func addNewTag() {
+        guard self.tags.count <= 4 else {
+            self.showAlertView(withTitle: "Info", andMessage: "You can add up to 5 tags", needCancel: false, completion: { [weak self] _ in
+                self?.addButtonTapped = false
+            })
+            
+            return
+        }
+        
+        // Check current Tag title
+        guard !(self.tags.last?.title.isEmpty)! else {
+            self.addButtonTapped = false
+            return
+        }
+        
+        self.tagIndex += 1
+        let insertIndexPath = IndexPath(row: self.tags.count, section: 0)
+        self.tags.append(Tag(placeholder: "Tag".localized() + " \(self.tags.count + 1)", id: self.tagIndex, isFirst: false))
+        self.collectionView?.insertItems(at: [insertIndexPath])
+        self.collectionView.collectionViewLayout.invalidateLayout()
+        self.addButtonTapped = true
+        
+        (self.collectionView.cellForItem(at: IndexPath(row: self.tags.count - 1, section: 0)) as! ThemeTagCollectionViewCell).textField.becomeFirstResponder()
     }
 }
 
@@ -91,29 +118,7 @@ extension TagsCollectionViewController: UICollectionViewDataSource {
             
             // Handler add button
             (cell as! AddTagCollectionViewCell).completionAddNewTag = {
-                // Show alert
-                guard self.tags.count <= 4 else {
-                    self.showAlertView(withTitle: "Info", andMessage: "You can add up to 5 tags", needCancel: false, completion: { [weak self] _ in
-                        self?.addButtonTapped = false
-                    })
-                    
-                    return
-                }
-                
-                // Check current Tag title
-                guard !(self.tags.last?.title.isEmpty)! else {
-                    self.addButtonTapped = false
-                    return
-                }
-                
-                self.tagIndex += 1
-                let insertIndexPath = IndexPath(row: self.tags.count, section: 0)
-                self.tags.append(Tag(placeholder: "Tag".localized() + " \(self.tags.count + 1)", id: self.tagIndex, isFirst: false))
-                self.collectionView?.insertItems(at: [insertIndexPath])
-                self.collectionView.collectionViewLayout.invalidateLayout()
-                self.addButtonTapped = true
-
-                (self.collectionView.cellForItem(at: IndexPath(row: self.tags.count - 1, section: 0)) as! ThemeTagCollectionViewCell).textField.becomeFirstResponder()
+                self.addNewTag()
             }
         }
             
@@ -168,16 +173,27 @@ extension TagsCollectionViewController: UICollectionViewDataSource {
             }
             
             // Handler change title
-            (cell as! ThemeTagCollectionViewCell).completionChangeTitle = { [weak self] offset in
+            (cell as! ThemeTagCollectionViewCell).completionChangeTitle = { [weak self] offset, enteredName, newCharacter in
                 self?.addButtonTapped   =   false
                 self?.offsetIndex       =   indexPath.row
                 item?.cellWidth         =   offset
                 
-                _ = self?.tags.map({
-                    if let tagCell = cell as? ThemeTagCollectionViewCell, let title = tagCell.textField.text, $0.id == tagCell.textField.tag {
-                        $0.title = title
-                    }
-                })
+                // Add new Tag
+                if newCharacter == " " {
+                    self?.addNewTag()
+                }
+                
+                else {
+                    _ = self?.tags.map({
+                        if let tagCell = cell as? ThemeTagCollectionViewCell, $0.id == tagCell.textField.tag {
+                            $0.title = (newCharacter.isEmpty ?  String(enteredName![enteredName!.startIndex ..< enteredName!.index(enteredName!.endIndex, offsetBy: -1)]) :
+                                                                enteredName! + newCharacter).lowercased()
+                        }
+                    })
+                    
+                    // Send updated tags
+                    self?.completionTagsChanged!()
+                }
                 
                 self?.collectionView.collectionViewLayout.invalidateLayout()
             }

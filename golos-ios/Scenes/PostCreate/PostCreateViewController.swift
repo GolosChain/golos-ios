@@ -137,9 +137,13 @@ class PostCreateViewController: GSBaseViewController {
                 
                 // End editing
                 if constant == 0.0 {
-                    self?.interactor?.save(tags: self?.tagsVC.tags)
                     self?.containerViewHeightConstraint.constant = maxY! + 18.0 * heightRatio
                 }
+            }
+            
+            // Handler change tags
+            tagsVC.completionTagsChanged = { [weak self] in
+                self?.interactor?.save(tags: self?.tagsVC.tags)
             }
         }
         
@@ -220,7 +224,7 @@ class PostCreateViewController: GSBaseViewController {
         }
         
         // Check tags
-        else if self.router?.dataStore?.tags == nil {
+        else if self.router?.dataStore?.tags == nil || self.router!.dataStore!.tags!.first!.title.isEmpty  {
             self.showAlertView(withTitle: "Info", andMessage: "Select topic", needCancel: false, completion: { _ in })
             return false
         }

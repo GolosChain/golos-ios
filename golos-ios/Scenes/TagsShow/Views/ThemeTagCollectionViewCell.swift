@@ -17,7 +17,7 @@ class ThemeTagCollectionViewCell: UICollectionViewCell {
     var firstResponderWidth: CGFloat = 78.0
     var completionEndEditing: (() -> Void)?
     var completionClearButton: ((Bool) -> Void)?    // Bool = keyboard show or hide
-    var completionChangeTitle: ((CGFloat) -> Void)?
+    var completionChangeTitle: ((CGFloat, String?, String) -> Void)?
     var completionStartEditing: (() -> Void)?
 
     
@@ -141,7 +141,7 @@ extension ThemeTagCollectionViewCell: UITextFieldDelegate {
             self.firstResponderWidth = 78.0 * widthRatio
         }
         
-        self.completionChangeTitle!(self.firstResponderWidth)
+        self.completionChangeTitle!(self.firstResponderWidth, textField.text, string)
         return true
     }
 }
