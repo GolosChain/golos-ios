@@ -129,7 +129,7 @@ extension ActiveKeyShowViewController: UITextFieldDelegate {
         self.handlerReturnComletion!(self.textFieldsCollection)
         
         if textField == activeKeyTextField, let text = textField.text, text.count == 0 {
-            return (string == "1" || string == "5") ? true : false
+            return (string == "1" || string == "5" || string.hasPrefix("1") || string.hasPrefix("5")) ? true : false
         }
         
         return true
