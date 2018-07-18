@@ -150,7 +150,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FeedArticleTableViewCell" id="Agw-dO-Hga" customClass="FeedArticleTableViewCell" customModule="Golos" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LentaPostTableViewCell" id="Agw-dO-Hga" customClass="LentaPostTableViewCell" customModule="Golos" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Agw-dO-Hga" id="Tjj-Wk-QdZ">
@@ -172,7 +172,7 @@
                         <viewLayoutGuide key="safeArea" id="meo-UV-aIL"/>
                     </view>
                     <connections>
-                        <outlet property="tableView" destination="Ol8-0Q-A8s" id="1Om-oG-HR5"/>
+                        <outlet property="tableView" destination="Ol8-0Q-A8s" id="OJo-jh-2EH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qY6-Ny-BY0" userLabel="First Responder" sceneMemberID="firstResponder"/>

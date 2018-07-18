@@ -252,6 +252,11 @@ class PostCreateViewController: GSBaseViewController {
             return
         }
         
+        self.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+
+        
+        // TODO: - ADD POST API
+        /*
         switch sceneType {
         case .create:
             let postCreateRequestModel = PostCreateModels.Something.RequestModel()
@@ -264,7 +269,7 @@ class PostCreateViewController: GSBaseViewController {
         case .reply:
             let postCommentReplyRequestModel = PostCreateModels.Something.RequestModel()
             interactor?.postCommentReply(withRequestModel: postCommentReplyRequestModel)
-        }
+        } */
     }
 }
 

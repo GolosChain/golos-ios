@@ -26,10 +26,11 @@ class UserProfileHeaderView: PassthroughView {
     
     @IBOutlet private weak var nameLabel: UILabel! {
         didSet {
-            nameLabel.font              =   UIFont(name: "SFUIDisplay-Regular", size: 18.0 * widthRatio)
-            nameLabel.theme_textColor   =   blackWhiteColorPickers
-            nameLabel.textAlignment     =   .left
-            nameLabel.numberOfLines     =   1
+            nameLabel.tune(withText:        "",
+                           hexColors:       blackWhiteColorPickers,
+                           font:            UIFont(name: "SFUIDisplay-Regular", size: 18.0 * widthRatio),
+                           alignment:       .left,
+                           isMultiLines:    false)
         }
     }
     
@@ -142,17 +143,18 @@ class UserProfileHeaderView: PassthroughView {
         // Upload User cover image
         if let userCoverImagePath = userInfo.coverImageURL {
             // Set white color for existing cover image
-            _ = labelsForAnimationCollection.map({ $0.tintColor = UIColor.white })
+            _ = labelsForAnimationCollection.map({ $0.theme_textColor = whiteBlackColorPickers })
             
             self.editProfileButton.setImage(UIImage(named: "icon-button-edit-white-normal"), for: .normal)
+            self.editProfileButton.setImage(UIImage(named: "icon-button-edit-black-normal"), for: .highlighted)
             self.settingsButton.setImage(UIImage(named: "icon-button-settings-white-normal"), for: .normal)
+            self.settingsButton.setImage(UIImage(named: "icon-button-settings-black-normal"), for: .highlighted)
 
             self.userCoverImageView.uploadImage(byStringPath:       userCoverImagePath,
                                                 imageType:          .userCoverImage,
                                                 size:               CGSize(width: 375.0 * widthRatio, height: 240.0 * heightRatio),
                                                 tags:               userInfo.selectTags)
         }
-        
         
         self.showLabelsForAnimationCollection(true)
     }

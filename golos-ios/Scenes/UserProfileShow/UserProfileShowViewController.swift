@@ -63,7 +63,7 @@ class UserProfileShowViewController: GSBaseViewController, ContainerViewSupport 
             let secondViewController            =   UIStoryboard(name: "UserProfileShow", bundle: nil).instantiateViewController(withIdentifier: "UserProfileReplyShowVC") as! GSTableViewController
             secondViewController.cellIdentifier =   "ReplyTableViewCell"
             
-            containerView.viewControllers   =   [ firstViewController, secondViewController ]
+            containerView.viewControllers       =   [ firstViewController, secondViewController ]
             
             containerView.setActiveViewController(index: 0)
         }

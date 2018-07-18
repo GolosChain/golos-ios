@@ -56,8 +56,8 @@ class PostingKeyShowViewController: GSBaseViewController {
     @IBOutlet var textFieldsCollection: [UITextField]! {
         didSet {
             // FIXME: - DELETE AFTER TEST
-//            textFieldsCollection.first!.text    =   "destroyer2k"
-//            textFieldsCollection.last!.text     =   "5JjQWZmWj36xbVdcX96gjMs5BRip7TPPCNFFnm19TPEviqnG5Ke"
+            textFieldsCollection.first!.text    =   "destroyer2k"
+            textFieldsCollection.last!.text     =   "5JjQWZmWj36xbVdcX96gjMs5BRip7TPPCNFFnm19TPEviqnG5Ke"
         }
     }
     
