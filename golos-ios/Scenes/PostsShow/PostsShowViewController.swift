@@ -59,6 +59,12 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
         }
     }
 
+    @IBOutlet var heightsCollection: [NSLayoutConstraint]! {
+        didSet {
+            _ = heightsCollection.map({ $0.constant *= heightRatio })
+        }
+    }
+    
     
     // MARK: - Class Initialization
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {

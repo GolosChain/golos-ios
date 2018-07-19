@@ -21,7 +21,10 @@ extension UIImageView {
     /// Download image
     func uploadImage(byStringPath path: String, imageType: ImageType, size: CGSize, tags: [String]?) {
         let imagePathWithProxy      =   path.trimmingCharacters(in: .whitespacesAndNewlines).addImageProxy(withSize: size)
-        let imageURL                =   URL(string: imagePathWithProxy)
+        let imageURL                =   URL(string: imagePathWithProxy.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!)
+        
+        Logger.log(message: "imageURL = \(imageURL!)", event: .debug)
+        
         let imagePlaceholderName    =   imageType == .defaultImage ? "image-placeholder" : (imageType == .userProfileImage ?    "icon-user-profile-image-placeholder" :
                                                                                                                                 "image-user-cover-placeholder")
         
