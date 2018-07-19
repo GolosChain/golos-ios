@@ -181,11 +181,15 @@ class GSTableViewController: GSBaseViewController {
                 fetchRequest.predicate  =   NSPredicate(format: "parentAuthor == %@", userName)
             }
 
-        // Lenta, Popular, Actual, New, Promo
-        default:
+        // Lenta
+        case .lenta:
             if let userName = User.current?.name {
                 fetchRequest.predicate  =   NSPredicate(format: "author == %@", userName)
             }
+
+        // Lenta, Popular, Actual, New, Promo
+        default:
+            break
         }
         
         primarySortDescriptor           =   NSSortDescriptor(key: "created", ascending: false)
