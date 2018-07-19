@@ -174,8 +174,8 @@ extension ActualPostTableViewCell: ConfigureCell {
         self.titleLabel.text                        =   actual.title
         self.articleHeaderView.authorLabel.text     =   actual.author
         self.articleHeaderView.categoryLabel.text   =   actual.category
-        self.upvotesButton.isEnabled                =   actual.allowVotes
-        self.commentsButton.isEnabled               =   actual.allowReplies
+        self.upvotesButton.isEnabled                =   !actual.allowVotes
+        self.commentsButton.isEnabled               =   !actual.allowReplies
 
         selectionStyle                              =   .none
 

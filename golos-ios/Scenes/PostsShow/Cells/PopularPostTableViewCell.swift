@@ -174,8 +174,8 @@ extension PopularPostTableViewCell: ConfigureCell {
         self.titleLabel.text                        =   popular.title
         self.articleHeaderView.authorLabel.text     =   popular.author
         self.articleHeaderView.categoryLabel.text   =   popular.category
-        self.upvotesButton.isEnabled                =   popular.allowVotes
-        self.commentsButton.isEnabled               =   popular.allowReplies
+        self.upvotesButton.isEnabled                =   !popular.allowVotes
+        self.commentsButton.isEnabled               =   !popular.allowReplies
 
         selectionStyle                              =   .none
 

@@ -212,7 +212,7 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
         segmentedViewController.segmentBackgroundColor          =   UIColor(hexString: "#4469AF")
         segmentedViewController.segmentedScrollViewColor        =   UIColor(hexString: "#4469AF")
         segmentedViewController.segmentShadow                   =   SJShadow.dark()
-        
+
         segmentedViewController.delegate                        =   self
         
         controlView.addSubview(segmentedViewController.view)
@@ -275,7 +275,7 @@ extension PostsShowViewController: SJSegmentedViewControllerDelegate {
         
         // Scroll content to first row
         if self.selectedSegmentIndex == index {
-            if let activeVC = self.containerView.activeVC, activeVC.fetchedResultsController != nil, self.containerView.activeVC!.lastIndex >= loadDataLimit / 2 {
+            if let activeVC = self.containerView.activeVC, activeVC.tableView.contentOffset.y > 0.0 {
                 activeVC.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
             }
         }

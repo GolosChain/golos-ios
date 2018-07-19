@@ -174,8 +174,8 @@ extension NewPostTableViewCell: ConfigureCell {
         self.titleLabel.text                        =   new.title
         self.articleHeaderView.authorLabel.text     =   new.author
         self.articleHeaderView.categoryLabel.text   =   new.category
-        self.upvotesButton.isEnabled                =   new.allowVotes
-        self.commentsButton.isEnabled               =   new.allowReplies
+        self.upvotesButton.isEnabled                =   !new.allowVotes
+        self.commentsButton.isEnabled               =   !new.allowReplies
 
         selectionStyle                              =   .none
 

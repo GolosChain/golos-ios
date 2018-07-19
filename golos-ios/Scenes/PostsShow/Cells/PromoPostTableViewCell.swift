@@ -174,8 +174,8 @@ extension PromoPostTableViewCell: ConfigureCell {
         self.titleLabel.text                        =   promo.title
         self.articleHeaderView.authorLabel.text     =   promo.author
         self.articleHeaderView.categoryLabel.text   =   promo.category
-        self.upvotesButton.isEnabled                =   promo.allowVotes
-        self.commentsButton.isEnabled               =   promo.allowReplies
+        self.upvotesButton.isEnabled                =   !promo.allowVotes
+        self.commentsButton.isEnabled               =   !promo.allowReplies
 
         selectionStyle                              =   .none
 

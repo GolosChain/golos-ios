@@ -174,8 +174,8 @@ extension LentaPostTableViewCell: ConfigureCell {
         self.titleLabel.text                        =   lenta.title
         self.articleHeaderView.authorLabel.text     =   lenta.author
         self.articleHeaderView.categoryLabel.text   =   lenta.category
-        self.upvotesButton.isEnabled                =   lenta.allowVotes
-        self.commentsButton.isEnabled               =   lenta.allowReplies
+        self.upvotesButton.isEnabled                =   !lenta.allowVotes
+        self.commentsButton.isEnabled               =   !lenta.allowReplies
 
         selectionStyle                              =   .none
 
