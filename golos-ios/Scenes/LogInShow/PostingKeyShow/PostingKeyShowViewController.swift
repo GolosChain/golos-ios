@@ -55,10 +55,10 @@ class PostingKeyShowViewController: GSBaseViewController {
     
     @IBOutlet var textFieldsCollection: [UITextField]! {
         didSet {
-            if appBuildConfig == AppBuildConfig.Debug {
-                textFieldsCollection.first!.text    =   "destroyer2k"
-                textFieldsCollection.last!.text     =   "5JjQWZmWj36xbVdcX96gjMs5BRip7TPPCNFFnm19TPEviqnG5Ke"
-            }
+//            if appBuildConfig == AppBuildConfig.Debug {
+//                textFieldsCollection.first!.text    =   "destroyer2k"
+//                textFieldsCollection.last!.text     =   "5JjQWZmWj36xbVdcX96gjMs5BRip7TPPCNFFnm19TPEviqnG5Ke"
+//            }
         }
     }
     
