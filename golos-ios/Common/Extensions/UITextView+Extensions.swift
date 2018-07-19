@@ -10,15 +10,12 @@ import UIKit
 import SwiftTheme
 
 extension UITextView {
-    func tune(withPlaceholder placeholder: String, textColors: ThemeColorPicker?, font: UIFont?, alignment: NSTextAlignment) {
+    func tune(textColors: ThemeColorPicker?, font: UIFont?, alignment: NSTextAlignment) {
         ThemeManager.setTheme(index: isAppThemeDark ? 1 : 0)
         
         self.font                       =   font
         self.theme_textColor            =   textColors
         self.textAlignment              =   alignment
-        
-        self.attributedText             =   NSAttributedString(string:      placeholder.localized(),
-                                                               attributes:  [ NSAttributedStringKey.foregroundColor: UIColor(hexString: "#828282") ])
     }
     
     func showToolbar(handlerAction: ((Int) -> Void)?) {
@@ -61,7 +58,7 @@ extension UITextView {
         
         underlineButton.isEnabled       =   false
         
-        let leftAlignmentButton        =   BlockBarButtonItem(image:           UIImage(named: "icon-button-left-alignment-normal"),
+        let leftAlignmentButton         =   BlockBarButtonItem(image:           UIImage(named: "icon-button-left-alignment-normal"),
                                                                style:           .done,
                                                                tag:             3,
                                                                actionHandler: { tag in
@@ -131,39 +128,119 @@ extension UITextView {
     }
     
     func add(object: Any) {
-        var attributedString    =   NSAttributedString()
-        
-        // Create and NSTextAttachment and add your image to it.
-        let attachment          =   NSTextAttachment()
-        
         if let image = object as? UIImage {
-            attachment.image    =   image
-            
-            // Calculate new size
-            let newImageWidth   =   self.bounds.size.width
-            let scale           =   newImageWidth/image.size.width
-            let newImageHeight  =   image.size.height * scale
-            
-            // Resize this
-            attachment.bounds   =   CGRect.init(x: 0, y: 0, width: newImageWidth, height: newImageHeight)
-            
-            // Put your NSTextAttachment into and attributedString
-            attributedString    =   NSAttributedString(attachment: attachment)
+            let attachment = NSTextAttachment()
+            attachment.image = image
+            attachment.bounds   =   CGRect.init(x: 0, y: 0, width: 100, height: 100)
+
+            let attString = NSAttributedString(attachment: attachment)
+
+            self.textStorage.insert(attString, at: self.selectedRange.location)
+
         }
         
-        if let link = object as? (String, String) {
-            let linkAttributes: [NSAttributedStringKey: Any] =  [
-                                                                    .link:              NSURL(string: link.1)!,
-                                                                    .foregroundColor:   UIColor.blue
-                                                                ]
-            
-            let linkAttributedString = NSMutableAttributedString(string: link.0)
-            linkAttributedString.setAttributes(linkAttributes, range: NSRange(location: 0, length: link.0.count))
-            
-            attributedString    =   linkAttributedString
+        
+//        var attributedString    =   NSMutableAttributedString(attributedString: self.attributedText)
+//        var attributedStringWithImage: NSAttributedString
+//
+//        // Create and NSTextAttachment and add your image to it.
+//        let attachment          =   NSTextAttachment()
+//
+//        if let image = object as? UIImage {
+//            attachment.image    =   image
+//
+//            // Calculate new size
+//            let newImageWidth   =   self.bounds.size.width - 16.0 * 2 * widthRatio
+//            let scaleFactor     =   newImageWidth/image.size.width
+////            let newImageHeight  =   image.size.height * scale
+//
+//            // Resize this
+//            attachment.image    =    UIImage(cgImage: attachment.image!.cgImage!, scale: scaleFactor, orientation: .up)
+////            attachment.bounds   =   CGRect.init(x: 0, y: 0, width: newImageWidth, height: newImageHeight)
+//
+//            // Put your NSTextAttachment into and attributedString
+//            attributedStringWithImage    =   NSAttributedString(attachment: attachment)
+//
+//            attributedString.append(attributedStringWithImage)
+//            self.attributedText =   attributedString
+//
+//
+////            var attributedString: NSMutableAttributedString!
+////            attributedString = NSMutableAttributedString(attributedString:txtBody.attributedText)
+////            let textAttachment = NSTextAttachment()
+////            textAttachment.image = image
+////
+////            let oldWidth = textAttachment.image!.size.width;
+////
+////            //I'm subtracting 10px to make the image display nicely, accounting
+////            //for the padding inside the textView
+////
+////            let scaleFactor = oldWidth / (txtBody.frame.size.width - 10);
+////            textAttachment.image = UIImage(cgImage: textAttachment.image!.cgImage!, scale: scaleFactor, orientation: .up)
+////            let attrStringWithImage = NSAttributedString(attachment: textAttachment)
+////            attributedString.append(attrStringWithImage)
+////            txtBody.attributedText = attributedString;
+//        }
+        
+//        if let link = object as? (String, String) {
+//            let linkAttributes: [NSAttributedStringKey: Any] =  [
+//                                                                    .link:              NSURL(string: link.1)!,
+//                                                                    .foregroundColor:   UIColor.blue
+//                                                                ]
+//
+//            let linkAttributedString = NSMutableAttributedString(string: link.0)
+//            linkAttributedString.setAttributes(linkAttributes, range: NSRange(location: 0, length: link.0.count))
+//
+//            attributedString    =   linkAttributedString
+//
+//            // Add this attributed string to the current position
+//            self.textStorage.insert(attributedString, at: self.selectedRange.location)
+//        }
+    }
+    
+    // Placeholder
+    private class PlaceholderLabel: UILabel { }
+    
+    private var placeholderLabel: PlaceholderLabel {
+        if let label = subviews.compactMap( { $0 as? PlaceholderLabel }).first {
+            return label
+        }
+        else {
+            let label               =   PlaceholderLabel(frame: .zero)
+            label.font              =   UIFont(name: "SFUIDisplay-Regular", size: 13.0 * widthRatio)
+            label.theme_textColor   =   darkGrayWhiteColorPickers
+            addSubview(label)
+           
+            return label
+        }
+    }
+    
+    @IBInspectable
+    var placeholder: String {
+        get {
+            return subviews.compactMap( { $0 as? PlaceholderLabel }).first?.text ?? ""
         }
         
-        // Add this attributed string to the current position.
-        self.textStorage.insert(attributedString, at: self.selectedRange.location)
+        set {
+            let placeholderLabel = self.placeholderLabel
+            placeholderLabel.text = newValue
+            placeholderLabel.numberOfLines = 0
+            let width = frame.width - textContainer.lineFragmentPadding * 2
+            let size = placeholderLabel.sizeThatFits(CGSize(width: width, height: .greatestFiniteMagnitude))
+            placeholderLabel.frame.size.height = size.height
+            placeholderLabel.frame.size.width = width
+            placeholderLabel.frame.origin = CGPoint(x: textContainer.lineFragmentPadding, y: textContainerInset.top)
+            
+            textStorage.delegate = self
+        }
+    }
+}
+
+
+extension UITextView: NSTextStorageDelegate {
+    public func textStorage(_ textStorage: NSTextStorage, didProcessEditing editedMask: NSTextStorageEditActions, range editedRange: NSRange, changeInLength delta: Int) {
+        if editedMask.contains(.editedCharacters) {
+            placeholderLabel.isHidden   =   !text.isEmpty
+        }
     }
 }

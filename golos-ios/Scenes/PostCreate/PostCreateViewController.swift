@@ -71,6 +71,13 @@ class PostCreateViewController: GSBaseViewController {
         didSet {
             contentTextView.contentInset    =   UIEdgeInsets(top: 0.0, left: -4.0, bottom: 8.0, right: 0.0)
             contentTextView.delegate        =   self
+            
+            contentTextView.placeholder     =   (sceneType == .create ? "Enter Text Placeholder" : "Enter Comment Placeholder").localized()
+            
+            contentTextView.tune(textColors:    darkGrayWhiteColorPickers,
+                                 font:          UIFont(name: "SFUIDisplay-Regular", size: 13.0 * widthRatio),
+                                 alignment:     .left)
+
         }
     }
     
@@ -181,11 +188,7 @@ class PostCreateViewController: GSBaseViewController {
         self.navigationController?.add(shadow: true, withBarTintColor: .white)
         self.navigationController?.hidesBarsOnTap   =   false
 
-        // Placeholder
-        contentTextView.tune(withPlaceholder:   sceneType == .create ? "Enter Text Placeholder" : "Enter Comment Placeholder",
-                             textColors:        darkGrayWhiteColorPickers,
-                             font:              UIFont(name: "SFUIDisplay-Regular", size: 13.0 * widthRatio),
-                             alignment:         .left)
+        self.contentTextView.layoutManager.ensureLayout(for: self.contentTextView.textContainer)
     }
     
     
@@ -308,21 +311,11 @@ extension PostCreateViewController: UITextViewDelegate {
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.text == "Enter Text Placeholder".localized() {
-            textView.text               =   nil
-            textView.theme_textColor    =   blackWhiteColorPickers
-        }
-        
         self.isKeyboardShow             =   true
         self.setConstraint()
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
-        if textView.text.isEmpty {
-            textView.text               =   "Enter Text Placeholder".localized()
-            textView.theme_textColor    =   darkGrayWhiteColorPickers
-        }
-
         self.isKeyboardShow             =   false
         self.setConstraint()
     }

@@ -10,7 +10,7 @@
 import Foundation
 import Starscream
 
-enum AppBuildConfig: Int {
+public enum AppBuildConfig: Int {
     case Development = 0
     case Debug
     case Release
@@ -25,10 +25,10 @@ var time: String                        =   ""
 var chainID: String                     =   (appBuildConfig == AppBuildConfig.Release) ?    "782a3039b478c839e4cb0c941ff4eaeb7df40bdd68bd441afd444b9da763de12" :
                                                                                             "5876894a41e6361bde2e73278f07340f2eb8b41c2facd29099de9deef6cdb679"
 
-var appBuildConfig: AppBuildConfig      =   AppBuildConfig.Debug
+public var appBuildConfig: AppBuildConfig      =   AppBuildConfig.Debug
 
 // Websocket
-public var webSocket                    =   WebSocket(url: URL(string: (appBuildConfig == AppBuildConfig.Debug) ? "wss://ws.golos.io" : "wss://ws.golos.io")!)
+public var webSocket                    =   WebSocket(url: URL(string: (appBuildConfig == AppBuildConfig.Debug) ? "wss://ws.golos.io" : "wss://ws.testnet.golos.io")!)
 public let webSocketManager             =   WebSocketManager()
 
 /// Websocket response max timeout, in seconds

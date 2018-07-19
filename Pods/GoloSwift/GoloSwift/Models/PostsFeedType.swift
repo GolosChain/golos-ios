@@ -17,7 +17,7 @@ public enum PostsFeedType: String {
     case actual
     case answers
     case popular
-
+    
     public func caseTitle() -> String {
         switch self {
         case .new:          return "New"
