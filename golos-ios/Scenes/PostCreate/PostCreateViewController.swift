@@ -248,9 +248,18 @@ class PostCreateViewController: GSBaseViewController {
         self.tagsTitleLabel.text = String(format: "")
     }
     
+    private func clearAllEnteredValues() {
+        self.contentTextView.text                   =   nil
+        self.postCreateView.titleTextField.text     =   nil
+        self.commentReplyView.commentLabel.text     =   nil
+        
+        self.interactor?.save(tags: nil)
+    }
+    
     
     // MARK: - Actions
     @IBAction func cancelBarButtonTapped(_ sender: UIBarButtonItem) {
+        self.clearAllEnteredValues()
         self.router?.routeToMainScene()
     }
     
@@ -311,6 +320,7 @@ extension PostCreateViewController: UITextViewDelegate {
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
+        textView.theme_textColor        =   blackWhiteColorPickers
         self.isKeyboardShow             =   true
         self.setConstraint()
     }
