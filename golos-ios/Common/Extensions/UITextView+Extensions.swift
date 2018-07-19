@@ -123,7 +123,16 @@ extension UITextView {
         
         smileButton.isEnabled           =   false
         
-        let items = [ flexSpace, boldButton, flexSpace, italicButton, flexSpace, underlineButton, flexSpace, leftAlignmentButton, flexSpace, centerAlignmentButton, flexSpace, rightAlignmentButton, flexSpace, emailButton, flexSpace, linkButton, flexSpace, imageButton, flexSpace, smileButton, flexSpace ]
+        let closeButton                 =   BlockBarButtonItem(image:           UIImage(named: "icon-button-close-normal"),
+                                                               style:           .done,
+                                                               tag:             10,
+                                                               actionHandler: { tag in
+                                                                    handlerAction!(tag)
+                                                               })
+        
+        closeButton.isEnabled           =   true
+        
+        let items = [ flexSpace, boldButton, flexSpace, italicButton, flexSpace, underlineButton, flexSpace, leftAlignmentButton, flexSpace, centerAlignmentButton, flexSpace, rightAlignmentButton, flexSpace, emailButton, flexSpace, linkButton, flexSpace, imageButton, flexSpace, smileButton, flexSpace, closeButton, flexSpace ]
         
         toolbar.items                   =   items
         self.inputAccessoryView         =   toolbar

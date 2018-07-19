@@ -29,7 +29,9 @@ protocol PostCreateDisplayLogic: class {
 
 class PostCreateViewController: GSBaseViewController {
     // MARK: - Properties
+    var firstResponder: UIView!
     var isKeyboardShow = false
+    
     var tagsVC: TagsCollectionViewController!
 
     var sceneType: SceneType = .create {
@@ -50,7 +52,16 @@ class PostCreateViewController: GSBaseViewController {
     
     
     // MARK: - IBOutlets
-    @IBOutlet weak var postCreateView: PostCreateView!
+    @IBOutlet weak var postCreateView: PostCreateView! {
+        didSet {
+            postCreateView.completionStartEditing   =   { [weak self] isEdit in
+                self?.firstResponder    =   self?.postCreateView
+                self?.isKeyboardShow    =   isEdit
+                
+                self?.setConstraint()
+            }
+        }
+    }
     
     @IBOutlet weak var commentReplyView: PostCommentReply! {
         didSet {
@@ -84,8 +95,10 @@ class PostCreateViewController: GSBaseViewController {
     @IBOutlet var sceneViewsCollection: [UIView]!
     
     @IBOutlet weak var stackViewTopConstraint: NSLayoutConstraint!
-    @IBOutlet weak var tagsViewBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var contentViewBottomConstraint: NSLayoutConstraint!
+
+    // Use with keyboard hide/show
+    @IBOutlet weak var tagsViewBottomConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var containerViewHeightConstraint: NSLayoutConstraint! {
         didSet {
@@ -140,12 +153,14 @@ class PostCreateViewController: GSBaseViewController {
             
             // Handler start editing tags
             tagsVC.completionStartEndEditing = { [weak self] (constant, maxY) in
-                self?.tagsViewBottomConstraint.constant = constant
+                self?.firstResponder        =   constant == 0.0 ? self?.view : self?.tagsVC.view
                 
                 // End editing
                 if constant == 0.0 {
                     self?.containerViewHeightConstraint.constant = maxY! + 18.0 * heightRatio
                 }
+                
+                self?.setConstraint()
             }
             
             // Handler change tags
@@ -204,12 +219,14 @@ class PostCreateViewController: GSBaseViewController {
     }
     
     private func setConstraint() {
-        if UIApplication.shared.statusBarOrientation.isPortrait {
-            self.contentViewBottomConstraint.constant = (self.isKeyboardShow ? 140 : 16.0) * heightRatio
-        }
+        let isKeyboardShow = IQKeyboardManager.sharedManager().keyboardShowing || self.isKeyboardShow
         
+        if UIApplication.shared.statusBarOrientation.isPortrait {
+            self.tagsViewBottomConstraint.constant = (isKeyboardShow ? (firstResponder == contentTextView ? 210.0 : 150.0) : (firstResponder == tagsVC.view ? 150.0 : 16.0)) * heightRatio
+        }
+
         else {
-            self.contentViewBottomConstraint.constant = (self.isKeyboardShow ? 100.0 : 16.0) * heightRatio
+            self.tagsViewBottomConstraint.constant = (isKeyboardShow ? 100.0 : 16.0) * heightRatio
         }
     }
     
@@ -320,13 +337,13 @@ extension PostCreateViewController: UITextViewDelegate {
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
-        textView.theme_textColor        =   blackWhiteColorPickers
-        self.isKeyboardShow             =   true
+        textView.theme_textColor    =   blackWhiteColorPickers
+        self.firstResponder         =   self.contentTextView
+        
         self.setConstraint()
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
-        self.isKeyboardShow             =   false
         self.setConstraint()
     }
 
@@ -411,7 +428,7 @@ extension PostCreateViewController: UITextViewDelegate {
                 self?.present(photoAlert, animated: true)
                 
             default:
-                break
+                self?.setConstraint()
             }
         }
         

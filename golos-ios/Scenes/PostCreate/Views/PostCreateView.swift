@@ -10,6 +10,10 @@ import UIKit
 import GoloSwift
 
 class PostCreateView: UIView {
+    // MARK: - Properties
+    var completionStartEditing: ((Bool) -> Void)?
+
+    
     // MARK: - IBOutlets
     @IBOutlet var view: UIView! {
         didSet {
@@ -71,6 +75,13 @@ class PostCreateView: UIView {
 
 // MARK: - UITextFieldDelegate
 extension PostCreateView: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        self.completionStartEditing!(true)
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        self.completionStartEditing!(false)
+    }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         

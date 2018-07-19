@@ -83,7 +83,7 @@ class TagsCollectionViewController: GSBaseViewController {
         }
         
         // Check current Tag title
-        guard self.tags.last?.title != nil else {
+        guard let title = self.tags.last?.title, !title.isEmpty else {
             self.addButtonTapped = false
             return
         }
