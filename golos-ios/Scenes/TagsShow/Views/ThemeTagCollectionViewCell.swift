@@ -29,16 +29,18 @@ class ThemeTagCollectionViewCell: UICollectionViewCell {
             textField.layer.borderColor     =   UIColor(hexString: "#1298FF").cgColor
             textField.layer.cornerRadius    =   textField.frame.height / 2
             textField.font                  =   UIFont(name: "SFUIDisplay-Regular", size: 13.0 * widthRatio)
+            textField.textAlignment         =   .center
+            
             textField.inputAccessoryView    =   UIView()
             
-            let paddingView                 =   UIView(frame: CGRect(origin: .zero, size: CGSize(width: 12.0 * widthRatio, height: 30.0 * heightRatio)))
+            let paddingView                 =   UIView(frame: CGRect(origin: .zero, size: CGSize(width: 0.0 * widthRatio, height: 30.0 * heightRatio)))
             textField.leftView              =   paddingView
             textField.leftViewMode          =   .always
             
             textField.delegate              =   self
 
             UIView.animate(withDuration: 0.3) {
-                self.textField.alpha  =   1
+                self.textField.alpha        =   1
             }
         }
     }
@@ -141,7 +143,11 @@ extension ThemeTagCollectionViewCell: UITextFieldDelegate {
             self.firstResponderWidth = 78.0 * widthRatio
         }
         
+        if (textField.text?.isEmpty)! && string == " " {
+            return false
+        }
+        
         self.completionChangeTitle!(self.firstResponderWidth, textField.text, string)
-        return true
+        return string != " "
     }
 }

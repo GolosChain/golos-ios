@@ -83,7 +83,7 @@ class TagsCollectionViewController: GSBaseViewController {
         }
         
         // Check current Tag title
-        guard !(self.tags.last?.title.isEmpty)! else {
+        guard self.tags.last?.title != nil else {
             self.addButtonTapped = false
             return
         }
@@ -125,6 +125,11 @@ extension TagsCollectionViewController: UICollectionViewDataSource {
         else {
             cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ThemeTagCollectionViewCell", for: indexPath) as! ThemeTagCollectionViewCell
 
+            // First Tag
+            if indexPath.row == 0 {
+                (cell as! ThemeTagCollectionViewCell).clearButton.isHidden = true
+            }
+            
             // Configure the cell
             let item = (indexPath.row == self.tags.count) ? nil : self.tags[indexPath.row]
             (cell as! ConfigureCell).setup(withItem: item, andIndexPath: indexPath)
@@ -179,7 +184,7 @@ extension TagsCollectionViewController: UICollectionViewDataSource {
                 item?.cellWidth         =   offset
                 
                 // Add new Tag
-                if newCharacter == " " {
+                if !(enteredName?.isEmpty)! && newCharacter == " " {
                     self?.addNewTag()
                 }
                 

@@ -62,7 +62,7 @@ class PostCreateInteractor: PostCreateBusinessLogic, PostCreateDataStore {
         let stringTags: [String]  =   self.tags!.compactMap({ $0.title })
 
         let comment =   RequestParameterAPI.Comment(parentAuthor:       "",
-                                                    parentPermlink:     self.tags!.first!.title,
+                                                    parentPermlink:     self.tags!.first!.title!,
                                                     author:             "msm72",
                                                     title:              self.commentTitle!,
                                                     body:               self.commentBody!,

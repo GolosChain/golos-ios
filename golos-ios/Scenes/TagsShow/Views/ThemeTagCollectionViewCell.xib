@@ -19,7 +19,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="78" height="30"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <textField clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Tag 1" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hkf-Hk-gp1">
+                    <textField clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hkf-Hk-gp1">
                         <rect key="frame" x="0.0" y="0.0" width="78" height="30"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>

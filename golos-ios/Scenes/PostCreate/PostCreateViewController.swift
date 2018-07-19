@@ -227,7 +227,7 @@ class PostCreateViewController: GSBaseViewController {
         }
         
         // Check tags
-        else if self.router?.dataStore?.tags == nil || self.router!.dataStore!.tags!.first!.title.isEmpty  {
+        else if self.router?.dataStore?.tags == nil || self.router?.dataStore?.tags?.first?.title == nil  {
             self.showAlertView(withTitle: "Info", andMessage: "Select topic", needCancel: false, completion: { _ in })
             return false
         }
