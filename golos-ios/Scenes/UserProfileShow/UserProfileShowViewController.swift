@@ -343,7 +343,7 @@ extension UserProfileShowViewController: MXParallaxHeaderDelegate {
     func parallaxHeaderDidScroll(_ parallaxHeader: MXParallaxHeader) {
         Logger.log(message: String(format: "progress %f", parallaxHeader.progress), event: .debug)
 
-        UIApplication.shared.statusBarStyle                     =   parallaxHeader.progress == 0.0 ? .default : .lightContent
+        UIApplication.shared.statusBarStyle                     =   User.current!.coverImageURL == nil ? .default : (parallaxHeader.progress == 0.0 ? .default : .lightContent)
         self.userProfileHeaderView.whiteStatusBarView.isHidden  =   parallaxHeader.progress != 0.0
     }
 }

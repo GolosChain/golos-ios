@@ -22,7 +22,12 @@ class UserProfileHeaderView: PassthroughView {
     // MARK: - IBOutlets
     @IBOutlet weak var userCoverImageView: UIImageView!
     @IBOutlet private weak var blurImageView: UIImageView!
-    @IBOutlet private weak var userProfileImageView: UIImageView!
+    
+    @IBOutlet private weak var userProfileImageView: UIImageView! {
+        didSet {
+            userProfileImageView.layer.cornerRadius = userProfileImageView.bounds.size.width / 2 * widthRatio
+        }
+    }
     
     @IBOutlet private weak var nameLabel: UILabel! {
         didSet {
@@ -69,6 +74,8 @@ class UserProfileHeaderView: PassthroughView {
             })
         }
     }
+    
+    
     
     @IBOutlet private weak var imageViewTopConstraint: NSLayoutConstraint!
     
@@ -118,8 +125,6 @@ class UserProfileHeaderView: PassthroughView {
     // MARK: - Layout
     override func layoutSubviews() {
         super.layoutSubviews()
-        
-        userProfileImageView.layer.cornerRadius = userProfileImageView.bounds.size.width / 2
     }
     
     

@@ -27,7 +27,7 @@ class ThemeTagCollectionViewCell: UICollectionViewCell {
             textField.alpha                 =   0
             textField.layer.borderWidth     =   1
             textField.layer.borderColor     =   UIColor(hexString: "#1298FF").cgColor
-            textField.layer.cornerRadius    =   textField.frame.height / 2
+            textField.layer.cornerRadius    =   textField.frame.height / 2 * heightRatio
             textField.font                  =   UIFont(name: "SFUIDisplay-Regular", size: 13.0 * widthRatio)
             textField.textAlignment         =   .center
             
@@ -51,8 +51,8 @@ class ThemeTagCollectionViewCell: UICollectionViewCell {
             clearButton.layer.cornerRadius = clearButton.frame.height / 2
         }
     }
+        
     
-
     // MARK: - Class Initialization
     override func awakeFromNib() {
         super.awakeFromNib()

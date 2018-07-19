@@ -180,7 +180,6 @@
                 <outletCollection property="widthCollection" destination="zrk-md-k2b" collectionClass="NSMutableArray" id="Jga-a8-lWm"/>
                 <outletCollection property="heightCollection" destination="SV9-7q-AEL" collectionClass="NSMutableArray" id="whw-sw-qlf"/>
                 <outletCollection property="widthCollection" destination="N1g-Ea-QZh" collectionClass="NSMutableArray" id="awc-Xr-elo"/>
-                <outletCollection property="widthCollection" destination="zrk-md-k2b" collectionClass="NSMutableArray" id="iBB-Ko-1bJ"/>
                 <outletCollection property="heightCollection" destination="xaM-cH-VDo" collectionClass="NSMutableArray" id="GrH-ZJ-h5D"/>
                 <outletCollection property="widthCollection" destination="tee-0k-JaO" collectionClass="NSMutableArray" id="v4X-J2-ZTy"/>
                 <outletCollection property="widthCollection" destination="EuF-mN-reR" collectionClass="NSMutableArray" id="nZR-27-8UG"/>

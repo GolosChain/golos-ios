@@ -121,7 +121,11 @@ class ReplyTableViewCell: UITableViewCell, ReusableCell {
         }
     }
 
-    @IBOutlet var circleViewsCollection: [UIView]!
+    @IBOutlet var circleViewsCollection: [UIView]! {
+        didSet {
+            _ = circleViewsCollection.map({ $0.layer.cornerRadius = $0.bounds.width / 2 * widthRatio })
+        }
+    }
     
     
     // MARK: - Class Initialization
@@ -139,8 +143,6 @@ class ReplyTableViewCell: UITableViewCell, ReusableCell {
     // MARK: - Class Functions
     override func layoutSubviews() {
         super.layoutSubviews()
-
-        _ = circleViewsCollection.map({ $0.layer.cornerRadius = $0.bounds.width / 2 })
     }
     
     override func prepareForReuse() {
