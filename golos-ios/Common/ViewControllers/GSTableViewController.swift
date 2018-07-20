@@ -184,7 +184,7 @@ class GSTableViewController: GSBaseViewController {
         // Lenta
         case .lenta:
             if let userName = User.current?.name {
-                fetchRequest.predicate  =   NSPredicate(format: "author == %@", userName)
+                fetchRequest.predicate  =   NSPredicate(format: "userName == %@", userName)
             }
 
         // Lenta, Popular, Actual, New, Promo

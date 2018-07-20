@@ -128,4 +128,22 @@ public struct RequestParameterAPI {
             self.extensions             =   extensions
         }
     }
+    
+    public struct Vote: Encodable {
+        // MARK: - Properties
+        public let voter: String
+        public let author: String
+        public let permlink: String
+        public let weight: Int64
+
+        
+        // MARK: - Initialization
+        public init(voter: String, author: String, permlink: String, weight: Int64) {
+            self.voter                  =   voter
+            self.author                 =   author
+            self.permlink               =   permlink
+            self.weight                 =   weight
+        }
+    }
+
 }

@@ -12,7 +12,6 @@ import GoloSwift
 
 class PromoPostTableViewCell: UITableViewCell, HandlersCellSupport {
     // MARK: - Properties
-    let imageLoader = GSImageLoader()
     let gradientLayer = CAGradientLayer()
    
     private static let bodyFont = Fonts.shared.regular(with: 13.0)

@@ -40,6 +40,7 @@ public class Lenta: NSManagedObject, PaginationSupport {
         }
         
         // Update entity
+        entity!.userName            =   User.current!.name
         entity!.id                  =   model.id
         entity!.author              =   model.author
         entity!.category            =   model.category
@@ -60,7 +61,33 @@ public class Lenta: NSManagedObject, PaginationSupport {
             do {
                 if let json = try JSONSerialization.jsonObject(with: jsonData, options: .allowFragments) as? [String: Any] {
                     entity!.tags           =   json["tags"] as? [String]
-                    entity!.coverImageURL  =   (json["image"] as? [String])?.first
+                    
+                    if let imageURL = (json["image"] as? [String])?.first {
+                        entity!.coverImageURL   =    imageURL
+                    }
+                    
+                    else {
+                        do {
+                            let input       =   model.body
+                            let detector    =   try NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
+                            let matches     =   detector.matches(in: input, options: [], range: NSRange(location: 0, length: input.utf16.count))
+                            
+                            for match in matches {
+                                guard let range     =   Range(match.range, in: input) else { continue }
+                                let url             =   input[range]
+                                
+                                Logger.log(message: "url = \(url)", event: .debug)
+
+                                if (url.hasSuffix(".jpg") || url.hasSuffix(".png") || url.hasSuffix(".gif")) && entity!.coverImageURL == nil {
+                                    entity!.coverImageURL   =   "\(url)"
+                                    Logger.log(message: "coverImageURL = \(url)", event: .debug)
+                                }
+                            }
+                        } catch {
+                            // contents could not be loaded
+                            entity!.coverImageURL   =   nil
+                        }
+                    }
                     
                     // Extensions
                     entity!.save()

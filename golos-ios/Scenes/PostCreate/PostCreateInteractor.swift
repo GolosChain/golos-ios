@@ -59,14 +59,20 @@ class PostCreateInteractor: PostCreateBusinessLogic, PostCreateDataStore {
     }
     
     func postCreate(withRequestModel requestModel: PostCreateModels.Something.RequestModel) {
-        let stringTags: [String]  =   self.tags!.compactMap({ $0.title })
+        let stringTags: [String]    =   self.tags!.compactMap({ $0.title })
 
-        let comment =   RequestParameterAPI.Comment(parentAuthor:       "",
-                                                    parentPermlink:     self.tags!.first!.title!,
-                                                    author:             "msm72",
-                                                    title:              self.commentTitle!,
-                                                    body:               self.commentBody!,
-                                                    jsonMetadata: [RequestParameterAPI.CommentMetadata(tags: stringTags)])
+        let comment                 =   RequestParameterAPI.Comment(parentAuthor:       "",
+                                                                    parentPermlink:     self.tags!.first!.title!,
+                                                                    author:             "msm72",
+                                                                    title:              self.commentTitle!,
+                                                                    body:               self.commentBody!,
+                                                                    jsonMetadata:       [RequestParameterAPI.CommentMetadata(tags: stringTags)])
+        
+        
+        
+        
+        
+        
         
 //        let commentOptions  =   RequestParameterAPI.CommentOptions(author: <#T##String#>,
 //                                                                   permlink: <#T##String#>,
@@ -76,21 +82,23 @@ class PostCreateInteractor: PostCreateBusinessLogic, PostCreateDataStore {
 //                                                                   allowCurationRewards: <#T##Bool#>,
 //                                                                   extensions: <#T##[String]#>)
         
+        
+        
         // API 'Create new post'
-        broadcast.executePOST(byOperationAPIType: OperationAPIType.create(post: comment),
-                              onResult: { [weak self] responseAPIResult in
-                                guard let result = (responseAPIResult as! ResponseAPIFeedResult).result, result.count > 0 else {
-//                                    completion([], nil)
-                                    return
-                                }
-
-                                let responseModel = PostCreateModels.Something.ResponseModel()
-                                self?.presenter?.presentPostCreate(fromResponseModel: responseModel)
-        },
-                              onError: { errorAPI in
-                                Logger.log(message: "nresponse API Error = \(errorAPI.caseInfo.message)\n", event: .error)
-//                                completion(nil, errorAPI)
-        })
+//        broadcast.executePOST(byOperationAPIType: OperationAPIType.create(post: comment),
+//                              onResult: { [weak self] responseAPIResult in
+//                                guard let result = (responseAPIResult as! ResponseAPIFeedResult).result, result.count > 0 else {
+////                                    completion([], nil)
+//                                    return
+//                                }
+//
+//                                let responseModel = PostCreateModels.Something.ResponseModel()
+//                                self?.presenter?.presentPostCreate(fromResponseModel: responseModel)
+//        },
+//                              onError: { errorAPI in
+//                                Logger.log(message: "nresponse API Error = \(errorAPI.caseInfo.message)\n", event: .error)
+////                                completion(nil, errorAPI)
+//        })
     }
     
     func postComment(withRequestModel requestModel: PostCreateModels.Something.RequestModel) {

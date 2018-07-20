@@ -33,5 +33,6 @@ extension Lenta {
     @NSManaged public var url: String?
     @NSManaged public var tags: [String]?
     @NSManaged public var coverImageURL: String?
+    @NSManaged public var userName: String
 
 }

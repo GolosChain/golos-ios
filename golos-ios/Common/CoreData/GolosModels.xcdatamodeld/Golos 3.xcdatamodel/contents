@@ -50,6 +50,7 @@
         <attribute name="tags" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="title" attributeType="String" syncable="YES"/>
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userName" attributeType="String" defaultValueString="&quot;&quot;" syncable="YES"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
                 <constraint value="id"/>
@@ -221,7 +222,7 @@
     <elements>
         <element name="Actual" positionX="-405" positionY="-27" width="128" height="285"/>
         <element name="AppSettings" positionX="-459" positionY="-81" width="128" height="75"/>
-        <element name="Lenta" positionX="-459" positionY="-81" width="128" height="285"/>
+        <element name="Lenta" positionX="-459" positionY="-81" width="128" height="300"/>
         <element name="New" positionX="-450" positionY="-72" width="128" height="285"/>
         <element name="Popular" positionX="-441" positionY="-63" width="128" height="285"/>
         <element name="Promo" positionX="-459" positionY="-81" width="128" height="285"/>

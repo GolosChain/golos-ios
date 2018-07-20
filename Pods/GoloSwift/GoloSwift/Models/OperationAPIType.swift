@@ -10,15 +10,13 @@
 
 import Foundation
 
-public typealias OperationVoteFields = (voter: String, author: String, permlink: String, weight: Int64)
-public typealias OperationCommentFields = (author: String, permlink: String, maxAaccepted_payout: String, percent_steem_dollars: Int64, allow_votes: Bool, allow_curation_rewards: Bool, extensions: [String: Any])
-
 /// Operation types
-public enum OperationAPIType {
+public indirect enum OperationAPIType {
     /// In Work
-    case vote(fields: OperationVoteFields)
-    case create(post: RequestParameterAPI.Comment)
-//    case comment(fields: OperationCommentFields)
+    case vote(fields: RequestParameterAPI.Vote)
+    case comment(fields: RequestParameterAPI.Comment)
+    case commentOptions(fields: RequestParameterAPI.CommentOptions)
+    case createPost(comment: OperationAPIType, commentOptions: OperationAPIType, vote: OperationAPIType)
     
     
     /// In Reserve
@@ -81,25 +79,43 @@ public enum OperationAPIType {
     public func getFields() -> [Any] {
         /// Return array: [ operationName, operationCode, [ operationFieldKey: operationFieldValue ] ]
         switch self {
-        case .vote(let operation):
+        case .vote(let voteOperation):
             return  [ "vote", 0,    [
-                                        "voter":        operation.voter,
-                                        "author":       operation.author,
-                                        "permlink":     operation.permlink,
-                                        "weight":       operation.weight
+                                        "voter":                voteOperation.voter,
+                                        "author":               voteOperation.author,
+                                        "permlink":             voteOperation.permlink,
+                                        "weight":               voteOperation.weight
                                     ]
                     ]
 
-        case .create(let post):
+        case .comment(let commentOperation):
             return  [ "comment", 1, [
-                                        "parent_author":        post.parentAuthor,
-                                        "parent_permlink":      post.parentPermlink,
-                                        "author":               post.author,
-                                        "permlink":             post.permlink,
-                                        "title":                post.title,
-                                        "body":                 post.body,
-                                        "json_metadata":        post.jsonMetadata
+                                        "parent_author":        commentOperation.parentAuthor,
+                                        "parent_permlink":      commentOperation.parentPermlink,
+                                        "author":               commentOperation.author,
+                                        "permlink":             commentOperation.permlink,
+                                        "title":                commentOperation.title,
+                                        "body":                 commentOperation.body,
+                                        "json_metadata":        commentOperation.jsonMetadata
                                     ]
+                    ]
+            
+        case .commentOptions(let commentOptionsOperation):
+            return  [ "comment_options", 2, [
+                                                "author":                       commentOptionsOperation.author,
+                                                "permlink":                     commentOptionsOperation.permlink,
+                                                "max_accepted_payout":          commentOptionsOperation.max_accepted_payout,
+                                                "percent_steem_dollars":        commentOptionsOperation.percent_steem_dollars,
+                                                "allow_votes":                  commentOptionsOperation.allow_votes,
+                                                "allow_curation_rewards":       commentOptionsOperation.allow_curation_rewards,
+                                                "extensions":                   commentOptionsOperation.extensions
+                                            ]
+                    ]
+        
+        case .createPost(let comment, let commentOptions, let vote):
+            return  [ "operations", 3,  [
+                                            comment, commentOptions, vote
+                                        ]
                     ]
         }
     }
