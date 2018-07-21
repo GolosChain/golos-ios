@@ -17,7 +17,12 @@ class PostFeedHeaderView: UIView {
     
     // MARK: - IBOutlets
     @IBOutlet weak var reblogIconImageView: UIImageView!
-    @IBOutlet weak var authorProfileImageView: UIImageView!
+    
+    @IBOutlet weak var authorProfileImageView: UIImageView! {
+        didSet {
+            authorProfileImageView.layer.cornerRadius = authorProfileImageView.bounds.width / 2 * widthRatio
+        }
+    }
     
     @IBOutlet weak var authorLabel: UILabel! {
         didSet {

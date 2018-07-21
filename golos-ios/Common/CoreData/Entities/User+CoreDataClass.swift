@@ -155,5 +155,7 @@ public class User: NSManagedObject {
         CoreDataManager.instance.deleteEntities(withName: "Promo", andPredicateParameters: nil, completion: { _ in })
         CoreDataManager.instance.deleteEntities(withName: "Reply", andPredicateParameters: nil, completion: { _ in })
         CoreDataManager.instance.deleteEntities(withName: "User", andPredicateParameters: NSPredicate(format: "isAuthorized == 0"), completion: { _ in })
+        
+        CoreDataManager.instance.contextSave()
     }
 }

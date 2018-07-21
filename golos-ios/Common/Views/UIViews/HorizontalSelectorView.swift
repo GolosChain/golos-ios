@@ -162,7 +162,7 @@ class HorizontalSelectorView: UIView {
         button.setTitleColor(UIColor.Project.unselectedButtonColor, for: .normal)
         button.setTitleColor(.white, for: .highlighted)
         button.setTitle(title, for: .normal)
-        button.titleLabel?.font = Fonts.shared.regular(with: 13.0 * widthRatio)
+        button.titleLabel?.font = UIFont(name: "SFUIDisplay-Regular", size: 13.0 * widthRatio)
         button.addTarget(self, action: #selector(didPressedButton(_:)), for: .touchUpInside)
         
         return button

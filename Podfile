@@ -6,9 +6,6 @@ target 'Golos' do
     
     pod 'Down'
 
-    # Fast, non-deadlocking parallel object cache for iOS, tvOS and OS X
-    pod 'PINCache'
-    
     # A tool to enforce Swift style and conventions
     pod 'SwiftLint'
     

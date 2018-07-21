@@ -12,17 +12,6 @@ import GoloSwift
 
 class PostFeedTableViewCell: UITableViewCell, HandlersCellSupport {
     // MARK: - Properties
-    let gradientLayer = CAGradientLayer()
-   
-    private static let bodyFont = Fonts.shared.regular(with: 13.0)
-    private static let bodyEdgesOffset: CGFloat = 12.0
-
-    private var pictureURL: String = ""
-    private var authorPictureURL: String = ""
-
-    static let minimizedHeight: CGFloat = 180
-    
-    // Handlers
     var handlerShareButtonTapped: (() -> Void)?
     var handlerUpvotesButtonTapped: (() -> Void)?
     var handlerCommentsButtonTapped: (() -> Void)?
@@ -99,8 +88,6 @@ class PostFeedTableViewCell: UITableViewCell, HandlersCellSupport {
     override func prepareForReuse() {
         super.prepareForReuse()
         
-        self.pictureURL                                         =   ""
-        self.authorPictureURL                                   =   ""
         self.postFeedHeaderView.authorProfileImageView.image    =   UIImage(named: "icon-user-profile-image-placeholder")
         
         self.titleLabel.text                                    =   nil

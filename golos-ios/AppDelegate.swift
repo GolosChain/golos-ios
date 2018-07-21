@@ -224,8 +224,8 @@ extension AppDelegate {
         appearance.tintColor            =   UIColor.Project.backButtonBlackColor
         
         appearance.titleTextAttributes  =   [
-                                                NSAttributedStringKey.foregroundColor: UIColor.Project.navigationBarTextBlack,
-                                                NSAttributedStringKey.font: Fonts.shared.regular(with: 16.0)
+                                                NSAttributedStringKey.foregroundColor:      UIColor.Project.navigationBarTextBlack,
+                                                NSAttributedStringKey.font:                 UIFont(name: "SFUIDisplay-Regular", size: 16.0 * widthRatio) as Any
                                             ]
         
         appearance.isTranslucent        =   false
