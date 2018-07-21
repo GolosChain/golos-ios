@@ -93,12 +93,13 @@
 "Enter your text"                           =   "Enter name of link";
 "Enter your link"                           =   "Enter link address";
 "Enter prefix"                              =   "Enter";
-"Lenta List is empty"                       =   "List of My Posts\n is empty";
+"Lenta List is empty"                       =   "List of My Subscriptions\n is empty";
 "Popular List is empty"                     =   "List of Popular Posts\n is empty";
 "Actual List is empty"                      =   "List of Actual Posts\n is empty";
 "New List is empty"                         =   "List of New Posts\n is empty";
 "Promo List is empty"                       =   "List of Promo Posts\n is empty";
 "Reply List is empty"                       =   "List of Answers\n is empty";
+"Blog List is empty"                        =   "List of My Blog\n is empty";
 
 
 // Error message

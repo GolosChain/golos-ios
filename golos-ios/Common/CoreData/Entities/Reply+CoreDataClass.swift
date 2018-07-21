@@ -12,22 +12,58 @@ import GoloSwift
 import Foundation
 
 @objc(Reply)
-public class Reply: NSManagedObject, PaginationSupport {
-    // MARK: - Properties
-    var authorValue: String? {
+public class Reply: NSManagedObject, PaginationSupport, MetaDataSupport, PostFeedCellSupport {
+    // MARK: - PostFeedCellSupport protocol implementation
+    var tagsValue: [String]? {
+        return self.tags
+    }
+    
+    var titleValue: String {
+        return self.title
+    }
+    
+    var categoryValue: String {
+        return self.category
+    }
+    
+    var allowVotesValue: Bool {
+        return self.allowVotes
+    }
+    
+    var allowRepliesValue: Bool {
+        return self.allowReplies
+    }
+    
+    
+    // MARK: - PaginationSupport protocol implementation
+    var authorValue: String {
         return self.author
     }
     
     var permlinkValue: String {
         return self.permlink
     }
-
+    
+    
+    // MARK: - MetaDataSupport protocol implementation
+    var coverImageURLValue: String? {
+        return self.coverImageURL
+    }
+    
+    func set(tags: [String]?) {
+        self.tags   =   tags
+    }
+    
+    func set(coverImageURL: String?) {
+        self.coverImageURL = coverImageURL
+    }
+    
     
     // MARK: - Class Functions
     class func updateEntity(fromResponseAPI responseAPI: Decodable) {
         let replyModel      =   responseAPI as! ResponseAPIFeed
-        var replyEntity     =   CoreDataManager.instance.readEntity(withName: "Reply",
-                                                                    andPredicateParameters: NSPredicate.init(format: "id == \(replyModel.id)")) as? Reply
+        var replyEntity     =   CoreDataManager.instance.readEntity(withName:                   "Reply",
+                                                                    andPredicateParameters:     NSPredicate.init(format: "id == \(replyModel.id)")) as? Reply
         
         // Get Reply entity
         if replyEntity == nil {
@@ -51,26 +87,7 @@ public class Reply: NSManagedObject, PaginationSupport {
         replyEntity!.activeVotesCount   =   Int16(replyModel.active_votes.count)
         replyEntity!.url                =   replyModel.url
 
-        if let jsonMetaData = replyModel.json_metadata, !jsonMetaData.isEmpty, let jsonData = jsonMetaData.data(using: .utf8) {
-            do {
-                if let json = try JSONSerialization.jsonObject(with: jsonData, options: .allowFragments) as? [String: Any] {
-                    replyEntity!.tags           =   json["tags"] as? [String]
-                    replyEntity!.coverImageURL  =   (json["image"] as? [String])?.first
-                    
-                    // Extensions
-                    replyEntity!.save()
-                }
-            } catch {
-                Logger.log(message: "JSON serialization error", event: .error)
-                
-                // Extensions
-                replyEntity!.save()
-            }
-        }
-        
-        else {
-            // Extensions
-            replyEntity!.save()
-        }
+        // Extension: parse & save
+        replyEntity!.parse(metaData: replyModel.json_metadata, fromModel: replyModel)
     }
 }

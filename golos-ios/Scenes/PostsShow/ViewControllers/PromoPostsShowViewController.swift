@@ -14,14 +14,6 @@ import UIKit
 import GoloSwift
 
 class PromoPostsShowViewController: GSTableViewController {
-    // MARK: - IBOutlets
-    @IBOutlet override weak var tableView: GSTableViewWithReloadCompletion! {
-        didSet {
-            tableView.register(UINib(nibName: "PromoPostTableViewCell", bundle: nil), forCellReuseIdentifier: "PromoPostTableViewCell")
-        }
-    }
-    
-    
     // MARK: - Class Initialization
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -39,6 +31,9 @@ class PromoPostsShowViewController: GSTableViewController {
     // MARK: - Class Functions
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        self.cellIdentifier     =   "PostFeedTableViewCell"
+        self.tableView.register(UINib(nibName: self.cellIdentifier, bundle: nil), forCellReuseIdentifier: self.cellIdentifier)
     }
     
     override func viewWillAppear(_ animated: Bool) {

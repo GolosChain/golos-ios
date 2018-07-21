@@ -33,6 +33,31 @@
             </uniquenessConstraint>
         </uniquenessConstraints>
     </entity>
+    <entity name="Blog" representedClassName="Blog" syncable="YES">
+        <attribute name="activeVotesCount" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="allowReplies" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="allowVotes" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="author" attributeType="String" syncable="YES"/>
+        <attribute name="body" attributeType="String" syncable="YES"/>
+        <attribute name="category" attributeType="String" syncable="YES"/>
+        <attribute name="coverImageURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="created" attributeType="Date" defaultDateTimeInterval="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="jsonMetadata" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="parentAuthor" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="parentPermlink" attributeType="String" syncable="YES"/>
+        <attribute name="permlink" attributeType="String" syncable="YES"/>
+        <attribute name="tags" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="title" attributeType="String" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userName" attributeType="String" defaultValueString="&quot;&quot;" syncable="YES"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+                <constraint value="created"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
     <entity name="Lenta" representedClassName="Lenta" syncable="YES">
         <attribute name="activeVotesCount" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="allowReplies" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
@@ -174,9 +199,9 @@
         <attribute name="reputation" attributeType="String" defaultValueString="&quot;0&quot;" syncable="YES"/>
         <attribute name="selectTags" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="vestingShares" attributeType="String" defaultValueString="&quot;&quot;" syncable="YES"/>
-        <relationship name="active" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserSecretActiveKey" inverseName="user" inverseEntity="UserSecretActiveKey" syncable="YES"/>
-        <relationship name="owner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserSecretOwnerKey" inverseName="user" inverseEntity="UserSecretOwnerKey" syncable="YES"/>
-        <relationship name="posting" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserSecretPostingKey" inverseName="user" inverseEntity="UserSecretPostingKey" syncable="YES"/>
+        <relationship name="active" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="UserSecretActiveKey" inverseName="user" inverseEntity="UserSecretActiveKey" syncable="YES"/>
+        <relationship name="owner" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="UserSecretOwnerKey" inverseName="user" inverseEntity="UserSecretOwnerKey" syncable="YES"/>
+        <relationship name="posting" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="UserSecretPostingKey" inverseName="user" inverseEntity="UserSecretPostingKey" syncable="YES"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
                 <constraint value="id"/>
@@ -231,5 +256,6 @@
         <element name="UserSecretActiveKey" positionX="-459" positionY="-81" width="128" height="120"/>
         <element name="UserSecretOwnerKey" positionX="-243" positionY="-234" width="128" height="120"/>
         <element name="UserSecretPostingKey" positionX="-45" positionY="63" width="128" height="120"/>
+        <element name="Blog" positionX="-459" positionY="-81" width="128" height="300"/>
     </elements>
 </model>

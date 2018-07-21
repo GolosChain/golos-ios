@@ -91,6 +91,10 @@ class RestAPIManager {
                                         case .promo:
                                             Promo.updateEntity(fromResponseAPI: responseAPIFeed)
 
+                                        // Blog
+                                        case .blog:
+                                            Blog.updateEntity(fromResponseAPI: responseAPIFeed)
+
                                         // Current user Lenta (blogs)
                                         default:
                                             Lenta.updateEntity(fromResponseAPI: responseAPIFeed)

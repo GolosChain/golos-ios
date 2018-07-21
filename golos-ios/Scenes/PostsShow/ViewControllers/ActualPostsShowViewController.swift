@@ -14,14 +14,6 @@ import UIKit
 import GoloSwift
 
 class ActualPostsShowViewController: GSTableViewController {
-    // MARK: - IBOutlets
-    @IBOutlet override weak var tableView: GSTableViewWithReloadCompletion! {
-        didSet {
-//            tableView.register(UINib(nibName: "ActualPostTableViewCell", bundle: nil), forCellReuseIdentifier: "ActualPostTableViewCell")
-        }
-    }
-    
-    
     // MARK: - Class Initialization
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -40,7 +32,8 @@ class ActualPostsShowViewController: GSTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.register(UINib(nibName: "ActualPostTableViewCell", bundle: nil), forCellReuseIdentifier: "ActualPostTableViewCell")
+        self.cellIdentifier     =   "PostFeedTableViewCell"
+        self.tableView.register(UINib(nibName: self.cellIdentifier, bundle: nil), forCellReuseIdentifier: self.cellIdentifier)
     }
     
     override func viewWillAppear(_ animated: Bool) {

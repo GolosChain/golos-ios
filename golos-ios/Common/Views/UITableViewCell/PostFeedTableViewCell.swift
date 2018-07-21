@@ -1,5 +1,5 @@
 //
-//  ActualPostTableViewCell.swift
+//  LentaPostTableViewCell.swift
 //  Golos
 //
 //  Created by Grigory Serebryanyy on 22/01/2018.
@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 import GoloSwift
 
-class ActualPostTableViewCell: UITableViewCell, HandlersCellSupport {
+class PostFeedTableViewCell: UITableViewCell, HandlersCellSupport {
     // MARK: - Properties
     let gradientLayer = CAGradientLayer()
    
@@ -43,16 +43,16 @@ class ActualPostTableViewCell: UITableViewCell, HandlersCellSupport {
 
     @IBOutlet weak var postImageViewHeightConstraint: NSLayoutConstraint!
     
-    @IBOutlet private weak var articleHeaderView: ArticleHeaderView! {
+    @IBOutlet private weak var postFeedHeaderView: PostFeedHeaderView! {
         didSet {
-            articleHeaderView.tune()
+            postFeedHeaderView.tune()
             
             // Handlers
-            articleHeaderView.handlerAuthorTapped           =   {
+            postFeedHeaderView.handlerAuthorTapped          =   {
                 
             }
             
-            articleHeaderView.handlerReblogAuthorTapped     =   {
+            postFeedHeaderView.handlerReblogAuthorTapped    =   {
                 
             }
         }
@@ -101,7 +101,7 @@ class ActualPostTableViewCell: UITableViewCell, HandlersCellSupport {
         
         self.pictureURL                                         =   ""
         self.authorPictureURL                                   =   ""
-        self.articleHeaderView.authorProfileImageView.image     =   UIImage(named: "icon-user-profile-image-placeholder")
+        self.postFeedHeaderView.authorProfileImageView.image    =   UIImage(named: "icon-user-profile-image-placeholder")
         
         self.titleLabel.text                                    =   nil
         self.postImageView.image                                =   nil
@@ -125,7 +125,7 @@ class ActualPostTableViewCell: UITableViewCell, HandlersCellSupport {
     
     // MARK: - Reuse identifier
     override var reuseIdentifier: String? {
-        return ActualPostTableViewCell.reuseIdentifier
+        return PostFeedTableViewCell.reuseIdentifier
     }
     
     class var reuseIdentifier: String? {
@@ -135,48 +135,48 @@ class ActualPostTableViewCell: UITableViewCell, HandlersCellSupport {
 
 
 // MARK: - ConfigureCell implementation
-extension ActualPostTableViewCell: ConfigureCell {
+extension PostFeedTableViewCell: ConfigureCell {
     func setup(withItem item: Any?, andIndexPath indexPath: IndexPath) {
-        guard let actual = item as? Actual else {
+        guard let model = item as? PostFeedCellSupport else {
             return
         }
         
-        // Get user info
-        if let user = User.fetch(byName: actual.author) {
-            self.articleHeaderView.authorLabel.text             =   user.name
+        // Set User info
+        if let user = User.fetch(byName: model.authorValue) {
+            self.postFeedHeaderView.authorLabel.text            =   user.name
             
-            // Reputation -> Int
-            self.articleHeaderView.authorReputationLabel.text   =   String(format: "%i", user.reputation.convertWithLogarithm10())
+            // User Reputation -> Int
+            self.postFeedHeaderView.authorReputationLabel.text  =   String(format: "%i", user.reputation.convertWithLogarithm10())
             
-            // Load author profile image
+            // Load User author profile image
             if let userProfileImageURL = user.profileImageURL {
-                self.articleHeaderView.authorProfileImageView.uploadImage(byStringPath:     userProfileImageURL,
-                                                                          imageType:        .userProfileImage,
-                                                                          size:             CGSize(width: 30.0 * widthRatio, height: 30.0 * widthRatio),
-                                                                          tags:             nil)
+                self.postFeedHeaderView.authorProfileImageView.uploadImage(byStringPath:     userProfileImageURL,
+                                                                           imageType:        .userProfileImage,
+                                                                           size:             CGSize(width: 30.0 * widthRatio, height: 30.0 * widthRatio),
+                                                                           tags:             nil)
             }
         }
         
-        // Load post cover image
-        if let coverImageURL = actual.coverImageURL, !coverImageURL.isEmpty {
+        // Load model sser cover image
+        if let coverImageURL = model.coverImageURLValue, !coverImageURL.isEmpty {
             self.postImageView.uploadImage(byStringPath:    coverImageURL,
                                            imageType:       .userCoverImage,
                                            size:            CGSize(width: UIScreen.main.bounds.width, height: 180.0 * heightRatio),
-                                           tags:            actual.tags)
+                                           tags:            model.tagsValue)
         }
         
         // Hide post image
         else {
-            self.postImageViewHeightConstraint.constant = 0
+            self.postImageViewHeightConstraint.constant     =   0
         }
 
-        self.titleLabel.text                        =   actual.title
-        self.articleHeaderView.authorLabel.text     =   actual.author
-        self.articleHeaderView.categoryLabel.text   =   actual.category
-        self.upvotesButton.isEnabled                =   !actual.allowVotes
-        self.commentsButton.isEnabled               =   !actual.allowReplies
+        self.titleLabel.text                                =   model.titleValue
+        self.postFeedHeaderView.authorLabel.text            =   model.authorValue
+        self.postFeedHeaderView.categoryLabel.text          =   model.categoryValue
+        self.upvotesButton.isEnabled                        =   !model.allowVotesValue
+        self.commentsButton.isEnabled                       =   !model.allowRepliesValue
 
-        selectionStyle                              =   .none
+        selectionStyle                                      =   .none
 
         self.layoutIfNeeded()
         

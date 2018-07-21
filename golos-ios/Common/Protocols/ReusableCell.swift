@@ -14,10 +14,6 @@ protocol ReusableCell {
     static var reuseIdentifier: String { get }
 }
 
-protocol ConfigureCell {
-    func setup(withItem item: Any?, andIndexPath indexPath: IndexPath)
-}
-
 protocol HandlersCellSupport {
     var handlerShareButtonTapped: (() -> Void)? { get set }
     var handlerUpvotesButtonTapped: (() -> Void)? { get set }

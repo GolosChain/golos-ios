@@ -14,14 +14,6 @@ import UIKit
 import GoloSwift
 
 class PopularPostsShowViewController: GSTableViewController {
-    // MARK: - IBOutlets
-    @IBOutlet override weak var tableView: GSTableViewWithReloadCompletion! {
-        didSet {
-            tableView.register(UINib(nibName: "PopularPostTableViewCell", bundle: nil), forCellReuseIdentifier: "PopularPostTableViewCell")
-        }
-    }
-    
-    
     // MARK: - Class Initialization
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -39,6 +31,9 @@ class PopularPostsShowViewController: GSTableViewController {
     // MARK: - Class Functions
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        self.cellIdentifier     =   "PostFeedTableViewCell"
+        self.tableView.register(UINib(nibName: self.cellIdentifier, bundle: nil), forCellReuseIdentifier: self.cellIdentifier)
     }
     
     override func viewWillAppear(_ animated: Bool) {

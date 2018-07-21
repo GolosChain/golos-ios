@@ -38,6 +38,10 @@ extension UIImageView {
         else {
             // Get image from NSCache
             if let cachedImage = cacheApp.object(forKey: imageKey) {
+                if imageType == .userCoverImage {
+                    self.contentMode = cachedImage.size.width > cachedImage.size.height ? .scaleAspectFill : .scaleAspectFit
+                }
+
                 UIView.animate(withDuration: 0.5) {
                     self.image = cachedImage
                 }
@@ -69,7 +73,7 @@ extension UIImageView {
                             if imageType == .userCoverImage {
                                 self.contentMode = downloadedImage.size.width > downloadedImage.size.height ? .scaleAspectFill : .scaleAspectFit
                             }
-
+                            
                             // Save image to NSCache
                             cacheApp.setObject(downloadedImage, forKey: imageKey)
                             
@@ -77,7 +81,7 @@ extension UIImageView {
                                 self.image = downloadedImage
                             }
                         }
-                        }.resume()
+                    }.resume()
                 }
             }
         }

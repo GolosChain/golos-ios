@@ -37,18 +37,7 @@ class UserProfileShowRouter: NSObject, UserProfileShowRoutingLogic, UserProfileS
     // MARK: - Routing
     func routeToLoginShowScene() {
         StateMachine.load().changeState(.loggedOut)
+        User.current!.clearCache()
         User.current!.setIsAuthorized(false)
     }
-    
-    
-    // MARK: - Navigation
-//    func navigateToSomewhere(source: UserProfileShowViewController, destination: SomewhereViewController) {
-//        source.show(destination, sender: nil)
-//    }
-    
-    
-    // MARK: - Passing data
-//    func passDataToSomewhere(source: UserProfileShowDataStore, destination: inout SomewhereDataStore) {
-//        destination.name = source.name
-//    }
 }

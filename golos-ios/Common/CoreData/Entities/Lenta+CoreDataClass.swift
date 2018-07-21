@@ -11,15 +11,32 @@ import CoreData
 import GoloSwift
 import Foundation
 
-protocol PaginationSupport {
-    var authorValue: String? { get }
-    var permlinkValue: String { get }
-}
-
 @objc(Lenta)
-public class Lenta: NSManagedObject, PaginationSupport {
-    // MARK: - Properties
-    var authorValue: String? {
+public class Lenta: NSManagedObject, PaginationSupport, MetaDataSupport, PostFeedCellSupport {
+    // MARK: - PostFeedCellSupport protocol implementation
+    var tagsValue: [String]? {
+        return self.tags
+    }
+    
+    var titleValue: String {
+        return self.title
+    }
+    
+    var categoryValue: String {
+        return self.category
+    }
+    
+    var allowVotesValue: Bool {
+        return self.allowVotes
+    }
+    
+    var allowRepliesValue: Bool {
+        return self.allowReplies
+    }
+    
+    
+    // MARK: - PaginationSupport protocol implementation
+    var authorValue: String {
         return self.author
     }
     
@@ -27,6 +44,20 @@ public class Lenta: NSManagedObject, PaginationSupport {
         return self.permlink
     }
 
+    
+    // MARK: - MetaDataSupport protocol implementation
+    var coverImageURLValue: String? {
+        return self.coverImageURL
+    }
+
+    func set(tags: [String]?) {
+        self.tags   =   tags
+    }
+    
+    func set(coverImageURL: String?) {
+        self.coverImageURL = coverImageURL
+    }
+    
     
     // MARK: - Class Functions
     class func updateEntity(fromResponseAPI responseAPI: Decodable) {
@@ -57,52 +88,7 @@ public class Lenta: NSManagedObject, PaginationSupport {
         entity!.activeVotesCount    =   Int16(model.active_votes.count)
         entity!.url                 =   model.url
 
-        if let jsonMetaData = model.json_metadata, !jsonMetaData.isEmpty, let jsonData = jsonMetaData.data(using: .utf8) {
-            do {
-                if let json = try JSONSerialization.jsonObject(with: jsonData, options: .allowFragments) as? [String: Any] {
-                    entity!.tags           =   json["tags"] as? [String]
-                    
-                    if let imageURL = (json["image"] as? [String])?.first {
-                        entity!.coverImageURL   =    imageURL
-                    }
-                    
-                    else {
-                        do {
-                            let input       =   model.body
-                            let detector    =   try NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
-                            let matches     =   detector.matches(in: input, options: [], range: NSRange(location: 0, length: input.utf16.count))
-                            
-                            for match in matches {
-                                guard let range     =   Range(match.range, in: input) else { continue }
-                                let url             =   input[range]
-                                
-                                Logger.log(message: "url = \(url)", event: .debug)
-
-                                if (url.hasSuffix(".jpg") || url.hasSuffix(".png") || url.hasSuffix(".gif")) && entity!.coverImageURL == nil {
-                                    entity!.coverImageURL   =   "\(url)"
-                                    Logger.log(message: "coverImageURL = \(url)", event: .debug)
-                                }
-                            }
-                        } catch {
-                            // contents could not be loaded
-                            entity!.coverImageURL   =   nil
-                        }
-                    }
-                    
-                    // Extensions
-                    entity!.save()
-                }
-            } catch {
-                Logger.log(message: "JSON serialization error", event: .error)
-                
-                // Extensions
-                entity!.save()
-            }
-        }
-
-        else {
-            // Extensions
-            entity!.save()
-        }
+        // Extension: parse & save
+        entity!.parse(metaData: model.json_metadata, fromModel: model)
     }
 }

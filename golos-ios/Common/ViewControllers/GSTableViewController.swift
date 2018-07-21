@@ -18,7 +18,7 @@ class GSTableViewController: GSBaseViewController {
     var paginanationData: Bool  =   false
     var lastIndex: Int          =   0
     var topVisibleIndexPath     =   IndexPath(row: 0, section: 0)
-    var cellIdentifier: String  =   "LentaPostTableViewCell"
+    var cellIdentifier: String  =   "PostFeedTableViewCell"
     
     // Handlers
     var handlerShareButtonTapped: (() -> Void)?
@@ -51,10 +51,7 @@ class GSTableViewController: GSBaseViewController {
             // Set automatic dimensions for row height
             tableView.rowHeight             =   UITableViewAutomaticDimension
             tableView.estimatedRowHeight    =   320.0 * heightRatio
-            
-            // Add cells from XIB
-            tableView.register(UINib(nibName: self.cellIdentifier, bundle: nil), forCellReuseIdentifier: self.cellIdentifier)
-            
+                        
             if #available(iOS 10.0, *) {
                 tableView.refreshControl = refreshControl
             } else {
@@ -181,13 +178,13 @@ class GSTableViewController: GSBaseViewController {
                 fetchRequest.predicate  =   NSPredicate(format: "parentAuthor == %@", userName)
             }
 
-        // Lenta
-        case .lenta:
+        // Blog, Lenta
+        case .blog, .lenta:
             if let userName = User.current?.name {
                 fetchRequest.predicate  =   NSPredicate(format: "userName == %@", userName)
             }
 
-        // Lenta, Popular, Actual, New, Promo
+        // Popular, Actual, New, Promo
         default:
             break
         }
@@ -323,83 +320,23 @@ extension GSTableViewController: UITableViewDataSource {
                 return replyCell
             }
             
-        // Lenta (blog), Popular, Actual, New, Promo
+        // Lenta, Blog, Popular, Actual, New, Promo
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: self.cellIdentifier, for: indexPath)
             
             (cell as! ConfigureCell).setup(withItem: entity, andIndexPath: indexPath)
             
             // Handlers comletion
-            switch entity {
-            // Popular
-            case _ where type(of: entity) == Popular.self:
-                (cell as! PopularPostTableViewCell).handlerShareButtonTapped        =   { [weak self] in
-                    self?.handlerShareButtonTapped!()
-                }
-                
-                (cell as! PopularPostTableViewCell).handlerUpvotesButtonTapped      =   { [weak self] in
-                    self?.handlerUpvotesButtonTapped!()
-                }
-                
-                (cell as! PopularPostTableViewCell).handlerCommentsButtonTapped     =   { [weak self] in
-                    self?.handlerCommentsButtonTapped!()
-                }
-                
-            // Actual
-            case _ where type(of: entity) == Actual.self:
-                (cell as! ActualPostTableViewCell).handlerShareButtonTapped         =   { [weak self] in
-                    self?.handlerShareButtonTapped!()
-                }
-                
-                (cell as! ActualPostTableViewCell).handlerUpvotesButtonTapped       =   { [weak self] in
-                    self?.handlerUpvotesButtonTapped!()
-                }
-                
-                (cell as! ActualPostTableViewCell).handlerCommentsButtonTapped      =   { [weak self] in
-                    self?.handlerCommentsButtonTapped!()
-                }
-                
-            // New
-            case _ where type(of: entity) == New.self:
-                (cell as! NewPostTableViewCell).handlerShareButtonTapped            =   { [weak self] in
-                    self?.handlerShareButtonTapped!()
-                }
-                
-                (cell as! NewPostTableViewCell).handlerUpvotesButtonTapped          =   { [weak self] in
-                    self?.handlerUpvotesButtonTapped!()
-                }
-                
-                (cell as! NewPostTableViewCell).handlerCommentsButtonTapped         =   { [weak self] in
-                    self?.handlerCommentsButtonTapped!()
-                }
-                
-            // Promo
-            case _ where type(of: entity) == Promo.self:
-                (cell as! PromoPostTableViewCell).handlerShareButtonTapped          =   { [weak self] in
-                    self?.handlerShareButtonTapped!()
-                }
-                
-                (cell as! PromoPostTableViewCell).handlerUpvotesButtonTapped        =   { [weak self] in
-                    self?.handlerUpvotesButtonTapped!()
-                }
-                
-                (cell as! PromoPostTableViewCell).handlerCommentsButtonTapped       =   { [weak self] in
-                    self?.handlerCommentsButtonTapped!()
-                }
-                
-            default:
-                (cell as! LentaPostTableViewCell).handlerShareButtonTapped          =   { [weak self] in
-                    self?.handlerShareButtonTapped!()
-                }
-                
-                (cell as! LentaPostTableViewCell).handlerUpvotesButtonTapped        =   { [weak self] in
-                    self?.handlerUpvotesButtonTapped!()
-                }
-                
-                (cell as! LentaPostTableViewCell).handlerCommentsButtonTapped       =   { [weak self] in
-                    self?.handlerCommentsButtonTapped!()
-                }
-                
+            (cell as! PostFeedTableViewCell).handlerShareButtonTapped       =   { [weak self] in
+                self?.handlerShareButtonTapped!()
+            }
+            
+            (cell as! PostFeedTableViewCell).handlerUpvotesButtonTapped     =   { [weak self] in
+                self?.handlerUpvotesButtonTapped!()
+            }
+            
+            (cell as! PostFeedTableViewCell).handlerCommentsButtonTapped    =   { [weak self] in
+                self?.handlerCommentsButtonTapped!()
             }
             
             return cell

@@ -11,6 +11,7 @@ import Foundation
 /// Feed type
 public enum PostsFeedType: String {
     case new
+    case blog
     case lenta
     case reply
     case promo
@@ -21,6 +22,7 @@ public enum PostsFeedType: String {
     public func caseTitle() -> String {
         switch self {
         case .new:          return "New"
+        case .blog:         return "Blog"
         case .lenta:        return "Lenta"
         case .reply:        return "Reply"
         case .promo:        return "Promo"
@@ -33,6 +35,7 @@ public enum PostsFeedType: String {
     func caseAPIParameters() -> String {
         switch self {
         case .new:          return "get_discussions_by_created"
+        case .blog:         return "get_discussions_by_blog"
         case .lenta:        return "get_discussions_by_feed"
         case .reply:        return "get_replies_by_last_update"
         case .promo:        return "get_discussions_by_promoted"

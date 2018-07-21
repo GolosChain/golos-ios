@@ -12,14 +12,50 @@ import GoloSwift
 import Foundation
 
 @objc(Promo)
-public class Promo: NSManagedObject, PaginationSupport {
-    // MARK: - Properties
-    var authorValue: String? {
+public class Promo: NSManagedObject, PaginationSupport, MetaDataSupport, PostFeedCellSupport {
+    // MARK: - PostFeedCellSupport protocol implementation
+    var tagsValue: [String]? {
+        return self.tags
+    }
+    
+    var titleValue: String {
+        return self.title
+    }
+    
+    var categoryValue: String {
+        return self.category
+    }
+    
+    var allowVotesValue: Bool {
+        return self.allowVotes
+    }
+    
+    var allowRepliesValue: Bool {
+        return self.allowReplies
+    }
+    
+    
+    // MARK: - PaginationSupport protocol implementation
+    var authorValue: String {
         return self.author
     }
     
     var permlinkValue: String {
         return self.permlink
+    }
+    
+    
+    // MARK: - MetaDataSupport protocol implementation
+    var coverImageURLValue: String? {
+        return self.coverImageURL
+    }
+    
+    func set(tags: [String]?) {
+        self.tags   =   tags
+    }
+    
+    func set(coverImageURL: String?) {
+        self.coverImageURL = coverImageURL
     }
     
     
@@ -51,26 +87,7 @@ public class Promo: NSManagedObject, PaginationSupport {
         entity!.activeVotesCount    =   Int16(model.active_votes.count)
         entity!.url                 =   model.url
         
-        if let jsonMetaData = model.json_metadata, !jsonMetaData.isEmpty, let jsonData = jsonMetaData.data(using: .utf8) {
-            do {
-                if let json = try JSONSerialization.jsonObject(with: jsonData, options: .allowFragments) as? [String: Any] {
-                    entity!.tags           =   json["tags"] as? [String]
-                    entity!.coverImageURL  =   (json["image"] as? [String])?.first
-                    
-                    // Extensions
-                    entity!.save()
-                }
-            } catch {
-                Logger.log(message: "JSON serialization error", event: .error)
-                
-                // Extensions
-                entity!.save()
-            }
-        }
-            
-        else {
-            // Extensions
-            entity!.save()
-        }
+        // Extension: parse & save
+        entity!.parse(metaData: model.json_metadata, fromModel: model)
     }
 }

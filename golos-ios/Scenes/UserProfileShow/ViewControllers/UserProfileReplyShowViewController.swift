@@ -31,6 +31,9 @@ class UserProfileReplyShowViewController: GSTableViewController {
     // MARK: - Class Functions
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        self.cellIdentifier     =   "ReplyTableViewCell"
+        self.tableView.register(UINib(nibName: self.cellIdentifier, bundle: nil), forCellReuseIdentifier: self.cellIdentifier)
     }
     
     override func viewWillAppear(_ animated: Bool) {

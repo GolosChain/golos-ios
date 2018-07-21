@@ -99,6 +99,7 @@
 "New List is empty"                         =   "Список Новых постов\nпуст";
 "Promo List is empty"                       =   "Список Промо постов\nпуст";
 "Reply List is empty"                       =   "Список Ответов\nпуст";
+"Blog List is empty"                        =   "Список Моих постов\nпуст";
 
 
 // Error message

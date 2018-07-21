@@ -36,15 +36,15 @@ class UserProfileShowWorker {
                                                              limit:                 loadDataLimit,
                                                              voteLimit:             0)
 
-        // Lenta (blogs)
+        // Blogs
         default:
             let discussion  =   RequestParameterAPI.Discussion.init(limit:          loadDataLimit,
                                                                     truncateBody:   0,
                                                                     selectAuthors:  [ User.current!.name ],
-                                                                    startAuthor:    (lastItem as? Lenta)?.author,
-                                                                    startPermlink:  (lastItem as? Lenta)?.permlink)
+                                                                    startAuthor:    (lastItem as? PostFeedCellSupport)?.authorValue,
+                                                                    startPermlink:  (lastItem as? PostFeedCellSupport)?.permlinkValue)
             
-            methodAPIType   =   MethodAPIType.getDiscussions(type: .lenta, parameters: discussion)
+            methodAPIType   =   MethodAPIType.getDiscussions(type: parameters.type, parameters: discussion)
         }
         
         return methodAPIType

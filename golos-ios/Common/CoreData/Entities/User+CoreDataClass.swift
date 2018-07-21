@@ -145,4 +145,15 @@ public class User: NSManagedObject {
             self.selectTags         =   profile["select_tags"] as? [String]
         }
     }
+    
+    func clearCache() {
+        CoreDataManager.instance.deleteEntities(withName: "Actual", andPredicateParameters: nil, completion: { _ in })
+        CoreDataManager.instance.deleteEntities(withName: "Blog", andPredicateParameters: nil, completion: { _ in })
+        CoreDataManager.instance.deleteEntities(withName: "Lenta", andPredicateParameters: nil, completion: { _ in })
+        CoreDataManager.instance.deleteEntities(withName: "New", andPredicateParameters: nil, completion: { _ in })
+        CoreDataManager.instance.deleteEntities(withName: "Popular", andPredicateParameters: nil, completion: { _ in })
+        CoreDataManager.instance.deleteEntities(withName: "Promo", andPredicateParameters: nil, completion: { _ in })
+        CoreDataManager.instance.deleteEntities(withName: "Reply", andPredicateParameters: nil, completion: { _ in })
+        CoreDataManager.instance.deleteEntities(withName: "User", andPredicateParameters: NSPredicate(format: "isAuthorized == 0"), completion: { _ in })
+    }
 }

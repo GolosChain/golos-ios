@@ -1,8 +1,8 @@
 //
-//  Popular+CoreDataClass.swift
+//  Blog+CoreDataClass.swift
 //  Golos
 //
-//  Created by msm72 on 17.07.2018.
+//  Created by msm72 on 20.07.2018.
 //  Copyright © 2018 golos. All rights reserved.
 //
 //
@@ -11,8 +11,8 @@ import CoreData
 import GoloSwift
 import Foundation
 
-@objc(Popular)
-public class Popular: NSManagedObject, PaginationSupport, MetaDataSupport, PostFeedCellSupport {
+@objc(Blog)
+public class Blog: NSManagedObject, PaginationSupport, MetaDataSupport, PostFeedCellSupport {
     // MARK: - PostFeedCellSupport protocol implementation
     var tagsValue: [String]? {
         return self.tags
@@ -62,15 +62,16 @@ public class Popular: NSManagedObject, PaginationSupport, MetaDataSupport, PostF
     // MARK: - Class Functions
     class func updateEntity(fromResponseAPI responseAPI: Decodable) {
         let model   =   responseAPI as! ResponseAPIFeed
-        var entity  =   CoreDataManager.instance.readEntity(withName:                   "Popular",
-                                                            andPredicateParameters:     NSPredicate.init(format: "id == \(model.id)")) as? Popular
+        var entity  =   CoreDataManager.instance.readEntity(withName:                   "Blog",
+                                                            andPredicateParameters:     NSPredicate.init(format: "id == \(model.id)")) as? Blog
         
-        // Get Popular entity
+        // Get Blog entity
         if entity == nil {
-            entity  =   CoreDataManager.instance.createEntity("Popular") as? Popular
+            entity  =   CoreDataManager.instance.createEntity("Blog") as? Blog
         }
         
         // Update entity
+        entity!.userName            =   User.current!.name
         entity!.id                  =   model.id
         entity!.author              =   model.author
         entity!.category            =   model.category
@@ -87,7 +88,6 @@ public class Popular: NSManagedObject, PaginationSupport, MetaDataSupport, PostF
         entity!.activeVotesCount    =   Int16(model.active_votes.count)
         entity!.url                 =   model.url
         
-
         // Extension: parse & save
         entity!.parse(metaData: model.json_metadata, fromModel: model)
     }

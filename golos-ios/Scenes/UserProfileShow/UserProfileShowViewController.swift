@@ -26,7 +26,7 @@ protocol UserProfileShowDisplayLogic: class {
 class UserProfileShowViewController: GSBaseViewController, ContainerViewSupport {
     // MARK: - Properties
     var selectedSegmentIndex = 0
-    let postFeedTypes: [PostsFeedType]  =   [ .lenta, .reply ]
+    let postFeedTypes: [PostsFeedType]  =   [ .blog, .reply ]
 
     var interactor: UserProfileShowBusinessLogic?
     var router: (NSObjectProtocol & UserProfileShowRoutingLogic & UserProfileShowDataPassing)?
@@ -58,7 +58,7 @@ class UserProfileShowViewController: GSBaseViewController, ContainerViewSupport 
             containerView.mainVC                =   self
             
             let firstViewController             =   UIStoryboard(name: "UserProfileShow", bundle: nil).instantiateViewController(withIdentifier: "UserProfileLentaShowVC") as! GSTableViewController
-            firstViewController.cellIdentifier  =   "LentaPostTableViewCell"
+            firstViewController.cellIdentifier  =   "PostFeedTableViewCell"
 
             let secondViewController            =   UIStoryboard(name: "UserProfileShow", bundle: nil).instantiateViewController(withIdentifier: "UserProfileReplyShowVC") as! GSTableViewController
             secondViewController.cellIdentifier =   "ReplyTableViewCell"

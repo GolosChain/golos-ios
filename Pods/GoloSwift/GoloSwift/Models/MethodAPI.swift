@@ -5,6 +5,8 @@
 //  Created by msm72 on 12.04.2018.
 //  Copyright © 2018 Golos.io. All rights reserved.
 //
+//  This enum use for GET Requests
+//
 
 import Foundation
 import BeyovaJSON
