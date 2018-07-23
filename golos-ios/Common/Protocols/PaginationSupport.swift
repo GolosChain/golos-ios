@@ -9,6 +9,6 @@
 import Foundation
 
 protocol PaginationSupport {
-    var authorValue: String { get }
-    var permlinkValue: String { get }
+    var author: String { get set }
+    var permlink: String { get set }
 }

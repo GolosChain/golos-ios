@@ -11,7 +11,7 @@ import Foundation
 import CoreData
 
 
-extension Blog {
+extension Blog: PostFeedCellSupport {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Blog> {
         return NSFetchRequest<Blog>(entityName: "Blog")
@@ -35,4 +35,23 @@ extension Blog {
     @NSManaged public var coverImageURL: String?
     @NSManaged public var userName: String
 
+    @NSManaged public var activeVotes: NSSet?
+    
+}
+
+// MARK: Generated accessors for activeVotes
+extension Blog {
+    
+    @objc(addActiveVotesObject:)
+    @NSManaged public func addToActiveVotes(_ value: ActiveVote)
+    
+    @objc(removeActiveVotesObject:)
+    @NSManaged public func removeFromActiveVotes(_ value: ActiveVote)
+    
+    @objc(addActiveVotes:)
+    @NSManaged public func addToActiveVotes(_ values: NSSet)
+    
+    @objc(removeActiveVotes:)
+    @NSManaged public func removeFromActiveVotes(_ values: NSSet)
+    
 }

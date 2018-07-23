@@ -12,5 +12,5 @@ protocol MetaDataSupport {
     func set(tags: [String]?)
     func set(coverImageURL: String?)
     
-    var coverImageURLValue: String? { get }
+    var coverImageURL: String? { get set }
 }

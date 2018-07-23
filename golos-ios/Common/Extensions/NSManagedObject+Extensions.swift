@@ -15,6 +15,34 @@ extension NSManagedObject {
         CoreDataManager.instance.contextSave()
     }
     
+    func update(withModel model: ResponseAPIFeed) {
+        if var entity = self as? PostFeedCellSupport {
+            entity.id                   =   model.id
+            entity.author               =   model.author
+            entity.category             =   model.category
+            
+            entity.title                =   model.title
+            entity.body                 =   model.body
+            entity.permlink             =   model.permlink
+            entity.allowVotes           =   model.allow_votes
+            entity.allowReplies         =   model.allow_replies
+            entity.jsonMetadata         =   model.json_metadata
+            entity.created              =   model.created.convert(toDateFormat: .expirationDateType)
+            entity.parentAuthor         =   model.parent_author
+            entity.parentPermlink       =   model.parent_permlink
+            entity.activeVotesCount     =   Int16(model.active_votes.count)
+            entity.url                  =   model.url
+            
+            // Set ActiveVote values
+            if let activeVotes = ActiveVote.updateEntities(fromResponseAPI: model.active_votes, withParentID: model.id) {
+                entity.activeVotes      =   NSSet(array: activeVotes)
+            }
+            
+            // Extension: parse & save
+            self.parse(metaData: model.json_metadata, fromModel: model)
+        }
+    }
+    
     func parse(metaData: String?, fromModel model: ResponseAPIFeed) {
         if let jsonMetaData = metaData, !jsonMetaData.isEmpty, let jsonData = jsonMetaData.data(using: .utf8) {
             do {
@@ -40,7 +68,7 @@ extension NSManagedObject {
                                 
                                 Logger.log(message: "url = \(url)", event: .debug)
                                 
-                                if (url.hasSuffix(".jpg") || url.hasSuffix(".png") || url.hasSuffix(".gif")) && (self as! MetaDataSupport).coverImageURLValue == nil {
+                                if (url.hasSuffix(".jpg") || url.hasSuffix(".png") || url.hasSuffix(".gif")) && (self as! MetaDataSupport).coverImageURL == nil {
                                     (self as! MetaDataSupport).set(coverImageURL: "\(url)")
                                     Logger.log(message: "coverImageURL = \(url)", event: .debug)
                                 }

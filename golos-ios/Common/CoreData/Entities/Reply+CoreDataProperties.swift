@@ -11,7 +11,7 @@ import Foundation
 import CoreData
 
 
-extension Reply {
+extension Reply: PostFeedCellSupport {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Reply> {
         return NSFetchRequest<Reply>(entityName: "Reply")
@@ -34,4 +34,23 @@ extension Reply {
     @NSManaged public var tags: [String]?
     @NSManaged public var coverImageURL: String?
 
+    @NSManaged public var activeVotes: NSSet?
+    
+}
+
+// MARK: Generated accessors for activeVotes
+extension Reply {
+    
+    @objc(addActiveVotesObject:)
+    @NSManaged public func addToActiveVotes(_ value: ActiveVote)
+    
+    @objc(removeActiveVotesObject:)
+    @NSManaged public func removeFromActiveVotes(_ value: ActiveVote)
+    
+    @objc(addActiveVotes:)
+    @NSManaged public func addToActiveVotes(_ values: NSSet)
+    
+    @objc(removeActiveVotes:)
+    @NSManaged public func removeFromActiveVotes(_ values: NSSet)
+    
 }

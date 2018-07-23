@@ -2,7 +2,7 @@
 //  Actual+CoreDataProperties.swift
 //  Golos
 //
-//  Created by msm72 on 17.07.2018.
+//  Created by msm72 on 23.07.2018.
 //  Copyright © 2018 golos. All rights reserved.
 //
 //
@@ -11,7 +11,7 @@ import Foundation
 import CoreData
 
 
-extension Actual {
+extension Actual: PostFeedCellSupport {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Actual> {
         return NSFetchRequest<Actual>(entityName: "Actual")
@@ -33,5 +33,25 @@ extension Actual {
     @NSManaged public var url: String?
     @NSManaged public var tags: [String]?
     @NSManaged public var coverImageURL: String?
+    @NSManaged public var userName: String
+
+    @NSManaged public var activeVotes: NSSet?
+
+}
+
+// MARK: Generated accessors for activeVotes
+extension Actual {
+
+    @objc(addActiveVotesObject:)
+    @NSManaged public func addToActiveVotes(_ value: ActiveVote)
+
+    @objc(removeActiveVotesObject:)
+    @NSManaged public func removeFromActiveVotes(_ value: ActiveVote)
+
+    @objc(addActiveVotes:)
+    @NSManaged public func addToActiveVotes(_ values: NSSet)
+
+    @objc(removeActiveVotes:)
+    @NSManaged public func removeFromActiveVotes(_ values: NSSet)
 
 }

@@ -11,7 +11,7 @@ import Foundation
 import CoreData
 
 
-extension Promo {
+extension Promo: PostFeedCellSupport {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Promo> {
         return NSFetchRequest<Promo>(entityName: "Promo")
@@ -34,4 +34,23 @@ extension Promo {
     @NSManaged public var tags: [String]?
     @NSManaged public var coverImageURL: String?
 
+    @NSManaged public var activeVotes: NSSet?
+    
+}
+
+// MARK: Generated accessors for activeVotes
+extension Promo {
+    
+    @objc(addActiveVotesObject:)
+    @NSManaged public func addToActiveVotes(_ value: ActiveVote)
+    
+    @objc(removeActiveVotesObject:)
+    @NSManaged public func removeFromActiveVotes(_ value: ActiveVote)
+    
+    @objc(addActiveVotes:)
+    @NSManaged public func addToActiveVotes(_ values: NSSet)
+    
+    @objc(removeActiveVotes:)
+    @NSManaged public func removeFromActiveVotes(_ values: NSSet)
+    
 }

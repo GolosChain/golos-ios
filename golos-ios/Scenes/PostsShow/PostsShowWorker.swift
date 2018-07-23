@@ -34,8 +34,8 @@ class PostsShowWorker {
             discussion  =   RequestParameterAPI.Discussion.init(limit:              loadDataLimit,
                                                                 truncateBody:       0,
                                                                 selectAuthors:      parameters.type != .lenta ? nil : (userName == nil ? nil : [ User.current!.name ]),
-                                                                startAuthor:        lastItem.authorValue,
-                                                                startPermlink:      lastItem.permlinkValue)
+                                                                startAuthor:        lastItem.author,
+                                                                startPermlink:      lastItem.permlink)
         }
         
         return MethodAPIType.getDiscussions(type: parameters.type, parameters: discussion)

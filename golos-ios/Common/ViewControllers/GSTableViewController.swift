@@ -178,8 +178,13 @@ class GSTableViewController: GSBaseViewController {
                 fetchRequest.predicate  =   NSPredicate(format: "parentAuthor == %@", userName)
             }
 
-        // Blog, Lenta
-        case .blog, .lenta:
+        // Blog
+        case .blog:
+            if let userName = User.current?.name {
+                fetchRequest.predicate  =   NSPredicate(format: "author == %@", userName)
+            }
+
+        case .lenta:
             if let userName = User.current?.name {
                 fetchRequest.predicate  =   NSPredicate(format: "userName == %@", userName)
             }

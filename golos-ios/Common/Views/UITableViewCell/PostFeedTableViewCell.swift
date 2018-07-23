@@ -129,11 +129,16 @@ extension PostFeedTableViewCell: ConfigureCell {
         }
         
         // Set User info
-        if let user = User.fetch(byName: model.authorValue) {
+        if let user = User.fetch(byName: model.author) {
             self.postFeedHeaderView.authorLabel.text            =   user.name
             
             // User Reputation -> Int
             self.postFeedHeaderView.authorReputationLabel.text  =   String(format: "%i", user.reputation.convertWithLogarithm10())
+            
+            // Set upvotes icon
+            if let activeVotes = model.activeVotes, activeVotes.count > 0 {
+                self.upvotesButton.isEnabled = activeVotes.compactMap({ ($0 as? ActiveVote)?.voter == User.current!.name }).count > 0
+            }
             
             // Load User author profile image
             if let userProfileImageURL = user.profileImageURL {
@@ -144,12 +149,12 @@ extension PostFeedTableViewCell: ConfigureCell {
             }
         }
         
-        // Load model sser cover image
-        if let coverImageURL = model.coverImageURLValue, !coverImageURL.isEmpty {
+        // Load model user cover image
+        if let coverImageURL = model.coverImageURL, !coverImageURL.isEmpty {
             self.postImageView.uploadImage(byStringPath:    coverImageURL,
                                            imageType:       .userCoverImage,
                                            size:            CGSize(width: UIScreen.main.bounds.width, height: 180.0 * heightRatio),
-                                           tags:            model.tagsValue)
+                                           tags:            model.tags)
         }
         
         // Hide post image
@@ -157,11 +162,11 @@ extension PostFeedTableViewCell: ConfigureCell {
             self.postImageViewHeightConstraint.constant     =   0
         }
 
-        self.titleLabel.text                                =   model.titleValue
-        self.postFeedHeaderView.authorLabel.text            =   model.authorValue
-        self.postFeedHeaderView.categoryLabel.text          =   model.categoryValue
-        self.upvotesButton.isEnabled                        =   !model.allowVotesValue
-        self.commentsButton.isEnabled                       =   !model.allowRepliesValue
+        self.titleLabel.text                                =   model.title
+        self.postFeedHeaderView.authorLabel.text            =   model.author
+        self.postFeedHeaderView.categoryLabel.text          =   model.category
+        self.upvotesButton.isEnabled                        =   !model.allowVotes
+        self.commentsButton.isEnabled                       =   !model.allowReplies
 
         selectionStyle                                      =   .none
 
