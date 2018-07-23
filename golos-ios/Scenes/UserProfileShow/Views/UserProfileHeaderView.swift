@@ -160,7 +160,7 @@ class UserProfileHeaderView: PassthroughView {
                                                 size:               CGSize(width: 375.0 * widthRatio, height: 240.0 * heightRatio),
                                                 tags:               userInfo.selectTags)
             
-            self.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+            self.backgroundColor = UIColor.black.withAlphaComponent(0.3)
         }
         
         self.showLabelsForAnimationCollection(true)
