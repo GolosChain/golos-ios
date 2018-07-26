@@ -22,9 +22,9 @@ enum SceneType: Int {
 
 // MARK: - Input & Output protocols
 protocol PostCreateDisplayLogic: class {
-    func displayPostCreate(fromViewModel viewModel: PostCreateModels.Something.ViewModel)
-    func displayPostComment(fromViewModel viewModel: PostCreateModels.Something.ViewModel)
-    func displayPostCommentReply(fromViewModel viewModel: PostCreateModels.Something.ViewModel)
+    func displayPostCreate(fromViewModel viewModel: PostCreateModels.Post.ViewModel)
+    func displayPostComment(fromViewModel viewModel: PostCreateModels.Post.ViewModel)
+    func displayPostCommentReply(fromViewModel viewModel: PostCreateModels.Post.ViewModel)
 }
 
 class PostCreateViewController: GSBaseViewController {
@@ -285,43 +285,50 @@ class PostCreateViewController: GSBaseViewController {
             return
         }
         
-        self.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
-
-        
-        // TODO: - ADD POST API
-        /*
+        // API's
         switch sceneType {
         case .create:
-            let postCreateRequestModel = PostCreateModels.Something.RequestModel()
+            let postCreateRequestModel = PostCreateModels.Post.RequestModel()
             interactor?.postCreate(withRequestModel: postCreateRequestModel)
 
         case .comment:
-            let postCommentRequestModel = PostCreateModels.Something.RequestModel()
-            interactor?.postComment(withRequestModel: postCommentRequestModel)
+            // TODO: - ADD API
+            self.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+//            let postCommentRequestModel = PostCreateModels.Something.RequestModel()
+//            interactor?.postComment(withRequestModel: postCommentRequestModel)
 
         case .reply:
-            let postCommentReplyRequestModel = PostCreateModels.Something.RequestModel()
-            interactor?.postCommentReply(withRequestModel: postCommentReplyRequestModel)
-        } */
+            // TODO: - ADD API
+            self.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+//            let postCommentReplyRequestModel = PostCreateModels.Something.RequestModel()
+//            interactor?.postCommentReply(withRequestModel: postCommentReplyRequestModel)
+        }
     }
 }
 
 
 // MARK: - PostCreateDisplayLogic
 extension PostCreateViewController: PostCreateDisplayLogic {
-    func displayPostCreate(fromViewModel viewModel: PostCreateModels.Something.ViewModel) {
+    func displayPostCreate(fromViewModel viewModel: PostCreateModels.Post.ViewModel) {
+        // NOTE: Display the result from the Presenter
+        guard viewModel.errorAPI == nil else {
+            self.showAlertView(withTitle: viewModel.errorAPI!.caseInfo.title, andMessage: viewModel.errorAPI!.caseInfo.message, needCancel: false, completion: { _ in })
+            return
+        }
+        
+        // TODO: - ADD IF VIEWMODEL SUCCESS = ROUTE TO NEW POST SCENE
+        self.showAlertView(withTitle: "Info", andMessage: "", needCancel: false, completion: { [weak self] _ in
+            self?.router?.routeToMainScene()
+        })
+    }
+    
+    func displayPostComment(fromViewModel viewModel: PostCreateModels.Post.ViewModel) {
         // NOTE: Display the result from the Presenter
 
         // TODO: - ADD IF VIEWMODEL SUCCESS = ROUTE TO NEW POST SCENE
     }
     
-    func displayPostComment(fromViewModel viewModel: PostCreateModels.Something.ViewModel) {
-        // NOTE: Display the result from the Presenter
-
-        // TODO: - ADD IF VIEWMODEL SUCCESS = ROUTE TO NEW POST SCENE
-    }
-    
-    func displayPostCommentReply(fromViewModel viewModel: PostCreateModels.Something.ViewModel) {
+    func displayPostCommentReply(fromViewModel viewModel: PostCreateModels.Post.ViewModel) {
         // NOTE: Display the result from the Presenter
 
         // TODO: - ADD IF VIEWMODEL SUCCESS = ROUTE TO NEW POST SCENE

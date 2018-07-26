@@ -19,34 +19,36 @@ public struct Transaction {
     let ref_block_num: UInt16
     let ref_block_prefix: UInt32
     let expiration: String                              // '2016-08-09T10:06:15'
-    var operations: [Any]
+    var operations: [Encodable]
     var extensions: [String]?
     var signatures: [String]
     var userName: String = ""
+    var serializedBuffer: [Byte]
     
     
     // MARK: - Class Initialization
-    public init(withOperations operations: [Any], andExtensions extensions: [String]? = nil) {
+    public init(withOperations operations: [Encodable], andExtensions extensions: [String]? = nil) {
         self.ref_block_num          =   headBlockNumber
         self.ref_block_prefix       =   headBlockID
         self.expiration             =   time
-        self.operations             =   [operations]
+        self.operations             =   operations
         self.extensions             =   extensions
         self.signatures             =   [String]()
+        self.serializedBuffer       =   [Byte]()
     }
     
     
     // MARK: - Custom Functions
-    public mutating func setUserName(_ name: String) {
+    public mutating func setUser(name: String) {
         self.userName               =   name
     }
 
     /// Service function to remove `operation code` from transaction
     private mutating func deleteOperationCode() {
         for (i, operation) in self.operations.enumerated() {
-            if var operations = operation as? [Any] {
+            if var operations = operation as? [Encodable] {
                 operations.remove(at: 1)
-                self.operations[i] = operations
+                self.operations[i] = operations as! Encodable
             }
         }
     }
@@ -63,78 +65,90 @@ public struct Transaction {
      - Returns: Error or nil.
      
      */
-    public mutating func serialize(byOperationType operationType: OperationAPIType) -> ErrorAPI? {
+    public mutating func serialize(byOperationAPIType operationAPIType: OperationAPIType) -> ErrorAPI? {
         /// Create `serializedBuffer` with `chainID`
-        var serializedBuffer: [Byte] = chainID.hexBytes
-        Logger.log(message: "\nserializedBuffer + chainID:\n\t\(serializedBuffer.toHexString())\n", event: .debug)
+        self.serializedBuffer = chainID.hexBytes
+        Logger.log(message: "\nserializedBuffer + chainID:\n\t\(self.serializedBuffer.toHexString())\n", event: .debug)
         
         // Add to buffer `ref_block_num` as `UInt16`
-        let ref_block_num: UInt16 = self.ref_block_num
-        serializedBuffer += ref_block_num.bytesReverse
-        Logger.log(message: "\nserializedBuffer + ref_block_num:\n\t\(serializedBuffer.toHexString())\n", event: .debug)
-        
+        self.serializedBuffer += self.ref_block_num.bytesReverse
+        Logger.log(message: "\nserializedBuffer + ref_block_num:\n\t\(self.serializedBuffer.toHexString())\n", event: .debug)
+
         // Add to buffer `ref_block_prefix` as `UInt32`
-        let ref_block_prefix: UInt32 = self.ref_block_prefix
-        serializedBuffer += ref_block_prefix.bytesReverse
-        Logger.log(message: "\nserializedBuffer + ref_block_prefix:\n\t\(serializedBuffer.toHexString())\n", event: .debug)
-        
+        self.serializedBuffer += self.ref_block_prefix.bytesReverse
+        Logger.log(message: "\nserializedBuffer + ref_block_prefix:\n\t\(self.serializedBuffer.toHexString())\n", event: .debug)
+
         // Add to buffer `expiration` as `UInt32`
         let expirationDate: UInt32 = UInt32(self.expiration.convert(toDateFormat: .expirationDateType).timeIntervalSince1970)
-        serializedBuffer += expirationDate.bytesReverse
-        Logger.log(message: "\nserializedBuffer + expiration:\n\t\(serializedBuffer.toHexString())\n", event: .debug)
+        self.serializedBuffer += expirationDate.bytesReverse
+        Logger.log(message: "\nserializedBuffer + expiration:\n\t\(self.serializedBuffer.toHexString())\n", event: .debug)
         
-        // Operations: add to buffer `the actual number of operations`
-        let operations = self.operations
-        serializedBuffer += self.varint(int: operations.count)
-        Logger.log(message: "\nserializedBuffer + operationsCount:\n\t\(serializedBuffer.toHexString())\n", event: .debug)
-        
-        // Operations
-        for operation in operations {
-            // Operation: add to buffer `operation type name`
-            if let operationArray = operation as? [Any], let operationTypeID = operationArray[1] as? Int {
-                // Operations: add to buffer `operation type ID`
-                serializedBuffer += self.varint(int: operationTypeID)
-                Logger.log(message: "\nserializedBuffer - operationTypeID:\n\t\(serializedBuffer.toHexString())\n", event: .debug)
-                
-                let keyNames = OperationAPIType.getFieldNames(byTypeID: operationTypeID)
-                
-                // Operations: add to buffer `operation fields`
-                if let fields = operationArray[2] as? [String: Any] {
-                    for keyName in keyNames {
-                        let fieldValue = fields[keyName]
-                        
-                        if let fieldString = fieldValue as? String {
-                            // Length + Type
-                            let fieldStringBytes = fieldString.bytes
-                            serializedBuffer += self.varint(int: fieldStringBytes.count) + fieldStringBytes
-                            Logger.log(message: "\nserializedBuffer - fieldString:\n\t\(serializedBuffer.toHexString())\n", event: .debug)
-                        }
-                            
-                        else if let fieldInt = fieldValue as? Int64 {
-                            // Value
-                            serializedBuffer += UInt16(fieldInt).bytesReverse
-                            Logger.log(message: "\nserializedBuffer - fieldInt:\n\t\(serializedBuffer.toHexString())\n", event: .debug)
-                        }
-                    }
-                }
-            }
-        }
+        // Operations: serialize
+        // https://golos.io/ru--golos/@steepshot/praktika-razrabotki-na-c-dlya-blokcheinov-na-graphene
+        self.serialize(array: self.operations)
         
         // Extensions: add to buffer `the actual number of operations`
         let extensions = self.extensions ?? [String]()
-        serializedBuffer += self.varint(int: extensions.count)
-        Logger.log(message: "\nserializedBuffer + extensionsCount:\n\t\(serializedBuffer.toHexString())\n", event: .debug)
+        self.serializedBuffer += self.varint(int: extensions.count)
+        Logger.log(message: "\nserializedBuffer + extensionsCount:\n\t\(self.serializedBuffer.toHexString())\n", event: .debug)
         
         // Add SHA256
-        let messageSHA256: [Byte] = serializedBuffer.sha256()
+        let messageSHA256: [Byte] = self.serializedBuffer.sha256()
         Logger.log(message: "\nmessageSHA256:\n\t\(messageSHA256.toHexString())\n", event: .debug)
         
         // ECC signing
         let errorAPI = signingECC(messageSHA256: messageSHA256)
         Logger.log(message: "\nerrorAPI:\n\t\(errorAPI?.localizedDescription ?? "nil")\n", event: .debug)
-        
+
         return errorAPI
     }
+    
+    /// Serialize Operations
+    private mutating func serialize(array: [Any]) {
+        // Add to buffer `the actual number of operations`
+        self.serializedBuffer += self.varint(int: self.operations.count)
+        Logger.log(message: "\nserializedBuffer + operationsCount:\n\t\(serializedBuffer.toHexString())\n", event: .debug)
+        
+        for operation in operations {
+            // Get OperationAPIType properties sequence
+            let operationTypeID                 =   (operation as! RequestParameterAPIPropertiesSupport).code!
+            let operationTypeProperties         =   (operation as! RequestParameterAPIPropertiesSupport).getProperties()
+            let operationTypePropertiesNames    =   (operation as! RequestParameterAPIPropertiesSupport).getPropertiesNames()
+
+            // Operations: add to buffer `operation type ID`
+            self.serializedBuffer   +=  self.varint(int: operationTypeID)
+            Logger.log(message: "\nserializedBuffer - operationTypeID:\n\t\(self.serializedBuffer.toHexString())\n", event: .debug)
+
+            // Operations: add to buffer `operation fields`
+            for operationTypePropertyName in operationTypePropertiesNames {
+                let operationTypePropertyValue  =   operationTypeProperties[operationTypePropertyName]
+                
+                // Operations: serialize string
+                if let value = operationTypePropertyValue as? String {
+                    self.serialize(string: value)
+                }
+                
+                // Operations: serialize Int64
+                else if let value = operationTypePropertyValue as? Int64 {
+                    self.serialize(int64: value)
+                }
+                
+                Logger.log(message: "\nserializedBuffer - \(operationTypePropertyName):\n\t\(self.serializedBuffer.toHexString())\n", event: .debug)
+            }
+        }
+    }
+    
+    private mutating func serialize(string: String) {
+        // Length + Type
+        let fieldStringBytes    =   string.bytes
+        self.serializedBuffer   +=  self.varint(int: fieldStringBytes.count) + fieldStringBytes
+    }
+    
+    private mutating func serialize(int64: Int64) {
+        self.serializedBuffer   +=  UInt16(int64).bytesReverse
+    }
+
+
     
     /**
      ECC signing serialized buffer of transaction.
@@ -145,10 +159,11 @@ public struct Transaction {
      */
     private mutating func signingECC(messageSHA256: [Byte]) -> ErrorAPI? {
         if let privateKeyString = KeychainManager.loadPrivateKey(forUserName: self.userName) {
-            let privateKeyData: [Byte] = Base58().base58Decode(data: privateKeyString)
-            
+            let privateKeyData: [Byte] =  GSBase58().base58Decode(data: privateKeyString)
+
             Logger.log(message: "\nsigningECC - privateKey:\n\t\(privateKeyString)\n", event: .debug)
-            
+            Logger.log(message: "\nsigningECC - privateKeyData:\n\t\(privateKeyData.toHexString())\n", event: .debug)
+
             var index: Int = 0
             var extra: [Byte]?
             var loopCounter: Byte = 0
@@ -207,15 +222,15 @@ extension Transaction {
         var bytes = [Byte]()
         var n = int
         var hexString = String(format:"%02x", arguments: [n])
-        
+
         while Int(hexString, radix: 16)! >= 0x80 {
             bytes += Byte((n & 0x7f) | 0x80).data
             n = n >> 7
             hexString = String(format:"%02x", arguments: [n])
         }
-        
+
         bytes += Int8(hexString, radix: 16)!.data
-        
+
         return bytes
     }
 }

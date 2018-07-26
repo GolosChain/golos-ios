@@ -136,20 +136,20 @@ class WelcomeShowViewController: GSBaseViewController {
         super.viewWillAppear(animated)
         Logger.log(message: "Success", event: .severe)
         
-        navigationController?.setNavigationBarHidden(true, animated: true)
+        self.hideNavigationBar()
+//        navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         Logger.log(message: "Success", event: .severe)
         
-        navigationController?.setNavigationBarHidden(false, animated: true)
+//        navigationController?.setNavigationBarHidden(false, animated: true)
     }
 
     
     // MARK: - Custom Functions
     private func loadViewSettings() {
-        configureBackButton()
         self.view.tune()
     }
     

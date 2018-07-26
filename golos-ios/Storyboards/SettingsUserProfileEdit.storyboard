@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Settings User Profile Edit View Controller-->
+        <scene sceneID="SC0-Zm-Sok">
+            <objects>
+                <viewController storyboardIdentifier="SettingsUserProfileEditVC" id="OEO-Ix-hmA" customClass="SettingsUserProfileEditViewController" customModule="Golos" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="KeV-o4-kIX">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Azw-ld-82F" userLabel="Top Line View">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="2"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="2" id="eNV-yS-Kqz"/>
+                                </constraints>
+                            </view>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vZl-c8-VBS">
+                                <rect key="frame" x="0.0" y="2" width="375" height="665"/>
+                                <subviews>
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U1e-gJ-kMS" userLabel="Content View">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="720"/>
+                                        <subviews>
+                                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aUS-iZ-th2" userLabel="Header View">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="180.5"/>
+                                                <subviews>
+                                                    <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hew-iT-lim" userLabel="Change Avatar Button">
+                                                        <rect key="frame" x="164" y="117" width="46" height="30"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <connections>
+                                                            <action selector="changeAvatarButtonTapped:" destination="OEO-Ix-hmA" eventType="touchUpInside" id="jL0-sW-hF5"/>
+                                                        </connections>
+                                                    </button>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-user-profile-image-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="hTB-dk-cSa" userLabel="User Avatar Image View">
+                                                        <rect key="frame" x="147.5" y="26" width="80" height="80.5"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="hTB-dk-cSa" secondAttribute="height" multiplier="1:1" id="J3C-XN-5H9"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstItem="hew-iT-lim" firstAttribute="centerX" secondItem="aUS-iZ-th2" secondAttribute="centerX" id="Gc6-hp-4g5"/>
+                                                    <constraint firstItem="hTB-dk-cSa" firstAttribute="centerX" secondItem="aUS-iZ-th2" secondAttribute="centerX" id="HCn-OH-UWL"/>
+                                                    <constraint firstItem="hew-iT-lim" firstAttribute="top" secondItem="hTB-dk-cSa" secondAttribute="bottom" constant="10" id="RM8-FH-67E"/>
+                                                    <constraint firstItem="hTB-dk-cSa" firstAttribute="top" secondItem="aUS-iZ-th2" secondAttribute="top" constant="26" id="pTz-BJ-YpC"/>
+                                                </constraints>
+                                            </view>
+                                            <stackView clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="o9n-qV-Nuu" userLabel="Info Stack View">
+                                                <rect key="frame" x="16" y="180.5" width="327" height="337.5"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </stackView>
+                                            <stackView clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Elp-4x-TRy" userLabel="Buttons Stack View">
+                                                <rect key="frame" x="16" y="578" width="343" height="118"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NRu-0X-bs0" userLabel="Change Cover Button">
+                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="54"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <connections>
+                                                            <action selector="changeCoverButtonTapped:" destination="OEO-Ix-hmA" eventType="touchUpInside" id="57a-Mn-OlE"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k4R-k9-5pR" userLabel="Save Button">
+                                                        <rect key="frame" x="0.0" y="64" width="343" height="54"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <connections>
+                                                            <action selector="saveButtonTapped:" destination="OEO-Ix-hmA" eventType="touchUpInside" id="mzy-G1-gnR"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="o9n-qV-Nuu" secondAttribute="trailing" constant="32" id="6qa-zg-dNp"/>
+                                            <constraint firstItem="o9n-qV-Nuu" firstAttribute="leading" secondItem="U1e-gJ-kMS" secondAttribute="leading" constant="16" id="OoC-oF-GFH"/>
+                                            <constraint firstItem="aUS-iZ-th2" firstAttribute="leading" secondItem="U1e-gJ-kMS" secondAttribute="leading" id="PSV-cO-MhY"/>
+                                            <constraint firstItem="Elp-4x-TRy" firstAttribute="top" secondItem="o9n-qV-Nuu" secondAttribute="bottom" constant="60" id="QWA-nl-ktj"/>
+                                            <constraint firstItem="o9n-qV-Nuu" firstAttribute="top" secondItem="aUS-iZ-th2" secondAttribute="bottom" id="VjI-4X-Ur8"/>
+                                            <constraint firstAttribute="bottom" secondItem="Elp-4x-TRy" secondAttribute="bottom" constant="24" id="dch-EJ-qBx"/>
+                                            <constraint firstItem="Elp-4x-TRy" firstAttribute="leading" secondItem="U1e-gJ-kMS" secondAttribute="leading" constant="16" id="eIb-p3-9Ac"/>
+                                            <constraint firstAttribute="trailing" secondItem="Elp-4x-TRy" secondAttribute="trailing" constant="16" id="tQs-Pu-tqK"/>
+                                            <constraint firstAttribute="trailing" secondItem="aUS-iZ-th2" secondAttribute="trailing" id="vNb-dS-m6s"/>
+                                            <constraint firstItem="aUS-iZ-th2" firstAttribute="top" secondItem="U1e-gJ-kMS" secondAttribute="top" id="ytl-eG-t1a"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="U1e-gJ-kMS" firstAttribute="top" secondItem="vZl-c8-VBS" secondAttribute="top" id="19p-4V-ruA"/>
+                                    <constraint firstAttribute="bottom" secondItem="U1e-gJ-kMS" secondAttribute="bottom" id="3rf-KH-Rnf"/>
+                                    <constraint firstItem="U1e-gJ-kMS" firstAttribute="leading" secondItem="vZl-c8-VBS" secondAttribute="leading" id="Gtc-2F-zbE"/>
+                                    <constraint firstAttribute="trailing" secondItem="U1e-gJ-kMS" secondAttribute="trailing" id="UNc-RS-iCk"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="o9n-qV-Nuu" firstAttribute="height" secondItem="KeV-o4-kIX" secondAttribute="height" multiplier="280:311" id="0lV-VO-0Ks"/>
+                            <constraint firstItem="hTB-dk-cSa" firstAttribute="width" secondItem="KeV-o4-kIX" secondAttribute="width" multiplier="80:375" id="182-Yz-M9g"/>
+                            <constraint firstItem="hTB-dk-cSa" firstAttribute="width" secondItem="KeV-o4-kIX" secondAttribute="width" multiplier="80:667" id="Axx-Pi-Snp"/>
+                            <constraint firstItem="o9n-qV-Nuu" firstAttribute="height" secondItem="KeV-o4-kIX" secondAttribute="height" multiplier="280:555" id="EWM-Cq-Jfg"/>
+                            <constraint firstItem="Azw-ld-82F" firstAttribute="top" secondItem="KeV-o4-kIX" secondAttribute="top" id="LXI-gH-VbD"/>
+                            <constraint firstItem="aUS-iZ-th2" firstAttribute="height" secondItem="KeV-o4-kIX" secondAttribute="height" multiplier="150:555" id="V20-Ug-14B"/>
+                            <constraint firstItem="vZl-c8-VBS" firstAttribute="top" secondItem="Azw-ld-82F" secondAttribute="bottom" id="WQN-v9-h3F"/>
+                            <constraint firstItem="U1e-gJ-kMS" firstAttribute="height" secondItem="KeV-o4-kIX" secondAttribute="height" priority="250" id="X6R-7G-Hkb"/>
+                            <constraint firstItem="aUS-iZ-th2" firstAttribute="height" secondItem="KeV-o4-kIX" secondAttribute="height" multiplier="150:311" id="YLG-Mu-UXw"/>
+                            <constraint firstItem="Elp-4x-TRy" firstAttribute="height" secondItem="KeV-o4-kIX" secondAttribute="height" multiplier="98:311" id="ceK-Fx-ScL"/>
+                            <constraint firstItem="vZl-c8-VBS" firstAttribute="leading" secondItem="Cf1-Vq-3Xd" secondAttribute="leading" id="e6u-Dw-eV4"/>
+                            <constraint firstItem="Elp-4x-TRy" firstAttribute="height" secondItem="KeV-o4-kIX" secondAttribute="height" multiplier="98:555" id="ffB-ku-a9N"/>
+                            <constraint firstAttribute="trailing" secondItem="Azw-ld-82F" secondAttribute="trailing" id="gs9-ah-NEO"/>
+                            <constraint firstItem="U1e-gJ-kMS" firstAttribute="width" secondItem="KeV-o4-kIX" secondAttribute="width" id="oCl-s4-lHE"/>
+                            <constraint firstItem="Azw-ld-82F" firstAttribute="leading" secondItem="KeV-o4-kIX" secondAttribute="leading" id="s2o-n1-LLX"/>
+                            <constraint firstItem="Cf1-Vq-3Xd" firstAttribute="bottom" secondItem="vZl-c8-VBS" secondAttribute="bottom" id="sPE-gW-Z6z"/>
+                            <constraint firstItem="vZl-c8-VBS" firstAttribute="trailing" secondItem="Cf1-Vq-3Xd" secondAttribute="trailing" id="wRD-kB-I2M"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Cf1-Vq-3Xd"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="V20-Ug-14B"/>
+                                <exclude reference="182-Yz-M9g"/>
+                                <exclude reference="EWM-Cq-Jfg"/>
+                                <exclude reference="ffB-ku-a9N"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="constraints">
+                                <include reference="V20-Ug-14B"/>
+                                <exclude reference="YLG-Mu-UXw"/>
+                                <include reference="182-Yz-M9g"/>
+                                <exclude reference="Axx-Pi-Snp"/>
+                                <exclude reference="0lV-VO-0Ks"/>
+                                <include reference="EWM-Cq-Jfg"/>
+                                <exclude reference="ceK-Fx-ScL"/>
+                                <include reference="ffB-ku-a9N"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="changeAvatarButton" destination="hew-iT-lim" id="7in-ap-BhC"/>
+                        <outlet property="changeCoverButton" destination="NRu-0X-bs0" id="PBG-LV-1iW"/>
+                        <outlet property="contentView" destination="U1e-gJ-kMS" id="0HC-ZP-jL5"/>
+                        <outlet property="saveButton" destination="k4R-k9-5pR" id="76P-Mm-RPY"/>
+                        <outlet property="scrollView" destination="vZl-c8-VBS" id="Ybp-pU-n56"/>
+                        <outlet property="topLineView" destination="Azw-ld-82F" id="i6b-qe-JqU"/>
+                        <outlet property="userAvatarImageView" destination="hTB-dk-cSa" id="Q7O-kc-t7w"/>
+                        <outletCollection property="heightsCollection" destination="eNV-yS-Kqz" collectionClass="NSMutableArray" id="7jN-RK-X6l"/>
+                        <outletCollection property="viewsCollection" destination="aUS-iZ-th2" collectionClass="NSMutableArray" id="daU-Yr-zpu"/>
+                        <outletCollection property="heightsCollection" destination="QWA-nl-ktj" collectionClass="NSMutableArray" id="AgM-DZ-I0O"/>
+                        <outletCollection property="heightsCollection" destination="dch-EJ-qBx" collectionClass="NSMutableArray" id="ZXL-fI-PiE"/>
+                        <outletCollection property="heightsCollection" destination="RM8-FH-67E" collectionClass="NSMutableArray" id="Bu3-ry-tPq"/>
+                        <outletCollection property="heightsCollection" destination="pTz-BJ-YpC" collectionClass="NSMutableArray" id="Xyk-Xo-xle"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vWS-CF-vze" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-142" y="186"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="icon-user-profile-image-placeholder" width="40" height="40"/>
+    </resources>
+</document>

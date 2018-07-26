@@ -34,7 +34,7 @@ class UserProfileShowViewController: GSBaseViewController, ContainerViewSupport 
     lazy var segmentedControl: SWSegmentedControl = {
         let contolElement       =   SWSegmentedControl(frame: CGRect(origin: .zero, size: segmentedControlView.frame.size))
         
-        contolElement.items                     =   [ "Posts", "Answers" ].map({ $0.localized() })
+        contolElement.items                     =   [ "Posts", "Replies" ].map({ $0.localized() })
         contolElement.selectedSegmentIndex      =   0
         contolElement.titleColor                =   UIColor(hexString: "#333333")
         contolElement.indicatorColor            =   UIColor(hexString: "#1298FF")
@@ -85,11 +85,7 @@ class UserProfileShowViewController: GSBaseViewController, ContainerViewSupport 
             }
 
             userProfileHeaderView.handlerSettingsButtonTapped   =   { [weak self] in
-                self?.showAlertView(withTitle: "Exit", andMessage: "Are Your Sure?", needCancel: true, completion: { [weak self] success in
-                    if success {
-                        self?.router?.routeToLoginShowScene()
-                    }
-                })
+                self?.router?.routeToSettingsShowScene()                
             }
             
             userProfileHeaderView.handlerSubscribeButtonTapped  =   { [weak self] in 
@@ -194,13 +190,15 @@ class UserProfileShowViewController: GSBaseViewController, ContainerViewSupport 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.hideNavigationBar()
         self.loadViewSettings()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
        
+        self.hideNavigationBar()
+        UIApplication.shared.statusBarStyle     =   User.current!.coverImageURL == nil ? .default : (scrollView.parallaxHeader.progress == 0.0 ? .default : .lightContent)
+
         // Load User info
         self.loadUserInfo()
 

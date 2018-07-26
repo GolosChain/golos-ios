@@ -75,8 +75,6 @@ class UserProfileHeaderView: PassthroughView {
         }
     }
     
-    
-    
     @IBOutlet private weak var imageViewTopConstraint: NSLayoutConstraint!
     
     

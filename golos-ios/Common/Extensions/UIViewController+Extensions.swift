@@ -15,16 +15,4 @@ extension UIViewController {
         
         return viewController
     }
-
-    func configureBackButton() {
-        let backImage = UIImage(named: "back_button")
-        
-        self.navigationController?.navigationBar.backIndicatorImage = backImage
-        self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = backImage
-        
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title:      "",
-                                                                style:      UIBarButtonItemStyle.plain,
-                                                                target:     nil,
-                                                                action:     nil)
-    }
 }

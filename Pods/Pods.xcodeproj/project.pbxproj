@@ -573,7 +573,7 @@
 		D9ED3C046C9860B10623E9A9815261E5 /* FIRMessagingLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 2B6ED0E8EEBB100BD31908223F27519F /* FIRMessagingLogger.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		DA1977724E81FBD4EFF01C03E4EB72B6 /* SWSegmentedControl-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC4CDE6CB689D28B0654A99EE68A336 /* SWSegmentedControl-dummy.m */; };
 		DA24C0C0BCAB68CD782DFFDE046A51E5 /* GPBMessage_PackagePrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = D33963C75F079686D5C490D99CC57E6A /* GPBMessage_PackagePrivate.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		DAB58C2A6202F4DEF7D57845CA734CEE /* Base58.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C8053B4EA01C338B08D6A01D93871A /* Base58.swift */; };
+		DAB58C2A6202F4DEF7D57845CA734CEE /* GSBase58.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C8053B4EA01C338B08D6A01D93871A /* GSBase58.swift */; };
 		DB110589298ECD37243BD7B86B95098E /* Cryptors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5EB1E041717F4F78275135BFAD2908 /* Cryptors.swift */; };
 		DB80A14D0A9631E9A3008E83FF675817 /* GTMLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = A9FF25B274A0F0BAEA1287049D3AA982 /* GTMLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DBED681D9D4880FC28550820039F2468 /* CacheSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E83E8D594C5501026F3DCFE6DDB548B /* CacheSerializer.swift */; };
@@ -986,7 +986,7 @@
 		153B626CA5655BAF59DBD21BA3D56756 /* FIRMessaging_Private.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FIRMessaging_Private.h; path = Firebase/Messaging/FIRMessaging_Private.h; sourceTree = "<group>"; };
 		154FA13422CEA7DB2264C01A9193652E /* man.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; name = man.c; path = Source/cmark/man.c; sourceTree = "<group>"; };
 		15838F7D61B16048752F57347A6B2D11 /* AlignedCollectionViewFlowLayout-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AlignedCollectionViewFlowLayout-umbrella.h"; sourceTree = "<group>"; };
-		15C8053B4EA01C338B08D6A01D93871A /* Base58.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Base58.swift; path = GoloSwift/Managers/Base58.swift; sourceTree = "<group>"; };
+		15C8053B4EA01C338B08D6A01D93871A /* GSBase58.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GSBase58.swift; path = GoloSwift/Managers/GSBase58.swift; sourceTree = "<group>"; };
 		15DDBEB240C8843EB68DCD48FDACBBA3 /* ImageTransition.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ImageTransition.swift; path = Sources/ImageTransition.swift; sourceTree = "<group>"; };
 		164C3F95DDF08A2107A246F8F7969EE8 /* hash.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = hash.h; path = secp256k1/Classes/secp256k1/src/hash.h; sourceTree = "<group>"; };
 		165FB2A4AD6696434DE64903E11DA8D3 /* ImageDownloader.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ImageDownloader.swift; path = Sources/ImageDownloader.swift; sourceTree = "<group>"; };
@@ -2282,7 +2282,7 @@
 			isa = PBXGroup;
 			children = (
 				D02B627B1ED3D70775315FEACAE5DD54 /* Array+Extensions.swift */,
-				15C8053B4EA01C338B08D6A01D93871A /* Base58.swift */,
+				15C8053B4EA01C338B08D6A01D93871A /* GSBase58.swift */,
 				F13291029CC7609AD69D66B3728F2AB9 /* Broadcast.swift */,
 				D2AE4A4992CAA83C0312B6B0CC09C079 /* Constants.swift */,
 				C5B92BDF877CFCFD06BD3051AF46B387 /* Data+Extensions.swift */,
@@ -4224,7 +4224,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0930;
-				LastUpgradeCheck = 0940;
+				LastUpgradeCheck = 0930;
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -4373,7 +4373,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				470725682DACBB619D63C89D742A1754 /* Array+Extensions.swift in Sources */,
-				DAB58C2A6202F4DEF7D57845CA734CEE /* Base58.swift in Sources */,
+				DAB58C2A6202F4DEF7D57845CA734CEE /* GSBase58.swift in Sources */,
 				7D5EAAD14516748DC02B7E59C2444F01 /* Broadcast.swift in Sources */,
 				394E9A107674683C1E05C39677346249 /* Constants.swift in Sources */,
 				A8EBA01CF9CA78A928E9000BB5398045 /* Data+Extensions.swift in Sources */,
@@ -6857,7 +6857,6 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_COMPILATION_MODE = wholemodule;
 				SYMROOT = "${SRCROOT}/../build";
 			};
 			name = Release;
@@ -7253,7 +7252,6 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -7268,7 +7266,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
 				SYMROOT = "${SRCROOT}/../build";

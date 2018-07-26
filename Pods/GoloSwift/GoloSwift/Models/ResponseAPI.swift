@@ -303,6 +303,16 @@ public struct ResponseAPIVerifyAuthorityResult: Decodable {
 
 
 // MARK: -
+public struct ResponseAPIBlockchainPostResult: Decodable {
+    // MARK: - In work
+    public let id: Int64
+    public let jsonrpc: String
+    public let result: Bool?
+    public let error: ResponseAPIError?
+}
+
+
+// MARK: -
 public struct ResponseAPIAllContentRepliesResult: Decodable {
     // MARK: - In work
     public let id: Int64

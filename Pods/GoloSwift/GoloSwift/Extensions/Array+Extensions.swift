@@ -24,6 +24,6 @@ extension Array {
 extension Array where Element == Byte {
     public var base58EncodedString: String {
         guard !self.isEmpty else { return "" }
-        return Base58.base58FromBytes(self)
+        return GSBase58.base58FromBytes(self)
     }
 }

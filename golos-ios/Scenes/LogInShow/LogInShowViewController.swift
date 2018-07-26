@@ -156,8 +156,13 @@ class LogInShowViewController: GSBaseViewController {
         super.viewDidLoad()
         
         self.view.tune()
-        configureBackButton()
         self.router?.routeToPostingKeyScene()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+//        self.showNavigationBar()
     }
     
     

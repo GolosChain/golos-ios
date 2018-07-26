@@ -39,7 +39,8 @@ class WelcomeShowRouter: NSObject, WelcomeShowRoutingLogic, WelcomeShowDataPassi
         let destinationVC   =   storyboard.instantiateViewController(withIdentifier: "LogInShowVC") as! LogInShowViewController
 
         viewController?.show(destinationVC, sender: nil)
-    }
+        viewController?.showNavigationBar()
+     }
     
     func showRegisterFormOnline() {
         guard isNetworkAvailable else {

@@ -10,14 +10,19 @@
 import Foundation
 import SwiftTheme
 
-let whiteColorPickers: ThemeColorPicker             =   [ "#ffffff", "#ffffff" ]
-let whiteBlackColorPickers: ThemeColorPicker        =   [ "#ffffff", "#000000" ]
-let blackWhiteColorPickers: ThemeColorPicker        =   [ "#000000", "#ffffff" ]
-let darkGrayWhiteColorPickers: ThemeColorPicker     =   [ "#7d7d7d", "#ffffff" ]
-let veryDarkGrayWhiteColorPickers: ThemeColorPicker =   [ "#333333", "#ffffff" ]
-let vividBlueWhiteColorPickers: ThemeColorPicker    =   [ "#1298ff", "#1298ff" ]
-let darkModerateBlueColorPickers: ThemeColorPicker  =   [ "#4469af", "#4469af" ]
-
+let whiteColorPickers: ThemeColorPicker                         =   [ "#ffffff", "#ffffff" ]
+let whiteBlackColorPickers: ThemeColorPicker                    =   [ "#ffffff", "#000000" ]
+let blackWhiteColorPickers: ThemeColorPicker                    =   [ "#000000", "#ffffff" ]
+let darkGrayWhiteColorPickers: ThemeColorPicker                 =   [ "#7d7d7d", "#ffffff" ]
+let veryDarkGrayWhiteColorPickers: ThemeColorPicker             =   [ "#333333", "#ffffff" ]
+let vividBlueWhiteColorPickers: ThemeColorPicker                =   [ "#1298ff", "#1298ff" ]
+let darkModerateBlueColorPickers: ThemeColorPicker              =   [ "#4469af", "#4469af" ]
+let grayWhiteColorPickers: ThemeColorPicker                     =   [ "#a6a6a6", "#ffffff" ]
+let lightGrayishBlueWhiteColorPickers: ThemeColorPicker         =   [ "#f2f4f7", "#ffffff" ]
+let vividBlueColorPickers: ThemeColorPicker                     =   [ "#1266ff", "#1266ff" ]
+let verySoftBlueColorPickers: ThemeColorPicker                  =   [ "#a0d6fd", "#a0d6fd" ]
+let grayishRedColorPickers: ThemeColorPicker                    =   [ "#c6c5c5", "#c6c5c5" ]
+let veryLightGrayColorPickers: ThemeColorPicker                 =   [ "#dbdbdb", "#dbdbdb" ]
 
 
 extension UIColor {

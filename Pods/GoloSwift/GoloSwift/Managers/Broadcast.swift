@@ -9,23 +9,25 @@
 import Foundation
 
 /// Array of request unique IDs
-public var requestIDs               =   [Int]()
+public var requestIDs                       =   [Int]()
 
 /// Type of request API
-public typealias RequestAPIType     =   (id: Int, requestMessage: String?, startTime: Date, methodAPIType: MethodAPIType, errorAPI: ErrorAPI?)
+public typealias RequestMethodAPIType       =   (id: Int, requestMessage: String?, startTime: Date, methodAPIType: MethodAPIType, errorAPI: ErrorAPI?)
+public typealias RequestOperationAPIType    =   (id: Int, requestMessage: String?, startTime: Date, operationAPIType: OperationAPIType, errorAPI: ErrorAPI?)
 
 /// Type of response API
-public typealias ResponseAPIType    =   (responseAPI: Decodable?, errorAPI: ErrorAPI?)
-public typealias ResultAPIHandler   =   (Decodable) -> Void
-public typealias ErrorAPIHandler    =   (ErrorAPI) -> Void
+public typealias ResponseAPIType            =   (responseAPI: Decodable?, errorAPI: ErrorAPI?)
+public typealias ResultAPIHandler           =   (Decodable) -> Void
+public typealias ErrorAPIHandler            =   (ErrorAPI) -> Void
 
 /// Type of stored request API
-public typealias RequestAPIStore    =   (type: RequestAPIType, completion: (ResponseAPIType) -> Void)
+public typealias RequestMethodAPIStore      =   (methodAPIType: RequestMethodAPIType, completion: (ResponseAPIType) -> Void)
+public typealias RequestOperationAPIStore   =   (operationAPIType: RequestOperationAPIType, completion: (ResponseAPIType) -> Void)
 
 
 public class Broadcast {
     // MARK: - Properties
-    public static let shared        =   Broadcast()
+    public static let shared                =   Broadcast()
     
     
     // MARK: - Class Initialization
@@ -80,8 +82,8 @@ public class Broadcast {
 
      */
     public func executeGET(byMethodAPIType methodAPIType: MethodAPIType, onResult: @escaping (Decodable) -> Void, onError: @escaping (ErrorAPI) -> Void) {
-        // Create GET message to blockchain
-        let requestAPIType = self.prepareGET(requestByMethodType: methodAPIType)
+        // Create GET Request messages to Blockchain
+        let requestAPIType = self.prepareGET(requestByMethodAPIType: methodAPIType)
         
         guard let requestMessage = requestAPIType.requestMessage else {
             onError(ErrorAPI.requestFailed(message: "GET Request Failed"))
@@ -90,8 +92,8 @@ public class Broadcast {
         
         Logger.log(message: "\nrequestAPIType:\n\t\(requestMessage)\n", event: .debug)
         
-        // Send GET message to blockchain
-        webSocketManager.sendRequest(withType: requestAPIType, completion: { responseAPIType in
+        // Send GET Request messages to Blockchain
+        webSocketManager.sendGETRequest(withMethodAPIType: requestAPIType, completion: { responseAPIType in
             if let responseAPI = responseAPIType.responseAPI {
                 onResult(responseAPI)
             }
@@ -104,11 +106,11 @@ public class Broadcast {
     
     
     /// Prepare GET API request
-    private func prepareGET(requestByMethodType methodType: MethodAPIType) -> RequestAPIType {
+    private func prepareGET(requestByMethodAPIType methodAPIType: MethodAPIType) -> RequestMethodAPIType {
         Logger.log(message: "Success", event: .severe)
         
         let codeID                  =   generateUniqueId()
-        let requestParamsType       =   methodType.introduced()
+        let requestParamsType       =   methodAPIType.introduced()
         
         let requestAPI              =   RequestAPI(id:          codeID,
                                                    method:      "call",
@@ -122,7 +124,7 @@ public class Broadcast {
             let jsonEncoder         =   JSONEncoder()
             var jsonData            =   Data()
 
-            switch methodType {
+            switch methodAPIType {
             case .getAccounts(_):
                 jsonData            =   try jsonEncoder.encode(requestParams as? [String])
 
@@ -145,10 +147,7 @@ public class Broadcast {
             var jsonString          =   String(data: jsonData, encoding: .utf8)!.replacingOccurrences(of: "]}", with: ",\(jsonParamsString)]}")
             jsonString              =   jsonString
                                             .replacingOccurrences(of: "[[[", with: "[[")
-//                                            .replacingOccurrences(of: "]]]", with: "]]")
                                             .replacingOccurrences(of: "[\"nil\"]", with: "]")
-//                                            .replacingOccurrences(of: "{\"names\":", with: "")      // getAccounts
-//                                            .replacingOccurrences(of: "]}]]", with: "]]]")          // getAccounts
             
             Logger.log(message: "\nEncoded JSON -> String:\n\t " + jsonString, event: .debug)
             
@@ -167,7 +166,7 @@ public class Broadcast {
      - Parameter completion: Blockchain response.
      
      */
-    public func executePOST(byOperationAPIType operationAPIType: OperationAPIType, onResult: @escaping (Decodable) -> Void, onError: @escaping (ErrorAPI) -> Void) {
+    public func executePOST(requestByOperationAPIType operationAPIType: OperationAPIType, userName: String, onResult: @escaping (Decodable) -> Void, onError: @escaping (ErrorAPI) -> Void) {
         // API `get_dynamic_global_properties`
         self.getDynamicGlobalProperties(completion: { success in
             guard success else {
@@ -175,16 +174,17 @@ public class Broadcast {
                 return
             }
             
-            // Create Operation
-            let operation: [Any] = operationAPIType.getFields()
-            Logger.log(message: "\noperation:\n\t\(operation)\n", event: .debug)
+            // Create Operations for Transaction (tx)
+            let operations: [Encodable]   =   operationAPIType.introduced().paramsSecond
+            Logger.log(message: "\nexecutePOST - operations:\n\t\(operations)\n", event: .debug)
             
-            // Create Transaction
-            var tx: Transaction = Transaction(withOperations: operation)
-            Logger.log(message: "\ntransaction:\n\t\(tx)\n", event: .debug)
+            // Create Transaction (tx)
+            var tx: Transaction = Transaction(withOperations: operations)
+            tx.setUser(name: userName)
+            Logger.log(message: "\nexecutePOST - transaction:\n\t\(tx)\n", event: .debug)
             
-            // Transaction: serialize & SHA256 & ECC signing
-            let errorAPI = tx.serialize(byOperationType: operationAPIType)
+            // Transaction (tx): serialize & SHA256 & ECC signing
+            let errorAPI = tx.serialize(byOperationAPIType: operationAPIType)
             
             guard errorAPI == nil else {
                 // Show alert error
@@ -194,16 +194,16 @@ public class Broadcast {
             }
             
             // Create POST message
-            let requestAPIType = self.preparePOST(requestByMethodType: .verifyAuthorityVote, byTransaction: tx)
-            Logger.log(message: "\nrequestAPIType:\n\t\(requestAPIType.requestMessage!)\n", event: .debug)
+            let requestOperationAPIType = self.preparePOST(requestByOperationAPIType: operationAPIType, byTransaction: tx)
+            Logger.log(message: "\nexecutePOST - requestOperationAPIType:\n\t\(requestOperationAPIType.requestMessage!)\n", event: .debug)
             
-            guard requestAPIType.errorAPI == nil else {
+            guard requestOperationAPIType.errorAPI == nil else {
                 onError(ErrorAPI.requestFailed(message: "POST Request Failed"))
                 return
             }
             
-            // Send POST message to blockchain
-            webSocketManager.sendRequest(withType: requestAPIType, completion: { responseAPIType in
+            // Send POST Request messages to Blockchain
+            webSocketManager.sendPOSTRequest(withOperationAPIType: requestOperationAPIType, completion: { responseAPIType in
                 if let responseAPI = responseAPIType.responseAPI {
                     onResult(responseAPI)
                 }
@@ -216,13 +216,13 @@ public class Broadcast {
     }
     
     
-    /// Prepare POST API request
-    private func preparePOST(requestByMethodType methodType: MethodAPIType, byTransaction transaction: Transaction) -> RequestAPIType {
+    /// Prepare POST Request API
+    private func preparePOST(requestByOperationAPIType operationAPIType: OperationAPIType, byTransaction transaction: Transaction) -> RequestOperationAPIType {
         Logger.log(message: "Success", event: .severe)
         
         let codeID                  =   generateUniqueId()
-        let requestParamsType       =   methodType.introduced()
-        
+        let requestParamsType       =   operationAPIType.introduced()
+
         let requestAPI              =   RequestAPI(id:          codeID,
                                                    method:      "call",
                                                    jsonrpc:     "2.0",
@@ -234,6 +234,7 @@ public class Broadcast {
             var jsonData            =   try jsonEncoder.encode(requestAPI)
             let jsonAPIString       =   "\(String(data: jsonData, encoding: .utf8)!)"
                                             .replacingOccurrences(of: "]}", with: ",")
+            
             var jsonChainString     =   jsonAPIString
             Logger.log(message: "\nEncoded JSON -> jsonChainString:\n\t\(jsonChainString)", event: .debug)
             
@@ -241,6 +242,7 @@ public class Broadcast {
             jsonData                =   try jsonEncoder.encode(["ref_block_num": transaction.ref_block_num])
             var jsonTxString        =   "[\(String(data: jsonData, encoding: .utf8)!)]"
                                             .replacingOccurrences(of: "}]", with: ",")
+            
             jsonChainString         +=  jsonTxString
             Logger.log(message: "\nEncoded JSON -> jsonChainString:\n\t\(jsonChainString)", event: .debug)
             
@@ -249,6 +251,7 @@ public class Broadcast {
             jsonTxString            =   "\(String(data: jsonData, encoding: .utf8)!)"
                                             .replacingOccurrences(of: "{", with: "")
                                             .replacingOccurrences(of: "}", with: ",")
+            
             jsonChainString         +=  jsonTxString
             Logger.log(message: "\nEncoded JSON -> jsonChainString:\n\t\(jsonChainString)", event: .debug)
             
@@ -257,6 +260,7 @@ public class Broadcast {
             jsonTxString            =   "\(String(data: jsonData, encoding: .utf8)!)"
                                             .replacingOccurrences(of: "{", with: "")
                                             .replacingOccurrences(of: "}", with: ",")
+            
             jsonChainString         +=  jsonTxString
             Logger.log(message: "\nEncoded JSON -> jsonChainString:\n\t\(jsonChainString)", event: .debug)
             
@@ -265,6 +269,7 @@ public class Broadcast {
             jsonTxString            =   "\(String(data: jsonData, encoding: .utf8)!)"
                                             .replacingOccurrences(of: "{", with: "")
                                             .replacingOccurrences(of: "}", with: ",")
+            
             jsonChainString         +=  jsonTxString
             Logger.log(message: "\nEncoded JSON -> jsonChainString:\n\t\(jsonChainString)", event: .debug)
             
@@ -273,75 +278,39 @@ public class Broadcast {
             jsonTxString            =   "\(String(data: jsonData, encoding: .utf8)!)"
                                             .replacingOccurrences(of: "{", with: "")
                                             .replacingOccurrences(of: "}", with: ",\"operations\":[[")
+            
             jsonChainString         +=  jsonTxString
             Logger.log(message: "\nEncoded JSON -> jsonChainString:\n\t\(jsonChainString)", event: .debug)
             
-            // operations
-            if  let array = transaction.operations[0] as? [Any],
-                let operationArray = array[2] as? [String: Any],
-                let operationName = array[0] as? String,
-                let operationTypeID = array[1] as? Int {
-                // operation name
-                jsonChainString     +=  "\"\(operationName)\",{"
+           
+            // Operations
+            for operation in transaction.operations {
+                jsonChainString     +=   (RequestParameterAPI.decodeToString(model: operation as! RequestParameterAPIPropertiesSupport) ?? "xxx") + "}]]}"
                 Logger.log(message: "\nEncoded JSON -> jsonChainString:\n\t\(jsonChainString)", event: .debug)
-                
-                let keyNames = OperationAPIType.getFieldNames(byTypeID: operationTypeID)
-                
-                for (i, keyName) in keyNames.enumerated() {
-                    let value       =   operationArray.first(where: { $0.key == keyName })!.value
-                    
-                    // Casting Type
-                    if type(of: value) is String.Type {
-                        jsonData    =   try jsonEncoder.encode(["\(keyName)": "\(value)"])
-                    }
-                        
-                    else if type(of: value) is Int64.Type {
-                        jsonData    =   try jsonEncoder.encode(["\(keyName)": value as! Int64])
-                    }
-                    
-                    jsonTxString    =   "\(String(data: jsonData, encoding: .utf8)!)"
-                        .replacingOccurrences(of: "{", with: "")
-                    
-                    jsonTxString    =   jsonTxString.replacingOccurrences(of: "}", with: (i == keyNames.count - 1) ? "}]]}]]}" : ",")
-                    jsonChainString +=  jsonTxString
-                    Logger.log(message: "\nEncoded JSON -> jsonChainString:\n\t\(jsonChainString)", event: .debug)
-                }
             }
             
-            // Example of request message
-            /*
-                {"id":1,"method":"call","jsonrpc":"2.0","params":["database_api","verify_authority",
-                    [{"ref_block_num":54254,"ref_block_prefix":2067645268,"expiration":"2018-05-14T15:25:30",
-                    "operations":[["vote",{"voter":"msm72","author":"yuri-vlad-second","permlink":"sdgsdgsdg234234","weight":10000}]],"extensions":[],
-                    "signatures":["1f0541ff3ca57f2d7b1bd7d6c9c5c7c1cbcebe16fd51840826f3670950b5ba90b0743edff772fb29fa8a40665bc19535658fd69831684a30384c0123c13da08be6"]
-                    }]
-                ]}
-             */
-            
-            Logger.log(message: "\nEncoded JSON -> jsonChainString:\n\t\(jsonChainString)", event: .debug)
-            
-            return (id: codeID, requestMessage: jsonChainString, startTime: Date(), methodAPIType: requestParamsType.methodAPIType, errorAPI: nil)
+            return (id: codeID, requestMessage: jsonChainString, startTime: Date(), operationAPIType: requestParamsType.operationAPIType, errorAPI: nil)
         } catch {
             Logger.log(message: "Error: \(error.localizedDescription)", event: .error)
-            return (id: codeID, requestMessage: nil, startTime: Date(), methodAPIType: requestParamsType.methodAPIType, errorAPI: ErrorAPI.requestFailed(message: "Request Failed"))
+            return (id: codeID, requestMessage: nil, startTime: Date(), operationAPIType: requestParamsType.operationAPIType, errorAPI: ErrorAPI.requestFailed(message: "Request Failed"))
         }
     }
     
     
     /// API `get_dynamic_global_properties`
     private func getDynamicGlobalProperties(completion: @escaping (Bool) -> Void) {
-        // API `get_dynamic_global_properties`
-        let requestAPIType = self.prepareGET(requestByMethodType: .getDynamicGlobalProperties())
-        Logger.log(message: "\nrequestAPIType =\n\t\(requestAPIType)", event: .debug)
-        
+       let requestMethodAPIType  =   self.prepareGET(requestByMethodAPIType: .getDynamicGlobalProperties())
+        Logger.log(message: "\nrequestAPIType =\n\t\(requestMethodAPIType)", event: .debug)
+
         // Network Layer (WebSocketManager)
         DispatchQueue.main.async {
-            webSocketManager.sendRequest(withType: requestAPIType) { (responseAPIType) in
+            webSocketManager.sendGETRequest(withMethodAPIType: requestMethodAPIType, completion: { responseAPIType in
                 Logger.log(message: "\nresponseAPIType:\n\t\(responseAPIType)", event: .debug)
                 
-                guard   let responseAPI = responseAPIType.responseAPI,
-                    let responseAPIResult = responseAPI as? ResponseAPIDynamicGlobalPropertiesResult,
-                    let globalProperties = responseAPIResult.result else {
+                guard let responseAPI = responseAPIType.responseAPI,
+                    let responseAPIResult   =   responseAPI as? ResponseAPIDynamicGlobalPropertiesResult,
+                    let globalProperties    =   responseAPIResult.result else {
+                    
                     Logger.log(message: responseAPIType.errorAPI!.caseInfo.message, event: .error)
                         completion(false)
                         return
@@ -354,7 +323,7 @@ public class Broadcast {
                 headBlockNumber     =   UInt16(globalProperties.head_block_number & 0xFFFF)
                 
                 completion(true)
-            }
+            })
         }
     }
 

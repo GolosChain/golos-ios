@@ -11,18 +11,21 @@
 //
 
 import UIKit
+import GoloSwift
 
 // MARK: - Data models
 enum PostCreateModels {
     // MARK: - Use cases
-    enum Something {
+    enum Post {
         struct RequestModel {
         }
         
         struct ResponseModel {
+            let errorAPI: ErrorAPI?
         }
         
         struct ViewModel {
+            let errorAPI: ErrorAPI?
         }
     }
 }

@@ -147,7 +147,7 @@ extension ThemeTagCollectionViewCell: UITextFieldDelegate {
             return false
         }
         
-        self.completionChangeTitle!(self.firstResponderWidth, textField.text, string)
+        self.completionChangeTitle!(self.firstResponderWidth, textField.text, string.lowercased())
         return string != " "
     }
 }

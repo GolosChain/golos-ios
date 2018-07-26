@@ -38,18 +38,40 @@ extension String {
     }
     
     
-    ///
-    func guessLanguage() -> String {
-        let length          =   self.utf16.count
-        let languageCode    =   CFStringTokenizerCopyBestStringLanguage(self as CFString, CFRange(location: 0, length: length)) as String? ?? ""
-        let locale          =   Locale(identifier: languageCode)
-        
-        return locale.localizedString(forLanguageCode: languageCode) ?? "Unknown"
+    /// Cyrillic
+    var isBothLatinAndCyrillic: Bool {
+        return self.isLatin && self.isCyrillic
     }
     
+    var isLatin: Bool {
+        let upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        let lower = "abcdefghijklmnopqrstuvwxyz"
+        
+        for char in self.map({ String($0) }) {
+            if !upper.contains(char) && !lower.contains(char) {
+                return false
+            }
+        }
+        
+        return true
+    }
+    
+    var isCyrillic: Bool {
+        let upper = "АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЬЮЯ"
+        let lower = "абвгдежзийклмнопрстуфхцчшщьюя"
+        
+        for char in self.map({ String($0) }) {
+            if !upper.contains(char) && !lower.contains(char) {
+                return false
+            }
+        }
+        
+        return true
+    }
+
     /// Cyrillic -> Latin
     func transliterationInLatin() -> String {
-        guard guessLanguage().hasPrefix("Unknown") else {
+        guard self.isCyrillic else {
             return self
         }
         

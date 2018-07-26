@@ -8,7 +8,54 @@
 
 import UIKit
 
+protocol RequestParameterAPIPropertiesSupport {
+    var code: Int? { get set }
+    var name: String? { get set }
+    func getProperties() -> [String: Any]
+    func getPropertiesNames() -> [String]
+}
+
+
 public struct RequestParameterAPI {
+    static func decodeToString(model: RequestParameterAPIPropertiesSupport) -> String? {
+        // Data encoder
+        let jsonEncoder             =   JSONEncoder()
+        var jsonData                =   Data()
+        
+        // Add operation name
+        var result                  =   String(format: "\"%@\",{", model.name ?? "")
+        Logger.log(message: "\nResult + operationName:\n\t\(result)", event: .debug)
+        
+        let properties              =   model.getProperties()
+        let propertiesNames         =   model.getPropertiesNames()
+        
+        do {
+            for (_, propertyName) in propertiesNames.enumerated() {
+                let propertyValue   =   properties.first(where: { $0.key == propertyName })!.value
+                
+                // Casting Types
+                if propertyValue is String {
+                    jsonData        =   try jsonEncoder.encode(["\(propertyName)": "\(propertyValue)"])
+                }
+                    
+                else if propertyValue is Int64 {
+                    jsonData        =   try jsonEncoder.encode(["\(propertyName)": propertyValue as! Int64])
+                }
+                
+                result              +=   "\(String(data: jsonData, encoding: .utf8)!)"
+                                            .replacingOccurrences(of: "{", with: "")
+                                            .replacingOccurrences(of: "}", with: propertiesNames.last == propertyName ? "}]]" : ",")
+                
+                Logger.log(message: "\nResult + \"\(propertyName)\":\n\t\(result)", event: .debug)
+            }
+            
+            return result
+        } catch {
+            Logger.log(message: "Error: \(error.localizedDescription)", event: .error)
+            return nil
+        }
+    }
+    
     public struct User: Encodable {
         // MARK: - Properties
         public let names: [String]
@@ -52,61 +99,56 @@ public struct RequestParameterAPI {
         }
     }
     
-    public struct Comment: Encodable {
+    public struct Comment: Encodable, RequestParameterAPIPropertiesSupport {
         // MARK: - Properties
         public let parentAuthor: String
         public var parentPermlink: String
         public let author: String
         public let title: String
-        public var body: String {
-            didSet {
-                self.permlink = ""
-            }
-        }
+        public var body: String
+        public let jsonMetadata: String
+        public var permlink: String
         
-        public let jsonMetadata: [CommentMetadata]
-        
-        public var permlink: String {
-            set {
-                if parentAuthor.isEmpty {
-                    self.permlink   =   String(format: "%@-%@-%d", author, title.transliterationInLatin(), Int64(Date().timeIntervalSince1970))
-                }
-                    
-                else {
-                    self.permlink   =   String(format: "re-%@-%@-%@-%d", parentAuthor, parentPermlink, author, Int64(Date().timeIntervalSince1970))
-                }
-            }
-            
-            get {
-                return self.permlink
-            }
-        }
         
         // MARK: - Initialization
-        public init(parentAuthor: String, parentPermlink: String, author: String, title: String, body: String, jsonMetadata: [CommentMetadata]) {
+        public init(parentAuthor: String, parentPermlink: String, author: String, title: String, body: String, jsonMetadata: String) {
             self.parentAuthor       =   parentAuthor
             self.parentPermlink     =   parentPermlink
             self.author             =   author
             self.title              =   title
             self.body               =   body
             self.jsonMetadata       =   jsonMetadata
+            self.permlink           =   (parentAuthor.isEmpty ? String(format: "%@-%d", title.transliterationInLatin(), Int64(Date().timeIntervalSince1970)) :
+                                                                String(format: "re-%@-%@-%@-%d", parentAuthor, parentPermlink, author, Int64(Date().timeIntervalSince1970)))
+                                                                    .replacingOccurrences(of: " ", with: "_")
+                                                                    .lowercased()
         }
-    }
-    
-    public struct CommentMetadata: Encodable {
-        // MARK: - Properties
-        public let tags: [String]
-        public var app: String      =   "golos.io/0.1"
-        public var format: String   =   "markdown"
         
-        // MARK: - Initialization
-        public init(tags: [String]) {
-            self.tags               =   tags
+        
+        // MARK: - OperationTypePropertiesSupport protocol implementation
+        // https://github.com/GolosChain/golos-js/blob/master/src/auth/serializer/src/ChainTypes.js
+        var code: Int?     =   1
+        var name: String?  =   "comment"
+       
+        public func getProperties() -> [String: Any] {
+            return  [
+                        "parent_author":        self.parentAuthor,
+                        "parent_permlink":      self.parentPermlink,
+                        "author":               self.author,
+                        "permlink":             self.permlink,
+                        "title":                self.title,
+                        "body":                 self.body,
+                        "json_metadata":        self.jsonMetadata
+                    ]
+        }
+        
+        func getPropertiesNames() -> [String] {
+            return [ "parent_author", "parent_permlink", "author", "permlink", "title", "body", "json_metadata" ]
         }
     }
+
     
-    
-    public struct CommentOptions: Encodable {
+    public struct CommentOptions: Encodable, RequestParameterAPIPropertiesSupport {
         // MARK: - Properties
         public let author: String
         public let permlink: String
@@ -127,9 +169,31 @@ public struct RequestParameterAPI {
             self.allow_curation_rewards =   allowCurationRewards
             self.extensions             =   extensions
         }
+        
+        
+        // MARK: - OperationTypePropertiesSupport protocol implementation
+        // https://github.com/GolosChain/golos-js/blob/master/src/auth/serializer/src/ChainTypes.js
+        var code: Int?     =   19
+        var name: String?  =   "comment_options"
+
+        public func getProperties() -> [String: Any] {
+            return  [
+                        "author":                       self.author,
+                        "permlink":                     self.permlink,
+                        "max_accepted_payout":          self.max_accepted_payout,
+                        "percent_steem_dollars":        self.percent_steem_dollars,
+                        "allow_votes":                  self.allow_votes,
+                        "allow_curation_rewards":       self.allow_curation_rewards,
+                        "extensions":                   self.extensions
+                    ]
+        }
+        
+        func getPropertiesNames() -> [String] {
+            return [ "author", "permlink", "max_accepted_payout", "percent_steem_dollars", "allow_votes", "allow_curation_rewards", "extensions" ]
+        }
     }
     
-    public struct Vote: Encodable {
+    public struct Vote: Encodable, RequestParameterAPIPropertiesSupport {
         // MARK: - Properties
         public let voter: String
         public let author: String
@@ -143,6 +207,25 @@ public struct RequestParameterAPI {
             self.author                 =   author
             self.permlink               =   permlink
             self.weight                 =   weight
+        }
+        
+        
+        // MARK: - OperationTypePropertiesSupport protocol implementation
+        // https://github.com/GolosChain/golos-js/blob/master/src/auth/serializer/src/ChainTypes.js
+        var code: Int?     =   0
+        var name: String?  =   "vote"
+
+        public func getProperties() -> [String: Any] {
+            return  [
+                        "voter":        self.voter,
+                        "author":       self.author,
+                        "permlink":     self.permlink,
+                        "weight":       self.weight
+                    ]
+        }
+        
+        func getPropertiesNames() -> [String] {
+            return [ "voter", "author", "permlink", "weight" ]
         }
     }
 }

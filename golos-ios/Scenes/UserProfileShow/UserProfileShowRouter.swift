@@ -15,7 +15,7 @@ import GoloSwift
 
 // MARK: - Input & Output protocols
 @objc protocol UserProfileShowRoutingLogic {
-    func routeToLoginShowScene()
+    func routeToSettingsShowScene()
 }
 
 protocol UserProfileShowDataPassing {
@@ -35,9 +35,19 @@ class UserProfileShowRouter: NSObject, UserProfileShowRoutingLogic, UserProfileS
     
 
     // MARK: - Routing
-    func routeToLoginShowScene() {
-        StateMachine.load().changeState(.loggedOut)
-        User.current!.clearCache()
-        User.current!.setIsAuthorized(false)
+    func routeToSettingsShowScene() {
+        let storyboard      =   UIStoryboard(name: "SettingsShow", bundle: nil)
+        let destinationVC   =   storyboard.instantiateViewController(withIdentifier: "SettingsShowVC") as! SettingsShowViewController
+
+        navigateToSettingsShowScene(source: viewController!, destination: destinationVC)
+    }
+    
+    
+    // MARK: - Navigation
+    func navigateToSettingsShowScene(source: UserProfileShowViewController, destination: SettingsShowViewController) {
+        UIApplication.shared.statusBarStyle = .default
+        
+        source.show(destination, sender: nil)
+        viewController?.showNavigationBar()
     }
 }

@@ -13,14 +13,18 @@
 
 import Foundation
 
-/// Operation types
+/// Type of request parameters
+typealias OperationRequestParameters = (operationAPIType: OperationAPIType, paramsFirst: [String], paramsSecond: [Encodable])
+
+/// API POST operations
 public indirect enum OperationAPIType {
     /// In Work
+    // API: POST
     case vote(fields: RequestParameterAPI.Vote)
     case comment(fields: RequestParameterAPI.Comment)
     case commentOptions(fields: RequestParameterAPI.CommentOptions)
-    case createPost(comment: OperationAPIType, commentOptions: OperationAPIType, vote: OperationAPIType)
-    
+    case createPost(operations: [Encodable])
+
     
     /// In Reserve
     /*
@@ -79,65 +83,23 @@ public indirect enum OperationAPIType {
     
     
     /// This method return request parameters from selected enum case.
-    public func getFields() -> [Any] {
-        /// Return array: [ operationName, operationCode, [ operationFieldKey: operationFieldValue ] ]
+    func introduced() -> OperationRequestParameters {
         switch self {
-        case .vote(let voteOperation):
-            return  [ "vote", 0,    [
-                                        "voter":                voteOperation.voter,
-                                        "author":               voteOperation.author,
-                                        "permlink":             voteOperation.permlink,
-                                        "weight":               voteOperation.weight
-                                    ]
-                    ]
+        case .vote(let voteValue):                          return  (operationAPIType:      self,
+                                                                     paramsFirst:           ["network_broadcast_api", "broadcast_transaction"],
+                                                                     paramsSecond:          [voteValue])
             
-        case .comment(let commentOperation):
-            return  [ "comment", 1, [
-                                        "parent_author":        commentOperation.parentAuthor,
-                                        "parent_permlink":      commentOperation.parentPermlink,
-                                        "author":               commentOperation.author,
-                                        "permlink":             commentOperation.permlink,
-                                        "title":                commentOperation.title,
-                                        "body":                 commentOperation.body,
-                                        "json_metadata":        commentOperation.jsonMetadata
-                                    ]
-                    ]
+        case .comment(let commentValue):                    return  (operationAPIType:      self,
+                                                                     paramsFirst:           ["network_broadcast_api", "broadcast_transaction"],
+                                                                     paramsSecond:          [commentValue])
             
-        case .commentOptions(let commentOptionsOperation):
-            return  [ "comment_options", 2, [
-                                                "author":                       commentOptionsOperation.author,
-                                                "permlink":                     commentOptionsOperation.permlink,
-                                                "max_accepted_payout":          commentOptionsOperation.max_accepted_payout,
-                                                "percent_steem_dollars":        commentOptionsOperation.percent_steem_dollars,
-                                                "allow_votes":                  commentOptionsOperation.allow_votes,
-                                                "allow_curation_rewards":       commentOptionsOperation.allow_curation_rewards,
-                                                "extensions":                   commentOptionsOperation.extensions
-                                            ]
-                    ]
+        case .commentOptions(let commentOptionsValue):      return  (operationAPIType:      self,
+                                                                     paramsFirst:           ["network_broadcast_api", "broadcast_transaction"],
+                                                                     paramsSecond:          [commentOptionsValue])
             
-        case .createPost(let comment, let commentOptions, let vote):
-            return  [ "operations", 3,  [
-                                            comment, commentOptions, vote
-                                        ]
-                    ]
+        case .createPost(let operations):                   return (operationAPIType:       self,
+                                                                    paramsFirst:            ["network_broadcast_api", "broadcast_transaction"],
+                                                                    paramsSecond:           operations)
         }
-    }
-    
-    
-    /// This method return sorted array of field key names
-    public static func getFieldNames(byTypeID typeID: Int) -> [String] {
-        /// Return array: [ operationFieldKey ]
-        switch typeID {
-        case 0:
-            return [ "voter", "author", "permlink", "weight" ]
-            
-        case 1:
-            return [ "parent_author", "parent_permlink", "author", "permlink", "title", "body", "json_metadata" ]
-            
-        default:
-            break
-        }
-        
-        return []
     }
 }

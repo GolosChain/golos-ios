@@ -18,9 +18,9 @@ protocol PostCreateBusinessLogic {
     func save(tags: [Tag]?)
     func save(commentBody: String?)
     func save(commentTitle: String?)
-    func postCreate(withRequestModel requestModel: PostCreateModels.Something.RequestModel)
-    func postComment(withRequestModel requestModel: PostCreateModels.Something.RequestModel)
-    func postCommentReply(withRequestModel requestModel: PostCreateModels.Something.RequestModel)
+    func postCreate(withRequestModel requestModel: PostCreateModels.Post.RequestModel)
+    func postComment(withRequestModel requestModel: PostCreateModels.Post.RequestModel)
+    func postCommentReply(withRequestModel requestModel: PostCreateModels.Post.RequestModel)
 }
 
 protocol PostCreateDataStore {
@@ -58,56 +58,45 @@ class PostCreateInteractor: PostCreateBusinessLogic, PostCreateDataStore {
         self.commentTitle = commentTitle
     }
     
-    func postCreate(withRequestModel requestModel: PostCreateModels.Something.RequestModel) {
-        let stringTags: [String]    =   self.tags!.compactMap({ $0.title })
+    func postCreate(withRequestModel requestModel: PostCreateModels.Post.RequestModel) {
+//        let stringTags: [String]    =   self.tags!.compactMap({ $0.title })
 
         let comment                 =   RequestParameterAPI.Comment(parentAuthor:       "",
                                                                     parentPermlink:     self.tags!.first!.title!,
-                                                                    author:             "msm72",
+                                                                    author:             User.current!.name,
                                                                     title:              self.commentTitle!,
                                                                     body:               self.commentBody!,
-                                                                    jsonMetadata:       [RequestParameterAPI.CommentMetadata(tags: stringTags)])
+                                                                    jsonMetadata:       "")
         
-        
-        
-        
-        
-        
-        
-//        let commentOptions  =   RequestParameterAPI.CommentOptions(author: <#T##String#>,
-//                                                                   permlink: <#T##String#>,
-//                                                                   maxAcceptedPayout: <#T##String#>,
-//                                                                   percentSteemDollars: <#T##UInt#>,
-//                                                                   allowVotes: <#T##Bool#>,
-//                                                                   allowCurationRewards: <#T##Bool#>,
-//                                                                   extensions: <#T##[String]#>)
-        
-        
-        
+        let operationAPIType        =   OperationAPIType.createPost(operations: [comment])
+
         // API 'Create new post'
-//        broadcast.executePOST(byOperationAPIType: OperationAPIType.create(post: comment),
-//                              onResult: { [weak self] responseAPIResult in
-//                                guard let result = (responseAPIResult as! ResponseAPIFeedResult).result, result.count > 0 else {
-////                                    completion([], nil)
-//                                    return
-//                                }
-//
-//                                let responseModel = PostCreateModels.Something.ResponseModel()
-//                                self?.presenter?.presentPostCreate(fromResponseModel: responseModel)
-//        },
-//                              onError: { errorAPI in
-//                                Logger.log(message: "nresponse API Error = \(errorAPI.caseInfo.message)\n", event: .error)
-////                                completion(nil, errorAPI)
-//        })
+        broadcast.executePOST(requestByOperationAPIType:    operationAPIType,
+                              userName:                     User.current!.name,
+                              onResult:                     { [weak self] responseAPIResult in
+                                var errorAPI: ErrorAPI?
+                                
+                                if let error = (responseAPIResult as! ResponseAPIBlockchainPostResult).error {
+                                    errorAPI        =   ErrorAPI.requestFailed(message: error.message)
+                                }
+                                
+                                let responseModel   =   PostCreateModels.Post.ResponseModel(errorAPI: errorAPI)
+                                self?.presenter?.presentPostCreate(fromResponseModel: responseModel)
+        },
+                              onError: { errorAPI in
+                                Logger.log(message: "nresponse API Error = \(errorAPI.caseInfo.message)\n", event: .error)
+                                let responseModel   =   PostCreateModels.Post.ResponseModel(errorAPI: errorAPI)
+                                self.presenter?.presentPostCreate(fromResponseModel: responseModel)
+        })
     }
     
-    func postComment(withRequestModel requestModel: PostCreateModels.Something.RequestModel) {
-        let responseModel = PostCreateModels.Something.ResponseModel()
+    func postComment(withRequestModel requestModel: PostCreateModels.Post.RequestModel) {
+        let responseModel = PostCreateModels.Post.ResponseModel(errorAPI: nil)
         presenter?.presentPostComment(fromResponseModel: responseModel)
     }
     
-    func postCommentReply(withRequestModel requestModel: PostCreateModels.Something.RequestModel) {
-        let responseModel = PostCreateModels.Something.ResponseModel()
+    func postCommentReply(withRequestModel requestModel: PostCreateModels.Post.RequestModel) {
+        let responseModel = PostCreateModels.Post.ResponseModel(errorAPI: nil)
         presenter?.presentPostCommentReply(fromResponseModel: responseModel)
     }
 }

@@ -58,13 +58,27 @@ class GSBaseViewController: UIViewController {
     }
     
     func hideNavigationBar() {
-        self.navigationController?.navigationBar.isHidden = true
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
-    func showNavigationBar() {
-        self.navigationController?.navigationBar.isHidden = false
+    func showNavigationBar(withBackButtonTitle title: String? = nil) {
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+
+        self.configureBackButton(withTitle: title)
     }
     
+    private func configureBackButton(withTitle title: String? = nil) {
+        let backImage = UIImage(named: "back_button")
+        
+        self.navigationController?.navigationBar.backIndicatorImage                 =   backImage
+        self.navigationController?.navigationBar.backIndicatorTransitionMaskImage   =   backImage
+        
+        self.navigationItem.backBarButtonItem   =   UIBarButtonItem(title:      title == nil ? "" : title!.localized(),
+                                                                    style:      .plain,
+                                                                    target:     nil,
+                                                                    action:     nil)
+    }
+
     func showAlertView(withTitle title: String, andMessage message: String, needCancel cancel: Bool, completion: @escaping ((Bool) -> Void)) {
         let alertViewController = UIAlertController.init(title: title.localized(), message: message.localized(), preferredStyle: .alert)
         

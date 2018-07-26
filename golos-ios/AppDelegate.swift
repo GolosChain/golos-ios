@@ -12,7 +12,6 @@ import Firebase
 import GoloSwift
 import Crashlytics
 import FirebaseCore
-import FirebaseMessaging
 import UserNotifications
 import FirebaseInstanceID
 import IQKeyboardManagerSwift
@@ -21,28 +20,20 @@ import IQKeyboardManagerSwift
 class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Properties
     var window: UIWindow? = UIWindow(frame: UIScreen.main.bounds)
-
     
     // MARK: - Class Functions
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         Logger.log(message: "Success", event: .severe)
         
-        // TEST
-//        self.createPublicKey()
-        
+        /// TEST
+//        GSTestManager.createTestPost()
+
         self.setupNavigationBarAppearance()
         self.setupTabBarAppearance()
         self.setupKeyboardManager()
-//        self.configureMainContainer()
         
         // Run Firebase
         FirebaseApp.configure()
-        
-        if let user = User.current, Messaging.messaging().fcmToken != nil {
-            Messaging.messaging().subscribe(toTopic: user.name)
-        }
-        
-        Messaging.messaging().delegate = self
         
         // Run Fabric
         Fabric.with([Crashlytics.self])
@@ -53,7 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Main window
         window?.backgroundColor = .white
         window?.makeKeyAndVisible()
-        
+
         return true
     }
     
@@ -78,51 +69,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        let token = deviceToken.reduce("") { $0 + String(format: "%02x", $1) }
-        Logger.log(message: "\nAPNs device token:\n\t\(token)", event: .severe)
-        
-        let type: MessagingAPNSTokenType
-        
-        #if DEBUG
-        type = .sandbox
-        #else
-        type = .prod
-        #endif
-        
-        Messaging.messaging().setAPNSToken(deviceToken, type: type)
-        
-        if let user = User.current {
-            Messaging.messaging().subscribe(toTopic: user.name)
-        }
-    }
-    
-    func messaging(_ messaging: Messaging, didRefreshRegistrationToken fcmToken: String) {
-        if let user = User.current {
-            Messaging.messaging().subscribe(toTopic: user.name)
-        }
+        fcm.register(deviceToken: deviceToken)
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         Logger.log(message: "APNs registration failed: \(error.localizedDescription)", event: .error)
     }
-    
-//    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
-//        // If you are receiving a notification message while your app is in the background,
-//        // this callback will not be fired till the user taps on the notification launching the application.
-//        // TODO: Handle data of notification
-//
-//        // With swizzling disabled you must let Messaging know about the message, for Analytics
-//        // Messaging.messaging().appDidReceiveMessage(userInfo)
-//
-//        // Print message ID.
-//        if let messageID = userInfo[gcmMessageIDKey] {
-//            Logger.log(message: "Received Remote Notification messageID: \(messageID)", event: .debug)
-//        }
-//
-//        // Print full message.
-//        Logger.log(message: "Received Remote Notification userInfo: \(userInfo)", event: .debug)
-//    }
-    
+
     // For iOS 9.0
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         // If you are receiving a notification message while your app is in the background,
@@ -164,50 +117,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 
-//public struct PublicKey {
-//    // MARK: - Properties
-//    public let key: Data
-//    public let prefix: String
-//
-//
-//    // MARK: - Class Initialization
-//    init?(key: Data, prefix: String) {
-//        guard key.count == 33 else { return nil }
-//
-//        self.key        =   key
-//        self.prefix     =   prefix
-//    }
-//
-////    public var address: String {
-////        return String(self.prefix) + Base58.base58Decode(self.key)
-////    }
-//}
-
-
 // MARK: - Extensions
 extension AppDelegate {
-    // TEST
-    public func createPublicKey(prefix: String = "GLS") {
-//        let privateKey  =   PrivateKey.init("5KCSABB64zJXKjghZD6QDNvhBNXbCJjZir5EXqTp9DqwjYSejrB")
-//
-//        let publicKey   =   privateKey?.createPublic(prefix: .mainNet)
-//        print(publicKey?.key.toHexString())
-//        print(publicKey?.address)
-    }
-
-    
-    // RootViewController
-    private func configureMainContainer() {
-//        if window != nil {
-//            Logger.log(message: "Success", event: .severe)
-//
-//            let mainContainerViewController     =   MainContainerViewController()
-//            window!.rootViewController          =   mainContainerViewController
-//            window!.makeKeyAndVisible()
-//        }
-    }
-    
-    // IQKeyboardManagerSwift
+    /// IQKeyboardManagerSwift
     private func setupKeyboardManager() {
         Logger.log(message: "Success", event: .severe)
         
@@ -215,7 +127,8 @@ extension AppDelegate {
         IQKeyboardManager.sharedManager().shouldResignOnTouchOutside    =   true
     }
     
-    // Setup Appearance
+
+    /// Setup Appearance
     private func setupNavigationBarAppearance() {
         Logger.log(message: "Success", event: .severe)
         
@@ -242,7 +155,7 @@ extension AppDelegate {
     }
     
     
-    // APNs
+    /// APNs
     private func registerForPushNotifications() {
         // Register for remote notifications
         if #available(iOS 10.0, *) {
@@ -374,39 +287,28 @@ extension AppDelegate {
 }
 
 
-// MARK: - MessagingDelegate
-extension AppDelegate: MessagingDelegate {
-    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
-        Logger.log(message: "Received Firebase token: \(fcmToken)", event: .debug)
-    }
-    
-    func application(received remoteMessage: MessagingRemoteMessage) {
-        Logger.log(message: "Received Remote message: \(remoteMessage.appData)", event: .debug)
-    }
-    
-    // For iOS 10
-    func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
-        print(remoteMessage)
-    }
-}
-
-
 // MARK: - UNUserNotificationCenterDelegate
 extension AppDelegate: UNUserNotificationCenterDelegate {
+    /// Firebase Cloud Messaging: receive topic Push Notification in Active mode, convert to Local Notification
     @available(iOS 10.0, *)
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Swift.Void) {
         UIApplication.shared.applicationIconBadgeNumber += 1
-        Logger.log(message: "Present User Notification, badge = \(UIApplication.shared.applicationIconBadgeNumber)", event: .debug)
+        Logger.log(message: "Active mode: receive FCM Topic Notification, badge = \(UIApplication.shared.applicationIconBadgeNumber)", event: .debug)
+        Logger.log(message: "Active mode: condition = \(notification)", event: .debug)
     }
     
+    
+    /// Firebase Cloud Messaging: receive topic Push Notification in Background mode
     @available(iOS 10.0, *)
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 didReceive response: UNNotificationResponse,
                                 withCompletionHandler completionHandler: @escaping () -> Swift.Void) {
-        Logger.log(message: "Receive User Notification, badge = \(UIApplication.shared.applicationIconBadgeNumber)", event: .debug)
-        
+        Logger.log(message: "Background mode: receive FCM Topic Notification, badge = \(UIApplication.shared.applicationIconBadgeNumber)", event: .debug)
+        Logger.log(message: "Background mode: actionIdentifier = \(response.actionIdentifier)", event: .debug)
+        Logger.log(message: "Background mode: response.notification.request.content.userInfo = \(response.notification.request.content.userInfo)", event: .debug)
+
         // https://medium.com/@lucasgoesvalle/custom-push-notification-with-image-and-interactions-on-ios-swift-4-ffdbde1f457
         switch response.actionIdentifier {
         case UNNotificationDismissActionIdentifier:

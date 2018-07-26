@@ -14,9 +14,9 @@
 "Welcome"                                   =   "Добро пожаловать";
 "in Golos.io"                               =   "в Golos.io";
 "Login Help Step Title 1"                   =   "1. Заходим на сайт https://golos.io";
-"Login Help Step Title 2"                   =   "2. Переходим во вкладку “Кошелёк“";
-"Login Help Step Title 3 Posting"           =   "3. В разделе “Разрешения“ нажмите\nпоказать приватный постинг ключ.\n(он начинается с 5 или 1)";
-"Login Help Step Title 3 Active"            =   "3. В разделе “Разрешения“ нажмите\nпоказать приватный активный ключ.\n(он начинается с 5 или 1)";
+"Login Help Step Title 2"                   =   "2. Переходим во вкладку \"Кошелёк\"";
+"Login Help Step Title 3 Posting"           =   "3. В разделе \"Разрешения\" нажмите\nпоказать приватный постинг ключ.\n(он начинается с 5 или 1)";
+"Login Help Step Title 3 Active"            =   "3. В разделе \"Разрешения\" нажмите\nпоказать приватный активный ключ.\n(он начинается с 5 или 1)";
 "Login Help Step Title 4"                   =   "4. Его нужно скопировать или\nсканировать через QR-код";
 "Do Not Registered"                         =   "Вы ещё не зарегистрированы?";
 "Add Max 5 Tags"                            =   "Напишите 5 тегов";
@@ -39,13 +39,23 @@
 "Subscribe"                                 =   "Подписаться";
 "Write"                                     =   "Написать";
 "Posts"                                     =   "Посты";
-"Answers"                                   =   "Ответы";
+"Replies"                                   =   "Ответы";
 "Favorites"                                 =   "Избранное";
 "Information"                               =   "Информация";
 "Post Title"                                =   "Пост";
 "Comment Title Noun"                        =   "Комментарий";
 "Answer Title"                              =   "Ответ";
 "Reply Title Verb"                          =   "Ответить";
+"Edit Profile Title"                        =   "Редактировать профиль";
+"Remote Notifications Title"                =   "Уведомления";
+"Other photo Title"                         =   "Другое фото";
+"Change User Cover Photo Title"             =   "Изменить обложку";
+"Save Verb Title"                           =   "Сохранить";
+"Wiki Golos"                                =   "Wiki Голоса";
+"About Golos.io"                            =   "О Golos.io";
+"Privacy Policy"                            =   "Политика конфиденциальности";
+"Switch Account Verb"                       =   "Сменить аккаунт";
+"Exit Verb"                                 =   "Выйти";
 
 
 // Titles
@@ -75,12 +85,39 @@
 "Dolphin"                                   =   "Дельфин";
 "QR Scanner"                                =   "QR сканер";
 "Gudgeon"                                   =   "Пескарь";
-"Dolphin"                                   =   "Дельфин";
 "Killer Whale"                              =   "Касатка";
 "Whale"                                     =   "Кит";
 "Answered your"                             =   "ответил на ваш";
 "Days ago"                                  =   " дн назад";
 "Today ago"                                 =   "сегодня";
+"Settings"                                  =   "Настройки";
+"COMMON"                                    =   "ОБЩИЕ";
+"Interface Language"                        =   "Язык интерфейса";
+"English"                                   =   "Английский";
+"Russian"                                   =   "Русский";
+"Ukrainian"                                 =   "Украинский";
+"Select Currency"                           =   "Выберите валюту";
+"Voice Power"                               =   "Сила голоса";
+"LENTA VIEWING"                             =   "ПРОСМОТР ЛЕНТЫ";
+"Mode"                                      =   "Режим";
+"Day Mode"                                  =   "Дневной";
+"Night Mode"                                =   "Ночной";
+"Compact Mode"                              =   "Компактный режим";
+"Images Viewing"                            =   "Просмотр картинок";
+"Viewed Posts"                              =   "Просмотренные посты";
+"MEMORIES"                                  =   "УПОМИНАНИЯ";
+"Upvote"                                    =   "Апвоут";
+"Short Comment"                             =   "Коммент";
+"Subscriptions"                             =   "Подписки";
+"Reblog"                                    =   "Реблог";
+"Private Messages"                          =   "Личные сообщения";
+"Post Replies"                              =   "Ответы на пост";
+"Comments Replies"                          =   "Ответы на комментарии";
+"for"                                       =   "для";
+"Your Login"                                =   "Ваш логин";
+"About Yourself"                            =   "О себе";
+"City"                                      =   "Город";
+"Website Link"                              =   "Ссылка на сайт";
 
 
 // Placeholders
@@ -100,6 +137,10 @@
 "Promo List is empty"                       =   "Список Промо постов\nпуст";
 "Reply List is empty"                       =   "Список Ответов\nпуст";
 "Blog List is empty"                        =   "Список Моих постов\nпуст";
+"First Name Last Name Placeholder"          =   "Имя Фамилия";
+"Short About Yourself Placeholder"          =   "Немного о себе";
+"Moscow Placeholder"                        =   "Москва";
+"Website Placeholder"                       =   "http://site.com";
 
 
 // Error message

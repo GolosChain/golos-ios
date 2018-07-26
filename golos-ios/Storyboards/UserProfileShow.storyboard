@@ -37,7 +37,7 @@
                                                 </constraints>
                                             </view>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vAN-NO-FcT" userLabel="User Profile Info Control View">
-                                                <rect key="frame" x="16" y="112" width="178" height="44"/>
+                                                <rect key="frame" x="16" y="112" width="208" height="44"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="44" id="aRF-PN-7sa"/>
@@ -61,7 +61,7 @@
                                             <constraint firstItem="vAN-NO-FcT" firstAttribute="leading" secondItem="EqR-p6-NO1" secondAttribute="leading" constant="16" id="UY2-rH-BeL"/>
                                             <constraint firstAttribute="trailing" secondItem="oTo-xI-SFK" secondAttribute="trailing" id="XNN-6f-fp5"/>
                                             <constraint firstAttribute="trailing" secondItem="nQR-xd-4LM" secondAttribute="trailing" id="cn3-qD-MvL"/>
-                                            <constraint firstAttribute="trailing" secondItem="vAN-NO-FcT" secondAttribute="trailing" constant="180" id="hbO-9L-cIM"/>
+                                            <constraint firstAttribute="trailing" secondItem="vAN-NO-FcT" secondAttribute="trailing" constant="150" id="hbO-9L-cIM"/>
                                             <constraint firstItem="nQR-xd-4LM" firstAttribute="leading" secondItem="EqR-p6-NO1" secondAttribute="leading" id="jZG-sB-bi9"/>
                                             <constraint firstItem="oTo-xI-SFK" firstAttribute="top" secondItem="vAN-NO-FcT" secondAttribute="bottom" id="jvc-Xt-W3t"/>
                                             <constraint firstItem="nQR-xd-4LM" firstAttribute="top" secondItem="gKv-wz-hea" secondAttribute="bottom" id="k1R-e6-PbC"/>

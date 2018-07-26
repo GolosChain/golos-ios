@@ -16,22 +16,25 @@ struct ConstantsApp {
     }
     
     struct Urls {
-        static let moreInfoAbout    =   "https://golos.io/welcome"
-        static let registration     =   "https://golos.io/create_account"
+        static let moreInfoAbout        =   "https://golos.io/welcome"
+        static let registration         =   "https://golos.io/create_account"
     }
     
     struct StateMachine {
-        static let oldStateKey      =   "oldStateKey"
+        static let oldStateKey          =   "oldStateKey"
     }
 }
 
-let broadcast: Broadcast            =   Broadcast.shared
+let broadcast: Broadcast                =   Broadcast.shared
 
 
 // Firebase
 // https://console.firebase.google.com/u/0/project/golos-5b0d5/settings/cloudmessaging/ios:io.golos.testing.golos-ios
-let gcmMessageIDKey                 =  "gcm.message_id"
+let gcmMessageIDKey                     =  "gcm.message_id"
 //"AAAAcjPaNzY:APA91bGce4gHFXIsVTWIlLyZZA2HI0aVo8Mh_y8jF8Tu9gPyBM02G0WZtkXQXjfXmWLOrjhb9f6a50gxryPOEzKwBhy0q49OcAj5k_qP6YPqmLsYHC0jFqXZdKQ9CUShA6n2LumOe1s8"
+
+// Init Messaging manager
+let fcm                                 =   FCManager.init(withTopics: ["msm72", "sergiy"])
 
 
 // Operation values
@@ -61,6 +64,8 @@ var isNetworkAvailable: Bool {
         return ReachabilityManager.connection()
     }
 }
+
+let appVersion                          =   Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String
 
 
 // Keys

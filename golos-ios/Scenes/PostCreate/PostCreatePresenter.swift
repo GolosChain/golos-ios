@@ -15,9 +15,9 @@ import GoloSwift
 
 // MARK: - Presentation Logic protocols
 protocol PostCreatePresentationLogic {
-    func presentPostCreate(fromResponseModel responseModel: PostCreateModels.Something.ResponseModel)
-    func presentPostComment(fromResponseModel responseModel: PostCreateModels.Something.ResponseModel)
-    func presentPostCommentReply(fromResponseModel responseModel: PostCreateModels.Something.ResponseModel)
+    func presentPostCreate(fromResponseModel responseModel: PostCreateModels.Post.ResponseModel)
+    func presentPostComment(fromResponseModel responseModel: PostCreateModels.Post.ResponseModel)
+    func presentPostCommentReply(fromResponseModel responseModel: PostCreateModels.Post.ResponseModel)
 }
 
 class PostCreatePresenter: PostCreatePresentationLogic {
@@ -32,18 +32,18 @@ class PostCreatePresenter: PostCreatePresentationLogic {
     
 
     // MARK: - Presentation Logic implementation
-    func presentPostCreate(fromResponseModel responseModel: PostCreateModels.Something.ResponseModel) {
-        let viewModel = PostCreateModels.Something.ViewModel()
+    func presentPostCreate(fromResponseModel responseModel: PostCreateModels.Post.ResponseModel) {
+        let viewModel = PostCreateModels.Post.ViewModel(errorAPI: responseModel.errorAPI)
         viewController?.displayPostCreate(fromViewModel: viewModel)
     }
     
-    func presentPostComment(fromResponseModel responseModel: PostCreateModels.Something.ResponseModel) {
-        let viewModel = PostCreateModels.Something.ViewModel()
+    func presentPostComment(fromResponseModel responseModel: PostCreateModels.Post.ResponseModel) {
+        let viewModel = PostCreateModels.Post.ViewModel(errorAPI: responseModel.errorAPI)
         viewController?.displayPostComment(fromViewModel: viewModel)
     }
     
-    func presentPostCommentReply(fromResponseModel responseModel: PostCreateModels.Something.ResponseModel) {
-        let viewModel = PostCreateModels.Something.ViewModel()
+    func presentPostCommentReply(fromResponseModel responseModel: PostCreateModels.Post.ResponseModel) {
+        let viewModel = PostCreateModels.Post.ViewModel(errorAPI: responseModel.errorAPI)
         viewController?.displayPostCommentReply(fromViewModel: viewModel)
     }
 }

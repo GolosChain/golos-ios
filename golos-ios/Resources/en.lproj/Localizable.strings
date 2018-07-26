@@ -39,13 +39,23 @@
 "Subscribe"                                 =   "Subscribe";
 "Write"                                     =   "Write";
 "Posts"                                     =   "Posts";
-"Answers"                                   =   "Answers";
+"Replies"                                   =   "Replies";
 "Favorites"                                 =   "Favorites";
 "Information"                               =   "Information";
 "Post Title"                                =   "Post";
 "Comment Title Noun"                        =   "Comment";
 "Answer Title"                              =   "Answer";
 "Reply Title Verb"                          =   "Reply";
+"Edit Profile Title"                        =   "Edit Profile";
+"Remote Notifications Title"                =   "Notifications";
+"Other photo Title"                         =   "Other photo";
+"Change User Cover Photo Title"             =   "Change Cover Photo";
+"Save Verb Title"                           =   "Save";
+"Wiki Golos"                                =   "Wiki Golos";
+"About Golos.io"                            =   "About Golos.io";
+"Privacy Policy"                            =   "Privacy Policy";
+"Switch Account Verb"                       =   "Switch Account";
+"Exit Verb"                                 =   "Log Out";
 
 
 // Titles
@@ -75,12 +85,39 @@
 "Dolphin"                                   =   "Dolphin";
 "QR Scanner"                                =   "QR Scanner";
 "Gudgeon"                                   =   "Gudgeon";
-"Dolphin"                                   =   "Dolphin";
 "Killer Whale"                              =   "Killer Whale";
 "Whale"                                     =   "Whale";
 "Answered your"                             =   "answered your";
 "Days ago"                                  =   " days ago";
 "Today ago"                                 =   "today";
+"Settings"                                  =   "Settings";
+"COMMON"                                    =   "COMMON";
+"Interface Language"                        =   "Interface Language";
+"English"                                   =   "English";
+"Russian"                                   =   "Russian";
+"Ukrainian"                                 =   "Ukrainian";
+"Select Currency"                           =   "Select Currency";
+"Voice Power"                               =   "Voice Power";
+"LENTA VIEWING"                             =   "LENTA VIEWING";
+"Mode"                                      =   "Mode";
+"Day Mode"                                  =   "Day";
+"Night Mode"                                =   "Night";
+"Compact Mode"                              =   "Compact Mode";
+"Images Viewing"                            =   "Images Viewing";
+"Viewed Posts"                              =   "Viewed Posts";
+"MEMORIES"                                  =   "MEMORIES";
+"Upvote"                                    =   "Upvote";
+"Short Comment"                             =   "Comment";
+"Subscriptions"                             =   "Subscriptions";
+"Reblog"                                    =   "Reblog";
+"Private Messages"                          =   "Private Messages";
+"Post Replies"                              =   "Post Responses";
+"Comments Replies"                          =   "Comments Responses";
+"for"                                       =   " for ";
+"Your Login"                                =   "Your Login";
+"About Yourself"                            =   "About Yourself";
+"City"                                      =   "City";
+"Website Link"                              =   "Website Link";
 
 
 // Placeholders
@@ -100,6 +137,10 @@
 "Promo List is empty"                       =   "List of Promo Posts\n is empty";
 "Reply List is empty"                       =   "List of Answers\n is empty";
 "Blog List is empty"                        =   "List of My Blog\n is empty";
+"First Name Last Name Placeholder"          =   "First Name Last Name";
+"Short About Yourself Placeholder"          =   "About Yourself";
+"Moscow Placeholder"                        =   "Moscow";
+"Website Placeholder"                       =   "http://site.com";
 
 
 // Error message
