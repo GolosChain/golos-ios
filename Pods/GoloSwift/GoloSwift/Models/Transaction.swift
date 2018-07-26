@@ -42,7 +42,7 @@ public struct Transaction {
     public mutating func setUser(name: String) {
         self.userName               =   name
     }
-
+    
     /// Service function to remove `operation code` from transaction
     private mutating func deleteOperationCode() {
         for (i, operation) in self.operations.enumerated() {
@@ -73,11 +73,11 @@ public struct Transaction {
         // Add to buffer `ref_block_num` as `UInt16`
         self.serializedBuffer += self.ref_block_num.bytesReverse
         Logger.log(message: "\nserializedBuffer + ref_block_num:\n\t\(self.serializedBuffer.toHexString())\n", event: .debug)
-
+        
         // Add to buffer `ref_block_prefix` as `UInt32`
         self.serializedBuffer += self.ref_block_prefix.bytesReverse
         Logger.log(message: "\nserializedBuffer + ref_block_prefix:\n\t\(self.serializedBuffer.toHexString())\n", event: .debug)
-
+        
         // Add to buffer `expiration` as `UInt32`
         let expirationDate: UInt32 = UInt32(self.expiration.convert(toDateFormat: .expirationDateType).timeIntervalSince1970)
         self.serializedBuffer += expirationDate.bytesReverse
@@ -99,7 +99,7 @@ public struct Transaction {
         // ECC signing
         let errorAPI = signingECC(messageSHA256: messageSHA256)
         Logger.log(message: "\nerrorAPI:\n\t\(errorAPI?.localizedDescription ?? "nil")\n", event: .debug)
-
+        
         return errorAPI
     }
     
@@ -114,11 +114,11 @@ public struct Transaction {
             let operationTypeID                 =   (operation as! RequestParameterAPIPropertiesSupport).code!
             let operationTypeProperties         =   (operation as! RequestParameterAPIPropertiesSupport).getProperties()
             let operationTypePropertiesNames    =   (operation as! RequestParameterAPIPropertiesSupport).getPropertiesNames()
-
+            
             // Operations: add to buffer `operation type ID`
             self.serializedBuffer   +=  self.varint(int: operationTypeID)
             Logger.log(message: "\nserializedBuffer - operationTypeID:\n\t\(self.serializedBuffer.toHexString())\n", event: .debug)
-
+            
             // Operations: add to buffer `operation fields`
             for operationTypePropertyName in operationTypePropertiesNames {
                 let operationTypePropertyValue  =   operationTypeProperties[operationTypePropertyName]
@@ -127,8 +127,8 @@ public struct Transaction {
                 if let value = operationTypePropertyValue as? String {
                     self.serialize(string: value)
                 }
-                
-                // Operations: serialize Int64
+                    
+                    // Operations: serialize Int64
                 else if let value = operationTypePropertyValue as? Int64 {
                     self.serialize(int64: value)
                 }
@@ -147,8 +147,8 @@ public struct Transaction {
     private mutating func serialize(int64: Int64) {
         self.serializedBuffer   +=  UInt16(int64).bytesReverse
     }
-
-
+    
+    
     
     /**
      ECC signing serialized buffer of transaction.
@@ -160,10 +160,10 @@ public struct Transaction {
     private mutating func signingECC(messageSHA256: [Byte]) -> ErrorAPI? {
         if let privateKeyString = KeychainManager.loadPrivateKey(forUserName: self.userName) {
             let privateKeyData: [Byte] =  GSBase58().base58Decode(data: privateKeyString)
-
+            
             Logger.log(message: "\nsigningECC - privateKey:\n\t\(privateKeyString)\n", event: .debug)
             Logger.log(message: "\nsigningECC - privateKeyData:\n\t\(privateKeyData.toHexString())\n", event: .debug)
-
+            
             var index: Int = 0
             var extra: [Byte]?
             var loopCounter: Byte = 0
@@ -222,15 +222,15 @@ extension Transaction {
         var bytes = [Byte]()
         var n = int
         var hexString = String(format:"%02x", arguments: [n])
-
+        
         while Int(hexString, radix: 16)! >= 0x80 {
             bytes += Byte((n & 0x7f) | 0x80).data
             n = n >> 7
             hexString = String(format:"%02x", arguments: [n])
         }
-
+        
         bytes += Int8(hexString, radix: 16)!.data
-
+        
         return bytes
     }
 }

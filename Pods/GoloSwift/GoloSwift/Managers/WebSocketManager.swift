@@ -14,25 +14,25 @@ public class WebSocketManager {
     private var errorAPI: ErrorAPI?
     private var requestMethodsAPIStore      =   [Int: RequestMethodAPIStore]()
     private var requestOperationsAPIStore   =   [Int: RequestOperationAPIStore]()
-
+    
     
     // MARK: - Class Initialization
     deinit {
         Logger.log(message: "Success", event: .severe)
     }
     
-
+    
     // MARK: - Custom Functions
     public func connect() {
         Logger.log(message: "Success", event: .severe)
-
+        
         if webSocket.isConnected { return }
         webSocket.connect()
     }
     
     public func disconnect() {
         Logger.log(message: "Success", event: .severe)
-
+        
         guard webSocket.isConnected else { return }
         
         // Clean store lists
@@ -56,7 +56,7 @@ public class WebSocketManager {
         
         webSocket.isConnected ? sendMessage(type.requestMessage!) : webSocket.connect()
     }
-
+    
     
     /// Websocket: send POST Request messages
     public func sendPOSTRequest(withOperationAPIType type: RequestOperationAPIType, completion: @escaping (ResponseAPIType) -> Void) {
@@ -65,7 +65,7 @@ public class WebSocketManager {
         
         webSocket.isConnected ? sendMessage(type.requestMessage!) : webSocket.connect()
     }
-
+    
     
     /**
      Checks `JSON` for an error.
@@ -105,7 +105,7 @@ public class WebSocketManager {
                 
             case .getAllContentReplies(_):
                 return (responseAPI: try JSONDecoder().decode(ResponseAPIAllContentRepliesResult.self, from: jsonData), errorAPI: nil)
-
+                
             case .getUserFollowCounts(_):
                 return (responseAPI: try JSONDecoder().decode(ResponseAPIUserFollowCountsResult.self, from: jsonData), errorAPI: nil)
             }
@@ -148,7 +148,7 @@ extension WebSocketManager: WebSocketDelegate {
         
         Logger.log(message: "\nrequestMethodsAPIStore =\n\t\(requestMethodsAPIStore)", event: .debug)
         Logger.log(message: "\nrequestOperationsAPIStore =\n\t\(requestOperationsAPIStore)", event: .debug)
-
+        
         // Send all stored GET & POST Request messages
         self.requestMethodsAPIStore.forEach({ sendMessage($0.value.methodAPIType.requestMessage!)})
         self.requestOperationsAPIStore.forEach({ sendMessage($0.value.operationAPIType.requestMessage!)})
@@ -178,15 +178,15 @@ extension WebSocketManager: WebSocketDelegate {
                     responseAPIType     =   isSendedRequestMethodAPI ?
                                                 (try self?.decode(from: jsonData, byMethodAPIType: requestMethodAPIStore!.methodAPIType.methodAPIType))! :
                                                 (try self?.decode(from: jsonData, byOperationAPIType: requestOperationAPIStore!.operationAPIType.operationAPIType))!
-
-                        
+                    
+                    
                     guard let responseAPIResult = responseAPIType.responseAPI else {
                         self?.errorAPI  =   responseAPIType.errorAPI
-                            
+                        
                         return  isSendedRequestMethodAPI ?  requestMethodAPIStore!.completion((responseAPI: nil, errorAPI: self?.errorAPI)) :
                                                             requestOperationAPIStore!.completion((responseAPI: nil, errorAPI: self?.errorAPI))
                     }
-
+                    
 //                    Logger.log(message: "\nresponseAPIResult model:\n\t\(responseAPIResult)", event: .debug)
                     
                     // Check websocket timeout: resend current request message
@@ -208,7 +208,7 @@ extension WebSocketManager: WebSocketDelegate {
                             self?.requestMethodsAPIStore[codeID]    =   newRequestMethodAPIStore
                             
                             self?.sendMessage(requestMethodAPIStore!.methodAPIType.requestMessage!)
-
+                            
                         // POST Request
                         case false:
                             let newRequestOperationAPIStore         =   (operationAPIType:      (id:                    requestOperationAPIStore!.operationAPIType.id,
@@ -219,17 +219,17 @@ extension WebSocketManager: WebSocketDelegate {
                                                                          completion:            requestOperationAPIStore!.completion)
                             
                             self?.requestOperationsAPIStore[codeID] =   newRequestOperationAPIStore
-
+                            
                             self?.sendMessage(requestOperationAPIStore!.operationAPIType.requestMessage!)
                         }
                     }
                         
-                    // Check websocket timeout: handler completion
+                        // Check websocket timeout: handler completion
                     else {
                         // Clean requestsAPIStore
                         self?.requestMethodsAPIStore[codeID]        =    nil
                         self?.requestOperationsAPIStore[codeID]     =    nil
-
+                        
                         // Remove unique request ID
                         if let requestID = requestIDs.index(of: codeID) {
                             requestIDs.remove(at: requestID)
@@ -241,7 +241,7 @@ extension WebSocketManager: WebSocketDelegate {
                 } catch {
                     Logger.log(message: "\nResponse Unsuccessful:\n\t\(error.localizedDescription)", event: .error)
                     self?.errorAPI = ErrorAPI.responseUnsuccessful(message: error.localizedDescription)
-
+                    
                     isSendedRequestMethodAPI ?  requestMethodAPIStore!.completion((responseAPI: nil, errorAPI: self?.errorAPI)) :
                                                 requestOperationAPIStore!.completion((responseAPI: nil, errorAPI: self?.errorAPI))
                 }

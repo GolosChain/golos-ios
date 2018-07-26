@@ -24,7 +24,7 @@ public indirect enum OperationAPIType {
     case comment(fields: RequestParameterAPI.Comment)
     case commentOptions(fields: RequestParameterAPI.CommentOptions)
     case createPost(operations: [Encodable])
-
+    
     
     /// In Reserve
     /*

@@ -53,10 +53,10 @@ public struct ResponseAPIFeed: Decodable {
     public let author_reputation: Conflicted
     public let pending_payout_value: String
     public let total_payout_value: String
-
+    
     // "2018-04-13T10:19:54"
     public let created: String
-
+    
     
     // MARK: - In reserve
     /*
@@ -163,7 +163,7 @@ public struct ResponseAPIUser: Decodable {
     
     // "2017-10-09T21:10:21"
     public let created: String
-
+    
     
     // MARK: - In reserve
     /*

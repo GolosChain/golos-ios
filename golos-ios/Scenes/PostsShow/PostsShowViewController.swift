@@ -212,7 +212,8 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
         segmentedViewController.segmentBackgroundColor          =   UIColor(hexString: "#4469AF")
         segmentedViewController.segmentedScrollViewColor        =   UIColor(hexString: "#4469AF")
         segmentedViewController.segmentShadow                   =   SJShadow.dark()
-
+        segmentedViewController.view.frame.size                 =   CGSize(width: controlView.bounds.width, height: segmentedViewController.view.bounds.height)
+        
         segmentedViewController.delegate                        =   self
         
         controlView.addSubview(segmentedViewController.view)

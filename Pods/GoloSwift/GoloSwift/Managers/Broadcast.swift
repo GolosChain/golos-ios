@@ -63,11 +63,11 @@ public class Broadcast {
             if let result = maybeResult {
                 onResult(result)
             }
-            
+                
             else if let error = maybeError {
                 onError(error)
             }
-            
+                
             else {
                 onError(ErrorAPI.requestFailed(message: "Result not found"))
             }
@@ -79,7 +79,7 @@ public class Broadcast {
      
      - Parameter methodAPIType: Type of API method.
      - Parameter completion: Blockchain response.
-
+     
      */
     public func executeGET(byMethodAPIType methodAPIType: MethodAPIType, onResult: @escaping (Decodable) -> Void, onError: @escaping (ErrorAPI) -> Void) {
         // Create GET Request messages to Blockchain
@@ -97,7 +97,7 @@ public class Broadcast {
             if let responseAPI = responseAPIType.responseAPI {
                 onResult(responseAPI)
             }
-            
+                
             else {
                 onError(ErrorAPI.responseUnsuccessful(message: "Result not found"))
             }
@@ -123,24 +123,24 @@ public class Broadcast {
             // Encode data
             let jsonEncoder         =   JSONEncoder()
             var jsonData            =   Data()
-
+            
             switch methodAPIType {
             case .getAccounts(_):
                 jsonData            =   try jsonEncoder.encode(requestParams as? [String])
-
+                
             case .getDiscussions(_):
                 jsonData            =   try jsonEncoder.encode(requestParams as? RequestParameterAPI.Discussion)
-
+                
             case .getUserReplies(_), .getUserFollowCounts(_):
                 jsonData            =   Data((requestParams as! String).utf8)
-
+                
             case .getAllContentReplies(_):
                 jsonData            =   Data((requestParams as! String).utf8)
-
+                
             default:
                 break
             }
-
+            
             let jsonParamsString    =   "[\(String(data: jsonData, encoding: .utf8)!)]"
             
             jsonData                =   try jsonEncoder.encode(requestAPI)
@@ -222,7 +222,7 @@ public class Broadcast {
         
         let codeID                  =   generateUniqueId()
         let requestParamsType       =   operationAPIType.introduced()
-
+        
         let requestAPI              =   RequestAPI(id:          codeID,
                                                    method:      "call",
                                                    jsonrpc:     "2.0",
@@ -233,7 +233,7 @@ public class Broadcast {
             let jsonEncoder         =   JSONEncoder()
             var jsonData            =   try jsonEncoder.encode(requestAPI)
             let jsonAPIString       =   "\(String(data: jsonData, encoding: .utf8)!)"
-                                            .replacingOccurrences(of: "]}", with: ",")
+                .replacingOccurrences(of: "]}", with: ",")
             
             var jsonChainString     =   jsonAPIString
             Logger.log(message: "\nEncoded JSON -> jsonChainString:\n\t\(jsonChainString)", event: .debug)
@@ -241,7 +241,7 @@ public class Broadcast {
             // ref_block_num
             jsonData                =   try jsonEncoder.encode(["ref_block_num": transaction.ref_block_num])
             var jsonTxString        =   "[\(String(data: jsonData, encoding: .utf8)!)]"
-                                            .replacingOccurrences(of: "}]", with: ",")
+                .replacingOccurrences(of: "}]", with: ",")
             
             jsonChainString         +=  jsonTxString
             Logger.log(message: "\nEncoded JSON -> jsonChainString:\n\t\(jsonChainString)", event: .debug)
@@ -282,7 +282,7 @@ public class Broadcast {
             jsonChainString         +=  jsonTxString
             Logger.log(message: "\nEncoded JSON -> jsonChainString:\n\t\(jsonChainString)", event: .debug)
             
-           
+            
             // Operations
             for operation in transaction.operations {
                 jsonChainString     +=   (RequestParameterAPI.decodeToString(model: operation as! RequestParameterAPIPropertiesSupport) ?? "xxx") + "}]]}"
@@ -299,9 +299,9 @@ public class Broadcast {
     
     /// API `get_dynamic_global_properties`
     private func getDynamicGlobalProperties(completion: @escaping (Bool) -> Void) {
-       let requestMethodAPIType  =   self.prepareGET(requestByMethodAPIType: .getDynamicGlobalProperties())
+        let requestMethodAPIType  =   self.prepareGET(requestByMethodAPIType: .getDynamicGlobalProperties())
         Logger.log(message: "\nrequestAPIType =\n\t\(requestMethodAPIType)", event: .debug)
-
+        
         // Network Layer (WebSocketManager)
         DispatchQueue.main.async {
             webSocketManager.sendGETRequest(withMethodAPIType: requestMethodAPIType, completion: { responseAPIType in
@@ -310,8 +310,8 @@ public class Broadcast {
                 guard let responseAPI = responseAPIType.responseAPI,
                     let responseAPIResult   =   responseAPI as? ResponseAPIDynamicGlobalPropertiesResult,
                     let globalProperties    =   responseAPIResult.result else {
-                    
-                    Logger.log(message: responseAPIType.errorAPI!.caseInfo.message, event: .error)
+                        
+                        Logger.log(message: responseAPIType.errorAPI!.caseInfo.message, event: .error)
                         completion(false)
                         return
                 }
@@ -326,8 +326,8 @@ public class Broadcast {
             })
         }
     }
-
-
+    
+    
     /// Generating a unique ID
     private func generateUniqueId() -> Int {
         var generatedID = 0

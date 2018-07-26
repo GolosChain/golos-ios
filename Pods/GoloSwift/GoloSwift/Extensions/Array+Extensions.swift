@@ -12,7 +12,7 @@ extension Array {
     static func add(randomElementsCount count: Int) -> [Byte] {
         return (0..<count).map{ _ in Byte(arc4random_uniform(UInt32(Byte.max))) }
     }
-
+    
     var string: String {
         let data = Data(bytes: self as! [Byte], count: self.count)
         

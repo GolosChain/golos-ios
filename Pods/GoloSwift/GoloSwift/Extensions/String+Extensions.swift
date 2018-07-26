@@ -26,7 +26,7 @@ extension String {
         
         return UInt32(bigEndian: selectedBytesArrayData.withUnsafeBytes { $0.pointee })
     }
-
+    
     public var hexBytes: [Byte] {
         return stride(from: 0, to: count, by: 2).compactMap { Byte(String(Array(self)[$0..<$0.advanced(by: 2)]), radix: 16) }
     }
@@ -68,7 +68,7 @@ extension String {
         
         return true
     }
-
+    
     /// Cyrillic -> Latin
     func transliterationInLatin() -> String {
         guard self.isCyrillic else {
@@ -90,7 +90,7 @@ extension String {
         let cyrillicChars   =   [ "щ", "ш", "ч", "ц", "й", "ё", "э", "ю", "я", "х", "ж", "а", "б", "в", "г", "д", "е", "з", "и", "к", "л", "м", "н", "о", "п", "р", "с", "т", "у", "ф", "ъ", "ы", "ь", "ґ", "є", "і", "ї" ]
         
         // https://github.com/GolosChain/tolstoy/blob/master/app/utils/ParsersAndFormatters.js#L117
-        let latinChars      =   [ "shch", "sh", "ch", "cz", "ij", "yo", "ye", "yu", "ya", "kh", "zh", "a", "b", "v", "g", "d", "e", "z", "i", "k", "l", "m", "n", "o", "p", "r", "s", "t", "u", "f", "xx", "y", "x", "g", "e", "i", "i" ]
+        let latinChars      =   [ "shch", "sh", "ch", "cz", "ij", "yo", "ye", "yu", "ya", "kh", "zh", "a", "b", "v", "g", "d", "e", "z", "i", "k", "l", "m", "n", "o", "p", "r", "s",               "t", "u", "f", "xx", "y", "x", "g", "e", "i", "i" ]
         
         let convertDict     =   NSDictionary.init(objects: latinChars, forKeys: cyrillicChars as [NSCopying])
         
@@ -122,7 +122,7 @@ extension String {
         // base-line 0 to darken and < 0 to auto hide (grep rephide)
         return Int(result)
     }
-
+    
     private func log10(_ str: String) -> Double {
         let leadingDigits   =   Int(str.dropLast(str.count - 4))!
         let logarithm       =   log(Double(leadingDigits)) / M_LN10 + 0.00000001

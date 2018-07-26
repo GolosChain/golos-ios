@@ -33,7 +33,7 @@ public indirect enum MethodAPIType {
     
     /// Diplays current user follow counts
     case getUserFollowCounts(name: String)
-
+    
     
     /// This method return request parameters from selected enum case.
     func introduced() -> MethodRequestParameters {
@@ -50,7 +50,7 @@ public indirect enum MethodAPIType {
         case .getUserFollowCounts(let userName):            return  (methodAPIType:      self,
                                                                      paramsFirst:        ["follow", "get_follow_count"],
                                                                      paramsSecond:       String(format: "\"%@\"", userName))
-
+            
         case .getUserReplies(let startAuthor, let startPermlink, let limit, let voteLimit):
             var secondParameters: String
             

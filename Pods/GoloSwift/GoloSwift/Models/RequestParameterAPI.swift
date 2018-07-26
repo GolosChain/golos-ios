@@ -129,7 +129,7 @@ public struct RequestParameterAPI {
         // https://github.com/GolosChain/golos-js/blob/master/src/auth/serializer/src/ChainTypes.js
         var code: Int?     =   1
         var name: String?  =   "comment"
-       
+        
         public func getProperties() -> [String: Any] {
             return  [
                         "parent_author":        self.parentAuthor,
@@ -139,14 +139,14 @@ public struct RequestParameterAPI {
                         "title":                self.title,
                         "body":                 self.body,
                         "json_metadata":        self.jsonMetadata
-                    ]
+            ]
         }
         
         func getPropertiesNames() -> [String] {
             return [ "parent_author", "parent_permlink", "author", "permlink", "title", "body", "json_metadata" ]
         }
     }
-
+    
     
     public struct CommentOptions: Encodable, RequestParameterAPIPropertiesSupport {
         // MARK: - Properties
@@ -175,7 +175,7 @@ public struct RequestParameterAPI {
         // https://github.com/GolosChain/golos-js/blob/master/src/auth/serializer/src/ChainTypes.js
         var code: Int?     =   19
         var name: String?  =   "comment_options"
-
+        
         public func getProperties() -> [String: Any] {
             return  [
                         "author":                       self.author,
@@ -185,7 +185,7 @@ public struct RequestParameterAPI {
                         "allow_votes":                  self.allow_votes,
                         "allow_curation_rewards":       self.allow_curation_rewards,
                         "extensions":                   self.extensions
-                    ]
+            ]
         }
         
         func getPropertiesNames() -> [String] {
@@ -214,14 +214,14 @@ public struct RequestParameterAPI {
         // https://github.com/GolosChain/golos-js/blob/master/src/auth/serializer/src/ChainTypes.js
         var code: Int?     =   0
         var name: String?  =   "vote"
-
+        
         public func getProperties() -> [String: Any] {
             return  [
-                        "voter":        self.voter,
-                        "author":       self.author,
-                        "permlink":     self.permlink,
-                        "weight":       self.weight
-                    ]
+                "voter":        self.voter,
+                "author":       self.author,
+                "permlink":     self.permlink,
+                "weight":       self.weight
+            ]
         }
         
         func getPropertiesNames() -> [String] {
