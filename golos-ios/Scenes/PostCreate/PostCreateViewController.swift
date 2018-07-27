@@ -317,7 +317,7 @@ extension PostCreateViewController: PostCreateDisplayLogic {
         }
         
         // TODO: - ADD IF VIEWMODEL SUCCESS = ROUTE TO NEW POST SCENE
-        self.showAlertView(withTitle: "Info", andMessage: "", needCancel: false, completion: { [weak self] _ in
+        self.showAlertView(withTitle: "Info", andMessage: "Send Post Success", needCancel: false, completion: { [weak self] _ in
             self?.router?.routeToMainScene()
         })
     }

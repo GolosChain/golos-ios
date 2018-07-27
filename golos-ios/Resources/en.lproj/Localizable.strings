@@ -118,6 +118,8 @@
 "About Yourself"                            =   "About Yourself";
 "City"                                      =   "City";
 "Website Link"                              =   "Website Link";
+"Send Post Success"                         =   "Post successfully published";
+"Send Comment Success"                      =   "Comment successfully published";
 
 
 // Placeholders

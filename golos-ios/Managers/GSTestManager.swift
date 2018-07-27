@@ -39,5 +39,4 @@ class GSTestManager {
                                 Logger.log(message: "nresponse API Error = \(errorAPI.caseInfo.message)\n", event: .error)
         })
     }
-
 }
