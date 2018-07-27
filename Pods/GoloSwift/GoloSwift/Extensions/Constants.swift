@@ -10,12 +10,12 @@
 import Foundation
 import Starscream
 
-public enum AppBuildConfig: Int {
-    case Debug
-    case Release
+public enum AppBuildConfig: String {
+    case debug          =   "Debug"
+    case release        =   "Release"
     
     // For Testnet
-    case Development
+    case development    =   "Development"
 }
 
 // Blockchain Dynamic values
@@ -24,16 +24,16 @@ var time: String                        =   ""
 var headBlockID: UInt32                 =   0
 var headBlockNumber: UInt16             =   0
 
-var chainID: String                     =   (appBuildConfig == AppBuildConfig.Development) ?    "5876894a41e6361bde2e73278f07340f2eb8b41c2facd29099de9deef6cdb679" :
+var chainID: String                     =   (appBuildConfig == AppBuildConfig.development) ?    "5876894a41e6361bde2e73278f07340f2eb8b41c2facd29099de9deef6cdb679" :
                                                                                                 "782a3039b478c839e4cb0c941ff4eaeb7df40bdd68bd441afd444b9da763de12"
 
 
 /// App Scheme
-public var appBuildConfig               =   AppBuildConfig.Debug
+public let appBuildConfig               =   AppBuildConfig.init(rawValue: (Bundle.main.infoDictionary?["Config"] as? String)!.replacingOccurrences(of: "\\", with: ""))
 
 
 /// Websocket
-public var webSocket                    =   WebSocket(url: URL(string: (appBuildConfig == AppBuildConfig.Development) ? "wss://ws.testnet.golos.io" : "wss://ws.golos.io")!)
+public var webSocket                    =   WebSocket(url: URL(string: (appBuildConfig == AppBuildConfig.development) ? "wss://ws.testnet.golos.io" : "wss://ws.golos.io")!)
 public let webSocketManager             =   WebSocketManager()
 
 

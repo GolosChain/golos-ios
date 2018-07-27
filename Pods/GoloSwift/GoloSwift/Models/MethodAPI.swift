@@ -67,7 +67,7 @@ public indirect enum MethodAPIType {
                      paramsSecond:       secondParameters)
             
         case .getDiscussions(let type, let discussion):
-            let parameterAPI = (appBuildConfig == AppBuildConfig.Debug) ? "tags" : "tags"
+            let parameterAPI = (appBuildConfig == AppBuildConfig.debug) ? "tags" : "tags"
             
             return (methodAPIType:      self,
                     paramsFirst:        [parameterAPI, type.caseAPIParameters()],

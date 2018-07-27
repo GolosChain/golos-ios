@@ -32,23 +32,6 @@ public class Broadcast {
     
     // MARK: - Class Initialization
     private init() {
-        let config = (Bundle.main.infoDictionary?["Config"] as? String)?.replacingOccurrences(of: "\\", with: "")
-        
-        if let name = config {
-            switch name.uppercased() {
-            case "DEBUG":
-                appBuildConfig      =   .Debug
-                
-            case "DEVELOPMENT":
-                appBuildConfig      =   .Development
-                
-            case "RELEASE":
-                appBuildConfig      =   .Release
-                
-            default:
-                appBuildConfig      =   .Debug
-            }
-        }
     }
     
     deinit {
@@ -233,7 +216,7 @@ public class Broadcast {
             let jsonEncoder         =   JSONEncoder()
             var jsonData            =   try jsonEncoder.encode(requestAPI)
             let jsonAPIString       =   "\(String(data: jsonData, encoding: .utf8)!)"
-                .replacingOccurrences(of: "]}", with: ",")
+                                            .replacingOccurrences(of: "]}", with: ",")
             
             var jsonChainString     =   jsonAPIString
             Logger.log(message: "\nEncoded JSON -> jsonChainString:\n\t\(jsonChainString)", event: .debug)
@@ -241,7 +224,7 @@ public class Broadcast {
             // ref_block_num
             jsonData                =   try jsonEncoder.encode(["ref_block_num": transaction.ref_block_num])
             var jsonTxString        =   "[\(String(data: jsonData, encoding: .utf8)!)]"
-                .replacingOccurrences(of: "}]", with: ",")
+                                            .replacingOccurrences(of: "}]", with: ",")
             
             jsonChainString         +=  jsonTxString
             Logger.log(message: "\nEncoded JSON -> jsonChainString:\n\t\(jsonChainString)", event: .debug)
