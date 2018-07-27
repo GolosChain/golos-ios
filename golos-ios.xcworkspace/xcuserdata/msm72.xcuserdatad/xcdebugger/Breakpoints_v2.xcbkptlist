@@ -81,38 +81,6 @@
             endingLineNumber = "315"
             landmarkName = "displayPostCreate(fromViewModel:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Golos.PostCreateViewController.displayPostCreate(fromViewModel: Golos.PostCreateModels.Post.ViewModel) -&gt; ()"
-                  moduleName = "Golos"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/msm72/My%20Projects/GolosChain/App/golos-ios/Scenes/PostCreate/PostCreateViewController.swift"
-                  timestampString = "554374500.827288"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "315"
-                  endingLineNumber = "315"
-                  offsetFromSymbolStart = "815">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Bool) -&gt; () in Golos.PostCreateViewController.displayPostCreate(fromViewModel: Golos.PostCreateModels.Post.ViewModel) -&gt; ()"
-                  moduleName = "Golos"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/msm72/My%20Projects/GolosChain/App/golos-ios/Scenes/PostCreate/PostCreateViewController.swift"
-                  timestampString = "554374500.829381"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "315"
-                  endingLineNumber = "315"
-                  offsetFromSymbolStart = "4">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
