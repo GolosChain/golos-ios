@@ -111,9 +111,9 @@ public struct Transaction {
         
         for operation in operations {
             // Get OperationAPIType properties sequence
-            let operationTypeID                 =   (operation as! RequestParameterAPIPropertiesSupport).code!
-            let operationTypeProperties         =   (operation as! RequestParameterAPIPropertiesSupport).getProperties()
-            let operationTypePropertiesNames    =   (operation as! RequestParameterAPIPropertiesSupport).getPropertiesNames()
+            let operationTypeID                 =   (operation as! RequestParameterAPIOperationPropertiesSupport).code!
+            let operationTypeProperties         =   (operation as! RequestParameterAPIOperationPropertiesSupport).getProperties()
+            let operationTypePropertiesNames    =   (operation as! RequestParameterAPIOperationPropertiesSupport).getPropertiesNames()
             
             // Operations: add to buffer `operation type ID`
             self.serializedBuffer   +=  self.varint(int: operationTypeID)

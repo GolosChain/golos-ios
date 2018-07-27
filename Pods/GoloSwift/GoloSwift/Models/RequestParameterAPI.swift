@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol RequestParameterAPIPropertiesSupport {
+protocol RequestParameterAPIOperationPropertiesSupport {
     var code: Int? { get set }
     var name: String? { get set }
     func getProperties() -> [String: Any]
@@ -17,7 +17,7 @@ protocol RequestParameterAPIPropertiesSupport {
 
 
 public struct RequestParameterAPI {
-    static func decodeToString(model: RequestParameterAPIPropertiesSupport) -> String? {
+    static func decodeToString(model: RequestParameterAPIOperationPropertiesSupport) -> String? {
         // Data encoder
         let jsonEncoder             =   JSONEncoder()
         var jsonData                =   Data()
@@ -99,7 +99,7 @@ public struct RequestParameterAPI {
         }
     }
     
-    public struct Comment: Encodable, RequestParameterAPIPropertiesSupport {
+    public struct Comment: Encodable, RequestParameterAPIOperationPropertiesSupport {
         // MARK: - Properties
         public let parentAuthor: String
         public var parentPermlink: String
@@ -120,25 +120,25 @@ public struct RequestParameterAPI {
             self.jsonMetadata       =   jsonMetadata
             self.permlink           =   (parentAuthor.isEmpty ? String(format: "%@-%d", title.transliterationInLatin(), Int64(Date().timeIntervalSince1970)) :
                                                                 String(format: "re-%@-%@-%@-%d", parentAuthor, parentPermlink, author, Int64(Date().timeIntervalSince1970)))
-                                                                    .replacingOccurrences(of: " ", with: "_")
-                                                                    .lowercased()
+                                            .replacingOccurrences(of: " ", with: "_")
+                                            .lowercased()
         }
         
         
-        // MARK: - OperationTypePropertiesSupport protocol implementation
+        // MARK: - RequestParameterAPIOperationPropertiesSupport protocol implementation
         // https://github.com/GolosChain/golos-js/blob/master/src/auth/serializer/src/ChainTypes.js
         var code: Int?     =   1
         var name: String?  =   "comment"
         
         public func getProperties() -> [String: Any] {
             return  [
-                        "parent_author":        self.parentAuthor,
-                        "parent_permlink":      self.parentPermlink,
-                        "author":               self.author,
-                        "permlink":             self.permlink,
-                        "title":                self.title,
-                        "body":                 self.body,
-                        "json_metadata":        self.jsonMetadata
+                "parent_author":        self.parentAuthor,
+                "parent_permlink":      self.parentPermlink,
+                "author":               self.author,
+                "permlink":             self.permlink,
+                "title":                self.title,
+                "body":                 self.body,
+                "json_metadata":        self.jsonMetadata
             ]
         }
         
@@ -148,7 +148,7 @@ public struct RequestParameterAPI {
     }
     
     
-    public struct CommentOptions: Encodable, RequestParameterAPIPropertiesSupport {
+    public struct CommentOptions: Encodable, RequestParameterAPIOperationPropertiesSupport {
         // MARK: - Properties
         public let author: String
         public let permlink: String
@@ -178,13 +178,13 @@ public struct RequestParameterAPI {
         
         public func getProperties() -> [String: Any] {
             return  [
-                        "author":                       self.author,
-                        "permlink":                     self.permlink,
-                        "max_accepted_payout":          self.max_accepted_payout,
-                        "percent_steem_dollars":        self.percent_steem_dollars,
-                        "allow_votes":                  self.allow_votes,
-                        "allow_curation_rewards":       self.allow_curation_rewards,
-                        "extensions":                   self.extensions
+                "author":                       self.author,
+                "permlink":                     self.permlink,
+                "max_accepted_payout":          self.max_accepted_payout,
+                "percent_steem_dollars":        self.percent_steem_dollars,
+                "allow_votes":                  self.allow_votes,
+                "allow_curation_rewards":       self.allow_curation_rewards,
+                "extensions":                   self.extensions
             ]
         }
         
@@ -193,7 +193,7 @@ public struct RequestParameterAPI {
         }
     }
     
-    public struct Vote: Encodable, RequestParameterAPIPropertiesSupport {
+    public struct Vote: Encodable, RequestParameterAPIOperationPropertiesSupport {
         // MARK: - Properties
         public let voter: String
         public let author: String

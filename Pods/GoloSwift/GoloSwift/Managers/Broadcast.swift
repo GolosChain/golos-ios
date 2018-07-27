@@ -117,9 +117,6 @@ public class Broadcast {
             case .getUserReplies(_), .getUserFollowCounts(_):
                 jsonData            =   Data((requestParams as! String).utf8)
                 
-            case .getAllContentReplies(_):
-                jsonData            =   Data((requestParams as! String).utf8)
-                
             default:
                 break
             }
@@ -268,7 +265,7 @@ public class Broadcast {
             
             // Operations
             for operation in transaction.operations {
-                jsonChainString     +=   (RequestParameterAPI.decodeToString(model: operation as! RequestParameterAPIPropertiesSupport) ?? "xxx") + "}]]}"
+                jsonChainString     +=   (RequestParameterAPI.decodeToString(model: operation as! RequestParameterAPIOperationPropertiesSupport) ?? "xxx") + "}]]}"
                 Logger.log(message: "\nEncoded JSON -> jsonChainString:\n\t\(jsonChainString)", event: .debug)
             }
             

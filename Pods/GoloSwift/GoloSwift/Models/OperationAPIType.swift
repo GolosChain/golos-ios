@@ -97,9 +97,9 @@ public indirect enum OperationAPIType {
                                                                      paramsFirst:           ["network_broadcast_api", "broadcast_transaction"],
                                                                      paramsSecond:          [commentOptionsValue])
             
-        case .createPost(let operations):                   return (operationAPIType:       self,
-                                                                    paramsFirst:            ["network_broadcast_api", "broadcast_transaction"],
-                                                                    paramsSecond:           operations)
+        case .createPost(let operations):                   return  (operationAPIType:      self,
+                                                                     paramsFirst:           ["network_broadcast_api", "broadcast_transaction"],
+                                                                     paramsSecond:          operations)
         }
     }
 }
