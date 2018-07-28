@@ -262,6 +262,8 @@ extension UserProfileShowViewController {
     // Blogs
     private func loadUserDetails(_ isRefresh: Bool) {
         if self.containerView.activeVC != nil || isRefresh {
+            self.interactor?.save(lastItem: nil)
+            
             let userDetailsRequestModel = UserProfileShowModels.UserDetails.RequestModel(postFeedType: postFeedTypes[self.selectedSegmentIndex])
             interactor?.loadUserDetails(withRequestModel: userDetailsRequestModel)
         }

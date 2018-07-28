@@ -107,6 +107,10 @@ extension TagsCollectionViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        guard self.tags != nil else {
+            return 0
+        }
+        
         return self.tags.count + 1
     }
 
@@ -161,6 +165,11 @@ extension TagsCollectionViewController: UICollectionViewDataSource {
             
             // Handler end editing
             (cell as! ThemeTagCollectionViewCell).completionEndEditing = {
+                guard self.tags != nil else {
+                    self.view.endEditing(true)
+                    return
+                }
+                
                 _ = self.tags.map({
                     if let tagCell = cell as? ThemeTagCollectionViewCell, let title = tagCell.textField.text, $0.id == tagCell.textField.tag {
                         $0.title = title
@@ -232,6 +241,10 @@ extension TagsCollectionViewController: UICollectionViewDelegate {
 // MARK: - UICollectionViewDelegateFlowLayout
 extension TagsCollectionViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        guard self.tags != nil else {
+            return 0.0
+        }
+        
         if let height = collectionView.cellForItem(at: IndexPath(row: self.tags.count, section: 0))?.frame.maxY {
             self.complationCollectionViewChangeHeight!((height + 18.0) * heightRatio)
         }
@@ -245,6 +258,10 @@ extension TagsCollectionViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         // Add button cell
+        guard self.tags != nil else {
+            return .zero
+        }
+        
         if indexPath.row > self.tags.count - 1 {
             return CGSize(width: 46.0 * widthRatio, height: 30.0 * heightRatio)
         }

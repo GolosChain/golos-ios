@@ -25,16 +25,25 @@ public struct ResponseAPIError: Decodable {
 
 
 // MARK: -
-public struct ResponseAPIFeedResult: Decodable {
+public struct ResponseAPIPostsResult: Decodable {
     // MARK: - In work
     public let id: Int64
     public let jsonrpc: String
-    public let result: [ResponseAPIFeed]?
+    public let result: [ResponseAPIPost]?
     public let error: ResponseAPIError?
 }
 
 // MARK: -
-public struct ResponseAPIFeed: Decodable {
+public struct ResponseAPIPostResult: Decodable {
+    // MARK: - In work
+    public let id: Int64
+    public let jsonrpc: String
+    public let result: ResponseAPIPost?
+    public let error: ResponseAPIError?
+}
+
+// MARK: -
+public struct ResponseAPIPost: Decodable {
     // MARK: - In work
     // swiftlint:disable identifier_name
     public let id: Int64

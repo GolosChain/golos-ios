@@ -120,6 +120,8 @@
 "Website Link"                              =   "Website Link";
 "Send Post Success"                         =   "Post successfully published";
 "Send Comment Success"                      =   "Comment successfully published";
+"Permlink without timing"                   =   "Permlink without timing";
+"Permlink with timing"                      =   "Permlink with timing";
 
 
 // Placeholders
@@ -172,3 +174,4 @@
 "User follow counts are not found"          =   "User follow counts are not found";
 "List of users is empty"                    =   "User list is empty";
 "List of posts is empty"                    =   "Post list is empty";
+"You may only post once every 5 minutes"    =   "You may only post once every 5 minutes";

@@ -42,14 +42,14 @@ public struct RequestParameterAPI {
                     jsonData        =   try jsonEncoder.encode(["\(propertyName)": propertyValue as! Int64])
                 }
                 
-                result              +=  "\(String(data: jsonData, encoding: .utf8)!)"
+                result              +=   "\(String(data: jsonData, encoding: .utf8)!)"
                 Logger.log(message: "\nResult + \"\(propertyName)\":\n\t\(result)", event: .debug)
             }
             
             return result
                     .replacingOccurrences(of: "{{", with: "{")
                     .replacingOccurrences(of: "}{", with: ",")
-//                    .replacingOccurrences(of: "}\"}", with: "}\"}]")
+                    .replacingOccurrences(of: "}\"}", with: "}\"")
         } catch {
             Logger.log(message: "Error: \(error.localizedDescription)", event: .error)
             return nil
@@ -63,6 +63,26 @@ public struct RequestParameterAPI {
         // MARK: - Initialization
         public init(names: [String]) {
             self.names  =   names
+        }
+    }
+    
+    public struct Content: Encodable {
+        // MARK: - Properties
+        public let author: String
+        public let permlink: String
+        public let active_votes: UInt?
+        
+        // MARK: - Initialization
+        public init(author: String, permlink: String, active_votes: UInt? = 0) {
+            self.author             =   author
+            self.permlink           =   permlink
+            self.active_votes       =   active_votes
+        }
+        
+        
+        // MARK: - Custom Functions
+        public func convertToString() -> String {
+            return String(format: "\"%@\",\"%@\",%i", self.author, self.permlink, self.active_votes!)
         }
     }
     
@@ -108,20 +128,26 @@ public struct RequestParameterAPI {
         public var body: String
         public let jsonMetadata: String
         public var permlink: String
+        public let needTiming: Bool
         
         
         // MARK: - Initialization
-        public init(parentAuthor: String, parentPermlink: String, author: String, title: String, body: String, jsonMetadata: String) {
+        public init(parentAuthor: String, parentPermlink: String, author: String, title: String, body: String, jsonMetadata: String, needTiming: Bool) {
             self.parentAuthor       =   parentAuthor
-            self.parentPermlink     =   parentPermlink
+            self.parentPermlink     =   parentPermlink.transliterationInLatin()
             self.author             =   author
             self.title              =   title
             self.body               =   body
             self.jsonMetadata       =   jsonMetadata
-            self.permlink           =   (parentAuthor.isEmpty ? String(format: "%@-%d", title.transliterationInLatin(), Int64(Date().timeIntervalSince1970)) :
-                                                                String(format: "re-%@-%@-%@-%d", parentAuthor, parentPermlink, author, Int64(Date().timeIntervalSince1970)))
-                                            .replacingOccurrences(of: " ", with: "_")
+            self.needTiming         =   needTiming
+            
+            let permlinkTemp        =   (parentAuthor.isEmpty ? String(format: "%@", title.transliterationInLatin()) :
+                                                                String(format: "re-%@-%@-%@", parentAuthor, parentPermlink, author))
+                                            .transliterationInLatin()
+                                            .replacingOccurrences(of: " ", with: "-")
                                             .lowercased()
+            
+            self.permlink           =   needTiming ? permlinkTemp + "-\(Int64(Date().timeIntervalSince1970))" : permlinkTemp
         }
         
         
@@ -132,14 +158,14 @@ public struct RequestParameterAPI {
         
         public func getProperties() -> [String: Any] {
             return  [
-                "parent_author":        self.parentAuthor,
-                "parent_permlink":      self.parentPermlink,
-                "author":               self.author,
-                "permlink":             self.permlink,
-                "title":                self.title,
-                "body":                 self.body,
-                "json_metadata":        self.jsonMetadata
-            ]
+                        "parent_author":        self.parentAuthor,
+                        "parent_permlink":      self.parentPermlink,
+                        "author":               self.author,
+                        "permlink":             self.permlink,
+                        "title":                self.title,
+                        "body":                 self.body,
+                        "json_metadata":        self.jsonMetadata
+                    ]
         }
         
         func getPropertiesNames() -> [String] {
@@ -178,14 +204,14 @@ public struct RequestParameterAPI {
         
         public func getProperties() -> [String: Any] {
             return  [
-                "author":                       self.author,
-                "permlink":                     self.permlink,
-                "max_accepted_payout":          self.max_accepted_payout,
-                "percent_steem_dollars":        self.percent_steem_dollars,
-                "allow_votes":                  self.allow_votes,
-                "allow_curation_rewards":       self.allow_curation_rewards,
-                "extensions":                   self.extensions
-            ]
+                        "author":                       self.author,
+                        "permlink":                     self.permlink,
+                        "max_accepted_payout":          self.max_accepted_payout,
+                        "percent_steem_dollars":        self.percent_steem_dollars,
+                        "allow_votes":                  self.allow_votes,
+                        "allow_curation_rewards":       self.allow_curation_rewards,
+                        "extensions":                   self.extensions
+                    ]
         }
         
         func getPropertiesNames() -> [String] {
@@ -217,11 +243,11 @@ public struct RequestParameterAPI {
         
         public func getProperties() -> [String: Any] {
             return  [
-                "voter":        self.voter,
-                "author":       self.author,
-                "permlink":     self.permlink,
-                "weight":       self.weight
-            ]
+                        "voter":        self.voter,
+                        "author":       self.author,
+                        "permlink":     self.permlink,
+                        "weight":       self.weight
+                    ]
         }
         
         func getPropertiesNames() -> [String] {

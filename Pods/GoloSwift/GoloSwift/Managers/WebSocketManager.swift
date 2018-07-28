@@ -101,10 +101,13 @@ public class WebSocketManager {
                 return (responseAPI: try JSONDecoder().decode(ResponseAPIDynamicGlobalPropertiesResult.self, from: jsonData), errorAPI: nil)
                 
             case .getDiscussions(_), .getUserReplies(_):
-                return (responseAPI: try JSONDecoder().decode(ResponseAPIFeedResult.self, from: jsonData), errorAPI: nil)
+                return (responseAPI: try JSONDecoder().decode(ResponseAPIPostsResult.self, from: jsonData), errorAPI: nil)
                 
             case .getUserFollowCounts(_):
                 return (responseAPI: try JSONDecoder().decode(ResponseAPIUserFollowCountsResult.self, from: jsonData), errorAPI: nil)
+                
+            case .getContent(_):
+                return (responseAPI: try JSONDecoder().decode(ResponseAPIPostResult.self, from: jsonData), errorAPI: nil)
             }
         } catch {
             Logger.log(message: "\(error)", event: .error)
@@ -173,8 +176,8 @@ extension WebSocketManager: WebSocketDelegate {
                     }
                     
                     responseAPIType     =   isSendedRequestMethodAPI ?
-                        (try self?.decode(from: jsonData, byMethodAPIType: requestMethodAPIStore!.methodAPIType.methodAPIType))! :
-                        (try self?.decode(from: jsonData, byOperationAPIType: requestOperationAPIStore!.operationAPIType.operationAPIType))!
+                                                (try self?.decode(from: jsonData, byMethodAPIType: requestMethodAPIStore!.methodAPIType.methodAPIType))! :
+                                                (try self?.decode(from: jsonData, byOperationAPIType: requestOperationAPIStore!.operationAPIType.operationAPIType))!
                     
                     
                     guard let responseAPIResult = responseAPIType.responseAPI else {
@@ -233,7 +236,7 @@ extension WebSocketManager: WebSocketDelegate {
                         }
                         
                         isSendedRequestMethodAPI ?  requestMethodAPIStore!.completion((responseAPI: responseAPIResult, errorAPI: self?.errorAPI)) :
-                                                    requestOperationAPIStore!.completion((responseAPI: responseAPIResult, errorAPI: self?.errorAPI))
+                            requestOperationAPIStore!.completion((responseAPI: responseAPIResult, errorAPI: self?.errorAPI))
                     }
                 } catch {
                     Logger.log(message: "\nResponse Unsuccessful:\n\t\(error.localizedDescription)", event: .error)

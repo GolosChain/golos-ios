@@ -114,7 +114,7 @@ public class Broadcast {
             case .getDiscussions(_):
                 jsonData            =   try jsonEncoder.encode(requestParams as? RequestParameterAPI.Discussion)
                 
-            case .getUserReplies(_), .getUserFollowCounts(_):
+            case .getUserReplies(_), .getUserFollowCounts(_), .getContent(_):
                 jsonData            =   Data((requestParams as! String).utf8)
                 
             default:
@@ -267,7 +267,7 @@ public class Broadcast {
             for operation in transaction.operations {
                 let operationString =   (RequestParameterAPI.decodeToString(model: operation as! RequestParameterAPIOperationPropertiesSupport) ?? "xxx")
                 Logger.log(message: "\noperationString:\n\t\(operationString)", event: .debug)
-                jsonChainString     +=  operationString + "]]}]]}"
+                jsonChainString     +=  operationString + "}]]}]]}"
                 Logger.log(message: "\nEncoded JSON -> jsonChainString:\n\t\(jsonChainString)", event: .debug)
             }
             

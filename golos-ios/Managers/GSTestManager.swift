@@ -17,7 +17,8 @@ class GSTestManager {
                                                                     author:             "msm72",
                                                                     title:              "Test Post 2",
                                                                     body:               "Amndmnasmdn asmdn masndmasnd",
-                                                                    jsonMetadata:       "")
+                                                                    jsonMetadata:       "",
+                                                                    needTiming:         false)
         
         //        let vote                    =   RequestParameterAPI.Vote(voter:         "xeroc",
         //                                                                 author:        "xeroc",

@@ -63,7 +63,7 @@ class RestAPIManager {
                                  onResult: { responseAPIResult in
                                     Logger.log(message: "\nresponse API Result = \(responseAPIResult)\n", event: .debug)
                                     
-                                    guard let result = (responseAPIResult as! ResponseAPIFeedResult).result, result.count > 0 else {
+                                    guard let result = (responseAPIResult as! ResponseAPIPostsResult).result, result.count > 0 else {
                                         completion(nil)
                                         return
                                     }
@@ -150,6 +150,33 @@ class RestAPIManager {
         // Offline mode
         else {
             completion(nil)
+        }
+    }
+
+
+
+    /// Load User Follow counts
+    class func loadPostPermlink(byContent content: RequestParameterAPI.Content, completion: @escaping (ErrorAPI) -> Void) {
+        // API 'get_content'
+        if isNetworkAvailable {
+            let methodAPIType   =   MethodAPIType.getContent(parameters: content)
+            
+            broadcast.executeGET(byMethodAPIType: methodAPIType,
+                                 onResult: { responseAPIResult in
+                                    Logger.log(message: "\nresponse API Result = \(responseAPIResult)\n", event: .debug)
+                                    
+                                    let error = (responseAPIResult as! ResponseAPIPostResult).error
+                                    completion(ErrorAPI.requestFailed(message: error == nil ? "Permlink without timing" : "Permlink with timing"))
+            },
+                                 onError: { errorAPI in
+                                    Logger.log(message: "nresponse API Error = \(errorAPI.caseInfo.message)\n", event: .error)
+                                    completion(errorAPI)
+            })
+        }
+            
+        // Offline mode
+        else {
+            completion(ErrorAPI.requestFailed(message: "No Internet Connection"))
         }
     }
 }

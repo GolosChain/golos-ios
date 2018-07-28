@@ -27,10 +27,13 @@ class UserProfileShowWorker {
     func prepareRequestMethod(_ parameters: UserProfileDetailsParams) -> MethodAPIType {
         var methodAPIType: MethodAPIType
         let lastItem = parameters.lastItem
+        var predicate: NSPredicate?
         
         switch parameters.type {
         // Replies
         case .reply:
+            predicate       =   NSPredicate(format: "parentAuthor == %@", User.current!.name)
+
             methodAPIType   =   MethodAPIType.getUserReplies(startAuthor:           User.current!.name,
                                                              startPermlink:         (lastItem as? Reply)?.permlink,
                                                              limit:                 loadDataLimit,
@@ -38,6 +41,8 @@ class UserProfileShowWorker {
 
         // Blogs
         default:
+            predicate       =   NSPredicate(format: "author == %@", User.current!.name)
+
             let discussion  =   RequestParameterAPI.Discussion.init(limit:          loadDataLimit,
                                                                     truncateBody:   0,
                                                                     selectAuthors:  [ User.current!.name ],
@@ -45,6 +50,11 @@ class UserProfileShowWorker {
                                                                     startPermlink:  (lastItem as? PostFeedCellSupport)?.permlink)
             
             methodAPIType   =   MethodAPIType.getDiscussions(type: parameters.type, parameters: discussion)
+        }
+        
+        // Clean Cache
+        if isNetworkAvailable && lastItem == nil {
+            CoreDataManager.instance.deleteEntities(withName: parameters.type.caseTitle(), andPredicateParameters: predicate, completion: { _ in })
         }
         
         return methodAPIType

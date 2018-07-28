@@ -269,6 +269,8 @@ class PostCreateViewController: GSBaseViewController {
         self.contentTextView.text                   =   nil
         self.postCreateView.titleTextField.text     =   nil
         self.commentReplyView.commentLabel.text     =   nil
+        self.tagsVC.tags                            =   nil
+        self.tagsVC.collectionView.reloadData()
         
         self.interactor?.save(tags: nil)
     }
@@ -311,12 +313,15 @@ class PostCreateViewController: GSBaseViewController {
 extension PostCreateViewController: PostCreateDisplayLogic {
     func displayPostCreate(fromViewModel viewModel: PostCreateModels.Post.ViewModel) {
         // NOTE: Display the result from the Presenter
-        guard viewModel.errorAPI == nil else {
-            self.showAlertView(withTitle: viewModel.errorAPI!.caseInfo.title, andMessage: viewModel.errorAPI!.caseInfo.message, needCancel: false, completion: { _ in })
+        guard viewModel.errorAPI == nil || viewModel.errorAPI?.caseInfo.message == "Result not found" else {
+            let message = viewModel.errorAPI!.caseInfo.message.contains("You may only post once every 5 minutes") ? "You may only post once every 5 minutes" : viewModel.errorAPI!.caseInfo.message
+            
+            self.showAlertView(withTitle: viewModel.errorAPI!.caseInfo.title, andMessage: message, needCancel: false, completion: { _ in })
             return
         }
         
-        // TODO: - ADD IF VIEWMODEL SUCCESS = ROUTE TO NEW POST SCENE
+        self.clearAllEnteredValues()
+
         self.showAlertView(withTitle: "Info", andMessage: "Send Post Success", needCancel: false, completion: { [weak self] _ in
             self?.router?.routeToMainScene()
         })

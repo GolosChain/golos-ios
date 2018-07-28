@@ -25,7 +25,7 @@ public class New: NSManagedObject {
     
     // MARK: - Class Functions
     class func updateEntity(fromResponseAPI responseAPI: Decodable) {
-        let model   =   responseAPI as! ResponseAPIFeed
+        let model   =   responseAPI as! ResponseAPIPost
         var entity  =   CoreDataManager.instance.readEntity(withName:                   "New",
                                                             andPredicateParameters:     NSPredicate.init(format: "id == \(model.id)")) as? New
         

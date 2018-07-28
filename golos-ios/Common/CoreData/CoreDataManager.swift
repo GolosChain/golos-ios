@@ -195,22 +195,32 @@ class CoreDataManager {
     
     /// Delete
     func deleteEntities(withName name: String, andPredicateParameters predicate: NSPredicate?, completion: @escaping (Bool) -> Void) {
-        let deleteFetch = NSFetchRequest<NSFetchRequestResult>(entityName: name)
-        
+        let deleteFetch                     =   NSFetchRequest<NSFetchRequestResult>(entityName: name)
+        deleteFetch.returnsObjectsAsFaults  =   false
+
         if predicate != nil {
-            deleteFetch.predicate = predicate!
+            deleteFetch.predicate   =   predicate!
         }
-        
-        let deleteRequest = NSBatchDeleteRequest(fetchRequest: deleteFetch)
 
         do {
-            try self.managedObjectContext.execute(deleteRequest)
-            self.contextSave()
-            completion(true)
-        }
+            let deletedEntities     =   try self.managedObjectContext.fetch(deleteFetch)
             
+            for deletedEntity in deletedEntities as! [NSManagedObject] {
+                self.managedObjectContext.delete(deletedEntity)
+            }
+        }
+        
         catch {
             Logger.log(message: "Delete Entities '\(name)' failed", event: .error)
+            completion(false)
+        }
+        
+        // Saving the Delete operation
+        do {
+            try self.managedObjectContext.save()
+            completion(true)
+        } catch {
+            Logger.log(message: "Save deleted Entities '\(name)' failed", event: .error)
             completion(false)
         }
     }

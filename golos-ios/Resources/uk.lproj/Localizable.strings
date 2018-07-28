@@ -120,6 +120,8 @@
 "Website Link"                              =   "Посилання на сайт";
 "Send Post Success"                         =   "Пост успішно опубліковано";
 "Send Comment Success"                      =   "Коментар успішно опубліковано";
+"Permlink without timing"                   =   "Унікальний permlink";
+"Permlink with timing"                      =   "Необхідно додати таймштамп до permlink";
 
 
 // Placeholders
@@ -172,3 +174,4 @@
 "User follow counts are not found"          =   "Інформація про передплатників та підписках відсутня";
 "List of users is empty"                    =   "Список користувачів порожній";
 "List of posts is empty"                    =   "Список постів порожній";
+"You may only post once every 5 minutes"    =   "Ви можете відправляти нові\nповідомлення кожні 5 хвилин";

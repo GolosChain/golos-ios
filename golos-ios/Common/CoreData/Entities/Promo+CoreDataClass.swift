@@ -25,7 +25,7 @@ public class Promo: NSManagedObject {
     
     // MARK: - Class Functions
     class func updateEntity(fromResponseAPI responseAPI: Decodable) {
-        let model   =   responseAPI as! ResponseAPIFeed
+        let model   =   responseAPI as! ResponseAPIPost
         var entity  =   CoreDataManager.instance.readEntity(withName:                   "Promo",
                                                             andPredicateParameters:     NSPredicate.init(format: "id == \(model.id)")) as? Promo
         

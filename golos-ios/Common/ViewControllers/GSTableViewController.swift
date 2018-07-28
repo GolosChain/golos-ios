@@ -168,7 +168,7 @@ class GSTableViewController: GSBaseViewController {
         var fetchRequest: NSFetchRequest<NSFetchRequestResult>
         var primarySortDescriptor: NSSortDescriptor
         var secondarySortDescriptor: NSSortDescriptor
-        
+
         fetchRequest    =   NSFetchRequest<NSFetchRequestResult>(entityName: type.caseTitle())
 
         switch type {
@@ -199,7 +199,7 @@ class GSTableViewController: GSBaseViewController {
         fetchRequest.sortDescriptors    =   [ primarySortDescriptor, secondarySortDescriptor ]
         
         if self.lastIndex == 0 {
-            fetchRequest.fetchLimit     =   Int(loadDataLimit)
+            fetchRequest.fetchLimit     =   Int(loadDataLimit)            
         }
             
         else {
@@ -217,7 +217,7 @@ class GSTableViewController: GSBaseViewController {
             try fetchedResultsController.performFetch()
             
             // Refresh data
-            if self.refreshData {
+            if self.refreshData {                
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.9) {
                     self.refreshControl.endRefreshing()
                     self.refreshData = !self.refreshData

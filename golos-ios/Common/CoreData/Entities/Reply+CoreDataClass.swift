@@ -25,7 +25,7 @@ public class Reply: NSManagedObject {
     
     // MARK: - Class Functions
     class func updateEntity(fromResponseAPI responseAPI: Decodable) {
-        let replyModel      =   responseAPI as! ResponseAPIFeed
+        let replyModel      =   responseAPI as! ResponseAPIPost
         var replyEntity     =   CoreDataManager.instance.readEntity(withName:                   "Reply",
                                                                     andPredicateParameters:     NSPredicate.init(format: "id == \(replyModel.id)")) as? Reply
         

@@ -120,6 +120,8 @@
 "Website Link"                              =   "Ссылка на сайт";
 "Send Post Success"                         =   "Пост успешно опубликован";
 "Send Comment Success"                      =   "Комментарий успешно опубликован";
+"Permlink without timing"                   =   "Уникальный permlink";
+"Permlink with timing"                      =   "Необходимо добавить таймштамп к permlink";
 
 
 // Placeholders
@@ -172,3 +174,4 @@
 "User follow counts are not found"          =   "Информация о подписчиках и подписках не найдена";
 "List of users is empty"                    =   "Список пользователей пустой";
 "List of posts is empty"                    =   "Список постов пустой";
+"You may only post once every 5 minutes"    =   "Вы можете отправлять новые\nсообщения каждые 5 минут";

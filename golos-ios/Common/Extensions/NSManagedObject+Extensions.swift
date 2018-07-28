@@ -15,7 +15,7 @@ extension NSManagedObject {
         CoreDataManager.instance.contextSave()
     }
     
-    func update(withModel model: ResponseAPIFeed) {
+    func update(withModel model: ResponseAPIPost) {
         if var entity = self as? PostFeedCellSupport {
             entity.id                   =   model.id
             entity.author               =   model.author
@@ -43,7 +43,7 @@ extension NSManagedObject {
         }
     }
     
-    func parse(metaData: String?, fromModel model: ResponseAPIFeed) {
+    func parse(metaData: String?, fromModel model: ResponseAPIPost) {
         if let jsonMetaData = metaData, !jsonMetaData.isEmpty, let jsonData = jsonMetaData.data(using: .utf8) {
             do {
                 if let json = try JSONSerialization.jsonObject(with: jsonData, options: .allowFragments) as? [String: Any] {

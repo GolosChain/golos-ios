@@ -82,6 +82,17 @@ extension PostCreateView: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         self.completionStartEditing!(false)
     }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if string.isEmpty || string == " " {
+            return true
+        }
+        
+        let regex = "[а-я0-9a-z,ґ,є,і,ї]"
+        
+        return NSPredicate(format: "SELF MATCHES %@", regex).evaluate(with: string.lowercased())
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         
