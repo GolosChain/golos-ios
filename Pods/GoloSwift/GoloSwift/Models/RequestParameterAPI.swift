@@ -42,14 +42,14 @@ public struct RequestParameterAPI {
                     jsonData        =   try jsonEncoder.encode(["\(propertyName)": propertyValue as! Int64])
                 }
                 
-                result              +=   "\(String(data: jsonData, encoding: .utf8)!)"
-                                            .replacingOccurrences(of: "{", with: "")
-                                            .replacingOccurrences(of: "}", with: propertiesNames.last == propertyName ? "}]]" : ",")
-                
+                result              +=  "\(String(data: jsonData, encoding: .utf8)!)"
                 Logger.log(message: "\nResult + \"\(propertyName)\":\n\t\(result)", event: .debug)
             }
             
             return result
+                    .replacingOccurrences(of: "{{", with: "{")
+                    .replacingOccurrences(of: "}{", with: ",")
+//                    .replacingOccurrences(of: "}\"}", with: "}\"}]")
         } catch {
             Logger.log(message: "Error: \(error.localizedDescription)", event: .error)
             return nil

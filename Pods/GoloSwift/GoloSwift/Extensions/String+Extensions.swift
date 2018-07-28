@@ -70,7 +70,7 @@ extension String {
     }
     
     /// Cyrillic -> Latin
-    func transliterationInLatin() -> String {
+    public func transliterationInLatin() -> String {
         guard self.isCyrillic else {
             return self
         }

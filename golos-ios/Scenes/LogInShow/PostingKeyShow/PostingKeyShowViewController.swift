@@ -21,6 +21,8 @@ class PostingKeyShowViewController: GSBaseViewController {
     
     
     // MARK: - IBOutlets
+    @IBOutlet var textFieldsCollection: [UITextField]!
+    
     @IBOutlet weak var loginTextField: UITextField! {
         didSet {
             loginTextField.tune(withPlaceholder:        "Enter Login Placeholder",
@@ -50,15 +52,6 @@ class PostingKeyShowViewController: GSBaseViewController {
     @IBOutlet weak var postingKeyTextFieldTopConstraint: NSLayoutConstraint! {
         didSet {
             postingKeyTextFieldTopConstraint.constant *= (heightRatio < 1) ? heightRatio : 1
-        }
-    }
-    
-    @IBOutlet var textFieldsCollection: [UITextField]! {
-        didSet {
-//            if appBuildConfig == AppBuildConfig.Debug {
-//                textFieldsCollection.first!.text    =   "destroyer2k"
-//                textFieldsCollection.last!.text     =   "5JjQWZmWj36xbVdcX96gjMs5BRip7TPPCNFFnm19TPEviqnG5Ke"
-//            }
         }
     }
     
@@ -119,6 +112,20 @@ class PostingKeyShowViewController: GSBaseViewController {
     @IBAction func helpButtonPressed(_ sender: Any) {
         self.router?.showLoginHelpShowScene()
     }
+    
+    @IBAction func testDataButtonTapped(_ sender: UIButton) {
+        switch appBuildConfig! {
+        case .development:
+            self.textFieldsCollection.first!.text   =   "yoyoyoyo"
+            self.textFieldsCollection.last!.text    =   "5KUk2QMqYqpFM54YSaNoYLVDTznM3fyA8J8qDUQQNgBnqvVyscC"
+
+        default:
+            self.textFieldsCollection.first!.text   =   "destroyer2k"
+            self.textFieldsCollection.last!.text    =   "5JjQWZmWj36xbVdcX96gjMs5BRip7TPPCNFFnm19TPEviqnG5Ke"
+        }
+        
+        self.handlerReturnComletion!(self.textFieldsCollection)
+    }
 }
 
 
@@ -154,7 +161,6 @@ extension PostingKeyShowViewController: UITextFieldDelegate {
             break
         }
         
-        // FIXME: - DELETE AFTER TEST
         self.handlerReturnComletion!(self.textFieldsCollection)
 
         return true

@@ -59,8 +59,9 @@ class PostCreateInteractor: PostCreateBusinessLogic, PostCreateDataStore {
     }
     
     func postCreate(withRequestModel requestModel: PostCreateModels.Post.RequestModel) {
-        let jsonMetadataString      =   ("{\"tags\":[\"" + self.tags!.compactMap({ $0.title }).joined(separator: ",") + "\"]")
+        let jsonMetadataString      =   ("{\"tags\":[\"" + self.tags!.compactMap({ $0.title!.transliterationInLatin() }).joined(separator: ",") + "\"]")
                                             .replacingOccurrences(of: ",", with: "\",\"") + ",\"app\":\"golos.io/0.1\",\"format\":\"markdown\"}"
+        Logger.log(message: "\njsonMetadataString:\n\t\(jsonMetadataString)", event: .debug)
 
         let comment                 =   RequestParameterAPI.Comment(parentAuthor:       "",
                                                                     parentPermlink:     self.tags!.first!.title!,

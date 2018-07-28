@@ -271,6 +271,18 @@
                                     <constraint firstAttribute="height" constant="1" id="VDv-jx-sAi"/>
                                 </constraints>
                             </view>
+                            <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a0R-ni-FPE" userLabel="Test Login Button">
+                                <rect key="frame" x="331" y="0.0" width="44" height="44"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="44" id="7QJ-3j-hUh"/>
+                                    <constraint firstAttribute="height" constant="44" id="S7o-3D-aln"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="testDataButtonTapped:" destination="1eb-M4-CWc" eventType="touchUpInside" id="HlD-kH-Y6n"/>
+                                    <action selector="testLoginButtonTapped:" destination="sM0-dq-nwN" eventType="touchUpInside" id="FZc-ew-46y"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -281,10 +293,12 @@
                             <constraint firstItem="dqh-Vu-hHU" firstAttribute="height" secondItem="StO-Px-L68" secondAttribute="height" id="8oA-Uo-EVd"/>
                             <constraint firstItem="wjG-Fd-23r" firstAttribute="bottom" secondItem="StO-Px-L68" secondAttribute="bottom" id="8wY-Dl-vj7"/>
                             <constraint firstItem="StO-Px-L68" firstAttribute="bottom" secondItem="dqh-Vu-hHU" secondAttribute="bottom" id="E4U-Xo-EVM"/>
+                            <constraint firstAttribute="trailing" secondItem="a0R-ni-FPE" secondAttribute="trailing" id="U1q-P1-UW0"/>
                             <constraint firstItem="KdC-76-vzd" firstAttribute="height" secondItem="Wuq-ZQ-uoB" secondAttribute="height" multiplier="40:105" id="VQP-qB-Iw4"/>
                             <constraint firstItem="KdC-76-vzd" firstAttribute="height" secondItem="Wuq-ZQ-uoB" secondAttribute="height" multiplier="40:105" id="bUO-A3-PYn"/>
                             <constraint firstAttribute="trailing" secondItem="1hd-FM-mmX" secondAttribute="trailing" id="cLK-q7-OYO"/>
                             <constraint firstItem="dqh-Vu-hHU" firstAttribute="leading" secondItem="wjG-Fd-23r" secondAttribute="trailing" id="ceV-mf-1uj"/>
+                            <constraint firstItem="a0R-ni-FPE" firstAttribute="top" secondItem="yDK-qr-3dr" secondAttribute="top" id="czx-mg-LcM"/>
                             <constraint firstItem="dqh-Vu-hHU" firstAttribute="centerY" secondItem="StO-Px-L68" secondAttribute="centerY" id="ggV-y6-EhG"/>
                             <constraint firstItem="k0H-e6-jdA" firstAttribute="top" secondItem="KdC-76-vzd" secondAttribute="bottom" id="jFT-Iw-LWb"/>
                             <constraint firstItem="yDK-qr-3dr" firstAttribute="trailing" secondItem="KdC-76-vzd" secondAttribute="trailing" id="kua-VO-uen"/>

@@ -216,7 +216,7 @@ class LogInShowViewController: GSBaseViewController {
     
     @IBAction func registerButtonPressed(_ sender: Any) {
         router?.showRegisterFormOnline()
-    }
+    }    
 }
 
 
