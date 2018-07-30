@@ -148,30 +148,22 @@ public struct RequestParameterAPI {
             
             self.permlink           =   needTiming ? permlinkTemp + "-\(Int64(Date().timeIntervalSince1970))" : permlinkTemp
             
-            if let parametersTemp = params {
-                let words: [String] =   body.components(separatedBy: " ")
-                var wordsTemp: [String] = [String]()
+            if let parameters = params {
+                var bodyTemp        =   body
                 
-                for parameter in parametersTemp {
-                    _ = words.map({ word in
-                        if word == parameter.key {
-                            wordsTemp.append(word.replacingOccurrences(of: parameter.key, with: String(format: "[%@](%@)", parameter.key, parameter.value)))
-                        }
-                        
-                        else {
-                            wordsTemp.append(word)
-                        }
-                    })
+                for parameter in parameters {
+                    bodyTemp        =   bodyTemp.replacingOccurrences(of: parameter.key, with: String(format: "[%@](%@)", parameter.key, parameter.value))
+                    Logger.log(message: "replaced = \n\(bodyTemp)", event: .debug)
                 }
                 
-                self.body           =   wordsTemp.joined(separator: " ")
+                self.body           =   bodyTemp
             }
-            
+                
             else {
                 self.body           =   body
             }
         }
-        
+
         
         // MARK: - RequestParameterAPIOperationPropertiesSupport protocol implementation
         // https://github.com/GolosChain/golos-js/blob/master/src/auth/serializer/src/ChainTypes.js
