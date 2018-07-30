@@ -23,6 +23,8 @@
 		B1050CA520CECF75003CE4EE /* PostCreateInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1050C9F20CECF75003CE4EE /* PostCreateInteractor.swift */; };
 		B1050CBF20CECFBE003CE4EE /* PostCreate.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1050CBE20CECFBE003CE4EE /* PostCreate.storyboard */; };
 		B1050CDF20CEE89C003CE4EE /* UINavigationController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1050CDE20CEE89C003CE4EE /* UINavigationController+Extensions.swift */; };
+		B1072C92210EDA990001019C /* SettingNotification+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1072C90210EDA990001019C /* SettingNotification+CoreDataClass.swift */; };
+		B1072C93210EDA990001019C /* SettingNotification+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1072C91210EDA990001019C /* SettingNotification+CoreDataProperties.swift */; };
 		B10F487E20F793DE00F2BCAC /* RestAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10F487D20F793DE00F2BCAC /* RestAPIManager.swift */; };
 		B111322420CD51EA00BC7F33 /* PostingKeyShowRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B111321E20CD51EA00BC7F33 /* PostingKeyShowRouter.swift */; };
 		B111322620CD51EA00BC7F33 /* PostingKeyShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B111322020CD51EA00BC7F33 /* PostingKeyShowViewController.swift */; };
@@ -92,6 +94,7 @@
 		B146891D20F234BE00D36794 /* UserProfileInfoTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B146891B20F234BD00D36794 /* UserProfileInfoTitleView.swift */; };
 		B146891E20F234BE00D36794 /* UserProfileInfoTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B146891C20F234BD00D36794 /* UserProfileInfoTitleView.xib */; };
 		B14C97CF20F87F6D00569FB1 /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14C97CE20F87F6D00569FB1 /* UIImageView+Extensions.swift */; };
+		B15267AE210DB4980037CAAA /* NSAttributedString+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15267AD210DB4980037CAAA /* NSAttributedString+Extensions.swift */; };
 		B157660A20B59D80009619A6 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B157660920B59D80009619A6 /* UserNotifications.framework */; };
 		B157660C20B59D80009619A6 /* UserNotificationsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B157660B20B59D80009619A6 /* UserNotificationsUI.framework */; };
 		B157660F20B59D80009619A6 /* RemoteNotificationTransferViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B157660E20B59D80009619A6 /* RemoteNotificationTransferViewController.swift */; };
@@ -268,6 +271,8 @@
 		B1050C9F20CECF75003CE4EE /* PostCreateInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCreateInteractor.swift; sourceTree = "<group>"; };
 		B1050CBE20CECFBE003CE4EE /* PostCreate.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PostCreate.storyboard; sourceTree = "<group>"; };
 		B1050CDE20CEE89C003CE4EE /* UINavigationController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Extensions.swift"; sourceTree = "<group>"; };
+		B1072C90210EDA990001019C /* SettingNotification+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingNotification+CoreDataClass.swift"; sourceTree = "<group>"; };
+		B1072C91210EDA990001019C /* SettingNotification+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingNotification+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		B10F487D20F793DE00F2BCAC /* RestAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestAPIManager.swift; sourceTree = "<group>"; };
 		B111321E20CD51EA00BC7F33 /* PostingKeyShowRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingKeyShowRouter.swift; sourceTree = "<group>"; };
 		B111322020CD51EA00BC7F33 /* PostingKeyShowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingKeyShowViewController.swift; sourceTree = "<group>"; };
@@ -340,6 +345,7 @@
 		B146891B20F234BD00D36794 /* UserProfileInfoTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileInfoTitleView.swift; sourceTree = "<group>"; };
 		B146891C20F234BD00D36794 /* UserProfileInfoTitleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserProfileInfoTitleView.xib; sourceTree = "<group>"; };
 		B14C97CE20F87F6D00569FB1 /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
+		B15267AD210DB4980037CAAA /* NSAttributedString+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Extensions.swift"; sourceTree = "<group>"; };
 		B157660820B59D80009619A6 /* RemoteNotificationTransfer.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = RemoteNotificationTransfer.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		B157660920B59D80009619A6 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		B157660B20B59D80009619A6 /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = SDKROOT; };
@@ -636,6 +642,8 @@
 				B1EA154120FE007A0015EF76 /* Promo+CoreDataProperties.swift */,
 				B13FE9AE20F5004F00F907BC /* Reply+CoreDataClass.swift */,
 				B13FE9AF20F5004F00F907BC /* Reply+CoreDataProperties.swift */,
+				B1072C90210EDA990001019C /* SettingNotification+CoreDataClass.swift */,
+				B1072C91210EDA990001019C /* SettingNotification+CoreDataProperties.swift */,
 				B1EBAFB720EB55690050B1A2 /* User+CoreDataClass.swift */,
 				B1EBAFB820EB55690050B1A2 /* User+CoreDataProperties.swift */,
 				B127A87820EB8ABF007133AB /* UserSecretActiveKey+CoreDataClass.swift */,
@@ -1077,6 +1085,7 @@
 			children = (
 				EC9ABBBE20179CEF00AF8597 /* Images.swift */,
 				EC24FF53200C080300A0AE15 /* Notifications+Extensions.swift */,
+				B15267AD210DB4980037CAAA /* NSAttributedString+Extensions.swift */,
 				B1EBAFBD20EB56910050B1A2 /* NSManagedObject+Extensions.swift */,
 				7D911D192035DE5D00F19D3C /* String+Extensions.swift */,
 				ECF31724200A9D2800F7B703 /* UIAlertController+Window.swift */,
@@ -1469,6 +1478,7 @@
 				B1F3748420C2C5E1005EF767 /* RootShowInteractor.swift in Sources */,
 				B1050CA220CECF75003CE4EE /* PostCreateRouter.swift in Sources */,
 				B1EA154720FE007A0015EF76 /* Actual+CoreDataProperties.swift in Sources */,
+				B15267AE210DB4980037CAAA /* NSAttributedString+Extensions.swift in Sources */,
 				B1E78A9320F9D30400B2901D /* GSScrollView.swift in Sources */,
 				B1E09E1E2101EFBE002CC5B7 /* PostFeedHeaderView.swift in Sources */,
 				B1EE684A20D261C4006BF802 /* UITextView+Extensions.swift in Sources */,
@@ -1532,6 +1542,7 @@
 				7D79C3482034686B00794447 /* ReusableCell.swift in Sources */,
 				B1EBAFBE20EB56910050B1A2 /* NSManagedObject+Extensions.swift in Sources */,
 				EC9ABBC32017D17000AF8597 /* UIImageEffects.swift in Sources */,
+				B1072C93210EDA990001019C /* SettingNotification+CoreDataProperties.swift in Sources */,
 				B14C97CF20F87F6D00569FB1 /* UIImageView+Extensions.swift in Sources */,
 				B13FE99F20F49B8300F907BC /* GSTableViewWithReloadCompletion.swift in Sources */,
 				B1050CA020CECF75003CE4EE /* PostCreatePresenter.swift in Sources */,
@@ -1540,6 +1551,7 @@
 				B11AA80020CB04AA00212713 /* WelcomeShowRouter.swift in Sources */,
 				B1050CA320CECF75003CE4EE /* PostCreateModels.swift in Sources */,
 				B111322620CD51EA00BC7F33 /* PostingKeyShowViewController.swift in Sources */,
+				B1072C92210EDA990001019C /* SettingNotification+CoreDataClass.swift in Sources */,
 				B1EA154B20FE02260015EF76 /* NewPostsShowViewController.swift in Sources */,
 				B1E09E192101EE8F002CC5B7 /* PostFeedTableViewCell.swift in Sources */,
 				B12B3AC820FCBFCA00071B97 /* PostsShowViewController.swift in Sources */,

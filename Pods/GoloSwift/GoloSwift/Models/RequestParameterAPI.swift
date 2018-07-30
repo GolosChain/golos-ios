@@ -132,12 +132,11 @@ public struct RequestParameterAPI {
         
         
         // MARK: - Initialization
-        public init(parentAuthor: String, parentPermlink: String, author: String, title: String, body: String, jsonMetadata: String, needTiming: Bool) {
+        public init(parentAuthor: String, parentPermlink: String, author: String, title: String, body: String, jsonMetadata: String, needTiming: Bool, params: [String: String]? = nil) {
             self.parentAuthor       =   parentAuthor
             self.parentPermlink     =   parentPermlink.transliterationInLatin()
             self.author             =   author
             self.title              =   title
-            self.body               =   body
             self.jsonMetadata       =   jsonMetadata
             self.needTiming         =   needTiming
             
@@ -148,6 +147,29 @@ public struct RequestParameterAPI {
                                             .lowercased()
             
             self.permlink           =   needTiming ? permlinkTemp + "-\(Int64(Date().timeIntervalSince1970))" : permlinkTemp
+            
+            if let parametersTemp = params {
+                let words: [String] =   body.components(separatedBy: " ")
+                var wordsTemp: [String] = [String]()
+                
+                for parameter in parametersTemp {
+                    _ = words.map({ word in
+                        if word == parameter.key {
+                            wordsTemp.append(word.replacingOccurrences(of: parameter.key, with: String(format: "[%@](%@)", parameter.key, parameter.value)))
+                        }
+                        
+                        else {
+                            wordsTemp.append(word)
+                        }
+                    })
+                }
+                
+                self.body           =   wordsTemp.joined(separator: " ")
+            }
+            
+            else {
+                self.body           =   body
+            }
         }
         
         

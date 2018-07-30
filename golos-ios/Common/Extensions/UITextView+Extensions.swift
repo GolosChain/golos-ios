@@ -162,11 +162,11 @@ extension UITextView {
         
         if let link = object as? (String, String) {
             let linkAttributes: [NSAttributedStringKey: Any] =  [
-                                                                    .link:              NSURL(string: link.1)!,
+                                                                    .link:              NSURL(string: String(format: "%@", link.1))!,
                                                                     .foregroundColor:   UIColor.blue
                                                                 ]
 
-            let linkAttributedString = NSMutableAttributedString(string: link.0)
+            let linkAttributedString    =   NSMutableAttributedString(string: String(format: "%@", link.0))
             linkAttributedString.setAttributes(linkAttributes, range: NSRange(location: 0, length: link.0.count))
 
             attributedString            =   linkAttributedString

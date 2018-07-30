@@ -88,7 +88,6 @@ class PostCreateViewController: GSBaseViewController {
             contentTextView.tune(textColors:    darkGrayWhiteColorPickers,
                                  font:          UIFont(name: "SFUIDisplay-Regular", size: 13.0 * widthRatio),
                                  alignment:     .left)
-
         }
     }
     
@@ -388,7 +387,8 @@ extension PostCreateViewController: UITextViewDelegate {
                     guard let linkAddress = linkAlert.textFields![1].text, !linkAddress.isEmpty else {
                         return
                     }
-                    
+                                        
+                    self?.interactor?.addParameter(byName: linkName, andValue: linkAddress)
                     self?.contentTextView.add(object: (linkName, linkAddress))
                 }
                 

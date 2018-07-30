@@ -16,8 +16,9 @@ import GoloSwift
 // MARK: - Business Logic protocols
 protocol PostCreateBusinessLogic {
     func save(tags: [Tag]?)
-    func save(commentBody: String?)
-    func save(commentTitle: String?)
+    func save(commentBody: String)
+    func save(commentTitle: String)
+    func addParameter(byName key: String, andValue value: String)
     func postCreate(withRequestModel requestModel: PostCreateModels.Post.RequestModel)
     func postComment(withRequestModel requestModel: PostCreateModels.Post.RequestModel)
     func postCommentReply(withRequestModel requestModel: PostCreateModels.Post.RequestModel)
@@ -25,6 +26,7 @@ protocol PostCreateBusinessLogic {
 
 protocol PostCreateDataStore {
     var tags: [Tag]? { get set }
+    var parameters: [String: String]? { get set }
     var commentBody: String? { get set }
     var commentTitle: String? { get set }
 }
@@ -35,6 +37,7 @@ class PostCreateInteractor: PostCreateBusinessLogic, PostCreateDataStore {
     
     // PostCreateDataStore protocol implementation
     var tags: [Tag]?
+    var parameters: [String : String]? = [String: String]()
     var commentBody: String?
     var commentTitle: String?
 
@@ -50,12 +53,16 @@ class PostCreateInteractor: PostCreateBusinessLogic, PostCreateDataStore {
         self.tags = tags
     }
     
-    func save(commentBody: String?) {
+    func save(commentBody: String) {
         self.commentBody = commentBody
     }
     
-    func save(commentTitle: String?) {
+    func save(commentTitle: String) {
         self.commentTitle = commentTitle
+    }
+    
+    func addParameter(byName key: String, andValue value: String) {
+        self.parameters?.updateValue(value, forKey: key)
     }
     
     func postCreate(withRequestModel requestModel: PostCreateModels.Post.RequestModel) {
@@ -80,7 +87,8 @@ class PostCreateInteractor: PostCreateBusinessLogic, PostCreateDataStore {
                                                                         title:              self.commentTitle!,
                                                                         body:               self.commentBody!,
                                                                         jsonMetadata:       jsonMetadataString,
-                                                                        needTiming:         errorAPI.caseInfo.message == "Permlink with timing")
+                                                                        needTiming:         errorAPI.caseInfo.message == "Permlink with timing",
+                                                                        params:             self.parameters)
             
             let operationAPIType        =   OperationAPIType.createPost(operations: [comment])
             
