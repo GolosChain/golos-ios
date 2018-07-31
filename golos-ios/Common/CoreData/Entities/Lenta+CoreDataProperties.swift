@@ -11,7 +11,7 @@ import Foundation
 import CoreData
 
 
-extension Lenta: PostFeedCellSupport {
+extension Lenta: PostCellSupport {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Lenta> {
         return NSFetchRequest<Lenta>(entityName: "Lenta")

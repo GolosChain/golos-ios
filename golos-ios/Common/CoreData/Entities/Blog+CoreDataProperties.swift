@@ -11,7 +11,7 @@ import Foundation
 import CoreData
 
 
-extension Blog: PostFeedCellSupport {
+extension Blog: PostCellSupport {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Blog> {
         return NSFetchRequest<Blog>(entityName: "Blog")

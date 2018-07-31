@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol PostFeedCellSupport: PaginationSupport, MetaDataSupport {
+protocol PostCellSupport: PaginationSupport, MetaDataSupport {
     var id: Int64 { get set }
     var parentAuthor: String? { get set }
     var created: Date { get set }

@@ -124,7 +124,7 @@ class PostFeedTableViewCell: UITableViewCell, HandlersCellSupport {
 // MARK: - ConfigureCell implementation
 extension PostFeedTableViewCell: ConfigureCell {
     func setup(withItem item: Any?, andIndexPath indexPath: IndexPath) {
-        guard let model = item as? PostFeedCellSupport else {
+        guard let model = item as? PostCellSupport else {
             return
         }
         

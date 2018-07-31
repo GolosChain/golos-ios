@@ -27,6 +27,7 @@ class GSTableViewController: GSBaseViewController {
     var handlerCommentsButtonTapped: (() -> Void)?
     var handlerReplyTypeButtonTapped: (() -> Void)?
     var handlerRefreshData: ((NSManagedObject?) -> Void)?
+    var handlerSelectItem: ((NSManagedObject?) -> Void)?
 
     var activityIndicatorView: UIActivityIndicatorView!
 
@@ -379,7 +380,11 @@ extension GSTableViewController: UITableViewDelegate {
         }
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {}
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let selectedElement = fetchedResultsController.sections![indexPath.section].objects![indexPath.row] as? NSManagedObject {
+            self.handlerSelectItem!(selectedElement)
+        }
+    }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {}
 }

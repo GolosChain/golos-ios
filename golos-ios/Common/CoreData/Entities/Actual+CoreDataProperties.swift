@@ -11,7 +11,7 @@ import Foundation
 import CoreData
 
 
-extension Actual: PostFeedCellSupport {
+extension Actual: PostCellSupport {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Actual> {
         return NSFetchRequest<Actual>(entityName: "Actual")

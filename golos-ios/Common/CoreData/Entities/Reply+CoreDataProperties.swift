@@ -11,7 +11,7 @@ import Foundation
 import CoreData
 
 
-extension Reply: PostFeedCellSupport {
+extension Reply: PostCellSupport {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Reply> {
         return NSFetchRequest<Reply>(entityName: "Reply")

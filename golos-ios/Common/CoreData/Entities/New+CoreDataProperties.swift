@@ -11,7 +11,7 @@ import Foundation
 import CoreData
 
 
-extension New: PostFeedCellSupport {
+extension New: PostCellSupport {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<New> {
         return NSFetchRequest<New>(entityName: "New")

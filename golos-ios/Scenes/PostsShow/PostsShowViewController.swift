@@ -116,7 +116,6 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.hideNavigationBar()
         self.loadViewSettings()
         self.setupSegmentedControl()
     }
@@ -125,7 +124,8 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
         super.viewWillAppear(animated)
         
         UIApplication.shared.statusBarStyle = .lightContent
-     
+        self.hideNavigationBar()
+
         // Load Posts
         self.loadPosts(false)
     }
@@ -138,6 +138,16 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
     
     private func setActiveViewControllerHandlers() {
         if let activeVC = self.containerView.activeVC {
+            // Add cells from XIB
+            activeVC.fetchPosts(byType: postFeedTypes[self.selectedSegmentIndex])
+            
+            
+            // Handler Refresh/Upload data
+            activeVC.handlerRefreshData             =   { [weak self] lastItem in
+                self?.interactor?.save(lastItem: lastItem)
+                self?.loadPosts(lastItem == nil)
+            }
+
             activeVC.handlerAnswerButtonTapped      =   { [weak self] in
                 self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
             }
@@ -156,6 +166,11 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
             
             activeVC.handlerCommentsButtonTapped    =   { [weak self] in
                 self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+            }
+            
+            activeVC.handlerSelectItem              =   { [weak self] selectedPost in
+                self?.interactor?.save(post: selectedPost!)
+                self?.router?.routeToPostShowScene()
             }
         }
     }
@@ -248,16 +263,18 @@ extension PostsShowViewController {
 extension PostsShowViewController {
     // User Profile
     private func fetchPosts() {
-        if let activeVC = self.containerView.activeVC {
-            // Add cells from XIB
-            activeVC.fetchPosts(byType: postFeedTypes[self.selectedSegmentIndex])
-            
-            // Handler Refresh/Upload data
-            activeVC.handlerRefreshData  =   { [weak self] lastItem in
-                self?.interactor?.save(lastItem: lastItem)
-                self?.loadPosts(lastItem == nil)
-            }
-        }
+        self.setActiveViewControllerHandlers()
+//        if let activeVC = self.containerView.activeVC {
+//            // Add cells from XIB
+//            activeVC.fetchPosts(byType: postFeedTypes[self.selectedSegmentIndex])
+//
+//
+//            // Handler Refresh/Upload data
+//            activeVC.handlerRefreshData  =   { [weak self] lastItem in
+//                self?.interactor?.save(lastItem: lastItem)
+//                self?.loadPosts(lastItem == nil)
+//            }
+//        }
     }
 }
 
@@ -288,6 +305,6 @@ extension PostsShowViewController: SJSegmentedViewControllerDelegate {
             self.loadPosts(false)
         }
         
-        self.setActiveViewControllerHandlers()
+//        self.setActiveViewControllerHandlers()
     }
 }

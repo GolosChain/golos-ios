@@ -18,7 +18,7 @@ protocol PostShowDisplayLogic: class {
     func displayLoadContent(fromViewModel viewModel: PostShowModels.Post.ViewModel)
 }
 
-class PostShowViewController: UIViewController {
+class PostShowViewController: GSBaseViewController {
     // MARK: - Properties
     var interactor: PostShowBusinessLogic?
     var router: (NSObjectProtocol & PostShowRoutingLogic & PostShowDataPassing)?
@@ -80,11 +80,18 @@ class PostShowViewController: UIViewController {
         self.loadViewSettings()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        UIApplication.shared.statusBarStyle = .default
+        
+        // Load Posts
+        self.loadContent()
+    }
+
     
     // MARK: - Custom Functions
     private func loadViewSettings() {
-        let requestModel = PostShowModels.Post.RequestModel()
-        interactor?.loadContent(withRequestModel: requestModel)
     }
 }
 
@@ -93,6 +100,24 @@ class PostShowViewController: UIViewController {
 extension PostShowViewController: PostShowDisplayLogic {
     func displayLoadContent(fromViewModel viewModel: PostShowModels.Post.ViewModel) {
         // NOTE: Display the result from the Presenter
+
+    }
+}
+
+
+// MARK: - Load data from Blockchain by API
+extension PostShowViewController {
+    private func loadContent() {
+        let contentRequestModel = PostShowModels.Post.RequestModel()
+        interactor?.loadContent(withRequestModel: contentRequestModel)
+    }
+}
+
+
+// MARK: - Fetch data from CoreData
+extension PostShowViewController {
+    // User Profile
+    private func fetchContent() {
 
     }
 }

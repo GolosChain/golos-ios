@@ -15,7 +15,7 @@ import GoloSwift
 
 // MARK: - Input & Output protocols
 @objc protocol PostsShowRoutingLogic {
-//    func routeToSomewhere(segue: UIStoryboardSegue?)
+    func routeToPostShowScene()
 }
 
 protocol PostsShowDataPassing {
@@ -35,29 +35,25 @@ class PostsShowRouter: NSObject, PostsShowRoutingLogic, PostsShowDataPassing {
     
 
     // MARK: - Routing
-//    func routeToSomewhere(segue: UIStoryboardSegue?) {
-//        if let segue = segue {
-//            let destinationVC = segue.destination as! SomewhereViewController
-//            var destinationDS = destinationVC.router!.dataStore!
-//            passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-//        } else {
-//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//            let destinationVC = storyboard.instantiateViewController(withIdentifier: "SomewhereViewController") as! SomewhereViewController
-//            var destinationDS = destinationVC.router!.dataStore!
-//            passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-//            navigateToSomewhere(source: viewController!, destination: destinationVC)
-//        }
-//    }
+    func routeToPostShowScene() {
+        let storyboard      =   UIStoryboard(name: "PostShow", bundle: nil)
+        let destinationVC   =   storyboard.instantiateViewController(withIdentifier: "PostShowVC") as! PostShowViewController
+        var destinationDS   =   destinationVC.router!.dataStore!
+        
+        passDataToPostShowScene(source: dataStore!, destination: &destinationDS)
+        navigateToPostShowScene(source: viewController!, destination: destinationVC)
+    }
     
     
     // MARK: - Navigation
-//    func navigateToSomewhere(source: PostsShowViewController, destination: SomewhereViewController) {
-//        source.show(destination, sender: nil)
-//    }
+    func navigateToPostShowScene(source: PostsShowViewController, destination: PostShowViewController) {
+        viewController?.hideNavigationBar()
+        source.show(destination, sender: nil)
+    }
     
     
     // MARK: - Passing data
-//    func passDataToSomewhere(source: PostsShowDataStore, destination: inout SomewhereDataStore) {
-//        destination.name = source.name
-//    }
+    func passDataToPostShowScene(source: PostsShowDataStore, destination: inout PostShowDataStore) {
+        destination.postID  =   (source.post as! PostCellSupport).id
+    }
 }

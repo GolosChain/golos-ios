@@ -19,7 +19,7 @@ protocol PostShowBusinessLogic {
 }
 
 protocol PostShowDataStore {
-     var postID: String { get set }
+     var postID: Int64 { get set }
 }
 
 class PostShowInteractor: PostShowBusinessLogic, PostShowDataStore {
@@ -28,7 +28,7 @@ class PostShowInteractor: PostShowBusinessLogic, PostShowDataStore {
     var worker: PostShowWorker?
     
     // PostShowDataStore protocol implementation
-    var postID: String = ""
+    var postID: Int64 = 0
     
     
     // MARK: - Class Initialization

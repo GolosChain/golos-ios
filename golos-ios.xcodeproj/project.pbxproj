@@ -151,7 +151,7 @@
 		B1E09E202101F222002CC5B7 /* MetaDataSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E09E1F2101F222002CC5B7 /* MetaDataSupport.swift */; };
 		B1E09E222101F26C002CC5B7 /* PaginationSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E09E212101F26C002CC5B7 /* PaginationSupport.swift */; };
 		B1E09E242101F2CB002CC5B7 /* ConfigureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E09E232101F2CB002CC5B7 /* ConfigureCell.swift */; };
-		B1E09E262101F303002CC5B7 /* PostFeedCellSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E09E252101F303002CC5B7 /* PostFeedCellSupport.swift */; };
+		B1E09E262101F303002CC5B7 /* PostCellSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E09E252101F303002CC5B7 /* PostCellSupport.swift */; };
 		B1E09E292101F7D9002CC5B7 /* Blog+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E09E272101F7D9002CC5B7 /* Blog+CoreDataClass.swift */; };
 		B1E09E2A2101F7D9002CC5B7 /* Blog+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E09E282101F7D9002CC5B7 /* Blog+CoreDataProperties.swift */; };
 		B1E78A6F20F99CD500B2901D /* UserProfileBlogShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E78A6E20F99CD500B2901D /* UserProfileBlogShowViewController.swift */; };
@@ -417,7 +417,7 @@
 		B1E09E1F2101F222002CC5B7 /* MetaDataSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaDataSupport.swift; sourceTree = "<group>"; };
 		B1E09E212101F26C002CC5B7 /* PaginationSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginationSupport.swift; sourceTree = "<group>"; };
 		B1E09E232101F2CB002CC5B7 /* ConfigureCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureCell.swift; sourceTree = "<group>"; };
-		B1E09E252101F303002CC5B7 /* PostFeedCellSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostFeedCellSupport.swift; sourceTree = "<group>"; };
+		B1E09E252101F303002CC5B7 /* PostCellSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCellSupport.swift; sourceTree = "<group>"; };
 		B1E09E272101F7D9002CC5B7 /* Blog+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Blog+CoreDataClass.swift"; sourceTree = "<group>"; };
 		B1E09E282101F7D9002CC5B7 /* Blog+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Blog+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		B1E78A6E20F99CD500B2901D /* UserProfileBlogShowViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileBlogShowViewController.swift; sourceTree = "<group>"; };
@@ -1141,7 +1141,7 @@
 				B1E09E232101F2CB002CC5B7 /* ConfigureCell.swift */,
 				B1E09E1F2101F222002CC5B7 /* MetaDataSupport.swift */,
 				B1E09E212101F26C002CC5B7 /* PaginationSupport.swift */,
-				B1E09E252101F303002CC5B7 /* PostFeedCellSupport.swift */,
+				B1E09E252101F303002CC5B7 /* PostCellSupport.swift */,
 				7DA06327203256D700B5630C /* PropertyStoring.swift */,
 				7D79C3472034686B00794447 /* ReusableCell.swift */,
 				EC24FF27200BEBE600A0AE15 /* ViewProtocol.swift */,
@@ -1497,7 +1497,7 @@
 				B1D7EFAD20EB704000819401 /* UserSecretPostingKey+CoreDataClass.swift in Sources */,
 				B1EE684620D243F5006BF802 /* PostCreateView.swift in Sources */,
 				EC24FF5B200C30C500A0AE15 /* MainContainerPresenter.swift in Sources */,
-				B1E09E262101F303002CC5B7 /* PostFeedCellSupport.swift in Sources */,
+				B1E09E262101F303002CC5B7 /* PostCellSupport.swift in Sources */,
 				B12B3AC620FCBFCA00071B97 /* PostsShowRouter.swift in Sources */,
 				B1C1DFE220CF887F00D1A837 /* LogInShowModels.swift in Sources */,
 				B120D07A210825AD00D949F5 /* SettingsNotificationsShowModels.swift in Sources */,

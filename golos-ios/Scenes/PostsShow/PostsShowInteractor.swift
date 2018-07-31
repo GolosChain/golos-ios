@@ -16,12 +16,14 @@ import GoloSwift
 
 // MARK: - Business Logic protocols
 protocol PostsShowBusinessLogic {
+    func save(post: NSManagedObject)
     func save(lastItem: NSManagedObject?)
     func loadPosts(withRequestModel requestModel: PostsShowModels.Items.RequestModel)
 }
 
 protocol PostsShowDataStore {
     var lastItem: NSManagedObject? { get set }
+    var post: NSManagedObject? { get set }
 }
 
 class PostsShowInteractor: PostsShowBusinessLogic, PostsShowDataStore {
@@ -31,7 +33,8 @@ class PostsShowInteractor: PostsShowBusinessLogic, PostsShowDataStore {
     
     // MARK: - PostsShowDataStore implementation
     var lastItem: NSManagedObject?
-
+    var post: NSManagedObject?
+    
     
     // MARK: - Class Initialization
     deinit {
@@ -40,6 +43,10 @@ class PostsShowInteractor: PostsShowBusinessLogic, PostsShowDataStore {
     
 
     // MARK: - Business logic implementation
+    func save(post: NSManagedObject) {
+        self.post       =   post
+    }
+    
     func save(lastItem: NSManagedObject?) {
         self.lastItem   =   lastItem
     }

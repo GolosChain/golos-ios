@@ -16,7 +16,7 @@ extension NSManagedObject {
     }
     
     func update(withModel model: ResponseAPIPost) {
-        if var entity = self as? PostFeedCellSupport {
+        if var entity = self as? PostCellSupport {
             entity.id                   =   model.id
             entity.author               =   model.author
             entity.category             =   model.category

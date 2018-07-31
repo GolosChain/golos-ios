@@ -11,7 +11,7 @@ import Foundation
 import CoreData
 
 
-extension Popular: PostFeedCellSupport {
+extension Popular: PostCellSupport {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Popular> {
         return NSFetchRequest<Popular>(entityName: "Popular")

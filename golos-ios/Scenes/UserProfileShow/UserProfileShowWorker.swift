@@ -46,8 +46,8 @@ class UserProfileShowWorker {
             let discussion  =   RequestParameterAPI.Discussion.init(limit:          loadDataLimit,
                                                                     truncateBody:   0,
                                                                     selectAuthors:  [ User.current!.name ],
-                                                                    startAuthor:    (lastItem as? PostFeedCellSupport)?.author,
-                                                                    startPermlink:  (lastItem as? PostFeedCellSupport)?.permlink)
+                                                                    startAuthor:    (lastItem as? PostCellSupport)?.author,
+                                                                    startPermlink:  (lastItem as? PostCellSupport)?.permlink)
             
             methodAPIType   =   MethodAPIType.getDiscussions(type: parameters.type, parameters: discussion)
         }
