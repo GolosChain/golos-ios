@@ -246,6 +246,11 @@ class UserProfileShowViewController: GSBaseViewController, ContainerViewSupport 
             activeVC.handlerCommentsButtonTapped    =   { [weak self] in
                 self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
             }
+            
+            activeVC.handlerSelectItem              =   { [weak self] selectedBlog in
+                self?.interactor?.save(blog: selectedBlog!)
+                self?.router?.routeToPostShowScene()
+            }
         }
     }
 }

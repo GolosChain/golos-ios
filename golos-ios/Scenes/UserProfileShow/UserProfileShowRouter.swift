@@ -15,6 +15,7 @@ import GoloSwift
 
 // MARK: - Input & Output protocols
 @objc protocol UserProfileShowRoutingLogic {
+    func routeToPostShowScene()
     func routeToSettingsShowScene()
 }
 
@@ -35,6 +36,15 @@ class UserProfileShowRouter: NSObject, UserProfileShowRoutingLogic, UserProfileS
     
 
     // MARK: - Routing
+    func routeToPostShowScene() {
+        let storyboard      =   UIStoryboard(name: "PostShow", bundle: nil)
+        let destinationVC   =   storyboard.instantiateViewController(withIdentifier: "PostShowVC") as! PostShowViewController
+        var destinationDS   =   destinationVC.router!.dataStore!
+        
+        passDataToPostShowScene(source: dataStore!, destination: &destinationDS)
+        navigateToPostShowScene(source: viewController!, destination: destinationVC)
+    }
+
     func routeToSettingsShowScene() {
         let storyboard      =   UIStoryboard(name: "SettingsShow", bundle: nil)
         let destinationVC   =   storyboard.instantiateViewController(withIdentifier: "SettingsShowVC") as! SettingsShowViewController
@@ -49,5 +59,16 @@ class UserProfileShowRouter: NSObject, UserProfileShowRoutingLogic, UserProfileS
         
         source.show(destination, sender: nil)
         viewController?.showNavigationBar()
+    }
+    
+    func navigateToPostShowScene(source: UserProfileShowViewController, destination: PostShowViewController) {
+        viewController?.hideNavigationBar()
+        source.show(destination, sender: nil)
+    }
+    
+    
+    // MARK: - Passing data
+    func passDataToPostShowScene(source: UserProfileShowDataStore, destination: inout PostShowDataStore) {
+        destination.postID  =   (source.selectedBlog as! PostCellSupport).id
     }
 }
