@@ -101,6 +101,12 @@
 		B157661220B59D80009619A6 /* RemoteNotificationTransfer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B157661020B59D80009619A6 /* RemoteNotificationTransfer.storyboard */; };
 		B157661620B59D80009619A6 /* RemoteNotificationTransfer.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = B157660820B59D80009619A6 /* RemoteNotificationTransfer.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		B15C29AE21101F760030D249 /* PostShow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B15C29AD21101F760030D249 /* PostShow.storyboard */; };
+		B15C29B621101FEA0030D249 /* PostShowPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15C29B021101FEA0030D249 /* PostShowPresenter.swift */; };
+		B15C29B721101FEA0030D249 /* PostShowWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15C29B121101FEA0030D249 /* PostShowWorker.swift */; };
+		B15C29B821101FEA0030D249 /* PostShowRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15C29B221101FEA0030D249 /* PostShowRouter.swift */; };
+		B15C29B921101FEA0030D249 /* PostShowModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15C29B321101FEA0030D249 /* PostShowModels.swift */; };
+		B15C29BA21101FEA0030D249 /* PostShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15C29B421101FEA0030D249 /* PostShowViewController.swift */; };
+		B15C29BB21101FEA0030D249 /* PostShowInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15C29B521101FEA0030D249 /* PostShowInteractor.swift */; };
 		B15F227E20EE943200C44282 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15F227D20EE943200C44282 /* CoreDataManager.swift */; };
 		B15F228220EEB16500C44282 /* StateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15F228120EEB16500C44282 /* StateMachine.swift */; };
 		B15F228420EEB16C00C44282 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15F228320EEB16C00C44282 /* AppState.swift */; };
@@ -354,6 +360,12 @@
 		B157661120B59D80009619A6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/RemoteNotificationTransfer.storyboard; sourceTree = "<group>"; };
 		B157661320B59D80009619A6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B15C29AD21101F760030D249 /* PostShow.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PostShow.storyboard; sourceTree = "<group>"; };
+		B15C29B021101FEA0030D249 /* PostShowPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostShowPresenter.swift; sourceTree = "<group>"; };
+		B15C29B121101FEA0030D249 /* PostShowWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostShowWorker.swift; sourceTree = "<group>"; };
+		B15C29B221101FEA0030D249 /* PostShowRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostShowRouter.swift; sourceTree = "<group>"; };
+		B15C29B321101FEA0030D249 /* PostShowModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostShowModels.swift; sourceTree = "<group>"; };
+		B15C29B421101FEA0030D249 /* PostShowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostShowViewController.swift; sourceTree = "<group>"; };
+		B15C29B521101FEA0030D249 /* PostShowInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostShowInteractor.swift; sourceTree = "<group>"; };
 		B15F227D20EE943200C44282 /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		B15F228120EEB16500C44282 /* StateMachine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateMachine.swift; sourceTree = "<group>"; };
 		B15F228320EEB16C00C44282 /* AppState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
@@ -767,6 +779,19 @@
 			path = RemoteNotificationTransfer;
 			sourceTree = "<group>";
 		};
+		B15C29AF21101FD10030D249 /* PostShow */ = {
+			isa = PBXGroup;
+			children = (
+				B15C29B521101FEA0030D249 /* PostShowInteractor.swift */,
+				B15C29B321101FEA0030D249 /* PostShowModels.swift */,
+				B15C29B021101FEA0030D249 /* PostShowPresenter.swift */,
+				B15C29B221101FEA0030D249 /* PostShowRouter.swift */,
+				B15C29B421101FEA0030D249 /* PostShowViewController.swift */,
+				B15C29B121101FEA0030D249 /* PostShowWorker.swift */,
+			);
+			path = PostShow;
+			sourceTree = "<group>";
+		};
 		B15F228020EEB14700C44282 /* StateMachine */ = {
 			isa = PBXGroup;
 			children = (
@@ -1048,6 +1073,7 @@
 				ECF3172B200AB22000F7B703 /* LogInShow */,
 				EC24FF57200C30A300A0AE15 /* MainContainer */,
 				B1050C9720CECF0C003CE4EE /* PostCreate */,
+				B15C29AF21101FD10030D249 /* PostShow */,
 				B12B3ABD20FCBF6000071B97 /* PostsShow */,
 				B1F3747620C2B4DE005EF767 /* RootShow */,
 				B12F43F920EA0175003FFF58 /* ScannerShow */,
@@ -1502,11 +1528,13 @@
 				B12F442D20EB4AFC003FFF58 /* GolosModels.xcdatamodeld in Sources */,
 				B13FE9B420F5004F00F907BC /* Lenta+CoreDataClass.swift in Sources */,
 				B1EA154220FE007A0015EF76 /* New+CoreDataClass.swift in Sources */,
+				B15C29B621101FEA0030D249 /* PostShowPresenter.swift in Sources */,
 				EC07F4A22014093E00560CF0 /* HorizontalSelectorView.swift in Sources */,
 				B181586020B976FD00835034 /* GSBaseViewController.swift in Sources */,
 				B164F04620E62AE600C5CDD3 /* UserProfileShowViewController.swift in Sources */,
 				B12B3AC920FCBFCA00071B97 /* PostsShowInteractor.swift in Sources */,
 				B127A87B20EB8ABF007133AB /* UserSecretActiveKey+CoreDataProperties.swift in Sources */,
+				B15C29BA21101FEA0030D249 /* PostShowViewController.swift in Sources */,
 				B136D4FF20D8BA2E003AD279 /* ThemeTagCollectionViewCell.swift in Sources */,
 				B1EE686C20D2D713006BF802 /* PostCommentReply.swift in Sources */,
 				B1742A8E20FD03EE009AAE5E /* GSPostsSegmentedControlViewController.swift in Sources */,
@@ -1542,6 +1570,7 @@
 				B1E78A7320F9A24900B2901D /* UserProfileReplyShowViewController.swift in Sources */,
 				B13FE9B320F5004F00F907BC /* Reply+CoreDataProperties.swift in Sources */,
 				B12B3ABC20FC580800071B97 /* GSTableViewController.swift in Sources */,
+				B15C29BB21101FEA0030D249 /* PostShowInteractor.swift in Sources */,
 				ECA8E35E2018D119003B8ABA /* UIView+Shadow.swift in Sources */,
 				7D79C3482034686B00794447 /* ReusableCell.swift in Sources */,
 				B1EBAFBE20EB56910050B1A2 /* NSManagedObject+Extensions.swift in Sources */,
@@ -1561,12 +1590,14 @@
 				B12B3AC820FCBFCA00071B97 /* PostsShowViewController.swift in Sources */,
 				B11AA80720CB9FC800212713 /* UILabel+Extensions.swift in Sources */,
 				B1CF44DF2106D65600483A01 /* SettingsShowViewController.swift in Sources */,
+				B15C29B921101FEA0030D249 /* PostShowModels.swift in Sources */,
 				B1DCE31721098E5F00487DE0 /* FCManager.swift in Sources */,
 				B120D078210825AD00D949F5 /* SettingsNotificationsShowWorker.swift in Sources */,
 				B114192820CD1E260025B07F /* ReachabilityManager.swift in Sources */,
 				B1EBAFBC20EB55690050B1A2 /* User+CoreDataProperties.swift in Sources */,
 				B111322420CD51EA00BC7F33 /* PostingKeyShowRouter.swift in Sources */,
 				B12F440420EA01F9003FFF58 /* ScannerShowRouter.swift in Sources */,
+				B15C29B821101FEA0030D249 /* PostShowRouter.swift in Sources */,
 				B1CF44DD2106D65600483A01 /* SettingsShowRouter.swift in Sources */,
 				7D25B4B5201F9218004A3400 /* GSNavigationBar.swift in Sources */,
 				B1F3748220C2C5E1005EF767 /* RootShowModels.swift in Sources */,
@@ -1602,6 +1633,7 @@
 				B13FE9A820F4E90700F907BC /* UserProfileShowWorker.swift in Sources */,
 				B1EA155920FE22980015EF76 /* ActualPostsShowViewController.swift in Sources */,
 				ECF31725200A9D2800F7B703 /* UIAlertController+Window.swift in Sources */,
+				B15C29B721101FEA0030D249 /* PostShowWorker.swift in Sources */,
 				B1F3748120C2C5E1005EF767 /* RootShowRouter.swift in Sources */,
 				B1DCE322210A32B600487DE0 /* GSTestManager.swift in Sources */,
 				B15F228220EEB16500C44282 /* StateMachine.swift in Sources */,
