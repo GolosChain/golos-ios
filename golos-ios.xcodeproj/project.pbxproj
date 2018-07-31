@@ -100,6 +100,7 @@
 		B157660F20B59D80009619A6 /* RemoteNotificationTransferViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B157660E20B59D80009619A6 /* RemoteNotificationTransferViewController.swift */; };
 		B157661220B59D80009619A6 /* RemoteNotificationTransfer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B157661020B59D80009619A6 /* RemoteNotificationTransfer.storyboard */; };
 		B157661620B59D80009619A6 /* RemoteNotificationTransfer.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = B157660820B59D80009619A6 /* RemoteNotificationTransfer.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		B15C29AE21101F760030D249 /* PostShow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B15C29AD21101F760030D249 /* PostShow.storyboard */; };
 		B15F227E20EE943200C44282 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15F227D20EE943200C44282 /* CoreDataManager.swift */; };
 		B15F228220EEB16500C44282 /* StateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15F228120EEB16500C44282 /* StateMachine.swift */; };
 		B15F228420EEB16C00C44282 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15F228320EEB16C00C44282 /* AppState.swift */; };
@@ -352,6 +353,7 @@
 		B157660E20B59D80009619A6 /* RemoteNotificationTransferViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteNotificationTransferViewController.swift; sourceTree = "<group>"; };
 		B157661120B59D80009619A6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/RemoteNotificationTransfer.storyboard; sourceTree = "<group>"; };
 		B157661320B59D80009619A6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B15C29AD21101F760030D249 /* PostShow.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PostShow.storyboard; sourceTree = "<group>"; };
 		B15F227D20EE943200C44282 /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		B15F228120EEB16500C44282 /* StateMachine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateMachine.swift; sourceTree = "<group>"; };
 		B15F228320EEB16C00C44282 /* AppState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
@@ -699,6 +701,7 @@
 				EC1DFB9720063C400080BC50 /* LaunchScreen.storyboard */,
 				B114192920CD21530025B07F /* LogInShow.storyboard */,
 				B1050CBE20CECFBE003CE4EE /* PostCreate.storyboard */,
+				B15C29AD21101F760030D249 /* PostShow.storyboard */,
 				B12B3ACA20FCC07300071B97 /* PostsShow.storyboard */,
 				B1F3747420C2B483005EF767 /* RootShow.storyboard */,
 				B12F43FA20EA0191003FFF58 /* ScannerShow.storyboard */,
@@ -1293,6 +1296,7 @@
 				B1E09E1D2101EFBE002CC5B7 /* PostFeedHeaderView.xib in Resources */,
 				EC24FF7F200C4E2C00A0AE15 /* NavigationDropDownView.xib in Resources */,
 				B1050CBF20CECFBE003CE4EE /* PostCreate.storyboard in Resources */,
+				B15C29AE21101F760030D249 /* PostShow.storyboard in Resources */,
 				B1CF44E22106D6CB00483A01 /* SettingsShow.storyboard in Resources */,
 				B12A577420B432C8000CF8BF /* GoogleService-Info.plist in Resources */,
 				B1EE684820D243FF006BF802 /* PostCreateView.xib in Resources */,
