@@ -209,20 +209,10 @@ class PostCreateViewController: GSBaseViewController {
     // MARK: - Custom Functions
     private func saveToAlbum(image: UIImage) {
         if let imageData = UIImageJPEGRepresentation(image, 0.6), let compressedJPGImage = UIImage(data: imageData) {
-            UIImageWriteToSavedPhotosAlbum(compressedJPGImage, self, #selector(image(path:didFinishSavingWithError:contextInfo:)), nil)
-//            UIImageWriteToSavedPhotosAlbum(compressedJPGImage, nil, nil, nil)
+            UIImageWriteToSavedPhotosAlbum(compressedJPGImage, nil, nil, nil)
             
             self.showAlertView(withTitle: "Info", andMessage: "Image saved to Photo Library", needCancel: false, completion: { [weak self] _ in
-                var imageAttachment         =   Attachment(key:        String(format: "image-camera-%i", self?.router?.dataStore?.attachments?.count ?? 1),
-                                                           range:      NSRange.init(location: 0, length: 1),
-                                                           value:      "xxx",
-                                                           type:       .image)
-                
-                if let imageAttachmentValue = self?.contentTextView.add(object: (imageAttachment, image)) {
-                    imageAttachment.value   =   imageAttachmentValue
-                
-                    self?.interactor?.add(attachment: imageAttachment)
-                }
+                self?.contentTextView.add(object: image)
             })
         }
     }
@@ -303,6 +293,11 @@ class PostCreateViewController: GSBaseViewController {
         // API's
         switch sceneType {
         case .create:
+            // Get content parts
+            let contentParts    =   self.contentTextView.getParts()
+                        
+            self.interactor?.save(attachments: contentParts)
+
             let postCreateRequestModel = PostCreateModels.Post.RequestModel()
             interactor?.postCreate(withRequestModel: postCreateRequestModel)
 
@@ -362,28 +357,6 @@ extension PostCreateViewController: UITextViewDelegate {
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        if text.isEmpty {
-            // Search attached image
-            textView.attributedText.enumerateAttribute(NSAttributedStringKey.attachment,
-                                                       in:          NSRange.init(location: 0, length: textView.attributedText.length),
-                                                       options:     NSAttributedString.EnumerationOptions(rawValue: 0),
-                                                       using:       { (_, imageRange, _) in
-                                                            if NSEqualRanges(range, imageRange) {
-                                                                (textView.attributedText.string as NSString).replacingCharacters(in: imageRange, with: "")
-                                                            }
-            })
-            
-            // Search attached link
-            textView.attributedText.enumerateAttribute(NSAttributedStringKey.attachment,
-                                                       in:          NSRange.init(location: 0, length: textView.attributedText.length),
-                                                       options:     .longestEffectiveRangeNotRequired) { (_, linkRange, _) in
-                                                            if NSEqualRanges(range, linkRange) {
-                                                                (textView.attributedText.string as NSString).replacingCharacters(in: linkRange, with: "")
-                                                            }
-            }
-        }
-
-        
         return true
     }
     
@@ -424,22 +397,12 @@ extension PostCreateViewController: UITextViewDelegate {
                         return
                     }
                     
-                    guard let linkValue = linkAlert.textFields![1].text, !linkValue.isEmpty else {
+                    guard let linkPath = linkAlert.textFields![1].text, !linkPath.isEmpty else {
                         return
                     }
                     
-                    let linkKeyNew                  =   linkKey.replacingOccurrences(of: " ", with: "_")
-                    
-                    var linkAttachment              =   Attachment(key:        linkKeyNew,
-                                                                   range:      NSRange.init(location: textView.text.count, length: linkKeyNew.count),
-                                                                   value:      linkValue,
-                                                                   type:       .link)
-                   
-                    if let linkAttachmentValue = self?.contentTextView.add(object: linkAttachment) {
-                        linkAttachment.value        =   linkAttachmentValue
-                    
-                        self?.interactor?.add(attachment: linkAttachment)
-                    }
+                    // Add (linkName, linkURL)
+                    self?.contentTextView.add(object: (linkKey.replacingOccurrences(of: " ", with: "_"), linkPath))
                 }
                 
                 linkAlert.addAction(actionOk)
@@ -523,23 +486,7 @@ extension PostCreateViewController: UIImagePickerControllerDelegate {
         }
         
         else {
-            var imageAttachment         =   Attachment(key:        String(format: "image-album-%i", self.router?.dataStore?.attachments?.count ?? 1),
-                                                       range:      NSRange.init(location: self.contentTextView.attributedText.length, length: 1),
-                                                       value:      "xxx",
-                                                       type:       .image)
-
-            // Create image signature
-            if let imageSignature = Attachment.createURL(forImage: image, userName: User.current!.name) {
-                // API 'Posting image'
-                RestAPIManager.posting(image, imageSignature, completion: { imageURL in
-                    Logger.log(message: "imageURL = \(imageURL ?? "XXX")", event: .debug)
-                })
-            }
-            
-            let imageAttachmentValue    =   self.contentTextView.add(object: (imageAttachment, image))
-            imageAttachment.value       =   imageAttachmentValue
-                
-            self.interactor?.add(attachment: imageAttachment)
+            self.contentTextView.add(object: image)
         }
     }
 }

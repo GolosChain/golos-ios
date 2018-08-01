@@ -139,17 +139,13 @@ extension UITextView {
         self.inputAccessoryView         =   toolbar
     }
     
-    func add(object: Any) -> String {
+    func add(object: Any) {
         var attributedStringWithImage: NSAttributedString
         let attachment                  =   NSTextAttachment()
         var attributedString            =   NSMutableAttributedString(string: "\n")
-        var result: String              =   String()
         
         // Image
-        if let imageObject = object as? (Attachment, UIImage) {
-            let imageAttachment         =   imageObject.0
-            let image                   =   imageObject.1
-            
+        if let image = object as? UIImage {
             attachment.image            =   image
             
             // Calculate new size
@@ -160,33 +156,76 @@ extension UITextView {
             // Resize
             attachment.bounds           =   CGRect.init(x: 0, y: 0, width: imageWidthNew, height: imageHeightNew)
             attributedStringWithImage   =   NSAttributedString(attachment: attachment)
-            result                      =   String(format: "![%@](%@)", imageAttachment.key, imageAttachment.value)
-
+ 
             attributedString.append(NSAttributedString(string: "\n"))
             attributedString.append(attributedStringWithImage)
             attributedString.append(NSAttributedString(string: "\n"))
         }
         
         // Link
-        if let linkAttachment = object as? Attachment, let url = NSURL(string: String(format: "%@", linkAttachment.value)) {
+        if let link = object as? (String, String) {
             let linkAttributes: [NSAttributedStringKey: Any] =  [
-                                                                    .link:              url,
-                                                                    .foregroundColor:   UIColor.blue
+                                                                    .link:              link.1,
+                                                                    .foregroundColor:   UIColor.blue,
+                                                                    .underlineStyle:    NSUnderlineStyle.styleSingle.rawValue
                                                                 ]
 
-            let linkAttributedString    =   NSMutableAttributedString(string: String(format: "%@", linkAttachment.key))
-            linkAttributedString.setAttributes(linkAttributes, range: NSRange.init(location: 0, length: linkAttachment.key.count))
+            let linkAttributedString    =   NSMutableAttributedString(string: String(format: "%@", link.0))
+            linkAttributedString.setAttributes(linkAttributes, range: NSRange.init(location: 0, length: link.0.count))
             linkAttributedString.append(NSAttributedString(string: " "))
             
             attributedString            =   linkAttributedString
-            result                      =   String(format: "[%@](%@)", linkAttachment.key, linkAttachment.value)
         }
         
         // Add this attributed string to the current position
         self.textStorage.insert(attributedString, at: self.selectedRange.location)
-        
-        return result
     }
+    
+    
+    /// Get content of UITextView as [Attachment]
+    func getParts() -> [Attachment] {
+        var parts   =   [Attachment]()
+        
+        let attributedString    =   self.attributedText!
+        let range               =   NSRange.init(location: 0, length: attributedString.length)
+       
+        attributedString.enumerateAttributes(in: range, options: NSAttributedString.EnumerationOptions(rawValue: 0)) { (object, range, _) in
+            if object.keys.contains(NSAttributedStringKey.attachment) {
+                if let attachment = object[NSAttributedStringKey.attachment] as? NSTextAttachment {
+                    // Image
+                    if let image = attachment.image {
+                        parts.append(Attachment(origin: image))
+                    }
+                    
+//                    // Image
+//                    else if let image = attachment.image(forBounds: attachment.bounds, textContainer: nil, characterIndex: range.location) {
+//                        parts.append(Attachment(origin: image))
+//                    }
+                }
+            }
+            
+            // Link
+            else if object.keys.contains(NSAttributedStringKey.link) {
+                let linkKey     =   attributedString.attributedSubstring(from: range).string
+                let linkPath    =   attributedString.attributedSubstring(from: range).attribute(.link, at: 0, longestEffectiveRange: nil, in: range) as! String
+                
+                if !linkKey.trimmingCharacters(in: .whitespaces).isEmpty {
+                    parts.append(Attachment(markdownValue: String(format: "[%@](%@)", linkKey, linkPath), origin: (linkKey, linkPath)))
+                }
+            }
+                
+            else {
+                let stringValue =   attributedString.attributedSubstring(from: range).string
+                
+                if !stringValue.trimmingCharacters(in: .whitespaces).isEmpty {
+                    parts.append(Attachment(markdownValue: stringValue, origin: stringValue))
+                }
+            }
+        }
+     
+        return parts
+    }
+    
     
     // Placeholder
     private class PlaceholderLabel: UILabel { }

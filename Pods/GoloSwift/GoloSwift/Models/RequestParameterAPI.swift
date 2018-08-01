@@ -149,15 +149,7 @@ public struct RequestParameterAPI {
             self.permlink           =   needTiming ? permlinkTemp + "-\(Int64(Date().timeIntervalSince1970))" : permlinkTemp
             
             if let parameters = attachments {
-                var bodyTemp        =   body
-                
-                for parameter in parameters {
-                    let keyWord     =   (bodyTemp as NSString).substring(with: parameter.range)
-                    bodyTemp        =   bodyTemp.replacingOccurrences(of: keyWord, with: parameter.value)
-                    Logger.log(message: "replaced = \n\(bodyTemp)", event: .debug)
-                }
-                
-                self.body           =   bodyTemp
+                self.body           =   parameters.compactMap({ $0.markdownValue ?? ""}).joined(separator: " ")
             }
                 
             else {

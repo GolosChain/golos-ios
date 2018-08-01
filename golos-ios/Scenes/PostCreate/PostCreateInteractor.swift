@@ -18,7 +18,7 @@ protocol PostCreateBusinessLogic {
     func save(tags: [Tag]?)
     func save(commentBody: String)
     func save(commentTitle: String)
-    func add(attachment: Attachment)
+    func save(attachments: [Attachment])
     func postCreate(withRequestModel requestModel: PostCreateModels.Post.RequestModel)
     func postComment(withRequestModel requestModel: PostCreateModels.Post.RequestModel)
     func postCommentReply(withRequestModel requestModel: PostCreateModels.Post.RequestModel)
@@ -34,10 +34,11 @@ protocol PostCreateDataStore {
 class PostCreateInteractor: PostCreateBusinessLogic, PostCreateDataStore {
     // MARK: - Properties
     var presenter: PostCreatePresentationLogic?
-    
+    var worker: PostCreateWorker?
+
     // PostCreateDataStore protocol implementation
     var tags: [Tag]?
-    var attachments: [Attachment]? = [Attachment]()
+    var attachments: [Attachment]?
     var commentBody: String?
     var commentTitle: String?
 
@@ -54,60 +55,67 @@ class PostCreateInteractor: PostCreateBusinessLogic, PostCreateDataStore {
     }
     
     func save(commentBody: String) {
-        self.commentBody = commentBody
+        self.commentBody    =   commentBody
     }
     
     func save(commentTitle: String) {
-        self.commentTitle = commentTitle
+        self.commentTitle   =   commentTitle
     }
     
-    func add(attachment: Attachment) {
-        self.attachments?.append(attachment)
+    func save(attachments: [Attachment]) {
+        self.attachments    =   attachments
     }
     
     func postCreate(withRequestModel requestModel: PostCreateModels.Post.RequestModel) {
-        // API 'get_content'
-        let content                     =   RequestParameterAPI.Content(author: User.current!.name, permlink: self.tags!.first!.title!)
-        
-        RestAPIManager.loadPostPermlink(byContent: content, completion: { errorAPI in
-            guard errorAPI.caseInfo.message != "No Internet Connection" || !errorAPI.caseInfo.message.hasSuffix("timing") else {
-                let responseModel       =   PostCreateModels.Post.ResponseModel(errorAPI: errorAPI)
-                self.presenter?.presentPostCreate(fromResponseModel: responseModel)
-                return
-            }
+        worker = PostCreateWorker()
+
+        // Create markdown titles for all images & links
+        worker?.createSignatures(forImagesIn: self.attachments!, completion: { [weak self] attachments in
+            self?.save(attachments: attachments)
             
-            // API 'Create new post'
-            let jsonMetadataString      =   ("{\"tags\":[\"" + self.tags!.compactMap({ $0.title!.transliterationInLatin() }).joined(separator: ",") + "\"]")
-                                                .replacingOccurrences(of: ",", with: "\",\"") + ",\"app\":\"golos.io/0.1\",\"format\":\"markdown\"}"
-            Logger.log(message: "\njsonMetadataString:\n\t\(jsonMetadataString)", event: .debug)
+            // API 'get_content'
+            let content                     =   RequestParameterAPI.Content(author: User.current!.name, permlink: (self?.tags!.first!.title!)!)
             
-            let comment                 =   RequestParameterAPI.Comment(parentAuthor:       "",
-                                                                        parentPermlink:     self.tags!.first!.title!,
-                                                                        author:             User.current!.name,
-                                                                        title:              self.commentTitle!,
-                                                                        body:               self.commentBody!,
-                                                                        jsonMetadata:       jsonMetadataString,
-                                                                        needTiming:         errorAPI.caseInfo.message == "Permlink with timing",
-                                                                        attachments:        self.attachments)
-            
-            let operationAPIType        =   OperationAPIType.createPost(operations: [comment])
-            
-            broadcast.executePOST(requestByOperationAPIType:    operationAPIType,
-                                  userName:                     User.current!.name,
-                                  onResult:                     { [weak self] responseAPIResult in
-                                    var errorAPI: ErrorAPI?
-                                    
-                                    if let error = (responseAPIResult as! ResponseAPIBlockchainPostResult).error {
-                                        errorAPI        =   ErrorAPI.requestFailed(message: error.message)
-                                    }
-                                    
-                                    let responseModel   =   PostCreateModels.Post.ResponseModel(errorAPI: errorAPI)
-                                    self?.presenter?.presentPostCreate(fromResponseModel: responseModel)
-                },
-                                  onError: { errorAPI in
-                                    Logger.log(message: "nresponse API Error = \(errorAPI.caseInfo.message)\n", event: .error)
-                                    let responseModel   =   PostCreateModels.Post.ResponseModel(errorAPI: errorAPI)
-                                    self.presenter?.presentPostCreate(fromResponseModel: responseModel)
+            RestAPIManager.loadPostPermlink(byContent: content, completion: { errorAPI in
+                guard errorAPI.caseInfo.message != "No Internet Connection" || !errorAPI.caseInfo.message.hasSuffix("timing") else {
+                    let responseModel       =   PostCreateModels.Post.ResponseModel(errorAPI: errorAPI)
+                    self?.presenter?.presentPostCreate(fromResponseModel: responseModel)
+                    return
+                }
+                
+                // API 'Create new post'
+                let jsonMetadataString      =   ("{\"tags\":[\"" + (self?.tags!.compactMap({ $0.title!.transliterationInLatin() }).joined(separator: ","))! + "\"]")
+                                                    .replacingOccurrences(of: ",", with: "\",\"") + ",\"app\":\"golos.io/0.1\",\"format\":\"markdown\"}"
+                Logger.log(message: "\njsonMetadataString:\n\t\(jsonMetadataString)", event: .debug)
+                
+                let comment                 =   RequestParameterAPI.Comment(parentAuthor:       "",
+                                                                            parentPermlink:     (self?.tags!.first!.title!)!,
+                                                                            author:             User.current!.name,
+                                                                            title:              (self?.commentTitle!)!,
+                                                                            body:               (self?.commentBody!)!,
+                                                                            jsonMetadata:       jsonMetadataString,
+                                                                            needTiming:         errorAPI.caseInfo.message == "Permlink with timing",
+                                                                            attachments:        self?.attachments)
+                
+                let operationAPIType        =   OperationAPIType.createPost(operations: [comment])
+                
+                broadcast.executePOST(requestByOperationAPIType:    operationAPIType,
+                                      userName:                     User.current!.name,
+                                      onResult:                     { [weak self] responseAPIResult in
+                                        var errorAPI: ErrorAPI?
+                                        
+                                        if let error = (responseAPIResult as! ResponseAPIBlockchainPostResult).error {
+                                            errorAPI        =   ErrorAPI.requestFailed(message: error.message)
+                                        }
+                                        
+                                        let responseModel   =   PostCreateModels.Post.ResponseModel(errorAPI: errorAPI)
+                                        self?.presenter?.presentPostCreate(fromResponseModel: responseModel)
+                    },
+                                      onError: { errorAPI in
+                                        Logger.log(message: "nresponse API Error = \(errorAPI.caseInfo.message)\n", event: .error)
+                                        let responseModel   =   PostCreateModels.Post.ResponseModel(errorAPI: errorAPI)
+                                        self?.presenter?.presentPostCreate(fromResponseModel: responseModel)
+                })
             })
         })
     }

@@ -129,6 +129,7 @@
 		B1A2AE432105B1640021A34B /* ActiveVote+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A2AE412105B1640021A34B /* ActiveVote+CoreDataClass.swift */; };
 		B1A2AE442105B1640021A34B /* ActiveVote+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A2AE422105B1640021A34B /* ActiveVote+CoreDataProperties.swift */; };
 		B1B6B39520D37F3100284387 /* PostCommentReply.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1B6B39420D37F3100284387 /* PostCommentReply.xib */; };
+		B1BAAA522111F1E300B2F165 /* PostCreateWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BAAA4C2111F1E300B2F165 /* PostCreateWorker.swift */; };
 		B1C1DFDF20CF887F00D1A837 /* LogInShowPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C1DFD920CF887F00D1A837 /* LogInShowPresenter.swift */; };
 		B1C1DFE220CF887F00D1A837 /* LogInShowModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C1DFDC20CF887F00D1A837 /* LogInShowModels.swift */; };
 		B1C1DFE420CF887F00D1A837 /* LogInShowInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C1DFDE20CF887F00D1A837 /* LogInShowInteractor.swift */; };
@@ -395,6 +396,7 @@
 		B1A2AE412105B1640021A34B /* ActiveVote+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ActiveVote+CoreDataClass.swift"; sourceTree = "<group>"; };
 		B1A2AE422105B1640021A34B /* ActiveVote+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ActiveVote+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		B1B6B39420D37F3100284387 /* PostCommentReply.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostCommentReply.xib; sourceTree = "<group>"; };
+		B1BAAA4C2111F1E300B2F165 /* PostCreateWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCreateWorker.swift; sourceTree = "<group>"; };
 		B1C1DFD920CF887F00D1A837 /* LogInShowPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInShowPresenter.swift; sourceTree = "<group>"; };
 		B1C1DFDC20CF887F00D1A837 /* LogInShowModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInShowModels.swift; sourceTree = "<group>"; };
 		B1C1DFDE20CF887F00D1A837 /* LogInShowInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInShowInteractor.swift; sourceTree = "<group>"; };
@@ -553,6 +555,7 @@
 				B1050C9A20CECF75003CE4EE /* PostCreatePresenter.swift */,
 				B1050C9C20CECF75003CE4EE /* PostCreateRouter.swift */,
 				B1050C9E20CECF75003CE4EE /* PostCreateViewController.swift */,
+				B1BAAA4C2111F1E300B2F165 /* PostCreateWorker.swift */,
 			);
 			path = PostCreate;
 			sourceTree = "<group>";
@@ -1548,6 +1551,7 @@
 				B120D069210824C600D949F5 /* SettingsUserProfileEditRouter.swift in Sources */,
 				B15F228720EEB31C00C44282 /* AppSettings+CoreDataClass.swift in Sources */,
 				B1A2AE432105B1640021A34B /* ActiveVote+CoreDataClass.swift in Sources */,
+				B1BAAA522111F1E300B2F165 /* PostCreateWorker.swift in Sources */,
 				7DE3531B2048CA3400C04CB2 /* LogInHelpShowViewController.swift in Sources */,
 				B12F440620EA01F9003FFF58 /* ScannerShowViewController.swift in Sources */,
 				B164F04220E62AE600C5CDD3 /* UserProfileShowPresenter.swift in Sources */,
