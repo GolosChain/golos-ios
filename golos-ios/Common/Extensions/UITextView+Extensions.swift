@@ -9,6 +9,7 @@
 //
 
 import UIKit
+import GoloSwift
 import SwiftTheme
 
 extension UITextView {
@@ -138,14 +139,19 @@ extension UITextView {
         self.inputAccessoryView         =   toolbar
     }
     
-    func add(object: Any) {
+    func add(object: Any) -> String {
         var attributedStringWithImage: NSAttributedString
         let attachment                  =   NSTextAttachment()
         var attributedString            =   NSMutableAttributedString(string: "\n")
-
-        if let image = object as? UIImage {
+        var result: String              =   String()
+        
+        // Image
+        if let imageObject = object as? (Attachment, UIImage) {
+            let imageAttachment         =   imageObject.0
+            let image                   =   imageObject.1
+            
             attachment.image            =   image
-
+            
             // Calculate new size
             let imageWidthNew           =   self.bounds.size.width
             let imageRatio              =   image.size.width / imageWidthNew
@@ -153,27 +159,33 @@ extension UITextView {
 
             // Resize
             attachment.bounds           =   CGRect.init(x: 0, y: 0, width: imageWidthNew, height: imageHeightNew)
-
             attributedStringWithImage   =   NSAttributedString(attachment: attachment)
+            result                      =   String(format: "![%@](%@)", imageAttachment.key, imageAttachment.value)
 
+            attributedString.append(NSAttributedString(string: "\n"))
             attributedString.append(attributedStringWithImage)
-            attributedString.append(NSAttributedString(string: "\n\n"))
+            attributedString.append(NSAttributedString(string: "\n"))
         }
         
-        if let link = object as? (String, String) {
+        // Link
+        if let linkAttachment = object as? Attachment, let url = NSURL(string: String(format: "%@", linkAttachment.value)) {
             let linkAttributes: [NSAttributedStringKey: Any] =  [
-                                                                    .link:              NSURL(string: String(format: "%@", link.1))!,
+                                                                    .link:              url,
                                                                     .foregroundColor:   UIColor.blue
                                                                 ]
 
-            let linkAttributedString    =   NSMutableAttributedString(string: String(format: "%@", link.0))
-            linkAttributedString.setAttributes(linkAttributes, range: NSRange(location: 0, length: link.0.count))
-
+            let linkAttributedString    =   NSMutableAttributedString(string: String(format: "%@", linkAttachment.key))
+            linkAttributedString.setAttributes(linkAttributes, range: NSRange.init(location: 0, length: linkAttachment.key.count))
+            linkAttributedString.append(NSAttributedString(string: " "))
+            
             attributedString            =   linkAttributedString
+            result                      =   String(format: "[%@](%@)", linkAttachment.key, linkAttachment.value)
         }
         
         // Add this attributed string to the current position
         self.textStorage.insert(attributedString, at: self.selectedRange.location)
+        
+        return result
     }
     
     // Placeholder

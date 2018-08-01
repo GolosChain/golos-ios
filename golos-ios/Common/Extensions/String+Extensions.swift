@@ -54,12 +54,11 @@ extension String {
     
     /// Add proxy part to image URL
     func addImageProxy(withSize size: CGSize) -> String {
-        return self.hasPrefix("https://images.golos.io") ?  self :
-                                                            "https://imgp.golos.io" + String(format: "/%dx%d/", size.width, size.height) + self
+        return self.hasPrefix("https://images.golos.io") ?  self : "https://imgp.golos.io" + String(format: "/%dx%d/", size.width, size.height) + self
     }
     
     
-    func decodeHtml() -> NSAttributedString {
+    func encodeHtml() -> NSAttributedString {
         guard let data = data(using: .utf8) else { return NSAttributedString() }
         
         do {

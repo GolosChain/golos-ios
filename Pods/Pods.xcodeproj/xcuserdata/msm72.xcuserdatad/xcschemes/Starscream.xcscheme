@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "FF679F4809143B4C605AFB3810423E11"
+               BlueprintIdentifier = "C466066636D1A812DAF610582F0371A9"
                BuildableName = "Starscream.framework"
                BlueprintName = "Starscream"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "FF679F4809143B4C605AFB3810423E11"
+            BlueprintIdentifier = "C466066636D1A812DAF610582F0371A9"
             BuildableName = "Starscream.framework"
             BlueprintName = "Starscream"
             ReferencedContainer = "container:Pods.xcodeproj">

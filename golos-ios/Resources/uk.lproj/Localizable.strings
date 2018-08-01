@@ -155,6 +155,7 @@
 "Response Result is empty"                  =   "Сервер повернув порожнє значення";
 "JSON Parsing Failure"                      =   "Помилка аналізу JSON структури";
 "JSON Conversion Failure"                   =   "Помилка конвертації JSON структури в модель";
+"Signing Transaction Failure"               =   "Помилка підпису транзакції";
 "No Internet Connection"                    =   "Відсутній зв'язок з Інтернетом";
 "Login Hint"                                =   "Введіть логін";
 "Posting Key Hint"                          =   "Введіть приватний постинг ключ";

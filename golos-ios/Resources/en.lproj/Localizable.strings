@@ -155,6 +155,7 @@
 "Response Result is empty"                  =   "The blockchain returned an empty value";
 "JSON Parsing Failure"                      =   "JSON Parsing Failure";
 "JSON Conversion Failure"                   =   "JSON Conversion Failure";
+"Signing Transaction Failure"               =   "Error signing transaction";
 "No Internet Connection"                    =   "There is no internet connection";
 "Login Hint"                                =   "Enter login";
 "Posting Key Hint"                          =   "Enter private posting key";

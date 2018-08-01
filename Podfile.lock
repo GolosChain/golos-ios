@@ -3,7 +3,7 @@ PODS:
   - BeyovaJSON (0.0.7)
   - Crashlytics (3.10.5):
     - Fabric (~> 1.7.9)
-  - CryptoSwift (0.10.0)
+  - CryptoSwift (0.11.0)
   - Down (0.5.2)
   - Fabric (1.7.9)
   - Firebase/Core (5.0.1):
@@ -123,14 +123,14 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   GoloSwift:
-    :commit: d1550ee6f50d5225e84b7590fdfa6fcc6331c0f8
+    :commit: a7ec7cae2180f6017557e90a1a72e15ac52ac7dc
     :git: https://github.com/GolosChain/GoloSwift.git
 
 SPEC CHECKSUMS:
   AlignedCollectionViewFlowLayout: ee2ef451e741ec08f8e0967d828001e2f051c20a
   BeyovaJSON: 085c9fa886fa0b13e2964cc8c6965fab5bc7f90f
   Crashlytics: 7f2e38d302d9da96475b3d64d86fb29e31a542b7
-  CryptoSwift: 6c778d69282bed3b4e975ff97a79d074f20bb011
+  CryptoSwift: ad5208dd2aae0a764ea4ce2c2d34bd067cae67f0
   Down: 587371ad58002b06023d9c602519216862c3acbc
   Fabric: a2917d3895e4c1569b9c3170de7320ea1b1e6661
   Firebase: d6861c2059d8c32d1e6dd8932e22ada346d90a3a

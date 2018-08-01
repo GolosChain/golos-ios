@@ -19,7 +19,6 @@ public enum AppBuildConfig: String {
 }
 
 // Blockchain Dynamic values
-// ResponseAPIDynamicGlobalProperty(id: 0, time: "2018-05-14T15:25:30", head_block_id: "00fad3ee54c33d7b5f62c3eca793cc3549ddfcc7", head_block_number: 16438254)
 var time: String                        =   ""
 var headBlockID: UInt32                 =   0
 var headBlockNumber: UInt16             =   0
@@ -35,6 +34,8 @@ public let appBuildConfig               =   AppBuildConfig.init(rawValue: (Bundl
 /// Websocket
 public var webSocket                    =   WebSocket(url: URL(string: (appBuildConfig == AppBuildConfig.development) ? "wss://ws.testnet.golos.io" : "wss://ws.golos.io")!)
 public let webSocketManager             =   WebSocketManager()
+
+public let imagesURL: String            =   "https://images.golos.io"
 
 
 /// Websocket response max timeout, in seconds

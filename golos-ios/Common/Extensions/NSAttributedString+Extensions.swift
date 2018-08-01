@@ -9,7 +9,7 @@
 import UIKit
 
 extension NSAttributedString {
-    func encodeHtml() -> String {
+    func decodeHtml() -> String {
         let documentAttributes  =   [NSAttributedString.DocumentAttributeKey.documentType: NSAttributedString.DocumentType.html]
         
         do {

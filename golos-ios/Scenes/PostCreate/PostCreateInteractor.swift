@@ -18,7 +18,7 @@ protocol PostCreateBusinessLogic {
     func save(tags: [Tag]?)
     func save(commentBody: String)
     func save(commentTitle: String)
-    func addParameter(byName key: String, andValue value: String)
+    func add(attachment: Attachment)
     func postCreate(withRequestModel requestModel: PostCreateModels.Post.RequestModel)
     func postComment(withRequestModel requestModel: PostCreateModels.Post.RequestModel)
     func postCommentReply(withRequestModel requestModel: PostCreateModels.Post.RequestModel)
@@ -26,7 +26,7 @@ protocol PostCreateBusinessLogic {
 
 protocol PostCreateDataStore {
     var tags: [Tag]? { get set }
-    var parameters: [String: String]? { get set }
+    var attachments: [Attachment]? { get set }
     var commentBody: String? { get set }
     var commentTitle: String? { get set }
 }
@@ -37,7 +37,7 @@ class PostCreateInteractor: PostCreateBusinessLogic, PostCreateDataStore {
     
     // PostCreateDataStore protocol implementation
     var tags: [Tag]?
-    var parameters: [String : String]? = [String: String]()
+    var attachments: [Attachment]? = [Attachment]()
     var commentBody: String?
     var commentTitle: String?
 
@@ -61,8 +61,8 @@ class PostCreateInteractor: PostCreateBusinessLogic, PostCreateDataStore {
         self.commentTitle = commentTitle
     }
     
-    func addParameter(byName key: String, andValue value: String) {
-        self.parameters?.updateValue(value, forKey: key)
+    func add(attachment: Attachment) {
+        self.attachments?.append(attachment)
     }
     
     func postCreate(withRequestModel requestModel: PostCreateModels.Post.RequestModel) {
@@ -88,7 +88,7 @@ class PostCreateInteractor: PostCreateBusinessLogic, PostCreateDataStore {
                                                                         body:               self.commentBody!,
                                                                         jsonMetadata:       jsonMetadataString,
                                                                         needTiming:         errorAPI.caseInfo.message == "Permlink with timing",
-                                                                        params:             self.parameters)
+                                                                        attachments:        self.attachments)
             
             let operationAPIType        =   OperationAPIType.createPost(operations: [comment])
             

@@ -12,6 +12,51 @@ import Foundation
 
 class RestAPIManager {
     // MARK: - Class Functions
+    /// Posting image
+    class func posting(_ image: UIImage, _ signature: String, completion: @escaping (String?) -> Void)  {
+        guard let imageData = UIImageJPEGRepresentation(image, 1.0) else { return }
+
+        let session             =   URLSession(configuration: .default)
+        let requestURL          =   URL(string: String(format: "%@/%@/%@", imagesURL, User.current!.name, signature))!
+        
+        let request             =   NSMutableURLRequest(url: requestURL)
+        request.httpMethod      =   "POST"
+        
+        let boundaryConstant    =   "----------------12345"
+        let contentType         =   "multipart/form-data;boundary=" + boundaryConstant
+        
+        request.setValue(contentType, forHTTPHeaderField: "Content-Type")
+        
+        // Create upload data to send
+        let uploadData          =   NSMutableData()
+        
+        // Add image
+        uploadData.append("\r\n--\(boundaryConstant)\r\n".data(using: String.Encoding.utf8)!)
+        uploadData.append("Content-Disposition: form-data; name=\"picture\"; filename=\"post-image-ios.png\"\r\n".data(using: String.Encoding.utf8)!)
+        uploadData.append("Content-Type: image/png\r\n\r\n".data(using: String.Encoding.utf8)!)
+        uploadData.append(imageData)
+        uploadData.append("\r\n--\(boundaryConstant)--\r\n".data(using: String.Encoding.utf8)!)
+        
+        request.httpBody        =   uploadData as Data
+        
+        let task                =   session.dataTask(with: request as URLRequest, completionHandler: { (data, _, error) -> Void in
+            guard error == nil else {
+                completion(nil)
+                return
+            }
+            
+            if let json = try? JSONSerialization.jsonObject(with: data!, options: .mutableLeaves) as! [String: Any], let imageURL = json["url"] as? String {
+                completion(imageURL)
+            }
+                
+            else {
+                completion(nil)
+            }
+        })
+        
+        task.resume()
+    }
+    
     
     /// Load list of Users
     class func loadUsersInfo(byNames names: [String], completion: @escaping (ErrorAPI?) -> Void) {

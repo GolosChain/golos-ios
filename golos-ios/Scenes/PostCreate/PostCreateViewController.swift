@@ -209,12 +209,26 @@ class PostCreateViewController: GSBaseViewController {
     // MARK: - Custom Functions
     private func saveToAlbum(image: UIImage) {
         if let imageData = UIImageJPEGRepresentation(image, 0.6), let compressedJPGImage = UIImage(data: imageData) {
-            UIImageWriteToSavedPhotosAlbum(compressedJPGImage, nil, nil, nil)
+            UIImageWriteToSavedPhotosAlbum(compressedJPGImage, self, #selector(image(path:didFinishSavingWithError:contextInfo:)), nil)
+//            UIImageWriteToSavedPhotosAlbum(compressedJPGImage, nil, nil, nil)
             
             self.showAlertView(withTitle: "Info", andMessage: "Image saved to Photo Library", needCancel: false, completion: { [weak self] _ in
-                self?.contentTextView.add(object: image)
+                var imageAttachment         =   Attachment(key:        String(format: "image-camera-%i", self?.router?.dataStore?.attachments?.count ?? 1),
+                                                           range:      NSRange.init(location: 0, length: 1),
+                                                           value:      "xxx",
+                                                           type:       .image)
+                
+                if let imageAttachmentValue = self?.contentTextView.add(object: (imageAttachment, image)) {
+                    imageAttachment.value   =   imageAttachmentValue
+                
+                    self?.interactor?.add(attachment: imageAttachment)
+                }
             })
         }
+    }
+
+    @objc private func image(path: String, didFinishSavingWithError error: NSError?, contextInfo: UnsafeMutableRawPointer?) {
+        print(path) // That's the path you want
     }
     
     private func setConstraint() {
@@ -347,6 +361,32 @@ extension PostCreateViewController: UITextViewDelegate {
         return true
     }
     
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if text.isEmpty {
+            // Search attached image
+            textView.attributedText.enumerateAttribute(NSAttributedStringKey.attachment,
+                                                       in:          NSRange.init(location: 0, length: textView.attributedText.length),
+                                                       options:     NSAttributedString.EnumerationOptions(rawValue: 0),
+                                                       using:       { (_, imageRange, _) in
+                                                            if NSEqualRanges(range, imageRange) {
+                                                                (textView.attributedText.string as NSString).replacingCharacters(in: imageRange, with: "")
+                                                            }
+            })
+            
+            // Search attached link
+            textView.attributedText.enumerateAttribute(NSAttributedStringKey.attachment,
+                                                       in:          NSRange.init(location: 0, length: textView.attributedText.length),
+                                                       options:     .longestEffectiveRangeNotRequired) { (_, linkRange, _) in
+                                                            if NSEqualRanges(range, linkRange) {
+                                                                (textView.attributedText.string as NSString).replacingCharacters(in: linkRange, with: "")
+                                                            }
+            }
+        }
+
+        
+        return true
+    }
+    
     func textViewDidBeginEditing(_ textView: UITextView) {
         textView.theme_textColor    =   blackWhiteColorPickers
         self.firstResponder         =   self.contentTextView
@@ -380,16 +420,26 @@ extension PostCreateViewController: UITextViewDelegate {
                 }
 
                 let actionOk = UIAlertAction(title: "ActionOk".localized(), style: .default) { [unowned linkAlert] _ in
-                    guard let linkName = linkAlert.textFields![0].text, !linkName.isEmpty else {
+                    guard let linkKey = linkAlert.textFields![0].text, !linkKey.isEmpty else {
                         return
                     }
                     
-                    guard let linkAddress = linkAlert.textFields![1].text, !linkAddress.isEmpty else {
+                    guard let linkValue = linkAlert.textFields![1].text, !linkValue.isEmpty else {
                         return
                     }
-                                        
-                    self?.interactor?.addParameter(byName: linkName, andValue: linkAddress)
-                    self?.contentTextView.add(object: (linkName, linkAddress))
+                    
+                    let linkKeyNew                  =   linkKey.replacingOccurrences(of: " ", with: "_")
+                    
+                    var linkAttachment              =   Attachment(key:        linkKeyNew,
+                                                                   range:      NSRange.init(location: textView.text.count, length: linkKeyNew.count),
+                                                                   value:      linkValue,
+                                                                   type:       .link)
+                   
+                    if let linkAttachmentValue = self?.contentTextView.add(object: linkAttachment) {
+                        linkAttachment.value        =   linkAttachmentValue
+                    
+                        self?.interactor?.add(attachment: linkAttachment)
+                    }
                 }
                 
                 linkAlert.addAction(actionOk)
@@ -473,7 +523,23 @@ extension PostCreateViewController: UIImagePickerControllerDelegate {
         }
         
         else {
-            self.contentTextView.add(object: image)
+            var imageAttachment         =   Attachment(key:        String(format: "image-album-%i", self.router?.dataStore?.attachments?.count ?? 1),
+                                                       range:      NSRange.init(location: self.contentTextView.attributedText.length, length: 1),
+                                                       value:      "xxx",
+                                                       type:       .image)
+
+            // Create image signature
+            if let imageSignature = Attachment.createURL(forImage: image, userName: User.current!.name) {
+                // API 'Posting image'
+                RestAPIManager.posting(image, imageSignature, completion: { imageURL in
+                    Logger.log(message: "imageURL = \(imageURL ?? "XXX")", event: .debug)
+                })
+            }
+            
+            let imageAttachmentValue    =   self.contentTextView.add(object: (imageAttachment, image))
+            imageAttachment.value       =   imageAttachmentValue
+                
+            self.interactor?.add(attachment: imageAttachment)
         }
     }
 }
