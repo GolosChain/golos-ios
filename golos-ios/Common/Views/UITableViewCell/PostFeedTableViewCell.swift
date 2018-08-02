@@ -56,7 +56,7 @@ class PostFeedTableViewCell: UITableViewCell, HandlersCellSupport {
     @IBOutlet private weak var upvotesButton: UIButton! {
         didSet {
             upvotesButton.tune(withTitle:       "",
-                               hexColors:       veryDarkGrayWhiteColorPickers,
+                               hexColors:       [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
                                font:            UIFont(name: "SFUIDisplay-Regular", size: 10.0 * widthRatio),
                                alignment:       .center)
         }
@@ -65,7 +65,7 @@ class PostFeedTableViewCell: UITableViewCell, HandlersCellSupport {
     @IBOutlet private weak var commentsButton: UIButton! {
         didSet {
             commentsButton.tune(withTitle:      "",
-                                hexColors:      veryDarkGrayWhiteColorPickers,
+                                hexColors:      [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
                                 font:           UIFont(name: "SFUIDisplay-Regular", size: 10.0 * widthRatio),
                                 alignment:      .center)
         }

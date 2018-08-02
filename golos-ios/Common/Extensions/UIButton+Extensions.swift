@@ -11,14 +11,18 @@ import Kingfisher
 import SwiftTheme
 
 extension UIButton {
-    func tune(withTitle title: String, hexColors: ThemeColorPicker?, font: UIFont?, alignment: NSTextAlignment) {
+    /// hexColors: [normal, highlighted, selected, disabled]
+    func tune(withTitle title: String, hexColors: [ThemeColorPicker?], font: UIFont?, alignment: NSTextAlignment) {
         ThemeManager.setTheme(index: isAppThemeDark ? 1 : 0)
         
         self.titleLabel?.font               =   font
         self.titleLabel?.textAlignment      =   alignment
 
         self.setTitle(title.localized(), for: .normal)
-        self.theme_setTitleColor(hexColors, forState: .normal)
+        self.theme_setTitleColor(hexColors[0], forState: .normal)
+        self.theme_setTitleColor(hexColors[1], forState: .highlighted)
+        self.theme_setTitleColor(hexColors[2], forState: .selected)
+        self.theme_setTitleColor(hexColors[3], forState: .disabled)
     }
     
     func setBlueButtonRoundEdges() {

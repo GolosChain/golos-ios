@@ -49,7 +49,7 @@ class SettingsUserProfileEditViewController: GSBaseViewController {
     @IBOutlet weak var changeAvatarButton: UIButton! {
         didSet {
             changeAvatarButton.tune(withTitle:       "Other photo Title".localized(),
-                                    hexColors:       vividBlueWhiteColorPickers,
+                                    hexColors:       [vividBlueWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
                                     font:            UIFont(name: "SFProDisplay-Regular", size: 12.0 * widthRatio),
                                     alignment:      .center)
         }
@@ -58,7 +58,7 @@ class SettingsUserProfileEditViewController: GSBaseViewController {
     @IBOutlet weak var changeCoverButton: UIButton! {
         didSet {
             changeCoverButton.tune(withTitle:       "Change User Cover Photo Title".localized(),
-                                   hexColors:       darkGrayWhiteColorPickers,
+                                   hexColors:       [darkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
                                    font:            UIFont(name: "SFProDisplay-Regular", size: 14.0 * widthRatio),
                                    alignment:       .center)
             
@@ -71,7 +71,7 @@ class SettingsUserProfileEditViewController: GSBaseViewController {
     @IBOutlet weak var saveButton: UIButton! {
         didSet {
             saveButton.tune(withTitle:       "Save Verb Title".localized(),
-                            hexColors:       whiteColorPickers,
+                            hexColors:       [whiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
                             font:            UIFont(name: "SFProDisplay-Regular", size: 16.0 * widthRatio),
                             alignment:       .center)
 

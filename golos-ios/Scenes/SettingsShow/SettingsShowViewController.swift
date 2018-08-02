@@ -62,7 +62,7 @@ class SettingsShowViewController: GSBaseViewController {
     @IBOutlet weak var logOutButton: UIButton! {
         didSet {
             logOutButton.tune(withTitle:        "Exit Verb".localized(),
-                              hexColors:        veryDarkGrayWhiteColorPickers,
+                              hexColors:        [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
                               font:             UIFont(name: "SFProDisplay-Regular", size: 14.0 * widthRatio),
                               alignment:        .left)
         }
@@ -71,7 +71,7 @@ class SettingsShowViewController: GSBaseViewController {
     @IBOutlet weak var editUserProfileButton: UIButton! {
         didSet {
             editUserProfileButton.tune(withTitle:       "Edit Profile Title".localized(),
-                                       hexColors:       veryDarkGrayWhiteColorPickers,
+                                       hexColors:       [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
                                        font:            UIFont(name: "SFProDisplay-Regular", size: 14.0 * widthRatio),
                                        alignment:       .left)
         }
@@ -80,7 +80,7 @@ class SettingsShowViewController: GSBaseViewController {
     @IBOutlet weak var notificationsButton: UIButton! {
         didSet {
             notificationsButton.tune(withTitle: "Remote Notifications Title".localized(),
-                              hexColors:        veryDarkGrayWhiteColorPickers,
+                              hexColors:        [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
                               font:             UIFont(name: "SFProDisplay-Regular", size: 14.0 * widthRatio),
                               alignment:        .left)
         }

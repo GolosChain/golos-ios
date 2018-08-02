@@ -62,6 +62,50 @@ class PostShowViewController: GSBaseViewController {
         }
     }
     
+    @IBOutlet weak var upvoteButton: UIButton! {
+        didSet {
+            upvoteButton.tune(withTitle:        "$23.22",
+                              hexColors:        [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
+                              font:             UIFont(name: "SFUIDisplay-Regular", size: 10.0 * widthRatio),
+                              alignment:        .left)
+            
+            upvoteButton.isEnabled      =   false
+        }
+    }
+    
+    @IBOutlet weak var usersButton: UIButton! {
+        didSet {
+            usersButton.tune(withTitle:        "42",
+                             hexColors:        [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
+                             font:             UIFont(name: "SFUIDisplay-Regular", size: 10.0 * widthRatio),
+                             alignment:        .left)
+            
+            usersButton.isEnabled       =   false
+        }
+    }
+    
+    @IBOutlet weak var commentsButton: UIButton! {
+        didSet {
+            commentsButton.tune(withTitle:        "50",
+                                hexColors:        [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
+                                font:             UIFont(name: "SFUIDisplay-Regular", size: 10.0 * widthRatio),
+                                alignment:        .left)
+            
+            commentsButton.isEnabled    =   false
+        }
+    }
+    
+    @IBOutlet weak var flauntButton: UIButton! {
+        didSet {
+            flauntButton.tune(withTitle:        "Flaunt Verb",
+                              hexColors:        [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
+                              font:             UIFont(name: "SFUIDisplay-Regular", size: 10.0 * widthRatio),
+                              alignment:        .left)
+            
+            flauntButton.isEnabled      =   false
+        }
+    }
+    
     @IBOutlet var heightsCollection: [NSLayoutConstraint]! {
         didSet {
             _ = heightsCollection.map({ $0.constant *= heightRatio })
@@ -166,6 +210,22 @@ class PostShowViewController: GSBaseViewController {
     }
     
     @IBAction func shareButtonTapped(_ sender: UIButton) {
+        self.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+    }
+    
+    @IBAction func upvoteButtonTapped(_ sender: UIButton) {
+        self.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+    }
+
+    @IBAction func usersButtonTapped(_ sender: UIButton) {
+        self.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+    }
+
+    @IBAction func commentsButtonTapped(_ sender: UIButton) {
+        self.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+    }
+
+    @IBAction func flauntButtonTapped(_ sender: UIButton) {
         self.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
     }
 }

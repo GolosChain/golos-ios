@@ -71,7 +71,7 @@ class ReplyTableViewCell: UITableViewCell, ReusableCell {
     
     @IBOutlet weak var replyTextLabel: UILabel! {
         didSet {
-            replyTextLabel.tune(withText:          "",
+            replyTextLabel.tune(withText:           "",
                                  hexColors:         veryDarkGrayWhiteColorPickers,
                                  font:              UIFont(name: "SFProDisplay-Regular", size: 12.0 * widthRatio),
                                  alignment:         .left,
@@ -84,7 +84,7 @@ class ReplyTableViewCell: UITableViewCell, ReusableCell {
     @IBOutlet weak var replyTypeButton: UIButton!  {
         didSet {
             replyTypeButton.tune(withTitle:         "",
-                                 hexColors:         darkGrayWhiteColorPickers,
+                                 hexColors:         [darkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
                                  font:              UIFont(name: "SFProDisplay-Regular", size: 10.0 * widthRatio),
                                  alignment:         .left)
         }
@@ -93,7 +93,7 @@ class ReplyTableViewCell: UITableViewCell, ReusableCell {
     @IBOutlet weak var answerButton: UIButton!  {
         didSet {
             answerButton.tune(withTitle:            "Reply Title Verb",
-                              hexColors:            darkGrayWhiteColorPickers,
+                              hexColors:            [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
                               font:                 UIFont(name: "SFProDisplay-Regular", size: 10.0 * widthRatio),
                               alignment:            .left)
         }
