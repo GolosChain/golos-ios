@@ -27,6 +27,7 @@ class PostShowViewController: GSBaseViewController {
     // MARK: - IBOutlets
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var coverImageView: UIImageView!
+    @IBOutlet weak var postFeedHeaderView: PostFeedHeaderView!
     
     @IBOutlet weak var contentView: UIView! {
         didSet {
@@ -153,6 +154,20 @@ class PostShowViewController: GSBaseViewController {
         
         self.coverImageViewHeight.constant = 0
     }
+    
+    
+    // MARK: - Actions
+    @IBAction func backButtonTapped(_ sender: UIButton) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func moreButtonTapped(_ sender: UIButton) {
+        self.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+    }
+    
+    @IBAction func shareButtonTapped(_ sender: UIButton) {
+        self.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+    }
 }
 
 
@@ -178,6 +193,7 @@ extension PostShowViewController {
 extension PostShowViewController {
     // User Profile
     private func fetchContent() {
-
+        
+//        self.postFeedHeaderView.display(<#T##post: PostCellSupport##PostCellSupport#>)
     }
 }

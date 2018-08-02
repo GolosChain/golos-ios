@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 import GoloSwift
 
 class PostFeedHeaderView: UIView {
@@ -114,20 +115,6 @@ class PostFeedHeaderView: UIView {
         Logger.log(message: "Success", event: .severe)
     }
     
-
-    // MARK: - Layouts
-    override func layoutSubviews() {
-        super.layoutSubviews()
-    }
-
-    
-    // MARK: - Class Functions
-    override var intrinsicContentSize: CGSize {
-        return CGSize(width: 300.0 * widthRatio, height: 46.0 * heightRatio)
-    }
-    
-    
-    // MARK: - Custom Functions
     private func commonInit() {
         backgroundColor     =   .clear
         
@@ -141,6 +128,38 @@ class PostFeedHeaderView: UIView {
         view.rightAnchor.constraint(equalTo: rightAnchor).isActive      =   true
         view.leftAnchor.constraint(equalTo: leftAnchor).isActive        =   true
         view.bottomAnchor.constraint(equalTo: bottomAnchor).isActive    =   true
+    }
+
+    
+    // MARK: - Layouts
+    override func layoutSubviews() {
+        super.layoutSubviews()
+    }
+
+    
+    // MARK: - Class Functions
+    override var intrinsicContentSize: CGSize {
+        return CGSize(width: 300.0 * widthRatio, height: 46.0 * heightRatio)
+    }
+    
+    
+    // MARK: - Custom Functions
+    func display(_ post: PostCellSupport) {
+        // Set User info
+        if let user = User.fetch(byName: post.author) {
+            self.authorLabel.text            =   user.name
+            
+            // User Reputation -> Int
+            self.authorReputationLabel.text  =   String(format: "%i", user.reputation.convertWithLogarithm10())
+            
+            // Load User author profile image
+            if let userProfileImageURL = user.profileImageURL {
+                self.authorProfileImageView.uploadImage(byStringPath:     userProfileImageURL,
+                                                        imageType:        .userProfileImage,
+                                                        size:             CGSize(width: 30.0 * widthRatio, height: 30.0 * widthRatio),
+                                                        tags:             nil)
+            }
+        }
     }
     
     

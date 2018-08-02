@@ -44,8 +44,9 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <gestureRecognizers/>
                 </view>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-cell-theme" translatesAutoresizingMaskIntoConstraints="NO" id="am1-8x-VL3">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="bottom" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-cell-theme-small" translatesAutoresizingMaskIntoConstraints="NO" id="am1-8x-VL3">
                     <rect key="frame" x="52" y="67" width="11" height="8"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="8" id="CTi-Sq-9YF"/>
                         <constraint firstAttribute="width" constant="11" id="Hsv-iZ-9JL"/>
@@ -146,7 +147,7 @@
     </objects>
     <resources>
         <image name="icon-cell-reblog" width="9" height="6"/>
-        <image name="icon-cell-theme" width="19" height="14"/>
+        <image name="icon-cell-theme-small" width="12" height="9"/>
         <image name="image-placeholder" width="150" height="150"/>
     </resources>
 </document>
