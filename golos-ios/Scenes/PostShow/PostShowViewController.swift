@@ -106,6 +106,32 @@ class PostShowViewController: GSBaseViewController {
         }
     }
     
+    @IBOutlet weak var promoteButton: UIButton! {
+        didSet {
+            promoteButton.tune(withTitle:        "Promote Post Verb",
+                               hexColors:        [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
+                               font:             UIFont(name: "SFUIDisplay-Medium", size: 11.0 * widthRatio),
+                               alignment:        .center)
+            
+            promoteButton.isEnabled     =   false
+            
+            promoteButton.setBorder(color: UIColor(hexString: "#6ad381").cgColor, cornerRadius: 4.0 * heightRatio)
+        }
+    }
+    
+    @IBOutlet weak var donateButton: UIButton! {
+        didSet {
+            donateButton.tune(withTitle:        "Donate Verb",
+                               hexColors:        [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
+                               font:             UIFont(name: "SFUIDisplay-Medium", size: 11.0 * widthRatio),
+                               alignment:        .center)
+            
+            donateButton.isEnabled      =   true
+           
+            donateButton.setBorder(color: UIColor(hexString: "#6ad381").cgColor, cornerRadius: 4.0 * heightRatio)
+        }
+    }
+    
     @IBOutlet var heightsCollection: [NSLayoutConstraint]! {
         didSet {
             _ = heightsCollection.map({ $0.constant *= heightRatio })
@@ -124,6 +150,11 @@ class PostShowViewController: GSBaseViewController {
         }
     }
     
+    @IBOutlet weak var buttonsStackViewTopConstraint: NSLayoutConstraint! {
+        didSet {
+            buttonsStackViewTopConstraint.constant = -34.0 * heightRatio * 0.0
+        }
+    }
     
     
     // MARK: - Class Initialization
@@ -228,6 +259,23 @@ class PostShowViewController: GSBaseViewController {
     @IBAction func flauntButtonTapped(_ sender: UIButton) {
         self.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
     }
+
+    @IBAction func promoteButtonTapped(_ sender: UIButton) {
+        sender.layer.borderColor = UIColor(hexString: "#6ad381").cgColor
+
+        self.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+    }
+
+    @IBAction func donateButtonTapped(_ sender: UIButton) {
+        sender.layer.borderColor = UIColor(hexString: "#6ad381").cgColor
+
+        self.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+    }
+    
+    @IBAction func buttonsTappedDown(_ sender: UIButton) {
+        sender.layer.borderColor = UIColor(hexString: "#dbdbdb").cgColor
+    }
+    
 }
 
 

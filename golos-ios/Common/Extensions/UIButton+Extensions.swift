@@ -12,7 +12,7 @@ import SwiftTheme
 
 extension UIButton {
     /// hexColors: [normal, highlighted, selected, disabled]
-    func tune(withTitle title: String, hexColors: [ThemeColorPicker?], font: UIFont?, alignment: NSTextAlignment) {
+    func tune(withTitle title: String, hexColors: [ThemeColorPicker], font: UIFont?, alignment: NSTextAlignment) {
         ThemeManager.setTheme(index: isAppThemeDark ? 1 : 0)
         
         self.titleLabel?.font               =   font
@@ -41,6 +41,14 @@ extension UIButton {
         self.titleLabel?.font       =   UIFont(name: "SFProDisplay-Regular", size: 16.0 * widthRatio)
         self.theme_backgroundColor  =   vividBlueWhiteColorPickers
         self.theme_setTitleColor(whiteColorPickers, forState: .normal)
+    }
+    
+    func setBorder(color: CGColor, cornerRadius: CGFloat) {
+        self.layoutIfNeeded()
+        setRoundEdges(cornerRadius: cornerRadius)
+        
+        self.layer.borderColor      =   color
+        self.layer.borderWidth      =   1.0
     }
     
     func setBorderButtonRoundEdges() {

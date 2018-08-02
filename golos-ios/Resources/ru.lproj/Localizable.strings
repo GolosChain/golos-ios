@@ -57,8 +57,8 @@
 "Switch Account Verb"                       =   "Сменить аккаунт";
 "Exit Verb"                                 =   "Выйти";
 "Flaunt Verb"                               =   "Флаговать";
-"Post Promote Verb"                         =   "Продвинуть пост";
-"Thanking Verb"                             =   "Отблагодарить";
+"Promote Post Verb"                         =   "Продвинуть пост";
+"Donate Verb"                               =   "Отблагодарить";
 "Hide Comments Verb"                        =   "Скрыть комментарии";
 "Load more"                                 =   "Загрузить ещё";
 "Load Comments"                             =   "Загрузить комментарии";

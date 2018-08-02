@@ -121,6 +121,41 @@
                                                     <constraint firstAttribute="height" constant="60" id="BOB-lg-NQM"/>
                                                 </constraints>
                                             </stackView>
+                                            <stackView clipsSubviews="YES" contentMode="scaleToFill" distribution="fillEqually" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="B8q-nb-Ha9" userLabel="Buttons Stack View">
+                                                <rect key="frame" x="16" y="435.5" width="343" height="34"/>
+                                                <subviews>
+                                                    <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PRF-Xh-r6a" userLabel="Promote Button">
+                                                        <rect key="frame" x="0.0" y="0.0" width="162.5" height="34"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                        <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                        <state key="normal" title="Promote Post Verb" image="icon-button-promote-normal">
+                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="buttonsTappedDown:" destination="KfQ-sI-9XC" eventType="touchDown" id="Cbh-3K-tb1"/>
+                                                            <action selector="promoteButtonTapped:" destination="KfQ-sI-9XC" eventType="touchUpInside" id="ms6-hc-6y7"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EJz-dy-sVL" userLabel="Donate Button">
+                                                        <rect key="frame" x="180.5" y="0.0" width="162.5" height="34"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                        <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                        <state key="normal" title="Donate Verb" image="icon-button-donate-normal">
+                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="buttonsTappedDown:" destination="KfQ-sI-9XC" eventType="touchDown" id="3UJ-TZ-eCO"/>
+                                                            <action selector="donateButtonTapped:" destination="KfQ-sI-9XC" eventType="touchUpInside" id="rbb-IV-Ebo"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="34" id="TMo-Cd-CZn"/>
+                                                </constraints>
+                                            </stackView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -129,14 +164,17 @@
                                             <constraint firstItem="Skb-xA-bbe" firstAttribute="leading" secondItem="bMb-1K-Xhn" secondAttribute="leading" id="A56-9k-6cO"/>
                                             <constraint firstItem="o5N-gn-PP3" firstAttribute="top" secondItem="43a-dp-G5Z" secondAttribute="bottom" constant="16" id="EeO-F0-yjo"/>
                                             <constraint firstAttribute="trailing" secondItem="o5N-gn-PP3" secondAttribute="trailing" constant="16" id="LGn-qR-nuk"/>
+                                            <constraint firstAttribute="trailing" secondItem="B8q-nb-Ha9" secondAttribute="trailing" constant="16" id="LNF-oJ-Q4z"/>
                                             <constraint firstAttribute="trailing" secondItem="43a-dp-G5Z" secondAttribute="trailing" id="Tpj-G3-3OU"/>
                                             <constraint firstItem="wH7-vS-ZNb" firstAttribute="leading" secondItem="bMb-1K-Xhn" secondAttribute="leading" constant="16" id="UIY-ip-fIY"/>
+                                            <constraint firstItem="B8q-nb-Ha9" firstAttribute="top" secondItem="wH7-vS-ZNb" secondAttribute="bottom" id="Xpo-Zg-9fS"/>
                                             <constraint firstItem="43a-dp-G5Z" firstAttribute="top" secondItem="rtj-mb-6Et" secondAttribute="bottom" constant="16" id="eRT-B5-Erk"/>
                                             <constraint firstItem="43a-dp-G5Z" firstAttribute="leading" secondItem="bMb-1K-Xhn" secondAttribute="leading" id="euE-hv-dsR"/>
                                             <constraint firstAttribute="trailing" secondItem="rtj-mb-6Et" secondAttribute="trailing" constant="16" id="gPn-Cx-YPE"/>
                                             <constraint firstAttribute="trailing" secondItem="Skb-xA-bbe" secondAttribute="trailing" id="gk5-eJ-CLV"/>
                                             <constraint firstItem="wH7-vS-ZNb" firstAttribute="top" secondItem="Skb-xA-bbe" secondAttribute="bottom" id="hSL-js-Fxd"/>
                                             <constraint firstItem="rtj-mb-6Et" firstAttribute="top" secondItem="bMb-1K-Xhn" secondAttribute="top" constant="16" id="pqg-9J-ThO"/>
+                                            <constraint firstItem="B8q-nb-Ha9" firstAttribute="leading" secondItem="bMb-1K-Xhn" secondAttribute="leading" constant="16" id="rM6-LS-GqE"/>
                                             <constraint firstItem="Skb-xA-bbe" firstAttribute="top" secondItem="o5N-gn-PP3" secondAttribute="bottom" constant="16" id="v4A-6c-fh0"/>
                                             <constraint firstItem="o5N-gn-PP3" firstAttribute="leading" secondItem="bMb-1K-Xhn" secondAttribute="leading" constant="16" id="yPT-Ii-piu"/>
                                         </constraints>
@@ -236,13 +274,16 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="buttonsStackViewTopConstraint" destination="Xpo-Zg-9fS" id="oAT-x8-TLY"/>
                         <outlet property="commentsButton" destination="HNi-jg-J97" id="g8T-kk-kiM"/>
                         <outlet property="contentView" destination="bMb-1K-Xhn" id="OAE-vM-DIl"/>
                         <outlet property="coverImageView" destination="43a-dp-G5Z" id="HD3-1K-UuO"/>
                         <outlet property="coverImageViewHeight" destination="Ei6-Ev-1ER" id="0tJ-mS-wfG"/>
+                        <outlet property="donateButton" destination="EJz-dy-sVL" id="CGX-Rs-5jo"/>
                         <outlet property="flauntButton" destination="3Ah-Ss-ehH" id="E3t-Wm-BdD"/>
                         <outlet property="navbarView" destination="NYx-0X-E2k" id="DIS-Bt-Dp9"/>
                         <outlet property="postFeedHeaderView" destination="KTt-mO-WKH" id="bQD-Zy-4xQ"/>
+                        <outlet property="promoteButton" destination="PRF-Xh-r6a" id="V2H-cz-O8k"/>
                         <outlet property="scrollView" destination="xGo-4v-IPK" id="AHT-m7-sJL"/>
                         <outlet property="textLabel" destination="o5N-gn-PP3" id="WBs-Z0-dRE"/>
                         <outlet property="titleLabel" destination="rtj-mb-6Et" id="ytb-g7-OzN"/>
@@ -262,6 +303,9 @@
                         <outletCollection property="heightsCollection" destination="BOB-lg-NQM" collectionClass="NSMutableArray" id="7Gn-2R-FjU"/>
                         <outletCollection property="widthsCollection" destination="5mQ-9e-3DS" collectionClass="NSMutableArray" id="kFk-m2-jAn"/>
                         <outletCollection property="widthsCollection" destination="UIY-ip-fIY" collectionClass="NSMutableArray" id="XgV-mE-x0I"/>
+                        <outletCollection property="widthsCollection" destination="rM6-LS-GqE" collectionClass="NSMutableArray" id="Mfy-Pf-Hhl"/>
+                        <outletCollection property="widthsCollection" destination="LNF-oJ-Q4z" collectionClass="NSMutableArray" id="Wk4-6w-c9H"/>
+                        <outletCollection property="heightsCollection" destination="TMo-Cd-CZn" collectionClass="NSMutableArray" id="emK-8N-exX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="shn-2l-RAj" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -273,7 +317,9 @@
         <image name="icon-button-back-normal" width="8" height="14"/>
         <image name="icon-button-comments-highlighted" width="20" height="20"/>
         <image name="icon-button-comments-normal" width="20" height="20"/>
+        <image name="icon-button-donate-normal" width="19" height="14"/>
         <image name="icon-button-flaunt-normal" width="13" height="18"/>
+        <image name="icon-button-promote-normal" width="14" height="14"/>
         <image name="icon-button-share-normal" width="24" height="24"/>
         <image name="icon-button-upvotes-highlighted" width="20" height="20"/>
         <image name="icon-button-upvotes-normal" width="20" height="20"/>
