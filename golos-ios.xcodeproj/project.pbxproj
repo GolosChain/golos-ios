@@ -27,6 +27,10 @@
 		B1072C93210EDA990001019C /* SettingNotification+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1072C91210EDA990001019C /* SettingNotification+CoreDataProperties.swift */; };
 		B1084CAE211378780065CAC0 /* PostShowTagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1084CAC211378780065CAC0 /* PostShowTagCollectionViewCell.swift */; };
 		B1084CAF211378780065CAC0 /* PostShowTagCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1084CAD211378780065CAC0 /* PostShowTagCollectionViewCell.xib */; };
+		B1084CB221137D220065CAC0 /* PostShowSubscribeTopicTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1084CB021137D220065CAC0 /* PostShowSubscribeTopicTableViewCell.swift */; };
+		B1084CB321137D220065CAC0 /* PostShowSubscribeTopicTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1084CB121137D220065CAC0 /* PostShowSubscribeTopicTableViewCell.xib */; };
+		B1084CB621137D380065CAC0 /* PostShowSibscribeUserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1084CB421137D380065CAC0 /* PostShowSibscribeUserTableViewCell.swift */; };
+		B1084CB721137D380065CAC0 /* PostShowSibscribeUserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1084CB521137D380065CAC0 /* PostShowSibscribeUserTableViewCell.xib */; };
 		B10F487E20F793DE00F2BCAC /* RestAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10F487D20F793DE00F2BCAC /* RestAPIManager.swift */; };
 		B111322420CD51EA00BC7F33 /* PostingKeyShowRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B111321E20CD51EA00BC7F33 /* PostingKeyShowRouter.swift */; };
 		B111322620CD51EA00BC7F33 /* PostingKeyShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B111322020CD51EA00BC7F33 /* PostingKeyShowViewController.swift */; };
@@ -285,6 +289,10 @@
 		B1072C91210EDA990001019C /* SettingNotification+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingNotification+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		B1084CAC211378780065CAC0 /* PostShowTagCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostShowTagCollectionViewCell.swift; sourceTree = "<group>"; };
 		B1084CAD211378780065CAC0 /* PostShowTagCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostShowTagCollectionViewCell.xib; sourceTree = "<group>"; };
+		B1084CB021137D220065CAC0 /* PostShowSubscribeTopicTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostShowSubscribeTopicTableViewCell.swift; sourceTree = "<group>"; };
+		B1084CB121137D220065CAC0 /* PostShowSubscribeTopicTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostShowSubscribeTopicTableViewCell.xib; sourceTree = "<group>"; };
+		B1084CB421137D380065CAC0 /* PostShowSibscribeUserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostShowSibscribeUserTableViewCell.swift; sourceTree = "<group>"; };
+		B1084CB521137D380065CAC0 /* PostShowSibscribeUserTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostShowSibscribeUserTableViewCell.xib; sourceTree = "<group>"; };
 		B10F487D20F793DE00F2BCAC /* RestAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestAPIManager.swift; sourceTree = "<group>"; };
 		B111321E20CD51EA00BC7F33 /* PostingKeyShowRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingKeyShowRouter.swift; sourceTree = "<group>"; };
 		B111322020CD51EA00BC7F33 /* PostingKeyShowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingKeyShowViewController.swift; sourceTree = "<group>"; };
@@ -567,6 +575,10 @@
 		B1084CAB211377B00065CAC0 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				B1084CB421137D380065CAC0 /* PostShowSibscribeUserTableViewCell.swift */,
+				B1084CB521137D380065CAC0 /* PostShowSibscribeUserTableViewCell.xib */,
+				B1084CB021137D220065CAC0 /* PostShowSubscribeTopicTableViewCell.swift */,
+				B1084CB121137D220065CAC0 /* PostShowSubscribeTopicTableViewCell.xib */,
 				B1084CAC211378780065CAC0 /* PostShowTagCollectionViewCell.swift */,
 				B1084CAD211378780065CAC0 /* PostShowTagCollectionViewCell.xib */,
 			);
@@ -1326,6 +1338,8 @@
 				B1918FF720B5421800F6CE63 /* InfoPlist.strings in Resources */,
 				B1E09E182101EE8F002CC5B7 /* PostFeedTableViewCell.xib in Resources */,
 				B1084CAF211378780065CAC0 /* PostShowTagCollectionViewCell.xib in Resources */,
+				B1084CB321137D220065CAC0 /* PostShowSubscribeTopicTableViewCell.xib in Resources */,
+				B1084CB721137D380065CAC0 /* PostShowSibscribeUserTableViewCell.xib in Resources */,
 				7D25B4BA201F9821004A3400 /* ArticleHeaderView.xib in Resources */,
 				B11AA7F720CB018E00212713 /* WelcomeShow.storyboard in Resources */,
 				B136D4FC20D8BA14003AD279 /* AddTagCollectionViewCell.xib in Resources */,
@@ -1542,6 +1556,7 @@
 				B127A87720EB822F007133AB /* UserSecretOwnerKey+CoreDataProperties.swift in Sources */,
 				EC9ABBBF20179CEF00AF8597 /* Images.swift in Sources */,
 				B1C1DFE420CF887F00D1A837 /* LogInShowInteractor.swift in Sources */,
+				B1084CB221137D220065CAC0 /* PostShowSubscribeTopicTableViewCell.swift in Sources */,
 				B127A87620EB822F007133AB /* UserSecretOwnerKey+CoreDataClass.swift in Sources */,
 				B12F442D20EB4AFC003FFF58 /* GolosModels.xcdatamodeld in Sources */,
 				B13FE9B420F5004F00F907BC /* Lenta+CoreDataClass.swift in Sources */,
@@ -1639,6 +1654,7 @@
 				7D25B4B8201F980A004A3400 /* ArticleHeaderView.swift in Sources */,
 				B1EA151F20FDC82E0015EF76 /* PopularPostsShowViewController.swift in Sources */,
 				B12B3AC520FCBFCA00071B97 /* PostsShowWorker.swift in Sources */,
+				B1084CB621137D380065CAC0 /* PostShowSibscribeUserTableViewCell.swift in Sources */,
 				B136D50220D8BBEA003AD279 /* TagsCollectionViewController.swift in Sources */,
 				ECB2C0D52008E56300AF1AF5 /* ConstantsApp.swift in Sources */,
 				B114193520CD26710025B07F /* LogInShowViewController.swift in Sources */,
