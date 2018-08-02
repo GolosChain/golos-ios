@@ -25,6 +25,8 @@
 		B1050CDF20CEE89C003CE4EE /* UINavigationController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1050CDE20CEE89C003CE4EE /* UINavigationController+Extensions.swift */; };
 		B1072C92210EDA990001019C /* SettingNotification+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1072C90210EDA990001019C /* SettingNotification+CoreDataClass.swift */; };
 		B1072C93210EDA990001019C /* SettingNotification+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1072C91210EDA990001019C /* SettingNotification+CoreDataProperties.swift */; };
+		B1084CAE211378780065CAC0 /* PostShowTagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1084CAC211378780065CAC0 /* PostShowTagCollectionViewCell.swift */; };
+		B1084CAF211378780065CAC0 /* PostShowTagCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1084CAD211378780065CAC0 /* PostShowTagCollectionViewCell.xib */; };
 		B10F487E20F793DE00F2BCAC /* RestAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10F487D20F793DE00F2BCAC /* RestAPIManager.swift */; };
 		B111322420CD51EA00BC7F33 /* PostingKeyShowRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B111321E20CD51EA00BC7F33 /* PostingKeyShowRouter.swift */; };
 		B111322620CD51EA00BC7F33 /* PostingKeyShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B111322020CD51EA00BC7F33 /* PostingKeyShowViewController.swift */; };
@@ -281,6 +283,8 @@
 		B1050CDE20CEE89C003CE4EE /* UINavigationController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Extensions.swift"; sourceTree = "<group>"; };
 		B1072C90210EDA990001019C /* SettingNotification+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingNotification+CoreDataClass.swift"; sourceTree = "<group>"; };
 		B1072C91210EDA990001019C /* SettingNotification+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingNotification+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B1084CAC211378780065CAC0 /* PostShowTagCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostShowTagCollectionViewCell.swift; sourceTree = "<group>"; };
+		B1084CAD211378780065CAC0 /* PostShowTagCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostShowTagCollectionViewCell.xib; sourceTree = "<group>"; };
 		B10F487D20F793DE00F2BCAC /* RestAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestAPIManager.swift; sourceTree = "<group>"; };
 		B111321E20CD51EA00BC7F33 /* PostingKeyShowRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingKeyShowRouter.swift; sourceTree = "<group>"; };
 		B111322020CD51EA00BC7F33 /* PostingKeyShowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingKeyShowViewController.swift; sourceTree = "<group>"; };
@@ -560,6 +564,15 @@
 			path = PostCreate;
 			sourceTree = "<group>";
 		};
+		B1084CAB211377B00065CAC0 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				B1084CAC211378780065CAC0 /* PostShowTagCollectionViewCell.swift */,
+				B1084CAD211378780065CAC0 /* PostShowTagCollectionViewCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		B114193820CD51500025B07F /* ActiveKeyShow */ = {
 			isa = PBXGroup;
 			children = (
@@ -677,7 +690,7 @@
 			isa = PBXGroup;
 			children = (
 				B136D4F520D8B9B8003AD279 /* Model */,
-				B136D4F620D8B9BE003AD279 /* Views */,
+				B136D4F620D8B9BE003AD279 /* Cells */,
 				B136D50120D8BBEA003AD279 /* TagsCollectionViewController.swift */,
 			);
 			path = TagsShow;
@@ -691,7 +704,7 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		B136D4F620D8B9BE003AD279 /* Views */ = {
+		B136D4F620D8B9BE003AD279 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
 				B136D4F920D8BA14003AD279 /* AddTagCollectionViewCell.swift */,
@@ -699,7 +712,7 @@
 				B136D4FD20D8BA2E003AD279 /* ThemeTagCollectionViewCell.swift */,
 				B136D4FE20D8BA2E003AD279 /* ThemeTagCollectionViewCell.xib */,
 			);
-			path = Views;
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		B139EB9920C3D3B80065F6F9 /* Views */ = {
@@ -785,6 +798,7 @@
 		B15C29AF21101FD10030D249 /* PostShow */ = {
 			isa = PBXGroup;
 			children = (
+				B1084CAB211377B00065CAC0 /* Cells */,
 				B15C29B521101FEA0030D249 /* PostShowInteractor.swift */,
 				B15C29B321101FEA0030D249 /* PostShowModels.swift */,
 				B15C29B021101FEA0030D249 /* PostShowPresenter.swift */,
@@ -1311,6 +1325,7 @@
 				B11AA80520CB13BA00212713 /* SFUIDisplay-Regular.otf in Resources */,
 				B1918FF720B5421800F6CE63 /* InfoPlist.strings in Resources */,
 				B1E09E182101EE8F002CC5B7 /* PostFeedTableViewCell.xib in Resources */,
+				B1084CAF211378780065CAC0 /* PostShowTagCollectionViewCell.xib in Resources */,
 				7D25B4BA201F9821004A3400 /* ArticleHeaderView.xib in Resources */,
 				B11AA7F720CB018E00212713 /* WelcomeShow.storyboard in Resources */,
 				B136D4FC20D8BA14003AD279 /* AddTagCollectionViewCell.xib in Resources */,
@@ -1540,6 +1555,7 @@
 				B15C29BA21101FEA0030D249 /* PostShowViewController.swift in Sources */,
 				B136D4FF20D8BA2E003AD279 /* ThemeTagCollectionViewCell.swift in Sources */,
 				B1EE686C20D2D713006BF802 /* PostCommentReply.swift in Sources */,
+				B1084CAE211378780065CAC0 /* PostShowTagCollectionViewCell.swift in Sources */,
 				B1742A8E20FD03EE009AAE5E /* GSPostsSegmentedControlViewController.swift in Sources */,
 				B13FE9B520F5004F00F907BC /* Lenta+CoreDataProperties.swift in Sources */,
 				B1EBAFBB20EB55690050B1A2 /* User+CoreDataClass.swift in Sources */,
