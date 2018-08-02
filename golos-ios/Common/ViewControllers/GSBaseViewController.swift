@@ -68,7 +68,7 @@ class GSBaseViewController: UIViewController {
     }
     
     private func configureBackButton(withTitle title: String? = nil) {
-        let backImage = UIImage(named: "back_button")
+        let backImage = UIImage(named: "icon-button-back-normal")
         
         self.navigationController?.navigationBar.backIndicatorImage                 =   backImage
         self.navigationController?.navigationBar.backIndicatorTransitionMaskImage   =   backImage

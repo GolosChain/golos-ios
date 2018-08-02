@@ -248,7 +248,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="wjG-Fd-23r" secondAttribute="height" multiplier="1:1" id="xeH-tj-ueC"/>
                                 </constraints>
-                                <state key="normal" image="scan_qr_button"/>
+                                <state key="normal" image="icon-button-qr-code-scan-normal"/>
                                 <connections>
                                     <action selector="scanQRButtonPressed:" destination="1eb-M4-CWc" eventType="touchUpInside" id="5AX-bi-0Gq"/>
                                 </connections>
@@ -259,7 +259,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="dqh-Vu-hHU" secondAttribute="height" multiplier="1:1" id="rqe-IS-f8V"/>
                                 </constraints>
-                                <state key="normal" image="login_help_button"/>
+                                <state key="normal" image="icon-login-help-questions"/>
                                 <connections>
                                     <action selector="helpButtonPressed:" destination="1eb-M4-CWc" eventType="touchUpInside" id="TCZ-WQ-1Zh"/>
                                 </connections>
@@ -378,7 +378,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="P9b-Qs-MNU" secondAttribute="height" multiplier="1:1" id="IsX-lc-eiQ"/>
                                 </constraints>
-                                <state key="normal" image="scan_qr_button"/>
+                                <state key="normal" image="icon-button-qr-code-scan-normal"/>
                                 <connections>
                                     <action selector="scanQRButtonPressed:" destination="WuC-9p-LOc" eventType="touchUpInside" id="pYL-yv-DcI"/>
                                 </connections>
@@ -389,7 +389,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="T8y-8p-uhP" secondAttribute="height" multiplier="1:1" id="72F-Cb-cn6"/>
                                 </constraints>
-                                <state key="normal" image="login_help_button"/>
+                                <state key="normal" image="icon-login-help-questions"/>
                                 <connections>
                                     <action selector="helpButtonPressed:" destination="WuC-9p-LOc" eventType="touchUpInside" id="lwx-fl-3My"/>
                                 </connections>
@@ -459,7 +459,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="login_help_button" width="22" height="22"/>
-        <image name="scan_qr_button" width="20" height="20"/>
+        <image name="icon-button-qr-code-scan-normal" width="20" height="20"/>
+        <image name="icon-login-help-questions" width="22" height="22"/>
     </resources>
 </document>

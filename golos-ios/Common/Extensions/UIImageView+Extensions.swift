@@ -31,8 +31,8 @@ extension UIImageView {
         let imageKey: NSString      =   imageURL!.absoluteString as NSString //imageType.rawValue + "-" + imagePath as NSString
 
         // Cover as 'NSFW'
-        if let tagsTemp = tags, tagsTemp.map({ $0.lowercased() }).contains("nsfw"), imageType == .userCoverImage {
-            self.image = UIImage(named: "nsfw")!
+        if let tagsTemp = tags, tagsTemp.map({ $0.lowercased() }).contains("image-nsfw"), imageType == .userCoverImage {
+            self.image = UIImage(named: "image-nsfw")!
         }
 
         else {

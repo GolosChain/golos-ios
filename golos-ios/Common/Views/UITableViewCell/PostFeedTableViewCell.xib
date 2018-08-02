@@ -53,10 +53,10 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                                 <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="-5" maxY="0.0"/>
-                                <state key="normal" title="10000" image="icon-article-upvotes-normal">
+                                <state key="normal" title="10000" image="icon-button-upvotes-normal">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
-                                <state key="disabled" image="icon-article-upvotes-highlighted"/>
+                                <state key="disabled" image="icon-button-upvotes-highlighted"/>
                                 <connections>
                                     <action selector="upvotesButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="WL0-Kq-e6N"/>
                                 </connections>
@@ -67,10 +67,10 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="20" maxY="0.0"/>
                                 <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="-5" maxY="0.0"/>
-                                <state key="normal" title="32" image="icon-article-comments-normal">
+                                <state key="normal" title="32" image="icon-button-comments-normal">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
-                                <state key="disabled" image="icon-article-comments-highlighted"/>
+                                <state key="disabled" image="icon-button-comments-highlighted"/>
                                 <connections>
                                     <action selector="commentsButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="e1b-9C-E2h"/>
                                 </connections>
@@ -82,7 +82,7 @@
                                     <constraint firstAttribute="width" secondItem="3Me-i8-z48" secondAttribute="height" multiplier="1:1" id="mYe-xS-vHh"/>
                                     <constraint firstAttribute="height" constant="44" id="rcj-cI-jCg"/>
                                 </constraints>
-                                <state key="normal" image="icon-article-share-normal"/>
+                                <state key="normal" image="icon-button-share-normal"/>
                                 <connections>
                                     <action selector="shareButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="lC1-V3-WhW"/>
                                 </connections>
@@ -148,10 +148,10 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="icon-article-comments-highlighted" width="20" height="20"/>
-        <image name="icon-article-comments-normal" width="20" height="20"/>
-        <image name="icon-article-share-normal" width="14" height="16"/>
-        <image name="icon-article-upvotes-highlighted" width="20" height="20"/>
-        <image name="icon-article-upvotes-normal" width="20" height="20"/>
+        <image name="icon-button-comments-highlighted" width="20" height="20"/>
+        <image name="icon-button-comments-normal" width="20" height="20"/>
+        <image name="icon-button-share-normal" width="18" height="20"/>
+        <image name="icon-button-upvotes-highlighted" width="20" height="20"/>
+        <image name="icon-button-upvotes-normal" width="20" height="20"/>
     </resources>
 </document>

@@ -44,7 +44,7 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <gestureRecognizers/>
                 </view>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="article-theme-icon" translatesAutoresizingMaskIntoConstraints="NO" id="am1-8x-VL3">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-cell-theme" translatesAutoresizingMaskIntoConstraints="NO" id="am1-8x-VL3">
                     <rect key="frame" x="52" y="67" width="11" height="8"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="8" id="CTi-Sq-9YF"/>
@@ -94,8 +94,9 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="reblog_icon" translatesAutoresizingMaskIntoConstraints="NO" id="zGn-Ia-wVi">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-cell-reblog" translatesAutoresizingMaskIntoConstraints="NO" id="zGn-Ia-wVi">
                     <rect key="frame" x="81" y="50" width="9" height="6"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="zGn-Ia-wVi" secondAttribute="height" multiplier="9:6" id="DXY-AI-j0G"/>
                     </constraints>
@@ -144,8 +145,8 @@
         </view>
     </objects>
     <resources>
-        <image name="article-theme-icon" width="19" height="14"/>
+        <image name="icon-cell-reblog" width="9" height="6"/>
+        <image name="icon-cell-theme" width="19" height="14"/>
         <image name="image-user-cover-placeholder" width="360" height="286"/>
-        <image name="reblog_icon" width="9" height="6"/>
     </resources>
 </document>

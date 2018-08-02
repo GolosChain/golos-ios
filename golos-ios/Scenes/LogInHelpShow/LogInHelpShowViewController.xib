@@ -50,7 +50,7 @@
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6qO-U9-Rgc" userLabel="Content View">
                     <rect key="frame" x="27.5" y="107" width="320" height="453"/>
                     <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="www" translatesAutoresizingMaskIntoConstraints="NO" id="dt3-BK-aJH">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="icon-login-help-www" translatesAutoresizingMaskIntoConstraints="NO" id="dt3-BK-aJH">
                             <rect key="frame" x="25.5" y="58" width="36" height="30"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
@@ -64,7 +64,7 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wallet" translatesAutoresizingMaskIntoConstraints="NO" id="qUS-yf-D96">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-login-help-wallet" translatesAutoresizingMaskIntoConstraints="NO" id="qUS-yf-D96">
                             <rect key="frame" x="28.5" y="125" width="30" height="29.5"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
@@ -92,8 +92,9 @@
                             </attributedString>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="eye" translatesAutoresizingMaskIntoConstraints="NO" id="yTV-NL-mn6">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-login-help-eye" translatesAutoresizingMaskIntoConstraints="NO" id="yTV-NL-mn6">
                             <rect key="frame" x="25.5" y="203.5" width="36" height="22"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="yTV-NL-mn6" secondAttribute="height" multiplier="36:22" id="qAV-dB-Fl0"/>
                             </constraints>
@@ -127,8 +128,9 @@
                                 <action selector="closeButtonPressed:" destination="-1" eventType="touchUpInside" id="cSG-wK-FYe"/>
                             </connections>
                         </button>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="qr-code" translatesAutoresizingMaskIntoConstraints="NO" id="hpx-1P-2ga" userLabel="qrcode">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-button-qr-code-scan-normal" translatesAutoresizingMaskIntoConstraints="NO" id="hpx-1P-2ga" userLabel="qrcode">
                             <rect key="frame" x="29" y="306.5" width="30" height="30.5"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="hpx-1P-2ga" secondAttribute="height" multiplier="30:30" id="cAu-Hv-LCN"/>
                             </constraints>
@@ -253,9 +255,9 @@
         </view>
     </objects>
     <resources>
-        <image name="eye" width="36" height="22"/>
-        <image name="qr-code" width="30" height="30"/>
-        <image name="wallet" width="32" height="32"/>
-        <image name="www" width="36" height="30"/>
+        <image name="icon-button-qr-code-scan-normal" width="20" height="20"/>
+        <image name="icon-login-help-eye" width="36" height="22"/>
+        <image name="icon-login-help-wallet" width="32" height="32"/>
+        <image name="icon-login-help-www" width="36" height="30"/>
     </resources>
 </document>

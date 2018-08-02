@@ -26,7 +26,7 @@
                                     <constraint firstAttribute="width" secondItem="F2I-9F-Ifm" secondAttribute="height" multiplier="1:1" id="pOn-x1-acb"/>
                                 </constraints>
                             </view>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="golos_intro_icon" translatesAutoresizingMaskIntoConstraints="NO" id="z6b-B9-s90">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-intro-golos-app" translatesAutoresizingMaskIntoConstraints="NO" id="z6b-B9-s90">
                                 <rect key="frame" x="147.5" y="293.5" width="80" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="z6b-B9-s90" secondAttribute="height" multiplier="1:1" id="Ypj-rX-HgR"/>
@@ -96,6 +96,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="golos_intro_icon" width="80" height="80"/>
+        <image name="icon-intro-golos-app" width="80" height="80"/>
     </resources>
 </document>

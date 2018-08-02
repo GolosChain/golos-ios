@@ -56,7 +56,7 @@
                         <constraint firstAttribute="width" secondItem="acw-MW-GSz" secondAttribute="height" multiplier="1:1" id="ksz-NO-c1g"/>
                     </constraints>
                 </imageView>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_star_icon" translatesAutoresizingMaskIntoConstraints="NO" id="GYK-T0-5RT" userLabel="Reputation Image View">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-user-profile-star" translatesAutoresizingMaskIntoConstraints="NO" id="GYK-T0-5RT" userLabel="Reputation Image View">
                     <rect key="frame" x="153" y="105.5" width="15" height="14"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </imageView>
@@ -110,8 +110,9 @@
                         <action selector="writeButtonTapped:" destination="-1" eventType="touchUpInside" id="z1G-6w-3QH"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_header_bg" translatesAutoresizingMaskIntoConstraints="NO" id="Sjy-q5-k3d" userLabel="Blur Image View">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image-user-cover-placeholder-old" translatesAutoresizingMaskIntoConstraints="NO" id="Sjy-q5-k3d" userLabel="Blur Image View">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="180"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </imageView>
                 <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rmb-0P-j3P" userLabel="Edit Button">
                     <rect key="frame" x="4" y="25" width="45" height="42"/>
@@ -134,7 +135,7 @@
                         <constraint firstAttribute="height" constant="44" id="rso-2L-BYS"/>
                     </constraints>
                     <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
-                    <state key="normal" image="back_button"/>
+                    <state key="normal" image="icon-button-back-normal"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
                             <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -251,15 +252,15 @@
         </view>
     </objects>
     <resources>
-        <image name="back_button" width="17" height="16"/>
+        <image name="icon-button-back-normal" width="8" height="14"/>
         <image name="icon-button-edit-black-normal" width="25" height="25"/>
         <image name="icon-button-edit-white-normal" width="25" height="25"/>
         <image name="icon-button-settings-black-normal" width="25" height="25"/>
         <image name="icon-button-settings-white-normal" width="25" height="25"/>
         <image name="icon-user-profile-image-placeholder" width="40" height="40"/>
+        <image name="icon-user-profile-star" width="15" height="14"/>
         <image name="icon-voice-power-doplhin" width="14" height="14"/>
         <image name="image-user-cover-placeholder" width="360" height="286"/>
-        <image name="profile_header_bg" width="375" height="181"/>
-        <image name="profile_star_icon" width="15" height="14"/>
+        <image name="image-user-cover-placeholder-old" width="375" height="181"/>
     </resources>
 </document>

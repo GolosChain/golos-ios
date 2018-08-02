@@ -18,27 +18,27 @@ class GSTabBarController: UITabBarController {
     
     private func configureViewControllers() {
         let postsShowNC                     =   UIStoryboard(name: "PostsShow", bundle: nil).instantiateViewController(withIdentifier: "PostsShowNC") as! UINavigationController
-        postsShowNC.tabBarItem              =   UITabBarItem(title: "", image: UIImage(named: "tab_home"), selectedImage: nil)
+        postsShowNC.tabBarItem              =   UITabBarItem(title: "", image: UIImage(named: "icon-tabbar-button-home-normal"), selectedImage: nil)
         postsShowNC.tabBarItem.tag          =   0
         postsShowNC.navigationBar.isHidden  =   true
 
         /*
         let vc2                     =   UIViewController()
         vc2.view.backgroundColor    =   .red
-        vc2.tabBarItem              =   UITabBarItem(title: "", image: UIImage.init(named: "tab_search"), selectedImage: nil)
+        vc2.tabBarItem              =   UITabBarItem(title: "", image: UIImage.init(named: "icon-tabbar-button-search-normal"), selectedImage: nil)
          vc2.tabBarItem.tag         =   1
          */
         
         // Create Post
         let postCreateNC            =   UIStoryboard(name: "PostCreate", bundle: nil).instantiateViewController(withIdentifier: "PostCreateNC")
-        postCreateNC.tabBarItem     =   UITabBarItem(title: "", image: UIImage.init(named: "tab_add"), selectedImage: nil)
+        postCreateNC.tabBarItem     =   UITabBarItem(title: "", image: UIImage.init(named: "icon-tabbar-button-add-normal"), selectedImage: nil)
         postCreateNC.tabBarItem.tag =   2
         
         /*
         // Notifications
         let vc4                     =   UIViewController()
         vc4.view.backgroundColor    =   .orange
-        vc4.tabBarItem              =   UITabBarItem(title: "", image: UIImage.init(named: "tab_notifications"), selectedImage: nil)
+        vc4.tabBarItem              =   UITabBarItem(title: "", image: UIImage.init(named: "icon-tabbar-button-notifications-normal"), selectedImage: nil)
          vc4.tabBarItem.tag          =   3
         */
         
@@ -50,7 +50,7 @@ class GSTabBarController: UITabBarController {
         let profileNavigationController         =   UINavigationController(rootViewController: profileViewController)
         
         profileNavigationController.tabBarItem  =   UITabBarItem(title:             "",
-                                                                 image:             UIImage.init(named: "tab_profile"),
+                                                                 image:             UIImage.init(named: "icon-tabbar-button-user-profile-normal"),
                                                                  selectedImage:     nil)
         
         profileNavigationController.tabBarItem.tag  =   4
