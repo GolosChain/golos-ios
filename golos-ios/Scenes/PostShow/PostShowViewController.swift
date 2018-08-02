@@ -132,6 +132,67 @@ class PostShowViewController: GSBaseViewController {
         }
     }
     
+    @IBOutlet var backgroundGrayViewsCollection: [UIView]! {
+        didSet {
+            _ = backgroundGrayViewsCollection.map({ $0.theme_backgroundColor = veryLightGrayColorPickers })
+        }
+    }
+    
+    @IBOutlet weak var commentsTitleLabel: UILabel! {
+        didSet {
+            commentsTitleLabel.tune(withText:           "Comments Noun",
+                                    hexColors:          veryDarkGrayWhiteColorPickers,
+                                    font:               UIFont(name: "SFUIDisplay-Regular", size: 14.0 * widthRatio),
+                                    alignment:          .left,
+                                    isMultiLines:       false)
+        }
+    }
+
+    @IBOutlet weak var commentsCountLabel: UILabel! {
+        didSet {
+            commentsCountLabel.tune(withText:           "42",
+                                    hexColors:          grayWhiteColorPickers,
+                                    font:               UIFont(name: "SFUIDisplay-Regular", size: 14.0 * widthRatio),
+                                    alignment:          .left,
+                                    isMultiLines:       false)
+        }
+    }
+
+    @IBOutlet weak var sortByLabel: UILabel! {
+        didSet {
+            sortByLabel.tune(withText:           "Sort by",
+                             hexColors:          grayWhiteColorPickers,
+                             font:               UIFont(name: "SFUIDisplay-Regular", size: 10.0 * widthRatio),
+                             alignment:          .left,
+                             isMultiLines:       false)
+        }
+    }
+
+    @IBOutlet weak var commentsSortByButton: UIButton! {
+        didSet {
+            commentsSortByButton.tune(withTitle:        "Action Sheet First New",
+                                      hexColors:        [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
+                                      font:             UIFont(name: "SFUIDisplay-Regular", size: 10.0 * widthRatio),
+                                      alignment:        .center)
+            
+            commentsSortByButton.isEnabled      =   true
+        }
+    }
+
+    @IBOutlet weak var commentsHideButton: UIButton! {
+        didSet {
+            commentsHideButton.tune(withTitle:        "Hide Comments Verb",
+                                    hexColors:        [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
+                                    font:             UIFont(name: "SFUIDisplay-Medium", size: 8.0 * widthRatio),
+                                    alignment:        .center)
+            
+            commentsHideButton.isEnabled        =   true
+            
+            commentsHideButton.setBorder(color: UIColor(hexString: "#dbdbdb").cgColor, cornerRadius: 4.0 * heightRatio)
+        }
+    }
+    
+    
     @IBOutlet var heightsCollection: [NSLayoutConstraint]! {
         didSet {
             _ = heightsCollection.map({ $0.constant *= heightRatio })
@@ -275,7 +336,14 @@ class PostShowViewController: GSBaseViewController {
     @IBAction func buttonsTappedDown(_ sender: UIButton) {
         sender.layer.borderColor = UIColor(hexString: "#dbdbdb").cgColor
     }
-    
+
+    @IBAction func sortCommentsByButtonTapped(_ sender: UIButton) {
+        self.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+    }
+
+    @IBAction func hideCommentsButtonTapped(_ sender: UIButton) {
+        self.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+    }
 }
 
 

@@ -156,27 +156,130 @@
                                                     <constraint firstAttribute="height" constant="34" id="TMo-Cd-CZn"/>
                                                 </constraints>
                                             </stackView>
+                                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HOh-Gg-nGp" userLabel="Background Gray View">
+                                                <rect key="frame" x="0.0" y="489.5" width="375" height="5"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="5" id="Ygm-6j-pRV"/>
+                                                </constraints>
+                                            </view>
+                                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N7G-L8-8Qf" userLabel="Template View">
+                                                <rect key="frame" x="0.0" y="494.5" width="375" height="50"/>
+                                                <color key="backgroundColor" red="0.00030086832699999997" green="0.66218382119999997" blue="0.52358740569999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="VfW-MS-XGx"/>
+                                                </constraints>
+                                            </view>
+                                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gxh-S6-fc1" userLabel="Background Gray View">
+                                                <rect key="frame" x="0.0" y="544.5" width="375" height="5"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="5" id="aPb-kc-z05"/>
+                                                </constraints>
+                                            </view>
+                                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vdV-rn-AqG" userLabel="Comments View">
+                                                <rect key="frame" x="0.0" y="549.5" width="375" height="70"/>
+                                                <subviews>
+                                                    <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comments Noun" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kRn-qa-y7N" userLabel="Comments Title Label">
+                                                        <rect key="frame" x="16" y="15" width="129" height="20.5"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="42" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fG1-nW-pFV" userLabel="Comments Count Label">
+                                                        <rect key="frame" x="153" y="15" width="20.5" height="20.5"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sort by" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vCM-Ek-3Fj" userLabel="Sort By Label">
+                                                        <rect key="frame" x="16" y="40.5" width="55.5" height="20.5"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dyc-qM-Lt3" userLabel="Sort Comments By Button">
+                                                        <rect key="frame" x="79.5" y="36" width="100" height="30"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="100" id="0Pg-ts-eZz"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                        <inset key="imageEdgeInsets" minX="80" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                        <state key="normal" title="Новые посты" image="icon-button-arrow-down-gray-normal">
+                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="sortCommentsByButtonTapped:" destination="KfQ-sI-9XC" eventType="touchUpInside" id="SWV-1t-jwU"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yxj-NQ-A3k" userLabel="Hide Comments Button">
+                                                        <rect key="frame" x="249" y="21" width="110" height="30"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="110" id="dMH-VN-o5K"/>
+                                                            <constraint firstAttribute="height" constant="30" id="vZP-Oz-rin"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="8"/>
+                                                        <state key="normal" title="Hide Comments Verb">
+                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="hideCommentsButtonTapped:" destination="KfQ-sI-9XC" eventType="touchUpInside" id="HSk-Mf-Br3"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstItem="kRn-qa-y7N" firstAttribute="top" secondItem="vdV-rn-AqG" secondAttribute="top" constant="15" id="4BX-LI-HeV"/>
+                                                    <constraint firstItem="dyc-qM-Lt3" firstAttribute="leading" secondItem="vCM-Ek-3Fj" secondAttribute="trailing" constant="8" id="7Rj-Va-igT"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Yxj-NQ-A3k" secondAttribute="trailing" constant="16" id="89i-pA-dvE"/>
+                                                    <constraint firstItem="Yxj-NQ-A3k" firstAttribute="top" secondItem="vdV-rn-AqG" secondAttribute="top" constant="21" id="9ar-By-Pci"/>
+                                                    <constraint firstItem="fG1-nW-pFV" firstAttribute="leading" secondItem="kRn-qa-y7N" secondAttribute="trailing" constant="8" id="EUs-NH-Kwd"/>
+                                                    <constraint firstItem="vCM-Ek-3Fj" firstAttribute="leading" secondItem="vdV-rn-AqG" secondAttribute="leading" constant="16" id="J2X-5e-SsH"/>
+                                                    <constraint firstAttribute="height" constant="70" id="Xem-7R-103"/>
+                                                    <constraint firstItem="Yxj-NQ-A3k" firstAttribute="height" secondItem="dyc-qM-Lt3" secondAttribute="height" id="bAK-Ax-iDX"/>
+                                                    <constraint firstItem="vCM-Ek-3Fj" firstAttribute="top" secondItem="kRn-qa-y7N" secondAttribute="bottom" constant="5" id="omW-s9-dsc"/>
+                                                    <constraint firstItem="dyc-qM-Lt3" firstAttribute="centerY" secondItem="vCM-Ek-3Fj" secondAttribute="centerY" id="q90-A5-XOx"/>
+                                                    <constraint firstItem="kRn-qa-y7N" firstAttribute="leading" secondItem="vdV-rn-AqG" secondAttribute="leading" constant="16" id="xKl-u5-xgn"/>
+                                                    <constraint firstItem="fG1-nW-pFV" firstAttribute="centerY" secondItem="kRn-qa-y7N" secondAttribute="centerY" id="yeh-RD-8CL"/>
+                                                </constraints>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstItem="N7G-L8-8Qf" firstAttribute="top" secondItem="HOh-Gg-nGp" secondAttribute="bottom" id="18D-n2-b3k"/>
                                             <constraint firstItem="rtj-mb-6Et" firstAttribute="leading" secondItem="bMb-1K-Xhn" secondAttribute="leading" constant="16" id="3BU-Ek-I6r"/>
                                             <constraint firstAttribute="trailing" secondItem="wH7-vS-ZNb" secondAttribute="trailing" constant="16" id="5mQ-9e-3DS"/>
+                                            <constraint firstItem="vdV-rn-AqG" firstAttribute="top" secondItem="gxh-S6-fc1" secondAttribute="bottom" id="6jw-fO-Q4U"/>
+                                            <constraint firstAttribute="trailing" secondItem="N7G-L8-8Qf" secondAttribute="trailing" id="7Ge-0E-slL"/>
                                             <constraint firstItem="Skb-xA-bbe" firstAttribute="leading" secondItem="bMb-1K-Xhn" secondAttribute="leading" id="A56-9k-6cO"/>
                                             <constraint firstItem="o5N-gn-PP3" firstAttribute="top" secondItem="43a-dp-G5Z" secondAttribute="bottom" constant="16" id="EeO-F0-yjo"/>
                                             <constraint firstAttribute="trailing" secondItem="o5N-gn-PP3" secondAttribute="trailing" constant="16" id="LGn-qR-nuk"/>
                                             <constraint firstAttribute="trailing" secondItem="B8q-nb-Ha9" secondAttribute="trailing" constant="16" id="LNF-oJ-Q4z"/>
+                                            <constraint firstItem="gxh-S6-fc1" firstAttribute="leading" secondItem="bMb-1K-Xhn" secondAttribute="leading" id="PYC-md-vfS"/>
+                                            <constraint firstAttribute="trailing" secondItem="vdV-rn-AqG" secondAttribute="trailing" id="RkB-el-YEW"/>
                                             <constraint firstAttribute="trailing" secondItem="43a-dp-G5Z" secondAttribute="trailing" id="Tpj-G3-3OU"/>
                                             <constraint firstItem="wH7-vS-ZNb" firstAttribute="leading" secondItem="bMb-1K-Xhn" secondAttribute="leading" constant="16" id="UIY-ip-fIY"/>
                                             <constraint firstItem="B8q-nb-Ha9" firstAttribute="top" secondItem="wH7-vS-ZNb" secondAttribute="bottom" id="Xpo-Zg-9fS"/>
+                                            <constraint firstItem="gxh-S6-fc1" firstAttribute="top" secondItem="N7G-L8-8Qf" secondAttribute="bottom" id="axM-pi-sKT"/>
+                                            <constraint firstAttribute="trailing" secondItem="gxh-S6-fc1" secondAttribute="trailing" id="axd-09-aBO"/>
+                                            <constraint firstItem="vdV-rn-AqG" firstAttribute="leading" secondItem="bMb-1K-Xhn" secondAttribute="leading" id="c2D-Lx-Qzs"/>
                                             <constraint firstItem="43a-dp-G5Z" firstAttribute="top" secondItem="rtj-mb-6Et" secondAttribute="bottom" constant="16" id="eRT-B5-Erk"/>
                                             <constraint firstItem="43a-dp-G5Z" firstAttribute="leading" secondItem="bMb-1K-Xhn" secondAttribute="leading" id="euE-hv-dsR"/>
+                                            <constraint firstItem="HOh-Gg-nGp" firstAttribute="top" secondItem="B8q-nb-Ha9" secondAttribute="bottom" constant="20" id="fsm-0a-jB9"/>
                                             <constraint firstAttribute="trailing" secondItem="rtj-mb-6Et" secondAttribute="trailing" constant="16" id="gPn-Cx-YPE"/>
                                             <constraint firstAttribute="trailing" secondItem="Skb-xA-bbe" secondAttribute="trailing" id="gk5-eJ-CLV"/>
                                             <constraint firstItem="wH7-vS-ZNb" firstAttribute="top" secondItem="Skb-xA-bbe" secondAttribute="bottom" id="hSL-js-Fxd"/>
+                                            <constraint firstItem="HOh-Gg-nGp" firstAttribute="leading" secondItem="bMb-1K-Xhn" secondAttribute="leading" id="k5f-lH-PRS"/>
+                                            <constraint firstItem="N7G-L8-8Qf" firstAttribute="leading" secondItem="bMb-1K-Xhn" secondAttribute="leading" id="oHB-mT-qb3"/>
                                             <constraint firstItem="rtj-mb-6Et" firstAttribute="top" secondItem="bMb-1K-Xhn" secondAttribute="top" constant="16" id="pqg-9J-ThO"/>
                                             <constraint firstItem="B8q-nb-Ha9" firstAttribute="leading" secondItem="bMb-1K-Xhn" secondAttribute="leading" constant="16" id="rM6-LS-GqE"/>
                                             <constraint firstItem="Skb-xA-bbe" firstAttribute="top" secondItem="o5N-gn-PP3" secondAttribute="bottom" constant="16" id="v4A-6c-fh0"/>
                                             <constraint firstItem="o5N-gn-PP3" firstAttribute="leading" secondItem="bMb-1K-Xhn" secondAttribute="leading" constant="16" id="yPT-Ii-piu"/>
+                                            <constraint firstAttribute="trailing" secondItem="HOh-Gg-nGp" secondAttribute="trailing" id="zir-Iv-Vqa"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -276,6 +379,10 @@
                     <connections>
                         <outlet property="buttonsStackViewTopConstraint" destination="Xpo-Zg-9fS" id="oAT-x8-TLY"/>
                         <outlet property="commentsButton" destination="HNi-jg-J97" id="g8T-kk-kiM"/>
+                        <outlet property="commentsCountLabel" destination="fG1-nW-pFV" id="9a4-ZV-whn"/>
+                        <outlet property="commentsHideButton" destination="Yxj-NQ-A3k" id="CS1-0a-Q9v"/>
+                        <outlet property="commentsSortByButton" destination="dyc-qM-Lt3" id="T8e-Aq-HkT"/>
+                        <outlet property="commentsTitleLabel" destination="kRn-qa-y7N" id="UIn-uk-FiH"/>
                         <outlet property="contentView" destination="bMb-1K-Xhn" id="OAE-vM-DIl"/>
                         <outlet property="coverImageView" destination="43a-dp-G5Z" id="HD3-1K-UuO"/>
                         <outlet property="coverImageViewHeight" destination="Ei6-Ev-1ER" id="0tJ-mS-wfG"/>
@@ -285,6 +392,7 @@
                         <outlet property="postFeedHeaderView" destination="KTt-mO-WKH" id="bQD-Zy-4xQ"/>
                         <outlet property="promoteButton" destination="PRF-Xh-r6a" id="V2H-cz-O8k"/>
                         <outlet property="scrollView" destination="xGo-4v-IPK" id="AHT-m7-sJL"/>
+                        <outlet property="sortByLabel" destination="vCM-Ek-3Fj" id="NqB-W2-naf"/>
                         <outlet property="textLabel" destination="o5N-gn-PP3" id="WBs-Z0-dRE"/>
                         <outlet property="titleLabel" destination="rtj-mb-6Et" id="ytb-g7-OzN"/>
                         <outlet property="upvoteButton" destination="waQ-Uy-U9x" id="OuG-GD-52h"/>
@@ -306,6 +414,21 @@
                         <outletCollection property="widthsCollection" destination="rM6-LS-GqE" collectionClass="NSMutableArray" id="Mfy-Pf-Hhl"/>
                         <outletCollection property="widthsCollection" destination="LNF-oJ-Q4z" collectionClass="NSMutableArray" id="Wk4-6w-c9H"/>
                         <outletCollection property="heightsCollection" destination="TMo-Cd-CZn" collectionClass="NSMutableArray" id="emK-8N-exX"/>
+                        <outletCollection property="backgroundGrayViewsCollection" destination="HOh-Gg-nGp" collectionClass="NSMutableArray" id="nPX-Z6-nfe"/>
+                        <outletCollection property="heightsCollection" destination="Ygm-6j-pRV" collectionClass="NSMutableArray" id="Pf0-ye-gWo"/>
+                        <outletCollection property="heightsCollection" destination="aPb-kc-z05" collectionClass="NSMutableArray" id="Agh-hk-CdI"/>
+                        <outletCollection property="backgroundGrayViewsCollection" destination="gxh-S6-fc1" collectionClass="NSMutableArray" id="GDz-jw-ZqM"/>
+                        <outletCollection property="heightsCollection" destination="Xem-7R-103" collectionClass="NSMutableArray" id="3pm-Ps-lNG"/>
+                        <outletCollection property="widthsCollection" destination="xKl-u5-xgn" collectionClass="NSMutableArray" id="bcD-I2-Re6"/>
+                        <outletCollection property="widthsCollection" destination="EUs-NH-Kwd" collectionClass="NSMutableArray" id="C57-PW-QFm"/>
+                        <outletCollection property="widthsCollection" destination="J2X-5e-SsH" collectionClass="NSMutableArray" id="CL1-4M-RVF"/>
+                        <outletCollection property="widthsCollection" destination="7Rj-Va-igT" collectionClass="NSMutableArray" id="PQ0-4Q-bJ0"/>
+                        <outletCollection property="heightsCollection" destination="4BX-LI-HeV" collectionClass="NSMutableArray" id="saO-vk-KIF"/>
+                        <outletCollection property="heightsCollection" destination="vZP-Oz-rin" collectionClass="NSMutableArray" id="dg1-xj-cXm"/>
+                        <outletCollection property="widthsCollection" destination="dMH-VN-o5K" collectionClass="NSMutableArray" id="UAP-Ut-3yr"/>
+                        <outletCollection property="heightsCollection" destination="9ar-By-Pci" collectionClass="NSMutableArray" id="Fej-5a-y3p"/>
+                        <outletCollection property="heightsCollection" destination="fsm-0a-jB9" collectionClass="NSMutableArray" id="dNT-lW-cm3"/>
+                        <outletCollection property="widthsCollection" destination="0Pg-ts-eZz" collectionClass="NSMutableArray" id="st4-9R-gpM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="shn-2l-RAj" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -314,6 +437,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="icon-button-arrow-down-gray-normal" width="11" height="6"/>
         <image name="icon-button-back-normal" width="8" height="14"/>
         <image name="icon-button-comments-highlighted" width="20" height="20"/>
         <image name="icon-button-comments-normal" width="20" height="20"/>
