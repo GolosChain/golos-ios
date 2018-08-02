@@ -56,6 +56,12 @@
 "Privacy Policy"                            =   "Privacy Policy";
 "Switch Account Verb"                       =   "Switch Account";
 "Exit Verb"                                 =   "Log Out";
+"Flaunt Verb"                               =   "Flaunt";
+"Post Promote Verb"                         =   "Promote Post";
+"Thanking Verb"                             =   "Thanking";
+"Hide Comments Verb"                        =   "Hide Comments";
+"Load more"                                 =   "Load More";
+"Load Comments"                             =   "Load Comments";
 
 
 // Titles
@@ -122,6 +128,7 @@
 "Send Comment Success"                      =   "Comment successfully published";
 "Permlink without timing"                   =   "Permlink without timing";
 "Permlink with timing"                      =   "Permlink with timing";
+"Sort by"                                   =   "Sort by";
 
 
 // Placeholders

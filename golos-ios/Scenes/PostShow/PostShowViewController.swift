@@ -25,6 +25,60 @@ class PostShowViewController: GSBaseViewController {
     
     
     // MARK: - IBOutlets
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var coverImageView: UIImageView!
+    
+    @IBOutlet weak var contentView: UIView! {
+        didSet {
+            contentView.tune()
+        }
+    }
+    
+    @IBOutlet weak var navbarView: UIView! {
+        didSet {
+            navbarView.tune()
+            navbarView.add(shadow: true, onside: .bottom)
+        }
+    }
+    
+    @IBOutlet weak var titleLabel: UILabel! {
+        didSet {
+            titleLabel.tune(withText:           "",
+                            hexColors:          veryDarkGrayWhiteColorPickers,
+                            font:               UIFont(name: "SFUIDisplay-Medium", size: 15.0 * widthRatio),
+                            alignment:          .left,
+                            isMultiLines:       true)
+        }
+    }
+    
+    @IBOutlet weak var textLabel: UILabel! {
+        didSet {
+            textLabel.tune(withText:           "",
+                           hexColors:          veryDarkGrayWhiteColorPickers,
+                           font:               UIFont(name: "SFUIDisplay-Regular", size: 13.0 * widthRatio),
+                           alignment:          .left,
+                           isMultiLines:       true)
+        }
+    }
+    
+    @IBOutlet var heightsCollection: [NSLayoutConstraint]! {
+        didSet {
+            _ = heightsCollection.map({ $0.constant *= heightRatio })
+        }
+    }
+    
+    @IBOutlet var widthsCollection: [NSLayoutConstraint]! {
+        didSet {
+            _ = widthsCollection.map({ $0.constant *= widthRatio })
+        }
+    }
+    
+    @IBOutlet weak var coverImageViewHeight: NSLayoutConstraint! {
+        didSet {
+            coverImageViewHeight.constant *= heightRatio
+        }
+    }
+    
     
     
     // MARK: - Class Initialization
@@ -92,6 +146,12 @@ class PostShowViewController: GSBaseViewController {
     
     // MARK: - Custom Functions
     private func loadViewSettings() {
+        self.titleLabel.text    =   "d fkajk jdakjd kajsdjf gsfshd fsdjkh jh"
+        // jaj hajkjH AH KDJAJKH AHDA JSHD AH DAJD JAHAHJK HKAJ  HAK JHAKD AKSHD Kahd jahksjhkhkKJHKJHKjhgd kakjasdh djkha dhakh"
+        
+        self.textLabel.text     =   "jaj hajkjH AH KDJAJKH AHDA JSHD AH DAJD JAHAHJK HKAJ  HAK JHAKD AKSHD Kahd jahksjhkhkKJHKJHKjhgd kakjasdh djkha dhakh"
+        
+        self.coverImageViewHeight.constant = 0
     }
 }
 

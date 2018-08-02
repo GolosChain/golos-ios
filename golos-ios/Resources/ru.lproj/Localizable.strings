@@ -56,6 +56,12 @@
 "Privacy Policy"                            =   "Политика конфиденциальности";
 "Switch Account Verb"                       =   "Сменить аккаунт";
 "Exit Verb"                                 =   "Выйти";
+"Flaunt Verb"                               =   "Флаговать";
+"Post Promote Verb"                         =   "Продвинуть пост";
+"Thanking Verb"                             =   "Отблагодарить";
+"Hide Comments Verb"                        =   "Скрыть комментарии";
+"Load more"                                 =   "Загрузить ещё";
+"Load Comments"                             =   "Загрузить комментарии";
 
 
 // Titles
@@ -122,6 +128,7 @@
 "Send Comment Success"                      =   "Комментарий успешно опубликован";
 "Permlink without timing"                   =   "Уникальный permlink";
 "Permlink with timing"                      =   "Необходимо добавить таймштамп к permlink";
+"Sort by"                                   =   "Сортировать по";
 
 
 // Placeholders

@@ -56,6 +56,12 @@
 "Privacy Policy"                            =   "Політика конфіденційності";
 "Switch Account Verb"                       =   "Змінити акаунт";
 "Exit Verb"                                 =   "Вийти";
+"Flaunt Verb"                               =   "Флагувати";
+"Post Promote Verb"                         =   "Просунути пост";
+"Thanking Verb"                             =   "Віддячити";
+"Hide Comments Verb"                        =   "Приховати коментарі";
+"Load more"                                 =   "Завантажити ще";
+"Load Comments"                             =   "Завантажити коментарі";
 
 
 // Titles
@@ -122,6 +128,7 @@
 "Send Comment Success"                      =   "Коментар успішно опубліковано";
 "Permlink without timing"                   =   "Унікальний permlink";
 "Permlink with timing"                      =   "Необхідно додати таймштамп до permlink";
+"Sort by"                                   =   "Сортувати по";
 
 
 // Placeholders
