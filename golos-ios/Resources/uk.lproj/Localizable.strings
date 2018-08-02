@@ -62,6 +62,10 @@
 "Hide Comments Verb"                        =   "Приховати коментарі";
 "Load more"                                 =   "Завантажити ще";
 "Load Comments"                             =   "Завантажити коментарі";
+"Action Sheet Popular"                      =   "Популярне";
+"Action Sheet Vote"                         =   "Голоси";
+"Action Sheet First New"                    =   "Cпочатку нові";
+"Action Sheet First Old"                    =   "Cпочатку старі";
 
 
 // Titles
@@ -129,6 +133,7 @@
 "Permlink without timing"                   =   "Унікальний permlink";
 "Permlink with timing"                      =   "Необхідно додати таймштамп до permlink";
 "Sort by"                                   =   "Сортувати по";
+"Comments Noun"                             =   "Коментарі";
 
 
 // Placeholders

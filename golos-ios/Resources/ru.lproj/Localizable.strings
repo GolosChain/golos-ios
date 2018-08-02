@@ -62,6 +62,10 @@
 "Hide Comments Verb"                        =   "Скрыть комментарии";
 "Load more"                                 =   "Загрузить ещё";
 "Load Comments"                             =   "Загрузить комментарии";
+"Action Sheet Popular"                      =   "Популярное";
+"Action Sheet Vote"                         =   "Голоса";
+"Action Sheet First New"                    =   "Сначала новые";
+"Action Sheet First Old"                    =   "Сначала старые";
 
 
 // Titles
@@ -129,6 +133,7 @@
 "Permlink without timing"                   =   "Уникальный permlink";
 "Permlink with timing"                      =   "Необходимо добавить таймштамп к permlink";
 "Sort by"                                   =   "Сортировать по";
+"Comments Noun"                             =   "Комментарии";
 
 
 // Placeholders

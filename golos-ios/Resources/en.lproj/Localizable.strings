@@ -62,6 +62,10 @@
 "Hide Comments Verb"                        =   "Hide Comments";
 "Load more"                                 =   "Load More";
 "Load Comments"                             =   "Load Comments";
+"Action Sheet Popular"                      =   "Popular";
+"Action Sheet Vote"                         =   "Vote";
+"Action Sheet First New"                    =   "First New";
+"Action Sheet First Old"                    =   "First Old";
 
 
 // Titles
@@ -129,6 +133,7 @@
 "Permlink without timing"                   =   "Permlink without timing";
 "Permlink with timing"                      =   "Permlink with timing";
 "Sort by"                                   =   "Sort by";
+"Comments Noun"                             =   "Comments Noun";
 
 
 // Placeholders
