@@ -68,6 +68,12 @@ class PostCreateViewController: GSBaseViewController {
         }
     }
     
+    @IBOutlet weak var shadowView: UIView! {
+        didSet {
+            shadowView.setGradientBackground(colors: [UIColor.lightGray.cgColor, UIColor.lightText.cgColor], onside: .bottom)
+        }
+    }
+
     @IBOutlet weak var tagsTitleLabel: UILabel! {
         didSet {
             tagsTitleLabel.tune(withText:           "Add Max 5 Tags",
@@ -105,7 +111,19 @@ class PostCreateViewController: GSBaseViewController {
         }
     }
     
+    @IBOutlet var heightsCollection: [NSLayoutConstraint]! {
+        didSet {
+            _ = heightsCollection.map({ $0.constant *= heightRatio })
+        }
+    }
     
+    @IBOutlet var widthsCollection: [NSLayoutConstraint]! {
+        didSet {
+            _ = widthsCollection.map({ $0.constant *= widthRatio })
+        }
+    }
+    
+
     // MARK: - Class Initialization
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -199,7 +217,7 @@ class PostCreateViewController: GSBaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.navigationController?.add(shadow: true, withBarTintColor: .white)
+        self.navigationController?.add(shadow: false, withBarTintColor: .white)
         self.navigationController?.hidesBarsOnTap   =   false
 
         self.contentTextView.layoutManager.ensureLayout(for: self.contentTextView.textContainer)

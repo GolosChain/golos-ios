@@ -47,6 +47,12 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
         }
     }
     
+    @IBOutlet weak var shadowView: UIView! {
+        didSet {
+            shadowView.setGradientBackground(colors: [UIColor.lightGray.cgColor, UIColor.lightText.cgColor], onside: .bottom)
+        }
+    }
+    
 
     // ContainerViewSupport implementation
     @IBOutlet weak var containerView: GSContainerView! {
@@ -177,32 +183,32 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
     
     private func getContainerViewControllers() -> [GSTableViewController] {
         let tableViewController1    =   UIStoryboard(name: "PostsShow", bundle: nil)
-            .instantiateViewController(withIdentifier: "UserProfileLentaShowVC") as! GSTableViewController
+                                            .instantiateViewController(withIdentifier: "UserProfileLentaShowVC") as! GSTableViewController
         tableViewController1.title              =   "Lenta".localized()
         tableViewController1.cellIdentifier     =   "LentaPostTableViewCell"
         
         let tableViewController2    =   UIStoryboard(name: "PostsShow", bundle: nil)
-            .instantiateViewController(withIdentifier: "PopularPostsShowVC") as! GSTableViewController
+                                            .instantiateViewController(withIdentifier: "PopularPostsShowVC") as! GSTableViewController
         tableViewController2.title              =   "Popular".localized()
         tableViewController2.cellIdentifier     =   "PopularPostTableViewCell"
         
         let tableViewController3    =   UIStoryboard(name: "PostsShow", bundle: nil)
-            .instantiateViewController(withIdentifier: "ActualPostsShowVC") as! GSTableViewController
+                                            .instantiateViewController(withIdentifier: "ActualPostsShowVC") as! GSTableViewController
         tableViewController3.title              =   "Actual".localized()
         tableViewController3.cellIdentifier     =   "ActualPostTableViewCell"
         
         let tableViewController4    =   UIStoryboard(name: "PostsShow", bundle: nil)
-            .instantiateViewController(withIdentifier: "NewPostsShowVC") as! GSTableViewController
+                                            .instantiateViewController(withIdentifier: "NewPostsShowVC") as! GSTableViewController
         tableViewController4.title              =   "New".localized()
         tableViewController4.cellIdentifier     =   "NewPostTableViewCell"
         
         let tableViewController5    =   UIStoryboard(name: "PostsShow", bundle: nil)
-            .instantiateViewController(withIdentifier: "PromoPostsShowVC") as! GSTableViewController
+                                            .instantiateViewController(withIdentifier: "PromoPostsShowVC") as! GSTableViewController
         tableViewController5.title              =   "Promo".localized()
         tableViewController5.cellIdentifier     =   "PromoPostTableViewCell"
         
         let segmentControllers      =   User.current == nil ?   [ tableViewController2, tableViewController3, tableViewController4, tableViewController5 ] :
-            [ tableViewController1, tableViewController2, tableViewController3, tableViewController4, tableViewController5 ]
+                                                                [ tableViewController1, tableViewController2, tableViewController3, tableViewController4, tableViewController5 ]
 
         return segmentControllers
     }
@@ -293,7 +299,5 @@ extension PostsShowViewController: SJSegmentedViewControllerDelegate {
             
             self.loadPosts(false)
         }
-        
-//        self.setActiveViewControllerHandlers()
     }
 }

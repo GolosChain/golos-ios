@@ -39,7 +39,7 @@ extension UIView {
     }
     
     func add(shadow: Bool, onside: SideType) {
-        layer.shadowColor           =   shadow ? UIColor.lightGray.cgColor : UIColor.white.cgColor
+        layer.shadowColor           =   shadow ? UIColor.darkGray.cgColor : UIColor.white.cgColor
         layer.shadowOpacity         =   Float((shadow ? 4.0 : 0.0) * heightRatio)
         layer.shadowRadius          =   (shadow ? 4.0 : 0.0) * heightRatio
         layer.masksToBounds         =   false
@@ -66,5 +66,31 @@ extension UIView {
         case .around:
             layer.shadowOffset      =   .zero
         }
+    }
+    
+    /// [top, bottom].cgColor
+    func setGradientBackground(colors: [CGColor], onside: SideType) {
+        let gradientLayer           =   CAGradientLayer()
+        gradientLayer.colors        =   colors
+        gradientLayer.frame         =   self.bounds
+
+        switch onside {
+        case .top:
+            gradientLayer.locations =   [0.0, 0.4]
+
+        case .left:
+            gradientLayer.locations =   [4.0, 0.0]
+            
+        case .right:
+            gradientLayer.locations =   [0.6, 0.0]
+            
+        case .bottom:
+            gradientLayer.locations =   [0.0, 1.0]
+            
+        case .around:
+            gradientLayer.locations =   [0.4, 0.4]
+        }
+        
+        self.layer.addSublayer(gradientLayer)
     }
 }

@@ -147,10 +147,11 @@ class PostFeedHeaderView: UIView {
     func display(_ post: PostCellSupport) {
         // Set User info
         if let user = User.fetch(byName: post.author) {
-            self.authorLabel.text            =   user.name
+            self.authorLabel.text           =   user.name
+            self.categoryLabel.text         =   post.category
             
             // User Reputation -> Int
-            self.authorReputationLabel.text  =   String(format: "%i", user.reputation.convertWithLogarithm10())
+            self.authorReputationLabel.text =   String(format: "%i", user.reputation.convertWithLogarithm10())
             
             // Load User author profile image
             if let userProfileImageURL = user.profileImageURL {
@@ -159,6 +160,7 @@ class PostFeedHeaderView: UIView {
                                                         size:             CGSize(width: 30.0 * widthRatio, height: 30.0 * widthRatio),
                                                         tags:             nil)
             }
+            
         }
     }
     

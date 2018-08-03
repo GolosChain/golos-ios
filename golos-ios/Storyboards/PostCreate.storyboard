@@ -19,8 +19,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dDx-9m-fZZ" userLabel="Shadow View">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="6"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="6" id="Wat-pv-94A"/>
+                                </constraints>
+                            </view>
                             <stackView clipsSubviews="YES" contentMode="scaleAspectFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="1yk-b9-MRG">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="76"/>
+                                <rect key="frame" x="0.0" y="6" width="375" height="76"/>
                                 <subviews>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="euM-zm-r1G" userLabel="Top View">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="25.5"/>
@@ -62,7 +69,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </stackView>
                             <textView clipsSubviews="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="doW-uc-lK0" userLabel="Content Text View">
-                                <rect key="frame" x="16" y="92" width="343" height="407"/>
+                                <rect key="frame" x="16" y="98" width="343" height="401"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" link="YES" image="YES"/>
@@ -117,12 +124,15 @@
                             <constraint firstItem="Jhp-G8-l53" firstAttribute="bottom" secondItem="Tte-BZ-PFa" secondAttribute="bottom" id="OLz-1c-pK1"/>
                             <constraint firstItem="Tte-BZ-PFa" firstAttribute="leading" secondItem="Jhp-G8-l53" secondAttribute="leading" id="Pes-Y0-XQL"/>
                             <constraint firstItem="doW-uc-lK0" firstAttribute="leading" secondItem="Jhp-G8-l53" secondAttribute="leading" constant="16" id="QvI-Xz-Lu4"/>
-                            <constraint firstItem="1yk-b9-MRG" firstAttribute="top" secondItem="Jhp-G8-l53" secondAttribute="top" id="gy1-fP-ajC"/>
+                            <constraint firstAttribute="trailing" secondItem="dDx-9m-fZZ" secondAttribute="trailing" id="eW4-ps-qKl"/>
                             <constraint firstItem="1yk-b9-MRG" firstAttribute="height" secondItem="Sw0-IZ-LYW" secondAttribute="height" multiplier="70:554" id="iHB-Ad-tmE"/>
                             <constraint firstItem="1yk-b9-MRG" firstAttribute="height" secondItem="Sw0-IZ-LYW" secondAttribute="height" multiplier="70:311" id="l6c-to-ADr"/>
                             <constraint firstItem="Tte-BZ-PFa" firstAttribute="height" secondItem="Sw0-IZ-LYW" secondAttribute="height" multiplier="80:554" priority="750" id="oIW-Uf-4yH"/>
                             <constraint firstItem="Tte-BZ-PFa" firstAttribute="top" secondItem="doW-uc-lK0" secondAttribute="bottom" constant="16" id="q4O-KT-Lla"/>
+                            <constraint firstItem="1yk-b9-MRG" firstAttribute="top" secondItem="dDx-9m-fZZ" secondAttribute="bottom" id="suN-Dr-rei"/>
+                            <constraint firstItem="dDx-9m-fZZ" firstAttribute="top" secondItem="Jhp-G8-l53" secondAttribute="top" id="teh-JB-HAI"/>
                             <constraint firstItem="Tte-BZ-PFa" firstAttribute="height" secondItem="Sw0-IZ-LYW" secondAttribute="height" multiplier="80:311" id="uFX-aC-1sO"/>
+                            <constraint firstItem="dDx-9m-fZZ" firstAttribute="leading" secondItem="Sw0-IZ-LYW" secondAttribute="leading" id="wGC-ti-0ZH"/>
                             <constraint firstItem="Jhp-G8-l53" firstAttribute="trailing" secondItem="Tte-BZ-PFa" secondAttribute="trailing" id="wff-d6-qht"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Jhp-G8-l53"/>
@@ -171,12 +181,20 @@
                         <outlet property="contentTextView" destination="doW-uc-lK0" id="V1x-g0-CG3"/>
                         <outlet property="contentViewBottomConstraint" destination="q4O-KT-Lla" id="MuT-1Y-RPP"/>
                         <outlet property="postCreateView" destination="nPS-aX-y2M" id="SMe-Ux-6Dv"/>
-                        <outlet property="stackViewTopConstraint" destination="gy1-fP-ajC" id="3w2-wW-4UN"/>
+                        <outlet property="shadowView" destination="dDx-9m-fZZ" id="oKt-ru-1pu"/>
+                        <outlet property="stackViewTopConstraint" destination="suN-Dr-rei" id="keW-e7-sOf"/>
                         <outlet property="tagsTitleLabel" destination="mLA-QB-vdt" id="hZ2-xt-aeQ"/>
                         <outlet property="tagsViewBottomConstraint" destination="OLz-1c-pK1" id="Ezs-xl-tVI"/>
                         <outletCollection property="sceneViewsCollection" destination="euM-zm-r1G" collectionClass="NSMutableArray" id="DY9-rV-lFh"/>
                         <outletCollection property="sceneViewsCollection" destination="gd2-e9-6oL" collectionClass="NSMutableArray" id="Tsb-lI-hN0"/>
                         <outletCollection property="sceneViewsCollection" destination="L1e-X9-0TS" collectionClass="NSMutableArray" id="SNc-t7-RdB"/>
+                        <outletCollection property="heightsCollection" destination="Wat-pv-94A" collectionClass="NSMutableArray" id="fLT-h7-O1h"/>
+                        <outletCollection property="widthsCollection" destination="1sM-r3-NEZ" collectionClass="NSMutableArray" id="hN4-tS-U7z"/>
+                        <outletCollection property="widthsCollection" destination="4CJ-Bg-owS" collectionClass="NSMutableArray" id="ZEm-KZ-BhS"/>
+                        <outletCollection property="widthsCollection" destination="QvI-Xz-Lu4" collectionClass="NSMutableArray" id="Vo1-AP-Ag1"/>
+                        <outletCollection property="widthsCollection" destination="IWD-rY-84t" collectionClass="NSMutableArray" id="UFp-Es-B47"/>
+                        <outletCollection property="heightsCollection" destination="Hmh-EF-sLe" collectionClass="NSMutableArray" id="O8C-OE-maO"/>
+                        <outletCollection property="heightsCollection" destination="q4O-KT-Lla" collectionClass="NSMutableArray" id="e3U-Im-u0Q"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Py4-Cv-jeL" userLabel="First Responder" sceneMemberID="firstResponder"/>

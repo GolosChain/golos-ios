@@ -18,8 +18,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KN9-kt-Cga" userLabel="Shadow View">
+                                <rect key="frame" x="0.0" y="64" width="414" height="6"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="6" id="NrR-Kv-x7q"/>
+                                </constraints>
+                            </view>
                             <containerView clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ffv-sr-RCO" customClass="GSContainerView" customModule="Golos" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="68" width="414" height="668"/>
+                                <rect key="frame" x="0.0" y="70" width="414" height="666"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </containerView>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V1F-55-FXF" userLabel="Status Bar View">
@@ -56,12 +63,15 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="KN9-kt-Cga" secondAttribute="trailing" id="4oR-JI-v47"/>
                             <constraint firstItem="2uN-82-qIf" firstAttribute="trailing" secondItem="V1F-55-FXF" secondAttribute="trailing" id="6XD-dh-gkC"/>
+                            <constraint firstItem="ffv-sr-RCO" firstAttribute="top" secondItem="KN9-kt-Cga" secondAttribute="bottom" id="O79-cX-u5s"/>
                             <constraint firstItem="V1F-55-FXF" firstAttribute="leading" secondItem="2uN-82-qIf" secondAttribute="leading" id="PF6-Fc-F1L"/>
                             <constraint firstItem="2uN-82-qIf" firstAttribute="trailing" secondItem="ffv-sr-RCO" secondAttribute="trailing" id="QJk-IV-jwF"/>
                             <constraint firstItem="V1F-55-FXF" firstAttribute="top" secondItem="RIB-Kz-DZP" secondAttribute="top" id="fuX-ez-PNd"/>
+                            <constraint firstItem="KN9-kt-Cga" firstAttribute="top" secondItem="V1F-55-FXF" secondAttribute="bottom" id="hEm-zQ-GyO"/>
                             <constraint firstItem="2uN-82-qIf" firstAttribute="bottom" secondItem="ffv-sr-RCO" secondAttribute="bottom" id="rbX-tT-Mfd"/>
-                            <constraint firstItem="ffv-sr-RCO" firstAttribute="top" secondItem="V1F-55-FXF" secondAttribute="bottom" constant="4" id="vaZ-Jh-XTR"/>
+                            <constraint firstItem="KN9-kt-Cga" firstAttribute="leading" secondItem="RIB-Kz-DZP" secondAttribute="leading" id="sYL-KO-ozh"/>
                             <constraint firstItem="ffv-sr-RCO" firstAttribute="leading" secondItem="2uN-82-qIf" secondAttribute="leading" id="wad-pm-Dlc"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="2uN-82-qIf"/>
@@ -71,11 +81,13 @@
                     <connections>
                         <outlet property="containerView" destination="ffv-sr-RCO" id="T33-ED-Ymr"/>
                         <outlet property="controlView" destination="KWp-YJ-Ykl" id="y0O-0m-ndK"/>
+                        <outlet property="shadowView" destination="KN9-kt-Cga" id="chr-0E-vDb"/>
                         <outlet property="statusBarView" destination="V1F-55-FXF" id="dht-lM-kl6"/>
                         <outletCollection property="heightsCollection" destination="d32-YI-1Pt" collectionClass="NSMutableArray" id="oX8-AB-gqI"/>
                         <outletCollection property="heightsCollection" destination="Hep-RC-7ps" collectionClass="NSMutableArray" id="we0-aB-w1D"/>
                         <outletCollection property="heightsCollection" destination="acZ-Nq-tVm" collectionClass="NSMutableArray" id="uED-bA-rbZ"/>
-                        <outletCollection property="heightsCollection" destination="vaZ-Jh-XTR" collectionClass="NSMutableArray" id="73W-cf-ZfU"/>
+                        <outletCollection property="heightsCollection" destination="O79-cX-u5s" collectionClass="NSMutableArray" id="HZD-Pr-p0b"/>
+                        <outletCollection property="heightsCollection" destination="NrR-Kv-x7q" collectionClass="NSMutableArray" id="eFr-WB-qGI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BMa-A2-yBx" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -20,8 +20,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hBI-7u-SRS" userLabel="Shadow View">
+                                <rect key="frame" x="0.0" y="68.5" width="375" height="6"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="6" id="ElI-6T-dAn"/>
+                                </constraints>
+                            </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xGo-4v-IPK">
-                                <rect key="frame" x="0.0" y="68.5" width="375" height="598.5"/>
+                                <rect key="frame" x="0.0" y="74.5" width="375" height="592.5"/>
                                 <subviews>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bMb-1K-Xhn" userLabel="Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -295,7 +302,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="68.5"/>
                                 <subviews>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KTt-mO-WKH" customClass="PostFeedHeaderView" customModule="Golos" customModuleProvider="target">
-                                        <rect key="frame" x="44" y="24.5" width="235" height="44"/>
+                                        <rect key="frame" x="36" y="24.5" width="243" height="44"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                     <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I6s-GB-1W0" userLabel="Back Button">
@@ -344,7 +351,7 @@
                                     <constraint firstAttribute="bottom" secondItem="I6s-GB-1W0" secondAttribute="bottom" id="V1F-S3-o0P"/>
                                     <constraint firstItem="I6s-GB-1W0" firstAttribute="leading" secondItem="NYx-0X-E2k" secondAttribute="leading" id="aZO-AT-m5p"/>
                                     <constraint firstAttribute="trailing" secondItem="esK-qD-DTK" secondAttribute="trailing" constant="8" id="j47-dA-PuL"/>
-                                    <constraint firstItem="KTt-mO-WKH" firstAttribute="leading" secondItem="I6s-GB-1W0" secondAttribute="trailing" id="rWU-HG-bk8"/>
+                                    <constraint firstItem="KTt-mO-WKH" firstAttribute="leading" secondItem="I6s-GB-1W0" secondAttribute="trailing" constant="-8" id="rWU-HG-bk8"/>
                                     <constraint firstAttribute="bottom" secondItem="esK-qD-DTK" secondAttribute="bottom" id="rfb-MO-8Pl"/>
                                 </constraints>
                             </view>
@@ -355,11 +362,14 @@
                             <constraint firstItem="NYx-0X-E2k" firstAttribute="top" secondItem="ZNA-nY-tDW" secondAttribute="top" id="6Su-lg-eDu"/>
                             <constraint firstItem="bMb-1K-Xhn" firstAttribute="width" secondItem="ZNA-nY-tDW" secondAttribute="width" id="ERt-PY-DaT"/>
                             <constraint firstItem="NYx-0X-E2k" firstAttribute="height" secondItem="ZNA-nY-tDW" secondAttribute="height" multiplier="44:375" id="FnU-GJ-3Db"/>
+                            <constraint firstItem="hBI-7u-SRS" firstAttribute="top" secondItem="NYx-0X-E2k" secondAttribute="bottom" id="XaI-kW-Ql4"/>
                             <constraint firstItem="NYx-0X-E2k" firstAttribute="height" secondItem="ZNA-nY-tDW" secondAttribute="height" multiplier="64:623" id="eMi-fy-8fM"/>
+                            <constraint firstAttribute="trailing" secondItem="hBI-7u-SRS" secondAttribute="trailing" id="fsv-Fs-zHS"/>
+                            <constraint firstItem="xGo-4v-IPK" firstAttribute="top" secondItem="hBI-7u-SRS" secondAttribute="bottom" id="gQI-Yo-xHy"/>
+                            <constraint firstItem="hBI-7u-SRS" firstAttribute="leading" secondItem="ZNA-nY-tDW" secondAttribute="leading" id="go6-mm-iRx"/>
                             <constraint firstItem="xGo-4v-IPK" firstAttribute="leading" secondItem="8wg-Oy-rza" secondAttribute="leading" id="lnE-vL-Yve"/>
                             <constraint firstItem="bMb-1K-Xhn" firstAttribute="height" secondItem="ZNA-nY-tDW" secondAttribute="height" priority="250" id="n3n-UH-w6c"/>
                             <constraint firstItem="8wg-Oy-rza" firstAttribute="trailing" secondItem="NYx-0X-E2k" secondAttribute="trailing" id="qKK-Gk-vAr"/>
-                            <constraint firstItem="xGo-4v-IPK" firstAttribute="top" secondItem="NYx-0X-E2k" secondAttribute="bottom" id="sns-NC-CyM"/>
                             <constraint firstItem="8wg-Oy-rza" firstAttribute="bottom" secondItem="xGo-4v-IPK" secondAttribute="bottom" id="sty-AX-dbl"/>
                             <constraint firstItem="8wg-Oy-rza" firstAttribute="trailing" secondItem="xGo-4v-IPK" secondAttribute="trailing" id="tau-aa-huD"/>
                         </constraints>
@@ -392,6 +402,7 @@
                         <outlet property="postFeedHeaderView" destination="KTt-mO-WKH" id="bQD-Zy-4xQ"/>
                         <outlet property="promoteButton" destination="PRF-Xh-r6a" id="V2H-cz-O8k"/>
                         <outlet property="scrollView" destination="xGo-4v-IPK" id="AHT-m7-sJL"/>
+                        <outlet property="shadowView" destination="hBI-7u-SRS" id="8Dk-P1-3lF"/>
                         <outlet property="sortByLabel" destination="vCM-Ek-3Fj" id="NqB-W2-naf"/>
                         <outlet property="textLabel" destination="o5N-gn-PP3" id="WBs-Z0-dRE"/>
                         <outlet property="titleLabel" destination="rtj-mb-6Et" id="ytb-g7-OzN"/>
@@ -429,6 +440,9 @@
                         <outletCollection property="heightsCollection" destination="9ar-By-Pci" collectionClass="NSMutableArray" id="Fej-5a-y3p"/>
                         <outletCollection property="heightsCollection" destination="fsm-0a-jB9" collectionClass="NSMutableArray" id="dNT-lW-cm3"/>
                         <outletCollection property="widthsCollection" destination="0Pg-ts-eZz" collectionClass="NSMutableArray" id="st4-9R-gpM"/>
+                        <outletCollection property="widthsCollection" destination="rWU-HG-bk8" collectionClass="NSMutableArray" id="xKk-Mk-Bkt"/>
+                        <outletCollection property="widthsCollection" destination="j47-dA-PuL" collectionClass="NSMutableArray" id="g6T-s5-XeB"/>
+                        <outletCollection property="heightsCollection" destination="ElI-6T-dAn" collectionClass="NSMutableArray" id="dX0-b9-lfn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="shn-2l-RAj" userLabel="First Responder" sceneMemberID="firstResponder"/>

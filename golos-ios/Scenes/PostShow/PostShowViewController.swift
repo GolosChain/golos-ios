@@ -40,7 +40,12 @@ class PostShowViewController: GSBaseViewController {
     @IBOutlet weak var navbarView: UIView! {
         didSet {
             navbarView.tune()
-            navbarView.add(shadow: true, onside: .bottom)
+        }
+    }
+    
+    @IBOutlet weak var shadowView: UIView! {
+        didSet {
+            shadowView.setGradientBackground(colors: [UIColor.lightGray.cgColor, UIColor.lightText.cgColor], onside: .bottom)
         }
     }
     
@@ -271,6 +276,11 @@ class PostShowViewController: GSBaseViewController {
         super.viewDidLoad()
         
         self.loadViewSettings()
+        
+        // Handlers
+        self.postFeedHeaderView.handlerAuthorTapped     =   { [weak self] in
+            self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
