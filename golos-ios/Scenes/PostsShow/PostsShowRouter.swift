@@ -54,6 +54,7 @@ class PostsShowRouter: NSObject, PostsShowRoutingLogic, PostsShowDataPassing {
     
     // MARK: - Passing data
     func passDataToPostShowScene(source: PostsShowDataStore, destination: inout PostShowDataStore) {
-        destination.postID  =   (source.post as! PostCellSupport).id
+        destination.post        =   source.post
+        destination.postType    =   viewController!.postFeedTypes[viewController!.selectedSegmentIndex]
     }
 }

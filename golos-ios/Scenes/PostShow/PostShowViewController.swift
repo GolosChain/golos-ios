@@ -11,6 +11,7 @@
 //
 
 import UIKit
+import CoreData
 import GoloSwift
 
 // MARK: - Input & Output protocols
@@ -32,6 +33,7 @@ class PostShowViewController: GSBaseViewController {
     @IBOutlet weak var contentView: UIView! {
         didSet {
             contentView.tune()
+            contentView.alpha = 0.0
         }
     }
     
@@ -276,7 +278,7 @@ class PostShowViewController: GSBaseViewController {
         
         UIApplication.shared.statusBarStyle = .default
         
-        // Load Posts
+        // Load Post
         self.loadContent()
     }
 
@@ -361,7 +363,12 @@ class PostShowViewController: GSBaseViewController {
 extension PostShowViewController: PostShowDisplayLogic {
     func displayLoadContent(fromViewModel viewModel: PostShowModels.Post.ViewModel) {
         // NOTE: Display the result from the Presenter
-
+        if let error = viewModel.errorAPI {
+            self.showAlertView(withTitle: "Error", andMessage: error.localizedDescription, needCancel: false, completion: { _ in })
+        }
+        
+        // CoreData
+        self.fetchContent()
     }
 }
 
@@ -379,7 +386,29 @@ extension PostShowViewController {
 extension PostShowViewController {
     // User Profile
     private func fetchContent() {
+        var fetchRequest: NSFetchRequest<NSFetchRequestResult>
         
-//        self.postFeedHeaderView.display(<#T##post: PostCellSupport##PostCellSupport#>)
+        let postType    =   self.router!.dataStore!.postType!
+        let userName    =   (self.router!.dataStore!.post as! PostCellSupport).author
+        
+        fetchRequest            =   NSFetchRequest<NSFetchRequestResult>(entityName: postType.caseTitle())
+        fetchRequest.predicate  =   NSPredicate(format: "author == %@", userName)
+        
+        do {
+            if let displayedPost = try CoreDataManager.instance.managedObjectContext.fetch(fetchRequest).first as? NSManagedObject {
+                self.postFeedHeaderView.display(displayedPost as! PostCellSupport)
+                self.interactor?.save(displayedPost)
+                
+                UIView.animate(withDuration: 0.5, animations: {
+                    self.contentView.alpha = 1.0
+                })
+            }
+        }
+        
+        catch {
+            self.showAlertView(withTitle: "Error", andMessage: "Fetching Failed", needCancel: false, completion: { _ in
+                Logger.log(message: "Fetching Failed", event: .error)
+            })
+        }
     }
 }

@@ -191,3 +191,4 @@
 "List of users is empty"                    =   "Список користувачів порожній";
 "List of posts is empty"                    =   "Список постів порожній";
 "You may only post once every 5 minutes"    =   "Ви можете відправляти нові\nповідомлення кожні 5 хвилин";
+"Fetching Failed"                           =   "Помилка завантаження даних з CoreData";

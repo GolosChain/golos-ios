@@ -69,6 +69,7 @@ class UserProfileShowRouter: NSObject, UserProfileShowRoutingLogic, UserProfileS
     
     // MARK: - Passing data
     func passDataToPostShowScene(source: UserProfileShowDataStore, destination: inout PostShowDataStore) {
-        destination.postID  =   (source.selectedBlog as! PostCellSupport).id
+        destination.post        =   source.selectedBlog
+        destination.postType    =   PostsFeedType.blog
     }
 }

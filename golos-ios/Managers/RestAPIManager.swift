@@ -164,6 +164,67 @@ class RestAPIManager {
     }
     
     
+    /// Load selected Post
+    class func loadPost(byContent content: RequestParameterAPI.Content, andPostType postType: PostsFeedType, completion: @escaping (ErrorAPI?) -> Void) {
+        // API 'get_content'
+        if isNetworkAvailable {
+            let methodAPIType   =   MethodAPIType.getContent(parameters: content)
+            
+            broadcast.executeGET(byMethodAPIType: methodAPIType,
+                                 onResult: { responseAPIResult in
+                                    Logger.log(message: "\nresponse API Result = \(responseAPIResult)\n", event: .debug)
+                                    
+                                    guard let result = (responseAPIResult as! ResponseAPIPostResult).result else {
+                                        completion(ErrorAPI.requestFailed(message: (responseAPIResult as! ResponseAPIPostResult).error!.message))
+                                        return
+                                    }
+                                    
+                                    // CoreData: Update Post entity by type
+                                    switch postType {
+                                    // Reply
+                                    case .reply:
+                                        Reply.updateEntity(fromResponseAPI: result)
+                                        
+                                    // Popular
+                                    case .popular:
+                                        Popular.updateEntity(fromResponseAPI: result)
+                                        
+                                    // Actual
+                                    case .actual:
+                                        Actual.updateEntity(fromResponseAPI: result)
+                                        
+                                    // New
+                                    case .new:
+                                        New.updateEntity(fromResponseAPI: result)
+                                        
+                                    // Promo
+                                    case .promo:
+                                        Promo.updateEntity(fromResponseAPI: result)
+                                        
+                                    // Blog
+                                    case .blog:
+                                        Blog.updateEntity(fromResponseAPI: result)
+                                        
+                                    // Current user Lenta (blogs)
+                                    default:
+                                        Lenta.updateEntity(fromResponseAPI: result)
+                                    }
+                                    
+                                    completion(nil)
+            },
+                                 onError: { errorAPI in
+                                    Logger.log(message: "nresponse API Error = \(errorAPI.caseInfo.message)\n", event: .error)
+                                    completion(errorAPI)
+            })
+        }
+            
+        // Offline mode
+        else {
+            completion(ErrorAPI.requestFailed(message: "No Internet Connection"))
+        }
+    }
+
+    
     /// Load User Follow counts
     class func loadUserFollowCounts(byName name: String, completion: @escaping (ErrorAPI?) -> Void) {
         // API 'get_follow_count'

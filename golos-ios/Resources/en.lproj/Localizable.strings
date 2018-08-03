@@ -191,3 +191,4 @@
 "List of users is empty"                    =   "User list is empty";
 "List of posts is empty"                    =   "Post list is empty";
 "You may only post once every 5 minutes"    =   "You may only post once every 5 minutes";
+"Fetching Failed"                           =   "Fetching Failed from CoreData";

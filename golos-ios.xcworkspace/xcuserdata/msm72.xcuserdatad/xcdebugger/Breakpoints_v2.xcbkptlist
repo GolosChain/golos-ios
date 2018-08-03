@@ -310,11 +310,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "golos-ios/Managers/RestAPIManager.swift"
-            timestampString = "554828528.761945"
+            timestampString = "554975429.015197"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "218"
-            endingLineNumber = "218"
+            startingLineNumber = "279"
+            endingLineNumber = "279"
             landmarkName = "loadPostPermlink(byContent:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -326,11 +326,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "golos-ios/Managers/RestAPIManager.swift"
-            timestampString = "554828528.762008"
+            timestampString = "554975429.015548"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "224"
-            endingLineNumber = "224"
+            startingLineNumber = "285"
+            endingLineNumber = "285"
             landmarkName = "loadPostPermlink(byContent:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -411,8 +411,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "485"
             endingLineNumber = "485"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "imagePickerController(_:didFinishPickingMediaWithInfo:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -422,7 +422,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "golos-ios/Managers/RestAPIManager.swift"
-            timestampString = "554828528.762958"
+            timestampString = "554975429.0158581"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "53"
@@ -443,8 +443,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "215"
             endingLineNumber = "215"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "saveToAlbum(image:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -459,8 +459,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "485"
             endingLineNumber = "485"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "imagePickerController(_:didFinishPickingMediaWithInfo:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -506,6 +506,38 @@
             startingLineNumber = "100"
             endingLineNumber = "100"
             landmarkName = "setup(withItem:andIndexPath:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "golos-ios/Scenes/PostShow/PostShowInteractor.swift"
+            timestampString = "554975429.0165499"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
+            landmarkName = "loadContent(withRequestModel:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "golos-ios/Scenes/PostShow/PostShowViewController.swift"
+            timestampString = "554975429.017205"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "410"
+            endingLineNumber = "410"
+            landmarkName = "fetchContent()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

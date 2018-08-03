@@ -264,17 +264,6 @@ extension PostsShowViewController {
     // User Profile
     private func fetchPosts() {
         self.setActiveViewControllerHandlers()
-//        if let activeVC = self.containerView.activeVC {
-//            // Add cells from XIB
-//            activeVC.fetchPosts(byType: postFeedTypes[self.selectedSegmentIndex])
-//
-//
-//            // Handler Refresh/Upload data
-//            activeVC.handlerRefreshData  =   { [weak self] lastItem in
-//                self?.interactor?.save(lastItem: lastItem)
-//                self?.loadPosts(lastItem == nil)
-//            }
-//        }
     }
 }
 

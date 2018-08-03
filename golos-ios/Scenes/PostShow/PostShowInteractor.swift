@@ -11,15 +11,18 @@
 //
 
 import UIKit
+import CoreData
 import GoloSwift
 
 // MARK: - Business Logic protocols
 protocol PostShowBusinessLogic {
+    func save(_ post: NSManagedObject)
     func loadContent(withRequestModel requestModel: PostShowModels.Post.RequestModel)
 }
 
 protocol PostShowDataStore {
-     var postID: Int64 { get set }
+    var post: NSManagedObject? { get set }
+    var postType: PostsFeedType? { get set }
 }
 
 class PostShowInteractor: PostShowBusinessLogic, PostShowDataStore {
@@ -28,7 +31,8 @@ class PostShowInteractor: PostShowBusinessLogic, PostShowDataStore {
     var worker: PostShowWorker?
     
     // PostShowDataStore protocol implementation
-    var postID: Int64 = 0
+    var post: NSManagedObject?
+    var postType: PostsFeedType?
     
     
     // MARK: - Class Initialization
@@ -38,11 +42,27 @@ class PostShowInteractor: PostShowBusinessLogic, PostShowDataStore {
     
 
     // MARK: - Business logic implementation
+    func save(_ post: NSManagedObject) {
+        self.post = post
+    }
+
     func loadContent(withRequestModel requestModel: PostShowModels.Post.RequestModel) {
         worker = PostShowWorker()
         worker?.doSomeWork()
         
-        let responseModel = PostShowModels.Post.ResponseModel()
-        presenter?.presentLoadContent(fromResponseModel: responseModel)
+        // API 'get_content'
+        let content = RequestParameterAPI.Content(author: (self.post as! PostCellSupport).author, permlink: (self.post as! PostCellSupport).permlink)
+        
+        RestAPIManager.loadPost(byContent: content, andPostType: self.postType!, completion: { [weak self] errorAPI in
+            guard errorAPI?.caseInfo.message != "No Internet Connection" || !(errorAPI?.caseInfo.message.hasSuffix("timing"))! else {
+                let responseModel = PostShowModels.Post.ResponseModel(errorAPI: errorAPI)
+                self?.presenter?.presentLoadContent(fromResponseModel: responseModel)
+                
+                return
+            }
+            
+            let responseModel = PostShowModels.Post.ResponseModel(errorAPI: nil)
+            self?.presenter?.presentLoadContent(fromResponseModel: responseModel)
+        })
     }
 }

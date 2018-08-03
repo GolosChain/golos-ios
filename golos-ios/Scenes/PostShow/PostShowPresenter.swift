@@ -31,7 +31,7 @@ class PostShowPresenter: PostShowPresentationLogic {
 
     // MARK: - Presentation Logic implementation
     func presentLoadContent(fromResponseModel responseModel: PostShowModels.Post.ResponseModel) {
-        let viewModel = PostShowModels.Post.ViewModel()
+        let viewModel = PostShowModels.Post.ViewModel(errorAPI: responseModel.errorAPI)
         viewController?.displayLoadContent(fromViewModel: viewModel)
     }
 }
