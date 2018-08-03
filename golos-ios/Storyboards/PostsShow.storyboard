@@ -18,6 +18,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <containerView clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ffv-sr-RCO" customClass="GSContainerView" customModule="Golos" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="64" width="414" height="672"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </containerView>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KN9-kt-Cga" userLabel="Shadow View">
                                 <rect key="frame" x="0.0" y="64" width="414" height="6"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -25,10 +29,6 @@
                                     <constraint firstAttribute="height" constant="6" id="NrR-Kv-x7q"/>
                                 </constraints>
                             </view>
-                            <containerView clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ffv-sr-RCO" customClass="GSContainerView" customModule="Golos" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="70" width="414" height="666"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </containerView>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V1F-55-FXF" userLabel="Status Bar View">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="64"/>
                                 <subviews>
@@ -65,7 +65,7 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="KN9-kt-Cga" secondAttribute="trailing" id="4oR-JI-v47"/>
                             <constraint firstItem="2uN-82-qIf" firstAttribute="trailing" secondItem="V1F-55-FXF" secondAttribute="trailing" id="6XD-dh-gkC"/>
-                            <constraint firstItem="ffv-sr-RCO" firstAttribute="top" secondItem="KN9-kt-Cga" secondAttribute="bottom" id="O79-cX-u5s"/>
+                            <constraint firstItem="ffv-sr-RCO" firstAttribute="top" secondItem="V1F-55-FXF" secondAttribute="bottom" id="O79-cX-u5s"/>
                             <constraint firstItem="V1F-55-FXF" firstAttribute="leading" secondItem="2uN-82-qIf" secondAttribute="leading" id="PF6-Fc-F1L"/>
                             <constraint firstItem="2uN-82-qIf" firstAttribute="trailing" secondItem="ffv-sr-RCO" secondAttribute="trailing" id="QJk-IV-jwF"/>
                             <constraint firstItem="V1F-55-FXF" firstAttribute="top" secondItem="RIB-Kz-DZP" secondAttribute="top" id="fuX-ez-PNd"/>

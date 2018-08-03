@@ -247,9 +247,12 @@ class UserProfileShowViewController: GSBaseViewController, ContainerViewSupport 
                 self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
             }
             
+            // Select Blog
             activeVC.handlerSelectItem              =   { [weak self] selectedBlog in
-                self?.interactor?.save(blog: selectedBlog!)
-                self?.router?.routeToPostShowScene()
+                if let blog = selectedBlog as? Blog {
+                    self?.interactor?.save(blog: blog)
+                    self?.router?.routeToPostShowScene()
+                }
             }
         }
     }
