@@ -302,7 +302,17 @@ class PostShowViewController: GSBaseViewController {
     }
     
     @IBAction func shareButtonTapped(_ sender: UIButton) {
-        self.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+        let urlString   =   "https://www.google.com/any-link-to-share"
+        let shareText   =   "Hello, world!"
+        
+        if let image = try! UIImage(data: Data(contentsOf: URL(string: "https://www.google.co.in/logos/doodles/2017/mohammed-rafis-93th-birthday-5885879699636224.2-l.png")!)) {
+            let activityVC  =   UIActivityViewController(activityItems: [shareText, urlString, image], applicationActivities: nil)
+            present(activityVC, animated: true, completion: nil)
+            
+            if let popover = activityVC.popoverPresentationController {
+                popover.sourceView  =   self.view
+            }
+        }
     }
     
     @IBAction func upvoteButtonTapped(_ sender: UIButton) {
