@@ -22,7 +22,6 @@ extension NSManagedObject {
             entity.category             =   model.category
             
             entity.title                =   model.title
-            entity.body                 =   model.body
             entity.permlink             =   model.permlink
             entity.allowVotes           =   model.allow_votes
             entity.allowReplies         =   model.allow_replies
@@ -32,7 +31,10 @@ extension NSManagedObject {
             entity.parentPermlink       =   model.parent_permlink
             entity.activeVotesCount     =   Int16(model.active_votes.count)
             entity.url                  =   model.url
-            
+
+            // Modify body
+            entity.body                 =   model.body.convertImagePathToMarkdown()
+
             // Set ActiveVote values
             if let activeVotes = ActiveVote.updateEntities(fromResponseAPI: model.active_votes, withParentID: model.id) {
                 entity.activeVotes      =   NSSet(array: activeVotes)

@@ -32,7 +32,18 @@ class PostShowViewController: GSBaseViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var markdownView: MarkdownView!
     @IBOutlet weak var postFeedHeaderView: PostFeedHeaderView!
+    
+    @IBOutlet weak var tagsCollectionView: UICollectionView! {
+        didSet {
+            tagsCollectionView.register(UINib(nibName:               "PostShowTagCollectionViewCell", bundle: nil),
+                                               forCellWithReuseIdentifier:  "PostShowTagCollectionViewCell")
 
+            tagsCollectionView.tune()
+            tagsCollectionView.delegate     =   self
+            tagsCollectionView.dataSource   =   self
+        }
+    }
+    
     @IBOutlet weak var contentView: UIView! {
         didSet {
             contentView.tune()
@@ -221,6 +232,7 @@ class PostShowViewController: GSBaseViewController {
         }
     }
     
+    @IBOutlet weak var tagsCollectionViewheightConstraint: NSLayoutConstraint!
     @IBOutlet weak var markdownViewHeightConstraint: NSLayoutConstraint!
     
     
@@ -271,11 +283,15 @@ class PostShowViewController: GSBaseViewController {
     
     
     // MARK: - Class Functions
+    override func viewDidLayoutSubviews() {
+        self.tagsCollectionViewheightConstraint.constant    =   self.tagsCollectionView.contentSize.height
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Handlers
-        self.postFeedHeaderView.handlerAuthorTapped     =   { [weak self] in
+        self.postFeedHeaderView.handlerAuthorTapped         =   { [weak self] in
             self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
         }
     }
@@ -312,19 +328,24 @@ class PostShowViewController: GSBaseViewController {
             
             // Handler: display content in App
             self.markdownView.onTouchLink = { [weak self] request in
-                guard let url = request.url else { return false }
+                guard let url = request.url else {
+                    self?.showAlertView(withTitle: "Error", andMessage: "Broken Link Failure", needCancel: false, completion: { _ in })
+                    return false
+                }
                 
                 if url.scheme == "file" {
                     return true
                 }
                 
-                else if url.scheme == "https" {
+                else if url.scheme!.hasPrefix("http") {
                     let safari = SFSafariViewController(url: url)
                     self?.present(safari, animated: true, completion: nil)
+
                     return false
                 }
                 
                 else {
+                    self?.showAlertView(withTitle: "Error", andMessage: "Broken Link Failure", needCancel: false, completion: { _ in })
                     return false
                 }
             }
@@ -449,18 +470,59 @@ extension PostShowViewController {
 }
 
 
-//
-//extension PostShowViewController: WKNavigationDelegate {
-//    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
-////            self.bodyView.addSubview(self.downView)
-//
-//            self.bodyViewHeightConstraint.constant = self.downView.scrollView.contentSize.height + 70 + 48 + self.bodyView.frame.minY // webView.scrollView.contentSize.height// - webView.scrollView.bounds.size.height
-//
-//            UIView.animate(withDuration: 0.5, animations: {
-//                self.contentView.alpha = 1.0
-////                self.downView.removeFromSuperview()
-//            })
-//        })
-//    }
-//}
+// MARK: - UICollectionViewDataSource
+extension PostShowViewController: UICollectionViewDataSource {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        // Return the number of items
+        guard let dataSource = (self.router?.dataStore?.post as? PostCellSupport)?.tags, dataSource.count > 0 else {
+            return 0
+        }
+        
+        return dataSource.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell    =   collectionView.dequeueReusableCell(withReuseIdentifier: "PostShowTagCollectionViewCell", for: indexPath) as! PostShowTagCollectionViewCell
+        let tag     =   (self.router!.dataStore!.post as! PostCellSupport).tags![indexPath.row]
+        
+        // Config cell
+        cell.setup(withItem: tag, andIndexPath: indexPath)
+        
+        // Handlers
+        cell.completionButtonTapped     =   {
+            print(indexPath.row)
+        }
+        
+        return cell
+    }
+}
+
+
+// MARK: - UICollectionViewDelegate
+extension PostShowViewController {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    }
+}
+
+
+// MARK: - UICollectionViewDelegateFlowLayout
+extension PostShowViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 6.0 * widthRatio
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 6.0 * heightRatio
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let tag     =   (self.router!.dataStore!.post as! PostCellSupport).tags![indexPath.row]
+        let width   =   (CGFloat(tag.count) * 6.0 * widthRatio + 30.0) * widthRatio
+        
+        return CGSize.init(width: width, height: 30.0 * heightRatio)
+    }
+}

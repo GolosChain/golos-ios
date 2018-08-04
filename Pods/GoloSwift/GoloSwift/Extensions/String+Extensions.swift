@@ -80,7 +80,7 @@ extension String {
                 var latinChar: String
                 
                 for char in word {
-                    latinChar = transliterate(char: "\(char)")
+                    latinChar = transliterate(char: "\(char)", isCyrillic: true)
                     newString.append(latinChar)
                 }
                 
@@ -94,14 +94,41 @@ extension String {
         
         return newWords.joined(separator: " ")
     }
-
-    func transliterate(char: String) -> String {
+    
+    /// Latin -> Cyrillic
+    public func transliterationInCyrillic() -> String {
+        let words: [String]         =   self.components(separatedBy: " ")
+        var newWords: [String]      =   [String]()
+        
+        words.forEach({ word in
+            if word.isLatin {
+                var newString: String = ""
+                var cyrillicChar: String
+                
+                for char in word {
+                    cyrillicChar    =   transliterate(char: "\(char)", isCyrillic: false)
+                    newString.append(cyrillicChar)
+                }
+                
+                newWords.append(newString)
+            }
+                
+            else {
+                newWords.append(word)
+            }
+        })
+        
+        return newWords.joined(separator: " ")
+    }
+    
+    func transliterate(char: String, isCyrillic: Bool) -> String {
         let cyrillicChars   =   [ "щ", "ш", "ч", "ц", "й", "ё", "э", "ю", "я", "х", "ж", "а", "б", "в", "г", "д", "е", "з", "и", "к", "л", "м", "н", "о", "п", "р", "с", "т", "у", "ф", "ъ", "ы", "ь", "ґ", "є", "і", "ї" ]
         
         // https://github.com/GolosChain/tolstoy/blob/master/app/utils/ParsersAndFormatters.js#L117
         let latinChars      =   [ "shch", "sh", "ch", "cz", "ij", "yo", "ye", "yu", "ya", "kh", "zh", "a", "b", "v", "g", "d", "e", "z", "i", "k", "l", "m", "n", "o", "p", "r", "s", "t", "u", "f", "xx", "y", "x", "g", "e", "i", "i" ]
         
-        let convertDict     =   NSDictionary.init(objects: latinChars, forKeys: cyrillicChars as [NSCopying])
+        let convertDict     =   isCyrillic ?    NSDictionary.init(objects: latinChars, forKeys: cyrillicChars as [NSCopying]) :
+                                                NSDictionary.init(objects: cyrillicChars, forKeys: latinChars as [NSCopying])
         
         return convertDict.value(forKey: char.lowercased()) as! String
     }

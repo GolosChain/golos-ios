@@ -9,7 +9,7 @@
 import Foundation
 import Down
 
-class Parser {
+class Parser {    
     func getPictureURL(from body: String) -> String? {
         let pattern     =   "(http(s?):)([/|.|\\w|\\s|-])*\\.(?:jpg|gif|png)(!d)?"
         

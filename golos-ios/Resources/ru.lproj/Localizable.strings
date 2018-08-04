@@ -192,3 +192,4 @@
 "List of posts is empty"                    =   "Список постов пустой";
 "You may only post once every 5 minutes"    =   "Вы можете отправлять новые\nсообщения каждые 5 минут";
 "Fetching Failed"                           =   "Ошибка загрузки данных из CoreData";
+"Broken Link Failure"                       =   "Указана битая ссылка";

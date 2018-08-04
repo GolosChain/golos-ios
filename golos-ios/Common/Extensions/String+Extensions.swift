@@ -10,6 +10,18 @@ import UIKit
 import GoloSwift
 
 extension String {
+    var first: String {
+        return String(prefix(1))
+    }
+    
+    func lowercaseFirst() -> String {
+        return first.lowercased() + String(dropFirst())
+    }
+    
+    var uppercaseFirst: String {
+        return first.uppercased() + String(dropFirst())
+    }
+
     func height(with font: UIFont, width: CGFloat) -> CGFloat {
         let size    =   CGSize(width: width, height: CGFloat.greatestFiniteMagnitude)
         
@@ -71,5 +83,38 @@ extension String {
         catch {
             return NSAttributedString()
         }
+    }
+    
+    
+    /// Rule 1: convert image URL -> markdown format
+    func convertImagePathToMarkdown() -> String {
+        var result              =   self
+                                        .replacingOccurrences(of: "<center>", with: "")
+                                        .replacingOccurrences(of: "</center>", with: "#center")
+        
+        let pattern             =   "(http(s?):)([/|.|\\w|\\s|-])*\\.(?:jpg|gif|png)(!d)?"
+        let centerPattern       =   "#center"
+        let regex               =   try! NSRegularExpression(pattern: pattern)
+        
+        let matches             =   regex.matches(in: result, range: NSRange.init(location: 0, length: result.count))
+        let centerRanges        =   try! NSRegularExpression(pattern: centerPattern).matches(in: result, range: NSRange.init(location: 0, length: result.count)).compactMap({ $0.range })
+        
+        for match in matches {
+            let imageURLString  =   (result as NSString).substring(with: match.range)
+            let centerRange     =   NSRange.init(location: match.range.location + match.range.length, length: centerPattern.count)
+            
+            if centerRanges.contains(centerRange) {
+                let otherRange  =   result.index(result.startIndex, offsetBy: centerRange.location)..<result.index(result.startIndex, offsetBy: centerRange.location + centerRange.length)
+                result.removeSubrange(otherRange)
+
+                result          =   result.replacingOccurrences(of: imageURLString, with: String(format: "![](%@%@)", imageURLString, centerPattern))
+            }
+            
+            else {
+                result          =   result.replacingOccurrences(of: imageURLString, with: String(format: "![](%@)", imageURLString))
+            }
+        }
+        
+        return result
     }
 }

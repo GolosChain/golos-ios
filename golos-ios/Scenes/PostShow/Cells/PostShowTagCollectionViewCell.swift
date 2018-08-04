@@ -22,7 +22,7 @@ class PostShowTagCollectionViewCell: UICollectionViewCell {
                            font:            UIFont(name: "SFUIDisplay-Medium", size: 12.0 * widthRatio),
                            alignment:       .center)
             
-            tagButton.setBorder(color: UIColor(hexString: "#e0e0e0").cgColor, cornerRadius: tagButton.bounds.height * heightRatio / 2)
+            tagButton.setBorder(color: UIColor(hexString: "#e0e0e0").cgColor, cornerRadius: 30.0 * heightRatio / 2)
         }
     }
     
@@ -30,7 +30,6 @@ class PostShowTagCollectionViewCell: UICollectionViewCell {
     // MARK: - Class Initialization
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
     
     deinit {
@@ -54,8 +53,12 @@ class PostShowTagCollectionViewCell: UICollectionViewCell {
 // MARK: - ConfigureCell
 extension PostShowTagCollectionViewCell: ConfigureCell {
     func setup(withItem item: Any?, andIndexPath indexPath: IndexPath) {
-        if let tag = item as? Tag {
-            self.tagButton.setTitle(tag.title!, for: .normal)
+        if var title = item as? String {
+            if title.hasPrefix("ru--") {
+                title   =   title.replacingOccurrences(of: "ru--", with: "")
+            }
+            
+            self.tagButton.setTitle(title.uppercaseFirst, for: .normal)
         }
     }
 }
