@@ -79,6 +79,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>MarkdownView-MarkdownView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>MarkdownView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Golos.xcscheme</key>
 		<dict>
 			<key>isShown</key>

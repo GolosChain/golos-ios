@@ -57,7 +57,7 @@ extension String {
         return self.hasPrefix("https://images.golos.io") ?  self : "https://imgp.golos.io" + String(format: "/%dx%d/", size.width, size.height) + self
     }
     
-    
+    /// Convert HTML -> String
     func encodeHtml() -> NSAttributedString {
         guard let data = data(using: .utf8) else { return NSAttributedString() }
         

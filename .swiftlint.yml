@@ -10,6 +10,9 @@ file_length:
 - 650 #warning
 - 750 #error
 
+type_body_length:
+- 305 #warning
+
 identifier_name:
   min_length: 2 #only min_length
 

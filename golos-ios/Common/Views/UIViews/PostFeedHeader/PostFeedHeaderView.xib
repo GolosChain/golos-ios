@@ -52,7 +52,7 @@
                         <constraint firstAttribute="width" constant="11" id="Hsv-iZ-9JL"/>
                     </constraints>
                 </imageView>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image-user-cover-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="5ZN-bl-R8F" userLabel="Author Profile Image View">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-user-profile-image-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="5ZN-bl-R8F" userLabel="Author Profile Image View">
                     <rect key="frame" x="14" y="46" width="30" height="30"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
@@ -148,6 +148,6 @@
     <resources>
         <image name="icon-cell-reblog" width="9" height="6"/>
         <image name="icon-cell-theme-small" width="12" height="9"/>
-        <image name="image-user-cover-placeholder" width="360" height="286"/>
+        <image name="icon-user-profile-image-placeholder" width="40" height="40"/>
     </resources>
 </document>

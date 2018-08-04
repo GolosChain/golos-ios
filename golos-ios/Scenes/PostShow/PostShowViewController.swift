@@ -11,8 +11,11 @@
 //
 
 import UIKit
+import WebKit
 import CoreData
 import GoloSwift
+import MarkdownView
+import SafariServices
 
 // MARK: - Input & Output protocols
 protocol PostShowDisplayLogic: class {
@@ -27,9 +30,9 @@ class PostShowViewController: GSBaseViewController {
     
     // MARK: - IBOutlets
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var coverImageView: UIImageView!
+    @IBOutlet weak var markdownView: MarkdownView!
     @IBOutlet weak var postFeedHeaderView: PostFeedHeaderView!
-    
+
     @IBOutlet weak var contentView: UIView! {
         didSet {
             contentView.tune()
@@ -59,15 +62,15 @@ class PostShowViewController: GSBaseViewController {
         }
     }
     
-    @IBOutlet weak var textLabel: UILabel! {
+    @IBOutlet weak var bodyLabel: UILabel! {
         didSet {
-            textLabel.tune(withText:           "",
-                           hexColors:          veryDarkGrayWhiteColorPickers,
-                           font:               UIFont(name: "SFUIDisplay-Regular", size: 13.0 * widthRatio),
-                           alignment:          .left,
-                           isMultiLines:       true)
+            bodyLabel.tune(withAttributedText:  "",
+                           hexColors:           veryDarkGrayWhiteColorPickers, font: UIFont(name: "SFUIDisplay-Regular", size: 13.0 * widthRatio),
+                           alignment:           .left,
+                           isMultiLines:        true)
         }
     }
+    
     
     @IBOutlet weak var upvoteButton: UIButton! {
         didSet {
@@ -212,17 +215,13 @@ class PostShowViewController: GSBaseViewController {
         }
     }
     
-    @IBOutlet weak var coverImageViewHeight: NSLayoutConstraint! {
-        didSet {
-            coverImageViewHeight.constant *= heightRatio
-        }
-    }
-    
     @IBOutlet weak var buttonsStackViewTopConstraint: NSLayoutConstraint! {
         didSet {
             buttonsStackViewTopConstraint.constant = -34.0 * heightRatio * 0.0
         }
     }
+    
+    @IBOutlet weak var markdownViewHeightConstraint: NSLayoutConstraint!
     
     
     // MARK: - Class Initialization
@@ -275,8 +274,6 @@ class PostShowViewController: GSBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.loadViewSettings()
-        
         // Handlers
         self.postFeedHeaderView.handlerAuthorTapped     =   { [weak self] in
             self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
@@ -295,12 +292,43 @@ class PostShowViewController: GSBaseViewController {
     
     // MARK: - Custom Functions
     private func loadViewSettings() {
-        self.titleLabel.text    =   "d fkajk jdakjd kajsdjf gsfshd fsdjkh jh"
-        // jaj hajkjH AH KDJAJKH AHDA JSHD AH DAJD JAHAHJK HKAJ  HAK JHAKD AKSHD Kahd jahksjhkhkKJHKJHKjhgd kakjasdh djkha dhakh"
-        
-        self.textLabel.text     =   "jaj hajkjH AH KDJAJKH AHDA JSHD AH DAJD JAHAHJK HKAJ  HAK JHAKD AKSHD Kahd jahksjhkhkKJHKJHKjhgd kakjasdh djkha dhakh"
-        
-        self.coverImageViewHeight.constant = 0
+        if let displayedPost = self.router?.dataStore?.post as? PostCellSupport {
+            self.titleLabel.text = displayedPost.title
+            
+            // Load markdown content
+            self.markdownView.isScrollEnabled = false
+            
+            self.markdownView.onRendered = { [weak self] height in
+                self?.markdownViewHeightConstraint.constant = height
+                
+                UIView.animate(withDuration: 0.5, animations: {
+                    self?.contentView.alpha = 1.0
+                })
+            }
+            
+            DispatchQueue.main.async {
+                self.markdownView.load(markdown: displayedPost.body)
+            }
+            
+            // Handler: display content in App
+            self.markdownView.onTouchLink = { [weak self] request in
+                guard let url = request.url else { return false }
+                
+                if url.scheme == "file" {
+                    return true
+                }
+                
+                else if url.scheme == "https" {
+                    let safari = SFSafariViewController(url: url)
+                    self?.present(safari, animated: true, completion: nil)
+                    return false
+                }
+                
+                else {
+                    return false
+                }
+            }
+        }
     }
     
     
@@ -406,12 +434,9 @@ extension PostShowViewController {
         
         do {
             if let displayedPost = try CoreDataManager.instance.managedObjectContext.fetch(fetchRequest).first as? NSManagedObject {
+                self.loadViewSettings()
                 self.postFeedHeaderView.display(displayedPost as! PostCellSupport)
                 self.interactor?.save(displayedPost)
-                
-                UIView.animate(withDuration: 0.5, animations: {
-                    self.contentView.alpha = 1.0
-                })
             }
         }
         
@@ -422,3 +447,20 @@ extension PostShowViewController {
         }
     }
 }
+
+
+//
+//extension PostShowViewController: WKNavigationDelegate {
+//    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
+////            self.bodyView.addSubview(self.downView)
+//
+//            self.bodyViewHeightConstraint.constant = self.downView.scrollView.contentSize.height + 70 + 48 + self.bodyView.frame.minY // webView.scrollView.contentSize.height// - webView.scrollView.bounds.size.height
+//
+//            UIView.animate(withDuration: 0.5, animations: {
+//                self.contentView.alpha = 1.0
+////                self.downView.removeFromSuperview()
+//            })
+//        })
+//    }
+//}

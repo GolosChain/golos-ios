@@ -159,8 +159,7 @@ class PostFeedHeaderView: UIView {
                                                         imageType:        .userProfileImage,
                                                         size:             CGSize(width: 30.0 * widthRatio, height: 30.0 * widthRatio),
                                                         tags:             nil)
-            }
-            
+            }            
         }
     }
     
