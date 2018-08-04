@@ -76,16 +76,6 @@ class PostShowViewController: GSBaseViewController {
         }
     }
     
-    @IBOutlet weak var bodyLabel: UILabel! {
-        didSet {
-            bodyLabel.tune(withAttributedText:  "",
-                           hexColors:           veryDarkGrayWhiteColorPickers, font: UIFont(name: "SFUIDisplay-Regular", size: 13.0 * widthRatio),
-                           alignment:           .left,
-                           isMultiLines:        true)
-        }
-    }
-    
-    
     @IBOutlet weak var upvoteButton: UIButton! {
         didSet {
             upvoteButton.tune(withTitle:        "$23.22",
@@ -153,6 +143,78 @@ class PostShowViewController: GSBaseViewController {
             donateButton.isEnabled      =   true
            
             donateButton.setBorder(color: UIColor(hexString: "#6ad381").cgColor, cornerRadius: 4.0 * heightRatio)
+        }
+    }
+    
+    // Subscribe by Topic
+    @IBOutlet weak var topicUserAvatarImageView: UIImageView!
+    
+    @IBOutlet weak var topicPublishedInLabel: UILabel! {
+        didSet {
+            topicPublishedInLabel.tune(withText:         "Published in",
+                                       hexColors:        darkGrayWhiteColorPickers,
+                                       font:             UIFont(name: "SFUIDisplay-Regular", size: 8.0 * widthRatio),
+                                       alignment:        .left,
+                                       isMultiLines:     false)
+        }
+    }
+    
+    @IBOutlet weak var topicTitleLabel: UILabel! {
+        didSet {
+            topicTitleLabel.tune(withText:         "",
+                                 hexColors:        darkGrayWhiteColorPickers,
+                                 font:             UIFont(name: "SFUIDisplay-Regular", size: 12.0 * widthRatio),
+                                 alignment:        .left,
+                                 isMultiLines:     false)
+        }
+    }
+    
+    // Subscribe by User
+    @IBOutlet weak var userAvatarImageView: UIImageView!
+    
+    @IBOutlet weak var userNameLabel: UILabel! {
+        didSet {
+            userNameLabel.tune(withText:        "",
+                               hexColors:       veryDarkGrayWhiteColorPickers,
+                               font:            UIFont(name: "SFUIDisplay-Regular", size: 12.0 * widthRatio), alignment: .left,
+                               isMultiLines:    false)
+        }
+    }
+    
+    @IBOutlet weak var userRecentPastLabel: UILabel! {
+        didSet {
+            userRecentPastLabel.tune(withText:        "Recent Past:",
+                                     hexColors:       darkGrayWhiteColorPickers,
+                                     font:            UIFont(name: "SFUIDisplay-Regular", size: 8.0 * widthRatio), alignment: .left,
+                                     isMultiLines:    false)
+        }
+    }
+    
+    @IBOutlet weak var userPreviouslyLabel: UILabel! {
+        didSet {
+            userPreviouslyLabel.tune(withText:        "Previously:",
+                                     hexColors:       darkGrayWhiteColorPickers,
+                                     font:            UIFont(name: "SFUIDisplay-Regular", size: 8.0 * widthRatio), alignment: .left,
+                                     isMultiLines:    false)
+        }
+    }
+    
+    @IBOutlet var subscribeButtonsCollection: [UIButton]! {
+        didSet {
+            _ = subscribeButtonsCollection.map({ button in
+                button.tune(withTitle:         "Subscribe",
+                            hexColors:         [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
+                            font:              UIFont(name: "SFUIDisplay-Medium", size: 10.0 * widthRatio),
+                            alignment:         .center)
+                
+                button.setBorder(color: UIColor(hexString: "#dbdbdb").cgColor, cornerRadius: 4.0 * heightRatio)
+            })
+        }
+    }
+    
+    @IBOutlet weak var bottomLineView: UIView! {
+        didSet {
+            bottomLineView.tune(withThemeColorPicker: veryLightGrayColorPickers)
         }
     }
     
@@ -352,6 +414,10 @@ class PostShowViewController: GSBaseViewController {
                     return false
                 }
             }
+            
+            // Subscribe User
+            self.userAvatarImageView.image      =   self.postFeedHeaderView.authorProfileImageView.image
+            self.userNameLabel.text             =   self.postFeedHeaderView.authorLabel.text
         }
     }
     
@@ -418,6 +484,16 @@ class PostShowViewController: GSBaseViewController {
     @IBAction func hideCommentsButtonTapped(_ sender: UIButton) {
         self.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
     }
+    
+    @IBAction func subscribeButtonTapped(_ sender: UIButton) {
+        sender.setBorder(color: UIColor(hexString: "#dbdbdb").cgColor, cornerRadius: 4.0 * heightRatio)
+        
+        self.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+    }
+    
+    @IBAction func subscribeButtonTappedDown(_ sender: UIButton) {
+        sender.setBorder(color: UIColor(hexString: "#e3e3e3").cgColor, cornerRadius: 4.0 * heightRatio)
+    }
 }
 
 
@@ -458,9 +534,9 @@ extension PostShowViewController {
         
         do {
             if let displayedPost = try CoreDataManager.instance.managedObjectContext.fetch(fetchRequest).first as? NSManagedObject {
-                self.loadViewSettings()
                 self.postFeedHeaderView.display(displayedPost as! PostCellSupport)
                 self.interactor?.save(displayedPost)
+                self.loadViewSettings()
             }
         }
         
