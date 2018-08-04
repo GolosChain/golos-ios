@@ -16,6 +16,7 @@ import CoreData
 import GoloSwift
 import MarkdownView
 import SafariServices
+import AlignedCollectionViewFlowLayout
 
 // MARK: - Input & Output protocols
 protocol PostShowDisplayLogic: class {
@@ -36,11 +37,13 @@ class PostShowViewController: GSBaseViewController {
     @IBOutlet weak var tagsCollectionView: UICollectionView! {
         didSet {
             tagsCollectionView.register(UINib(nibName:               "PostShowTagCollectionViewCell", bundle: nil),
-                                               forCellWithReuseIdentifier:  "PostShowTagCollectionViewCell")
-
+                                        forCellWithReuseIdentifier:  "PostShowTagCollectionViewCell")
+            
             tagsCollectionView.tune()
             tagsCollectionView.delegate     =   self
             tagsCollectionView.dataSource   =   self
+            
+            tagsCollectionView.collectionViewLayout = AlignedCollectionViewFlowLayout.init(horizontalAlignment: .left, verticalAlignment: .top)
         }
     }
     
@@ -289,7 +292,7 @@ class PostShowViewController: GSBaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // Handlers
         self.postFeedHeaderView.handlerAuthorTapped         =   { [weak self] in
             self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
@@ -494,7 +497,7 @@ extension PostShowViewController: UICollectionViewDataSource {
         
         // Handlers
         cell.completionButtonTapped     =   {
-            print(indexPath.row)
+            self.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
         }
         
         return cell
@@ -504,13 +507,16 @@ extension PostShowViewController: UICollectionViewDataSource {
 
 // MARK: - UICollectionViewDelegate
 extension PostShowViewController {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {}
 }
 
 
 // MARK: - UICollectionViewDelegateFlowLayout
 extension PostShowViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets.init(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 6.0 * widthRatio
     }
