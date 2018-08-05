@@ -33,7 +33,9 @@ extension NSManagedObject {
             entity.url                  =   model.url
 
             // Modify body
-            entity.body                 =   model.body.convertImagePathToMarkdown()
+            entity.body                 =   model.body
+                                                .convertImagePathToMarkdown()
+                                                .convertUsersAccounts()
 
             // Set ActiveVote values
             if let activeVotes = ActiveVote.updateEntities(fromResponseAPI: model.active_votes, withParentID: model.id) {

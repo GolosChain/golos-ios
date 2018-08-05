@@ -87,6 +87,21 @@ extension String {
     
     
     /// Rule 1: convert image URL -> markdown format
+    func convertUsersAccounts() -> String {
+        var result              =   NSMutableString.init(string: self)
+        
+        let pattern             =   "[@]\\w+[-.]\\w+|@\\w+"
+        let regex               =   try! NSRegularExpression(pattern: pattern)
+        let matches             =   regex.matches(in: result as String, range: NSRange.init(location: 0, length: result.length))
+        
+        for match in matches.reversed() {
+            let accountString   =   (result as NSString).substring(with: match.range)
+            result              =   result.replacingCharacters(in: match.range, with: String(format: "[%@](%@)", accountString, accountString)) as! NSMutableString
+        }
+        
+        return result as String
+    }
+
     func convertImagePathToMarkdown() -> String {
         var result              =   self
                                         .replacingOccurrences(of: "<center>", with: "")
