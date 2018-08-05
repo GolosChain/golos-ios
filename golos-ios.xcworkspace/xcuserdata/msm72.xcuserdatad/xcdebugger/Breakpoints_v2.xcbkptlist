@@ -516,11 +516,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "golos-ios/Scenes/PostShow/PostShowViewController.swift"
-            timestampString = "555185703.25342"
+            timestampString = "555188732.963991"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "558"
-            endingLineNumber = "558"
+            startingLineNumber = "559"
+            endingLineNumber = "559"
             landmarkName = "fetchContent()"
             landmarkType = "7">
          </BreakpointContent>
@@ -586,6 +586,22 @@
             startingLineNumber = "150"
             endingLineNumber = "150"
             landmarkName = "display(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "golos-ios/Common/Extensions/NSManagedObject+Extensions.swift"
+            timestampString = "555186214.982358"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "update(withModel:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

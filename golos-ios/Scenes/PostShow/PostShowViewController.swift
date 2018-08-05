@@ -541,9 +541,10 @@ extension PostShowViewController {
         
         let postType    =   self.router!.dataStore!.postType!
         let userName    =   (self.router!.dataStore!.post as! PostCellSupport).author
+        let permlink    =   (self.router!.dataStore!.post as! PostCellSupport).permlink
         
         fetchRequest            =   NSFetchRequest<NSFetchRequestResult>(entityName: postType.caseTitle())
-        fetchRequest.predicate  =   NSPredicate(format: "author == %@", userName)
+        fetchRequest.predicate  =   NSPredicate(format: "author == %@ AND permlink == %@", userName, permlink)
         
         do {
             if let displayedPost = try CoreDataManager.instance.managedObjectContext.fetch(fetchRequest).first as? NSManagedObject {

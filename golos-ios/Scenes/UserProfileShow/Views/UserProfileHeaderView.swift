@@ -161,6 +161,11 @@ class UserProfileHeaderView: PassthroughView {
                                                 tags:               userInfo.selectTags)
             
             self.backgroundColor = UIColor.black.withAlphaComponent(0.3)
+            UIApplication.shared.statusBarStyle     =   .lightContent
+        }
+        
+        else {
+            UIApplication.shared.statusBarStyle     =   .default
         }
         
         self.showLabelsForAnimationCollection(true)

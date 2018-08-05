@@ -108,7 +108,7 @@ extension String {
                                         .replacingOccurrences(of: "</center>", with: "#center")
         
         let pattern             =   "(http(s?):)([/|.|\\w|\\s|-])*\\.(?:jpg|gif|png)(!d)?"
-        let centerPattern       =   "#center"
+        var centerPattern       =   "#center"
         let regex               =   try! NSRegularExpression(pattern: pattern)
         
         let matches             =   regex.matches(in: result, range: NSRange.init(location: 0, length: result.count))
@@ -121,13 +121,18 @@ extension String {
             if centerRanges.contains(centerRange) {
                 let otherRange  =   result.index(result.startIndex, offsetBy: centerRange.location)..<result.index(result.startIndex, offsetBy: centerRange.location + centerRange.length)
                 result.removeSubrange(otherRange)
-
-                result          =   result.replacingOccurrences(of: imageURLString, with: String(format: "![](%@%@)", imageURLString, centerPattern))
             }
             
             else {
-                result          =   result.replacingOccurrences(of: imageURLString, with: String(format: "![](%@)", imageURLString))
+                centerPattern   =   ""
             }
+
+            // Check if image URL contains in markdown format: ![]()
+            guard (result as NSString).range(of: String(format: "![](%@%@)", imageURLString, centerPattern), options: NSString.CompareOptions.caseInsensitive).length == 0 else {
+                return result
+            }
+            
+            result              =   result.replacingOccurrences(of: imageURLString, with: String(format: "![](%@%@)", imageURLString, centerPattern))
         }
         
         return result
