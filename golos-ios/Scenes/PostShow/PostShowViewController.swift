@@ -405,7 +405,8 @@ class PostShowViewController: GSBaseViewController {
                     return false
                 }
                 
-                if url.scheme == "file" {
+                if url.scheme == "file", let userName = url.pathComponents.last, userName.hasPrefix("@") {
+                    self?.router?.routeToUserProfileScene(byUserName: userName.replacingOccurrences(of: "@", with: ""))
                     return true
                 }
                 

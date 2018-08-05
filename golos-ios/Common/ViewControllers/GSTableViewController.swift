@@ -165,7 +165,7 @@ class GSTableViewController: GSBaseViewController {
         }
     }
     
-    func fetchPosts(byType type: PostsFeedType) {
+    func fetchPosts(byUserName userName: String, andPostFeedType type: PostsFeedType) {
         var fetchRequest: NSFetchRequest<NSFetchRequestResult>
         var primarySortDescriptor: NSSortDescriptor
         var secondarySortDescriptor: NSSortDescriptor
@@ -175,20 +175,14 @@ class GSTableViewController: GSBaseViewController {
         switch type {
         // Replies
         case .reply:
-            if let userName = User.current?.name {
-                fetchRequest.predicate  =   NSPredicate(format: "parentAuthor == %@", userName)
-            }
+            fetchRequest.predicate  =   NSPredicate(format: "parentAuthor == %@", userName)
 
         // Blog
         case .blog:
-            if let userName = User.current?.name {
-                fetchRequest.predicate  =   NSPredicate(format: "author == %@", userName)
-            }
+            fetchRequest.predicate  =   NSPredicate(format: "author == %@", userName)
 
         case .lenta:
-            if let userName = User.current?.name {
-                fetchRequest.predicate  =   NSPredicate(format: "userName == %@", userName)
-            }
+            fetchRequest.predicate  =   NSPredicate(format: "userName == %@", userName)
 
         // Popular, Actual, New, Promo
         default:

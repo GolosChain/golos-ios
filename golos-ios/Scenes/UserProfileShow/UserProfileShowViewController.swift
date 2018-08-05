@@ -17,6 +17,11 @@ import SwiftTheme
 import MXParallaxHeader
 import SWSegmentedControl
 
+enum UserProfileSceneMode {
+    case edit
+    case preview
+}
+
 // MARK: - Input & Output protocols
 protocol UserProfileShowDisplayLogic: class {
     func displayUserInfo(fromViewModel viewModel: UserProfileShowModels.UserInfo.ViewModel)
@@ -25,8 +30,9 @@ protocol UserProfileShowDisplayLogic: class {
 
 class UserProfileShowViewController: GSBaseViewController, ContainerViewSupport {
     // MARK: - Properties
-    var selectedSegmentIndex = 0
-    let postFeedTypes: [PostsFeedType]  =   [ .blog, .reply ]
+    var sceneMode: UserProfileSceneMode         =   .edit
+    var selectedSegmentIndex                    =   0
+    let postFeedTypes: [PostsFeedType]          =   [ .blog, .reply ]
 
     var interactor: UserProfileShowBusinessLogic?
     var router: (NSObjectProtocol & UserProfileShowRoutingLogic & UserProfileShowDataPassing)?
@@ -197,7 +203,7 @@ class UserProfileShowViewController: GSBaseViewController, ContainerViewSupport 
         super.viewWillAppear(animated)
        
         self.hideNavigationBar()
-        UIApplication.shared.statusBarStyle     =   User.current!.coverImageURL == nil ? .default : (scrollView.parallaxHeader.progress == 0.0 ? .default : .lightContent)
+        UIApplication.shared.statusBarStyle     =   User.fetch(byName: self.router!.dataStore!.userName)?.coverImageURL == nil ? .default : (scrollView.parallaxHeader.progress == 0.0 ? .default : .lightContent)
 
         // Load User info
         self.loadUserInfo()
@@ -223,6 +229,9 @@ class UserProfileShowViewController: GSBaseViewController, ContainerViewSupport 
             userProfileInfoControlViewTopConstraint.constant        =   10.0 * heightRatio
             walletBalanceView.add(shadow: true, onside: .bottom)
         }
+        
+        self.userProfileHeaderView.editProfileButton.isHidden   =   self.sceneMode == .edit ? false : true
+        self.userProfileHeaderView.backButton.isHidden          =   self.sceneMode == .preview ? false : true
     }
     
     private func setActiveViewControllerHandlers() {
@@ -283,7 +292,7 @@ extension UserProfileShowViewController {
 extension UserProfileShowViewController {
     // User Profile
     private func fetchUserInfo() {
-        if let userEntity = User.current {
+        if let userEntity = User.fetch(byName: self.router!.dataStore!.userName) {
             self.userProfileHeaderView.updateUI(fromUserInfo: userEntity)
             self.userProfileInfoTitleView.updateUI(fromUserInfo: userEntity)
             
@@ -297,7 +306,7 @@ extension UserProfileShowViewController {
     // User Details
     private func fetchUserDetails() {
         if let activeVC = self.containerView.activeVC {
-            activeVC.fetchPosts(byType: postFeedTypes[self.selectedSegmentIndex])
+            activeVC.fetchPosts(byUserName: self.router!.dataStore!.userName, andPostFeedType: postFeedTypes[self.selectedSegmentIndex])
             
             // Handler Refresh data
             activeVC.handlerRefreshData  =   { [weak self] lastItem in
@@ -351,7 +360,7 @@ extension UserProfileShowViewController: MXParallaxHeaderDelegate {
     func parallaxHeaderDidScroll(_ parallaxHeader: MXParallaxHeader) {
         Logger.log(message: String(format: "progress %f", parallaxHeader.progress), event: .debug)
 
-        UIApplication.shared.statusBarStyle                     =   User.current!.coverImageURL == nil ? .default : (parallaxHeader.progress == 0.0 ? .default : .lightContent)
+        UIApplication.shared.statusBarStyle                     =   User.fetch(byName: (self.router?.dataStore?.userName)!)?.coverImageURL == nil ? .default : (parallaxHeader.progress == 0.0 ? .default : .lightContent)
         self.userProfileHeaderView.whiteStatusBarView.isHidden  =   parallaxHeader.progress != 0.0
     }
 }

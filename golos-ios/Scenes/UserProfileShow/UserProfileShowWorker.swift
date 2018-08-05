@@ -24,7 +24,7 @@ class UserProfileShowWorker {
     
 
     // MARK: - Business Logic
-    func prepareRequestMethod(_ parameters: UserProfileDetailsParams) -> MethodAPIType {
+    func prepareRequestMethod(byUsername userName: String, andParameters parameters: UserProfileDetailsParams) -> MethodAPIType {
         var methodAPIType: MethodAPIType
         let lastItem = parameters.lastItem
         var predicate: NSPredicate?
@@ -32,20 +32,20 @@ class UserProfileShowWorker {
         switch parameters.type {
         // Replies
         case .reply:
-            predicate       =   NSPredicate(format: "parentAuthor == %@", User.current!.name)
+            predicate       =   NSPredicate(format: "parentAuthor == %@", userName)
 
-            methodAPIType   =   MethodAPIType.getUserReplies(startAuthor:           User.current!.name,
+            methodAPIType   =   MethodAPIType.getUserReplies(startAuthor:           userName,
                                                              startPermlink:         (lastItem as? Reply)?.permlink,
                                                              limit:                 loadDataLimit,
                                                              voteLimit:             0)
 
         // Blogs
         default:
-            predicate       =   NSPredicate(format: "author == %@", User.current!.name)
+            predicate       =   NSPredicate(format: "author == %@", userName)
 
             let discussion  =   RequestParameterAPI.Discussion.init(limit:          loadDataLimit,
                                                                     truncateBody:   0,
-                                                                    selectAuthors:  [ User.current!.name ],
+                                                                    selectAuthors:  [ userName ],
                                                                     startAuthor:    (lastItem as? PostCellSupport)?.author,
                                                                     startPermlink:  (lastItem as? PostCellSupport)?.permlink)
             

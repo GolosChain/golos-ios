@@ -145,7 +145,7 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
     private func setActiveViewControllerHandlers() {
         if let activeVC = self.containerView.activeVC {
             // Add cells from XIB
-            activeVC.fetchPosts(byType: postFeedTypes[self.selectedSegmentIndex])
+            activeVC.fetchPosts(byUserName: User.current!.name, andPostFeedType: postFeedTypes[self.selectedSegmentIndex])
             
             
             // Handler Refresh/Upload data

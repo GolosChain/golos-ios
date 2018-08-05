@@ -15,7 +15,7 @@ import GoloSwift
 
 // MARK: - Input & Output protocols
 @objc protocol PostShowRoutingLogic {
-//    func routeToSomewhere(segue: UIStoryboardSegue?)
+    func routeToUserProfileScene(byUserName name: String)
 }
 
 protocol PostShowDataPassing {
@@ -35,29 +35,25 @@ class PostShowRouter: NSObject, PostShowRoutingLogic, PostShowDataPassing {
     
 
     // MARK: - Routing
-//    func routeToSomewhere(segue: UIStoryboardSegue?) {
-//        if let segue = segue {
-//            let destinationVC = segue.destination as! SomewhereViewController
-//            var destinationDS = destinationVC.router!.dataStore!
-//            passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-//        } else {
-//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//            let destinationVC = storyboard.instantiateViewController(withIdentifier: "SomewhereViewController") as! SomewhereViewController
-//            var destinationDS = destinationVC.router!.dataStore!
-//            passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-//            navigateToSomewhere(source: viewController!, destination: destinationVC)
-//        }
-//    }
+    func routeToUserProfileScene(byUserName name: String) {
+        let storyboard          =   UIStoryboard(name: "UserProfileShow", bundle: nil)
+        let destinationVC       =   storyboard.instantiateViewController(withIdentifier: "UserProfileShowVC") as! UserProfileShowViewController
+        destinationVC.sceneMode =   .preview
+        var destinationDS       =   destinationVC.router!.dataStore!
+
+        passDataToUserProfileScene(userName: name, destination: &destinationDS)
+        navigateToUserProfileScene(source: viewController!, destination: destinationVC)
+    }
     
     
     // MARK: - Navigation
-//    func navigateToSomewhere(source: PostShowViewController, destination: SomewhereViewController) {
-//        source.show(destination, sender: nil)
-//    }
+    func navigateToUserProfileScene(source: PostShowViewController, destination: UserProfileShowViewController) {
+        source.show(destination, sender: nil)
+    }
     
     
     // MARK: - Passing data
-//    func passDataToSomewhere(source: PostShowDataStore, destination: inout SomewhereDataStore) {
-//        destination.name = source.name
-//    }
+    func passDataToUserProfileScene(userName: String, destination: inout UserProfileShowDataStore) {
+        destination.userName    =   userName
+    }
 }

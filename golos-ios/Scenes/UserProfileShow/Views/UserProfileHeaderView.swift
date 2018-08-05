@@ -47,8 +47,8 @@ class UserProfileHeaderView: PassthroughView {
     @IBOutlet private weak var reputationImageView: UIImageView!
     @IBOutlet private weak var activityView: UIActivityIndicatorView!
 
-    @IBOutlet private weak var backButton: UIButton!
-    @IBOutlet private weak var editProfileButton: UIButton!
+    @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var editProfileButton: UIButton!
     @IBOutlet private weak var settingsButton: UIButton!
     
     @IBOutlet var actionButtonsCollection: [UIButton]! {
@@ -152,6 +152,8 @@ class UserProfileHeaderView: PassthroughView {
             self.editProfileButton.setImage(UIImage(named: "icon-button-edit-black-normal"), for: .highlighted)
             self.settingsButton.setImage(UIImage(named: "icon-button-settings-white-normal"), for: .normal)
             self.settingsButton.setImage(UIImage(named: "icon-button-settings-black-normal"), for: .highlighted)
+            self.backButton.setImage(UIImage(named: "icon-button-back-white-normal"), for: .normal)
+            self.backButton.setImage(UIImage(named: "icon-button-back-black-normal"), for: .highlighted)
 
             self.userCoverImageView.uploadImage(byStringPath:       userCoverImagePath,
                                                 imageType:          .userCoverImage,
