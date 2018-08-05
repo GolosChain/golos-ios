@@ -147,7 +147,7 @@ class PostShowViewController: GSBaseViewController {
     }
     
     // Subscribe by Topic
-    @IBOutlet weak var topicUserAvatarImageView: UIImageView!
+    @IBOutlet weak var topicCoverImageView: UIImageView!
     
     @IBOutlet weak var topicPublishedInLabel: UILabel! {
         didSet {
@@ -275,6 +275,13 @@ class PostShowViewController: GSBaseViewController {
             commentsHideButton.isEnabled        =   true
             
             commentsHideButton.setBorder(color: UIColor(hexString: "#dbdbdb").cgColor, cornerRadius: 4.0 * heightRatio)
+        }
+    }
+    
+    // Collections
+    @IBOutlet var circleImagesCollection: [UIImageView]! {
+        didSet {
+            _ = circleImagesCollection.map({ $0.layer.cornerRadius = $0.bounds.height / 2 })
         }
     }
     
@@ -413,6 +420,11 @@ class PostShowViewController: GSBaseViewController {
                     self?.showAlertView(withTitle: "Error", andMessage: "Broken Link Failure", needCancel: false, completion: { _ in })
                     return false
                 }
+            }
+            
+            // Subscribe topic
+            if let firstTag = displayedPost.tags?.first {
+                self.topicTitleLabel.text       =   firstTag.uppercaseFirst
             }
             
             // Subscribe User

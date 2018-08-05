@@ -184,7 +184,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QZ1-ab-xUw" userLabel="Subscribe Topic View">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
                                                         <subviews>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-user-profile-image-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="brE-kk-Xo3" userLabel="User Avatar Image View">
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image-mock-fake-cover" translatesAutoresizingMaskIntoConstraints="NO" id="brE-kk-Xo3" userLabel="Topic Cover Image View">
                                                                 <rect key="frame" x="16" y="19.5" width="50" height="50"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
@@ -566,9 +566,9 @@
                         <outlet property="tagsCollectionView" destination="lwn-iM-8rz" id="KAp-WL-toG"/>
                         <outlet property="tagsCollectionViewheightConstraint" destination="cI2-Yu-NIy" id="0GZ-h1-ttF"/>
                         <outlet property="titleLabel" destination="zPm-d9-LiX" id="Tl8-Sg-wqP"/>
+                        <outlet property="topicCoverImageView" destination="brE-kk-Xo3" id="NVx-2c-k93"/>
                         <outlet property="topicPublishedInLabel" destination="3l6-xe-i7n" id="UpH-IX-lau"/>
                         <outlet property="topicTitleLabel" destination="E1r-jk-0eB" id="TV8-N1-TGP"/>
-                        <outlet property="topicUserAvatarImageView" destination="brE-kk-Xo3" id="8sT-xU-Ae1"/>
                         <outlet property="upvoteButton" destination="fb3-VQ-GlM" id="p9Q-2w-lYk"/>
                         <outlet property="userAvatarImageView" destination="ZH2-hK-oIK" id="8U9-8Y-Dxn"/>
                         <outlet property="userNameLabel" destination="TQB-vz-8Uo" id="izY-VZ-zdO"/>
@@ -621,6 +621,8 @@
                         <outletCollection property="heightsCollection" destination="Dk6-ob-QQg" collectionClass="NSMutableArray" id="Ca1-wd-9yG"/>
                         <outletCollection property="subscribeButtonsCollection" destination="eEn-P4-Nhn" collectionClass="NSMutableArray" id="TQx-wk-zyP"/>
                         <outletCollection property="subscribeButtonsCollection" destination="28F-WH-XIS" collectionClass="NSMutableArray" id="deR-sG-bP6"/>
+                        <outletCollection property="circleImagesCollection" destination="brE-kk-Xo3" collectionClass="NSMutableArray" id="yGd-Pu-Qa1"/>
+                        <outletCollection property="circleImagesCollection" destination="ZH2-hK-oIK" collectionClass="NSMutableArray" id="eT9-9p-i4P"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CXI-Zv-5XY" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -642,5 +644,6 @@
         <image name="icon-button-vertical-more-normal" width="24" height="24"/>
         <image name="icon-cell-user-profile" width="18" height="18"/>
         <image name="icon-user-profile-image-placeholder" width="40" height="40"/>
+        <image name="image-mock-fake-cover" width="375" height="220"/>
     </resources>
 </document>

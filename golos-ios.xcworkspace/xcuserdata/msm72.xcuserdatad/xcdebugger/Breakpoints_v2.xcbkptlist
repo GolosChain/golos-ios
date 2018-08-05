@@ -516,13 +516,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "golos-ios/Scenes/PostShow/PostShowViewController.swift"
-            timestampString = "555075540.496416"
+            timestampString = "555140977.74542"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "545"
-            endingLineNumber = "545"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            startingLineNumber = "557"
+            endingLineNumber = "557"
+            landmarkName = "fetchContent()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
