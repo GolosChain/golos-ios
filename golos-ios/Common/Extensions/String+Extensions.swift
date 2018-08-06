@@ -104,37 +104,23 @@ extension String {
 
     func convertImagePathToMarkdown() -> String {
         var result              =   self
-                                        .replacingOccurrences(of: "<center>", with: "")
-                                        .replacingOccurrences(of: "</center>", with: "#center")
-        
         let pattern             =   "(http(s?):)([/|.|\\w|\\s|-])*\\.(?:jpg|gif|png)(!d)?"
-        var centerPattern       =   "#center"
         let regex               =   try! NSRegularExpression(pattern: pattern)
-        
         let matches             =   regex.matches(in: result, range: NSRange.init(location: 0, length: result.count))
-        let centerRanges        =   try! NSRegularExpression(pattern: centerPattern).matches(in: result, range: NSRange.init(location: 0, length: result.count)).compactMap({ $0.range })
         
-        for match in matches {
+        for match in matches.reversed() {
             let imageURLString  =   (result as NSString).substring(with: match.range)
-            let centerRange     =   NSRange.init(location: match.range.location + match.range.length, length: centerPattern.count)
             
-            if centerRanges.contains(centerRange) {
-                let otherRange  =   result.index(result.startIndex, offsetBy: centerRange.location)..<result.index(result.startIndex, offsetBy: centerRange.location + centerRange.length)
-                result.removeSubrange(otherRange)
-            }
-            
-            else {
-                centerPattern   =   ""
-            }
-
-            // Check if image URL contains in markdown format: ![]()
-            guard (result as NSString).range(of: String(format: "![](%@%@)", imageURLString, centerPattern), options: NSString.CompareOptions.caseInsensitive).length == 0 else {
+            // Check if image URL present in markdown format: ![]()
+            guard (result as NSString).range(of: String(format: "![](%@)", imageURLString), options: NSString.CompareOptions.caseInsensitive).length == 0 else {
                 return result
             }
             
-            result              =   result.replacingOccurrences(of: imageURLString, with: String(format: "![](%@%@)", imageURLString, centerPattern))
+            result              =   result.replacingOccurrences(of: imageURLString, with: String(format: "![](%@)", imageURLString))
         }
         
         return result
+                .replacingOccurrences(of: "<center>", with: "")
+                .replacingOccurrences(of: ")</center>", with: "#center)")
     }
 }

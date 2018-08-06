@@ -364,7 +364,7 @@ class PostShowViewController: GSBaseViewController {
 
         // Handlers
         self.postFeedHeaderView.handlerAuthorTapped         =   { [weak self] in
-            self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+            self?.router?.routeToUserProfileScene(byUserName: (self?.router?.dataStore?.post as! PostCellSupport).author)
         }
     }
     
