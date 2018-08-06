@@ -126,8 +126,6 @@
 		B181586020B976FD00835034 /* GSBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B181585F20B976FD00835034 /* GSBaseViewController.swift */; };
 		B18B937220B91D4E000CF503 /* ForegroundRemoteNotificationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B18B937120B91D4E000CF503 /* ForegroundRemoteNotificationView.xib */; };
 		B18B937420B91DB8000CF503 /* ForegroundRemoteNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18B937320B91DB8000CF503 /* ForegroundRemoteNotificationView.swift */; };
-		B18DB44E2085D22A00BA5D50 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B18DB4502085D22A00BA5D50 /* Localizable.strings */; };
-		B1918FF720B5421800F6CE63 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B1918FF920B5421800F6CE63 /* InfoPlist.strings */; };
 		B198DB9120B9A21A008011A3 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B198DB9020B9A21A008011A3 /* UIColor+Extensions.swift */; };
 		B198DB9420B9C560008011A3 /* SFProDisplay-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = B198DB9320B9C560008011A3 /* SFProDisplay-Regular.otf */; };
 		B1A2AE432105B1640021A34B /* ActiveVote+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A2AE412105B1640021A34B /* ActiveVote+CoreDataClass.swift */; };
@@ -1329,7 +1327,6 @@
 			files = (
 				B198DB9420B9C560008011A3 /* SFProDisplay-Regular.otf in Resources */,
 				B11AA80520CB13BA00212713 /* SFUIDisplay-Regular.otf in Resources */,
-				B1918FF720B5421800F6CE63 /* InfoPlist.strings in Resources */,
 				B1E09E182101EE8F002CC5B7 /* PostFeedTableViewCell.xib in Resources */,
 				B1084CAF211378780065CAC0 /* PostShowTagCollectionViewCell.xib in Resources */,
 				7D25B4BA201F9821004A3400 /* ArticleHeaderView.xib in Resources */,
@@ -1356,7 +1353,6 @@
 				B146891A20F2013F00D36794 /* SFProDisplay-Medium.otf in Resources */,
 				B1DCE31A2109A44C00487DE0 /* test-sound.wav in Resources */,
 				B164F04920E62B5A00C5CDD3 /* UserProfileShow.storyboard in Resources */,
-				B18DB44E2085D22A00BA5D50 /* Localizable.strings in Resources */,
 				B1F3747520C2B483005EF767 /* RootShow.storyboard in Resources */,
 				B114192A20CD21530025B07F /* LogInShow.storyboard in Resources */,
 				B136D50020D8BA2E003AD279 /* ThemeTagCollectionViewCell.xib in Resources */,
