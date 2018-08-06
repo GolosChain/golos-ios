@@ -260,7 +260,7 @@ class UserProfileShowViewController: GSBaseViewController, ContainerViewSupport 
             activeVC.handlerSelectItem              =   { [weak self] selectedBlog in
                 if let blog = selectedBlog as? Blog {
                     self?.interactor?.save(blog: blog)
-                    self?.router?.routeToPostShowScene()
+//                    self?.router?.routeToPostShowScene()
                 }
             }
         }
