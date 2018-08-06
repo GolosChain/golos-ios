@@ -281,7 +281,14 @@ class PostShowViewController: GSBaseViewController {
     // Collections
     @IBOutlet var circleImagesCollection: [UIImageView]! {
         didSet {
-            _ = circleImagesCollection.map({ $0.layer.cornerRadius = $0.bounds.height / 2 })
+            _ = circleImagesCollection.map({ imageView in
+                imageView.layer.cornerRadius = imageView.bounds.height / 2
+                
+                if imageView.tag == 0 {
+                    imageView.layer.borderWidth     =   1.0
+                    imageView.layer.borderColor     =   UIColor(hexString: "#1e1e1e").cgColor
+                }
+            })
         }
     }
     
