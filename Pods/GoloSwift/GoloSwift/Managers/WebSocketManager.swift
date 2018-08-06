@@ -106,7 +106,7 @@ public class WebSocketManager {
             case .getUserFollowCounts(_):
                 return (responseAPI: try JSONDecoder().decode(ResponseAPIUserFollowCountsResult.self, from: jsonData), errorAPI: nil)
                 
-            case .getContent(_):
+            case .getContent(_), .getContentAllReplies(_):
                 return (responseAPI: try JSONDecoder().decode(ResponseAPIPostResult.self, from: jsonData), errorAPI: nil)
             }
         } catch {
@@ -178,8 +178,7 @@ extension WebSocketManager: WebSocketDelegate {
                     responseAPIType     =   isSendedRequestMethodAPI ?
                                                 (try self?.decode(from: jsonData, byMethodAPIType: requestMethodAPIStore!.methodAPIType.methodAPIType))! :
                                                 (try self?.decode(from: jsonData, byOperationAPIType: requestOperationAPIStore!.operationAPIType.operationAPIType))!
-                    
-                    
+
                     guard let responseAPIResult = responseAPIType.responseAPI else {
                         self?.errorAPI  =   responseAPIType.errorAPI
                         

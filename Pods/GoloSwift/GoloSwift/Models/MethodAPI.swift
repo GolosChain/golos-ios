@@ -34,6 +34,9 @@ public indirect enum MethodAPIType {
     /// Diplays current user follow counts
     case getContent(parameters: RequestParameterAPI.Content)
     
+    /// Diplays selected user comments list
+    case getContentAllReplies(parameters: RequestParameterAPI.Content)
+    
     
     /// This method return request parameters from selected enum case.
     func introduced() -> MethodRequestParameters {
@@ -77,6 +80,9 @@ public indirect enum MethodAPIType {
                                                                      paramsFirst:       ["social_network", "get_content"],
                                                                      paramsSecond:      contentModel.convertToString())
             
+        case .getContentAllReplies(let contentModel):       return  (methodAPIType:     self,
+                                                                     paramsFirst:       ["social_network", "get_all_content_replies"],
+                                                                     paramsSecond:      contentModel.convertToString())
         } // switch
     }
 }

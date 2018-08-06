@@ -120,7 +120,37 @@ extension String {
         }
         
         return result
+                .convertHtmlTagCenter()
+                .convertHtmlTagStrong()
+                .convertHtmlTagParagraph()
+                .replacingOccurrences(of: "<img src=\"", with: "")
+                .replacingOccurrences(of: "\" alt=\"\" ", with: "")
+                .replacingOccurrences(of: "width=\"840\" ", with: "")
+                .replacingOccurrences(of: "height=\"108\" ", with: "")
+                .replacingOccurrences(of: "/>", with: "")
+                .replacingOccurrences(of: "<img class=\"", with: "\n\n")
+                .replacingOccurrences(of: "alignnone", with: "")
+                .replacingOccurrences(of: "size-large", with: "")
+                .replacingOccurrences(of: "wp-image-8538\"", with: "")
+                .replacingOccurrences(of: "src=\"", with: "")
+    }
+    
+    private func convertHtmlTagCenter() -> String {
+        return self
                 .replacingOccurrences(of: "<center>", with: "")
                 .replacingOccurrences(of: ")</center>", with: "#center)")
     }
+    
+    private func convertHtmlTagParagraph() -> String {
+        return self
+                .replacingOccurrences(of: "<p>", with: "\n")
+                .replacingOccurrences(of: "</p>", with: "")
+    }
+
+    private func convertHtmlTagStrong() -> String {
+        return self
+                .replacingOccurrences(of: "<strong>", with: "**")
+                .replacingOccurrences(of: "</strong>", with: "**")
+    }
+
 }
