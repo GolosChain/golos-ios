@@ -65,12 +65,14 @@ public struct ResponseAPIPost: Decodable {
     
     // "2018-04-13T10:19:54"
     public let created: String
+    public let active: String
+    public let last_update: String
+    public let last_payout: String
     
     
     // MARK: - In reserve
     /*
      public let abs_rshares: Conflicted
-     public let active: String
      
      public let allow_curation_rewards: Bool
      public let author_rewards: Int
@@ -82,8 +84,6 @@ public struct ResponseAPIPost: Decodable {
      public let children_rshares2: String
      public let curator_payout_value: String
      public let depth: Int
-     public let last_payout: String                 // "1970-01-01T00:00:00"
-     public let last_update: String                 // "2018-04-13T11:03:12"
      public let max_accepted_payout: String
      public let max_cashout_time: String            // "1969-12-31T23:59:59"
      public let mode: String
@@ -332,6 +332,7 @@ public struct ResponseAPIAllContentRepliesResult: Decodable {
 
 
 // MARK: -
+// User for mapping Reply & Comment entities
 public struct ResponseAPIAllContentReply: Decodable {
     // MARK: - In work
     // swiftlint:disable identifier_name
@@ -344,14 +345,17 @@ public struct ResponseAPIAllContentReply: Decodable {
     public let title: String
     public let body: String
     public let json_metadata: String
+    public let url: String
+
+    // "2018-04-13T10:19:54"
+    public let created: String
+    public let active: String
+    public let last_update: String
+    public let last_payout: String
     
     
     // MARK: - In reserve
     /*
-     public let last_update: String
-     public let created: String
-     public let active: String
-     public let last_payout: String
      public let depth: Int
      public let children: Int
      public let children_rshares2: String
@@ -375,7 +379,6 @@ public struct ResponseAPIAllContentReply: Decodable {
      public let allow_votes: Bool
      public let allow_curation_rewards: Bool
      public let beneficiaries: [String]?
-     public let url: String
      public let root_title: String
      public let pending_payout_value: String
      public let total_pending_payout_value: String

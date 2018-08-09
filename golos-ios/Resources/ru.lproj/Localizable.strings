@@ -60,6 +60,7 @@
 "Promote Post Verb"                         =   "Продвинуть пост";
 "Donate Verb"                               =   "Отблагодарить";
 "Hide Comments Verb"                        =   "Скрыть комментарии";
+"Show Comments Verb"                        =   "Показать комментарии";
 "Load more"                                 =   "Загрузить ещё";
 "Load Comments"                             =   "Загрузить комментарии";
 "Action Sheet Popular"                      =   "Популярное";
@@ -157,6 +158,7 @@
 "Promo List is empty"                       =   "Список Промо постов\nпуст";
 "Reply List is empty"                       =   "Список Ответов\nпуст";
 "Blog List is empty"                        =   "Список Моих постов\nпуст";
+"Comment List is empty"                     =   "Список комментариев\nпуст";
 "First Name Last Name Placeholder"          =   "Имя Фамилия";
 "Short About Yourself Placeholder"          =   "Немного о себе";
 "Moscow Placeholder"                        =   "Москва";
@@ -194,3 +196,4 @@
 "You may only post once every 5 minutes"    =   "Вы можете отправлять новые\nсообщения каждые 5 минут";
 "Fetching Failed"                           =   "Ошибка загрузки данных из CoreData";
 "Broken Link Failure"                       =   "Указана битая ссылка";
+"Response All Content Replies error"        =   "Ошибка загрузки списка комментариев\nдля выбранного поста";

@@ -14,27 +14,30 @@ import UIKit
 import WebKit
 import CoreData
 import GoloSwift
-import MarkdownView
 import SafariServices
 import AlignedCollectionViewFlowLayout
 
 // MARK: - Input & Output protocols
 protocol PostShowDisplayLogic: class {
     func displayLoadContent(fromViewModel viewModel: PostShowModels.Post.ViewModel)
+    func displayLoadContentComments(fromViewModel viewModel: PostShowModels.Post.ViewModel)
 }
 
-class PostShowViewController: GSBaseViewController {
+class PostShowViewController: GSTableViewController {
     // MARK: - Properties
+//    var tableViewHeightObserver: NSKeyValueObservation?
+    
     var interactor: PostShowBusinessLogic?
     var router: (NSObjectProtocol & PostShowRoutingLogic & PostShowDataPassing)?
     
     
     // MARK: - IBOutlets
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var markdownView: MarkdownView!
+    @IBOutlet weak var markdownViewManager: MarkdownViewManager!
     @IBOutlet weak var postFeedHeaderView: PostFeedHeaderView!
+    @IBOutlet weak var commentsView: UIView!
     
-    @IBOutlet weak var tagsCollectionView: UICollectionView! {
+   @IBOutlet weak var tagsCollectionView: UICollectionView! {
         didSet {
             tagsCollectionView.register(UINib(nibName:               "PostShowTagCollectionViewCell", bundle: nil),
                                         forCellWithReuseIdentifier:  "PostShowTagCollectionViewCell")
@@ -236,7 +239,7 @@ class PostShowViewController: GSBaseViewController {
 
     @IBOutlet weak var commentsCountLabel: UILabel! {
         didSet {
-            commentsCountLabel.tune(withText:           "42",
+            commentsCountLabel.tune(withText:           "",
                                     hexColors:          grayWhiteColorPickers,
                                     font:               UIFont(name: "SFUIDisplay-Regular", size: 14.0 * widthRatio),
                                     alignment:          .left,
@@ -268,7 +271,7 @@ class PostShowViewController: GSBaseViewController {
     @IBOutlet weak var commentsHideButton: UIButton! {
         didSet {
             commentsHideButton.tune(withTitle:        "Hide Comments Verb",
-                                    hexColors:        [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
+                                    hexColors:        [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers],
                                     font:             UIFont(name: "SFUIDisplay-Medium", size: 8.0 * widthRatio),
                                     alignment:        .center)
             
@@ -313,7 +316,9 @@ class PostShowViewController: GSBaseViewController {
     
     @IBOutlet weak var tagsCollectionViewheightConstraint: NSLayoutConstraint!
     @IBOutlet weak var markdownViewHeightConstraint: NSLayoutConstraint!
-    
+    @IBOutlet weak var commentsViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var tableViewTopConstraint: NSLayoutConstraint!
+
     
     // MARK: - Class Initialization
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -369,10 +374,48 @@ class PostShowViewController: GSBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.cellIdentifier     =   "PostShowCommentTableViewCell"
+        self.tableView.register(UINib(nibName: self.cellIdentifier, bundle: nil), forCellReuseIdentifier: self.cellIdentifier)
+
         // Handlers
         self.postFeedHeaderView.handlerAuthorTapped         =   { [weak self] in
             self?.router?.routeToUserProfileScene(byUserName: (self?.router?.dataStore?.post as! PostCellSupport).author)
         }
+        
+        self.handlerUpvotesButtonTapped                     =   { [weak self] in
+            self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+        }
+
+        self.handlerUsersButtonTapped                       =   { [weak self] in
+            self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+        }
+
+        self.handlerAnswerButtonTapped                      =   { [weak self] in
+            self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+        }
+
+        self.handlerReplyTypeButtonTapped                   =   { [weak self] in
+            self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+        }
+
+        self.handlerShareButtonTapped                       =   { [weak self] in
+            self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+        }
+        
+        self.handlerAuthorProfileAddButtonTapped            =   { [weak self] in
+            self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+        }
+        
+        self.handlerAuthorProfileImageButtonTapped          =   { [weak self] in
+            self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+        }
+
+        // Observers
+//        self.tableViewHeightObserver = self.observe(self.commentsViewHeight, options: [.new]) { [weak self] (_, contentHeightNew) in
+//            guard let heightNew = contentHeightNew.newValue else { return }
+//
+//            self?.commentsTableViewHeightConstraint.constant    =   heightNew
+//        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -382,8 +425,12 @@ class PostShowViewController: GSBaseViewController {
         
         // Load Post
         self.loadContent()
+        
+        UIView.animate(withDuration: 0.5) {
+            self.view.alpha = 1.0
+        }
     }
-
+    
     
     // MARK: - Custom Functions
     private func loadViewSettings() {
@@ -391,9 +438,9 @@ class PostShowViewController: GSBaseViewController {
             self.titleLabel.text = displayedPost.title
             
             // Load markdown content
-            self.markdownView.isScrollEnabled = false
+//            self.markdownView.isScrollEnabled = false
             
-            self.markdownView.onRendered = { [weak self] height in
+            self.markdownViewManager.onRendered = { [weak self] height in
                 self?.markdownViewHeightConstraint.constant = height
                 
                 UIView.animate(withDuration: 0.5, animations: {
@@ -402,32 +449,27 @@ class PostShowViewController: GSBaseViewController {
             }
             
             DispatchQueue.main.async {
-                self.markdownView.load(markdown: displayedPost.body)
+                self.markdownViewManager.load(markdown: displayedPost.body)
             }
             
             // Handler: display content in App
-            self.markdownView.onTouchLink = { [weak self] request in
-                guard let url = request.url else {
-                    self?.showAlertView(withTitle: "Error", andMessage: "Broken Link Failure", needCancel: false, completion: { _ in })
-                    return false
-                }
-                
-                if url.scheme == "file", let userName = url.pathComponents.last, userName.hasPrefix("@") {
-                    self?.router?.routeToUserProfileScene(byUserName: userName.replacingOccurrences(of: "@", with: ""))
-                    return true
-                }
-                
-                else if url.scheme!.hasPrefix("http") {
-                    let safari = SFSafariViewController(url: url)
-                    self?.present(safari, animated: true, completion: nil)
-
-                    return false
+            self.markdownViewManager.completionErrorAlertView       =   { [weak self] errorMessage in
+                self?.showAlertView(withTitle: "Error", andMessage: errorMessage, needCancel: false, completion: { _ in })
+            }
+            
+            self.markdownViewManager.completionShowSafariURL        =   { [weak self] url in
+                if isNetworkAvailable {
+                let safari = SFSafariViewController(url: url)
+                self?.present(safari, animated: true, completion: nil)
                 }
                 
                 else {
-                    self?.showAlertView(withTitle: "Error", andMessage: "Broken Link Failure", needCancel: false, completion: { _ in })
-                    return false
+                    self?.showAlertView(withTitle: "Info", andMessage: "No Internet Connection", needCancel: false, completion: { _ in })
                 }
+            }
+            
+            self.markdownViewManager.completionCommentAuthorTapped  =   { [weak self] userName in
+                self?.router?.routeToUserProfileScene(byUserName: userName.replacingOccurrences(of: "@", with: ""))
             }
             
             // Subscribe topic
@@ -438,6 +480,33 @@ class PostShowViewController: GSBaseViewController {
             // Subscribe User
             self.userAvatarImageView.image      =   self.postFeedHeaderView.authorProfileImageView.image
             self.userNameLabel.text             =   self.postFeedHeaderView.authorLabel.text
+            
+            // Comment Table view handlers
+            if self.itemsCount > 0 {
+                self.commentsCountLabel.text    =   String(format: "%i", self.itemsCount)
+            }
+            
+            else {
+                self.commentsViewTopConstraint.constant =   -70.0 * heightRatio
+                self.tableViewTopConstraint.constant    =   -(self.tableView.contentSize.height + 40.0 * heightRatio)
+                self.commentsView.isHidden      =   true
+                self.tableView.isHidden         =   true
+            }
+            
+            self.completionCommentAuthorTapped  =   { [weak self] authorName in
+                self?.router?.routeToUserProfileScene(byUserName: authorName)
+            }
+            
+            self.completionCommentShowSafariURL =   { [weak self] url in
+                if isNetworkAvailable {
+                    let safari = SFSafariViewController(url: url)
+                    self?.present(safari, animated: true, completion: nil)
+                }
+                
+                else {
+                    self?.showAlertView(withTitle: "Info", andMessage: "No Internet Connection", needCancel: false, completion: { _ in })
+                }
+            }
         }
     }
     
@@ -452,16 +521,22 @@ class PostShowViewController: GSBaseViewController {
     }
     
     @IBAction func shareButtonTapped(_ sender: UIButton) {
-        let urlString   =   "https://www.google.com/any-link-to-share"
-        let shareText   =   "Hello, world!"
-        
-        if let image = try! UIImage(data: Data(contentsOf: URL(string: "https://www.google.co.in/logos/doodles/2017/mohammed-rafis-93th-birthday-5885879699636224.2-l.png")!)) {
-            let activityVC  =   UIActivityViewController(activityItems: [shareText, urlString, image], applicationActivities: nil)
-            present(activityVC, animated: true, completion: nil)
+        if isNetworkAvailable {
+            let urlString   =   "https://www.google.com/any-link-to-share"
+            let shareText   =   "Hello, world!"
             
-            if let popover = activityVC.popoverPresentationController {
-                popover.sourceView  =   self.view
+            if let image = try! UIImage(data: Data(contentsOf: URL(string: "https://www.google.co.in/logos/doodles/2017/mohammed-rafis-93th-birthday-5885879699636224.2-l.png")!)) {
+                let activityVC  =   UIActivityViewController(activityItems: [shareText, urlString, image], applicationActivities: nil)
+                present(activityVC, animated: true, completion: nil)
+                
+                if let popover = activityVC.popoverPresentationController {
+                    popover.sourceView  =   self.view
+                }
             }
+        }
+        
+        else {
+            self.showAlertView(withTitle: "Info", andMessage: "No Internet Connection", needCancel: false, completion: { _ in })
         }
     }
     
@@ -502,7 +577,17 @@ class PostShowViewController: GSBaseViewController {
     }
 
     @IBAction func hideCommentsButtonTapped(_ sender: UIButton) {
-        self.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+        sender.isSelected = !sender.isSelected
+       
+        sender.setTitle("Hide Comments Verb".localized(), for: .normal)
+        sender.setTitle("Show Comments Verb".localized(), for: .selected)
+        
+        self.tableView.alpha = sender.isSelected ? 0.0 : 1.0
+        self.tableViewTopConstraint.constant = sender.isSelected ? -tableView.bounds.height : 0.0
+        
+        UIView.animate(withDuration: 1.2) {
+            self.tableView.layoutIfNeeded()
+        }
     }
     
     @IBAction func subscribeButtonTapped(_ sender: UIButton) {
@@ -525,8 +610,21 @@ extension PostShowViewController: PostShowDisplayLogic {
             self.showAlertView(withTitle: "Error", andMessage: error.localizedDescription, needCancel: false, completion: { _ in })
         }
         
+        // API
+        self.loadContentComments()
+        
         // CoreData
         self.fetchContent()
+    }
+    
+    func displayLoadContentComments(fromViewModel viewModel: PostShowModels.Post.ViewModel) {
+        // NOTE: Display the result from the Presenter
+        if let error = viewModel.errorAPI {
+            self.showAlertView(withTitle: "Error", andMessage: error.localizedDescription, needCancel: false, completion: { _ in })
+        }
+        
+        // CoreData
+        self.fetchContentComments()
     }
 }
 
@@ -536,6 +634,11 @@ extension PostShowViewController {
     private func loadContent() {
         let contentRequestModel = PostShowModels.Post.RequestModel()
         interactor?.loadContent(withRequestModel: contentRequestModel)
+    }
+    
+    private func loadContentComments() {
+        let contentRepliesRequestModel = PostShowModels.Post.RequestModel()
+        interactor?.loadContentComments(withRequestModel: contentRepliesRequestModel)
     }
 }
 
@@ -565,6 +668,13 @@ extension PostShowViewController {
             self.showAlertView(withTitle: "Error", andMessage: "Fetching Failed", needCancel: false, completion: { _ in
                 Logger.log(message: "Fetching Failed", event: .error)
             })
+        }
+    }
+    
+    // Replies list
+    private func fetchContentComments() {
+        if let post = self.router?.dataStore?.post as? PostCellSupport {
+            self.fetchPostComments(byParameters: (author: post.author, postFeedType: .comment, permlink: post.permlink, sortBy: nil))
         }
     }
 }

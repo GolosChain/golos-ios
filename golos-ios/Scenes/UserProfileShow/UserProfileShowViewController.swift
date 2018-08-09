@@ -203,7 +203,7 @@ class UserProfileShowViewController: GSBaseViewController, ContainerViewSupport 
         super.viewWillAppear(animated)
        
         self.hideNavigationBar()
-        UIApplication.shared.statusBarStyle     =   User.fetch(byName: self.router!.dataStore!.userName)?.coverImageURL == nil ? .default : (scrollView.parallaxHeader.progress == 0.0 ? .default : .lightContent)
+        UIApplication.shared.statusBarStyle     =   User.fetch(byName: self.router!.dataStore!.userName ?? "")?.coverImageURL == nil ? .default : (scrollView.parallaxHeader.progress == 0.0 ? .default : .lightContent)
 
         // Load User info
         self.loadUserInfo()
@@ -295,7 +295,7 @@ extension UserProfileShowViewController {
 extension UserProfileShowViewController {
     // User Profile
     private func fetchUserInfo() {
-        if let userEntity = User.fetch(byName: self.router!.dataStore!.userName) {
+        if let userEntity = User.fetch(byName: self.router!.dataStore!.userName ?? "") {
             self.userProfileHeaderView.updateUI(fromUserInfo: userEntity)
             self.userProfileInfoTitleView.updateUI(fromUserInfo: userEntity)
             
@@ -309,7 +309,7 @@ extension UserProfileShowViewController {
     // User Details
     private func fetchUserDetails() {
         if let activeVC = self.containerView.activeVC {
-            activeVC.fetchPosts(byUserName: self.router!.dataStore!.userName, andPostFeedType: postFeedTypes[self.selectedSegmentIndex])
+            activeVC.fetchPosts(byParameters: (author: self.router?.dataStore?.userName, postFeedType: postFeedTypes[self.selectedSegmentIndex], permlink: nil, sortBy: nil))
             
             // Handler Refresh data
             activeVC.handlerRefreshData  =   { [weak self] lastItem in

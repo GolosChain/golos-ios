@@ -39,6 +39,7 @@ public class ActiveVote: NSManagedObject {
             entity!.save()
         }
         
-        return CoreDataManager.instance.readEntities(withName: "ActiveVote", withPredicateParameters: NSPredicate.init(format: "id == \(codeID)"), andSortDescriptor: nil) as? [ActiveVote]
+        return CoreDataManager.instance.readEntities(withName: "ActiveVote",
+                                                     withPredicateParameters: NSPredicate.init(format: "id == \(codeID)"), andSortDescriptor: nil) as? [ActiveVote]
     }
 }

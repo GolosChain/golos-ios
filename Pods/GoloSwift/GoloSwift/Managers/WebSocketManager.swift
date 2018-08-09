@@ -35,6 +35,13 @@ public class WebSocketManager {
         
         guard webSocket.isConnected else { return }
         
+        let requestMethodAPIStore       =   self.requestMethodsAPIStore.first?.value
+        let requestOperationAPIStore    =   self.requestOperationsAPIStore.first?.value
+        let isSendedRequestMethodAPI    =   requestOperationAPIStore == nil
+
+        isSendedRequestMethodAPI ?  requestMethodAPIStore!.completion((responseAPI: nil, errorAPI: ErrorAPI.responseUnsuccessful(message: "No Internet Connection"))) :
+                                    requestOperationAPIStore!.completion((responseAPI: nil, errorAPI: ErrorAPI.responseUnsuccessful(message: "No Internet Connection")))
+
         // Clean store lists
         requestIDs                      =   [Int]()
         self.requestMethodsAPIStore     =   [Int: RequestMethodAPIStore]()
@@ -106,8 +113,11 @@ public class WebSocketManager {
             case .getUserFollowCounts(_):
                 return (responseAPI: try JSONDecoder().decode(ResponseAPIUserFollowCountsResult.self, from: jsonData), errorAPI: nil)
                 
-            case .getContent(_), .getContentAllReplies(_):
+            case .getContent(_):
                 return (responseAPI: try JSONDecoder().decode(ResponseAPIPostResult.self, from: jsonData), errorAPI: nil)
+
+            case .getContentAllReplies(_):
+                return (responseAPI: try JSONDecoder().decode(ResponseAPIAllContentRepliesResult.self, from: jsonData), errorAPI: nil)
             }
         } catch {
             Logger.log(message: "\(error)", event: .error)
@@ -235,7 +245,7 @@ extension WebSocketManager: WebSocketDelegate {
                         }
                         
                         isSendedRequestMethodAPI ?  requestMethodAPIStore!.completion((responseAPI: responseAPIResult, errorAPI: self?.errorAPI)) :
-                            requestOperationAPIStore!.completion((responseAPI: responseAPIResult, errorAPI: self?.errorAPI))
+                                                    requestOperationAPIStore!.completion((responseAPI: responseAPIResult, errorAPI: self?.errorAPI))
                     }
                 } catch {
                     Logger.log(message: "\nResponse Unsuccessful:\n\t\(error.localizedDescription)", event: .error)

@@ -225,6 +225,39 @@ class RestAPIManager {
     }
 
     
+    /// Load Comments list for selected Post
+    class func loadPostComments(byContent content: RequestParameterAPI.Content, andPostType postType: PostsFeedType, completion: @escaping (ErrorAPI?) -> Void) {
+        // API 'get_all_content_replies'
+        if isNetworkAvailable {
+            let methodAPIType   =   MethodAPIType.getContentAllReplies(parameters: content)
+            
+            broadcast.executeGET(byMethodAPIType: methodAPIType,
+                                 onResult: { responseAPIResult in
+                                    Logger.log(message: "\nresponse API Result = \(responseAPIResult)\n", event: .debug)
+                                    
+                                    guard let result = (responseAPIResult as! ResponseAPIAllContentRepliesResult).result else {
+                                        completion(ErrorAPI.requestFailed(message: (responseAPIResult as! ResponseAPIAllContentRepliesResult).error!.message))
+                                        return
+                                    }
+                                    
+                                    // CoreData: Update Comment entity
+                                    result.forEach({ Comment.updateEntity(fromResponseAPI: $0) })
+                                    
+                                    completion(nil)
+            },
+                                 onError: { errorAPI in
+                                    Logger.log(message: "nresponse API Error = \(errorAPI.caseInfo.message)\n", event: .error)
+                                    completion(errorAPI)
+            })
+        }
+            
+        // Offline mode
+        else {
+            completion(ErrorAPI.requestFailed(message: "No Internet Connection"))
+        }
+    }
+
+
     /// Load User Follow counts
     class func loadUserFollowCounts(byName name: String, completion: @escaping (ErrorAPI?) -> Void) {
         // API 'get_follow_count'

@@ -2,14 +2,13 @@
 //  Lenta+CoreDataProperties.swift
 //  Golos
 //
-//  Created by msm72 on 10.07.2018.
+//  Created by msm72 on 07.08.2018.
 //  Copyright © 2018 golos. All rights reserved.
 //
 //
 
-import Foundation
 import CoreData
-
+import Foundation
 
 extension Lenta: PostCellSupport {
 
@@ -20,7 +19,6 @@ extension Lenta: PostCellSupport {
     @NSManaged public var id: Int64
     @NSManaged public var author: String
     @NSManaged public var parentAuthor: String?
-    @NSManaged public var created: Date
     @NSManaged public var category: String
     @NSManaged public var title: String
     @NSManaged public var body: String
@@ -34,24 +32,29 @@ extension Lenta: PostCellSupport {
     @NSManaged public var tags: [String]?
     @NSManaged public var coverImageURL: String?
     @NSManaged public var userName: String
-
-    @NSManaged public var activeVotes: NSSet?
     
+    @NSManaged public var active: Date
+    @NSManaged public var created: Date
+    @NSManaged public var lastUpdate: Date
+    @NSManaged public var lastPayout: Date
+    
+    @NSManaged public var activeVotes: NSSet?
+
 }
 
 // MARK: Generated accessors for activeVotes
 extension Lenta {
-    
+
     @objc(addActiveVotesObject:)
     @NSManaged public func addToActiveVotes(_ value: ActiveVote)
-    
+
     @objc(removeActiveVotesObject:)
     @NSManaged public func removeFromActiveVotes(_ value: ActiveVote)
-    
+
     @objc(addActiveVotes:)
     @NSManaged public func addToActiveVotes(_ values: NSSet)
-    
+
     @objc(removeActiveVotes:)
     @NSManaged public func removeFromActiveVotes(_ values: NSSet)
-    
+
 }

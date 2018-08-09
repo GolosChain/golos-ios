@@ -116,6 +116,9 @@
 		B15F228420EEB16C00C44282 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15F228320EEB16C00C44282 /* AppState.swift */; };
 		B15F228720EEB31C00C44282 /* AppSettings+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15F228520EEB31C00C44282 /* AppSettings+CoreDataClass.swift */; };
 		B15F228820EEB31C00C44282 /* AppSettings+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15F228620EEB31C00C44282 /* AppSettings+CoreDataProperties.swift */; };
+		B164CECA2119F6EB00349D79 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B18DB4502085D22A00BA5D50 /* Localizable.strings */; };
+		B164CECD211AA84800349D79 /* Comment+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B164CECB211AA84800349D79 /* Comment+CoreDataClass.swift */; };
+		B164CECE211AA84800349D79 /* Comment+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B164CECC211AA84800349D79 /* Comment+CoreDataProperties.swift */; };
 		B164F04220E62AE600C5CDD3 /* UserProfileShowPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B164F03C20E62AE600C5CDD3 /* UserProfileShowPresenter.swift */; };
 		B164F04420E62AE600C5CDD3 /* UserProfileShowRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B164F03E20E62AE600C5CDD3 /* UserProfileShowRouter.swift */; };
 		B164F04520E62AE600C5CDD3 /* UserProfileShowModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B164F03F20E62AE600C5CDD3 /* UserProfileShowModels.swift */; };
@@ -126,6 +129,7 @@
 		B181586020B976FD00835034 /* GSBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B181585F20B976FD00835034 /* GSBaseViewController.swift */; };
 		B18B937220B91D4E000CF503 /* ForegroundRemoteNotificationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B18B937120B91D4E000CF503 /* ForegroundRemoteNotificationView.xib */; };
 		B18B937420B91DB8000CF503 /* ForegroundRemoteNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18B937320B91DB8000CF503 /* ForegroundRemoteNotificationView.swift */; };
+		B1961953211C90D2001DF789 /* MarkdownViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1961952211C90D2001DF789 /* MarkdownViewManager.swift */; };
 		B198DB9120B9A21A008011A3 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B198DB9020B9A21A008011A3 /* UIColor+Extensions.swift */; };
 		B198DB9420B9C560008011A3 /* SFProDisplay-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = B198DB9320B9C560008011A3 /* SFProDisplay-Regular.otf */; };
 		B1A2AE432105B1640021A34B /* ActiveVote+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A2AE412105B1640021A34B /* ActiveVote+CoreDataClass.swift */; };
@@ -378,6 +382,10 @@
 		B15F228320EEB16C00C44282 /* AppState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		B15F228520EEB31C00C44282 /* AppSettings+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppSettings+CoreDataClass.swift"; sourceTree = "<group>"; };
 		B15F228620EEB31C00C44282 /* AppSettings+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppSettings+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B164CEC82119F19E00349D79 /* Golos 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Golos 4.xcdatamodel"; sourceTree = "<group>"; };
+		B164CECB211AA84800349D79 /* Comment+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Comment+CoreDataClass.swift"; sourceTree = "<group>"; };
+		B164CECC211AA84800349D79 /* Comment+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Comment+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B164CECF211AAA2700349D79 /* Golos 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Golos 5.xcdatamodel"; sourceTree = "<group>"; };
 		B164F03C20E62AE600C5CDD3 /* UserProfileShowPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileShowPresenter.swift; sourceTree = "<group>"; };
 		B164F03E20E62AE600C5CDD3 /* UserProfileShowRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileShowRouter.swift; sourceTree = "<group>"; };
 		B164F03F20E62AE600C5CDD3 /* UserProfileShowModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileShowModels.swift; sourceTree = "<group>"; };
@@ -397,6 +405,7 @@
 		B1918FF820B5421800F6CE63 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B1918FFA20B5421A00F6CE63 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B194891A20F744AA00BF45CF /* ForTests.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = ForTests.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		B1961952211C90D2001DF789 /* MarkdownViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownViewManager.swift; sourceTree = "<group>"; };
 		B198DB9020B9A21A008011A3 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		B198DB9320B9C560008011A3 /* SFProDisplay-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Regular.otf"; sourceTree = "<group>"; };
 		B1A2AE412105B1640021A34B /* ActiveVote+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ActiveVote+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -666,6 +675,8 @@
 				B15F228620EEB31C00C44282 /* AppSettings+CoreDataProperties.swift */,
 				B1E09E272101F7D9002CC5B7 /* Blog+CoreDataClass.swift */,
 				B1E09E282101F7D9002CC5B7 /* Blog+CoreDataProperties.swift */,
+				B164CECB211AA84800349D79 /* Comment+CoreDataClass.swift */,
+				B164CECC211AA84800349D79 /* Comment+CoreDataProperties.swift */,
 				B13FE9B020F5004F00F907BC /* Lenta+CoreDataClass.swift */,
 				B13FE9B120F5004F00F907BC /* Lenta+CoreDataProperties.swift */,
 				B1EA153A20FE007A0015EF76 /* New+CoreDataClass.swift */,
@@ -1019,6 +1030,7 @@
 				B114192720CD1E260025B07F /* ReachabilityManager.swift */,
 				B10F487D20F793DE00F2BCAC /* RestAPIManager.swift */,
 				B15F228020EEB14700C44282 /* StateMachine */,
+				B1961952211C90D2001DF789 /* MarkdownViewManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -1338,6 +1350,7 @@
 				B13FE9C320F5E74700F907BC /* Roboto-Medium.ttf in Resources */,
 				B146891E20F234BE00D36794 /* UserProfileInfoTitleView.xib in Resources */,
 				EC1DFB9920063C400080BC50 /* LaunchScreen.storyboard in Resources */,
+				B164CECA2119F6EB00349D79 /* Localizable.strings in Resources */,
 				B120D0702108256B00D949F5 /* SettingsNotificationsShow.storyboard in Resources */,
 				7DE3531C2048CA3400C04CB2 /* LogInHelpShowViewController.xib in Resources */,
 				B1384D532116AF71007A4548 /* PostShowCommentTableViewCell.xib in Resources */,
@@ -1532,6 +1545,7 @@
 				B1050CA220CECF75003CE4EE /* PostCreateRouter.swift in Sources */,
 				B1EA154720FE007A0015EF76 /* Actual+CoreDataProperties.swift in Sources */,
 				B15267AE210DB4980037CAAA /* NSAttributedString+Extensions.swift in Sources */,
+				B164CECE211AA84800349D79 /* Comment+CoreDataProperties.swift in Sources */,
 				B1E78A9320F9D30400B2901D /* GSScrollView.swift in Sources */,
 				B1E09E1E2101EFBE002CC5B7 /* PostFeedHeaderView.swift in Sources */,
 				B1EE684A20D261C4006BF802 /* UITextView+Extensions.swift in Sources */,
@@ -1567,6 +1581,7 @@
 				B127A87A20EB8ABF007133AB /* UserSecretActiveKey+CoreDataClass.swift in Sources */,
 				B1E09E222101F26C002CC5B7 /* PaginationSupport.swift in Sources */,
 				B13FE9B220F5004F00F907BC /* Reply+CoreDataClass.swift in Sources */,
+				B164CECD211AA84800349D79 /* Comment+CoreDataClass.swift in Sources */,
 				EC24FF28200BEBE600A0AE15 /* ViewProtocol.swift in Sources */,
 				B136D4FB20D8BA14003AD279 /* AddTagCollectionViewCell.swift in Sources */,
 				B120D069210824C600D949F5 /* SettingsUserProfileEditRouter.swift in Sources */,
@@ -1656,6 +1671,7 @@
 				B123C5BB20CE4C8B00747989 /* UITextField+Extensions.swift in Sources */,
 				B1EA154920FE007A0015EF76 /* Promo+CoreDataProperties.swift in Sources */,
 				B13FE9A820F4E90700F907BC /* UserProfileShowWorker.swift in Sources */,
+				B1961953211C90D2001DF789 /* MarkdownViewManager.swift in Sources */,
 				B1384D522116AF71007A4548 /* PostShowCommentTableViewCell.swift in Sources */,
 				B1EA155920FE22980015EF76 /* ActualPostsShowViewController.swift in Sources */,
 				ECF31725200A9D2800F7B703 /* UIAlertController+Window.swift in Sources */,
@@ -2164,11 +2180,13 @@
 		B12F442B20EB4AFC003FFF58 /* GolosModels.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				B164CECF211AAA2700349D79 /* Golos 5.xcdatamodel */,
+				B164CEC82119F19E00349D79 /* Golos 4.xcdatamodel */,
 				B13FE9B620F505D800F907BC /* Golos 3.xcdatamodel */,
 				B13FE9AD20F4FFD000F907BC /* Golos 2.xcdatamodel */,
 				B12F442C20EB4AFC003FFF58 /* Golos.xcdatamodel */,
 			);
-			currentVersion = B13FE9B620F505D800F907BC /* Golos 3.xcdatamodel */;
+			currentVersion = B164CECF211AAA2700349D79 /* Golos 5.xcdatamodel */;
 			path = GolosModels.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

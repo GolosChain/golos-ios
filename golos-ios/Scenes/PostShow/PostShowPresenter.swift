@@ -16,6 +16,7 @@ import GoloSwift
 // MARK: - Presentation Logic protocols
 protocol PostShowPresentationLogic {
     func presentLoadContent(fromResponseModel responseModel: PostShowModels.Post.ResponseModel)
+    func presentLoadContentComments(fromResponseModel responseModel: PostShowModels.Post.ResponseModel)
 }
 
 class PostShowPresenter: PostShowPresentationLogic {
@@ -33,5 +34,10 @@ class PostShowPresenter: PostShowPresentationLogic {
     func presentLoadContent(fromResponseModel responseModel: PostShowModels.Post.ResponseModel) {
         let viewModel = PostShowModels.Post.ViewModel(errorAPI: responseModel.errorAPI)
         viewController?.displayLoadContent(fromViewModel: viewModel)
+    }
+
+    func presentLoadContentComments(fromResponseModel responseModel: PostShowModels.Post.ResponseModel) {
+        let viewModel = PostShowModels.Post.ViewModel(errorAPI: responseModel.errorAPI)
+        viewController?.displayLoadContentComments(fromViewModel: viewModel)
     }
 }

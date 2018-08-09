@@ -7,8 +7,8 @@
 //
 //
 
-import Foundation
 import CoreData
+import Foundation
 
 
 extension ActiveVote {
@@ -32,5 +32,6 @@ extension ActiveVote {
     @NSManaged public var reply: Reply?
     @NSManaged public var actual: Actual?
     @NSManaged public var popular: Popular?
+    @NSManaged public var comment: Comment?
 
 }

@@ -13,11 +13,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostShowCommentTableViewCell" rowHeight="100" id="KGk-i7-Jjw" customClass="PostShowCommentTableViewCell" customModule="Golos" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostShowCommentTableViewCell" rowHeight="89" id="KGk-i7-Jjw" customClass="PostShowCommentTableViewCell" customModule="Golos" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="89"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="88.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TYr-nA-Uya" userLabel="Author Profile Image Button">
@@ -58,8 +58,15 @@
                             <constraint firstAttribute="trailing" secondItem="nVa-ke-spW" secondAttribute="trailing" constant="2" id="zvf-2V-UaJ"/>
                         </constraints>
                     </view>
+                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0J0-Jc-EhF" customClass="MarkdownViewManager" customModule="Golos" customModuleProvider="target">
+                        <rect key="frame" x="66" y="49" width="293" height="0.0"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" id="1Qz-Yo-zBY"/>
+                        </constraints>
+                    </view>
                     <stackView clipsSubviews="YES" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="edE-n6-ncS" userLabel="Actions Buttons Stack View">
-                        <rect key="frame" x="66" y="74.5" width="293" height="20"/>
+                        <rect key="frame" x="66" y="59" width="293" height="20"/>
                         <subviews>
                             <button clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="fWX-Xu-5oJ" userLabel="Upvotes Button">
                                 <rect key="frame" x="0.0" y="0.0" width="61" height="20"/>
@@ -71,6 +78,9 @@
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
                                 <state key="disabled" image="icon-button-upvotes-highlighted"/>
+                                <connections>
+                                    <action selector="upvotesButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="cPj-Tm-mWW"/>
+                                </connections>
                             </button>
                             <button clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="fRt-6O-usO" userLabel="Users Button">
                                 <rect key="frame" x="65" y="0.0" width="46" height="20"/>
@@ -82,6 +92,9 @@
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
                                 <state key="disabled" image="icon-button-user-profile-highlighted"/>
+                                <connections>
+                                    <action selector="usersButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="FhZ-72-RZo"/>
+                                </connections>
                             </button>
                             <button clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="o4E-2b-1C2" userLabel="Comments Button">
                                 <rect key="frame" x="115" y="0.0" width="48" height="20"/>
@@ -93,6 +106,9 @@
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
                                 <state key="disabled" image="icon-button-comments-highlighted"/>
+                                <connections>
+                                    <action selector="commentsButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="CMb-no-Cxo"/>
+                                </connections>
                             </button>
                             <button clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="0Qd-d8-Cdu" userLabel="Reply Button">
                                 <rect key="frame" x="167" y="0.0" width="63" height="20"/>
@@ -103,6 +119,9 @@
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
                                 <state key="disabled" title="Reply Verb"/>
+                                <connections>
+                                    <action selector="replyButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="RZE-L3-fuV"/>
+                                </connections>
                             </button>
                             <button clipsSubviews="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="qOa-A3-e5S" userLabel="Share Button">
                                 <rect key="frame" x="234" y="0.0" width="59" height="20"/>
@@ -113,6 +132,9 @@
                                 </state>
                                 <state key="disabled" image="icon-button-horizontal-more-highlighted"/>
                                 <state key="highlighted" image="icon-button-horizontal-more-highlighted"/>
+                                <connections>
+                                    <action selector="shareButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="lrU-8J-cAh"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -123,6 +145,9 @@
                     <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rsT-Tb-h3f" userLabel="Author Name Button">
                         <rect key="frame" x="66" y="5" width="46" height="32"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="32" id="yeM-od-AHq"/>
+                        </constraints>
                         <state key="normal" title="Button"/>
                         <connections>
                             <action selector="authorNameButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="vS1-kg-Jw8"/>
@@ -135,31 +160,24 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BVi-cU-Pxh" userLabel="Comment Label">
-                        <rect key="frame" x="66" y="49" width="293" height="20.5"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="rsT-Tb-h3f" firstAttribute="leading" secondItem="TYr-nA-Uya" secondAttribute="trailing" constant="10" id="1Pw-k4-gan"/>
                     <constraint firstItem="mpV-2Z-Ooi" firstAttribute="leading" secondItem="rsT-Tb-h3f" secondAttribute="trailing" constant="8" id="Fba-Sr-Ufl"/>
                     <constraint firstItem="5mf-B6-YXD" firstAttribute="bottom" secondItem="TYr-nA-Uya" secondAttribute="bottom" constant="2" id="HIe-RM-QhL"/>
-                    <constraint firstAttribute="trailing" secondItem="BVi-cU-Pxh" secondAttribute="trailing" constant="16" id="K5t-Qz-4dP"/>
-                    <constraint firstItem="BVi-cU-Pxh" firstAttribute="top" secondItem="rsT-Tb-h3f" secondAttribute="bottom" constant="12" id="PyH-QY-u0K"/>
+                    <constraint firstItem="edE-n6-ncS" firstAttribute="top" secondItem="0J0-Jc-EhF" secondAttribute="bottom" constant="10" id="Twd-bf-VUX"/>
                     <constraint firstItem="5mf-B6-YXD" firstAttribute="leading" secondItem="TYr-nA-Uya" secondAttribute="leading" constant="-2" id="VG7-8G-mOA"/>
                     <constraint firstItem="rsT-Tb-h3f" firstAttribute="top" secondItem="TYr-nA-Uya" secondAttribute="top" id="VlX-XC-2L5"/>
                     <constraint firstItem="TYr-nA-Uya" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="Z40-Ad-3lM"/>
                     <constraint firstItem="edE-n6-ncS" firstAttribute="leading" secondItem="TYr-nA-Uya" secondAttribute="trailing" constant="10" id="b3M-bR-YIA"/>
                     <constraint firstAttribute="trailing" secondItem="edE-n6-ncS" secondAttribute="trailing" constant="16" id="bKp-cO-pDU"/>
-                    <constraint firstAttribute="bottom" secondItem="edE-n6-ncS" secondAttribute="bottom" constant="5" id="cmb-gA-613"/>
                     <constraint firstItem="mpV-2Z-Ooi" firstAttribute="centerY" secondItem="rsT-Tb-h3f" secondAttribute="centerY" id="dCJ-F2-djb"/>
-                    <constraint firstItem="edE-n6-ncS" firstAttribute="top" secondItem="BVi-cU-Pxh" secondAttribute="bottom" constant="5" id="eU2-hL-acM"/>
-                    <constraint firstItem="BVi-cU-Pxh" firstAttribute="leading" secondItem="rsT-Tb-h3f" secondAttribute="leading" id="rYV-qr-bRW"/>
+                    <constraint firstAttribute="trailing" secondItem="0J0-Jc-EhF" secondAttribute="trailing" constant="16" id="k4q-mB-lah"/>
+                    <constraint firstAttribute="bottom" secondItem="edE-n6-ncS" secondAttribute="bottom" constant="10" id="sEE-sa-MTL"/>
                     <constraint firstItem="TYr-nA-Uya" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="xUb-CZ-qTp"/>
+                    <constraint firstItem="0J0-Jc-EhF" firstAttribute="top" secondItem="rsT-Tb-h3f" secondAttribute="bottom" constant="12" id="yHq-8o-YkO"/>
+                    <constraint firstItem="0J0-Jc-EhF" firstAttribute="leading" secondItem="rsT-Tb-h3f" secondAttribute="leading" id="ygG-mG-elc"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -168,22 +186,24 @@
                 <outlet property="authorProfileAddButton" destination="nVa-ke-spW" id="QDC-Ir-FDi"/>
                 <outlet property="authorProfileImageButton" destination="TYr-nA-Uya" id="fgl-2o-Ujp"/>
                 <outlet property="cellLeadingConstraint" destination="xUb-CZ-qTp" id="MPv-Zm-EOp"/>
-                <outlet property="commentLabel" destination="BVi-cU-Pxh" id="qxb-iY-E8U"/>
+                <outlet property="markdownViewHeightConstraint" destination="1Qz-Yo-zBY" id="BaD-1l-2tq"/>
+                <outlet property="markdownViewManager" destination="0J0-Jc-EhF" id="ynM-hV-vkx"/>
+                <outlet property="replyButton" destination="0Qd-d8-Cdu" id="Pqm-Ye-5Ct"/>
                 <outlet property="timeLabel" destination="mpV-2Z-Ooi" id="zQ3-BR-sac"/>
                 <outletCollection property="heightsCollection" destination="5YB-gF-Top" collectionClass="NSMutableArray" id="Ebs-6P-quE"/>
                 <outletCollection property="heightsCollection" destination="2zy-Z4-A2D" collectionClass="NSMutableArray" id="Tqg-2L-PIf"/>
                 <outletCollection property="widthsCollection" destination="xUb-CZ-qTp" collectionClass="NSMutableArray" id="iPC-Is-aYI"/>
                 <outletCollection property="widthsCollection" destination="b3M-bR-YIA" collectionClass="NSMutableArray" id="NQZ-ZG-YIA"/>
-                <outletCollection property="heightsCollection" destination="cmb-gA-613" collectionClass="NSMutableArray" id="sXL-aC-Xpo"/>
                 <outletCollection property="heightsCollection" destination="szH-DB-CSr" collectionClass="NSMutableArray" id="lWQ-9c-KBH"/>
                 <outletCollection property="widthsCollection" destination="bKp-cO-pDU" collectionClass="NSMutableArray" id="RIc-oO-j42"/>
-                <outletCollection property="heightsCollection" destination="PyH-QY-u0K" collectionClass="NSMutableArray" id="nPt-EA-0KG"/>
                 <outletCollection property="widthsCollection" destination="1Pw-k4-gan" collectionClass="NSMutableArray" id="oEA-ay-Vfm"/>
                 <outletCollection property="widthsCollection" destination="Fba-Sr-Ufl" collectionClass="NSMutableArray" id="V5m-z3-8Hh"/>
-                <outletCollection property="widthsCollection" destination="K5t-Qz-4dP" collectionClass="NSMutableArray" id="VKS-Jr-WdC"/>
-                <outletCollection property="heightsCollection" destination="eU2-hL-acM" collectionClass="NSMutableArray" id="mvr-lp-Dcd"/>
+                <outletCollection property="heightsCollection" destination="yeM-od-AHq" collectionClass="NSMutableArray" id="66d-Fp-Prv"/>
+                <outletCollection property="widthsCollection" destination="k4q-mB-lah" collectionClass="NSMutableArray" id="OJs-y5-mrx"/>
+                <outletCollection property="heightsCollection" destination="Twd-bf-VUX" collectionClass="NSMutableArray" id="xOr-Dy-h63"/>
+                <outletCollection property="heightsCollection" destination="yHq-8o-YkO" collectionClass="NSMutableArray" id="rqZ-Zb-m1k"/>
             </connections>
-            <point key="canvasLocation" x="54" y="60"/>
+            <point key="canvasLocation" x="53.5" y="63.5"/>
         </tableViewCell>
     </objects>
     <resources>

@@ -11,7 +11,6 @@ import Foundation
 protocol PostCellSupport: PaginationSupport, MetaDataSupport {
     var id: Int64 { get set }
     var parentAuthor: String? { get set }
-    var created: Date { get set }
     var category: String { get set }
     var title: String { get set }
     var body: String { get set }
@@ -23,4 +22,10 @@ protocol PostCellSupport: PaginationSupport, MetaDataSupport {
     var url: String? { get set }
     var tags: [String]? { get set }
     var activeVotes: NSSet? { get set }
+    
+    var active: Date { get set }
+    var created: Date { get set }
+    var lastUpdate: Date { get set }
+    var lastPayout: Date { get set }
+
 }

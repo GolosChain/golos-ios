@@ -9,15 +9,26 @@
 import UIKit
 import CoreData
 import GoloSwift
+import MarkdownView
 
 class PostShowCommentTableViewCell: UITableViewCell {
     // MARK: - Properties
     var completionAuthorNameButtonTapped: (() -> Void)?
     var completionAuthorProfileAddButtonTapped: (() -> Void)?
     var completionAuthorProfileImageButtonTapped: (() -> Void)?
+    var completionCellChangeHeight: ((CGFloat) -> Void)?
+
+    // Action buttons completions
+    var completionUpvotesButtonTapped: (() -> Void)?
+    var completionUsersButtonTapped: (() -> Void)?
+    var completionCommentsButtonTapped: (() -> Void)?
+    var completionReplyButtonTapped: (() -> Void)?
+    var completionShareButtonTapped: (() -> Void)?
 
     
     // MARK: - IBOutlets
+    @IBOutlet weak var markdownViewManager: MarkdownViewManager!
+
     @IBOutlet weak var authorProfileImageButton: UIButton! {
         didSet {
             authorProfileImageButton.layer.cornerRadius = 40.0 * heightRatio / 2
@@ -48,14 +59,13 @@ class PostShowCommentTableViewCell: UITableViewCell {
                            isMultiLines:        false)
         }
     }
-    
-    @IBOutlet weak var commentLabel: UILabel! {
+
+    @IBOutlet weak var replyButton: UIButton! {
         didSet {
-            commentLabel.tune(withText:         "",
-                              hexColors:        veryDarkGrayWhiteColorPickers,
-                              font:             UIFont(name: "SFUIDisplay-Regular", size: 10.0 * widthRatio),
-                              alignment:        .left,
-                              isMultiLines:     true)
+            replyButton.tune(withTitle:         "Reply Verb",
+                             hexColors:         [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
+                             font:              UIFont(name: "SFUIDisplay-Medium", size: 10.0 * widthRatio),
+                             alignment:         .left)
         }
     }
     
@@ -72,7 +82,8 @@ class PostShowCommentTableViewCell: UITableViewCell {
     }
     
     @IBOutlet weak var cellLeadingConstraint: NSLayoutConstraint!
-    
+    @IBOutlet weak var markdownViewHeightConstraint: NSLayoutConstraint!
+
 
     // MARK: - Class Initialization
     override func awakeFromNib() {
@@ -98,16 +109,64 @@ class PostShowCommentTableViewCell: UITableViewCell {
     @IBAction func authorNameButtonTapped(_ sender: UIButton) {
         self.completionAuthorNameButtonTapped!()
     }
+    
+    // Action buttons
+    @IBAction func upvotesButtonTapped(_ sender: UIButton) {
+        self.completionUpvotesButtonTapped!()
+    }
+
+    @IBAction func usersButtonTapped(_ sender: UIButton) {
+        self.completionUsersButtonTapped!()
+    }
+
+    @IBAction func commentsButtonTapped(_ sender: UIButton) {
+        self.completionCommentsButtonTapped!()
+    }
+
+    @IBAction func replyButtonTapped(_ sender: UIButton) {
+        self.completionReplyButtonTapped!()
+    }
+
+    @IBAction func shareButtonTapped(_ sender: UIButton) {
+        self.completionShareButtonTapped!()
+    }
 }
 
 
 // MARK: - ConfigureCell
-extension PostShowCommentTableViewCell: ConfigureCell {
+extension PostShowCommentTableViewCell {
     func setup(withItem item: Any?, andIndexPath indexPath: IndexPath) {
-        if var title = item as? String {
+        if let comment = item as? Comment {
+            self.timeLabel.text = comment.created.convertToDaysAgo()
 
+            // avatar
+            self.authorNameButton.setTitle(comment.author, for: .normal)
+
+            // Load markdown content
+            DispatchQueue.main.async {
+                self.markdownViewManager.load(markdown: comment.body)
+            }
+
+            self.markdownViewManager.onRendered = { [weak self] height in
+                if self?.markdownViewHeightConstraint.constant == 0.0 {
+                    self?.markdownViewHeightConstraint.constant = height
+                    self?.layoutIfNeeded()
+                    
+                    self?.completionCellChangeHeight!(height)
+                }
+                
+                UIView.animate(withDuration: 0.5, animations: {
+                    self?.contentView.alpha = 1.0
+                })
+            }
+
+            // Load author profile image
+            if let userProfileImageURL = comment.url {
+                self.authorProfileImageButton.uploadImage(byStringPath: userProfileImageURL, size: CGSize(width: 40.0 * widthRatio, height: 40.0 * widthRatio))
+            }
+
+            // Set cell level
+            // set cellLeadingConstraint
         }
-        
-        // set cellLeadingConstraint
     }
 }

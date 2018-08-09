@@ -18,6 +18,7 @@ public enum PostsFeedType: String {
     case actual
     case answers
     case popular
+    case comment
     
     public func caseTitle() -> String {
         switch self {
@@ -29,6 +30,7 @@ public enum PostsFeedType: String {
         case .actual:       return "Actual"
         case .answers:      return "Answers"
         case .popular:      return "Popular"
+        case .comment:      return "Comment"
         }
     }
     
@@ -42,6 +44,7 @@ public enum PostsFeedType: String {
         case .actual:       return "get_discussions_by_hot"
         case .answers:      return ""
         case .popular:      return "get_discussions_by_trending"
+        case .comment:      return "get_all_content_replies"
         }
     }
 }

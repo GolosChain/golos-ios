@@ -18,6 +18,7 @@ import GoloSwift
 protocol PostShowBusinessLogic {
     func save(_ post: NSManagedObject)
     func loadContent(withRequestModel requestModel: PostShowModels.Post.RequestModel)
+    func loadContentComments(withRequestModel requestModel: PostShowModels.Post.RequestModel)
 }
 
 protocol PostShowDataStore {
@@ -47,9 +48,6 @@ class PostShowInteractor: PostShowBusinessLogic, PostShowDataStore {
     }
 
     func loadContent(withRequestModel requestModel: PostShowModels.Post.RequestModel) {
-        worker = PostShowWorker()
-        worker?.doSomeWork()
-        
         // API 'get_content'
         let content = RequestParameterAPI.Content(author: (self.post as! PostCellSupport).author, permlink: (self.post as! PostCellSupport).permlink)
         
@@ -63,6 +61,26 @@ class PostShowInteractor: PostShowBusinessLogic, PostShowDataStore {
             
             let responseModel = PostShowModels.Post.ResponseModel(errorAPI: nil)
             self?.presenter?.presentLoadContent(fromResponseModel: responseModel)
+        })
+    }
+
+    func loadContentComments(withRequestModel requestModel: PostShowModels.Post.RequestModel) {
+//        worker = PostShowWorker()
+//        worker?.doSomeWork()
+        
+        // API 'get_all_content_replies'
+        let content = RequestParameterAPI.Content(author: (self.post as! PostCellSupport).author, permlink: (self.post as! PostCellSupport).permlink)
+        
+        RestAPIManager.loadPostComments(byContent: content, andPostType: .comment, completion: { [weak self] errorAPI in
+            guard errorAPI?.caseInfo.message != "No Internet Connection" || !(errorAPI?.caseInfo.message.hasSuffix("timing"))! else {
+                let responseModel = PostShowModels.Post.ResponseModel(errorAPI: errorAPI)
+                self?.presenter?.presentLoadContentComments(fromResponseModel: responseModel)
+                
+                return
+            }
+            
+            let responseModel = PostShowModels.Post.ResponseModel(errorAPI: nil)
+            self?.presenter?.presentLoadContentComments(fromResponseModel: responseModel)
         })
     }
 }

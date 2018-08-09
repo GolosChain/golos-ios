@@ -26,7 +26,10 @@ extension NSManagedObject {
             entity.allowVotes           =   model.allow_votes
             entity.allowReplies         =   model.allow_replies
             entity.jsonMetadata         =   model.json_metadata
+            entity.active               =   model.active.convert(toDateFormat: .expirationDateType)
             entity.created              =   model.created.convert(toDateFormat: .expirationDateType)
+            entity.lastUpdate           =   model.last_update.convert(toDateFormat: .expirationDateType)
+            entity.lastPayout           =   model.last_payout.convert(toDateFormat: .expirationDateType)
             entity.parentAuthor         =   model.parent_author
             entity.parentPermlink       =   model.parent_permlink
             entity.activeVotesCount     =   Int16(model.active_votes.count)
@@ -43,11 +46,11 @@ extension NSManagedObject {
             }
             
             // Extension: parse & save
-            self.parse(metaData: model.json_metadata, fromModel: model)
+            self.parse(metaData: model.json_metadata, fromBody: model.body)
         }
     }
     
-    func parse(metaData: String?, fromModel model: ResponseAPIPost) {
+    func parse(metaData: String?, fromBody body: String) {
         if let jsonMetaData = metaData, !jsonMetaData.isEmpty, let jsonData = jsonMetaData.data(using: .utf8) {
             do {
                 if let json = try JSONSerialization.jsonObject(with: jsonData, options: .allowFragments) as? [String: Any] {
@@ -59,7 +62,7 @@ extension NSManagedObject {
                         
                     else {
                         do {
-                            let input       =   model.body
+                            let input       =   body
                             let detector    =   try NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
                             let matches     =   detector.matches(in: input, options: [], range: NSRange(location: 0, length: input.utf16.count))
                             

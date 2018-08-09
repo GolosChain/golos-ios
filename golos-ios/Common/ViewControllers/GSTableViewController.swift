@@ -11,14 +11,30 @@ import CoreData
 import GoloSwift
 import SwiftTheme
 
+typealias FetchPostParameters   =   (author: String?, postFeedType: PostsFeedType, permlink: String?, sortBy: String?)
+
 class GSTableViewController: GSBaseViewController {
     // MARK: - Properties
+    var commentsViewHeight: CGFloat = 0.0 {
+        didSet {
+            self.tableView.frame.size = CGSize(width: self.tableView.bounds.width, height: self.tableView.frame.height + commentsViewHeight)
+        }
+    }
+    
     var reloadData: Bool        =   false
     var refreshData: Bool       =   false
     var paginanationData: Bool  =   false
     var lastIndex: Int          =   0
     var topVisibleIndexPath     =   IndexPath(row: 0, section: 0)
     var cellIdentifier: String  =   "PostFeedTableViewCell"
+    
+    var itemsCount: Int {
+        guard let fetchedResultsController = self.fetchedResultsController, let sections = fetchedResultsController.sections, let first = sections.first else {
+            return 0
+        }
+        
+        return first.numberOfObjects
+    }
     
     // Handlers
     var handlerShareButtonTapped: (() -> Void)?
@@ -28,6 +44,13 @@ class GSTableViewController: GSBaseViewController {
     var handlerReplyTypeButtonTapped: (() -> Void)?
     var handlerRefreshData: ((NSManagedObject?) -> Void)?
     var handlerSelectItem: ((NSManagedObject?) -> Void)?
+    var handlerUsersButtonTapped: (() -> Void)?
+    var handlerAuthorProfileAddButtonTapped: (() -> Void)?
+    var handlerAuthorProfileImageButtonTapped: (() -> Void)?
+
+    // Markdown completions
+    var completionCommentShowSafariURL: ((URL) -> Void)?
+    var completionCommentAuthorTapped: ((String) -> Void)?
 
     var activityIndicatorView: UIActivityIndicatorView!
 
@@ -52,7 +75,7 @@ class GSTableViewController: GSBaseViewController {
             // Set automatic dimensions for row height
             tableView.rowHeight             =   UITableViewAutomaticDimension
             tableView.estimatedRowHeight    =   320.0 * heightRatio
-                        
+            
             if #available(iOS 10.0, *) {
                 tableView.refreshControl = refreshControl
             } else {
@@ -60,6 +83,8 @@ class GSTableViewController: GSBaseViewController {
             }
         }
     }
+    
+    @IBOutlet weak var commentsTableViewHeightConstraint: NSLayoutConstraint!
 
     
     // MARK: - Class Initialization
@@ -165,31 +190,37 @@ class GSTableViewController: GSBaseViewController {
         }
     }
     
-    func fetchPosts(byUserName userName: String, andPostFeedType type: PostsFeedType) {
+    func fetchPosts(byParameters parameters: FetchPostParameters) {
         var fetchRequest: NSFetchRequest<NSFetchRequestResult>
         var primarySortDescriptor: NSSortDescriptor
         var secondarySortDescriptor: NSSortDescriptor
 
-        fetchRequest    =   NSFetchRequest<NSFetchRequestResult>(entityName: type.caseTitle())
+        fetchRequest    =   NSFetchRequest<NSFetchRequestResult>(entityName: parameters.postFeedType.caseTitle())
 
-        switch type {
+        switch parameters.postFeedType {
         // Replies
         case .reply:
-            fetchRequest.predicate  =   NSPredicate(format: "parentAuthor == %@", userName)
-
+            if let author = parameters.author {
+                fetchRequest.predicate  =   NSPredicate(format: "parentAuthor == %@", author)
+            }
+            
         // Blog
         case .blog:
-            fetchRequest.predicate  =   NSPredicate(format: "author == %@", userName)
+            if let author = parameters.author {
+                fetchRequest.predicate  =   NSPredicate(format: "author == %@", author)
+            }
 
         case .lenta:
-            fetchRequest.predicate  =   NSPredicate(format: "userName == %@", userName)
-
+            if let author = parameters.author {
+                fetchRequest.predicate  =   NSPredicate(format: "userName == %@", author)
+            }
+            
         // Popular, Actual, New, Promo
         default:
             break
         }
         
-        primarySortDescriptor           =   NSSortDescriptor(key: "created", ascending: false)
+        primarySortDescriptor           =   NSSortDescriptor(key: parameters.sortBy ?? "created", ascending: false)
         secondarySortDescriptor         =   NSSortDescriptor(key: "author", ascending: true)
         fetchRequest.sortDescriptors    =   [ primarySortDescriptor, secondarySortDescriptor ]
         
@@ -200,7 +231,29 @@ class GSTableViewController: GSBaseViewController {
         else {
             fetchRequest.fetchLimit     =   Int(loadDataLimit) + self.lastIndex
         }
+     
+        self.run(fetchRequest: fetchRequest, postType: parameters.postFeedType)
+    }
+    
+    func fetchPostComments(byParameters parameters: FetchPostParameters) {
+        var fetchRequest: NSFetchRequest<NSFetchRequestResult>
+        var primarySortDescriptor: NSSortDescriptor
+        var secondarySortDescriptor: NSSortDescriptor
         
+        fetchRequest    =   NSFetchRequest<NSFetchRequestResult>(entityName: parameters.postFeedType.caseTitle())
+        
+        if let author = parameters.author, let permlink = parameters.permlink {
+            fetchRequest.predicate  =   NSPredicate(format: "parentAuthor == %@ AND parentPermlink == %@", author, permlink)
+        }
+        
+        primarySortDescriptor           =   NSSortDescriptor(key: parameters.sortBy ?? "created", ascending: false)
+        secondarySortDescriptor         =   NSSortDescriptor(key: "author", ascending: true)
+        fetchRequest.sortDescriptors    =   [ primarySortDescriptor, secondarySortDescriptor ]
+        
+        self.run(fetchRequest: fetchRequest, postType: parameters.postFeedType)
+    }
+    
+    private func run(fetchRequest: NSFetchRequest<NSFetchRequestResult>, postType: PostsFeedType) {
         fetchedResultsController        =   NSFetchedResultsController(fetchRequest:            fetchRequest,
                                                                        managedObjectContext:    CoreDataManager.instance.managedObjectContext,
                                                                        sectionNameKeyPath:      nil,
@@ -221,15 +274,16 @@ class GSTableViewController: GSBaseViewController {
             }
             
             // Reload data completion
-            DispatchQueue.main.async {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
                 self.tableView?.reloadDataWithCompletion {
                     Logger.log(message: "Load data is finished!!!", event: .debug)
                     
                     // Hide activity indicator
                     self.displaySpinner(false)
-
+                    self.tableView.layoutIfNeeded()
+                    
                     if self.fetchedResultsController.sections![0].numberOfObjects == 0 {
-                        self.diplayEmptyTitle(byType: type)
+                        self.diplayEmptyTitle(byType: postType)
                     }
 
                     else {
@@ -258,7 +312,9 @@ class GSTableViewController: GSBaseViewController {
         self.lastIndex              =   0
         self.topVisibleIndexPath    =   IndexPath(row: 0, section: 0)
         
-        self.handlerRefreshData!(nil)
+        if self.handlerRefreshData != nil {
+            self.handlerRefreshData!(nil)
+        }
     }
 }
 
@@ -303,6 +359,63 @@ extension GSTableViewController: UITableViewDataSource {
         let entity = fetchedResultsController.object(at: indexPath) as! NSManagedObject
         
         switch entity {
+        // Comments
+        case let commentEntity where type(of: entity) == Comment.self:
+            if let commentCell = tableView.dequeueReusableCell(withIdentifier: self.cellIdentifier, for: indexPath) as? PostShowCommentTableViewCell {
+                // Handlers action buttons comletions
+                commentCell.completionUpvotesButtonTapped       =   { [weak self] in
+                    self?.handlerUpvotesButtonTapped!()
+                }
+                
+                commentCell.completionUsersButtonTapped         =   { [weak self] in
+                    self?.handlerUsersButtonTapped!()
+                }
+
+                commentCell.completionCommentsButtonTapped      =   { [weak self] in
+                    self?.handlerAnswerButtonTapped!()
+                }
+
+                commentCell.completionReplyButtonTapped         =   { [weak self] in
+                    self?.handlerReplyTypeButtonTapped!()
+                }
+
+                commentCell.completionShareButtonTapped         =   { [weak self] in
+                    self?.handlerShareButtonTapped!()
+                }
+                
+                commentCell.completionAuthorProfileAddButtonTapped                  =   { [weak self] in
+                    self?.handlerAuthorProfileAddButtonTapped!()
+                }
+                
+                commentCell.completionAuthorProfileImageButtonTapped                =   { [weak self] in
+                    self?.handlerAuthorProfileImageButtonTapped!()
+                }
+                
+                // Markdown completions
+                commentCell.markdownViewManager.completionErrorAlertView             =   { [weak self] message in
+                    self?.showAlertView(withTitle: "Error", andMessage: message, needCancel: false, completion: { _ in })
+                }
+                
+                // Redirect to PostShow scene
+                commentCell.markdownViewManager.completionCommentAuthorTapped       =   { [weak self] authorName in
+                    self?.completionCommentAuthorTapped!(authorName)
+                }
+                
+                commentCell.markdownViewManager.completionShowSafariURL             =   { [weak self] url in
+                    self?.completionCommentShowSafariURL!(url)
+                }
+
+                commentCell.setup(withItem: commentEntity, andIndexPath: indexPath)
+                
+                // Handler change cell height
+                commentCell.completionCellChangeHeight          =   { [weak self] cellHeight in
+                    tableView.reloadRows(at: [indexPath], with: .none)
+                    self?.commentsTableViewHeightConstraint.constant  +=  cellHeight / 2
+                }
+                
+                return commentCell
+            }
+            
         // Replies
         case let replyEntity where type(of: entity) == Reply.self:
             if let replyCell = tableView.dequeueReusableCell(withIdentifier: self.cellIdentifier, for: indexPath) as? ReplyTableViewCell {
@@ -372,6 +485,16 @@ extension GSTableViewController: UITableViewDelegate {
             
             self.handlerRefreshData!(lastElement)
         }
+        
+//        if let commentCell = cell as? PostShowCommentTableViewCell {
+//            let commentEntity = fetchedResultsController.object(at: indexPath) as! Comment
+//
+////            commentCell.getMarkdownViewHeight(byCommentContent: commentEntity.body, completion: { [weak self] cellHeight in
+////                commentCell.markdownViewHeightConstraint.constant   =   cellHeight
+////                self?.commentsTableViewHeightConstraint.constant    =  cellHeight
+//////                tableView.rowHeight = cellHeight
+////            })
+//        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

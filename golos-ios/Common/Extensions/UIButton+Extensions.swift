@@ -7,10 +7,63 @@
 //
 
 import UIKit
-import Kingfisher
+import GoloSwift
 import SwiftTheme
 
 extension UIButton {
+    /// Download image
+    func uploadImage(byStringPath path: String, size: CGSize) {
+        let imagePathWithProxy      =   path.trimmingCharacters(in: .whitespacesAndNewlines).addImageProxy(withSize: size)
+        let imageURL                =   URL(string: imagePathWithProxy.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!)
+        
+        Logger.log(message: "imageURL = \(imageURL!)", event: .debug)
+        
+        let imageKey: NSString      =   imageURL!.absoluteString as NSString
+        
+        // Get image from NSCache
+        if let cachedImage = cacheApp.object(forKey: imageKey) {
+            
+            UIView.animate(withDuration: 0.5) {
+                self.setImage(cachedImage, for: .normal)
+            }
+        }
+                
+        else {
+            // Download .gif
+            if imagePathWithProxy.hasSuffix(".gif"), let imageGIF = UIImage.gif(url: imagePathWithProxy) {
+                // Save image to NSCache
+                cacheApp.setObject(imageGIF, forKey: imageKey)
+                
+                DispatchQueue.main.async {
+                    self.setImage(imageGIF, for: .normal)
+                }
+            }
+                
+                // Download image by URL
+            else {
+                URLSession.shared.dataTask(with: imageURL!) { data, _, error in
+                    guard error == nil else {
+                        DispatchQueue.main.async {
+                            self.setImage(UIImage(named: "icon-user-profile-image-placeholder"), for: .normal)
+                        }
+                        
+                        return
+                    }
+                    
+                    if let data = data, let downloadedImage = UIImage(data: data) {
+                        // Save image to NSCache
+                        cacheApp.setObject(downloadedImage, forKey: imageKey)
+                        
+                        DispatchQueue.main.async {
+                            self.setImage(downloadedImage, for: .normal)
+                        }
+                    }
+                    }.resume()
+            }
+        }
+    }
+
+
     /// hexColors: [normal, highlighted, selected, disabled]
     func tune(withTitle title: String, hexColors: [ThemeColorPicker], font: UIFont?, alignment: NSTextAlignment) {
         ThemeManager.setTheme(index: isAppThemeDark ? 1 : 0)
@@ -73,21 +126,5 @@ extension UIButton {
     private func setRoundEdges(cornerRadius: CGFloat) {
         layer.masksToBounds = true
         layer.cornerRadius = cornerRadius
-    }
-    
-    // Upload image
-    func uploadImage(byStringPath path: String, andSize size: CGSize) {
-        let imagePath = path.addImageProxy(withSize: size)
-
-        self.kf.setImage(with:              ImageResource(downloadURL: URL(string: imagePath)!, cacheKey: imagePath), for: .normal,
-                         placeholder:       UIImage.init(named: "image-placeholder"),
-                         options:           [.transition(ImageTransition.fade(1)),
-                                             .processor(ResizingImageProcessor(referenceSize:       size,
-                                                                               mode:                .aspectFill))],
-                         completionHandler: { _, error, _, _ in
-                            if error == nil {
-                                self.imageView?.kf.cancelDownloadTask()
-                            }
-        })
-    }
+    }    
 }

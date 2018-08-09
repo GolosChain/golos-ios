@@ -60,6 +60,7 @@
 "Promote Post Verb"                         =   "Promote Post";
 "Donate Verb"                               =   "Thanking";
 "Hide Comments Verb"                        =   "Hide Comments";
+"Show Comments Verb"                        =   "Show Comments";
 "Load more"                                 =   "Load More";
 "Load Comments"                             =   "Load Comments";
 "Action Sheet Popular"                      =   "Popular";
@@ -134,7 +135,7 @@
 "Permlink without timing"                   =   "Permlink without timing";
 "Permlink with timing"                      =   "Permlink with timing";
 "Sort by"                                   =   "Sort by";
-"Comments Noun"                             =   "Comments Noun";
+"Comments Noun"                             =   "Comments";
 "Published in"                              =   "Published in";
 "Previously:"                               =   "Previously:";
 "Recent Past:"                              =   "Recent Past";
@@ -157,6 +158,7 @@
 "Promo List is empty"                       =   "List of Promo Posts\n is empty";
 "Reply List is empty"                       =   "List of Answers\n is empty";
 "Blog List is empty"                        =   "List of My Blog\n is empty";
+"Comment List is empty"                     =   "List of Comments\n is empty";
 "First Name Last Name Placeholder"          =   "First Name Last Name";
 "Short About Yourself Placeholder"          =   "About Yourself";
 "Moscow Placeholder"                        =   "Moscow";
@@ -194,3 +196,4 @@
 "You may only post once every 5 minutes"    =   "You may only post once every 5 minutes";
 "Fetching Failed"                           =   "Fetching Failed from CoreData";
 "Broken Link Failure"                       =   "Broken Link Failure";
+"Response All Content Replies error"        =   "Response All Content Replies Result Error";

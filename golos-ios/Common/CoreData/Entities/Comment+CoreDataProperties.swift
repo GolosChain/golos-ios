@@ -1,8 +1,8 @@
 //
-//  Promo+CoreDataProperties.swift
+//  Comment+CoreDataProperties.swift
 //  Golos
 //
-//  Created by msm72 on 17.07.2018.
+//  Created by msm72 on 08.08.2018.
 //  Copyright © 2018 golos. All rights reserved.
 //
 //
@@ -10,10 +10,11 @@
 import CoreData
 import Foundation
 
-extension Promo: PostCellSupport {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<Promo> {
-        return NSFetchRequest<Promo>(entityName: "Promo")
+extension Comment: PostCellSupport {
+
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<Comment> {
+        return NSFetchRequest<Comment>(entityName: "Comment")
     }
 
     @NSManaged public var id: Int64
@@ -38,22 +39,23 @@ extension Promo: PostCellSupport {
     @NSManaged public var lastPayout: Date
     
     @NSManaged public var activeVotes: NSSet?
-    
+
 }
 
-// MARK: Generated accessors for activeVotes
-extension Promo {
-    
+
+// MARK: - Generated accessors for activeVotes
+extension Comment {
+
     @objc(addActiveVotesObject:)
     @NSManaged public func addToActiveVotes(_ value: ActiveVote)
-    
+
     @objc(removeActiveVotesObject:)
     @NSManaged public func removeFromActiveVotes(_ value: ActiveVote)
-    
+
     @objc(addActiveVotes:)
     @NSManaged public func addToActiveVotes(_ values: NSSet)
-    
+
     @objc(removeActiveVotes:)
     @NSManaged public func removeFromActiveVotes(_ values: NSSet)
-    
+
 }

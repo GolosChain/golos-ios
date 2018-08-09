@@ -7,9 +7,8 @@
 //
 //
 
-import Foundation
 import CoreData
-
+import Foundation
 
 extension New: PostCellSupport {
 
@@ -20,7 +19,6 @@ extension New: PostCellSupport {
     @NSManaged public var id: Int64
     @NSManaged public var author: String
     @NSManaged public var parentAuthor: String?
-    @NSManaged public var created: Date
     @NSManaged public var category: String
     @NSManaged public var title: String
     @NSManaged public var body: String
@@ -34,6 +32,11 @@ extension New: PostCellSupport {
     @NSManaged public var tags: [String]?
     @NSManaged public var coverImageURL: String?
 
+    @NSManaged public var active: Date
+    @NSManaged public var created: Date
+    @NSManaged public var lastUpdate: Date
+    @NSManaged public var lastPayout: Date
+    
     @NSManaged public var activeVotes: NSSet?
     
 }

@@ -48,6 +48,7 @@ class PostShowRouter: NSObject, PostShowRoutingLogic, PostShowDataPassing {
     
     // MARK: - Navigation
     func navigateToUserProfileScene(source: PostShowViewController, destination: UserProfileShowViewController) {
+        self.viewController?.view.alpha = 0.0
         source.show(destination, sender: nil)
     }
     
