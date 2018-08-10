@@ -78,7 +78,9 @@ class GSTableViewController: GSBaseViewController {
             
             if #available(iOS 10.0, *) {
                 tableView.refreshControl = refreshControl
-            } else {
+            }
+            
+            else {
                 tableView.addSubview(refreshControl)
             }
         }
@@ -108,7 +110,6 @@ class GSTableViewController: GSBaseViewController {
     // MARK: - Class Functions
     override func viewDidLoad() {
         super.viewDidLoad()
-
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -408,9 +409,16 @@ extension GSTableViewController: UITableViewDataSource {
                 commentCell.setup(withItem: commentEntity, andIndexPath: indexPath)
                 
                 // Handler change cell height
-                commentCell.completionCellChangeHeight          =   { [weak self] cellHeight in
-                    tableView.reloadRows(at: [indexPath], with: .none)
-                    self?.commentsTableViewHeightConstraint.constant  +=  cellHeight / 2
+                commentCell.completionCellChangeHeight          =   { [weak self] (cellHeight, cellIndexPath) in
+                    tableView.reloadRows(at: [cellIndexPath], with: .none)
+                    
+                    if self?.itemsCount == 1 {
+                        self?.commentsTableViewHeightConstraint.constant    =  cellHeight
+                    }
+                    
+                    else {
+                        self?.commentsTableViewHeightConstraint.constant    =  (self?.view.bounds.height)! - (64.0 - 0.0) * heightRatio
+                    }
                 }
                 
                 return commentCell
@@ -467,6 +475,18 @@ extension GSTableViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard self.cellIdentifier != "PostShowCommentTableViewCell" else {
+            if #available(iOS 10.0, *) {
+                tableView.refreshControl = nil
+            }
+                
+            else {
+                self.refreshControl.removeFromSuperview()
+            }
+
+            return
+        }
+        
         guard self.fetchedResultsController.sections![indexPath.section].numberOfObjects > 0 else {
             return
         }
@@ -485,16 +505,6 @@ extension GSTableViewController: UITableViewDelegate {
             
             self.handlerRefreshData!(lastElement)
         }
-        
-//        if let commentCell = cell as? PostShowCommentTableViewCell {
-//            let commentEntity = fetchedResultsController.object(at: indexPath) as! Comment
-//
-////            commentCell.getMarkdownViewHeight(byCommentContent: commentEntity.body, completion: { [weak self] cellHeight in
-////                commentCell.markdownViewHeightConstraint.constant   =   cellHeight
-////                self?.commentsTableViewHeightConstraint.constant    =  cellHeight
-//////                tableView.rowHeight = cellHeight
-////            })
-//        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

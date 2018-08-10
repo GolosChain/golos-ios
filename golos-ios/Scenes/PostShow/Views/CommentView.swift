@@ -1,8 +1,8 @@
 //
-//  PostShowCommentTableViewCell.swift
+//  CommentView.swift
 //  Golos
 //
-//  Created by msm72 on 05.08.2018.
+//  Created by msm72 on 10.08.2018.
 //  Copyright © 2018 golos. All rights reserved.
 //
 
@@ -11,24 +11,29 @@ import CoreData
 import GoloSwift
 import MarkdownView
 
-class PostShowCommentTableViewCell: UITableViewCell {
+class CommentView: UIView {
     // MARK: - Properties
+    var permlink: String?
+    
     var completionAuthorNameButtonTapped: (() -> Void)?
     var completionAuthorProfileAddButtonTapped: (() -> Void)?
     var completionAuthorProfileImageButtonTapped: (() -> Void)?
     var completionCellChangeHeight: ((CGFloat, IndexPath) -> Void)?
-
+    
     // Action buttons completions
     var completionUpvotesButtonTapped: (() -> Void)?
     var completionUsersButtonTapped: (() -> Void)?
     var completionCommentsButtonTapped: (() -> Void)?
     var completionReplyButtonTapped: (() -> Void)?
     var completionShareButtonTapped: (() -> Void)?
-
+    
     
     // MARK: - IBOutlets
+    @IBOutlet var view: UIView!
+    @IBOutlet weak var contentView: UIView!
+    
     @IBOutlet weak var markdownViewManager: MarkdownViewManager!
-
+    
     @IBOutlet weak var authorProfileImageButton: UIButton! {
         didSet {
             authorProfileImageButton.layer.cornerRadius = 40.0 * heightRatio / 2
@@ -59,7 +64,7 @@ class PostShowCommentTableViewCell: UITableViewCell {
                            isMultiLines:        false)
         }
     }
-
+    
     @IBOutlet weak var replyButton: UIButton! {
         didSet {
             replyButton.tune(withTitle:         "Reply Verb",
@@ -81,32 +86,82 @@ class PostShowCommentTableViewCell: UITableViewCell {
         }
     }
     
-    @IBOutlet weak var cellLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var leadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var markdownViewHeightConstraint: NSLayoutConstraint!
 
-
+    
     // MARK: - Class Initialization
-    override func prepareForReuse() {
-        super.prepareForReuse()
+    init(withComment comment: Comment, atIndex index: Int) {
+        super.init(frame: CGRect.init(origin: .zero, size: CGSize.init(width: 375.0 * widthRatio, height: 80.0 * heightRatio)))
         
-        self.cellLeadingConstraint.constant                     =   16.0 * widthRatio
-//        self.markdownViewHeightConstraint.constant              =   0.0
-        self.timeLabel.text                                     =   nil
+        createFromXIB()
         
-        self.authorNameButton.setTitle(nil, for: .normal)
-        self.authorProfileImageButton.setImage(UIImage(named: "icon-user-profile-image-placeholder"), for: .normal)
+        self.tag                =   index
+        self.permlink           =   comment.permlink
+        self.timeLabel.text     =   comment.created.convertToDaysAgo()
+        
+        // Avatar
+        self.authorNameButton.setTitle(comment.author, for: .normal)
+        
+        // Load author profile image
+        if let userProfileImageURL = comment.url {
+            self.authorProfileImageButton.uploadImage(byStringPath: userProfileImageURL, size: CGSize(width: 40.0 * widthRatio, height: 40.0 * widthRatio))
+        }
+        
+        // Set cell level
+        self.leadingConstraint.constant     =   52.0 * widthRatio * CGFloat(self.tag % 10)
+        self.markdownViewManager.layoutIfNeeded()
     }
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         
-        self.contentView.tune()
+        createFromXIB()
     }
-
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+        createFromXIB()
+    }
+    
     deinit {
         Logger.log(message: "Success", event: .severe)
     }
+
     
+    // MARK: - Class Functions
+    func createFromXIB() {
+        UINib(nibName: String(describing: CommentView.self), bundle: Bundle(for: CommentView.self)).instantiate(withOwner: self, options: nil)
+        addSubview(view)
+        view.frame = frame
+    }
+    
+    func loadData(fromBody body: String, completion: @escaping (CGFloat) -> Void) {
+        // Load markdown content
+        DispatchQueue.main.async {
+            self.markdownViewManager.load(markdown: body)
+        }
+
+        self.markdownViewManager.onRendered = { [weak self] height in
+            let viewHeight      =   height + 80.0 * heightRatio
+            
+            self?.markdownViewHeightConstraint.constant = height
+            
+            UIView.animate(withDuration: 0.5, animations: {
+                self?.frame     =   CGRect.init(origin: .zero, size: CGSize.init(width: 375.0 * widthRatio, height: viewHeight))
+                self?.layoutIfNeeded()
+                
+                self?.contentView.alpha = 1.0
+                completion(viewHeight)
+            })
+        }
+    }
+    
+    override var intrinsicContentSize: CGSize {
+        return CGSize(width: 375.0 * widthRatio, height: 80.0 * heightRatio)
+    }
+
     
     // MARK: - Actions
     @IBAction func authorProfileImageButtonTapped(_ sender: UIButton) {
@@ -125,59 +180,20 @@ class PostShowCommentTableViewCell: UITableViewCell {
     @IBAction func upvotesButtonTapped(_ sender: UIButton) {
         self.completionUpvotesButtonTapped!()
     }
-
+    
     @IBAction func usersButtonTapped(_ sender: UIButton) {
         self.completionUsersButtonTapped!()
     }
-
+    
     @IBAction func commentsButtonTapped(_ sender: UIButton) {
         self.completionCommentsButtonTapped!()
     }
-
+    
     @IBAction func replyButtonTapped(_ sender: UIButton) {
         self.completionReplyButtonTapped!()
     }
-
+    
     @IBAction func shareButtonTapped(_ sender: UIButton) {
         self.completionShareButtonTapped!()
-    }
-}
-
-
-// MARK: - ConfigureCell
-extension PostShowCommentTableViewCell {
-    func setup(withItem item: Any?, andIndexPath indexPath: IndexPath) {
-        if let comment = item as? Comment {
-            self.timeLabel.text = comment.created.convertToDaysAgo()
-
-            // avatar
-            self.authorNameButton.setTitle(comment.author, for: .normal)
-
-            // Load markdown content
-            DispatchQueue.main.async {
-                self.markdownViewManager.load(markdown: comment.body)
-            }
-
-            self.markdownViewManager.onRendered = { [weak self] height in
-                if self?.markdownViewHeightConstraint.constant == 0.0 {
-                    self?.markdownViewHeightConstraint.constant = height
-                    self?.layoutIfNeeded()
-                    
-                    self?.completionCellChangeHeight!(height, indexPath)
-                }
-                
-                UIView.animate(withDuration: 0.5, animations: {
-                    self?.contentView.alpha = 1.0
-                })
-            }
-
-            // Load author profile image
-            if let userProfileImageURL = comment.url {
-                self.authorProfileImageButton.uploadImage(byStringPath: userProfileImageURL, size: CGSize(width: 40.0 * widthRatio, height: 40.0 * widthRatio))
-            }
-
-            // Set cell level
-            // set cellLeadingConstraint
-        }
     }
 }

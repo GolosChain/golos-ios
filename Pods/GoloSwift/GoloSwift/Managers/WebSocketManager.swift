@@ -38,10 +38,10 @@ public class WebSocketManager {
         let requestMethodAPIStore       =   self.requestMethodsAPIStore.first?.value
         let requestOperationAPIStore    =   self.requestOperationsAPIStore.first?.value
         let isSendedRequestMethodAPI    =   requestOperationAPIStore == nil
-
+        
         isSendedRequestMethodAPI ?  requestMethodAPIStore!.completion((responseAPI: nil, errorAPI: ErrorAPI.responseUnsuccessful(message: "No Internet Connection"))) :
                                     requestOperationAPIStore!.completion((responseAPI: nil, errorAPI: ErrorAPI.responseUnsuccessful(message: "No Internet Connection")))
-
+        
         // Clean store lists
         requestIDs                      =   [Int]()
         self.requestMethodsAPIStore     =   [Int: RequestMethodAPIStore]()
@@ -115,7 +115,7 @@ public class WebSocketManager {
                 
             case .getContent(_):
                 return (responseAPI: try JSONDecoder().decode(ResponseAPIPostResult.self, from: jsonData), errorAPI: nil)
-
+                
             case .getContentAllReplies(_):
                 return (responseAPI: try JSONDecoder().decode(ResponseAPIAllContentRepliesResult.self, from: jsonData), errorAPI: nil)
             }
@@ -186,9 +186,9 @@ extension WebSocketManager: WebSocketDelegate {
                     }
                     
                     responseAPIType     =   isSendedRequestMethodAPI ?
-                                                (try self?.decode(from: jsonData, byMethodAPIType: requestMethodAPIStore!.methodAPIType.methodAPIType))! :
-                                                (try self?.decode(from: jsonData, byOperationAPIType: requestOperationAPIStore!.operationAPIType.operationAPIType))!
-
+                        (try self?.decode(from: jsonData, byMethodAPIType: requestMethodAPIStore!.methodAPIType.methodAPIType))! :
+                        (try self?.decode(from: jsonData, byOperationAPIType: requestOperationAPIStore!.operationAPIType.operationAPIType))!
+                    
                     guard let responseAPIResult = responseAPIType.responseAPI else {
                         self?.errorAPI  =   responseAPIType.errorAPI
                         
@@ -196,7 +196,7 @@ extension WebSocketManager: WebSocketDelegate {
                                                             requestOperationAPIStore!.completion((responseAPI: nil, errorAPI: self?.errorAPI))
                     }
                     
-//                    Logger.log(message: "\nresponseAPIResult model:\n\t\(responseAPIResult)", event: .debug)
+                    //                    Logger.log(message: "\nresponseAPIResult model:\n\t\(responseAPIResult)", event: .debug)
                     
                     // Check websocket timeout: resend current request message
                     let startTime   =   isSendedRequestMethodAPI ? requestMethodAPIStore!.methodAPIType.startTime : requestOperationAPIStore!.operationAPIType.startTime

@@ -346,7 +346,7 @@ public struct ResponseAPIAllContentReply: Decodable {
     public let body: String
     public let json_metadata: String
     public let url: String
-
+    
     // "2018-04-13T10:19:54"
     public let created: String
     public let active: String
@@ -412,3 +412,4 @@ public struct ResponseAPIUserFollowCounts: Decodable {
     public let following_count: Int16
     public let limit: Int64
 }
+

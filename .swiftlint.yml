@@ -7,11 +7,11 @@ line_length:
 - 400 #error
 
 file_length:
-- 650 #warning
-- 750 #error
+- 950 #warning
+- 850 #error
 
 type_body_length:
-- 305 #warning
+- 405 #warning
 
 identifier_name:
   min_length: 2 #only min_length

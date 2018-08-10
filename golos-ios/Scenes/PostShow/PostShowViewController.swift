@@ -23,10 +23,47 @@ protocol PostShowDisplayLogic: class {
     func displayLoadContentComments(fromViewModel viewModel: PostShowModels.Post.ViewModel)
 }
 
-class PostShowViewController: GSTableViewController {
+class PostShowViewController: GSBaseViewController {
     // MARK: - Properties
-//    var tableViewHeightObserver: NSKeyValueObservation?
-    
+    var commentsViews = [CommentView]() {
+        didSet {
+            _ = commentsViews.map( { commentView in
+                // Handlers
+                commentView.completionUpvotesButtonTapped               =   { [weak self] in
+                    self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+                }
+                
+                commentView.completionUsersButtonTapped                 =   { [weak self] in
+                    self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+                }
+                
+                commentView.completionCommentsButtonTapped              =   { [weak self] in
+                    self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+                }
+                
+                commentView.completionReplyButtonTapped                 =   { [weak self] in
+                    self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+                }
+                
+                commentView.completionShareButtonTapped                 =   { [weak self] in
+                    self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+                }
+                
+                commentView.completionAuthorProfileAddButtonTapped      =   { [weak self] in
+                    self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+                }
+                
+                commentView.completionAuthorProfileImageButtonTapped    =   { [weak self] in
+                    self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+                }
+
+                commentView.completionAuthorNameButtonTapped            =   { [weak self] in
+                    self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+                }
+            })
+        }
+    }
+
     var interactor: PostShowBusinessLogic?
     var router: (NSObjectProtocol & PostShowRoutingLogic & PostShowDataPassing)?
     
@@ -36,8 +73,9 @@ class PostShowViewController: GSTableViewController {
     @IBOutlet weak var markdownViewManager: MarkdownViewManager!
     @IBOutlet weak var postFeedHeaderView: PostFeedHeaderView!
     @IBOutlet weak var commentsView: UIView!
+    @IBOutlet weak var commentsStackView: UIStackView!
     
-   @IBOutlet weak var tagsCollectionView: UICollectionView! {
+    @IBOutlet weak var tagsCollectionView: UICollectionView! {
         didSet {
             tagsCollectionView.register(UINib(nibName:               "PostShowTagCollectionViewCell", bundle: nil),
                                         forCellWithReuseIdentifier:  "PostShowTagCollectionViewCell")
@@ -282,7 +320,7 @@ class PostShowViewController: GSTableViewController {
     }
     
     // Collections
-    @IBOutlet var circleImagesCollection: [UIImageView]! {
+    @IBOutlet var circleImagesCollection: [UIView]! {
         didSet {
             _ = circleImagesCollection.map({ imageView in
                 imageView.layer.cornerRadius = imageView.bounds.height / 2
@@ -317,8 +355,9 @@ class PostShowViewController: GSTableViewController {
     @IBOutlet weak var tagsCollectionViewheightConstraint: NSLayoutConstraint!
     @IBOutlet weak var markdownViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var commentsViewTopConstraint: NSLayoutConstraint!
-    @IBOutlet weak var tableViewTopConstraint: NSLayoutConstraint!
-
+    @IBOutlet weak var commentsStackViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var commentsStackViewHeightConstraint: NSLayoutConstraint!
+    
     
     // MARK: - Class Initialization
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -374,48 +413,10 @@ class PostShowViewController: GSTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.cellIdentifier     =   "PostShowCommentTableViewCell"
-        self.tableView.register(UINib(nibName: self.cellIdentifier, bundle: nil), forCellReuseIdentifier: self.cellIdentifier)
-
         // Handlers
         self.postFeedHeaderView.handlerAuthorTapped         =   { [weak self] in
             self?.router?.routeToUserProfileScene(byUserName: (self?.router?.dataStore?.post as! PostCellSupport).author)
         }
-        
-        self.handlerUpvotesButtonTapped                     =   { [weak self] in
-            self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
-        }
-
-        self.handlerUsersButtonTapped                       =   { [weak self] in
-            self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
-        }
-
-        self.handlerAnswerButtonTapped                      =   { [weak self] in
-            self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
-        }
-
-        self.handlerReplyTypeButtonTapped                   =   { [weak self] in
-            self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
-        }
-
-        self.handlerShareButtonTapped                       =   { [weak self] in
-            self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
-        }
-        
-        self.handlerAuthorProfileAddButtonTapped            =   { [weak self] in
-            self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
-        }
-        
-        self.handlerAuthorProfileImageButtonTapped          =   { [weak self] in
-            self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
-        }
-
-        // Observers
-//        self.tableViewHeightObserver = self.observe(self.commentsViewHeight, options: [.new]) { [weak self] (_, contentHeightNew) in
-//            guard let heightNew = contentHeightNew.newValue else { return }
-//
-//            self?.commentsTableViewHeightConstraint.constant    =   heightNew
-//        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -425,6 +426,7 @@ class PostShowViewController: GSTableViewController {
         
         // Load Post
         self.loadContent()
+        self.loadContentComments()
         
         UIView.animate(withDuration: 0.5) {
             self.view.alpha = 1.0
@@ -433,13 +435,24 @@ class PostShowViewController: GSTableViewController {
     
     
     // MARK: - Custom Functions
+    private func didCommentsView(isHide: Bool) {
+        if isHide {
+            self.commentsViewTopConstraint.constant         =   -70.0 * heightRatio
+            self.commentsStackViewTopConstraint.constant    =   -(self.commentsStackViewHeightConstraint.constant + 40.0 * heightRatio)
+            self.commentsView.isHidden                      =   true
+            self.commentsStackView.isHidden                 =   true
+        }
+        
+        else {
+            self.commentsCountLabel.text   =   String(format: "%i", self.commentsStackView.subviews.count)
+        }
+    }
+    
     private func loadViewSettings() {
         if let displayedPost = self.router?.dataStore?.post as? PostCellSupport {
             self.titleLabel.text = displayedPost.title
             
             // Load markdown content
-//            self.markdownView.isScrollEnabled = false
-            
             self.markdownViewManager.onRendered = { [weak self] height in
                 self?.markdownViewHeightConstraint.constant = height
                 
@@ -459,10 +472,10 @@ class PostShowViewController: GSTableViewController {
             
             self.markdownViewManager.completionShowSafariURL        =   { [weak self] url in
                 if isNetworkAvailable {
-                let safari = SFSafariViewController(url: url)
-                self?.present(safari, animated: true, completion: nil)
+                    let safari = SFSafariViewController(url: url)
+                    self?.present(safari, animated: true, completion: nil)
                 }
-                
+                    
                 else {
                     self?.showAlertView(withTitle: "Info", andMessage: "No Internet Connection", needCancel: false, completion: { _ in })
                 }
@@ -481,32 +494,20 @@ class PostShowViewController: GSTableViewController {
             self.userAvatarImageView.image      =   self.postFeedHeaderView.authorProfileImageView.image
             self.userNameLabel.text             =   self.postFeedHeaderView.authorLabel.text
             
-            // Comment Table view handlers
-            if self.itemsCount > 0 {
-                self.commentsCountLabel.text    =   String(format: "%i", self.itemsCount)
-            }
-            
-            else {
-                self.commentsViewTopConstraint.constant =   -70.0 * heightRatio
-                self.tableViewTopConstraint.constant    =   -(self.tableView.contentSize.height + 40.0 * heightRatio)
-                self.commentsView.isHidden      =   true
-                self.tableView.isHidden         =   true
-            }
-            
-            self.completionCommentAuthorTapped  =   { [weak self] authorName in
-                self?.router?.routeToUserProfileScene(byUserName: authorName)
-            }
-            
-            self.completionCommentShowSafariURL =   { [weak self] url in
-                if isNetworkAvailable {
-                    let safari = SFSafariViewController(url: url)
-                    self?.present(safari, animated: true, completion: nil)
-                }
-                
-                else {
-                    self?.showAlertView(withTitle: "Info", andMessage: "No Internet Connection", needCancel: false, completion: { _ in })
-                }
-            }
+//            self.completionCommentAuthorTapped  =   { [weak self] authorName in
+//                self?.router?.routeToUserProfileScene(byUserName: authorName)
+//            }
+//
+//            self.completionCommentShowSafariURL =   { [weak self] url in
+//                if isNetworkAvailable {
+//                    let safari = SFSafariViewController(url: url)
+//                    self?.present(safari, animated: true, completion: nil)
+//                }
+//
+//                else {
+//                    self?.showAlertView(withTitle: "Info", andMessage: "No Internet Connection", needCancel: false, completion: { _ in })
+//                }
+//            }
         }
     }
     
@@ -582,11 +583,11 @@ class PostShowViewController: GSTableViewController {
         sender.setTitle("Hide Comments Verb".localized(), for: .normal)
         sender.setTitle("Show Comments Verb".localized(), for: .selected)
         
-        self.tableView.alpha = sender.isSelected ? 0.0 : 1.0
-        self.tableViewTopConstraint.constant = sender.isSelected ? -tableView.bounds.height : 0.0
+        self.commentsStackView.alpha = sender.isSelected ? 0.0 : 1.0
+        self.commentsStackViewTopConstraint.constant = sender.isSelected ? -self.commentsStackView.bounds.height : 0.0
         
         UIView.animate(withDuration: 1.2) {
-            self.tableView.layoutIfNeeded()
+            self.commentsStackView.layoutIfNeeded()
         }
     }
     
@@ -610,9 +611,6 @@ extension PostShowViewController: PostShowDisplayLogic {
             self.showAlertView(withTitle: "Error", andMessage: error.localizedDescription, needCancel: false, completion: { _ in })
         }
         
-        // API
-        self.loadContentComments()
-        
         // CoreData
         self.fetchContent()
     }
@@ -632,13 +630,17 @@ extension PostShowViewController: PostShowDisplayLogic {
 // MARK: - Load data from Blockchain by API
 extension PostShowViewController {
     private func loadContent() {
-        let contentRequestModel = PostShowModels.Post.RequestModel()
-        interactor?.loadContent(withRequestModel: contentRequestModel)
+        DispatchQueue.main.async {
+            let contentRequestModel = PostShowModels.Post.RequestModel()
+            self.interactor?.loadContent(withRequestModel: contentRequestModel)
+        }
     }
     
     private func loadContentComments() {
-        let contentRepliesRequestModel = PostShowModels.Post.RequestModel()
-        interactor?.loadContentComments(withRequestModel: contentRepliesRequestModel)
+        DispatchQueue.main.async {
+            let contentRepliesRequestModel = PostShowModels.Post.RequestModel()
+            self.interactor?.loadContentComments(withRequestModel: contentRepliesRequestModel)
+        }
     }
 }
 
@@ -671,10 +673,83 @@ extension PostShowViewController {
         }
     }
     
-    // Replies list
+    // Post Comments list
+    private func getCommentLevel(byPermlink permlink: String?, andTag tag: Int) {
+        if let commentPermlink = permlink {
+//            DispatchQueue.main.async {
+                let comments    =   CoreDataManager.instance.readEntities(withName:                    "Comment",
+                                                                          withPredicateParameters:     NSPredicate(format: "parentPermlink == %@", commentPermlink),
+                                                                          andSortDescriptor:           NSSortDescriptor(key: "created", ascending: false)) as! [Comment]
+            
+            guard comments.count > 0 else {
+                // Remove subviews in Stack view
+                self.commentsViews.forEach({ self.commentsStackView.removeArrangedSubview($0)})
+
+                // Sort subviews for Stack view
+                let sortedSubviews = self.commentsViews.sorted(by: { $0.tag < $1.tag })
+                
+                // Add subview to Stack view
+                for subview in sortedSubviews {
+                    self.commentsStackView.addArrangedSubview(subview)
+                }
+                
+                return
+            }
+            
+                var tagIndex            =   tag + 1
+                
+                for comment in comments {
+                    let commentView     =   CommentView.init(withComment: comment, atIndex: tagIndex)
+                    tagIndex            +=  1
+                    
+                    // Level n
+                    commentView.loadData(fromBody: comment.body, completion: { [weak self] viewHeight in
+                        self?.commentsStackViewHeightConstraint.constant += viewHeight
+                        self?.commentsStackView.layoutIfNeeded()
+                        self?.commentsViews.append(commentView)
+//                        self?.commentsStackView.addArrangedSubview(commentView)
+//                        _ = self?.commentsStackView.subviews.sorted(by: { $0.tag < $1.tag })
+
+                        // Get next Comment level
+                        self?.getCommentLevel(byPermlink: commentView.permlink, andTag: commentView.tag)
+                    })
+                }
+//            }
+        }
+    }
+    
+    
     private func fetchContentComments() {
         if let post = self.router?.dataStore?.post as? PostCellSupport {
-            self.fetchPostComments(byParameters: (author: post.author, postFeedType: .comment, permlink: post.permlink, sortBy: nil))
+//            DispatchQueue.main.async {
+                guard let comments = CoreDataManager.instance.readEntities(withName:                    "Comment",
+                                                                           withPredicateParameters:     NSPredicate(format: "parentAuthor == %@ AND parentPermlink == %@", post.author, post.permlink),
+                                                                           andSortDescriptor:           NSSortDescriptor(key: "created", ascending: true)) as? [Comment] else {
+                    self.didCommentsView(isHide: true)
+                    return
+                }
+                
+                self.commentsStackViewHeightConstraint.constant =   0.0
+                var tagIndex            =   10
+                
+                for comment in comments {
+                    let commentView     =   CommentView.init(withComment: comment, atIndex: tagIndex)
+                    tagIndex            +=  10
+
+                    // Level 0
+                    commentView.loadData(fromBody: comment.body, completion: { [weak self] viewHeight in
+                        self?.commentsStackViewHeightConstraint.constant += viewHeight
+                        self?.commentsStackView.layoutIfNeeded()
+                        self?.commentsViews.append(commentView)
+//                        self?.commentsStackView.addArrangedSubview(commentView)
+                        self?.didCommentsView(isHide: false)
+//                        _ = self?.commentsStackView.subviews.sorted(by: { $0.tag < $1.tag })
+
+                        // Levels 2...n
+                        self?.getCommentLevel(byPermlink: commentView.permlink, andTag: commentView.tag)
+                    })
+//                }
+            }
         }
     }
 }

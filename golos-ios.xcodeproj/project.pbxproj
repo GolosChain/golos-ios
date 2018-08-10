@@ -125,6 +125,8 @@
 		B164F04620E62AE600C5CDD3 /* UserProfileShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B164F04020E62AE600C5CDD3 /* UserProfileShowViewController.swift */; };
 		B164F04720E62AE600C5CDD3 /* UserProfileShowInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B164F04120E62AE600C5CDD3 /* UserProfileShowInteractor.swift */; };
 		B164F04920E62B5A00C5CDD3 /* UserProfileShow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B164F04820E62B5A00C5CDD3 /* UserProfileShow.storyboard */; };
+		B167FA94211D5CE600662E93 /* CommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B167FA93211D5CE600662E93 /* CommentView.swift */; };
+		B167FA96211D5CF600662E93 /* CommentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B167FA95211D5CF600662E93 /* CommentView.xib */; };
 		B1742A8E20FD03EE009AAE5E /* GSPostsSegmentedControlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1742A8D20FD03EE009AAE5E /* GSPostsSegmentedControlViewController.swift */; };
 		B181586020B976FD00835034 /* GSBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B181585F20B976FD00835034 /* GSBaseViewController.swift */; };
 		B18B937220B91D4E000CF503 /* ForegroundRemoteNotificationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B18B937120B91D4E000CF503 /* ForegroundRemoteNotificationView.xib */; };
@@ -392,6 +394,8 @@
 		B164F04020E62AE600C5CDD3 /* UserProfileShowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileShowViewController.swift; sourceTree = "<group>"; };
 		B164F04120E62AE600C5CDD3 /* UserProfileShowInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileShowInteractor.swift; sourceTree = "<group>"; };
 		B164F04820E62B5A00C5CDD3 /* UserProfileShow.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UserProfileShow.storyboard; sourceTree = "<group>"; };
+		B167FA93211D5CE600662E93 /* CommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentView.swift; sourceTree = "<group>"; };
+		B167FA95211D5CF600662E93 /* CommentView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentView.xib; sourceTree = "<group>"; };
 		B16BBA6A2107403A001D50F1 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/RemoteNotificationTransfer.strings; sourceTree = "<group>"; };
 		B16BBA6C2107403A001D50F1 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B16BBA6D2107403B001D50F1 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -813,6 +817,7 @@
 		B15C29AF21101FD10030D249 /* PostShow */ = {
 			isa = PBXGroup;
 			children = (
+				B167FA92211D5CC400662E93 /* Views */,
 				B1084CAB211377B00065CAC0 /* Cells */,
 				B15C29B521101FEA0030D249 /* PostShowInteractor.swift */,
 				B15C29B321101FEA0030D249 /* PostShowModels.swift */,
@@ -847,6 +852,15 @@
 				B13FE9A220F4E90700F907BC /* UserProfileShowWorker.swift */,
 			);
 			path = UserProfileShow;
+			sourceTree = "<group>";
+		};
+		B167FA92211D5CC400662E93 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B167FA93211D5CE600662E93 /* CommentView.swift */,
+				B167FA95211D5CF600662E93 /* CommentView.xib */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		B1742A8F20FD0A2E009AAE5E /* ViewControllers */ = {
@@ -1372,6 +1386,7 @@
 				B18B937220B91D4E000CF503 /* ForegroundRemoteNotificationView.xib in Resources */,
 				B14199C220F65A1B00D927DA /* SFUIDisplay-Medium.ttf in Resources */,
 				B12B3ACB20FCC07300071B97 /* PostsShow.storyboard in Resources */,
+				B167FA96211D5CF600662E93 /* CommentView.xib in Resources */,
 				B146891820F1F5D000D36794 /* UserProfileHeaderView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1529,6 +1544,7 @@
 				B15F227E20EE943200C44282 /* CoreDataManager.swift in Sources */,
 				B1EA154620FE007A0015EF76 /* Actual+CoreDataClass.swift in Sources */,
 				B114194320CD51740025B07F /* ActiveKeyShowViewController.swift in Sources */,
+				B167FA94211D5CE600662E93 /* CommentView.swift in Sources */,
 				B1E78A7120F99FF100B2901D /* GSContainerView.swift in Sources */,
 				B1D7EFAD20EB704000819401 /* UserSecretPostingKey+CoreDataClass.swift in Sources */,
 				B1EE684620D243F5006BF802 /* PostCreateView.swift in Sources */,

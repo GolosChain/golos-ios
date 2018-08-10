@@ -21,7 +21,7 @@ class MarkdownViewManager: MarkdownView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     
-        self.isScrollEnabled = false
+        self.isScrollEnabled    =   false
         
         // Handler: display content in App
         self.onTouchLink = { [weak self] request in
