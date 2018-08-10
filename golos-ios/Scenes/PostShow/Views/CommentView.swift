@@ -14,11 +14,11 @@ import MarkdownView
 class CommentView: UIView {
     // MARK: - Properties
     var permlink: String?
+    var level: String = ""
     
     var completionAuthorNameButtonTapped: (() -> Void)?
     var completionAuthorProfileAddButtonTapped: (() -> Void)?
     var completionAuthorProfileImageButtonTapped: (() -> Void)?
-    var completionCellChangeHeight: ((CGFloat, IndexPath) -> Void)?
     
     // Action buttons completions
     var completionUpvotesButtonTapped: (() -> Void)?
@@ -31,18 +31,17 @@ class CommentView: UIView {
     // MARK: - IBOutlets
     @IBOutlet var view: UIView!
     @IBOutlet weak var contentView: UIView!
-    
     @IBOutlet weak var markdownViewManager: MarkdownViewManager!
     
     @IBOutlet weak var authorProfileImageButton: UIButton! {
         didSet {
-            authorProfileImageButton.layer.cornerRadius = 40.0 * heightRatio / 2
+            authorProfileImageButton.layer.cornerRadius     =   40.0 * heightRatio / 2
         }
     }
     
     @IBOutlet weak var authorProfileAddButton: UIButton! {
         didSet {
-            authorProfileAddButton.layer.cornerRadius = 18.0 * heightRatio / 2
+            authorProfileAddButton.layer.cornerRadius       =   18.0 * heightRatio / 2
         }
     }
     
@@ -91,12 +90,12 @@ class CommentView: UIView {
 
     
     // MARK: - Class Initialization
-    init(withComment comment: Comment, atIndex index: Int) {
-        super.init(frame: CGRect.init(origin: .zero, size: CGSize.init(width: 375.0 * widthRatio, height: 80.0 * heightRatio)))
+    init(withComment comment: Comment, atLevel level: String) {
+        super.init(frame: CGRect.init(origin: .zero, size: CGSize.init(width: 351.0 * widthRatio, height: 80.0 * heightRatio)))
         
         createFromXIB()
         
-        self.tag                =   index
+        self.level              =   level
         self.permlink           =   comment.permlink
         self.timeLabel.text     =   comment.created.convertToDaysAgo()
         
@@ -109,7 +108,7 @@ class CommentView: UIView {
         }
         
         // Set cell level
-        self.leadingConstraint.constant     =   52.0 * widthRatio * CGFloat(self.tag % 10)
+        self.leadingConstraint.constant     =   52.0 * widthRatio * CGFloat(self.level.count - 2) / 2
         self.markdownViewManager.layoutIfNeeded()
     }
     
@@ -147,10 +146,11 @@ class CommentView: UIView {
             let viewHeight      =   height + 80.0 * heightRatio
             
             self?.markdownViewHeightConstraint.constant = height
+            self?.layoutIfNeeded()
             
             UIView.animate(withDuration: 0.5, animations: {
-                self?.frame     =   CGRect.init(origin: .zero, size: CGSize.init(width: 375.0 * widthRatio, height: viewHeight))
-                self?.layoutIfNeeded()
+//                self?.frame     =   CGRect.init(origin: .zero, size: CGSize.init(width: 351.0 * widthRatio, height: viewHeight))
+//                self?.layoutIfNeeded()
                 
                 self?.contentView.alpha = 1.0
                 completion(viewHeight)

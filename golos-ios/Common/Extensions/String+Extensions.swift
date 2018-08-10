@@ -10,6 +10,10 @@ import UIKit
 import GoloSwift
 
 extension String {
+    func addFirstZero() -> String {
+        return self.count == 1 ? "0" + self : self
+    }
+
     var first: String {
         return String(prefix(1))
     }

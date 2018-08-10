@@ -235,25 +235,7 @@ class GSTableViewController: GSBaseViewController {
      
         self.run(fetchRequest: fetchRequest, postType: parameters.postFeedType)
     }
-    
-    func fetchPostComments(byParameters parameters: FetchPostParameters) {
-        var fetchRequest: NSFetchRequest<NSFetchRequestResult>
-        var primarySortDescriptor: NSSortDescriptor
-        var secondarySortDescriptor: NSSortDescriptor
         
-        fetchRequest    =   NSFetchRequest<NSFetchRequestResult>(entityName: parameters.postFeedType.caseTitle())
-        
-        if let author = parameters.author, let permlink = parameters.permlink {
-            fetchRequest.predicate  =   NSPredicate(format: "parentAuthor == %@ AND parentPermlink == %@", author, permlink)
-        }
-        
-        primarySortDescriptor           =   NSSortDescriptor(key: parameters.sortBy ?? "created", ascending: false)
-        secondarySortDescriptor         =   NSSortDescriptor(key: "author", ascending: true)
-        fetchRequest.sortDescriptors    =   [ primarySortDescriptor, secondarySortDescriptor ]
-        
-        self.run(fetchRequest: fetchRequest, postType: parameters.postFeedType)
-    }
-    
     private func run(fetchRequest: NSFetchRequest<NSFetchRequestResult>, postType: PostsFeedType) {
         fetchedResultsController        =   NSFetchedResultsController(fetchRequest:            fetchRequest,
                                                                        managedObjectContext:    CoreDataManager.instance.managedObjectContext,
@@ -360,70 +342,6 @@ extension GSTableViewController: UITableViewDataSource {
         let entity = fetchedResultsController.object(at: indexPath) as! NSManagedObject
         
         switch entity {
-        // Comments
-        case let commentEntity where type(of: entity) == Comment.self:
-            if let commentCell = tableView.dequeueReusableCell(withIdentifier: self.cellIdentifier, for: indexPath) as? PostShowCommentTableViewCell {
-                // Handlers action buttons comletions
-                commentCell.completionUpvotesButtonTapped       =   { [weak self] in
-                    self?.handlerUpvotesButtonTapped!()
-                }
-                
-                commentCell.completionUsersButtonTapped         =   { [weak self] in
-                    self?.handlerUsersButtonTapped!()
-                }
-
-                commentCell.completionCommentsButtonTapped      =   { [weak self] in
-                    self?.handlerAnswerButtonTapped!()
-                }
-
-                commentCell.completionReplyButtonTapped         =   { [weak self] in
-                    self?.handlerReplyTypeButtonTapped!()
-                }
-
-                commentCell.completionShareButtonTapped         =   { [weak self] in
-                    self?.handlerShareButtonTapped!()
-                }
-                
-                commentCell.completionAuthorProfileAddButtonTapped                  =   { [weak self] in
-                    self?.handlerAuthorProfileAddButtonTapped!()
-                }
-                
-                commentCell.completionAuthorProfileImageButtonTapped                =   { [weak self] in
-                    self?.handlerAuthorProfileImageButtonTapped!()
-                }
-                
-                // Markdown completions
-                commentCell.markdownViewManager.completionErrorAlertView             =   { [weak self] message in
-                    self?.showAlertView(withTitle: "Error", andMessage: message, needCancel: false, completion: { _ in })
-                }
-                
-                // Redirect to PostShow scene
-                commentCell.markdownViewManager.completionCommentAuthorTapped       =   { [weak self] authorName in
-                    self?.completionCommentAuthorTapped!(authorName)
-                }
-                
-                commentCell.markdownViewManager.completionShowSafariURL             =   { [weak self] url in
-                    self?.completionCommentShowSafariURL!(url)
-                }
-
-                commentCell.setup(withItem: commentEntity, andIndexPath: indexPath)
-                
-                // Handler change cell height
-                commentCell.completionCellChangeHeight          =   { [weak self] (cellHeight, cellIndexPath) in
-                    tableView.reloadRows(at: [cellIndexPath], with: .none)
-                    
-                    if self?.itemsCount == 1 {
-                        self?.commentsTableViewHeightConstraint.constant    =  cellHeight
-                    }
-                    
-                    else {
-                        self?.commentsTableViewHeightConstraint.constant    =  (self?.view.bounds.height)! - (64.0 - 0.0) * heightRatio
-                    }
-                }
-                
-                return commentCell
-            }
-            
         // Replies
         case let replyEntity where type(of: entity) == Reply.self:
             if let replyCell = tableView.dequeueReusableCell(withIdentifier: self.cellIdentifier, for: indexPath) as? ReplyTableViewCell {
@@ -475,18 +393,6 @@ extension GSTableViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        guard self.cellIdentifier != "PostShowCommentTableViewCell" else {
-            if #available(iOS 10.0, *) {
-                tableView.refreshControl = nil
-            }
-                
-            else {
-                self.refreshControl.removeFromSuperview()
-            }
-
-            return
-        }
-        
         guard self.fetchedResultsController.sections![indexPath.section].numberOfObjects > 0 else {
             return
         }

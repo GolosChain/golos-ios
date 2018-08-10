@@ -60,6 +60,26 @@ class PostShowViewController: GSBaseViewController {
                 commentView.completionAuthorNameButtonTapped            =   { [weak self] in
                     self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
                 }
+                
+                // Handler Markdown
+                commentView.markdownViewManager.completionErrorAlertView            =   { [weak self] errorMessage in
+                    self?.showAlertView(withTitle: "Error", andMessage: errorMessage, needCancel: false, completion: { _ in })
+                }
+
+                commentView.markdownViewManager.completionCommentAuthorTapped       =   { [weak self] authorName in
+                    self?.router?.routeToUserProfileScene(byUserName: authorName)
+                }
+                
+                commentView.markdownViewManager.completionShowSafariURL             =   { [weak self] url in
+                    if isNetworkAvailable {
+                        let safari = SFSafariViewController(url: url)
+                        self?.present(safari, animated: true, completion: nil)
+                    }
+                        
+                    else {
+                        self?.showAlertView(withTitle: "Info", andMessage: "No Internet Connection", needCancel: false, completion: { _ in })
+                    }
+                }
             })
         }
     }
@@ -70,11 +90,34 @@ class PostShowViewController: GSBaseViewController {
     
     // MARK: - IBOutlets
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var markdownViewManager: MarkdownViewManager!
     @IBOutlet weak var postFeedHeaderView: PostFeedHeaderView!
     @IBOutlet weak var commentsView: UIView!
     @IBOutlet weak var commentsStackView: UIStackView!
     
+    @IBOutlet weak var markdownViewManager: MarkdownViewManager! {
+        didSet {
+            // Handler Markdown
+            markdownViewManager.completionErrorAlertView            =   { [weak self] errorMessage in
+                self?.showAlertView(withTitle: "Error", andMessage: errorMessage, needCancel: false, completion: { _ in })
+            }
+            
+            markdownViewManager.completionCommentAuthorTapped       =   { [weak self] authorName in
+                self?.router?.routeToUserProfileScene(byUserName: authorName)
+            }
+            
+            markdownViewManager.completionShowSafariURL             =   { [weak self] url in
+                if isNetworkAvailable {
+                    let safari = SFSafariViewController(url: url)
+                    self?.present(safari, animated: true, completion: nil)
+                }
+                    
+                else {
+                    self?.showAlertView(withTitle: "Info", andMessage: "No Internet Connection", needCancel: false, completion: { _ in })
+                }
+            }
+        }
+    }
+
     @IBOutlet weak var tagsCollectionView: UICollectionView! {
         didSet {
             tagsCollectionView.register(UINib(nibName:               "PostShowTagCollectionViewCell", bundle: nil),
@@ -417,20 +460,16 @@ class PostShowViewController: GSBaseViewController {
         self.postFeedHeaderView.handlerAuthorTapped         =   { [weak self] in
             self?.router?.routeToUserProfileScene(byUserName: (self?.router?.dataStore?.post as! PostCellSupport).author)
         }
+        
+        // Load Post
+        self.loadContent()
+        self.loadContentComments()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         UIApplication.shared.statusBarStyle = .default
-        
-        // Load Post
-        self.loadContent()
-        self.loadContentComments()
-        
-        UIView.animate(withDuration: 0.5) {
-            self.view.alpha = 1.0
-        }
     }
     
     
@@ -465,26 +504,6 @@ class PostShowViewController: GSBaseViewController {
                 self.markdownViewManager.load(markdown: displayedPost.body)
             }
             
-            // Handler: display content in App
-            self.markdownViewManager.completionErrorAlertView       =   { [weak self] errorMessage in
-                self?.showAlertView(withTitle: "Error", andMessage: errorMessage, needCancel: false, completion: { _ in })
-            }
-            
-            self.markdownViewManager.completionShowSafariURL        =   { [weak self] url in
-                if isNetworkAvailable {
-                    let safari = SFSafariViewController(url: url)
-                    self?.present(safari, animated: true, completion: nil)
-                }
-                    
-                else {
-                    self?.showAlertView(withTitle: "Info", andMessage: "No Internet Connection", needCancel: false, completion: { _ in })
-                }
-            }
-            
-            self.markdownViewManager.completionCommentAuthorTapped  =   { [weak self] userName in
-                self?.router?.routeToUserProfileScene(byUserName: userName.replacingOccurrences(of: "@", with: ""))
-            }
-            
             // Subscribe topic
             if let firstTag = displayedPost.tags?.first {
                 self.topicTitleLabel.text       =   firstTag.uppercaseFirst
@@ -493,21 +512,6 @@ class PostShowViewController: GSBaseViewController {
             // Subscribe User
             self.userAvatarImageView.image      =   self.postFeedHeaderView.authorProfileImageView.image
             self.userNameLabel.text             =   self.postFeedHeaderView.authorLabel.text
-            
-//            self.completionCommentAuthorTapped  =   { [weak self] authorName in
-//                self?.router?.routeToUserProfileScene(byUserName: authorName)
-//            }
-//
-//            self.completionCommentShowSafariURL =   { [weak self] url in
-//                if isNetworkAvailable {
-//                    let safari = SFSafariViewController(url: url)
-//                    self?.present(safari, animated: true, completion: nil)
-//                }
-//
-//                else {
-//                    self?.showAlertView(withTitle: "Info", andMessage: "No Internet Connection", needCancel: false, completion: { _ in })
-//                }
-//            }
         }
     }
     
@@ -622,7 +626,7 @@ extension PostShowViewController: PostShowDisplayLogic {
         }
         
         // CoreData
-        self.fetchContentComments()
+        self.fetchCommentsFirstLevel()
     }
 }
 
@@ -674,81 +678,91 @@ extension PostShowViewController {
     }
     
     // Post Comments list
-    private func getCommentLevel(byPermlink permlink: String?, andTag tag: Int) {
+    private func nextCommentLevel(byPermlink permlink: String?, andParentLevel parentLevel: String) {
         if let commentPermlink = permlink {
-//            DispatchQueue.main.async {
+            DispatchQueue.main.async {
                 let comments    =   CoreDataManager.instance.readEntities(withName:                    "Comment",
                                                                           withPredicateParameters:     NSPredicate(format: "parentPermlink == %@", commentPermlink),
                                                                           andSortDescriptor:           NSSortDescriptor(key: "created", ascending: false)) as! [Comment]
-            
-            guard comments.count > 0 else {
-                // Remove subviews in Stack view
-                self.commentsViews.forEach({ self.commentsStackView.removeArrangedSubview($0)})
-
-                // Sort subviews for Stack view
-                let sortedSubviews = self.commentsViews.sorted(by: { $0.tag < $1.tag })
                 
-                // Add subview to Stack view
-                for subview in sortedSubviews {
-                    self.commentsStackView.addArrangedSubview(subview)
-                }
-                
-                return
-            }
-            
-                var tagIndex            =   tag + 1
-                
-                for comment in comments {
-                    let commentView     =   CommentView.init(withComment: comment, atIndex: tagIndex)
-                    tagIndex            +=  1
+                guard comments.count > 0 else {
+                    // Remove subviews in Stack view
+                    self.commentsViews.forEach({ self.commentsStackView.removeArrangedSubview($0)})
                     
-                    // Level n
-                    commentView.loadData(fromBody: comment.body, completion: { [weak self] viewHeight in
-                        self?.commentsStackViewHeightConstraint.constant += viewHeight
-                        self?.commentsStackView.layoutIfNeeded()
-                        self?.commentsViews.append(commentView)
-//                        self?.commentsStackView.addArrangedSubview(commentView)
-//                        _ = self?.commentsStackView.subviews.sorted(by: { $0.tag < $1.tag })
+                    // Sort subviews for Stack view
+                    let sortedSubviews = self.commentsViews.sorted(by: { $0.level < $1.level })
+                    
+                    // Add subview to Stack view
+                    for subview in sortedSubviews {
+                        self.commentsStackView.addArrangedSubview(subview)
+                    }
+                    
+                    // Show scene
+                    UIView.animate(withDuration: 0.5) {
+                        self.view.alpha = 1.0
+                    }
 
-                        // Get next Comment level
-                        self?.getCommentLevel(byPermlink: commentView.permlink, andTag: commentView.tag)
-                    })
-                }
-//            }
-        }
-    }
-    
-    
-    private func fetchContentComments() {
-        if let post = self.router?.dataStore?.post as? PostCellSupport {
-//            DispatchQueue.main.async {
-                guard let comments = CoreDataManager.instance.readEntities(withName:                    "Comment",
-                                                                           withPredicateParameters:     NSPredicate(format: "parentAuthor == %@ AND parentPermlink == %@", post.author, post.permlink),
-                                                                           andSortDescriptor:           NSSortDescriptor(key: "created", ascending: true)) as? [Comment] else {
-                    self.didCommentsView(isHide: true)
+                    // Show comments count
+                    self.didCommentsView(isHide: false)
+                    
                     return
                 }
                 
+                // "00_01_02_03_04_05"
+//                if parentLevel.count / 2 < 4 {
+                    for (tag, comment) in comments.enumerated() {
+                        let commentView = CommentView.init(withComment: comment, atLevel: parentLevel + "\(tag + 1)".addFirstZero())
+                        
+                        // Level N
+                        commentView.loadData(fromBody: comment.body, completion: { [weak self] viewHeight in
+                            self?.commentsStackViewHeightConstraint.constant += viewHeight
+                            self?.commentsStackView.layoutIfNeeded()
+                            self?.commentsViews.append(commentView)
+                            
+                            // Get next Comment level
+                            if commentView.level.count / 2 <= 2 {
+                                self?.nextCommentLevel(byPermlink: commentView.permlink, andParentLevel: commentView.level)
+                            }
+                            
+                            else {
+                                self?.nextCommentLevel(byPermlink: "XXX", andParentLevel: "XXX")
+                            }
+                        })
+                    }
+                }
+            }
+//        }
+    }
+    
+    
+    private func fetchCommentsFirstLevel() {
+        if let post = self.router?.dataStore?.post as? PostCellSupport {
+            DispatchQueue.main.async {
+                guard let comments = CoreDataManager.instance.readEntities(withName:                    "Comment",
+                                                                           withPredicateParameters:     NSPredicate(format: "parentAuthor == %@ AND parentPermlink == %@", post.author, post.permlink),
+                                                                           andSortDescriptor:           NSSortDescriptor(key: "created", ascending: true)) as? [Comment] else {
+                                                                            self.didCommentsView(isHide: true)
+                                                                            return
+                }
+                
                 self.commentsStackViewHeightConstraint.constant =   0.0
-                var tagIndex            =   10
+                var tagIndex            =   1
                 
                 for comment in comments {
-                    let commentView     =   CommentView.init(withComment: comment, atIndex: tagIndex)
-                    tagIndex            +=  10
-
+                    let commentView     =   CommentView.init(withComment: comment, atLevel: "\(tagIndex)".addFirstZero())
+                    tagIndex            +=  1
+                    
                     // Level 0
                     commentView.loadData(fromBody: comment.body, completion: { [weak self] viewHeight in
                         self?.commentsStackViewHeightConstraint.constant += viewHeight
-                        self?.commentsStackView.layoutIfNeeded()
+//                        self?.commentsStackView.layoutIfNeeded()
                         self?.commentsViews.append(commentView)
-//                        self?.commentsStackView.addArrangedSubview(commentView)
-                        self?.didCommentsView(isHide: false)
-//                        _ = self?.commentsStackView.subviews.sorted(by: { $0.tag < $1.tag })
+//                        self?.didCommentsView(isHide: false)
 
                         // Levels 2...n
-                        self?.getCommentLevel(byPermlink: commentView.permlink, andTag: commentView.tag)
+                        self?.nextCommentLevel(byPermlink: commentView.permlink, andParentLevel: commentView.level)
                     })
-//                }
+                }
             }
         }
     }

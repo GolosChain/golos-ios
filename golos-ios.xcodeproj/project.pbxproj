@@ -79,8 +79,6 @@
 		B136D4FF20D8BA2E003AD279 /* ThemeTagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B136D4FD20D8BA2E003AD279 /* ThemeTagCollectionViewCell.swift */; };
 		B136D50020D8BA2E003AD279 /* ThemeTagCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B136D4FE20D8BA2E003AD279 /* ThemeTagCollectionViewCell.xib */; };
 		B136D50220D8BBEA003AD279 /* TagsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B136D50120D8BBEA003AD279 /* TagsCollectionViewController.swift */; };
-		B1384D522116AF71007A4548 /* PostShowCommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1384D502116AF71007A4548 /* PostShowCommentTableViewCell.swift */; };
-		B1384D532116AF71007A4548 /* PostShowCommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1384D512116AF71007A4548 /* PostShowCommentTableViewCell.xib */; };
 		B139EB9B20C3D3DC0065F6F9 /* CircularProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B139EB9A20C3D3DC0065F6F9 /* CircularProgressBarView.swift */; };
 		B13FE99F20F49B8300F907BC /* GSTableViewWithReloadCompletion.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13FE99E20F49B8300F907BC /* GSTableViewWithReloadCompletion.swift */; };
 		B13FE9A820F4E90700F907BC /* UserProfileShowWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13FE9A220F4E90700F907BC /* UserProfileShowWorker.swift */; };
@@ -344,8 +342,6 @@
 		B136D4FD20D8BA2E003AD279 /* ThemeTagCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeTagCollectionViewCell.swift; sourceTree = "<group>"; };
 		B136D4FE20D8BA2E003AD279 /* ThemeTagCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThemeTagCollectionViewCell.xib; sourceTree = "<group>"; };
 		B136D50120D8BBEA003AD279 /* TagsCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsCollectionViewController.swift; sourceTree = "<group>"; };
-		B1384D502116AF71007A4548 /* PostShowCommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostShowCommentTableViewCell.swift; sourceTree = "<group>"; };
-		B1384D512116AF71007A4548 /* PostShowCommentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostShowCommentTableViewCell.xib; sourceTree = "<group>"; };
 		B139EB9A20C3D3DC0065F6F9 /* CircularProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressBarView.swift; sourceTree = "<group>"; };
 		B13FE99E20F49B8300F907BC /* GSTableViewWithReloadCompletion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GSTableViewWithReloadCompletion.swift; sourceTree = "<group>"; };
 		B13FE9A220F4E90700F907BC /* UserProfileShowWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileShowWorker.swift; sourceTree = "<group>"; };
@@ -584,8 +580,6 @@
 			children = (
 				B1084CAC211378780065CAC0 /* PostShowTagCollectionViewCell.swift */,
 				B1084CAD211378780065CAC0 /* PostShowTagCollectionViewCell.xib */,
-				B1384D502116AF71007A4548 /* PostShowCommentTableViewCell.swift */,
-				B1384D512116AF71007A4548 /* PostShowCommentTableViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1367,7 +1361,6 @@
 				B164CECA2119F6EB00349D79 /* Localizable.strings in Resources */,
 				B120D0702108256B00D949F5 /* SettingsNotificationsShow.storyboard in Resources */,
 				7DE3531C2048CA3400C04CB2 /* LogInHelpShowViewController.xib in Resources */,
-				B1384D532116AF71007A4548 /* PostShowCommentTableViewCell.xib in Resources */,
 				B1E09E1D2101EFBE002CC5B7 /* PostFeedHeaderView.xib in Resources */,
 				EC24FF7F200C4E2C00A0AE15 /* NavigationDropDownView.xib in Resources */,
 				B1050CBF20CECFBE003CE4EE /* PostCreate.storyboard in Resources */,
@@ -1688,7 +1681,6 @@
 				B1EA154920FE007A0015EF76 /* Promo+CoreDataProperties.swift in Sources */,
 				B13FE9A820F4E90700F907BC /* UserProfileShowWorker.swift in Sources */,
 				B1961953211C90D2001DF789 /* MarkdownViewManager.swift in Sources */,
-				B1384D522116AF71007A4548 /* PostShowCommentTableViewCell.swift in Sources */,
 				B1EA155920FE22980015EF76 /* ActualPostsShowViewController.swift in Sources */,
 				ECF31725200A9D2800F7B703 /* UIAlertController+Window.swift in Sources */,
 				B15C29B721101FEA0030D249 /* PostShowWorker.swift in Sources */,

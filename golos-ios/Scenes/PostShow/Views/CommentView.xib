@@ -112,16 +112,16 @@
                                 <constraint firstAttribute="height" id="7cj-30-Ntl"/>
                             </constraints>
                         </view>
-                        <stackView clipsSubviews="YES" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="z0C-dr-aat" userLabel="Actions Buttons Stack View">
+                        <stackView clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z0C-dr-aat" userLabel="Actions Buttons Stack View">
                             <rect key="frame" x="52" y="50" width="323" height="20"/>
                             <subviews>
                                 <button clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="RVe-ej-86a" userLabel="Upvotes Button">
-                                    <rect key="frame" x="0.0" y="0.0" width="61" height="20"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="30" height="20"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                     <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
                                     <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="-5" maxY="0.0"/>
-                                    <state key="normal" title="10000" image="icon-button-upvotes-normal">
+                                    <state key="normal" image="icon-button-upvotes-normal">
                                         <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                     </state>
                                     <state key="disabled" image="icon-button-upvotes-highlighted"/>
@@ -130,7 +130,7 @@
                                     </connections>
                                 </button>
                                 <button clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="KPh-OS-JoL" userLabel="Users Button">
-                                    <rect key="frame" x="65" y="0.0" width="46" height="20"/>
+                                    <rect key="frame" x="30" y="0.0" width="46" height="20"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                     <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="15" maxY="0.0"/>
@@ -144,7 +144,7 @@
                                     </connections>
                                 </button>
                                 <button clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="cvI-fZ-UGc" userLabel="Comments Button">
-                                    <rect key="frame" x="115" y="0.0" width="48" height="20"/>
+                                    <rect key="frame" x="76" y="0.0" width="48" height="20"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                     <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="15" maxY="0.0"/>
@@ -158,10 +158,10 @@
                                     </connections>
                                 </button>
                                 <button clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="0FV-JI-k6m" userLabel="Reply Button">
-                                    <rect key="frame" x="167" y="0.0" width="63" height="20"/>
+                                    <rect key="frame" x="124" y="0.0" width="58" height="20"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                    <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
+                                    <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="5" maxY="0.0"/>
                                     <state key="normal" title="Reply Verb">
                                         <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                     </state>
@@ -171,7 +171,7 @@
                                     </connections>
                                 </button>
                                 <button clipsSubviews="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="3pH-mp-bUu" userLabel="Share Button">
-                                    <rect key="frame" x="234" y="0.0" width="89" height="20"/>
+                                    <rect key="frame" x="182" y="0.0" width="141" height="20"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                     <state key="normal" image="icon-button-horizontal-more-normal">
