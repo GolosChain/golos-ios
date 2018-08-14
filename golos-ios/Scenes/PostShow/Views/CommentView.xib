@@ -39,6 +39,7 @@
                 <outletCollection property="widthsCollection" destination="jXL-gx-aSk" collectionClass="NSMutableArray" id="maN-Mz-BLy"/>
                 <outletCollection property="heightsCollection" destination="cCs-s7-z6A" collectionClass="NSMutableArray" id="XIy-ft-m4d"/>
                 <outletCollection property="widthsCollection" destination="rJH-dn-TBo" collectionClass="NSMutableArray" id="6B4-ke-uLT"/>
+                <outletCollection property="heightsCollection" destination="hRo-AH-T67" collectionClass="NSMutableArray" id="XUQ-zE-BTi"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -204,6 +205,7 @@
                         <constraint firstAttribute="trailing" secondItem="Mnb-Ny-ryB" secondAttribute="trailing" constant="-14" id="WGM-xK-IuN"/>
                         <constraint firstItem="yNw-9n-yzN" firstAttribute="bottom" secondItem="mlh-OO-ald" secondAttribute="bottom" constant="2" id="cCs-s7-z6A"/>
                         <constraint firstItem="eTP-vD-Kt8" firstAttribute="top" secondItem="mlh-OO-ald" secondAttribute="top" id="eg7-rP-TKm"/>
+                        <constraint firstAttribute="bottom" secondItem="Mnb-Ny-ryB" secondAttribute="bottom" constant="40" id="hRo-AH-T67"/>
                         <constraint firstItem="JV1-jP-ZcQ" firstAttribute="centerY" secondItem="eTP-vD-Kt8" secondAttribute="centerY" id="hdo-bQ-3nY"/>
                         <constraint firstItem="z0C-dr-aat" firstAttribute="leading" secondItem="eTP-vD-Kt8" secondAttribute="leading" id="nRo-Ni-jgX"/>
                         <constraint firstItem="yNw-9n-yzN" firstAttribute="leading" secondItem="tNf-H6-dtq" secondAttribute="leading" id="rJH-dn-TBo"/>
