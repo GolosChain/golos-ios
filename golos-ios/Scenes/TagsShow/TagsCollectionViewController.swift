@@ -88,14 +88,16 @@ class TagsCollectionViewController: GSBaseViewController {
             return
         }
         
-        self.tagIndex += 1
-        let insertIndexPath = IndexPath(row: self.tags.count, section: 0)
+        self.tagIndex           +=  1
+        let insertIndexPath     =   IndexPath(row: self.tags.count, section: 0)
+        self.addButtonTapped    =   true
+
         self.tags.append(Tag(placeholder: "Tag".localized() + " \(self.tags.count + 1)", id: self.tagIndex, isFirst: false))
         self.collectionView?.insertItems(at: [insertIndexPath])
         self.collectionView.collectionViewLayout.invalidateLayout()
-        self.addButtonTapped = true
         
-        (self.collectionView.cellForItem(at: IndexPath(row: self.tags.count - 1, section: 0)) as! ThemeTagCollectionViewCell).textField.becomeFirstResponder()
+        (self.collectionView.cellForItem(at: insertIndexPath) as! ThemeTagCollectionViewCell).textField.becomeFirstResponder()
+//        (self.collectionView.cellForItem(at: IndexPath(row: self.tags.count - 1, section: 0)) as! ThemeTagCollectionViewCell).textField.becomeFirstResponder()
     }
 }
 

@@ -23,9 +23,11 @@ extension Date {
     
     public func convertToDaysAgo() -> String {
         let dateComponents          =   Calendar.current.dateComponents([ .day ], from: self, to: Date())
-        let daysString              =   dateComponents.day == 0 ?   "Today ago".localized() :
-            String(format: "%i %@", dateComponents.day!, "Days ago".localized())
         
-        return daysString
+        guard let day = dateComponents.day, day > 0 else {
+            return "Today ago".localized()
+        }
+        
+        return String(format: "%i %@", day, "Days ago".localized())
     }
 }

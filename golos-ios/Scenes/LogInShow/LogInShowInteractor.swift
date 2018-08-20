@@ -37,30 +37,31 @@ class LogInShowInteractor: LogInShowBusinessLogic {
             
             // Prepare & Display user info
             if errorAPI == nil {
-                let privateKey  =   PrivateKey.init(requestModel.wif)
-                let publicKey   =   privateKey!.createPublic(prefix: .mainNet)
-                
-                switch requestModel.wifType {
-                // Posting key
-                case 1:
-                    success     =   (User.current?.posting?.key_auths?.first?.first?.contains(publicKey.address))!
+                if let privateKey   =   PrivateKey.init(requestModel.wif) {
+                    let publicKey   =   privateKey.createPublic(prefix: .mainNet)
                     
-                // Active key
-                case 2:
-                    success     =   (User.current?.active?.key_auths?.first?.first?.contains(publicKey.address))!
+                    switch requestModel.wifType {
+                    // Posting key
+                    case 1:
+                        success     =   (User.current?.posting?.key_auths?.first?.first?.contains(publicKey.address))!
+                        
+                    // Active key
+                    case 2:
+                        success     =   (User.current?.active?.key_auths?.first?.first?.contains(publicKey.address))!
+                        
+                    default:
+                        break
+                    }
                     
-                default:
-                    break
+                    // Save Private key in Keychain
+                    if success {
+                        _ = KeychainManager.save(requestModel.wif, forUserName: requestModel.userName)
+                    }
                 }
                 
-                // Save Private key in Keychain
-                if success {
-                    _ = KeychainManager.save(requestModel.wif, forUserName: requestModel.userName)
-                }
+                let responseModel = LogInShowModels.Parameters.ResponseModel(success: success)
+                self?.presenter?.presentAuthorizeUser(fromResponseModel: responseModel)
             }
-            
-            let responseModel = LogInShowModels.Parameters.ResponseModel(success: success)
-            self?.presenter?.presentAuthorizeUser(fromResponseModel: responseModel)
         })
     }
 }

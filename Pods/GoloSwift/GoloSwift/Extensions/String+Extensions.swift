@@ -8,6 +8,12 @@
 
 import Foundation
 
+let cyrillicChars   =   [ "щ", "ш", "ч", "ц", "й", "ё", "э", "ю", "я", "х", "ж", "а", "б", "в", "г", "д", "е", "з", "и", "к", "л", "м", "н", "о", "п", "р", "с", "т", "у", "ф", "ъ", "ы", "ь", "ґ", "є", "і", "ї" ]
+
+// https://github.com/GolosChain/tolstoy/blob/master/app/utils/ParsersAndFormatters.js#L117
+// https://github.com/GolosChain/tolstoy/blob/master/app/utils/ParsersAndFormatters.js#L121
+let latinChars      =   [ "shch", "sh", "ch", "cz", "ij", "yo", "ye", "yu", "ya", "kh", "zh", "a", "b", "v", "g", "d", "e", "z", "i", "k", "l", "m", "n", "o", "p", "r", "s", "t", "u", "f", "xx", "y", "x", "g", "e", "i", "i" ]
+
 extension String {
     public func convert(toDateFormat dateFormatType: DateFormatType) -> Date {
         let dateFormatter           =   DateFormatter()
@@ -98,35 +104,25 @@ extension String {
     /// Latin -> Cyrillic
     public func transliterationInCyrillic() -> String {
         let words: [String]         =   self.components(separatedBy: " ")
-        var newWords: [String]      =   [String]()
+        var newString: String       =   self
         
         words.forEach({ word in
             if word.isLatin {
-                var newString: String = ""
                 var cyrillicChar: String
                 
-                for char in word {
-                    cyrillicChar    =   transliterate(char: "\(char)", isCyrillic: false)
-                    newString.append(cyrillicChar)
+                for lenght in (1...4).reversed() {
+                    for char in latinChars.filter({ $0.count == lenght }) {
+                        cyrillicChar    =   transliterate(char: "\(char)", isCyrillic: false)
+                        newString       =   newString.replacingOccurrences(of: char, with: cyrillicChar)
+                    }
                 }
-                
-                newWords.append(newString)
-            }
-                
-            else {
-                newWords.append(word)
             }
         })
         
-        return newWords.joined(separator: " ")
+        return newString
     }
     
     func transliterate(char: String, isCyrillic: Bool) -> String {
-        let cyrillicChars   =   [ "щ", "ш", "ч", "ц", "й", "ё", "э", "ю", "я", "х", "ж", "а", "б", "в", "г", "д", "е", "з", "и", "к", "л", "м", "н", "о", "п", "р", "с", "т", "у", "ф", "ъ", "ы", "ь", "ґ", "є", "і", "ї" ]
-        
-        // https://github.com/GolosChain/tolstoy/blob/master/app/utils/ParsersAndFormatters.js#L117
-        let latinChars      =   [ "shch", "sh", "ch", "cz", "ij", "yo", "ye", "yu", "ya", "kh", "zh", "a", "b", "v", "g", "d", "e", "z", "i", "k", "l", "m", "n", "o", "p", "r", "s", "t", "u", "f", "xx", "y", "x", "g", "e", "i", "i" ]
-        
         let convertDict     =   isCyrillic ?    NSDictionary.init(objects: latinChars, forKeys: cyrillicChars as [NSCopying]) :
                                                 NSDictionary.init(objects: cyrillicChars, forKeys: latinChars as [NSCopying])
         

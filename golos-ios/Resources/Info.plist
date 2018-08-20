@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>$(PRODUCT_NAME) $(BUNDLE_ID_SUFFIX)</string>
+	<string>$(PRODUCT_NAME)-$(BUNDLE_ID_SUFFIX)</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -19,7 +19,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
-	<string>15</string>
+	<string>17</string>
 	<key>Config</key>
 	<string>$(CONFIGURATION)</string>
 	<key>Fabric</key>
@@ -44,9 +44,9 @@
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>We need access to your device's camera to scan the QR code</string>
+	<string>We need access to your device&apos;s camera to scan the QR code</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>We need access to your device's album to show photos</string>
+	<string>We need access to your device&apos;s album to show photos</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>SFProDisplay-Regular.otf</string>

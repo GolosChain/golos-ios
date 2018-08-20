@@ -259,7 +259,7 @@ class PostCreateViewController: GSBaseViewController {
         }
         
         // Check text body
-        else if self.contentTextView.text.hasPrefix("Enter prefix".localized()) {
+        else if self.contentTextView.text.isEmpty {
             self.showAlertView(withTitle: "Info", andMessage: "Post Text Body Hint", needCancel: false, completion: { _ in })
             return false
         }
