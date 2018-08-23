@@ -17,13 +17,19 @@ class AddTagCollectionViewCell: UICollectionViewCell {
     // MARK: - IBOutlets
     @IBOutlet weak var addButton: UIButton! {
         didSet {
-            addButton.frame.size = CGSize(width: 36.0 * widthRatio, height: 30.0 * heightRatio)
-            addButton.layer.cornerRadius = addButton.frame.height / 2
+            addButton.frame.size            =   CGSize(width: 36.0 * widthRatio, height: 30.0 * heightRatio)
+            addButton.layer.cornerRadius    =   addButton.frame.height / 2
         }
     }
     
     
     // MARK: - Class Initialization
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        completionAddButtonChangeFrame!(self.frame)
+    }
+
     override func awakeFromNib() {
         super.awakeFromNib()
     }

@@ -565,6 +565,7 @@
 			isa = PBXGroup;
 			children = (
 				B1EE684420D243D3006BF802 /* Views */,
+				B136D4F420D8B986003AD279 /* TagsShow */,
 				B1050C9F20CECF75003CE4EE /* PostCreateInteractor.swift */,
 				B1050C9D20CECF75003CE4EE /* PostCreateModels.swift */,
 				B1050C9A20CECF75003CE4EE /* PostCreatePresenter.swift */,
@@ -1122,7 +1123,6 @@
 				B1CF44D42106D63600483A01 /* SettingsShow */,
 				B120D0602108248C00D949F5 /* SettingsUserProfileEdit */,
 				EC24FF6A200C3FE700A0AE15 /* TabBarShow */,
-				B136D4F420D8B986003AD279 /* TagsShow */,
 				B164F03B20E62A7300C5CDD3 /* UserProfileShow */,
 				ECC15F9D2009757A0099BBC9 /* WelcomeShow */,
 			);

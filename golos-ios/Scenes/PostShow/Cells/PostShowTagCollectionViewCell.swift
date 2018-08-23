@@ -39,13 +39,13 @@ class PostShowTagCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Actions
     @IBAction func tagButtonTapped(_ sender: UIButton) {
-        sender.setBorder(color: UIColor(hexString: "#e0e0e0").cgColor, cornerRadius: sender.bounds.height * heightRatio / 2)
+        sender.setBorder(color: UIColor(hexString: "#e0e0e0").cgColor, cornerRadius: sender.bounds.height / 2)
 
         self.completionButtonTapped!()
     }
     
     @IBAction func tagButtonTappedDown(_ sender: UIButton) {
-        sender.setBorder(color: UIColor(hexString: "#dbdbdb").cgColor, cornerRadius: sender.bounds.height * heightRatio / 2)
+        sender.setBorder(color: UIColor(hexString: "#dbdbdb").cgColor, cornerRadius: sender.bounds.height / 2)
     }
 }
 

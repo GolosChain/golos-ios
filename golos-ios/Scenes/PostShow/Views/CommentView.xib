@@ -28,10 +28,6 @@
                 <outletCollection property="widthsCollection" destination="D4v-Ma-HTj" collectionClass="NSMutableArray" id="ueX-rf-z3E"/>
                 <outletCollection property="heightsCollection" destination="DOx-JU-Tjk" collectionClass="NSMutableArray" id="mzt-33-ulC"/>
                 <outletCollection property="heightsCollection" destination="Y2d-Sy-T19" collectionClass="NSMutableArray" id="psI-cg-mY9"/>
-                <outletCollection property="heightsCollection" destination="ACf-f1-LNa" collectionClass="NSMutableArray" id="Dvj-eO-zZw"/>
-                <outletCollection property="heightsCollection" destination="StW-En-mXT" collectionClass="NSMutableArray" id="NZY-Si-8N9"/>
-                <outletCollection property="heightsCollection" destination="Ypb-eM-Tx0" collectionClass="NSMutableArray" id="eEu-bU-bMb"/>
-                <outletCollection property="widthsCollection" destination="OGb-Zs-Jrn" collectionClass="NSMutableArray" id="f0Z-7z-WF1"/>
                 <outletCollection property="widthsCollection" destination="WGM-xK-IuN" collectionClass="NSMutableArray" id="yeY-jf-8kq"/>
                 <outletCollection property="widthsCollection" destination="WGM-xK-IuN" collectionClass="NSMutableArray" id="QV4-A3-LvA"/>
                 <outletCollection property="widthsCollection" destination="0Jc-1M-vHe" collectionClass="NSMutableArray" id="xoa-yy-vc2"/>
@@ -40,15 +36,18 @@
                 <outletCollection property="heightsCollection" destination="cCs-s7-z6A" collectionClass="NSMutableArray" id="XIy-ft-m4d"/>
                 <outletCollection property="widthsCollection" destination="rJH-dn-TBo" collectionClass="NSMutableArray" id="6B4-ke-uLT"/>
                 <outletCollection property="heightsCollection" destination="hRo-AH-T67" collectionClass="NSMutableArray" id="XUQ-zE-BTi"/>
+                <outletCollection property="heightsCollection" destination="9sJ-K0-GQc" collectionClass="NSMutableArray" id="s7P-w7-X1F"/>
+                <outletCollection property="heightsCollection" destination="ixt-cE-Hoz" collectionClass="NSMutableArray" id="8kC-33-uRU"/>
+                <outletCollection property="heightsCollection" destination="6pU-gQ-bHT" collectionClass="NSMutableArray" id="Myi-5L-T74"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clipsSubviews="YES" contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="85"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tNf-H6-dtq" userLabel="Content View">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="85"/>
                     <subviews>
                         <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mlh-OO-ald" userLabel="Author Profile Image Button">
                             <rect key="frame" x="2" y="5" width="40" height="40"/>
@@ -113,103 +112,120 @@
                                 <constraint firstAttribute="height" id="7cj-30-Ntl"/>
                             </constraints>
                         </view>
-                        <stackView clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z0C-dr-aat" userLabel="Actions Buttons Stack View">
-                            <rect key="frame" x="52" y="50" width="323" height="20"/>
+                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bW7-se-LaC" userLabel="Buttons View">
+                            <rect key="frame" x="52" y="50" width="323" height="25"/>
                             <subviews>
-                                <button clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="RVe-ej-86a" userLabel="Upvotes Button">
-                                    <rect key="frame" x="0.0" y="0.0" width="30" height="20"/>
+                                <stackView clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z0C-dr-aat" userLabel="Actions Buttons Stack View">
+                                    <rect key="frame" x="0.0" y="2" width="323" height="20"/>
+                                    <subviews>
+                                        <button clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="RVe-ej-86a" userLabel="Upvotes Button">
+                                            <rect key="frame" x="0.0" y="0.0" width="30" height="20"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                            <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
+                                            <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="-5" maxY="0.0"/>
+                                            <state key="normal" image="icon-button-upvotes-normal">
+                                                <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            </state>
+                                            <state key="disabled" image="icon-button-upvotes-highlighted"/>
+                                            <connections>
+                                                <action selector="upvotesButtonTapped:" destination="-1" eventType="touchUpInside" id="9Gu-1D-TsJ"/>
+                                            </connections>
+                                        </button>
+                                        <button clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="KPh-OS-JoL" userLabel="Users Button">
+                                            <rect key="frame" x="30" y="0.0" width="46" height="20"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                            <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="15" maxY="0.0"/>
+                                            <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="-5" maxY="0.0"/>
+                                            <state key="normal" title="42" image="icon-button-user-profile-normal">
+                                                <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            </state>
+                                            <state key="disabled" image="icon-button-user-profile-highlighted"/>
+                                            <connections>
+                                                <action selector="usersButtonTapped:" destination="-1" eventType="touchUpInside" id="EVG-yw-RA8"/>
+                                            </connections>
+                                        </button>
+                                        <button clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="cvI-fZ-UGc" userLabel="Comments Button">
+                                            <rect key="frame" x="76" y="0.0" width="48" height="20"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                            <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="15" maxY="0.0"/>
+                                            <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="-15" maxY="0.0"/>
+                                            <state key="normal" title="32" image="icon-button-comments-normal">
+                                                <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            </state>
+                                            <state key="disabled" image="icon-button-comments-highlighted"/>
+                                            <connections>
+                                                <action selector="commentsButtonTapped:" destination="-1" eventType="touchUpInside" id="uTq-MW-ebg"/>
+                                            </connections>
+                                        </button>
+                                        <button clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="0FV-JI-k6m" userLabel="Reply Button">
+                                            <rect key="frame" x="124" y="0.0" width="58" height="20"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                            <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="5" maxY="0.0"/>
+                                            <state key="normal" title="Reply Verb">
+                                                <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            </state>
+                                            <state key="disabled" title="Reply Verb"/>
+                                            <connections>
+                                                <action selector="replyButtonTapped:" destination="-1" eventType="touchUpInside" id="TGL-3d-iBL"/>
+                                            </connections>
+                                        </button>
+                                        <button clipsSubviews="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="3pH-mp-bUu" userLabel="Share Button">
+                                            <rect key="frame" x="182" y="0.0" width="141" height="20"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                            <state key="normal" image="icon-button-horizontal-more-normal">
+                                                <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            </state>
+                                            <state key="disabled" image="icon-button-horizontal-more-highlighted"/>
+                                            <state key="highlighted" image="icon-button-horizontal-more-highlighted"/>
+                                            <connections>
+                                                <action selector="shareButtonTapped:" destination="-1" eventType="touchUpInside" id="hJI-tb-4WM"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                    <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
-                                    <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="-5" maxY="0.0"/>
-                                    <state key="normal" image="icon-button-upvotes-normal">
-                                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                    </state>
-                                    <state key="disabled" image="icon-button-upvotes-highlighted"/>
-                                    <connections>
-                                        <action selector="upvotesButtonTapped:" destination="-1" eventType="touchUpInside" id="9Gu-1D-TsJ"/>
-                                    </connections>
-                                </button>
-                                <button clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="KPh-OS-JoL" userLabel="Users Button">
-                                    <rect key="frame" x="30" y="0.0" width="46" height="20"/>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                    <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="15" maxY="0.0"/>
-                                    <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="-5" maxY="0.0"/>
-                                    <state key="normal" title="42" image="icon-button-user-profile-normal">
-                                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                    </state>
-                                    <state key="disabled" image="icon-button-user-profile-highlighted"/>
-                                    <connections>
-                                        <action selector="usersButtonTapped:" destination="-1" eventType="touchUpInside" id="EVG-yw-RA8"/>
-                                    </connections>
-                                </button>
-                                <button clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="cvI-fZ-UGc" userLabel="Comments Button">
-                                    <rect key="frame" x="76" y="0.0" width="48" height="20"/>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                    <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="15" maxY="0.0"/>
-                                    <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="-15" maxY="0.0"/>
-                                    <state key="normal" title="32" image="icon-button-comments-normal">
-                                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                    </state>
-                                    <state key="disabled" image="icon-button-comments-highlighted"/>
-                                    <connections>
-                                        <action selector="commentsButtonTapped:" destination="-1" eventType="touchUpInside" id="uTq-MW-ebg"/>
-                                    </connections>
-                                </button>
-                                <button clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="0FV-JI-k6m" userLabel="Reply Button">
-                                    <rect key="frame" x="124" y="0.0" width="58" height="20"/>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                    <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="5" maxY="0.0"/>
-                                    <state key="normal" title="Reply Verb">
-                                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                    </state>
-                                    <state key="disabled" title="Reply Verb"/>
-                                    <connections>
-                                        <action selector="replyButtonTapped:" destination="-1" eventType="touchUpInside" id="TGL-3d-iBL"/>
-                                    </connections>
-                                </button>
-                                <button clipsSubviews="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="3pH-mp-bUu" userLabel="Share Button">
-                                    <rect key="frame" x="182" y="0.0" width="141" height="20"/>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                    <state key="normal" image="icon-button-horizontal-more-normal">
-                                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                    </state>
-                                    <state key="disabled" image="icon-button-horizontal-more-highlighted"/>
-                                    <state key="highlighted" image="icon-button-horizontal-more-highlighted"/>
-                                    <connections>
-                                        <action selector="shareButtonTapped:" destination="-1" eventType="touchUpInside" id="hJI-tb-4WM"/>
-                                    </connections>
-                                </button>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="20" id="Ypb-eM-Tx0"/>
+                                    </constraints>
+                                </stackView>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="20" id="Ypb-eM-Tx0"/>
+                                <constraint firstItem="z0C-dr-aat" firstAttribute="centerY" secondItem="bW7-se-LaC" secondAttribute="centerY" id="5Nc-BX-nJI"/>
+                                <constraint firstAttribute="height" constant="25" id="9sJ-K0-GQc"/>
+                                <constraint firstAttribute="trailing" secondItem="z0C-dr-aat" secondAttribute="trailing" id="LsC-p4-p08"/>
+                                <constraint firstItem="z0C-dr-aat" firstAttribute="leading" secondItem="bW7-se-LaC" secondAttribute="leading" id="hwf-M5-g25"/>
                             </constraints>
-                        </stackView>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="eTP-vD-Kt8" firstAttribute="leading" secondItem="Mnb-Ny-ryB" secondAttribute="leading" constant="14" id="0Jc-1M-vHe"/>
-                        <constraint firstItem="z0C-dr-aat" firstAttribute="top" secondItem="Mnb-Ny-ryB" secondAttribute="bottom" constant="10" id="ACf-f1-LNa"/>
+                        <constraint firstAttribute="bottom" secondItem="bW7-se-LaC" secondAttribute="bottom" constant="10" id="6pU-gQ-bHT"/>
                         <constraint firstItem="mlh-OO-ald" firstAttribute="top" secondItem="tNf-H6-dtq" secondAttribute="top" constant="5" id="ALu-zV-3cZ"/>
                         <constraint firstItem="JV1-jP-ZcQ" firstAttribute="leading" secondItem="eTP-vD-Kt8" secondAttribute="trailing" constant="8" id="D4v-Ma-HTj"/>
                         <constraint firstItem="Mnb-Ny-ryB" firstAttribute="top" secondItem="eTP-vD-Kt8" secondAttribute="bottom" constant="3" id="DOx-JU-Tjk"/>
+                        <constraint firstAttribute="trailing" secondItem="bW7-se-LaC" secondAttribute="trailing" id="DQT-JO-Lfz"/>
                         <constraint firstItem="eTP-vD-Kt8" firstAttribute="leading" secondItem="mlh-OO-ald" secondAttribute="trailing" constant="10" id="K8l-41-h6y"/>
                         <constraint firstItem="yNw-9n-yzN" firstAttribute="leading" secondItem="mlh-OO-ald" secondAttribute="leading" constant="-2" id="Mje-bE-iK1"/>
-                        <constraint firstAttribute="trailing" secondItem="z0C-dr-aat" secondAttribute="trailing" id="OGb-Zs-Jrn"/>
-                        <constraint firstAttribute="bottom" secondItem="z0C-dr-aat" secondAttribute="bottom" constant="10" id="StW-En-mXT"/>
+                        <constraint firstItem="bW7-se-LaC" firstAttribute="leading" secondItem="eTP-vD-Kt8" secondAttribute="leading" id="PJf-Ow-DpU"/>
                         <constraint firstAttribute="trailing" secondItem="Mnb-Ny-ryB" secondAttribute="trailing" constant="-14" id="WGM-xK-IuN"/>
                         <constraint firstItem="yNw-9n-yzN" firstAttribute="bottom" secondItem="mlh-OO-ald" secondAttribute="bottom" constant="2" id="cCs-s7-z6A"/>
                         <constraint firstItem="eTP-vD-Kt8" firstAttribute="top" secondItem="mlh-OO-ald" secondAttribute="top" id="eg7-rP-TKm"/>
                         <constraint firstAttribute="bottom" secondItem="Mnb-Ny-ryB" secondAttribute="bottom" constant="40" id="hRo-AH-T67"/>
                         <constraint firstItem="JV1-jP-ZcQ" firstAttribute="centerY" secondItem="eTP-vD-Kt8" secondAttribute="centerY" id="hdo-bQ-3nY"/>
-                        <constraint firstItem="z0C-dr-aat" firstAttribute="leading" secondItem="eTP-vD-Kt8" secondAttribute="leading" id="nRo-Ni-jgX"/>
+                        <constraint firstItem="bW7-se-LaC" firstAttribute="top" secondItem="Mnb-Ny-ryB" secondAttribute="bottom" constant="10" id="ixt-cE-Hoz"/>
                         <constraint firstItem="yNw-9n-yzN" firstAttribute="leading" secondItem="tNf-H6-dtq" secondAttribute="leading" id="rJH-dn-TBo"/>
                     </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="hRo-AH-T67"/>
+                        </mask>
+                    </variation>
                 </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -222,6 +238,7 @@
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="33.5" y="54"/>
         </view>
     </objects>
     <resources>

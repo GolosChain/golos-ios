@@ -146,16 +146,29 @@ public class User: NSManagedObject {
         }
     }
     
-    func clearCache() {
-        CoreDataManager.instance.deleteEntities(withName: "Actual", andPredicateParameters: nil, completion: { _ in })
-        CoreDataManager.instance.deleteEntities(withName: "Blog", andPredicateParameters: nil, completion: { _ in })
-        CoreDataManager.instance.deleteEntities(withName: "Lenta", andPredicateParameters: nil, completion: { _ in })
-        CoreDataManager.instance.deleteEntities(withName: "New", andPredicateParameters: nil, completion: { _ in })
-        CoreDataManager.instance.deleteEntities(withName: "Popular", andPredicateParameters: nil, completion: { _ in })
-        CoreDataManager.instance.deleteEntities(withName: "Promo", andPredicateParameters: nil, completion: { _ in })
-        CoreDataManager.instance.deleteEntities(withName: "Reply", andPredicateParameters: nil, completion: { _ in })
-        CoreDataManager.instance.deleteEntities(withName: "User", andPredicateParameters: NSPredicate(format: "isAuthorized == 0"), completion: { _ in })
+    func clearCache(atLastWeek needPredicate: Bool) {
+        var predicate: NSPredicate?
         
-        CoreDataManager.instance.contextSave()
+        if let dateLastWeek = Calendar.current.date(byAdding: .day, value: -7, to: Date()) as NSDate?, needPredicate {
+            predicate   =   NSPredicate(format: "created <= %@", dateLastWeek)
+        }
+        
+        DispatchQueue.global(qos: .background).async {
+            CoreDataManager.instance.deleteEntities(withName: "Actual", andPredicateParameters: predicate, completion: { _ in })
+            CoreDataManager.instance.deleteEntities(withName: "Blog", andPredicateParameters: predicate, completion: { _ in })
+            CoreDataManager.instance.deleteEntities(withName: "New", andPredicateParameters: predicate, completion: { _ in })
+            CoreDataManager.instance.deleteEntities(withName: "Popular", andPredicateParameters: predicate, completion: { _ in })
+            CoreDataManager.instance.deleteEntities(withName: "Promo", andPredicateParameters: predicate, completion: { _ in })
+            CoreDataManager.instance.deleteEntities(withName: "Reply", andPredicateParameters: predicate, completion: { _ in })
+            CoreDataManager.instance.deleteEntities(withName: "Comment", andPredicateParameters: predicate, completion: { _ in })
+            
+            CoreDataManager.instance.contextSave()
+        }
+    }
+
+    func clearCache() {
+        CoreDataManager.instance.deleteEntities(withName: "Lenta", andPredicateParameters: nil, completion: { _ in })
+        CoreDataManager.instance.deleteEntities(withName: "User", andPredicateParameters: NSPredicate(format: "isAuthorized == 0"), completion: { _ in })
+        self.clearCache(atLastWeek: false)
     }
 }

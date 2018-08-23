@@ -63,7 +63,7 @@ extension UIImageView {
                     URLSession.shared.dataTask(with: imageURL!) { data, _, error in
                         guard error == nil else {
                             DispatchQueue.main.async {
-                                self.image = imageType != .userCoverImage ? UIImage(named: imagePlaceholderName) : nil
+                                self.image = UIImage(named: imagePlaceholderName) //imageType != .userCoverImage ? UIImage(named: imagePlaceholderName) : nil
                             }
                             
                             return

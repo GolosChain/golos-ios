@@ -14,7 +14,7 @@ class Tag: NSObject {
     var placeholder: String?
     var id: Int                 =   0
     var isFirst: Bool           =   false
-    var cellWidth: CGFloat      =   78.0
+    var cellWidth: CGFloat      =   78.0 * widthRatio
     
     
     // MARK: - Class Initialization

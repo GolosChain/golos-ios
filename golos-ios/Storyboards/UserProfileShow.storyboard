@@ -37,7 +37,7 @@
                                                 </constraints>
                                             </view>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vAN-NO-FcT" userLabel="User Profile Info Control View">
-                                                <rect key="frame" x="16" y="112" width="208" height="44"/>
+                                                <rect key="frame" x="16" y="112" width="342" height="44"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="44" id="aRF-PN-7sa"/>
@@ -48,7 +48,6 @@
                                                 <color key="backgroundColor" red="0.85882352941176465" green="0.85882352941176465" blue="0.85882352941176465" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="R54-AI-al2"/>
-                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="1" id="nU8-J6-NCN"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
@@ -61,7 +60,7 @@
                                             <constraint firstItem="vAN-NO-FcT" firstAttribute="leading" secondItem="EqR-p6-NO1" secondAttribute="leading" constant="16" id="UY2-rH-BeL"/>
                                             <constraint firstAttribute="trailing" secondItem="oTo-xI-SFK" secondAttribute="trailing" id="XNN-6f-fp5"/>
                                             <constraint firstAttribute="trailing" secondItem="nQR-xd-4LM" secondAttribute="trailing" id="cn3-qD-MvL"/>
-                                            <constraint firstAttribute="trailing" secondItem="vAN-NO-FcT" secondAttribute="trailing" constant="150" id="hbO-9L-cIM"/>
+                                            <constraint firstAttribute="trailing" secondItem="vAN-NO-FcT" secondAttribute="trailing" constant="16" id="hbO-9L-cIM"/>
                                             <constraint firstItem="nQR-xd-4LM" firstAttribute="leading" secondItem="EqR-p6-NO1" secondAttribute="leading" id="jZG-sB-bi9"/>
                                             <constraint firstItem="oTo-xI-SFK" firstAttribute="top" secondItem="vAN-NO-FcT" secondAttribute="bottom" id="jvc-Xt-W3t"/>
                                             <constraint firstItem="nQR-xd-4LM" firstAttribute="top" secondItem="gKv-wz-hea" secondAttribute="bottom" id="k1R-e6-PbC"/>
@@ -126,6 +125,10 @@
                         <outlet property="walletBalanceView" destination="nQR-xd-4LM" id="SGW-eD-tUj"/>
                         <outlet property="walletBalanceViewHeightConstraint" destination="OCZ-c0-g1n" id="9wB-jf-fsf"/>
                         <outlet property="walletBalanceViewTopConstraint" destination="k1R-e6-PbC" id="9Qr-uG-o8g"/>
+                        <outletCollection property="widthsCollection" destination="hbO-9L-cIM" collectionClass="NSMutableArray" id="Tmh-Ao-sVy"/>
+                        <outletCollection property="widthsCollection" destination="UY2-rH-BeL" collectionClass="NSMutableArray" id="6vr-lt-ubg"/>
+                        <outletCollection property="heightsCollection" destination="R54-AI-al2" collectionClass="NSMutableArray" id="5OR-Zu-UT0"/>
+                        <outletCollection property="heightsCollection" destination="aRF-PN-7sa" collectionClass="NSMutableArray" id="pU0-v9-jEY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wTl-V5-NJX" userLabel="First Responder" sceneMemberID="firstResponder"/>

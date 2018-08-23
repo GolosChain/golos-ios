@@ -167,7 +167,7 @@ class GSTableViewController: GSBaseViewController {
         self.tableView.tableHeaderView  =   self.activityIndicatorView
     }
     
-    private func diplayEmptyTitle(byType type: PostsFeedType) {
+    private func displayEmptyTitle(byType type: PostsFeedType) {
         // Add header with title
         if self.fetchedResultsController.sections![0].numberOfObjects == 0 {
             let headerView = UIView.init(frame: tableView.frame)
@@ -250,9 +250,9 @@ class GSTableViewController: GSBaseViewController {
             // Refresh data
             if self.refreshData {                
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.9) {
-                    self.refreshControl.endRefreshing()
                     self.refreshData = !self.refreshData
                     self.tableView.contentOffset = .zero
+                    self.refreshControl.endRefreshing()
                 }
             }
             
@@ -266,7 +266,7 @@ class GSTableViewController: GSBaseViewController {
                     self.tableView.layoutIfNeeded()
                     
                     if self.fetchedResultsController.sections![0].numberOfObjects == 0 {
-                        self.diplayEmptyTitle(byType: postType)
+                        self.displayEmptyTitle(byType: postType)
                     }
 
                     else {
@@ -339,33 +339,24 @@ extension GSTableViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         
-        let entity = fetchedResultsController.object(at: indexPath) as! NSManagedObject
-        
-        switch entity {
-        // Replies
-        case let replyEntity where type(of: entity) == Reply.self:
-            if let replyCell = tableView.dequeueReusableCell(withIdentifier: self.cellIdentifier, for: indexPath) as? ReplyTableViewCell {
-                replyCell.setup(withItem: replyEntity, andIndexPath: indexPath)
+        let entity  =   fetchedResultsController.object(at: indexPath) as! NSManagedObject
+        let cell    =   tableView.dequeueReusableCell(withIdentifier: self.cellIdentifier, for: indexPath)
 
-                // Handlers comletion
-                replyCell.handlerAnswerButtonTapped     =   { [weak self] in
-                    self?.handlerAnswerButtonTapped!()
-                }
+        (cell as! ConfigureCell).setup(withItem: entity, andIndexPath: indexPath)
 
-                replyCell.handlerReplyTypeButtonTapped  =   { [weak self] in
-                    self?.handlerReplyTypeButtonTapped!()
-                }
-                
-                return replyCell
+        // Handlers Reply comletion
+        if type(of: entity) == Reply.self {
+            (cell as! ReplyTableViewCell).handlerAnswerButtonTapped         =   { [weak self] in
+                self?.handlerAnswerButtonTapped!()
             }
             
-        // Lenta, Blog, Popular, Actual, New, Promo
-        default:
-            let cell = tableView.dequeueReusableCell(withIdentifier: self.cellIdentifier, for: indexPath)
-            
-            (cell as! ConfigureCell).setup(withItem: entity, andIndexPath: indexPath)
-            
-            // Handlers comletion
+            (cell as! ReplyTableViewCell).handlerReplyTypeButtonTapped      =   { [weak self] in
+                self?.handlerReplyTypeButtonTapped!()
+            }
+        }
+        
+        // Handlers Lenta, Blog, Popular, Actual, New, Promo comletion
+        else {
             (cell as! PostFeedTableViewCell).handlerShareButtonTapped       =   { [weak self] in
                 self?.handlerShareButtonTapped!()
             }
@@ -377,11 +368,9 @@ extension GSTableViewController: UITableViewDataSource {
             (cell as! PostFeedTableViewCell).handlerCommentsButtonTapped    =   { [weak self] in
                 self?.handlerCommentsButtonTapped!()
             }
-            
-            return cell
         }
         
-        return UITableViewCell()
+        return cell
     }
 }
 

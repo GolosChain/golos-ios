@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -32,7 +33,7 @@
                     <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="80V-e8-js9" userLabel="Clear Button">
                         <rect key="frame" x="55" y="7.5" width="15" height="15"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="15" id="Kgw-Ye-Ei9"/>
+                            <constraint firstAttribute="width" secondItem="80V-e8-js9" secondAttribute="height" multiplier="1:1" id="8yv-Ic-ctT"/>
                             <constraint firstAttribute="width" constant="15" id="PYt-VG-Unh"/>
                         </constraints>
                         <state key="normal" image="icon-button-close-normal"/>
@@ -55,6 +56,8 @@
             <connections>
                 <outlet property="clearButton" destination="80V-e8-js9" id="4Cp-QF-VMf"/>
                 <outlet property="textField" destination="Hkf-Hk-gp1" id="pfy-wV-kwM"/>
+                <outletCollection property="widthsCollection" destination="mjV-Sd-gWX" collectionClass="NSMutableArray" id="26K-E2-5h1"/>
+                <outletCollection property="widthsCollection" destination="PYt-VG-Unh" collectionClass="NSMutableArray" id="juY-ll-WbZ"/>
             </connections>
         </collectionViewCell>
     </objects>

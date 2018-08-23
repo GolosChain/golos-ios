@@ -16,8 +16,9 @@ class TagsCollectionViewController: GSBaseViewController {
     var tags: [Tag]!
     var tagIndex: Int       =   1
     var offsetIndex: Int    =   -1
-    var addButtonTapped     =   false
     var isKeyboardShow      =   false
+    
+    var addNewTagCell: AddTagCollectionViewCell!
     
     var completionTagsChanged: (() -> Void)?
     var completionStartEndEditing: ((CGFloat, CGFloat?) -> Void)?
@@ -27,17 +28,14 @@ class TagsCollectionViewController: GSBaseViewController {
     // MARK: - IBPutlets
     @IBOutlet weak var collectionView: UICollectionView! {
         didSet {
-            collectionView.delegate     =   self
-            collectionView.dataSource   =   self
+            collectionView.contentInset         =   UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
+            collectionView.delegate             =   self
+            collectionView.dataSource           =   self
         }
     }
     
     
     // MARK: - Class Functions
-    override func viewWillLayoutSubviews() {
-        print(collectionView.frame.height)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -52,7 +50,7 @@ class TagsCollectionViewController: GSBaseViewController {
                                             forCellWithReuseIdentifier:     "ThemeTagCollectionViewCell")
 
         self.collectionView!.register(UINib(nibName:                        "AddTagCollectionViewCell", bundle: nil),
-                                      forCellWithReuseIdentifier:           "AddTagCollectionViewCell")
+                                            forCellWithReuseIdentifier:     "AddTagCollectionViewCell")
 
         // Create first tag
         self.createFirstTab()
@@ -75,29 +73,35 @@ class TagsCollectionViewController: GSBaseViewController {
     
     private func addNewTag() {
         guard self.tags.count <= 4 else {
-            self.showAlertView(withTitle: "Info", andMessage: "You can add up to 5 tags", needCancel: false, completion: { [weak self] _ in
-                self?.addButtonTapped = false
-            })
-            
+            self.showAlertView(withTitle: "Info", andMessage: "You can add up to 5 tags", needCancel: false, completion: { _ in })
             return
         }
         
         // Check current Tag title
         guard let title = self.tags.last?.title, !title.isEmpty else {
-            self.addButtonTapped = false
             return
         }
         
         self.tagIndex           +=  1
         let insertIndexPath     =   IndexPath(row: self.tags.count, section: 0)
-        self.addButtonTapped    =   true
 
         self.tags.append(Tag(placeholder: "Tag".localized() + " \(self.tags.count + 1)", id: self.tagIndex, isFirst: false))
-        self.collectionView?.insertItems(at: [insertIndexPath])
+        self.collectionView.insertItems(at: [insertIndexPath])
+        self.collectionView.reloadItems(at: [insertIndexPath])
+
+        self.calculateCollectionViewHeight()
+
+        (self.collectionView.cellForItem(at: IndexPath(row: self.tags.count - 1, section: 0)) as! ThemeTagCollectionViewCell).textField.becomeFirstResponder()
         self.collectionView.collectionViewLayout.invalidateLayout()
+
+    }
+    
+    func calculateCollectionViewHeight() {
+        if let addTagCell = self.addNewTagCell {
+            self.complationCollectionViewChangeHeight!(addTagCell.frame.maxY + 13.0 * heightRatio)
+        }
         
-        (self.collectionView.cellForItem(at: insertIndexPath) as! ThemeTagCollectionViewCell).textField.becomeFirstResponder()
-//        (self.collectionView.cellForItem(at: IndexPath(row: self.tags.count - 1, section: 0)) as! ThemeTagCollectionViewCell).textField.becomeFirstResponder()
+        self.collectionView.collectionViewLayout.invalidateLayout()
     }
 }
 
@@ -120,11 +124,16 @@ extension TagsCollectionViewController: UICollectionViewDataSource {
         var cell: UICollectionViewCell
         
         if indexPath.row == self.tags.count {
-            cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AddTagCollectionViewCell", for: indexPath) as! AddTagCollectionViewCell
+            self.addNewTagCell  =   collectionView.dequeueReusableCell(withReuseIdentifier: "AddTagCollectionViewCell", for: indexPath) as! AddTagCollectionViewCell
+            cell                =   self.addNewTagCell
             
             // Handler add button
-            (cell as! AddTagCollectionViewCell).completionAddNewTag = {
-                self.addNewTag()
+            self.addNewTagCell.completionAddNewTag              =   { [weak self] in
+                self?.addNewTag()
+            }
+            
+           self.addNewTagCell.completionAddButtonChangeFrame    =   { [weak self] newFrame in
+                self?.complationCollectionViewChangeHeight!((newFrame.maxY + 18.0) * heightRatio)
             }
         }
             
@@ -190,7 +199,6 @@ extension TagsCollectionViewController: UICollectionViewDataSource {
             
             // Handler change title
             (cell as! ThemeTagCollectionViewCell).completionChangeTitle = { [weak self] offset, enteredName, newCharacter in
-                self?.addButtonTapped   =   false
                 self?.offsetIndex       =   indexPath.row
                 item?.cellWidth         =   offset
                 
@@ -247,10 +255,6 @@ extension TagsCollectionViewController: UICollectionViewDelegateFlowLayout {
             return 0.0
         }
         
-        if let height = collectionView.cellForItem(at: IndexPath(row: self.tags.count, section: 0))?.frame.maxY {
-            self.complationCollectionViewChangeHeight!((height + 18.0) * heightRatio)
-        }
-
         return 6.0 * widthRatio
     }
     
@@ -265,6 +269,7 @@ extension TagsCollectionViewController: UICollectionViewDelegateFlowLayout {
         }
         
         if indexPath.row > self.tags.count - 1 {
+            self.calculateCollectionViewHeight()
             return CGSize(width: 46.0 * widthRatio, height: 30.0 * heightRatio)
         }
         

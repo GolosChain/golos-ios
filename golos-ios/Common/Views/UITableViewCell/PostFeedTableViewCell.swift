@@ -95,6 +95,10 @@ class PostFeedTableViewCell: UITableViewCell, HandlersCellSupport {
         self.postImageViewHeightConstraint.constant             =   180.0 * heightRatio
     }
     
+    deinit {
+        Logger.log(message: "Success", event: .severe)
+    }
+
     
     // MARK: - Actions
     @IBAction func upvotesButtonTapped(_ sender: UIButton) {

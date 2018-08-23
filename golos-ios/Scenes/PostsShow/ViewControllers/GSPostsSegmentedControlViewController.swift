@@ -35,7 +35,7 @@ class GSPostsSegmentedControlViewController: SJSegmentedViewController {
         let viewController2     =   UIStoryboard(name: "PostsShow", bundle: nil).instantiateViewController(withIdentifier: "UserProfileLentaShowVC") as! GSTableViewController
         viewController2.title   =   "Popular".localized()
 
-        let viewController3     =   UIStoryboard(name: "PostsShow", bundle: nil).instantiateViewController(withIdentifier: "UserProfileLentaShowVC") as! GSTableViewController
+        let viewController3     =   UIStoryboard(name: "PostsShow", bundle: nil).instantiateViewController(withIdentifier: "UserProfileLentaShowVC") as! ActualPostsShowViewController
         viewController3.title   =   "Actual".localized()
 
         let viewController4     =   UIStoryboard(name: "PostsShow", bundle: nil).instantiateViewController(withIdentifier: "UserProfileLentaShowVC") as! GSTableViewController

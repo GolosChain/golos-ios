@@ -91,7 +91,7 @@ class CommentView: UIView {
     
     // MARK: - Class Initialization
     init(withComment comment: Comment, atLevel level: String) {
-        super.init(frame: CGRect.init(origin: .zero, size: CGSize.init(width: 351.0 * widthRatio, height: 80.0 * heightRatio)))
+        super.init(frame: CGRect.init(origin: .zero, size: CGSize.init(width: 351.0 * widthRatio, height: 85.0 * heightRatio)))
         
         createFromXIB()
         

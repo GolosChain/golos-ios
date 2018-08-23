@@ -41,6 +41,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // APNs
         self.registerForPushNotifications()
         
+        // Clear cache
+        self.clearCache()
+        
         // Main window
         window?.backgroundColor = .white
         window?.makeKeyAndVisible()
@@ -282,6 +285,14 @@ extension AppDelegate {
             
         default:
             return getCurrentViewController(forRootViewController: presented)
+        }
+    }
+    
+    
+    /// Clear current User cache at last week
+    private func clearCache() {
+        if let currentUser = User.current {
+            currentUser.clearCache(atLastWeek: true)
         }
     }
 }

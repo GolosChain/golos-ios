@@ -93,6 +93,7 @@ class PostShowViewController: GSBaseViewController {
     @IBOutlet weak var postFeedHeaderView: PostFeedHeaderView!
     @IBOutlet weak var commentsView: UIView!
     @IBOutlet weak var commentsStackView: UIStackView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     @IBOutlet weak var markdownViewManager: MarkdownViewManager! {
         didSet {
@@ -366,7 +367,7 @@ class PostShowViewController: GSBaseViewController {
     @IBOutlet var circleImagesCollection: [UIView]! {
         didSet {
             _ = circleImagesCollection.map({ imageView in
-                imageView.layer.cornerRadius = imageView.bounds.height / 2
+                imageView.layer.cornerRadius = imageView.bounds.height / 2 * heightRatio
                 
                 if imageView.tag == 0 {
                     imageView.layer.borderWidth     =   1.0
@@ -494,6 +495,7 @@ class PostShowViewController: GSBaseViewController {
             // Load markdown content
             self.markdownViewManager.onRendered = { [weak self] height in
                 self?.markdownViewHeightConstraint.constant = height
+                self?.activityIndicator.stopAnimating()
                 
                 UIView.animate(withDuration: 0.5, animations: {
                     self?.contentView.alpha = 1.0
@@ -709,29 +711,27 @@ extension PostShowViewController {
                 }
                 
                 // "00_01_02_03_04_05"
-//                if parentLevel.count / 2 < 4 {
-                    for (tag, comment) in comments.enumerated() {
-                        let commentView = CommentView.init(withComment: comment, atLevel: parentLevel + "\(tag + 1)".addFirstZero())
+                for (tag, comment) in comments.enumerated() {
+                    let commentView = CommentView.init(withComment: comment, atLevel: parentLevel + "\(tag + 1)".addFirstZero())
+                    
+                    // Level N
+                    commentView.loadData(fromBody: comment.body, completion: { [weak self] viewHeight in
+                        self?.commentsStackViewHeightConstraint.constant += viewHeight
+                        self?.commentsStackView.layoutIfNeeded()
+                        self?.commentsViews.append(commentView)
                         
-                        // Level N
-                        commentView.loadData(fromBody: comment.body, completion: { [weak self] viewHeight in
-                            self?.commentsStackViewHeightConstraint.constant += viewHeight
-                            self?.commentsStackView.layoutIfNeeded()
-                            self?.commentsViews.append(commentView)
+                        // Get next Comment level
+                        if commentView.level.count / 2 <= 2 {
+                            self?.nextCommentLevel(byPermlink: commentView.permlink, andParentLevel: commentView.level)
+                        }
                             
-                            // Get next Comment level
-                            if commentView.level.count / 2 <= 2 {
-                                self?.nextCommentLevel(byPermlink: commentView.permlink, andParentLevel: commentView.level)
-                            }
-                            
-                            else {
-                                self?.nextCommentLevel(byPermlink: "XXX", andParentLevel: "XXX")
-                            }
-                        })
-                    }
+                        else {
+                            self?.nextCommentLevel(byPermlink: "XXX", andParentLevel: "XXX")
+                        }
+                    })
                 }
             }
-//        }
+        }
     }
     
     
@@ -823,7 +823,7 @@ extension PostShowViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let tag     =   (self.router!.dataStore!.post as! PostCellSupport).tags![indexPath.row]
-        let width   =   (CGFloat(tag.count) * 6.0 * widthRatio + 30.0) * widthRatio
+        let width   =   (CGFloat(tag.count) * 7.0 + 30.0) * widthRatio
         
         return CGSize.init(width: width, height: 30.0 * heightRatio)
     }

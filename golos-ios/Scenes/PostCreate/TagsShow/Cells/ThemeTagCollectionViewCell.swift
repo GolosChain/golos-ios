@@ -14,7 +14,8 @@ import IQKeyboardManagerSwift
 class ThemeTagCollectionViewCell: UICollectionViewCell {
     // MARK: - Properties
     var isClearbuttonTaped: Bool = false
-    var firstResponderWidth: CGFloat = 78.0
+    var firstResponderWidth: CGFloat = 78.0 * widthRatio
+    
     var completionEndEditing: (() -> Void)?
     var completionClearButton: ((Bool) -> Void)?    // Bool = keyboard show or hide
     var completionChangeTitle: ((CGFloat, String?, String) -> Void)?
@@ -47,15 +48,21 @@ class ThemeTagCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var clearButton: UIButton! {
         didSet {
-            clearButton.frame.size = CGSize(width: 15.0 * widthRatio, height: 15.0 * heightRatio)
-            clearButton.layer.cornerRadius = clearButton.frame.height / 2
+            clearButton.frame.size          =   CGSize(width: 15.0 * widthRatio, height: 15.0 * widthRatio)
+            clearButton.layer.cornerRadius  =   clearButton.frame.height / 2
+        }
+    }
+    
+    @IBOutlet var widthsCollection: [NSLayoutConstraint]! {
+        didSet {
+            _ = widthsCollection.map( { $0.constant *= widthRatio })
         }
     }
         
     
     // MARK: - Class Initialization
     override func awakeFromNib() {
-        super.awakeFromNib()
+        super.awakeFromNib()        
     }
     
     
@@ -83,8 +90,8 @@ extension ThemeTagCollectionViewCell: ConfigureCell {
 // MARK: - UITextFieldDelegate
 extension ThemeTagCollectionViewCell: UITextFieldDelegate {
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        self.firstResponderWidth    =   textField.frame.width
-        self.isClearbuttonTaped     =   false
+        self.firstResponderWidth        =   textField.frame.width
+        self.isClearbuttonTaped         =   false
 
         self.completionStartEditing!()
         
@@ -99,32 +106,38 @@ extension ThemeTagCollectionViewCell: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-        
+        self.completionEndEditing!()
+
         return true
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let count = (textField.text?.count)! + string.count
         
+        // Max Tag title lenght = 24
+        guard count < 25 && string.checkTagTitleRule() || string.isEmpty || !string.isEmpty else {
+            return false
+        }
+        
         var stringWidth: CGFloat = 0.0
         
         if string.isEmpty {
             // Delete character
             if range.length == 1 {
-                stringWidth = ("\(textField.text!.last!)" as NSString).size(withAttributes: [NSAttributedStringKey.font: UIFont(name: "SFUIDisplay-Regular", size: 13.0 * widthRatio)!]).width
+                stringWidth     =   ("\(textField.text!.last!)" as NSString).size(withAttributes: [NSAttributedStringKey.font: UIFont(name: "SFUIDisplay-Regular", size: 13.0 * widthRatio)!]).width
             }
                 
             // Delete text block
             else {
-                let start   =   textField.text!.index(textField.text!.startIndex, offsetBy: range.location)
-                let end     =   textField.text!.index(start, offsetBy: range.length)
+                let start       =   textField.text!.index(textField.text!.startIndex, offsetBy: range.location)
+                let end         =   textField.text!.index(start, offsetBy: range.length)
                 
-                stringWidth = ("\(textField.text![start..<end])" as NSString).size(withAttributes: [NSAttributedStringKey.font: UIFont(name: "SFUIDisplay-Regular", size: 13.0 * widthRatio)!]).width
+                stringWidth     =   ("\(textField.text![start..<end])" as NSString).size(withAttributes: [NSAttributedStringKey.font: UIFont(name: "SFUIDisplay-Regular", size: 13.0 * widthRatio)!]).width
             }
         }
             
         else {
-            stringWidth = (string as NSString).size(withAttributes: [NSAttributedStringKey.font: UIFont(name: "SFUIDisplay-Regular", size: 13.0 * widthRatio)!]).width
+            stringWidth         =   (string as NSString).size(withAttributes: [NSAttributedStringKey.font: UIFont(name: "SFUIDisplay-Regular", size: 13.0 * widthRatio)!]).width
         }
         
         if count > 2 {

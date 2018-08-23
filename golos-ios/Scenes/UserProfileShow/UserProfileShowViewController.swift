@@ -38,7 +38,7 @@ class UserProfileShowViewController: GSBaseViewController, ContainerViewSupport 
     var router: (NSObjectProtocol & UserProfileShowRoutingLogic & UserProfileShowDataPassing)?
     
     lazy var segmentedControl: SWSegmentedControl = {
-        let contolElement       =   SWSegmentedControl(frame: CGRect(origin: .zero, size: segmentedControlView.frame.size))
+        let contolElement       =   SWSegmentedControl(frame: CGRect(origin: .zero, size: CGSize(width: 210.0 * widthRatio, height: 44.0 * heightRatio)))
         
         contolElement.items                     =   [ "Posts", "Replies" ].map({ $0.localized() })
         contolElement.selectedSegmentIndex      =   0
@@ -156,7 +156,19 @@ class UserProfileShowViewController: GSBaseViewController, ContainerViewSupport 
             userProfileInfoTitleViewHeightConstraint.constant *= heightRatio
         }
     }
-
+    
+    @IBOutlet var heightsCollection: [NSLayoutConstraint]! {
+        didSet {
+            _ = heightsCollection.map({ $0.constant *= heightRatio })
+        }
+    }
+    
+    @IBOutlet var widthsCollection: [NSLayoutConstraint]! {
+        didSet {
+            _ = widthsCollection.map({ $0.constant *= widthRatio })
+        }
+    }
+    
     
     // MARK: - Class Initialization
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {

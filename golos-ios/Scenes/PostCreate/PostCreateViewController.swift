@@ -202,6 +202,9 @@ class PostCreateViewController: GSBaseViewController {
         Logger.log(message: "Success", event: .severe)
         
         self.setConstraint()
+        
+        // After change ThemeTagCollectionViewCell title width
+        self.tagsVC.calculateCollectionViewHeight()
     }
 
     override func viewDidLoad() {
@@ -240,14 +243,14 @@ class PostCreateViewController: GSBaseViewController {
     }
     
     private func setConstraint() {
-        let isKeyboardShow = IQKeyboardManager.sharedManager().keyboardShowing || self.isKeyboardShow
+        let isKeyboardShow = self.isKeyboardShow || IQKeyboardManager.sharedManager().keyboardShowing
         
         if UIApplication.shared.statusBarOrientation.isPortrait {
-            self.tagsViewBottomConstraint.constant = (isKeyboardShow ? (firstResponder == contentTextView ? 210.0 : 150.0) : (firstResponder == tagsVC.view ? 150.0 : 16.0)) * heightRatio
+            self.tagsViewBottomConstraint.constant  =   isKeyboardShow ? (firstResponder == contentTextView ? 210.0 : 168.0) : (firstResponder == tagsVC.view ? 168.0 : 16.0)
         }
 
         else {
-            self.tagsViewBottomConstraint.constant = (isKeyboardShow ? 100.0 : 16.0) * heightRatio
+            self.tagsViewBottomConstraint.constant  =   isKeyboardShow ? 100.0 : 16.0
         }
     }
     
@@ -265,7 +268,7 @@ class PostCreateViewController: GSBaseViewController {
         }
         
         // Check tags
-        else if self.router?.dataStore?.tags == nil || self.router?.dataStore?.tags?.first?.title == nil  {
+        else if self.router?.dataStore?.tags == nil || self.router?.dataStore?.tags?.first?.title == nil || (self.router?.dataStore?.tags?.first?.title?.isEmpty)!  {
             self.showAlertView(withTitle: "Info", andMessage: "Select topic", needCancel: false, completion: { _ in })
             return false
         }
@@ -287,12 +290,14 @@ class PostCreateViewController: GSBaseViewController {
     }
     
     private func clearAllEnteredValues() {
+        self.isKeyboardShow                         =   false
+        self.firstResponder                         =   nil
         self.contentTextView.text                   =   nil
         self.postCreateView.titleTextField.text     =   nil
         self.commentReplyView.commentLabel.text     =   nil
         self.tagsVC.tags                            =   nil
         self.tagsVC.collectionView.reloadData()
-        
+
         self.interactor?.save(tags: nil)
     }
     

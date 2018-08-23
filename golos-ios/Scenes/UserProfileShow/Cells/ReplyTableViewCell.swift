@@ -189,6 +189,16 @@ class ReplyTableViewCell: UITableViewCell, ReusableCell {
     @IBAction func replyTypeButtonTapped(_ sender: UIButton) {
         self.handlerReplyTypeButtonTapped!()
     }
+    
+    
+    // MARK: - Reuse identifier
+    override var reuseIdentifier: String? {
+        return ReplyTableViewCell.reuseIdentifier
+    }
+    
+    class var reuseIdentifier: String? {
+        return String(describing: self)
+    }
 }
 
 

@@ -73,6 +73,7 @@ extension String {
         return self.hasPrefix("https://images.golos.io") ?  self : "https://imgp.golos.io" + String(format: "/%dx%d/", size.width, size.height) + self
     }
     
+    
     /// Convert HTML -> String
     func encodeHtml() -> NSAttributedString {
         guard let data = data(using: .utf8) else { return NSAttributedString() }
@@ -87,6 +88,15 @@ extension String {
         catch {
             return NSAttributedString()
         }
+    }
+    
+    
+    /// Check entered Tag title simbol
+    func checkTagTitleRule() -> Bool {
+        let pattern             =   "^[a-zа-яё0-9-ґєії]+$"
+        let regex               =   try! NSRegularExpression(pattern: pattern)
+
+        return regex.matches(in: self, range: NSRange.init(location: 0, length: self.count)).count != 0
     }
     
     

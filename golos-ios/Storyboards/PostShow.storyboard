@@ -258,7 +258,7 @@
                                                                 <rect key="frame" x="16" y="20" width="50" height="50"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="height" constant="50" id="Dk6-ob-QQg"/>
+                                                                    <constraint firstAttribute="width" constant="50" id="c5A-Bm-dxL"/>
                                                                     <constraint firstAttribute="width" secondItem="ZH2-hK-oIK" secondAttribute="height" multiplier="1:1" id="nxn-Xc-s0D"/>
                                                                 </constraints>
                                                             </imageView>
@@ -525,11 +525,16 @@
                                     <constraint firstAttribute="bottom" secondItem="Udv-hI-u2X" secondAttribute="bottom" id="vNH-xC-FkJ"/>
                                 </constraints>
                             </view>
+                            <activityIndicatorView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="NB0-PC-C9r">
+                                <rect key="frame" x="178" y="90" width="20" height="20"/>
+                                <color key="color" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="2Tj-tW-R6K" secondAttribute="trailing" id="LuY-Bc-oFG"/>
                             <constraint firstItem="7Js-bQ-ZpY" firstAttribute="height" secondItem="AJS-P4-Hkt" secondAttribute="height" multiplier="64:623" id="Lx4-fU-huY"/>
+                            <constraint firstItem="NB0-PC-C9r" firstAttribute="centerX" secondItem="AJS-P4-Hkt" secondAttribute="centerX" id="Nvm-5Z-Pgo"/>
                             <constraint firstItem="2Tj-tW-R6K" firstAttribute="top" secondItem="7Js-bQ-ZpY" secondAttribute="bottom" id="Umz-Pp-ETY"/>
                             <constraint firstItem="7Js-bQ-ZpY" firstAttribute="top" secondItem="AJS-P4-Hkt" secondAttribute="top" id="VIL-0O-CY8"/>
                             <constraint firstItem="BtF-Gk-D12" firstAttribute="height" secondItem="AJS-P4-Hkt" secondAttribute="height" priority="250" id="Xao-g2-cMG"/>
@@ -542,6 +547,7 @@
                             <constraint firstItem="7Js-bQ-ZpY" firstAttribute="height" secondItem="AJS-P4-Hkt" secondAttribute="height" multiplier="44:375" id="t0C-19-mbS"/>
                             <constraint firstItem="UNP-hf-cFI" firstAttribute="bottom" secondItem="7f0-ZC-o8d" secondAttribute="bottom" id="tFP-px-vz4"/>
                             <constraint firstItem="2Tj-tW-R6K" firstAttribute="leading" secondItem="AJS-P4-Hkt" secondAttribute="leading" id="wpl-vt-Nik"/>
+                            <constraint firstItem="NB0-PC-C9r" firstAttribute="top" secondItem="2Tj-tW-R6K" secondAttribute="bottom" constant="16" id="yVe-xd-hGk"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="UNP-hf-cFI"/>
                         <variation key="default">
@@ -557,6 +563,7 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="NB0-PC-C9r" id="AFf-ry-tS6"/>
                         <outlet property="bottomLineView" destination="FJs-iF-r9g" id="Mm9-MF-0Zc"/>
                         <outlet property="buttonsStackViewTopConstraint" destination="qS2-XR-4rB" id="2OA-OO-1m2"/>
                         <outlet property="commentsButton" destination="wPR-xc-S9f" id="hb2-8D-Y0m"/>
@@ -635,12 +642,19 @@
                         <outletCollection property="widthsCollection" destination="bRb-U9-bGv" collectionClass="NSMutableArray" id="Jsw-c3-Zd5"/>
                         <outletCollection property="heightsCollection" destination="pwV-Lk-m0t" collectionClass="NSMutableArray" id="VDa-DY-l9A"/>
                         <outletCollection property="widthsCollection" destination="pdk-dM-cga" collectionClass="NSMutableArray" id="qe7-Z4-gyj"/>
-                        <outletCollection property="heightsCollection" destination="Dk6-ob-QQg" collectionClass="NSMutableArray" id="Ca1-wd-9yG"/>
                         <outletCollection property="subscribeButtonsCollection" destination="eEn-P4-Nhn" collectionClass="NSMutableArray" id="TQx-wk-zyP"/>
                         <outletCollection property="subscribeButtonsCollection" destination="28F-WH-XIS" collectionClass="NSMutableArray" id="deR-sG-bP6"/>
                         <outletCollection property="circleImagesCollection" destination="brE-kk-Xo3" collectionClass="NSMutableArray" id="yGd-Pu-Qa1"/>
                         <outletCollection property="circleImagesCollection" destination="ZH2-hK-oIK" collectionClass="NSMutableArray" id="eT9-9p-i4P"/>
                         <outletCollection property="heightsCollection" destination="tFP-px-vz4" collectionClass="NSMutableArray" id="dZZ-4X-beo"/>
+                        <outletCollection property="widthsCollection" destination="jyC-Fr-RtI" collectionClass="NSMutableArray" id="n2A-VZ-Xza"/>
+                        <outletCollection property="widthsCollection" destination="x5d-ES-U9B" collectionClass="NSMutableArray" id="ZOp-jY-JpF"/>
+                        <outletCollection property="heightsCollection" destination="dhc-wp-wmh" collectionClass="NSMutableArray" id="jG4-kQ-kl3"/>
+                        <outletCollection property="widthsCollection" destination="ae4-xp-nk8" collectionClass="NSMutableArray" id="EuC-Hj-vjG"/>
+                        <outletCollection property="heightsCollection" destination="ViH-ru-v31" collectionClass="NSMutableArray" id="BgN-dg-2GK"/>
+                        <outletCollection property="widthsCollection" destination="VPy-H7-8W7" collectionClass="NSMutableArray" id="qZt-Zy-7IM"/>
+                        <outletCollection property="widthsCollection" destination="c5A-Bm-dxL" collectionClass="NSMutableArray" id="Wcm-rO-AGq"/>
+                        <outletCollection property="heightsCollection" destination="yVe-xd-hGk" collectionClass="NSMutableArray" id="HXK-ob-fWW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CXI-Zv-5XY" userLabel="First Responder" sceneMemberID="firstResponder"/>

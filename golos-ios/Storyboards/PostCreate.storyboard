@@ -195,6 +195,12 @@
                         <outletCollection property="widthsCollection" destination="IWD-rY-84t" collectionClass="NSMutableArray" id="UFp-Es-B47"/>
                         <outletCollection property="heightsCollection" destination="Hmh-EF-sLe" collectionClass="NSMutableArray" id="O8C-OE-maO"/>
                         <outletCollection property="heightsCollection" destination="q4O-KT-Lla" collectionClass="NSMutableArray" id="e3U-Im-u0Q"/>
+                        <outletCollection property="widthsCollection" destination="Usr-a7-PE0" collectionClass="NSMutableArray" id="Gw3-sW-jP2"/>
+                        <outletCollection property="widthsCollection" destination="1bi-3y-482" collectionClass="NSMutableArray" id="Buq-69-qCG"/>
+                        <outletCollection property="heightsCollection" destination="gVb-Ta-fTw" collectionClass="NSMutableArray" id="fyG-S0-UhE"/>
+                        <outletCollection property="heightsCollection" destination="0KE-q8-NcE" collectionClass="NSMutableArray" id="Y2d-1v-hqH"/>
+                        <outletCollection property="heightsCollection" destination="lkh-gS-M4d" collectionClass="NSMutableArray" id="a0U-aj-a0z"/>
+                        <outletCollection property="heightsCollection" destination="1Xq-Tj-Z0h" collectionClass="NSMutableArray" id="v6J-Nm-MTc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Py4-Cv-jeL" userLabel="First Responder" sceneMemberID="firstResponder"/>
