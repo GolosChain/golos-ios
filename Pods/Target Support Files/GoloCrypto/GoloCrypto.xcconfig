@@ -6,4 +6,4 @@ PODS_ROOT = ${SRCROOT}
 PODS_TARGET_SRCROOT = ${PODS_ROOT}/GoloCrypto
 PRODUCT_BUNDLE_IDENTIFIER = org.cocoapods.${PRODUCT_NAME:rfc1034identifier}
 SKIP_INSTALL = YES
-SWIFT_INCLUDE_PATHS = $(inherited) $(SRCROOT)/GoloCrypto/GoloCrypto/SteemitCrypto/
+SWIFT_INCLUDE_PATHS = $(SRCROOT)/GoloCrypto/GoloCrypto/SteemitCrypto/

@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D536D126CB2E67D0E535D95C60248455"
+               BlueprintIdentifier = "8E7E171EF5157DC21472CD615F340E4B"
                BuildableName = "GoloCrypto.framework"
                BlueprintName = "GoloCrypto"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D536D126CB2E67D0E535D95C60248455"
+            BlueprintIdentifier = "8E7E171EF5157DC21472CD615F340E4B"
             BuildableName = "GoloCrypto.framework"
             BlueprintName = "GoloCrypto"
             ReferencedContainer = "container:Pods.xcodeproj">

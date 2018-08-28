@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C0FD7299DD71941BE933219ABF36B6BF"
+               BlueprintIdentifier = "20973EA211627EC2FFC9DCB6B26A57AB"
                BuildableName = "BeyovaJSON.framework"
                BlueprintName = "BeyovaJSON"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "C0FD7299DD71941BE933219ABF36B6BF"
+            BlueprintIdentifier = "20973EA211627EC2FFC9DCB6B26A57AB"
             BuildableName = "BeyovaJSON.framework"
             BlueprintName = "BeyovaJSON"
             ReferencedContainer = "container:Pods.xcodeproj">

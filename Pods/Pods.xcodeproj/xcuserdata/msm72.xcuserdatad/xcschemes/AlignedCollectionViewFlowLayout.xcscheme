@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "23EBFB36BB9CABC3DA6696F910F42090"
+               BlueprintIdentifier = "6857CB026685BCCE5A496ED5BC12064C"
                BuildableName = "AlignedCollectionViewFlowLayout.framework"
                BlueprintName = "AlignedCollectionViewFlowLayout"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "23EBFB36BB9CABC3DA6696F910F42090"
+            BlueprintIdentifier = "6857CB026685BCCE5A496ED5BC12064C"
             BuildableName = "AlignedCollectionViewFlowLayout.framework"
             BlueprintName = "AlignedCollectionViewFlowLayout"
             ReferencedContainer = "container:Pods.xcodeproj">

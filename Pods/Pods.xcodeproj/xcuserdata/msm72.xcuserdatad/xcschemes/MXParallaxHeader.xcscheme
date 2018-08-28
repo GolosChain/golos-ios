@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BB7EA333FDEF0078D7AB23C63C7EC843"
+               BlueprintIdentifier = "202D87B67EC38F605681FD16C16A1110"
                BuildableName = "MXParallaxHeader.framework"
                BlueprintName = "MXParallaxHeader"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "BB7EA333FDEF0078D7AB23C63C7EC843"
+            BlueprintIdentifier = "202D87B67EC38F605681FD16C16A1110"
             BuildableName = "MXParallaxHeader.framework"
             BlueprintName = "MXParallaxHeader"
             ReferencedContainer = "container:Pods.xcodeproj">

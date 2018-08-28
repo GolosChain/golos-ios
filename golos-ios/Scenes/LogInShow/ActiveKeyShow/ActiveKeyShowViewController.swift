@@ -112,6 +112,20 @@ class ActiveKeyShowViewController: GSBaseViewController {
     @IBAction func helpButtonPressed(_ sender: Any) {
         self.router?.showLoginHelpShowScene()
     }
+    
+    @IBAction func testDataButtonTapped(_ sender: UIButton) {
+        switch appBuildConfig! {
+        case .development:
+            self.textFieldsCollection.first!.text   =   "yoyoyoyo"
+            self.textFieldsCollection.last!.text    =   "5KUk2QMqYqpFM54YSaNoYLVDTznM3fyA8J8qDUQQNgBnqvVyscC"
+            
+        default:
+            self.textFieldsCollection.first!.text   =   "destroyer2k"
+            self.textFieldsCollection.last!.text    =   "5JagnCwCrB2sWZw6zCvaBw51ifoQuNaKNsDovuGz96wU3tUw7hJ"
+        }
+        
+        self.handlerReturnComletion!(self.textFieldsCollection)
+    }
 }
 
 

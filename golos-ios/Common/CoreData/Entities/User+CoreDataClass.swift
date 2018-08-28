@@ -112,7 +112,7 @@ public class User: NSManagedObject, CachedImageFrom {
             
             // UserSecretActiveKey
             let userSecretKeyActiveEntity   =   UserSecretActiveKey.instance(byUserID: userModel.id)
-            userSecretKeyActiveEntity.updateEntity(fromResponseAPI: userModel.owner)
+            userSecretKeyActiveEntity.updateEntity(fromResponseAPI: userModel.active)
             self.active                     =   userSecretKeyActiveEntity
             
             // Parse 'json_metadata'

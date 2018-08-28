@@ -280,7 +280,6 @@
                                 </constraints>
                                 <connections>
                                     <action selector="testDataButtonTapped:" destination="1eb-M4-CWc" eventType="touchUpInside" id="HlD-kH-Y6n"/>
-                                    <action selector="testLoginButtonTapped:" destination="sM0-dq-nwN" eventType="touchUpInside" id="FZc-ew-46y"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -401,6 +400,17 @@
                                     <constraint firstAttribute="height" constant="1" id="zPv-X9-dsU"/>
                                 </constraints>
                             </view>
+                            <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2wB-tR-FQr" userLabel="Test Login Button">
+                                <rect key="frame" x="331" y="0.0" width="44" height="44"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="Rzp-qw-wDA"/>
+                                    <constraint firstAttribute="width" constant="44" id="SDe-BS-6St"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="testDataButtonTapped:" destination="WuC-9p-LOc" eventType="touchUpInside" id="QZt-0t-1R7"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -426,6 +436,8 @@
                             <constraint firstItem="5mg-Ux-OaM" firstAttribute="height" secondItem="IGA-Ot-ZvI" secondAttribute="height" id="nAh-y3-5rr"/>
                             <constraint firstItem="T8y-8p-uhP" firstAttribute="height" secondItem="5mg-Ux-OaM" secondAttribute="height" id="oUR-nq-GpA"/>
                             <constraint firstItem="T8y-8p-uhP" firstAttribute="trailing" secondItem="5mg-Ux-OaM" secondAttribute="trailing" id="rlC-Xg-h85"/>
+                            <constraint firstItem="2wB-tR-FQr" firstAttribute="top" secondItem="Q1Z-Uy-lks" secondAttribute="top" id="whh-I2-Qph"/>
+                            <constraint firstAttribute="trailing" secondItem="2wB-tR-FQr" secondAttribute="trailing" id="yFq-5L-Ib0"/>
                             <constraint firstItem="P9b-Qs-MNU" firstAttribute="centerY" secondItem="5mg-Ux-OaM" secondAttribute="centerY" id="zbJ-2l-JJk"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Q1Z-Uy-lks"/>

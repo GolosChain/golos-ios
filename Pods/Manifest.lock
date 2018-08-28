@@ -67,9 +67,9 @@ PODS:
 
 DEPENDENCIES:
   - AlignedCollectionViewFlowLayout
-  - Crashlytics (~> 3.10)
+  - Crashlytics
   - Down
-  - Fabric (~> 1.0)
+  - Fabric
   - Firebase/Core
   - Firebase/Messaging
   - GoloSwift (from `https://github.com/GolosChain/GoloSwift.git`)
@@ -163,6 +163,6 @@ SPEC CHECKSUMS:
   SWSegmentedControl: 5770c91bb4b438be300371221e38f4af5100bba2
   Tags: b18378f79d8b30c40d4b7ae4d5edfc478434d858
 
-PODFILE CHECKSUM: df091f2c31857bb2c9ede9ad3e6faa6ab6a95cd4
+PODFILE CHECKSUM: ce6539ed96b98ccefcf5c0c384ec33d21d938135
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.6.0.beta.1

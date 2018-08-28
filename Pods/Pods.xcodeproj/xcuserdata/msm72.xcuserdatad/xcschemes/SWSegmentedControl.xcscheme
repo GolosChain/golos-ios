@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "842C3C5B44EB8022498729F7B68A9A32"
+               BlueprintIdentifier = "42C544A9C8238099F3B619E97F4DBAF3"
                BuildableName = "SWSegmentedControl.framework"
                BlueprintName = "SWSegmentedControl"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "842C3C5B44EB8022498729F7B68A9A32"
+            BlueprintIdentifier = "42C544A9C8238099F3B619E97F4DBAF3"
             BuildableName = "SWSegmentedControl.framework"
             BlueprintName = "SWSegmentedControl"
             ReferencedContainer = "container:Pods.xcodeproj">

@@ -1409,7 +1409,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Golos/Pods-Golos-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Golos/Pods-Golos-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AlignedCollectionViewFlowLayout/AlignedCollectionViewFlowLayout.framework",
 				"${BUILT_PRODUCTS_DIR}/BeyovaJSON/BeyovaJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
@@ -1464,7 +1464,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Golos/Pods-Golos-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Golos/Pods-Golos-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		55A88D3868FC3CC3DBEF14AF /* [CP] Check Pods Manifest.lock */ = {

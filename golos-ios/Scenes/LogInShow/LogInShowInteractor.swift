@@ -36,32 +36,40 @@ class LogInShowInteractor: LogInShowBusinessLogic {
             var success: Bool   =   false
             
             // Prepare & Display user info
-            if errorAPI == nil {
-                if let privateKey   =   PrivateKey.init(requestModel.wif) {
-                    let publicKey   =   privateKey.createPublic(prefix: .mainNet)
-                    
-                    switch requestModel.wifType {
-                    // Posting key
-                    case 1:
-                        success     =   (User.current?.posting?.key_auths?.first?.first?.contains(publicKey.address))!
-                        
-                    // Active key
-                    case 2:
-                        success     =   (User.current?.active?.key_auths?.first?.first?.contains(publicKey.address))!
-                        
-                    default:
-                        break
-                    }
-                    
-                    // Save Private key in Keychain
-                    if success {
-                        _ = KeychainManager.save(requestModel.wif, forUserName: requestModel.userName)
-                    }
-                }
-                
+            guard errorAPI == nil, let user = User.fetch(byName: requestModel.userName) else {
                 let responseModel = LogInShowModels.Parameters.ResponseModel(success: success)
                 self?.presenter?.presentAuthorizeUser(fromResponseModel: responseModel)
+
+                return
             }
+            
+            if let privateKey   =   PrivateKey.init(requestModel.wif) {
+                let publicKey   =   privateKey.createPublic(prefix: .mainNet)
+                
+                switch requestModel.wifType {
+                // Posting key
+                case 1:
+                    success     =   (user.posting?.key_auths?.first?.first?.contains(publicKey.address))!
+                    
+                // Active key
+                case 2:
+                    success     =   (user.active?.key_auths?.first?.first?.contains(publicKey.address))!
+                    
+                default:
+                    break
+                }
+                
+                // Save Private key in Keychain
+                if success {
+                    _ = KeychainManager.save(requestModel.wif, forUserName: requestModel.userName)
+                }
+            }
+            
+            // Set User isAuthorized
+            user.setIsAuthorized(success)
+            
+            let responseModel = LogInShowModels.Parameters.ResponseModel(success: success)
+            self?.presenter?.presentAuthorizeUser(fromResponseModel: responseModel)
         })
     }
 }

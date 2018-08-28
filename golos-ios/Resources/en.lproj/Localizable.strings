@@ -188,7 +188,7 @@
 "Scanner Key Code error"                    =   "The code of the scanned key\n must begin with 5 or 1";
 "CoreData saved error"                      =   "There was an error creating or loading the application's saved data";
 "CoreData init error"                       =   "Failed to initialize the application's saved data";
-"Login error"                               =   "Auth error. If this repeats, try exit and enter to your account one more time.";
+"Login error"                               =   "Wrong login or password. Try entering again";
 "User is not found"                         =   "User is not found";
 "User follow counts are not found"          =   "User follow counts are not found";
 "List of users is empty"                    =   "User list is empty";
