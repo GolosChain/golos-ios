@@ -221,7 +221,9 @@ extension ReplyTableViewCell: ConfigureCell {
                 self.authorAvatarImageView.uploadImage(byStringPath:    userProfileImageURL,
                                                        imageType:       .userProfileImage,
                                                        size:            CGSize(width: 50.0 * widthRatio, height: 50.0 * widthRatio),
-                                                       tags:            nil)
+                                                       tags:            nil,
+                                                       createdDate:     userCommentator.created.convert(toDateFormat: .expirationDateType),
+                                                       fromItem:        "reply")
             }
         }
         

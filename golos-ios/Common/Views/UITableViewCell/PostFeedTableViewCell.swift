@@ -146,10 +146,12 @@ extension PostFeedTableViewCell: ConfigureCell {
             
             // Load User author profile image
             if let userProfileImageURL = user.profileImageURL {
-                self.postFeedHeaderView.authorProfileImageView.uploadImage(byStringPath:     userProfileImageURL,
-                                                                           imageType:        .userProfileImage,
-                                                                           size:             CGSize(width: 30.0 * widthRatio, height: 30.0 * widthRatio),
-                                                                           tags:             nil)
+                self.postFeedHeaderView.authorProfileImageView.uploadImage(byStringPath:    userProfileImageURL,
+                                                                           imageType:       .userProfileImage,
+                                                                           size:            CGSize(width: 30.0 * widthRatio, height: 30.0 * widthRatio),
+                                                                           tags:            nil,
+                                                                           createdDate:     user.created.convert(toDateFormat: .expirationDateType),
+                                                                           fromItem:        (user as CachedImageFrom).fromItem)
             }
         }
         
@@ -158,7 +160,9 @@ extension PostFeedTableViewCell: ConfigureCell {
             self.postImageView.uploadImage(byStringPath:    coverImageURL,
                                            imageType:       .userCoverImage,
                                            size:            CGSize(width: UIScreen.main.bounds.width, height: 180.0 * heightRatio),
-                                           tags:            model.tags)
+                                           tags:            model.tags,
+                                           createdDate:     model.created,
+                                           fromItem:        (model as! CachedImageFrom).fromItem)
         }
         
         // Hide post image

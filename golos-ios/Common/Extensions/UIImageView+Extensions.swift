@@ -19,7 +19,7 @@ enum ImageType: String {
 
 extension UIImageView {
     /// Download image
-    func uploadImage(byStringPath path: String, imageType: ImageType, size: CGSize, tags: [String]?) {
+    func uploadImage(byStringPath path: String, imageType: ImageType, size: CGSize, tags: [String]?, createdDate: Date, fromItem: String) {
         let imagePathWithProxy      =   path.trimmingCharacters(in: .whitespacesAndNewlines).addImageProxy(withSize: size)
         let imageURL                =   URL(string: imagePathWithProxy.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!)
         
@@ -59,7 +59,7 @@ extension UIImageView {
                 }
 
                 // Download image by URL
-                else {
+                else if isNetworkAvailable {
                     URLSession.shared.dataTask(with: imageURL!) { data, _, error in
                         guard error == nil else {
                             DispatchQueue.main.async {
@@ -80,8 +80,19 @@ extension UIImageView {
                             DispatchQueue.main.async {
                                 self.image = downloadedImage
                             }
+                            
+                            // Save ImageCached to CoreData
+                            DispatchQueue.main.async {
+                                ImageCached.updateEntity(fromItem: fromItem, byDate: createdDate, andKey: imageKey as String)
+                            }
                         }
                     }.resume()
+                }
+                
+                else {
+                    DispatchQueue.main.async {
+                        self.image = UIImage(named: imagePlaceholderName)
+                    }
                 }
             }
         }

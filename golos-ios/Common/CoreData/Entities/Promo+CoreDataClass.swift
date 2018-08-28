@@ -12,7 +12,11 @@ import GoloSwift
 import Foundation
 
 @objc(Promo)
-public class Promo: NSManagedObject {
+public class Promo: NSManagedObject, CachedImageFrom {
+    // MARK: - CachedImageFrom protocol implementation
+    var fromItem: String = "promo"
+
+    
     // MARK: - MetaDataSupport protocol implementation
     func set(tags: [String]?) {
         self.tags   =   tags

@@ -23,7 +23,11 @@ enum VoicePower: String {
 }
 
 @objc(User)
-public class User: NSManagedObject {
+public class User: NSManagedObject, CachedImageFrom {
+    // MARK: - CachedImageFrom protocol implementation
+    var fromItem: String = "user"
+
+    
     // MARK: - Properties
     var voicePower: VoicePower {
         let powerVoice  =   Int64(self.vestingShares.components(separatedBy: ".").first!)! % 10_000_000
@@ -148,9 +152,11 @@ public class User: NSManagedObject {
     
     func clearCache(atLastWeek needPredicate: Bool) {
         var predicate: NSPredicate?
-        
+        var predicateImage: NSPredicate?
+
         if let dateLastWeek = Calendar.current.date(byAdding: .day, value: -7, to: Date()) as NSDate?, needPredicate {
-            predicate   =   NSPredicate(format: "created <= %@", dateLastWeek)
+            predicate       =   NSPredicate(format: "created <= %@", dateLastWeek)
+            predicateImage  =   NSPredicate(format: "created <= %@ AND fromItem != \"lenta\"", dateLastWeek)
         }
         
         DispatchQueue.global(qos: .background).async {
@@ -161,13 +167,15 @@ public class User: NSManagedObject {
             CoreDataManager.instance.deleteEntities(withName: "Promo", andPredicateParameters: predicate, completion: { _ in })
             CoreDataManager.instance.deleteEntities(withName: "Reply", andPredicateParameters: predicate, completion: { _ in })
             CoreDataManager.instance.deleteEntities(withName: "Comment", andPredicateParameters: predicate, completion: { _ in })
-            
+            CoreDataManager.instance.deleteEntities(withName: "ImageCached", andPredicateParameters: predicateImage, completion: { _ in })
+
             CoreDataManager.instance.contextSave()
         }
     }
 
     func clearCache() {
         CoreDataManager.instance.deleteEntities(withName: "Lenta", andPredicateParameters: nil, completion: { _ in })
+        CoreDataManager.instance.deleteEntities(withName: "ImageCached", andPredicateParameters: nil, completion: { _ in })
         CoreDataManager.instance.deleteEntities(withName: "User", andPredicateParameters: NSPredicate(format: "isAuthorized == 0"), completion: { _ in })
         self.clearCache(atLastWeek: false)
     }

@@ -9,6 +9,7 @@
 import Foundation
 
 public enum DateFormatType: String {
+//    case coreDataDateType           =   "dd.MM.yyyy, HH:mm:ss"
     case expirationDateType         =   "yyyy-MM-dd'T'HH:mm:ss"
 }
 

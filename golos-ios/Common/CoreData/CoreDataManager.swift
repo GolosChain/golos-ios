@@ -165,7 +165,7 @@ class CoreDataManager {
             else if propertyName == "Items" {
                 if let model = data.model as? ResponseAPIDepartment, let items = model.Items, items.count > 0 {
 //                    let department = readEntity(withName:                   "Department",
-//                                                andPredicateParameters:     NSPredicate.init(format: "departmentId = \(model.DepartmentId)")) as! Department
+//                                                andPredicateParameters:     NSPredicate.init(format: "departmentId == \(model.DepartmentId)")) as! Department
 //
                     for item in items {
                         let predicate = NSPredicate.init(format: "departmentId == \(item.DepartmentId) AND departmentItemId == \(item.DepartmentItemId)")

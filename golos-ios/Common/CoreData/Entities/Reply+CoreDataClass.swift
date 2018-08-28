@@ -12,7 +12,11 @@ import GoloSwift
 import Foundation
 
 @objc(Reply)
-public class Reply: NSManagedObject {
+public class Reply: NSManagedObject, CachedImageFrom {
+    // MARK: - CachedImageFrom protocol implementation
+    var fromItem: String = "reply"
+
+    
     // MARK: - MetaDataSupport protocol implementation
     func set(tags: [String]?) {
         self.tags   =   tags

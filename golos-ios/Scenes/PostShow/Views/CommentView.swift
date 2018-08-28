@@ -104,7 +104,10 @@ class CommentView: UIView {
         
         // Load author profile image
         if let userProfileImageURL = comment.url {
-            self.authorProfileImageButton.uploadImage(byStringPath: userProfileImageURL, size: CGSize(width: 40.0 * widthRatio, height: 40.0 * widthRatio))
+            self.authorProfileImageButton.uploadImage(byStringPath:     userProfileImageURL,
+                                                      size:             CGSize(width: 40.0 * widthRatio, height: 40.0 * widthRatio),
+                                                      createdDate:      comment.created,
+                                                      fromItem:         (comment as CachedImageFrom).fromItem)
         }
         
         // Set cell level

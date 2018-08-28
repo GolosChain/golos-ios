@@ -140,7 +140,9 @@ class UserProfileHeaderView: PassthroughView {
             self.userProfileImageView.uploadImage(byStringPath:     userProfileImageURL,
                                                   imageType:        .userProfileImage,
                                                   size:             CGSize(width: 80.0 * widthRatio, height: 80.0 * widthRatio),
-                                                  tags:             nil)
+                                                  tags:             nil,
+                                                  createdDate:      userInfo.created.convert(toDateFormat: .expirationDateType),
+                                                  fromItem:         "user")
         }
         
         // Upload User cover image
@@ -158,7 +160,9 @@ class UserProfileHeaderView: PassthroughView {
             self.userCoverImageView.uploadImage(byStringPath:       userCoverImagePath,
                                                 imageType:          .userCoverImage,
                                                 size:               CGSize(width: 375.0 * widthRatio, height: 240.0 * heightRatio),
-                                                tags:               userInfo.selectTags)
+                                                tags:               userInfo.selectTags,
+                                                createdDate:        userInfo.created.convert(toDateFormat: .expirationDateType),
+                                                fromItem:           (userInfo as CachedImageFrom).fromItem)
             
             self.backgroundColor = UIColor.black.withAlphaComponent(0.3)
             UIApplication.shared.statusBarStyle     =   .lightContent

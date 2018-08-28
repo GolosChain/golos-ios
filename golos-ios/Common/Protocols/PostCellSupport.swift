@@ -27,5 +27,4 @@ protocol PostCellSupport: PaginationSupport, MetaDataSupport {
     var created: Date { get set }
     var lastUpdate: Date { get set }
     var lastPayout: Date { get set }
-
 }

@@ -12,7 +12,7 @@ import SwiftTheme
 
 extension UIButton {
     /// Download image
-    func uploadImage(byStringPath path: String, size: CGSize) {
+    func uploadImage(byStringPath path: String, size: CGSize, createdDate: Date, fromItem: String) {
         let imagePathWithProxy      =   path.trimmingCharacters(in: .whitespacesAndNewlines).addImageProxy(withSize: size)
         let imageURL                =   URL(string: imagePathWithProxy.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!)
         
@@ -22,7 +22,6 @@ extension UIButton {
         
         // Get image from NSCache
         if let cachedImage = cacheApp.object(forKey: imageKey) {
-            
             UIView.animate(withDuration: 0.5) {
                 self.setImage(cachedImage, for: .normal)
             }
@@ -39,8 +38,8 @@ extension UIButton {
                 }
             }
                 
-                // Download image by URL
-            else {
+            // Download image by URL from Internet
+            else if isNetworkAvailable {
                 URLSession.shared.dataTask(with: imageURL!) { data, _, error in
                     guard error == nil else {
                         DispatchQueue.main.async {
@@ -57,8 +56,19 @@ extension UIButton {
                         DispatchQueue.main.async {
                             self.setImage(downloadedImage, for: .normal)
                         }
+                        
+                        // Save ImageCached to CoreData
+                        DispatchQueue.main.async {
+                            ImageCached.updateEntity(fromItem: fromItem, byDate: createdDate, andKey: imageKey as String)
+                        }
                     }
-                    }.resume()
+                }.resume()
+            }
+            
+            else {
+                DispatchQueue.main.async {
+                    self.setImage(UIImage(named: "icon-user-profile-image-placeholder"), for: .normal)
+                }
             }
         }
     }

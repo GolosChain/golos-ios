@@ -12,7 +12,11 @@ import GoloSwift
 import Foundation
 
 @objc(Popular)
-public class Popular: NSManagedObject {
+public class Popular: NSManagedObject, CachedImageFrom {
+    // MARK: - CachedImageFrom protocol implementation
+    var fromItem: String = "popular"
+
+    
     // MARK: - MetaDataSupport protocol implementation
     func set(tags: [String]?) {
         self.tags   =   tags

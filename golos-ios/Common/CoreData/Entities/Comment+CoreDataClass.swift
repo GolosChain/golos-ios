@@ -12,7 +12,11 @@ import GoloSwift
 import Foundation
 
 @objc(Comment)
-public class Comment: NSManagedObject {
+public class Comment: NSManagedObject, CachedImageFrom {
+    // MARK: - CachedImageFrom protocol implementation
+    var fromItem: String = "comment"
+
+    
     // MARK: - MetaDataSupport protocol implementation
     func set(tags: [String]?) {
         self.tags   =   tags

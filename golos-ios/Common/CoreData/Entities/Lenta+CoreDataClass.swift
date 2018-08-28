@@ -12,7 +12,11 @@ import GoloSwift
 import Foundation
 
 @objc(Lenta)
-public class Lenta: NSManagedObject {
+public class Lenta: NSManagedObject, CachedImageFrom {
+    // MARK: - CachedImageFrom protocol implementation
+    var fromItem: String = "lenta"
+
+    
     // MARK: - Properties
     var userNameValue: String {
         set {

@@ -155,10 +155,12 @@ class PostFeedHeaderView: UIView {
             
             // Load User author profile image
             if let userProfileImageURL = user.profileImageURL {
-                self.authorProfileImageView.uploadImage(byStringPath:     userProfileImageURL,
-                                                        imageType:        .userProfileImage,
-                                                        size:             CGSize(width: 30.0 * widthRatio, height: 30.0 * widthRatio),
-                                                        tags:             nil)
+                self.authorProfileImageView.uploadImage(byStringPath:       userProfileImageURL,
+                                                        imageType:          .userProfileImage,
+                                                        size:               CGSize(width: 30.0 * widthRatio, height: 30.0 * widthRatio),
+                                                        tags:               nil,
+                                                        createdDate:        user.created.convert(toDateFormat: .expirationDateType),
+                                                        fromItem:           (user as CachedImageFrom).fromItem)
             }            
         }
     }

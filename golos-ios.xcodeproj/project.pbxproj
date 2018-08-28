@@ -73,6 +73,8 @@
 		B12F440420EA01F9003FFF58 /* ScannerShowRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12F43FE20EA01F9003FFF58 /* ScannerShowRouter.swift */; };
 		B12F440620EA01F9003FFF58 /* ScannerShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12F440020EA01F9003FFF58 /* ScannerShowViewController.swift */; };
 		B12F442D20EB4AFC003FFF58 /* GolosModels.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B12F442B20EB4AFC003FFF58 /* GolosModels.xcdatamodeld */; };
+		B1317CD4212E696C0025D429 /* ImageCached+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1317CD2212E696C0025D429 /* ImageCached+CoreDataClass.swift */; };
+		B1317CD5212E696C0025D429 /* ImageCached+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1317CD3212E696C0025D429 /* ImageCached+CoreDataProperties.swift */; };
 		B136D4F820D8B9E8003AD279 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = B136D4F720D8B9E8003AD279 /* Tag.swift */; };
 		B136D4FB20D8BA14003AD279 /* AddTagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B136D4F920D8BA14003AD279 /* AddTagCollectionViewCell.swift */; };
 		B136D4FC20D8BA14003AD279 /* AddTagCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B136D4FA20D8BA14003AD279 /* AddTagCollectionViewCell.xib */; };
@@ -177,6 +179,7 @@
 		B1EA154B20FE02260015EF76 /* NewPostsShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EA154A20FE02260015EF76 /* NewPostsShowViewController.swift */; };
 		B1EA155920FE22980015EF76 /* ActualPostsShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EA155820FE22980015EF76 /* ActualPostsShowViewController.swift */; };
 		B1EA155F20FE243A0015EF76 /* PromoPostsShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EA155E20FE243A0015EF76 /* PromoPostsShowViewController.swift */; };
+		B1EA4986212E99C800F5F9CA /* CachedImageFrom.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EA4985212E99C800F5F9CA /* CachedImageFrom.swift */; };
 		B1EBAFBB20EB55690050B1A2 /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EBAFB720EB55690050B1A2 /* User+CoreDataClass.swift */; };
 		B1EBAFBC20EB55690050B1A2 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EBAFB820EB55690050B1A2 /* User+CoreDataProperties.swift */; };
 		B1EBAFBE20EB56910050B1A2 /* NSManagedObject+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EBAFBD20EB56910050B1A2 /* NSManagedObject+Extensions.swift */; };
@@ -336,6 +339,8 @@
 		B12F43FE20EA01F9003FFF58 /* ScannerShowRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerShowRouter.swift; sourceTree = "<group>"; };
 		B12F440020EA01F9003FFF58 /* ScannerShowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerShowViewController.swift; sourceTree = "<group>"; };
 		B12F442C20EB4AFC003FFF58 /* Golos.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Golos.xcdatamodel; sourceTree = "<group>"; };
+		B1317CD2212E696C0025D429 /* ImageCached+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ImageCached+CoreDataClass.swift"; sourceTree = "<group>"; };
+		B1317CD3212E696C0025D429 /* ImageCached+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ImageCached+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		B136D4F720D8B9E8003AD279 /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		B136D4F920D8BA14003AD279 /* AddTagCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTagCollectionViewCell.swift; sourceTree = "<group>"; };
 		B136D4FA20D8BA14003AD279 /* AddTagCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddTagCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -453,6 +458,7 @@
 		B1EA154A20FE02260015EF76 /* NewPostsShowViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPostsShowViewController.swift; sourceTree = "<group>"; };
 		B1EA155820FE22980015EF76 /* ActualPostsShowViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActualPostsShowViewController.swift; sourceTree = "<group>"; };
 		B1EA155E20FE243A0015EF76 /* PromoPostsShowViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromoPostsShowViewController.swift; sourceTree = "<group>"; };
+		B1EA4985212E99C800F5F9CA /* CachedImageFrom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedImageFrom.swift; sourceTree = "<group>"; };
 		B1EBAFB720EB55690050B1A2 /* User+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = "<group>"; };
 		B1EBAFB820EB55690050B1A2 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		B1EBAFBD20EB56910050B1A2 /* NSManagedObject+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+Extensions.swift"; sourceTree = "<group>"; };
@@ -676,6 +682,8 @@
 				B1E09E282101F7D9002CC5B7 /* Blog+CoreDataProperties.swift */,
 				B164CECB211AA84800349D79 /* Comment+CoreDataClass.swift */,
 				B164CECC211AA84800349D79 /* Comment+CoreDataProperties.swift */,
+				B1317CD2212E696C0025D429 /* ImageCached+CoreDataClass.swift */,
+				B1317CD3212E696C0025D429 /* ImageCached+CoreDataProperties.swift */,
 				B13FE9B020F5004F00F907BC /* Lenta+CoreDataClass.swift */,
 				B13FE9B120F5004F00F907BC /* Lenta+CoreDataProperties.swift */,
 				B1EA153A20FE007A0015EF76 /* New+CoreDataClass.swift */,
@@ -1179,6 +1187,7 @@
 		ECF28088200A95730000D949 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				B1EA4985212E99C800F5F9CA /* CachedImageFrom.swift */,
 				B1E09E232101F2CB002CC5B7 /* ConfigureCell.swift */,
 				B1E09E1F2101F222002CC5B7 /* MetaDataSupport.swift */,
 				B1E09E212101F26C002CC5B7 /* PaginationSupport.swift */,
@@ -1659,6 +1668,7 @@
 				B139EB9B20C3D3DC0065F6F9 /* CircularProgressBarView.swift in Sources */,
 				EC1DFB8F20063C400080BC50 /* AppDelegate.swift in Sources */,
 				B114194120CD51740025B07F /* ActiveKeyShowRouter.swift in Sources */,
+				B1317CD5212E696C0025D429 /* ImageCached+CoreDataProperties.swift in Sources */,
 				B120D079210825AD00D949F5 /* SettingsNotificationsShowRouter.swift in Sources */,
 				EC24FF6C200C400300A0AE15 /* GSTabBarController.swift in Sources */,
 				B164F04520E62AE600C5CDD3 /* UserProfileShowModels.swift in Sources */,
@@ -1669,6 +1679,7 @@
 				B1EA151F20FDC82E0015EF76 /* PopularPostsShowViewController.swift in Sources */,
 				B12B3AC520FCBFCA00071B97 /* PostsShowWorker.swift in Sources */,
 				B136D50220D8BBEA003AD279 /* TagsCollectionViewController.swift in Sources */,
+				B1EA4986212E99C800F5F9CA /* CachedImageFrom.swift in Sources */,
 				ECB2C0D52008E56300AF1AF5 /* ConstantsApp.swift in Sources */,
 				B114193520CD26710025B07F /* LogInShowViewController.swift in Sources */,
 				B1E09E242101F2CB002CC5B7 /* ConfigureCell.swift in Sources */,
@@ -1684,6 +1695,7 @@
 				B1EA155920FE22980015EF76 /* ActualPostsShowViewController.swift in Sources */,
 				ECF31725200A9D2800F7B703 /* UIAlertController+Window.swift in Sources */,
 				B15C29B721101FEA0030D249 /* PostShowWorker.swift in Sources */,
+				B1317CD4212E696C0025D429 /* ImageCached+CoreDataClass.swift in Sources */,
 				B1F3748120C2C5E1005EF767 /* RootShowRouter.swift in Sources */,
 				B1DCE322210A32B600487DE0 /* GSTestManager.swift in Sources */,
 				B15F228220EEB16500C44282 /* StateMachine.swift in Sources */,

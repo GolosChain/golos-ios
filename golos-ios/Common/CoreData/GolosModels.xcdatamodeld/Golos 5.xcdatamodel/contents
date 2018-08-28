@@ -117,6 +117,16 @@
             </uniquenessConstraint>
         </uniquenessConstraints>
     </entity>
+    <entity name="ImageCached" representedClassName="ImageCached" syncable="YES">
+        <attribute name="cachedKey" attributeType="String" syncable="YES"/>
+        <attribute name="created" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="fromItem" attributeType="String" defaultValueString="lenta" syncable="YES"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="cachedKey"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
     <entity name="Lenta" representedClassName="Lenta" syncable="YES">
         <attribute name="active" attributeType="Date" defaultDateTimeInterval="555426480" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="activeVotesCount" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -338,6 +348,7 @@
         <element name="AppSettings" positionX="-459" positionY="-81" width="128" height="75"/>
         <element name="Blog" positionX="-459" positionY="-81" width="128" height="360"/>
         <element name="Comment" positionX="-459" positionY="-81" width="128" height="345"/>
+        <element name="ImageCached" positionX="-459" positionY="-81" width="128" height="90"/>
         <element name="Lenta" positionX="-459" positionY="-81" width="128" height="360"/>
         <element name="New" positionX="-450" positionY="-72" width="128" height="345"/>
         <element name="Popular" positionX="-441" positionY="-63" width="128" height="345"/>
