@@ -87,7 +87,7 @@ class PostFeedHeaderView: UIView {
     
     @IBOutlet var circleViewsCollection: [UIView]! {
         didSet {
-            _ = circleViewsCollection.map({ $0.layer.cornerRadius = $0.bounds.size.height / 2 })
+            _ = circleViewsCollection.map({ $0.layer.cornerRadius = $0.bounds.size.width / 2 * widthRatio })
         }
     }
     
@@ -154,7 +154,9 @@ class PostFeedHeaderView: UIView {
         // Set User info
         if let user = User.fetch(byName: post.author) {
             self.authorLabel.text           =   user.name
-            self.categoryLabel.text         =   post.category.transliteration()
+            self.categoryLabel.text         =   post.category
+                                                    .transliteration()
+                                                    .uppercaseFirst
            
             // User Reputation -> Int
             self.authorReputationLabel.text =   String(format: "%i", user.reputation.convertWithLogarithm10())

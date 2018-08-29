@@ -33,7 +33,7 @@
                             <constraint firstAttribute="width" constant="50" id="zrk-md-k2b"/>
                         </constraints>
                     </imageView>
-                    <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vrc-AX-Q5Q" userLabel="Amount View">
+                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vrc-AX-Q5Q" userLabel="Amount View">
                         <rect key="frame" x="22" y="52.5" width="15" height="15"/>
                         <subviews>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oIT-Sh-GeD" userLabel="Amount Number View">
