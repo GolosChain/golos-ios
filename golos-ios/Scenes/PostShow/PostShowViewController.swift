@@ -811,7 +811,7 @@ extension PostShowViewController {
 // MARK: - UICollectionViewDelegateFlowLayout
 extension PostShowViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets.init(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
+        return UIEdgeInsets.init(top: 0.0, left: 0.0, bottom: 0.0, right: 12.0)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
