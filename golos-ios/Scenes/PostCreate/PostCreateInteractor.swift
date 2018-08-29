@@ -84,7 +84,7 @@ class PostCreateInteractor: PostCreateBusinessLogic, PostCreateDataStore {
                 }
                 
                 // API 'Create new post'
-                let jsonMetadataString      =   ("{\"tags\":[\"" + (self?.tags!.compactMap({ $0.title!.transliterationInLatin() }).joined(separator: ","))! + "\"]")
+                let jsonMetadataString      =   ("{\"tags\":[\"" + (self?.tags!.compactMap({ $0.title!.transliteration() }).joined(separator: ","))! + "\"]")
                                                     .replacingOccurrences(of: ",", with: "\",\"") + ",\"app\":\"golos.io/0.1\",\"format\":\"markdown\"}"
 
                 Logger.log(message: "\njsonMetadataString:\n\t\(jsonMetadataString)", event: .debug)

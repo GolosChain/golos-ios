@@ -7,12 +7,19 @@
 //
 
 import Foundation
+import Localize_Swift
 
 let cyrillicChars   =   [ "щ", "ш", "ч", "ц", "й", "ё", "э", "ю", "я", "х", "ж", "а", "б", "в", "г", "д", "е", "з", "и", "к", "л", "м", "н", "о", "п", "р", "с", "т", "у", "ф", "ъ", "ы", "ь", "ґ", "є", "і", "ї" ]
 
 // https://github.com/GolosChain/tolstoy/blob/master/app/utils/ParsersAndFormatters.js#L117
 // https://github.com/GolosChain/tolstoy/blob/master/app/utils/ParsersAndFormatters.js#L121
 let latinChars      =   [ "shch", "sh", "ch", "cz", "ij", "yo", "ye", "yu", "ya", "kh", "zh", "a", "b", "v", "g", "d", "e", "z", "i", "k", "l", "m", "n", "o", "p", "r", "s", "t", "u", "f", "xx", "y", "x", "g", "e", "i", "i" ]
+
+
+let translateOtherChars             =   "0123456789-,.?"
+let translateLatinChars             =   "abcdefghijklmnopqrstuvwxyz"
+let translateCyrillicChars          =   "йцукенгшщзхъёфывапролджэячсмитьбюґєії"
+
 
 extension String {
     public func convert(toDateFormat dateFormatType: DateFormatType) -> Date {
@@ -45,38 +52,29 @@ extension String {
     
     
     /// Cyrillic
-    var isBothLatinAndCyrillic: Bool {
-        return self.isLatin && self.isCyrillic
-    }
-    
-    var isLatin: Bool {
-        let upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-        let lower = "abcdefghijklmnopqrstuvwxyz"
-        
-        for char in self.map({ String($0) }) {
-            if !upper.contains(char) && !lower.contains(char) {
-                return false
-            }
-        }
-        
-        return true
-    }
-    
     var isCyrillic: Bool {
-        let upper = "ЙЦУКЕНГШЩЗХЪЁФЫВАПРОЛДЖЭЯЧСМИТЬБЮҐЄІЇ"
-        let lower = "йцукенгшщзхъёфывапролджэячсмитьбюґєії"
-        
-        for char in self.map({ String($0) }) {
-            if !upper.contains(char) && !lower.contains(char) {
-                return false
+        for char in self.lowercased().map({ String($0) }) {
+            if translateCyrillicChars.contains(char) && !translateLatinChars.contains(char) && translateOtherChars.contains(char) {
+                return true
             }
         }
         
-        return true
+        return false
     }
+    
+    
+    /// Common transliteration with App language support
+    public func transliteration() -> String {
+        return Localize.currentLanguage() == "en" ? transliterationInLatin() : transliterationInCyrillic()
+    }
+    
     
     /// Cyrillic -> Latin
-    public func transliterationInLatin() -> String {
+    private func transliterationInLatin() -> String {
+        guard !self.contains("ru--") else {
+            return self.replacingOccurrences(of: "ru--", with: "")
+        }
+        
         let words: [String]     =   self.components(separatedBy: " ")
         var newWords: [String]  =   [String]()
         
@@ -101,13 +99,18 @@ extension String {
         return newWords.joined(separator: " ")
     }
     
+    
     /// Latin -> Cyrillic
-    public func transliterationInCyrillic() -> String {
-        let words: [String]         =   self.components(separatedBy: " ")
-        var newString: String       =   self
+    private func transliterationInCyrillic() -> String {
+        guard self.contains("ru--") else {
+            return self
+        }
+        
+        var newString: String   =   self.replacingOccurrences(of: "ru--", with: "")
+        let words: [String]     =   newString.components(separatedBy: " ")
         
         words.forEach({ word in
-            if word.isLatin {
+            if !word.isCyrillic {
                 var cyrillicChar: String
                 
                 for lenght in (1...4).reversed() {
@@ -124,7 +127,7 @@ extension String {
     
     func transliterate(char: String, isCyrillic: Bool) -> String {
         let convertDict     =   isCyrillic ?    NSDictionary.init(objects: latinChars, forKeys: cyrillicChars as [NSCopying]) :
-                                                NSDictionary.init(objects: cyrillicChars, forKeys: latinChars as [NSCopying])
+            NSDictionary.init(objects: cyrillicChars, forKeys: latinChars as [NSCopying])
         
         return convertDict.value(forKey: char.lowercased()) as! String
     }

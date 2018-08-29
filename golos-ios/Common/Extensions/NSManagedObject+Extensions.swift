@@ -34,7 +34,10 @@ extension NSManagedObject {
             entity.parentPermlink       =   model.parent_permlink
             entity.activeVotesCount     =   Int16(model.active_votes.count)
             entity.url                  =   model.url
-            entity.rebloggedBy          =   model.reblogged_by
+            
+            if let rebloggedBy = model.reblogged_by, rebloggedBy.count > 0 {
+                entity.rebloggedBy      =   rebloggedBy
+            }
             
             // Modify body
             entity.body                 =   model.body

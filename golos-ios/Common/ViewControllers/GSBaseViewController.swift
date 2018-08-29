@@ -14,6 +14,8 @@ class GSBaseViewController: UIViewController {
     
 
     // MARK: - Custom Functions
+    @objc func localizeTitles() {}
+
     func registerForKeyboardNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(adjustForKeyboard), name: Notification.Name.UIKeyboardWillHide, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(adjustForKeyboard), name: Notification.Name.UIKeyboardWillChangeFrame, object: nil)

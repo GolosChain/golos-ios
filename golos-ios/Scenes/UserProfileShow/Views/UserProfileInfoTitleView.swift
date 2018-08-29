@@ -34,7 +34,7 @@ class UserProfileInfoTitleView: PassthroughView {
     @IBOutlet var labelsCollection: [UILabel]! {
         didSet {
             _ = labelsCollection.map({
-                $0.text?.localize()
+                $0.text                         =   $0.accessibilityIdentifier!.localized()
                 $0.font                         =   UIFont(name: "SFUIDisplay-Regular", size: 12.0 * widthRatio)
                 $0.theme_textColor              =   darkGrayWhiteColorPickers
                 $0.textAlignment                =   .left

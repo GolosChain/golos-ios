@@ -93,6 +93,10 @@ class PostFeedTableViewCell: UITableViewCell, HandlersCellSupport {
         self.titleLabel.text                                    =   nil
         self.postImageView.image                                =   nil
         self.postImageViewHeightConstraint.constant             =   180.0 * heightRatio
+
+        self.postFeedHeaderView.reblogAuthorLabel.text          =   nil
+        self.postFeedHeaderView.reblogAuthorLabel.isHidden      =   true
+        self.postFeedHeaderView.reblogIconImageView.isHidden    =   true
     }
     
     deinit {
@@ -172,7 +176,8 @@ extension PostFeedTableViewCell: ConfigureCell {
 
         self.titleLabel.text                                =   model.title
         self.postFeedHeaderView.authorLabel.text            =   model.author
-        self.postFeedHeaderView.categoryLabel.text          =   model.category
+        self.postFeedHeaderView.categoryLabel.text          =   model.category.transliteration()
+
         self.upvotesButton.isEnabled                        =   !model.allowVotes
         self.commentsButton.isEnabled                       =   !model.allowReplies
 
@@ -180,24 +185,16 @@ extension PostFeedTableViewCell: ConfigureCell {
 
         self.layoutIfNeeded()
         
-        
-        
-//        commentsButton.setTitle(lenta.commentsAmount, for: .normal)
-//        articleHeaderView.reblogAuthorLabel.text    =   displayedPost.reblogAuthorName
+        // Set reblogged user info (default isHidden = true)
+        if let rebloggedBy = model.rebloggedBy, rebloggedBy.count > 0 {
+            self.postFeedHeaderView.reblogAuthorLabel.text          =   rebloggedBy.first ?? ""
+            self.postFeedHeaderView.reblogAuthorLabel.isHidden      =   false
+            self.postFeedHeaderView.reblogIconImageView.isHidden    =   false
+        }
         
         // TODO: - PRECISE
-        
-        //        if let reblogAuthor = displayedPost.reblogAuthorName {
-        //            articleHeaderView.reblogAuthorLabel.isHidden    =   false
-        //            articleHeaderView.reblogAuthorLabel.text        =   reblogAuthor
-        //            articleHeaderView.reblogIconImageView.isHidden  =   false
-        //        }
-        //
-        //        else {
-        //            articleHeaderView.reblogAuthorLabel.isHidden    =   true
-        //            articleHeaderView.reblogIconImageView.isHidden  =   true
-        //        }
-        
+//        commentsButton.setTitle(lenta.commentsAmount, for: .normal)
+//        articleHeaderView.reblogAuthorLabel.text    =   displayedPost.reblogAuthorName
         
     }
 }

@@ -132,6 +132,8 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
 
         // Load Posts
         self.loadPosts(false)
+        
+        self.localizeTitles()
     }
     
     
@@ -235,6 +237,12 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
         segmentedViewController.delegate                        =   self
         
         controlView.addSubview(segmentedViewController.view)
+    }
+    
+    
+    // MARK: - Actions
+    override func localizeTitles() {
+//        _ = self.segmentedViewController.segmentControllers.map({ $0.title = "XXX" })
     }
 }
 

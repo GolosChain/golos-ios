@@ -54,9 +54,7 @@ class PostShowTagCollectionViewCell: UICollectionViewCell {
 extension PostShowTagCollectionViewCell: ConfigureCell {
     func setup(withItem item: Any?, andIndexPath indexPath: IndexPath) {
         if var title = item as? String {
-            if title.hasPrefix("ru--") {
-                title   =   title.replacingOccurrences(of: "ru--", with: "").transliterationInCyrillic()
-            }
+            title = title.transliteration()
             
             self.tagButton.setTitle(title.uppercaseFirst, for: .normal)
         }

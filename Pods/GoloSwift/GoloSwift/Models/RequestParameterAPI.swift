@@ -134,15 +134,15 @@ public struct RequestParameterAPI {
         // MARK: - Initialization
         public init(parentAuthor: String, parentPermlink: String, author: String, title: String, body: String, jsonMetadata: String, needTiming: Bool, attachments: [Attachment]? = nil) {
             self.parentAuthor       =   parentAuthor
-            self.parentPermlink     =   parentPermlink.transliterationInLatin()
+            self.parentPermlink     =   parentPermlink.transliteration()
             self.author             =   author
             self.title              =   title
             self.jsonMetadata       =   jsonMetadata
             self.needTiming         =   needTiming
             
-            let permlinkTemp        =   (parentAuthor.isEmpty ? String(format: "%@", title.transliterationInLatin()) :
+            let permlinkTemp        =   (parentAuthor.isEmpty ? String(format: "%@", title.transliteration()) :
                                                                 String(format: "re-%@-%@-%@", parentAuthor, parentPermlink, author))
-                                            .transliterationInLatin()
+                                            .transliteration()
                                             .replacingOccurrences(of: " ", with: "-")
                                             .lowercased()
             

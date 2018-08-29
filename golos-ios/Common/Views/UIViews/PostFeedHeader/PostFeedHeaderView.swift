@@ -154,8 +154,8 @@ class PostFeedHeaderView: UIView {
         // Set User info
         if let user = User.fetch(byName: post.author) {
             self.authorLabel.text           =   user.name
-            self.categoryLabel.text         =   post.category.transliterationInCyrillic()
-            
+            self.categoryLabel.text         =   post.category.transliteration()
+           
             // User Reputation -> Int
             self.authorReputationLabel.text =   String(format: "%i", user.reputation.convertWithLogarithm10())
             
@@ -170,9 +170,11 @@ class PostFeedHeaderView: UIView {
             }            
         }
         
-        // Set reblog user info (default isHidden = true)
+        // Set reblogged user info (default isHidden = true)
         if let rebloggedBy = post.rebloggedBy, rebloggedBy.count > 0 {
-            print(rebloggedBy)
+            self.reblogAuthorLabel.text         =   rebloggedBy.first ?? ""
+            self.reblogAuthorLabel.isHidden     =   false
+            self.reblogIconImageView.isHidden   =   false
         }
     }
     

@@ -509,7 +509,7 @@ class PostShowViewController: GSBaseViewController {
             
             // Subscribe topic
             if let firstTag = displayedPost.tags?.first {
-                self.topicTitleLabel.text       =   firstTag.uppercaseFirst
+                self.topicTitleLabel.text       =   firstTag.transliteration().uppercaseFirst
             }
             
             // Subscribe User

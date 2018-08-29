@@ -160,14 +160,16 @@ class SettingsShowViewController: GSBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.setText()
+        self.localizeTitles()
         self.loadViewSettings()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        NotificationCenter.default.addObserver(self, selector: #selector(setText), name: NSNotification.Name( LCLLanguageChangeNotification), object: nil)
+        UIApplication.shared.statusBarStyle = .default
+
+        NotificationCenter.default.addObserver(self, selector: #selector(localizeTitles), name: NSNotification.Name( LCLLanguageChangeNotification), object: nil)
     }
     
     // Remove the LCLLanguageChangeNotification on viewWillDisappear
@@ -188,16 +190,6 @@ class SettingsShowViewController: GSBaseViewController {
     
     
     // MARK: - Actions
-    @objc func setText() {
-        self.title                  =   "Settings".localized()
-        self.versionLabel.text      =   String(format: "Golos %@ iOS %@", "for".localized(), appVersion)
-
-        self.logOutButton.setTitle("Exit Verb".localized(), for: .normal)
-        self.languageButton.setTitle("Interface Language".localized(), for: .normal)
-        self.editUserProfileButton.setTitle("Edit Profile Title".localized(), for: .normal)
-        self.notificationsButton.setTitle("Remote Notifications Title".localized(), for: .normal)
-    }
-
     @IBAction func languageButtonTapped(_ sender: UIButton) {
         let actionSheet     =   UIAlertController(title: nil, message: "Interface Language".localized(), preferredStyle: .actionSheet)
         
@@ -232,6 +224,17 @@ class SettingsShowViewController: GSBaseViewController {
 
     @IBAction func notificationsButtonTapped(_ sender: UIButton) {
         self.router?.routeToSettingsNotificationsScene()
+    }
+    
+    // Set titles with support App language
+    @objc override func localizeTitles() {
+        self.title                  =   "Settings".localized()
+        self.versionLabel.text      =   String(format: "Golos %@ iOS %@", "for".localized(), appVersion)
+        
+        self.logOutButton.setTitle("Exit Verb".localized(), for: .normal)
+        self.languageButton.setTitle("Interface Language".localized(), for: .normal)
+        self.editUserProfileButton.setTitle("Edit Profile Title".localized(), for: .normal)
+        self.notificationsButton.setTitle("Remote Notifications Title".localized(), for: .normal)
     }
 }
 

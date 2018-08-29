@@ -33,14 +33,15 @@ class UserProfileShowViewController: GSBaseViewController, ContainerViewSupport 
     var sceneMode: UserProfileSceneMode         =   .edit
     var selectedSegmentIndex                    =   0
     let postFeedTypes: [PostsFeedType]          =   [ .blog, .reply ]
-
+    let postItems: [String]                     =   [ "Posts", "Replies" ]
+    
     var interactor: UserProfileShowBusinessLogic?
     var router: (NSObjectProtocol & UserProfileShowRoutingLogic & UserProfileShowDataPassing)?
     
     lazy var segmentedControl: SWSegmentedControl = {
         let contolElement       =   SWSegmentedControl(frame: CGRect(origin: .zero, size: CGSize(width: 210.0 * widthRatio, height: 44.0 * heightRatio)))
         
-        contolElement.items                     =   [ "Posts", "Replies" ].map({ $0.localized() })
+        contolElement.items                     =   postItems.map({ $0.localized() })
         contolElement.selectedSegmentIndex      =   0
         contolElement.titleColor                =   UIColor(hexString: "#333333")
         contolElement.indicatorColor            =   UIColor(hexString: "#1298FF")
@@ -222,6 +223,8 @@ class UserProfileShowViewController: GSBaseViewController, ContainerViewSupport 
 
         // Load User details
         self.loadUserDetails(false)
+        
+        self.localizeTitles()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -279,6 +282,13 @@ class UserProfileShowViewController: GSBaseViewController, ContainerViewSupport 
                 }
             }
         }
+    }
+    
+    
+    // MARK: - Actions
+    override func localizeTitles() {
+        _ = self.userProfileInfoTitleView.labelsCollection.map({ $0.text = $0.accessibilityIdentifier!.localized() })
+        self.segmentedControl.items = self.postItems.map({ $0.localized() })
     }
 }
 
