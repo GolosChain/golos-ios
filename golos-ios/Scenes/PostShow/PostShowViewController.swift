@@ -168,7 +168,7 @@ class PostShowViewController: GSBaseViewController {
                               font:             UIFont(name: "SFUIDisplay-Regular", size: 10.0 * widthRatio),
                               alignment:        .left)
             
-            upvoteButton.isEnabled      =   false
+            upvoteButton.isEnabled      =   true
         }
     }
     
@@ -180,6 +180,7 @@ class PostShowViewController: GSBaseViewController {
                              alignment:        .left)
             
             usersButton.isEnabled       =   false
+            usersButton.isHidden        =   true
         }
     }
     
@@ -190,7 +191,7 @@ class PostShowViewController: GSBaseViewController {
                                 font:             UIFont(name: "SFUIDisplay-Regular", size: 10.0 * widthRatio),
                                 alignment:        .left)
             
-            commentsButton.isEnabled    =   false
+            commentsButton.isEnabled    =   true
         }
     }
     
@@ -201,7 +202,7 @@ class PostShowViewController: GSBaseViewController {
                               font:             UIFont(name: "SFUIDisplay-Regular", size: 10.0 * widthRatio),
                               alignment:        .left)
             
-            flauntButton.isEnabled      =   false
+            flauntButton.isEnabled      =   true
         }
     }
     

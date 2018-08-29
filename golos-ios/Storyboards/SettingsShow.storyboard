@@ -41,7 +41,23 @@
                                                     </view>
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AFo-zw-18l" userLabel="Language View">
                                                         <rect key="frame" x="0.0" y="46.5" width="375" height="47"/>
+                                                        <subviews>
+                                                            <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LeW-Nc-6kL" userLabel="Language Button">
+                                                                <rect key="frame" x="16" y="0.0" width="339" height="47"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <state key="normal" title="Button"/>
+                                                                <connections>
+                                                                    <action selector="languageButtonTapped:" destination="5Fz-c1-bKn" eventType="touchUpInside" id="uLM-X8-wg1"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstItem="LeW-Nc-6kL" firstAttribute="top" secondItem="AFo-zw-18l" secondAttribute="top" id="2Js-pf-Hf5"/>
+                                                            <constraint firstItem="LeW-Nc-6kL" firstAttribute="leading" secondItem="AFo-zw-18l" secondAttribute="leading" constant="16" id="XN3-eQ-Wob"/>
+                                                            <constraint firstAttribute="trailing" secondItem="LeW-Nc-6kL" secondAttribute="trailing" constant="20" id="n0c-sQ-iHJ"/>
+                                                            <constraint firstAttribute="bottom" secondItem="LeW-Nc-6kL" secondAttribute="bottom" id="spv-WN-Gmu"/>
+                                                        </constraints>
                                                     </view>
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9JV-o4-azi" userLabel="Currency View">
                                                         <rect key="frame" x="0.0" y="93.5" width="375" height="46.5"/>
@@ -61,7 +77,6 @@
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
-                                                            <constraint firstItem="2rV-a6-wzh" firstAttribute="centerY" secondItem="z5w-rP-f0J" secondAttribute="centerY" id="BiL-Wf-4iR"/>
                                                             <constraint firstAttribute="trailing" secondItem="2rV-a6-wzh" secondAttribute="trailing" constant="20" id="LEh-SN-ZWs"/>
                                                             <constraint firstAttribute="bottom" secondItem="2rV-a6-wzh" secondAttribute="bottom" id="N54-uo-TyB"/>
                                                             <constraint firstItem="2rV-a6-wzh" firstAttribute="top" secondItem="z5w-rP-f0J" secondAttribute="top" id="c6i-C1-5e1"/>
@@ -86,7 +101,6 @@
                                                             <constraint firstAttribute="bottom" secondItem="K7n-dv-Qcc" secondAttribute="bottom" id="LE7-1i-r3w"/>
                                                             <constraint firstItem="K7n-dv-Qcc" firstAttribute="leading" secondItem="gay-g6-Yx1" secondAttribute="leading" constant="16" id="UF6-ir-0Uh"/>
                                                             <constraint firstItem="K7n-dv-Qcc" firstAttribute="top" secondItem="gay-g6-Yx1" secondAttribute="top" id="pNY-x9-6Mn"/>
-                                                            <constraint firstItem="K7n-dv-Qcc" firstAttribute="centerY" secondItem="gay-g6-Yx1" secondAttribute="centerY" id="qfI-nH-d0o"/>
                                                         </constraints>
                                                     </view>
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bwq-5V-ORO" userLabel="Voice Power View">
@@ -229,6 +243,7 @@
                     <connections>
                         <outlet property="contentView" destination="IZe-iE-639" id="eaR-uL-DNH"/>
                         <outlet property="editUserProfileButton" destination="2rV-a6-wzh" id="un9-0A-Qe6"/>
+                        <outlet property="languageButton" destination="LeW-Nc-6kL" id="0R2-4L-abf"/>
                         <outlet property="logOutButton" destination="gQD-QH-PUB" id="fZ2-OP-Zev"/>
                         <outlet property="notificationsButton" destination="K7n-dv-Qcc" id="nj8-0T-Ug5"/>
                         <outlet property="scrollView" destination="eGZ-Iu-UAZ" id="n3L-aU-azh"/>
@@ -250,6 +265,12 @@
                         <outletCollection property="viewsCollection" destination="gay-g6-Yx1" collectionClass="NSMutableArray" id="pJa-yl-5YY"/>
                         <outletCollection property="viewsCollection" destination="bwq-5V-ORO" collectionClass="NSMutableArray" id="RsM-BB-sem"/>
                         <outletCollection property="constraintsCollection" destination="FZF-rY-9p7" collectionClass="NSMutableArray" id="9k3-2D-17E"/>
+                        <outletCollection property="widthsCollection" destination="XN3-eQ-Wob" collectionClass="NSMutableArray" id="DZw-0p-MtB"/>
+                        <outletCollection property="widthsCollection" destination="n0c-sQ-iHJ" collectionClass="NSMutableArray" id="lIz-HR-ghC"/>
+                        <outletCollection property="widthsCollection" destination="x08-UH-RU1" collectionClass="NSMutableArray" id="X9E-CE-8Ge"/>
+                        <outletCollection property="widthsCollection" destination="LEh-SN-ZWs" collectionClass="NSMutableArray" id="Nn2-jm-7wU"/>
+                        <outletCollection property="widthsCollection" destination="UF6-ir-0Uh" collectionClass="NSMutableArray" id="0r1-wQ-CyT"/>
+                        <outletCollection property="widthsCollection" destination="7cj-kR-lvi" collectionClass="NSMutableArray" id="UWB-VR-eku"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Db1-M9-8YS" userLabel="First Responder" sceneMemberID="firstResponder"/>

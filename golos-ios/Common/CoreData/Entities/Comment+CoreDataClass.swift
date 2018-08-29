@@ -53,6 +53,7 @@ public class Comment: NSManagedObject, CachedImageFrom {
         entity!.parentAuthor        =   model.parent_author
         entity!.parentPermlink      =   model.parent_permlink
         entity!.url                 =   model.url
+        entity!.rebloggedBy         =   model.reblogged_by
         
         // Modify body
         entity!.body                =   model.body

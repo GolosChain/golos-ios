@@ -17,8 +17,6 @@ class PostFeedHeaderView: UIView {
 
     
     // MARK: - IBOutlets
-    @IBOutlet weak var reblogIconImageView: UIImageView!
-    
     @IBOutlet weak var authorProfileImageView: UIImageView! {
         didSet {
             authorProfileImageView.layer.cornerRadius = authorProfileImageView.bounds.width / 2 * widthRatio
@@ -35,6 +33,12 @@ class PostFeedHeaderView: UIView {
         }
     }
     
+    @IBOutlet weak var reblogIconImageView: UIImageView! {
+        didSet {
+            reblogIconImageView.isHidden    =   true
+        }
+    }
+    
     @IBOutlet weak var reblogAuthorLabel: UILabel! {
         didSet {
             reblogAuthorLabel.tune(withText:          "",
@@ -42,6 +46,8 @@ class PostFeedHeaderView: UIView {
                                    font:              UIFont(name: "SFUIDisplay-Regular", size: 12.0 * widthRatio),
                                    alignment:         .left,
                                    isMultiLines:      false)
+            
+            reblogAuthorLabel.isHidden      =   true
         }
     }
     
@@ -148,7 +154,7 @@ class PostFeedHeaderView: UIView {
         // Set User info
         if let user = User.fetch(byName: post.author) {
             self.authorLabel.text           =   user.name
-            self.categoryLabel.text         =   post.category
+            self.categoryLabel.text         =   post.category.transliterationInCyrillic()
             
             // User Reputation -> Int
             self.authorReputationLabel.text =   String(format: "%i", user.reputation.convertWithLogarithm10())
@@ -162,6 +168,11 @@ class PostFeedHeaderView: UIView {
                                                         createdDate:        user.created.convert(toDateFormat: .expirationDateType),
                                                         fromItem:           (user as CachedImageFrom).fromItem)
             }            
+        }
+        
+        // Set reblog user info (default isHidden = true)
+        if let rebloggedBy = post.rebloggedBy, rebloggedBy.count > 0 {
+            print(rebloggedBy)
         }
     }
     

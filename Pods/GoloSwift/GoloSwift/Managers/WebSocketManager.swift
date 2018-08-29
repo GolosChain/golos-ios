@@ -185,16 +185,22 @@ extension WebSocketManager: WebSocketDelegate {
                         self?.errorAPI                      =   ErrorAPI.requestFailed(message: responseAPIResultError.error.message.components(separatedBy: "second.end(): ").last!)
                     }
                     
-                    responseAPIType     =   try (isSendedRequestMethodAPI ? self?.decode(from: jsonData, byMethodAPIType: requestMethodAPIStore!.methodAPIType.methodAPIType) :
-                                                                            self?.decode(from: jsonData, byOperationAPIType: requestOperationAPIStore!.operationAPIType.operationAPIType))
+                    if isSendedRequestMethodAPI, let methodAPIType = requestMethodAPIStore?.methodAPIType.methodAPIType {
+                        responseAPIType         =   try self?.decode(from: jsonData, byMethodAPIType: methodAPIType)
+                    }
+                        
+                    else if !isSendedRequestMethodAPI, let operationAPIType = requestOperationAPIStore?.operationAPIType.operationAPIType {
+                        responseAPIType         =   try self?.decode(from: jsonData, byOperationAPIType: operationAPIType)
+                    }
                     
                     guard let responseTypeAPI = responseAPIType, let responseAPIResult = responseTypeAPI.responseAPI else {
                         self?.errorAPI  =   responseAPIType?.errorAPI ?? ErrorAPI.invalidData(message: "Response Unsuccessful")
                         
-                        return  isSendedRequestMethodAPI ?  requestMethodAPIStore!.completion((responseAPI: nil, errorAPI: self?.errorAPI)) :
-                            requestOperationAPIStore!.completion((responseAPI: nil, errorAPI: self?.errorAPI))
+                        return
+//                        return  isSendedRequestMethodAPI ?  requestMethodAPIStore!.completion((responseAPI: nil, errorAPI: self?.errorAPI)) :
+//                                                            requestOperationAPIStore!.completion((responseAPI: nil, errorAPI: self?.errorAPI))
                     }
-                    
+
 //                    Logger.log(message: "\nresponseAPIResult model:\n\t\(responseAPIResult)", event: .debug)
 
                     // Check websocket timeout: resend current request message

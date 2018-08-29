@@ -12,6 +12,7 @@
 
 import UIKit
 import GoloSwift
+import Localize_Swift
 
 // MARK: - Input & Output protocols
 protocol SettingsShowDisplayLogic: class {
@@ -59,6 +60,16 @@ class SettingsShowViewController: GSBaseViewController {
         }
     }
     
+    @IBOutlet weak var languageButton: UIButton! {
+        didSet {
+            languageButton.tune(withTitle:      "Interface Language".localized(),
+                                hexColors:      [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
+                                font:           UIFont(name: "SFProDisplay-Regular", size: 14.0 * widthRatio),
+                                alignment:      .left)
+        }
+    }
+    
+    
     @IBOutlet weak var logOutButton: UIButton! {
         didSet {
             logOutButton.tune(withTitle:        "Exit Verb".localized(),
@@ -89,6 +100,12 @@ class SettingsShowViewController: GSBaseViewController {
     @IBOutlet var constraintsCollection: [NSLayoutConstraint]! {
         didSet {
             _ = constraintsCollection.map({ $0.constant *= heightRatio })
+        }
+    }
+    
+    @IBOutlet var widthsCollection: [NSLayoutConstraint]! {
+        didSet {
+            _ = widthsCollection.map({ $0.constant *= widthRatio })
         }
     }
     
@@ -143,21 +160,27 @@ class SettingsShowViewController: GSBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.setText()
         self.loadViewSettings()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
+        NotificationCenter.default.addObserver(self, selector: #selector(setText), name: NSNotification.Name( LCLLanguageChangeNotification), object: nil)
     }
     
+    // Remove the LCLLanguageChangeNotification on viewWillDisappear
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        NotificationCenter.default.removeObserver(self)
+    }
+
     
     // MARK: - Custom Functions
     private func loadViewSettings() {
         self.view.tune()
-        
-        self.title          =   "Settings".localized()
-        
 
 //        let requestModel    =   SettingsShowModels.Items.RequestModel()
 //        interactor?.doSomething(withRequestModel: requestModel)
@@ -165,6 +188,36 @@ class SettingsShowViewController: GSBaseViewController {
     
     
     // MARK: - Actions
+    @objc func setText() {
+        self.title                  =   "Settings".localized()
+        self.versionLabel.text      =   String(format: "Golos %@ iOS %@", "for".localized(), appVersion)
+
+        self.logOutButton.setTitle("Exit Verb".localized(), for: .normal)
+        self.languageButton.setTitle("Interface Language".localized(), for: .normal)
+        self.editUserProfileButton.setTitle("Edit Profile Title".localized(), for: .normal)
+        self.notificationsButton.setTitle("Remote Notifications Title".localized(), for: .normal)
+    }
+
+    @IBAction func languageButtonTapped(_ sender: UIButton) {
+        let actionSheet     =   UIAlertController(title: nil, message: "Interface Language".localized(), preferredStyle: .actionSheet)
+        
+        for language in Localize.availableLanguages() {
+            let displayName     =   Localize.displayNameForLanguage(language).uppercaseFirst
+            
+            let languageAction  =   UIAlertAction(title: displayName, style: .default, handler: { _ in
+                Localize.setCurrentLanguage(language)
+            })
+            
+            actionSheet.addAction(languageAction)
+        }
+        
+        let cancelAction = UIAlertAction(title: "ActionCancel".localized(), style: .cancel, handler: { _ in })
+        
+        actionSheet.addAction(cancelAction)
+        
+        self.present(actionSheet, animated: true, completion: nil)
+    }
+    
     @IBAction func logOutButtonTapped(_ sender: UIButton) {
         self.showAlertView(withTitle: "Exit", andMessage: "Are Your Sure?", needCancel: true, completion: { [weak self] success in
             if success {

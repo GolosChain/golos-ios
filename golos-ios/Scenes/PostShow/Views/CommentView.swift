@@ -103,6 +103,7 @@ class CommentView: UIView {
         self.authorNameButton.setTitle(comment.author, for: .normal)
         
         // Load author profile image
+//        if let commentAuthor = 
         if let userProfileImageURL = comment.url {
             self.authorProfileImageButton.uploadImage(byStringPath:     userProfileImageURL,
                                                       size:             CGSize(width: 40.0 * widthRatio, height: 40.0 * widthRatio),

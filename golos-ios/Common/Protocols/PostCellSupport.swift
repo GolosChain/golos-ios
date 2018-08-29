@@ -20,9 +20,11 @@ protocol PostCellSupport: PaginationSupport, MetaDataSupport {
     var jsonMetadata: String? { get set }
     var activeVotesCount: Int16 { get set }
     var url: String? { get set }
-    var tags: [String]? { get set }
     var activeVotes: NSSet? { get set }
     
+    var tags: [String]? { get set }
+    var rebloggedBy: [String]? { get set }
+
     var active: Date { get set }
     var created: Date { get set }
     var lastUpdate: Date { get set }

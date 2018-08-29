@@ -62,7 +62,8 @@ public struct ResponseAPIPost: Decodable {
     public let author_reputation: Conflicted
     public let pending_payout_value: String
     public let total_payout_value: String
-    
+    public let reblogged_by: [String]?
+
     // "2018-04-13T10:19:54"
     public let created: String
     public let active: String
@@ -91,7 +92,6 @@ public struct ResponseAPIPost: Decodable {
      public let net_votes: Int64
      public let percent_steem_dollars: Int64
      public let promoted: String
-     //    "reblogged_by" =             ();      // ???
      //    replies =             ();             // ???
      public let reward_weight: Int64
      public let root_comment: Int64
@@ -346,7 +346,8 @@ public struct ResponseAPIAllContentReply: Decodable {
     public let body: String
     public let json_metadata: String
     public let url: String
-    
+    public let reblogged_by: [String]?
+
     // "2018-04-13T10:19:54"
     public let created: String
     public let active: String
@@ -387,7 +388,6 @@ public struct ResponseAPIAllContentReply: Decodable {
      public let author_reputation: String
      public let promoted: String
      public let body_length: Int
-     public let reblogged_by: [String]?
      */
     // swiftlint:enable identifier_name
 }

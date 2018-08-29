@@ -17,6 +17,7 @@ extension AppSettings {
         return NSFetchRequest<AppSettings>(entityName: "AppSettings")
     }
 
+    @NSManaged public var language: String
     @NSManaged public var name: String
     @NSManaged public var startWithWelcomeScene: Bool
 

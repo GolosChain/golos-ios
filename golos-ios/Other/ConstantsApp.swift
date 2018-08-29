@@ -10,6 +10,11 @@ import Foundation
 import GoloSwift
 import CoreData
 
+enum LanguageSupport: String {
+    case english    =   "English"
+    case russian    =   "Russian"
+}
+
 struct ConstantsApp {
     struct ButtonParameters {
         static let cornerRadius: CGFloat = 22.0

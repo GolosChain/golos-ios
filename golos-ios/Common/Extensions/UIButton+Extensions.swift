@@ -49,7 +49,7 @@ extension UIButton {
                         return
                     }
                     
-                    if let data = data, let downloadedImage = UIImage(data: data) {
+                    if let imageData = data, let downloadedImage = UIImage(data: imageData) {
                         // Save image to NSCache
                         cacheApp.setObject(downloadedImage, forKey: imageKey)
                         

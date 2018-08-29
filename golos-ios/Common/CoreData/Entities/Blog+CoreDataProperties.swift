@@ -29,10 +29,12 @@ extension Blog: PostCellSupport {
     @NSManaged public var jsonMetadata: String?
     @NSManaged public var activeVotesCount: Int16
     @NSManaged public var url: String?
-    @NSManaged public var tags: [String]?
     @NSManaged public var coverImageURL: String?
     @NSManaged public var userName: String
 
+    @NSManaged public var tags: [String]?
+    @NSManaged public var rebloggedBy: [String]?
+    
     @NSManaged public var active: Date
     @NSManaged public var created: Date
     @NSManaged public var lastUpdate: Date
