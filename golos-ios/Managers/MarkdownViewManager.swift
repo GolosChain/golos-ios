@@ -22,7 +22,7 @@ class MarkdownViewManager: MarkdownView {
         super.init(coder: aDecoder)
     
         self.isScrollEnabled    =   false
-        
+
         // Handler: display content in App
         self.onTouchLink = { [weak self] request in
             guard let url = request.url else {

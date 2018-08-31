@@ -21,7 +21,9 @@ protocol PostCellSupport: PaginationSupport, MetaDataSupport {
     var activeVotesCount: Int16 { get set }
     var url: String? { get set }
     var activeVotes: NSSet? { get set }
-    
+    var authorReputation: String { get set }
+    var pendingPayoutValue: Float { get set }
+
     var tags: [String]? { get set }
     var rebloggedBy: [String]? { get set }
 

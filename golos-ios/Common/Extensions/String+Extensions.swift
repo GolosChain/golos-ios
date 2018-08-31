@@ -166,5 +166,4 @@ extension String {
                 .replacingOccurrences(of: "<strong>", with: "**")
                 .replacingOccurrences(of: "</strong>", with: "**")
     }
-
 }

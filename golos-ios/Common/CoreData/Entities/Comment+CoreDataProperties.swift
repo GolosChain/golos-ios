@@ -19,6 +19,7 @@ extension Comment: PostCellSupport {
 
     @NSManaged public var id: Int64
     @NSManaged public var author: String
+    @NSManaged public var authorReputation: String
     @NSManaged public var parentAuthor: String?
     @NSManaged public var category: String
     @NSManaged public var title: String
@@ -31,6 +32,7 @@ extension Comment: PostCellSupport {
     @NSManaged public var activeVotesCount: Int16
     @NSManaged public var url: String?
     @NSManaged public var coverImageURL: String?
+    @NSManaged public var pendingPayoutValue: Float
 
     @NSManaged public var tags: [String]?
     @NSManaged public var rebloggedBy: [String]?

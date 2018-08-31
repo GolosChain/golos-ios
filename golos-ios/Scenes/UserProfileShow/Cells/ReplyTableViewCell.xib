@@ -110,11 +110,11 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <stackView clipsSubviews="YES" contentMode="left" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Ty5-mp-LK8" userLabel="Bottom Stack View">
-                        <rect key="frame" x="90" y="63" width="120" height="44.5"/>
+                    <stackView clipsSubviews="YES" contentMode="left" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Ty5-mp-LK8" userLabel="Bottom Stack View">
+                        <rect key="frame" x="90" y="63" width="309" height="44.5"/>
                         <subviews>
                             <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bgm-nf-yUO">
-                                <rect key="frame" x="0.0" y="0.0" width="56" height="44.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="46" height="44.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <inset key="contentEdgeInsets" minX="0.0" minY="10" maxX="0.0" maxY="10"/>
@@ -125,18 +125,27 @@
                                     <action selector="answerButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="8vn-4p-7Q2"/>
                                 </connections>
                             </button>
-                            <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TiI-Qb-jdB">
-                                <rect key="frame" x="64" y="0.0" width="56" height="44.5"/>
+                            <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TiI-Qb-jdB">
+                                <rect key="frame" x="58" y="0.0" width="128" height="44.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="252" horizontalCompressionResistancePriority="752" translatesAutoresizingMaskIntoConstraints="NO" id="Cwp-ar-exE" userLabel="Empty View">
+                                <rect key="frame" x="198" y="0.0" width="111" height="44.5"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="120" id="XSd-XP-l02"/>
+                            <constraint firstAttribute="width" constant="150" id="XSd-XP-l02"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="XSd-XP-l02"/>
+                            </mask>
+                        </variation>
                     </stackView>
                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ykh-lR-Ouj" userLabel="Bottom Line View">
                         <rect key="frame" x="0.0" y="105.5" width="399" height="2"/>
@@ -162,6 +171,7 @@
                     <constraint firstItem="5dM-W2-WiW" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="SV9-7q-AEL"/>
                     <constraint firstAttribute="bottom" secondItem="Ykh-lR-Ouj" secondAttribute="bottom" id="Ucp-4Y-j8g"/>
                     <constraint firstItem="5dM-W2-WiW" firstAttribute="bottom" secondItem="vrc-AX-Q5Q" secondAttribute="bottom" constant="-2" id="Xoh-Go-GDa"/>
+                    <constraint firstAttribute="trailing" secondItem="Ty5-mp-LK8" secondAttribute="trailing" id="mR2-zf-hdy"/>
                     <constraint firstItem="Ykh-lR-Ouj" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="o6T-sN-Ftx"/>
                     <constraint firstItem="cH0-jo-JaP" firstAttribute="leading" secondItem="5dM-W2-WiW" secondAttribute="trailing" constant="16" id="tee-0k-JaO"/>
                     <constraint firstItem="Wbc-GS-MMR" firstAttribute="top" secondItem="cH0-jo-JaP" secondAttribute="bottom" id="vjD-Lm-r3J"/>

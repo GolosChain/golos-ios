@@ -209,23 +209,30 @@ extension ReplyTableViewCell: ConfigureCell {
             return
         }
         
-        // Get commentator info
-        if let userCommentator = User.fetch(byName: reply.author) {
-            self.authorLabel.text       =   userCommentator.name
-
-            // Reputation -> Int
-            self.reputationLabel.text   =   String(format: "%i", userCommentator.reputation.convertWithLogarithm10())
-
-            // Load author profile image
-            if let userProfileImageURL = userCommentator.profileImageURL {
-                self.authorAvatarImageView.uploadImage(byStringPath:    userProfileImageURL,
-                                                       imageType:       .userProfileImage,
-                                                       size:            CGSize(width: 50.0 * widthRatio, height: 50.0 * widthRatio),
-                                                       tags:            nil,
-                                                       createdDate:     userCommentator.created.convert(toDateFormat: .expirationDateType),
-                                                       fromItem:        "reply")
+        // Load commentator info
+        RestAPIManager.loadUsersInfo(byNames: [reply.author], completion: { [weak self] errorAPI in
+            if errorAPI == nil, let commentator = User.fetch(byName: reply.author) {
+                self?.authorLabel.text      =   commentator.name
+                
+                // Commentator Reputation -> Int
+                self?.reputationLabel.text  =   String(format: "%i", commentator.reputation.convertWithLogarithm10())
+                
+                // Load commentator profile image
+                if let commentatorProfileImageURL = commentator.profileImageURL {
+                    self?.authorAvatarImageView.uploadImage(byStringPath:    commentatorProfileImageURL,
+                                                            imageType:       .userProfileImage,
+                                                            size:            CGSize(width: 50.0 * widthRatio, height: 50.0 * widthRatio),
+                                                            tags:            nil,
+                                                            createdDate:     commentator.created.convert(toDateFormat: .expirationDateType),
+                                                            fromItem:        (commentator as CachedImageFrom).fromItem)
+                }
             }
-        }
+
+            else {
+                self?.authorLabel.text      =   "Unknown User".localized()
+                self?.reputationLabel.text  =   "0"
+            }
+        })
         
         self.timeLabel.text             =   reply.created.convertToDaysAgo()
         self.replyTextLabel.text        =   reply.body

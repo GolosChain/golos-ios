@@ -175,8 +175,12 @@ extension WebSocketManager: WebSocketDelegate {
                 let requestMethodAPIStore       =   self?.requestMethodsAPIStore[codeID]
                 let requestOperationAPIStore    =   self?.requestOperationsAPIStore[codeID]
                 
+                guard (requestMethodAPIStore != nil && requestOperationAPIStore == nil) || (requestOperationAPIStore != nil && requestMethodAPIStore == nil) else {
+                    return
+                }
+                
                 let isSendedRequestMethodAPI    =   requestOperationAPIStore == nil
-
+                
                 do {
                     let jsonDecoder = JSONDecoder()
                     
@@ -196,16 +200,16 @@ extension WebSocketManager: WebSocketDelegate {
                     guard let responseTypeAPI = responseAPIType, let responseAPIResult = responseTypeAPI.responseAPI else {
                         self?.errorAPI  =   responseAPIType?.errorAPI ?? ErrorAPI.invalidData(message: "Response Unsuccessful")
                         
-                        return
-//                        return  isSendedRequestMethodAPI ?  requestMethodAPIStore!.completion((responseAPI: nil, errorAPI: self?.errorAPI)) :
-//                                                            requestOperationAPIStore!.completion((responseAPI: nil, errorAPI: self?.errorAPI))
+                        return  isSendedRequestMethodAPI ?  requestMethodAPIStore!.completion((responseAPI: nil, errorAPI: self?.errorAPI)) :
+                                                            requestOperationAPIStore!.completion((responseAPI: nil, errorAPI: self?.errorAPI))
                     }
-
+                    
 //                    Logger.log(message: "\nresponseAPIResult model:\n\t\(responseAPIResult)", event: .debug)
-
+                    
                     // Check websocket timeout: resend current request message
                     let startTime   =   isSendedRequestMethodAPI ? requestMethodAPIStore!.methodAPIType.startTime : requestOperationAPIStore!.operationAPIType.startTime
                     let timeout     =   Double(Date().timeIntervalSince(startTime))
+                    
                     Logger.log(message: "\nwebSocket timeout =\n\t\(timeout) sec", event: .debug)
                     
                     if timeout >= webSocketTimeout {

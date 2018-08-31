@@ -193,8 +193,9 @@ class GSTableViewController: GSBaseViewController {
     
     func fetchPosts(byParameters parameters: FetchPostParameters) {
         var fetchRequest: NSFetchRequest<NSFetchRequestResult>
-        var primarySortDescriptor: NSSortDescriptor
-        var secondarySortDescriptor: NSSortDescriptor
+        var primarySortDescriptor: NSSortDescriptor = NSSortDescriptor(key: parameters.sortBy ?? "id", ascending: true)
+
+//        var secondarySortDescriptor: NSSortDescriptor
 
         fetchRequest    =   NSFetchRequest<NSFetchRequestResult>(entityName: parameters.postFeedType.caseTitle())
 
@@ -211,20 +212,29 @@ class GSTableViewController: GSBaseViewController {
                 fetchRequest.predicate  =   NSPredicate(format: "author == %@", author)
             }
 
+        // Lenta
         case .lenta:
             if let author = parameters.author {
                 fetchRequest.predicate  =   NSPredicate(format: "userName == %@", author)
+                primarySortDescriptor   =   NSSortDescriptor(key: parameters.sortBy ?? "id", ascending: false)
             }
-            
+
+        // Popular
+        case .popular:
+            primarySortDescriptor       =   NSSortDescriptor(key: parameters.sortBy ?? "pendingPayoutValue", ascending: false)
+
+
         // Popular, Actual, New, Promo
         default:
             break
         }
         
-        primarySortDescriptor           =   NSSortDescriptor(key: parameters.sortBy ?? "created", ascending: false)
-        secondarySortDescriptor         =   NSSortDescriptor(key: "author", ascending: true)
-        fetchRequest.sortDescriptors    =   [ primarySortDescriptor, secondarySortDescriptor ]
-        
+//        primarySortDescriptor           =   NSSortDescriptor(key: parameters.sortBy ?? "created", ascending: false)
+//        secondarySortDescriptor         =   NSSortDescriptor(key: "author", ascending: true)
+//        fetchRequest.sortDescriptors    =   [ primarySortDescriptor, secondarySortDescriptor ]
+
+        fetchRequest.sortDescriptors    =   [ primarySortDescriptor ]
+
         if self.lastIndex == 0 {
             fetchRequest.fetchLimit     =   Int(loadDataLimit)            
         }

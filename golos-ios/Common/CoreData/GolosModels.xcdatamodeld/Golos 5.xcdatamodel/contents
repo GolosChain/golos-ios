@@ -29,6 +29,7 @@
         <attribute name="allowReplies" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="allowVotes" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="author" attributeType="String" defaultValueString="&quot;&quot;" syncable="YES"/>
+        <attribute name="authorReputation" attributeType="String" defaultValueString="0" syncable="YES"/>
         <attribute name="body" attributeType="String" defaultValueString="&quot;&quot;" syncable="YES"/>
         <attribute name="category" attributeType="String" defaultValueString="&quot;&quot;" syncable="YES"/>
         <attribute name="coverImageURL" optional="YES" attributeType="String" syncable="YES"/>
@@ -39,6 +40,7 @@
         <attribute name="lastUpdate" attributeType="Date" defaultDateTimeInterval="555426540" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="parentAuthor" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="parentPermlink" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pendingPayoutValue" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="permlink" attributeType="String" defaultValueString="&quot;&quot;" syncable="YES"/>
         <attribute name="rebloggedBy" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="tags" optional="YES" attributeType="Transformable" syncable="YES"/>
@@ -68,6 +70,7 @@
         <attribute name="allowReplies" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="allowVotes" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="author" attributeType="String" syncable="YES"/>
+        <attribute name="authorReputation" attributeType="String" defaultValueString="0" syncable="YES"/>
         <attribute name="body" attributeType="String" syncable="YES"/>
         <attribute name="category" attributeType="String" syncable="YES"/>
         <attribute name="coverImageURL" optional="YES" attributeType="String" syncable="YES"/>
@@ -78,6 +81,7 @@
         <attribute name="lastUpdate" attributeType="Date" defaultDateTimeInterval="555426540" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="parentAuthor" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="parentPermlink" attributeType="String" syncable="YES"/>
+        <attribute name="pendingPayoutValue" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="permlink" attributeType="String" syncable="YES"/>
         <attribute name="rebloggedBy" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="tags" optional="YES" attributeType="Transformable" syncable="YES"/>
@@ -98,6 +102,7 @@
         <attribute name="allowReplies" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="allowVotes" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="author" attributeType="String" syncable="YES"/>
+        <attribute name="authorReputation" attributeType="String" defaultValueString="0" syncable="YES"/>
         <attribute name="body" attributeType="String" syncable="YES"/>
         <attribute name="category" attributeType="String" syncable="YES"/>
         <attribute name="coverImageURL" optional="YES" attributeType="String" syncable="YES"/>
@@ -108,6 +113,7 @@
         <attribute name="lastUpdate" attributeType="Date" defaultDateTimeInterval="555426600" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="parentAuthor" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="parentPermlink" attributeType="String" syncable="YES"/>
+        <attribute name="pendingPayoutValue" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="permlink" attributeType="String" syncable="YES"/>
         <attribute name="rebloggedBy" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="tags" optional="YES" attributeType="Transformable" syncable="YES"/>
@@ -137,6 +143,7 @@
         <attribute name="allowReplies" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="allowVotes" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="author" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="authorReputation" attributeType="String" defaultValueString="0" syncable="YES"/>
         <attribute name="body" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="category" attributeType="String" syncable="YES"/>
         <attribute name="coverImageURL" optional="YES" attributeType="String" syncable="YES"/>
@@ -147,6 +154,7 @@
         <attribute name="lastUpdate" attributeType="Date" defaultDateTimeInterval="555426480" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="parentAuthor" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="parentPermlink" attributeType="String" syncable="YES"/>
+        <attribute name="pendingPayoutValue" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="permlink" attributeType="String" syncable="YES"/>
         <attribute name="rebloggedBy" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="tags" optional="YES" attributeType="Transformable" syncable="YES"/>
@@ -167,6 +175,7 @@
         <attribute name="allowReplies" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="allowVotes" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="author" attributeType="String" syncable="YES"/>
+        <attribute name="authorReputation" attributeType="String" defaultValueString="0" syncable="YES"/>
         <attribute name="body" attributeType="String" syncable="YES"/>
         <attribute name="category" attributeType="String" syncable="YES"/>
         <attribute name="coverImageURL" optional="YES" attributeType="String" syncable="YES"/>
@@ -177,6 +186,7 @@
         <attribute name="lastUpdate" attributeType="Date" defaultDateTimeInterval="555426600" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="parentAuthor" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="parentPermlink" attributeType="String" syncable="YES"/>
+        <attribute name="pendingPayoutValue" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="permlink" attributeType="String" syncable="YES"/>
         <attribute name="rebloggedBy" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="tags" optional="YES" attributeType="Transformable" syncable="YES"/>
@@ -196,6 +206,7 @@
         <attribute name="allowReplies" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="allowVotes" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="author" attributeType="String" syncable="YES"/>
+        <attribute name="authorReputation" attributeType="String" defaultValueString="0" syncable="YES"/>
         <attribute name="body" attributeType="String" syncable="YES"/>
         <attribute name="category" attributeType="String" syncable="YES"/>
         <attribute name="coverImageURL" optional="YES" attributeType="String" syncable="YES"/>
@@ -206,6 +217,7 @@
         <attribute name="lastUpdate" attributeType="Date" defaultDateTimeInterval="555426600" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="parentAuthor" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="parentPermlink" attributeType="String" syncable="YES"/>
+        <attribute name="pendingPayoutValue" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="permlink" attributeType="String" syncable="YES"/>
         <attribute name="rebloggedBy" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="tags" optional="YES" attributeType="Transformable" syncable="YES"/>
@@ -225,6 +237,7 @@
         <attribute name="allowReplies" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="allowVotes" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="author" attributeType="String" syncable="YES"/>
+        <attribute name="authorReputation" attributeType="String" defaultValueString="0" syncable="YES"/>
         <attribute name="body" attributeType="String" syncable="YES"/>
         <attribute name="category" attributeType="String" syncable="YES"/>
         <attribute name="coverImageURL" optional="YES" attributeType="String" syncable="YES"/>
@@ -235,6 +248,7 @@
         <attribute name="lastUpdate" attributeType="Date" defaultDateTimeInterval="555426600" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="parentAuthor" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="parentPermlink" attributeType="String" syncable="YES"/>
+        <attribute name="pendingPayoutValue" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="permlink" attributeType="String" syncable="YES"/>
         <attribute name="rebloggedBy" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="tags" optional="YES" attributeType="Transformable" syncable="YES"/>
@@ -254,6 +268,7 @@
         <attribute name="allowReplies" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="allowVotes" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="author" attributeType="String" syncable="YES"/>
+        <attribute name="authorReputation" attributeType="String" defaultValueString="0" syncable="YES"/>
         <attribute name="body" attributeType="String" syncable="YES"/>
         <attribute name="category" attributeType="String" syncable="YES"/>
         <attribute name="coverImageURL" optional="YES" attributeType="String" syncable="YES"/>
@@ -264,6 +279,7 @@
         <attribute name="lastUpdate" attributeType="Date" defaultDateTimeInterval="555426660" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="parentAuthor" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="parentPermlink" attributeType="String" syncable="YES"/>
+        <attribute name="pendingPayoutValue" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="permlink" attributeType="String" syncable="YES"/>
         <attribute name="rebloggedBy" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="tags" optional="YES" attributeType="Transformable" syncable="YES"/>
@@ -353,16 +369,16 @@
     </entity>
     <elements>
         <element name="ActiveVote" positionX="-459" positionY="-81" width="128" height="270"/>
-        <element name="Actual" positionX="-405" positionY="-27" width="128" height="360"/>
+        <element name="Actual" positionX="-405" positionY="-27" width="128" height="390"/>
         <element name="AppSettings" positionX="-459" positionY="-81" width="128" height="90"/>
-        <element name="Blog" positionX="-459" positionY="-81" width="128" height="375"/>
-        <element name="Comment" positionX="-459" positionY="-81" width="128" height="360"/>
+        <element name="Blog" positionX="-459" positionY="-81" width="128" height="405"/>
+        <element name="Comment" positionX="-459" positionY="-81" width="128" height="390"/>
         <element name="ImageCached" positionX="-459" positionY="-81" width="128" height="90"/>
-        <element name="Lenta" positionX="-459" positionY="-81" width="128" height="375"/>
-        <element name="New" positionX="-450" positionY="-72" width="128" height="360"/>
-        <element name="Popular" positionX="-441" positionY="-63" width="128" height="360"/>
-        <element name="Promo" positionX="-459" positionY="-81" width="128" height="360"/>
-        <element name="Reply" positionX="-450" positionY="-72" width="128" height="360"/>
+        <element name="Lenta" positionX="-459" positionY="-81" width="128" height="405"/>
+        <element name="New" positionX="-450" positionY="-72" width="128" height="390"/>
+        <element name="Popular" positionX="-441" positionY="-63" width="128" height="390"/>
+        <element name="Promo" positionX="-459" positionY="-81" width="128" height="390"/>
+        <element name="Reply" positionX="-450" positionY="-72" width="128" height="390"/>
         <element name="SettingNotification" positionX="-459" positionY="-81" width="128" height="75"/>
         <element name="User" positionX="-666" positionY="-90" width="128" height="375"/>
         <element name="UserSecretActiveKey" positionX="-459" positionY="-81" width="128" height="120"/>

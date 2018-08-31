@@ -143,6 +143,10 @@ extension PostFeedTableViewCell: ConfigureCell {
             // User Reputation -> Int
             self.postFeedHeaderView.authorReputationLabel.text  =   String(format: "%i", user.reputation.convertWithLogarithm10())
             
+            // Author Post Reputation -> Int
+            let pendingPayoutValue = String(format: "%@%.2f", "gbg", model.pendingPayoutValue)
+            self.upvotesButton.setTitle(pendingPayoutValue, for: .normal)
+
             // Set upvotes icon
             if let activeVotes = model.activeVotes, activeVotes.count > 0 {
                 self.upvotesButton.isEnabled = activeVotes.compactMap({ ($0 as? ActiveVote)?.voter == User.current!.name }).count > 0

@@ -62,31 +62,38 @@ class RestAPIManager {
     class func loadUsersInfo(byNames names: [String], completion: @escaping (ErrorAPI?) -> Void) {
         // API 'get_accounts'
         if isNetworkAvailable {
-            let methodAPIType   =   MethodAPIType.getAccounts(names: names)
-            
-            broadcast.executeGET(byMethodAPIType: methodAPIType,
-                                 onResult: { responseAPIResult in
-                                    Logger.log(message: "\nresponse API Result = \(responseAPIResult)\n", event: .debug)
-                                    
-                                    guard let result = (responseAPIResult as! ResponseAPIUserResult).result, result.count > 0 else {
-                                        completion(ErrorAPI.requestFailed(message: names.count == 1 ? "User is not found" : "List of users is empty"))
-                                        return
-                                    }
-                                    
-                                    // CoreData: Update User entities
-                                    _ = result.map({
-                                        let userEntity = User.instance(byUserID: $0.id)
-                                        userEntity.updateEntity(fromResponseAPI: $0)                                        
-                                    })
-                                    
-                                    completion(nil)
-            },
-                                 onError: { errorAPI in
-                                    Logger.log(message: "nresponse API Error = \(errorAPI.caseInfo.message)\n", event: .error)
-                                    completion(errorAPI)
-            })
+            // Search available user in CoreData
+            if names.count == 1, let userName = names.first, (User.fetch(byName: userName) != nil) {
+                completion(nil)
+            }
+                
+            else {
+                let methodAPIType   =   MethodAPIType.getAccounts(names: names)
+                
+                broadcast.executeGET(byMethodAPIType: methodAPIType,
+                                     onResult: { responseAPIResult in
+                                        Logger.log(message: "\nresponse API Result = \(responseAPIResult)\n", event: .debug)
+                                        
+                                        guard let result = (responseAPIResult as! ResponseAPIUserResult).result, result.count > 0 else {
+                                            completion(ErrorAPI.requestFailed(message: names.count == 1 ? "User is not found" : "List of users is empty"))
+                                            return
+                                        }
+                                        
+                                        // CoreData: Update User entities
+                                        _ = result.map({
+                                            let userEntity = User.instance(byUserID: $0.id)
+                                            userEntity.updateEntity(fromResponseAPI: $0)
+                                        })
+                                        
+                                        completion(nil)
+                },
+                                     onError: { errorAPI in
+                                        Logger.log(message: "nresponse API Error = \(errorAPI.caseInfo.message)\n", event: .error)
+                                        completion(errorAPI)
+                })
+            }
         }
-        
+            
         // Offline mode
         else {
             completion(nil)

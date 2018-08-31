@@ -34,6 +34,11 @@ extension NSManagedObject {
             entity.parentPermlink       =   model.parent_permlink
             entity.activeVotesCount     =   Int16(model.active_votes.count)
             entity.url                  =   model.url
+            entity.pendingPayoutValue   =   (model.pending_payout_value as NSString).floatValue
+            
+            if let authorReputation = model.author_reputation.stringValue {
+                entity.authorReputation =   authorReputation
+            }
             
             if let rebloggedBy = model.reblogged_by, rebloggedBy.count > 0 {
                 entity.rebloggedBy      =   rebloggedBy
