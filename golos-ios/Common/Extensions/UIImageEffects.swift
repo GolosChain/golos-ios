@@ -317,5 +317,15 @@ public extension UIImage {
         UIGraphicsEndImageContext()
         
         return newImage!
-    }    
+    }
+    
+    
+    /// Compare two images
+    func isEqual(whiteImage: UIImage) -> Bool {
+        if let lhsData = UIImagePNGRepresentation(self), let rhsData = UIImagePNGRepresentation(whiteImage) {
+            return lhsData == rhsData
+        }
+        
+        return false
+    }
 }

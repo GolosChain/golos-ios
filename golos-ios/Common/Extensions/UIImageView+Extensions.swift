@@ -74,11 +74,17 @@ extension UIImageView {
                                 self.contentMode = downloadedImage.size.width > downloadedImage.size.height ? .scaleAspectFill : .scaleAspectFit
                             }
                             
-                            // Save image to NSCache
-                            cacheApp.setObject(downloadedImage, forKey: imageKey)
-                            
                             DispatchQueue.main.async {
-                                self.image = downloadedImage
+                                if downloadedImage.isEqualTo(image: UIImage(named: "image-mock-white")!) {
+                                    self.image  =   UIImage(named: imagePlaceholderName)
+                                }
+                                
+                                else {
+                                    self.image  =   downloadedImage
+                                }
+                                
+                                // Save image to NSCache
+                                cacheApp.setObject(self.image!, forKey: imageKey)
                             }
                             
                             // Save ImageCached to CoreData
