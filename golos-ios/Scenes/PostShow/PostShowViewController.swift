@@ -459,8 +459,8 @@ class PostShowViewController: GSBaseViewController {
         super.viewDidLoad()
 
         // Handlers
-        self.postFeedHeaderView.handlerAuthorTapped         =   { [weak self] in
-            self?.router?.routeToUserProfileScene(byUserName: (self?.router?.dataStore?.post as! PostCellSupport).author)
+        self.postFeedHeaderView.handlerAuthorTapped         =   { [weak self] userName in
+            self?.router?.routeToUserProfileScene(byUserName: userName) //(self?.router?.dataStore?.post as! PostCellSupport).author)
         }
         
         // Load Post

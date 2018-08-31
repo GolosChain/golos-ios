@@ -15,6 +15,7 @@ class PostFeedTableViewCell: UITableViewCell, HandlersCellSupport {
     var handlerShareButtonTapped: (() -> Void)?
     var handlerUpvotesButtonTapped: (() -> Void)?
     var handlerCommentsButtonTapped: (() -> Void)?
+    var handlerAuthorPostSelected: ((String) -> Void)?
 
 
     // MARK: - IBOutlets
@@ -37,8 +38,8 @@ class PostFeedTableViewCell: UITableViewCell, HandlersCellSupport {
             postFeedHeaderView.tune()
             
             // Handlers
-            postFeedHeaderView.handlerAuthorTapped          =   {
-                
+            postFeedHeaderView.handlerAuthorTapped          =   { [weak self] userName in
+                self?.handlerAuthorPostSelected!(userName)
             }
             
             postFeedHeaderView.handlerReblogAuthorTapped    =   {
@@ -198,7 +199,6 @@ extension PostFeedTableViewCell: ConfigureCell {
         
         // TODO: - PRECISE
 //        commentsButton.setTitle(lenta.commentsAmount, for: .normal)
-//        articleHeaderView.reblogAuthorLabel.text    =   displayedPost.reblogAuthorName
         
     }
 }

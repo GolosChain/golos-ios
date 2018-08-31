@@ -16,6 +16,7 @@ import GoloSwift
 // MARK: - Input & Output protocols
 @objc protocol PostsShowRoutingLogic {
     func routeToPostShowScene()
+    func routeToUserProfileScene(byUserName name: String)
 }
 
 protocol PostsShowDataPassing {
@@ -44,6 +45,16 @@ class PostsShowRouter: NSObject, PostsShowRoutingLogic, PostsShowDataPassing {
         navigateToPostShowScene(source: viewController!, destination: destinationVC)
     }
     
+    func routeToUserProfileScene(byUserName name: String) {
+        let storyboard          =   UIStoryboard(name: "UserProfileShow", bundle: nil)
+        let destinationVC       =   storyboard.instantiateViewController(withIdentifier: "UserProfileShowVC") as! UserProfileShowViewController
+        destinationVC.sceneMode =   .preview
+        var destinationDS       =   destinationVC.router!.dataStore!
+        
+        passDataToUserProfileScene(userName: name, destination: &destinationDS)
+        navigateToUserProfileScene(source: viewController!, destination: destinationVC)
+    }
+
     
     // MARK: - Navigation
     func navigateToPostShowScene(source: PostsShowViewController, destination: PostShowViewController) {
@@ -51,10 +62,18 @@ class PostsShowRouter: NSObject, PostsShowRoutingLogic, PostsShowDataPassing {
         source.show(destination, sender: nil)
     }
     
+    func navigateToUserProfileScene(source: PostsShowViewController, destination: UserProfileShowViewController) {
+        source.show(destination, sender: nil)
+    }
+
     
     // MARK: - Passing data
     func passDataToPostShowScene(source: PostsShowDataStore, destination: inout PostShowDataStore) {
         destination.post        =   source.post
         destination.postType    =   viewController!.postFeedTypes[viewController!.selectedSegmentIndex]
+    }
+    
+    func passDataToUserProfileScene(userName: String, destination: inout UserProfileShowDataStore) {
+        destination.userName    =   userName
     }
 }

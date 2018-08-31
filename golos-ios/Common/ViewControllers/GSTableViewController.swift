@@ -46,7 +46,7 @@ class GSTableViewController: GSBaseViewController {
     var handlerSelectItem: ((NSManagedObject?) -> Void)?
     var handlerUsersButtonTapped: (() -> Void)?
     var handlerAuthorProfileAddButtonTapped: (() -> Void)?
-    var handlerAuthorProfileImageButtonTapped: (() -> Void)?
+    var handlerAuthorProfileImageButtonTapped: ((String) -> Void)?
 
     // Markdown completions
     var completionCommentShowSafariURL: ((URL) -> Void)?
@@ -377,6 +377,12 @@ extension GSTableViewController: UITableViewDataSource {
             
             (cell as! PostFeedTableViewCell).handlerCommentsButtonTapped    =   { [weak self] in
                 self?.handlerCommentsButtonTapped!()
+            }
+
+            (cell as! PostFeedTableViewCell).handlerAuthorPostSelected      =   { [weak self] userName in
+                if type(of: entity) != Blog.self {
+                    self?.handlerAuthorProfileImageButtonTapped!(userName)
+                }
             }
         }
         

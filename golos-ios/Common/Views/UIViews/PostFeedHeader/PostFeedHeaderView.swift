@@ -12,7 +12,7 @@ import GoloSwift
 
 class PostFeedHeaderView: UIView {
     // MARK: - Properties
-    var handlerAuthorTapped: (() -> Void)?
+    var handlerAuthorTapped: ((String) -> Void)?
     var handlerReblogAuthorTapped: (() -> Void)?
 
     
@@ -183,7 +183,7 @@ class PostFeedHeaderView: UIView {
     
     // MARK: - Actions
     @objc private func didPressAuthor() {
-        self.handlerAuthorTapped!()
+        self.handlerAuthorTapped!(self.authorLabel.text!)
     }
     
     @objc private func didPressReblogAuthor() {

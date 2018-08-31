@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		7D25B4B5201F9218004A3400 /* GSNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D25B4B4201F9218004A3400 /* GSNavigationBar.swift */; };
-		7D25B4B8201F980A004A3400 /* ArticleHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D25B4B7201F980A004A3400 /* ArticleHeaderView.swift */; };
-		7D25B4BA201F9821004A3400 /* ArticleHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D25B4B9201F9821004A3400 /* ArticleHeaderView.xib */; };
 		7D79C3482034686B00794447 /* ReusableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D79C3472034686B00794447 /* ReusableCell.swift */; };
 		7D911D1A2035DE5D00F19D3C /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D911D192035DE5D00F19D3C /* String+Extensions.swift */; };
 		7DA06328203256D700B5630C /* PropertyStoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA06327203256D700B5630C /* PropertyStoring.swift */; };
@@ -269,8 +267,6 @@
 		5ED8FA08BD52B2CABB53E429 /* Pods-Golos.development.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Golos.development.xcconfig"; path = "Pods/Target Support Files/Pods-Golos/Pods-Golos.development.xcconfig"; sourceTree = "<group>"; };
 		7BD44B1209B5C64C3D1EF768 /* Pods-golos-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-golos-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-golos-ios/Pods-golos-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		7D25B4B4201F9218004A3400 /* GSNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GSNavigationBar.swift; sourceTree = "<group>"; };
-		7D25B4B7201F980A004A3400 /* ArticleHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleHeaderView.swift; sourceTree = "<group>"; };
-		7D25B4B9201F9821004A3400 /* ArticleHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleHeaderView.xib; sourceTree = "<group>"; };
 		7D79C3472034686B00794447 /* ReusableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableCell.swift; sourceTree = "<group>"; };
 		7D911D192035DE5D00F19D3C /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		7DA06327203256D700B5630C /* PropertyStoring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyStoring.swift; sourceTree = "<group>"; };
@@ -631,7 +627,6 @@
 		B12B3ABD20FCBF6000071B97 /* PostsShow */ = {
 			isa = PBXGroup;
 			children = (
-				B1C101B420FF5C5F00341F49 /* Views */,
 				B1742A8F20FD0A2E009AAE5E /* ViewControllers */,
 				B12B3AC320FCBFCA00071B97 /* PostsShowInteractor.swift */,
 				B12B3AC120FCBFCA00071B97 /* PostsShowModels.swift */,
@@ -898,15 +893,6 @@
 				B11AA80420CB13BA00212713 /* SFUIDisplay-Regular.otf */,
 			);
 			path = Fonts;
-			sourceTree = "<group>";
-		};
-		B1C101B420FF5C5F00341F49 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				7D25B4B7201F980A004A3400 /* ArticleHeaderView.swift */,
-				7D25B4B9201F9821004A3400 /* ArticleHeaderView.xib */,
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		B1CF44D42106D63600483A01 /* SettingsShow */ = {
@@ -1346,7 +1332,6 @@
 				B11AA80520CB13BA00212713 /* SFUIDisplay-Regular.otf in Resources */,
 				B1E09E182101EE8F002CC5B7 /* PostFeedTableViewCell.xib in Resources */,
 				B1084CAF211378780065CAC0 /* PostShowTagCollectionViewCell.xib in Resources */,
-				7D25B4BA201F9821004A3400 /* ArticleHeaderView.xib in Resources */,
 				B11AA7F720CB018E00212713 /* WelcomeShow.storyboard in Resources */,
 				B136D4FC20D8BA14003AD279 /* AddTagCollectionViewCell.xib in Resources */,
 				B120D06E2108252300D949F5 /* SettingsUserProfileEdit.storyboard in Resources */,
@@ -1662,7 +1647,6 @@
 				B120D068210824C600D949F5 /* SettingsUserProfileEditWorker.swift in Sources */,
 				B1050CA420CECF75003CE4EE /* PostCreateViewController.swift in Sources */,
 				B15F228820EEB31C00C44282 /* AppSettings+CoreDataProperties.swift in Sources */,
-				7D25B4B8201F980A004A3400 /* ArticleHeaderView.swift in Sources */,
 				B1EA151F20FDC82E0015EF76 /* PopularPostsShowViewController.swift in Sources */,
 				B12B3AC520FCBFCA00071B97 /* PostsShowWorker.swift in Sources */,
 				B136D50220D8BBEA003AD279 /* TagsCollectionViewController.swift in Sources */,

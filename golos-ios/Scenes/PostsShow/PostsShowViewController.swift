@@ -148,34 +148,38 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
             activeVC.fetchPosts(byParameters: (author: User.current?.name, postFeedType: postFeedTypes[self.selectedSegmentIndex], permlink: nil, sortBy: nil))            
             
             // Handler Refresh/Upload data
-            activeVC.handlerRefreshData             =   { [weak self] lastItem in
+            activeVC.handlerRefreshData                         =   { [weak self] lastItem in
                 self?.interactor?.save(lastItem: lastItem)
                 self?.loadPosts(lastItem == nil)
             }
 
-            activeVC.handlerAnswerButtonTapped      =   { [weak self] in
+            activeVC.handlerAnswerButtonTapped                  =   { [weak self] in
                 self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
             }
             
-            activeVC.handlerReplyTypeButtonTapped   =   { [weak self] in
+            activeVC.handlerReplyTypeButtonTapped               =   { [weak self] in
                 self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
             }
             
-            activeVC.handlerShareButtonTapped       =   { [weak self] in
+            activeVC.handlerShareButtonTapped                   =   { [weak self] in
                 self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
             }
             
-            activeVC.handlerUpvotesButtonTapped     =   { [weak self] in
+            activeVC.handlerUpvotesButtonTapped                 =   { [weak self] in
                 self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
             }
             
-            activeVC.handlerCommentsButtonTapped    =   { [weak self] in
+            activeVC.handlerCommentsButtonTapped                =   { [weak self] in
                 self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
             }
             
-            activeVC.handlerSelectItem              =   { [weak self] selectedPost in
+            activeVC.handlerSelectItem                          =   { [weak self] selectedPost in
                 self?.interactor?.save(post: selectedPost!)
                 self?.router?.routeToPostShowScene()
+            }
+            
+            activeVC.handlerAuthorProfileImageButtonTapped      =   { [weak self] userName in
+                self?.router?.routeToUserProfileScene(byUserName: userName)
             }
         }
     }
