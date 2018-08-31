@@ -144,9 +144,11 @@ extension PostFeedTableViewCell: ConfigureCell {
             // User Reputation -> Int
             self.postFeedHeaderView.authorReputationLabel.text  =   String(format: "%i", user.reputation.convertWithLogarithm10())
             
+            
+            // TODO: - RECOMMENT IN BETA-VERSION
             // Author Post Reputation -> Int
-            let pendingPayoutValue = String(format: "%@%.2f", "gbg", model.pendingPayoutValue)
-            self.upvotesButton.setTitle(pendingPayoutValue, for: .normal)
+//            let pendingPayoutValue = String(format: "%@%.2f", "gbg", model.pendingPayoutValue)
+//            self.upvotesButton.setTitle(pendingPayoutValue, for: .normal)
 
             // Set upvotes icon
             if let activeVotes = model.activeVotes, activeVotes.count > 0 {
@@ -185,9 +187,13 @@ extension PostFeedTableViewCell: ConfigureCell {
 
         self.upvotesButton.isEnabled                        =   !model.allowVotes
         self.commentsButton.isEnabled                       =   !model.allowReplies
-
+        
         selectionStyle                                      =   .none
 
+        if model.children > 0 {
+            self.commentsButton.setTitle("\(model.children)", for: .normal)
+        }
+        
         self.layoutIfNeeded()
         
         // Set reblogged user info (default isHidden = true)
@@ -196,9 +202,5 @@ extension PostFeedTableViewCell: ConfigureCell {
             self.postFeedHeaderView.reblogAuthorLabel.isHidden      =   false
             self.postFeedHeaderView.reblogIconImageView.isHidden    =   false
         }
-        
-        // TODO: - PRECISE
-//        commentsButton.setTitle(lenta.commentsAmount, for: .normal)
-        
     }
 }

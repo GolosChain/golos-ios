@@ -63,6 +63,7 @@ public struct ResponseAPIPost: Decodable {
     public let pending_payout_value: String
     public let total_payout_value: String
     public let reblogged_by: [String]?
+    public let children: Int16
 
     // "2018-04-13T10:19:54"
     public let created: String
@@ -80,7 +81,6 @@ public struct ResponseAPIPost: Decodable {
      //    beneficiaries =             ();       // ???
      public let body_length: Int64
      public let cashout_time: String                // "2018-04-20T10:19:54"
-     public let children: Int
      public let children_abs_rshares: Conflicted
      public let children_rshares2: String
      public let curator_payout_value: String
@@ -347,6 +347,7 @@ public struct ResponseAPIAllContentReply: Decodable {
     public let json_metadata: String
     public let url: String
     public let reblogged_by: [String]?
+    public let children: Int16
 
     // "2018-04-13T10:19:54"
     public let created: String
@@ -358,7 +359,6 @@ public struct ResponseAPIAllContentReply: Decodable {
     // MARK: - In reserve
     /*
      public let depth: Int
-     public let children: Int
      public let children_rshares2: String
      public let net_rshares: Int
      public let abs_rshares: Int

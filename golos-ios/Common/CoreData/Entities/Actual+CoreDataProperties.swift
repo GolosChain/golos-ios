@@ -34,6 +34,7 @@ extension Actual: PostCellSupport {
     @NSManaged public var coverImageURL: String?
     @NSManaged public var userName: String
     @NSManaged public var pendingPayoutValue: Float
+    @NSManaged public var children: Int16
 
     @NSManaged public var tags: [String]?
     @NSManaged public var rebloggedBy: [String]?

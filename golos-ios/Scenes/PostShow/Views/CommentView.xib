@@ -15,6 +15,7 @@
                 <outlet property="authorNameButton" destination="eTP-vD-Kt8" id="7iy-kn-6MZ"/>
                 <outlet property="authorProfileAddButton" destination="cy5-Ia-Z4f" id="IeY-qa-QHD"/>
                 <outlet property="authorProfileImageButton" destination="mlh-OO-ald" id="bM1-bF-0qN"/>
+                <outlet property="commentsButton" destination="cvI-fZ-UGc" id="dbi-Ke-2yJ"/>
                 <outlet property="contentView" destination="tNf-H6-dtq" id="pgg-SB-0Y3"/>
                 <outlet property="leadingConstraint" destination="rJH-dn-TBo" id="UmV-KF-Fgi"/>
                 <outlet property="markdownViewHeightConstraint" destination="7cj-30-Ntl" id="vk3-fi-xVa"/>
