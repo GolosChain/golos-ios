@@ -15,7 +15,7 @@ import GoloSwift
 
 // MARK: - Input & Output protocols
 protocol RootShowDisplayLogic: class {
-    func displayPosts(fromViewModel viewModel: RootShowModels.Items.ViewModel)
+//    func displayPosts(fromViewModel viewModel: RootShowModels.Items.ViewModel)
 }
 
 class RootShowViewController: GSBaseViewController {
@@ -104,8 +104,8 @@ class RootShowViewController: GSBaseViewController {
         
         // API 'get_discussions_by_hot'
         if !AppSettings.instance().startWithWelcomeScene {
-            let requestModel = RootShowModels.Items.RequestModel()
-            self.interactor?.loadPosts(withRequestModel: requestModel)
+//            let requestModel = RootShowModels.Items.RequestModel()
+//            self.interactor?.loadPosts(withRequestModel: requestModel)
         }
     }
     
@@ -133,11 +133,11 @@ class RootShowViewController: GSBaseViewController {
 // MARK: - RootShowDisplayLogic
 extension RootShowViewController: RootShowDisplayLogic {
     func displayPosts(fromViewModel viewModel: RootShowModels.Items.ViewModel) {
-        if let error = viewModel.error {
-            self.showAlertView(withTitle: "Error", andMessage: error.localizedDescription, needCancel: false, completion: { _ in })
-        }
-
-        self.circularProgressBarView.endAnimation()
-        Logger.log(message: "Animation did stop.", event: .severe)
+//        if let error = viewModel.error {
+//            self.showAlertView(withTitle: "Error", andMessage: error.localizedDescription, needCancel: false, completion: { _ in })
+//        }
+//
+//        self.circularProgressBarView.endAnimation()
+//        Logger.log(message: "Animation did stop.", event: .severe)
     }
 }

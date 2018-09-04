@@ -105,7 +105,6 @@ class RestAPIManager {
     class func loadPostsFeed(byMethodAPIType methodAPIType: MethodAPIType, andPostFeedType postFeedType: PostsFeedType, completion: @escaping (ErrorAPI?) -> Void) {
         // API 'get_discussions_by_blog' & 'get_replies_by_last_update'
         if isNetworkAvailable {
-            print("methodAPIType = \(methodAPIType)")
             broadcast.executeGET(byMethodAPIType: methodAPIType,
                                  onResult: { responseAPIResult in
                                     Logger.log(message: "\nresponse API Result = \(responseAPIResult)\n", event: .debug)

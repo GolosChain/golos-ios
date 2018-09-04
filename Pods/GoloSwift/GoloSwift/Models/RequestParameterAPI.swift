@@ -99,11 +99,11 @@ public struct RequestParameterAPI {
         public let start_permlink: String?
         public let parentAuthor: String?
         public let parentPermlink: String?
-        public let vote_limit: UInt?
+        public let vote_limit: Int?
         
         
         // MARK: - Initialization
-        public init(limit: UInt, truncateBody: UInt? = 1024, selectTags: [String]? = nil, filterTags: [String]? = nil, selectAuthors: [String]? = nil, selectLanguages: [String]? = nil, filterLanguages: [String]? = nil, startAuthor: String? = nil, startPermlink: String? = nil, parentAuthor: String? = nil, parentPermlink: String? = nil, voteLimit: UInt? = 0) {
+        public init(limit: UInt, truncateBody: UInt? = 1024, selectTags: [String]? = nil, filterTags: [String]? = nil, selectAuthors: [String]? = nil, selectLanguages: [String]? = nil, filterLanguages: [String]? = nil, startAuthor: String? = nil, startPermlink: String? = nil, parentAuthor: String? = nil, parentPermlink: String? = nil, voteLimit: Int? = 0) {
             self.limit              =   limit
             self.truncate_body      =   truncateBody
             self.selectTags         =   selectTags

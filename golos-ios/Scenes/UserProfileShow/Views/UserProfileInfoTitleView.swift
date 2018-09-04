@@ -18,16 +18,16 @@ class UserProfileInfoTitleView: PassthroughView {
     
     @IBOutlet weak var aboutLabelView: UIView! {
         didSet {
-            aboutLabelView.isHidden = true
+            aboutLabelView.isHidden             =   true
         }
     }
     
     @IBOutlet private weak var aboutLabel: UILabel! {
         didSet {
-            aboutLabel.font               =   UIFont(name: "SFUIDisplay-Regular", size: 13.0 * widthRatio)
-            aboutLabel.theme_textColor    =   veryDarkGrayWhiteColorPickers
-            aboutLabel.textAlignment      =   .left
-            aboutLabel.numberOfLines      =   0
+            aboutLabel.font                     =   UIFont(name: "SFUIDisplay-Regular", size: 13.0 * widthRatio)
+            aboutLabel.theme_textColor          =   veryDarkGrayWhiteColorPickers
+            aboutLabel.textAlignment            =   .left
+            aboutLabel.numberOfLines            =   0
         }
     }
 
@@ -90,7 +90,11 @@ class UserProfileInfoTitleView: PassthroughView {
     }
     
     func updateUI(fromUserInfo userInfo: User) {
-        self.aboutLabel.text                    =   userInfo.about
+        if let userAbout = userInfo.about {
+            self.aboutLabel.text                =   userAbout
+            self.aboutLabelView.isHidden        =   false
+        }
+        
         self.postsCountLabel.text               =   String(format: "%i", userInfo.postsCount)
         self.followerCountLabel.text            =   String(format: "%i", userInfo.followerCount)
         self.followingCountLabel.text           =   String(format: "%i", userInfo.followingCount)

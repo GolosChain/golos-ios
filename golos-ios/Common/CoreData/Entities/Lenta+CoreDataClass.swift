@@ -48,10 +48,14 @@ public class Lenta: NSManagedObject, CachedImageFrom {
         // Get Lenta entity
         if entity == nil {
             entity  =   CoreDataManager.instance.createEntity("Lenta") as? Lenta
+
+            if let entityIndex = try? CoreDataManager.instance.managedObjectContext.count(for: NSFetchRequest<NSFetchRequestResult>(entityName: "Lenta")) {
+                entity!.sortID  =   Int16(entityIndex)
+            }
         }
         
         // Update entity
-        entity!.userName            =   User.current!.name
+        entity!.userName    =   User.current!.name
         entity!.update(withModel: model)
     }
 }

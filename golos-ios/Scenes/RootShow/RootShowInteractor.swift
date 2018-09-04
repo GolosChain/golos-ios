@@ -15,7 +15,7 @@ import GoloSwift
 
 // MARK: - Business Logic protocols
 protocol RootShowBusinessLogic {
-    func loadPosts(withRequestModel requestModel: RootShowModels.Items.RequestModel)
+//    func loadPosts(withRequestModel requestModel: RootShowModels.Items.RequestModel)
 }
 
 protocol RootShowDataStore {}
@@ -32,18 +32,18 @@ class RootShowInteractor: RootShowBusinessLogic, RootShowDataStore {
     
 
     // MARK: - Business logic implementation
-    func loadPosts(withRequestModel requestModel: RootShowModels.Items.RequestModel) {
-        // API 'get_discussions_by_trending' or 'get_discussions_by_blog'
-        let type        =   (User.current == nil) ?     PostsFeedType.popular : PostsFeedType.lenta
-        
-        let discussion  =   (User.current == nil) ?     RequestParameterAPI.Discussion.init(limit:          loadDataLimit) :
-                                                        RequestParameterAPI.Discussion.init(limit:          loadDataLimit,
-                                                                                            truncateBody:   0,
-                                                                                            selectAuthors:  [ User.current!.name ])
-        
-        RestAPIManager.loadPostsFeed(byMethodAPIType: MethodAPIType.getDiscussions(type: type, parameters: discussion), andPostFeedType: type, completion: { [weak self] errorAPI in
-            let responseModel = RootShowModels.Items.ResponseModel(error: errorAPI)
-            self?.presenter?.presentPosts(fromResponseModel: responseModel)
-        })
-    }
+//    func loadPosts(withRequestModel requestModel: RootShowModels.Items.RequestModel) {
+//        // API 'get_discussions_by_trending' or 'get_discussions_by_blog'
+//        let type        =   (User.current == nil) ?     PostsFeedType.popular : PostsFeedType.lenta
+//        
+//        let discussion  =   (User.current == nil) ?     RequestParameterAPI.Discussion.init(limit:          loadDataLimit) :
+//                                                        RequestParameterAPI.Discussion.init(limit:          loadDataLimit,
+//                                                                                            truncateBody:   0,
+//                                                                                            selectAuthors:  [ User.current!.name ])
+//        
+//        RestAPIManager.loadPostsFeed(byMethodAPIType: MethodAPIType.getDiscussions(type: type, parameters: discussion), andPostFeedType: type, completion: { [weak self] errorAPI in
+//            let responseModel = RootShowModels.Items.ResponseModel(error: errorAPI)
+//            self?.presenter?.presentPosts(fromResponseModel: responseModel)
+//        })
+//    }
 }

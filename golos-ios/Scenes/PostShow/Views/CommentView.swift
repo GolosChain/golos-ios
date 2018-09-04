@@ -103,6 +103,7 @@ class CommentView: UIView {
         
         if comment.children > 0 {
             self.commentsButton.setTitle("\(comment.children)", for: .normal)
+            self.commentsButton.isSelected  =   (comment.activeVotes?.allObjects as! [ActiveVote]).contains(where: { $0.voter == User.current?.name ?? "" })
         }
         
         // Avatar

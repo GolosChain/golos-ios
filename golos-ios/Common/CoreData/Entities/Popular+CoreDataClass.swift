@@ -36,6 +36,10 @@ public class Popular: NSManagedObject, CachedImageFrom {
         // Get Popular entity
         if entity == nil {
             entity  =   CoreDataManager.instance.createEntity("Popular") as? Popular
+            
+            if let entityIndex = try? CoreDataManager.instance.managedObjectContext.count(for: NSFetchRequest<NSFetchRequestResult>(entityName: "Popular")) {
+                entity!.sortID  =   Int16(entityIndex)
+            }
         }
         
         // Update entity

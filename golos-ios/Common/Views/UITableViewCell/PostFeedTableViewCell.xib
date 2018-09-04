@@ -61,16 +61,17 @@
                                     <action selector="upvotesButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="WL0-Kq-e6N"/>
                                 </connections>
                             </button>
-                            <button clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="YHf-4Q-6Ih" userLabel="Comments Button">
+                            <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="YHf-4Q-6Ih" userLabel="Comments Button">
                                 <rect key="frame" x="82" y="13" width="63" height="20"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="20" maxY="0.0"/>
                                 <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="-5" maxY="0.0"/>
-                                <state key="normal" title="32" image="icon-button-comments-normal">
+                                <state key="normal" title="32" image="icon-button-comments-default">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
                                 <state key="disabled" image="icon-button-comments-highlighted"/>
+                                <state key="selected" image="icon-button-comments-selected"/>
                                 <connections>
                                     <action selector="commentsButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="e1b-9C-E2h"/>
                                 </connections>
@@ -148,8 +149,9 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="icon-button-comments-default" width="20" height="20"/>
         <image name="icon-button-comments-highlighted" width="20" height="20"/>
-        <image name="icon-button-comments-normal" width="20" height="20"/>
+        <image name="icon-button-comments-selected" width="20" height="20"/>
         <image name="icon-button-share-normal" width="24" height="24"/>
         <image name="icon-button-upvotes-highlighted" width="20" height="20"/>
         <image name="icon-button-upvotes-normal" width="20" height="20"/>

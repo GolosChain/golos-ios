@@ -28,13 +28,14 @@ class GSTableViewController: GSBaseViewController {
     var topVisibleIndexPath     =   IndexPath(row: 0, section: 0)
     var cellIdentifier: String  =   "PostFeedTableViewCell"
     
-    var itemsCount: Int {
-        guard let fetchedResultsController = self.fetchedResultsController, let sections = fetchedResultsController.sections, let first = sections.first else {
-            return 0
-        }
-        
-        return first.numberOfObjects
-    }
+    // TODO: - DELETE AFTER TEST
+//    var itemsCount: Int {
+//        guard let fetchedResultsController = self.fetchedResultsController, let sections = fetchedResultsController.sections, let first = sections.first else {
+//            return 0
+//        }
+//
+//        return first.numberOfObjects
+//    }
     
     // Handlers
     var handlerShareButtonTapped: (() -> Void)?
@@ -193,9 +194,7 @@ class GSTableViewController: GSBaseViewController {
     
     func fetchPosts(byParameters parameters: FetchPostParameters) {
         var fetchRequest: NSFetchRequest<NSFetchRequestResult>
-        var primarySortDescriptor: NSSortDescriptor = NSSortDescriptor(key: parameters.sortBy ?? "id", ascending: true)
-
-//        var secondarySortDescriptor: NSSortDescriptor
+        var primarySortDescriptor: NSSortDescriptor = NSSortDescriptor(key: parameters.sortBy ?? "sortID", ascending: true)
 
         fetchRequest    =   NSFetchRequest<NSFetchRequestResult>(entityName: parameters.postFeedType.caseTitle())
 
@@ -219,19 +218,10 @@ class GSTableViewController: GSBaseViewController {
                 primarySortDescriptor   =   NSSortDescriptor(key: parameters.sortBy ?? "id", ascending: false)
             }
 
-        // Popular
-        case .popular:
-            primarySortDescriptor       =   NSSortDescriptor(key: parameters.sortBy ?? "pendingPayoutValue", ascending: false)
-
-
         // Popular, Actual, New, Promo
         default:
             break
         }
-        
-//        primarySortDescriptor           =   NSSortDescriptor(key: parameters.sortBy ?? "created", ascending: false)
-//        secondarySortDescriptor         =   NSSortDescriptor(key: "author", ascending: true)
-//        fetchRequest.sortDescriptors    =   [ primarySortDescriptor, secondarySortDescriptor ]
 
         fetchRequest.sortDescriptors    =   [ primarySortDescriptor ]
 
@@ -257,7 +247,7 @@ class GSTableViewController: GSBaseViewController {
         do {
             try fetchedResultsController.performFetch()
             
-            // Refresh data
+            // Pull to refresh data
             if self.refreshData {                
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.9) {
                     self.refreshData = !self.refreshData
@@ -266,7 +256,7 @@ class GSTableViewController: GSBaseViewController {
                 }
             }
             
-            // Reload data completion
+            // Infinite scrolling data
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
                 self.tableView?.reloadDataWithCompletion {
                     Logger.log(message: "Load data is finished!!!", event: .debug)
@@ -291,7 +281,7 @@ class GSTableViewController: GSBaseViewController {
 
     func clearTableView() {
         self.reloadData = !self.reloadData
-        
+
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }

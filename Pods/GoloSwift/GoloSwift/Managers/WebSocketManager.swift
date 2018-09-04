@@ -171,14 +171,13 @@ extension WebSocketManager: WebSocketDelegate {
         if let jsonData = text.data(using: .utf8), let json = try? JSONSerialization.jsonObject(with: jsonData, options: .mutableLeaves) as! [String: Any] {
             // Check error
             self.validate(json: json, completion: { [weak self] (codeID, hasError) in
-                // Check stored sended Request by received ID
-                let requestMethodAPIStore       =   self?.requestMethodsAPIStore[codeID]
-                let requestOperationAPIStore    =   self?.requestOperationsAPIStore[codeID]
-                
-                guard (requestMethodAPIStore != nil && requestOperationAPIStore == nil) || (requestOperationAPIStore != nil && requestMethodAPIStore == nil) else {
+                guard requestIDs.contains(codeID) && !hasError else {
                     return
                 }
                 
+                // Check stored sended Request by received ID
+                let requestMethodAPIStore       =   self?.requestMethodsAPIStore[codeID]
+                let requestOperationAPIStore    =   self?.requestOperationsAPIStore[codeID]                
                 let isSendedRequestMethodAPI    =   requestOperationAPIStore == nil
                 
                 do {

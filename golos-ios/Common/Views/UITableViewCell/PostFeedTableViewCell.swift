@@ -152,7 +152,7 @@ extension PostFeedTableViewCell: ConfigureCell {
 
             // Set upvotes icon
             if let activeVotes = model.activeVotes, activeVotes.count > 0 {
-                self.upvotesButton.isEnabled = activeVotes.compactMap({ ($0 as? ActiveVote)?.voter == User.current!.name }).count > 0
+                self.upvotesButton.isSelected = activeVotes.compactMap({ ($0 as? ActiveVote)?.voter == User.current!.name }).count > 0
             }
             
             // Load User author profile image
@@ -185,13 +185,14 @@ extension PostFeedTableViewCell: ConfigureCell {
         self.postFeedHeaderView.authorLabel.text            =   model.author
         self.postFeedHeaderView.categoryLabel.text          =   model.category.transliteration()
 
-        self.upvotesButton.isEnabled                        =   !model.allowVotes
-        self.commentsButton.isEnabled                       =   !model.allowReplies
+//        self.upvotesButton.isEnabled                        =   !model.allowVotes
+//        self.commentsButton.isEnabled                       =   !model.allowReplies
         
         selectionStyle                                      =   .none
 
         if model.children > 0 {
             self.commentsButton.setTitle("\(model.children)", for: .normal)
+            self.commentsButton.isSelected  =   (model.activeVotes?.allObjects as! [ActiveVote]).contains(where: { $0.voter == User.current?.name ?? "" })
         }
         
         self.layoutIfNeeded()

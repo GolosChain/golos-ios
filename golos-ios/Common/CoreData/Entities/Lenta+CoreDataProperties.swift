@@ -34,6 +34,7 @@ extension Lenta: PostCellSupport {
     @NSManaged public var userName: String
     @NSManaged public var pendingPayoutValue: Float
     @NSManaged public var children: Int16
+    @NSManaged public var sortID: Int16
 
     @NSManaged public var tags: [String]?
     @NSManaged public var rebloggedBy: [String]?

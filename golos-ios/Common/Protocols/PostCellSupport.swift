@@ -24,6 +24,7 @@ protocol PostCellSupport: PaginationSupport, MetaDataSupport {
     var authorReputation: String { get set }
     var pendingPayoutValue: Float { get set }
     var children: Int16 { get set }
+    var sortID: Int16 { get set }
 
     var tags: [String]? { get set }
     var rebloggedBy: [String]? { get set }

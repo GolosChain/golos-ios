@@ -28,14 +28,16 @@ class PostsShowWorker {
                                                                 truncateBody:       0,
                                                                 selectAuthors:      parameters.type != .lenta ? nil : (userName == nil ? nil : [ User.current!.name ]),
                                                                 startAuthor:        nil,
-                                                                startPermlink:      nil)
+                                                                startPermlink:      nil,
+                                                                voteLimit:          0) // -1 or 1000
 
         if let lastItem = parameters.lastItem as? PaginationSupport {
             discussion  =   RequestParameterAPI.Discussion.init(limit:              loadDataLimit,
                                                                 truncateBody:       0,
                                                                 selectAuthors:      parameters.type != .lenta ? nil : (userName == nil ? nil : [ User.current!.name ]),
                                                                 startAuthor:        lastItem.author,
-                                                                startPermlink:      lastItem.permlink)
+                                                                startPermlink:      lastItem.permlink,
+                                                                voteLimit:          0) // -1 or 1000
         }
         
         return MethodAPIType.getDiscussions(type: parameters.type, parameters: discussion)
