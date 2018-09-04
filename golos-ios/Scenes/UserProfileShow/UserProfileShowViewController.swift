@@ -222,7 +222,7 @@ class UserProfileShowViewController: GSBaseViewController, ContainerViewSupport 
         self.loadUserInfo()
 
         // Load User details
-        self.loadUserDetails(false)
+        self.loadUserDetails()
         
         self.localizeTitles()
     }
@@ -302,10 +302,8 @@ extension UserProfileShowViewController {
     }
     
     // Blogs
-    private func loadUserDetails(_ isRefresh: Bool) {
-        if self.containerView.activeVC != nil || isRefresh {
-            self.interactor?.save(lastItem: nil)
-            
+    private func loadUserDetails() {
+        if self.containerView.activeVC != nil {
             let userDetailsRequestModel = UserProfileShowModels.UserDetails.RequestModel(postFeedType: postFeedTypes[self.selectedSegmentIndex])
             interactor?.loadUserDetails(withRequestModel: userDetailsRequestModel)
         }
@@ -333,14 +331,10 @@ extension UserProfileShowViewController {
         if let activeVC = self.containerView.activeVC {
             activeVC.fetchPosts(byParameters: (author: self.router?.dataStore?.userName, postFeedType: postFeedTypes[self.selectedSegmentIndex], permlink: nil, sortBy: nil))
             
-            // Handler Refresh data
+            // Handler Refresh/Infinite Scrolling data
             activeVC.handlerRefreshData  =   { [weak self] lastItem in
-                guard lastItem != nil else {
-                    self?.loadUserDetails(true)
-                    return
-                }
-                
-                self?.interactor?.save(lastItem: lastItem)
+                self?.interactor?.save(lastItem: lastItem)                
+                self?.loadUserDetails()
             }
         }
     }
@@ -405,8 +399,7 @@ extension UserProfileShowViewController: SWSegmentedControlDelegate {
         
         else {
             self.selectedSegmentIndex = index
-            
-            self.loadUserDetails(false)
+            self.loadUserDetails()
         }
         
         self.setActiveViewControllerHandlers()

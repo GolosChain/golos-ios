@@ -1,4 +1,4 @@
-//
+
 //  RestAPIManager.swift
 //  Golos
 //

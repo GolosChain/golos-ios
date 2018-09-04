@@ -66,7 +66,7 @@ extension NSManagedObject {
                 if let json = try JSONSerialization.jsonObject(with: jsonData, options: .allowFragments) as? [String: Any] {
                     (self as! MetaDataSupport).set(tags: json["tags"] as? [String])
                     
-                    if let imageURL = (json["image"] as? [String])?.first {
+                    if let imageURL = (json["image"] as? [String])?.first, !imageURL.isEmpty {
                         (self as! MetaDataSupport).set(coverImageURL: imageURL)
                     }
                         
@@ -85,7 +85,7 @@ extension NSManagedObject {
                                 
                                 Logger.log(message: "url = \(url)", event: .debug)
                                 
-                                if (url.hasSuffix(".jpg") || url.hasSuffix(".png") || url.hasSuffix(".gif")) && (self as! MetaDataSupport).coverImageURL == nil {
+                                if (url.hasSuffix(".jpg") || url.hasSuffix(".png") || url.hasSuffix(".gif")) && ((self as! MetaDataSupport).coverImageURL == nil || ((self as! MetaDataSupport).coverImageURL?.isEmpty)!) {
                                     (self as! MetaDataSupport).set(coverImageURL: "\(url)")
                                     Logger.log(message: "coverImageURL = \(url)", event: .debug)
                                 }

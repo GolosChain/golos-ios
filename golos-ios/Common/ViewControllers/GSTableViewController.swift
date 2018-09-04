@@ -28,6 +28,9 @@ class GSTableViewController: GSBaseViewController {
     var topVisibleIndexPath     =   IndexPath(row: 0, section: 0)
     var cellIdentifier: String  =   "PostFeedTableViewCell"
     
+    var postType: PostsFeedType!
+    
+    
     // TODO: - DELETE AFTER TEST
 //    var itemsCount: Int {
 //        guard let fetchedResultsController = self.fetchedResultsController, let sections = fetchedResultsController.sections, let first = sections.first else {
@@ -196,6 +199,7 @@ class GSTableViewController: GSBaseViewController {
         var fetchRequest: NSFetchRequest<NSFetchRequestResult>
         var primarySortDescriptor: NSSortDescriptor = NSSortDescriptor(key: parameters.sortBy ?? "sortID", ascending: true)
 
+        self.postType   =   parameters.postFeedType
         fetchRequest    =   NSFetchRequest<NSFetchRequestResult>(entityName: parameters.postFeedType.caseTitle())
 
         switch parameters.postFeedType {
@@ -233,10 +237,10 @@ class GSTableViewController: GSBaseViewController {
             fetchRequest.fetchLimit     =   Int(loadDataLimit) + self.lastIndex
         }
      
-        self.run(fetchRequest: fetchRequest, postType: parameters.postFeedType)
+        self.run(fetchRequest: fetchRequest)
     }
         
-    private func run(fetchRequest: NSFetchRequest<NSFetchRequestResult>, postType: PostsFeedType) {
+    private func run(fetchRequest: NSFetchRequest<NSFetchRequestResult>) {
         fetchedResultsController        =   NSFetchedResultsController(fetchRequest:            fetchRequest,
                                                                        managedObjectContext:    CoreDataManager.instance.managedObjectContext,
                                                                        sectionNameKeyPath:      nil,
@@ -266,7 +270,7 @@ class GSTableViewController: GSBaseViewController {
                     self.tableView.layoutIfNeeded()
                     
                     if self.fetchedResultsController.sections![0].numberOfObjects == 0 {
-                        self.displayEmptyTitle(byType: postType)
+                        self.displayEmptyTitle(byType: self.postType)
                     }
 
                     else {
@@ -295,9 +299,12 @@ class GSTableViewController: GSBaseViewController {
         self.lastIndex              =   0
         self.topVisibleIndexPath    =   IndexPath(row: 0, section: 0)
         
-        if self.handlerRefreshData != nil {
-            self.handlerRefreshData!(nil)
-        }
+        // Clear CoreData entity
+        CoreDataManager.instance.deleteEntities(withName: self.postType.rawValue.uppercaseFirst, andPredicateParameters: nil, completion: { [weak self] success in
+            if success && self?.handlerRefreshData != nil {
+                self?.handlerRefreshData!(nil)
+            }
+        })
     }
 }
 
@@ -393,9 +400,8 @@ extension GSTableViewController: UITableViewDelegate {
         }
         
         let lastItemIndex   =   tableView.numberOfRows(inSection: indexPath.section) - 1
-        let lastElement     =   fetchedResultsController.sections![indexPath.section].objects![lastIndex] as! NSManagedObject
         
-        // Pagination
+        // Pagination: Infinite scrolling data
         if lastItemIndex == indexPath.row && lastItemIndex > self.lastIndex {
             if let indexPathsForVisibleRows = self.tableView.indexPathsForVisibleRows, indexPathsForVisibleRows.count > 0 {
                 self.topVisibleIndexPath    =   indexPathsForVisibleRows[0]
@@ -403,7 +409,8 @@ extension GSTableViewController: UITableViewDelegate {
             
             self.lastIndex          =   lastItemIndex
             self.paginanationData   =   true
-            
+            let lastElement         =   fetchedResultsController.sections![indexPath.section].objects![self.lastIndex] as! NSManagedObject
+
             self.handlerRefreshData!(lastElement)
         }
     }

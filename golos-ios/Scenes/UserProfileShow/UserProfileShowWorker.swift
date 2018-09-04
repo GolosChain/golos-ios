@@ -26,23 +26,18 @@ class UserProfileShowWorker {
     // MARK: - Business Logic
     func prepareRequestMethod(byUsername userName: String, andParameters parameters: UserProfileDetailsParams) -> MethodAPIType {
         var methodAPIType: MethodAPIType
-        let lastItem = parameters.lastItem
-        var predicate: NSPredicate?
+        let lastItem        =   parameters.lastItem
         
         switch parameters.type {
         // Replies
         case .reply:
-            predicate       =   NSPredicate(format: "parentAuthor == %@", userName)
-
-            methodAPIType   =   MethodAPIType.getUserReplies(startAuthor:           userName,
+            methodAPIType   =   MethodAPIType.getUserReplies(startAuthor:           (lastItem as? Reply)?.author ?? userName,
                                                              startPermlink:         (lastItem as? Reply)?.permlink,
                                                              limit:                 loadDataLimit,
                                                              voteLimit:             0)
 
         // Blogs
         default:
-            predicate       =   NSPredicate(format: "author == %@", userName)
-
             let discussion  =   RequestParameterAPI.Discussion.init(limit:          loadDataLimit,
                                                                     truncateBody:   0,
                                                                     selectAuthors:  [ userName ],
@@ -50,11 +45,6 @@ class UserProfileShowWorker {
                                                                     startPermlink:  (lastItem as? PostCellSupport)?.permlink)
             
             methodAPIType   =   MethodAPIType.getDiscussions(type: parameters.type, parameters: discussion)
-        }
-        
-        // Clean Cache
-        if isNetworkAvailable && lastItem == nil {
-            CoreDataManager.instance.deleteEntities(withName: parameters.type.caseTitle(), andPredicateParameters: predicate, completion: { _ in })
         }
         
         return methodAPIType
