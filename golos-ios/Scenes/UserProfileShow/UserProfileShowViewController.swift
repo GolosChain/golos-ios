@@ -333,6 +333,8 @@ extension UserProfileShowViewController {
             
             // Handler Refresh/Infinite Scrolling data
             activeVC.handlerRefreshData  =   { [weak self] lastItem in
+//                activeVC.reloadData = lastItem == nil
+                
                 self?.interactor?.save(lastItem: lastItem)                
                 self?.loadUserDetails()
             }
@@ -392,7 +394,7 @@ extension UserProfileShowViewController: SWSegmentedControlDelegate {
         
         // Scroll content to first row
         if self.selectedSegmentIndex == index {
-            if let activeVC = self.containerView.activeVC {
+            if let activeVC = self.containerView.activeVC, activeVC.tableView.contentOffset.y > 0.0 {
                 activeVC.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
             }
         }

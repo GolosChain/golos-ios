@@ -86,6 +86,12 @@ class PostFeedTableViewCell: UITableViewCell, HandlersCellSupport {
     
     
     // MARK: - Class Initialization
+    deinit {
+        Logger.log(message: "Success", event: .severe)
+    }
+
+
+    // MARK: - Class Functions
     override func prepareForReuse() {
         super.prepareForReuse()
         
@@ -100,10 +106,6 @@ class PostFeedTableViewCell: UITableViewCell, HandlersCellSupport {
         self.postFeedHeaderView.reblogIconImageView.isHidden    =   true
     }
     
-    deinit {
-        Logger.log(message: "Success", event: .severe)
-    }
-
     
     // MARK: - Actions
     @IBAction func upvotesButtonTapped(_ sender: UIButton) {

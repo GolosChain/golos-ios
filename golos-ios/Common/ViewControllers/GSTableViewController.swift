@@ -21,8 +21,8 @@ class GSTableViewController: GSBaseViewController {
         }
     }
     
-    var reloadData: Bool        =   false
-    var refreshData: Bool       =   false
+    var reloadData: Bool        =   true
+//    var refreshData: Bool       =   false
     var paginanationData: Bool  =   false
     var lastIndex: Int          =   0
     var topVisibleIndexPath     =   IndexPath(row: 0, section: 0)
@@ -241,50 +241,58 @@ class GSTableViewController: GSBaseViewController {
     }
         
     private func run(fetchRequest: NSFetchRequest<NSFetchRequestResult>) {
-        fetchedResultsController        =   NSFetchedResultsController(fetchRequest:            fetchRequest,
-                                                                       managedObjectContext:    CoreDataManager.instance.managedObjectContext,
-                                                                       sectionNameKeyPath:      nil,
-                                                                       cacheName:               nil)
+        fetchedResultsController            =   NSFetchedResultsController(fetchRequest:            fetchRequest,
+                                                                           managedObjectContext:    CoreDataManager.instance.managedObjectContext,
+                                                                           sectionNameKeyPath:      nil,
+                                                                           cacheName:               nil)
         
-        fetchedResultsController.delegate = self
+        fetchedResultsController.delegate   =   self
         
         do {
             try fetchedResultsController.performFetch()
             
             // Pull to refresh data
-            if self.refreshData {                
+            if self.reloadData {
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.9) {
-                    self.refreshData = !self.refreshData
-                    self.tableView.contentOffset = .zero
+                    self.reloadData                 =   false
+                    self.tableView.contentOffset    =   .zero
                     self.refreshControl.endRefreshing()
+                    
+                    self.loadDataFinished()
                 }
             }
             
             // Infinite scrolling data
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
-                self.tableView?.reloadDataWithCompletion {
-                    Logger.log(message: "Load data is finished!!!", event: .debug)
-                    
-                    // Hide activity indicator
-                    self.displaySpinner(false)
-                    self.tableView.layoutIfNeeded()
-                    
-                    if self.fetchedResultsController.sections![0].numberOfObjects == 0 {
-                        self.displayEmptyTitle(byType: self.postType)
-                    }
-
-                    else {
-                        self.tableView.tableHeaderView = nil
-                    }
-                }
+            else {
+                self.loadDataFinished()
             }
         } catch {
             Logger.log(message: error.localizedDescription, event: .error)
         }
     }
 
+    private func loadDataFinished() {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
+            self.tableView?.reloadDataWithCompletion {
+                Logger.log(message: "Load data is finished!!!", event: .debug)
+                
+                // Hide activity indicator
+                self.displaySpinner(false)
+                self.tableView.layoutIfNeeded()
+                
+                if self.fetchedResultsController.sections![0].numberOfObjects == 0 {
+                    self.displayEmptyTitle(byType: self.postType)
+                }
+                    
+                else {
+                    self.tableView.tableHeaderView = nil
+                }
+            }
+        }
+    }
+    
     func clearTableView() {
-        self.reloadData = !self.reloadData
+        self.reloadData = true
 
         DispatchQueue.main.async {
             self.tableView.reloadData()
@@ -294,7 +302,7 @@ class GSTableViewController: GSBaseViewController {
     
     // MARK: - Actions
     @objc func handlerTableViewRefresh(refreshControl: UIRefreshControl) {
-        self.refreshData            =   !self.refreshData
+        self.reloadData             =   true
         self.paginanationData       =   false
         self.lastIndex              =   0
         self.topVisibleIndexPath    =   IndexPath(row: 0, section: 0)
@@ -331,10 +339,10 @@ extension GSTableViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard !reloadData else {
-            reloadData = !reloadData
-            return 0
-        }
+//        guard !reloadData else {
+////            reloadData = !reloadData
+//            return 0
+//        }
         
         let sectionInfo = fetchedResultsController.sections![section]
         
@@ -342,9 +350,13 @@ extension GSTableViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard self.fetchedResultsController.sections![indexPath.section].numberOfObjects > 0 else {
-            return UITableViewCell()
-        }
+//        guard self.fetchedResultsController.sections![indexPath.section].numberOfObjects > 0 else {
+//            return UITableViewCell()
+//        }
+//
+//        guard !self.reloadData else {
+//            return UITableViewCell()
+//        }
         
         let entity  =   fetchedResultsController.object(at: indexPath) as! NSManagedObject
         let cell    =   tableView.dequeueReusableCell(withIdentifier: self.cellIdentifier, for: indexPath)

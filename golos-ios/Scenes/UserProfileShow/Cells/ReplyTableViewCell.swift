@@ -141,9 +141,9 @@ class ReplyTableViewCell: UITableViewCell, ReusableCell {
     
 
     // MARK: - Class Functions
-    override func layoutSubviews() {
-        super.layoutSubviews()
-    }
+//    override func layoutSubviews() {
+//        super.layoutSubviews()
+//    }
     
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -205,7 +205,7 @@ class ReplyTableViewCell: UITableViewCell, ReusableCell {
 // MARK: - ConfigureCell implementation
 extension ReplyTableViewCell: ConfigureCell {
     func setup(withItem item: Any?, andIndexPath indexPath: IndexPath) {
-        guard let reply = item as? Reply else {
+        guard let model = item as? Reply, let reply = CoreDataManager.instance.readEntity(withName: "Reply", andPredicateParameters: NSPredicate(format: "id == \(model.id)")) as? Reply else {
             return
         }
         
