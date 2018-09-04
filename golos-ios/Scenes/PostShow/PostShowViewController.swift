@@ -155,7 +155,7 @@ class PostShowViewController: GSBaseViewController {
         didSet {
             titleLabel.tune(withText:           "",
                             hexColors:          veryDarkGrayWhiteColorPickers,
-                            font:               UIFont(name: "SFUIDisplay-Medium", size: 15.0 * widthRatio),
+                            font:               UIFont(name: "SFUIDisplay-Medium", size: 15.0 * widthRatio / widthRatio),
                             alignment:          .left,
                             isMultiLines:       true)
         }
