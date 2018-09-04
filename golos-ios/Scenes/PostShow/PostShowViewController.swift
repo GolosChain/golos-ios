@@ -53,12 +53,12 @@ class PostShowViewController: GSBaseViewController {
                     self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
                 }
                 
-                commentView.completionAuthorProfileImageButtonTapped    =   { [weak self] in
-                    self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+                commentView.completionAuthorProfileImageButtonTapped    =   { [weak self] authorName in
+                    self?.router?.routeToUserProfileScene(byUserName: authorName)
                 }
 
-                commentView.completionAuthorNameButtonTapped            =   { [weak self] in
-                    self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+                commentView.completionAuthorNameButtonTapped            =   { [weak self] authorName in
+                    self?.router?.routeToUserProfileScene(byUserName: authorName)
                 }
                 
                 // Handler Markdown

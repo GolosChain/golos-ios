@@ -16,9 +16,9 @@ class CommentView: UIView {
     var permlink: String?
     var level: String = ""
     
-    var completionAuthorNameButtonTapped: (() -> Void)?
+    var completionAuthorNameButtonTapped: ((String) -> Void)?
     var completionAuthorProfileAddButtonTapped: (() -> Void)?
-    var completionAuthorProfileImageButtonTapped: (() -> Void)?
+    var completionAuthorProfileImageButtonTapped: ((String) -> Void)?
     
     // Action buttons completions
     var completionUpvotesButtonTapped: (() -> Void)?
@@ -179,7 +179,7 @@ class CommentView: UIView {
     
     // MARK: - Actions
     @IBAction func authorProfileImageButtonTapped(_ sender: UIButton) {
-        self.completionAuthorProfileImageButtonTapped!()
+        self.completionAuthorProfileImageButtonTapped!(self.authorNameButton.titleLabel?.text ?? "XXX")
     }
     
     @IBAction func authorProfileAddButtonTapped(_ sender: UIButton) {
@@ -187,7 +187,7 @@ class CommentView: UIView {
     }
     
     @IBAction func authorNameButtonTapped(_ sender: UIButton) {
-        self.completionAuthorNameButtonTapped!()
+        self.completionAuthorNameButtonTapped!(sender.titleLabel?.text ?? "XXX")
     }
     
     // Action buttons
