@@ -18,27 +18,28 @@ class UserProfileInfoTitleView: PassthroughView {
     
     @IBOutlet weak var aboutLabelView: UIView! {
         didSet {
-            aboutLabelView.isHidden             =   true
+            aboutLabelView.isHidden         =   false
         }
     }
     
     @IBOutlet private weak var aboutLabel: UILabel! {
         didSet {
-            aboutLabel.font                     =   UIFont(name: "SFUIDisplay-Regular", size: 13.0 * widthRatio)
-            aboutLabel.theme_textColor          =   veryDarkGrayWhiteColorPickers
-            aboutLabel.textAlignment            =   .left
-            aboutLabel.numberOfLines            =   0
+            aboutLabel.tune(withText:       "",
+                            hexColors:      veryDarkGrayWhiteColorPickers,
+                            font:           UIFont(name: "SFUIDisplay-Regular", size: 13.0 * widthRatio),
+                            alignment:      .left,
+                            isMultiLines:   true)
         }
     }
 
     @IBOutlet var labelsCollection: [UILabel]! {
         didSet {
             _ = labelsCollection.map({
-                $0.text                         =   $0.accessibilityIdentifier!.localized()
-                $0.font                         =   UIFont(name: "SFUIDisplay-Regular", size: 12.0 * widthRatio)
-                $0.theme_textColor              =   darkGrayWhiteColorPickers
-                $0.textAlignment                =   .left
-                $0.numberOfLines                =   1
+                $0.text                     =   $0.accessibilityIdentifier!.localized()
+                $0.font                     =   UIFont(name: "SFUIDisplay-Regular", size: 12.0 * widthRatio)
+                $0.theme_textColor          =   darkGrayWhiteColorPickers
+                $0.textAlignment            =   .left
+                $0.numberOfLines            =   1
             })
         }
     }
@@ -46,10 +47,10 @@ class UserProfileInfoTitleView: PassthroughView {
     @IBOutlet var valuesCollection: [UILabel]! {
         didSet {
             _ = valuesCollection.map({
-                $0.font                         =   UIFont(name: "SFUIDisplay-Regular", size: 16.0 * widthRatio)
-                $0.theme_textColor              =   veryDarkGrayWhiteColorPickers
-                $0.textAlignment                =   .left
-                $0.numberOfLines                =   1
+                $0.font                     =   UIFont(name: "SFUIDisplay-Regular", size: 16.0 * widthRatio)
+                $0.theme_textColor          =   veryDarkGrayWhiteColorPickers
+                $0.textAlignment            =   .left
+                $0.numberOfLines            =   1
             })
         }
     }
@@ -90,14 +91,11 @@ class UserProfileInfoTitleView: PassthroughView {
     }
     
     func updateUI(fromUserInfo userInfo: User) {
-        if let userAbout = userInfo.about {
-            self.aboutLabel.text                =   userAbout
-            self.aboutLabelView.isHidden        =   false
-        }
-        
-        self.postsCountLabel.text               =   String(format: "%i", userInfo.postsCount)
-        self.followerCountLabel.text            =   String(format: "%i", userInfo.followerCount)
-        self.followingCountLabel.text           =   String(format: "%i", userInfo.followingCount)
+        self.aboutLabel.text            =   userInfo.about
+        self.aboutLabelView.isHidden    =   userInfo.about == nil
+        self.postsCountLabel.text       =   String(format: "%i", userInfo.postsCount)
+        self.followerCountLabel.text    =   String(format: "%i", userInfo.followerCount)
+        self.followingCountLabel.text   =   String(format: "%i", userInfo.followingCount)
         
         self.showLabelsForAnimationCollection(true)
     }
