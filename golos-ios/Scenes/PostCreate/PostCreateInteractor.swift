@@ -77,7 +77,7 @@ class PostCreateInteractor: PostCreateBusinessLogic, PostCreateDataStore {
             let content                     =   RequestParameterAPI.Content(author: User.current!.name, permlink: (self?.tags!.first!.title!)!)
             
             RestAPIManager.loadPostPermlink(byContent: content, completion: { errorAPI in
-                guard errorAPI.caseInfo.message != "No Internet Connection" || !errorAPI.caseInfo.message.hasSuffix("timing") else {
+                guard errorAPI.caseInfo.message != "No Internet Connection" else {
                     let responseModel       =   PostCreateModels.Post.ResponseModel(errorAPI: errorAPI)
                     self?.presenter?.presentPostCreate(fromResponseModel: responseModel)
                     return
@@ -95,7 +95,7 @@ class PostCreateInteractor: PostCreateBusinessLogic, PostCreateDataStore {
                                                                             title:              (self?.commentTitle!)!,
                                                                             body:               (self?.commentBody!)!,
                                                                             jsonMetadata:       jsonMetadataString,
-                                                                            needTiming:         errorAPI.caseInfo.message == "Permlink with timing",
+                                                                            needTiming:         errorAPI.caseInfo.message.contains("timing"),
                                                                             attachments:        self?.attachments)
                 
                 let operationAPIType        =   OperationAPIType.createPost(operations: [comment])

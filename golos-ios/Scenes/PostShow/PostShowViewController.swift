@@ -155,7 +155,7 @@ class PostShowViewController: GSBaseViewController {
         didSet {
             titleLabel.tune(withText:           "",
                             hexColors:          veryDarkGrayWhiteColorPickers,
-                            font:               UIFont(name: "SFUIDisplay-Medium", size: 15.0 * widthRatio / widthRatio),
+                            font:               UIFont(name: "SFUIDisplay-Medium", size: 15.0),
                             alignment:          .left,
                             isMultiLines:       true)
         }
@@ -165,7 +165,7 @@ class PostShowViewController: GSBaseViewController {
         didSet {
             upvoteButton.tune(withTitle:        "$23.22",
                               hexColors:        [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
-                              font:             UIFont(name: "SFUIDisplay-Regular", size: 10.0 * widthRatio),
+                              font:             UIFont(name: "SFUIDisplay-Regular", size: 10.0),
                               alignment:        .left)
             
             upvoteButton.isEnabled      =   true
@@ -176,7 +176,7 @@ class PostShowViewController: GSBaseViewController {
         didSet {
             usersButton.tune(withTitle:        "42",
                              hexColors:        [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
-                             font:             UIFont(name: "SFUIDisplay-Regular", size: 10.0 * widthRatio),
+                             font:             UIFont(name: "SFUIDisplay-Regular", size: 10.0),
                              alignment:        .left)
             
             usersButton.isEnabled       =   false
@@ -188,7 +188,7 @@ class PostShowViewController: GSBaseViewController {
         didSet {
             commentsButton.tune(withTitle:        "50",
                                 hexColors:        [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
-                                font:             UIFont(name: "SFUIDisplay-Regular", size: 10.0 * widthRatio),
+                                font:             UIFont(name: "SFUIDisplay-Regular", size: 10.0),
                                 alignment:        .left)
             
             commentsButton.isEnabled    =   true
@@ -199,7 +199,7 @@ class PostShowViewController: GSBaseViewController {
         didSet {
             flauntButton.tune(withTitle:        "Flaunt Verb",
                               hexColors:        [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
-                              font:             UIFont(name: "SFUIDisplay-Regular", size: 10.0 * widthRatio),
+                              font:             UIFont(name: "SFUIDisplay-Regular", size: 10.0),
                               alignment:        .left)
             
             flauntButton.isEnabled      =   true
@@ -210,7 +210,7 @@ class PostShowViewController: GSBaseViewController {
         didSet {
             promoteButton.tune(withTitle:        "Promote Post Verb",
                                hexColors:        [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
-                               font:             UIFont(name: "SFUIDisplay-Medium", size: 11.0 * widthRatio),
+                               font:             UIFont(name: "SFUIDisplay-Medium", size: 11.0),
                                alignment:        .center)
             
             promoteButton.isEnabled     =   false
@@ -223,7 +223,7 @@ class PostShowViewController: GSBaseViewController {
         didSet {
             donateButton.tune(withTitle:        "Donate Verb",
                                hexColors:        [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
-                               font:             UIFont(name: "SFUIDisplay-Medium", size: 11.0 * widthRatio),
+                               font:             UIFont(name: "SFUIDisplay-Medium", size: 11.0),
                                alignment:        .center)
             
             donateButton.isEnabled      =   true
@@ -239,7 +239,7 @@ class PostShowViewController: GSBaseViewController {
         didSet {
             topicPublishedInLabel.tune(withText:         "Published in",
                                        hexColors:        darkGrayWhiteColorPickers,
-                                       font:             UIFont(name: "SFUIDisplay-Regular", size: 8.0 * widthRatio),
+                                       font:             UIFont(name: "SFUIDisplay-Regular", size: 8.0),
                                        alignment:        .left,
                                        isMultiLines:     false)
         }
@@ -249,7 +249,7 @@ class PostShowViewController: GSBaseViewController {
         didSet {
             topicTitleLabel.tune(withText:         "",
                                  hexColors:        darkGrayWhiteColorPickers,
-                                 font:             UIFont(name: "SFUIDisplay-Regular", size: 12.0 * widthRatio),
+                                 font:             UIFont(name: "SFUIDisplay-Regular", size: 12.0),
                                  alignment:        .left,
                                  isMultiLines:     false)
         }
@@ -262,7 +262,7 @@ class PostShowViewController: GSBaseViewController {
         didSet {
             userNameLabel.tune(withText:        "",
                                hexColors:       veryDarkGrayWhiteColorPickers,
-                               font:            UIFont(name: "SFUIDisplay-Regular", size: 12.0 * widthRatio), alignment: .left,
+                               font:            UIFont(name: "SFUIDisplay-Regular", size: 12.0), alignment: .left,
                                isMultiLines:    false)
         }
     }
@@ -271,7 +271,7 @@ class PostShowViewController: GSBaseViewController {
         didSet {
             userRecentPastLabel.tune(withText:        "Recent Past:",
                                      hexColors:       darkGrayWhiteColorPickers,
-                                     font:            UIFont(name: "SFUIDisplay-Regular", size: 8.0 * widthRatio), alignment: .left,
+                                     font:            UIFont(name: "SFUIDisplay-Regular", size: 8.0), alignment: .left,
                                      isMultiLines:    false)
         }
     }
@@ -280,7 +280,7 @@ class PostShowViewController: GSBaseViewController {
         didSet {
             userPreviouslyLabel.tune(withText:        "Previously:",
                                      hexColors:       darkGrayWhiteColorPickers,
-                                     font:            UIFont(name: "SFUIDisplay-Regular", size: 8.0 * widthRatio), alignment: .left,
+                                     font:            UIFont(name: "SFUIDisplay-Regular", size: 8.0), alignment: .left,
                                      isMultiLines:    false)
         }
     }
@@ -290,7 +290,7 @@ class PostShowViewController: GSBaseViewController {
             _ = subscribeButtonsCollection.map({ button in
                 button.tune(withTitle:         "Subscribe",
                             hexColors:         [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
-                            font:              UIFont(name: "SFUIDisplay-Medium", size: 10.0 * widthRatio),
+                            font:              UIFont(name: "SFUIDisplay-Medium", size: 10.0),
                             alignment:         .center)
                 
                 button.setBorder(color: UIColor(hexString: "#dbdbdb").cgColor, cornerRadius: 4.0 * heightRatio)
@@ -314,7 +314,7 @@ class PostShowViewController: GSBaseViewController {
         didSet {
             commentsTitleLabel.tune(withText:           "Comments Noun",
                                     hexColors:          veryDarkGrayWhiteColorPickers,
-                                    font:               UIFont(name: "SFUIDisplay-Regular", size: 14.0 * widthRatio),
+                                    font:               UIFont(name: "SFUIDisplay-Regular", size: 14.0),
                                     alignment:          .left,
                                     isMultiLines:       false)
         }
@@ -324,7 +324,7 @@ class PostShowViewController: GSBaseViewController {
         didSet {
             commentsCountLabel.tune(withText:           "",
                                     hexColors:          grayWhiteColorPickers,
-                                    font:               UIFont(name: "SFUIDisplay-Regular", size: 14.0 * widthRatio),
+                                    font:               UIFont(name: "SFUIDisplay-Regular", size: 14.0),
                                     alignment:          .left,
                                     isMultiLines:       false)
         }
@@ -334,7 +334,7 @@ class PostShowViewController: GSBaseViewController {
         didSet {
             sortByLabel.tune(withText:           "Sort by",
                              hexColors:          grayWhiteColorPickers,
-                             font:               UIFont(name: "SFUIDisplay-Regular", size: 10.0 * widthRatio),
+                             font:               UIFont(name: "SFUIDisplay-Regular", size: 10.0),
                              alignment:          .left,
                              isMultiLines:       false)
         }
@@ -344,7 +344,7 @@ class PostShowViewController: GSBaseViewController {
         didSet {
             commentsSortByButton.tune(withTitle:        "Action Sheet First New",
                                       hexColors:        [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
-                                      font:             UIFont(name: "SFUIDisplay-Regular", size: 10.0 * widthRatio),
+                                      font:             UIFont(name: "SFUIDisplay-Regular", size: 10.0),
                                       alignment:        .center)
             
             commentsSortByButton.isEnabled      =   true
@@ -355,7 +355,7 @@ class PostShowViewController: GSBaseViewController {
         didSet {
             commentsHideButton.tune(withTitle:        "Hide Comments Verb",
                                     hexColors:        [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers],
-                                    font:             UIFont(name: "SFUIDisplay-Medium", size: 8.0 * widthRatio),
+                                    font:             UIFont(name: "SFUIDisplay-Medium", size: 8.0),
                                     alignment:        .center)
             
             commentsHideButton.isEnabled        =   true
@@ -460,7 +460,7 @@ class PostShowViewController: GSBaseViewController {
 
         // Handlers
         self.postFeedHeaderView.handlerAuthorTapped         =   { [weak self] userName in
-            self?.router?.routeToUserProfileScene(byUserName: userName) //(self?.router?.dataStore?.post as! PostCellSupport).author)
+            self?.router?.routeToUserProfileScene(byUserName: userName)
         }
         
         // Load Post

@@ -19,7 +19,7 @@ class PostShowTagCollectionViewCell: UICollectionViewCell {
         didSet {
             tagButton.tune(withTitle:       "",
                            hexColors:       [darkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
-                           font:            UIFont(name: "SFUIDisplay-Medium", size: 12.0 * widthRatio),
+                           font:            UIFont(name: "SFUIDisplay-Medium", size: 12.0),
                            alignment:       .center)
             
             tagButton.setBorder(color: UIColor(hexString: "#e0e0e0").cgColor, cornerRadius: 30.0 * heightRatio / 2)

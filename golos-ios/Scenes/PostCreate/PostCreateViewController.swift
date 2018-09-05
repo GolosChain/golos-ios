@@ -344,10 +344,19 @@ class PostCreateViewController: GSBaseViewController {
 extension PostCreateViewController: PostCreateDisplayLogic {
     func displayPostCreate(fromViewModel viewModel: PostCreateModels.Post.ViewModel) {
         // NOTE: Display the result from the Presenter
-        guard viewModel.errorAPI == nil || viewModel.errorAPI?.caseInfo.message == "Result not found" else {
-            let message = viewModel.errorAPI!.caseInfo.message.contains("You may only post once every 5 minutes") ? "You may only post once every 5 minutes" : viewModel.errorAPI!.caseInfo.message
+        guard viewModel.errorAPI == nil else {
+            if let message = viewModel.errorAPI?.caseInfo.message {
+                // Show alert view
+                if message.contains("You may only post once every 5 minutes") {
+                    self.showAlertView(withTitle: viewModel.errorAPI!.caseInfo.title, andMessage: "You may only post once every 5 minutes", needCancel: false, completion: { _ in })
+                }
+                
+                // Modify 'permlink'
+                else if message.contains("Result not found") {
+                    print(message)
+                }
+            }
             
-            self.showAlertView(withTitle: viewModel.errorAPI!.caseInfo.title, andMessage: message, needCancel: false, completion: { _ in })
             return
         }
         

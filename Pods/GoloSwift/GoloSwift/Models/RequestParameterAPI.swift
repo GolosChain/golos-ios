@@ -146,7 +146,7 @@ public struct RequestParameterAPI {
                                             .replacingOccurrences(of: " ", with: "-")
                                             .lowercased()
             
-            self.permlink           =   needTiming ? permlinkTemp + "-\(Int64(Date().timeIntervalSince1970))" : permlinkTemp
+            self.permlink           =   needTiming ? (permlinkTemp + "-\(Int64(Date().timeIntervalSince1970))") : permlinkTemp
             
             if let parameters = attachments {
                 self.body           =   parameters.compactMap({ $0.markdownValue ?? ""}).joined(separator: " ")

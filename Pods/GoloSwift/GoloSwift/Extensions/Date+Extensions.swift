@@ -9,6 +9,7 @@
 import Foundation
 
 public enum DateFormatType: String {
+    case commentDate                =   "dd-MM-yyyy"
     case expirationDateType         =   "yyyy-MM-dd'T'HH:mm:ss"
 }
 
@@ -28,6 +29,6 @@ extension Date {
             return "Today ago".localized()
         }
         
-        return String(format: "%i %@", day, "Days ago".localized())
+        return String(format: "%@", self.convert(toStringFormat: .commentDate))
     }
 }

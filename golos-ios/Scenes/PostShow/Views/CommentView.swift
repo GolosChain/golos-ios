@@ -51,7 +51,7 @@ class CommentView: UIView {
         didSet {
             authorNameButton.tune(withTitle:    "",
                                   hexColors:    [darkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
-                                  font:         UIFont(name: "SFUIDisplay-Regular", size: 10.0 * widthRatio),
+                                  font:         UIFont(name: "SFUIDisplay-Regular", size: 10.0),
                                   alignment:    .left)
         }
     }
@@ -60,7 +60,7 @@ class CommentView: UIView {
         didSet {
             timeLabel.tune(withText:            "",
                            hexColors:           darkGrayWhiteColorPickers,
-                           font:                UIFont(name: "SFUIDisplay-Regular", size: 10.0 * widthRatio),
+                           font:                UIFont(name: "SFUIDisplay-Regular", size: 10.0),
                            alignment:           .left,
                            isMultiLines:        false)
         }
@@ -70,7 +70,7 @@ class CommentView: UIView {
         didSet {
             replyButton.tune(withTitle:         "Reply Verb",
                              hexColors:         [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
-                             font:              UIFont(name: "SFUIDisplay-Medium", size: 10.0 * widthRatio),
+                             font:              UIFont(name: "SFUIDisplay-Medium", size: 10.0),
                              alignment:         .left)
         }
     }

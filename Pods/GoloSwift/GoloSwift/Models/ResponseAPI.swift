@@ -316,8 +316,10 @@ public struct ResponseAPIBlockchainPostResult: Decodable {
     // MARK: - In work
     public let id: Int64
     public let jsonrpc: String
-    public let result: Bool?
     public let error: ResponseAPIError?
+
+    // API return empty 'result' as {}
+//    public let result: Bool?
 }
 
 

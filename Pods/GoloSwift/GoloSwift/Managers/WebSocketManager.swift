@@ -171,7 +171,7 @@ extension WebSocketManager: WebSocketDelegate {
         if let jsonData = text.data(using: .utf8), let json = try? JSONSerialization.jsonObject(with: jsonData, options: .mutableLeaves) as! [String: Any] {
             // Check error
             self.validate(json: json, completion: { [weak self] (codeID, hasError) in
-                guard requestIDs.contains(codeID) && !hasError else {
+                guard requestIDs.contains(codeID) else {
                     return
                 }
                 

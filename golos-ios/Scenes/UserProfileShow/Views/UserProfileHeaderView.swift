@@ -33,7 +33,7 @@ class UserProfileHeaderView: PassthroughView {
         didSet {
             nameLabel.tune(withText:        "",
                            hexColors:       blackWhiteColorPickers,
-                           font:            UIFont(name: "SFUIDisplay-Regular", size: 18.0 * widthRatio),
+                           font:            UIFont(name: "SFUIDisplay-Regular", size: 18.0),
                            alignment:       .left,
                            isMultiLines:    false)
         }
@@ -54,7 +54,7 @@ class UserProfileHeaderView: PassthroughView {
     @IBOutlet var actionButtonsCollection: [UIButton]! {
         didSet {
             _ = actionButtonsCollection.map({
-                $0.titleLabel?.font             =   UIFont(name: "SFUIDisplay-Regular", size: 12.0 * widthRatio)!
+                $0.titleLabel?.font             =   UIFont(name: "SFUIDisplay-Regular", size: 12.0)!
                 $0.titleLabel?.textAlignment    =   .center
                 $0.setTitle($0.titleLabel?.text?.localized(), for: .normal)
                 $0.theme_setTitleColor(veryDarkGrayWhiteColorPickers, forState: .normal)
@@ -67,7 +67,7 @@ class UserProfileHeaderView: PassthroughView {
         didSet {
             _ = labelsCollection.map({
                 $0.text?.localize()
-                $0.font                 =   UIFont(name: "SFUIDisplay-Regular", size: 12.0 * widthRatio)
+                $0.font                 =   UIFont(name: "SFUIDisplay-Regular", size: 12.0)
                 $0.theme_textColor      =   blackWhiteColorPickers
                 $0.textAlignment        =   .left
                 $0.numberOfLines        =   1
