@@ -38,11 +38,11 @@ class PostShowViewController: GSBaseViewController {
                 }
                 
                 commentView.completionCommentsButtonTapped              =   { [weak self] in
-                    self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+                    self?.router?.routeToPostCreateScene(withType: .createComment)
                 }
                 
                 commentView.completionReplyButtonTapped                 =   { [weak self] in
-                    self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+                    self?.router?.routeToPostCreateScene(withType: .createCommentReply)
                 }
                 
                 commentView.completionShareButtonTapped                 =   { [weak self] in
@@ -186,10 +186,10 @@ class PostShowViewController: GSBaseViewController {
     
     @IBOutlet weak var commentsButton: UIButton! {
         didSet {
-            commentsButton.tune(withTitle:        "50",
-                                hexColors:        [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
-                                font:             UIFont(name: "SFUIDisplay-Regular", size: 10.0),
-                                alignment:        .left)
+            commentsButton.tune(withTitle:      "",
+                                hexColors:      [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
+                                font:           UIFont(name: "SFUIDisplay-Regular", size: 10.0),
+                                alignment:      .left)
             
             commentsButton.isEnabled    =   true
         }
@@ -471,6 +471,7 @@ class PostShowViewController: GSBaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        self.hideNavigationBar()
         UIApplication.shared.statusBarStyle = .default
     }
     
@@ -515,6 +516,12 @@ class PostShowViewController: GSBaseViewController {
             // Subscribe User
             self.userAvatarImageView.image      =   self.postFeedHeaderView.authorProfileImageView.image
             self.userNameLabel.text             =   self.postFeedHeaderView.authorLabel.text
+            
+            // User action buttons
+            if displayedPost.children > 0 {
+                self.commentsButton.setTitle("\(displayedPost.children)", for: .normal)
+                self.commentsButton.isSelected  =   (displayedPost.activeVotes?.allObjects as! [ActiveVote]).contains(where: { $0.voter == User.current?.name ?? "" })
+            }
         }
     }
     
@@ -557,7 +564,7 @@ class PostShowViewController: GSBaseViewController {
     }
 
     @IBAction func commentsButtonTapped(_ sender: UIButton) {
-        self.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+        self.router?.routeToPostCreateScene(withType: .createComment)
     }
 
     @IBAction func flauntButtonTapped(_ sender: UIButton) {

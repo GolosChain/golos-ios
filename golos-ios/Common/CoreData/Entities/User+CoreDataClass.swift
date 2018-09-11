@@ -25,8 +25,9 @@ enum VoicePower: String {
 @objc(User)
 public class User: NSManagedObject, CachedImageFrom {
     // MARK: - CachedImageFrom protocol implementation
-    var fromItem: String = "user"
-
+    var fromItem: String    =   "user"
+    var profileName: String?
+    
     
     // MARK: - Properties
     var voicePower: VoicePower {
@@ -147,6 +148,7 @@ public class User: NSManagedObject, CachedImageFrom {
             self.profileImageURL    =   profile["profile_image"] as? String
             self.coverImageURL      =   profile["cover_image"] as? String
             self.selectTags         =   profile["select_tags"] as? [String]
+            self.profileName        =   profile["name"] as? String
         }
     }
     

@@ -15,10 +15,10 @@ import GoloSwift
 import IQKeyboardManagerSwift
 import MobileCoreServices
 
-enum SceneType: Int {
-    case create = 0
-    case comment
-    case reply
+@objc enum SceneType: Int {
+    case createPost = 0
+    case createComment
+    case createCommentReply
 }
 
 // MARK: - Input & Output protocols
@@ -35,14 +35,9 @@ class PostCreateViewController: GSBaseViewController {
     
     var tagsVC: TagsCollectionViewController!
 
-    var sceneType: SceneType = .create {
+    var sceneType: SceneType = .createPost {
         didSet {
-            self.navigationItem.title           =   (sceneType == .create) ? "Publish Title".localized() : "Comment Title Verb".localized()
-            stackViewTopConstraint.constant     =   (sceneType == .comment) ? -70.0 * widthRatio : 0.0
-            
-            _ = sceneViewsCollection.map({ $0.isHidden = ($0.tag == sceneType.rawValue) ? false : true })
-            
-            if sceneType == .reply {
+            if sceneType == .createCommentReply {
 //                self.commentReplyView.commentLabel.text = self.router?.dataStore?.commentText
             }
         }
@@ -79,7 +74,7 @@ class PostCreateViewController: GSBaseViewController {
         didSet {
             tagsTitleLabel.tune(withText:           "Add Max 5 Tags",
                                 hexColors:          darkGrayWhiteColorPickers,
-                                font:               UIFont(name: "SFUIDisplay-Regular", size: 12.0 * widthRatio),
+                                font:               UIFont(name: "SFUIDisplay-Regular", size: 12.0),
                                 alignment:          .left,
                                 isMultiLines:       false)
         }
@@ -90,22 +85,31 @@ class PostCreateViewController: GSBaseViewController {
             contentTextView.contentInset    =   UIEdgeInsets(top: 0.0, left: -4.0, bottom: 8.0, right: 0.0)
             contentTextView.delegate        =   self
             
-            contentTextView.placeholder     =   (sceneType == .create ? "Enter Text Placeholder" : "Enter Comment Placeholder").localized()
+            contentTextView.placeholder     =   (sceneType == .createPost ? "Enter Text Placeholder" : "Enter Comment Placeholder").localized()
             
             contentTextView.tune(textColors:    darkGrayWhiteColorPickers,
-                                 font:          UIFont(name: "SFUIDisplay-Regular", size: 13.0 * widthRatio),
+                                 font:          UIFont(name: "SFUIDisplay-Regular", size: 13.0),
                                  alignment:     .left)
         }
     }
     
-    @IBOutlet var sceneViewsCollection: [UIView]!
-    
-    @IBOutlet weak var stackViewTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var contentViewBottomConstraint: NSLayoutConstraint!
-
+    
     // Use with keyboard hide/show
     @IBOutlet weak var tagsViewBottomConstraint: NSLayoutConstraint!
     
+    @IBOutlet var sceneViewsCollection: [UIView]! {
+        didSet {
+            _ = sceneViewsCollection.map({ $0.isHidden = ($0.tag == sceneType.rawValue) ? false : true })
+        }
+    }
+    
+    @IBOutlet weak var stackViewTopConstraint: NSLayoutConstraint! {
+        didSet {
+            stackViewTopConstraint.constant =   (sceneType == .createComment) ? -70.0 * widthRatio : 0.0
+        }
+    }
+
     @IBOutlet weak var containerViewHeightConstraint: NSLayoutConstraint! {
         didSet {
             containerViewHeightConstraint.constant = 48.0 * heightRatio
@@ -212,10 +216,8 @@ class PostCreateViewController: GSBaseViewController {
         super.viewDidLoad()
         
         self.view.tune()
-        
-        sceneType = .create
-        
         IQKeyboardManager.sharedManager().enable = false
+        self.navigationItem.title   =   (sceneType == .createPost) ? "Publish Title".localized() : "Comment Title Verb".localized()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -223,10 +225,11 @@ class PostCreateViewController: GSBaseViewController {
         
         self.navigationController?.add(shadow: false, withBarTintColor: .white)
         self.navigationController?.hidesBarsOnTap   =   false
-
+        self.showNavigationBar()
+        
         self.contentTextView.layoutManager.ensureLayout(for: self.contentTextView.textContainer)
     }
-    
+        
     
     // MARK: - Custom Functions
     private func saveToAlbum(image: UIImage) {
@@ -257,7 +260,7 @@ class PostCreateViewController: GSBaseViewController {
     
     private func isRequestAvailable() -> Bool {
         // Check title
-        if sceneType == .create && (self.postCreateView.titleTextField.text?.isEmpty)! {
+        if sceneType == .createPost && (self.postCreateView.titleTextField.text?.isEmpty)! {
             self.showAlertView(withTitle: "Info", andMessage: "Create Post Title Hint", needCancel: false, completion: { _ in })
             return false
         }
@@ -306,7 +309,7 @@ class PostCreateViewController: GSBaseViewController {
     // MARK: - Actions
     @IBAction func cancelBarButtonTapped(_ sender: UIBarButtonItem) {
         self.clearAllEnteredValues()
-        self.router?.routeToMainScene()
+        self.router?.routeToNextScene()
     }
     
     @IBAction func publishBarButtonTapped(_ sender: UIBarButtonItem) {
@@ -316,7 +319,7 @@ class PostCreateViewController: GSBaseViewController {
         
         // API's
         switch sceneType {
-        case .create:
+        case .createPost:
             // Get content parts
             let contentParts    =   self.contentTextView.getParts()
                         
@@ -325,13 +328,13 @@ class PostCreateViewController: GSBaseViewController {
             let postCreateRequestModel = PostCreateModels.Post.RequestModel()
             interactor?.postCreate(withRequestModel: postCreateRequestModel)
 
-        case .comment:
+        case .createComment:
             // TODO: - ADD API
             self.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
 //            let postCommentRequestModel = PostCreateModels.Something.RequestModel()
 //            interactor?.postComment(withRequestModel: postCommentRequestModel)
 
-        case .reply:
+        case .createCommentReply:
             // TODO: - ADD API
             self.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
 //            let postCommentReplyRequestModel = PostCreateModels.Something.RequestModel()
@@ -364,7 +367,7 @@ extension PostCreateViewController: PostCreateDisplayLogic {
         self.clearAllEnteredValues()
 
         self.showAlertView(withTitle: "Info", andMessage: "Send Post Success", needCancel: false, completion: { [weak self] _ in
-            self?.router?.routeToMainScene()
+            self?.router?.routeToNextScene()
         })
     }
     

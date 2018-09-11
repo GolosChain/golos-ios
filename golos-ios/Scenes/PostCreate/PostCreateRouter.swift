@@ -15,8 +15,7 @@ import GoloSwift
 
 // MARK: - Input & Output protocols
 @objc protocol PostCreateRoutingLogic {
-    func routeToMainScene()
-//    func routeToSomewhere(segue: UIStoryboardSegue?)
+    func routeToNextScene()
 }
 
 protocol PostCreateDataPassing {
@@ -36,7 +35,11 @@ class PostCreateRouter: NSObject, PostCreateRoutingLogic, PostCreateDataPassing 
     
 
     // MARK: - Routing
-    func routeToMainScene() {
+    func routeToNextScene() {
+        self.viewController!.sceneType == .createPost ? self.routeToMainScene() : self.routeToPreviousScene()
+    }
+
+    private func routeToMainScene() {
         let fromView: UIView    =   self.viewController!.view
         let toView: UIView      =   (self.viewController!.navigationController!.tabBarController?.viewControllers?.first!.view)!
         
@@ -53,30 +56,8 @@ class PostCreateRouter: NSObject, PostCreateRoutingLogic, PostCreateDataPassing 
             }
         })
     }
-    
-//    func routeToSomewhere(segue: UIStoryboardSegue?) {
-//        if let segue = segue {
-//            let destinationVC = segue.destination as! SomewhereViewController
-//            var destinationDS = destinationVC.router!.dataStore!
-//            passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-//        } else {
-//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//            let destinationVC = storyboard.instantiateViewController(withIdentifier: "SomewhereViewController") as! SomewhereViewController
-//            var destinationDS = destinationVC.router!.dataStore!
-//            passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-//            navigateToSomewhere(source: viewController!, destination: destinationVC)
-//        }
-//    }
-    
-    
-    // MARK: - Navigation
-//    func navigateToSomewhere(source: PostCreateViewController, destination: SomewhereViewController) {
-//        source.show(destination, sender: nil)
-//    }
-    
-    
-    // MARK: - Passing data
-//    func passDataToSomewhere(source: PostCreateDataStore, destination: inout SomewhereDataStore) {
-//        destination.name = source.name
-//    }
+
+    private func routeToPreviousScene() {
+        self.viewController!.navigationController!.popViewController(animated: true)
+    }
 }

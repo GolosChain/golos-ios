@@ -16,6 +16,7 @@ import GoloSwift
 // MARK: - Input & Output protocols
 @objc protocol PostShowRoutingLogic {
     func routeToUserProfileScene(byUserName name: String)
+    func routeToPostCreateScene(withType sceneType: SceneType)
 }
 
 protocol PostShowDataPassing {
@@ -35,6 +36,16 @@ class PostShowRouter: NSObject, PostShowRoutingLogic, PostShowDataPassing {
     
 
     // MARK: - Routing
+    func routeToPostCreateScene(withType sceneType: SceneType) {
+        let storyboard          =   UIStoryboard(name: "PostCreate", bundle: nil)
+        let destinationVC       =   storyboard.instantiateViewController(withIdentifier: "PostCreateVC") as! PostCreateViewController
+        destinationVC.sceneType =   sceneType
+//        var destinationDS       =   destinationVC.router!.dataStore!
+        
+//        passDataToPostCreateScene(userName: name, destination: &destinationDS)
+        navigateToPostCreateScene(source: viewController!, destination: destinationVC)
+    }
+    
     func routeToUserProfileScene(byUserName name: String) {
         let storyboard          =   UIStoryboard(name: "UserProfileShow", bundle: nil)
         let destinationVC       =   storyboard.instantiateViewController(withIdentifier: "UserProfileShowVC") as! UserProfileShowViewController
@@ -47,12 +58,20 @@ class PostShowRouter: NSObject, PostShowRoutingLogic, PostShowDataPassing {
     
     
     // MARK: - Navigation
+    func navigateToPostCreateScene(source: PostShowViewController, destination: PostCreateViewController) {
+        source.show(destination, sender: nil)
+    }
+
     func navigateToUserProfileScene(source: PostShowViewController, destination: UserProfileShowViewController) {
         source.show(destination, sender: nil)
     }
     
     
     // MARK: - Passing data
+    func passDataToPostCreateScene(userName: String, destination: inout PostCreateDataStore) {
+//        destination.userName    =   userName
+    }
+
     func passDataToUserProfileScene(userName: String, destination: inout UserProfileShowDataStore) {
         destination.userName    =   userName
     }
