@@ -13,6 +13,7 @@
 import UIKit
 import GoloSwift
 import IQKeyboardManagerSwift
+import MobileCoreServices
 
 enum SceneType: Int {
     case create = 0
@@ -449,6 +450,7 @@ extension PostCreateViewController: UITextViewDelegate {
                         let imagePicker             =   UIImagePickerController()
                         imagePicker.delegate        =   self
                         imagePicker.sourceType      =   .camera
+                        imagePicker.mediaTypes      =   [kUTTypeImage as String]
                         imagePicker.allowsEditing   =   true
                         
                         textView.resignFirstResponder()
@@ -468,6 +470,7 @@ extension PostCreateViewController: UITextViewDelegate {
                         let imagePicker             =   UIImagePickerController()
                         imagePicker.delegate        =   self
                         imagePicker.sourceType      =   .photoLibrary
+                        imagePicker.mediaTypes      =   [kUTTypeImage as String]
                         imagePicker.allowsEditing   =   true
                         
                         self?.present(imagePicker, animated: true, completion: nil)
@@ -506,7 +509,22 @@ extension PostCreateViewController: UINavigationControllerDelegate {
 extension PostCreateViewController: UIImagePickerControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: Any]) {
         picker.dismiss(animated: true)
-        
+
+//        let videoURL = info[UIImagePickerControllerMediaURL] as? NSURL
+//        print(videoURL!)
+//
+//        do {
+//            let asset = AVURLAsset(url: videoURL as! URL, options: nil)
+//            let imgGenerator = AVAssetImageGenerator(asset: asset)
+//            imgGenerator.appliesPreferredTrackTransform = true
+//            let cgImage = try imgGenerator.copyCGImage(at: CMTimeMake(0, 1), actualTime: nil)
+//            let thumbnail = UIImage(cgImage: cgImage)
+//        } catch let error {
+//            print("*** Error generating thumbnail: \(error.localizedDescription)")
+//        }
+
+//        let origImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+
         guard let image = info[UIImagePickerControllerEditedImage] as? UIImage else {
             showAlertView(withTitle: "Error", andMessage: "No image found", needCancel: false, completion: { _ in })
 
@@ -516,7 +534,7 @@ extension PostCreateViewController: UIImagePickerControllerDelegate {
         if picker.sourceType == .camera {
             self.saveToAlbum(image: image)
         }
-        
+
         else {
             self.contentTextView.add(object: image)
         }

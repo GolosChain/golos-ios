@@ -11,6 +11,7 @@
 import UIKit
 import GoloSwift
 import SwiftTheme
+import SwiftGifOrigin
 
 extension UITextView {
     func tune(textColors: ThemeColorPicker?, font: UIFont?, alignment: NSTextAlignment) {
@@ -145,13 +146,14 @@ extension UITextView {
         var attributedString            =   NSMutableAttributedString(string: "\n")
         
         // Image
-        if let image = object as? UIImage {
-            attachment.image            =   image
+        if let image = object as? UIImage, let imageGIF = UIImage.gif(data: UIImagePNGRepresentation(image)!) {
+            attachment.image            =   UIImage.gif(data: UIImageJPEGRepresentation(image, 0)!)
+//            attachment.image            =   imageGIF
             
             // Calculate new size
             let imageWidthNew           =   self.bounds.size.width
-            let imageRatio              =   image.size.width / imageWidthNew
-            let imageHeightNew          =   image.size.height / imageRatio
+            let imageRatio              =   imageGIF.size.width / imageWidthNew
+            let imageHeightNew          =   imageGIF.size.height / imageRatio
 
             // Resize
             attachment.bounds           =   CGRect.init(x: 0, y: 0, width: imageWidthNew, height: imageHeightNew)
