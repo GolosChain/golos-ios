@@ -170,7 +170,7 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
             }
             
             activeVC.handlerCommentsButtonTapped                =   { [weak self] in
-                self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+                self?.router?.routeToPostCreateScene(withType: .createComment)
             }
             
             activeVC.handlerSelectItem                          =   { [weak self] selectedPost in

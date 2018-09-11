@@ -252,7 +252,7 @@ class UserProfileShowViewController: GSBaseViewController, ContainerViewSupport 
     private func setActiveViewControllerHandlers() {
         if let activeVC = self.containerView.activeVC {
             activeVC.handlerAnswerButtonTapped      =   { [weak self] in
-                self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+                self?.router?.routeToPostCreateScene(withType: .createCommentReply)
             }
             
             activeVC.handlerReplyTypeButtonTapped   =   { [weak self] in
@@ -268,7 +268,7 @@ class UserProfileShowViewController: GSBaseViewController, ContainerViewSupport 
             }
             
             activeVC.handlerCommentsButtonTapped    =   { [weak self] in
-                self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+                self?.router?.routeToPostCreateScene(withType: .createComment)
             }
             
             // Select Blog

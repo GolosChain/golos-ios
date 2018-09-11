@@ -17,6 +17,7 @@ import GoloSwift
 @objc protocol PostsShowRoutingLogic {
     func routeToPostShowScene()
     func routeToUserProfileScene(byUserName name: String)
+    func routeToPostCreateScene(withType sceneType: SceneType)
 }
 
 protocol PostsShowDataPassing {
@@ -55,6 +56,16 @@ class PostsShowRouter: NSObject, PostsShowRoutingLogic, PostsShowDataPassing {
         navigateToUserProfileScene(source: viewController!, destination: destinationVC)
     }
 
+    func routeToPostCreateScene(withType sceneType: SceneType) {
+        let storyboard          =   UIStoryboard(name: "PostCreate", bundle: nil)
+        let destinationVC       =   storyboard.instantiateViewController(withIdentifier: "PostCreateVC") as! PostCreateViewController
+        destinationVC.sceneType =   sceneType
+//        var destinationDS       =   destinationVC.router!.dataStore!
+        
+//        passDataToPostCreateScene(userName: name, destination: &destinationDS)
+        navigateToPostCreateScene(source: viewController!, destination: destinationVC)
+    }
+
     
     // MARK: - Navigation
     func navigateToPostShowScene(source: PostsShowViewController, destination: PostShowViewController) {
@@ -66,6 +77,10 @@ class PostsShowRouter: NSObject, PostsShowRoutingLogic, PostsShowDataPassing {
         source.show(destination, sender: nil)
     }
 
+    func navigateToPostCreateScene(source: PostsShowViewController, destination: PostCreateViewController) {
+        source.show(destination, sender: nil)
+    }
+    
     
     // MARK: - Passing data
     func passDataToPostShowScene(source: PostsShowDataStore, destination: inout PostShowDataStore) {
@@ -75,5 +90,9 @@ class PostsShowRouter: NSObject, PostsShowRoutingLogic, PostsShowDataPassing {
     
     func passDataToUserProfileScene(userName: String, destination: inout UserProfileShowDataStore) {
         destination.userName    =   userName
+    }
+    
+    func passDataToPostCreateScene(userName: String, destination: inout PostCreateDataStore) {
+//        destination.userName    =   userName
     }
 }
