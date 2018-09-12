@@ -25,7 +25,7 @@ class PostsShowWorker {
         let userName    =   User.current?.name
         
         var discussion  =   RequestParameterAPI.Discussion.init(limit:              loadDataLimit,
-                                                                truncateBody:       0,
+                                                                truncateBody:       1024,
                                                                 selectAuthors:      parameters.type != .lenta ? nil : (userName == nil ? nil : [ User.current!.name ]),
                                                                 startAuthor:        nil,
                                                                 startPermlink:      nil,
@@ -33,7 +33,7 @@ class PostsShowWorker {
 
         if let lastItem = parameters.lastItem as? PaginationSupport, String(describing: type(of: lastItem)).lowercased() == parameters.type.rawValue {
             discussion  =   RequestParameterAPI.Discussion.init(limit:              loadDataLimit,
-                                                                truncateBody:       0,
+                                                                truncateBody:       1024,
                                                                 selectAuthors:      parameters.type != .lenta ? nil : (userName == nil ? nil : [ User.current!.name ]),
                                                                 startAuthor:        lastItem.author,
                                                                 startPermlink:      lastItem.permlink,

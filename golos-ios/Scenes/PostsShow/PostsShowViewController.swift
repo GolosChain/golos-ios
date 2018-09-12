@@ -232,7 +232,7 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
         segmentedViewController.showsHorizontalScrollIndicator  =   false
         segmentedViewController.showsVerticalScrollIndicator    =   false
         segmentedViewController.segmentBounces                  =   true
-        segmentedViewController.segmentTitleFont                =   UIFont(name: "SFProDisplay-Medium", size: 13.0 * widthRatio)!
+        segmentedViewController.segmentTitleFont                =   UIFont(name: "SFProDisplay-Medium", size: 13.0)!
         segmentedViewController.segmentBackgroundColor          =   UIColor(hexString: "#4469AF")
         segmentedViewController.segmentedScrollViewColor        =   UIColor(hexString: "#4469AF")
         segmentedViewController.segmentShadow                   =   SJShadow.dark()

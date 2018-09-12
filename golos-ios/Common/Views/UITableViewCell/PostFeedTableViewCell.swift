@@ -104,6 +104,8 @@ class PostFeedTableViewCell: UITableViewCell, HandlersCellSupport {
         self.postFeedHeaderView.reblogAuthorLabel.text          =   nil
         self.postFeedHeaderView.reblogAuthorLabel.isHidden      =   true
         self.postFeedHeaderView.reblogIconImageView.isHidden    =   true
+        
+        self.commentsButton.setTitle(nil, for: .normal)
     }
     
     
