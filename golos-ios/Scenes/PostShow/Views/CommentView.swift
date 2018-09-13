@@ -11,22 +11,24 @@ import CoreData
 import GoloSwift
 import MarkdownView
 
-class CommentView: UIView {
+class CommentView: UIView, HandlersCellSupport {
     // MARK: - Properties
-    var permlink: String?
     var level: String = ""
+    var postShortInfo: PostShortInfo!
+
     
-    var completionAuthorNameButtonTapped: ((String) -> Void)?
-    var completionAuthorProfileAddButtonTapped: (() -> Void)?
-    var completionAuthorProfileImageButtonTapped: ((String) -> Void)?
-    
-    // Action buttons completions
-    var completionUpvotesButtonTapped: (() -> Void)?
-    var completionUsersButtonTapped: (() -> Void)?
-    var completionCommentsButtonTapped: (() -> Void)?
-    var completionReplyButtonTapped: (() -> Void)?
-    var completionShareButtonTapped: (() -> Void)?
-    
+    // Handlers
+    var handlerUsersButtonTapped: (() -> Void)?
+    var handlerAuthorNameButtonTapped: ((String) -> Void)?
+    var handlerAuthorProfileAddButtonTapped: (() -> Void)?
+    var handlerReplyButtonTapped: ((PostShortInfo) -> Void)?
+    var handlerAuthorProfileImageButtonTapped: ((String) -> Void)?
+
+    // HandlersCellSupport
+    var handlerShareButtonTapped: (() -> Void)?
+    var handlerUpvotesButtonTapped: (() -> Void)?
+    var handlerCommentsButtonTapped: ((PostShortInfo) -> Void)?
+
     
     // MARK: - IBOutlets
     @IBOutlet var view: UIView!
@@ -98,7 +100,14 @@ class CommentView: UIView {
         createFromXIB()
         
         self.level              =   level
-        self.permlink           =   comment.permlink
+        
+        self.postShortInfo      =   PostShortInfo(title:            comment.body.substring(withCharactersCount: 120),
+                                                  author:           comment.author,
+                                                  permlink:         comment.permlink,
+                                                  indexPath:        nil,
+                                                  parentAuthor:     comment.parentAuthor,
+                                                  parentPermlink:   comment.parentPermlink)
+
         self.timeLabel.text     =   comment.created.convertToDaysAgo()
         
         if comment.children > 0 {
@@ -179,35 +188,35 @@ class CommentView: UIView {
     
     // MARK: - Actions
     @IBAction func authorProfileImageButtonTapped(_ sender: UIButton) {
-        self.completionAuthorProfileImageButtonTapped!(self.authorNameButton.titleLabel?.text ?? "XXX")
+        self.handlerAuthorProfileImageButtonTapped!(self.authorNameButton.titleLabel?.text ?? "XXX")
     }
     
     @IBAction func authorProfileAddButtonTapped(_ sender: UIButton) {
-        self.completionAuthorProfileAddButtonTapped!()
+        self.handlerAuthorProfileAddButtonTapped!()
     }
     
     @IBAction func authorNameButtonTapped(_ sender: UIButton) {
-        self.completionAuthorNameButtonTapped!(sender.titleLabel?.text ?? "XXX")
+        self.handlerAuthorNameButtonTapped!(sender.titleLabel?.text ?? "XXX")
     }
     
     // Action buttons
     @IBAction func upvotesButtonTapped(_ sender: UIButton) {
-        self.completionUpvotesButtonTapped!()
+        self.handlerUpvotesButtonTapped!()
     }
     
     @IBAction func usersButtonTapped(_ sender: UIButton) {
-        self.completionUsersButtonTapped!()
+        self.handlerUsersButtonTapped!()
     }
     
     @IBAction func commentsButtonTapped(_ sender: UIButton) {
-        self.completionCommentsButtonTapped!()
+        self.handlerCommentsButtonTapped!(self.postShortInfo)
     }
     
     @IBAction func replyButtonTapped(_ sender: UIButton) {
-        self.completionReplyButtonTapped!()
+        self.handlerReplyButtonTapped!(self.postShortInfo)
     }
     
     @IBAction func shareButtonTapped(_ sender: UIButton) {
-        self.completionShareButtonTapped!()
+        self.handlerShareButtonTapped!()
     }
 }

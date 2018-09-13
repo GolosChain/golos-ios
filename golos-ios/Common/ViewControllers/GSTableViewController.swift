@@ -13,7 +13,7 @@ import SwiftTheme
 
 typealias FetchPostParameters   =   (author: String?, postFeedType: PostsFeedType, permlink: String?, sortBy: String?)
 
-class GSTableViewController: GSBaseViewController {
+class GSTableViewController: GSBaseViewController, HandlersCellSupport {
     // MARK: - Properties
     var commentsViewHeight: CGFloat = 0.0 {
         didSet {
@@ -41,10 +41,7 @@ class GSTableViewController: GSBaseViewController {
 //    }
     
     // Handlers
-    var handlerShareButtonTapped: (() -> Void)?
     var handlerAnswerButtonTapped: (() -> Void)?
-    var handlerUpvotesButtonTapped: (() -> Void)?
-    var handlerCommentsButtonTapped: (() -> Void)?
     var handlerReplyTypeButtonTapped: (() -> Void)?
     var handlerRefreshData: ((NSManagedObject?) -> Void)?
     var handlerSelectItem: ((NSManagedObject?) -> Void)?
@@ -52,6 +49,12 @@ class GSTableViewController: GSBaseViewController {
     var handlerAuthorProfileAddButtonTapped: (() -> Void)?
     var handlerAuthorProfileImageButtonTapped: ((String) -> Void)?
 
+    // HandlersCellSupport
+    var handlerShareButtonTapped: (() -> Void)?
+    var handlerUpvotesButtonTapped: (() -> Void)?
+    var handlerCommentsButtonTapped: ((PostShortInfo) -> Void)?
+
+    
     // Markdown completions
     var completionCommentShowSafariURL: ((URL) -> Void)?
     var completionCommentAuthorTapped: ((String) -> Void)?
@@ -384,8 +387,8 @@ extension GSTableViewController: UITableViewDataSource {
                 self?.handlerUpvotesButtonTapped!()
             }
             
-            (cell as! PostFeedTableViewCell).handlerCommentsButtonTapped    =   { [weak self] in
-                self?.handlerCommentsButtonTapped!()
+            (cell as! PostFeedTableViewCell).handlerCommentsButtonTapped    =   { [weak self] selectedPost in
+                self?.handlerCommentsButtonTapped!(selectedPost)
             }
 
             (cell as! PostFeedTableViewCell).handlerAuthorPostSelected      =   { [weak self] userName in

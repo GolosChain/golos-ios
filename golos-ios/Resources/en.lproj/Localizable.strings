@@ -130,8 +130,9 @@
 "About Yourself"                            =   "About Yourself";
 "City"                                      =   "City";
 "Website Link"                              =   "Website Link";
-"Send Post Success"                         =   "Post successfully published";
-"Send Comment Success"                      =   "Comment successfully published";
+"Create Post Success"                       =   "Post\nsuccessfully published";
+"Add Comment Success"                       =   "Comment\nsuccessfully published";
+"Add Comment Reply Success"                 =   "Comment reply\nsuccessfully published";
 "Permlink without timing"                   =   "Permlink without timing";
 "Permlink with timing"                      =   "Permlink with timing";
 "Sort by"                                   =   "Sort by";

@@ -42,7 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.registerForPushNotifications()
         
         // Clear cache
-        self.clearCache()
+//        self.clearCache()
         
         // Main window
         window?.backgroundColor = .white

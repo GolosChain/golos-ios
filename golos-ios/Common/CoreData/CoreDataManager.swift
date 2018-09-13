@@ -79,19 +79,28 @@ class CoreDataManager {
     
     // MARK: - Class Functions
     /// Save context
-    func contextSave() {
-        if managedObjectContext.hasChanges {
-            do {
-                try managedObjectContext.save()
-            }
-            
-            catch {
-                let nserror = error as NSError
-                Logger.log(message: "Unresolved error \(nserror), \(nserror.userInfo)", event: .error)
-                abort()
-            }
+    func saveContext() {
+        do {
+            try CoreDataManager.instance.managedObjectContext.save()
+        } catch let error {
+            Logger.log(message: "Unresolved error \((error as NSError).userInfo)", event: .error)
+            abort()
         }
     }
+
+//    func contextSave() {
+//        if managedObjectContext.hasChanges {
+//            do {
+//                try managedObjectContext.save()
+//            }
+//            
+//            catch {
+//                let nserror = error as NSError
+//                Logger.log(message: "Unresolved error \(nserror), \(nserror.userInfo)", event: .error)
+//                abort()
+//            }
+//        }
+//    }
     
     
     // MARK: - CRUD
@@ -193,28 +202,50 @@ class CoreDataManager {
     }
     */
     
+    
+    /// Clear main cache
+    func clearCache() {
+        let entitiesName = [ "ImageCached", "Lenta", "User" ]
+        
+        // Create Fetch Request
+        for entityName in entitiesName {
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
+            
+            // Create Batch Delete Request
+            let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+            batchDeleteRequest.resultType = .resultTypeCount
+           
+            do {
+                try managedObjectContext.execute(batchDeleteRequest)
+            } catch let error {
+                Logger.log(message: "Save deleted Entities '\(entityName)' failed: \((error as NSError).userInfo)", event: .error)
+            }
+        }
+    }
+    
+    
     /// Delete
     func deleteEntities(withName name: String, andPredicateParameters predicate: NSPredicate?, completion: @escaping (Bool) -> Void) {
-        let deleteFetch                     =   NSFetchRequest<NSFetchRequestResult>(entityName: name)
-        deleteFetch.returnsObjectsAsFaults  =   false
+        let deleteFetchRequest                      =   NSFetchRequest<NSFetchRequestResult>(entityName: name)
+        deleteFetchRequest.returnsObjectsAsFaults   =   false
 
         if predicate != nil {
-            deleteFetch.predicate   =   predicate!
+            deleteFetchRequest.predicate            =   predicate!
         }
-
+        
         do {
-            let deletedEntities     =   try self.managedObjectContext.fetch(deleteFetch)
-            
+            let deletedEntities     =   try self.managedObjectContext.fetch(deleteFetchRequest)
+
             for deletedEntity in deletedEntities as! [NSManagedObject] {
                 self.managedObjectContext.delete(deletedEntity)
             }
         }
-        
+
         catch {
             Logger.log(message: "Delete Entities '\(name)' failed", event: .error)
             completion(false)
         }
-        
+
         // Saving the Delete operation
         do {
             try self.managedObjectContext.save()

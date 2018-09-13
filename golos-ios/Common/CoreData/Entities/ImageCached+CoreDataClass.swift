@@ -27,6 +27,6 @@ public class ImageCached: NSManagedObject {
         entity!.cachedKey   =   cachedKey
         entity!.fromItem    =   fromItem
 
-        entity!.save()
+//        entity!.save()
     }
 }

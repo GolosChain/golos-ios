@@ -16,8 +16,9 @@ import GoloSwift
 // MARK: - Data models
 enum PostCreateModels {
     // MARK: - Use cases
-    enum Post {
+    enum Item {
         struct RequestModel {
+            let sceneType: SceneType
         }
         
         struct ResponseModel {

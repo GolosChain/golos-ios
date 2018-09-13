@@ -44,7 +44,7 @@ extension Promo: PostCellSupport {
     @NSManaged public var lastPayout: Date
     
     @NSManaged public var activeVotes: NSSet?
-    
+
 }
 
 // MARK: Generated accessors for activeVotes

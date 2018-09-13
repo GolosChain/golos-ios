@@ -113,6 +113,7 @@
 		B15F228420EEB16C00C44282 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15F228320EEB16C00C44282 /* AppState.swift */; };
 		B15F228720EEB31C00C44282 /* AppSettings+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15F228520EEB31C00C44282 /* AppSettings+CoreDataClass.swift */; };
 		B15F228820EEB31C00C44282 /* AppSettings+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15F228620EEB31C00C44282 /* AppSettings+CoreDataProperties.swift */; };
+		B163EE88214905B3004F3906 /* PostShortInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B163EE87214905B3004F3906 /* PostShortInfo.swift */; };
 		B164CECA2119F6EB00349D79 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B18DB4502085D22A00BA5D50 /* Localizable.strings */; };
 		B164CECD211AA84800349D79 /* Comment+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B164CECB211AA84800349D79 /* Comment+CoreDataClass.swift */; };
 		B164CECE211AA84800349D79 /* Comment+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B164CECC211AA84800349D79 /* Comment+CoreDataProperties.swift */; };
@@ -378,6 +379,7 @@
 		B15F228320EEB16C00C44282 /* AppState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		B15F228520EEB31C00C44282 /* AppSettings+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppSettings+CoreDataClass.swift"; sourceTree = "<group>"; };
 		B15F228620EEB31C00C44282 /* AppSettings+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppSettings+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B163EE87214905B3004F3906 /* PostShortInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostShortInfo.swift; sourceTree = "<group>"; };
 		B164CEC82119F19E00349D79 /* Golos 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Golos 4.xcdatamodel"; sourceTree = "<group>"; };
 		B164CECB211AA84800349D79 /* Comment+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Comment+CoreDataClass.swift"; sourceTree = "<group>"; };
 		B164CECC211AA84800349D79 /* Comment+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Comment+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -827,6 +829,14 @@
 			path = StateMachine;
 			sourceTree = "<group>";
 		};
+		B163EE862149057C004F3906 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				B163EE87214905B3004F3906 /* PostShortInfo.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		B164F03B20E62A7300C5CDD3 /* UserProfileShow */ = {
 			isa = PBXGroup;
 			children = (
@@ -1127,6 +1137,7 @@
 			isa = PBXGroup;
 			children = (
 				B12F442A20EB4AE0003FFF58 /* CoreData */,
+				B163EE862149057C004F3906 /* Data */,
 				ECF28085200A94360000D949 /* Extensions */,
 				ECF28088200A95730000D949 /* Protocols */,
 				B181585E20B976E700835034 /* ViewControllers */,
@@ -1508,6 +1519,7 @@
 				EC24FF59200C30B800A0AE15 /* MainContainerViewController.swift in Sources */,
 				B1E09E2A2101F7D9002CC5B7 /* Blog+CoreDataProperties.swift in Sources */,
 				EC24FF54200C080300A0AE15 /* Notifications+Extensions.swift in Sources */,
+				B163EE88214905B3004F3906 /* PostShortInfo.swift in Sources */,
 				B18B937420B91DB8000CF503 /* ForegroundRemoteNotificationView.swift in Sources */,
 				B1E78A6F20F99CD500B2901D /* UserProfileBlogShowViewController.swift in Sources */,
 				EC24FF5D200C30CF00A0AE15 /* MainContainerMediator.swift in Sources */,

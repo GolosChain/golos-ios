@@ -19,9 +19,7 @@ protocol PostCreateBusinessLogic {
     func save(commentBody: String)
     func save(commentTitle: String)
     func save(attachments: [Attachment])
-    func postCreate(withRequestModel requestModel: PostCreateModels.Post.RequestModel)
-    func postComment(withRequestModel requestModel: PostCreateModels.Post.RequestModel)
-    func postCommentReply(withRequestModel requestModel: PostCreateModels.Post.RequestModel)
+    func publishItem(withRequestModel requestModel: PostCreateModels.Item.RequestModel)
 }
 
 protocol PostCreateDataStore {
@@ -29,6 +27,8 @@ protocol PostCreateDataStore {
     var attachments: [Attachment]? { get set }
     var commentBody: String? { get set }
     var commentTitle: String? { get set }
+    var commentParentAuthor: String? { get set }
+    var commentParentPermlink: String? { get set }
 }
 
 class PostCreateInteractor: PostCreateBusinessLogic, PostCreateDataStore {
@@ -41,6 +41,8 @@ class PostCreateInteractor: PostCreateBusinessLogic, PostCreateDataStore {
     var attachments: [Attachment]?
     var commentBody: String?
     var commentTitle: String?
+    var commentParentAuthor: String?
+    var commentParentPermlink: String?
 
     
     // MARK: - Class Initialization
@@ -66,7 +68,7 @@ class PostCreateInteractor: PostCreateBusinessLogic, PostCreateDataStore {
         self.attachments    =   attachments
     }
     
-    func postCreate(withRequestModel requestModel: PostCreateModels.Post.RequestModel) {
+    func publishItem(withRequestModel requestModel: PostCreateModels.Item.RequestModel) {
         worker = PostCreateWorker()
 
         // Create markdown titles for all images & links
@@ -74,12 +76,13 @@ class PostCreateInteractor: PostCreateBusinessLogic, PostCreateDataStore {
             self?.save(attachments: attachments)
             
             // API 'get_content'
-            let content                     =   RequestParameterAPI.Content(author: User.current!.name, permlink: (self?.tags!.first!.title!)!)
+            let content     =   RequestParameterAPI.Content(author: User.current!.name, permlink: (self?.tags!.first!.title!)!)
             
             RestAPIManager.loadPostPermlink(byContent: content, completion: { errorAPI in
                 guard errorAPI.caseInfo.message != "No Internet Connection" else {
-                    let responseModel       =   PostCreateModels.Post.ResponseModel(errorAPI: errorAPI)
-                    self?.presenter?.presentPostCreate(fromResponseModel: responseModel)
+                    let responseModel       =   PostCreateModels.Item.ResponseModel(errorAPI: errorAPI)
+                    self?.presenter?.presentPublishItem(fromResponseModel: responseModel)
+                   
                     return
                 }
                 
@@ -109,25 +112,15 @@ class PostCreateInteractor: PostCreateBusinessLogic, PostCreateDataStore {
                                             errorAPI        =   ErrorAPI.requestFailed(message: error.message)
                                         }
                                         
-                                        let responseModel   =   PostCreateModels.Post.ResponseModel(errorAPI: errorAPI)
-                                        self?.presenter?.presentPostCreate(fromResponseModel: responseModel)
+                                        let responseModel   =   PostCreateModels.Item.ResponseModel(errorAPI: errorAPI)
+                                        self?.presenter?.presentPublishItem(fromResponseModel: responseModel)
                     },
                                       onError: { errorAPI in
                                         Logger.log(message: "nresponse API Error = \(errorAPI.caseInfo.message)\n", event: .error)
-                                        let responseModel   =   PostCreateModels.Post.ResponseModel(errorAPI: errorAPI)
-                                        self?.presenter?.presentPostCreate(fromResponseModel: responseModel)
+                                        let responseModel   =   PostCreateModels.Item.ResponseModel(errorAPI: errorAPI)
+                                        self?.presenter?.presentPublishItem(fromResponseModel: responseModel)
                 })
             })
         })
-    }
-    
-    func postComment(withRequestModel requestModel: PostCreateModels.Post.RequestModel) {
-        let responseModel = PostCreateModels.Post.ResponseModel(errorAPI: nil)
-        presenter?.presentPostComment(fromResponseModel: responseModel)
-    }
-    
-    func postCommentReply(withRequestModel requestModel: PostCreateModels.Post.RequestModel) {
-        let responseModel = PostCreateModels.Post.ResponseModel(errorAPI: nil)
-        presenter?.presentPostCommentReply(fromResponseModel: responseModel)
     }
 }

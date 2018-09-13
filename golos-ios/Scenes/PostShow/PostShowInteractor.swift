@@ -16,13 +16,15 @@ import GoloSwift
 
 // MARK: - Business Logic protocols
 protocol PostShowBusinessLogic {
-    func save(_ post: NSManagedObject)
+    func save(post: NSManagedObject)
+    func save(comment: PostShortInfo)
     func loadContent(withRequestModel requestModel: PostShowModels.Post.RequestModel)
     func loadContentComments(withRequestModel requestModel: PostShowModels.Post.RequestModel)
 }
 
 protocol PostShowDataStore {
     var post: NSManagedObject? { get set }
+    var comment: PostShortInfo? { get set }
     var postType: PostsFeedType? { get set }
 }
 
@@ -33,8 +35,8 @@ class PostShowInteractor: PostShowBusinessLogic, PostShowDataStore {
     
     // PostShowDataStore protocol implementation
     var post: NSManagedObject?
+    var comment: PostShortInfo?
     var postType: PostsFeedType?
-    
     
     // MARK: - Class Initialization
     deinit {
@@ -43,10 +45,14 @@ class PostShowInteractor: PostShowBusinessLogic, PostShowDataStore {
     
 
     // MARK: - Business logic implementation
-    func save(_ post: NSManagedObject) {
-        self.post = post
+    func save(post: NSManagedObject) {
+        self.post       =   post
     }
 
+    func save(comment: PostShortInfo) {
+        self.comment    =   comment
+    }
+    
     func loadContent(withRequestModel requestModel: PostShowModels.Post.RequestModel) {
         // API 'get_content'
         let content = RequestParameterAPI.Content(author: (self.post as! PostCellSupport).author, permlink: (self.post as! PostCellSupport).permlink)

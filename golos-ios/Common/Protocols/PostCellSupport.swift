@@ -20,7 +20,6 @@ protocol PostCellSupport: PaginationSupport, MetaDataSupport {
     var jsonMetadata: String? { get set }
     var activeVotesCount: Int16 { get set }
     var url: String? { get set }
-    var activeVotes: NSSet? { get set }
     var authorReputation: String { get set }
     var pendingPayoutValue: Float { get set }
     var children: Int16 { get set }
@@ -33,4 +32,6 @@ protocol PostCellSupport: PaginationSupport, MetaDataSupport {
     var created: Date { get set }
     var lastUpdate: Date { get set }
     var lastPayout: Date { get set }
+    
+    var activeVotes: NSSet? { get set }
 }

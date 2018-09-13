@@ -12,7 +12,12 @@ import Foundation
 
 extension NSManagedObject {
     func save() {
-        CoreDataManager.instance.contextSave()
+        do {
+            try CoreDataManager.instance.managedObjectContext.save()
+        } catch let error {
+            Logger.log(message: "Unresolved error \((error as NSError).userInfo)", event: .error)
+            abort()
+        }
     }
     
     func update(withModel model: ResponseAPIPost) {
@@ -51,9 +56,9 @@ extension NSManagedObject {
                                                 .convertUsersAccounts()
 
             // Set ActiveVote values
-            if let activeVotes = ActiveVote.updateEntities(fromResponseAPI: model.active_votes, withParentID: model.id) {
-                entity.activeVotes      =   NSSet(array: activeVotes)
-            }
+//            if let activeVotes = ActiveVote.updateEntities(fromResponseAPI: model.active_votes, withParentID: model.id), activeVotes.count > 0 {
+//                entity.activeVotes      =   NSSet(array: activeVotes)
+//            }
             
             // Extension: parse & save
             self.parse(metaData: model.json_metadata, fromBody: model.body)

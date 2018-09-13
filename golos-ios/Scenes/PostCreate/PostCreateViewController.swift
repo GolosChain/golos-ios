@@ -12,8 +12,9 @@
 
 import UIKit
 import GoloSwift
-import IQKeyboardManagerSwift
+import SafariServices
 import MobileCoreServices
+import IQKeyboardManagerSwift
 
 @objc enum SceneType: Int {
     case createPost = 0
@@ -23,9 +24,7 @@ import MobileCoreServices
 
 // MARK: - Input & Output protocols
 protocol PostCreateDisplayLogic: class {
-    func displayPostCreate(fromViewModel viewModel: PostCreateModels.Post.ViewModel)
-    func displayPostComment(fromViewModel viewModel: PostCreateModels.Post.ViewModel)
-    func displayPostCommentReply(fromViewModel viewModel: PostCreateModels.Post.ViewModel)
+    func displayPublishItem(fromViewModel viewModel: PostCreateModels.Item.ViewModel)
 }
 
 class PostCreateViewController: GSBaseViewController {
@@ -34,20 +33,45 @@ class PostCreateViewController: GSBaseViewController {
     var isKeyboardShow = false
     
     var tagsVC: TagsCollectionViewController!
-
-    var sceneType: SceneType = .createPost {
-        didSet {
-            if sceneType == .createCommentReply {
-//                self.commentReplyView.commentLabel.text = self.router?.dataStore?.commentText
-            }
-        }
-    }
+    var sceneType: SceneType = .createPost
     
     var interactor: PostCreateBusinessLogic?
     var router: (NSObjectProtocol & PostCreateRoutingLogic & PostCreateDataPassing)?
     
     
     // MARK: - IBOutlets
+    @IBOutlet weak var stackView: UIStackView!
+
+    @IBOutlet weak var tagsView: UIView! {
+        didSet {
+            tagsView.alpha = 0.0
+        }
+    }
+
+    @IBOutlet weak var commentReplyView: PostCommentReply! {
+        didSet {
+            // Handlers
+            commentReplyView.handlerMarkdownError                   =   { [weak self] errorMessage in
+                self?.showAlertView(withTitle: "Error", andMessage: errorMessage, needCancel: false, completion: { _ in })
+            }
+            
+            commentReplyView.handlerMarkdownURLTapped               =   { [weak self] url in
+                if isNetworkAvailable {
+                    let safari = SFSafariViewController(url: url)
+                    self?.present(safari, animated: true, completion: nil)
+                }
+                    
+                else {
+                    self?.showAlertView(withTitle: "Info", andMessage: "No Internet Connection", needCancel: false, completion: { _ in })
+                }
+            }
+            
+            commentReplyView.handlerMarkdownAuthorNameTapped        =   { [weak self] authorName in
+                self?.router?.routeToUserProfileScene(byUserName: authorName)
+            }
+        }
+    }
+    
     @IBOutlet weak var postCreateView: PostCreateView! {
         didSet {
             postCreateView.completionStartEditing   =   { [weak self] isEdit in
@@ -56,11 +80,6 @@ class PostCreateViewController: GSBaseViewController {
                 
                 self?.setConstraint()
             }
-        }
-    }
-    
-    @IBOutlet weak var commentReplyView: PostCommentReply! {
-        didSet {
         }
     }
     
@@ -94,6 +113,7 @@ class PostCreateViewController: GSBaseViewController {
     }
     
     @IBOutlet weak var contentViewBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var markdownViewHeightConstraint: NSLayoutConstraint!
     
     // Use with keyboard hide/show
     @IBOutlet weak var tagsViewBottomConstraint: NSLayoutConstraint!
@@ -218,13 +238,24 @@ class PostCreateViewController: GSBaseViewController {
         self.view.tune()
         IQKeyboardManager.sharedManager().enable = false
         self.navigationItem.title   =   (sceneType == .createPost) ? "Publish Title".localized() : "Comment Title Verb".localized()
+       
+        if sceneType == .createCommentReply {
+            self.commentReplyView.markdownViewManager.load(markdown: self.router?.dataStore?.commentTitle ?? "")
+
+            self.commentReplyView.markdownViewManager.onRendered = { [weak self] height in
+                self?.markdownViewHeightConstraint.constant = height + (15.0 + 20.0) * heightRatio
+                self?.showContent()
+            }
+        } else {
+            self.showContent()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         self.navigationController?.add(shadow: false, withBarTintColor: .white)
-        self.navigationController?.hidesBarsOnTap   =   false
+        self.navigationController?.hidesBarsOnTap = false
         self.showNavigationBar()
         
         self.contentTextView.layoutManager.ensureLayout(for: self.contentTextView.textContainer)
@@ -298,11 +329,18 @@ class PostCreateViewController: GSBaseViewController {
         self.firstResponder                         =   nil
         self.contentTextView.text                   =   nil
         self.postCreateView.titleTextField.text     =   nil
-        self.commentReplyView.commentLabel.text     =   nil
         self.tagsVC.tags                            =   nil
         self.tagsVC.collectionView.reloadData()
 
         self.interactor?.save(tags: nil)
+    }
+    
+    private func showContent() {
+        UIView.animate(withDuration: 0.3, animations: {
+            self.tagsView.alpha         =   self.sceneType == .createPost ? 1.0 : 0.0
+            self.stackView.alpha        =   1.0
+            self.contentTextView.alpha  =   1.0
+        })
     }
     
     
@@ -317,36 +355,20 @@ class PostCreateViewController: GSBaseViewController {
             return
         }
         
-        // API's
-        switch sceneType {
-        case .createPost:
-            // Get content parts
-            let contentParts    =   self.contentTextView.getParts()
-                        
-            self.interactor?.save(attachments: contentParts)
+        // Get content parts
+        let contentParts = self.contentTextView.getParts()
+        self.interactor?.save(attachments: contentParts)
 
-            let postCreateRequestModel = PostCreateModels.Post.RequestModel()
-            interactor?.postCreate(withRequestModel: postCreateRequestModel)
-
-        case .createComment:
-            // TODO: - ADD API
-            self.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
-//            let postCommentRequestModel = PostCreateModels.Something.RequestModel()
-//            interactor?.postComment(withRequestModel: postCommentRequestModel)
-
-        case .createCommentReply:
-            // TODO: - ADD API
-            self.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
-//            let postCommentReplyRequestModel = PostCreateModels.Something.RequestModel()
-//            interactor?.postCommentReply(withRequestModel: postCommentReplyRequestModel)
-        }
+        // API
+        let requestModel = PostCreateModels.Item.RequestModel(sceneType: self.sceneType)
+        interactor?.publishItem(withRequestModel: requestModel)
     }
 }
 
 
 // MARK: - PostCreateDisplayLogic
 extension PostCreateViewController: PostCreateDisplayLogic {
-    func displayPostCreate(fromViewModel viewModel: PostCreateModels.Post.ViewModel) {
+    func displayPublishItem(fromViewModel viewModel: PostCreateModels.Item.ViewModel) {
         // NOTE: Display the result from the Presenter
         guard viewModel.errorAPI == nil else {
             if let message = viewModel.errorAPI?.caseInfo.message {
@@ -366,21 +388,9 @@ extension PostCreateViewController: PostCreateDisplayLogic {
         
         self.clearAllEnteredValues()
 
-        self.showAlertView(withTitle: "Info", andMessage: "Send Post Success", needCancel: false, completion: { [weak self] _ in
+        self.showAlertView(withTitle: "Info", andMessage: "Create Post Success", needCancel: false, completion: { [weak self] _ in
             self?.router?.routeToNextScene()
         })
-    }
-    
-    func displayPostComment(fromViewModel viewModel: PostCreateModels.Post.ViewModel) {
-        // NOTE: Display the result from the Presenter
-
-        // TODO: - ADD IF VIEWMODEL SUCCESS = ROUTE TO NEW POST SCENE
-    }
-    
-    func displayPostCommentReply(fromViewModel viewModel: PostCreateModels.Post.ViewModel) {
-        // NOTE: Display the result from the Presenter
-
-        // TODO: - ADD IF VIEWMODEL SUCCESS = ROUTE TO NEW POST SCENE
     }
 }
 

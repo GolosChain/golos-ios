@@ -25,39 +25,43 @@ protocol PostShowDisplayLogic: class {
 
 class PostShowViewController: GSBaseViewController {
     // MARK: - Properties
+    var scrollToComment: Bool = false
+    
     var commentsViews = [CommentView]() {
         didSet {
             _ = commentsViews.map( { commentView in
                 // Handlers
-                commentView.completionUpvotesButtonTapped               =   { [weak self] in
+                commentView.handlerUpvotesButtonTapped                  =   { [weak self] in
                     self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
                 }
                 
-                commentView.completionUsersButtonTapped                 =   { [weak self] in
+                commentView.handlerUsersButtonTapped                    =   { [weak self] in
                     self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
                 }
                 
-                commentView.completionCommentsButtonTapped              =   { [weak self] in
+                commentView.handlerCommentsButtonTapped                 =   { [weak self] postShortInfo in
+                    self?.interactor?.save(comment: postShortInfo)
                     self?.router?.routeToPostCreateScene(withType: .createComment)
                 }
                 
-                commentView.completionReplyButtonTapped                 =   { [weak self] in
+                commentView.handlerReplyButtonTapped                    =   { [weak self] postShortInfo in
+                    self?.interactor?.save(comment: postShortInfo)
                     self?.router?.routeToPostCreateScene(withType: .createCommentReply)
                 }
                 
-                commentView.completionShareButtonTapped                 =   { [weak self] in
+                commentView.handlerShareButtonTapped                    =   { [weak self] in
                     self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
                 }
                 
-                commentView.completionAuthorProfileAddButtonTapped      =   { [weak self] in
+                commentView.handlerAuthorProfileAddButtonTapped         =   { [weak self] in
                     self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
                 }
                 
-                commentView.completionAuthorProfileImageButtonTapped    =   { [weak self] authorName in
+                commentView.handlerAuthorProfileImageButtonTapped       =   { [weak self] authorName in
                     self?.router?.routeToUserProfileScene(byUserName: authorName)
                 }
 
-                commentView.completionAuthorNameButtonTapped            =   { [weak self] authorName in
+                commentView.handlerAuthorNameButtonTapped               =   { [weak self] authorName in
                     self?.router?.routeToUserProfileScene(byUserName: authorName)
                 }
                 
@@ -494,6 +498,10 @@ class PostShowViewController: GSBaseViewController {
         if let displayedPost = self.router?.dataStore?.post as? PostCellSupport {
             self.titleLabel.text = displayedPost.title
             
+            DispatchQueue.main.async {
+                self.markdownViewManager.load(markdown: displayedPost.body)
+            }
+            
             // Load markdown content
             self.markdownViewManager.onRendered = { [weak self] height in
                 self?.markdownViewHeightConstraint.constant = height
@@ -502,10 +510,12 @@ class PostShowViewController: GSBaseViewController {
                 UIView.animate(withDuration: 0.5, animations: {
                     self?.contentView.alpha = 1.0
                 })
-            }
-            
-            DispatchQueue.main.async {
-                self.markdownViewManager.load(markdown: displayedPost.body)
+                
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.3, execute: {
+                    if (self?.scrollToComment)! {
+                        self?.scrollView.scrollRectToVisible(CGRect(origin: (self?.commentsView.frame.origin)!, size: CGSize(width: (self?.commentsView.frame.width)!, height: UIScreen.main.bounds.height - 64.0 * heightRatio - 48.0)), animated: true)
+                    }
+                })
             }
             
             // Subscribe topic
@@ -675,7 +685,7 @@ extension PostShowViewController {
         do {
             if let displayedPost = try CoreDataManager.instance.managedObjectContext.fetch(fetchRequest).first as? NSManagedObject {
                 self.postFeedHeaderView.display(displayedPost as! PostCellSupport)
-                self.interactor?.save(displayedPost)
+                self.interactor?.save(post: displayedPost)
                 self.loadViewSettings()
             }
         }
@@ -730,7 +740,7 @@ extension PostShowViewController {
                         
                         // Get next Comment level
                         if commentView.level.count / 2 <= 2 {
-                            self?.nextCommentLevel(byPermlink: commentView.permlink, andParentLevel: commentView.level)
+                            self?.nextCommentLevel(byPermlink: commentView.postShortInfo.permlink ?? "XXX", andParentLevel: commentView.level)
                         }
                             
                         else {
@@ -768,7 +778,7 @@ extension PostShowViewController {
 //                        self?.didCommentsView(isHide: false)
 
                         // Levels 2...n
-                        self?.nextCommentLevel(byPermlink: commentView.permlink, andParentLevel: commentView.level)
+                        self?.nextCommentLevel(byPermlink: commentView.postShortInfo.permlink ?? "XXX", andParentLevel: commentView.level)
                     })
                 }
             }

@@ -166,4 +166,18 @@ extension String {
                 .replacingOccurrences(of: "<strong>", with: "**")
                 .replacingOccurrences(of: "</strong>", with: "**")
     }
+    
+    func substring(withCharactersCount count: Int) -> String {
+        guard self.count >= 120 else {
+            return self
+        }
+        
+        let startIndex      =   String.Index(encodedOffset: 0)
+        let endIndex        =   String.Index(encodedOffset: 120)
+        let words           =   self.components(separatedBy: " ")
+        let string120       =   self[startIndex..<endIndex]
+        let title           =   words.prefix(string120.components(separatedBy: " ").count).joined(separator: " ") + "..."
+        
+        return title
+    }
 }

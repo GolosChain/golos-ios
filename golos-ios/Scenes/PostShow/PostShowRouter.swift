@@ -40,9 +40,9 @@ class PostShowRouter: NSObject, PostShowRoutingLogic, PostShowDataPassing {
         let storyboard          =   UIStoryboard(name: "PostCreate", bundle: nil)
         let destinationVC       =   storyboard.instantiateViewController(withIdentifier: "PostCreateVC") as! PostCreateViewController
         destinationVC.sceneType =   sceneType
-//        var destinationDS       =   destinationVC.router!.dataStore!
+        var destinationDS       =   destinationVC.router!.dataStore!
         
-//        passDataToPostCreateScene(userName: name, destination: &destinationDS)
+        passDataToPostCreateScene(postShortInfo: self.dataStore!.comment!, destination: &destinationDS)
         navigateToPostCreateScene(source: viewController!, destination: destinationVC)
     }
     
@@ -68,8 +68,10 @@ class PostShowRouter: NSObject, PostShowRoutingLogic, PostShowDataPassing {
     
     
     // MARK: - Passing data
-    func passDataToPostCreateScene(userName: String, destination: inout PostCreateDataStore) {
-//        destination.userName    =   userName
+    func passDataToPostCreateScene(postShortInfo: PostShortInfo, destination: inout PostCreateDataStore) {
+        destination.commentTitle            =   postShortInfo.title
+        destination.commentParentAuthor     =   postShortInfo.parentAuthor
+        destination.commentParentPermlink   =   postShortInfo.parentPermlink
     }
 
     func passDataToUserProfileScene(userName: String, destination: inout UserProfileShowDataStore) {

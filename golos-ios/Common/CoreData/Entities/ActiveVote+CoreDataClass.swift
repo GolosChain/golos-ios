@@ -15,7 +15,9 @@ import Foundation
 public class ActiveVote: NSManagedObject {
     // MARK: - Class Functions
     class func updateEntities(fromResponseAPI responseAPI: [Decodable], withParentID codeID: Int64) -> [ActiveVote]? {
-        let models  =   responseAPI as! [ResponseAPIActiveVote]
+        guard let models = responseAPI as? [ResponseAPIActiveVote], models.count > 0 else {
+            return nil
+        }
         
         for model in models {
             var entity  =   CoreDataManager.instance.readEntity(withName:                   "ActiveVote",

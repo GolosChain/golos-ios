@@ -16,6 +16,7 @@ import GoloSwift
 // MARK: - Input & Output protocols
 @objc protocol PostCreateRoutingLogic {
     func routeToNextScene()
+    func routeToUserProfileScene(byUserName name: String)
 }
 
 protocol PostCreateDataPassing {
@@ -39,6 +40,16 @@ class PostCreateRouter: NSObject, PostCreateRoutingLogic, PostCreateDataPassing 
         self.viewController!.sceneType == .createPost ? self.routeToMainScene() : self.routeToPreviousScene()
     }
 
+    func routeToUserProfileScene(byUserName name: String) {
+        let storyboard          =   UIStoryboard(name: "UserProfileShow", bundle: nil)
+        let destinationVC       =   storyboard.instantiateViewController(withIdentifier: "UserProfileShowVC") as! UserProfileShowViewController
+        destinationVC.sceneMode =   .preview
+        var destinationDS       =   destinationVC.router!.dataStore!
+        destinationDS.userName  =   name
+        
+        navigateToUserProfileScene(source: viewController!, destination: destinationVC)
+    }
+
     private func routeToMainScene() {
         let fromView: UIView    =   self.viewController!.view
         let toView: UIView      =   (self.viewController!.navigationController!.tabBarController?.viewControllers?.first!.view)!
@@ -59,5 +70,11 @@ class PostCreateRouter: NSObject, PostCreateRoutingLogic, PostCreateDataPassing 
 
     private func routeToPreviousScene() {
         self.viewController!.navigationController!.popViewController(animated: true)
+    }
+    
+
+    // MARK: - Navigation
+    func navigateToUserProfileScene(source: PostCreateViewController, destination: UserProfileShowViewController) {
+        source.show(destination, sender: nil)
     }
 }

@@ -267,8 +267,11 @@ class UserProfileShowViewController: GSBaseViewController, ContainerViewSupport 
                 self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
             }
             
-            activeVC.handlerCommentsButtonTapped    =   { [weak self] in
-                self?.router?.routeToPostCreateScene(withType: .createComment)
+            activeVC.handlerCommentsButtonTapped    =   { [weak self] postShortInfo in
+                if let indexPath = postShortInfo.indexPath, let activeVC = self?.containerView.activeVC {
+                    self?.interactor?.save(blog: activeVC.fetchedResultsController.object(at: indexPath) as! NSManagedObject)
+                    self?.router?.routeToPostCreateScene(withType: .createComment)
+                }
             }
             
             // Select Blog

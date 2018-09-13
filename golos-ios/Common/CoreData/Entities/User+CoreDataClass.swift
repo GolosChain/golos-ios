@@ -84,7 +84,8 @@ public class User: NSManagedObject, CachedImageFrom {
         
         let userEntity          =   CoreDataManager.instance.createEntity("User") as! User
         userEntity.id           =   userID
-        
+        userEntity.save()
+
         return userEntity
     }
 
@@ -161,18 +162,18 @@ public class User: NSManagedObject, CachedImageFrom {
             predicateImage  =   NSPredicate(format: "created <= %@ AND fromItem != \"lenta\"", dateLastWeek)
         }
         
-        DispatchQueue.global(qos: .background).async {
+        DispatchQueue.global(qos: .background).asyncAfter(deadline: DispatchTime.now() + 12.0, execute: {
             CoreDataManager.instance.deleteEntities(withName: "Actual", andPredicateParameters: predicate, completion: { _ in })
-            CoreDataManager.instance.deleteEntities(withName: "Blog", andPredicateParameters: predicate, completion: { _ in })
             CoreDataManager.instance.deleteEntities(withName: "New", andPredicateParameters: predicate, completion: { _ in })
             CoreDataManager.instance.deleteEntities(withName: "Popular", andPredicateParameters: predicate, completion: { _ in })
             CoreDataManager.instance.deleteEntities(withName: "Promo", andPredicateParameters: predicate, completion: { _ in })
             CoreDataManager.instance.deleteEntities(withName: "Reply", andPredicateParameters: predicate, completion: { _ in })
             CoreDataManager.instance.deleteEntities(withName: "Comment", andPredicateParameters: predicate, completion: { _ in })
             CoreDataManager.instance.deleteEntities(withName: "ImageCached", andPredicateParameters: predicateImage, completion: { _ in })
-
-            CoreDataManager.instance.contextSave()
-        }
+//            CoreDataManager.instance.deleteEntities(withName: "Blog", andPredicateParameters: predicate, completion: { _ in })
+            
+//            CoreDataManager.instance.contextSave()
+        })
     }
 
     func clearCache() {

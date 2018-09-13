@@ -15,9 +15,9 @@ import GoloSwift
 
 // MARK: - Input & Output protocols
 @objc protocol PostsShowRoutingLogic {
-    func routeToPostShowScene()
     func routeToUserProfileScene(byUserName name: String)
     func routeToPostCreateScene(withType sceneType: SceneType)
+    func routeToPostShowScene(withScrollToComments needScrolling: Bool)
 }
 
 protocol PostsShowDataPassing {
@@ -37,32 +37,33 @@ class PostsShowRouter: NSObject, PostsShowRoutingLogic, PostsShowDataPassing {
     
 
     // MARK: - Routing
-    func routeToPostShowScene() {
-        let storyboard      =   UIStoryboard(name: "PostShow", bundle: nil)
-        let destinationVC   =   storyboard.instantiateViewController(withIdentifier: "PostShowVC") as! PostShowViewController
-        var destinationDS   =   destinationVC.router!.dataStore!
+    func routeToPostShowScene(withScrollToComments needScrolling: Bool) {
+        let storyboard                  =   UIStoryboard(name: "PostShow", bundle: nil)
+        let destinationVC               =   storyboard.instantiateViewController(withIdentifier: "PostShowVC") as! PostShowViewController
+        destinationVC.scrollToComment   =   needScrolling
+        var destinationDS               =   destinationVC.router!.dataStore!
         
         passDataToPostShowScene(source: dataStore!, destination: &destinationDS)
         navigateToPostShowScene(source: viewController!, destination: destinationVC)
     }
     
     func routeToUserProfileScene(byUserName name: String) {
-        let storyboard          =   UIStoryboard(name: "UserProfileShow", bundle: nil)
-        let destinationVC       =   storyboard.instantiateViewController(withIdentifier: "UserProfileShowVC") as! UserProfileShowViewController
-        destinationVC.sceneMode =   .preview
-        var destinationDS       =   destinationVC.router!.dataStore!
+        let storyboard                  =   UIStoryboard(name: "UserProfileShow", bundle: nil)
+        let destinationVC               =   storyboard.instantiateViewController(withIdentifier: "UserProfileShowVC") as! UserProfileShowViewController
+        destinationVC.sceneMode         =   .preview
+        var destinationDS               =   destinationVC.router!.dataStore!
         
         passDataToUserProfileScene(userName: name, destination: &destinationDS)
         navigateToUserProfileScene(source: viewController!, destination: destinationVC)
     }
 
     func routeToPostCreateScene(withType sceneType: SceneType) {
-        let storyboard          =   UIStoryboard(name: "PostCreate", bundle: nil)
-        let destinationVC       =   storyboard.instantiateViewController(withIdentifier: "PostCreateVC") as! PostCreateViewController
-        destinationVC.sceneType =   sceneType
-//        var destinationDS       =   destinationVC.router!.dataStore!
+        let storyboard                  =   UIStoryboard(name: "PostCreate", bundle: nil)
+        let destinationVC               =   storyboard.instantiateViewController(withIdentifier: "PostCreateVC") as! PostCreateViewController
+        destinationVC.sceneType         =   sceneType
+        var destinationDS               =   destinationVC.router!.dataStore!
         
-//        passDataToPostCreateScene(userName: name, destination: &destinationDS)
+        passDataToPostCreateScene(selectedPost: self.dataStore!.post as! PostCellSupport, destination: &destinationDS)
         navigateToPostCreateScene(source: viewController!, destination: destinationVC)
     }
 
@@ -92,7 +93,9 @@ class PostsShowRouter: NSObject, PostsShowRoutingLogic, PostsShowDataPassing {
         destination.userName    =   userName
     }
     
-    func passDataToPostCreateScene(userName: String, destination: inout PostCreateDataStore) {
-//        destination.userName    =   userName
+    func passDataToPostCreateScene(selectedPost: PostCellSupport, destination: inout PostCreateDataStore) {
+        destination.commentTitle            =   selectedPost.title
+        destination.commentParentAuthor     =   selectedPost.parentAuthor
+        destination.commentParentPermlink   =   selectedPost.parentPermlink
     }
 }

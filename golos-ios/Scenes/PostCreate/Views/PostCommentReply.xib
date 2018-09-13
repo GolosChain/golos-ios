@@ -12,9 +12,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PostCommentReply" customModule="Golos" customModuleProvider="target">
             <connections>
-                <outlet property="commentLabel" destination="Fln-8C-TQo" id="Yc1-b9-tCo"/>
                 <outlet property="contentView" destination="qDo-Vl-LE2" id="1rp-FL-dqK"/>
+                <outlet property="markdownViewManager" destination="DqF-CJ-fKi" id="Ntg-lN-Hgz"/>
                 <outlet property="view" destination="iN0-l3-epB" id="MX6-Qc-zNf"/>
+                <outletCollection property="hightsCollection" destination="NRJ-UB-2Iz" collectionClass="NSMutableArray" id="JkW-Dy-IIw"/>
+                <outletCollection property="hightsCollection" destination="1lf-K1-7df" collectionClass="NSMutableArray" id="3FC-au-NC6"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -25,13 +27,11 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qDo-Vl-LE2">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
                     <subviews>
-                        <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fln-8C-TQo">
-                            <rect key="frame" x="16" y="25" width="343" height="21"/>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
+                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DqF-CJ-fKi" customClass="MarkdownViewManager" customModule="Golos" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="20" width="375" height="34"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <viewLayoutGuide key="safeArea" id="4yH-zJ-lCu"/>
+                        </view>
                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SMB-zk-Gft">
                             <rect key="frame" x="0.0" y="69" width="375" height="1"/>
                             <color key="backgroundColor" red="0.85882352941176465" green="0.85882352941176465" blue="0.85882352941176465" alpha="1" colorSpace="calibratedRGB"/>
@@ -42,12 +42,13 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
+                        <constraint firstItem="SMB-zk-Gft" firstAttribute="top" secondItem="DqF-CJ-fKi" secondAttribute="bottom" constant="15" id="1lf-K1-7df"/>
                         <constraint firstAttribute="bottom" secondItem="SMB-zk-Gft" secondAttribute="bottom" id="C5Y-yT-axJ"/>
-                        <constraint firstItem="Fln-8C-TQo" firstAttribute="centerY" secondItem="qDo-Vl-LE2" secondAttribute="centerY" id="Emt-8a-2g1"/>
-                        <constraint firstAttribute="trailing" secondItem="Fln-8C-TQo" secondAttribute="trailing" constant="16" id="XDU-CR-ZNu"/>
+                        <constraint firstAttribute="trailing" secondItem="DqF-CJ-fKi" secondAttribute="trailing" id="GOr-1u-0Gp"/>
+                        <constraint firstItem="DqF-CJ-fKi" firstAttribute="top" secondItem="qDo-Vl-LE2" secondAttribute="top" constant="20" id="NRJ-UB-2Iz"/>
+                        <constraint firstItem="DqF-CJ-fKi" firstAttribute="leading" secondItem="qDo-Vl-LE2" secondAttribute="leading" id="V2H-cd-Cha"/>
                         <constraint firstItem="SMB-zk-Gft" firstAttribute="leading" secondItem="qDo-Vl-LE2" secondAttribute="leading" id="jAs-b9-Qfq"/>
                         <constraint firstAttribute="trailing" secondItem="SMB-zk-Gft" secondAttribute="trailing" id="lO4-If-pcn"/>
-                        <constraint firstItem="Fln-8C-TQo" firstAttribute="leading" secondItem="qDo-Vl-LE2" secondAttribute="leading" constant="16" id="tgJ-hW-dRc"/>
                     </constraints>
                 </view>
             </subviews>

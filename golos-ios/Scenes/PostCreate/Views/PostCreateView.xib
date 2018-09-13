@@ -26,7 +26,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
                     <subviews>
                         <textField clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Post Title Placeholder" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qzi-bL-P1g" userLabel="Title Round Style Text Field">
-                            <rect key="frame" x="16" y="42" width="343" height="20"/>
+                            <rect key="frame" x="16" y="25" width="343" height="20"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="20" id="igH-dY-0so"/>
@@ -40,8 +40,14 @@
                     <constraints>
                         <constraint firstItem="Qzi-bL-P1g" firstAttribute="leading" secondItem="ks4-3C-ZSP" secondAttribute="leading" constant="16" id="Sbb-k1-L70"/>
                         <constraint firstAttribute="trailing" secondItem="Qzi-bL-P1g" secondAttribute="trailing" constant="16" id="SxB-EM-wpP"/>
+                        <constraint firstItem="Qzi-bL-P1g" firstAttribute="centerY" secondItem="ks4-3C-ZSP" secondAttribute="centerY" id="XyY-7W-ag4"/>
                         <constraint firstAttribute="bottom" secondItem="Qzi-bL-P1g" secondAttribute="bottom" constant="8" id="k8K-Gj-aJb"/>
                     </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="k8K-Gj-aJb"/>
+                        </mask>
+                    </variation>
                 </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -22,6 +22,15 @@ extension UITextView {
         self.textAlignment              =   alignment
     }
     
+    func centerVertically() {
+        let fittingSize                 =   CGSize(width: bounds.width, height: CGFloat.greatestFiniteMagnitude)
+        let size                        =   sizeThatFits(fittingSize)
+        let topOffset                   =   (bounds.size.height - size.height * zoomScale) / 2
+        let positiveTopOffset           =   max(1, topOffset)
+        
+        contentOffset.y                 =   -positiveTopOffset
+    }
+    
     func showToolbar(handlerAction: ((Int) -> Void)?) {
         let toolbar: UIToolbar          =   UIToolbar(frame: CGRect.init(x: 0.0, y: 0.0,
                                                                          width: UIScreen.main.bounds.width * widthRatio, height: 56.0 * heightRatio))

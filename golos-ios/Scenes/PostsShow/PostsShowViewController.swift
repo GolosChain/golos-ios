@@ -169,13 +169,16 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
                 self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
             }
             
-            activeVC.handlerCommentsButtonTapped                =   { [weak self] in
-                self?.router?.routeToPostCreateScene(withType: .createComment)
+            activeVC.handlerCommentsButtonTapped                =   { [weak self] postShortInfo in
+                if let indexPath = postShortInfo.indexPath, let activeVC = self?.containerView.activeVC {
+                    self?.interactor?.save(post: activeVC.fetchedResultsController.object(at: indexPath) as! NSManagedObject)
+                    self?.router?.routeToPostShowScene(withScrollToComments: true)
+                }
             }
             
             activeVC.handlerSelectItem                          =   { [weak self] selectedPost in
                 self?.interactor?.save(post: selectedPost!)
-                self?.router?.routeToPostShowScene()
+                self?.router?.routeToPostShowScene(withScrollToComments: false)
             }
             
             activeVC.handlerAuthorProfileImageButtonTapped      =   { [weak self] userName in

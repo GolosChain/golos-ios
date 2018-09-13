@@ -8,14 +8,14 @@
         <attribute name="time" attributeType="String" defaultValueString="&quot;&quot;" syncable="YES"/>
         <attribute name="voter" attributeType="String" defaultValueString="&quot;&quot;" syncable="YES"/>
         <attribute name="weight" optional="YES" attributeType="String" defaultValueString="&quot;&quot;" syncable="YES"/>
-        <relationship name="actual" optional="YES" maxCount="1" deletionRule="Deny" destinationEntity="Actual" inverseName="activeVotes" inverseEntity="Actual" syncable="YES"/>
-        <relationship name="blog" optional="YES" maxCount="1" deletionRule="Deny" destinationEntity="Blog" inverseName="activeVotes" inverseEntity="Blog" syncable="YES"/>
-        <relationship name="comment" optional="YES" maxCount="1" deletionRule="Deny" destinationEntity="Comment" inverseName="activeVotes" inverseEntity="Comment" syncable="YES"/>
-        <relationship name="lenta" optional="YES" maxCount="1" deletionRule="Deny" destinationEntity="Lenta" inverseName="activeVotes" inverseEntity="Lenta" syncable="YES"/>
-        <relationship name="new" optional="YES" maxCount="1" deletionRule="Deny" destinationEntity="New" inverseName="activeVotes" inverseEntity="New" syncable="YES"/>
-        <relationship name="popular" optional="YES" maxCount="1" deletionRule="Deny" destinationEntity="Popular" inverseName="activeVotes" inverseEntity="Popular" syncable="YES"/>
-        <relationship name="promo" optional="YES" maxCount="1" deletionRule="Deny" destinationEntity="Promo" inverseName="activeVotes" inverseEntity="Promo" syncable="YES"/>
-        <relationship name="reply" optional="YES" maxCount="1" deletionRule="Deny" destinationEntity="Reply" inverseName="activeVotes" inverseEntity="Reply" syncable="YES"/>
+        <relationship name="actual" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Actual" inverseName="activeVotes" inverseEntity="Actual" syncable="YES"/>
+        <relationship name="blog" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Blog" inverseName="activeVotes" inverseEntity="Blog" syncable="YES"/>
+        <relationship name="comment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Comment" inverseName="activeVotes" inverseEntity="Comment" syncable="YES"/>
+        <relationship name="lenta" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Lenta" inverseName="activeVotes" inverseEntity="Lenta" syncable="YES"/>
+        <relationship name="new" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="New" inverseName="activeVotes" inverseEntity="New" syncable="YES"/>
+        <relationship name="popular" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Popular" inverseName="activeVotes" inverseEntity="Popular" syncable="YES"/>
+        <relationship name="promo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Promo" inverseName="activeVotes" inverseEntity="Promo" syncable="YES"/>
+        <relationship name="reply" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Reply" inverseName="activeVotes" inverseEntity="Reply" syncable="YES"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
                 <constraint value="id"/>
@@ -384,17 +384,17 @@
         </uniquenessConstraints>
     </entity>
     <elements>
-        <element name="ActiveVote" positionX="-459" positionY="-81" width="128" height="270"/>
-        <element name="Actual" positionX="-405" positionY="-27" width="128" height="420"/>
+        <element name="ActiveVote" positionX="-459" positionY="-81" width="128" height="30"/>
+        <element name="Actual" positionX="-405" positionY="-27" width="128" height="30"/>
         <element name="AppSettings" positionX="-459" positionY="-81" width="128" height="90"/>
-        <element name="Blog" positionX="-459" positionY="-81" width="128" height="435"/>
-        <element name="Comment" positionX="-459" positionY="-81" width="128" height="420"/>
+        <element name="Blog" positionX="-459" positionY="-81" width="128" height="30"/>
+        <element name="Comment" positionX="-459" positionY="-81" width="128" height="30"/>
         <element name="ImageCached" positionX="-459" positionY="-81" width="128" height="90"/>
-        <element name="Lenta" positionX="-459" positionY="-81" width="128" height="435"/>
-        <element name="New" positionX="-450" positionY="-72" width="128" height="420"/>
-        <element name="Popular" positionX="-441" positionY="-63" width="128" height="420"/>
-        <element name="Promo" positionX="-459" positionY="-81" width="128" height="420"/>
-        <element name="Reply" positionX="-450" positionY="-72" width="128" height="420"/>
+        <element name="Lenta" positionX="-459" positionY="-81" width="128" height="30"/>
+        <element name="New" positionX="-450" positionY="-72" width="128" height="30"/>
+        <element name="Popular" positionX="-441" positionY="-63" width="128" height="30"/>
+        <element name="Promo" positionX="-459" positionY="-81" width="128" height="30"/>
+        <element name="Reply" positionX="-450" positionY="-72" width="128" height="30"/>
         <element name="SettingNotification" positionX="-459" positionY="-81" width="128" height="75"/>
         <element name="User" positionX="-666" positionY="-90" width="128" height="375"/>
         <element name="UserSecretActiveKey" positionX="-459" positionY="-81" width="128" height="120"/>

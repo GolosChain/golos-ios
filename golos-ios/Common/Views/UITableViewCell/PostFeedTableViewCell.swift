@@ -12,12 +12,17 @@ import GoloSwift
 
 class PostFeedTableViewCell: UITableViewCell, HandlersCellSupport {
     // MARK: - Properties
-    var handlerShareButtonTapped: (() -> Void)?
-    var handlerUpvotesButtonTapped: (() -> Void)?
-    var handlerCommentsButtonTapped: (() -> Void)?
+    var postShortInfo: PostShortInfo!
+
+    // Handlers
     var handlerAuthorPostSelected: ((String) -> Void)?
 
+    // HandlersCellSupport
+    var handlerShareButtonTapped: (() -> Void)?
+    var handlerUpvotesButtonTapped: (() -> Void)?
+    var handlerCommentsButtonTapped: ((PostShortInfo) -> Void)?
 
+    
     // MARK: - IBOutlets
     @IBOutlet weak var postImageView: UIImageView!
     
@@ -115,7 +120,7 @@ class PostFeedTableViewCell: UITableViewCell, HandlersCellSupport {
     }
     
     @IBAction func commentsButtonTapped(_ sender: UIButton) {
-        self.handlerCommentsButtonTapped!()
+        self.handlerCommentsButtonTapped!(self.postShortInfo)
     }
     
     @IBAction func shareButtonTapped(_ sender: UIButton) {
@@ -140,6 +145,8 @@ extension PostFeedTableViewCell: ConfigureCell {
         guard let model = item as? PostCellSupport else {
             return
         }
+        
+        self.postShortInfo  =   PostShortInfo(indexPath: indexPath)
         
         // Set User info
         if let user = User.fetch(byName: model.author) {
@@ -196,7 +203,10 @@ extension PostFeedTableViewCell: ConfigureCell {
 
         if model.children > 0 {
             self.commentsButton.setTitle("\(model.children)", for: .normal)
-            self.commentsButton.isSelected  =   (model.activeVotes?.allObjects as! [ActiveVote]).contains(where: { $0.voter == User.current?.name ?? "" })
+        }
+        
+        if let activeVotes = model.activeVotes, activeVotes.count > 0 {
+            self.commentsButton.isSelected = (activeVotes.allObjects as! [ActiveVote]).contains(where: { $0.voter == User.current?.name ?? "XXX" })
         }
         
         self.layoutIfNeeded()
