@@ -70,7 +70,7 @@ var isNetworkAvailable: Bool {
     }
 }
 
-let appVersion                          =   Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String
+let appVersion                          =   String(format: "%@.%@", Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String, Bundle.main.infoDictionary?["CFBundleVersion"] as! String)
 
 
 // Keys
