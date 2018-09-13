@@ -158,7 +158,7 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
                 self?.loadPosts(lastItem == nil)
             }
 
-            activeVC.handlerAnswerButtonTapped                  =   { [weak self] in
+            activeVC.handlerAnswerButtonTapped                  =   { [weak self] postShortInfo in
                 self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
             }
             

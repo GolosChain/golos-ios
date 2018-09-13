@@ -251,7 +251,8 @@ class UserProfileShowViewController: GSBaseViewController, ContainerViewSupport 
     
     private func setActiveViewControllerHandlers() {
         if let activeVC = self.containerView.activeVC {
-            activeVC.handlerAnswerButtonTapped      =   { [weak self] in
+            activeVC.handlerAnswerButtonTapped      =   { [weak self] postShortInfo in
+                self?.interactor?.save(commentReply: postShortInfo)
                 self?.router?.routeToPostCreateScene(withType: .createCommentReply)
             }
             
@@ -280,6 +281,11 @@ class UserProfileShowViewController: GSBaseViewController, ContainerViewSupport 
                     self?.interactor?.save(blog: blog)
                     self?.router?.routeToPostShowScene()
                 }
+            }
+            
+            // Reply handlers
+            activeVC.handlerAuthorProfileImageButtonTapped    =   { [weak self] authorName in
+                self?.router?.routeToUserProfileScene(byUserName: authorName)
             }
         }
     }

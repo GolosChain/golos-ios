@@ -176,7 +176,11 @@ extension String {
         let endIndex        =   String.Index(encodedOffset: 120)
         let words           =   self.components(separatedBy: " ")
         let string120       =   self[startIndex..<endIndex]
-        let title           =   words.prefix(string120.components(separatedBy: " ").count).joined(separator: " ") + "..."
+        var title           =   words.prefix(string120.components(separatedBy: " ").count).joined(separator: " ")
+        
+        if !(title.components(separatedBy: " ").last?.hasSuffix("))"))! {
+            title += "..."
+        }
         
         return title
     }

@@ -41,7 +41,7 @@ class GSTableViewController: GSBaseViewController, HandlersCellSupport {
 //    }
     
     // Handlers
-    var handlerAnswerButtonTapped: (() -> Void)?
+    var handlerAnswerButtonTapped: ((PostShortInfo) -> Void)?
     var handlerReplyTypeButtonTapped: (() -> Void)?
     var handlerRefreshData: ((NSManagedObject?) -> Void)?
     var handlerSelectItem: ((NSManagedObject?) -> Void)?
@@ -368,12 +368,16 @@ extension GSTableViewController: UITableViewDataSource {
 
         // Handlers Reply comletion
         if type(of: entity) == Reply.self {
-            (cell as! ReplyTableViewCell).handlerAnswerButtonTapped         =   { [weak self] in
-                self?.handlerAnswerButtonTapped!()
+            (cell as! ReplyTableViewCell).handlerAnswerButtonTapped         =   { [weak self] postShortInfo in
+                self?.handlerAnswerButtonTapped!(postShortInfo)
             }
             
             (cell as! ReplyTableViewCell).handlerReplyTypeButtonTapped      =   { [weak self] in
                 self?.handlerReplyTypeButtonTapped!()
+            }
+
+            (cell as! ReplyTableViewCell).handlerAuthorCommentReplyTapped   =   { [weak self] authorName in
+                self?.handlerAuthorProfileImageButtonTapped!(authorName)
             }
         }
         

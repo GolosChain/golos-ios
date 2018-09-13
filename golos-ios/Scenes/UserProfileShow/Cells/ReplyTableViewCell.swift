@@ -26,18 +26,28 @@ enum ReplyType: String {
 
 class ReplyTableViewCell: UITableViewCell, ReusableCell {
     // MARK: - Properties
+    var postShortInfo : PostShortInfo!
+    
     var replyType: ReplyType = .post {
         didSet {
             self.replyTypeButton.setTitle(replyType.caseTitle().localized().lowercased(), for: .normal)
         }
     }
     
-    var handlerAnswerButtonTapped: (() -> Void)?
+    // Handlers
+    var handlerAnswerButtonTapped: ((PostShortInfo) -> Void)?
     var handlerReplyTypeButtonTapped: (() -> Void)?
+    var handlerAuthorCommentReplyTapped: ((String) -> Void)?
 
     
     // MARK: - IBOutlets
-    @IBOutlet weak var authorAvatarImageView: UIImageView!
+    @IBOutlet weak var authorAvatarImageView: UIImageView! {
+        didSet {
+            let tap = UITapGestureRecognizer(target: self, action: #selector(authorLabelTapped))
+            authorAvatarImageView.isUserInteractionEnabled = true
+            authorAvatarImageView.addGestureRecognizer(tap)
+        }
+    }
     
     @IBOutlet weak var reputationLabel: UILabel! {
         didSet {
@@ -56,6 +66,10 @@ class ReplyTableViewCell: UITableViewCell, ReusableCell {
                              font:              UIFont(name: "SFProDisplay-Regular", size: 10.0 * widthRatio),
                              alignment:         .left,
                              isMultiLines:      false)
+            
+            let tap = UITapGestureRecognizer(target: self, action: #selector(authorLabelTapped))
+            authorLabel.isUserInteractionEnabled = true
+            authorLabel.addGestureRecognizer(tap)
         }
     }
     
@@ -182,8 +196,12 @@ class ReplyTableViewCell: UITableViewCell, ReusableCell {
     
 
     // MARK: - Actions
+    @objc func authorLabelTapped(sender: UITapGestureRecognizer) {
+        self.handlerAuthorCommentReplyTapped!(self.authorLabel.text!)
+    }
+    
     @IBAction func answerButtonTapped(_ sender: UIButton) {
-        self.handlerAnswerButtonTapped!()
+        self.handlerAnswerButtonTapped!(self.postShortInfo)
     }
 
     @IBAction func replyTypeButtonTapped(_ sender: UIButton) {
@@ -208,6 +226,13 @@ extension ReplyTableViewCell: ConfigureCell {
         guard let model = item as? Reply, let reply = CoreDataManager.instance.readEntity(withName: "Reply", andPredicateParameters: NSPredicate(format: "id == \(model.id)")) as? Reply else {
             return
         }
+        
+        self.postShortInfo  =   PostShortInfo(title:            model.body.substring(withCharactersCount: 120),
+                                              author:           model.author,
+                                              permlink:         model.permlink,
+                                              indexPath:        nil,
+                                              parentAuthor:     model.parentAuthor,
+                                              parentPermlink:   model.parentPermlink)
         
         // Load commentator info
         RestAPIManager.loadUsersInfo(byNames: [reply.author], completion: { [weak self] errorAPI in

@@ -17,6 +17,7 @@ import GoloSwift
 @objc protocol UserProfileShowRoutingLogic {
     func routeToPostShowScene()
     func routeToSettingsShowScene()
+    func routeToUserProfileScene(byUserName name: String)
     func routeToPostCreateScene(withType sceneType: SceneType)
 }
 
@@ -57,12 +58,22 @@ class UserProfileShowRouter: NSObject, UserProfileShowRoutingLogic, UserProfileS
         let storyboard              =   UIStoryboard(name: "PostCreate", bundle: nil)
         let destinationVC           =   storyboard.instantiateViewController(withIdentifier: "PostCreateVC") as! PostCreateViewController
         destinationVC.sceneType     =   sceneType
-//        var destinationDS       =   destinationVC.router!.dataStore!
+        var destinationDS       =   destinationVC.router!.dataStore!
         
-//        passDataToPostCreateScene(userName: name, destination: &destinationDS)
+        passDataToPostCreateScene(postShortInfo: self.dataStore!.commentReply!, destination: &destinationDS)
         navigateToPostCreateScene(source: viewController!, destination: destinationVC)
     }
     
+    func routeToUserProfileScene(byUserName name: String) {
+        let storyboard              =   UIStoryboard(name: "UserProfileShow", bundle: nil)
+        let destinationVC           =   storyboard.instantiateViewController(withIdentifier: "UserProfileShowVC") as! UserProfileShowViewController
+        destinationVC.sceneMode     =   .preview
+        var destinationDS           =   destinationVC.router!.dataStore!
+        destinationDS.userName      =   name
+        
+        navigateToUserProfileScene(source: viewController!, destination: destinationVC)
+    }
+
     
     // MARK: - Navigation
     func navigateToSettingsShowScene(source: UserProfileShowViewController, destination: SettingsShowViewController) {
@@ -81,6 +92,10 @@ class UserProfileShowRouter: NSObject, UserProfileShowRoutingLogic, UserProfileS
         source.show(destination, sender: nil)
     }
 
+    func navigateToUserProfileScene(source: UserProfileShowViewController, destination: UserProfileShowViewController) {
+        source.show(destination, sender: nil)
+    }
+
     
     // MARK: - Passing data
     func passDataToPostShowScene(source: UserProfileShowDataStore, destination: inout PostShowDataStore) {
@@ -88,7 +103,9 @@ class UserProfileShowRouter: NSObject, UserProfileShowRoutingLogic, UserProfileS
         destination.postType    =   PostsFeedType.blog
     }
     
-    func passDataToPostCreateScene(userName: String, destination: inout PostCreateDataStore) {
-//        destination.userName    =   userName
+    func passDataToPostCreateScene(postShortInfo: PostShortInfo, destination: inout PostCreateDataStore) {
+        destination.commentTitle            =   postShortInfo.title
+        destination.commentParentAuthor     =   postShortInfo.parentAuthor
+        destination.commentParentPermlink   =   postShortInfo.parentPermlink
     }
 }

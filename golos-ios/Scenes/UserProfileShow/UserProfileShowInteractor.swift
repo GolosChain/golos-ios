@@ -18,6 +18,7 @@ import GoloSwift
 protocol UserProfileShowBusinessLogic {
     func save(blog: NSManagedObject)
     func save(lastItem: NSManagedObject?)
+    func save(commentReply: PostShortInfo)
     func loadUserInfo(withRequestModel requestModel: UserProfileShowModels.UserInfo.RequestModel)
     func loadUserDetails(withRequestModel requestModel: UserProfileShowModels.UserDetails.RequestModel)
 }
@@ -25,6 +26,7 @@ protocol UserProfileShowBusinessLogic {
 protocol UserProfileShowDataStore {
     var userName: String? { get set }
     var lastItem: NSManagedObject? { get set }
+    var commentReply: PostShortInfo? { get set }
     var selectedBlog: NSManagedObject? { get set }
 }
 
@@ -37,6 +39,7 @@ class UserProfileShowInteractor: UserProfileShowBusinessLogic, UserProfileShowDa
     // MARK: - UserProfileShowDataStore implementation
     var userName: String?   =   User.current?.name
     var lastItem: NSManagedObject?
+    var commentReply: PostShortInfo?
     var selectedBlog: NSManagedObject?
 
     
@@ -55,6 +58,10 @@ class UserProfileShowInteractor: UserProfileShowBusinessLogic, UserProfileShowDa
         self.lastItem       =   lastItem
     }
     
+    func save(commentReply: PostShortInfo) {
+        self.commentReply   =   commentReply
+    }
+
     func loadUserInfo(withRequestModel requestModel: UserProfileShowModels.UserInfo.RequestModel) {
         RestAPIManager.loadUsersInfo(byNames: [self.userName ?? ""], completion: { errorAPI in
             if errorAPI == nil {
