@@ -76,7 +76,7 @@ class PostCreateInteractor: PostCreateBusinessLogic, PostCreateDataStore {
             self?.save(attachments: attachments)
             
             // API 'get_content'
-            let content     =   RequestParameterAPI.Content(author: User.current!.name, permlink: (self?.tags!.first!.title!)!)
+            let content     =   RequestParameterAPI.Content(author: User.current!.name, permlink: (self?.tags!.first!.title!)!.transliteration())
             
             RestAPIManager.loadPostPermlink(byContent: content, completion: { errorAPI in
                 guard errorAPI.caseInfo.message != "No Internet Connection" else {
@@ -93,7 +93,7 @@ class PostCreateInteractor: PostCreateBusinessLogic, PostCreateDataStore {
                 Logger.log(message: "\njsonMetadataString:\n\t\(jsonMetadataString)", event: .debug)
                 
                 let comment                 =   RequestParameterAPI.Comment(parentAuthor:       "",
-                                                                            parentPermlink:     (self?.tags!.first!.title!)!,
+                                                                            parentPermlink:     (self?.tags!.first!.title!)!.transliteration(),
                                                                             author:             User.current!.name,
                                                                             title:              (self?.commentTitle!)!,
                                                                             body:               (self?.commentBody!)!,

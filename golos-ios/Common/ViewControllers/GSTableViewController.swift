@@ -392,6 +392,7 @@ extension GSTableViewController: UITableViewDataSource {
             }
 
             (cell as! PostFeedTableViewCell).handlerAuthorPostSelected      =   { [weak self] userName in
+                // Transition blocked in UserProfileShow scene
                 if type(of: entity) != Blog.self {
                     self?.handlerAuthorProfileImageButtonTapped!(userName)
                 }

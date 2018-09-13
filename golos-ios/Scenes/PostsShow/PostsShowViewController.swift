@@ -32,6 +32,7 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
     
     var selectedSegment: SJSegmentTab?
     var segmentedViewController: SJSegmentedViewController!
+    var segmentControllers: [GSTableViewController]!
     
     
     // MARK: - IBOutlets
@@ -121,7 +122,6 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
         super.viewDidLoad()
         
         self.loadViewSettings()
-        self.setupSegmentedControl()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -133,13 +133,18 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
         // Load Posts
         self.loadPosts(false)
         
-        self.localizeTitles()
+        if self.segmentedViewController != nil {
+            self.segmentedViewController.view.removeFromSuperview()
+        }
+
+        self.setupSegmentedControl()
     }
     
     
     // MARK: - Custom Functions
     private func loadViewSettings() {
         self.view.tune()
+        self.segmentControllers = self.getContainerViewControllers()
     }
     
     private func setActiveViewControllerHandlers() {
@@ -197,22 +202,22 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
                                                         .instantiateViewController(withIdentifier: "PopularPostsShowVC") as! GSTableViewController
         tableViewController2.title              =   "Popular".localized()
         tableViewController2.cellIdentifier     =   "PopularPostTableViewCell"
-        
+
         let tableViewController3                =   UIStoryboard(name: "PostsShow", bundle: nil)
                                                         .instantiateViewController(withIdentifier: "ActualPostsShowVC") as! ActualPostsShowViewController
         tableViewController3.title              =   "Actual".localized()
         tableViewController3.cellIdentifier     =   "ActualPostTableViewCell"
-        
+
         let tableViewController4                =   UIStoryboard(name: "PostsShow", bundle: nil)
                                                         .instantiateViewController(withIdentifier: "NewPostsShowVC") as! GSTableViewController
         tableViewController4.title              =   "New".localized()
         tableViewController4.cellIdentifier     =   "NewPostTableViewCell"
-        
+
         let tableViewController5                =   UIStoryboard(name: "PostsShow", bundle: nil)
                                                         .instantiateViewController(withIdentifier: "PromoPostsShowVC") as! GSTableViewController
         tableViewController5.title              =   "Promo".localized()
         tableViewController5.cellIdentifier     =   "PromoPostTableViewCell"
-        
+
         let segmentControllers      =   User.current == nil ?   [ tableViewController2, tableViewController3, tableViewController4, tableViewController5 ] :
                                                                 [ tableViewController1, tableViewController2, tableViewController3, tableViewController4, tableViewController5 ]
 
@@ -220,7 +225,6 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
     }
     
     private func setupSegmentedControl() {
-        let segmentControllers      =   self.getContainerViewControllers()
         let headerViewController    =   User.current == nil ? segmentControllers[1] : segmentControllers[0]
         
         segmentedViewController     =   SJSegmentedViewController(headerViewController:     headerViewController,
@@ -249,7 +253,8 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
     
     // MARK: - Actions
     override func localizeTitles() {
-//        _ = self.segmentedViewController.segmentControllers.map({ $0.title = "XXX" })
+        _ = self.segmentedViewController.segmentControllers.map({ $0.title!.localize() })
+//        _ = self.segmentedViewController.segmentControllers.map({ $0.title = ($0 as! GSTableViewController).sceneTitle!.localized() })
     }
 }
 

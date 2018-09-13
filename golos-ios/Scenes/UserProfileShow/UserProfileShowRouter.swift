@@ -38,31 +38,31 @@ class UserProfileShowRouter: NSObject, UserProfileShowRoutingLogic, UserProfileS
 
     // MARK: - Routing
     func routeToPostShowScene() {
-        let storyboard      =   UIStoryboard(name: "PostShow", bundle: nil)
-        let destinationVC   =   storyboard.instantiateViewController(withIdentifier: "PostShowVC") as! PostShowViewController
-        var destinationDS   =   destinationVC.router!.dataStore!
+        let storyboard              =   UIStoryboard(name: "PostShow", bundle: nil)
+        let destinationVC           =   storyboard.instantiateViewController(withIdentifier: "PostShowVC") as! PostShowViewController
+        var destinationDS           =   destinationVC.router!.dataStore!
         
         passDataToPostShowScene(source: dataStore!, destination: &destinationDS)
         navigateToPostShowScene(source: viewController!, destination: destinationVC)
     }
 
     func routeToSettingsShowScene() {
-        let storyboard      =   UIStoryboard(name: "SettingsShow", bundle: nil)
-        let destinationVC   =   storyboard.instantiateViewController(withIdentifier: "SettingsShowVC") as! SettingsShowViewController
+        let storyboard              =   UIStoryboard(name: "SettingsShow", bundle: nil)
+        let destinationVC           =   storyboard.instantiateViewController(withIdentifier: "SettingsShowVC") as! SettingsShowViewController
 
         navigateToSettingsShowScene(source: viewController!, destination: destinationVC)
     }
     
     func routeToPostCreateScene(withType sceneType: SceneType) {
-        let storyboard          =   UIStoryboard(name: "PostCreate", bundle: nil)
-        let destinationVC       =   storyboard.instantiateViewController(withIdentifier: "PostCreateVC") as! PostCreateViewController
-        destinationVC.sceneType =   sceneType
+        let storyboard              =   UIStoryboard(name: "PostCreate", bundle: nil)
+        let destinationVC           =   storyboard.instantiateViewController(withIdentifier: "PostCreateVC") as! PostCreateViewController
+        destinationVC.sceneType     =   sceneType
 //        var destinationDS       =   destinationVC.router!.dataStore!
         
 //        passDataToPostCreateScene(userName: name, destination: &destinationDS)
         navigateToPostCreateScene(source: viewController!, destination: destinationVC)
     }
-
+    
     
     // MARK: - Navigation
     func navigateToSettingsShowScene(source: UserProfileShowViewController, destination: SettingsShowViewController) {
