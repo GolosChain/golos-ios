@@ -115,7 +115,11 @@ extension ThemeTagCollectionViewCell: UITextFieldDelegate {
         let count = (textField.text?.count)! + string.count
         
         // Max Tag title lenght = 24
-        guard count < 25 && string.checkTagTitleRule() || string.isEmpty || !string.isEmpty else {
+        guard count < 25 else {
+            return false
+        }
+        
+        guard string.checkTagTitleRule() || string.isEmpty || !string.isEmpty else {
             return false
         }
         
