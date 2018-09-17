@@ -33,7 +33,8 @@ class CommentView: UIView, HandlersCellSupport {
     // MARK: - IBOutlets
     @IBOutlet var view: UIView!
     @IBOutlet weak var contentView: UIView!
-    @IBOutlet weak var commentsButton: UIButton!
+    @IBOutlet weak var upvotesButton: UIButton!
+    @IBOutlet weak var commentsButton: UIButton!    
     @IBOutlet weak var authorProfileImageButton: UIButton!
     @IBOutlet weak var markdownViewManager: MarkdownViewManager!
     

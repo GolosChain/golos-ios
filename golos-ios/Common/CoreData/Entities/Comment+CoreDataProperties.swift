@@ -35,6 +35,7 @@ extension Comment: PostCellSupport {
     @NSManaged public var pendingPayoutValue: Float
     @NSManaged public var children: Int16
     @NSManaged public var sortID: Int16
+    @NSManaged public var activeVotesPresent: Bool
 
     @NSManaged public var tags: [String]?
     @NSManaged public var rebloggedBy: [String]?

@@ -53,10 +53,11 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                                 <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="-5" maxY="0.0"/>
-                                <state key="normal" title="10000" image="icon-button-upvotes-normal">
+                                <state key="normal" title="10000" image="icon-button-upvotes-default">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
                                 <state key="disabled" image="icon-button-upvotes-highlighted"/>
+                                <state key="selected" image="icon-button-upvotes-selected"/>
                                 <connections>
                                     <action selector="upvotesButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="WL0-Kq-e6N"/>
                                 </connections>
@@ -153,7 +154,8 @@
         <image name="icon-button-comments-highlighted" width="20" height="20"/>
         <image name="icon-button-comments-selected" width="20" height="20"/>
         <image name="icon-button-share-normal" width="24" height="24"/>
+        <image name="icon-button-upvotes-default" width="20" height="20"/>
         <image name="icon-button-upvotes-highlighted" width="20" height="20"/>
-        <image name="icon-button-upvotes-normal" width="20" height="20"/>
+        <image name="icon-button-upvotes-selected" width="20" height="20"/>
     </resources>
 </document>

@@ -207,6 +207,10 @@ extension PostFeedTableViewCell: ConfigureCell {
         
         if let activeVotes = model.activeVotes, activeVotes.count > 0 {
             self.commentsButton.isSelected = (activeVotes.allObjects as! [ActiveVote]).contains(where: { $0.voter == User.current?.name ?? "XXX" })
+            
+            if self.commentsButton.isSelected {
+                Logger.log(message: "Set green like icon", event: .debug)
+            }
         }
         
         self.layoutIfNeeded()

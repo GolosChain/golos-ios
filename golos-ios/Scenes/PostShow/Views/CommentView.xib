@@ -22,6 +22,7 @@
                 <outlet property="markdownViewManager" destination="Mnb-Ny-ryB" id="dXy-AN-Otj"/>
                 <outlet property="replyButton" destination="0FV-JI-k6m" id="LqE-42-Edz"/>
                 <outlet property="timeLabel" destination="JV1-jP-ZcQ" id="Tgb-ss-qh4"/>
+                <outlet property="upvotesButton" destination="RVe-ej-86a" id="Icj-bh-8Ok"/>
                 <outlet property="view" destination="iN0-l3-epB" id="fR0-Z6-6hX"/>
                 <outletCollection property="widthsCollection" destination="K8l-41-h6y" collectionClass="NSMutableArray" id="egR-wR-70K"/>
                 <outletCollection property="widthsCollection" destination="D4v-Ma-HTj" collectionClass="NSMutableArray" id="ueX-rf-z3E"/>

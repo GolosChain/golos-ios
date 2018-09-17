@@ -125,7 +125,6 @@
 		B164F04920E62B5A00C5CDD3 /* UserProfileShow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B164F04820E62B5A00C5CDD3 /* UserProfileShow.storyboard */; };
 		B167FA94211D5CE600662E93 /* CommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B167FA93211D5CE600662E93 /* CommentView.swift */; };
 		B167FA96211D5CF600662E93 /* CommentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B167FA95211D5CF600662E93 /* CommentView.xib */; };
-		B1742A8E20FD03EE009AAE5E /* GSPostsSegmentedControlViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1742A8D20FD03EE009AAE5E /* GSPostsSegmentedControlViewController.swift */; };
 		B181586020B976FD00835034 /* GSBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B181585F20B976FD00835034 /* GSBaseViewController.swift */; };
 		B18B937220B91D4E000CF503 /* ForegroundRemoteNotificationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B18B937120B91D4E000CF503 /* ForegroundRemoteNotificationView.xib */; };
 		B18B937420B91DB8000CF503 /* ForegroundRemoteNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18B937320B91DB8000CF503 /* ForegroundRemoteNotificationView.swift */; };
@@ -392,7 +391,6 @@
 		B164F04820E62B5A00C5CDD3 /* UserProfileShow.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UserProfileShow.storyboard; sourceTree = "<group>"; };
 		B167FA93211D5CE600662E93 /* CommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentView.swift; sourceTree = "<group>"; };
 		B167FA95211D5CF600662E93 /* CommentView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentView.xib; sourceTree = "<group>"; };
-		B1742A8D20FD03EE009AAE5E /* GSPostsSegmentedControlViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GSPostsSegmentedControlViewController.swift; sourceTree = "<group>"; };
 		B181585F20B976FD00835034 /* GSBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GSBaseViewController.swift; sourceTree = "<group>"; };
 		B18B937120B91D4E000CF503 /* ForegroundRemoteNotificationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ForegroundRemoteNotificationView.xib; sourceTree = "<group>"; };
 		B18B937320B91DB8000CF503 /* ForegroundRemoteNotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForegroundRemoteNotificationView.swift; sourceTree = "<group>"; };
@@ -866,7 +864,6 @@
 			isa = PBXGroup;
 			children = (
 				B1EA155820FE22980015EF76 /* ActualPostsShowViewController.swift */,
-				B1742A8D20FD03EE009AAE5E /* GSPostsSegmentedControlViewController.swift */,
 				B1EA154A20FE02260015EF76 /* NewPostsShowViewController.swift */,
 				B1EA151E20FDC82E0015EF76 /* PopularPostsShowViewController.swift */,
 				B1EA155E20FE243A0015EF76 /* PromoPostsShowViewController.swift */,
@@ -1577,7 +1574,6 @@
 				B136D4FF20D8BA2E003AD279 /* ThemeTagCollectionViewCell.swift in Sources */,
 				B1EE686C20D2D713006BF802 /* PostCommentReply.swift in Sources */,
 				B1084CAE211378780065CAC0 /* PostShowTagCollectionViewCell.swift in Sources */,
-				B1742A8E20FD03EE009AAE5E /* GSPostsSegmentedControlViewController.swift in Sources */,
 				B13FE9B520F5004F00F907BC /* Lenta+CoreDataProperties.swift in Sources */,
 				B1EBAFBB20EB55690050B1A2 /* User+CoreDataClass.swift in Sources */,
 				B127A87A20EB8ABF007133AB /* UserSecretActiveKey+CoreDataClass.swift in Sources */,

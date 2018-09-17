@@ -25,19 +25,19 @@ class PostsShowWorker {
         let userName    =   User.current?.name
         
         var discussion  =   RequestParameterAPI.Discussion.init(limit:              loadDataLimit,
-                                                                truncateBody:       1024,
+                                                                truncateBody:       0,
                                                                 selectAuthors:      parameters.type != .lenta ? nil : (userName == nil ? nil : [ User.current!.name ]),
                                                                 startAuthor:        nil,
                                                                 startPermlink:      nil,
-                                                                voteLimit:          1_000) // -1 or 1000
+                                                                voteLimit:          -1) // -1 or 1000
 
         if let lastItem = parameters.lastItem as? PaginationSupport, String(describing: type(of: lastItem)).lowercased() == parameters.type.rawValue {
             discussion  =   RequestParameterAPI.Discussion.init(limit:              loadDataLimit,
-                                                                truncateBody:       1024,
+                                                                truncateBody:       0,
                                                                 selectAuthors:      parameters.type != .lenta ? nil : (userName == nil ? nil : [ User.current!.name ]),
                                                                 startAuthor:        lastItem.author,
                                                                 startPermlink:      lastItem.permlink,
-                                                                voteLimit:          1_000) // -1 or 1000
+                                                                voteLimit:          -1) // -1 or 1000
         }
         
         return MethodAPIType.getDiscussions(type: parameters.type, parameters: discussion)

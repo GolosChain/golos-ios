@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "icon-button-upvotes-normal.png",
+      "filename" : "icon-button-upvotes-selected.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "icon-button-upvotes-normal@2x.png",
+      "filename" : "icon-button-upvotes-selected@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "icon-button-upvotes-normal@3x.png",
+      "filename" : "icon-button-upvotes-selected@3x.png",
       "scale" : "3x"
     }
   ],

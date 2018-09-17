@@ -167,7 +167,7 @@ class PostShowViewController: GSBaseViewController {
     
     @IBOutlet weak var upvoteButton: UIButton! {
         didSet {
-            upvoteButton.tune(withTitle:        "$23.22",
+            upvoteButton.tune(withTitle:        "",
                               hexColors:        [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
                               font:             UIFont(name: "SFUIDisplay-Regular", size: 10.0),
                               alignment:        .left)
@@ -351,7 +351,7 @@ class PostShowViewController: GSBaseViewController {
                                       font:             UIFont(name: "SFUIDisplay-Regular", size: 10.0),
                                       alignment:        .center)
             
-            commentsSortByButton.isEnabled      =   true
+            commentsSortByButton.isEnabled  =   true
         }
     }
 
@@ -362,8 +362,7 @@ class PostShowViewController: GSBaseViewController {
                                     font:             UIFont(name: "SFUIDisplay-Medium", size: 8.0),
                                     alignment:        .center)
             
-            commentsHideButton.isEnabled        =   true
-            
+            commentsHideButton.isEnabled    =   true
             commentsHideButton.setBorder(color: UIColor(hexString: "#dbdbdb").cgColor, cornerRadius: 4.0 * heightRatio)
         }
     }
@@ -518,6 +517,17 @@ class PostShowViewController: GSBaseViewController {
                 })
             }
             
+            // Set upvotes icon
+            if let activeVotes = displayedPost.activeVotes, activeVotes.count > 0 {
+                self.upvoteButton.isSelected = activeVotes.compactMap({ ($0 as? ActiveVote)?.voter == User.current!.name }).count > 0
+                self.upvoteButton.setTitle("\(activeVotes.count)", for: .normal)
+                
+                if self.upvoteButton.isSelected {
+                    self.upvoteButton.alpha = 1.0
+                    Logger.log(message: "Set green upvote icon", event: .debug)
+                }
+            }
+
             // Subscribe topic
             if let firstTag = displayedPost.tags?.first {
                 self.topicTitleLabel.text       =   firstTag.transliteration().uppercaseFirst

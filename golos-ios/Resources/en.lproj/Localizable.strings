@@ -199,3 +199,11 @@
 "Fetching Failed"                           =   "Fetching Failed from CoreData";
 "Broken Link Failure"                       =   "Broken Link Failure";
 "Response All Content Replies error"        =   "Response All Content Replies Result Error";
+
+
+// Segmented controls
+"Лента"                                     =   "Lenta";
+"Популярное"                                =   "Popular";
+"Актуальное"                                =   "Actual";
+"Новое"                                     =   "New";
+"Промо"                                     =   "Promo";

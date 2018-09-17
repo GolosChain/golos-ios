@@ -22,43 +22,50 @@ extension NSManagedObject {
     
     func update(withModel model: ResponseAPIPost) {
         if var entity = self as? PostCellSupport {
-            entity.id                   =   model.id
-            entity.author               =   model.author
-            entity.category             =   model.category
+            entity.id                           =   model.id
+            entity.author                       =   model.author
+            entity.category                     =   model.category
             
-            entity.title                =   model.title
-            entity.permlink             =   model.permlink
-            entity.allowVotes           =   model.allow_votes
-            entity.allowReplies         =   model.allow_replies
-            entity.jsonMetadata         =   model.json_metadata
-            entity.active               =   model.active.convert(toDateFormat: .expirationDateType)
-            entity.created              =   model.created.convert(toDateFormat: .expirationDateType)
-            entity.lastUpdate           =   model.last_update.convert(toDateFormat: .expirationDateType)
-            entity.lastPayout           =   model.last_payout.convert(toDateFormat: .expirationDateType)
-            entity.parentAuthor         =   model.parent_author
-            entity.parentPermlink       =   model.parent_permlink
-            entity.activeVotesCount     =   Int16(model.active_votes.count)
-            entity.url                  =   model.url
-            entity.pendingPayoutValue   =   (model.pending_payout_value as NSString).floatValue
-            entity.children             =   model.children
+            entity.title                        =   model.title
+            entity.permlink                     =   model.permlink
+            entity.allowVotes                   =   model.allow_votes
+            entity.allowReplies                 =   model.allow_replies
+            entity.jsonMetadata                 =   model.json_metadata
+            entity.active                       =   model.active.convert(toDateFormat: .expirationDateType)
+            entity.created                      =   model.created.convert(toDateFormat: .expirationDateType)
+            entity.lastUpdate                   =   model.last_update.convert(toDateFormat: .expirationDateType)
+            entity.lastPayout                   =   model.last_payout.convert(toDateFormat: .expirationDateType)
+            entity.parentAuthor                 =   model.parent_author
+            entity.parentPermlink               =   model.parent_permlink
+            entity.url                          =   model.url
+            entity.pendingPayoutValue           =   (model.pending_payout_value as NSString).floatValue
+            entity.children                     =   model.children
             
             if let authorReputation = model.author_reputation.stringValue {
-                entity.authorReputation =   authorReputation
+                entity.authorReputation         =   authorReputation
             }
             
             if let rebloggedBy = model.reblogged_by, rebloggedBy.count > 0 {
-                entity.rebloggedBy      =   rebloggedBy
+                entity.rebloggedBy              =   rebloggedBy
             }
             
             // Modify body
-            entity.body                 =   model.body
-                                                .convertImagePathToMarkdown()
-                                                .convertUsersAccounts()
+            entity.body                         =   model.body
+                                                        .convertImagePathToMarkdown()
+                                                        .convertUsersAccounts()
 
             // Set ActiveVote values
-//            if let activeVotes = ActiveVote.updateEntities(fromResponseAPI: model.active_votes, withParentID: model.id), activeVotes.count > 0 {
-//                entity.activeVotes      =   NSSet(array: activeVotes)
-//            }
+            if model.active_votes.count > 0 {
+                entity.activeVotesCount         =   Int16(model.active_votes.count)
+                
+                if let user = User.current {
+                    entity.activeVotesPresent   =   (model.active_votes.first(where: { $0.voter == user.name }) != nil)
+                }
+            }
+            
+            if let activeVotes = ActiveVote.updateEntities(fromResponseAPI: model.active_votes, withParentID: model.id), activeVotes.count > 0 {
+                entity.activeVotes      =   NSSet(array: activeVotes)
+            }
             
             // Extension: parse & save
             self.parse(metaData: model.json_metadata, fromBody: model.body)
