@@ -32,21 +32,117 @@
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V1F-55-FXF" userLabel="Status Bar View">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="64"/>
                                 <subviews>
-                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KWp-YJ-Ykl" userLabel="Control View">
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H3G-FO-Dpg">
                                         <rect key="frame" x="0.0" y="30" width="414" height="34"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <subviews>
+                                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iBe-t9-Q5H" userLabel="Content View">
+                                                <rect key="frame" x="0.0" y="0.0" width="336" height="50"/>
+                                                <subviews>
+                                                    <stackView clipsSubviews="YES" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="VOV-AR-H2g">
+                                                        <rect key="frame" x="0.0" y="0.0" width="336" height="50"/>
+                                                        <subviews>
+                                                            <view clipsSubviews="YES" tag="5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UQl-Kx-lVg">
+                                                                <rect key="frame" x="0.0" y="0.0" width="2" height="50"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="2" id="4do-1q-lYy"/>
+                                                                </constraints>
+                                                            </view>
+                                                            <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Sj-LZ-Elw" userLabel="Button 0">
+                                                                <rect key="frame" x="22" y="0.0" width="39" height="50"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <state key="normal" title="Lenta">
+                                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                </state>
+                                                                <connections>
+                                                                    <action selector="buttonTapped:" destination="XUN-dD-23c" eventType="touchUpInside" id="5bJ-ei-b82"/>
+                                                                </connections>
+                                                            </button>
+                                                            <button clipsSubviews="YES" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="so7-Z5-8mY" userLabel="Button 1">
+                                                                <rect key="frame" x="81" y="0.0" width="53" height="50"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <state key="normal" title="Popular">
+                                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                </state>
+                                                                <connections>
+                                                                    <action selector="buttonTapped:" destination="XUN-dD-23c" eventType="touchUpInside" id="AS6-Fq-IgY"/>
+                                                                </connections>
+                                                            </button>
+                                                            <button clipsSubviews="YES" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="248" horizontalCompressionResistancePriority="748" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qv1-pJ-ucr" userLabel="Button 2">
+                                                                <rect key="frame" x="154" y="0.0" width="44" height="50"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <state key="normal" title="Actual">
+                                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                </state>
+                                                                <connections>
+                                                                    <action selector="buttonTapped:" destination="XUN-dD-23c" eventType="touchUpInside" id="uuz-o3-MsZ"/>
+                                                                </connections>
+                                                            </button>
+                                                            <button clipsSubviews="YES" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="247" horizontalCompressionResistancePriority="747" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XgW-00-rgb" userLabel="Button 3">
+                                                                <rect key="frame" x="218" y="0.0" width="31" height="50"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <state key="normal" title="New">
+                                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                </state>
+                                                                <connections>
+                                                                    <action selector="buttonTapped:" destination="XUN-dD-23c" eventType="touchUpInside" id="Oce-Jm-Y56"/>
+                                                                </connections>
+                                                            </button>
+                                                            <button clipsSubviews="YES" tag="4" contentMode="scaleToFill" horizontalHuggingPriority="246" horizontalCompressionResistancePriority="746" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zff-rx-nQI" userLabel="Button 4">
+                                                                <rect key="frame" x="269" y="0.0" width="45" height="50"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <state key="normal" title="Promo">
+                                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                </state>
+                                                                <connections>
+                                                                    <action selector="buttonTapped:" destination="XUN-dD-23c" eventType="touchUpInside" id="GAj-HU-C4K"/>
+                                                                </connections>
+                                                            </button>
+                                                            <view clipsSubviews="YES" tag="6" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zl4-iE-TWK">
+                                                                <rect key="frame" x="334" y="0.0" width="2" height="50"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="2" id="uUe-eL-bBF"/>
+                                                                </constraints>
+                                                            </view>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </stackView>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="VOV-AR-H2g" firstAttribute="leading" secondItem="iBe-t9-Q5H" secondAttribute="leading" id="KKR-IZ-Y2i"/>
+                                                    <constraint firstItem="VOV-AR-H2g" firstAttribute="top" secondItem="iBe-t9-Q5H" secondAttribute="top" id="Rjd-Bt-bjZ"/>
+                                                    <constraint firstAttribute="width" secondItem="VOV-AR-H2g" secondAttribute="width" id="biU-OX-prh"/>
+                                                    <constraint firstAttribute="bottom" secondItem="VOV-AR-H2g" secondAttribute="bottom" id="njA-Wp-g4a"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="34" id="Hep-RC-7ps"/>
+                                            <constraint firstItem="iBe-t9-Q5H" firstAttribute="leading" secondItem="H3G-FO-Dpg" secondAttribute="leading" id="4So-bX-tOv"/>
+                                            <constraint firstAttribute="trailing" secondItem="iBe-t9-Q5H" secondAttribute="trailing" id="Dtc-6G-haV"/>
+                                            <constraint firstItem="iBe-t9-Q5H" firstAttribute="top" secondItem="H3G-FO-Dpg" secondAttribute="top" id="Ohh-Ka-rrE"/>
+                                            <constraint firstAttribute="height" constant="34" id="YAR-yR-cHw"/>
+                                            <constraint firstAttribute="bottom" secondItem="iBe-t9-Q5H" secondAttribute="bottom" id="uWN-Qe-Loi"/>
+                                        </constraints>
+                                    </scrollView>
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uXw-eA-Nu0" userLabel="Line View">
+                                        <rect key="frame" x="20" y="62" width="43" height="2"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="43" id="lL7-rB-UGA"/>
+                                            <constraint firstAttribute="height" constant="2" id="uRd-JV-fTC"/>
                                         </constraints>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.26666666666666666" green="0.41176470588235292" blue="0.68627450980392157" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="KWp-YJ-Ykl" firstAttribute="leading" secondItem="V1F-55-FXF" secondAttribute="leading" id="1ZX-my-2GP"/>
+                                    <constraint firstItem="uXw-eA-Nu0" firstAttribute="top" secondItem="H3G-FO-Dpg" secondAttribute="bottom" constant="-2" id="8Qn-nF-VZI"/>
+                                    <constraint firstAttribute="bottom" secondItem="H3G-FO-Dpg" secondAttribute="bottom" id="E8D-ju-Ddj"/>
+                                    <constraint firstAttribute="trailing" secondItem="H3G-FO-Dpg" secondAttribute="trailing" id="XJI-9k-zor"/>
+                                    <constraint firstItem="H3G-FO-Dpg" firstAttribute="leading" secondItem="V1F-55-FXF" secondAttribute="leading" id="Yf8-Ad-6vS"/>
                                     <constraint firstAttribute="height" constant="44" id="acZ-Nq-tVm"/>
-                                    <constraint firstAttribute="trailing" secondItem="KWp-YJ-Ykl" secondAttribute="trailing" id="arM-m9-S4B"/>
+                                    <constraint firstItem="uXw-eA-Nu0" firstAttribute="leading" secondItem="V1F-55-FXF" secondAttribute="leading" priority="750" constant="20" id="bPe-Jg-l8d"/>
                                     <constraint firstAttribute="height" constant="64" id="d32-YI-1Pt"/>
-                                    <constraint firstAttribute="bottom" secondItem="KWp-YJ-Ykl" secondAttribute="bottom" id="k9w-8s-t68"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
@@ -79,15 +175,24 @@
                     <navigationItem key="navigationItem" id="BcM-ap-ILq"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
+                        <outlet property="buttonsStackView" destination="VOV-AR-H2g" id="3ng-Qq-lVg"/>
                         <outlet property="containerView" destination="ffv-sr-RCO" id="T33-ED-Ymr"/>
-                        <outlet property="controlView" destination="KWp-YJ-Ykl" id="y0O-0m-ndK"/>
+                        <outlet property="lineView" destination="uXw-eA-Nu0" id="Woq-Rn-b6i"/>
+                        <outlet property="lineViewWidthConstraint" destination="lL7-rB-UGA" id="QPf-nF-kCt"/>
+                        <outlet property="scrollView" destination="H3G-FO-Dpg" id="J1y-Sr-qmb"/>
                         <outlet property="shadowView" destination="KN9-kt-Cga" id="chr-0E-vDb"/>
                         <outlet property="statusBarView" destination="V1F-55-FXF" id="dht-lM-kl6"/>
                         <outletCollection property="heightsCollection" destination="d32-YI-1Pt" collectionClass="NSMutableArray" id="oX8-AB-gqI"/>
-                        <outletCollection property="heightsCollection" destination="Hep-RC-7ps" collectionClass="NSMutableArray" id="we0-aB-w1D"/>
                         <outletCollection property="heightsCollection" destination="acZ-Nq-tVm" collectionClass="NSMutableArray" id="uED-bA-rbZ"/>
                         <outletCollection property="heightsCollection" destination="O79-cX-u5s" collectionClass="NSMutableArray" id="HZD-Pr-p0b"/>
                         <outletCollection property="heightsCollection" destination="NrR-Kv-x7q" collectionClass="NSMutableArray" id="eFr-WB-qGI"/>
+                        <outletCollection property="heightsCollection" destination="YAR-yR-cHw" collectionClass="NSMutableArray" id="6LA-XQ-pFa"/>
+                        <outletCollection property="heightsCollection" destination="8Qn-nF-VZI" collectionClass="NSMutableArray" id="nIP-d9-RUA"/>
+                        <outletCollection property="buttonsCollection" destination="2Sj-LZ-Elw" collectionClass="NSMutableArray" id="465-VX-8iO"/>
+                        <outletCollection property="buttonsCollection" destination="so7-Z5-8mY" collectionClass="NSMutableArray" id="Dnd-Qg-rYz"/>
+                        <outletCollection property="buttonsCollection" destination="Qv1-pJ-ucr" collectionClass="NSMutableArray" id="iuc-IC-xgM"/>
+                        <outletCollection property="buttonsCollection" destination="XgW-00-rgb" collectionClass="NSMutableArray" id="6Nk-5L-asv"/>
+                        <outletCollection property="buttonsCollection" destination="Zff-rx-nQI" collectionClass="NSMutableArray" id="LZz-gx-url"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BMa-A2-yBx" userLabel="First Responder" sceneMemberID="firstResponder"/>

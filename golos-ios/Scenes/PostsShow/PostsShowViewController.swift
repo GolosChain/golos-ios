@@ -14,7 +14,7 @@ import UIKit
 import CoreData
 import GoloSwift
 import SwiftTheme
-import SJSegmentedScrollView
+import Localize_Swift
 
 // MARK: - Input & Output protocols
 protocol PostsShowDisplayLogic: class {
@@ -23,28 +23,55 @@ protocol PostsShowDisplayLogic: class {
 
 class PostsShowViewController: GSTableViewController, ContainerViewSupport {
     // MARK: - Properties
-    var selectedSegmentIndex = 0
+    var selectedButton: UIButton!
     var postFeedTypes: [PostsFeedType]  =   User.current == nil ?   [ .popular, .actual, .new, .promo ] :
                                                                     [ .lenta, .popular, .actual, .new, .promo ]
 
     var interactor: PostsShowBusinessLogic?
     var router: (NSObjectProtocol & PostsShowRoutingLogic & PostsShowDataPassing)?
     
-    var selectedSegment: SJSegmentTab?
-    var segmentedViewController: SJSegmentedViewController!
-    var segmentControllers: [GSTableViewController]!
-    
     
     // MARK: - IBOutlets
+    @IBOutlet weak var buttonsStackView: UIStackView!
+    
+    @IBOutlet weak var scrollView: UIScrollView! {
+        didSet {
+            scrollView.delegate = self
+            
+            // Handler horizontal scrolling
+            self.handlerHorizontalScrolling     =   { [weak self] contentOffsetX in
+                self?.lineView.transform = CGAffineTransform(translationX: (self?.selectedButton.frame.minX)! - (self?.buttonsStackView.spacing)! - contentOffsetX, y: 0)
+            }
+        }
+    }
+    
+    @IBOutlet weak var lineView: UIView! {
+        didSet {
+            self.lineView.frame.origin = CGPoint(x: self.buttonsStackView.spacing, y: lineView.frame.minY)
+        }
+    }
+    
+    @IBOutlet weak var lineViewWidthConstraint: NSLayoutConstraint! {
+        didSet {
+            self.selectedButton                 =   self.buttonsStackView.arrangedSubviews.first(where: { $0.tag == 0 }) as! UIButton
+            lineViewWidthConstraint.constant    =   self.selectedButton.frame.width
+        }
+    }
+
     @IBOutlet weak var statusBarView: UIView! {
         didSet {
             statusBarView.tune(withThemeColorPicker: darkModerateBlueColorPickers)
         }
     }
     
-    @IBOutlet weak var controlView: UIView! {
+    @IBOutlet var buttonsCollection: [UIButton]! {
         didSet {
-            controlView.tune(withThemeColorPicker: darkModerateBlueColorPickers)
+            _ = buttonsCollection.map({ actionButton in
+                actionButton.tune(withTitle:        actionButton.titleLabel?.text ?? "XXX",
+                                  hexColors:        [whiteColorPickers, whiteColorPickers, whiteColorPickers, whiteColorPickers],
+                                  font:             UIFont(name: "SFUIDisplay-Regular", size: 12.0),
+                                  alignment:        .center)
+            })
         }
     }
     
@@ -88,6 +115,8 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
 
     deinit {
         Logger.log(message: "Success", event: .severe)
+
+        NotificationCenter.default.removeObserver(self)
     }
     
     
@@ -120,16 +149,27 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
     
     
     // MARK: - Class Functions
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        self.lineViewWidthConstraint.constant   =   self.selectedButton.frame.width
+        self.lineView.transform                 =   CGAffineTransform(translationX: self.selectedButton.frame.minX - self.buttonsStackView.spacing - self.scrollView.contentOffset.x, y: 0)
+            
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.3) {
+            self.scrollHorizontalTo(sender: self.selectedButton)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.tune()
-        
-        self.containerView.mainVC            =   self
-        self.segmentControllers              =   self.getContainerViewControllers()
-        self.containerView.viewControllers   =   segmentControllers
-        
+        self.localizeTitles()
+
+        self.containerView.mainVC = self
         self.containerView.setActiveViewController(index: 0)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(localizeTitles), name: NSNotification.Name(LCLLanguageChangeNotification), object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -139,21 +179,55 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
         self.hideNavigationBar()
 
         // Load Posts
-        self.loadPosts(false)
+//        self.loadPosts(false)
+    }
+    
 
-        if self.segmentedViewController != nil {
-            self.segmentedViewController.view.removeFromSuperview()
-        }
+    
+    // MARK: - Custom Functions
+    override func localizeTitles() {
+        _ = self.buttonsCollection.map({ button in
+            button.setTitle(button.titleLabel!.text!.localized(), for: .normal)
+        })
         
-        self.setupSegmentedControl()
+        self.buttonsStackView.layoutIfNeeded()
+        self.selectedButton = self.buttonsStackView.arrangedSubviews[self.selectedButton.tag + 1] as! UIButton
+    }
+    
+    private func scrollHorizontalTo(sender: UIButton) {
+        self.selectedButton = sender
+        
+        let offsetMinX = sender.frame.minX - scrollView.contentOffset.x
+        let offsetMaxX = sender.frame.maxX - scrollView.contentOffset.x
+        
+        UIView.animate(withDuration: 0.2, animations: {
+            self.lineView.transform = CGAffineTransform(translationX: self.selectedButton.frame.minX - self.buttonsStackView.spacing - self.scrollView.contentOffset.x, y: 0)
+            self.lineViewWidthConstraint.constant = sender.frame.width
+            
+            UIView.animate(withDuration: 0.2) {
+                self.view.layoutIfNeeded()
+            }
+        })
+        
+        if !statusBarView.frame.contains(CGPoint(x: offsetMinX, y: 0)) || !statusBarView.frame.contains(CGPoint(x: offsetMaxX, y: 0)) {
+            switch sender.tag {
+            case 0, 1:
+                self.scrollView.scrollRectToVisible(CGRect(origin: .zero, size: sender.frame.size), animated: true)
+                
+            // 3, 4
+            default:
+                let lastView    =   buttonsStackView.arrangedSubviews.first(where: { $0.tag == 6 })
+                let visibleRect =   CGRect(origin: lastView!.frame.origin, size: CGSize(width: lastView!.frame.width + self.buttonsStackView.spacing, height: lastView!.frame.height))
+                self.scrollView.scrollRectToVisible(visibleRect, animated: true)
+            }
+        }
     }
     
     
-    // MARK: - Custom Functions
     private func setActiveViewControllerHandlers() {
         if let activeVC = self.containerView.activeVC {
             // Add cells from XIB
-            activeVC.fetchPosts(byParameters: (author: User.current?.name, postFeedType: postFeedTypes[self.selectedSegmentIndex], permlink: nil, sortBy: nil))            
+            activeVC.fetchPosts(byParameters: (author: User.current?.name, postFeedType: postFeedTypes[self.selectedButton.tag], permlink: nil, sortBy: nil))
             
             // Handler Refresh/Upload data
             activeVC.handlerRefreshData                         =   { [weak self] lastItem in
@@ -227,38 +301,10 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
         return segmentControllers
     }
     
-    private func setupSegmentedControl() {
-        let headerViewController    =   User.current == nil ? segmentControllers[1] : segmentControllers[0]
-        
-        self.localizeTitles()
-        
-        segmentedViewController     =   SJSegmentedViewController(headerViewController:     headerViewController,
-                                                                  segmentControllers:       segmentControllers)
-        
-        segmentedViewController.headerViewHeight                =   0.0
-        segmentedViewController.segmentViewHeight               =   34.0 * heightRatio
-        segmentedViewController.selectedSegmentViewHeight       =   2.0 * heightRatio
-        segmentedViewController.headerViewOffsetHeight          =   0.0
-        segmentedViewController.segmentTitleColor               =   UIColor(hexString: "#D6D6D6")
-        segmentedViewController.selectedSegmentViewColor        =   UIColor(hexString: "#FFFFFF")
-        segmentedViewController.showsHorizontalScrollIndicator  =   false
-        segmentedViewController.showsVerticalScrollIndicator    =   false
-        segmentedViewController.segmentBounces                  =   true
-        segmentedViewController.segmentTitleFont                =   UIFont(name: "SFProDisplay-Medium", size: 13.0)!
-        segmentedViewController.segmentBackgroundColor          =   UIColor(hexString: "#4469AF")
-        segmentedViewController.segmentedScrollViewColor        =   UIColor(hexString: "#4469AF")
-        segmentedViewController.segmentShadow                   =   SJShadow.dark()
-        segmentedViewController.view.frame.size                 =   CGSize(width: controlView.bounds.width, height: segmentedViewController.view.bounds.height)
-        
-        segmentedViewController.delegate                        =   self
-        
-        controlView.addSubview(segmentedViewController.view)
-    }
-    
     
     // MARK: - Actions
-    override func localizeTitles() {
-        _ = self.segmentControllers.map({ $0.title!.localize() })
+    @IBAction func buttonTapped(_ sender: UIButton) {
+        self.scrollHorizontalTo(sender: sender)
     }
 }
 
@@ -280,7 +326,7 @@ extension PostsShowViewController: PostsShowDisplayLogic {
 // MARK: - Load data from Blockchain by API
 extension PostsShowViewController {
     private func loadPosts(_ isRefresh: Bool) {
-        let loadPostsRequestModel = PostsShowModels.Items.RequestModel(postFeedType: self.postFeedTypes[self.selectedSegmentIndex])
+        let loadPostsRequestModel = PostsShowModels.Items.RequestModel(postFeedType: self.postFeedTypes[self.selectedButton.tag])
         interactor?.loadPosts(withRequestModel: loadPostsRequestModel)
     }
 }
@@ -291,34 +337,5 @@ extension PostsShowViewController {
     // User Profile
     private func fetchPosts() {
         self.setActiveViewControllerHandlers()
-    }
-}
-
-
-// MARK: - SJSegmentedViewControllerDelegate
-extension PostsShowViewController: SJSegmentedViewControllerDelegate {
-    func didMoveToPage(_ controller: UIViewController, segment: SJSegmentTab?, index: Int) {
-        if self.selectedSegment != nil {
-            selectedSegment?.titleColor(UIColor(hexString: "#D6D6D6"))
-        }
-        
-        if self.segmentedViewController.segments.count > 0 {
-            selectedSegment = self.segmentedViewController.segments[index]
-            selectedSegment?.titleColor(UIColor(hexString: "#FFFFFF"))
-        }
-        
-        // Scroll content to first row
-        if self.selectedSegmentIndex == index {
-            if let activeVC = self.containerView.activeVC, activeVC.tableView.contentOffset.y > 0.0 {
-                activeVC.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
-            }
-        }
-            
-        else {
-            self.selectedSegmentIndex = index
-            self.containerView.setActiveViewController(index: index)
-            
-            self.loadPosts(false)
-        }
     }
 }

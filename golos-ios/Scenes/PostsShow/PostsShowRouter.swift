@@ -86,7 +86,7 @@ class PostsShowRouter: NSObject, PostsShowRoutingLogic, PostsShowDataPassing {
     // MARK: - Passing data
     func passDataToPostShowScene(source: PostsShowDataStore, destination: inout PostShowDataStore) {
         destination.post        =   source.post
-        destination.postType    =   viewController!.postFeedTypes[viewController!.selectedSegmentIndex]
+        destination.postType    =   viewController!.postFeedTypes[viewController!.selectedButton.tag]
     }
     
     func passDataToUserProfileScene(userName: String, destination: inout UserProfileShowDataStore) {

@@ -169,7 +169,7 @@ class SettingsShowViewController: GSBaseViewController {
 
         UIApplication.shared.statusBarStyle = .default
 
-        NotificationCenter.default.addObserver(self, selector: #selector(localizeTitles), name: NSNotification.Name( LCLLanguageChangeNotification), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(localizeTitles), name: NSNotification.Name(LCLLanguageChangeNotification), object: nil)
     }
     
     // Remove the LCLLanguageChangeNotification on viewWillDisappear

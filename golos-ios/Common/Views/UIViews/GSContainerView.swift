@@ -49,7 +49,7 @@ class GSContainerView: UIView {
     // MARK: - Custom Functions
     func setActiveViewController(index: Int) {
         self.currentIndex   =   index
-        self.activeVC       =   self.viewControllers![index]
+//        self.activeVC       =   self.viewControllers![index]
     }
     
     func remove(inactiveViewController: GSTableViewController?) {

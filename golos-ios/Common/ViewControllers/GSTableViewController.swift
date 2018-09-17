@@ -48,6 +48,7 @@ class GSTableViewController: GSBaseViewController, HandlersCellSupport {
     var handlerUsersButtonTapped: (() -> Void)?
     var handlerAuthorProfileAddButtonTapped: (() -> Void)?
     var handlerAuthorProfileImageButtonTapped: ((String) -> Void)?
+    var handlerHorizontalScrolling: ((CGFloat) -> Void)?
 
     // HandlersCellSupport
     var handlerShareButtonTapped: (() -> Void)?
@@ -322,8 +323,20 @@ class GSTableViewController: GSBaseViewController, HandlersCellSupport {
 
 // MARK: - UIScrollViewDelegate
 extension GSTableViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        guard scrollView == tableView else {
+            self.handlerHorizontalScrolling!(scrollView.contentOffset.x)
+            return
+        }
+    }
+    
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        if let indexPathsForVisibleRows = self.tableView.indexPathsForVisibleRows, scrollView == tableView, indexPathsForVisibleRows.count > 0 {
+        guard scrollView == tableView else {
+            self.handlerHorizontalScrolling!(scrollView.contentOffset.x)
+            return
+        }
+        
+        if let indexPathsForVisibleRows = self.tableView.indexPathsForVisibleRows, indexPathsForVisibleRows.count > 0 {
             self.topVisibleIndexPath    =   indexPathsForVisibleRows[0]
             self.paginanationData       =   false
         }
