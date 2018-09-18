@@ -87,7 +87,14 @@ class RootShowViewController: GSBaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        UIApplication.shared.statusBarStyle = .lightContent
+        UIApplication.shared.isStatusBarHidden = true
+    }
+    
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        UIApplication.shared.isStatusBarHidden = false
     }
     
     

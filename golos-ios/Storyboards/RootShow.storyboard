@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="5zl-Nf-AHJ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="5zl-Nf-AHJ">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -67,6 +65,7 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" id="9yl-BK-1cs"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="circularProgressBarView" destination="F2I-9F-Ifm" id="X7b-oD-t1C"/>
                         <segue destination="WId-dD-j5Q" kind="unwind" identifier="NextSceneSegue" unwindAction="unwindFromLogInShowSceneWithSegue:" id="loy-sQ-mxN"/>
@@ -82,6 +81,7 @@
             <objects>
                 <navigationController storyboardIdentifier="RootShowNC" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="5zl-Nf-AHJ" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="kef-hU-7NE">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
