@@ -134,6 +134,7 @@
 		B1A2AE432105B1640021A34B /* ActiveVote+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A2AE412105B1640021A34B /* ActiveVote+CoreDataClass.swift */; };
 		B1A2AE442105B1640021A34B /* ActiveVote+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A2AE422105B1640021A34B /* ActiveVote+CoreDataProperties.swift */; };
 		B1B6B39520D37F3100284387 /* PostCommentReply.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1B6B39420D37F3100284387 /* PostCommentReply.xib */; };
+		B1B6B4DE21514823005AB846 /* LentaPostsShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B6B4DD21514823005AB846 /* LentaPostsShowViewController.swift */; };
 		B1BAAA522111F1E300B2F165 /* PostCreateWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BAAA4C2111F1E300B2F165 /* PostCreateWorker.swift */; };
 		B1C1DFDF20CF887F00D1A837 /* LogInShowPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C1DFD920CF887F00D1A837 /* LogInShowPresenter.swift */; };
 		B1C1DFE220CF887F00D1A837 /* LogInShowModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C1DFDC20CF887F00D1A837 /* LogInShowModels.swift */; };
@@ -406,6 +407,7 @@
 		B1A2AE412105B1640021A34B /* ActiveVote+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ActiveVote+CoreDataClass.swift"; sourceTree = "<group>"; };
 		B1A2AE422105B1640021A34B /* ActiveVote+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ActiveVote+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		B1B6B39420D37F3100284387 /* PostCommentReply.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostCommentReply.xib; sourceTree = "<group>"; };
+		B1B6B4DD21514823005AB846 /* LentaPostsShowViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LentaPostsShowViewController.swift; sourceTree = "<group>"; };
 		B1BAAA4C2111F1E300B2F165 /* PostCreateWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCreateWorker.swift; sourceTree = "<group>"; };
 		B1C1DFD920CF887F00D1A837 /* LogInShowPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInShowPresenter.swift; sourceTree = "<group>"; };
 		B1C1DFDC20CF887F00D1A837 /* LogInShowModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInShowModels.swift; sourceTree = "<group>"; };
@@ -863,6 +865,7 @@
 		B1742A8F20FD0A2E009AAE5E /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				B1B6B4DD21514823005AB846 /* LentaPostsShowViewController.swift */,
 				B1EA155820FE22980015EF76 /* ActualPostsShowViewController.swift */,
 				B1EA154A20FE02260015EF76 /* NewPostsShowViewController.swift */,
 				B1EA151E20FDC82E0015EF76 /* PopularPostsShowViewController.swift */,
@@ -1679,6 +1682,7 @@
 				B1F3748120C2C5E1005EF767 /* RootShowRouter.swift in Sources */,
 				B1DCE322210A32B600487DE0 /* GSTestManager.swift in Sources */,
 				B15F228220EEB16500C44282 /* StateMachine.swift in Sources */,
+				B1B6B4DE21514823005AB846 /* LentaPostsShowViewController.swift in Sources */,
 				B1CF44DC2106D65600483A01 /* SettingsShowWorker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

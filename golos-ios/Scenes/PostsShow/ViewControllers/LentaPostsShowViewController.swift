@@ -1,5 +1,5 @@
 //
-//  UserProfileShowViewController.swift
+//  LentaPostsShowViewController.swift
 //  golos-ios
 //
 //  Created by msm72 on 29.06.2018.
@@ -13,7 +13,7 @@
 import UIKit
 import GoloSwift
 
-class UserProfileBlogShowViewController: GSTableViewController {
+class LentaPostsShowViewController: GSTableViewController {
     // MARK: - Class Initialization
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -31,13 +31,16 @@ class UserProfileBlogShowViewController: GSTableViewController {
     // MARK: - Class Functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.cellIdentifier = "PostFeedTableViewCell"
-        self.tableView.register(UINib(nibName: self.cellIdentifier, bundle: nil), forCellReuseIdentifier: self.cellIdentifier)
+
+        self.tableView.register(UINib(nibName: "LentaPostTableViewCell", bundle: nil), forCellReuseIdentifier: "LentaPostTableViewCell")
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        if !isNetworkAvailable {
+            self.tableView.tableHeaderView = nil
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {

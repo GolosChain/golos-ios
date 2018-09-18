@@ -219,10 +219,10 @@
             </objects>
             <point key="canvasLocation" x="-234" y="47"/>
         </scene>
-        <!--User Profile Blog Show View Controller-->
+        <!--Lenta Posts Show View Controller-->
         <scene sceneID="l1r-Mv-jgd">
             <objects>
-                <viewController storyboardIdentifier="UserProfileLentaShowVC" id="VG6-Ss-etj" customClass="UserProfileBlogShowViewController" customModule="Golos" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LentaPostsShowVC" id="VG6-Ss-etj" customClass="LentaPostsShowViewController" customModule="Golos" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" clipsSubviews="YES" tag="2" contentMode="scaleToFill" id="XUv-95-Dsg">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

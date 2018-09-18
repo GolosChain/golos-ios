@@ -53,12 +53,16 @@ class PostsShowInteractor: PostsShowBusinessLogic, PostsShowDataStore {
     
     func loadPosts(withRequestModel requestModel: PostsShowModels.Items.RequestModel) {
         worker = PostsShowWorker()
+        
+//        if let methodAPIType = self.worker?.prepareRequestMethod((type: requestModel.postFeedType, lastItem: self.lastItem)) {
+//            RestAPIManager.loadPostsFeed(byMethodAPIType: methodAPIType, andPostFeedType: requestModel.postFeedType, completion: { [weak self] errorAPI in
+//                let loadPostsResponseModel = PostsShowModels.Items.ResponseModel(error: errorAPI)
+//                self?.presenter?.presentLoadPosts(fromResponseModel: loadPostsResponseModel)
+//            })
+//        }
+        
+        let loadPostsResponseModel = PostsShowModels.Items.ResponseModel(error: nil)
+        self.presenter?.presentLoadPosts(fromResponseModel: loadPostsResponseModel)
 
-        if let methodAPIType = worker?.prepareRequestMethod((type: requestModel.postFeedType, lastItem: self.lastItem)) {
-            RestAPIManager.loadPostsFeed(byMethodAPIType: methodAPIType, andPostFeedType: requestModel.postFeedType, completion: { [weak self] errorAPI in
-                let loadPostsResponseModel = PostsShowModels.Items.ResponseModel(error: errorAPI)
-                self?.presenter?.presentLoadPosts(fromResponseModel: loadPostsResponseModel)
-            })
-        }
     }
 }

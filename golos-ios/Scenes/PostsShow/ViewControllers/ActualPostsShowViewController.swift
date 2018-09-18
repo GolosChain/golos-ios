@@ -31,9 +31,8 @@ class ActualPostsShowViewController: GSTableViewController {
     // MARK: - Class Functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.cellIdentifier     =   "PostFeedTableViewCell"
-        self.tableView.register(UINib(nibName: self.cellIdentifier, bundle: nil), forCellReuseIdentifier: self.cellIdentifier)
+
+        self.tableView.register(UINib(nibName: "ActualPostTableViewCell", bundle: nil), forCellReuseIdentifier: "ActualPostTableViewCell")
     }
     
     override func viewWillAppear(_ animated: Bool) {

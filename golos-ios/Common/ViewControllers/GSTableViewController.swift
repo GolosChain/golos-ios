@@ -22,23 +22,12 @@ class GSTableViewController: GSBaseViewController, HandlersCellSupport {
     }
     
     var reloadData: Bool        =   true
-//    var refreshData: Bool       =   false
     var paginanationData: Bool  =   false
     var lastIndex: Int          =   0
     var topVisibleIndexPath     =   IndexPath(row: 0, section: 0)
     var cellIdentifier: String  =   "PostFeedTableViewCell"
     
     var postType: PostsFeedType!
-    
-    
-    // TODO: - DELETE AFTER TEST
-//    var itemsCount: Int {
-//        guard let fetchedResultsController = self.fetchedResultsController, let sections = fetchedResultsController.sections, let first = sections.first else {
-//            return 0
-//        }
-//
-//        return first.numberOfObjects
-//    }
     
     // Handlers
     var handlerAnswerButtonTapped: ((PostShortInfo) -> Void)?
@@ -155,24 +144,25 @@ class GSTableViewController: GSBaseViewController, HandlersCellSupport {
     }
     
     private func displaySpinner(_ show: Bool) {
-        guard self.activityIndicatorView == nil else {
-            return
+        DispatchQueue.main.async {
+            guard self.activityIndicatorView == nil else {
+                return
+            }
+            
+            guard show else {
+                self.activityIndicatorView.stopAnimating()
+                self.tableView.tableHeaderView = nil
+                return
+            }
+            
+            self.activityIndicatorView      =   UIActivityIndicatorView.init(frame: CGRect(origin:  .zero,
+                                                                                           size:    CGSize(width: self.tableView.frame.width, height: 64.0 * heightRatio)))
+            self.activityIndicatorView.style = .gray
+            self.tableView.separatorStyle   =   .none
+            self.activityIndicatorView.startAnimating()
+            
+            self.tableView.tableHeaderView  =   self.activityIndicatorView
         }
-
-        guard show else {
-            self.activityIndicatorView.stopAnimating()
-            self.tableView.tableHeaderView = nil
-            return
-        }
-        
-        self.activityIndicatorView      =   UIActivityIndicatorView.init(frame: CGRect(origin:  .zero,
-                                                                                       size:    CGSize(width: tableView.frame.width, height: 64.0 * heightRatio)))
-        self.activityIndicatorView.style = .gray
-//            self.activityIndicatorView.color    =   UIColor.blue
-        self.tableView.separatorStyle   =   .none
-        self.activityIndicatorView.startAnimating()
-        
-        self.tableView.tableHeaderView  =   self.activityIndicatorView
     }
     
     private func displayEmptyTitle(byType type: PostsFeedType) {
@@ -355,25 +345,12 @@ extension GSTableViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        guard !reloadData else {
-////            reloadData = !reloadData
-//            return 0
-//        }
-        
         let sectionInfo = fetchedResultsController.sections![section]
         
         return sectionInfo.numberOfObjects
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        guard self.fetchedResultsController.sections![indexPath.section].numberOfObjects > 0 else {
-//            return UITableViewCell()
-//        }
-//
-//        guard !self.reloadData else {
-//            return UITableViewCell()
-//        }
-        
         let entity  =   fetchedResultsController.object(at: indexPath) as! NSManagedObject
         let cell    =   tableView.dequeueReusableCell(withIdentifier: self.cellIdentifier, for: indexPath)
 

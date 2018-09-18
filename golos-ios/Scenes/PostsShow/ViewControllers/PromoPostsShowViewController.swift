@@ -32,8 +32,7 @@ class PromoPostsShowViewController: GSTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.cellIdentifier     =   "PostFeedTableViewCell"
-        self.tableView.register(UINib(nibName: self.cellIdentifier, bundle: nil), forCellReuseIdentifier: self.cellIdentifier)
+        self.tableView.register(UINib(nibName: "PromoPostTableViewCell", bundle: nil), forCellReuseIdentifier: "PromoPostTableViewCell")
     }
     
     override func viewWillAppear(_ animated: Bool) {

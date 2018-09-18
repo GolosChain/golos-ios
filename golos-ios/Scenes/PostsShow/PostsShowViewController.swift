@@ -165,11 +165,9 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
         super.viewDidLoad()
         
         self.view.tune()
-//        self.localizeTitles()
-
         self.containerView.mainVC = self
         self.containerView.setActiveViewController(index: 0)
-        
+
         NotificationCenter.default.addObserver(self, selector: #selector(localizeTitles), name: NSNotification.Name(LCLLanguageChangeNotification), object: nil)
     }
     
@@ -182,7 +180,7 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
         self.localizeTitles()
 
         // Load Posts
-//        self.loadPosts(false)
+        self.loadPosts(false)
     }
     
     
@@ -230,9 +228,15 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
     
     private func setActiveViewControllerHandlers() {
         if let activeVC = self.containerView.activeVC {
-            // Add cells from XIB
-            activeVC.fetchPosts(byParameters: (author: User.current?.name, postFeedType: postFeedTypes[self.selectedButton.tag], permlink: nil, sortBy: nil))
+            // Create queue
+            let queueFetchPosts = DispatchQueue.global(qos: .background)
             
+            // Run queue in Async Thread
+            queueFetchPosts.async {
+                // Add cells from XIB
+                activeVC.fetchPosts(byParameters: (author: User.current?.name, postFeedType: self.postFeedTypes[self.selectedButton.tag], permlink: nil, sortBy: nil))
+            }
+        
             // Handler Refresh/Upload data
             activeVC.handlerRefreshData                         =   { [weak self] lastItem in
                 self?.interactor?.save(lastItem: lastItem)
@@ -274,33 +278,43 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
     }
     
     private func getContainerViewControllers() -> [GSTableViewController] {
-        let tableViewController1                =   UIStoryboard(name: "PostsShow", bundle: nil)
-                                                        .instantiateViewController(withIdentifier: "UserProfileLentaShowVC") as! GSTableViewController
-        tableViewController1.title              =   "Lenta"
-        tableViewController1.cellIdentifier     =   "LentaPostTableViewCell"
+        let lentaPostsShowVC                    =   UIStoryboard(name: "PostsShow", bundle: nil)
+                                                        .instantiateViewController(withIdentifier: "LentaPostsShowVC") as! GSTableViewController
         
-        let tableViewController2                =   UIStoryboard(name: "PostsShow", bundle: nil)
+        lentaPostsShowVC.title                  =   "Lenta"
+        lentaPostsShowVC.cellIdentifier         =   "LentaPostTableViewCell"
+    
+        
+        let popularPostsShowVC                  =   UIStoryboard(name: "PostsShow", bundle: nil)
                                                         .instantiateViewController(withIdentifier: "PopularPostsShowVC") as! GSTableViewController
-        tableViewController2.title              =   "Popular"
-        tableViewController2.cellIdentifier     =   "PopularPostTableViewCell"
+       
+        popularPostsShowVC.title                =   "Popular"
+        popularPostsShowVC.cellIdentifier       =   "PopularPostTableViewCell"
 
-        let tableViewController3                =   UIStoryboard(name: "PostsShow", bundle: nil)
-                                                        .instantiateViewController(withIdentifier: "ActualPostsShowVC") as! ActualPostsShowViewController
-        tableViewController3.title              =   "Actual"
-        tableViewController3.cellIdentifier     =   "ActualPostTableViewCell"
 
-        let tableViewController4                =   UIStoryboard(name: "PostsShow", bundle: nil)
+        let actualPostsShowVC                   =   UIStoryboard(name: "PostsShow", bundle: nil)
+                                                        .instantiateViewController(withIdentifier: "ActualPostsShowVC") as! GSTableViewController
+        
+        actualPostsShowVC.title                 =   "Actual"
+        actualPostsShowVC.cellIdentifier        =   "ActualPostTableViewCell"
+
+        
+        let newPostsShowVC                      =   UIStoryboard(name: "PostsShow", bundle: nil)
                                                         .instantiateViewController(withIdentifier: "NewPostsShowVC") as! GSTableViewController
-        tableViewController4.title              =   "New"
-        tableViewController4.cellIdentifier     =   "NewPostTableViewCell"
+       
+        newPostsShowVC.title                    =   "New"
+        newPostsShowVC.cellIdentifier           =   "NewPostTableViewCell"
 
-        let tableViewController5                =   UIStoryboard(name: "PostsShow", bundle: nil)
+        
+        let promoPostsShowVC                =   UIStoryboard(name: "PostsShow", bundle: nil)
                                                         .instantiateViewController(withIdentifier: "PromoPostsShowVC") as! GSTableViewController
-        tableViewController5.title              =   "Promo"
-        tableViewController5.cellIdentifier     =   "PromoPostTableViewCell"
-
-        let segmentControllers      =   User.current == nil ?   [ tableViewController2, tableViewController3, tableViewController4, tableViewController5 ] :
-                                                                [ tableViewController1, tableViewController2, tableViewController3, tableViewController4, tableViewController5 ]
+        
+        promoPostsShowVC.title              =   "Promo"
+        promoPostsShowVC.cellIdentifier     =   "PromoPostTableViewCell"
+        
+        
+        let segmentControllers      =   User.current == nil ?   [ popularPostsShowVC, actualPostsShowVC, newPostsShowVC, promoPostsShowVC ] :
+                                                                [ lentaPostsShowVC, popularPostsShowVC, actualPostsShowVC, newPostsShowVC, promoPostsShowVC ]
 
         return segmentControllers
     }
@@ -343,8 +357,14 @@ extension PostsShowViewController: PostsShowDisplayLogic {
 // MARK: - Load data from Blockchain by API
 extension PostsShowViewController {
     private func loadPosts(_ isRefresh: Bool) {
-        let loadPostsRequestModel = PostsShowModels.Items.RequestModel(postFeedType: self.postFeedTypes[self.selectedButton.tag])
-        interactor?.loadPosts(withRequestModel: loadPostsRequestModel)
+        // Create queue
+        let queueLoadPosts = DispatchQueue.global(qos: .background)
+        
+        // Run queue in Async Thread
+        queueLoadPosts.async {
+            let loadPostsRequestModel = PostsShowModels.Items.RequestModel(postFeedType: self.postFeedTypes[self.selectedButton.tag])
+            self.interactor?.loadPosts(withRequestModel: loadPostsRequestModel)
+        }
     }
 }
 
