@@ -161,6 +161,8 @@ class LogInShowViewController: GSBaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        UIApplication.shared.statusBarStyle = .default
     }
     
     

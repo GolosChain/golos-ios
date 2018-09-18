@@ -75,6 +75,8 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
         }
     }
     
+    @IBOutlet weak var lentaButton: UIButton!
+    
     @IBOutlet weak var shadowView: UIView! {
         didSet {
             shadowView.setGradientBackground(colors: [UIColor.lightGray.cgColor, UIColor.lightText.cgColor], onside: .bottom)
@@ -163,7 +165,7 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
         super.viewDidLoad()
         
         self.view.tune()
-        self.localizeTitles()
+//        self.localizeTitles()
 
         self.containerView.mainVC = self
         self.containerView.setActiveViewController(index: 0)
@@ -176,7 +178,9 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
         
         UIApplication.shared.statusBarStyle = .lightContent
         self.hideNavigationBar()
-        
+        self.lentaButton.isHidden = User.current == nil
+        self.localizeTitles()
+
         // Load Posts
 //        self.loadPosts(false)
     }
@@ -189,7 +193,7 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
         })
         
         self.buttonsStackView.layoutIfNeeded()
-        self.selectedButton = self.buttonsStackView.arrangedSubviews[self.selectedButton.tag + 1] as? UIButton
+        self.selectedButton = self.buttonsStackView.arrangedSubviews.filter({ $0.isHidden == false })[self.selectedButton.tag + 1] as? UIButton
     }
     
     private func scrollHorizontalTo(sender: UIButton) {

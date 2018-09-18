@@ -137,6 +137,7 @@ class WelcomeShowViewController: GSBaseViewController {
         Logger.log(message: "Success", event: .severe)
         
         self.hideNavigationBar()
+        UIApplication.shared.statusBarStyle = .default
 //        navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
