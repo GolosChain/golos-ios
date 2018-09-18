@@ -180,7 +180,7 @@ public extension UIView {
     fileprivate static func flexibleBarButtonItem () -> IQBarButtonItem {
         
         struct Static {
-            static let nilButton = IQBarButtonItem(barButtonSystemItem:UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+            static let nilButton = IQBarButtonItem(barButtonSystemItem:UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
         }
         
         Static.nilButton.isSystemItem = true
@@ -242,7 +242,7 @@ public extension UIView {
             //Done button
             var doneButton = toolbar.doneBarButton
             if doneButton.isSystemItem == false {
-                doneButton = IQBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.done, target: target, action: action)
+                doneButton = IQBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.done, target: target, action: action)
                 doneButton.isSystemItem = true
                 doneButton.invocation = toolbar.doneBarButton.invocation
                 doneButton.accessibilityLabel = toolbar.doneBarButton.accessibilityLabel
@@ -351,7 +351,7 @@ public extension UIView {
             }
             else
             {
-                doneButton = IQBarButtonItem(image: image, style: UIBarButtonItemStyle.done, target: target, action: action)
+                doneButton = IQBarButtonItem(image: image, style: UIBarButtonItem.Style.done, target: target, action: action)
                 doneButton.invocation = toolbar.doneBarButton.invocation
                 doneButton.accessibilityLabel = toolbar.doneBarButton.accessibilityLabel
                 toolbar.doneBarButton = doneButton
@@ -464,7 +464,7 @@ public extension UIView {
             }
             else
             {
-                doneButton = IQBarButtonItem(title: text, style: UIBarButtonItemStyle.done, target: target, action: action)
+                doneButton = IQBarButtonItem(title: text, style: UIBarButtonItem.Style.done, target: target, action: action)
                 doneButton.invocation = toolbar.doneBarButton.invocation
                 doneButton.accessibilityLabel = toolbar.doneBarButton.accessibilityLabel
                 toolbar.doneBarButton = doneButton
@@ -554,7 +554,7 @@ public extension UIView {
             //Cancel button
             var cancelButton = toolbar.previousBarButton
             if cancelButton.isSystemItem == false {
-                cancelButton = IQBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.cancel, target: target, action: cancelAction)
+                cancelButton = IQBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel, target: target, action: cancelAction)
                 cancelButton.isSystemItem = true
                 cancelButton.invocation = toolbar.previousBarButton.invocation
                 cancelButton.accessibilityLabel = toolbar.previousBarButton.accessibilityLabel
@@ -589,7 +589,7 @@ public extension UIView {
             //Done button
             var doneButton = toolbar.doneBarButton
             if doneButton.isSystemItem == false {
-                doneButton = IQBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.done, target: target, action: doneAction)
+                doneButton = IQBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.done, target: target, action: doneAction)
                 doneButton.isSystemItem = true
                 doneButton.invocation = toolbar.doneBarButton.invocation
                 doneButton.accessibilityLabel = toolbar.doneBarButton.accessibilityLabel
@@ -694,7 +694,7 @@ public extension UIView {
             }
             else
             {
-                cancelButton = IQBarButtonItem(title: leftButtonTitle, style: UIBarButtonItemStyle.plain, target: target, action: leftButtonAction)
+                cancelButton = IQBarButtonItem(title: leftButtonTitle, style: UIBarButtonItem.Style.plain, target: target, action: leftButtonAction)
                 cancelButton.invocation = toolbar.previousBarButton.invocation
                 cancelButton.accessibilityLabel = toolbar.previousBarButton.accessibilityLabel
                 toolbar.previousBarButton = cancelButton
@@ -732,7 +732,7 @@ public extension UIView {
             }
             else
             {
-                doneButton = IQBarButtonItem(title: rightButtonTitle, style: UIBarButtonItemStyle.done, target: target, action: rightButtonAction)
+                doneButton = IQBarButtonItem(title: rightButtonTitle, style: UIBarButtonItem.Style.done, target: target, action: rightButtonAction)
                 doneButton.invocation = toolbar.doneBarButton.invocation
                 doneButton.accessibilityLabel = toolbar.doneBarButton.accessibilityLabel
                 toolbar.doneBarButton = doneButton
@@ -858,7 +858,7 @@ public extension UIView {
             }
             else
             {
-                prev = IQBarButtonItem(image: imageLeftArrow, style: UIBarButtonItemStyle.plain, target: target, action: previousAction)
+                prev = IQBarButtonItem(image: imageLeftArrow, style: UIBarButtonItem.Style.plain, target: target, action: previousAction)
                 prev.invocation = toolbar.previousBarButton.invocation
                 prev.accessibilityLabel = toolbar.previousBarButton.accessibilityLabel
                 toolbar.previousBarButton = prev
@@ -874,7 +874,7 @@ public extension UIView {
             }
             else
             {
-                next = IQBarButtonItem(image: imageRightArrow, style: UIBarButtonItemStyle.plain, target: target, action: nextAction)
+                next = IQBarButtonItem(image: imageRightArrow, style: UIBarButtonItem.Style.plain, target: target, action: nextAction)
                 next.invocation = toolbar.nextBarButton.invocation
                 next.accessibilityLabel = toolbar.nextBarButton.accessibilityLabel
                 toolbar.nextBarButton = next
@@ -918,7 +918,7 @@ public extension UIView {
             //Done button
             var doneButton = toolbar.doneBarButton
             if doneButton.isSystemItem == false {
-                doneButton = IQBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.done, target: target, action: doneAction)
+                doneButton = IQBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.done, target: target, action: doneAction)
                 doneButton.isSystemItem = true
                 doneButton.invocation = toolbar.doneBarButton.invocation
                 doneButton.accessibilityLabel = toolbar.doneBarButton.accessibilityLabel
@@ -1035,7 +1035,7 @@ public extension UIView {
             }
             else
             {
-                prev = IQBarButtonItem(image: imageLeftArrow, style: UIBarButtonItemStyle.plain, target: target, action: previousAction)
+                prev = IQBarButtonItem(image: imageLeftArrow, style: UIBarButtonItem.Style.plain, target: target, action: previousAction)
                 prev.invocation = toolbar.previousBarButton.invocation
                 prev.accessibilityLabel = toolbar.previousBarButton.accessibilityLabel
                 toolbar.previousBarButton = prev
@@ -1051,7 +1051,7 @@ public extension UIView {
             }
             else
             {
-                next = IQBarButtonItem(image: imageRightArrow, style: UIBarButtonItemStyle.plain, target: target, action: nextAction)
+                next = IQBarButtonItem(image: imageRightArrow, style: UIBarButtonItem.Style.plain, target: target, action: nextAction)
                 next.invocation = toolbar.nextBarButton.invocation
                 next.accessibilityLabel = toolbar.nextBarButton.accessibilityLabel
                 toolbar.nextBarButton = next
@@ -1102,7 +1102,7 @@ public extension UIView {
             }
             else
             {
-                doneButton = IQBarButtonItem(image: rightButtonImage, style: UIBarButtonItemStyle.done, target: target, action: rightButtonAction)
+                doneButton = IQBarButtonItem(image: rightButtonImage, style: UIBarButtonItem.Style.done, target: target, action: rightButtonAction)
                 doneButton.invocation = toolbar.doneBarButton.invocation
                 doneButton.accessibilityLabel = toolbar.doneBarButton.accessibilityLabel
                 toolbar.doneBarButton = doneButton
@@ -1226,7 +1226,7 @@ public extension UIView {
             }
             else
             {
-                prev = IQBarButtonItem(image: imageLeftArrow, style: UIBarButtonItemStyle.plain, target: target, action: previousAction)
+                prev = IQBarButtonItem(image: imageLeftArrow, style: UIBarButtonItem.Style.plain, target: target, action: previousAction)
                 prev.invocation = toolbar.previousBarButton.invocation
                 prev.accessibilityLabel = toolbar.previousBarButton.accessibilityLabel
                 toolbar.previousBarButton = prev
@@ -1242,7 +1242,7 @@ public extension UIView {
             }
             else
             {
-                next = IQBarButtonItem(image: imageRightArrow, style: UIBarButtonItemStyle.plain, target: target, action: nextAction)
+                next = IQBarButtonItem(image: imageRightArrow, style: UIBarButtonItem.Style.plain, target: target, action: nextAction)
                 next.invocation = toolbar.nextBarButton.invocation
                 next.accessibilityLabel = toolbar.nextBarButton.accessibilityLabel
                 toolbar.nextBarButton = next
@@ -1293,7 +1293,7 @@ public extension UIView {
             }
             else
             {
-                doneButton = IQBarButtonItem(title: rightButtonTitle, style: UIBarButtonItemStyle.done, target: target, action: rightButtonAction)
+                doneButton = IQBarButtonItem(title: rightButtonTitle, style: UIBarButtonItem.Style.done, target: target, action: rightButtonAction)
                 doneButton.invocation = toolbar.doneBarButton.invocation
                 doneButton.accessibilityLabel = toolbar.doneBarButton.accessibilityLabel
                 toolbar.doneBarButton = doneButton

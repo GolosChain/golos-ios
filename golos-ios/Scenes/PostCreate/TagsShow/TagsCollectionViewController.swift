@@ -124,7 +124,7 @@ extension TagsCollectionViewController: UICollectionViewDataSource {
         var cell: UICollectionViewCell
         
         if indexPath.row == self.tags.count {
-            self.addNewTagCell  =   collectionView.dequeueReusableCell(withReuseIdentifier: "AddTagCollectionViewCell", for: indexPath) as! AddTagCollectionViewCell
+            self.addNewTagCell  =   collectionView.dequeueReusableCell(withReuseIdentifier: "AddTagCollectionViewCell", for: indexPath) as? AddTagCollectionViewCell
             cell                =   self.addNewTagCell
             
             // Handler add button
@@ -181,7 +181,7 @@ extension TagsCollectionViewController: UICollectionViewDataSource {
                     return
                 }
                 
-                _ = self.tags.map({
+                self.tags.forEach({
                     if let tagCell = cell as? ThemeTagCollectionViewCell, let title = tagCell.textField.text, $0.id == tagCell.textField.tag {
                         $0.title = title
                     }
@@ -208,7 +208,7 @@ extension TagsCollectionViewController: UICollectionViewDataSource {
                 }
                 
                 else {
-                    _ = self?.tags.map({
+                    self?.tags.forEach({
                         if let tagCell = cell as? ThemeTagCollectionViewCell, $0.id == tagCell.textField.tag {
                             $0.title = (newCharacter.isEmpty ?  String(enteredName![enteredName!.startIndex ..< enteredName!.index(enteredName!.endIndex, offsetBy: -1)]) :
                                                                 enteredName! + newCharacter).lowercased()

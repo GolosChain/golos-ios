@@ -54,7 +54,7 @@ class WelcomeShowViewController: GSBaseViewController {
             titlesScrollView.delegate   =   self
             
             for string in self.scrollStrings {
-                let titleLabel              =   UILabel()
+                let titleLabel              =   UILabel(frame: .zero)
                 
                 titleLabel.tune(withText:       string,
                                 hexColors:      blackWhiteColorPickers,

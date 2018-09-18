@@ -49,7 +49,7 @@ class GSContainerView: UIView {
     // MARK: - Custom Functions
     func setActiveViewController(index: Int) {
         self.currentIndex   =   index
-//        self.activeVC       =   self.viewControllers![index]
+        self.activeVC       =   self.viewControllers![index]
     }
     
     func remove(inactiveViewController: GSTableViewController?) {
@@ -57,9 +57,9 @@ class GSContainerView: UIView {
             UIView.animate(withDuration: 0.3, animations: {
                 inactiveVC.view.transform = CGAffineTransform.identity
             }, completion: { _ in
-                inactiveVC.willMove(toParentViewController: nil)
+                inactiveVC.willMove(toParent: nil)
                 inactiveVC.view.removeFromSuperview()
-                inactiveVC.removeFromParentViewController()
+                inactiveVC.removeFromParent()
                 
                 self.updateActiveViewController()
             })
@@ -81,13 +81,13 @@ class GSContainerView: UIView {
     
     private func add(activeViewController: UIViewController) {
         if let mainViewController = self.mainVC, let viewController = mainViewController as? ContainerViewSupport {
-            mainViewController.addChildViewController(activeViewController)
+            mainViewController.addChild(activeViewController)
             
             self.activeVC!.view.frame       =   viewController.containerView.bounds
             self.activeVC!.view.transform   =   CGAffineTransform(translationX: screenWidth * (self.animationDirection == .fromRightToLeft ? 1 : -1), y: 0.0)
 
             viewController.containerView.addSubview(activeVC!.view)
-            activeVC!.didMove(toParentViewController: mainViewController)
+            activeVC!.didMove(toParent: mainViewController)
         }
     }
 }

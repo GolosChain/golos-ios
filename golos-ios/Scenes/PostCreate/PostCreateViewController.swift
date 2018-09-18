@@ -31,7 +31,7 @@ class PostCreateViewController: GSBaseViewController {
     // MARK: - Properties
     var firstResponder: UIView!
     var isKeyboardShow = false
-    
+   
     var tagsVC: TagsCollectionViewController!
     var sceneType: SceneType = .createPost
     
@@ -186,7 +186,7 @@ class PostCreateViewController: GSBaseViewController {
     // MARK: - Routing
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "routeToTagsViewControllerWithSegue" {
-            self.tagsVC = segue.destination as! TagsCollectionViewController
+            self.tagsVC = segue.destination as? TagsCollectionViewController
             
             // Handler change frame
             tagsVC.complationCollectionViewChangeHeight = { [weak self] height in
@@ -254,17 +254,18 @@ class PostCreateViewController: GSBaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        UIApplication.shared.statusBarStyle = .default
         self.navigationController?.add(shadow: false, withBarTintColor: .white)
         self.navigationController?.hidesBarsOnTap = false
         self.showNavigationBar()
-        
+
         self.contentTextView.layoutManager.ensureLayout(for: self.contentTextView.textContainer)
     }
-        
+
     
     // MARK: - Custom Functions
     private func saveToAlbum(image: UIImage) {
-        if let imageData = UIImageJPEGRepresentation(image, 0.6), let compressedJPGImage = UIImage(data: imageData) {
+        if let imageData = image.jpegData(compressionQuality: 0.6), let compressedJPGImage = UIImage(data: imageData) {
             UIImageWriteToSavedPhotosAlbum(compressedJPGImage, nil, nil, nil)
             
             self.showAlertView(withTitle: "Info", andMessage: "Image saved to Photo Library", needCancel: false, completion: { [weak self] _ in
@@ -520,7 +521,10 @@ extension PostCreateViewController: UINavigationControllerDelegate {
 
 // MARK: - UIImagePickerControllerDelegate
 extension PostCreateViewController: UIImagePickerControllerDelegate {
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: Any]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+// Local variable inserted by Swift 4.2 migrator.
+let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+
         picker.dismiss(animated: true)
 
 //        let videoURL = info[UIImagePickerControllerMediaURL] as? NSURL
@@ -538,7 +542,7 @@ extension PostCreateViewController: UIImagePickerControllerDelegate {
 
 //        let origImage = info[UIImagePickerControllerOriginalImage] as! UIImage
 
-        guard let image = info[UIImagePickerControllerEditedImage] as? UIImage else {
+        guard let image = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.editedImage)] as? UIImage else {
             showAlertView(withTitle: "Error", andMessage: "No image found", needCancel: false, completion: { _ in })
 
             return
@@ -552,4 +556,14 @@ extension PostCreateViewController: UIImagePickerControllerDelegate {
             self.contentTextView.add(object: image)
         }
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+private func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+private func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
+	return input.rawValue
 }

@@ -13,7 +13,7 @@ class RestAPIManager {
     // MARK: - Class Functions
     /// Posting image
     class func posting(_ image: UIImage, _ signature: String, completion: @escaping (String?) -> Void)  {
-        guard let imageData = UIImageJPEGRepresentation(image, 1.0) else { return }
+        guard let imageData = image.jpegData(compressionQuality: 1.0) else { return }
 
         let session             =   URLSession(configuration: .default)
         let requestURL          =   URL(string: String(format: "%@/%@/%@", imagesURL, User.current!.name, signature))!

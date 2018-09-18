@@ -216,6 +216,7 @@ class UserProfileShowViewController: GSBaseViewController, ContainerViewSupport 
         super.viewWillAppear(animated)
        
         self.hideNavigationBar()
+
         UIApplication.shared.statusBarStyle     =   User.fetch(byName: self.router!.dataStore!.userName ?? "")?.coverImageURL == nil ? .default : (scrollView.parallaxHeader.progress == 0.0 ? .default : .lightContent)
 
         // Load User info
@@ -239,7 +240,7 @@ class UserProfileShowViewController: GSBaseViewController, ContainerViewSupport 
     private func loadViewSettings() {
         // Wallet Balance View show/hide
         if !walletBalanceView.isHidden {
-            view.bringSubview(toFront: walletBalanceView)
+            view.bringSubviewToFront(walletBalanceView)
             walletBalanceViewTopConstraint.constant                 =   0.0
             userProfileInfoControlViewTopConstraint.constant        =   10.0 * heightRatio
             walletBalanceView.add(shadow: true, onside: .bottom)

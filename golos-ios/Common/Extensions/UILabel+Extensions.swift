@@ -25,13 +25,13 @@ extension UILabel {
         ThemeManager.setTheme(index: isAppThemeDark ? 1 : 0)
         
         let attributedString    =   NSMutableAttributedString(string:      text.localized(),
-                                                              attributes:  [ NSAttributedStringKey.font: font! ])
+                                                              attributes:  [ NSAttributedString.Key.font: font! ])
         
         let style               =   NSMutableParagraphStyle()
         style.lineSpacing       =   1.5 * widthRatio
         style.minimumLineHeight =   20.0 * widthRatio
         
-        attributedString.addAttributes([NSAttributedStringKey.paragraphStyle: style], range: NSRange(location: 0, length: text.localized().count))
+        attributedString.addAttributes([NSAttributedString.Key.paragraphStyle: style], range: NSRange(location: 0, length: text.localized().count))
         self.attributedText     =   attributedString
         
         self.font               =   font

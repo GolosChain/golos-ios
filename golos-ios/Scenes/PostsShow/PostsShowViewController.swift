@@ -53,7 +53,7 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
     
     @IBOutlet weak var lineViewWidthConstraint: NSLayoutConstraint! {
         didSet {
-            self.selectedButton                 =   self.buttonsStackView.arrangedSubviews.first(where: { $0.tag == 0 }) as! UIButton
+            self.selectedButton                 =   self.buttonsStackView.arrangedSubviews.first(where: { $0.tag == 0 }) as? UIButton
             lineViewWidthConstraint.constant    =   self.selectedButton.frame.width
         }
     }
@@ -68,7 +68,7 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
         didSet {
             _ = buttonsCollection.map({ actionButton in
                 actionButton.tune(withTitle:        actionButton.titleLabel?.text ?? "XXX",
-                                  hexColors:        [whiteColorPickers, whiteColorPickers, whiteColorPickers, whiteColorPickers],
+                                  hexColors:        [veryLightGrayColorPickers, veryLightGrayColorPickers, veryLightGrayColorPickers, veryLightGrayColorPickers],
                                   font:             UIFont(name: "SFUIDisplay-Regular", size: 12.0),
                                   alignment:        .center)
             })
@@ -85,11 +85,10 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
     // ContainerViewSupport implementation
     @IBOutlet weak var containerView: GSContainerView! {
         didSet {
-//            self.containerView.mainVC            =   self
-//            self.segmentControllers              =   self.getContainerViewControllers()
-//            self.containerView.viewControllers   =   segmentControllers
-//
-//            self.containerView.setActiveViewController(index: 0)
+            self.containerView.mainVC            =   self
+            self.containerView.viewControllers   =   self.getContainerViewControllers()
+
+            self.containerView.setActiveViewController(index: 0)
         }
     }
 
@@ -177,12 +176,11 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
         
         UIApplication.shared.statusBarStyle = .lightContent
         self.hideNavigationBar()
-
+        
         // Load Posts
 //        self.loadPosts(false)
     }
     
-
     
     // MARK: - Custom Functions
     override func localizeTitles() {
@@ -191,11 +189,13 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
         })
         
         self.buttonsStackView.layoutIfNeeded()
-        self.selectedButton = self.buttonsStackView.arrangedSubviews[self.selectedButton.tag + 1] as! UIButton
+        self.selectedButton = self.buttonsStackView.arrangedSubviews[self.selectedButton.tag + 1] as? UIButton
     }
     
     private func scrollHorizontalTo(sender: UIButton) {
         self.selectedButton = sender
+        self.selectedButton.theme_setTitleColor(whiteColorPickers, forState: .normal)
+        _ = self.buttonsCollection.filter({ $0 != sender }).map({ $0.theme_setTitleColor(veryLightGrayColorPickers, forState: .normal )})
         
         let offsetMinX = sender.frame.minX - scrollView.contentOffset.x
         let offsetMaxX = sender.frame.maxX - scrollView.contentOffset.x
@@ -304,6 +304,19 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
     
     // MARK: - Actions
     @IBAction func buttonTapped(_ sender: UIButton) {
+        // Scroll content to first row
+        if self.selectedButton == sender {
+            if let activeVC = self.containerView.activeVC, let tableView = activeVC.tableView, tableView.contentOffset.y > 0.0 {
+                activeVC.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+            }
+        }
+        
+        else {
+//            self.containerView.setActiveViewController(index: sender.tag)
+//            self.loadPosts(false)
+        }
+        
+        self.setActiveViewControllerHandlers()
         self.scrollHorizontalTo(sender: sender)
     }
 }

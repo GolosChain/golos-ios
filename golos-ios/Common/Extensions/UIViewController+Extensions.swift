@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension UIViewController {
+extension UIViewController {    
     static func nibInstance() -> Self {
         let nibName = String(describing: self)
         let viewController = self.init(nibName: nibName, bundle: nil)

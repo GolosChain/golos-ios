@@ -8,6 +8,10 @@
 
 import UIKit
 
+//protocol GSBaseViewControllerName {
+//    var nameVC: String! { get set }
+//}
+
 class GSBaseViewController: UIViewController {
     // MARK: - Properties
     var foregroundRemoteNotificationView: ForegroundRemoteNotificationView?
@@ -17,8 +21,8 @@ class GSBaseViewController: UIViewController {
     @objc func localizeTitles() {}
 
     func registerForKeyboardNotifications() {
-        NotificationCenter.default.addObserver(self, selector: #selector(adjustForKeyboard), name: Notification.Name.UIKeyboardWillHide, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(adjustForKeyboard), name: Notification.Name.UIKeyboardWillChangeFrame, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
 
     func displayLocalNotification() {

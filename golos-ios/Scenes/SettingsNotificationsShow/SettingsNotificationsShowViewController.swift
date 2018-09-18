@@ -51,36 +51,36 @@ class SettingsNotificationsShowViewController: GSBaseViewController {
     
     @IBOutlet var labelsCollection: [UILabel]! {
         didSet {
-            _ = labelsCollection.map({ $0.tune(withText:        $0.text!.localized(),
-                                               hexColors:       blackWhiteColorPickers,
-                                               font:            UIFont(name: "SF Pro Display-Regular", size: 14.0 * widthRatio),
-                                               alignment:       .left,
-                                               isMultiLines:    false)})
+            self.labelsCollection.forEach({ $0.tune(withText:        $0.text!.localized(),
+                                                    hexColors:       blackWhiteColorPickers,
+                                                    font:            UIFont(name: "SF Pro Display-Regular", size: 14.0 * widthRatio),
+                                                    alignment:       .left,
+                                                    isMultiLines:    false)})
         }
     }
     
     @IBOutlet var switchesCollection: [UISwitch]! {
         didSet {
-            _ = switchesCollection.map({ switcher in
-                switcher.setOn(false, animated: false)
-                switcher.theme_onTintColor      =   switcher.isOn ? verySoftBlueColorPickers  :   grayishRedColorPickers
-                switcher.theme_thumbTintColor   =   switcher.isOn ? vividBlueColorPickers     :   lightGrayishBlueWhiteColorPickers
+            self.switchesCollection.forEach({
+                $0.setOn(false, animated: false)
+                $0.theme_onTintColor        =   $0.isOn ? verySoftBlueColorPickers  :   grayishRedColorPickers
+                $0.theme_thumbTintColor     =   $0.isOn ? vividBlueColorPickers     :   lightGrayishBlueWhiteColorPickers
             })
         }
     }
     
     @IBOutlet var switchesBackgroundsCollection: [UIView]! {
         didSet {
-            _ = switchesBackgroundsCollection.map({ view in
-                view.theme_backgroundColor      =   grayishRedColorPickers
-                view.layer.cornerRadius         =   (view.bounds.height - 2) / 2 * heightRatio
+            self.switchesBackgroundsCollection.forEach({
+                $0.theme_backgroundColor    =   grayishRedColorPickers
+                $0.layer.cornerRadius       =   ($0.bounds.height - 2) / 2 * heightRatio
             })
         }
     }
     
     @IBOutlet var hightsCollection: [NSLayoutConstraint]! {
         didSet {
-            _ = hightsCollection.map({ $0.constant *= heightRatio })
+            self.hightsCollection.forEach({ $0.constant *= heightRatio })
         }
     }
 

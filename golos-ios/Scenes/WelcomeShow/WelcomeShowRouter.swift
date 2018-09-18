@@ -54,7 +54,7 @@ class WelcomeShowRouter: NSObject, WelcomeShowRoutingLogic, WelcomeShowDataPassi
         }
         
         if #available(iOS 10.0, *) {
-            UIApplication.shared.open(moreUrl, options: [:], completionHandler: nil)
+            UIApplication.shared.open(moreUrl, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
         }
             
         else {
@@ -74,11 +74,16 @@ class WelcomeShowRouter: NSObject, WelcomeShowRoutingLogic, WelcomeShowDataPassi
         }
         
         if #available(iOS 10.0, *) {
-            UIApplication.shared.open(moreUrl, options: [:], completionHandler: nil)
+            UIApplication.shared.open(moreUrl, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
         }
             
         else {
             UIApplication.shared.openURL(moreUrl)
         }
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+private func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
 }

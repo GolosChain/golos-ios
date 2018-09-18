@@ -34,7 +34,7 @@ extension UIAlertController {
     func show(animated: Bool) {
         alertWindow = UIWindow(frame: UIScreen.main.bounds)
         alertWindow?.rootViewController = UIViewController()
-        alertWindow?.windowLevel = UIWindowLevelAlert + 1
+        alertWindow?.windowLevel = UIWindow.Level.alert + 1
         alertWindow?.makeKeyAndVisible()
         alertWindow?.rootViewController?.present(self,
                                                  animated: animated,

@@ -18,6 +18,6 @@ extension UITextField {
         self.textAlignment          =   alignment
         
         self.attributedPlaceholder  =   NSAttributedString(string:      placeholder.localized(),
-                                                           attributes:  [ NSAttributedStringKey.foregroundColor: UIColor(hexString: "#7d7d7d") ])
+                                                           attributes:  [ NSAttributedString.Key.foregroundColor: UIColor(hexString: "#7d7d7d") ])
     }    
 }

@@ -65,9 +65,9 @@ class LogInShowRouter: NSObject, LogInShowRoutingLogic {
             UIView.animate(withDuration: 0.2, animations: {
                 inactiveVC.view.transform = CGAffineTransform(translationX: (self.viewController?.animationDirection == .fromRightToLeft) ? -1000 : 1000, y: 0)
             }, completion: { _ in
-                inactiveVC.willMove(toParentViewController: nil)
+                inactiveVC.willMove(toParent: nil)
                 inactiveVC.view.removeFromSuperview()
-                inactiveVC.removeFromParentViewController()
+                inactiveVC.removeFromParent()
                 
                 self.updateActiveViewController()
             })
@@ -93,7 +93,7 @@ class LogInShowRouter: NSObject, LogInShowRoutingLogic {
     }
     
     private func addActiveViewController(_ activeVC: GSBaseViewController) {
-        self.viewController?.addChildViewController(activeVC)
+        self.viewController?.addChild(activeVC)
         
         if self.viewController?.animationDirection == nil {
             activeVC.view.frame = self.viewController!.containerView.bounds
@@ -105,7 +105,7 @@ class LogInShowRouter: NSObject, LogInShowRoutingLogic {
         }
         
         self.viewController?.containerView.addSubview(activeVC.view)
-        activeVC.didMove(toParentViewController: self.viewController)
+        activeVC.didMove(toParent: self.viewController)
     }
     
     private func tuneTitles() {
@@ -134,7 +134,7 @@ class LogInShowRouter: NSObject, LogInShowRoutingLogic {
         }
         
         if #available(iOS 10.0, *) {
-            UIApplication.shared.open(moreUrl, options: [:], completionHandler: nil)
+            UIApplication.shared.open(moreUrl, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
         }
             
         else {
@@ -230,4 +230,9 @@ class LogInShowRouter: NSObject, LogInShowRoutingLogic {
         }
     }
  */
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+private func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
 }

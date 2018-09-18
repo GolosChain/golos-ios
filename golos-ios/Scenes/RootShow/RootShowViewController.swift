@@ -84,10 +84,10 @@ class RootShowViewController: GSBaseViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(stateDidChange(_:)), name: NSNotification.Name.appStateChanged, object: nil)
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        UIApplication.shared.statusBarStyle = .default
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        UIApplication.shared.statusBarStyle = .lightContent
     }
     
     

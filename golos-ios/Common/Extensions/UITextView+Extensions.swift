@@ -155,8 +155,8 @@ extension UITextView {
         var attributedString            =   NSMutableAttributedString(string: "\n")
         
         // Image
-        if let image = object as? UIImage, let imageGIF = UIImage.gif(data: UIImagePNGRepresentation(image)!) {
-            attachment.image            =   UIImage.gif(data: UIImageJPEGRepresentation(image, 0)!)
+        if let image = object as? UIImage, let imageGIF = UIImage.gif(data: image.pngData()!) {
+            attachment.image            =   UIImage.gif(data: image.jpegData(compressionQuality: 0)!)
 //            attachment.image            =   imageGIF
             
             // Calculate new size
@@ -175,10 +175,10 @@ extension UITextView {
         
         // Link
         if let link = object as? (String, String) {
-            let linkAttributes: [NSAttributedStringKey: Any] =  [
+            let linkAttributes: [NSAttributedString.Key: Any] =  [
                                                                     .link:              link.1,
                                                                     .foregroundColor:   UIColor.blue,
-                                                                    .underlineStyle:    NSUnderlineStyle.styleSingle.rawValue
+                                                                    .underlineStyle:    NSUnderlineStyle.single.rawValue
                                                                 ]
 
             let linkAttributedString    =   NSMutableAttributedString(string: String(format: "%@", link.0))
@@ -201,8 +201,8 @@ extension UITextView {
         let range               =   NSRange.init(location: 0, length: attributedString.length)
        
         attributedString.enumerateAttributes(in: range, options: NSAttributedString.EnumerationOptions(rawValue: 0)) { (object, range, _) in
-            if object.keys.contains(NSAttributedStringKey.attachment) {
-                if let attachment = object[NSAttributedStringKey.attachment] as? NSTextAttachment {
+            if object.keys.contains(NSAttributedString.Key.attachment) {
+                if let attachment = object[NSAttributedString.Key.attachment] as? NSTextAttachment {
                     // Image
                     if let image = attachment.image {
                         parts.append(Attachment(origin: image))
@@ -216,7 +216,7 @@ extension UITextView {
             }
             
             // Link
-            else if object.keys.contains(NSAttributedStringKey.link) {
+            else if object.keys.contains(NSAttributedString.Key.link) {
                 let linkKey     =   attributedString.attributedSubstring(from: range).string
                 let linkPath    =   attributedString.attributedSubstring(from: range).attribute(.link, at: 0, longestEffectiveRange: nil, in: range) as! String
                 
@@ -282,7 +282,7 @@ extension UITextView {
 
 
 extension UITextView: NSTextStorageDelegate {
-    public func textStorage(_ textStorage: NSTextStorage, didProcessEditing editedMask: NSTextStorageEditActions, range editedRange: NSRange, changeInLength delta: Int) {
+    public func textStorage(_ textStorage: NSTextStorage, didProcessEditing editedMask: NSTextStorage.EditActions, range editedRange: NSRange, changeInLength delta: Int) {
         if editedMask.contains(.editedCharacters) {
             placeholderLabel.isHidden   =   !text.isEmpty
         }

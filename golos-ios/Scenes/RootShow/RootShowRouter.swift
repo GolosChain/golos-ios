@@ -49,9 +49,9 @@ class RootShowRouter: NSObject, RootShowRoutingLogic, RootShowDataPassing {
         let transition              =   CATransition()
         
         transition.duration         =   1.2
-        transition.timingFunction   =   CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-        transition.type             =   kCATransitionPush
-        transition.subtype          =   kCAGravityCenter
+        transition.timingFunction   =   CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        transition.type             =   CATransitionType.fade //push
+//        transition.subtype          =   CATransitionSubtype.fromRight // center
         
         source.navigationController?.view.layer.add(transition, forKey: kCATransition)
         source.navigationController?.pushViewController(destination, animated: false)

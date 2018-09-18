@@ -18,7 +18,7 @@ final class GSTableViewWithReloadCompletion: UITableView {
     
     
     // MARK: - Class Initialization
-    override init(frame: CGRect, style: UITableViewStyle) {
+    override init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: frame, style: style)
         
         setup()
@@ -57,7 +57,7 @@ final class GSTableViewWithReloadCompletion: UITableView {
         self.dataSource         =   self.tableViewManager
         
         // Set automatic dimensions for row height
-        self.rowHeight          =   UITableViewAutomaticDimension
+        self.rowHeight          =   UITableView.automaticDimension
         self.estimatedRowHeight =   320.0 * heightRatio
     }
 }

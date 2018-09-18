@@ -108,8 +108,8 @@ import Accelerate
 
 public extension UIImage {
     public func isEqualTo(image: UIImage) -> Bool {
-        let data1: NSData   =   UIImagePNGRepresentation(self)! as NSData
-        let data2: NSData   =   UIImagePNGRepresentation(image)! as NSData
+        let data1: NSData   =   self.pngData()! as NSData
+        let data2: NSData   =   image.pngData()! as NSData
         
         return data1.isEqual(data2)
     }
@@ -176,7 +176,7 @@ public extension UIImage {
         var effectImage = self
 
         let hasBlur = blurRadius > epsilonFlat
-        let hasSaturationChange = fabs(saturationDeltaFactor - 1.0) > epsilonFlat
+        let hasSaturationChange = abs(saturationDeltaFactor - 1.0) > epsilonFlat
 
         if hasBlur || hasSaturationChange {
             func createEffectBuffer(_ context: CGContext) -> vImage_Buffer {
@@ -322,7 +322,7 @@ public extension UIImage {
     
     /// Compare two images
     func isEqual(whiteImage: UIImage) -> Bool {
-        if let lhsData = UIImagePNGRepresentation(self), let rhsData = UIImagePNGRepresentation(whiteImage) {
+        if let lhsData = self.pngData(), let rhsData = whiteImage.pngData() {
             return lhsData == rhsData
         }
         

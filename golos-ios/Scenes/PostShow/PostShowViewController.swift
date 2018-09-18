@@ -291,7 +291,7 @@ class PostShowViewController: GSBaseViewController {
     
     @IBOutlet var subscribeButtonsCollection: [UIButton]! {
         didSet {
-            _ = subscribeButtonsCollection.map({ button in
+            subscribeButtonsCollection.forEach({ button in
                 button.tune(withTitle:         "Subscribe",
                             hexColors:         [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
                             font:              UIFont(name: "SFUIDisplay-Medium", size: 10.0),
@@ -370,7 +370,7 @@ class PostShowViewController: GSBaseViewController {
     // Collections
     @IBOutlet var circleImagesCollection: [UIView]! {
         didSet {
-            _ = circleImagesCollection.map({ imageView in
+            circleImagesCollection.forEach({ imageView in
                 imageView.layer.cornerRadius = imageView.bounds.height / 2 * heightRatio
                 
                 if imageView.tag == 0 {

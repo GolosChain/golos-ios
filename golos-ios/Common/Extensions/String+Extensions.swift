@@ -31,7 +31,7 @@ extension String {
         
         let height  =   self.boundingRect(with: size,
                                           options:      [NSStringDrawingOptions.usesLineFragmentOrigin, NSStringDrawingOptions.usesFontLeading],
-                                          attributes:   [NSAttributedStringKey.font: font],
+                                          attributes:   [NSAttributedString.Key.font: font],
                                           context:      nil).size.height
         return height
     }
@@ -41,7 +41,7 @@ extension String {
         
         let width   =   self.boundingRect(with: size,
                                           options:      [NSStringDrawingOptions.usesLineFragmentOrigin, NSStringDrawingOptions.usesFontLeading],
-                                          attributes:   [NSAttributedStringKey.font: font],
+                                          attributes:   [NSAttributedString.Key.font: font],
                                           context:      nil).size.width
         return width
     }

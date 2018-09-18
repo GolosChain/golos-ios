@@ -25,18 +25,18 @@ class LogInHelpShowViewController: GSBaseViewController {
 
     @IBOutlet var titlesCollection: [UILabel]! {
         didSet {
-            _ = titlesCollection.map({
-                    if $0.tag == 2 {
-                        $0.text = (loginType == .postingKey) ?  "Login Help Step Title 3 Posting".localized() :
-                                                                "Login Help Step Title 3 Active".localized()
-                    }
+            titlesCollection.forEach({
+                if $0.tag == 2 {
+                    $0.text = (loginType == .postingKey) ?  "Login Help Step Title 3 Posting".localized() :
+                        "Login Help Step Title 3 Active".localized()
+                }
                 
-                    $0.tune(withAttributedText:     $0.text ?? "Zorro",
-                            hexColors:              blackWhiteColorPickers,
-                            font:                   UIFont(name: "SFProDisplay-Regular", size: 13.0 * widthRatio),
-                            alignment:              .left,
-                            isMultiLines:           true)
-                })
+                $0.tune(withAttributedText:     $0.text ?? "Zorro",
+                        hexColors:              blackWhiteColorPickers,
+                        font:                   UIFont(name: "SFProDisplay-Regular", size: 13.0 * widthRatio),
+                        alignment:              .left,
+                        isMultiLines:           true)
+            })
         }
     }
     

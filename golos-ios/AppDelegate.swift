@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow? = UIWindow(frame: UIScreen.main.bounds)
     
     // MARK: - Class Functions
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         Logger.log(message: "Success", event: .severe)
         
         /// TEST
@@ -140,8 +140,8 @@ extension AppDelegate {
         appearance.tintColor            =   UIColor.Project.backButtonBlackColor
         
         appearance.titleTextAttributes  =   [
-                                                NSAttributedStringKey.foregroundColor:      UIColor.Project.navigationBarTextBlack,
-                                                NSAttributedStringKey.font:                 UIFont(name: "SFUIDisplay-Regular", size: 16.0 * widthRatio) as Any
+                                                NSAttributedString.Key.foregroundColor:      UIColor.Project.navigationBarTextBlack,
+                                                NSAttributedString.Key.font:                 UIFont(name: "SFUIDisplay-Regular", size: 16.0 * widthRatio) as Any
                                             ]
         
         appearance.isTranslucent        =   false

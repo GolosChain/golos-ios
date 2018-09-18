@@ -81,7 +81,7 @@ class GSTableViewController: GSBaseViewController, HandlersCellSupport {
             tableView.tune()
             
             // Set automatic dimensions for row height
-            tableView.rowHeight             =   UITableViewAutomaticDimension
+            tableView.rowHeight             =   UITableView.automaticDimension
             tableView.estimatedRowHeight    =   320.0 * heightRatio
             
             if #available(iOS 10.0, *) {
@@ -167,7 +167,7 @@ class GSTableViewController: GSBaseViewController, HandlersCellSupport {
         
         self.activityIndicatorView      =   UIActivityIndicatorView.init(frame: CGRect(origin:  .zero,
                                                                                        size:    CGSize(width: tableView.frame.width, height: 64.0 * heightRatio)))
-        self.activityIndicatorView.activityIndicatorViewStyle = .gray
+        self.activityIndicatorView.style = .gray
 //            self.activityIndicatorView.color    =   UIColor.blue
         self.tableView.separatorStyle   =   .none
         self.activityIndicatorView.startAnimating()
@@ -424,7 +424,7 @@ extension GSTableViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 extension GSTableViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
+        return UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

@@ -34,9 +34,9 @@ class MainContainerViewController: GSBaseViewController {
 //        let currentState        =   presenter.currentState
         let viewController      =   mediator.getViewController()
         
-        addChildViewController(viewController)
+        addChild(viewController)
         view.addSubview(viewController.view)
-        viewController.didMove(toParentViewController: self)
+        viewController.didMove(toParent: self)
         
         activeViewController    =   viewController
         
@@ -58,7 +58,7 @@ class MainContainerViewController: GSBaseViewController {
     }
     
     private func presentViewController(_ viewController: UIViewController, fromTop: Bool) {
-        addChildViewController(viewController)
+        addChild(viewController)
         
         if fromTop {
             view.insertSubview(viewController.view, aboveSubview: activeViewController.view)
@@ -68,7 +68,7 @@ class MainContainerViewController: GSBaseViewController {
             view.insertSubview(viewController.view, belowSubview: activeViewController.view)
         }
         
-        viewController.didMove(toParentViewController: self)
+        viewController.didMove(toParent: self)
         
         let startFrame = fromTop ?  activeViewController.view.frame.offsetBy(dx: 0, dy: -UIScreen.main.bounds.size.height) :
                                     activeViewController.view.frame
@@ -84,7 +84,7 @@ class MainContainerViewController: GSBaseViewController {
             movingViewController?.view.frame = finalFrame
         }) { _ in
             self.activeViewController.view.removeFromSuperview()
-            self.activeViewController.removeFromParentViewController()
+            self.activeViewController.removeFromParent()
             self.activeViewController = viewController
         }
     }

@@ -42,7 +42,7 @@ class CircularProgressBarView: UIView {
         shapeLayer.strokeColor  =   UIColor(hexString: "#2F73B5").cgColor
         shapeLayer.lineWidth    =   4.0 * widthRatio
         shapeLayer.fillColor    =   UIColor.clear.cgColor
-        shapeLayer.lineCap      =   kCALineCapRound
+        shapeLayer.lineCap      =   CAShapeLayerLineCap.round
         shapeLayer.strokeEnd    =   0.0
         
         self.layer.addSublayer(shapeLayer)
@@ -53,7 +53,7 @@ class CircularProgressBarView: UIView {
 
         basicAnimation.toValue                  =   1
         basicAnimation.duration                 =   User.isAnonymous ? 2.5 : 0.5
-        basicAnimation.fillMode                 =   kCAFillModeForwards
+        basicAnimation.fillMode                 =   CAMediaTimingFillMode.forwards
         basicAnimation.isRemovedOnCompletion    =   false
         
         basicAnimation.delegate                 =   self

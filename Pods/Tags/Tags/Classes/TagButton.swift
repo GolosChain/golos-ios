@@ -115,7 +115,7 @@ public class TagButton: UIButton{
     
     /// module private set options
     func setEntityOptions(options: ButtonOptions){
-        self.contentEdgeInsets = UIEdgeInsetsMake(options.paddingTopBottom, options.paddingLeftRight, options.paddingTopBottom, options.paddingLeftRight)
+        self.contentEdgeInsets = UIEdgeInsets.init(top: options.paddingTopBottom, left: options.paddingLeftRight, bottom: options.paddingTopBottom, right: options.paddingLeftRight)
         self.layer.borderColor = options.layerColor.cgColor
         self.layer.borderWidth = options.layerWidth
         self.layer.cornerRadius = options.layerRadius
@@ -128,7 +128,7 @@ public class TagButton: UIButton{
     
     /// padding set
     func setEntity(paddingLeftRight: CGFloat, paddingTopBottom: CGFloat){
-        self.contentEdgeInsets = UIEdgeInsetsMake(paddingTopBottom, paddingLeftRight, paddingTopBottom, paddingLeftRight)
+        self.contentEdgeInsets = UIEdgeInsets.init(top: paddingTopBottom, left: paddingLeftRight, bottom: paddingTopBottom, right: paddingLeftRight)
     }
     
     

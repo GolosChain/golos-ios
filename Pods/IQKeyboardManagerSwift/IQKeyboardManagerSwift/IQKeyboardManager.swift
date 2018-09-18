@@ -632,7 +632,7 @@ open class IQKeyboardManager: NSObject, UIGestureRecognizerDelegate {
     /** Resigning on tap gesture.   (Enhancement ID: #14)*/
     @objc internal func tapRecognized(_ gesture: UITapGestureRecognizer) {
         
-        if gesture.state == UIGestureRecognizerState.ended {
+        if gesture.state == UIGestureRecognizer.State.ended {
 
             //Resigning currently responder textField.
             _ = resignFirstResponder()
@@ -828,7 +828,7 @@ open class IQKeyboardManager: NSObject, UIGestureRecognizerDelegate {
     fileprivate var         _animationDuration : TimeInterval = 0.25
     
     /** To mimic the keyboard animation */
-    fileprivate var         _animationCurve = UIViewAnimationOptions.curveEaseOut
+    fileprivate var         _animationCurve = UIView.AnimationOptions.curveEaseOut
     
     /*******************************************/
 
@@ -971,7 +971,7 @@ open class IQKeyboardManager: NSObject, UIGestureRecognizerDelegate {
 #endif
 
             //Used UIViewAnimationOptionBeginFromCurrentState to minimize strange animations.
-            UIView.animate(withDuration: _animationDuration, delay: 0, options: UIViewAnimationOptions.beginFromCurrentState.union(_animationCurve), animations: { () -> Void in
+            UIView.animate(withDuration: _animationDuration, delay: 0, options: UIView.AnimationOptions.beginFromCurrentState.union(_animationCurve), animations: { () -> Void in
                 
 #if swift(>=3.2)
                 if self.canAdjustAdditionalSafeAreaInsets {
@@ -1122,7 +1122,7 @@ open class IQKeyboardManager: NSObject, UIGestureRecognizerDelegate {
                 
                 showLog("Restoring \(lastScrollView._IQDescription()) contentInset to : \(_startingContentInsets) and contentOffset to : \(_startingContentOffset)")
 
-                UIView.animate(withDuration: _animationDuration, delay: 0, options: UIViewAnimationOptions.beginFromCurrentState.union(_animationCurve), animations: { () -> Void in
+                UIView.animate(withDuration: _animationDuration, delay: 0, options: UIView.AnimationOptions.beginFromCurrentState.union(_animationCurve), animations: { () -> Void in
                     
                     lastScrollView.contentInset = self._startingContentInsets
                     lastScrollView.scrollIndicatorInsets = self._startingScrollIndicatorInsets
@@ -1140,7 +1140,7 @@ open class IQKeyboardManager: NSObject, UIGestureRecognizerDelegate {
                 
                 showLog("Restoring \(lastScrollView._IQDescription()) contentInset to : \(_startingContentInsets) and contentOffset to : \(_startingContentOffset)")
                 
-                UIView.animate(withDuration: _animationDuration, delay: 0, options: UIViewAnimationOptions.beginFromCurrentState.union(_animationCurve), animations: { () -> Void in
+                UIView.animate(withDuration: _animationDuration, delay: 0, options: UIView.AnimationOptions.beginFromCurrentState.union(_animationCurve), animations: { () -> Void in
                     
                     lastScrollView.contentInset = self._startingContentInsets
                     lastScrollView.scrollIndicatorInsets = self._startingScrollIndicatorInsets
@@ -1239,7 +1239,7 @@ open class IQKeyboardManager: NSObject, UIGestureRecognizerDelegate {
                         }
                         
                         //Getting problem while using `setContentOffset:animated:`, So I used animation API.
-                        UIView.animate(withDuration: _animationDuration, delay: 0, options: UIViewAnimationOptions.beginFromCurrentState.union(_animationCurve), animations: { () -> Void in
+                        UIView.animate(withDuration: _animationDuration, delay: 0, options: UIView.AnimationOptions.beginFromCurrentState.union(_animationCurve), animations: { () -> Void in
                         
                             self.showLog("Adjusting \(scrollView.contentOffset.y-shouldOffsetY) to \(scrollView._IQDescription()) ContentOffset")
                             
@@ -1270,7 +1270,7 @@ open class IQKeyboardManager: NSObject, UIGestureRecognizerDelegate {
                 showLog("\(lastScrollView._IQDescription()) old ContentInset : \(lastScrollView.contentInset)")
                 
                 //Getting problem while using `setContentOffset:animated:`, So I used animation API.
-                UIView.animate(withDuration: _animationDuration, delay: 0, options: UIViewAnimationOptions.beginFromCurrentState.union(_animationCurve), animations: { () -> Void in
+                UIView.animate(withDuration: _animationDuration, delay: 0, options: UIView.AnimationOptions.beginFromCurrentState.union(_animationCurve), animations: { () -> Void in
                     lastScrollView.contentInset = movedInsets
 
                     var newInset = lastScrollView.scrollIndicatorInsets
@@ -1290,7 +1290,7 @@ open class IQKeyboardManager: NSObject, UIGestureRecognizerDelegate {
                 
                 let constant = min(_layoutGuideConstraintInitialConstant, constraint.constant-move)
                 
-                UIView.animate(withDuration: _animationDuration, delay: 0, options: (_animationCurve.union(UIViewAnimationOptions.beginFromCurrentState)), animations: { () -> Void in
+                UIView.animate(withDuration: _animationDuration, delay: 0, options: (_animationCurve.union(UIView.AnimationOptions.beginFromCurrentState)), animations: { () -> Void in
                     
                     constraint.constant = constant
                     self._rootViewController?.view.setNeedsLayout()
@@ -1305,7 +1305,7 @@ open class IQKeyboardManager: NSObject, UIGestureRecognizerDelegate {
                 
                 let constant = max(_layoutGuideConstraintInitialConstant, constraint.constant+move)
                 
-                UIView.animate(withDuration: _animationDuration, delay: 0, options: (_animationCurve.union(UIViewAnimationOptions.beginFromCurrentState)), animations: { () -> Void in
+                UIView.animate(withDuration: _animationDuration, delay: 0, options: (_animationCurve.union(UIView.AnimationOptions.beginFromCurrentState)), animations: { () -> Void in
                     
                     constraint.constant = constant
                     self._rootViewController?.view.setNeedsLayout()
@@ -1324,7 +1324,7 @@ open class IQKeyboardManager: NSObject, UIGestureRecognizerDelegate {
                 
                 if (textView.frame.size.height-textView.contentInset.bottom>textViewHeight)
                 {
-                    UIView.animate(withDuration: _animationDuration, delay: 0, options: (_animationCurve.union(UIViewAnimationOptions.beginFromCurrentState)), animations: { () -> Void in
+                    UIView.animate(withDuration: _animationDuration, delay: 0, options: (_animationCurve.union(UIView.AnimationOptions.beginFromCurrentState)), animations: { () -> Void in
                         
                         self.showLog("\(textFieldView._IQDescription()) Old UITextView.contentInset : \(textView.contentInset)")
                         
@@ -1459,14 +1459,14 @@ open class IQKeyboardManager: NSObject, UIGestureRecognizerDelegate {
         if let info = notification?.userInfo {
             
             //  Getting keyboard animation.
-            if let curve = info[UIKeyboardAnimationCurveUserInfoKey] as? UInt {
-                _animationCurve = UIViewAnimationOptions(rawValue: curve)
+            if let curve = info[UIResponder.keyboardAnimationCurveUserInfoKey] as? UInt {
+                _animationCurve = UIView.AnimationOptions(rawValue: curve)
             } else {
-                _animationCurve = UIViewAnimationOptions.curveEaseOut
+                _animationCurve = UIView.AnimationOptions.curveEaseOut
             }
             
             //  Getting keyboard animation duration
-            if let duration = info[UIKeyboardAnimationDurationUserInfoKey] as? TimeInterval {
+            if let duration = info[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval {
                 
                 //Saving animation duration
                 if duration != 0.0 {
@@ -1477,7 +1477,7 @@ open class IQKeyboardManager: NSObject, UIGestureRecognizerDelegate {
             }
             
             //  Getting UIKeyboardSize.
-            if let kbFrame = info[UIKeyboardFrameEndUserInfoKey] as? CGRect {
+            if let kbFrame = info[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect {
                 
                 let screenSize = UIScreen.main.bounds
                 
@@ -1613,7 +1613,7 @@ open class IQKeyboardManager: NSObject, UIGestureRecognizerDelegate {
         if let info = notification?.userInfo {
             
             //  Getting keyboard animation duration
-            if let duration =  info[UIKeyboardAnimationDurationUserInfoKey] as? TimeInterval {
+            if let duration =  info[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval {
                 if duration != 0 {
                     //  Setitng keyboard animation duration
                     _animationDuration = duration
@@ -1636,7 +1636,7 @@ open class IQKeyboardManager: NSObject, UIGestureRecognizerDelegate {
         //Restoring the contentOffset of the lastScrollView
         if let lastScrollView = _lastScrollView {
             
-            UIView.animate(withDuration: _animationDuration, delay: 0, options: UIViewAnimationOptions.beginFromCurrentState.union(_animationCurve), animations: { () -> Void in
+            UIView.animate(withDuration: _animationDuration, delay: 0, options: UIView.AnimationOptions.beginFromCurrentState.union(_animationCurve), animations: { () -> Void in
                 
                 lastScrollView.contentInset = self._startingContentInsets
                 lastScrollView.scrollIndicatorInsets = self._startingScrollIndicatorInsets
@@ -1677,7 +1677,7 @@ open class IQKeyboardManager: NSObject, UIGestureRecognizerDelegate {
                 _topViewBeginRect.size = rootViewController.view.frame.size
                 
                 //Used UIViewAnimationOptionBeginFromCurrentState to minimize strange animations.
-                UIView.animate(withDuration: _animationDuration, delay: 0, options: UIViewAnimationOptions.beginFromCurrentState.union(_animationCurve), animations: { () -> Void in
+                UIView.animate(withDuration: _animationDuration, delay: 0, options: UIView.AnimationOptions.beginFromCurrentState.union(_animationCurve), animations: { () -> Void in
                     
                     if let constraint = self._layoutGuideConstraint {
                         
@@ -1714,7 +1714,7 @@ open class IQKeyboardManager: NSObject, UIGestureRecognizerDelegate {
             
             if let rootViewController = _rootViewController {
                 
-                UIView.animate(withDuration: _animationDuration, delay: 0, options: UIViewAnimationOptions.beginFromCurrentState.union(_animationCurve), animations: { () -> Void in
+                UIView.animate(withDuration: _animationDuration, delay: 0, options: UIView.AnimationOptions.beginFromCurrentState.union(_animationCurve), animations: { () -> Void in
                     
                     constraint.constant = self._layoutGuideConstraintInitialConstant
                     rootViewController.view.setNeedsLayout()
@@ -1795,7 +1795,7 @@ open class IQKeyboardManager: NSObject, UIGestureRecognizerDelegate {
             if _textFieldView is UITextView == true &&
                 _textFieldView?.inputAccessoryView == nil {
                 
-                UIView.animate(withDuration: 0.00001, delay: 0, options: UIViewAnimationOptions.beginFromCurrentState.union(_animationCurve), animations: { () -> Void in
+                UIView.animate(withDuration: 0.00001, delay: 0, options: UIView.AnimationOptions.beginFromCurrentState.union(_animationCurve), animations: { () -> Void in
 
                     self.addToolbarIfRequired()
                     
@@ -1885,7 +1885,7 @@ open class IQKeyboardManager: NSObject, UIGestureRecognizerDelegate {
 
             if isTextViewContentInsetChanged == true {
                 
-                UIView.animate(withDuration: _animationDuration, delay: 0, options: UIViewAnimationOptions.beginFromCurrentState.union(_animationCurve), animations: { () -> Void in
+                UIView.animate(withDuration: _animationDuration, delay: 0, options: UIView.AnimationOptions.beginFromCurrentState.union(_animationCurve), animations: { () -> Void in
                     
                     self.isTextViewContentInsetChanged = false
                     
@@ -1921,7 +1921,7 @@ open class IQKeyboardManager: NSObject, UIGestureRecognizerDelegate {
             
             if isTextViewContentInsetChanged == true {
                 
-                UIView.animate(withDuration: _animationDuration, delay: 0, options: UIViewAnimationOptions.beginFromCurrentState.union(_animationCurve), animations: { () -> Void in
+                UIView.animate(withDuration: _animationDuration, delay: 0, options: UIView.AnimationOptions.beginFromCurrentState.union(_animationCurve), animations: { () -> Void in
                     
                     self.isTextViewContentInsetChanged = false
                     
@@ -1942,7 +1942,7 @@ open class IQKeyboardManager: NSObject, UIGestureRecognizerDelegate {
         #if swift(>=3.2)
         if let rootViewController = _rootViewController {
             if #available(iOS 11, *) {
-                if UIEdgeInsetsEqualToEdgeInsets(_initialAdditionalSafeAreaInsets, rootViewController.additionalSafeAreaInsets) {
+                if _initialAdditionalSafeAreaInsets == rootViewController.additionalSafeAreaInsets {
                     rootViewController.additionalSafeAreaInsets = _initialAdditionalSafeAreaInsets
                 }
             }
@@ -1960,7 +1960,7 @@ open class IQKeyboardManager: NSObject, UIGestureRecognizerDelegate {
         
         //  Getting keyboard animation duration
         if let info = notification.userInfo {
-            if let newFrame = info[UIApplicationStatusBarFrameUserInfoKey] as? CGRect {
+            if let newFrame = info[UIApplication.statusBarFrameUserInfoKey] as? CGRect {
                 
                 _statusBarFrame = newFrame
             }
@@ -2265,43 +2265,43 @@ open class IQKeyboardManager: NSObject, UIGestureRecognizerDelegate {
     open func registerAllNotifications() {
 
         //  Registering for keyboard notification.
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name: Notification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardDidShow(_:)), name: Notification.Name.UIKeyboardDidShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(_:)), name: Notification.Name.UIKeyboardWillHide, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardDidHide(_:)), name: Notification.Name.UIKeyboardDidHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardDidShow(_:)), name: UIResponder.keyboardDidShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardDidHide(_:)), name: UIResponder.keyboardDidHideNotification, object: nil)
         
         //  Registering for UITextField notification.
-        registerTextFieldViewClass(UITextField.self, didBeginEditingNotificationName: Notification.Name.UITextFieldTextDidBeginEditing.rawValue, didEndEditingNotificationName: Notification.Name.UITextFieldTextDidEndEditing.rawValue)
+        registerTextFieldViewClass(UITextField.self, didBeginEditingNotificationName: UITextField.textDidBeginEditingNotification.rawValue, didEndEditingNotificationName: UITextField.textDidEndEditingNotification.rawValue)
         
         //  Registering for UITextView notification.
-        registerTextFieldViewClass(UITextView.self, didBeginEditingNotificationName: Notification.Name.UITextViewTextDidBeginEditing.rawValue, didEndEditingNotificationName: Notification.Name.UITextViewTextDidEndEditing.rawValue)
+        registerTextFieldViewClass(UITextView.self, didBeginEditingNotificationName: UITextView.textDidBeginEditingNotification.rawValue, didEndEditingNotificationName: UITextView.textDidEndEditingNotification.rawValue)
         
         //  Registering for orientation changes notification
-        NotificationCenter.default.addObserver(self, selector: #selector(self.willChangeStatusBarOrientation(_:)), name: Notification.Name.UIApplicationWillChangeStatusBarOrientation, object: UIApplication.shared)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.willChangeStatusBarOrientation(_:)), name: UIApplication.willChangeStatusBarOrientationNotification, object: UIApplication.shared)
         
         //  Registering for status bar frame change notification
-        NotificationCenter.default.addObserver(self, selector: #selector(self.didChangeStatusBarFrame(_:)), name: Notification.Name.UIApplicationDidChangeStatusBarFrame, object: UIApplication.shared)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.didChangeStatusBarFrame(_:)), name: UIApplication.didChangeStatusBarFrameNotification, object: UIApplication.shared)
     }
 
     open func unregisterAllNotifications() {
         
         //  Unregistering for keyboard notification.
-        NotificationCenter.default.removeObserver(self, name: Notification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.removeObserver(self, name: Notification.Name.UIKeyboardDidShow, object: nil)
-        NotificationCenter.default.removeObserver(self, name: Notification.Name.UIKeyboardWillHide, object: nil)
-        NotificationCenter.default.removeObserver(self, name: Notification.Name.UIKeyboardDidHide, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardDidShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardDidHideNotification, object: nil)
 
         //  Unregistering for UITextField notification.
-        unregisterTextFieldViewClass(UITextField.self, didBeginEditingNotificationName: Notification.Name.UITextFieldTextDidBeginEditing.rawValue, didEndEditingNotificationName: Notification.Name.UITextFieldTextDidEndEditing.rawValue)
+        unregisterTextFieldViewClass(UITextField.self, didBeginEditingNotificationName: UITextField.textDidBeginEditingNotification.rawValue, didEndEditingNotificationName: UITextField.textDidEndEditingNotification.rawValue)
         
         //  Unregistering for UITextView notification.
-        unregisterTextFieldViewClass(UITextView.self, didBeginEditingNotificationName: Notification.Name.UITextViewTextDidBeginEditing.rawValue, didEndEditingNotificationName: Notification.Name.UITextViewTextDidEndEditing.rawValue)
+        unregisterTextFieldViewClass(UITextView.self, didBeginEditingNotificationName: UITextView.textDidBeginEditingNotification.rawValue, didEndEditingNotificationName: UITextView.textDidEndEditingNotification.rawValue)
         
         //  Unregistering for orientation changes notification
-        NotificationCenter.default.removeObserver(self, name: Notification.Name.UIApplicationWillChangeStatusBarOrientation, object: UIApplication.shared)
+        NotificationCenter.default.removeObserver(self, name: UIApplication.willChangeStatusBarOrientationNotification, object: UIApplication.shared)
         
         //  Unregistering for status bar frame change notification
-        NotificationCenter.default.removeObserver(self, name: Notification.Name.UIApplicationDidChangeStatusBarFrame, object: UIApplication.shared)
+        NotificationCenter.default.removeObserver(self, name: UIApplication.didChangeStatusBarFrameNotification, object: UIApplication.shared)
     }
 
     fileprivate func showLog(_ logString: String) {
