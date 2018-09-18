@@ -25,8 +25,6 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
     // MARK: - Properties
     var selectedButton: UIButton!
     var postFeedTypes: [PostsFeedType]  =   [ .lenta, .popular, .actual, .new, .promo ]
-//        User.current == nil ?   [ .popular, .actual, .new, .promo ] :
-//                                                                    [ .lenta, .popular, .actual, .new, .promo ]
 
     var interactor: PostsShowBusinessLogic?
     var router: (NSObjectProtocol & PostsShowRoutingLogic & PostsShowDataPassing)?

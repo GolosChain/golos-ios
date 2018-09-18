@@ -33,11 +33,7 @@ class GSTabBarController: UITabBarController {
         let postCreateNC            =   UIStoryboard(name: "PostCreate", bundle: nil).instantiateViewController(withIdentifier: "PostCreateNC")
         postCreateNC.tabBarItem     =   UITabBarItem(title: "", image: UIImage.init(named: "icon-tabbar-button-add-normal"), selectedImage: nil)
         postCreateNC.tabBarItem.tag =   2
-
-        if let postCreateVC = postsShowNC.viewControllers.first as? PostCreateViewController {
-            postCreateVC.sceneType  =   .createPost
-        }
-
+        
         /*
         // Notifications
         let vc4                     =   UIViewController()

@@ -83,12 +83,6 @@ class PostCreateViewController: GSBaseViewController {
         }
     }
     
-    @IBOutlet weak var shadowView: UIView! {
-        didSet {
-            shadowView.setGradientBackground(colors: [UIColor.lightGray.cgColor, UIColor.lightText.cgColor], onside: .bottom)
-        }
-    }
-
     @IBOutlet weak var tagsTitleLabel: UILabel! {
         didSet {
             tagsTitleLabel.tune(withText:           "Add Max 5 Tags",
@@ -126,7 +120,7 @@ class PostCreateViewController: GSBaseViewController {
     
     @IBOutlet weak var stackViewTopConstraint: NSLayoutConstraint! {
         didSet {
-            stackViewTopConstraint.constant =   (sceneType == .createComment) ? -70.0 * widthRatio : 0.0
+            stackViewTopConstraint.constant =   (sceneType == .createComment) ? -70.0 * widthRatio : 6.0
         }
     }
 
@@ -138,13 +132,13 @@ class PostCreateViewController: GSBaseViewController {
     
     @IBOutlet var heightsCollection: [NSLayoutConstraint]! {
         didSet {
-            _ = heightsCollection.map({ $0.constant *= heightRatio })
+            self.heightsCollection.forEach({ $0.constant *= heightRatio })
         }
     }
     
     @IBOutlet var widthsCollection: [NSLayoutConstraint]! {
         didSet {
-            _ = widthsCollection.map({ $0.constant *= widthRatio })
+            self.widthsCollection.forEach({ $0.constant *= widthRatio })
         }
     }
     
@@ -255,9 +249,9 @@ class PostCreateViewController: GSBaseViewController {
         super.viewWillAppear(animated)
         
         UIApplication.shared.statusBarStyle = .default
-        self.navigationController?.add(shadow: false, withBarTintColor: .white)
-        self.navigationController?.hidesBarsOnTap = false
         self.showNavigationBar()
+        self.navigationController?.hidesBarsOnTap = false
+        self.navigationController?.add(shadow: true, withBarTintColor: .white)
 
         self.contentTextView.layoutManager.ensureLayout(for: self.contentTextView.textContainer)
     }
