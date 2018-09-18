@@ -24,8 +24,9 @@ protocol PostsShowDisplayLogic: class {
 class PostsShowViewController: GSTableViewController, ContainerViewSupport {
     // MARK: - Properties
     var selectedButton: UIButton!
-    var postFeedTypes: [PostsFeedType]  =   User.current == nil ?   [ .popular, .actual, .new, .promo ] :
-                                                                    [ .lenta, .popular, .actual, .new, .promo ]
+    var postFeedTypes: [PostsFeedType]  =   [ .lenta, .popular, .actual, .new, .promo ]
+//        User.current == nil ?   [ .popular, .actual, .new, .promo ] :
+//                                                                    [ .lenta, .popular, .actual, .new, .promo ]
 
     var interactor: PostsShowBusinessLogic?
     var router: (NSObjectProtocol & PostsShowRoutingLogic & PostsShowDataPassing)?
@@ -66,10 +67,10 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
     
     @IBOutlet var buttonsCollection: [UIButton]! {
         didSet {
-            _ = buttonsCollection.map({ actionButton in
+            self.buttonsCollection.forEach({ actionButton in
                 actionButton.tune(withTitle:        actionButton.titleLabel?.text ?? "XXX",
                                   hexColors:        [veryLightGrayColorPickers, veryLightGrayColorPickers, veryLightGrayColorPickers, veryLightGrayColorPickers],
-                                  font:             UIFont(name: "SFUIDisplay-Regular", size: 12.0),
+                                  font:             UIFont(name: "SFUIDisplay-Regular", size: 13.0),
                                   alignment:        .center)
             })
         }
