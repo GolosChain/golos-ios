@@ -285,15 +285,19 @@ class PostCreateViewController: GSBaseViewController {
     }
     
     private func isRequestAvailable() -> Bool {
-        // Check title
-        if sceneType == .createPost && (self.postCreateView.titleTextField.text?.isEmpty)! {
-            self.showAlertView(withTitle: "Info", andMessage: "Create Post Title Hint", needCancel: false, completion: { _ in })
+        // Check text body
+        if self.contentTextView.text.isEmpty {
+            self.showAlertView(withTitle: "Info", andMessage: "Post Text Body Hint", needCancel: false, completion: { _ in })
             return false
         }
         
-        // Check text body
-        else if self.contentTextView.text.isEmpty {
-            self.showAlertView(withTitle: "Info", andMessage: "Post Text Body Hint", needCancel: false, completion: { _ in })
+        guard sceneType == .createPost else {
+            return true
+        }
+        
+        // Check title
+        if (self.postCreateView.titleTextField.text?.isEmpty)! {
+            self.showAlertView(withTitle: "Info", andMessage: "Create Post Title Hint", needCancel: false, completion: { _ in })
             return false
         }
         
