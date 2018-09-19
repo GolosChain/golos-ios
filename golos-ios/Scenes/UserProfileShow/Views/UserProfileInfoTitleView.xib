@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -16,7 +16,6 @@
                 <outlet property="followerCountLabel" destination="PaI-iL-bBT" id="HKz-ax-OJ3"/>
                 <outlet property="followingCountLabel" destination="yOP-1Q-7sN" id="8tb-Xc-vHy"/>
                 <outlet property="postsCountLabel" destination="iNe-nH-SsC" id="e9v-MJ-rhI"/>
-                <outlet property="stackViewHeightConstraint" destination="cP6-qp-gcd" id="6CZ-V0-xU3"/>
                 <outletCollection property="valuesCollection" destination="iNe-nH-SsC" collectionClass="NSMutableArray" id="BuD-G5-lMl"/>
                 <outletCollection property="labelsCollection" destination="V2F-9v-zY4" collectionClass="NSMutableArray" id="B2i-NH-ONS"/>
                 <outletCollection property="labelsCollection" destination="fQE-6C-8VQ" collectionClass="NSMutableArray" id="WyN-LY-yhi"/>
@@ -33,21 +32,21 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="124"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="WZL-gH-X18" userLabel="Content Stack View">
+                <stackView clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="WZL-gH-X18" userLabel="Content Stack View">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="123"/>
                     <subviews>
                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yjh-wY-gCz" userLabel="About Label View">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="65"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="61.5"/>
                             <subviews>
                                 <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="asdasddas" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KHo-KQ-r3F">
-                                    <rect key="frame" x="16" y="15" width="339" height="35"/>
+                                    <rect key="frame" x="16" y="15" width="339" height="31.5"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ibl-SU-eCF" userLabel="Top Horizontal Separator">
-                                    <rect key="frame" x="0.0" y="64" width="375" height="1"/>
+                                    <rect key="frame" x="0.0" y="60.5" width="375" height="1"/>
                                     <color key="backgroundColor" red="0.85882352941176465" green="0.85882352941176465" blue="0.85882352941176465" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="1" id="Cal-Av-oBD"/>
@@ -66,13 +65,13 @@
                             </constraints>
                         </view>
                         <stackView clipsSubviews="YES" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="4kK-5U-Jav">
-                            <rect key="frame" x="0.0" y="65" width="375" height="58"/>
+                            <rect key="frame" x="0.0" y="61.5" width="375" height="61.5"/>
                             <subviews>
                                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jR6-hK-TDm" userLabel="Posts View">
-                                    <rect key="frame" x="0.0" y="0.0" width="125" height="58"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="125" height="61.5"/>
                                     <subviews>
                                         <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Posts Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PQn-Tp-uRE">
-                                            <rect key="frame" x="15" y="10" width="94.5" height="14.5"/>
+                                            <rect key="frame" x="15" y="10" width="95" height="14.5"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <accessibility key="accessibilityConfiguration" identifier="Posts Title"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -98,17 +97,17 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o4t-CK-JzB" userLabel="Subscribers View">
-                                    <rect key="frame" x="125" y="0.0" width="125" height="58"/>
+                                    <rect key="frame" x="125" y="0.0" width="125" height="61.5"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KVB-tr-RXw" userLabel="Left Vertical Separator">
-                                            <rect key="frame" x="0.0" y="0.0" width="1" height="58"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="1" height="61.5"/>
                                             <color key="backgroundColor" red="0.85882352939999995" green="0.85882352939999995" blue="0.85882352939999995" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="1" id="ru8-2h-Hpd"/>
                                             </constraints>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Followers" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V2F-9v-zY4" userLabel="Follower">
-                                            <rect key="frame" x="14.5" y="10" width="95.5" height="14.5"/>
+                                            <rect key="frame" x="15" y="10" width="95" height="15"/>
                                             <accessibility key="accessibilityConfiguration" identifier="Followers"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="15" id="hlD-eB-5Pg"/>
@@ -118,13 +117,13 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PaI-iL-bBT">
-                                            <rect key="frame" x="15" y="28.5" width="94.5" height="19.5"/>
+                                            <rect key="frame" x="15" y="29" width="95" height="19.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="34H-hl-bNi" userLabel="Right Vertical Separator">
-                                            <rect key="frame" x="124" y="0.0" width="1" height="58"/>
+                                            <rect key="frame" x="124" y="0.0" width="1" height="61.5"/>
                                             <color key="backgroundColor" red="0.85882352939999995" green="0.85882352939999995" blue="0.85882352939999995" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="1" id="7eg-C6-NR3"/>
@@ -148,10 +147,10 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W7T-fR-uEr" userLabel="Subsribtions View">
-                                    <rect key="frame" x="250" y="0.0" width="125" height="58"/>
+                                    <rect key="frame" x="250" y="0.0" width="125" height="61.5"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Followings" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fQE-6C-8VQ" userLabel="Following">
-                                            <rect key="frame" x="14.5" y="10" width="95.5" height="14.5"/>
+                                            <rect key="frame" x="15" y="10" width="95" height="15"/>
                                             <accessibility key="accessibilityConfiguration" identifier="Followings"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="15" id="Tbs-mZ-8PW"/>
@@ -161,7 +160,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yOP-1Q-7sN">
-                                            <rect key="frame" x="15" y="28.5" width="94.5" height="19.5"/>
+                                            <rect key="frame" x="15" y="29" width="95" height="19.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -179,9 +178,6 @@
                                 </view>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="58" id="cP6-qp-gcd"/>
-                            </constraints>
                         </stackView>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

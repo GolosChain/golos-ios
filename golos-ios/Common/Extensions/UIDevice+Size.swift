@@ -9,30 +9,39 @@
 import UIKit
 
 enum DeviceScreenSize {
-    case iphone5
-    case iphone6
-    case iphone6Plus
-    case iphoneX
+    case iPhone4s
+    case iPhone5
+    case iPhone6
+    case iPhone6Plus
+    case iPhoneX
     case unknown
 }
 
 extension UIDevice {
-    
     class func getDeviceScreenSize() -> DeviceScreenSize {
         if UIDevice.current.userInterfaceIdiom == .phone {
             switch UIScreen.main.nativeBounds.height {
+            case 960:
+                return DeviceScreenSize.iPhone4s
+                
             case 1136:
-                return DeviceScreenSize.iphone5
+                return DeviceScreenSize.iPhone5
+            
             case 1334:
-                return DeviceScreenSize.iphone6
+                return DeviceScreenSize.iPhone6
+            
             case 2208:
-                return DeviceScreenSize.iphone6Plus
+                return DeviceScreenSize.iPhone6Plus
+            
             case 2436:
-                return DeviceScreenSize.iphoneX
+                return DeviceScreenSize.iPhoneX
+            
             default:
                 return DeviceScreenSize.unknown
             }
-        } else {
+        }
+        
+        else {
             return DeviceScreenSize.unknown
         }
     }

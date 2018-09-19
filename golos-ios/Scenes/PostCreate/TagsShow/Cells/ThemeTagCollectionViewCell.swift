@@ -29,7 +29,7 @@ class ThemeTagCollectionViewCell: UICollectionViewCell {
             textField.layer.borderWidth     =   1
             textField.layer.borderColor     =   UIColor(hexString: "#1298FF").cgColor
             textField.layer.cornerRadius    =   textField.frame.height / 2 * heightRatio
-            textField.font                  =   UIFont(name: "SFUIDisplay-Regular", size: 13.0 * widthRatio)
+            textField.font                  =   UIFont(name: "SFUIDisplay-Regular", size: 13.0)
             textField.textAlignment         =   .center
             
             textField.inputAccessoryView    =   UIView(frame: CGRect(origin: .zero, size: CGSize(width: 0.0 * widthRatio, height: 30.0 * heightRatio)))
@@ -128,7 +128,7 @@ extension ThemeTagCollectionViewCell: UITextFieldDelegate {
         if string.isEmpty {
             // Delete character
             if range.length == 1 {
-                stringWidth     =   ("\(textField.text!.last!)" as NSString).size(withAttributes: [NSAttributedString.Key.font: UIFont(name: "SFUIDisplay-Regular", size: 13.0 * widthRatio)!]).width
+                stringWidth     =   ("\(textField.text!.last!)" as NSString).size(withAttributes: [NSAttributedString.Key.font: UIFont(name: "SFUIDisplay-Regular", size: 13.0)!]).width
             }
                 
             // Delete text block
@@ -136,12 +136,12 @@ extension ThemeTagCollectionViewCell: UITextFieldDelegate {
                 let start       =   textField.text!.index(textField.text!.startIndex, offsetBy: range.location)
                 let end         =   textField.text!.index(start, offsetBy: range.length)
                 
-                stringWidth     =   ("\(textField.text![start..<end])" as NSString).size(withAttributes: [NSAttributedString.Key.font: UIFont(name: "SFUIDisplay-Regular", size: 13.0 * widthRatio)!]).width
+                stringWidth     =   ("\(textField.text![start..<end])" as NSString).size(withAttributes: [NSAttributedString.Key.font: UIFont(name: "SFUIDisplay-Regular", size: 13.0)!]).width
             }
         }
             
         else {
-            stringWidth         =   (string as NSString).size(withAttributes: [NSAttributedString.Key.font: UIFont(name: "SFUIDisplay-Regular", size: 13.0 * widthRatio)!]).width
+            stringWidth         =   (string as NSString).size(withAttributes: [NSAttributedString.Key.font: UIFont(name: "SFUIDisplay-Regular", size: 13.0)!]).width
         }
         
         if count > 2 {

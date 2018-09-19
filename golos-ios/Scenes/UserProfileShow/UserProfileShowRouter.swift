@@ -58,9 +58,9 @@ class UserProfileShowRouter: NSObject, UserProfileShowRoutingLogic, UserProfileS
         let storyboard              =   UIStoryboard(name: "PostCreate", bundle: nil)
         let destinationVC           =   storyboard.instantiateViewController(withIdentifier: "PostCreateVC") as! PostCreateViewController
         destinationVC.sceneType     =   sceneType
-        var destinationDS       =   destinationVC.router!.dataStore!
+        var destinationDS           =   destinationVC.router!.dataStore!
         
-        passDataToPostCreateScene(postShortInfo: self.dataStore!.commentReply!, destination: &destinationDS)
+        passDataToPostCreateScene(postShortInfo: sceneType == .createComment ? self.dataStore!.selectedBlog! : self.dataStore!.commentReply!, destination: &destinationDS)
         navigateToPostCreateScene(source: viewController!, destination: destinationVC)
     }
     

@@ -53,7 +53,7 @@ class ReplyTableViewCell: UITableViewCell, ReusableCell {
         didSet {
             reputationLabel.tune(withText: "",
                                  hexColors:           whiteColorPickers,
-                                 font:                UIFont(name: "Roboto-Medium", size: 6.0 * widthRatio),
+                                 font:                UIFont(name: "Roboto-Medium", size: 6.0),
                                  alignment:           .center,
                                  isMultiLines:        false)
         }
@@ -63,7 +63,7 @@ class ReplyTableViewCell: UITableViewCell, ReusableCell {
         didSet {
             authorLabel.tune(withText:          "",
                              hexColors:         veryDarkGrayWhiteColorPickers,
-                             font:              UIFont(name: "SFProDisplay-Regular", size: 10.0 * widthRatio),
+                             font:              UIFont(name: "SFProDisplay-Regular", size: 10.0),
                              alignment:         .left,
                              isMultiLines:      false)
             
@@ -77,7 +77,7 @@ class ReplyTableViewCell: UITableViewCell, ReusableCell {
         didSet {
             authorTitleLabel.tune(withText:          "Answered your".localized(),
                                   hexColors:         darkGrayWhiteColorPickers,
-                                  font:              UIFont(name: "SFProDisplay-Regular", size: 10.0 * widthRatio),
+                                  font:              UIFont(name: "SFProDisplay-Regular", size: 10.0),
                                   alignment:         .left,
                                   isMultiLines:      false)
         }
@@ -87,7 +87,7 @@ class ReplyTableViewCell: UITableViewCell, ReusableCell {
         didSet {
             replyTextLabel.tune(withText:           "",
                                  hexColors:         veryDarkGrayWhiteColorPickers,
-                                 font:              UIFont(name: "SFProDisplay-Regular", size: 12.0 * widthRatio),
+                                 font:              UIFont(name: "SFProDisplay-Regular", size: 12.0),
                                  alignment:         .left,
                                  isMultiLines:      false)
             
@@ -99,7 +99,7 @@ class ReplyTableViewCell: UITableViewCell, ReusableCell {
         didSet {
             replyTypeButton.tune(withTitle:         "",
                                  hexColors:         [darkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
-                                 font:              UIFont(name: "SFProDisplay-Regular", size: 10.0 * widthRatio),
+                                 font:              UIFont(name: "SFProDisplay-Regular", size: 10.0),
                                  alignment:         .left)
         }
     }
@@ -108,7 +108,7 @@ class ReplyTableViewCell: UITableViewCell, ReusableCell {
         didSet {
             answerButton.tune(withTitle:            "Reply Title Verb",
                               hexColors:            [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
-                              font:                 UIFont(name: "SFProDisplay-Regular", size: 10.0 * widthRatio),
+                              font:                 UIFont(name: "SFProDisplay-Regular", size: 10.0),
                               alignment:            .left)
         }
     }
@@ -117,7 +117,7 @@ class ReplyTableViewCell: UITableViewCell, ReusableCell {
         didSet {
             timeLabel.tune(withText:          "Days ago",
                            hexColors:         darkGrayWhiteColorPickers,
-                           font:              UIFont(name: "SFProDisplay-Regular", size: 10.0 * widthRatio),
+                           font:              UIFont(name: "SFProDisplay-Regular", size: 10.0),
                            alignment:         .left,
                            isMultiLines:      false)
         }

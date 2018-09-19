@@ -33,7 +33,7 @@ class LogInHelpShowViewController: GSBaseViewController {
                 
                 $0.tune(withAttributedText:     $0.text ?? "Zorro",
                         hexColors:              blackWhiteColorPickers,
-                        font:                   UIFont(name: "SFProDisplay-Regular", size: 13.0 * widthRatio),
+                        font:                   UIFont(name: "SFProDisplay-Regular", size: 13.0),
                         alignment:              .left,
                         isMultiLines:           true)
             })

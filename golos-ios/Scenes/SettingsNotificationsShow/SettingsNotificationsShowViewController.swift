@@ -37,7 +37,7 @@ class SettingsNotificationsShowViewController: GSBaseViewController {
         didSet {
             titleLabel.tune(withText:           "MEMORIES".localized(),
                             hexColors:          darkGrayWhiteColorPickers,
-                            font:               UIFont(name: "SFProDisplay-Regular", size: 12.0 * widthRatio),
+                            font:               UIFont(name: "SFProDisplay-Regular", size: 12.0),
                             alignment:          .left,
                             isMultiLines:       false)
         }
@@ -53,7 +53,7 @@ class SettingsNotificationsShowViewController: GSBaseViewController {
         didSet {
             self.labelsCollection.forEach({ $0.tune(withText:        $0.text!.localized(),
                                                     hexColors:       blackWhiteColorPickers,
-                                                    font:            UIFont(name: "SF Pro Display-Regular", size: 14.0 * widthRatio),
+                                                    font:            UIFont(name: "SF Pro Display-Regular", size: 14.0),
                                                     alignment:       .left,
                                                     isMultiLines:    false)})
         }

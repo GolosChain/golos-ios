@@ -175,7 +175,7 @@ class GSTableViewController: GSBaseViewController, HandlersCellSupport {
             
             titleLabel.tune(withText:       String(format: "%@ List is empty", type.caseTitle()).localized(),
                             hexColors:      darkGrayWhiteColorPickers,
-                            font:           UIFont(name: "SFProDisplay-Medium", size: 13.0 * widthRatio),
+                            font:           UIFont(name: "SFProDisplay-Medium", size: 13.0),
                             alignment:      .center,
                             isMultiLines:   true)
             

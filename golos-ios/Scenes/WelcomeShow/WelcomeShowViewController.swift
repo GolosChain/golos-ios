@@ -197,7 +197,7 @@ class WelcomeShowViewController: GSBaseViewController {
 
         moreInfoButton.setTitle("More Info".localized(), for: .normal)
         moreInfoButton.setTitleColor(UIColor(hexString: "#7D7D7D"), for: .normal)
-        moreInfoButton.titleLabel?.font =   UIFont(name: "SFUIDisplay-Regular", size: 14.0 * widthRatio)
+        moreInfoButton.titleLabel?.font =   UIFont(name: "SFUIDisplay-Regular", size: 14.0)
     }
     
     

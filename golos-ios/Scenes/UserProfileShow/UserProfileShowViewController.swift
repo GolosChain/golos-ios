@@ -34,18 +34,19 @@ class UserProfileShowViewController: GSBaseViewController, ContainerViewSupport 
     var selectedSegmentIndex                    =   0
     let postFeedTypes: [PostsFeedType]          =   [ .blog, .reply ]
     let postItems: [String]                     =   [ "Posts", "Replies" ]
+    var settinsShow: Bool                       =   false
     
     var interactor: UserProfileShowBusinessLogic?
     var router: (NSObjectProtocol & UserProfileShowRoutingLogic & UserProfileShowDataPassing)?
     
     lazy var segmentedControl: SWSegmentedControl = {
-        let contolElement       =   SWSegmentedControl(frame: CGRect(origin: .zero, size: CGSize(width: 210.0 * widthRatio, height: 44.0 * heightRatio)))
+        let contolElement       =   SWSegmentedControl(frame: CGRect(origin: .zero, size: CGSize(width: 210.0 * widthRatio, height: 44.0 * heightRatio )))
         
         contolElement.items                     =   postItems.map({ $0.localized() })
         contolElement.selectedSegmentIndex      =   0
         contolElement.titleColor                =   UIColor(hexString: "#333333")
         contolElement.indicatorColor            =   UIColor(hexString: "#1298FF")
-        contolElement.font                      =   UIFont(name: "SFProDisplay-Medium", size: 13.0 * widthRatio)!
+        contolElement.font                      =   UIFont(name: "SFProDisplay-Medium", size: 13.0)!
         contolElement.indicatorThickness        =   2.0 * heightRatio
         
         contolElement.delegate  =   self
@@ -92,6 +93,7 @@ class UserProfileShowViewController: GSBaseViewController, ContainerViewSupport 
             }
 
             userProfileHeaderView.handlerSettingsButtonTapped   =   { [weak self] in
+                self?.settinsShow = true
                 self?.router?.routeToSettingsShowScene()                
             }
             
@@ -111,7 +113,7 @@ class UserProfileShowViewController: GSBaseViewController, ContainerViewSupport 
         didSet {
             // Parallax Header
             scrollView.parallaxHeader.view              =   userProfileHeaderView
-            scrollView.parallaxHeader.height            =   180.0 * heightRatio
+            scrollView.parallaxHeader.height            =   180.0 //* heightRatio
             scrollView.parallaxHeader.mode              =   MXParallaxHeaderMode.fill
             scrollView.parallaxHeader.minimumHeight     =   20.0
 
@@ -136,7 +138,7 @@ class UserProfileShowViewController: GSBaseViewController, ContainerViewSupport 
 
     @IBOutlet weak var walletBalanceViewHeightConstraint: NSLayoutConstraint! {
         didSet {
-            walletBalanceViewHeightConstraint.constant = 44.0 * heightRatio
+            walletBalanceViewHeightConstraint.constant = 44.0 //* heightRatio
         }
     }
     
@@ -146,27 +148,27 @@ class UserProfileShowViewController: GSBaseViewController, ContainerViewSupport 
         }
     }
 
-    @IBOutlet weak var userProfileInfoControlViewTopConstraint: NSLayoutConstraint! {
+    @IBOutlet weak var scrollViewTopConstraint: NSLayoutConstraint! {
         didSet {
-            userProfileInfoControlViewTopConstraint.constant = 0.0
+            self.scrollViewTopConstraint.constant = UIDevice.getDeviceScreenSize() == .iPhone4s ? -40.0 : -20.0
         }
     }
     
-    @IBOutlet weak var userProfileInfoTitleViewHeightConstraint: NSLayoutConstraint! {
-        didSet {
-            userProfileInfoTitleViewHeightConstraint.constant *= heightRatio
-        }
-    }
+    @IBOutlet weak var userProfileInfoControlViewTopConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var userProfileInfoTitleViewTopConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var userProfileInfoTitleViewHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet var heightsCollection: [NSLayoutConstraint]! {
         didSet {
-            _ = heightsCollection.map({ $0.constant *= heightRatio })
+            self.heightsCollection.forEach({ $0.constant *= heightRatio })
         }
     }
     
     @IBOutlet var widthsCollection: [NSLayoutConstraint]! {
         didSet {
-            _ = widthsCollection.map({ $0.constant *= widthRatio })
+            self.widthsCollection.forEach({ $0.constant *= widthRatio })
         }
     }
     
@@ -216,7 +218,8 @@ class UserProfileShowViewController: GSBaseViewController, ContainerViewSupport 
         super.viewWillAppear(animated)
        
         self.hideNavigationBar()
-
+        self.settinsShow = false
+        
         UIApplication.shared.statusBarStyle     =   User.fetch(byName: self.router!.dataStore!.userName ?? "")?.coverImageURL == nil ? .default : (scrollView.parallaxHeader.progress == 0.0 ? .default : .lightContent)
 
         // Load User info
@@ -242,7 +245,7 @@ class UserProfileShowViewController: GSBaseViewController, ContainerViewSupport 
         if !walletBalanceView.isHidden {
             view.bringSubviewToFront(walletBalanceView)
             walletBalanceViewTopConstraint.constant                 =   0.0
-            userProfileInfoControlViewTopConstraint.constant        =   10.0 * heightRatio
+            userProfileInfoControlViewTopConstraint.constant        =   10.0
             walletBalanceView.add(shadow: true, onside: .bottom)
         }
         
@@ -270,16 +273,19 @@ class UserProfileShowViewController: GSBaseViewController, ContainerViewSupport 
             }
             
             activeVC.handlerCommentsButtonTapped    =   { [weak self] postShortInfo in
-                if let indexPath = postShortInfo.indexPath, let activeVC = self?.containerView.activeVC {
-                    self?.interactor?.save(blog: activeVC.fetchedResultsController.object(at: indexPath) as! NSManagedObject)
-                    self?.router?.routeToPostCreateScene(withType: .createComment)
-                }
+                self?.interactor?.save(blog: postShortInfo)
+                self?.router?.routeToPostCreateScene(withType: .createComment)
             }
             
             // Select Blog
             activeVC.handlerSelectItem              =   { [weak self] selectedBlog in
                 if let blog = selectedBlog as? Blog {
-                    self?.interactor?.save(blog: blog)
+                    self?.interactor?.save(blog: PostShortInfo(title:               blog.title,
+                                                               author:              blog.author,
+                                                               permlink:            blog.permlink,
+                                                               indexPath:           nil,
+                                                               parentAuthor:        blog.parentAuthor,
+                                                               parentPermlink:      blog.parentPermlink))
                     self?.router?.routeToPostShowScene()
                 }
             }
@@ -291,10 +297,8 @@ class UserProfileShowViewController: GSBaseViewController, ContainerViewSupport 
         }
     }
     
-    
-    // MARK: - Actions
     override func localizeTitles() {
-        _ = self.userProfileInfoTitleView.labelsCollection.map({ $0.text = $0.accessibilityIdentifier!.localized() })
+        self.userProfileInfoTitleView.labelsCollection.forEach({ $0.text = $0.accessibilityIdentifier!.localized() })
         self.segmentedControl.items = self.postItems.map({ $0.localized() })
     }
 }
@@ -378,7 +382,9 @@ extension UserProfileShowViewController: UserProfileShowDisplayLogic {
 extension UserProfileShowViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         Logger.log(message: String(format: "scrollView.contentOffset.y %f", scrollView.contentOffset.y), event: .debug)
-        Logger.log(message: String(format: "segmentedControlView.frame.origin.y %f", view.convert(segmentedControlView.frame, from: contentView).origin.y), event: .debug)
+        Logger.log(message: String(format: "userProfileInfoTitleView.frame.midY %f", view.convert(userProfileInfoTitleView.frame, from: contentView).midY), event: .debug)
+        
+//        self.userProfileInfoTitleViewTopConstraint.constant = userProfileInfoTitleView.frame.midY <= 22.0 ? 42.0 : 0.0
     }
 }
 
@@ -388,8 +394,10 @@ extension UserProfileShowViewController: MXParallaxHeaderDelegate {
     func parallaxHeaderDidScroll(_ parallaxHeader: MXParallaxHeader) {
         Logger.log(message: String(format: "progress %f", parallaxHeader.progress), event: .debug)
 
-        UIApplication.shared.statusBarStyle                     =   User.fetch(byName: (self.router?.dataStore?.userName)!)?.coverImageURL == nil ? .default : (parallaxHeader.progress == 0.0 ? .default : .lightContent)
-        self.userProfileHeaderView.whiteStatusBarView.isHidden  =   parallaxHeader.progress != 0.0
+        guard !self.settinsShow else { return }
+        
+        UIApplication.shared.statusBarStyle = User.fetch(byName: (self.router?.dataStore?.userName)!)?.coverImageURL == nil ? .default : (parallaxHeader.progress == 0.0 ? .default : .lightContent)
+        self.userProfileHeaderView.whiteStatusBarView.isHidden = parallaxHeader.progress != 0.0
     }
 }
 

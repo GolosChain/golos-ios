@@ -16,7 +16,7 @@ import GoloSwift
 
 // MARK: - Business Logic protocols
 protocol UserProfileShowBusinessLogic {
-    func save(blog: NSManagedObject)
+    func save(blog: PostShortInfo)
     func save(lastItem: NSManagedObject?)
     func save(commentReply: PostShortInfo)
     func loadUserInfo(withRequestModel requestModel: UserProfileShowModels.UserInfo.RequestModel)
@@ -27,7 +27,7 @@ protocol UserProfileShowDataStore {
     var userName: String? { get set }
     var lastItem: NSManagedObject? { get set }
     var commentReply: PostShortInfo? { get set }
-    var selectedBlog: NSManagedObject? { get set }
+    var selectedBlog: PostShortInfo? { get set }
 }
 
 class UserProfileShowInteractor: UserProfileShowBusinessLogic, UserProfileShowDataStore {
@@ -40,7 +40,7 @@ class UserProfileShowInteractor: UserProfileShowBusinessLogic, UserProfileShowDa
     var userName: String?   =   User.current?.name
     var lastItem: NSManagedObject?
     var commentReply: PostShortInfo?
-    var selectedBlog: NSManagedObject?
+    var selectedBlog: PostShortInfo?
 
     
     // MARK: - Class Initialization
@@ -50,7 +50,7 @@ class UserProfileShowInteractor: UserProfileShowBusinessLogic, UserProfileShowDa
     
 
     // MARK: - Business logic implementation
-    func save(blog: NSManagedObject) {
+    func save(blog: PostShortInfo) {
         self.selectedBlog   =   blog
     }
     

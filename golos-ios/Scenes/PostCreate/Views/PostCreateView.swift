@@ -31,7 +31,7 @@ class PostCreateView: UIView {
         didSet {
             titleTextField.tune(withPlaceholder:        "Enter Post Title Placeholder",
                                 textColors:             blackWhiteColorPickers,
-                                font:                   UIFont(name: "SFUIDisplay-Regular", size: 16.0 * widthRatio),
+                                font:                   UIFont(name: "SFUIDisplay-Regular", size: 16.0),
                                 alignment:              .left)
             
             titleTextField.inputAccessoryView    =   UIView()

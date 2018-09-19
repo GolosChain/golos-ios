@@ -92,7 +92,7 @@ extension UIButton {
         self.layoutIfNeeded()
         setRoundEdges(cornerRadius: self.frame.height / 2)
 
-        self.titleLabel?.font       =   UIFont(name: "SFUIDisplay-Regular", size: 16.0 * widthRatio)
+        self.titleLabel?.font       =   UIFont(name: "SFUIDisplay-Regular", size: 16.0)
         self.theme_backgroundColor  =   vividBlueWhiteColorPickers
         self.theme_setTitleColor(whiteColorPickers, forState: .normal)
     }
@@ -101,7 +101,7 @@ extension UIButton {
         self.layoutIfNeeded()
         setRoundEdges(cornerRadius: 4.0)
         
-        self.titleLabel?.font       =   UIFont(name: "SFProDisplay-Regular", size: 16.0 * widthRatio)
+        self.titleLabel?.font       =   UIFont(name: "SFProDisplay-Regular", size: 16.0)
         self.theme_backgroundColor  =   vividBlueWhiteColorPickers
         self.theme_setTitleColor(whiteColorPickers, forState: .normal)
     }
@@ -120,7 +120,7 @@ extension UIButton {
 
         self.layer.borderColor      =   UIColor(hexString: "#DBDBDB").cgColor
         self.layer.borderWidth      =   1.0
-        self.titleLabel?.font       =   UIFont(name: "SFUIDisplay-Regular", size: 16.0 * widthRatio)
+        self.titleLabel?.font       =   UIFont(name: "SFUIDisplay-Regular", size: 16.0)
         self.theme_backgroundColor  =   whiteColorPickers
         self.theme_setTitleColor(darkGrayWhiteColorPickers, forState: .normal)
     }
@@ -130,7 +130,7 @@ extension UIButton {
         setRoundEdges(cornerRadius: 4.0)
         backgroundColor = .white
         setTitleColor(UIColor.Project.textBlack, for: .normal)
-        titleLabel?.font = UIFont(name: "SFUIDisplay-Regular", size: 12.0 * widthRatio)
+        titleLabel?.font = UIFont(name: "SFUIDisplay-Regular", size: 12.0)
     }
     
     private func setRoundEdges(cornerRadius: CGFloat) {

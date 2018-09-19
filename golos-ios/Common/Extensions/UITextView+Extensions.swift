@@ -134,7 +134,7 @@ extension UITextView {
         
         smileButton.isEnabled           =   false
         
-        let closeButton                 =   BlockBarButtonItem(image:           UIImage(named: "icon-button-close-normal"),
+        let closeButton                 =   BlockBarButtonItem(image:           UIImage(named: "icon-button-close-default"),
                                                                style:           .done,
                                                                tag:             10,
                                                                actionHandler: { tag in
@@ -247,7 +247,7 @@ extension UITextView {
         }
         else {
             let label                   =   PlaceholderLabel(frame: .zero)
-            label.font                  =   UIFont(name: "SFUIDisplay-Regular", size: 13.0 * widthRatio)
+            label.font                  =   UIFont(name: "SFUIDisplay-Regular", size: 13.0)
             label.theme_textColor       =   darkGrayWhiteColorPickers
             
             addSubview(label)

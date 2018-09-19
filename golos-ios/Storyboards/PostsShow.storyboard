@@ -182,8 +182,10 @@
                     <connections>
                         <outlet property="buttonsStackView" destination="VOV-AR-H2g" id="3ng-Qq-lVg"/>
                         <outlet property="containerView" destination="ffv-sr-RCO" id="T33-ED-Ymr"/>
+                        <outlet property="contentViewWidthConstraint" destination="biU-OX-prh" id="4o0-on-aTu"/>
                         <outlet property="lentaButton" destination="2Sj-LZ-Elw" id="g1m-lf-i6X"/>
                         <outlet property="lineView" destination="uXw-eA-Nu0" id="Woq-Rn-b6i"/>
+                        <outlet property="lineViewLeadingConstraint" destination="bPe-Jg-l8d" id="JgL-E6-a7P"/>
                         <outlet property="lineViewWidthConstraint" destination="lL7-rB-UGA" id="QPf-nF-kCt"/>
                         <outlet property="scrollView" destination="H3G-FO-Dpg" id="J1y-Sr-qmb"/>
                         <outlet property="shadowView" destination="KN9-kt-Cga" id="chr-0E-vDb"/>

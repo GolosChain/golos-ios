@@ -141,7 +141,7 @@ extension AppDelegate {
         
         appearance.titleTextAttributes  =   [
                                                 NSAttributedString.Key.foregroundColor:      UIColor.Project.navigationBarTextBlack,
-                                                NSAttributedString.Key.font:                 UIFont(name: "SFUIDisplay-Regular", size: 16.0 * widthRatio) as Any
+                                                NSAttributedString.Key.font:                 UIFont(name: "SFUIDisplay-Regular", size: 16.0) as Any
                                             ]
         
         appearance.isTranslucent        =   false

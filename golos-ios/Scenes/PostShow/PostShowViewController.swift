@@ -693,9 +693,15 @@ extension PostShowViewController {
         fetchRequest.predicate  =   NSPredicate(format: "author == %@ AND permlink == %@", userName, permlink)
         
         do {
-            if let displayedPost = try CoreDataManager.instance.managedObjectContext.fetch(fetchRequest).first as? NSManagedObject {
-                self.postFeedHeaderView.display(displayedPost as! PostCellSupport)
-                self.interactor?.save(post: displayedPost)
+            if let displayedPost = try CoreDataManager.instance.managedObjectContext.fetch(fetchRequest).first as? PostCellSupport {
+                self.postFeedHeaderView.display(displayedPost)
+               
+                self.interactor?.save(post: PostShortInfo(title:            displayedPost.title,
+                                                          author:           displayedPost.author,
+                                                          permlink:         displayedPost.permlink,
+                                                          indexPath:        nil,
+                                                          parentAuthor:     displayedPost.parentAuthor,
+                                                          parentPermlink:   displayedPost.parentPermlink))
                 self.loadViewSettings()
             }
         }

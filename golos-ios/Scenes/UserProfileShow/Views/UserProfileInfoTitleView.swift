@@ -26,7 +26,7 @@ class UserProfileInfoTitleView: PassthroughView {
         didSet {
             aboutLabel.tune(withText:       "",
                             hexColors:      veryDarkGrayWhiteColorPickers,
-                            font:           UIFont(name: "SFUIDisplay-Regular", size: 13.0 * widthRatio),
+                            font:           UIFont(name: "SFUIDisplay-Regular", size: 13.0),
                             alignment:      .left,
                             isMultiLines:   true)
         }
@@ -36,7 +36,7 @@ class UserProfileInfoTitleView: PassthroughView {
         didSet {
             labelsCollection.forEach({
                 $0.text                     =   $0.accessibilityIdentifier!.localized()
-                $0.font                     =   UIFont(name: "SFUIDisplay-Regular", size: 12.0 * widthRatio)
+                $0.font                     =   UIFont(name: "SFUIDisplay-Regular", size: 12.0)
                 $0.theme_textColor          =   darkGrayWhiteColorPickers
                 $0.textAlignment            =   .left
                 $0.numberOfLines            =   1
@@ -47,7 +47,7 @@ class UserProfileInfoTitleView: PassthroughView {
     @IBOutlet var valuesCollection: [UILabel]! {
         didSet {
             valuesCollection.forEach({
-                $0.font                     =   UIFont(name: "SFUIDisplay-Regular", size: 16.0 * widthRatio)
+                $0.font                     =   UIFont(name: "SFUIDisplay-Regular", size: 16.0)
                 $0.theme_textColor          =   veryDarkGrayWhiteColorPickers
                 $0.textAlignment            =   .left
                 $0.numberOfLines            =   1
@@ -55,12 +55,6 @@ class UserProfileInfoTitleView: PassthroughView {
         }
     }
 
-    @IBOutlet weak var stackViewHeightConstraint: NSLayoutConstraint! {
-        didSet {
-            stackViewHeightConstraint.constant *= heightRatio
-        }
-    }
-    
     
     // MARK: - Initialization
     override init(frame: CGRect) {

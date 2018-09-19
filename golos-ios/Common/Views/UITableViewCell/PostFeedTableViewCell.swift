@@ -30,7 +30,7 @@ class PostFeedTableViewCell: UITableViewCell, HandlersCellSupport {
         didSet {
             titleLabel.tune(withText:       "",
                             hexColors:      veryDarkGrayWhiteColorPickers,
-                            font:           UIFont(name: "SFUIDisplay-Regular", size: 14.0 * widthRatio),
+                            font:           UIFont(name: "SFUIDisplay-Regular", size: 14.0),
                             alignment:      .left,
                             isMultiLines:   true)
         }
@@ -72,7 +72,7 @@ class PostFeedTableViewCell: UITableViewCell, HandlersCellSupport {
         didSet {
             commentsButton.tune(withTitle:      "",
                                 hexColors:      [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
-                                font:           UIFont(name: "SFUIDisplay-Regular", size: 10.0 * widthRatio),
+                                font:           UIFont(name: "SFUIDisplay-Regular", size: 10.0),
                                 alignment:      .center)
         }
     }

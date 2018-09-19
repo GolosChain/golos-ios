@@ -50,7 +50,7 @@ class SettingsUserProfileEditViewController: GSBaseViewController {
         didSet {
             changeAvatarButton.tune(withTitle:       "Other photo Title".localized(),
                                     hexColors:       [vividBlueWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
-                                    font:            UIFont(name: "SFProDisplay-Regular", size: 12.0 * widthRatio),
+                                    font:            UIFont(name: "SFProDisplay-Regular", size: 12.0),
                                     alignment:      .center)
         }
     }
@@ -59,7 +59,7 @@ class SettingsUserProfileEditViewController: GSBaseViewController {
         didSet {
             changeCoverButton.tune(withTitle:       "Change User Cover Photo Title".localized(),
                                    hexColors:       [darkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
-                                   font:            UIFont(name: "SFProDisplay-Regular", size: 14.0 * widthRatio),
+                                   font:            UIFont(name: "SFProDisplay-Regular", size: 14.0),
                                    alignment:       .center)
             
             changeCoverButton.layer.cornerRadius        =   4.0 * heightRatio
@@ -72,7 +72,7 @@ class SettingsUserProfileEditViewController: GSBaseViewController {
         didSet {
             saveButton.tune(withTitle:       "Save Verb Title".localized(),
                             hexColors:       [whiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
-                            font:            UIFont(name: "SFProDisplay-Regular", size: 16.0 * widthRatio),
+                            font:            UIFont(name: "SFProDisplay-Regular", size: 16.0),
                             alignment:       .center)
 
             saveButton.layer.cornerRadius        =   4.0 * heightRatio

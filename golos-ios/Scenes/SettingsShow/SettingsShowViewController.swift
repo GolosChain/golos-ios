@@ -54,7 +54,7 @@ class SettingsShowViewController: GSBaseViewController {
         didSet {
             versionLabel.tune(withText:         String(format: "Golos %@ iOS %@", "for".localized(), appVersion),
                               hexColors:        darkGrayWhiteColorPickers,
-                              font:             UIFont(name: "SFProDisplay-Regular", size: 10.0 * widthRatio),
+                              font:             UIFont(name: "SFProDisplay-Regular", size: 10.0),
                               alignment:        .center,
                               isMultiLines:     false)
         }
@@ -64,7 +64,7 @@ class SettingsShowViewController: GSBaseViewController {
         didSet {
             languageButton.tune(withTitle:      "Interface Language".localized(),
                                 hexColors:      [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
-                                font:           UIFont(name: "SFProDisplay-Regular", size: 14.0 * widthRatio),
+                                font:           UIFont(name: "SFProDisplay-Regular", size: 14.0),
                                 alignment:      .left)
         }
     }
@@ -74,7 +74,7 @@ class SettingsShowViewController: GSBaseViewController {
         didSet {
             logOutButton.tune(withTitle:        "Exit Verb".localized(),
                               hexColors:        [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
-                              font:             UIFont(name: "SFProDisplay-Regular", size: 14.0 * widthRatio),
+                              font:             UIFont(name: "SFProDisplay-Regular", size: 14.0),
                               alignment:        .left)
         }
     }
@@ -83,7 +83,7 @@ class SettingsShowViewController: GSBaseViewController {
         didSet {
             editUserProfileButton.tune(withTitle:       "Edit Profile Title".localized(),
                                        hexColors:       [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
-                                       font:            UIFont(name: "SFProDisplay-Regular", size: 14.0 * widthRatio),
+                                       font:            UIFont(name: "SFProDisplay-Regular", size: 14.0),
                                        alignment:       .left)
         }
     }
@@ -92,7 +92,7 @@ class SettingsShowViewController: GSBaseViewController {
         didSet {
             notificationsButton.tune(withTitle: "Remote Notifications Title".localized(),
                               hexColors:        [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
-                              font:             UIFont(name: "SFProDisplay-Regular", size: 14.0 * widthRatio),
+                              font:             UIFont(name: "SFProDisplay-Regular", size: 14.0),
                               alignment:        .left)
         }
     }

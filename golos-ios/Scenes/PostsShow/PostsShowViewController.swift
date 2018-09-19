@@ -93,6 +93,10 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
         }
     }
 
+    @IBOutlet weak var contentViewWidthConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var lineViewLeadingConstraint: NSLayoutConstraint!
+    
     @IBOutlet var heightsCollection: [NSLayoutConstraint]! {
         didSet {
             _ = heightsCollection.map({ $0.constant *= heightRatio })
@@ -185,11 +189,16 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
     
     // MARK: - Custom Functions
     override func localizeTitles() {
-        _ = self.buttonsCollection.map({ button in
-            button.setTitle(button.titleLabel!.text!.localized(), for: .normal)
-        })
-        
+        self.buttonsCollection.forEach({ $0.setTitle($0.titleLabel!.text!.localized(), for: .normal) })
         self.buttonsStackView.layoutIfNeeded()
+        
+        // Set UIStackView spacing
+        if self.buttonsStackView.frame.width < UIScreen.main.bounds.width {
+            self.buttonsStackView.spacing               +=  (UIScreen.main.bounds.width - self.buttonsStackView.frame.width) / 6
+            self.lineViewLeadingConstraint.constant     =   self.buttonsStackView.spacing
+//            self.contentViewWidthConstraint.constant    =   UIScreen.main.bounds.width
+        }
+
         self.selectedButton = self.buttonsStackView.arrangedSubviews.filter({ $0.isHidden == false })[self.selectedButton.tag + 1] as? UIButton
     }
     
@@ -259,15 +268,21 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
             }
             
             activeVC.handlerCommentsButtonTapped                =   { [weak self] postShortInfo in
-                if let indexPath = postShortInfo.indexPath, let activeVC = self?.containerView.activeVC {
-                    self?.interactor?.save(post: activeVC.fetchedResultsController.object(at: indexPath) as! NSManagedObject)
-                    self?.router?.routeToPostShowScene(withScrollToComments: true)
-                }
+                self?.interactor?.save(post: postShortInfo)
+                self?.router?.routeToPostShowScene(withScrollToComments: true)
             }
             
             activeVC.handlerSelectItem                          =   { [weak self] selectedPost in
-                self?.interactor?.save(post: selectedPost!)
-                self?.router?.routeToPostShowScene(withScrollToComments: false)
+                if let post = selectedPost as? PostCellSupport {
+                    self?.interactor?.save(post: PostShortInfo(title:               post.title,
+                                                               author:              post.author,
+                                                               permlink:            post.permlink,
+                                                               indexPath:           nil,
+                                                               parentAuthor:        post.parentAuthor,
+                                                               parentPermlink:      post.parentPermlink))
+                    
+                    self?.router?.routeToPostShowScene(withScrollToComments: false)
+                }
             }
             
             activeVC.handlerAuthorProfileImageButtonTapped      =   { [weak self] userName in
