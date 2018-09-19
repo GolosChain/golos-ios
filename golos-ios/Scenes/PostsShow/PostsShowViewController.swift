@@ -196,7 +196,6 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
         if self.buttonsStackView.frame.width < UIScreen.main.bounds.width {
             self.buttonsStackView.spacing               +=  (UIScreen.main.bounds.width - self.buttonsStackView.frame.width) / 6
             self.lineViewLeadingConstraint.constant     =   self.buttonsStackView.spacing
-//            self.contentViewWidthConstraint.constant    =   UIScreen.main.bounds.width
         }
 
         self.selectedButton = self.buttonsStackView.arrangedSubviews.filter({ $0.isHidden == false })[self.selectedButton.tag + 1] as? UIButton

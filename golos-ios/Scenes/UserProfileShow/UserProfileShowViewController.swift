@@ -113,7 +113,7 @@ class UserProfileShowViewController: GSBaseViewController, ContainerViewSupport 
         didSet {
             // Parallax Header
             scrollView.parallaxHeader.view              =   userProfileHeaderView
-            scrollView.parallaxHeader.height            =   180.0 //* heightRatio
+            scrollView.parallaxHeader.height            =   180.0
             scrollView.parallaxHeader.mode              =   MXParallaxHeaderMode.fill
             scrollView.parallaxHeader.minimumHeight     =   20.0
 
@@ -138,7 +138,7 @@ class UserProfileShowViewController: GSBaseViewController, ContainerViewSupport 
 
     @IBOutlet weak var walletBalanceViewHeightConstraint: NSLayoutConstraint! {
         didSet {
-            walletBalanceViewHeightConstraint.constant = 44.0 //* heightRatio
+            walletBalanceViewHeightConstraint.constant = 44.0
         }
     }
     
@@ -155,9 +155,7 @@ class UserProfileShowViewController: GSBaseViewController, ContainerViewSupport 
     }
     
     @IBOutlet weak var userProfileInfoControlViewTopConstraint: NSLayoutConstraint!
-    
     @IBOutlet weak var userProfileInfoTitleViewTopConstraint: NSLayoutConstraint!
-    
     @IBOutlet weak var userProfileInfoTitleViewHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet var heightsCollection: [NSLayoutConstraint]! {
@@ -327,6 +325,7 @@ extension UserProfileShowViewController {
     // User Profile
     private func fetchUserInfo() {
         if let userEntity = User.fetch(byName: self.router!.dataStore!.userName ?? "") {
+            self.userProfileInfoTitleViewHeightConstraint.constant = 58.0
             self.userProfileHeaderView.updateUI(fromUserInfo: userEntity)
             self.userProfileInfoTitleView.updateUI(fromUserInfo: userEntity)
             
@@ -344,9 +343,7 @@ extension UserProfileShowViewController {
             
             // Handler Refresh/Infinite Scrolling data
             activeVC.handlerRefreshData  =   { [weak self] lastItem in
-//                activeVC.reloadData = lastItem == nil
-                
-                self?.interactor?.save(lastItem: lastItem)                
+                self?.interactor?.save(lastItem: lastItem)
                 self?.loadUserDetails()
             }
         }
@@ -383,8 +380,6 @@ extension UserProfileShowViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         Logger.log(message: String(format: "scrollView.contentOffset.y %f", scrollView.contentOffset.y), event: .debug)
         Logger.log(message: String(format: "userProfileInfoTitleView.frame.midY %f", view.convert(userProfileInfoTitleView.frame, from: contentView).midY), event: .debug)
-        
-//        self.userProfileInfoTitleViewTopConstraint.constant = userProfileInfoTitleView.frame.midY <= 22.0 ? 42.0 : 0.0
     }
 }
 
