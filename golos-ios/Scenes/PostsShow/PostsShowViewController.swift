@@ -16,6 +16,8 @@ import GoloSwift
 import SwiftTheme
 import Localize_Swift
 
+typealias LoadDataCondition = (isRefreshData: Bool, isInfiniteScrolling: Bool)
+
 // MARK: - Input & Output protocols
 protocol PostsShowDisplayLogic: class {
     func displayLoadPosts(fromViewModel viewModel: PostsShowModels.Items.ViewModel)
@@ -168,7 +170,7 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
         self.containerView.setActiveViewController(index: 0)
 
         // Load Posts
-        self.loadPosts(isRefresh: true)
+        self.loadPosts(byCondition: (isRefreshData: true, isInfiniteScrolling: false))
 
         NotificationCenter.default.addObserver(self, selector: #selector(localizeTitles), name: NSNotification.Name(LCLLanguageChangeNotification), object: nil)
     }
@@ -235,12 +237,15 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
             // Add cells from XIB
             activeVC.fetchPosts(byParameters: (author: User.current?.name, postFeedType: self.postFeedTypes[self.selectedButton.tag], permlink: nil, sortBy: nil))
             
-            // Handler Push Refresh/Upload data
+            // Handler Push Refresh/Infinite scrolling data
             activeVC.handlerPushRefreshData                     =   { [weak self] lastItem in
-//                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1, execute: {
-                    self?.interactor?.save(lastItem: lastItem)
-                    self?.loadPosts(isRefresh: lastItem == nil)
-//                })
+                self?.interactor?.save(lastItem: lastItem)
+                
+                if lastItem == nil {
+                    self?.loadPosts(byCondition: (isRefreshData: true, isInfiniteScrolling: false))
+                } else {
+                    self?.loadPosts(byCondition: (isRefreshData: false, isInfiniteScrolling: true))
+                }
             }
 
             activeVC.handlerAnswerButtonTapped                  =   { [weak self] postShortInfo in
@@ -323,7 +328,7 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
             self.selectedButton = sender
             
             self.containerView.setActiveViewController(index: sender.tag)
-            self.loadPosts(isRefresh: self.containerView.activeVC?.fetchedResultsController == nil)
+            self.loadPosts(byCondition: (isRefreshData: self.containerView.activeVC?.fetchedResultsController == nil, isInfiniteScrolling: false))
         }
         
         self.scrollHorizontalTo(sender: sender)
@@ -347,18 +352,17 @@ extension PostsShowViewController: PostsShowDisplayLogic {
 
 // MARK: - Load data from Blockchain by API
 extension PostsShowViewController {
-    private func loadPosts(isRefresh: Bool) {
-        // Refresh data
-        if isRefresh {
-            // Create queue
-            let loadPostsQueue = DispatchQueue.global(qos: .background)
-            
-            // Run queue in Async Thread
-            loadPostsQueue.async {
-                let loadPostsRequestModel = PostsShowModels.Items.RequestModel(postFeedType: self.postFeedTypes[self.selectedButton.tag])
-                self.interactor?.loadPosts(withRequestModel: loadPostsRequestModel)
-            }
+    private func loadPosts(byCondition condition: LoadDataCondition) {
+        guard condition.isRefreshData == true || condition.isInfiniteScrolling == true else {
+            return
+        }
         
+        // Load data
+        let loadPostsQueue = DispatchQueue.global(qos: .background)
+        
+        loadPostsQueue.async {
+            let loadPostsRequestModel = PostsShowModels.Items.RequestModel(postFeedType: self.postFeedTypes[self.selectedButton.tag])
+            self.interactor?.loadPosts(withRequestModel: loadPostsRequestModel)
         }
     }
 }

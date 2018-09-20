@@ -337,7 +337,7 @@ extension GSTableViewController: UIScrollViewDelegate {
         
         if let indexPathsForVisibleRows = self.postsTableView.indexPathsForVisibleRows, indexPathsForVisibleRows.count > 0 {
             self.topVisibleIndexPath    =   indexPathsForVisibleRows[0]
-            self.infiniteScrollingData       =   false
+            self.infiniteScrollingData  =   false
         }
     }
 }
