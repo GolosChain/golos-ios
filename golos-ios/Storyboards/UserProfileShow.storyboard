@@ -163,7 +163,7 @@
                         <viewLayoutGuide key="safeArea" id="meo-UV-aIL"/>
                     </view>
                     <connections>
-                        <outlet property="tableView" destination="Ol8-0Q-A8s" id="OJo-jh-2EH"/>
+                        <outlet property="blogTableView" destination="Ol8-0Q-A8s" id="Dww-z4-rG4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qY6-Ny-BY0" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -204,7 +204,7 @@
                         <viewLayoutGuide key="safeArea" id="pLD-Oq-88K"/>
                     </view>
                     <connections>
-                        <outlet property="tableView" destination="d8h-qL-Xe7" id="dP2-fZ-Nl9"/>
+                        <outlet property="replyTableView" destination="d8h-qL-Xe7" id="RsU-1M-Q3J"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ujm-RW-z2U" userLabel="First Responder" sceneMemberID="firstResponder"/>

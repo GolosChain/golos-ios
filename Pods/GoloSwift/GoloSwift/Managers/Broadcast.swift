@@ -73,7 +73,7 @@ public class Broadcast {
             return
         }
         
-        Logger.log(message: "\nrequestAPIType:\n\t\(requestMessage)\n", event: .debug)
+//        Logger.log(message: "\nrequestAPIType:\n\t\(requestMessage)\n", event: .debug)
         
         // Send GET Request messages to Blockchain
         webSocketManager.sendGETRequest(withMethodAPIType: requestAPIType, completion: { responseAPIType in
@@ -129,7 +129,7 @@ public class Broadcast {
                                             .replacingOccurrences(of: "[[[", with: "[[")
                                             .replacingOccurrences(of: "[\"nil\"]", with: "]")
             
-            Logger.log(message: "\nEncoded JSON -> String:\n\t " + jsonString, event: .debug)
+//            Logger.log(message: "\nEncoded JSON -> String:\n\t " + jsonString, event: .debug)
             
             return (id: codeID, requestMessage: jsonString, startTime: Date(), methodAPIType: requestParamsType.methodAPIType, errorAPI: nil)
         } catch {

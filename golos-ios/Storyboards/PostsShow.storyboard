@@ -236,7 +236,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PostFeedTableViewCell" id="jOx-Q8-YVG" customClass="PostFeedTableViewCell" customModule="Golos" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LentaFeedTableViewCell" id="jOx-Q8-YVG" customClass="LentaFeedTableViewCell" customModule="Golos" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jOx-Q8-YVG" id="Gx0-Rx-Wje">
@@ -258,7 +258,7 @@
                         <viewLayoutGuide key="safeArea" id="6Yx-NO-FIH"/>
                     </view>
                     <connections>
-                        <outlet property="tableView" destination="TpV-Bc-g1E" id="iPh-aD-kxD"/>
+                        <outlet property="lentaTableView" destination="TpV-Bc-g1E" id="Nil-qN-RoE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k45-Jz-JUk" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -277,7 +277,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PostFeedTableViewCell" id="65E-nF-aG4" customClass="PostFeedTableViewCell" customModule="Golos" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PopularFeedTableViewCell" id="65E-nF-aG4" customClass="PostFeedTableViewCell" customModule="Golos" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="65E-nF-aG4" id="nCr-XH-rmX">
@@ -299,7 +299,7 @@
                         <viewLayoutGuide key="safeArea" id="W6N-Hw-y0Z"/>
                     </view>
                     <connections>
-                        <outlet property="tableView" destination="rLU-Fe-jLk" id="atc-zG-Bqq"/>
+                        <outlet property="popularTableView" destination="rLU-Fe-jLk" id="nKy-5Q-hJD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rPv-u7-QeU" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -318,7 +318,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PostFeedTableViewCell" id="EgA-uk-D5U" customClass="PostFeedTableViewCell" customModule="Golos" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NewFeedTableViewCell" id="EgA-uk-D5U" customClass="PostFeedTableViewCell" customModule="Golos" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="EgA-uk-D5U" id="06e-kB-guW">
@@ -340,7 +340,7 @@
                         <viewLayoutGuide key="safeArea" id="uJo-yV-Zxm"/>
                     </view>
                     <connections>
-                        <outlet property="tableView" destination="Mmr-jh-T7i" id="akb-Ah-pTt"/>
+                        <outlet property="newTableView" destination="Mmr-jh-T7i" id="rEJ-t8-Njh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ci4-A6-Ics" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -359,7 +359,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PostFeedTableViewCell" id="n9D-u1-NsR" customClass="PostFeedTableViewCell" customModule="Golos" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ActualFeedTableViewCell" id="n9D-u1-NsR" customClass="PostFeedTableViewCell" customModule="Golos" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="n9D-u1-NsR" id="kDe-Vt-Ccd">
@@ -381,7 +381,7 @@
                         <viewLayoutGuide key="safeArea" id="li2-Ih-VsW"/>
                     </view>
                     <connections>
-                        <outlet property="tableView" destination="pXA-hL-jVh" id="Z8h-Oe-ee3"/>
+                        <outlet property="actualTableView" destination="pXA-hL-jVh" id="eax-LB-t9U"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o1N-0v-oga" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -400,7 +400,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PostFeedTableViewCell" id="ygG-hL-mkg" customClass="PostFeedTableViewCell" customModule="Golos" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PromoFeedTableViewCell" id="ygG-hL-mkg" customClass="PostFeedTableViewCell" customModule="Golos" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ygG-hL-mkg" id="7lt-kF-Rkh">
@@ -422,7 +422,7 @@
                         <viewLayoutGuide key="safeArea" id="hXC-sC-m0r"/>
                     </view>
                     <connections>
-                        <outlet property="tableView" destination="V4b-ZX-bd0" id="olj-My-2dl"/>
+                        <outlet property="promoTableView" destination="V4b-ZX-bd0" id="fNF-5Y-UCg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="THj-co-4d9" userLabel="First Responder" sceneMemberID="firstResponder"/>

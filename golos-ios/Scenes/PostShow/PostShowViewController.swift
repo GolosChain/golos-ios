@@ -518,10 +518,10 @@ class PostShowViewController: GSBaseViewController {
             }
             
             // Set upvotes icon
-            if let activeVotes = displayedPost.activeVotes, activeVotes.count > 0 {
-                self.upvoteButton.isSelected = activeVotes.compactMap({ ($0 as? ActiveVote)?.voter == User.current!.name }).count > 0
-                self.upvoteButton.setTitle("\(activeVotes.count)", for: .normal)
-                
+            if displayedPost.activeVotesCount > 0 {
+                self.upvoteButton.setTitle("\(displayedPost.activeVotesCount)", for: .normal)
+                self.upvoteButton.isSelected = displayedPost.currentUserVoted
+
                 if self.upvoteButton.isSelected {
                     self.upvoteButton.alpha = 1.0
                     Logger.log(message: "Set green upvote icon", event: .debug)
@@ -540,7 +540,7 @@ class PostShowViewController: GSBaseViewController {
             // User action buttons
             if displayedPost.children > 0 {
                 self.commentsButton.setTitle("\(displayedPost.children)", for: .normal)
-                self.commentsButton.isSelected  =   (displayedPost.activeVotes?.allObjects as! [ActiveVote]).contains(where: { $0.voter == User.current?.name ?? "" })
+                self.commentsButton.isSelected  =   displayedPost.currentUserVoted
             }
         }
     }
@@ -683,14 +683,12 @@ extension PostShowViewController {
 extension PostShowViewController {
     // User Profile
     private func fetchContent() {
-        var fetchRequest: NSFetchRequest<NSFetchRequestResult>
+        let postType        =   self.router!.dataStore!.postType!
+        let fetchRequest    =   NSFetchRequest<NSFetchRequestResult>(entityName: postType.caseTitle())
         
-        let postType    =   self.router!.dataStore!.postType!
-        let userName    =   (self.router!.dataStore!.post as! PostCellSupport).author
-        let permlink    =   (self.router!.dataStore!.post as! PostCellSupport).permlink
-        
-        fetchRequest            =   NSFetchRequest<NSFetchRequestResult>(entityName: postType.caseTitle())
-        fetchRequest.predicate  =   NSPredicate(format: "author == %@ AND permlink == %@", userName, permlink)
+        if let userName = self.router?.dataStore?.post?.author, let permlink = self.router?.dataStore?.post?.permlink {
+            fetchRequest.predicate = NSPredicate(format: "author == %@ AND permlink == %@", userName, permlink)
+        }
         
         do {
             if let displayedPost = try CoreDataManager.instance.managedObjectContext.fetch(fetchRequest).first as? PostCellSupport {

@@ -14,6 +14,14 @@ import UIKit
 import GoloSwift
 
 class PopularPostsShowViewController: GSTableViewController {
+    // MARK: - IBOutlets
+    @IBOutlet weak var popularTableView: GSTableViewWithReloadCompletion! {
+        didSet {
+            self.postsTableView = self.popularTableView
+        }
+    }
+    
+    
     // MARK: - Class Initialization
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -32,14 +40,14 @@ class PopularPostsShowViewController: GSTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.tableView.register(UINib(nibName: "PopularPostTableViewCell", bundle: nil), forCellReuseIdentifier: "PopularPostTableViewCell")
+        self.title = "Popular"
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         if !isNetworkAvailable {
-            self.tableView.tableHeaderView = nil
+            self.popularTableView.tableHeaderView = nil
         }
     }
     

@@ -71,7 +71,7 @@ class RestAPIManager {
                 
                 broadcast.executeGET(byMethodAPIType: methodAPIType,
                                      onResult: { responseAPIResult in
-                                        Logger.log(message: "\nresponse API Result = \(responseAPIResult)\n", event: .debug)
+//                                        Logger.log(message: "\nresponse API Result = \(responseAPIResult)\n", event: .debug)
                                         
                                         guard let result = (responseAPIResult as! ResponseAPIUserResult).result, result.count > 0 else {
                                             completion(ErrorAPI.requestFailed(message: names.count == 1 ? "User is not found" : "List of users is empty"))
@@ -106,7 +106,7 @@ class RestAPIManager {
         if isNetworkAvailable {
             broadcast.executeGET(byMethodAPIType: methodAPIType,
                                  onResult: { responseAPIResult in
-                                    Logger.log(message: "\nresponse API Result = \(responseAPIResult)\n", event: .debug)
+//                                    Logger.log(message: "\nresponse API Result = \(responseAPIResult)\n", event: .debug)
                                     
                                     guard let result = (responseAPIResult as! ResponseAPIPostsResult).result, result.count > 0 else {
                                         completion(nil)

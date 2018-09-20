@@ -55,7 +55,7 @@ class PostShowInteractor: PostShowBusinessLogic, PostShowDataStore {
     
     func loadContent(withRequestModel requestModel: PostShowModels.Post.RequestModel) {
         // API 'get_content'
-        let content = RequestParameterAPI.Content(author: (self.post as! PostCellSupport).author, permlink: (self.post as! PostCellSupport).permlink)
+        let content = RequestParameterAPI.Content(author: self.post?.author ?? "XXX", permlink: self.post?.permlink ?? "XXX")
         
         RestAPIManager.loadPost(byContent: content, andPostType: self.postType!, completion: { [weak self] errorAPI in
             guard errorAPI?.caseInfo.message != "No Internet Connection" || !(errorAPI?.caseInfo.message.hasSuffix("timing"))! else {
@@ -71,11 +71,8 @@ class PostShowInteractor: PostShowBusinessLogic, PostShowDataStore {
     }
 
     func loadContentComments(withRequestModel requestModel: PostShowModels.Post.RequestModel) {
-//        worker = PostShowWorker()
-//        worker?.doSomeWork()
-        
         // API 'get_all_content_replies'
-        let content = RequestParameterAPI.Content(author: (self.post as! PostCellSupport).author, permlink: (self.post as! PostCellSupport).permlink)
+        let content = RequestParameterAPI.Content(author: self.post?.author ?? "XXX", permlink: self.post?.permlink ?? "XXX")
         
         RestAPIManager.loadPostComments(byContent: content, andPostType: .comment, completion: { [weak self] errorAPI in
             guard errorAPI?.caseInfo.message != "No Internet Connection" || !(errorAPI?.caseInfo.message.hasSuffix("timing"))! else {

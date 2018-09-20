@@ -14,14 +14,26 @@ import Foundation
 @objc(ActiveVote)
 public class ActiveVote: NSManagedObject {
     // MARK: - Class Functions
-    class func updateEntities(fromResponseAPI responseAPI: [Decodable], withParentID codeID: Int64) -> [ActiveVote]? {
+    class func loadActiveVotes(byPostID postID: Int64) -> [ActiveVote]? {
+        return CoreDataManager.instance.readEntities(withName:                  "ActiveVote",
+                                                     withPredicateParameters:   NSPredicate(format: "postID == \(postID)"),
+                                                     andSortDescriptor:         nil) as? [ActiveVote]
+    }
+    
+    class func isUserVoted(currentPost postID: Int64) -> Bool {
+        return CoreDataManager.instance.readEntities(withName:                  "ActiveVote",
+                                                     withPredicateParameters:   NSPredicate(format: "postID == \(postID) AND voter == %@", User.current?.name ?? ""),
+                                                     andSortDescriptor:         nil)?.first != nil
+    }
+    
+    class func updateEntities(fromResponseAPI responseAPI: [Decodable], withPostID postID: Int64) {
         guard let models = responseAPI as? [ResponseAPIActiveVote], models.count > 0 else {
-            return nil
+            return
         }
         
         for model in models {
             var entity  =   CoreDataManager.instance.readEntity(withName:                   "ActiveVote",
-                                                                andPredicateParameters:     NSPredicate.init(format: "id == \(codeID) AND voter == %@", model.voter)) as? ActiveVote
+                                                                andPredicateParameters:     NSPredicate.init(format: "postID == \(postID) AND voter == %@", model.voter)) as? ActiveVote
             
             // Get ActiveVote entity
             if entity == nil {
@@ -29,7 +41,7 @@ public class ActiveVote: NSManagedObject {
             }
             
             // Update entity
-            entity!.id              =   codeID
+            entity!.postID          =   postID
             entity!.percent         =   model.percent
             entity!.rshares         =   model.rshares.stringValue
 
@@ -45,8 +57,5 @@ public class ActiveVote: NSManagedObject {
             // Extension
             entity!.save()
         }
-        
-        return CoreDataManager.instance.readEntities(withName: "ActiveVote",
-                                                     withPredicateParameters: NSPredicate.init(format: "id == \(codeID)"), andSortDescriptor: nil) as? [ActiveVote]
     }
 }

@@ -14,6 +14,15 @@ import UIKit
 import GoloSwift
 
 class UserProfileReplyShowViewController: GSTableViewController {
+    // MARK: - IBOutlets
+    @IBOutlet weak var replyTableView: GSTableViewWithReloadCompletion! {
+        didSet {
+            self.cellIdentifier     =   "ReplyTableViewCell"
+            self.postsTableView     =   self.replyTableView
+        }
+    }
+    
+    
     // MARK: - Class Initialization
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -31,9 +40,6 @@ class UserProfileReplyShowViewController: GSTableViewController {
     // MARK: - Class Functions
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.cellIdentifier     =   "ReplyTableViewCell"
-        self.tableView.register(UINib(nibName: self.cellIdentifier, bundle: nil), forCellReuseIdentifier: self.cellIdentifier)
     }
     
     override func viewWillAppear(_ animated: Bool) {

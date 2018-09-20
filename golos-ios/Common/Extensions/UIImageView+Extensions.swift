@@ -20,10 +20,12 @@ enum ImageType: String {
 extension UIImageView {
     /// Download image
     func uploadImage(byStringPath path: String, imageType: ImageType, size: CGSize, tags: [String]?, createdDate: Date, fromItem: String) {
+        self.alpha                  =   0.0
+        
         let imagePathWithProxy      =   path.trimmingCharacters(in: .whitespacesAndNewlines).addImageProxy(withSize: size)
         let imageURL                =   URL(string: imagePathWithProxy.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!)
         
-        Logger.log(message: "imageURL = \(imageURL!)", event: .debug)
+//        Logger.log(message: "imageURL = \(imageURL!)", event: .debug)
         
         let imagePlaceholderName    =   imageType == .defaultImage ? "image-placeholder" : (imageType == .userProfileImage ?    "icon-user-profile-image-placeholder" :
                                                                                                                                 "image-user-cover-placeholder")
@@ -38,69 +40,91 @@ extension UIImageView {
         else {
             // Get image from NSCache
             if let cachedImage = cacheApp.object(forKey: imageKey) {
-                if imageType == .userCoverImage {
-                    self.contentMode = cachedImage.size.width > cachedImage.size.height ? .scaleAspectFill : .scaleAspectFit
-                }
-
-                UIView.animate(withDuration: 0.5) {
-                    self.image = cachedImage
+                let getImageFromCacheQueue = DispatchQueue.global(qos: .background)
+                
+                // Run queue in Async Thread
+                getImageFromCacheQueue.async {
+                    if imageType == .userCoverImage {
+                        self.contentMode = cachedImage.size.width > cachedImage.size.height ? .scaleAspectFill : .scaleAspectFit
+                    }
+                    
+                    self.fadeIn(image: cachedImage)
                 }
             }
-            
+                
             else {
                 // Download .gif
-                if imagePathWithProxy.hasSuffix(".gif"), let imageGIF = UIImage.gif(url: imagePathWithProxy) {
-                    // Save image to NSCache
-                    cacheApp.setObject(imageGIF, forKey: imageKey)
-                    
-                    DispatchQueue.main.async {
-                        self.image = imageGIF
+                if imagePathWithProxy.hasSuffix(".gif") {
+                    let downloadGIFQueue = DispatchQueue.global(qos: .background)
+                
+                    // Run queue in Async Thread
+                    downloadGIFQueue.async {
+                        if let imageGIF = UIImage.gif(url: imagePathWithProxy) {
+                            // Save image to NSCache
+                            cacheApp.setObject(imageGIF, forKey: imageKey)
+                        
+                            self.fadeIn(image: imageGIF)
+                        }
                     }
                 }
-
+                    
                 // Download image by URL
                 else if isNetworkAvailable {
-                    URLSession.shared.dataTask(with: imageURL!) { data, _, error in
-                        guard error == nil else {
-                            DispatchQueue.main.async {
-                                self.image = UIImage(named: imagePlaceholderName) //imageType != .userCoverImage ? UIImage(named: imagePlaceholderName) : nil
+                    let downloadImageQueue = DispatchQueue.global(qos: .userInteractive)
+                    
+                    // Run queue in Async Thread
+                    downloadImageQueue.async {
+                        URLSession.shared.dataTask(with: imageURL!) { data, _, error in
+                            guard error == nil else {
+                                self.fadeIn(image: UIImage(named: imagePlaceholderName)!)
+                                return
                             }
                             
-                            return
-                        }
-                        
-                        if let data = data, let downloadedImage = UIImage(data: data) {
-                            if imageType == .userCoverImage {
-                                self.contentMode = downloadedImage.size.width > downloadedImage.size.height ? .scaleAspectFill : .scaleAspectFit
-                            }
-                            
-                            DispatchQueue.main.async {
-                                if downloadedImage.isEqualTo(image: UIImage(named: "image-mock-white")!) {
-                                    self.image  =   UIImage(named: imagePlaceholderName)
+                            if let data = data, let downloadedImage = UIImage(data: data) {
+                                if imageType == .userCoverImage {
+                                    self.contentMode = downloadedImage.size.width > downloadedImage.size.height ? .scaleAspectFill : .scaleAspectFit
                                 }
                                 
+                                if downloadedImage.isEqualTo(image: UIImage(named: "image-mock-white")!) {
+                                    self.fadeIn(image: UIImage(named: imagePlaceholderName)!)
+                                }
+                                    
                                 else {
-                                    self.image  =   downloadedImage
+                                    self.fadeIn(image: downloadedImage)
                                 }
                                 
                                 // Save image to NSCache
-                                cacheApp.setObject(self.image!, forKey: imageKey)
+                                let saveImageToCacheQueue = DispatchQueue.global(qos: .background)
+                                
+                                saveImageToCacheQueue.async {
+                                    cacheApp.setObject(downloadedImage, forKey: imageKey)
+                                }
+                                
+                                // Save ImageCached to CoreData
+                                let saveImageToCoreDataQueue = DispatchQueue.global(qos: .background)
+                                
+                                saveImageToCoreDataQueue.async {
+                                    ImageCached.updateEntity(fromItem: fromItem, byDate: createdDate, andKey: imageKey as String)
+                                }
                             }
-                            
-                            // Save ImageCached to CoreData
-                            DispatchQueue.main.async {
-                                ImageCached.updateEntity(fromItem: fromItem, byDate: createdDate, andKey: imageKey as String)
-                            }
-                        }
-                    }.resume()
-                }
-                
-                else {
-                    DispatchQueue.main.async {
-                        self.image = UIImage(named: imagePlaceholderName)
+                        }.resume()
                     }
+                }
+                    
+                else {
+                    self.fadeIn(image: UIImage(named: imagePlaceholderName)!)
                 }
             }
         }
+    }
+    
+    private func fadeIn(image: UIImage) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1, execute: {
+            self.image = image
+
+            UIView.animate(withDuration: 0.75, animations: {
+                self.alpha = 1.0
+            })
+        })
     }
 }

@@ -24,7 +24,7 @@ protocol PostCellSupport: PaginationSupport, MetaDataSupport {
     var pendingPayoutValue: Float { get set }
     var children: Int16 { get set }
     var sortID: Int16 { get set }
-    var activeVotesPresent: Bool { get set }
+    var currentUserVoted: Bool { get set }
 
     var tags: [String]? { get set }
     var rebloggedBy: [String]? { get set }
@@ -33,6 +33,4 @@ protocol PostCellSupport: PaginationSupport, MetaDataSupport {
     var created: Date { get set }
     var lastUpdate: Date { get set }
     var lastPayout: Date { get set }
-    
-    var activeVotes: NSSet? { get set }
 }

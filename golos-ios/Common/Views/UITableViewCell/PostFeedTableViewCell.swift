@@ -1,5 +1,5 @@
 //
-//  LentaPostTableViewCell.swift
+//  PostFeedTableViewCell.swift
 //  Golos
 //
 //  Created by Grigory Serebryanyy on 22/01/2018.
@@ -28,11 +28,11 @@ class PostFeedTableViewCell: UITableViewCell, HandlersCellSupport {
     
     @IBOutlet private weak var titleLabel: UILabel! {
         didSet {
-            titleLabel.tune(withText:       "",
-                            hexColors:      veryDarkGrayWhiteColorPickers,
-                            font:           UIFont(name: "SFUIDisplay-Regular", size: 14.0),
-                            alignment:      .left,
-                            isMultiLines:   true)
+            titleLabel.tune(withText:           "",
+                            hexColors:          veryDarkGrayWhiteColorPickers,
+                            font:               UIFont(name: "SFUIDisplay-Regular", size: 14.0),
+                            alignment:          .left,
+                            isMultiLines:       true)
         }
     }
 
@@ -63,7 +63,7 @@ class PostFeedTableViewCell: UITableViewCell, HandlersCellSupport {
         didSet {
             upvotesButton.tune(withTitle:       "",
                                hexColors:       [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
-                               font:            UIFont(name: "SFUIDisplay-Regular", size: 10.0 * widthRatio),
+                               font:            UIFont(name: "SFUIDisplay-Regular", size: 10.0),
                                alignment:       .center)
         }
     }
@@ -101,11 +101,11 @@ class PostFeedTableViewCell: UITableViewCell, HandlersCellSupport {
         super.prepareForReuse()
         
         self.postFeedHeaderView.authorProfileImageView.image    =   UIImage(named: "icon-user-profile-image-placeholder")
-        
-        self.titleLabel.text                                    =   nil
-        self.postImageView.image                                =   nil
-        self.postImageViewHeightConstraint.constant             =   180.0 * heightRatio
 
+        self.titleLabel.text                                    =   nil
+        self.postImageView.image                                =   nil // UIImage(named: "image-user-cover-placeholder")
+        self.postImageViewHeightConstraint.constant             =   180.0 * heightRatio
+        
         self.postFeedHeaderView.reblogAuthorLabel.text          =   nil
         self.postFeedHeaderView.reblogAuthorLabel.isHidden      =   true
         self.postFeedHeaderView.reblogIconImageView.isHidden    =   true
@@ -162,10 +162,10 @@ extension PostFeedTableViewCell: ConfigureCell {
 //            self.upvotesButton.setTitle(pendingPayoutValue, for: .normal)
 
             // Set upvotes icon
-            if let activeVotes = model.activeVotes, activeVotes.count > 0 {
-                self.upvotesButton.isSelected = activeVotes.compactMap({ ($0 as? ActiveVote)?.voter == User.current!.name }).count > 0
+            if model.activeVotesCount > 0 {
+                self.upvotesButton.isSelected = model.currentUserVoted
             }
-            
+
             // Load User author profile image
             if let userProfileImageURL = user.profileImageURL {
                 self.postFeedHeaderView.authorProfileImageView.uploadImage(byStringPath:    userProfileImageURL,
@@ -176,7 +176,7 @@ extension PostFeedTableViewCell: ConfigureCell {
                                                                            fromItem:        (user as CachedImageFrom).fromItem)
             }
         }
-        
+
         // Load model user cover image
         if let coverImageURL = model.coverImageURL, !coverImageURL.isEmpty {
             self.postImageView.uploadImage(byStringPath:    coverImageURL,
@@ -186,7 +186,7 @@ extension PostFeedTableViewCell: ConfigureCell {
                                            createdDate:     model.created,
                                            fromItem:        (model as! CachedImageFrom).fromItem)
         }
-        
+
         // Hide post image
         else {
             self.postImageViewHeightConstraint.constant     =   0
@@ -196,17 +196,11 @@ extension PostFeedTableViewCell: ConfigureCell {
         self.postFeedHeaderView.authorLabel.text            =   model.author
         self.postFeedHeaderView.categoryLabel.text          =   model.category.transliteration()
 
-//        self.upvotesButton.isEnabled                        =   !model.allowVotes
-//        self.commentsButton.isEnabled                       =   !model.allowReplies
-        
         selectionStyle                                      =   .none
 
-        if model.children > 0 {
-            self.commentsButton.setTitle("\(model.children)", for: .normal)
-        }
-        
-        if let activeVotes = model.activeVotes, activeVotes.count > 0 {
-            self.commentsButton.isSelected = (activeVotes.allObjects as! [ActiveVote]).contains(where: { $0.voter == User.current?.name ?? "XXX" })
+        if model.activeVotesCount > 0 {
+            self.commentsButton.setTitle("\(model.activeVotesCount)", for: .normal)
+            self.commentsButton.isSelected = model.currentUserVoted
             
             if self.commentsButton.isSelected {
                 Logger.log(message: "Set green like icon", event: .debug)

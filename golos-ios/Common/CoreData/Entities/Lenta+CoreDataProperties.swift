@@ -36,7 +36,7 @@ extension Lenta: PostCellSupport {
     @NSManaged public var pendingPayoutValue: Float
     @NSManaged public var children: Int16
     @NSManaged public var sortID: Int16
-    @NSManaged public var activeVotesPresent: Bool
+    @NSManaged public var currentUserVoted: Bool
 
     @NSManaged public var tags: [String]?
     @NSManaged public var rebloggedBy: [String]?
@@ -45,24 +45,5 @@ extension Lenta: PostCellSupport {
     @NSManaged public var created: Date
     @NSManaged public var lastUpdate: Date
     @NSManaged public var lastPayout: Date
-    
-    @NSManaged public var activeVotes: NSSet?
-    
-}
-
-// MARK: Generated accessors for activeVotes
-extension Lenta {
-    
-    @objc(addActiveVotesObject:)
-    @NSManaged public func addToActiveVotes(_ value: ActiveVote)
-    
-    @objc(removeActiveVotesObject:)
-    @NSManaged public func removeFromActiveVotes(_ value: ActiveVote)
-    
-    @objc(addActiveVotes:)
-    @NSManaged public func addToActiveVotes(_ values: NSSet)
-    
-    @objc(removeActiveVotes:)
-    @NSManaged public func removeFromActiveVotes(_ values: NSSet)
     
 }

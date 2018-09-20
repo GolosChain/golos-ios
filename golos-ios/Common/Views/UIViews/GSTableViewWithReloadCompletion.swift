@@ -44,8 +44,10 @@ final class GSTableViewWithReloadCompletion: UITableView {
     }
     
     func reloadDataWithCompletion(completion: @escaping () -> Void) {
-        reloadDataCompletionBlock = completion
-        super.reloadData()
+        DispatchQueue.main.async(execute: {
+            self.reloadDataCompletionBlock = completion
+            super.reloadData()
+        })
     }
     
     

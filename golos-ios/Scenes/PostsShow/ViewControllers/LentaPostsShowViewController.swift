@@ -14,6 +14,14 @@ import UIKit
 import GoloSwift
 
 class LentaPostsShowViewController: GSTableViewController {
+    // MARK: - IBOutlets
+    @IBOutlet weak var lentaTableView: GSTableViewWithReloadCompletion! {
+        didSet {
+            self.postsTableView = self.lentaTableView
+        }
+    }
+
+    
     // MARK: - Class Initialization
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -32,14 +40,14 @@ class LentaPostsShowViewController: GSTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.tableView.register(UINib(nibName: "LentaPostTableViewCell", bundle: nil), forCellReuseIdentifier: "LentaPostTableViewCell")
+        self.title = "Lenta"
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         if !isNetworkAvailable {
-            self.tableView.tableHeaderView = nil
+            self.lentaTableView.tableHeaderView = nil
         }
     }
     

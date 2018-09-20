@@ -31,8 +31,11 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
     
     
     // MARK: - IBOutlets
+    @IBOutlet weak var lentaButton: UIButton!
     @IBOutlet weak var buttonsStackView: UIStackView!
-    
+    @IBOutlet weak var lineViewLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var contentViewWidthConstraint: NSLayoutConstraint!
+
     @IBOutlet weak var scrollView: UIScrollView! {
         didSet {
             scrollView.delegate = self
@@ -74,15 +77,12 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
         }
     }
     
-    @IBOutlet weak var lentaButton: UIButton!
-    
     @IBOutlet weak var shadowView: UIView! {
         didSet {
             shadowView.setGradientBackground(colors: [UIColor.lightGray.cgColor, UIColor.lightText.cgColor], onside: .bottom)
         }
     }
     
-
     // ContainerViewSupport implementation
     @IBOutlet weak var containerView: GSContainerView! {
         didSet {
@@ -92,14 +92,10 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
             self.containerView.setActiveViewController(index: 0)
         }
     }
-
-    @IBOutlet weak var contentViewWidthConstraint: NSLayoutConstraint!
-    
-    @IBOutlet weak var lineViewLeadingConstraint: NSLayoutConstraint!
     
     @IBOutlet var heightsCollection: [NSLayoutConstraint]! {
         didSet {
-            _ = heightsCollection.map({ $0.constant *= heightRatio })
+            self.heightsCollection.forEach({ $0.constant *= heightRatio })
         }
     }
     
@@ -171,6 +167,9 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
         self.containerView.mainVC = self
         self.containerView.setActiveViewController(index: 0)
 
+        // Load Posts
+        self.loadPosts(isRefresh: true)
+
         NotificationCenter.default.addObserver(self, selector: #selector(localizeTitles), name: NSNotification.Name(LCLLanguageChangeNotification), object: nil)
     }
     
@@ -181,9 +180,6 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
         self.hideNavigationBar()
         self.lentaButton.isHidden = User.current == nil
         self.localizeTitles()
-
-        // Load Posts
-        self.loadPosts(false)
     }
     
     
@@ -202,52 +198,49 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
     }
     
     private func scrollHorizontalTo(sender: UIButton) {
-        self.selectedButton = sender
-        self.selectedButton.theme_setTitleColor(whiteColorPickers, forState: .normal)
-        _ = self.buttonsCollection.filter({ $0 != sender }).map({ $0.theme_setTitleColor(veryLightGrayColorPickers, forState: .normal )})
-        
-        let offsetMinX = sender.frame.minX - scrollView.contentOffset.x
-        let offsetMaxX = sender.frame.maxX - scrollView.contentOffset.x
-        
-        UIView.animate(withDuration: 0.2, animations: {
-            self.lineView.transform = CGAffineTransform(translationX: self.selectedButton.frame.minX - self.buttonsStackView.spacing - self.scrollView.contentOffset.x, y: 0)
-            self.lineViewWidthConstraint.constant = sender.frame.width
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
+            self.selectedButton.theme_setTitleColor(whiteColorPickers, forState: .normal)
+            _ = self.buttonsCollection.filter({ $0 != sender }).map({ $0.theme_setTitleColor(veryLightGrayColorPickers, forState: .normal )})
             
-            UIView.animate(withDuration: 0.2) {
-                self.view.layoutIfNeeded()
-            }
-        })
-        
-        if !statusBarView.frame.contains(CGPoint(x: offsetMinX, y: 0)) || !statusBarView.frame.contains(CGPoint(x: offsetMaxX, y: 0)) {
-            switch sender.tag {
-            case 0, 1:
-                self.scrollView.scrollRectToVisible(CGRect(origin: .zero, size: sender.frame.size), animated: true)
+            let offsetMinX = sender.frame.minX - self.scrollView.contentOffset.x
+            let offsetMaxX = sender.frame.maxX - self.scrollView.contentOffset.x
+            
+            UIView.animate(withDuration: 0.2, animations: {
+                self.lineView.transform = CGAffineTransform(translationX: self.selectedButton.frame.minX - self.buttonsStackView.spacing - self.scrollView.contentOffset.x, y: 0)
+                self.lineViewWidthConstraint.constant = sender.frame.width
                 
-            // 3, 4
-            default:
-                let lastView    =   buttonsStackView.arrangedSubviews.first(where: { $0.tag == 6 })
-                let visibleRect =   CGRect(origin: lastView!.frame.origin, size: CGSize(width: lastView!.frame.width + self.buttonsStackView.spacing, height: lastView!.frame.height))
-                self.scrollView.scrollRectToVisible(visibleRect, animated: true)
+                UIView.animate(withDuration: 0.2) {
+                    self.view.layoutIfNeeded()
+                }
+            })
+            
+            if !self.statusBarView.frame.contains(CGPoint(x: offsetMinX, y: 0)) || !self.statusBarView.frame.contains(CGPoint(x: offsetMaxX, y: 0)) {
+                switch sender.tag {
+                case 0, 1:
+                    self.scrollView.scrollRectToVisible(CGRect(origin: .zero, size: sender.frame.size), animated: true)
+                    
+                // 3, 4
+                default:
+                    let lastView    =   self.buttonsStackView.arrangedSubviews.first(where: { $0.tag == 6 })
+                    let visibleRect =   CGRect(origin: lastView!.frame.origin, size: CGSize(width: lastView!.frame.width + self.buttonsStackView.spacing, height: lastView!.frame.height))
+                    self.scrollView.scrollRectToVisible(visibleRect, animated: true)
+                }
             }
         }
     }
     
-    
     private func setActiveViewControllerHandlers() {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1, execute: {
         if let activeVC = self.containerView.activeVC {
-            // Create queue
-            let queueFetchPosts = DispatchQueue.global(qos: .background)
+            // Add cells from XIB
+            activeVC.fetchPosts(byParameters: (author: User.current?.name, postFeedType: self.postFeedTypes[self.selectedButton.tag], permlink: nil, sortBy: nil))
             
-            // Run queue in Async Thread
-            queueFetchPosts.async {
-                // Add cells from XIB
-                activeVC.fetchPosts(byParameters: (author: User.current?.name, postFeedType: self.postFeedTypes[self.selectedButton.tag], permlink: nil, sortBy: nil))
-            }
-        
-            // Handler Refresh/Upload data
-            activeVC.handlerRefreshData                         =   { [weak self] lastItem in
-                self?.interactor?.save(lastItem: lastItem)
-                self?.loadPosts(lastItem == nil)
+            // Handler Push Refresh/Upload data
+            activeVC.handlerPushRefreshData                     =   { [weak self] lastItem in
+//                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1, execute: {
+                    self?.interactor?.save(lastItem: lastItem)
+                    self?.loadPosts(isRefresh: lastItem == nil)
+//                })
             }
 
             activeVC.handlerAnswerButtonTapped                  =   { [weak self] postShortInfo in
@@ -288,47 +281,30 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
                 self?.router?.routeToUserProfileScene(byUserName: userName)
             }
         }
+        })
+
     }
     
     private func getContainerViewControllers() -> [GSTableViewController] {
-        let lentaPostsShowVC                    =   UIStoryboard(name: "PostsShow", bundle: nil)
-                                                        .instantiateViewController(withIdentifier: "LentaPostsShowVC") as! GSTableViewController
+        let lentaPostsShowVC    =   UIStoryboard(name: "PostsShow", bundle: nil)
+                                        .instantiateViewController(withIdentifier: "LentaPostsShowVC") as! GSTableViewController
         
-        lentaPostsShowVC.title                  =   "Lenta"
-        lentaPostsShowVC.cellIdentifier         =   "LentaPostTableViewCell"
-    
-        
-        let popularPostsShowVC                  =   UIStoryboard(name: "PostsShow", bundle: nil)
-                                                        .instantiateViewController(withIdentifier: "PopularPostsShowVC") as! GSTableViewController
+        let popularPostsShowVC  =   UIStoryboard(name: "PostsShow", bundle: nil)
+                                        .instantiateViewController(withIdentifier: "PopularPostsShowVC") as! GSTableViewController
        
-        popularPostsShowVC.title                =   "Popular"
-        popularPostsShowVC.cellIdentifier       =   "PopularPostTableViewCell"
-
-
-        let actualPostsShowVC                   =   UIStoryboard(name: "PostsShow", bundle: nil)
-                                                        .instantiateViewController(withIdentifier: "ActualPostsShowVC") as! GSTableViewController
+        let actualPostsShowVC   =   UIStoryboard(name: "PostsShow", bundle: nil)
+                                        .instantiateViewController(withIdentifier: "ActualPostsShowVC") as! GSTableViewController
         
-        actualPostsShowVC.title                 =   "Actual"
-        actualPostsShowVC.cellIdentifier        =   "ActualPostTableViewCell"
-
-        
-        let newPostsShowVC                      =   UIStoryboard(name: "PostsShow", bundle: nil)
-                                                        .instantiateViewController(withIdentifier: "NewPostsShowVC") as! GSTableViewController
+        let newPostsShowVC      =   UIStoryboard(name: "PostsShow", bundle: nil)
+                                        .instantiateViewController(withIdentifier: "NewPostsShowVC") as! GSTableViewController
        
-        newPostsShowVC.title                    =   "New"
-        newPostsShowVC.cellIdentifier           =   "NewPostTableViewCell"
+        let promoPostsShowVC    =   UIStoryboard(name: "PostsShow", bundle: nil)
+                                        .instantiateViewController(withIdentifier: "PromoPostsShowVC") as! GSTableViewController
+        
 
+        let segmentControllers  =   User.current == nil ?   [ popularPostsShowVC, actualPostsShowVC, newPostsShowVC, promoPostsShowVC ] :
+                                                            [ lentaPostsShowVC, popularPostsShowVC, actualPostsShowVC, newPostsShowVC, promoPostsShowVC ]
         
-        let promoPostsShowVC                =   UIStoryboard(name: "PostsShow", bundle: nil)
-                                                        .instantiateViewController(withIdentifier: "PromoPostsShowVC") as! GSTableViewController
-        
-        promoPostsShowVC.title              =   "Promo"
-        promoPostsShowVC.cellIdentifier     =   "PromoPostTableViewCell"
-        
-        
-        let segmentControllers      =   User.current == nil ?   [ popularPostsShowVC, actualPostsShowVC, newPostsShowVC, promoPostsShowVC ] :
-                                                                [ lentaPostsShowVC, popularPostsShowVC, actualPostsShowVC, newPostsShowVC, promoPostsShowVC ]
-
         return segmentControllers
     }
     
@@ -337,17 +313,19 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
     @IBAction func buttonTapped(_ sender: UIButton) {
         // Scroll content to first row
         if self.selectedButton == sender {
-            if let activeVC = self.containerView.activeVC, let tableView = activeVC.tableView, tableView.contentOffset.y > 0.0 {
-                activeVC.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+            if let activeVC = self.containerView.activeVC, let tableView = activeVC.postsTableView, tableView.contentOffset.y > 0.0 {
+                activeVC.postsTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
             }
         }
         
+        // Load posts or not
         else {
-//            self.containerView.setActiveViewController(index: sender.tag)
-//            self.loadPosts(false)
+            self.selectedButton = sender
+            
+            self.containerView.setActiveViewController(index: sender.tag)
+            self.loadPosts(isRefresh: self.containerView.activeVC?.fetchedResultsController == nil)
         }
         
-        self.setActiveViewControllerHandlers()
         self.scrollHorizontalTo(sender: sender)
     }
 }
@@ -369,14 +347,18 @@ extension PostsShowViewController: PostsShowDisplayLogic {
 
 // MARK: - Load data from Blockchain by API
 extension PostsShowViewController {
-    private func loadPosts(_ isRefresh: Bool) {
-        // Create queue
-        let queueLoadPosts = DispatchQueue.global(qos: .background)
+    private func loadPosts(isRefresh: Bool) {
+        // Refresh data
+        if isRefresh {
+            // Create queue
+            let loadPostsQueue = DispatchQueue.global(qos: .background)
+            
+            // Run queue in Async Thread
+            loadPostsQueue.async {
+                let loadPostsRequestModel = PostsShowModels.Items.RequestModel(postFeedType: self.postFeedTypes[self.selectedButton.tag])
+                self.interactor?.loadPosts(withRequestModel: loadPostsRequestModel)
+            }
         
-        // Run queue in Async Thread
-        queueLoadPosts.async {
-            let loadPostsRequestModel = PostsShowModels.Items.RequestModel(postFeedType: self.postFeedTypes[self.selectedButton.tag])
-            self.interactor?.loadPosts(withRequestModel: loadPostsRequestModel)
         }
     }
 }

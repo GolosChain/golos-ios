@@ -14,6 +14,14 @@ import UIKit
 import GoloSwift
 
 class NewPostsShowViewController: GSTableViewController {
+    // MARK: - IBOutlets
+    @IBOutlet weak var newTableView: GSTableViewWithReloadCompletion! {
+        didSet {
+            self.postsTableView = self.newTableView
+        }
+    }
+    
+    
     // MARK: - Class Initialization
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -32,14 +40,14 @@ class NewPostsShowViewController: GSTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.tableView.register(UINib(nibName: "NewPostTableViewCell", bundle: nil), forCellReuseIdentifier: "NewPostTableViewCell")
+        self.title = "New"
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         if !isNetworkAvailable {
-            self.tableView.tableHeaderView = nil
+            self.postsTableView.tableHeaderView = nil
         }
     }
     

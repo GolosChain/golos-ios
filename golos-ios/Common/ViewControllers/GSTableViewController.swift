@@ -15,14 +15,37 @@ typealias FetchPostParameters   =   (author: String?, postFeedType: PostsFeedTyp
 
 class GSTableViewController: GSBaseViewController, HandlersCellSupport {
     // MARK: - Properties
+    var postsTableView: GSTableViewWithReloadCompletion! {
+        didSet {
+            self.postsTableView.register(UINib(nibName: self.cellIdentifier, bundle: nil), forCellReuseIdentifier: self.cellIdentifier)
+
+            self.postsTableView.delegate              =   self
+            self.postsTableView.dataSource            =   self
+            
+            self.postsTableView.tune()
+
+            // Set automatic dimensions for row height
+            self.postsTableView.rowHeight             =   UITableView.automaticDimension
+            self.postsTableView.estimatedRowHeight    =   320.0 * heightRatio
+            
+            if #available(iOS 10.0, *) {
+                self.postsTableView.refreshControl    =   refreshControl
+            }
+                
+            else {
+                self.postsTableView.addSubview(refreshControl)
+            }
+        }
+    }
+
     var commentsViewHeight: CGFloat = 0.0 {
         didSet {
-            self.tableView.frame.size = CGSize(width: self.tableView.bounds.width, height: self.tableView.frame.height + commentsViewHeight)
+            self.postsTableView.frame.size = CGSize(width: self.postsTableView.bounds.width, height: self.postsTableView.frame.height + commentsViewHeight)
         }
     }
     
-    var reloadData: Bool        =   true
-    var paginanationData: Bool  =   false
+    var refreshData: Bool       =   false
+    var infiniteScrollingData   =   false
     var lastIndex: Int          =   0
     var topVisibleIndexPath     =   IndexPath(row: 0, section: 0)
     var cellIdentifier: String  =   "PostFeedTableViewCell"
@@ -32,7 +55,7 @@ class GSTableViewController: GSBaseViewController, HandlersCellSupport {
     // Handlers
     var handlerAnswerButtonTapped: ((PostShortInfo) -> Void)?
     var handlerReplyTypeButtonTapped: (() -> Void)?
-    var handlerRefreshData: ((NSManagedObject?) -> Void)?
+    var handlerPushRefreshData: ((NSManagedObject?) -> Void)?
     var handlerSelectItem: ((NSManagedObject?) -> Void)?
     var handlerUsersButtonTapped: (() -> Void)?
     var handlerAuthorProfileAddButtonTapped: (() -> Void)?
@@ -55,34 +78,13 @@ class GSTableViewController: GSBaseViewController, HandlersCellSupport {
 
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(handlerTableViewRefresh), for: .valueChanged)
+        refreshControl.addTarget(self, action: #selector(handlerTableViewRefreshData), for: .valueChanged)
         
         return refreshControl
     }()
 
     
     // MARK: - IBOutlets
-    @IBOutlet weak var tableView: GSTableViewWithReloadCompletion! {
-        didSet {
-            tableView.delegate              =   self
-            tableView.dataSource            =   self
-            
-            tableView.tune()
-            
-            // Set automatic dimensions for row height
-            tableView.rowHeight             =   UITableView.automaticDimension
-            tableView.estimatedRowHeight    =   320.0 * heightRatio
-            
-            if #available(iOS 10.0, *) {
-                tableView.refreshControl = refreshControl
-            }
-            
-            else {
-                tableView.addSubview(refreshControl)
-            }
-        }
-    }
-    
     @IBOutlet weak var commentsTableViewHeightConstraint: NSLayoutConstraint!
 
     
@@ -112,11 +114,11 @@ class GSTableViewController: GSBaseViewController, HandlersCellSupport {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if self.tableView != nil {
+        if self.postsTableView != nil {
             self.displaySpinner(true)
 
             UIView.animate(withDuration: 0.7) {
-                self.tableView.alpha = 1.0
+                self.postsTableView.alpha = 1.0
             }
         }        
     }
@@ -124,12 +126,12 @@ class GSTableViewController: GSBaseViewController, HandlersCellSupport {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
     
-        if self.tableView != nil {
+        if self.postsTableView != nil {
             UIView.animate(withDuration: 0.5) {
-                self.tableView.alpha = 0.0
+                self.postsTableView.alpha = 0.0
             }
             
-            self.tableView.tableHeaderView = nil
+            self.postsTableView.tableHeaderView = nil
         }
     }
     
@@ -151,24 +153,25 @@ class GSTableViewController: GSBaseViewController, HandlersCellSupport {
             
             guard show else {
                 self.activityIndicatorView.stopAnimating()
-                self.tableView.tableHeaderView = nil
+                self.postsTableView.tableHeaderView = nil
                 return
             }
             
-            self.activityIndicatorView      =   UIActivityIndicatorView.init(frame: CGRect(origin:  .zero,
-                                                                                           size:    CGSize(width: self.tableView.frame.width, height: 64.0 * heightRatio)))
-            self.activityIndicatorView.style = .gray
-            self.tableView.separatorStyle   =   .none
+            self.activityIndicatorView  =   UIActivityIndicatorView.init(frame: CGRect(origin:  .zero,
+                                                                                       size:    CGSize(width: self.postsTableView.frame.width, height: 64.0 * heightRatio)))
+            self.activityIndicatorView.style        = .gray
+            self.postsTableView.separatorStyle      =   .none
+            
             self.activityIndicatorView.startAnimating()
             
-            self.tableView.tableHeaderView  =   self.activityIndicatorView
+            self.postsTableView.tableHeaderView     =   self.activityIndicatorView
         }
     }
     
     private func displayEmptyTitle(byType type: PostsFeedType) {
         // Add header with title
         if self.fetchedResultsController.sections![0].numberOfObjects == 0 {
-            let headerView = UIView.init(frame: tableView.frame)
+            let headerView = UIView.init(frame: self.postsTableView.frame)
             headerView.tune()
             
             let titleLabel = UILabel(frame: CGRect(origin: .zero, size: CGSize(width: 200.0, height: 30.0)))
@@ -185,7 +188,7 @@ class GSTableViewController: GSBaseViewController, HandlersCellSupport {
             titleLabel.topAnchor.constraint(equalTo: headerView.topAnchor, constant: 20.0 * heightRatio).isActive = true
             titleLabel.centerXAnchor.constraint(equalTo: headerView.centerXAnchor).isActive = true
             
-            tableView.tableHeaderView = headerView
+            self.postsTableView.tableHeaderView     =   headerView
         }
     }
     
@@ -200,20 +203,20 @@ class GSTableViewController: GSBaseViewController, HandlersCellSupport {
         // Replies
         case .reply:
             if let author = parameters.author {
-                fetchRequest.predicate  =   NSPredicate(format: "parentAuthor == %@", author)
+                fetchRequest.predicate      =   NSPredicate(format: "parentAuthor == %@", author)
             }
             
         // Blog
         case .blog:
             if let author = parameters.author {
-                fetchRequest.predicate  =   NSPredicate(format: "author == %@", author)
+                fetchRequest.predicate      =   NSPredicate(format: "author == %@", author)
             }
 
         // Lenta
         case .lenta:
             if let author = parameters.author {
-                fetchRequest.predicate  =   NSPredicate(format: "userName == %@", author)
-                primarySortDescriptor   =   NSSortDescriptor(key: parameters.sortBy ?? "id", ascending: false)
+                fetchRequest.predicate      =   NSPredicate(format: "userName == %@", author)
+                primarySortDescriptor       =   NSSortDescriptor(key: parameters.sortBy ?? "id", ascending: false)
             }
 
         // Popular, Actual, New, Promo
@@ -221,14 +224,14 @@ class GSTableViewController: GSBaseViewController, HandlersCellSupport {
             break
         }
 
-        fetchRequest.sortDescriptors    =   [ primarySortDescriptor ]
+        fetchRequest.sortDescriptors        =   [ primarySortDescriptor ]
 
         if self.lastIndex == 0 {
-            fetchRequest.fetchLimit     =   Int(loadDataLimit)            
+            fetchRequest.fetchLimit         =   Int(loadDataLimit)
         }
             
         else {
-            fetchRequest.fetchLimit     =   Int(loadDataLimit) + self.lastIndex
+            fetchRequest.fetchLimit         =   Int(loadDataLimit) + self.lastIndex
         }
      
         self.run(fetchRequest: fetchRequest)
@@ -242,71 +245,77 @@ class GSTableViewController: GSBaseViewController, HandlersCellSupport {
         
         fetchedResultsController.delegate   =   self
         
-        do {
-            try fetchedResultsController.performFetch()
-            
-            // Pull to refresh data
-            if self.reloadData {
-                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.9) {
-                    self.reloadData                 =   false
-                    self.tableView.contentOffset    =   .zero
+        // Pull to refresh data
+        let refreshDataQueue = DispatchQueue.global(qos: .background)
+        
+        refreshDataQueue.async {
+            do {
+                try self.fetchedResultsController.performFetch()
+                
+                if self.refreshData {
+                    self.postsTableView.contentOffset = .zero
                     self.refreshControl.endRefreshing()
                     
                     self.loadDataFinished()
                 }
+                    
+                // Infinite scrolling data
+                else {
+                    self.loadDataFinished()
+                }
+            } catch {
+                Logger.log(message: error.localizedDescription, event: .error)
             }
-            
-            // Infinite scrolling data
-            else {
-                self.loadDataFinished()
-            }
-        } catch {
-            Logger.log(message: error.localizedDescription, event: .error)
         }
     }
 
     private func loadDataFinished() {
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
-            self.tableView?.reloadDataWithCompletion {
-                Logger.log(message: "Load data is finished!!!", event: .debug)
-                
-                // Hide activity indicator
-                self.displaySpinner(false)
-                self.tableView.layoutIfNeeded()
-                
-                if self.fetchedResultsController.sections![0].numberOfObjects == 0 {
-                    self.displayEmptyTitle(byType: self.postType)
-                }
-                    
-                else {
-                    self.tableView.tableHeaderView = nil
-                }
+        self.postsTableView?.reloadDataWithCompletion {
+            Logger.log(message: "Load data is finished!!!", event: .debug)
+            
+            // Hide activity indicator
+            self.displaySpinner(false)
+            self.postsTableView.layoutIfNeeded()
+            
+            if self.fetchedResultsController.sections![0].numberOfObjects == 0 {
+                self.displayEmptyTitle(byType: self.postType)
             }
+                
+            else {
+                self.postsTableView.tableHeaderView = nil
+            }
+            
+            self.refreshData            =   false
+            self.infiniteScrollingData  =   false
         }
     }
     
     func clearTableView() {
-        self.reloadData = true
+        self.refreshData = true
 
         DispatchQueue.main.async {
-            self.tableView.reloadData()
+            self.postsTableView.reloadData()
         }
     }
 
     
     // MARK: - Actions
-    @objc func handlerTableViewRefresh(refreshControl: UIRefreshControl) {
-        self.reloadData             =   true
-        self.paginanationData       =   false
+    @objc func handlerTableViewRefreshData(refreshControl: UIRefreshControl) {
+        self.refreshData            =   true
+        self.infiniteScrollingData  =   false
         self.lastIndex              =   0
         self.topVisibleIndexPath    =   IndexPath(row: 0, section: 0)
         
-        // Clear CoreData entity
-        CoreDataManager.instance.deleteEntities(withName: self.postType.rawValue.uppercaseFirst, andPredicateParameters: nil, completion: { [weak self] success in
-            if success && self?.handlerRefreshData != nil {
-                self?.handlerRefreshData!(nil)
-            }
-        })
+        // Clean CoreData entity
+        let cleanCoreDataQueue = DispatchQueue.global(qos: .background)
+        
+        cleanCoreDataQueue.async {
+            CoreDataManager.instance.deleteEntities(withName: self.postType.rawValue.uppercaseFirst, andPredicateParameters: nil, completion: { [weak self] success in
+                if success && self?.handlerPushRefreshData != nil {
+                    self?.handlerPushRefreshData!(nil)
+                }
+            })
+        }
     }
 }
 
@@ -314,21 +323,21 @@ class GSTableViewController: GSBaseViewController, HandlersCellSupport {
 // MARK: - UIScrollViewDelegate
 extension GSTableViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        guard scrollView == tableView else {
+        guard scrollView == self.postsTableView else {
             self.handlerHorizontalScrolling!(scrollView.contentOffset.x)
             return
         }
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        guard scrollView == tableView else {
+        guard scrollView == self.postsTableView else {
             self.handlerHorizontalScrolling!(scrollView.contentOffset.x)
             return
         }
         
-        if let indexPathsForVisibleRows = self.tableView.indexPathsForVisibleRows, indexPathsForVisibleRows.count > 0 {
+        if let indexPathsForVisibleRows = self.postsTableView.indexPathsForVisibleRows, indexPathsForVisibleRows.count > 0 {
             self.topVisibleIndexPath    =   indexPathsForVisibleRows[0]
-            self.paginanationData       =   false
+            self.infiniteScrollingData       =   false
         }
     }
 }
@@ -351,8 +360,8 @@ extension GSTableViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell    =   self.postsTableView.dequeueReusableCell(withIdentifier: self.cellIdentifier, for: indexPath)
         let entity  =   fetchedResultsController.object(at: indexPath) as! NSManagedObject
-        let cell    =   tableView.dequeueReusableCell(withIdentifier: self.cellIdentifier, for: indexPath)
 
         (cell as! ConfigureCell).setup(withItem: entity, andIndexPath: indexPath)
 
@@ -409,19 +418,19 @@ extension GSTableViewController: UITableViewDelegate {
             return
         }
         
-        let lastItemIndex   =   tableView.numberOfRows(inSection: indexPath.section) - 1
+        let lastItemIndex = self.postsTableView.numberOfRows(inSection: indexPath.section) - 1
         
         // Pagination: Infinite scrolling data
         if lastItemIndex == indexPath.row && lastItemIndex > self.lastIndex {
-            if let indexPathsForVisibleRows = self.tableView.indexPathsForVisibleRows, indexPathsForVisibleRows.count > 0 {
+            if let indexPathsForVisibleRows = self.postsTableView.indexPathsForVisibleRows, indexPathsForVisibleRows.count > 0 {
                 self.topVisibleIndexPath    =   indexPathsForVisibleRows[0]
             }
             
-            self.lastIndex          =   lastItemIndex
-            self.paginanationData   =   true
-            let lastElement         =   fetchedResultsController.sections![indexPath.section].objects![self.lastIndex] as! NSManagedObject
+            self.lastIndex                  =   lastItemIndex
+            let lastElement                 =   fetchedResultsController.sections![indexPath.section].objects![self.lastIndex] as! NSManagedObject
+            self.infiniteScrollingData      =   true
 
-            self.handlerRefreshData!(lastElement)
+            self.handlerPushRefreshData!(lastElement)
         }
     }
     
@@ -430,8 +439,6 @@ extension GSTableViewController: UITableViewDelegate {
             self.handlerSelectItem!(selectedElement)
         }
     }
-    
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {}
 }
 
 

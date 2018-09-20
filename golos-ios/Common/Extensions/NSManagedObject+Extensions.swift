@@ -59,16 +59,15 @@ extension NSManagedObject {
                 entity.activeVotesCount         =   Int16(model.active_votes.count)
                 
                 if let user = User.current {
-                    entity.activeVotesPresent   =   (model.active_votes.first(where: { $0.voter == user.name }) != nil)
+                    entity.currentUserVoted     =   (model.active_votes.first(where: { $0.voter == user.name }) != nil)
                 }
-            }
-            
-            if let activeVotes = ActiveVote.updateEntities(fromResponseAPI: model.active_votes, withParentID: model.id), activeVotes.count > 0 {
-                entity.activeVotes      =   NSSet(array: activeVotes)
             }
             
             // Extension: parse & save
             self.parse(metaData: model.json_metadata, fromBody: model.body)
+            
+            // Extension: parse & save
+//            self.parse(activeVotes: model.active_votes, withPostID: model.id)
         }
     }
     
@@ -95,7 +94,7 @@ extension NSManagedObject {
                                 
                                 let url     =   input[range]
                                 
-                                Logger.log(message: "url = \(url)", event: .debug)
+//                                Logger.log(message: "url = \(url)", event: .debug)
                                 
                                 if (url.hasSuffix(".jpg") || url.hasSuffix(".png") || url.hasSuffix(".gif")) && ((self as! MetaDataSupport).coverImageURL == nil || ((self as! MetaDataSupport).coverImageURL?.isEmpty)!) {
                                     (self as! MetaDataSupport).set(coverImageURL: "\(url)")
@@ -122,6 +121,14 @@ extension NSManagedObject {
         else {
             // Extensions
             self.save()
+        }
+    }
+    
+    private func parse(activeVotes: [ResponseAPIActiveVote], withPostID postID: Int64) {
+//        let parseActiveVotesQueue = DispatchQueue.global(qos: .background)
+        
+        DispatchQueue.main.async {
+            ActiveVote.updateEntities(fromResponseAPI: activeVotes, withPostID: postID)
         }
     }
 }

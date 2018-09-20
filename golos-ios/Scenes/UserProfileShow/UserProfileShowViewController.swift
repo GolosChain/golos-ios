@@ -40,8 +40,9 @@ class UserProfileShowViewController: GSBaseViewController, ContainerViewSupport 
     var router: (NSObjectProtocol & UserProfileShowRoutingLogic & UserProfileShowDataPassing)?
     
     lazy var segmentedControl: SWSegmentedControl = {
-        let contolElement       =   SWSegmentedControl(frame: CGRect(origin: .zero, size: CGSize(width: 210.0 * widthRatio, height: 44.0 * heightRatio )))
-        
+        let contolElement = SWSegmentedControl(items: postItems)
+//        let contolElement = SWSegmentedControl(frame: CGRect(origin: .zero, size: CGSize(width: 210.0 * widthRatio, height: 44.0 * heightRatio)))
+
         contolElement.items                     =   postItems.map({ $0.localized() })
         contolElement.selectedSegmentIndex      =   0
         contolElement.titleColor                =   UIColor(hexString: "#333333")
@@ -66,10 +67,10 @@ class UserProfileShowViewController: GSBaseViewController, ContainerViewSupport 
             containerView.mainVC                =   self
             
             let firstViewController             =   UIStoryboard(name: "UserProfileShow", bundle: nil).instantiateViewController(withIdentifier: "UserProfileLentaShowVC") as! GSTableViewController
-            firstViewController.cellIdentifier  =   "PostFeedTableViewCell"
+//            firstViewController.cellIdentifier  =   "PostFeedTableViewCell"
 
             let secondViewController            =   UIStoryboard(name: "UserProfileShow", bundle: nil).instantiateViewController(withIdentifier: "UserProfileReplyShowVC") as! GSTableViewController
-            secondViewController.cellIdentifier =   "ReplyTableViewCell"
+//            secondViewController.cellIdentifier =   "ReplyTableViewCell"
             
             containerView.viewControllers       =   [ firstViewController, secondViewController ]
             
@@ -342,7 +343,7 @@ extension UserProfileShowViewController {
             activeVC.fetchPosts(byParameters: (author: self.router?.dataStore?.userName, postFeedType: postFeedTypes[self.selectedSegmentIndex], permlink: nil, sortBy: nil))
             
             // Handler Refresh/Infinite Scrolling data
-            activeVC.handlerRefreshData  =   { [weak self] lastItem in
+            activeVC.handlerPushRefreshData  =   { [weak self] lastItem in
                 self?.interactor?.save(lastItem: lastItem)
                 self?.loadUserDetails()
             }
@@ -404,8 +405,8 @@ extension UserProfileShowViewController: SWSegmentedControlDelegate {
         
         // Scroll content to first row
         if self.selectedSegmentIndex == index {
-            if let activeVC = self.containerView.activeVC, activeVC.tableView.contentOffset.y > 0.0 {
-                activeVC.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+            if let activeVC = self.containerView.activeVC, activeVC.postsTableView.contentOffset.y > 0.0 {
+                activeVC.postsTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
             }
         }
         
