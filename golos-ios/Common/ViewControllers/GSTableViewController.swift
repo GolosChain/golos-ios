@@ -390,8 +390,8 @@ extension GSTableViewController: UITableViewDataSource {
                 self?.handlerUpvotesButtonTapped!()
             }
             
-            (cell as! PostFeedTableViewCell).handlerCommentsButtonTapped    =   { [weak self] selectedPost in
-                self?.handlerCommentsButtonTapped!(selectedPost)
+            (cell as! PostFeedTableViewCell).handlerCommentsButtonTapped    =   { [weak self] postShortInfo in
+                self?.handlerCommentsButtonTapped!(postShortInfo)
             }
 
             (cell as! PostFeedTableViewCell).handlerAuthorPostSelected      =   { [weak self] userName in

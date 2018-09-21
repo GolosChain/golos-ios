@@ -125,8 +125,6 @@ extension NSManagedObject {
     }
     
     private func parse(activeVotes: [ResponseAPIActiveVote], withPostID postID: Int64) {
-//        let parseActiveVotesQueue = DispatchQueue.global(qos: .background)
-        
         DispatchQueue.main.async {
             ActiveVote.updateEntities(fromResponseAPI: activeVotes, withPostID: postID)
         }

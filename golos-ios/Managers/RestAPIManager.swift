@@ -172,7 +172,7 @@ class RestAPIManager {
             
             broadcast.executeGET(byMethodAPIType: methodAPIType,
                                  onResult: { responseAPIResult in
-                                    Logger.log(message: "\nresponse API Result = \(responseAPIResult)\n", event: .debug)
+//                                    Logger.log(message: "\nresponse API Result = \(responseAPIResult)\n", event: .debug)
                                     
                                     guard let result = (responseAPIResult as! ResponseAPIPostResult).result else {
                                         completion(ErrorAPI.requestFailed(message: (responseAPIResult as! ResponseAPIPostResult).error!.message))
@@ -233,7 +233,7 @@ class RestAPIManager {
             
             broadcast.executeGET(byMethodAPIType: methodAPIType,
                                  onResult: { responseAPIResult in
-                                    Logger.log(message: "\nresponse API Result = \(responseAPIResult)\n", event: .debug)
+//                                    Logger.log(message: "\nresponse API Result = \(responseAPIResult)\n", event: .debug)
                                     
                                     guard let result = (responseAPIResult as! ResponseAPIAllContentRepliesResult).result else {
                                         completion(ErrorAPI.requestFailed(message: (responseAPIResult as! ResponseAPIAllContentRepliesResult).error!.message))
@@ -266,7 +266,7 @@ class RestAPIManager {
             
             broadcast.executeGET(byMethodAPIType: methodAPIType,
                                  onResult: { responseAPIResult in
-                                    Logger.log(message: "\nresponse API Result = \(responseAPIResult)\n", event: .debug)
+//                                    Logger.log(message: "\nresponse API Result = \(responseAPIResult)\n", event: .debug)
                                     
                                     guard let result = (responseAPIResult as! ResponseAPIUserFollowCountsResult).result else {
                                         completion(ErrorAPI.requestFailed(message: "User follow counts are not found"))
@@ -302,7 +302,7 @@ class RestAPIManager {
             
             broadcast.executeGET(byMethodAPIType: methodAPIType,
                                  onResult: { responseAPIResult in
-                                    Logger.log(message: "\nresponse API Result = \(responseAPIResult)\n", event: .debug)
+//                                    Logger.log(message: "\nresponse API Result = \(responseAPIResult)\n", event: .debug)
                                     
                                     let error = (responseAPIResult as! ResponseAPIPostResult).error
                                     completion(ErrorAPI.requestFailed(message: error == nil ? "Permlink without timing" : "Permlink with timing"))

@@ -14,14 +14,9 @@ import UIKit
 import GoloSwift
 
 // MARK: - Input & Output protocols
-protocol RootShowDisplayLogic: class {
-//    func displayPosts(fromViewModel viewModel: RootShowModels.Items.ViewModel)
-}
-
 class RootShowViewController: GSBaseViewController {
     // MARK: - Properties
-    var interactor: RootShowBusinessLogic?
-    var router: (NSObjectProtocol & RootShowRoutingLogic & RootShowDataPassing)?
+    var router: (NSObjectProtocol & RootShowRoutingLogic)?
     
     
     // MARK: - IBOutlets
@@ -49,17 +44,11 @@ class RootShowViewController: GSBaseViewController {
     
     // MARK: - Setup
     private func setup() {
-        let viewController          =   self
-        let interactor              =   RootShowInteractor()
-        let presenter               =   RootShowPresenter()
-        let router                  =   RootShowRouter()
+        let viewController      =   self
+        let router              =   RootShowRouter()
         
-        viewController.interactor   =   interactor
-        viewController.router       =   router
-        interactor.presenter        =   presenter
-        presenter.viewController    =   viewController
-        router.viewController       =   viewController
-        router.dataStore            =   interactor
+        viewController.router   =   router
+        router.viewController   =   viewController
     }
     
     
@@ -108,12 +97,6 @@ class RootShowViewController: GSBaseViewController {
             // Router
             self?.router?.routeToNextScene()
         }
-        
-        // API 'get_discussions_by_hot'
-        if !AppSettings.instance().startWithWelcomeScene {
-//            let requestModel = RootShowModels.Items.RequestModel()
-//            self.interactor?.loadPosts(withRequestModel: requestModel)
-        }
     }
     
     @objc
@@ -133,18 +116,5 @@ class RootShowViewController: GSBaseViewController {
             self.navigationController?.viewControllers.removeLast((self.navigationController?.viewControllers.count)! - 1)
             self.loadViewSettings()
         }
-    }
-}
-
-
-// MARK: - RootShowDisplayLogic
-extension RootShowViewController: RootShowDisplayLogic {
-    func displayPosts(fromViewModel viewModel: RootShowModels.Items.ViewModel) {
-//        if let error = viewModel.error {
-//            self.showAlertView(withTitle: "Error", andMessage: error.localizedDescription, needCancel: false, completion: { _ in })
-//        }
-//
-//        self.circularProgressBarView.endAnimation()
-//        Logger.log(message: "Animation did stop.", event: .severe)
     }
 }

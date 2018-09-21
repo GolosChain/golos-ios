@@ -18,14 +18,9 @@ import GoloSwift
     func routeToNextScene()
 }
 
-protocol RootShowDataPassing {
-    var dataStore: RootShowDataStore? { get }
-}
-
-class RootShowRouter: NSObject, RootShowRoutingLogic, RootShowDataPassing {
+class RootShowRouter: NSObject, RootShowRoutingLogic {
     // MARK: - Properties
     weak var viewController: RootShowViewController?
-    var dataStore: RootShowDataStore?
     
     
     // MARK: - Class Initialization

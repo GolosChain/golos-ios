@@ -16,20 +16,18 @@ target 'Golos' do
 #    pod 'CoreBitcoin', :podspec => 'https://raw.github.com/oleganza/CoreBitcoin/master/CoreBitcoin.podspec'
 
     # Distribution & Crash report
-    pod 'Fabric'
-    pod 'Crashlytics'
+    pod 'Fabric', '~> 1.7'
+    pod 'Crashlytics', '~> 3.10'
     
     # Firebase
     pod 'Firebase/Core'
     pod 'Firebase/Messaging'
     
     # Design
-    pod 'Tags'
-    pod 'Kingfisher'
+    pod 'Tags', '~> 0.1'
+    pod 'Kingfisher', '~> 4.10'
     pod 'SwiftTheme'
     pod 'SnapKit', '~> 4.0'
-    pod 'SWSegmentedControl'
-    pod 'SJSegmentedScrollView'
     pod 'LayoutKit', '~> 7.0'
     pod 'SwiftGifOrigin', '~> 1.6.1'
     pod 'MXParallaxHeader', '~> 0.6'

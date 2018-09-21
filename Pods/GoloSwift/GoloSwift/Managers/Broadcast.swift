@@ -73,7 +73,7 @@ public class Broadcast {
             return
         }
         
-//        Logger.log(message: "\nrequestAPIType:\n\t\(requestMessage)\n", event: .debug)
+        Logger.log(message: "\nrequestAPIType:\n\t\(requestMessage)\n", event: .debug)
         
         // Send GET Request messages to Blockchain
         webSocketManager.sendGETRequest(withMethodAPIType: requestAPIType, completion: { responseAPIType in
@@ -298,7 +298,7 @@ public class Broadcast {
                         return
                 }
                 
-                Logger.log(message: "\nglobalProperties:\n\t\(globalProperties)", event: .debug)
+//                Logger.log(message: "\nglobalProperties:\n\t\(globalProperties)", event: .debug)
                 
                 time                =   globalProperties.time.convert(toDateFormat: .expirationDateType).addingTimeInterval(60).convert(toStringFormat: .expirationDateType)
                 headBlockID         =   globalProperties.head_block_id.convert(toIntFromStartByte: 12, toEndByte: 16)

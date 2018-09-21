@@ -41,7 +41,7 @@ class Validator {
 
      */
     class func validate(json: [String: Any], completion: @escaping (_ codeID: Int, _ hasError: Bool) -> Void) {
-        Logger.log(message: json.description, event: .debug)
+//        Logger.log(message: json.description, event: .debug)
         completion(json["id"] as! Int, json["error"] != nil)
     }
 }

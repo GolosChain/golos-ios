@@ -224,7 +224,9 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
                 // 3, 4
                 default:
                     let lastView    =   self.buttonsStackView.arrangedSubviews.first(where: { $0.tag == 6 })
-                    let visibleRect =   CGRect(origin: lastView!.frame.origin, size: CGSize(width: lastView!.frame.width + self.buttonsStackView.spacing, height: lastView!.frame.height))
+                    let visibleRect =   CGRect(origin:  lastView!.frame.origin,
+                                               size:    CGSize(width: lastView!.frame.width + self.buttonsStackView.spacing, height: lastView!.frame.height))
+                    
                     self.scrollView.scrollRectToVisible(visibleRect, animated: true)
                 }
             }
@@ -233,61 +235,59 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
     
     private func setActiveViewControllerHandlers() {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1, execute: {
-        if let activeVC = self.containerView.activeVC {
-            // Add cells from XIB
-            activeVC.fetchPosts(byParameters: (author: User.current?.name, postFeedType: self.postFeedTypes[self.selectedButton.tag], permlink: nil, sortBy: nil))
-            
-            // Handler Push Refresh/Infinite scrolling data
-            activeVC.handlerPushRefreshData                     =   { [weak self] lastItem in
-                self?.interactor?.save(lastItem: lastItem)
+            if let activeVC = self.containerView.activeVC {
+                activeVC.fetchPosts(byParameters: (author: User.current?.name, postFeedType: self.postFeedTypes[self.selectedButton.tag], permlink: nil, sortBy: nil))
                 
-                if lastItem == nil {
-                    self?.loadPosts(byCondition: (isRefreshData: true, isInfiniteScrolling: false))
-                } else {
-                    self?.loadPosts(byCondition: (isRefreshData: false, isInfiniteScrolling: true))
-                }
-            }
-
-            activeVC.handlerAnswerButtonTapped                  =   { [weak self] postShortInfo in
-                self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
-            }
-            
-            activeVC.handlerReplyTypeButtonTapped               =   { [weak self] in
-                self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
-            }
-            
-            activeVC.handlerShareButtonTapped                   =   { [weak self] in
-                self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
-            }
-            
-            activeVC.handlerUpvotesButtonTapped                 =   { [weak self] in
-                self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
-            }
-            
-            activeVC.handlerCommentsButtonTapped                =   { [weak self] postShortInfo in
-                self?.interactor?.save(post: postShortInfo)
-                self?.router?.routeToPostShowScene(withScrollToComments: true)
-            }
-            
-            activeVC.handlerSelectItem                          =   { [weak self] selectedPost in
-                if let post = selectedPost as? PostCellSupport {
-                    self?.interactor?.save(post: PostShortInfo(title:               post.title,
-                                                               author:              post.author,
-                                                               permlink:            post.permlink,
-                                                               indexPath:           nil,
-                                                               parentAuthor:        post.parentAuthor,
-                                                               parentPermlink:      post.parentPermlink))
+                // Handler Pull Refresh/Infinite Scrolling data
+                activeVC.handlerPushRefreshData                     =   { [weak self] lastItem in
+                    self?.interactor?.save(lastItem: lastItem)
                     
-                    self?.router?.routeToPostShowScene(withScrollToComments: false)
+                    if lastItem == nil {
+                        self?.loadPosts(byCondition: (isRefreshData: true, isInfiniteScrolling: false))
+                    } else {
+                        self?.loadPosts(byCondition: (isRefreshData: false, isInfiniteScrolling: true))
+                    }
+                }
+                
+                activeVC.handlerAnswerButtonTapped                  =   { [weak self] postShortInfo in
+                    self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+                }
+                
+                activeVC.handlerReplyTypeButtonTapped               =   { [weak self] in
+                    self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+                }
+                
+                activeVC.handlerShareButtonTapped                   =   { [weak self] in
+                    self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+                }
+                
+                activeVC.handlerUpvotesButtonTapped                 =   { [weak self] in
+                    self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+                }
+                
+                activeVC.handlerCommentsButtonTapped                =   { [weak self] postShortInfo in
+                    self?.interactor?.save(post: postShortInfo)
+                    self?.router?.routeToPostShowScene(withScrollToComments: true)
+                }
+                
+                activeVC.handlerSelectItem                          =   { [weak self] selectedPost in
+                    if let post = selectedPost as? PostCellSupport {
+                        self?.interactor?.save(post: PostShortInfo(title:               post.title,
+                                                                   author:              post.author,
+                                                                   permlink:            post.permlink,
+                                                                   indexPath:           nil,
+                                                                   parentAuthor:        post.parentAuthor,
+                                                                   parentPermlink:      post.parentPermlink))
+                        
+                        self?.router?.routeToPostShowScene(withScrollToComments: false)
+                    }
+                }
+                
+                activeVC.handlerAuthorProfileImageButtonTapped      =   { [weak self] userName in
+                    self?.router?.routeToUserProfileScene(byUserName: userName)
                 }
             }
-            
-            activeVC.handlerAuthorProfileImageButtonTapped      =   { [weak self] userName in
-                self?.router?.routeToUserProfileScene(byUserName: userName)
-            }
-        }
         })
-
     }
     
     private func getContainerViewControllers() -> [GSTableViewController] {

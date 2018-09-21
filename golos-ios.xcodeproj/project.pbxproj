@@ -187,11 +187,8 @@
 		B1EE684C20D27628006BF802 /* UIBarButtonItem+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EE684B20D27628006BF802 /* UIBarButtonItem+Extensions.swift */; };
 		B1EE686C20D2D713006BF802 /* PostCommentReply.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EE686B20D2D713006BF802 /* PostCommentReply.swift */; };
 		B1F3747520C2B483005EF767 /* RootShow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1F3747420C2B483005EF767 /* RootShow.storyboard */; };
-		B1F3747F20C2C5E1005EF767 /* RootShowPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F3747920C2C5E1005EF767 /* RootShowPresenter.swift */; };
 		B1F3748120C2C5E1005EF767 /* RootShowRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F3747B20C2C5E1005EF767 /* RootShowRouter.swift */; };
-		B1F3748220C2C5E1005EF767 /* RootShowModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F3747C20C2C5E1005EF767 /* RootShowModels.swift */; };
 		B1F3748320C2C5E1005EF767 /* RootShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F3747D20C2C5E1005EF767 /* RootShowViewController.swift */; };
-		B1F3748420C2C5E1005EF767 /* RootShowInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F3747E20C2C5E1005EF767 /* RootShowInteractor.swift */; };
 		B1F6A36E20C130780096C393 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F6A36D20C130780096C393 /* Parser.swift */; };
 		EC07F4A22014093E00560CF0 /* HorizontalSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC07F4A12014093E00560CF0 /* HorizontalSelectorView.swift */; };
 		EC1DFB8F20063C400080BC50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1DFB8E20063C400080BC50 /* AppDelegate.swift */; };
@@ -460,11 +457,8 @@
 		B1EE684B20D27628006BF802 /* UIBarButtonItem+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Extensions.swift"; sourceTree = "<group>"; };
 		B1EE686B20D2D713006BF802 /* PostCommentReply.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCommentReply.swift; sourceTree = "<group>"; };
 		B1F3747420C2B483005EF767 /* RootShow.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RootShow.storyboard; sourceTree = "<group>"; };
-		B1F3747920C2C5E1005EF767 /* RootShowPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootShowPresenter.swift; sourceTree = "<group>"; };
 		B1F3747B20C2C5E1005EF767 /* RootShowRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootShowRouter.swift; sourceTree = "<group>"; };
-		B1F3747C20C2C5E1005EF767 /* RootShowModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootShowModels.swift; sourceTree = "<group>"; };
 		B1F3747D20C2C5E1005EF767 /* RootShowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootShowViewController.swift; sourceTree = "<group>"; };
-		B1F3747E20C2C5E1005EF767 /* RootShowInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootShowInteractor.swift; sourceTree = "<group>"; };
 		B1F6A36D20C130780096C393 /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
 		DECBC36021F31D8D6F619C11 /* Pods-golos-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-golos-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-golos-ios/Pods-golos-ios.release.xcconfig"; sourceTree = "<group>"; };
 		EC07F4A12014093E00560CF0 /* HorizontalSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalSelectorView.swift; sourceTree = "<group>"; };
@@ -977,9 +971,6 @@
 			isa = PBXGroup;
 			children = (
 				B139EB9920C3D3B80065F6F9 /* Views */,
-				B1F3747E20C2C5E1005EF767 /* RootShowInteractor.swift */,
-				B1F3747C20C2C5E1005EF767 /* RootShowModels.swift */,
-				B1F3747920C2C5E1005EF767 /* RootShowPresenter.swift */,
 				B1F3747B20C2C5E1005EF767 /* RootShowRouter.swift */,
 				B1F3747D20C2C5E1005EF767 /* RootShowViewController.swift */,
 			);
@@ -1409,8 +1400,6 @@
 				"${BUILT_PRODUCTS_DIR}/MXParallaxHeader/MXParallaxHeader.framework",
 				"${BUILT_PRODUCTS_DIR}/MarkdownView/MarkdownView.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
-				"${BUILT_PRODUCTS_DIR}/SJSegmentedScrollView/SJSegmentedScrollView.framework",
-				"${BUILT_PRODUCTS_DIR}/SWSegmentedControl/SWSegmentedControl.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftGifOrigin/SwiftGifOrigin.framework",
@@ -1436,8 +1425,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MXParallaxHeader.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MarkdownView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SJSegmentedScrollView.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SWSegmentedControl.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftGifOrigin.framework",
@@ -1544,7 +1531,6 @@
 				B1EA154420FE007A0015EF76 /* Popular+CoreDataClass.swift in Sources */,
 				B1050CDF20CEE89C003CE4EE /* UINavigationController+Extensions.swift in Sources */,
 				B1E09E292101F7D9002CC5B7 /* Blog+CoreDataClass.swift in Sources */,
-				B1F3748420C2C5E1005EF767 /* RootShowInteractor.swift in Sources */,
 				B1050CA220CECF75003CE4EE /* PostCreateRouter.swift in Sources */,
 				B1EA154720FE007A0015EF76 /* Actual+CoreDataProperties.swift in Sources */,
 				B15267AE210DB4980037CAAA /* NSAttributedString+Extensions.swift in Sources */,
@@ -1606,7 +1592,6 @@
 				B120D06B210824C600D949F5 /* SettingsUserProfileEditViewController.swift in Sources */,
 				B1CF44DB2106D65600483A01 /* SettingsShowPresenter.swift in Sources */,
 				EC24FF82200C625800A0AE15 /* DropDownViewController.swift in Sources */,
-				B1F3747F20C2C5E1005EF767 /* RootShowPresenter.swift in Sources */,
 				B1EA155F20FE243A0015EF76 /* PromoPostsShowViewController.swift in Sources */,
 				EC6FD59E200AD53100DCB824 /* UIViewController+Extensions.swift in Sources */,
 				B1E78A7320F9A24900B2901D /* UserProfileReplyShowViewController.swift in Sources */,
@@ -1642,7 +1627,6 @@
 				B15C29B821101FEA0030D249 /* PostShowRouter.swift in Sources */,
 				B1CF44DD2106D65600483A01 /* SettingsShowRouter.swift in Sources */,
 				7D25B4B5201F9218004A3400 /* GSNavigationBar.swift in Sources */,
-				B1F3748220C2C5E1005EF767 /* RootShowModels.swift in Sources */,
 				B146891420F1F30E00D36794 /* UserProfileHeaderView.swift in Sources */,
 				B1EA154320FE007A0015EF76 /* New+CoreDataProperties.swift in Sources */,
 				B164F04420E62AE600C5CDD3 /* UserProfileShowRouter.swift in Sources */,

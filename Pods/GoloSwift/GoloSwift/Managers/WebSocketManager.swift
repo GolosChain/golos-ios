@@ -51,7 +51,7 @@ public class WebSocketManager {
     }
     
     public func sendMessage(_ message: String) {
-//        Logger.log(message: "\nrequestMessage = \n\t\(message)", event: .debug)
+        Logger.log(message: "\nrequestMessage = \n\t\(message)", event: .debug)
         webSocket.write(string: message)
     }
     
@@ -84,7 +84,7 @@ public class WebSocketManager {
      
      */
     private func validate(json: [String: Any], completion: @escaping (_ codeID: Int, _ hasError: Bool) -> Void) {
-//        Logger.log(message: json.description, event: .debug)
+//        Logger.log(message: json.description, event:6 .debug)
         completion(json["id"] as! Int, json["error"] != nil)
     }
     
