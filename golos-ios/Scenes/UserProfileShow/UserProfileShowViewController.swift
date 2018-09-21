@@ -435,7 +435,8 @@ extension UserProfileShowViewController {
                 // Select Blog
                 activeVC.handlerSelectItem              =   { [weak self] selectedBlog in
                     if let blog = selectedBlog as? Blog {
-                        self?.interactor?.save(blog: PostShortInfo(title:               blog.title,
+                        self?.interactor?.save(blog: PostShortInfo(id:                  blog.id,
+                                                                   title:               blog.title,
                                                                    author:              blog.author,
                                                                    permlink:            blog.permlink,
                                                                    indexPath:           nil,

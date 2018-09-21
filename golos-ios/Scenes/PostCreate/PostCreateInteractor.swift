@@ -90,12 +90,13 @@ class PostCreateInteractor: PostCreateBusinessLogic, PostCreateDataStore {
                 let jsonMetadataString      =   ("{\"tags\":[\"" + (self?.tags!.compactMap({ $0.title!.transliteration() }).joined(separator: ","))! + "\"]")
                                                     .replacingOccurrences(of: ",", with: "\",\"") + ",\"app\":\"golos.io/0.1\",\"format\":\"markdown\"}"
 
-//                Logger.log(message: "\njsonMetadataString:\n\t\(jsonMetadataString)", event: .debug)
+                Logger.log(message: "\njsonMetadataString:\n\t\(jsonMetadataString)", event: .debug)
                 
+                // Create Comment with transliteration inside init
                 let comment                 =   RequestParameterAPI.Comment(parentAuthor:       "",
-                                                                            parentPermlink:     (self?.tags!.first!.title!)!.transliteration(),
+                                                                            parentPermlink:     (self?.tags!.first!.title)!.transliteration(),
                                                                             author:             User.current!.name,
-                                                                            title:              (self?.commentTitle!)!,
+                                                                            title:              (self?.commentTitle)!.transliteration(),
                                                                             body:               (self?.commentBody!)!,
                                                                             jsonMetadata:       jsonMetadataString,
                                                                             needTiming:         errorAPI.caseInfo.message.contains("timing"),

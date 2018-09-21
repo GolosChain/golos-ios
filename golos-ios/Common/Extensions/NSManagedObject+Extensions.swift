@@ -13,7 +13,9 @@ import Foundation
 extension NSManagedObject {
     func save() {
         do {
-            try CoreDataManager.instance.managedObjectContext.save()
+            if CoreDataManager.instance.managedObjectContext.hasChanges {
+                try CoreDataManager.instance.managedObjectContext.save()
+            }
         } catch let error {
             Logger.log(message: "Unresolved error \((error as NSError).userInfo)", event: .error)
             abort()

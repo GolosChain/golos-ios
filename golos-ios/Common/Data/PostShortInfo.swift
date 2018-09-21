@@ -11,6 +11,7 @@ import GoloSwift
 
 struct PostShortInfo {
     // MARK: - Properties
+    let id: Int64?
     let title: String?
     let author: String?
     let permlink: String?
@@ -20,7 +21,8 @@ struct PostShortInfo {
     
     
     // MARK: - Class Initialization
-    init(title: String? = nil, author: String? = nil, permlink: String? = nil, indexPath: IndexPath? = nil, parentAuthor: String? = nil, parentPermlink: String? = nil) {
+    init(id: Int64? = nil, title: String? = nil, author: String? = nil, permlink: String? = nil, indexPath: IndexPath? = nil, parentAuthor: String? = nil, parentPermlink: String? = nil) {
+        self.id                 =   id
         self.title              =   title
         self.author             =   author
         self.permlink           =   permlink

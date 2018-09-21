@@ -64,13 +64,13 @@ extension String {
     
     /// Common transliteration with App language support
     public func transliteration() -> String {
-        return Localize.currentLanguage() == "en" ? transliterationInLatin() : transliterationInCyrillic()
+        return Localize.currentLanguage() == "ru" ? transliterationInLatin() : transliterationInCyrillic()
     }
-    
+
     
     /// Cyrillic -> Latin
     private func transliterationInLatin() -> String {
-        guard !self.contains("ru--") else {
+        if self.contains("ru--") {
             return self.replacingOccurrences(of: "ru--", with: "")
         }
         
@@ -125,12 +125,16 @@ extension String {
     }
     
     func transliterate(char: String, isCyrillic: Bool) -> String {
+        guard "0123456789-,.?".range(of: char) == nil else {
+            return char
+        }
+        
         let convertDict     =   isCyrillic ?    NSDictionary.init(objects: latinChars, forKeys: cyrillicChars as [NSCopying]) :
             NSDictionary.init(objects: cyrillicChars, forKeys: latinChars as [NSCopying])
         
         return convertDict.value(forKey: char.lowercased()) as! String
     }
-    
+
     
     /// Convert 'reputation' -> Int
     public func convertWithLogarithm10() -> Int {

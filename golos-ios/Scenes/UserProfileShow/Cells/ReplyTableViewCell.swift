@@ -227,7 +227,8 @@ extension ReplyTableViewCell: ConfigureCell {
             return
         }
         
-        self.postShortInfo  =   PostShortInfo(title:            model.body.substring(withCharactersCount: 120),
+        self.postShortInfo  =   PostShortInfo(id:               model.id,
+                                              title:            model.body.substring(withCharactersCount: 120),
                                               author:           model.author,
                                               permlink:         model.permlink,
                                               indexPath:        nil,

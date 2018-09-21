@@ -380,6 +380,10 @@ extension PostCreateViewController: PostCreateDisplayLogic {
                 else if message.contains("Result not found") {
                     print(message)
                 }
+                
+                else if message.contains("parent_permlink") {
+                    self.showAlertView(withTitle: viewModel.errorAPI!.caseInfo.title, andMessage: message, needCancel: false, completion: { _ in })
+                }
             }
             
             return

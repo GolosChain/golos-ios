@@ -146,7 +146,7 @@ extension PostFeedTableViewCell: ConfigureCell {
             return
         }
         
-        self.postShortInfo  =   PostShortInfo(indexPath: indexPath)
+        self.postShortInfo = PostShortInfo(indexPath: indexPath)
         
         // Set User info
         if let user = User.fetch(byName: model.author) {

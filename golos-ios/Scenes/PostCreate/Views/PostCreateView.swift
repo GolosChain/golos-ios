@@ -88,6 +88,13 @@ extension PostCreateView: UITextFieldDelegate {
             return true
         }
         
+        let textLength = (textField.text?.count)! + string.count
+        
+        // Max Tag title length = 120
+        guard textLength < 121 else {
+            return false
+        }
+
         let regex = "[а-я0-9a-z,ґ,є,і,ї]"
         
         return NSPredicate(format: "SELF MATCHES %@", regex).evaluate(with: string.lowercased())

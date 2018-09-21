@@ -102,7 +102,8 @@ class CommentView: UIView, HandlersCellSupport {
         
         self.level              =   level
         
-        self.postShortInfo      =   PostShortInfo(title:            comment.body.substring(withCharactersCount: 120),
+        self.postShortInfo      =   PostShortInfo(id:               comment.id,
+                                                  title:            comment.body.substring(withCharactersCount: 120),
                                                   author:           comment.author,
                                                   permlink:         comment.permlink,
                                                   indexPath:        nil,

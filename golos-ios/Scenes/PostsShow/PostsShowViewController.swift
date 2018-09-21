@@ -272,7 +272,8 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
                 
                 activeVC.handlerSelectItem                          =   { [weak self] selectedPost in
                     if let post = selectedPost as? PostCellSupport {
-                        self?.interactor?.save(post: PostShortInfo(title:               post.title,
+                        self?.interactor?.save(post: PostShortInfo(id:                  post.id,
+                                                                   title:               post.title,
                                                                    author:              post.author,
                                                                    permlink:            post.permlink,
                                                                    indexPath:           nil,

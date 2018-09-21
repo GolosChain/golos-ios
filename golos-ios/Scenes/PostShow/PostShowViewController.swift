@@ -468,7 +468,7 @@ class PostShowViewController: GSBaseViewController {
         
         // Load Post
         self.loadContent()
-        self.loadContentComments()
+//        self.loadContentComments()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -494,9 +494,11 @@ class PostShowViewController: GSBaseViewController {
     }
     
     private func loadViewSettings() {
-        if let displayedPost = self.router?.dataStore?.post as? PostCellSupport {
+        if  let postShortInfo   =   self.router?.dataStore?.post,
+            let displayedPost   =   CoreDataManager.instance.readEntity(withName:                   self.router!.dataStore!.postType!.caseTitle().uppercaseFirst,
+                                                                        andPredicateParameters:     NSPredicate(format: "id == \(postShortInfo.id ?? 0)")) as? PostCellSupport {
             self.titleLabel.text = displayedPost.title
-            
+
             DispatchQueue.main.async {
                 self.markdownViewManager.load(markdown: displayedPost.body)
             }
@@ -664,10 +666,10 @@ extension PostShowViewController: PostShowDisplayLogic {
 // MARK: - Load data from Blockchain by API
 extension PostShowViewController {
     private func loadContent() {
-        DispatchQueue.main.async {
+//        DispatchQueue.main.async {
             let contentRequestModel = PostShowModels.Post.RequestModel()
             self.interactor?.loadContent(withRequestModel: contentRequestModel)
-        }
+//        }
     }
     
     private func loadContentComments() {
@@ -694,7 +696,8 @@ extension PostShowViewController {
             if let displayedPost = try CoreDataManager.instance.managedObjectContext.fetch(fetchRequest).first as? PostCellSupport {
                 self.postFeedHeaderView.display(displayedPost)
                
-                self.interactor?.save(post: PostShortInfo(title:            displayedPost.title,
+                self.interactor?.save(post: PostShortInfo(id:               displayedPost.id,
+                                                          title:            displayedPost.title,
                                                           author:           displayedPost.author,
                                                           permlink:         displayedPost.permlink,
                                                           indexPath:        nil,

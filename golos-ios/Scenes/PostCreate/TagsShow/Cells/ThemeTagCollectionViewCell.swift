@@ -112,10 +112,25 @@ extension ThemeTagCollectionViewCell: UITextFieldDelegate {
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let count = (textField.text?.count)! + string.count
+        var emojiCharacterSet = CharacterSet()
+        emojiCharacterSet.insert(charactersIn: "\u{1F300}"..<"\u{1F700}")
+
+        guard !emojiCharacterSet.contains(Unicode.Scalar.init(string) ?? .init(0)) else {
+            return false
+        }
         
-        // Max Tag title lenght = 24
-        guard count < 25 else {
+        guard CharacterSet.alphanumerics.contains(Unicode.Scalar.init(string) ?? .init(0)) else {
+            if string == "-" && !(textField.text?.contains("-"))! && (textField.text?.count)! > 0 || string.isEmpty  {
+                return true
+            }
+            
+            return false
+        }
+        
+        let textLength = (textField.text?.count)! + string.count
+        
+        // Max Tag title length = 24
+        guard textLength < 25 else {
             return false
         }
         
@@ -144,11 +159,11 @@ extension ThemeTagCollectionViewCell: UITextFieldDelegate {
             stringWidth         =   (string as NSString).size(withAttributes: [NSAttributedString.Key.font: UIFont(name: "SFUIDisplay-Regular", size: 13.0)!]).width
         }
         
-        if count > 2 {
+        if textLength > 2 {
             self.firstResponderWidth += (string.isEmpty) ? -stringWidth : stringWidth
         }
         
-        if count < 3 {
+        if textLength < 3 {
             self.firstResponderWidth = 78.0 * widthRatio
         }
         
