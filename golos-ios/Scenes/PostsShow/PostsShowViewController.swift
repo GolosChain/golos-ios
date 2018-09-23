@@ -149,7 +149,7 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
         }
     }
     
-    
+        
     // MARK: - Class Functions
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -197,6 +197,9 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
         }
 
         self.selectedButton = self.buttonsStackView.arrangedSubviews.filter({ $0.isHidden == false })[self.selectedButton.tag + 1] as? UIButton
+        
+        // Reload data
+        self.loadPosts(byCondition: (isRefreshData: true, isInfiniteScrolling: false))
     }
     
     private func scrollHorizontalTo(sender: UIButton) {

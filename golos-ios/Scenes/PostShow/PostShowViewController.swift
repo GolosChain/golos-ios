@@ -15,6 +15,7 @@ import WebKit
 import CoreData
 import GoloSwift
 import SafariServices
+import Localize_Swift
 import AlignedCollectionViewFlowLayout
 
 // MARK: - Input & Output protocols
@@ -422,6 +423,8 @@ class PostShowViewController: GSBaseViewController {
 
     deinit {
         Logger.log(message: "Success", event: .severe)
+
+        NotificationCenter.default.removeObserver(self)
     }
     
     
@@ -469,6 +472,8 @@ class PostShowViewController: GSBaseViewController {
         // Load Post
         self.loadContent()
         self.loadContentComments()
+
+        NotificationCenter.default.addObserver(self, selector: #selector(localizeTitles), name: NSNotification.Name(LCLLanguageChangeNotification), object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -546,6 +551,29 @@ class PostShowViewController: GSBaseViewController {
         }
     }
     
+    override func localizeTitles() {
+        self.tagsCollectionView.reloadData()
+        (self.commentsStackView.arrangedSubviews as! [CommentView]).forEach({ $0.localizeTitles() })
+        
+        self.postFeedHeaderView.categoryLabel.text  =   self.router!.dataStore!.displayedPost!.category
+                                                            .transliteration()
+                                                            .uppercaseFirst
+            
+        self.flauntButton.setTitle("Flaunt Verb".localized(), for: .normal)
+        self.donateButton.setTitle("Donate Verb".localized(), for: .normal)
+        self.promoteButton.setTitle("Promote Post Verb".localized(), for: .normal)
+        self.commentsHideButton.setTitle("Hide Comments Verb".localized(), for: .normal)
+        self.commentsSortByButton.setTitle("Action Sheet First New".localized(), for: .normal)
+        self.subscribeButtonsCollection.forEach({ $0.setTitle("Subscribe".localized(), for: .normal )})
+        
+        self.sortByLabel.text = "Sort by".localized()
+        self.commentsTitleLabel.text = "Comments Noun".localized()
+        self.userRecentPastLabel.text = "Recent Past:".localized()
+        self.userPreviouslyLabel.text = "Previously:".localized()
+        self.topicPublishedInLabel.text = "Published in".localized()
+        self.topicTitleLabel.text = self.router!.dataStore!.displayedPost!.tags!.first!.transliteration().uppercaseFirst
+    }
+
     
     // MARK: - Actions
     @IBAction func backButtonTapped(_ sender: UIButton) {
@@ -665,17 +693,21 @@ extension PostShowViewController: PostShowDisplayLogic {
 // MARK: - Load data from Blockchain by API
 extension PostShowViewController {
     private func loadContent() {
-//        DispatchQueue.main.async {
+        let loadPostContentQueue = DispatchQueue.global(qos: .background)
+        
+        loadPostContentQueue.async {
             let contentRequestModel = PostShowModels.Post.RequestModel()
             self.interactor?.loadContent(withRequestModel: contentRequestModel)
-//        }
+        }
     }
     
     private func loadContentComments() {
-//        DispatchQueue.main.async {
+        let loadPostRepliesQueue = DispatchQueue.global(qos: .background)
+        
+        loadPostRepliesQueue.async {
             let contentRepliesRequestModel = PostShowModels.Post.RequestModel()
             self.interactor?.loadContentComments(withRequestModel: contentRepliesRequestModel)
-//        }
+        }
     }
 }
 

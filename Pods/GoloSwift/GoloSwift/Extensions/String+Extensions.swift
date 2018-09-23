@@ -69,12 +69,17 @@ extension String {
             if self.hasPrefix("ru--") {
                 return self.transliterationInCyrillic()
             }
+                
             else if self.hasPrefix("re--") {
                 return self.transliterationInLatin()
             }
             
         // English
         default:
+            if self.hasPrefix("ru--") {
+                return self.replacingOccurrences(of: "ru--", with: "")
+            }
+            
             return transliterationInLatin()
         }
         
@@ -102,8 +107,13 @@ extension String {
                 var newString: String = ""
                 var latinChar: String
                 
-                for char in word {
+                for (index, char) in word.enumerated() {
                     latinChar = transliterate(char: "\(char)", isCyrillic: true)
+                    
+                    if index == 0 {
+                        latinChar += "ru--"
+                    }
+                    
                     newString.append(latinChar)
                 }
                 
@@ -115,7 +125,7 @@ extension String {
             }
         })
         
-        return "ru--" + newWords.joined(separator: " ")
+        return newWords.joined(separator: " ")
     }
     
     

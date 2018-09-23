@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -24,7 +22,7 @@
                                 <rect key="frame" x="0.0" y="68.5" width="375" height="598.5"/>
                                 <subviews>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BtF-Gk-D12" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="472"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="472.5"/>
                                         <subviews>
                                             <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="260" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zPm-d9-LiX" userLabel="Title Label">
                                                 <rect key="frame" x="16" y="16" width="343" height="20.5"/>
@@ -42,14 +40,14 @@
                                                 </variation>
                                             </label>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vl1-2x-lVp" customClass="MarkdownViewManager" customModule="Golos" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="52" width="375" height="0.0"/>
+                                                <rect key="frame" x="0.0" y="52.5" width="375" height="0.0"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" id="XZb-1l-yIm"/>
                                                 </constraints>
                                             </view>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="lwn-iM-8rz" userLabel="Tags Collection View">
-                                                <rect key="frame" x="16" y="68" width="343" height="30"/>
+                                                <rect key="frame" x="16" y="68.5" width="343" height="30"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="cI2-Yu-NIy"/>
@@ -73,7 +71,7 @@
                                                 </cells>
                                             </collectionView>
                                             <stackView clipsSubviews="YES" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="MhK-Vc-x7K" userLabel="Active Buttons Stack View">
-                                                <rect key="frame" x="16" y="98" width="239" height="60"/>
+                                                <rect key="frame" x="16" y="98.5" width="239" height="60"/>
                                                 <subviews>
                                                     <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fb3-VQ-GlM" userLabel="Upvote Button">
                                                         <rect key="frame" x="0.0" y="0.0" width="61" height="60"/>
@@ -138,7 +136,7 @@
                                                 </constraints>
                                             </stackView>
                                             <stackView clipsSubviews="YES" contentMode="scaleToFill" distribution="fillEqually" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="h9e-KO-AhW" userLabel="Buttons Stack View">
-                                                <rect key="frame" x="16" y="158" width="343" height="34"/>
+                                                <rect key="frame" x="16" y="158.5" width="343" height="34"/>
                                                 <subviews>
                                                     <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Imt-Ze-f0t" userLabel="Promote Button">
                                                         <rect key="frame" x="0.0" y="0.0" width="162.5" height="34"/>
@@ -173,37 +171,37 @@
                                                 </constraints>
                                             </stackView>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tHL-Id-QDj" userLabel="Background Gray View">
-                                                <rect key="frame" x="0.0" y="212" width="375" height="5"/>
+                                                <rect key="frame" x="0.0" y="212.5" width="375" height="5"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="5" id="1Sx-7f-Mvj"/>
                                                 </constraints>
                                             </view>
                                             <stackView clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="hL9-He-JpB" userLabel="Subscribe Stack View">
-                                                <rect key="frame" x="0.0" y="217" width="375" height="180"/>
+                                                <rect key="frame" x="0.0" y="217.5" width="375" height="180"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QZ1-ab-xUw" userLabel="Subscribe Topic View">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-topic-cover" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="brE-kk-Xo3" userLabel="Topic Cover Image View">
-                                                                <rect key="frame" x="16" y="19.5" width="50" height="50"/>
+                                                                <rect key="frame" x="16" y="20" width="50" height="50"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="50" id="ViH-ru-v31"/>
                                                                 </constraints>
                                                             </imageView>
                                                             <stackView clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="FWj-A1-RtJ" userLabel="Labels Stack View">
-                                                                <rect key="frame" x="76" y="27.5" width="173.5" height="35"/>
+                                                                <rect key="frame" x="76" y="27.5" width="173" height="35"/>
                                                                 <subviews>
                                                                     <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Published in" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3l6-xe-i7n">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="173.5" height="12"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="173" height="12"/>
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="8"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E1r-jk-0eB" userLabel="Title Label">
-                                                                        <rect key="frame" x="0.0" y="17" width="173.5" height="18"/>
+                                                                        <rect key="frame" x="0.0" y="17" width="173" height="18"/>
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                         <nil key="textColor"/>
@@ -213,7 +211,7 @@
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </stackView>
                                                             <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="28F-WH-XIS" userLabel="Subscribe Button">
-                                                                <rect key="frame" x="259" y="29.5" width="100" height="30"/>
+                                                                <rect key="frame" x="259" y="30" width="100" height="30"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="100" id="ae4-xp-nk8"/>
@@ -332,14 +330,14 @@
                                                 </constraints>
                                             </stackView>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tqm-aY-SVr" userLabel="Background Gray View">
-                                                <rect key="frame" x="0.0" y="397" width="375" height="5"/>
+                                                <rect key="frame" x="0.0" y="397.5" width="375" height="5"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="5" id="5i8-Ig-cw7"/>
                                                 </constraints>
                                             </view>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nt5-Bc-nF3" userLabel="Comments View">
-                                                <rect key="frame" x="0.0" y="402" width="375" height="70"/>
+                                                <rect key="frame" x="0.0" y="402.5" width="375" height="70"/>
                                                 <subviews>
                                                     <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comments Noun" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dVT-lc-meT" userLabel="Comments Title Label">
                                                         <rect key="frame" x="16" y="15" width="129" height="20.5"/>
@@ -409,7 +407,7 @@
                                                 </constraints>
                                             </view>
                                             <stackView clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="PIF-m4-RqQ" userLabel="Comments Stack View">
-                                                <rect key="frame" x="16" y="472" width="343" height="0.0"/>
+                                                <rect key="frame" x="16" y="472.5" width="343" height="0.0"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" id="TgC-Uq-le7"/>
@@ -461,7 +459,7 @@
                                 </constraints>
                             </scrollView>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Tj-tW-R6K" userLabel="Shadow View">
-                                <rect key="frame" x="0.0" y="68" width="375" height="6"/>
+                                <rect key="frame" x="0.0" y="68.5" width="375" height="6"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="6" id="7I8-8q-yjc"/>
@@ -527,7 +525,7 @@
                                 </constraints>
                             </view>
                             <activityIndicatorView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="NB0-PC-C9r">
-                                <rect key="frame" x="178" y="90" width="20" height="20"/>
+                                <rect key="frame" x="177.5" y="90.5" width="20" height="20"/>
                                 <color key="color" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </activityIndicatorView>
                         </subviews>

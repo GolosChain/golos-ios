@@ -14,6 +14,7 @@ import MarkdownView
 class CommentView: UIView, HandlersCellSupport {
     // MARK: - Properties
     var level: String = ""
+    var created: Date!
     var postShortInfo: PostShortInfo!
 
     
@@ -120,6 +121,7 @@ class CommentView: UIView, HandlersCellSupport {
                                                   parentAuthor:     comment.parentAuthor,
                                                   parentPermlink:   comment.parentPermlink)
 
+        self.created            =   comment.created
         self.timeLabel.text     =   comment.created.convertToDaysAgo()
         
         if comment.children > 0 {
@@ -184,9 +186,6 @@ class CommentView: UIView, HandlersCellSupport {
             self?.layoutIfNeeded()
             
             UIView.animate(withDuration: 0.5, animations: {
-//                self?.frame     =   CGRect.init(origin: .zero, size: CGSize.init(width: 351.0 * widthRatio, height: viewHeight))
-//                self?.layoutIfNeeded()
-                
                 self?.contentView.alpha = 1.0
                 completion(viewHeight)
             })
@@ -197,6 +196,11 @@ class CommentView: UIView, HandlersCellSupport {
         return CGSize(width: 375.0 * widthRatio, height: 80.0 * heightRatio)
     }
 
+    func localizeTitles() {
+        self.timeLabel.text = self.created.convertToDaysAgo()
+        self.replyButton.setTitle("Reply Verb".localized(), for: .normal)
+    }
+    
     
     // MARK: - Actions
     @IBAction func authorProfileImageButtonTapped(_ sender: UIButton) {
