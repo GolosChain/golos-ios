@@ -36,10 +36,6 @@ public class Promo: NSManagedObject, CachedImageFrom {
         // Get Promo entity
         if entity == nil {
             entity  =   CoreDataManager.instance.createEntity("Promo") as? Promo
-
-            if let entityIndex = try? CoreDataManager.instance.managedObjectContext.count(for: NSFetchRequest<NSFetchRequestResult>(entityName: "Promo")) {
-                entity!.sortID  =   Int16(entityIndex)
-            }
         }
         
         // Update entity

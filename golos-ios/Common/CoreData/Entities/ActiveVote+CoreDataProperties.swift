@@ -17,7 +17,7 @@ extension ActiveVote {
         return NSFetchRequest<ActiveVote>(entityName: "ActiveVote")
     }
 
-    @NSManaged public var percent: Int16
+    @NSManaged public var percent: Int64
     @NSManaged public var reputation: String?
     @NSManaged public var rshares: String?
     @NSManaged public var time: String

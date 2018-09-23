@@ -36,10 +36,6 @@ public class New: NSManagedObject, CachedImageFrom {
         // Get New entity
         if entity == nil {
             entity  =   CoreDataManager.instance.createEntity("New") as? New
-
-            if let entityIndex = try? CoreDataManager.instance.managedObjectContext.count(for: NSFetchRequest<NSFetchRequestResult>(entityName: "New")) {
-                entity!.sortID  =   Int16(entityIndex)
-            }
         }
         
         // Update entity

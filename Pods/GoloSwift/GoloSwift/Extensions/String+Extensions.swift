@@ -64,17 +64,37 @@ extension String {
     
     /// Common transliteration with App language support
     public func transliteration() -> String {
-        return Localize.currentLanguage() == "ru" ? transliterationInLatin() : transliterationInCyrillic()
+        switch Localize.currentLanguage() {
+        case "ru":
+            if self.hasPrefix("ru--") {
+                return self.transliterationInCyrillic()
+            }
+            else if self.hasPrefix("re--") {
+                return self.transliterationInLatin()
+            }
+            
+        // English
+        default:
+            return transliterationInLatin()
+        }
+        
+        return self
     }
-
+    
     
     /// Cyrillic -> Latin
     private func transliterationInLatin() -> String {
+        var stringTemp = self
+        
         if self.contains("ru--") {
-            return self.replacingOccurrences(of: "ru--", with: "")
+            stringTemp = self.replacingOccurrences(of: "ru--", with: "")
+        }
+            
+        else if self.contains("re--") {
+            stringTemp = self.replacingOccurrences(of: "re--", with: "")
         }
         
-        let words: [String]     =   self.components(separatedBy: " ")
+        let words: [String]     =   stringTemp.components(separatedBy: " ")
         var newWords: [String]  =   [String]()
         
         words.forEach({ word in
@@ -95,16 +115,12 @@ extension String {
             }
         })
         
-        return newWords.joined(separator: " ")
+        return "ru--" + newWords.joined(separator: " ")
     }
     
     
     /// Latin -> Cyrillic
     private func transliterationInCyrillic() -> String {
-        guard self.contains("ru--") else {
-            return self
-        }
-        
         var newString: String   =   self.replacingOccurrences(of: "ru--", with: "")
         let words: [String]     =   newString.components(separatedBy: " ")
         
@@ -130,11 +146,11 @@ extension String {
         }
         
         let convertDict     =   isCyrillic ?    NSDictionary.init(objects: latinChars, forKeys: cyrillicChars as [NSCopying]) :
-            NSDictionary.init(objects: cyrillicChars, forKeys: latinChars as [NSCopying])
+                                                NSDictionary.init(objects: cyrillicChars, forKeys: latinChars as [NSCopying])
         
         return convertDict.value(forKey: char.lowercased()) as! String
     }
-
+    
     
     /// Convert 'reputation' -> Int
     public func convertWithLogarithm10() -> Int {

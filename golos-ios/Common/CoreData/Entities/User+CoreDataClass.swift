@@ -124,8 +124,8 @@ public class User: NSManagedObject, CachedImageFrom {
         }
         
         if let userFollowModel = responseAPI as? ResponseAPIUserFollowCounts {
-            self.followerCount      =   userFollowModel.follower_count
-            self.followingCount     =   userFollowModel.following_count
+            self.followerCount      =   Int64(userFollowModel.follower_count)
+            self.followingCount     =   Int64(userFollowModel.following_count)
             self.followingLimit     =   userFollowModel.limit
         }
         

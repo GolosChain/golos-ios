@@ -468,7 +468,7 @@ class PostShowViewController: GSBaseViewController {
         
         // Load Post
         self.loadContent()
-//        self.loadContentComments()
+        self.loadContentComments()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -494,12 +494,11 @@ class PostShowViewController: GSBaseViewController {
     }
     
     private func loadViewSettings() {
-        if  let postShortInfo   =   self.router?.dataStore?.post,
-            let displayedPost   =   CoreDataManager.instance.readEntity(withName:                   self.router!.dataStore!.postType!.caseTitle().uppercaseFirst,
-                                                                        andPredicateParameters:     NSPredicate(format: "id == \(postShortInfo.id ?? 0)")) as? PostCellSupport {
+        if let displayedPost = self.router?.dataStore?.displayedPost {
             self.titleLabel.text = displayedPost.title
 
             DispatchQueue.main.async {
+                self.tagsCollectionView.reloadData()
                 self.markdownViewManager.load(markdown: displayedPost.body)
             }
             
@@ -673,10 +672,10 @@ extension PostShowViewController {
     }
     
     private func loadContentComments() {
-        DispatchQueue.main.async {
+//        DispatchQueue.main.async {
             let contentRepliesRequestModel = PostShowModels.Post.RequestModel()
             self.interactor?.loadContentComments(withRequestModel: contentRepliesRequestModel)
-        }
+//        }
     }
 }
 
@@ -688,7 +687,7 @@ extension PostShowViewController {
         let postType        =   self.router!.dataStore!.postType!
         let fetchRequest    =   NSFetchRequest<NSFetchRequestResult>(entityName: postType.caseTitle())
         
-        if let userName = self.router?.dataStore?.post?.author, let permlink = self.router?.dataStore?.post?.permlink {
+        if let userName = self.router?.dataStore?.postShortInfo?.author, let permlink = self.router?.dataStore?.postShortInfo?.permlink {
             fetchRequest.predicate = NSPredicate(format: "author == %@ AND permlink == %@", userName, permlink)
         }
         
@@ -696,7 +695,7 @@ extension PostShowViewController {
             if let displayedPost = try CoreDataManager.instance.managedObjectContext.fetch(fetchRequest).first as? PostCellSupport {
                 self.postFeedHeaderView.display(displayedPost)
                
-                self.interactor?.save(post: PostShortInfo(id:               displayedPost.id,
+                self.interactor?.save(postShortInfo: PostShortInfo(id:               displayedPost.id,
                                                           title:            displayedPost.title,
                                                           author:           displayedPost.author,
                                                           permlink:         displayedPost.permlink,
@@ -771,10 +770,10 @@ extension PostShowViewController {
     
     
     private func fetchCommentsFirstLevel() {
-        if let post = self.router?.dataStore?.post as? PostCellSupport {
+        if let postShortInfo = self.router?.dataStore?.postShortInfo {
             DispatchQueue.main.async {
                 guard let comments = CoreDataManager.instance.readEntities(withName:                    "Comment",
-                                                                           withPredicateParameters:     NSPredicate(format: "parentAuthor == %@ AND parentPermlink == %@", post.author, post.permlink),
+                                                                           withPredicateParameters:     NSPredicate(format: "parentAuthor == %@ AND parentPermlink == %@", postShortInfo.author ?? "XXX", postShortInfo.permlink ?? "XXX"),
                                                                            andSortDescriptor:           NSSortDescriptor(key: "created", ascending: true)) as? [Comment] else {
                                                                             self.didCommentsView(isHide: true)
                                                                             return
@@ -812,7 +811,7 @@ extension PostShowViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // Return the number of items
-        guard let dataSource = (self.router?.dataStore?.post as? PostCellSupport)?.tags, dataSource.count > 0 else {
+        guard let displayedPost = self.router?.dataStore?.displayedPost, let dataSource = displayedPost.tags, dataSource.count > 0 else {
             return 0
         }
         
@@ -821,9 +820,9 @@ extension PostShowViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell    =   collectionView.dequeueReusableCell(withReuseIdentifier: "PostShowTagCollectionViewCell", for: indexPath) as! PostShowTagCollectionViewCell
-        let tag     =   (self.router!.dataStore!.post as! PostCellSupport).tags![indexPath.row]
+        let tag     =   self.router!.dataStore!.displayedPost!.tags![indexPath.row]
         
-        // Config cell
+        // Config tag cell
         cell.setup(withItem: tag, andIndexPath: indexPath)
         
         // Handlers
@@ -857,7 +856,7 @@ extension PostShowViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let tag     =   (self.router!.dataStore!.post as! PostCellSupport).tags![indexPath.row]
+        let tag     =   self.router!.dataStore!.displayedPost!.tags![indexPath.row]
         let width   =   (CGFloat(tag.count) * 7.0 + 30.0) * widthRatio
         
         return CGSize.init(width: width, height: 30.0 * heightRatio)

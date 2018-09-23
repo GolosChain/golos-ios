@@ -37,10 +37,6 @@ public class Comment: NSManagedObject, CachedImageFrom {
         // Get Comment entity
         if entity == nil {
             entity  =   CoreDataManager.instance.createEntity("Comment") as? Comment
-
-            if let entityIndex = try? CoreDataManager.instance.managedObjectContext.count(for: NSFetchRequest<NSFetchRequestResult>(entityName: "Comment")) {
-                entity!.sortID  =   Int16(entityIndex)
-            }
         }
         
         // Update entity

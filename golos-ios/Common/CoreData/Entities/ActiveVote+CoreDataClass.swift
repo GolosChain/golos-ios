@@ -42,7 +42,7 @@ public class ActiveVote: NSManagedObject {
             
             // Update entity
             entity!.postID          =   postID
-            entity!.percent         =   model.percent
+            entity!.percent         =   Int64(model.percent)
             entity!.rshares         =   model.rshares.stringValue
 
 

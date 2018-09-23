@@ -41,7 +41,7 @@ extension NSManagedObject {
             entity.parentPermlink               =   model.parent_permlink
             entity.url                          =   model.url
             entity.pendingPayoutValue           =   (model.pending_payout_value as NSString).floatValue
-            entity.children                     =   model.children
+            entity.children                     =   Int64(model.children)
             
             if let authorReputation = model.author_reputation.stringValue {
                 entity.authorReputation         =   authorReputation
@@ -58,7 +58,7 @@ extension NSManagedObject {
 
             // Set ActiveVote values
             if model.active_votes.count > 0 {
-                entity.activeVotesCount         =   Int16(model.active_votes.count)
+                entity.activeVotesCount         =   Int64(model.active_votes.count)
                 
                 if let user = User.current {
                     entity.currentUserVoted     =   (model.active_votes.first(where: { $0.voter == user.name }) != nil)

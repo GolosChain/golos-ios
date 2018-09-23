@@ -194,7 +194,6 @@ class GSTableViewController: GSBaseViewController, HandlersCellSupport {
     
     func fetchPosts(byParameters parameters: FetchPostParameters) {
         var fetchRequest: NSFetchRequest<NSFetchRequestResult>
-        var primarySortDescriptor: NSSortDescriptor = NSSortDescriptor(key: parameters.sortBy ?? "sortID", ascending: true)
 
         self.postType   =   parameters.postFeedType
         fetchRequest    =   NSFetchRequest<NSFetchRequestResult>(entityName: parameters.postFeedType.caseTitle())
@@ -216,7 +215,6 @@ class GSTableViewController: GSBaseViewController, HandlersCellSupport {
         case .lenta:
             if let author = parameters.author {
                 fetchRequest.predicate      =   NSPredicate(format: "userName == %@", author)
-                primarySortDescriptor       =   NSSortDescriptor(key: parameters.sortBy ?? "id", ascending: false)
             }
 
         // Popular, Actual, New, Promo
@@ -224,7 +222,7 @@ class GSTableViewController: GSBaseViewController, HandlersCellSupport {
             break
         }
 
-        fetchRequest.sortDescriptors        =   [ primarySortDescriptor ]
+        fetchRequest.sortDescriptors        =   []
 
         if self.lastIndex == 0 {
             fetchRequest.fetchLimit         =   Int(loadDataLimit)

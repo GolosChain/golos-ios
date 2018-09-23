@@ -34,10 +34,18 @@ class CommentView: UIView, HandlersCellSupport {
     @IBOutlet var view: UIView!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var upvotesButton: UIButton!
-    @IBOutlet weak var commentsButton: UIButton!    
     @IBOutlet weak var authorProfileImageButton: UIButton!
     @IBOutlet weak var markdownViewManager: MarkdownViewManager!
     
+    @IBOutlet weak var commentsButton: UIButton! {
+        didSet {
+            self.commentsButton.tune(withTitle:         "",
+                                     hexColors:         [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
+                                     font:              UIFont(name: "SFUIDisplay-Medium", size: 10.0),
+                                     alignment:         .left)
+        }
+    }
+
     @IBOutlet var circleViewsCollection: [UIView]! {
         didSet {
             _ = circleViewsCollection.map({ $0.layer.cornerRadius = $0.bounds.width / 2 * widthRatio })
@@ -68,6 +76,8 @@ class CommentView: UIView, HandlersCellSupport {
                            isMultiLines:        false)
         }
     }
+    
+    
     
     @IBOutlet weak var replyButton: UIButton! {
         didSet {
@@ -112,8 +122,8 @@ class CommentView: UIView, HandlersCellSupport {
 
         self.timeLabel.text     =   comment.created.convertToDaysAgo()
         
-        if comment.activeVotesCount > 0 {
-            self.commentsButton.setTitle("\(comment.activeVotesCount)", for: .normal)
+        if comment.children > 0 {
+            self.commentsButton.setTitle("\(comment.children)", for: .normal)
             self.commentsButton.isSelected = comment.currentUserVoted
         }
         

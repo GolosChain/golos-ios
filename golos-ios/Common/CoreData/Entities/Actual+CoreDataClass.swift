@@ -36,10 +36,6 @@ public class Actual: NSManagedObject, CachedImageFrom {
         // Get Actual entity
         if entity == nil {
             entity  =   CoreDataManager.instance.createEntity("Actual") as? Actual
-
-            if let entityIndex = try? CoreDataManager.instance.managedObjectContext.count(for: NSFetchRequest<NSFetchRequestResult>(entityName: "Actual")) {
-                entity!.sortID  =   Int16(entityIndex)
-            }
         }
         
         // Update entity

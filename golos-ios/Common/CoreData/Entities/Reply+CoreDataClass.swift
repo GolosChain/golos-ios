@@ -36,10 +36,6 @@ public class Reply: NSManagedObject, CachedImageFrom {
         // Get Reply entity
         if replyEntity == nil {
             replyEntity     =   CoreDataManager.instance.createEntity("Reply") as? Reply
-
-            if let entityIndex = try? CoreDataManager.instance.managedObjectContext.count(for: NSFetchRequest<NSFetchRequestResult>(entityName: "Reply")) {
-                replyEntity!.sortID  =   Int16(entityIndex)
-            }
         }
         
         // Update entity

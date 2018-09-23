@@ -28,13 +28,16 @@ extension Popular: PostCellSupport {
     @NSManaged public var allowVotes: Bool
     @NSManaged public var allowReplies: Bool
     @NSManaged public var jsonMetadata: String?
-    @NSManaged public var activeVotesCount: Int16
     @NSManaged public var url: String?
     @NSManaged public var coverImageURL: String?
     @NSManaged public var pendingPayoutValue: Float
-    @NSManaged public var children: Int16
-    @NSManaged public var sortID: Int16
+    @NSManaged public var children: Int64
+
+    @NSManaged public var activeVotesCount: Int64
     @NSManaged public var currentUserVoted: Bool
+    
+    @NSManaged public var commentsCount: Int64
+    @NSManaged public var currentUserCommented: Bool
 
     @NSManaged public var tags: [String]?
     @NSManaged public var rebloggedBy: [String]?

@@ -92,11 +92,11 @@ class PostCreateInteractor: PostCreateBusinessLogic, PostCreateDataStore {
 
                 Logger.log(message: "\njsonMetadataString:\n\t\(jsonMetadataString)", event: .debug)
                 
-                // Create Comment with transliteration inside init
+                // Create Comment with transliteration
                 let comment                 =   RequestParameterAPI.Comment(parentAuthor:       "",
                                                                             parentPermlink:     (self?.tags!.first!.title)!.transliteration(),
                                                                             author:             User.current!.name,
-                                                                            title:              (self?.commentTitle)!.transliteration(),
+                                                                            title:              (self?.commentTitle)!,
                                                                             body:               (self?.commentBody!)!,
                                                                             jsonMetadata:       jsonMetadataString,
                                                                             needTiming:         errorAPI.caseInfo.message.contains("timing"),

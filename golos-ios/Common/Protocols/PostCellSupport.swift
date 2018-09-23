@@ -18,13 +18,16 @@ protocol PostCellSupport: PaginationSupport, MetaDataSupport {
     var allowVotes: Bool { get set }
     var allowReplies: Bool { get set }
     var jsonMetadata: String? { get set }
-    var activeVotesCount: Int16 { get set }
     var url: String? { get set }
     var authorReputation: String { get set }
     var pendingPayoutValue: Float { get set }
-    var children: Int16 { get set }
-    var sortID: Int16 { get set }
+    var children: Int64 { get set }
+    
+    var activeVotesCount: Int64 { get set }
     var currentUserVoted: Bool { get set }
+    
+    var commentsCount: Int64 { get set }
+    var currentUserCommented: Bool { get set }
 
     var tags: [String]? { get set }
     var rebloggedBy: [String]? { get set }

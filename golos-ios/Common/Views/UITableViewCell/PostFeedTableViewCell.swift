@@ -198,9 +198,9 @@ extension PostFeedTableViewCell: ConfigureCell {
 
         selectionStyle                                      =   .none
 
-        if model.activeVotesCount > 0 {
-            self.commentsButton.setTitle("\(model.activeVotesCount)", for: .normal)
-            self.commentsButton.isSelected = model.currentUserVoted
+        if model.children > 0 {
+            self.commentsButton.setTitle("\(model.children)", for: .normal)
+//            self.commentsButton.isSelected = model.currentUserVoted
             
             if self.commentsButton.isSelected {
                 Logger.log(message: "Set green like icon", event: .debug)

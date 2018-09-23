@@ -16,16 +16,17 @@ import GoloSwift
 
 // MARK: - Business Logic protocols
 protocol PostShowBusinessLogic {
-    func save(post: PostShortInfo)
     func save(comment: PostShortInfo)
+    func save(postShortInfo: PostShortInfo)
     func loadContent(withRequestModel requestModel: PostShowModels.Post.RequestModel)
     func loadContentComments(withRequestModel requestModel: PostShowModels.Post.RequestModel)
 }
 
 protocol PostShowDataStore {
-    var post: PostShortInfo? { get set }
     var comment: PostShortInfo? { get set }
     var postType: PostsFeedType? { get set }
+    var postShortInfo: PostShortInfo? { get set }
+    var displayedPost: PostCellSupport? { get set }
 }
 
 class PostShowInteractor: PostShowBusinessLogic, PostShowDataStore {
@@ -34,9 +35,11 @@ class PostShowInteractor: PostShowBusinessLogic, PostShowDataStore {
     var worker: PostShowWorker?
     
     // PostShowDataStore protocol implementation
-    var post: PostShortInfo?
     var comment: PostShortInfo?
     var postType: PostsFeedType?
+    var postShortInfo: PostShortInfo?
+    var displayedPost: PostCellSupport?
+
     
     // MARK: - Class Initialization
     deinit {
@@ -45,17 +48,22 @@ class PostShowInteractor: PostShowBusinessLogic, PostShowDataStore {
     
 
     // MARK: - Business logic implementation
-    func save(post: PostShortInfo) {
-        self.post       =   post
+    func save(postShortInfo: PostShortInfo) {
+        self.postShortInfo = postShortInfo
+        
+        if let selectedPost = CoreDataManager.instance.readEntity(withName:                   self.postType!.caseTitle().uppercaseFirst,
+                                                                  andPredicateParameters:     NSPredicate(format: "id == \(postShortInfo.id ?? 0)")) as? PostCellSupport {
+            self.displayedPost = selectedPost
+        }
     }
 
     func save(comment: PostShortInfo) {
-        self.comment    =   comment
+        self.comment = comment
     }
     
     func loadContent(withRequestModel requestModel: PostShowModels.Post.RequestModel) {
         // API 'get_content'
-        let content = RequestParameterAPI.Content(author: self.post?.author ?? "XXX", permlink: self.post?.permlink ?? "XXX")
+        let content = RequestParameterAPI.Content(author: self.postShortInfo?.author ?? "XXX", permlink: self.postShortInfo?.permlink ?? "XXX")
         
         RestAPIManager.loadPost(byContent: content, andPostType: self.postType!, completion: { [weak self] errorAPI in
             guard errorAPI?.caseInfo.message != "No Internet Connection" || !(errorAPI?.caseInfo.message.hasSuffix("timing"))! else {
@@ -72,7 +80,7 @@ class PostShowInteractor: PostShowBusinessLogic, PostShowDataStore {
 
     func loadContentComments(withRequestModel requestModel: PostShowModels.Post.RequestModel) {
         // API 'get_all_content_replies'
-        let content = RequestParameterAPI.Content(author: self.post?.author ?? "XXX", permlink: self.post?.permlink ?? "XXX")
+        let content = RequestParameterAPI.Content(author: self.postShortInfo?.author ?? "XXX", permlink: self.postShortInfo?.permlink ?? "XXX")
         
         RestAPIManager.loadPostComments(byContent: content, andPostType: .comment, completion: { [weak self] errorAPI in
             guard errorAPI?.caseInfo.message != "No Internet Connection" || !(errorAPI?.caseInfo.message.hasSuffix("timing"))! else {
