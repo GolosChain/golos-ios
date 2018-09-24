@@ -15,10 +15,10 @@ import GoloSwift
 
 // MARK: - Input & Output protocols
 @objc protocol UserProfileShowRoutingLogic {
-    func routeToPostShowScene()
     func routeToSettingsShowScene()
     func routeToUserProfileScene(byUserName name: String)
     func routeToPostCreateScene(withType sceneType: SceneType)
+    func routeToPostShowScene(withScrollToComments needScrolling: Bool)
 }
 
 protocol UserProfileShowDataPassing {
@@ -38,10 +38,11 @@ class UserProfileShowRouter: NSObject, UserProfileShowRoutingLogic, UserProfileS
     
 
     // MARK: - Routing
-    func routeToPostShowScene() {
-        let storyboard              =   UIStoryboard(name: "PostShow", bundle: nil)
-        let destinationVC           =   storyboard.instantiateViewController(withIdentifier: "PostShowVC") as! PostShowViewController
-        var destinationDS           =   destinationVC.router!.dataStore!
+    func routeToPostShowScene(withScrollToComments needScrolling: Bool) {
+        let storyboard                  =   UIStoryboard(name: "PostShow", bundle: nil)
+        let destinationVC               =   storyboard.instantiateViewController(withIdentifier: "PostShowVC") as! PostShowViewController
+        destinationVC.scrollToComment   =   needScrolling
+        var destinationDS               =   destinationVC.router!.dataStore!
         
         passDataToPostShowScene(source: dataStore!, destination: &destinationDS)
         navigateToPostShowScene(source: viewController!, destination: destinationVC)
