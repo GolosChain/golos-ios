@@ -29,6 +29,8 @@ protocol PostCellSupport: PaginationSupport, MetaDataSupport {
     var commentsCount: Int64 { get set }
     var currentUserCommented: Bool { get set }
 
+    var currentUserFlaunted: Bool { get set }
+
     var tags: [String]? { get set }
     var rebloggedBy: [String]? { get set }
 

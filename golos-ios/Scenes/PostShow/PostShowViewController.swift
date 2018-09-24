@@ -548,6 +548,10 @@ class PostShowViewController: GSBaseViewController {
                 self.commentsButton.setTitle("\(displayedPost.children)", for: .normal)
                 self.commentsButton.isSelected  =   displayedPost.currentUserVoted
             }
+            
+            // Flaunt icon
+            self.flauntButton.isSelected        =   displayedPost.currentUserFlaunted
+            self.flauntButton.setImage(displayedPost.currentUserFlaunted ? UIImage(named: "icon-button-flaunt-selected") : UIImage(named: "icon-button-flaunt-default"), for: .normal)
         }
     }
     

@@ -36,6 +36,8 @@ extension Promo: PostCellSupport {
     @NSManaged public var activeVotesCount: Int64
     @NSManaged public var currentUserVoted: Bool
     
+    @NSManaged public var currentUserFlaunted: Bool
+    
     @NSManaged public var commentsCount: Int64
     @NSManaged public var currentUserCommented: Bool
 

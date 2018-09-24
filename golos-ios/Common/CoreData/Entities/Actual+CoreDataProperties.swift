@@ -40,7 +40,9 @@ extension Actual: PostCellSupport {
 
     @NSManaged public var commentsCount: Int64
     @NSManaged public var currentUserCommented: Bool
-    
+
+    @NSManaged public var currentUserFlaunted: Bool
+
     @NSManaged public var tags: [String]?
     @NSManaged public var rebloggedBy: [String]?
 

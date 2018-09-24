@@ -110,13 +110,13 @@ public struct ResponseAPIActiveVote: Decodable {
     public let voter: String
     public let percent: Int16
     public let rshares: Conflicted
-    
+    public let weight: Conflicted
+
 
     // MARK: - In reserve
     /*
      public let time: String
      public let reputation: Conflicted
-     public let weight: Conflicted
      */
 }
 

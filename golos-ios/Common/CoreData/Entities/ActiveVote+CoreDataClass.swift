@@ -44,6 +44,7 @@ public class ActiveVote: NSManagedObject {
             entity!.postID          =   postID
             entity!.percent         =   Int64(model.percent)
             entity!.rshares         =   model.rshares.stringValue
+            entity!.weight          =   model.weight.stringValue
 
 
             // MARK: - In reserve
@@ -51,7 +52,6 @@ public class ActiveVote: NSManagedObject {
             entity!.reputation      =   model.reputation.stringValue
             entity!.time            =   model.time
             entity!.voter           =   model.voter
-            entity!.weight          =   model.weight.stringValue
             */
             
             // Extension

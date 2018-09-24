@@ -61,9 +61,20 @@ extension NSManagedObject {
                 entity.activeVotesCount         =   Int64(model.active_votes.count)
                 
                 if let user = User.current {
-                    entity.currentUserVoted     =   (model.active_votes.first(where: { $0.voter == user.name }) != nil)
+                    model.active_votes.forEach({ activeVote in
+                        if activeVote.voter == user.name {
+                            if let weight = activeVote.weight.stringValue {
+                                if weight.hasPrefix("-") {
+                                    entity.currentUserFlaunted  =   true
+                                } else {
+                                    entity.currentUserVoted     =   true
+                                }
+                            }
+                        }
+                    })
                 }
             }
+            
             
             // Extension: parse & save
             self.parse(metaData: model.json_metadata, fromBody: model.body)
