@@ -22,7 +22,7 @@
                                 <rect key="frame" x="0.0" y="68.5" width="375" height="598.5"/>
                                 <subviews>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BtF-Gk-D12" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="418.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="328.5"/>
                                         <subviews>
                                             <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="260" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zPm-d9-LiX" userLabel="Title Label">
                                                 <rect key="frame" x="16" y="16" width="343" height="20.5"/>
@@ -178,20 +178,20 @@
                                                 </constraints>
                                             </view>
                                             <stackView clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="hL9-He-JpB" userLabel="Subscribe Stack View">
-                                                <rect key="frame" x="0.0" y="163.5" width="375" height="180"/>
+                                                <rect key="frame" x="0.0" y="163.5" width="375" height="90"/>
                                                 <subviews>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QZ1-ab-xUw" userLabel="Subscribe Topic View">
-                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
+                                                    <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QZ1-ab-xUw" userLabel="Subscribe Topic View">
+                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="0.0"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-topic-cover" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="brE-kk-Xo3" userLabel="Topic Cover Image View">
-                                                                <rect key="frame" x="16" y="20" width="50" height="50"/>
+                                                                <rect key="frame" x="16" y="-25" width="50" height="50"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="50" id="ViH-ru-v31"/>
                                                                 </constraints>
                                                             </imageView>
                                                             <stackView clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="FWj-A1-RtJ" userLabel="Labels Stack View">
-                                                                <rect key="frame" x="76" y="27.5" width="173" height="35"/>
+                                                                <rect key="frame" x="76" y="-17.5" width="173" height="35"/>
                                                                 <subviews>
                                                                     <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Published in" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3l6-xe-i7n">
                                                                         <rect key="frame" x="0.0" y="0.0" width="173" height="12"/>
@@ -211,7 +211,7 @@
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </stackView>
                                                             <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="28F-WH-XIS" userLabel="Subscribe Button">
-                                                                <rect key="frame" x="259" y="30" width="100" height="30"/>
+                                                                <rect key="frame" x="259" y="-15" width="100" height="30"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="100" id="ae4-xp-nk8"/>
@@ -227,7 +227,7 @@
                                                                 </connections>
                                                             </button>
                                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FJs-iF-r9g" userLabel="Bottom Line View">
-                                                                <rect key="frame" x="0.0" y="89" width="375" height="1"/>
+                                                                <rect key="frame" x="0.0" y="-1" width="375" height="1"/>
                                                                 <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="1" id="8wU-ag-IAJ"/>
@@ -251,7 +251,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n52-gC-8Jz" userLabel="Subscribe User View">
-                                                        <rect key="frame" x="0.0" y="90" width="375" height="90"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-user-profile-image-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="ZH2-hK-oIK" userLabel="User Avatar Image View">
                                                                 <rect key="frame" x="16" y="20" width="50" height="50"/>
@@ -326,18 +326,18 @@
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="180" id="f8Z-8u-tnH"/>
+                                                    <constraint firstAttribute="height" constant="90" id="f8Z-8u-tnH"/>
                                                 </constraints>
                                             </stackView>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tqm-aY-SVr" userLabel="Background Gray View">
-                                                <rect key="frame" x="0.0" y="343.5" width="375" height="5"/>
+                                                <rect key="frame" x="0.0" y="253.5" width="375" height="5"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="5" id="5i8-Ig-cw7"/>
                                                 </constraints>
                                             </view>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nt5-Bc-nF3" userLabel="Comments View">
-                                                <rect key="frame" x="0.0" y="348.5" width="375" height="70"/>
+                                                <rect key="frame" x="0.0" y="258.5" width="375" height="70"/>
                                                 <subviews>
                                                     <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comments Noun" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dVT-lc-meT" userLabel="Comments Title Label">
                                                         <rect key="frame" x="16" y="15" width="129" height="20.5"/>
@@ -407,7 +407,7 @@
                                                 </constraints>
                                             </view>
                                             <stackView clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="PIF-m4-RqQ" userLabel="Comments Stack View">
-                                                <rect key="frame" x="16" y="418.5" width="343" height="0.0"/>
+                                                <rect key="frame" x="16" y="328.5" width="343" height="0.0"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" id="TgC-Uq-le7"/>
