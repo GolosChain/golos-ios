@@ -22,7 +22,7 @@
                                 <rect key="frame" x="0.0" y="68.5" width="375" height="598.5"/>
                                 <subviews>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BtF-Gk-D12" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="472.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="418.5"/>
                                         <subviews>
                                             <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="260" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zPm-d9-LiX" userLabel="Title Label">
                                                 <rect key="frame" x="16" y="16" width="343" height="20.5"/>
@@ -135,7 +135,7 @@
                                                     <constraint firstAttribute="height" constant="60" id="nb7-Km-WjT"/>
                                                 </constraints>
                                             </stackView>
-                                            <stackView clipsSubviews="YES" contentMode="scaleToFill" distribution="fillEqually" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="h9e-KO-AhW" userLabel="Buttons Stack View">
+                                            <stackView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" distribution="fillEqually" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="h9e-KO-AhW" userLabel="Buttons Stack View">
                                                 <rect key="frame" x="16" y="158.5" width="343" height="34"/>
                                                 <subviews>
                                                     <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Imt-Ze-f0t" userLabel="Promote Button">
@@ -171,14 +171,14 @@
                                                 </constraints>
                                             </stackView>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tHL-Id-QDj" userLabel="Background Gray View">
-                                                <rect key="frame" x="0.0" y="212.5" width="375" height="5"/>
+                                                <rect key="frame" x="0.0" y="158.5" width="375" height="5"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="5" id="1Sx-7f-Mvj"/>
                                                 </constraints>
                                             </view>
                                             <stackView clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="hL9-He-JpB" userLabel="Subscribe Stack View">
-                                                <rect key="frame" x="0.0" y="217.5" width="375" height="180"/>
+                                                <rect key="frame" x="0.0" y="163.5" width="375" height="180"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QZ1-ab-xUw" userLabel="Subscribe Topic View">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
@@ -330,14 +330,14 @@
                                                 </constraints>
                                             </stackView>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tqm-aY-SVr" userLabel="Background Gray View">
-                                                <rect key="frame" x="0.0" y="397.5" width="375" height="5"/>
+                                                <rect key="frame" x="0.0" y="343.5" width="375" height="5"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="5" id="5i8-Ig-cw7"/>
                                                 </constraints>
                                             </view>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nt5-Bc-nF3" userLabel="Comments View">
-                                                <rect key="frame" x="0.0" y="402.5" width="375" height="70"/>
+                                                <rect key="frame" x="0.0" y="348.5" width="375" height="70"/>
                                                 <subviews>
                                                     <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comments Noun" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dVT-lc-meT" userLabel="Comments Title Label">
                                                         <rect key="frame" x="16" y="15" width="129" height="20.5"/>
@@ -407,7 +407,7 @@
                                                 </constraints>
                                             </view>
                                             <stackView clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="PIF-m4-RqQ" userLabel="Comments Stack View">
-                                                <rect key="frame" x="16" y="472.5" width="343" height="0.0"/>
+                                                <rect key="frame" x="16" y="418.5" width="343" height="0.0"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" id="TgC-Uq-le7"/>
@@ -420,7 +420,7 @@
                                             <constraint firstItem="lwn-iM-8rz" firstAttribute="top" secondItem="Vl1-2x-lVp" secondAttribute="bottom" constant="16" id="0cK-Wq-U7s"/>
                                             <constraint firstItem="PIF-m4-RqQ" firstAttribute="top" secondItem="nt5-Bc-nF3" secondAttribute="bottom" id="21e-Zj-FTw"/>
                                             <constraint firstItem="h9e-KO-AhW" firstAttribute="leading" secondItem="BtF-Gk-D12" secondAttribute="leading" constant="16" id="24g-ha-yWK"/>
-                                            <constraint firstItem="tHL-Id-QDj" firstAttribute="top" secondItem="h9e-KO-AhW" secondAttribute="bottom" constant="20" id="4nI-Ir-YHS"/>
+                                            <constraint firstItem="tHL-Id-QDj" firstAttribute="top" secondItem="h9e-KO-AhW" secondAttribute="bottom" priority="750" constant="20" id="4nI-Ir-YHS"/>
                                             <constraint firstAttribute="trailing" secondItem="Vl1-2x-lVp" secondAttribute="trailing" id="7GF-bG-0GC"/>
                                             <constraint firstItem="nt5-Bc-nF3" firstAttribute="leading" secondItem="BtF-Gk-D12" secondAttribute="leading" id="A4x-Ss-gif"/>
                                             <constraint firstItem="PIF-m4-RqQ" firstAttribute="leading" secondItem="BtF-Gk-D12" secondAttribute="leading" constant="16" id="Afc-dQ-3ax"/>
@@ -443,6 +443,7 @@
                                             <constraint firstAttribute="bottom" secondItem="PIF-m4-RqQ" secondAttribute="bottom" id="qnt-kG-w45"/>
                                             <constraint firstItem="Vl1-2x-lVp" firstAttribute="top" secondItem="zPm-d9-LiX" secondAttribute="bottom" constant="16" id="rDi-pt-7XW"/>
                                             <constraint firstAttribute="trailing" secondItem="nt5-Bc-nF3" secondAttribute="trailing" id="rcV-lt-t9Y"/>
+                                            <constraint firstItem="tHL-Id-QDj" firstAttribute="top" secondItem="MhK-Vc-x7K" secondAttribute="bottom" id="u8K-s0-eby"/>
                                             <constraint firstItem="Vl1-2x-lVp" firstAttribute="leading" secondItem="BtF-Gk-D12" secondAttribute="leading" id="xZX-FY-WXJ"/>
                                             <constraint firstAttribute="trailing" secondItem="h9e-KO-AhW" secondAttribute="trailing" constant="16" id="xZj-dB-yaV"/>
                                             <constraint firstItem="nt5-Bc-nF3" firstAttribute="top" secondItem="tqm-aY-SVr" secondAttribute="bottom" id="yY2-1e-3ly"/>
