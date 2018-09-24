@@ -26,7 +26,7 @@ protocol PostsShowDisplayLogic: class {
 class PostsShowViewController: GSTableViewController, ContainerViewSupport {
     // MARK: - Properties
     var selectedButton: UIButton!
-    var postFeedTypes: [PostsFeedType]  =   [ .lenta, .popular, .actual, .new, .promo ]
+    var postFeedTypes: [PostsFeedType]  =   [ .lenta, .new, .actual, .popular, .promo ]
 
     var interactor: PostsShowBusinessLogic?
     var router: (NSObjectProtocol & PostsShowRoutingLogic & PostsShowDataPassing)?
@@ -279,6 +279,7 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
                                                                    title:               post.title,
                                                                    author:              post.author,
                                                                    permlink:            post.permlink,
+                                                                   parentTag:           post.tags?.first,
                                                                    indexPath:           nil,
                                                                    parentAuthor:        post.parentAuthor,
                                                                    parentPermlink:      post.parentPermlink))
@@ -331,7 +332,7 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
         else {
             self.selectedButton = sender
             
-            self.containerView.setActiveViewController(index: sender.tag)
+            self.containerView.setActiveViewController(index: User.current == nil ? sender.tag - 1 : sender.tag)
             self.loadPosts(byCondition: (isRefreshData: self.containerView.activeVC?.fetchedResultsController == nil, isInfiniteScrolling: false))
         }
         

@@ -399,6 +399,7 @@ extension GSTableViewController: UITableViewDataSource {
                                                                          title:             model.title,
                                                                          author:            model.author,
                                                                          permlink:          model.permlink,
+                                                                         parentTag:         model.tags?.first,
                                                                          indexPath:         nil,
                                                                          parentAuthor:      model.parentAuthor,
                                                                          parentPermlink:    model.parentPermlink))

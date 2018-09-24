@@ -15,17 +15,19 @@ struct PostShortInfo {
     let title: String?
     let author: String?
     let permlink: String?
+    let parentTag: String?
     let indexPath: IndexPath?
     let parentAuthor: String?
     let parentPermlink: String?
     
     
     // MARK: - Class Initialization
-    init(id: Int64? = nil, title: String? = nil, author: String? = nil, permlink: String? = nil, indexPath: IndexPath? = nil, parentAuthor: String? = nil, parentPermlink: String? = nil) {
+    init(id: Int64? = nil, title: String? = nil, author: String? = nil, permlink: String? = nil, parentTag: String? = nil, indexPath: IndexPath? = nil, parentAuthor: String? = nil, parentPermlink: String? = nil) {
         self.id                 =   id
         self.title              =   title
         self.author             =   author
         self.permlink           =   permlink
+        self.parentTag          =   parentTag
         self.indexPath          =   indexPath
         self.parentAuthor       =   parentAuthor
         self.parentPermlink     =   parentPermlink

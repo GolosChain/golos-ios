@@ -117,6 +117,7 @@ class CommentView: UIView, HandlersCellSupport {
                                                   title:            comment.body.substring(withCharactersCount: 120),
                                                   author:           comment.author,
                                                   permlink:         comment.permlink,
+                                                  parentTag:        comment.tags?.first,
                                                   indexPath:        nil,
                                                   parentAuthor:     comment.parentAuthor,
                                                   parentPermlink:   comment.parentPermlink)

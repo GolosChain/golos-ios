@@ -42,4 +42,13 @@ class PostCreateWorker {
         
         completion(imagesAttachments)
     }
+    
+    func load(postPermlink: String, completion: @escaping (ErrorAPI) -> Void) {
+        let content = RequestParameterAPI.Content(author: User.current!.name, permlink: postPermlink)
+        
+        RestAPIManager.loadPostPermlink(byContent: content, completion: { errorAPI in
+            completion(errorAPI)
+        })
+
+    }
 }

@@ -87,20 +87,6 @@ class CoreDataManager {
             abort()
         }
     }
-
-//    func contextSave() {
-//        if managedObjectContext.hasChanges {
-//            do {
-//                try managedObjectContext.save()
-//            }
-//            
-//            catch {
-//                let nserror = error as NSError
-//                Logger.log(message: "Unresolved error \(nserror), \(nserror.userInfo)", event: .error)
-//                abort()
-//            }
-//        }
-//    }
     
     
     // MARK: - CRUD
@@ -151,57 +137,6 @@ class CoreDataManager {
     }
     
    
-    /// Update
-    /*
-    func updateEntity(withData data: EntityUpdateTuple) {
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: data.name)
-        
-        if let predicate = data.predicate {
-            fetchRequest.predicate = predicate
-        }
-        
-        var entity = readEntity(withName: data.name, andPredicateParameters: data.predicate)
-        
-        if entity == nil {
-            entity = self.createEntity(data.name)
-        }
-        
-        for propertyName in data.model.propertyNames() {
-            if propertyName == "Description" {
-                entity!.setValue(data.model.valueByProperty(name: propertyName.lowercaseFirst()), forKey: "descriptionItem")
-            }
-            
-            else if propertyName == "Items" {
-                if let model = data.model as? ResponseAPIDepartment, let items = model.Items, items.count > 0 {
-//                    let department = readEntity(withName:                   "Department",
-//                                                andPredicateParameters:     NSPredicate.init(format: "departmentId == \(model.DepartmentId)")) as! Department
-//
-                    for item in items {
-                        let predicate = NSPredicate.init(format: "departmentId == \(item.DepartmentId) AND departmentItemId == \(item.DepartmentItemId)")
-                        
-                        self.updateEntity(withData: EntityUpdateTuple(name:             "DepartmentItem",
-                                                                      predicate:        predicate,
-                                                                      model:            item))
-                        
-                        (entity as! Department).addToItems(self.readEntity(withName:                     "DepartmentItem",
-                                                                           andPredicateParameters:       predicate) as! DepartmentItem)
-                    }
-                }
-            }
-                
-            else if propertyName == "Status" {
-                Logger.log(message: "Current Entity '\(data.name)'has field '\(propertyName)'", event: .Warning)
-            }
-                
-            else {
-                entity!.setValue(data.model.valueByProperty(name: propertyName.lowercaseFirst()), forKey: propertyName.lowercaseFirst())
-            }
-        }
-
-        self.contextSave()
-    }
-    */
-    
     
     /// Clear main cache
     func clearCache() {

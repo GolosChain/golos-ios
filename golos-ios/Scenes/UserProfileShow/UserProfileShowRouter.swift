@@ -106,6 +106,7 @@ class UserProfileShowRouter: NSObject, UserProfileShowRoutingLogic, UserProfileS
     
     func passDataToPostCreateScene(postShortInfo: PostShortInfo, destination: inout PostCreateDataStore) {
         destination.commentTitle            =   postShortInfo.title
+        destination.commentParentTag        =   postShortInfo.parentTag
         destination.commentParentAuthor     =   postShortInfo.parentAuthor
         destination.commentParentPermlink   =   postShortInfo.parentPermlink
     }

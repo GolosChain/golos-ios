@@ -732,12 +732,13 @@ extension PostShowViewController {
                 self.postFeedHeaderView.display(displayedPost)
                
                 self.interactor?.save(postShortInfo: PostShortInfo(id:               displayedPost.id,
-                                                          title:            displayedPost.title,
-                                                          author:           displayedPost.author,
-                                                          permlink:         displayedPost.permlink,
-                                                          indexPath:        nil,
-                                                          parentAuthor:     displayedPost.parentAuthor,
-                                                          parentPermlink:   displayedPost.parentPermlink))
+                                                                   title:            displayedPost.title,
+                                                                   author:           displayedPost.author,
+                                                                   permlink:         displayedPost.permlink,
+                                                                   parentTag:        displayedPost.tags?.first,
+                                                                   indexPath:        nil,
+                                                                   parentAuthor:     displayedPost.parentAuthor,
+                                                                   parentPermlink:   displayedPost.parentPermlink))
                 self.loadViewSettings()
             }
         }

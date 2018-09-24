@@ -29,6 +29,7 @@ protocol PostCreateDataStore {
     var commentTitle: String? { get set }
     var commentParentAuthor: String? { get set }
     var commentParentPermlink: String? { get set }
+    var commentParentTag: String? { get set }
 }
 
 class PostCreateInteractor: PostCreateBusinessLogic, PostCreateDataStore {
@@ -43,7 +44,8 @@ class PostCreateInteractor: PostCreateBusinessLogic, PostCreateDataStore {
     var commentTitle: String?
     var commentParentAuthor: String?
     var commentParentPermlink: String?
-
+    var commentParentTag: String?
+    
     
     // MARK: - Class Initialization
     deinit {
@@ -70,30 +72,33 @@ class PostCreateInteractor: PostCreateBusinessLogic, PostCreateDataStore {
     
     func publishItem(withRequestModel requestModel: PostCreateModels.Item.RequestModel) {
         worker = PostCreateWorker()
-
+        var jsonMetadataString: String!
+        var comment: RequestParameterAPI.Comment!
+        var operationAPIType: OperationAPIType!
+        
         // Create markdown titles for all images & links
         worker?.createSignatures(forImagesIn: self.attachments!, completion: { [weak self] attachments in
             self?.save(attachments: attachments)
             
-            // API 'get_content'
-            let content     =   RequestParameterAPI.Content(author: User.current!.name, permlink: (self?.tags!.first!.title!)!.transliteration())
-            
-            RestAPIManager.loadPostPermlink(byContent: content, completion: { errorAPI in
-                guard errorAPI.caseInfo.message != "No Internet Connection" else {
-                    let responseModel       =   PostCreateModels.Item.ResponseModel(errorAPI: errorAPI)
-                    self?.presenter?.presentPublishItem(fromResponseModel: responseModel)
-                   
-                    return
-                }
-                
-                // API 'Create new post'
-                let jsonMetadataString      =   ("{\"tags\":[\"" + (self?.tags!.compactMap({ $0.title!.transliteration() }).joined(separator: ","))! + "\"]")
-                                                    .replacingOccurrences(of: ",", with: "\",\"") + ",\"app\":\"golos.io/0.1\",\"format\":\"markdown\"}"
+            // API
+            switch requestModel.sceneType {
+            case .createPost:
+                // API 'get_content'
+                self?.worker?.load(postPermlink: (self?.tags!.first!.title!)!.transliteration(), completion: { errorAPI in
+                    guard errorAPI.caseInfo.message != "No Internet Connection" else {
+                        let responseModel   =   PostCreateModels.Item.ResponseModel(errorAPI: errorAPI)
+                        self?.presenter?.presentPublishItem(fromResponseModel: responseModel)
+                        
+                        return
+                    }
 
-                Logger.log(message: "\njsonMetadataString:\n\t\(jsonMetadataString)", event: .debug)
-                
-                // Create Comment with transliteration
-                let comment                 =   RequestParameterAPI.Comment(parentAuthor:       "",
+                    jsonMetadataString      =   ("{\"tags\":[\"" + (self?.tags!.compactMap({ $0.title!.transliteration() }).joined(separator: ","))! + "\"]")
+                                                    .replacingOccurrences(of: ",", with: "\",\"") + ",\"app\":\"golos.io/0.1\",\"format\":\"markdown\"}"
+                    
+                    Logger.log(message: "\njsonMetadataString:\n\t\(jsonMetadataString!)", event: .debug)
+                    
+                    // Create Comment with transliteration
+                    comment                 =   RequestParameterAPI.Comment(parentAuthor:       "",
                                                                             parentPermlink:     (self?.tags!.first!.title)!.transliteration(),
                                                                             author:             User.current!.name,
                                                                             title:              (self?.commentTitle)!,
@@ -101,26 +106,61 @@ class PostCreateInteractor: PostCreateBusinessLogic, PostCreateDataStore {
                                                                             jsonMetadata:       jsonMetadataString,
                                                                             needTiming:         errorAPI.caseInfo.message.contains("timing"),
                                                                             attachments:        self?.attachments)
-                
-                let operationAPIType        =   OperationAPIType.createPost(operations: [comment])
-                
-                broadcast.executePOST(requestByOperationAPIType:    operationAPIType,
-                                      userName:                     User.current!.name,
-                                      onResult:                     { [weak self] responseAPIResult in
-                                        var errorAPI: ErrorAPI?
-                                        
-                                        if let error = (responseAPIResult as! ResponseAPIBlockchainPostResult).error {
-                                            errorAPI        =   ErrorAPI.requestFailed(message: error.message)
-                                        }
-                                        
-                                        let responseModel   =   PostCreateModels.Item.ResponseModel(errorAPI: errorAPI)
-                                        self?.presenter?.presentPublishItem(fromResponseModel: responseModel)
-                    },
-                                      onError: { errorAPI in
-                                        Logger.log(message: "nresponse API Error = \(errorAPI.caseInfo.message)\n", event: .error)
-                                        let responseModel   =   PostCreateModels.Item.ResponseModel(errorAPI: errorAPI)
-                                        self?.presenter?.presentPublishItem(fromResponseModel: responseModel)
+                    
+                    operationAPIType = OperationAPIType.createPost(operations: [comment])
                 })
+                
+            case .createComment:
+                jsonMetadataString          =   ("{\"tags\":[\"" + (self?.commentParentTag)! + "\"]")
+                                                    .replacingOccurrences(of: ",", with: "\",\"") + ",\"app\":\"golos.io/0.1\",\"format\":\"markdown\"}"
+                
+                Logger.log(message: "\njsonMetadataString:\n\t\(jsonMetadataString!)", event: .debug)
+                
+                // Create Comment with transliteration
+                comment                     =   RequestParameterAPI.Comment(parentAuthor:       (self?.commentParentAuthor)!,
+                                                                            parentPermlink:     (self?.commentParentPermlink)!,
+                                                                            author:             User.current!.name,
+                                                                            title:              "",
+                                                                            body:               (self?.commentBody!)!,
+                                                                            jsonMetadata:       jsonMetadataString,
+                                                                            needTiming:         true,
+                                                                            attachments:        self?.attachments)
+                
+                operationAPIType = OperationAPIType.comment(fields: comment)
+
+            case .createCommentReply:
+                jsonMetadataString          =   ("{\"tags\":[\"" + (self?.tags!.compactMap({ $0.title!.transliteration() }).joined(separator: ","))! + "\"]")
+                                                    .replacingOccurrences(of: ",", with: "\",\"") + ",\"app\":\"golos.io/0.1\",\"format\":\"markdown\"}"
+                
+                Logger.log(message: "\njsonMetadataString:\n\t\(jsonMetadataString!)", event: .debug)
+                
+                // Create Comment with transliteration
+                comment                     =   RequestParameterAPI.Comment(parentAuthor:       (self?.commentParentAuthor)!,
+                                                                            parentPermlink:     (self?.commentParentPermlink)!,
+                                                                            author:             User.current!.name,
+                                                                            title:              (self?.commentTitle)!,
+                                                                            body:               (self?.commentBody!)!,
+                                                                            jsonMetadata:       jsonMetadataString,
+                                                                            needTiming:         true,
+                                                                            attachments:        self?.attachments)
+            }
+            
+            broadcast.executePOST(requestByOperationAPIType:    operationAPIType,
+                                  userName:                     User.current!.name,
+                                  onResult:                     { [weak self] responseAPIResult in
+                                    var errorAPI: ErrorAPI?
+                                    
+                                    if let error = (responseAPIResult as! ResponseAPIBlockchainPostResult).error {
+                                        errorAPI        =   ErrorAPI.requestFailed(message: error.message)
+                                    }
+                                    
+                                    let responseModel   =   PostCreateModels.Item.ResponseModel(errorAPI: errorAPI)
+                                    self?.presenter?.presentPublishItem(fromResponseModel: responseModel)
+                },
+                                  onError: { errorAPI in
+                                    Logger.log(message: "nresponse API Error = \(errorAPI.caseInfo.message)\n", event: .error)
+                                    let responseModel   =   PostCreateModels.Item.ResponseModel(errorAPI: errorAPI)
+                                    self?.presenter?.presentPublishItem(fromResponseModel: responseModel)
             })
         })
     }

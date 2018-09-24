@@ -439,6 +439,7 @@ extension UserProfileShowViewController {
                                                                    title:               blog.title,
                                                                    author:              blog.author,
                                                                    permlink:            blog.permlink,
+                                                                   parentTag:           blog.tags?.first,
                                                                    indexPath:           nil,
                                                                    parentAuthor:        blog.parentAuthor,
                                                                    parentPermlink:      blog.parentPermlink))

@@ -197,11 +197,10 @@ extension WebSocketManager: WebSocketDelegate {
                     }
                     
                     guard let responseTypeAPI = responseAPIType, let responseAPIResult = responseTypeAPI.responseAPI else {
-                        return
-//                        self?.errorAPI  =   responseAPIType?.errorAPI ?? ErrorAPI.invalidData(message: "Response Unsuccessful")
-//
-//                        return  isSendedRequestMethodAPI ?  requestMethodAPIStore!.completion((responseAPI: nil, errorAPI: self?.errorAPI)) :
-//                                                            requestOperationAPIStore!.completion((responseAPI: nil, errorAPI: self?.errorAPI))
+                        self?.errorAPI  =   responseAPIType?.errorAPI ?? ErrorAPI.invalidData(message: "Response Unsuccessful")
+                        
+                        return  isSendedRequestMethodAPI ?  requestMethodAPIStore!.completion((responseAPI: nil, errorAPI: self?.errorAPI)) :
+                                                            requestOperationAPIStore!.completion((responseAPI: nil, errorAPI: self?.errorAPI))
                     }
                     
 //                    Logger.log(message: "\nresponseAPIResult model:\n\t\(responseAPIResult)", event: .debug)
@@ -244,6 +243,9 @@ extension WebSocketManager: WebSocketDelegate {
                         
                     // Check websocket timeout: handler completion
                     else {
+                        isSendedRequestMethodAPI ?  requestMethodAPIStore!.completion((responseAPI: responseAPIResult, errorAPI: self?.errorAPI)) :
+                                                    requestOperationAPIStore!.completion((responseAPI: responseAPIResult, errorAPI: self?.errorAPI))
+
                         // Clean requestsAPIStore
                         self?.requestMethodsAPIStore[codeID]        =    nil
                         self?.requestOperationsAPIStore[codeID]     =    nil
@@ -252,9 +254,6 @@ extension WebSocketManager: WebSocketDelegate {
                         if let requestID = requestIDs.index(of: codeID) {
                             requestIDs.remove(at: requestID)
                         }
-                        
-                        isSendedRequestMethodAPI ?  requestMethodAPIStore!.completion((responseAPI: responseAPIResult, errorAPI: self?.errorAPI)) :
-                                                    requestOperationAPIStore!.completion((responseAPI: responseAPIResult, errorAPI: self?.errorAPI))
                     }
                 } catch {
                     Logger.log(message: "\nResponse Unsuccessful:\n\t\(error.localizedDescription)", event: .error)

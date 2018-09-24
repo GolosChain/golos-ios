@@ -48,7 +48,7 @@
                                                                     <constraint firstAttribute="width" constant="2" id="4do-1q-lYy"/>
                                                                 </constraints>
                                                             </view>
-                                                            <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Sj-LZ-Elw" userLabel="Button 0">
+                                                            <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Sj-LZ-Elw" userLabel="Button 0 - Lenta">
                                                                 <rect key="frame" x="22" y="0.0" width="39" height="50"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <inset key="contentEdgeInsets" minX="0.0" minY="15" maxX="0.0" maxY="0.0"/>
@@ -59,30 +59,8 @@
                                                                     <action selector="buttonTapped:" destination="XUN-dD-23c" eventType="touchUpInside" id="5bJ-ei-b82"/>
                                                                 </connections>
                                                             </button>
-                                                            <button clipsSubviews="YES" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="so7-Z5-8mY" userLabel="Button 1">
-                                                                <rect key="frame" x="81" y="0.0" width="53" height="50"/>
-                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <inset key="contentEdgeInsets" minX="0.0" minY="15" maxX="0.0" maxY="0.0"/>
-                                                                <state key="normal" title="Popular">
-                                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                </state>
-                                                                <connections>
-                                                                    <action selector="buttonTapped:" destination="XUN-dD-23c" eventType="touchUpInside" id="AS6-Fq-IgY"/>
-                                                                </connections>
-                                                            </button>
-                                                            <button clipsSubviews="YES" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="248" horizontalCompressionResistancePriority="748" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qv1-pJ-ucr" userLabel="Button 2">
-                                                                <rect key="frame" x="154" y="0.0" width="44" height="50"/>
-                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <inset key="contentEdgeInsets" minX="0.0" minY="15" maxX="0.0" maxY="0.0"/>
-                                                                <state key="normal" title="Actual">
-                                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                </state>
-                                                                <connections>
-                                                                    <action selector="buttonTapped:" destination="XUN-dD-23c" eventType="touchUpInside" id="uuz-o3-MsZ"/>
-                                                                </connections>
-                                                            </button>
-                                                            <button clipsSubviews="YES" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="247" horizontalCompressionResistancePriority="747" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XgW-00-rgb" userLabel="Button 3">
-                                                                <rect key="frame" x="218" y="0.0" width="31" height="50"/>
+                                                            <button clipsSubviews="YES" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="247" horizontalCompressionResistancePriority="747" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XgW-00-rgb" userLabel="Button 1 - New">
+                                                                <rect key="frame" x="81" y="0.0" width="31" height="50"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <inset key="contentEdgeInsets" minX="0.0" minY="15" maxX="0.0" maxY="0.0"/>
                                                                 <state key="normal" title="New">
@@ -92,7 +70,29 @@
                                                                     <action selector="buttonTapped:" destination="XUN-dD-23c" eventType="touchUpInside" id="Oce-Jm-Y56"/>
                                                                 </connections>
                                                             </button>
-                                                            <button clipsSubviews="YES" tag="4" contentMode="scaleToFill" horizontalHuggingPriority="246" horizontalCompressionResistancePriority="746" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zff-rx-nQI" userLabel="Button 4">
+                                                            <button clipsSubviews="YES" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="248" horizontalCompressionResistancePriority="748" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qv1-pJ-ucr" userLabel="Button 2 - Actual">
+                                                                <rect key="frame" x="132" y="0.0" width="44" height="50"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <inset key="contentEdgeInsets" minX="0.0" minY="15" maxX="0.0" maxY="0.0"/>
+                                                                <state key="normal" title="Actual">
+                                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                </state>
+                                                                <connections>
+                                                                    <action selector="buttonTapped:" destination="XUN-dD-23c" eventType="touchUpInside" id="uuz-o3-MsZ"/>
+                                                                </connections>
+                                                            </button>
+                                                            <button clipsSubviews="YES" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="so7-Z5-8mY" userLabel="Button 3 - Popular">
+                                                                <rect key="frame" x="196" y="0.0" width="53" height="50"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <inset key="contentEdgeInsets" minX="0.0" minY="15" maxX="0.0" maxY="0.0"/>
+                                                                <state key="normal" title="Popular">
+                                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                </state>
+                                                                <connections>
+                                                                    <action selector="buttonTapped:" destination="XUN-dD-23c" eventType="touchUpInside" id="AS6-Fq-IgY"/>
+                                                                </connections>
+                                                            </button>
+                                                            <button clipsSubviews="YES" tag="4" contentMode="scaleToFill" horizontalHuggingPriority="246" horizontalCompressionResistancePriority="746" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zff-rx-nQI" userLabel="Button 4 - Promo">
                                                                 <rect key="frame" x="269" y="0.0" width="45" height="50"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <inset key="contentEdgeInsets" minX="0.0" minY="15" maxX="0.0" maxY="0.0"/>

@@ -95,6 +95,7 @@ class PostsShowRouter: NSObject, PostsShowRoutingLogic, PostsShowDataPassing {
     
     func passDataToPostCreateScene(selectedPost: PostCellSupport, destination: inout PostCreateDataStore) {
         destination.commentTitle            =   selectedPost.title
+        destination.commentParentTag        =   selectedPost.tags!.first!
         destination.commentParentAuthor     =   selectedPost.parentAuthor
         destination.commentParentPermlink   =   selectedPost.parentPermlink
     }

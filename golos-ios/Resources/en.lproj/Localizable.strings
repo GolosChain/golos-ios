@@ -131,6 +131,8 @@
 "City"                                      =   "City";
 "Website Link"                              =   "Website Link";
 "Create Post Success"                       =   "Post\nsuccessfully published";
+"Create Comment Success"                    =   "Comment\nsuccessfully published";
+"Create Comment Reply Success"              =   "Comment Reply\nsuccessfully published";
 "Add Comment Success"                       =   "Comment\nsuccessfully published";
 "Add Comment Reply Success"                 =   "Comment reply\nsuccessfully published";
 "Permlink without timing"                   =   "Permlink without timing";

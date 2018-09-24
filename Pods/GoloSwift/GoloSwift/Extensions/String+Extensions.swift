@@ -70,7 +70,7 @@ extension String {
                 return self.transliterationInCyrillic()
             }
                 
-            else if self.hasPrefix("re--") {
+            else {
                 return self.transliterationInLatin()
             }
             
@@ -82,8 +82,6 @@ extension String {
             
             return transliterationInLatin()
         }
-        
-        return self
     }
     
     
@@ -111,7 +109,7 @@ extension String {
                     latinChar = transliterate(char: "\(char)", isCyrillic: true)
                     
                     if index == 0 {
-                        latinChar += "ru--"
+                        latinChar = "ru--" + latinChar
                     }
                     
                     newString.append(latinChar)

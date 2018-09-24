@@ -231,6 +231,7 @@ extension ReplyTableViewCell: ConfigureCell {
                                               title:            model.body.substring(withCharactersCount: 120),
                                               author:           model.author,
                                               permlink:         model.permlink,
+                                              parentTag:        model.tags?.first,
                                               indexPath:        nil,
                                               parentAuthor:     model.parentAuthor,
                                               parentPermlink:   model.parentPermlink)

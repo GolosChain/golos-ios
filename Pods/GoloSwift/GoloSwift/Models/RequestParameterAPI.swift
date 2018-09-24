@@ -140,7 +140,7 @@ public struct RequestParameterAPI {
             self.jsonMetadata       =   jsonMetadata
             self.needTiming         =   needTiming
             
-            let permlinkTemp        =   (parentAuthor.isEmpty ? String(format: "%@", title) :
+            let permlinkTemp        =   (parentAuthor.isEmpty ? String(format: "%@", title.transliteration()) :
                                                                 String(format: "re-%@-%@-%@", parentAuthor, parentPermlink, author))
                                             .replacingOccurrences(of: " ", with: "-")
                                             .lowercased()

@@ -131,6 +131,8 @@
 "City"                                      =   "Город";
 "Website Link"                              =   "Ссылка на сайт";
 "Create Post Success"                       =   "Пост\nуспешно опубликован";
+"Create Comment Success"                    =   "Комментарий\nуспешно опубликован";
+"Create Comment Reply Success"              =   "Ответ на комментарий\nуспешно опубликован";
 "Add Comment Success"                       =   "Комментарий\nуспешно опубликован";
 "Add Comment Reply Success"                 =   "Ответ к комментарию\nуспешно опубликован";
 "Permlink without timing"                   =   "Уникальный permlink";

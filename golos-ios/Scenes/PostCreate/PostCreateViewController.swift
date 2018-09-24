@@ -292,6 +292,7 @@ class PostCreateViewController: GSBaseViewController {
         }
         
         guard sceneType == .createPost else {
+            self.interactor?.save(commentBody: self.contentTextView.text!)
             return true
         }
         
@@ -340,6 +341,19 @@ class PostCreateViewController: GSBaseViewController {
             self.stackView.alpha        =   1.0
             self.contentTextView.alpha  =   1.0
         })
+    }
+    
+    private func loadMessage() -> String {
+        switch self.sceneType {
+        case .createPost:
+            return "Create Post Success"
+            
+        case .createComment:
+            return "Create Comment Success"
+
+        case .createCommentReply:
+            return "Create Comment Reply Success"
+        }
     }
     
     
@@ -391,7 +405,8 @@ extension PostCreateViewController: PostCreateDisplayLogic {
         
         self.clearAllEnteredValues()
 
-        self.showAlertView(withTitle: "Info", andMessage: "Create Post Success", needCancel: false, completion: { [weak self] _ in
+        
+        self.showAlertView(withTitle: "Info", andMessage: self.loadMessage(), needCancel: false, completion: { [weak self] _ in
             self?.router?.routeToNextScene()
         })
     }

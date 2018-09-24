@@ -70,8 +70,9 @@ class PostShowRouter: NSObject, PostShowRoutingLogic, PostShowDataPassing {
     // MARK: - Passing data
     func passDataToPostCreateScene(postShortInfo: PostShortInfo, destination: inout PostCreateDataStore) {
         destination.commentTitle            =   postShortInfo.title
-        destination.commentParentAuthor     =   postShortInfo.parentAuthor
-        destination.commentParentPermlink   =   postShortInfo.parentPermlink
+        destination.commentParentTag        =   postShortInfo.parentTag
+        destination.commentParentAuthor     =   postShortInfo.author
+        destination.commentParentPermlink   =   postShortInfo.permlink
     }
 
     func passDataToUserProfileScene(userName: String, destination: inout UserProfileShowDataStore) {
