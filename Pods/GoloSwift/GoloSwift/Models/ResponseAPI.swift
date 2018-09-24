@@ -355,13 +355,14 @@ public struct ResponseAPIAllContentReply: Decodable {
     public let url: String
     public let reblogged_by: [String]?
     public let children: Int16
+//    public let active_votes: [ResponseAPIActiveVote]
 
     // "2018-04-13T10:19:54"
     public let created: String
     public let active: String
     public let last_update: String
     public let last_payout: String
-    
+
     
     // MARK: - In reserve
     /*
@@ -390,7 +391,6 @@ public struct ResponseAPIAllContentReply: Decodable {
      public let root_title: String
      public let pending_payout_value: String
      public let total_pending_payout_value: String
-     public let active_votes: [String]?
      public let replies: [String]?
      public let author_reputation: String
      public let promoted: String

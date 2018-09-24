@@ -42,7 +42,7 @@ class PostShowRouter: NSObject, PostShowRoutingLogic, PostShowDataPassing {
         destinationVC.sceneType =   sceneType
         var destinationDS       =   destinationVC.router!.dataStore!
         
-        passDataToPostCreateScene(postShortInfo: self.dataStore!.comment!, destination: &destinationDS)
+        passDataToPostCreateScene(postShortInfo: self.dataStore!.postShortInfo!, destination: &destinationDS)
         navigateToPostCreateScene(source: viewController!, destination: destinationVC)
     }
     

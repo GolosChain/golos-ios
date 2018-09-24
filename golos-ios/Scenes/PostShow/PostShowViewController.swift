@@ -617,7 +617,7 @@ class PostShowViewController: GSBaseViewController {
     }
 
     @IBAction func commentsButtonTapped(_ sender: UIButton) {
-        self.router?.routeToPostCreateScene(withType: .createComment)
+         self.router?.routeToPostCreateScene(withType: .createComment)
     }
 
     @IBAction func flauntButtonTapped(_ sender: UIButton) {
@@ -825,9 +825,7 @@ extension PostShowViewController {
                     // Level 0
                     commentView.loadData(fromBody: comment.body, completion: { [weak self] viewHeight in
                         self?.commentsStackViewHeightConstraint.constant += viewHeight
-//                        self?.commentsStackView.layoutIfNeeded()
                         self?.commentsViews.append(commentView)
-//                        self?.didCommentsView(isHide: false)
 
                         // Levels 2...n
                         self?.nextCommentLevel(byPermlink: commentView.postShortInfo.permlink ?? "XXX", andParentLevel: commentView.level)

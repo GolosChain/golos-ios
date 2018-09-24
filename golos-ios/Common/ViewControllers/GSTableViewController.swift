@@ -271,6 +271,10 @@ class GSTableViewController: GSBaseViewController, HandlersCellSupport {
         self.postsTableView?.reloadDataWithCompletion {
             Logger.log(message: "Load data is finished!!!", event: .debug)
             
+            guard self.fetchedResultsController != nil else {
+                return
+            }
+            
             // Hide activity indicator
             self.displaySpinner(false)
             self.postsTableView.layoutIfNeeded()
@@ -389,7 +393,19 @@ extension GSTableViewController: UITableViewDataSource {
             }
             
             (cell as! PostFeedTableViewCell).handlerCommentsButtonTapped    =   { [weak self] postShortInfo in
-                self?.handlerCommentsButtonTapped!(postShortInfo)
+                if postShortInfo.id == nil {
+                    if let model = self?.fetchedResultsController.object(at: postShortInfo.indexPath!) as? PostCellSupport {
+                        self?.handlerCommentsButtonTapped!(PostShortInfo(id:                model.id,
+                                                                         title:             model.title,
+                                                                         author:            model.author,
+                                                                         permlink:          model.permlink,
+                                                                         indexPath:         nil,
+                                                                         parentAuthor:      model.parentAuthor,
+                                                                         parentPermlink:    model.parentPermlink))
+                    }
+                } else {
+                    self?.handlerCommentsButtonTapped!(postShortInfo)
+                }
             }
 
             (cell as! PostFeedTableViewCell).handlerAuthorPostSelected      =   { [weak self] userName in

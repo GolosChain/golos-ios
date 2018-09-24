@@ -124,8 +124,8 @@ class CommentView: UIView, HandlersCellSupport {
         self.created            =   comment.created
         self.timeLabel.text     =   comment.created.convertToDaysAgo()
         
-        if comment.children > 0 {
-            self.commentsButton.setTitle("\(comment.children)", for: .normal)
+        if comment.activeVotesCount > 0 {
+            self.commentsButton.setTitle("\(comment.activeVotesCount)", for: .normal)
             self.commentsButton.isSelected = comment.currentUserVoted
         }
         
