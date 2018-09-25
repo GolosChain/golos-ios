@@ -111,6 +111,12 @@ class PostCreateInteractor: PostCreateBusinessLogic, PostCreateDataStore {
                 })
                 
             case .createComment:
+                let userName = (User.current?.name)!
+                
+//                if userName.contains(".") {
+//                    userName = "#\(userName)"
+//                }
+                
                 let jsonMetadataString = ("{\"tags\":[\"" + (self?.commentParentTag ?? "test") + "\"]")
                                             .replacingOccurrences(of: ",", with: "\",\"") + ",\"app\":\"golos.io/0.1\",\"format\":\"markdown\"}"
                 
@@ -119,7 +125,7 @@ class PostCreateInteractor: PostCreateBusinessLogic, PostCreateDataStore {
                 // Create Comment with transliteration
                 let newComment = RequestParameterAPI.Comment(parentAuthor:       self?.commentParentAuthor ?? "",
                                                              parentPermlink:     self?.commentParentPermlink ?? "",
-                                                             author:             User.current!.name,
+                                                             author:             userName,
                                                              title:              "",
                                                              body:               self?.commentBody ?? "",
                                                              jsonMetadata:       jsonMetadataString,

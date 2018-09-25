@@ -234,7 +234,7 @@ class PostCreateViewController: GSBaseViewController {
         
         self.view.tune()
         IQKeyboardManager.sharedManager().enable = false
-        self.navigationItem.title   =   (sceneType == .createPost) ? "Publish Title".localized() : "Comment Title Verb".localized()
+        self.navigationItem.title = (sceneType == .createPost) ? "Publish Title".localized() : "Comment Title Verb".localized()
        
         if sceneType == .createCommentReply {
             self.commentReplyView.markdownViewManager.load(markdown: self.router?.dataStore?.commentTitle ?? "")

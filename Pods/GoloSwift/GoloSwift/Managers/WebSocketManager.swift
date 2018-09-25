@@ -58,8 +58,8 @@ public class WebSocketManager {
     
     /// Websocket: send GET Request message
     public func sendGETRequest(withMethodAPIType type: RequestMethodAPIType, completion: @escaping (ResponseAPIType) -> Void) {
-        let requestMethodAPITypeStore               =   (methodAPIType: type, completion: completion)
-        self.requestMethodsAPIStore[type.id]        =   requestMethodAPITypeStore
+        let requestMethodAPITypeStore           =   (methodAPIType: type, completion: completion)
+        self.requestMethodsAPIStore[type.id]    =   requestMethodAPITypeStore
         
         webSocket.isConnected ? sendMessage(type.requestMessage!) : webSocket.connect()
     }
@@ -67,8 +67,8 @@ public class WebSocketManager {
     
     /// Websocket: send POST Request messages
     public func sendPOSTRequest(withOperationAPIType type: RequestOperationAPIType, completion: @escaping (ResponseAPIType) -> Void) {
-        let requestOperationAPITypeStore            =   (operationAPIType: type, completion: completion)
-        self.requestOperationsAPIStore[type.id]     =   requestOperationAPITypeStore
+        let requestOperationAPITypeStore        =   (operationAPIType: type, completion: completion)
+        self.requestOperationsAPIStore[type.id] =   requestOperationAPITypeStore
         
         webSocket.isConnected ? sendMessage(type.requestMessage!) : webSocket.connect()
     }
@@ -152,12 +152,11 @@ public class WebSocketManager {
 // MARK: - WebSocketDelegate
 extension WebSocketManager: WebSocketDelegate {
     public func websocketDidConnect(socket: WebSocketClient) {
-        guard self.requestMethodsAPIStore.count + self.requestOperationsAPIStore.count > 0 else {
+        guard requestIDs.count > 0 else {
             return
         }
         
-        Logger.log(message: "\nrequestMethodsAPIStore =\n\t\(requestMethodsAPIStore)", event: .debug)
-        Logger.log(message: "\nrequestOperationsAPIStore =\n\t\(requestOperationsAPIStore)", event: .debug)
+        Logger.log(message: "\nrequestIDs =\n\t\(requestIDs)", event: .debug)
         
         // Send all stored GET & POST Request messages
         self.requestMethodsAPIStore.forEach({ sendMessage($0.value.methodAPIType.requestMessage!)})
@@ -171,104 +170,123 @@ extension WebSocketManager: WebSocketDelegate {
         if let jsonData = text.data(using: .utf8), let json = try? JSONSerialization.jsonObject(with: jsonData, options: .mutableLeaves) as! [String: Any] {
             // Check error
             self.validate(json: json, completion: { [weak self] (codeID, hasError) in
-                guard requestIDs.contains(codeID) else {
+                guard requestIDs.count > 0, requestIDs.contains(codeID) else {
                     return
                 }
                 
                 // Check stored sended Request by received ID
-                let requestMethodAPIStore       =   self?.requestMethodsAPIStore[codeID]
-                let requestOperationAPIStore    =   self?.requestOperationsAPIStore[codeID]                
-                let isSendedRequestMethodAPI    =   requestOperationAPIStore == nil
+                let isRequestMethodAPIStore = codeID < 500
                 
                 do {
                     let jsonDecoder = JSONDecoder()
                     
                     if hasError {
-                        let responseAPIResultError          =   try jsonDecoder.decode(ResponseAPIResultError.self, from: jsonData)
-                        self?.errorAPI                      =   ErrorAPI.requestFailed(message: responseAPIResultError.error.message.components(separatedBy: "second.end(): ").last!)
+                        let responseAPIResultError = try jsonDecoder.decode(ResponseAPIResultError.self, from: jsonData)
+                        self?.errorAPI = ErrorAPI.requestFailed(message: responseAPIResultError.error.message.components(separatedBy: "second.end(): ").last!)
                     }
                     
-                    if isSendedRequestMethodAPI, let methodAPIType = requestMethodAPIStore?.methodAPIType.methodAPIType {
-                        responseAPIType     =   try self?.decode(from: jsonData, byMethodAPIType: methodAPIType)
-                    }
+                    switch isRequestMethodAPIStore {
+                    // Method API's
+                    case true:
+                        guard let requestMethodAPIStore = self?.requestMethodsAPIStore[codeID] else { return }
                         
-                    else if !isSendedRequestMethodAPI, let operationAPIType = requestOperationAPIStore?.operationAPIType.operationAPIType {
-                        responseAPIType     =   try self?.decode(from: jsonData, byOperationAPIType: operationAPIType)
-                    }
-                    
-                    guard let responseTypeAPI = responseAPIType, let responseAPIResult = responseTypeAPI.responseAPI else {
-                        self?.errorAPI      =   responseAPIType?.errorAPI ?? ErrorAPI.invalidData(message: "Response Unsuccessful")
+                        responseAPIType = try self?.decode(from: jsonData, byMethodAPIType: requestMethodAPIStore.methodAPIType.methodAPIType)
                         
-                        // Check unique request ID
-//                        guard   requestIDs.contains(codeID) && (requestMethodAPIStore?.methodAPIType.id == codeID ||
-//                                                                requestOperationAPIStore?.operationAPIType.id == codeID) else {
-//                                                                    return
-//                        }
-
-                        return  isSendedRequestMethodAPI ?  requestMethodAPIStore!.completion((responseAPI: nil, errorAPI: self?.errorAPI)) :
-                                                            requestOperationAPIStore!.completion((responseAPI: nil, errorAPI: self?.errorAPI))
-                    }
-                    
-//                    Logger.log(message: "\nresponseAPIResult model:\n\t\(responseAPIResult)", event: .debug)
-                    
-                    // Check websocket timeout: resend current request message
-                    let startTime   =   isSendedRequestMethodAPI ? requestMethodAPIStore!.methodAPIType.startTime : requestOperationAPIStore!.operationAPIType.startTime
-                    let timeout     =   Double(Date().timeIntervalSince(startTime))
-                    
-                    Logger.log(message: "\nwebSocket timeout =\n\t\(timeout) sec", event: .debug)
-                    
-                    if timeout >= webSocketTimeout {
-                        switch isSendedRequestMethodAPI {
-                        // GET Request
-                        case true:
-                            let newRequestMethodAPIStore            =   (methodAPIType:         (id:                    requestMethodAPIStore!.methodAPIType.id,
-                                                                                                 requestMessage:        requestMethodAPIStore!.methodAPIType.requestMessage,
-                                                                                                 startTime:             Date(),
-                                                                                                 methodAPIType:         requestMethodAPIStore!.methodAPIType.methodAPIType,
-                                                                                                 errorAPI:              requestMethodAPIStore!.methodAPIType.errorAPI),
-                                                                         completion:            requestMethodAPIStore!.completion)
+                        guard let responseAPIResult = responseAPIType?.responseAPI else {
+                            self?.errorAPI = responseAPIType?.errorAPI ?? ErrorAPI.invalidData(message: "Response Unsuccessful")
                             
-                            self?.requestMethodsAPIStore[codeID]    =   newRequestMethodAPIStore
-                            
-                            self?.sendMessage(requestMethodAPIStore!.methodAPIType.requestMessage!)
-                            
-                        // POST Request
-                        case false:
-                            let newRequestOperationAPIStore         =   (operationAPIType:      (id:                    requestOperationAPIStore!.operationAPIType.id,
-                                                                                                 requestMessage:        requestOperationAPIStore!.operationAPIType.requestMessage,
-                                                                                                 startTime:             Date(),
-                                                                                                 operationAPIType:      requestOperationAPIStore!.operationAPIType.operationAPIType,
-                                                                                                 errorAPI:              requestOperationAPIStore!.operationAPIType.errorAPI),
-                                                                         completion:            requestOperationAPIStore!.completion)
-                            
-                            self?.requestOperationsAPIStore[codeID] =   newRequestOperationAPIStore
-                            
-                            self?.sendMessage(requestOperationAPIStore!.operationAPIType.requestMessage!)
+                            return  requestMethodAPIStore.completion((responseAPI: nil, errorAPI: self?.errorAPI))
                         }
-                    }
                         
-                    // Check websocket timeout: handler completion
-                    else {
-                        isSendedRequestMethodAPI ?  requestMethodAPIStore!.completion((responseAPI: responseAPIResult, errorAPI: self?.errorAPI)) :
-                                                    requestOperationAPIStore!.completion((responseAPI: responseAPIResult, errorAPI: self?.errorAPI))
-
-                        // Clean requestsAPIStore
-                        self?.requestMethodsAPIStore[codeID]        =    nil
-                        self?.requestOperationsAPIStore[codeID]     =    nil
+//                        Logger.log(message: "\nresponseMethodAPIResult model:\n\t\(responseAPIResult)", event: .debug)
                         
-                        // Remove unique request ID
-                        if let requestID = requestIDs.index(of: codeID) {
-                            requestIDs.remove(at: requestID)
+                        // Check websocket timeout: resend current request message
+                        self?.checkTimeout(result: responseAPIResult, byMethodAPI: true, requestMethodAPIStore: requestMethodAPIStore, requestOperationAPIStore: nil)
+                        
+                    // Operation API's
+                    case false:
+                        guard let requestOperationAPIStore = self?.requestOperationsAPIStore[codeID] else { return }
+                        
+                        responseAPIType = try self?.decode(from: jsonData, byOperationAPIType: requestOperationAPIStore.operationAPIType.operationAPIType)
+                        
+                        guard let responseAPIResult = responseAPIType?.responseAPI else {
+                            self?.errorAPI = responseAPIType?.errorAPI ?? ErrorAPI.invalidData(message: "Response Unsuccessful")
+                            
+                            return requestOperationAPIStore.completion((responseAPI: nil, errorAPI: self?.errorAPI))
                         }
+                        
+//                        Logger.log(message: "\nresponseOperationAPIResult model:\n\t\(responseAPIResult)", event: .debug)
+                        
+                        // Check websocket timeout: resend current request message
+                        self?.checkTimeout(result: responseAPIResult, byMethodAPI: false, requestMethodAPIStore: nil, requestOperationAPIStore: requestOperationAPIStore)
                     }
                 } catch {
                     Logger.log(message: "\nResponse Unsuccessful:\n\t\(error.localizedDescription)", event: .error)
                     self?.errorAPI = ErrorAPI.responseUnsuccessful(message: error.localizedDescription)
                     
-                    isSendedRequestMethodAPI ?  requestMethodAPIStore!.completion((responseAPI: nil, errorAPI: self?.errorAPI)) :
-                                                requestOperationAPIStore!.completion((responseAPI: nil, errorAPI: self?.errorAPI))
+                    if let requestMethodAPIStore = self?.requestMethodsAPIStore[codeID] {
+                        requestMethodAPIStore.completion((responseAPI: nil, errorAPI: self?.errorAPI))
+                    }
+                        
+                    else if let requestOperationAPIStore = self?.requestOperationsAPIStore[codeID] {
+                        requestOperationAPIStore.completion((responseAPI: nil, errorAPI: self?.errorAPI))
+                    }
+                        
+                    else { return }
                 }
             })
+        }
+    }
+    
+    private func checkTimeout(result: Decodable, byMethodAPI: Bool, requestMethodAPIStore: RequestMethodAPIStore?, requestOperationAPIStore: RequestOperationAPIStore?) {
+        let startTime   =   byMethodAPI ? requestMethodAPIStore!.methodAPIType.startTime : requestOperationAPIStore!.operationAPIType.startTime
+        let timeout     =   Double(Date().timeIntervalSince(startTime))
+        let codeID      =   byMethodAPI ? requestMethodAPIStore!.methodAPIType.id : requestOperationAPIStore!.operationAPIType.id
+        
+        Logger.log(message: "\nwebSocket timeout =\n\t\(timeout) sec", event: .debug)
+        
+        // Check websocket timeout: resend current request message
+        if timeout >= webSocketTimeout {
+            switch byMethodAPI {
+            // GET Request
+            case true:
+                let newRequestMethodAPIStore = (methodAPIType:  (id:                    codeID,
+                                                                 requestMessage:        requestMethodAPIStore!.methodAPIType.requestMessage,
+                                                                 startTime:             Date(),
+                                                                 methodAPIType:         requestMethodAPIStore!.methodAPIType.methodAPIType,
+                                                                 errorAPI:              requestMethodAPIStore!.methodAPIType.errorAPI),
+                                                completion:     requestMethodAPIStore!.completion)
+                
+                self.requestMethodsAPIStore[codeID] = newRequestMethodAPIStore
+                self.sendMessage(requestMethodAPIStore!.methodAPIType.requestMessage!)
+                
+            // POST Request
+            case false:
+                let newRequestOperationAPIStore = (operationAPIType:    (id:                    codeID,
+                                                                         requestMessage:        requestOperationAPIStore!.operationAPIType.requestMessage,
+                                                                         startTime:             Date(),
+                                                                         operationAPIType:      requestOperationAPIStore!.operationAPIType.operationAPIType,
+                                                                         errorAPI:              requestOperationAPIStore!.operationAPIType.errorAPI),
+                                                   completion:          requestOperationAPIStore!.completion)
+                
+                self.requestOperationsAPIStore[codeID] = newRequestOperationAPIStore
+                self.sendMessage(requestOperationAPIStore!.operationAPIType.requestMessage!)
+            }
+        }
+            
+            // Check websocket timeout: handler completion
+        else {
+            byMethodAPI ?   requestMethodAPIStore!.completion((responseAPI: result, errorAPI: self.errorAPI)) :
+                requestOperationAPIStore!.completion((responseAPI: result, errorAPI: self.errorAPI))
+            
+            // Clean requestsAPIStore
+            self.requestMethodsAPIStore[codeID] = nil
+            self.requestOperationsAPIStore[codeID] = nil
+            
+            // Remove unique request ID
+            if let requestID = requestIDs.index(of: codeID) {
+                requestIDs.remove(at: requestID)
+            }
         }
     }
     

@@ -102,6 +102,7 @@ class PostShowViewController: GSBaseViewController {
         }
     }
     
+    @IBOutlet weak var navbarShadowView: UIView!
     @IBOutlet weak var postFeedHeaderView: PostFeedHeaderView!
     @IBOutlet weak var commentsView: UIView!
     @IBOutlet weak var commentsStackView: UIStackView!
@@ -475,7 +476,7 @@ class PostShowViewController: GSBaseViewController {
         self.loadContent()
         self.loadContentComments()
 
-        self.navbarView?.add(shadow: true, onside: .bottom)
+        self.navbarShadowView?.add(shadow: true, onside: .bottom)
 
         NotificationCenter.default.addObserver(self, selector: #selector(localizeTitles), name: NSNotification.Name(LCLLanguageChangeNotification), object: nil)
     }

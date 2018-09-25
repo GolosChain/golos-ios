@@ -92,7 +92,7 @@ public class Broadcast {
     private func prepareGET(requestByMethodAPIType methodAPIType: MethodAPIType) -> RequestMethodAPIType {
         Logger.log(message: "Success", event: .severe)
         
-        let codeID                  =   generateUniqueId()
+        let codeID                  =   generate(methodUniqueId: true)
         let requestParamsType       =   methodAPIType.introduced()
         
         let requestAPI              =   RequestAPI(id:          codeID,
@@ -112,7 +112,7 @@ public class Broadcast {
                 jsonData            =   try jsonEncoder.encode(requestParams as? [String])
                 
             case .getDiscussions(_):
-                jsonData            =   try jsonEncoder.encode(requestParams as? RequestParameterAPI.Discussion)
+                jsonData = try jsonEncoder.encode(requestParams as? RequestParameterAPI.Discussion)
                 
             case .getUserReplies(_), .getUserFollowCounts(_), .getContent(_), .getContentAllReplies(_):
                 jsonData            =   Data((requestParams as! String).utf8)
@@ -200,7 +200,7 @@ public class Broadcast {
     private func preparePOST(requestByOperationAPIType operationAPIType: OperationAPIType, byTransaction transaction: Transaction) -> RequestOperationAPIType {
         Logger.log(message: "Success", event: .severe)
         
-        let codeID                  =   generateUniqueId()
+        let codeID                  =   generate(methodUniqueId: false)
         let requestParamsType       =   operationAPIType.introduced()
         
         let requestAPI              =   RequestAPI(id:          codeID,
@@ -311,15 +311,21 @@ public class Broadcast {
     
     
     /// Generating a unique ID
-    private func generateUniqueId() -> Int {
+    //  for method:     < 500
+    //  for operation:  > 500
+    private func generate(methodUniqueId: Bool) -> Int {
         var generatedID = 0
         
         repeat {
-            generatedID = Int(arc4random_uniform(1000))
+            generatedID = methodUniqueId ? Int(arc4random_uniform(self.random(range: 1..<500))) : Int(arc4random_uniform(self.random(range: 500..<1000)))
         } while requestIDs.contains(generatedID)
         
         requestIDs.append(generatedID)
         
         return generatedID
+    }
+    
+    private func random(range: Range<Int>) -> UInt32 {
+        return UInt32(range.lowerBound + Int(arc4random_uniform(UInt32(range.upperBound - range.lowerBound))))
     }
 }

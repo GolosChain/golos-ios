@@ -120,8 +120,13 @@ class PostingKeyShowViewController: GSBaseViewController {
             self.textFieldsCollection.last!.text    =   "5KUk2QMqYqpFM54YSaNoYLVDTznM3fyA8J8qDUQQNgBnqvVyscC"
 
         default:
-            self.textFieldsCollection.first!.text   =   "destroyer2k" //"joseph.kalu"
-            self.textFieldsCollection.last!.text    =   "5JjQWZmWj36xbVdcX96gjMs5BRip7TPPCNFFnm19TPEviqnG5Ke" // "5K6CfG8gzhTZNwHDxPmeQiPChx6FpgiVYN7USVp2aGC2WsDqH4h"
+            // User "destroyer2k"
+//            self.textFieldsCollection.first!.text   =   "destroyer2k"
+//            self.textFieldsCollection.last!.text    =   "5JjQWZmWj36xbVdcX96gjMs5BRip7TPPCNFFnm19TPEviqnG5Ke"
+            
+            // User "joseph.kalu"
+            self.textFieldsCollection.first!.text   =   "joseph.kalu"
+            self.textFieldsCollection.last!.text    =   "5K6CfG8gzhTZNwHDxPmeQiPChx6FpgiVYN7USVp2aGC2WsDqH4h"
         }
         
         self.handlerReturnComletion!(self.textFieldsCollection)
