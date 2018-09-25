@@ -34,6 +34,7 @@ class GSTabBarController: UITabBarController {
         postCreateNC.tabBarItem     =   UITabBarItem(title: "", image: UIImage.init(named: "icon-tabbar-button-add-normal"), selectedImage: nil)
         postCreateNC.tabBarItem.tag =   2
         
+        
         /*
         // Notifications
         let vc4                     =   UIViewController()

@@ -363,7 +363,7 @@ extension PostsShowViewController: PostsShowDisplayLogic {
 
 // MARK: - Load data from Blockchain by API
 extension PostsShowViewController {
-    private func loadPosts(byCondition condition: LoadDataCondition) {
+    func loadPosts(byCondition condition: LoadDataCondition) {
         guard condition.isRefreshData == true || condition.isInfiniteScrolling == true else {
             return
         }

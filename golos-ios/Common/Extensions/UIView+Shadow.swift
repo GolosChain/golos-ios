@@ -39,7 +39,7 @@ extension UIView {
     }
     
     func add(shadow: Bool, onside: SideType) {
-        layer.shadowColor           =   shadow ? UIColor.darkGray.cgColor : UIColor.white.cgColor
+        layer.shadowColor           =   shadow ? UIColor(hexString: "#C7C7C7").cgColor : UIColor.white.cgColor
         layer.shadowOpacity         =   Float((shadow ? 4.0 : 0.0) * heightRatio)
         layer.shadowRadius          =   (shadow ? 4.0 : 0.0) * heightRatio
         layer.masksToBounds         =   false

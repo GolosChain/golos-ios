@@ -200,10 +200,10 @@ extension WebSocketManager: WebSocketDelegate {
                         self?.errorAPI      =   responseAPIType?.errorAPI ?? ErrorAPI.invalidData(message: "Response Unsuccessful")
                         
                         // Check unique request ID
-                        guard   requestIDs.contains(codeID) && (requestMethodAPIStore?.methodAPIType.id == codeID ||
-                                                                requestOperationAPIStore?.operationAPIType.id == codeID) else {
-                                                                    return
-                        }
+//                        guard   requestIDs.contains(codeID) && (requestMethodAPIStore?.methodAPIType.id == codeID ||
+//                                                                requestOperationAPIStore?.operationAPIType.id == codeID) else {
+//                                                                    return
+//                        }
 
                         return  isSendedRequestMethodAPI ?  requestMethodAPIStore!.completion((responseAPI: nil, errorAPI: self?.errorAPI)) :
                                                             requestOperationAPIStore!.completion((responseAPI: nil, errorAPI: self?.errorAPI))

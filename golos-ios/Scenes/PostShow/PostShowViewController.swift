@@ -158,12 +158,6 @@ class PostShowViewController: GSBaseViewController {
         }
     }
     
-    @IBOutlet weak var shadowView: UIView! {
-        didSet {
-            shadowView.setGradientBackground(colors: [UIColor.lightGray.cgColor, UIColor.lightText.cgColor], onside: .bottom)
-        }
-    }
-    
     @IBOutlet weak var titleLabel: UILabel! {
         didSet {
             titleLabel.tune(withText:           "",
@@ -481,6 +475,8 @@ class PostShowViewController: GSBaseViewController {
         self.loadContent()
         self.loadContentComments()
 
+        self.navbarView?.add(shadow: true, onside: .bottom)
+
         NotificationCenter.default.addObserver(self, selector: #selector(localizeTitles), name: NSNotification.Name(LCLLanguageChangeNotification), object: nil)
     }
     
@@ -502,7 +498,8 @@ class PostShowViewController: GSBaseViewController {
         }
         
         else {
-            self.commentsCountLabel.text = String(format: "%i", self.commentsStackView.subviews.count)
+            self.commentsButton.setTitle("\(self.commentsViews.count)", for: .normal)
+            self.commentsCountLabel.text = String(format: "%i", self.commentsViews.count)
         }
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1, execute: {
@@ -551,7 +548,17 @@ class PostShowViewController: GSBaseViewController {
             }
             
             // Subscribe User
+            if let user = User.current, let userProfileImageURL = user.profileImageURL {
+                self.userAvatarImageView.uploadImage(byStringPath:       userProfileImageURL,
+                                                     imageType:          .userProfileImage,
+                                                     size:               CGSize(width: 50.0 * widthRatio, height: 50.0 * widthRatio),
+                                                     tags:               nil,
+                                                     createdDate:        user.created.convert(toDateFormat: .expirationDateType),
+                                                     fromItem:           (user as CachedImageFrom).fromItem)
+            }
+
             self.userAvatarImageView.image      =   self.postFeedHeaderView.authorProfileImageView.image
+            
             self.userNameLabel.text             =   self.postFeedHeaderView.authorLabel.text
             
             // User action buttons
@@ -716,13 +723,14 @@ extension PostShowViewController {
         }
     }
     
-    private func loadContentComments() {
-        let loadPostRepliesQueue = DispatchQueue.global(qos: .background)
+    func loadContentComments() {
+        // Remove subviews in Buttons Stack view
+        self.commentsViews.forEach({ self.commentsStackView.removeArrangedSubview($0)})
+        self.commentsViews.removeAll()
+        self.commentsStackViewHeightConstraint.constant = 0.0
         
-        loadPostRepliesQueue.async {
-            let contentRepliesRequestModel = PostShowModels.Post.RequestModel()
-            self.interactor?.loadContentComments(withRequestModel: contentRepliesRequestModel)
-        }
+        let contentRepliesRequestModel = PostShowModels.Post.RequestModel()
+        self.interactor?.loadContentComments(withRequestModel: contentRepliesRequestModel)
     }
 }
 
@@ -767,9 +775,9 @@ extension PostShowViewController {
             self.commentsCount += 1
             
             DispatchQueue.main.async {
-                let comments    =   CoreDataManager.instance.readEntities(withName:                    "Comment",
-                                                                          withPredicateParameters:     NSPredicate(format: "parentPermlink == %@", commentPermlink),
-                                                                          andSortDescriptor:           NSSortDescriptor(key: "created", ascending: false)) as! [Comment]
+                let comments = CoreDataManager.instance.readEntities(withName:                    "Comment",
+                                                                     withPredicateParameters:     NSPredicate(format: "parentPermlink == %@", commentPermlink),
+                                                                     andSortDescriptor:           NSSortDescriptor(key: "created", ascending: false)) as! [Comment]
                 
                 guard let displayedPost = self.router?.dataStore?.displayedPost, self.commentsCount < displayedPost.children else {
                     // Remove subviews in Stack view
@@ -812,7 +820,6 @@ extension PostShowViewController {
         }
     }
     
-    
     private func fetchCommentsFirstLevel() {
         if let postShortInfo = self.router?.dataStore?.postShortInfo {
             DispatchQueue.main.async {
@@ -823,7 +830,7 @@ extension PostShowViewController {
                                                                             return
                 }
                 
-                self.commentsStackViewHeightConstraint.constant =   0.0
+                self.commentsStackViewHeightConstraint.constant = 0.0
                 var tagIndex            =   1
                 
                 for comment in comments {
@@ -861,8 +868,8 @@ extension PostShowViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell    =   collectionView.dequeueReusableCell(withReuseIdentifier: "PostShowTagCollectionViewCell", for: indexPath) as! PostShowTagCollectionViewCell
-        let tag     =   self.router!.dataStore!.displayedPost!.tags![indexPath.row]
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PostShowTagCollectionViewCell", for: indexPath) as! PostShowTagCollectionViewCell
+        let tag = self.router!.dataStore!.displayedPost!.tags![indexPath.row]
         
         // Config tag cell
         cell.setup(withItem: tag, andIndexPath: indexPath)

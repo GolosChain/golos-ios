@@ -253,7 +253,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n52-gC-8Jz" userLabel="Subscribe User View">
                                                         <rect key="frame" x="0.0" y="0.0" width="320" height="90"/>
                                                         <subviews>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-user-profile-image-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="ZH2-hK-oIK" userLabel="User Avatar Image View">
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZH2-hK-oIK" userLabel="User Avatar Image View">
                                                                 <rect key="frame" x="16" y="20" width="50" height="50"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
@@ -459,13 +459,6 @@
                                     <constraint firstAttribute="bottom" secondItem="BtF-Gk-D12" secondAttribute="bottom" id="wnd-Uz-U0c"/>
                                 </constraints>
                             </scrollView>
-                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Tj-tW-R6K" userLabel="Shadow View">
-                                <rect key="frame" x="0.0" y="58.5" width="320" height="6"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="6" id="7I8-8q-yjc"/>
-                                </constraints>
-                            </view>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Js-bQ-ZpY" userLabel="NavBar View">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="58.5"/>
                                 <subviews>
@@ -526,16 +519,14 @@
                                 </constraints>
                             </view>
                             <activityIndicatorView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="NB0-PC-C9r">
-                                <rect key="frame" x="150" y="80.5" width="20" height="20"/>
+                                <rect key="frame" x="150" y="74.5" width="20" height="20"/>
                                 <color key="color" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="2Tj-tW-R6K" secondAttribute="trailing" id="LuY-Bc-oFG"/>
                             <constraint firstItem="7Js-bQ-ZpY" firstAttribute="height" secondItem="AJS-P4-Hkt" secondAttribute="height" multiplier="64:623" id="Lx4-fU-huY"/>
                             <constraint firstItem="NB0-PC-C9r" firstAttribute="centerX" secondItem="AJS-P4-Hkt" secondAttribute="centerX" id="Nvm-5Z-Pgo"/>
-                            <constraint firstItem="2Tj-tW-R6K" firstAttribute="top" secondItem="7Js-bQ-ZpY" secondAttribute="bottom" id="Umz-Pp-ETY"/>
                             <constraint firstItem="7Js-bQ-ZpY" firstAttribute="top" secondItem="AJS-P4-Hkt" secondAttribute="top" id="VIL-0O-CY8"/>
                             <constraint firstItem="BtF-Gk-D12" firstAttribute="height" secondItem="AJS-P4-Hkt" secondAttribute="height" priority="250" id="Xao-g2-cMG"/>
                             <constraint firstItem="BtF-Gk-D12" firstAttribute="width" secondItem="AJS-P4-Hkt" secondAttribute="width" id="bZf-1n-jZ3"/>
@@ -546,8 +537,7 @@
                             <constraint firstItem="UNP-hf-cFI" firstAttribute="trailing" secondItem="7Js-bQ-ZpY" secondAttribute="trailing" id="rVy-r2-yrE"/>
                             <constraint firstItem="7Js-bQ-ZpY" firstAttribute="height" secondItem="AJS-P4-Hkt" secondAttribute="height" multiplier="44:375" id="t0C-19-mbS"/>
                             <constraint firstItem="UNP-hf-cFI" firstAttribute="bottom" secondItem="7f0-ZC-o8d" secondAttribute="bottom" id="tFP-px-vz4"/>
-                            <constraint firstItem="2Tj-tW-R6K" firstAttribute="leading" secondItem="AJS-P4-Hkt" secondAttribute="leading" id="wpl-vt-Nik"/>
-                            <constraint firstItem="NB0-PC-C9r" firstAttribute="top" secondItem="2Tj-tW-R6K" secondAttribute="bottom" constant="16" id="yVe-xd-hGk"/>
+                            <constraint firstItem="NB0-PC-C9r" firstAttribute="top" secondItem="7Js-bQ-ZpY" secondAttribute="bottom" constant="16" id="yVe-xd-hGk"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="UNP-hf-cFI"/>
                         <variation key="default">
@@ -585,7 +575,6 @@
                         <outlet property="postFeedHeaderView" destination="a7j-dG-pvN" id="Ite-uT-Le9"/>
                         <outlet property="promoteButton" destination="Imt-Ze-f0t" id="fkT-dD-4Xm"/>
                         <outlet property="scrollView" destination="7f0-ZC-o8d" id="fET-LD-QHE"/>
-                        <outlet property="shadowView" destination="2Tj-tW-R6K" id="KDI-zG-5sM"/>
                         <outlet property="sortByLabel" destination="NIC-bg-8Kq" id="Ilg-Ir-Tfj"/>
                         <outlet property="subscribesStackView" destination="hL9-He-JpB" id="uDW-uB-Fb5"/>
                         <outlet property="tagsCollectionView" destination="lwn-iM-8rz" id="KAp-WL-toG"/>
@@ -630,7 +619,6 @@
                         <outletCollection property="widthsCollection" destination="8A6-dT-b1z" collectionClass="NSMutableArray" id="k4Q-EE-dHR"/>
                         <outletCollection property="widthsCollection" destination="754-es-Dtx" collectionClass="NSMutableArray" id="X3E-X3-ku2"/>
                         <outletCollection property="widthsCollection" destination="NNl-ve-cFE" collectionClass="NSMutableArray" id="FMR-Ug-zuu"/>
-                        <outletCollection property="heightsCollection" destination="7I8-8q-yjc" collectionClass="NSMutableArray" id="wGV-F8-FUa"/>
                         <outletCollection property="heightsCollection" destination="rDi-pt-7XW" collectionClass="NSMutableArray" id="Zr8-KU-dFc"/>
                         <outletCollection property="heightsCollection" destination="0cK-Wq-U7s" collectionClass="NSMutableArray" id="crn-ew-my6"/>
                         <outletCollection property="heightsCollection" destination="pJh-g4-f8G" collectionClass="NSMutableArray" id="9JT-dA-ALZ"/>
@@ -664,7 +652,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="icon-button-arrow-down-gray-normal" width="11" height="6"/>
+        <image name="icon-button-arrow-down-gray-normal" width="11.5" height="6"/>
         <image name="icon-button-back-black-normal" width="8" height="14"/>
         <image name="icon-button-comments-default" width="20" height="20"/>
         <image name="icon-button-comments-highlighted" width="20" height="20"/>
@@ -679,6 +667,5 @@
         <image name="icon-button-vertical-more-normal" width="24" height="24"/>
         <image name="icon-cell-user-profile" width="18" height="18"/>
         <image name="icon-topic-cover" width="14" height="16"/>
-        <image name="icon-user-profile-image-placeholder" width="40" height="40"/>
     </resources>
 </document>

@@ -23,9 +23,9 @@ extension UIImageView {
         self.alpha                  =   0.0
         
         let imagePathWithProxy      =   path.trimmingCharacters(in: .whitespacesAndNewlines).addImageProxy(withSize: size)
-        let imageURL                =   URL(string: imagePathWithProxy.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!)
+        let imageURL                =   URL(string: imagePathWithProxy.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!.replacingOccurrences(of: "%20", with: "_"))
         
-//        Logger.log(message: "imageURL = \(imageURL!)", event: .debug)
+        Logger.log(message: "imageURL = \(imageURL!)", event: .debug)
         
         let imagePlaceholderName    =   imageType == .defaultImage ? "image-placeholder" : (imageType == .userProfileImage ?    "icon-user-profile-image-placeholder" :
                                                                                                                                 "image-user-cover-placeholder")

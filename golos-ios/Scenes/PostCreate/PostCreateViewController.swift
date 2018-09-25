@@ -38,6 +38,9 @@ class PostCreateViewController: GSBaseViewController {
     var interactor: PostCreateBusinessLogic?
     var router: (NSObjectProtocol & PostCreateRoutingLogic & PostCreateDataPassing)?
     
+    // Handlers
+    var handlerSuccessCreatedItem: ((Bool) -> Void)?
+
     
     // MARK: - IBOutlets
     @IBOutlet weak var stackView: UIStackView!
@@ -360,6 +363,7 @@ class PostCreateViewController: GSBaseViewController {
     // MARK: - Actions
     @IBAction func cancelBarButtonTapped(_ sender: UIBarButtonItem) {
         self.clearAllEnteredValues()
+        self.router?.save(success: false)
         self.router?.routeToNextScene()
     }
     
@@ -405,8 +409,8 @@ extension PostCreateViewController: PostCreateDisplayLogic {
         
         self.clearAllEnteredValues()
 
-        
         self.showAlertView(withTitle: "Info", andMessage: self.loadMessage(), needCancel: false, completion: { [weak self] _ in
+            self?.router?.save(success: true)
             self?.router?.routeToNextScene()
         })
     }

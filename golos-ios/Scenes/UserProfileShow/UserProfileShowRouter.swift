@@ -63,6 +63,14 @@ class UserProfileShowRouter: NSObject, UserProfileShowRoutingLogic, UserProfileS
         
         passDataToPostCreateScene(postShortInfo: sceneType == .createComment ? self.dataStore!.selectedBlog! : self.dataStore!.commentReply!, destination: &destinationDS)
         navigateToPostCreateScene(source: viewController!, destination: destinationVC)
+        
+        // Handlers
+        destinationVC.handlerSuccessCreatedItem     =   { [weak self] success in
+            // Reload posts in selected list
+            if success {
+                self?.viewController?.loadUserDetails(byCondition: (isRefreshData: true, isInfiniteScrolling: false))
+            }
+        }
     }
     
     func routeToUserProfileScene(byUserName name: String) {

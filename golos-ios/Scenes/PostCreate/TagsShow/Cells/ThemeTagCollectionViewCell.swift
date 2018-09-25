@@ -120,7 +120,12 @@ extension ThemeTagCollectionViewCell: UITextFieldDelegate {
         }
         
         guard CharacterSet.alphanumerics.contains(Unicode.Scalar.init(string) ?? .init(0)) else {
-            if string == "-" && !(textField.text?.contains("-"))! && (textField.text?.count)! > 0 || string.isEmpty  {
+            if string == " " && (textField.text?.count)! > 0 {
+                self.completionChangeTitle!(self.firstResponderWidth, textField.text, string.lowercased())
+                return false
+            }
+            
+            else if string == "-" && !(textField.text?.contains("-"))! && (textField.text?.count)! > 0 || string.isEmpty  {
                 return true
             }
             

@@ -44,6 +44,14 @@ class PostShowRouter: NSObject, PostShowRoutingLogic, PostShowDataPassing {
         
         passDataToPostCreateScene(postShortInfo: self.dataStore!.postShortInfo!, destination: &destinationDS)
         navigateToPostCreateScene(source: viewController!, destination: destinationVC)
+        
+        // Handlers
+        destinationVC.handlerSuccessCreatedItem     =   { [weak self] success in
+            // Reload posts in selected list
+            if success {
+                self?.viewController?.loadContentComments()
+            }
+        }
     }
     
     func routeToUserProfileScene(byUserName name: String) {

@@ -72,10 +72,7 @@ class PostCreateInteractor: PostCreateBusinessLogic, PostCreateDataStore {
     
     func publishItem(withRequestModel requestModel: PostCreateModels.Item.RequestModel) {
         worker = PostCreateWorker()
-        var jsonMetadataString: String!
-        var comment: RequestParameterAPI.Comment!
-        var operationAPIType: OperationAPIType!
-        
+
         // Create markdown titles for all images & links
         worker?.createSignatures(forImagesIn: self.attachments!, completion: { [weak self] attachments in
             self?.save(attachments: attachments)
@@ -84,67 +81,85 @@ class PostCreateInteractor: PostCreateBusinessLogic, PostCreateDataStore {
             switch requestModel.sceneType {
             case .createPost:
                 // API 'get_content'
-                self?.worker?.load(postPermlink: (self?.tags!.first!.title!)!.transliteration(), completion: { errorAPI in
+                self?.worker?.load(postPermlink: (self?.tags?.first?.title)!.transliteration(), completion: { errorAPI in
                     guard errorAPI.caseInfo.message != "No Internet Connection" else {
-                        let responseModel   =   PostCreateModels.Item.ResponseModel(errorAPI: errorAPI)
+                        let responseModel = PostCreateModels.Item.ResponseModel(errorAPI: errorAPI)
                         self?.presenter?.presentPublishItem(fromResponseModel: responseModel)
                         
                         return
                     }
 
-                    jsonMetadataString      =   ("{\"tags\":[\"" + (self?.tags!.compactMap({ $0.title!.transliteration() }).joined(separator: ","))! + "\"]")
-                                                    .replacingOccurrences(of: ",", with: "\",\"") + ",\"app\":\"golos.io/0.1\",\"format\":\"markdown\"}"
+                    let jsonMetadataString = ("{\"tags\":[\"" + (self?.tags)!.compactMap({ $0.title!.transliteration() }).joined(separator: ",") + "\"]")
+                                                .replacingOccurrences(of: ",", with: "\",\"") + ",\"app\":\"golos.io/0.1\",\"format\":\"markdown\"}"
                     
-                    Logger.log(message: "\njsonMetadataString:\n\t\(jsonMetadataString!)", event: .debug)
+//                    Logger.log(message: "\njsonMetadataString:\n\t\(jsonMetadataString!)", event: .debug)
                     
-                    // Create Comment with transliteration
-                    comment                 =   RequestParameterAPI.Comment(parentAuthor:       "",
-                                                                            parentPermlink:     (self?.tags!.first!.title)!.transliteration(),
-                                                                            author:             User.current!.name,
-                                                                            title:              (self?.commentTitle)!,
-                                                                            body:               (self?.commentBody!)!,
-                                                                            jsonMetadata:       jsonMetadataString,
-                                                                            needTiming:         errorAPI.caseInfo.message.contains("timing"),
-                                                                            attachments:        self?.attachments)
+                    // Create Post with transliteration
+                    let newPost = RequestParameterAPI.Comment(parentAuthor:       "",
+                                                              parentPermlink:     (self?.tags?.first?.title ?? "").transliteration(),
+                                                              author:             User.current!.name,
+                                                              title:              self?.commentTitle ?? "",
+                                                              body:               self?.commentBody ?? "",
+                                                              jsonMetadata:       jsonMetadataString,
+                                                              needTiming:         errorAPI.caseInfo.message.contains("timing"),
+                                                              attachments:        self?.attachments)
                     
-                    operationAPIType = OperationAPIType.createPost(operations: [comment])
+                    let operationAPIType = OperationAPIType.createPost(operations: [newPost])
+                    
+                    // Run API
+                    self?.runRequest(withOperationAPIType: operationAPIType)
                 })
                 
             case .createComment:
-                jsonMetadataString          =   ("{\"tags\":[\"" + (self?.commentParentTag)! + "\"]")
-                                                    .replacingOccurrences(of: ",", with: "\",\"") + ",\"app\":\"golos.io/0.1\",\"format\":\"markdown\"}"
+                let jsonMetadataString = ("{\"tags\":[\"" + (self?.commentParentTag ?? "test") + "\"]")
+                                            .replacingOccurrences(of: ",", with: "\",\"") + ",\"app\":\"golos.io/0.1\",\"format\":\"markdown\"}"
                 
-                Logger.log(message: "\njsonMetadataString:\n\t\(jsonMetadataString!)", event: .debug)
+//                Logger.log(message: "\njsonMetadataString:\n\t\(jsonMetadataString!)", event: .debug)
                 
                 // Create Comment with transliteration
-                comment                     =   RequestParameterAPI.Comment(parentAuthor:       (self?.commentParentAuthor)!,
-                                                                            parentPermlink:     (self?.commentParentPermlink)!,
-                                                                            author:             User.current!.name,
-                                                                            title:              "",
-                                                                            body:               (self?.commentBody!)!,
-                                                                            jsonMetadata:       jsonMetadataString,
-                                                                            needTiming:         true,
-                                                                            attachments:        self?.attachments)
+                let newComment = RequestParameterAPI.Comment(parentAuthor:       self?.commentParentAuthor ?? "",
+                                                             parentPermlink:     self?.commentParentPermlink ?? "",
+                                                             author:             User.current!.name,
+                                                             title:              "",
+                                                             body:               self?.commentBody ?? "",
+                                                             jsonMetadata:       jsonMetadataString,
+                                                             needTiming:         true,
+                                                             attachments:        self?.attachments)
                 
-                operationAPIType = OperationAPIType.comment(fields: comment)
+                let operationAPIType = OperationAPIType.comment(fields: newComment)
+                
+                // Run API
+                self?.runRequest(withOperationAPIType: operationAPIType)
 
             case .createCommentReply:
-                jsonMetadataString          =   ("{\"tags\":[\"" + (self?.tags!.compactMap({ $0.title!.transliteration() }).joined(separator: ","))! + "\"]")
-                                                    .replacingOccurrences(of: ",", with: "\",\"") + ",\"app\":\"golos.io/0.1\",\"format\":\"markdown\"}"
+                let jsonMetadataString = ("{\"tags\":[\"" + (self?.commentParentTag ?? "test") + "\"]")
+                                            .replacingOccurrences(of: ",", with: "\",\"") + ",\"app\":\"golos.io/0.1\",\"format\":\"markdown\"}"
                 
-                Logger.log(message: "\njsonMetadataString:\n\t\(jsonMetadataString!)", event: .debug)
+//                Logger.log(message: "\njsonMetadataString:\n\t\(jsonMetadataString!)", event: .debug)
                 
-                // Create Comment with transliteration
-                comment                     =   RequestParameterAPI.Comment(parentAuthor:       (self?.commentParentAuthor)!,
-                                                                            parentPermlink:     (self?.commentParentPermlink)!,
-                                                                            author:             User.current!.name,
-                                                                            title:              (self?.commentTitle)!,
-                                                                            body:               (self?.commentBody!)!,
-                                                                            jsonMetadata:       jsonMetadataString,
-                                                                            needTiming:         true,
-                                                                            attachments:        self?.attachments)
+                // Create Comment Reply with transliteration
+                let newCommentReply = RequestParameterAPI.Comment(parentAuthor:       self?.commentParentAuthor ?? "",
+                                                                  parentPermlink:     self?.commentParentPermlink ?? "",
+                                                                  author:             User.current!.name,
+                                                                  title:              "",
+                                                                  body:               self?.commentBody ?? "",
+                                                                  jsonMetadata:       jsonMetadataString,
+                                                                  needTiming:         true,
+                                                                  attachments:        self?.attachments)
+                
+                let operationAPIType = OperationAPIType.comment(fields: newCommentReply)
+                
+                // Run API
+                self?.runRequest(withOperationAPIType: operationAPIType)
             }
-            
+        })
+    }
+    
+    private func runRequest(withOperationAPIType operationAPIType: OperationAPIType) {
+        let postRequestQueue = DispatchQueue.global(qos: .background)
+        
+        // Run queue in Async Thread
+        postRequestQueue.async {
             broadcast.executePOST(requestByOperationAPIType:    operationAPIType,
                                   userName:                     User.current!.name,
                                   onResult:                     { [weak self] responseAPIResult in
@@ -157,11 +172,11 @@ class PostCreateInteractor: PostCreateBusinessLogic, PostCreateDataStore {
                                     let responseModel   =   PostCreateModels.Item.ResponseModel(errorAPI: errorAPI)
                                     self?.presenter?.presentPublishItem(fromResponseModel: responseModel)
                 },
-                                  onError: { errorAPI in
+                                  onError: { [weak self] errorAPI in
                                     Logger.log(message: "nresponse API Error = \(errorAPI.caseInfo.message)\n", event: .error)
                                     let responseModel   =   PostCreateModels.Item.ResponseModel(errorAPI: errorAPI)
                                     self?.presenter?.presentPublishItem(fromResponseModel: responseModel)
             })
-        })
+        }
     }
 }

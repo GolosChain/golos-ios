@@ -16,16 +16,19 @@ import GoloSwift
 // MARK: - Input & Output protocols
 @objc protocol PostCreateRoutingLogic {
     func routeToNextScene()
+    func save(success: Bool)
     func routeToUserProfileScene(byUserName name: String)
 }
 
 protocol PostCreateDataPassing {
+    var createItem: Bool? { get set }
     var dataStore: PostCreateDataStore? { get }
 }
 
 class PostCreateRouter: NSObject, PostCreateRoutingLogic, PostCreateDataPassing {
     // MARK: - Properties
     weak var viewController: PostCreateViewController?
+    var createItem: Bool?
     var dataStore: PostCreateDataStore?
     
     
@@ -36,6 +39,10 @@ class PostCreateRouter: NSObject, PostCreateRoutingLogic, PostCreateDataPassing 
     
 
     // MARK: - Routing
+    func save(success: Bool) {
+        self.createItem = success
+    }
+    
     func routeToNextScene() {
         self.viewController!.sceneType == .createPost ? self.routeToMainScene() : self.routeToPreviousScene()
     }
@@ -59,17 +66,18 @@ class PostCreateRouter: NSObject, PostCreateRoutingLogic, PostCreateDataPassing 
         
         UIView.animate(withDuration: 0.3,
                        animations: {
-                        self.viewController!.navigationController!.navigationBar.barTintColor = UIColor(hexString: "#4469af")
-                        self.viewController!.navigationController!.navigationBar.isHidden = true
+                            self.viewController!.navigationController!.navigationBar.barTintColor = UIColor(hexString: "#4469af")
+                            self.viewController!.navigationController!.navigationBar.isHidden = true
         }, completion: { _ in
             UIView.transition(from: fromView, to: toView, duration: 0.5, options: .transitionCrossDissolve) { [weak self] _ in
-                self?.viewController!.navigationController!.tabBarController!.selectedIndex = 0
+                self?.viewController!.navigationController!.tabBarController!.selectedIndex = (self?.createItem)! ? 2 : 0
             }
         })
     }
 
     private func routeToPreviousScene() {
         self.viewController!.navigationController!.popViewController(animated: true)
+        self.viewController!.handlerSuccessCreatedItem!((self.createItem)!)
     }
     
 

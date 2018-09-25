@@ -65,6 +65,14 @@ class PostsShowRouter: NSObject, PostsShowRoutingLogic, PostsShowDataPassing {
         
         passDataToPostCreateScene(selectedPost: self.dataStore!.postShortInfo as! PostCellSupport, destination: &destinationDS)
         navigateToPostCreateScene(source: viewController!, destination: destinationVC)
+        
+        // Handlers
+        destinationVC.handlerSuccessCreatedItem     =   { [weak self] success in
+            // Reload posts in selected list
+            if success {
+                self?.viewController?.loadPosts(byCondition: (isRefreshData: true, isInfiniteScrolling: false))
+            }
+        }
     }
 
     

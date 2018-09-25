@@ -366,7 +366,7 @@ extension UserProfileShowViewController {
     }
     
     // Blogs
-    private func loadUserDetails(byCondition condition: LoadDataCondition) {
+    func loadUserDetails(byCondition condition: LoadDataCondition) {
         guard condition.isRefreshData == true || condition.isInfiniteScrolling == true else {
             return
         }
