@@ -544,11 +544,12 @@ class PostShowViewController: GSBaseViewController {
 
             // Subscribe topic
             if let firstTag = displayedPost.tags?.first {
-                self.topicTitleLabel.text       =   firstTag.transliteration().uppercaseFirst
+                self.topicTitleLabel.text = firstTag.transliteration().uppercaseFirst
             }
             
             // Subscribe User
-            if let user = User.current, let userProfileImageURL = user.profileImageURL {
+            if  let author = self.router?.dataStore?.postShortInfo?.author,
+                let user = User.fetch(byName: author), let userProfileImageURL = user.profileImageURL {
                 self.userAvatarImageView.uploadImage(byStringPath:       userProfileImageURL,
                                                      imageType:          .userProfileImage,
                                                      size:               CGSize(width: 50.0 * widthRatio, height: 50.0 * widthRatio),
@@ -557,18 +558,16 @@ class PostShowViewController: GSBaseViewController {
                                                      fromItem:           (user as CachedImageFrom).fromItem)
             }
 
-            self.userAvatarImageView.image      =   self.postFeedHeaderView.authorProfileImageView.image
-            
-            self.userNameLabel.text             =   self.postFeedHeaderView.authorLabel.text
+            self.userNameLabel.text = self.postFeedHeaderView.authorLabel.text
             
             // User action buttons
             if displayedPost.children > 0 {
                 self.commentsButton.setTitle("\(displayedPost.children)", for: .normal)
-                self.commentsButton.isSelected  =   displayedPost.currentUserVoted
+                self.commentsButton.isSelected = displayedPost.currentUserVoted
             }
             
             // Flaunt icon
-            self.flauntButton.isSelected        =   displayedPost.currentUserFlaunted
+            self.flauntButton.isSelected = displayedPost.currentUserFlaunted
             self.flauntButton.setImage(displayedPost.currentUserFlaunted ? UIImage(named: "icon-button-flaunt-selected") : UIImage(named: "icon-button-flaunt-default"), for: .normal)
         }
     }
@@ -577,9 +576,9 @@ class PostShowViewController: GSBaseViewController {
         self.tagsCollectionView.reloadData()
         (self.commentsStackView.arrangedSubviews as! [CommentView]).forEach({ $0.localizeTitles() })
         
-        self.postFeedHeaderView.categoryLabel.text  =   self.router!.dataStore!.displayedPost!.category
-                                                            .transliteration()
-                                                            .uppercaseFirst
+        self.postFeedHeaderView.categoryLabel.text = self.router!.dataStore!.displayedPost!.category
+                                                        .transliteration()
+                                                        .uppercaseFirst
             
         self.flauntButton.setTitle("Flaunt Verb".localized(), for: .normal)
         self.donateButton.setTitle("Donate Verb".localized(), for: .normal)
