@@ -23,9 +23,9 @@ import Foundation
 import CoreFoundation
 import SSCommonCrypto
 
-public let WebsocketDidConnectNotification = "WebsocketDidConnectNotification"
-public let WebsocketDidDisconnectNotification = "WebsocketDidDisconnectNotification"
-public let WebsocketDisconnectionErrorKeyName = "WebsocketDisconnectionErrorKeyName"
+public let WebsocketDidConnectNotification      =   "WebsocketDidConnectNotification"
+public let WebsocketDidDisconnectNotification   =   "WebsocketDidDisconnectNotification"
+public let WebsocketDisconnectionErrorKeyName   =   "WebsocketDisconnectionErrorKeyName"
 
 //Standard WebSocket close codes
 public enum CloseCode : UInt16 {

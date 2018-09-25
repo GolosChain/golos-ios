@@ -25,8 +25,10 @@ protocol PostsShowDisplayLogic: class {
 
 class PostsShowViewController: GSTableViewController, ContainerViewSupport {
     // MARK: - Properties
+    var selectedIndex: Int = 0
     var selectedButton: UIButton!
-    var postFeedTypes: [PostsFeedType]  =   [ .lenta, .new, .actual, .popular, .promo ]
+    var postFeedTypes: [PostsFeedType]  =   User.current == nil ?   [ .new, .actual, .popular, .promo ] :
+                                                                    [ .lenta, .new, .actual, .popular, .promo ]
 
     var interactor: PostsShowBusinessLogic?
     var router: (NSObjectProtocol & PostsShowRoutingLogic & PostsShowDataPassing)?
@@ -57,8 +59,8 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
     
     @IBOutlet weak var lineViewWidthConstraint: NSLayoutConstraint! {
         didSet {
-            self.selectedButton                 =   self.buttonsStackView.arrangedSubviews.first(where: { $0.tag == 0 }) as? UIButton
-            lineViewWidthConstraint.constant    =   self.selectedButton.frame.width
+            self.selectedButton = self.buttonsStackView.arrangedSubviews.filter({ type(of: $0) == UIButton.self && !$0.isHidden })[self.selectedIndex] as? UIButton
+            lineViewWidthConstraint.constant = self.selectedButton.frame.width
         }
     }
 
@@ -167,8 +169,15 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
         
         self.view.tune()
         self.containerView.mainVC = self
-        self.containerView.setActiveViewController(index: 0)
+        self.containerView.setActiveViewController(index: self.selectedIndex)
+        
+        self.lentaButton.isHidden = User.current == nil
 
+        self.selectedButton = self.buttonsStackView.arrangedSubviews.filter({ type(of: $0) == UIButton.self && !$0.isHidden })[self.selectedIndex] as? UIButton
+        self.lineViewWidthConstraint.constant = self.selectedButton.frame.width
+
+        self.localizeTitles()
+        
         // Load Posts
         self.loadPosts(byCondition: (isRefreshData: true, isInfiniteScrolling: false))
 
@@ -180,23 +189,19 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
         
         UIApplication.shared.statusBarStyle = .lightContent
         self.hideNavigationBar()
-        self.lentaButton.isHidden = User.current == nil
-        self.localizeTitles()
     }
     
     
     // MARK: - Custom Functions
     override func localizeTitles() {
         self.buttonsCollection.forEach({ $0.setTitle($0.titleLabel!.text!.localized(), for: .normal) })
-        self.buttonsStackView.layoutIfNeeded()
+//        self.buttonsStackView.layoutIfNeeded()
         
         // Set UIStackView spacing
         if self.buttonsStackView.frame.width < UIScreen.main.bounds.width {
             self.buttonsStackView.spacing               +=  (UIScreen.main.bounds.width - self.buttonsStackView.frame.width) / 6
             self.lineViewLeadingConstraint.constant     =   self.buttonsStackView.spacing
         }
-
-        self.selectedButton = self.buttonsStackView.arrangedSubviews.filter({ $0.isHidden == false })[self.selectedButton.tag + 1] as? UIButton
         
         // Reload data
         self.loadPosts(byCondition: (isRefreshData: true, isInfiniteScrolling: false))
@@ -239,7 +244,7 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
     private func setActiveViewControllerHandlers() {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1, execute: {
             if let activeVC = self.containerView.activeVC {
-                activeVC.fetchPosts(byParameters: (author: User.current?.name, postFeedType: self.postFeedTypes[self.selectedButton.tag], permlink: nil, sortBy: nil))
+                activeVC.fetchPosts(byParameters: (author: User.current?.name, postFeedType: self.postFeedTypes[self.selectedIndex], permlink: nil, sortBy: nil))
                 
                 // Handler Pull Refresh/Infinite Scrolling data
                 activeVC.handlerPushRefreshData                     =   { [weak self] lastItem in
@@ -269,13 +274,13 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
                 }
                 
                 activeVC.handlerCommentsButtonTapped                =   { [weak self] postShortInfo in
-                    self?.interactor?.save(post: postShortInfo)
+                    self?.interactor?.save(postShortInfo: postShortInfo)
                     self?.router?.routeToPostShowScene(withScrollToComments: true)
                 }
                 
                 activeVC.handlerSelectItem                          =   { [weak self] selectedPost in
                     if let post = selectedPost as? PostCellSupport {
-                        self?.interactor?.save(post: PostShortInfo(id:                  post.id,
+                        self?.interactor?.save(postShortInfo: PostShortInfo(id:                  post.id,
                                                                    title:               post.title,
                                                                    author:              post.author,
                                                                    permlink:            post.permlink,
@@ -330,9 +335,10 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
         
         // Load posts or not
         else {
-            self.selectedButton = sender
+            self.selectedIndex      =   User.current == nil ? sender.tag - 1 : sender.tag
+            self.selectedButton     =   sender
             
-            self.containerView.setActiveViewController(index: User.current == nil ? sender.tag - 1 : sender.tag)
+            self.containerView.setActiveViewController(index: self.selectedIndex)
             self.loadPosts(byCondition: (isRefreshData: self.containerView.activeVC?.fetchedResultsController == nil, isInfiniteScrolling: false))
         }
         
@@ -366,7 +372,7 @@ extension PostsShowViewController {
         let loadPostsQueue = DispatchQueue.global(qos: .background)
         
         loadPostsQueue.async {
-            let loadPostsRequestModel = PostsShowModels.Items.RequestModel(postFeedType: self.postFeedTypes[self.selectedButton.tag])
+            let loadPostsRequestModel = PostsShowModels.Items.RequestModel(postFeedType: self.postFeedTypes[self.selectedIndex])
             self.interactor?.loadPosts(withRequestModel: loadPostsRequestModel)
         }
     }

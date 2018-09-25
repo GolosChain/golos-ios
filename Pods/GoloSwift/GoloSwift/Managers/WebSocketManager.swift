@@ -189,16 +189,22 @@ extension WebSocketManager: WebSocketDelegate {
                     }
                     
                     if isSendedRequestMethodAPI, let methodAPIType = requestMethodAPIStore?.methodAPIType.methodAPIType {
-                        responseAPIType         =   try self?.decode(from: jsonData, byMethodAPIType: methodAPIType)
+                        responseAPIType     =   try self?.decode(from: jsonData, byMethodAPIType: methodAPIType)
                     }
                         
                     else if !isSendedRequestMethodAPI, let operationAPIType = requestOperationAPIStore?.operationAPIType.operationAPIType {
-                        responseAPIType         =   try self?.decode(from: jsonData, byOperationAPIType: operationAPIType)
+                        responseAPIType     =   try self?.decode(from: jsonData, byOperationAPIType: operationAPIType)
                     }
                     
                     guard let responseTypeAPI = responseAPIType, let responseAPIResult = responseTypeAPI.responseAPI else {
-                        self?.errorAPI  =   responseAPIType?.errorAPI ?? ErrorAPI.invalidData(message: "Response Unsuccessful")
+                        self?.errorAPI      =   responseAPIType?.errorAPI ?? ErrorAPI.invalidData(message: "Response Unsuccessful")
                         
+                        // Check unique request ID
+                        guard   requestIDs.contains(codeID) && (requestMethodAPIStore?.methodAPIType.id == codeID ||
+                                                                requestOperationAPIStore?.operationAPIType.id == codeID) else {
+                                                                    return
+                        }
+
                         return  isSendedRequestMethodAPI ?  requestMethodAPIStore!.completion((responseAPI: nil, errorAPI: self?.errorAPI)) :
                                                             requestOperationAPIStore!.completion((responseAPI: nil, errorAPI: self?.errorAPI))
                     }

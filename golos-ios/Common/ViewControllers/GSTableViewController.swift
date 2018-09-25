@@ -277,9 +277,9 @@ class GSTableViewController: GSBaseViewController, HandlersCellSupport {
             
             // Hide activity indicator
             self.displaySpinner(false)
-            self.postsTableView.layoutIfNeeded()
+//            self.postsTableView.layoutIfNeeded()
             
-            if self.fetchedResultsController.sections![0].numberOfObjects == 0 {
+            if self.fetchedResultsController.fetchedObjects?.count == 0 {
                 self.displayEmptyTitle(byType: self.postType)
             }
                 

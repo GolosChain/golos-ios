@@ -493,10 +493,10 @@ class PostShowViewController: GSBaseViewController {
     
     
     // MARK: - Custom Functions
-    private func didCommentsView(isHide: Bool) {
-        if isHide {
-//            self.commentsViewTopConstraint.constant         =   -30.0 * heightRatio
-//            self.commentsStackViewTopConstraint.constant    =   -(self.commentsStackViewHeightConstraint.constant + 40.0 * heightRatio)
+    private func didCommentsView(hided: Bool) {
+        if hided {
+            self.commentsViewTopConstraint.constant         =   -30.0 * heightRatio
+            self.commentsStackViewTopConstraint.constant    =   -(self.commentsStackViewHeightConstraint.constant + 40.0 * heightRatio)
             self.commentsView.isHidden                      =   true
             self.commentsStackView.isHidden                 =   true
         }
@@ -789,7 +789,7 @@ extension PostShowViewController {
                     }
 
                     // Show comments count
-                    self.didCommentsView(isHide: false)
+                    self.didCommentsView(hided: false)
                     
                     return
                 }
@@ -819,7 +819,7 @@ extension PostShowViewController {
                 guard let comments = CoreDataManager.instance.readEntities(withName:                    "Comment",
                                                                            withPredicateParameters:     NSPredicate(format: "parentAuthor == %@ AND parentPermlink == %@", postShortInfo.author ?? "XXX", postShortInfo.permlink ?? "XXX"),
                                                                            andSortDescriptor:           NSSortDescriptor(key: "created", ascending: true)) as? [Comment], comments.count > 0 else {
-                                                                            self.didCommentsView(isHide: true)
+                                                                            self.didCommentsView(hided: true)
                                                                             return
                 }
                 

@@ -63,7 +63,7 @@ class PostsShowRouter: NSObject, PostsShowRoutingLogic, PostsShowDataPassing {
         destinationVC.sceneType         =   sceneType
         var destinationDS               =   destinationVC.router!.dataStore!
         
-        passDataToPostCreateScene(selectedPost: self.dataStore!.post as! PostCellSupport, destination: &destinationDS)
+        passDataToPostCreateScene(selectedPost: self.dataStore!.postShortInfo as! PostCellSupport, destination: &destinationDS)
         navigateToPostCreateScene(source: viewController!, destination: destinationVC)
     }
 
@@ -85,8 +85,8 @@ class PostsShowRouter: NSObject, PostsShowRoutingLogic, PostsShowDataPassing {
     
     // MARK: - Passing data
     func passDataToPostShowScene(source: PostsShowDataStore, destination: inout PostShowDataStore) {
-        destination.postShortInfo           =   source.post
-        destination.postType                =   viewController!.postFeedTypes[viewController!.selectedButton.tag]
+        destination.postShortInfo           =   source.postShortInfo
+        destination.postType                =   viewController!.postFeedTypes[viewController!.selectedIndex]
     }
     
     func passDataToUserProfileScene(userName: String, destination: inout UserProfileShowDataStore) {

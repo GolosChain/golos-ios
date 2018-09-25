@@ -51,7 +51,7 @@ public class Lenta: NSManagedObject, CachedImageFrom {
         }
         
         // Update entity
-        entity!.userName    =   User.current!.name
+        entity!.userName = User.current!.name
         entity!.update(withModel: model)
     }
 }

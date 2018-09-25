@@ -93,8 +93,8 @@ extension String {
     
     /// Check entered Tag title simbol
     func checkTagTitleRule() -> Bool {
-        let pattern             =   "^[a-zа-яё0-9-ґєії]+$"
-        let regex               =   try! NSRegularExpression(pattern: pattern)
+        let pattern = "^[a-zа-яё0-9-ґєії]+$"
+        let regex = try! NSRegularExpression(pattern: pattern)
 
         return regex.matches(in: self, range: NSRange.init(location: 0, length: self.count)).count != 0
     }
@@ -102,35 +102,35 @@ extension String {
     
     /// Rule 1: convert image URL -> markdown format
     func convertUsersAccounts() -> String {
-        var result              =   NSMutableString.init(string: self)
+        var result = NSMutableString.init(string: self)
         
-        let pattern             =   "[@]\\w+[-.]\\w+|@\\w+"
-        let regex               =   try! NSRegularExpression(pattern: pattern)
-        let matches             =   regex.matches(in: result as String, range: NSRange.init(location: 0, length: result.length))
+        let pattern = "[@]\\w+[-.]\\w+|@\\w+"
+        let regex = try! NSRegularExpression(pattern: pattern)
+        let matches = regex.matches(in: result as String, range: NSRange.init(location: 0, length: result.length))
         
         for match in matches.reversed() {
-            let accountString   =   (result as NSString).substring(with: match.range)
-            result              =   result.replacingCharacters(in: match.range, with: String(format: "[%@](%@)", accountString, accountString)) as! NSMutableString
+            let accountString = (result as NSString).substring(with: match.range)
+            result = result.replacingCharacters(in: match.range, with: String(format: "[%@](%@)", accountString, accountString)) as! NSMutableString
         }
         
         return result as String
     }
 
     func convertImagePathToMarkdown() -> String {
-        var result              =   self
-        let pattern             =   "(http(s?):)([/|.|\\w|\\s|-])*\\.(?:jpg|gif|png)(!d)?"
-        let regex               =   try! NSRegularExpression(pattern: pattern)
-        let matches             =   regex.matches(in: result, range: NSRange.init(location: 0, length: result.count))
+        var result      =   self
+        let pattern     =   "(http(s?):)([/|.|\\w|\\s|-])*\\.(?:jpg|gif|png)(!d)?"
+        let regex       =   try! NSRegularExpression(pattern: pattern)
+        let matches     =   regex.matches(in: result, range: NSRange.init(location: 0, length: result.count))
         
         for match in matches.reversed() {
-            let imageURLString  =   (result as NSString).substring(with: match.range)
+            let imageURLString = (result as NSString).substring(with: match.range)
             
             // Check if image URL present in markdown format: ![]()
             guard (result as NSString).range(of: String(format: "![](%@)", imageURLString), options: NSString.CompareOptions.caseInsensitive).length == 0 else {
                 return result
             }
             
-            result              =   result.replacingOccurrences(of: imageURLString, with: String(format: "![](%@)", imageURLString))
+            result = result.replacingOccurrences(of: imageURLString, with: String(format: "![](%@)", imageURLString))
         }
         
         return result
