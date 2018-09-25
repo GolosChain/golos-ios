@@ -26,8 +26,10 @@ protocol PostShowDisplayLogic: class {
 
 class PostShowViewController: GSBaseViewController {
     // MARK: - Properties
-    var scrollToComment: Bool = false
+    var commentsCount: Int64 = 0
     
+    var scrollToComment: Bool = false
+
     var commentsViews = [CommentView]() {
         didSet {
             _ = commentsViews.map( { commentView in
@@ -94,10 +96,16 @@ class PostShowViewController: GSBaseViewController {
     
     
     // MARK: - IBOutlets
-    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var scrollView: UIScrollView! {
+        didSet {
+            self.scrollView.isUserInteractionEnabled = !self.scrollToComment
+        }
+    }
+    
     @IBOutlet weak var postFeedHeaderView: PostFeedHeaderView!
     @IBOutlet weak var commentsView: UIView!
     @IBOutlet weak var commentsStackView: UIStackView!
+    @IBOutlet weak var subscribesStackView: UIStackView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     @IBOutlet weak var markdownViewManager: MarkdownViewManager! {
@@ -487,15 +495,24 @@ class PostShowViewController: GSBaseViewController {
     // MARK: - Custom Functions
     private func didCommentsView(isHide: Bool) {
         if isHide {
-            self.commentsViewTopConstraint.constant         =   -70.0 * heightRatio
-            self.commentsStackViewTopConstraint.constant    =   -(self.commentsStackViewHeightConstraint.constant + 40.0 * heightRatio)
+//            self.commentsViewTopConstraint.constant         =   -30.0 * heightRatio
+//            self.commentsStackViewTopConstraint.constant    =   -(self.commentsStackViewHeightConstraint.constant + 40.0 * heightRatio)
             self.commentsView.isHidden                      =   true
             self.commentsStackView.isHidden                 =   true
         }
         
         else {
-            self.commentsCountLabel.text   =   String(format: "%i", self.commentsStackView.subviews.count)
+            self.commentsCountLabel.text = String(format: "%i", self.commentsStackView.subviews.count)
         }
+        
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1, execute: {
+            if self.scrollToComment {
+//                self.scrollView.scrollToBottom(animated: true)
+                self.scrollView.scrollRectToVisible(CGRect(origin: self.commentsView.frame.origin, size: CGSize(width: self.commentsView.frame.width, height: max(0, self.commentsStackView.frame.maxY))), animated: true)
+                
+                self.scrollView.isUserInteractionEnabled = true
+            }
+        })
     }
     
     private func loadViewSettings() {
@@ -514,12 +531,6 @@ class PostShowViewController: GSBaseViewController {
                 
                 UIView.animate(withDuration: 0.5, animations: {
                     self?.contentView.alpha = 1.0
-                })
-                
-                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.3, execute: {
-                    if (self?.scrollToComment)! {
-                        self?.scrollView.scrollRectToVisible(CGRect(origin: (self?.commentsView.frame.origin)!, size: CGSize(width: (self?.commentsView.frame.width)!, height: UIScreen.main.bounds.height - 64.0 * heightRatio - 48.0)), animated: true)
-                    }
                 })
             }
             
@@ -753,12 +764,14 @@ extension PostShowViewController {
     // Post Comments list
     private func nextCommentLevel(byPermlink permlink: String?, andParentLevel parentLevel: String) {
         if let commentPermlink = permlink {
+            self.commentsCount += 1
+            
             DispatchQueue.main.async {
                 let comments    =   CoreDataManager.instance.readEntities(withName:                    "Comment",
                                                                           withPredicateParameters:     NSPredicate(format: "parentPermlink == %@", commentPermlink),
                                                                           andSortDescriptor:           NSSortDescriptor(key: "created", ascending: false)) as! [Comment]
                 
-                guard comments.count > 0 else {
+                guard let displayedPost = self.router?.dataStore?.displayedPost, self.commentsCount < displayedPost.children else {
                     // Remove subviews in Stack view
                     self.commentsViews.forEach({ self.commentsStackView.removeArrangedSubview($0)})
                     
@@ -792,13 +805,7 @@ extension PostShowViewController {
                         self?.commentsViews.append(commentView)
                         
                         // Get next Comment level
-                        if commentView.level.count / 2 <= 2 {
-                            self?.nextCommentLevel(byPermlink: commentView.postShortInfo.permlink ?? "XXX", andParentLevel: commentView.level)
-                        }
-                            
-                        else {
-                            self?.nextCommentLevel(byPermlink: "XXX", andParentLevel: "XXX")
-                        }
+                        self?.nextCommentLevel(byPermlink: commentView.postShortInfo.permlink ?? "XXX", andParentLevel: commentView.level)
                     })
                 }
             }
@@ -811,7 +818,7 @@ extension PostShowViewController {
             DispatchQueue.main.async {
                 guard let comments = CoreDataManager.instance.readEntities(withName:                    "Comment",
                                                                            withPredicateParameters:     NSPredicate(format: "parentAuthor == %@ AND parentPermlink == %@", postShortInfo.author ?? "XXX", postShortInfo.permlink ?? "XXX"),
-                                                                           andSortDescriptor:           NSSortDescriptor(key: "created", ascending: true)) as? [Comment] else {
+                                                                           andSortDescriptor:           NSSortDescriptor(key: "created", ascending: true)) as? [Comment], comments.count > 0 else {
                                                                             self.didCommentsView(isHide: true)
                                                                             return
                 }

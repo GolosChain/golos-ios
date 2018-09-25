@@ -37,6 +37,7 @@
 "Enter With Posting Key"                    =   "Log In with posting key";
 "Select topic"                              =   "Select a topic";
 "Subscribe"                                 =   "Subscribe";
+"Unsubscribe"                               =   "Unsubscribe";
 "Write"                                     =   "Write";
 "Posts"                                     =   "Posts";
 "Replies"                                   =   "Replies";
@@ -143,6 +144,8 @@
 "Previously:"                               =   "Previously:";
 "Recent Past:"                              =   "Recent Past";
 "Unknown User"                              =   "Unknown User";
+"Subscribe Success"                         =   "Thanks,\nYou subscribed to the author";
+"Unsubscribe Success"                       =   "Thanks,\nYou unsubscribed from the author";
 
 
 // Placeholders

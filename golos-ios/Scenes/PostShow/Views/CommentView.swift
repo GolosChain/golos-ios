@@ -146,7 +146,8 @@ class CommentView: UIView, HandlersCellSupport {
         })
         
         // Set cell level
-        self.leadingConstraint.constant     =   52.0 * widthRatio * CGFloat(self.level.count - 2) / 2
+        self.leadingConstraint.constant = CGFloat(self.level.count - 2) > 0 ? 52.0 * widthRatio : 0.0
+//        self.leadingConstraint.constant = 52.0 * widthRatio * CGFloat(self.level.count - 2) / 2
         self.markdownViewManager.layoutIfNeeded()
     }
     

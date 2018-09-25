@@ -37,6 +37,7 @@
 "Enter With Posting Key"                    =   "Войти с постинг ключом";
 "Select topic"                              =   "Выберите тему";
 "Subscribe"                                 =   "Подписаться";
+"Unsubscribe"                               =   "Отписаться";
 "Write"                                     =   "Написать";
 "Posts"                                     =   "Посты";
 "Replies"                                   =   "Ответы";
@@ -143,6 +144,8 @@
 "Previously:"                               =   "Предварительно:";
 "Recent Past:"                              =   "Недавно";
 "Unknown User"                              =   "неизвестный аккаунт";
+"Subscribe Success"                         =   "Спасибо,\nВы подписались на автора";
+"Unsubscribe Success"                       =   "Спасибо,\nВы отписались от автора";
 
 
 // Placeholders
