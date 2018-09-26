@@ -178,9 +178,6 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
 
         self.localizeTitles()
         
-        // Load Posts
-        self.loadPosts(byCondition: (isRefreshData: true, isInfiniteScrolling: false))
-
         NotificationCenter.default.addObserver(self, selector: #selector(localizeTitles), name: NSNotification.Name(LCLLanguageChangeNotification), object: nil)
     }
     
@@ -203,7 +200,7 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
             self.lineViewLeadingConstraint.constant     =   self.buttonsStackView.spacing
         }
         
-        // Reload data
+        // Load/Reload Posts
         self.loadPosts(byCondition: (isRefreshData: true, isInfiniteScrolling: false))
     }
     

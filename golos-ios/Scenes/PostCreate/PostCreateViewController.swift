@@ -402,6 +402,10 @@ extension PostCreateViewController: PostCreateDisplayLogic {
                 else if message.contains("parent_permlink") {
                     self.showAlertView(withTitle: viewModel.errorAPI!.caseInfo.title, andMessage: message, needCancel: false, completion: { _ in })
                 }
+                
+                else if message.contains("permlink") {
+                    self.showAlertView(withTitle: viewModel.errorAPI!.caseInfo.title, andMessage: message, needCancel: false, completion: { _ in })
+                }
             }
             
             return

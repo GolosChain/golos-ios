@@ -40,7 +40,7 @@ class PostsShowRouter: NSObject, PostsShowRoutingLogic, PostsShowDataPassing {
     func routeToPostShowScene(withScrollToComments needScrolling: Bool) {
         let storyboard                  =   UIStoryboard(name: "PostShow", bundle: nil)
         let destinationVC               =   storyboard.instantiateViewController(withIdentifier: "PostShowVC") as! PostShowViewController
-        destinationVC.scrollToComment   =   needScrolling
+        destinationVC.scrollCommentsDown   =   needScrolling
         var destinationDS               =   destinationVC.router!.dataStore!
         
         passDataToPostShowScene(source: dataStore!, destination: &destinationDS)

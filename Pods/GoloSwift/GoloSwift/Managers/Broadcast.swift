@@ -298,7 +298,7 @@ public class Broadcast {
                         return
                 }
                 
-//                Logger.log(message: "\nglobalProperties:\n\t\(globalProperties)", event: .debug)
+                //                Logger.log(message: "\nglobalProperties:\n\t\(globalProperties)", event: .debug)
                 
                 time                =   globalProperties.time.convert(toDateFormat: .expirationDateType).addingTimeInterval(60).convert(toStringFormat: .expirationDateType)
                 headBlockID         =   globalProperties.head_block_id.convert(toIntFromStartByte: 12, toEndByte: 16)
@@ -317,15 +317,11 @@ public class Broadcast {
         var generatedID = 0
         
         repeat {
-            generatedID = methodUniqueId ? Int(arc4random_uniform(self.random(range: 1..<500))) : Int(arc4random_uniform(self.random(range: 500..<1000)))
+            generatedID = Int((arc4random_uniform(500)) + (methodUniqueId ? 0 : 500))
         } while requestIDs.contains(generatedID)
         
         requestIDs.append(generatedID)
         
         return generatedID
-    }
-    
-    private func random(range: Range<Int>) -> UInt32 {
-        return UInt32(range.lowerBound + Int(arc4random_uniform(UInt32(range.upperBound - range.lowerBound))))
     }
 }

@@ -28,7 +28,7 @@ class PostShowViewController: GSBaseViewController {
     // MARK: - Properties
     var commentsCount: Int64 = 0
     
-    var scrollToComment: Bool = false
+    var scrollCommentsDown: Bool = false
 
     var commentsViews = [CommentView]() {
         didSet {
@@ -98,7 +98,7 @@ class PostShowViewController: GSBaseViewController {
     // MARK: - IBOutlets
     @IBOutlet weak var scrollView: UIScrollView! {
         didSet {
-            self.scrollView.isUserInteractionEnabled = !self.scrollToComment
+            self.scrollView.isUserInteractionEnabled = !self.scrollCommentsDown
         }
     }
     
@@ -491,26 +491,18 @@ class PostShowViewController: GSBaseViewController {
     
     // MARK: - Custom Functions
     private func didCommentsView(hided: Bool) {
-        if hided {
-            self.commentsViewTopConstraint.constant         =   -30.0 * heightRatio
-            self.commentsStackViewTopConstraint.constant    =   -(self.commentsStackViewHeightConstraint.constant + 40.0 * heightRatio)
-            self.commentsView.isHidden                      =   true
-            self.commentsStackView.isHidden                 =   true
-        }
+        self.commentsViewTopConstraint.constant         =   heightRatio * (hided ? -30.0 : 0.0)
+        self.commentsStackViewTopConstraint.constant    =   hided ? (-1 * self.commentsStackViewHeightConstraint.constant + 40.0 * heightRatio) : 0.0
+        self.commentsView.isHidden                      =   hided
+        self.commentsStackView.isHidden                 =   hided
         
-        else {
+        if !hided {
             self.commentsButton.setTitle("\(self.commentsViews.count)", for: .normal)
             self.commentsCountLabel.text = String(format: "%i", self.commentsViews.count)
         }
         
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1, execute: {
-            if self.scrollToComment {
-//                self.scrollView.scrollToBottom(animated: true)
-                self.scrollView.scrollRectToVisible(CGRect(origin: self.commentsView.frame.origin, size: CGSize(width: self.commentsView.frame.width, height: max(0, self.commentsStackView.frame.maxY))), animated: true)
-                
-                self.scrollView.isUserInteractionEnabled = true
-            }
-        })
+        self.didCommentsScrollDown()
+        self.scrollView.isUserInteractionEnabled = true
     }
     
     private func loadViewSettings() {
@@ -596,6 +588,15 @@ class PostShowViewController: GSBaseViewController {
         self.topicTitleLabel.text = self.router!.dataStore!.displayedPost!.tags!.first!.transliteration().uppercaseFirst
     }
 
+    private func didCommentsScrollDown() {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1, execute: {
+            if self.scrollCommentsDown {
+//                self.scrollView.scrollToBottom(animated: true)
+                self.scrollView.scrollRectToVisible(CGRect(origin: self.commentsView.frame.origin, size: CGSize(width: self.commentsView.frame.width, height: max(0, self.commentsStackView.frame.maxY))), animated: true)
+            }
+        })
+    }
+    
     
     // MARK: - Actions
     @IBAction func backButtonTapped(_ sender: UIButton) {
@@ -673,6 +674,11 @@ class PostShowViewController: GSBaseViewController {
         
         UIView.animate(withDuration: 1.2) {
             self.commentsStackView.layoutIfNeeded()
+            
+            // Scrolling to bottom
+            if !sender.isSelected {
+                self.didCommentsScrollDown()
+            }
         }
     }
     

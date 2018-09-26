@@ -67,7 +67,7 @@ class RestAPIManager {
             }
                 
             else {
-                let methodAPIType   =   MethodAPIType.getAccounts(names: names)
+                let methodAPIType = MethodAPIType.getAccounts(names: names)
                 
                 broadcast.executeGET(byMethodAPIType: methodAPIType,
                                      onResult: { responseAPIResult in

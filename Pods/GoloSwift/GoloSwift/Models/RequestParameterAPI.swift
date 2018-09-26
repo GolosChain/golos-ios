@@ -19,37 +19,37 @@ protocol RequestParameterAPIOperationPropertiesSupport {
 public struct RequestParameterAPI {
     static func decodeToString(model: RequestParameterAPIOperationPropertiesSupport) -> String? {
         // Data encoder
-        let jsonEncoder             =   JSONEncoder()
-        var jsonData                =   Data()
+        let jsonEncoder = JSONEncoder()
+        var jsonData = Data()
         
         // Add operation name
-        var result                  =   String(format: "\"%@\",{", model.name ?? "")
+        var result = String(format: "\"%@\",{", model.name ?? "")
         Logger.log(message: "\nResult + operationName:\n\t\(result)", event: .debug)
         
-        let properties              =   model.getProperties()
-        let propertiesNames         =   model.getPropertiesNames()
+        let properties = model.getProperties()
+        let propertiesNames = model.getPropertiesNames()
         
         do {
             for (_, propertyName) in propertiesNames.enumerated() {
-                let propertyValue   =   properties.first(where: { $0.key == propertyName })!.value
+                let propertyValue = properties.first(where: { $0.key == propertyName })!.value
                 
                 // Casting Types
                 if propertyValue is String {
-                    jsonData        =   try jsonEncoder.encode(["\(propertyName)": "\(propertyValue)"])
+                    jsonData = try jsonEncoder.encode(["\(propertyName)": "\(propertyValue)"])
                 }
                     
                 else if propertyValue is Int64 {
-                    jsonData        =   try jsonEncoder.encode(["\(propertyName)": propertyValue as! Int64])
+                    jsonData = try jsonEncoder.encode(["\(propertyName)": propertyValue as! Int64])
                 }
                 
-                result              +=   "\(String(data: jsonData, encoding: .utf8)!)"
+                result += "\(String(data: jsonData, encoding: .utf8)!)"
                 Logger.log(message: "\nResult + \"\(propertyName)\":\n\t\(result)", event: .debug)
             }
             
-            return result
-                .replacingOccurrences(of: "{{", with: "{")
-                .replacingOccurrences(of: "}{", with: ",")
-                .replacingOccurrences(of: "}\"}", with: "}\"")
+            return  result
+                        .replacingOccurrences(of: "{{", with: "{")
+                        .replacingOccurrences(of: "}{", with: ",")
+                        .replacingOccurrences(of: "}\"}", with: "}\"")
         } catch {
             Logger.log(message: "Error: \(error.localizedDescription)", event: .error)
             return nil
@@ -62,7 +62,7 @@ public struct RequestParameterAPI {
         
         // MARK: - Initialization
         public init(names: [String]) {
-            self.names  =   names
+            self.names = names
         }
     }
     
@@ -74,9 +74,9 @@ public struct RequestParameterAPI {
         
         // MARK: - Initialization
         public init(author: String, permlink: String, active_votes: UInt? = 0) {
-            self.author             =   author
-            self.permlink           =   permlink
-            self.active_votes       =   active_votes
+            self.author         =   author
+            self.permlink       =   permlink
+            self.active_votes   =   active_votes
         }
         
         
@@ -133,26 +133,27 @@ public struct RequestParameterAPI {
         
         // MARK: - Initialization
         public init(parentAuthor: String, parentPermlink: String, author: String, title: String, body: String, jsonMetadata: String, needTiming: Bool, attachments: [Attachment]? = nil) {
-            self.parentAuthor       =   parentAuthor
-            self.parentPermlink     =   parentPermlink
-            self.author             =   author
-            self.title              =   title
-            self.jsonMetadata       =   jsonMetadata
-            self.needTiming         =   needTiming
+            self.parentAuthor   =   parentAuthor
+            self.parentPermlink =   parentPermlink
+            self.author         =   author
+            self.title          =   title
+            self.jsonMetadata   =   jsonMetadata
+            self.needTiming     =   needTiming
             
-            let permlinkTemp        =   (parentAuthor.isEmpty ? String(format: "%@", title.transliteration()) :
-                                                                String(format: "re-%@-%@-%@", parentAuthor, parentPermlink, author))
-                                            .replacingOccurrences(of: " ", with: "-")
-                                            .lowercased()
+            let permlinkTemp    =   (parentAuthor.isEmpty ? String(format: "%@", title.transliteration()) :
+                                                            String(format: "re-%@-%@-%@", parentAuthor, parentPermlink, author))
+                                        .replacingOccurrences(of: " ", with: "-")
+                                        .replacingOccurrences(of: ".", with: "-")
+                                        .lowercased()
             
-            self.permlink           =   needTiming ? (permlinkTemp + "-\(Int64(Date().timeIntervalSince1970))") : permlinkTemp
+            self.permlink   =   needTiming ? (permlinkTemp + "-\(Int64(Date().timeIntervalSince1970))") : permlinkTemp
             
             if let parameters = attachments {
-                self.body           =   parameters.compactMap({ $0.markdownValue ?? ""}).joined(separator: " ")
+                self.body   =   parameters.compactMap({ $0.markdownValue ?? ""}).joined(separator: " ")
             }
                 
             else {
-                self.body           =   body
+                self.body   =   body
             }
         }
         
@@ -164,14 +165,14 @@ public struct RequestParameterAPI {
         
         public func getProperties() -> [String: Any] {
             return  [
-                "parent_author":        self.parentAuthor,
-                "parent_permlink":      self.parentPermlink,
-                "author":               self.author,
-                "permlink":             self.permlink,
-                "title":                self.title,
-                "body":                 self.body,
-                "json_metadata":        self.jsonMetadata
-            ]
+                        "parent_author":    self.parentAuthor,
+                        "parent_permlink":  self.parentPermlink,
+                        "author":           self.author,
+                        "permlink":         self.permlink,
+                        "title":            self.title,
+                        "body":             self.body,
+                        "json_metadata":    self.jsonMetadata
+                    ]
         }
         
         func getPropertiesNames() -> [String] {
@@ -210,14 +211,14 @@ public struct RequestParameterAPI {
         
         public func getProperties() -> [String: Any] {
             return  [
-                "author":                       self.author,
-                "permlink":                     self.permlink,
-                "max_accepted_payout":          self.max_accepted_payout,
-                "percent_steem_dollars":        self.percent_steem_dollars,
-                "allow_votes":                  self.allow_votes,
-                "allow_curation_rewards":       self.allow_curation_rewards,
-                "extensions":                   self.extensions
-            ]
+                        "author":                   self.author,
+                        "permlink":                 self.permlink,
+                        "max_accepted_payout":      self.max_accepted_payout,
+                        "percent_steem_dollars":    self.percent_steem_dollars,
+                        "allow_votes":              self.allow_votes,
+                        "allow_curation_rewards":   self.allow_curation_rewards,
+                        "extensions":               self.extensions
+                    ]
         }
         
         func getPropertiesNames() -> [String] {
@@ -235,10 +236,10 @@ public struct RequestParameterAPI {
         
         // MARK: - Initialization
         public init(voter: String, author: String, permlink: String, weight: Int64) {
-            self.voter                  =   voter
-            self.author                 =   author
-            self.permlink               =   permlink
-            self.weight                 =   weight
+            self.voter      =   voter
+            self.author     =   author
+            self.permlink   =   permlink
+            self.weight     =   weight
         }
         
         
@@ -249,11 +250,11 @@ public struct RequestParameterAPI {
         
         public func getProperties() -> [String: Any] {
             return  [
-                "voter":        self.voter,
-                "author":       self.author,
-                "permlink":     self.permlink,
-                "weight":       self.weight
-            ]
+                        "voter":        self.voter,
+                        "author":       self.author,
+                        "permlink":     self.permlink,
+                        "weight":       self.weight
+                    ]
         }
         
         func getPropertiesNames() -> [String] {

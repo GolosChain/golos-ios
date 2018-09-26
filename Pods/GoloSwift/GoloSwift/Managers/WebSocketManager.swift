@@ -84,7 +84,7 @@ public class WebSocketManager {
      
      */
     private func validate(json: [String: Any], completion: @escaping (_ codeID: Int, _ hasError: Bool) -> Void) {
-//        Logger.log(message: json.description, event:6 .debug)
+        //        Logger.log(message: json.description, event:6 .debug)
         completion(json["id"] as! Int, json["error"] != nil)
     }
     
@@ -277,7 +277,7 @@ extension WebSocketManager: WebSocketDelegate {
             // Check websocket timeout: handler completion
         else {
             byMethodAPI ?   requestMethodAPIStore!.completion((responseAPI: result, errorAPI: self.errorAPI)) :
-                requestOperationAPIStore!.completion((responseAPI: result, errorAPI: self.errorAPI))
+                            requestOperationAPIStore!.completion((responseAPI: result, errorAPI: self.errorAPI))
             
             // Clean requestsAPIStore
             self.requestMethodsAPIStore[codeID] = nil
