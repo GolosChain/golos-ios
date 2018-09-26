@@ -589,7 +589,7 @@ class PostShowViewController: GSBaseViewController {
     }
 
     private func didCommentsScrollDown() {
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1, execute: {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.3, execute: {
             if self.scrollCommentsDown {
 //                self.scrollView.scrollToBottom(animated: true)
                 self.scrollView.scrollRectToVisible(CGRect(origin: self.commentsView.frame.origin, size: CGSize(width: self.commentsView.frame.width, height: max(0, self.commentsStackView.frame.maxY))), animated: true)

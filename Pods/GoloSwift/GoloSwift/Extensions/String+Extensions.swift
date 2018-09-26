@@ -70,6 +70,10 @@ extension String {
                 return self.transliterationInCyrillic()
             }
                 
+            else if self.isCyrillic {
+                return self
+            }
+                
             else {
                 return self.transliterationInLatin()
             }
@@ -108,7 +112,7 @@ extension String {
                 for (index, char) in word.enumerated() {
                     latinChar = transliterate(char: "\(char)", isCyrillic: true)
                     
-                    if index == 0 {
+                    if index == 0 && Localize.currentLanguage() == "ru" {
                         latinChar = "ru--" + latinChar
                     }
                     
