@@ -141,8 +141,9 @@ public struct RequestParameterAPI {
             self.needTiming     =   needTiming
             
             let permlinkTemp    =   (parentAuthor.isEmpty ? String(format: "%@", title.transliteration()) :
-                                                            String(format: "re-%@-%@-%@", parentAuthor, parentPermlink, author.replacingOccurrences(of: ".", with: "-")))
+                                                            String(format: "re-%@-%@-%@", parentAuthor, parentPermlink, author))
                                         .replacingOccurrences(of: " ", with: "-")
+                                        .replacingOccurrences(of: ".", with: "-")
                                         .lowercased()
             
             self.permlink   =   needTiming ? (permlinkTemp + "-\(Int64(Date().timeIntervalSince1970))") : permlinkTemp

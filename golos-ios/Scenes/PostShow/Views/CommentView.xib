@@ -25,17 +25,11 @@
                 <outlet property="view" destination="iN0-l3-epB" id="fR0-Z6-6hX"/>
                 <outletCollection property="widthsCollection" destination="K8l-41-h6y" collectionClass="NSMutableArray" id="egR-wR-70K"/>
                 <outletCollection property="widthsCollection" destination="D4v-Ma-HTj" collectionClass="NSMutableArray" id="ueX-rf-z3E"/>
-                <outletCollection property="heightsCollection" destination="DOx-JU-Tjk" collectionClass="NSMutableArray" id="mzt-33-ulC"/>
-                <outletCollection property="heightsCollection" destination="Y2d-Sy-T19" collectionClass="NSMutableArray" id="psI-cg-mY9"/>
                 <outletCollection property="widthsCollection" destination="WGM-xK-IuN" collectionClass="NSMutableArray" id="yeY-jf-8kq"/>
                 <outletCollection property="widthsCollection" destination="0Jc-1M-vHe" collectionClass="NSMutableArray" id="xoa-yy-vc2"/>
-                <outletCollection property="heightsCollection" destination="ALu-zV-3cZ" collectionClass="NSMutableArray" id="duC-C0-LPP"/>
                 <outletCollection property="heightsCollection" destination="cCs-s7-z6A" collectionClass="NSMutableArray" id="XIy-ft-m4d"/>
                 <outletCollection property="widthsCollection" destination="rJH-dn-TBo" collectionClass="NSMutableArray" id="6B4-ke-uLT"/>
                 <outletCollection property="heightsCollection" destination="hRo-AH-T67" collectionClass="NSMutableArray" id="XUQ-zE-BTi"/>
-                <outletCollection property="heightsCollection" destination="9sJ-K0-GQc" collectionClass="NSMutableArray" id="s7P-w7-X1F"/>
-                <outletCollection property="heightsCollection" destination="ixt-cE-Hoz" collectionClass="NSMutableArray" id="8kC-33-uRU"/>
-                <outletCollection property="heightsCollection" destination="6pU-gQ-bHT" collectionClass="NSMutableArray" id="Myi-5L-T74"/>
                 <outletCollection property="circleViewsCollection" destination="yNw-9n-yzN" collectionClass="NSMutableArray" id="9K9-TC-dMn"/>
                 <outletCollection property="circleViewsCollection" destination="cy5-Ia-Z4f" collectionClass="NSMutableArray" id="RZR-XR-43a"/>
                 <outletCollection property="circleViewsCollection" destination="mlh-OO-ald" collectionClass="NSMutableArray" id="gHh-Op-X1v"/>
@@ -101,7 +95,7 @@
                                 <action selector="authorNameButtonTapped:" destination="-1" eventType="touchUpInside" id="w9w-YK-puv"/>
                             </connections>
                         </button>
-                        <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JV1-jP-ZcQ" userLabel="Time Label">
+                        <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JV1-jP-ZcQ" userLabel="Time Label">
                             <rect key="frame" x="106" y="11" width="42" height="20.5"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -135,8 +129,8 @@
                                                 <action selector="upvotesButtonTapped:" destination="-1" eventType="touchUpInside" id="9Gu-1D-TsJ"/>
                                             </connections>
                                         </button>
-                                        <button clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="KPh-OS-JoL" userLabel="Users Button">
-                                            <rect key="frame" x="30" y="0.0" width="46" height="20"/>
+                                        <button hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="KPh-OS-JoL" userLabel="Users Button">
+                                            <rect key="frame" x="30" y="0.0" width="0.0" height="20"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="15" maxY="0.0"/>
@@ -149,8 +143,8 @@
                                                 <action selector="usersButtonTapped:" destination="-1" eventType="touchUpInside" id="EVG-yw-RA8"/>
                                             </connections>
                                         </button>
-                                        <button clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="cvI-fZ-UGc" userLabel="Comments Button">
-                                            <rect key="frame" x="76" y="0.0" width="48" height="20"/>
+                                        <button hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="cvI-fZ-UGc" userLabel="Comments Button">
+                                            <rect key="frame" x="30" y="0.0" width="0.0" height="20"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="15" maxY="0.0"/>
@@ -165,7 +159,7 @@
                                             </connections>
                                         </button>
                                         <button clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="0FV-JI-k6m" userLabel="Reply Button">
-                                            <rect key="frame" x="124" y="0.0" width="58" height="20"/>
+                                            <rect key="frame" x="30" y="0.0" width="58" height="20"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="5" maxY="0.0"/>
@@ -177,8 +171,8 @@
                                                 <action selector="replyButtonTapped:" destination="-1" eventType="touchUpInside" id="TGL-3d-iBL"/>
                                             </connections>
                                         </button>
-                                        <button clipsSubviews="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="3pH-mp-bUu" userLabel="Share Button">
-                                            <rect key="frame" x="182" y="0.0" width="141" height="20"/>
+                                        <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="3pH-mp-bUu" userLabel="Share Button">
+                                            <rect key="frame" x="88" y="0.0" width="235" height="20"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <state key="normal" image="icon-button-horizontal-more-normal">
@@ -242,20 +236,20 @@
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="33.5" y="54"/>
+            <point key="canvasLocation" x="32.799999999999997" y="53.523238380809602"/>
         </view>
     </objects>
     <resources>
         <image name="icon-button-comments-default" width="20" height="20"/>
         <image name="icon-button-comments-highlighted" width="20" height="20"/>
         <image name="icon-button-comments-selected" width="20" height="20"/>
-        <image name="icon-button-horizontal-more-highlighted" width="18" height="4"/>
-        <image name="icon-button-horizontal-more-normal" width="18" height="4"/>
+        <image name="icon-button-horizontal-more-highlighted" width="18" height="4.5"/>
+        <image name="icon-button-horizontal-more-normal" width="18" height="4.5"/>
         <image name="icon-button-plus-white-normal" width="10" height="10"/>
         <image name="icon-button-upvotes-default" width="20" height="20"/>
         <image name="icon-button-upvotes-highlighted" width="20" height="20"/>
         <image name="icon-button-user-profile-highlighted" width="18" height="18"/>
-        <image name="icon-button-user-profile-normal" width="18" height="18"/>
+        <image name="icon-button-user-profile-normal" width="27" height="27"/>
         <image name="icon-user-profile-image-placeholder" width="40" height="40"/>
     </resources>
 </document>

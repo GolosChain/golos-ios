@@ -846,6 +846,7 @@ extension PostShowViewController {
                     // Level 0
                     commentView.loadData(fromBody: comment.body, completion: { [weak self] viewHeight in
                         self?.commentsStackViewHeightConstraint.constant += viewHeight
+                        self?.commentsStackView.layoutIfNeeded()
                         self?.commentsViews.append(commentView)
 
                         // Levels 2...n

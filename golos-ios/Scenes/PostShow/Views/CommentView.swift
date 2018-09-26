@@ -107,7 +107,7 @@ class CommentView: UIView, HandlersCellSupport {
     
     // MARK: - Class Initialization
     init(withComment comment: Comment, atLevel level: String) {
-        super.init(frame: CGRect.init(origin: .zero, size: CGSize.init(width: 351.0 * widthRatio, height: 85.0 * heightRatio)))
+        super.init(frame: CGRect.init(origin: .zero, size: CGSize.init(width: 351.0 * widthRatio, height: 85.0))) // * heightRatio)))
         
         createFromXIB()
         
@@ -182,7 +182,7 @@ class CommentView: UIView, HandlersCellSupport {
         }
 
         self.markdownViewManager.onRendered = { [weak self] height in
-            let viewHeight      =   height + 80.0 * heightRatio
+            let viewHeight      =   height + 85.0 //* heightRatio
             
             self?.markdownViewHeightConstraint.constant = height
             self?.layoutIfNeeded()
@@ -195,7 +195,7 @@ class CommentView: UIView, HandlersCellSupport {
     }
     
     override var intrinsicContentSize: CGSize {
-        return CGSize(width: 375.0 * widthRatio, height: 80.0 * heightRatio)
+        return CGSize(width: 375.0 * widthRatio, height: 85.0) // * heightRatio)
     }
 
     func localizeTitles() {
