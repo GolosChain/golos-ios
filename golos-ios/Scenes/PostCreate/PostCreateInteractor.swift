@@ -110,50 +110,24 @@ class PostCreateInteractor: PostCreateBusinessLogic, PostCreateDataStore {
                     self?.runRequest(withOperationAPIType: operationAPIType)
                 })
                 
-            case .createComment:
-                let userName = (User.current?.name)!
-                
-//                if userName.contains(".") {
-//                    userName = "#\(userName)"
-//                }
-                
+            // .createComment & createCommentReply:
+            default:
                 let jsonMetadataString = ("{\"tags\":[\"" + (self?.commentParentTag ?? "test") + "\"]")
                                             .replacingOccurrences(of: ",", with: "\",\"") + ",\"app\":\"golos.io/0.1\",\"format\":\"markdown\"}"
                 
 //                Logger.log(message: "\njsonMetadataString:\n\t\(jsonMetadataString!)", event: .debug)
                 
                 // Create Comment with transliteration
-                let newComment = RequestParameterAPI.Comment(parentAuthor:       self?.commentParentAuthor ?? "",
-                                                             parentPermlink:     self?.commentParentPermlink ?? "",
-                                                             author:             userName,
-                                                             title:              "",
-                                                             body:               self?.commentBody ?? "",
-                                                             jsonMetadata:       jsonMetadataString,
-                                                             needTiming:         true,
-                                                             attachments:        self?.attachments)
+                let newCommentOrReply = RequestParameterAPI.Comment(parentAuthor:       self?.commentParentAuthor ?? "",
+                                                                    parentPermlink:     self?.commentParentPermlink ?? "",
+                                                                    author:             (User.current?.name)!,
+                                                                    title:              "",
+                                                                    body:               self?.commentBody ?? "",
+                                                                    jsonMetadata:       jsonMetadataString,
+                                                                    needTiming:         true,
+                                                                    attachments:        self?.attachments)
                 
-                let operationAPIType = OperationAPIType.comment(fields: newComment)
-                
-                // Run API
-                self?.runRequest(withOperationAPIType: operationAPIType)
-
-            case .createCommentReply:
-                let jsonMetadataString = ("{\"tags\":[\"" + (self?.commentParentTag ?? "test") + "\"]")
-                                            .replacingOccurrences(of: ",", with: "\",\"") + ",\"app\":\"golos.io/0.1\",\"format\":\"markdown\"}"
-                
-//                Logger.log(message: "\njsonMetadataString:\n\t\(jsonMetadataString!)", event: .debug)
-                
-                // Create Comment Reply with transliteration
-                let newCommentReply = RequestParameterAPI.Comment(parentAuthor:       self?.commentParentAuthor ?? "",
-                                                                  parentPermlink:     self?.commentParentPermlink ?? "",
-                                                                  author:             User.current!.name,
-                                                                  title:              "",
-                                                                  body:               self?.commentBody ?? "",
-                                                                  jsonMetadata:       jsonMetadataString,
-                                                                  needTiming:         true,
-                                                                  attachments:        self?.attachments)
-                
-                let operationAPIType = OperationAPIType.comment(fields: newCommentReply)
+                let operationAPIType = OperationAPIType.comment(fields: newCommentOrReply)
                 
                 // Run API
                 self?.runRequest(withOperationAPIType: operationAPIType)

@@ -734,6 +734,7 @@ extension PostShowViewController {
         self.commentsViews.forEach({ self.commentsStackView.removeArrangedSubview($0)})
         self.commentsViews.removeAll()
         self.commentsStackViewHeightConstraint.constant = 0.0
+        self.commentsCount = 0
         
         let contentRepliesRequestModel = PostShowModels.Post.RequestModel()
         self.interactor?.loadContentComments(withRequestModel: contentRepliesRequestModel)
