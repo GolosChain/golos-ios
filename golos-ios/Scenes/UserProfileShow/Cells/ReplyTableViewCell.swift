@@ -197,11 +197,15 @@ class ReplyTableViewCell: UITableViewCell, ReusableCell {
 
     // MARK: - Actions
     @objc func authorLabelTapped(sender: UITapGestureRecognizer) {
-        self.handlerAuthorCommentReplyTapped!(self.authorLabel.text!)
+        if self.authorLabel.text! != User.current!.name {
+            self.handlerAuthorCommentReplyTapped!(self.authorLabel.text!)
+        }
     }
     
     @IBAction func answerButtonTapped(_ sender: UIButton) {
-        self.handlerAnswerButtonTapped!(self.postShortInfo)
+        if self.authorLabel.text! != User.current!.name {
+            self.handlerAnswerButtonTapped!(self.postShortInfo)
+        }
     }
 
     @IBAction func replyTypeButtonTapped(_ sender: UIButton) {

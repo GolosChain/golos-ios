@@ -102,18 +102,18 @@
                             <constraint firstAttribute="height" constant="34" id="xaM-cH-VDo"/>
                         </constraints>
                     </stackView>
-                    <label userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Услышав, что приговор остается в силе Слободан Пральяк совершил что-то там" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wbc-GS-MMR" userLabel="Reply Text Label">
-                        <rect key="frame" x="90" y="34" width="285" height="29.5"/>
+                    <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="top" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Услышав, что приговор остается в силе Слободан Пральяк совершил что-то там" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wbc-GS-MMR" userLabel="Reply Text Label">
+                        <rect key="frame" x="90" y="34" width="285" height="29"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <stackView clipsSubviews="YES" contentMode="left" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Ty5-mp-LK8" userLabel="Bottom Stack View">
-                        <rect key="frame" x="90" y="63.5" width="309" height="44"/>
+                        <rect key="frame" x="90" y="63" width="309" height="44.5"/>
                         <subviews>
                             <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bgm-nf-yUO">
-                                <rect key="frame" x="0.0" y="0.0" width="46" height="44"/>
+                                <rect key="frame" x="0.0" y="0.0" width="46" height="44.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <inset key="contentEdgeInsets" minX="0.0" minY="10" maxX="0.0" maxY="10"/>
@@ -125,14 +125,14 @@
                                 </connections>
                             </button>
                             <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TiI-Qb-jdB">
-                                <rect key="frame" x="58" y="0.0" width="128" height="44"/>
+                                <rect key="frame" x="58" y="0.0" width="128" height="44.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="252" horizontalCompressionResistancePriority="752" translatesAutoresizingMaskIntoConstraints="NO" id="Cwp-ar-exE" userLabel="Empty View">
-                                <rect key="frame" x="198" y="0.0" width="111" height="44"/>
+                                <rect key="frame" x="198" y="0.0" width="111" height="44.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
@@ -157,7 +157,7 @@
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="vrc-AX-Q5Q" firstAttribute="leading" secondItem="5dM-W2-WiW" secondAttribute="leading" constant="-2" id="0gI-Io-dUv"/>
-                    <constraint firstAttribute="bottom" secondItem="Wbc-GS-MMR" secondAttribute="bottom" constant="44" id="1GZ-un-hga"/>
+                    <constraint firstAttribute="bottom" secondItem="Wbc-GS-MMR" secondAttribute="bottom" priority="250" constant="44" id="1GZ-un-hga"/>
                     <constraint firstAttribute="trailing" secondItem="Ykh-lR-Ouj" secondAttribute="trailing" id="541-yx-Vng"/>
                     <constraint firstItem="Wbc-GS-MMR" firstAttribute="leading" secondItem="cH0-jo-JaP" secondAttribute="leading" id="DJ8-WF-Kas"/>
                     <constraint firstAttribute="trailing" secondItem="cH0-jo-JaP" secondAttribute="trailing" constant="24" id="EuF-mN-reR"/>
