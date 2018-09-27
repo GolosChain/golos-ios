@@ -38,14 +38,14 @@ class SettingsShowRouter: NSObject, SettingsShowRoutingLogic, SettingsShowDataPa
 
     // MARK: - Routing
     func routeToLoginShowScene() {
-        StateMachine.load().changeState(.loggedOut)
-//        User.current!.clearCache()
-//        CoreDataManager.instance.clearCache()
-
-        User.current!.setIsAuthorized(false)
-        
-        // Firebase Cloud Messaging: unsubscribe from topics
-        fcm.unsubscribeFromTopics()
+        DispatchQueue.main.async {
+            StateMachine.load().changeState(.loggedOut)
+            User.current!.setIsAuthorized(false)
+            User.clearCache()
+            
+            // Firebase Cloud Messaging: unsubscribe from topics
+            fcm.unsubscribeFromTopics()
+        }
     }
     
     func routeToSettingsNotificationsScene() {

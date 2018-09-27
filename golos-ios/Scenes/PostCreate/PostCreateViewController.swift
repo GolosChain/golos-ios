@@ -123,7 +123,7 @@ class PostCreateViewController: GSBaseViewController {
     
     @IBOutlet weak var stackViewTopConstraint: NSLayoutConstraint! {
         didSet {
-            stackViewTopConstraint.constant =   (sceneType == .createComment) ? -70.0 * widthRatio : 6.0
+            stackViewTopConstraint.constant =   (sceneType == .createComment) ? -70.0 * heightRatio : 6.0
         }
     }
 
@@ -240,7 +240,8 @@ class PostCreateViewController: GSBaseViewController {
             self.commentReplyView.markdownViewManager.load(markdown: self.router?.dataStore?.commentTitle ?? "")
 
             self.commentReplyView.markdownViewManager.onRendered = { [weak self] height in
-                self?.markdownViewHeightConstraint.constant = height + (15.0 + 20.0) * heightRatio
+                self?.markdownViewHeightConstraint.constant = height + 15.0 * 2 * heightRatio
+                self?.stackView.layoutIfNeeded()
                 self?.showContent()
             }
         } else {

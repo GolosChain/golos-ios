@@ -42,7 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.registerForPushNotifications()
         
         // Clear cache
-//        self.clearCache()
+        self.clearCache()
         
         // Main window
         window?.backgroundColor = .white
@@ -291,9 +291,19 @@ extension AppDelegate {
     
     /// Clear current User cache at last week
     private func clearCache() {
-        if let currentUser = User.current {
-            currentUser.clearCache(atLastWeek: true)
+        guard isNetworkAvailable else {
+            return
         }
+
+        // Clean CoreData entities
+        DispatchQueue.main.async {
+            User.clearCache()
+//            CoreDataManager.instance.deleteEntities(withName: User.current == nil ? "New" : "Lenta", andPredicateParameters: nil, completion: { _ in })
+        }
+
+//        if let currentUser = User.current {
+//            currentUser.clearCache(atLastWeek: true)
+//        }
     }
 }
 

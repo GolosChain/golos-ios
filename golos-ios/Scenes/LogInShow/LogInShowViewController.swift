@@ -225,7 +225,10 @@ extension LogInShowViewController: LogInShowDisplayLogic {
     func displayAuthorizeUser(fromViewModel viewModel: LogInShowModels.Parameters.ViewModel) {
         // NOTE: Display the result from the Presenter
         if viewModel.success {
-            self.performSegue(withIdentifier: "FeedPostsShowSceneSegue", sender: nil)
+            DispatchQueue.main.async {
+                User.clearCache()
+                self.performSegue(withIdentifier: "FeedPostsShowSceneSegue", sender: nil)
+            }
         }
         
         else {

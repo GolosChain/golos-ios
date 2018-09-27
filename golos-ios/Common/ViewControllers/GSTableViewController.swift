@@ -299,19 +299,21 @@ class GSTableViewController: GSBaseViewController, HandlersCellSupport {
             self.postsTableView.reloadData()
         }
     }
-
+    
     
     // MARK: - Actions
     @objc func handlerTableViewRefreshData(refreshControl: UIRefreshControl) {
+        guard isNetworkAvailable else {
+            return
+        }
+
         self.refreshData            =   true
         self.infiniteScrollingData  =   false
         self.lastIndex              =   0
         self.topVisibleIndexPath    =   IndexPath(row: 0, section: 0)
         
-        // Clean CoreData entity
-        let cleanCoreDataQueue = DispatchQueue.global(qos: .background)
-        
-        cleanCoreDataQueue.async {
+        // Clean CoreData entities
+        DispatchQueue.main.async {
             CoreDataManager.instance.deleteEntities(withName: self.postType.rawValue.uppercaseFirst, andPredicateParameters: nil, completion: { [weak self] success in
                 if success && self?.handlerPushRefreshData != nil {
                     self?.handlerPushRefreshData!(nil)

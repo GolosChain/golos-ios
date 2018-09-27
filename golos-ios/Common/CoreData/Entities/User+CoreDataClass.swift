@@ -153,7 +153,7 @@ public class User: NSManagedObject, CachedImageFrom {
         }
     }
     
-    func clearCache(atLastWeek needPredicate: Bool) {
+    class func clearCache(atLastWeek needPredicate: Bool) {
         var predicate: NSPredicate?
         var predicateImage: NSPredicate?
 
@@ -162,25 +162,22 @@ public class User: NSManagedObject, CachedImageFrom {
             predicateImage  =   NSPredicate(format: "created <= %@ AND fromItem != \"lenta\"", dateLastWeek)
         }
         
-        DispatchQueue.global(qos: .background).asyncAfter(deadline: DispatchTime.now() + 12.0, execute: {
-            CoreDataManager.instance.deleteEntities(withName: "Actual", andPredicateParameters: predicate, completion: { _ in })
-            CoreDataManager.instance.deleteEntities(withName: "New", andPredicateParameters: predicate, completion: { _ in })
-            CoreDataManager.instance.deleteEntities(withName: "Popular", andPredicateParameters: predicate, completion: { _ in })
-            CoreDataManager.instance.deleteEntities(withName: "Promo", andPredicateParameters: predicate, completion: { _ in })
-            CoreDataManager.instance.deleteEntities(withName: "Reply", andPredicateParameters: predicate, completion: { _ in })
-            CoreDataManager.instance.deleteEntities(withName: "Comment", andPredicateParameters: predicate, completion: { _ in })
-            CoreDataManager.instance.deleteEntities(withName: "ImageCached", andPredicateParameters: predicateImage, completion: { _ in })
-//            CoreDataManager.instance.deleteEntities(withName: "Blog", andPredicateParameters: predicate, completion: { _ in })
-            
-//            CoreDataManager.instance.contextSave()
-        })
+        CoreDataManager.instance.deleteEntities(withName: "Actual", andPredicateParameters: predicate, completion: { _ in })
+        CoreDataManager.instance.deleteEntities(withName: "New", andPredicateParameters: predicate, completion: { _ in })
+        CoreDataManager.instance.deleteEntities(withName: "Popular", andPredicateParameters: predicate, completion: { _ in })
+        CoreDataManager.instance.deleteEntities(withName: "Promo", andPredicateParameters: predicate, completion: { _ in })
+        CoreDataManager.instance.deleteEntities(withName: "Reply", andPredicateParameters: predicate, completion: { _ in })
+        CoreDataManager.instance.deleteEntities(withName: "Comment", andPredicateParameters: predicate, completion: { _ in })
+        CoreDataManager.instance.deleteEntities(withName: "ImageCached", andPredicateParameters: predicateImage, completion: { _ in })
+        CoreDataManager.instance.deleteEntities(withName: "Blog", andPredicateParameters: predicate, completion: { _ in })
     }
-
-    func clearCache() {
+    
+    class func clearCache() {
         CoreDataManager.instance.deleteEntities(withName: "ActiveVote", andPredicateParameters: nil, completion: { _ in })
         CoreDataManager.instance.deleteEntities(withName: "ImageCached", andPredicateParameters: nil, completion: { _ in })
         CoreDataManager.instance.deleteEntities(withName: "Lenta", andPredicateParameters: nil, completion: { _ in })
         CoreDataManager.instance.deleteEntities(withName: "User", andPredicateParameters: NSPredicate(format: "isAuthorized == 0"), completion: { _ in })
+        
         self.clearCache(atLastWeek: false)
     }
 }
