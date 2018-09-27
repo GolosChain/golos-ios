@@ -293,7 +293,36 @@ class RestAPIManager {
     }
 
 
-
+    /// Load Current User Followings list
+    class func loadFollowingsList(byUserName userName: String, authorName: String, pagination: UInt, completion: @escaping (Bool, ErrorAPI?) -> Void) {
+        // API 'get_following'
+        if isNetworkAvailable {
+            let methodAPIType = MethodAPIType.getUserFollowings(userName: userName, authorName: authorName, pagination: pagination)
+            
+            broadcast.executeGET(byMethodAPIType: methodAPIType,
+                                 onResult: { responseAPIResult in
+//                                    Logger.log(message: "\nresponse API Result = \(responseAPIResult)\n", event: .debug)
+                                    
+                                    guard let result = (responseAPIResult as! ResponseAPIUserFollowingsResult).result, let postAuthorName = result.first?.following else {
+                                        completion(false, ErrorAPI.requestFailed(message: "User followings are not found"))
+                                        return
+                                    }
+                                    
+                                    completion(authorName == postAuthorName, nil)
+            },
+                                 onError: { errorAPI in
+                                    Logger.log(message: "nresponse API Error = \(errorAPI.caseInfo.message)\n", event: .error)
+                                    completion(false, errorAPI)
+            })
+        }
+            
+        // Offline mode
+        else {
+            completion(false, nil)
+        }
+    }
+    
+    
     /// Load User Follow counts
     class func loadPostPermlink(byContent content: RequestParameterAPI.Content, completion: @escaping (ErrorAPI) -> Void) {
         // API 'get_content'

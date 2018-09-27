@@ -28,4 +28,19 @@ enum PostShowModels {
             let errorAPI: ErrorAPI?
         }
     }
+
+    enum Following {
+        struct RequestModel {
+        }
+        
+        struct ResponseModel {
+            let isFollowing: Bool
+            let errorAPI: ErrorAPI?
+        }
+        
+        struct ViewModel {
+            let isFollowing: Bool
+            let errorAPI: ErrorAPI?
+        }
+    }
 }

@@ -198,6 +198,7 @@
 "Login error"                               =   "Неверный логин или пароль. Попробуйте ввести ещё раз";
 "User is not found"                         =   "Пользователь не найден";
 "User follow counts are not found"          =   "Информация о подписчиках и подписках не найдена";
+"User followings are not found"             =   "Информация о подписках не найдена";
 "List of users is empty"                    =   "Список пользователей пустой";
 "List of posts is empty"                    =   "Список постов пустой";
 "You may only post once every 5 minutes"    =   "Вы можете отправлять новые\nсообщения каждые 5 минут";

@@ -253,7 +253,7 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n52-gC-8Jz" userLabel="Subscribe User View">
                                                         <rect key="frame" x="0.0" y="0.0" width="320" height="90"/>
                                                         <subviews>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZH2-hK-oIK" userLabel="User Avatar Image View">
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-user-profile-image-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="ZH2-hK-oIK" userLabel="User Avatar Image View">
                                                                 <rect key="frame" x="16" y="20" width="50" height="50"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
@@ -680,5 +680,6 @@
         <image name="icon-button-vertical-more-normal" width="24" height="24"/>
         <image name="icon-cell-user-profile" width="18" height="18"/>
         <image name="icon-topic-cover" width="14" height="16"/>
+        <image name="icon-user-profile-image-placeholder" width="40" height="40"/>
     </resources>
 </document>

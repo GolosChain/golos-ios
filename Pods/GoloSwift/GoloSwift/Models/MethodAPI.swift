@@ -31,6 +31,9 @@ public indirect enum MethodAPIType {
     /// Diplays current user follow counts
     case getUserFollowCounts(name: String)
     
+    /// Diplays current user followings list
+    case getUserFollowings(userName: String, authorName: String, pagination: UInt)
+
     /// Diplays current user follow counts
     case getContent(parameters: RequestParameterAPI.Content)
     
@@ -42,17 +45,23 @@ public indirect enum MethodAPIType {
     func introduced() -> MethodRequestParameters {
         switch self {
         // GET
-        case .getAccounts(let names):                       return  (methodAPIType:     self,
-                                                                     paramsFirst:       ["database_api", "get_accounts"],
-                                                                     paramsSecond:      names)
+        case .getAccounts(let names):               return  (methodAPIType:     self,
+                                                             paramsFirst:       ["database_api", "get_accounts"],
+                                                             paramsSecond:      names)
             
-        case .getDynamicGlobalProperties():                 return  (methodAPIType:     self,
-                                                                     paramsFirst:       ["database_api", "get_dynamic_global_properties"],
-                                                                     paramsSecond:      nil)
+        case .getDynamicGlobalProperties():         return  (methodAPIType:     self,
+                                                             paramsFirst:       ["database_api", "get_dynamic_global_properties"],
+                                                             paramsSecond:      nil)
             
-        case .getUserFollowCounts(let userName):            return  (methodAPIType:     self,
-                                                                     paramsFirst:       ["follow", "get_follow_count"],
-                                                                     paramsSecond:      String(format: "\"%@\"", userName))
+        case .getUserFollowCounts(let userName):    return  (methodAPIType:     self,
+                                                             paramsFirst:       ["follow", "get_follow_count"],
+                                                             paramsSecond:      String(format: "\"%@\"", userName))
+            
+        // Template: {"id": 11, "method": "call", "jsonrpc": "2.0", "params": ["follow", "get_following", ["joseph.kalu", "bomberuss", "blog", 1]]}
+        case .getUserFollowings(let userName, let authorName, let pagination):
+            return  (methodAPIType:     self,
+                     paramsFirst:       ["follow", "get_following"],
+                     paramsSecond:      String(format: "\"%@\", \"%@\", \"blog\", %i", userName, authorName, pagination))
             
         case .getUserReplies(let startAuthor, let startPermlink, let limit, let voteLimit):
             var secondParameters: String

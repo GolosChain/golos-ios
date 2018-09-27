@@ -18,7 +18,7 @@ class UserProfileInfoTitleView: PassthroughView {
     
     @IBOutlet weak var aboutLabelView: UIView! {
         didSet {
-            aboutLabelView.isHidden         =   false
+            aboutLabelView.isHidden =   false
         }
     }
     
@@ -35,11 +35,11 @@ class UserProfileInfoTitleView: PassthroughView {
     @IBOutlet var labelsCollection: [UILabel]! {
         didSet {
             labelsCollection.forEach({
-                $0.text                     =   $0.accessibilityIdentifier!.localized()
-                $0.font                     =   UIFont(name: "SFUIDisplay-Regular", size: 12.0)
-                $0.theme_textColor          =   darkGrayWhiteColorPickers
-                $0.textAlignment            =   .left
-                $0.numberOfLines            =   1
+                $0.text             =   $0.accessibilityIdentifier!.localized()
+                $0.font             =   UIFont(name: "SFUIDisplay-Regular", size: 12.0)
+                $0.theme_textColor  =   darkGrayWhiteColorPickers
+                $0.textAlignment    =   .left
+                $0.numberOfLines    =   1
             })
         }
     }
@@ -47,10 +47,10 @@ class UserProfileInfoTitleView: PassthroughView {
     @IBOutlet var valuesCollection: [UILabel]! {
         didSet {
             valuesCollection.forEach({
-                $0.font                     =   UIFont(name: "SFUIDisplay-Regular", size: 16.0)
-                $0.theme_textColor          =   veryDarkGrayWhiteColorPickers
-                $0.textAlignment            =   .left
-                $0.numberOfLines            =   1
+                $0.font             =   UIFont(name: "SFUIDisplay-Regular", size: 16.0)
+                $0.theme_textColor  =   veryDarkGrayWhiteColorPickers
+                $0.textAlignment    =   .left
+                $0.numberOfLines    =   1
             })
         }
     }

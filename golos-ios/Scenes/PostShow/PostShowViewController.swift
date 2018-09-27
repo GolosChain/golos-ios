@@ -22,6 +22,7 @@ import AlignedCollectionViewFlowLayout
 protocol PostShowDisplayLogic: class {
     func displayLoadContent(fromViewModel viewModel: PostShowModels.Post.ViewModel)
     func displayLoadContentComments(fromViewModel viewModel: PostShowModels.Post.ViewModel)
+    func displayCheckFollowing(fromViewModel viewModel: PostShowModels.Following.ViewModel)
 }
 
 class PostShowViewController: GSBaseViewController {
@@ -270,26 +271,29 @@ class PostShowViewController: GSBaseViewController {
         didSet {
             userNameLabel.tune(withText:        "",
                                hexColors:       veryDarkGrayWhiteColorPickers,
-                               font:            UIFont(name: "SFUIDisplay-Regular", size: 12.0), alignment: .left,
+                               font:            UIFont(name: "SFUIDisplay-Regular", size: 12.0),
+                               alignment:       .left,
                                isMultiLines:    false)
         }
     }
     
     @IBOutlet weak var userRecentPastLabel: UILabel! {
         didSet {
-            userRecentPastLabel.tune(withText:        "Recent Past:",
-                                     hexColors:       darkGrayWhiteColorPickers,
-                                     font:            UIFont(name: "SFUIDisplay-Regular", size: 8.0), alignment: .left,
-                                     isMultiLines:    false)
+            userRecentPastLabel.tune(withText:          "Recent Past:",
+                                     hexColors:         darkGrayWhiteColorPickers,
+                                     font:              UIFont(name: "SFUIDisplay-Regular", size: 8.0),
+                                     alignment:         .left,
+                                     isMultiLines:      false)
         }
     }
     
     @IBOutlet weak var userPreviouslyLabel: UILabel! {
         didSet {
-            userPreviouslyLabel.tune(withText:        "Previously:",
-                                     hexColors:       darkGrayWhiteColorPickers,
-                                     font:            UIFont(name: "SFUIDisplay-Regular", size: 8.0), alignment: .left,
-                                     isMultiLines:    false)
+            userPreviouslyLabel.tune(withText:          "Previously:",
+                                     hexColors:         darkGrayWhiteColorPickers,
+                                     font:              UIFont(name: "SFUIDisplay-Regular", size: 8.0),
+                                     alignment:         .left,
+                                     isMultiLines:      false)
         }
     }
     
@@ -297,7 +301,7 @@ class PostShowViewController: GSBaseViewController {
         didSet {
             subscribeButtonsCollection.forEach({ button in
                 button.tune(withTitle:         "Subscribe",
-                            hexColors:         [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
+                            hexColors:         [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers],
                             font:              UIFont(name: "SFUIDisplay-Medium", size: 10.0),
                             alignment:         .center)
                 
@@ -474,8 +478,9 @@ class PostShowViewController: GSBaseViewController {
         
         // Load Post
         self.loadContent()
+        self.runCheckFollowing()
         self.loadContentComments()
-
+        
         self.navbarShadowView?.add(shadow: true, onside: .bottom)
 
         NotificationCenter.default.addObserver(self, selector: #selector(localizeTitles), name: NSNotification.Name(LCLLanguageChangeNotification), object: nil)
@@ -715,6 +720,18 @@ extension PostShowViewController: PostShowDisplayLogic {
         // CoreData
         self.fetchCommentsFirstLevel()
     }
+    
+    func displayCheckFollowing(fromViewModel viewModel: PostShowModels.Following.ViewModel) {
+        // NOTE: Display the result from the Presenter
+        if let error = viewModel.errorAPI {
+            self.showAlertView(withTitle: "Error", andMessage: error.localizedDescription, needCancel: false, completion: { _ in })
+        }
+        
+        // Set post author subscribe button title
+        DispatchQueue.main.async {
+            self.subscribeButtonsCollection.first(where: { $0.tag == 1 })?.setTitle(viewModel.isFollowing ? "Unsubscribe".localized() : "Subscribe".localized(), for: .normal)
+        }
+    }
 }
 
 
@@ -738,6 +755,11 @@ extension PostShowViewController {
         
         let contentRepliesRequestModel = PostShowModels.Post.RequestModel()
         self.interactor?.loadContentComments(withRequestModel: contentRepliesRequestModel)
+    }
+    
+    private func runCheckFollowing() {
+        let requestModel = PostShowModels.Following.RequestModel()
+        self.interactor?.checkFollowing(withRequestModel: requestModel)
     }
 }
 

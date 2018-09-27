@@ -20,6 +20,7 @@ protocol PostShowBusinessLogic {
     func save(postShortInfo: PostShortInfo)
     func loadContent(withRequestModel requestModel: PostShowModels.Post.RequestModel)
     func loadContentComments(withRequestModel requestModel: PostShowModels.Post.RequestModel)
+    func checkFollowing(withRequestModel requestModel: PostShowModels.Following.RequestModel)
 }
 
 protocol PostShowDataStore {
@@ -92,6 +93,14 @@ class PostShowInteractor: PostShowBusinessLogic, PostShowDataStore {
             
             let responseModel = PostShowModels.Post.ResponseModel(errorAPI: nil)
             self?.presenter?.presentLoadContentComments(fromResponseModel: responseModel)
+        })
+    }
+    
+    func checkFollowing(withRequestModel requestModel: PostShowModels.Following.RequestModel) {
+        // API 'get_following'
+        RestAPIManager.loadFollowingsList(byUserName: User.current!.name, authorName: self.postShortInfo?.author ?? "XXX", pagination: 1, completion: { [weak self] (isFollowing, errorAPI) in
+            let responseModel = PostShowModels.Following.ResponseModel(isFollowing: isFollowing, errorAPI: errorAPI)
+            self?.presenter?.presentCheckFollowing(fromResponseModel: responseModel)
         })
     }
 }

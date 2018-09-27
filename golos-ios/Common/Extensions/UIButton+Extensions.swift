@@ -10,7 +10,7 @@ import UIKit
 import GoloSwift
 import SwiftTheme
 
-extension UIButton {
+extension UIButton {    
     /// Download image
     func uploadImage(byStringPath path: String, size: CGSize, createdDate: Date, fromItem: String) {
         let imagePathWithProxy      =   path.trimmingCharacters(in: .whitespacesAndNewlines).addImageProxy(withSize: size)

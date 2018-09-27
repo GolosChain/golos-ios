@@ -113,6 +113,9 @@ public class WebSocketManager {
             case .getUserFollowCounts(_):
                 return (responseAPI: try JSONDecoder().decode(ResponseAPIUserFollowCountsResult.self, from: jsonData), errorAPI: nil)
                 
+            case .getUserFollowings(_):
+                return (responseAPI: try JSONDecoder().decode(ResponseAPIUserFollowingsResult.self, from: jsonData), errorAPI: nil)
+                
             case .getContent(_):
                 return (responseAPI: try JSONDecoder().decode(ResponseAPIPostResult.self, from: jsonData), errorAPI: nil)
                 

@@ -420,3 +420,22 @@ public struct ResponseAPIUserFollowCounts: Decodable {
     public let limit: Int64
 }
 
+
+
+// MARK: -
+public struct ResponseAPIUserFollowingsResult: Decodable {
+    // MARK: - In work
+    public let id: Int64
+    public let jsonrpc: String
+    public let result: [ResponseAPIUserFollowing]?
+    public let error: ResponseAPIError?
+}
+
+
+// MARK: -
+public struct ResponseAPIUserFollowing: Decodable {
+    // MARK: - In work
+    public let follower: String
+    public let following: String
+    public let what: [String]
+}
