@@ -16,8 +16,8 @@ let cyrillicChars   =   [ "щ", "ш", "ч", "ц", "й", "ё", "э", "ю", "я", 
 let latinChars      =   [ "shch", "sh", "ch", "cz", "ij", "yo", "ye", "yu", "ya", "kh", "zh", "a", "b", "v", "g", "d", "e", "z", "i", "k", "l", "m", "n", "o", "p", "r", "s", "t", "u", "f", "xx", "y", "x", "g", "e", "i", "i" ]
 
 
-let translateLatinChars             =   "abcdefghijklmnopqrstuvwxyz0123456789-,.?"
-let translateCyrillicChars          =   "йцукенгшщзхъёфывапролджэячсмитьбюґєії0123456789-,.?"
+let translateLatinChars     =   "abcdefghijklmnopqrstuvwxyz0123456789-,.?"
+let translateCyrillicChars  =   "йцукенгшщзхъёфывапролджэячсмитьбюґєії0123456789-,.?"
 
 
 extension String {
@@ -63,14 +63,14 @@ extension String {
     
     
     /// Common transliteration with App language support
-    public func transliteration() -> String {
+    public func transliteration(forPermlink: Bool) -> String {
         switch Localize.currentLanguage() {
         case "ru":
             if self.hasPrefix("ru--") {
                 return self.transliterationInCyrillic()
             }
                 
-            else if self.isCyrillic {
+            else if self.isCyrillic && !forPermlink {
                 return self
             }
                 
@@ -157,8 +157,8 @@ extension String {
             return char
         }
         
-        let convertDict     =   isCyrillic ?    NSDictionary.init(objects: latinChars, forKeys: cyrillicChars as [NSCopying]) :
-                                                NSDictionary.init(objects: cyrillicChars, forKeys: latinChars as [NSCopying])
+        let convertDict =   isCyrillic ?    NSDictionary.init(objects: latinChars, forKeys: cyrillicChars as [NSCopying]) :
+                                            NSDictionary.init(objects: cyrillicChars, forKeys: latinChars as [NSCopying])
         
         return convertDict.value(forKey: char.lowercased()) as! String
     }
@@ -179,11 +179,11 @@ extension String {
         }
         
         // @ -9, $0.50 earned is approx magnitude 1
-        result      =   max(result - 9, 0)
-        result      *=  (isNegative ? -1 : 1)
+        result  =   max(result - 9, 0)
+        result  *=  (isNegative ? -1 : 1)
         
         // 9 points per magnitude. center at 25
-        result      =   result * 9 + 25
+        result  =   result * 9 + 25
         
         // base-line 0 to darken and < 0 to auto hide (grep rephide)
         return Int(result)

@@ -25,7 +25,7 @@ public indirect enum OperationAPIType {
     case comment(fields: RequestParameterAPI.Comment)
     case subscribe(fields: RequestParameterAPI.Subscription)
     case commentOptions(fields: RequestParameterAPI.CommentOptions)
-    
+
     
     /// In Reserve
     /*
@@ -105,7 +105,7 @@ public indirect enum OperationAPIType {
         case .subscribe(let subscriptionValue):             return  (operationAPIType:      self,
                                                                      paramsFirst:           ["network_broadcast_api", "broadcast_transaction"],
                                                                      paramsSecond:          [subscriptionValue])
-            
+
         }
     }
 }

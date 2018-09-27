@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -36,14 +35,14 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="280"/>
                                                 <subviews>
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="76i-ty-bAE" userLabel="Common View">
-                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="46.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </view>
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AFo-zw-18l" userLabel="Language View">
-                                                        <rect key="frame" x="0.0" y="46.5" width="375" height="47"/>
+                                                        <rect key="frame" x="0.0" y="70" width="375" height="70"/>
                                                         <subviews>
                                                             <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LeW-Nc-6kL" userLabel="Language Button">
-                                                                <rect key="frame" x="16" y="0.0" width="339" height="47"/>
+                                                                <rect key="frame" x="16" y="0.0" width="339" height="70"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <state key="normal" title="Button"/>
                                                                 <connections>
@@ -60,14 +59,14 @@
                                                         </constraints>
                                                     </view>
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9JV-o4-azi" userLabel="Currency View">
-                                                        <rect key="frame" x="0.0" y="93.5" width="375" height="46.5"/>
+                                                        <rect key="frame" x="0.0" y="140" width="375" height="70"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </view>
-                                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z5w-rP-f0J" userLabel="Edit Profile View">
-                                                        <rect key="frame" x="0.0" y="140" width="375" height="46.5"/>
+                                                    <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z5w-rP-f0J" userLabel="Edit Profile View">
+                                                        <rect key="frame" x="0.0" y="210" width="375" height="0.0"/>
                                                         <subviews>
                                                             <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2rV-a6-wzh" userLabel="Edit User Profile Button">
-                                                                <rect key="frame" x="16" y="0.0" width="339" height="46.5"/>
+                                                                <rect key="frame" x="16" y="0.0" width="339" height="0.0"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <state key="normal" title="Button"/>
                                                                 <connections>
@@ -83,11 +82,11 @@
                                                             <constraint firstItem="2rV-a6-wzh" firstAttribute="leading" secondItem="z5w-rP-f0J" secondAttribute="leading" constant="16" id="x08-UH-RU1"/>
                                                         </constraints>
                                                     </view>
-                                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gay-g6-Yx1" userLabel="Notifications View">
-                                                        <rect key="frame" x="0.0" y="186.5" width="375" height="47"/>
+                                                    <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gay-g6-Yx1" userLabel="Notifications View">
+                                                        <rect key="frame" x="0.0" y="210" width="375" height="0.0"/>
                                                         <subviews>
                                                             <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K7n-dv-Qcc" userLabel="Notifications Button">
-                                                                <rect key="frame" x="16" y="0.0" width="339" height="47"/>
+                                                                <rect key="frame" x="16" y="0.0" width="339" height="0.0"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <state key="normal" title="Button"/>
                                                                 <connections>
@@ -104,7 +103,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bwq-5V-ORO" userLabel="Voice Power View">
-                                                        <rect key="frame" x="0.0" y="233.5" width="375" height="46.5"/>
+                                                        <rect key="frame" x="0.0" y="210" width="375" height="70"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </view>
                                                 </subviews>
@@ -162,7 +161,7 @@
                                                         <rect key="frame" x="0.0" y="253" width="375" height="42"/>
                                                         <subviews>
                                                             <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MUM-yE-fsH" userLabel="Version Label">
-                                                                <rect key="frame" x="166" y="10" width="42" height="20.5"/>
+                                                                <rect key="frame" x="166.5" y="10.5" width="42" height="20.5"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
@@ -179,7 +178,7 @@
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </stackView>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.94901960784313721" green="0.95686274509803915" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="jcs-cQ-xDw" firstAttribute="leading" secondItem="IZe-iE-639" secondAttribute="leading" id="1N6-B5-i6y"/>
                                             <constraint firstItem="Jd1-if-qni" firstAttribute="top" secondItem="jcs-cQ-xDw" secondAttribute="bottom" constant="10" id="2Qw-ug-Mc3"/>

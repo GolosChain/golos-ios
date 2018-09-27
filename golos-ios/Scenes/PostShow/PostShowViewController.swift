@@ -543,7 +543,7 @@ class PostShowViewController: GSBaseViewController {
 
             // Subscribe topic
             if let firstTag = displayedPost.tags?.first {
-                self.topicTitleLabel.text = firstTag.transliteration().uppercaseFirst
+                self.topicTitleLabel.text = firstTag.transliteration(forPermlink: false).uppercaseFirst
             }
             
             // Subscribe User
@@ -576,7 +576,7 @@ class PostShowViewController: GSBaseViewController {
         (self.commentsStackView.arrangedSubviews as! [CommentView]).forEach({ $0.localizeTitles() })
         
         self.postFeedHeaderView.categoryLabel.text = self.router!.dataStore!.displayedPost!.category
-                                                        .transliteration()
+                                                        .transliteration(forPermlink: false)
                                                         .uppercaseFirst
             
         self.flauntButton.setTitle("Flaunt Verb".localized(), for: .normal)
@@ -591,7 +591,7 @@ class PostShowViewController: GSBaseViewController {
         self.userRecentPastLabel.text = "Recent Past:".localized()
         self.userPreviouslyLabel.text = "Previously:".localized()
         self.topicPublishedInLabel.text = "Published in".localized()
-        self.topicTitleLabel.text = self.router!.dataStore!.displayedPost!.tags!.first!.transliteration().uppercaseFirst
+        self.topicTitleLabel.text = self.router!.dataStore!.displayedPost!.tags!.first!.transliteration(forPermlink: false).uppercaseFirst
     }
 
     private func didCommentsScrollDown() {

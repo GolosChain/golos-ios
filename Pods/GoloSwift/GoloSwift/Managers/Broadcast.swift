@@ -267,9 +267,7 @@ public class Broadcast {
             for operation in transaction.operations {
                 let operationString =   (RequestParameterAPI.decodeToString(model: operation as! RequestParameterAPIOperationPropertiesSupport) ?? "xxx")
                 Logger.log(message: "\noperationString:\n\t\(operationString)", event: .debug)
-                jsonChainString     +=  (operationString + "}]]}]]}")
-                                            .replacingOccurrences(of: "}}]]}]]}", with: "}]]}]]}")
-                                            .replacingOccurrences(of: "\"[]\"", with: "[]")
+                jsonChainString     +=  operationString + "}]]}]]}"
                 Logger.log(message: "\nEncoded JSON -> jsonChainString:\n\t\(jsonChainString)", event: .debug)
             }
             

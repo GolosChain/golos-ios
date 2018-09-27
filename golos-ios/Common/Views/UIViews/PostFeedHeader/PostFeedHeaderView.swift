@@ -155,7 +155,7 @@ class PostFeedHeaderView: UIView {
         if let user = User.fetch(byName: post.author) {
             self.authorLabel.text           =   user.name
             self.categoryLabel.text         =   post.category
-                                                    .transliteration()
+                                                    .transliteration(forPermlink: false)
                                                     .uppercaseFirst
            
             // User Reputation -> Int

@@ -194,7 +194,7 @@ extension PostFeedTableViewCell: ConfigureCell {
 
         self.titleLabel.text                                =   model.title
         self.postFeedHeaderView.authorLabel.text            =   model.author
-        self.postFeedHeaderView.categoryLabel.text          =   model.category.transliteration()
+        self.postFeedHeaderView.categoryLabel.text          =   model.category.transliteration(forPermlink: false)
 
         selectionStyle                                      =   .none
 

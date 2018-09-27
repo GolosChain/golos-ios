@@ -28,19 +28,19 @@ public struct Transaction {
     
     // MARK: - Class Initialization
     public init(withOperations operations: [Encodable], andExtensions extensions: [String]? = nil) {
-        self.ref_block_num          =   headBlockNumber
-        self.ref_block_prefix       =   headBlockID
-        self.expiration             =   time
-        self.operations             =   operations
-        self.extensions             =   extensions
-        self.signatures             =   [String]()
-        self.serializedBuffer       =   [Byte]()
+        self.ref_block_num      =   headBlockNumber
+        self.ref_block_prefix   =   headBlockID
+        self.expiration         =   time
+        self.operations         =   operations
+        self.extensions         =   extensions
+        self.signatures         =   [String]()
+        self.serializedBuffer   =   [Byte]()
     }
     
     
     // MARK: - Custom Functions
     public mutating func setUser(name: String) {
-        self.userName               =   name
+        self.userName   =   name
     }
     
     /// Service function to remove `operation code` from transaction
@@ -136,6 +136,12 @@ public struct Transaction {
                     // Operations: serialize Int64
                 else if let value = operationTypePropertyValue as? Int64 {
                     self.serialize(int64: value)
+                }
+                    
+                    // Operations: serialize Array
+                else if let values = operationTypePropertyValue as? [String] {
+                    self.serializedBuffer += self.varint(int: values.count)
+                    values.forEach({ self.serialize(string: $0) })
                 }
                 
                 Logger.log(message: "\nserializedBuffer - \(operationTypePropertyName):\n\t\(self.serializedBuffer.toHexString())\n", event: .debug)

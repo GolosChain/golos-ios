@@ -81,7 +81,7 @@ class PostCreateInteractor: PostCreateBusinessLogic, PostCreateDataStore {
             switch requestModel.sceneType {
             case .createPost:
                 // API 'get_content'
-                self?.worker?.load(postPermlink: (self?.tags?.first?.title)!.transliteration(), completion: { errorAPI in
+                self?.worker?.load(postPermlink: (self?.tags?.first?.title)!.transliteration(forPermlink: false), completion: { errorAPI in
                     guard errorAPI.caseInfo.message != "No Internet Connection" else {
                         let responseModel = PostCreateModels.Item.ResponseModel(errorAPI: errorAPI)
                         self?.presenter?.presentPublishItem(fromResponseModel: responseModel)
@@ -89,14 +89,14 @@ class PostCreateInteractor: PostCreateBusinessLogic, PostCreateDataStore {
                         return
                     }
 
-                    let jsonMetadataString = ("{\"tags\":[\"" + (self?.tags)!.compactMap({ $0.title!.transliteration() }).joined(separator: ",") + "\"]")
+                    let jsonMetadataString = ("{\"tags\":[\"" + (self?.tags)!.compactMap({ $0.title!.transliteration(forPermlink: false) }).joined(separator: ",") + "\"]")
                                                 .replacingOccurrences(of: ",", with: "\",\"") + ",\"app\":\"golos.io/0.1\",\"format\":\"markdown\"}"
                     
 //                    Logger.log(message: "\njsonMetadataString:\n\t\(jsonMetadataString!)", event: .debug)
                     
                     // Create Post with transliteration
                     let newPost = RequestParameterAPI.Comment(parentAuthor:       "",
-                                                              parentPermlink:     (self?.tags?.first?.title ?? "").transliteration(),
+                                                              parentPermlink:     (self?.tags?.first?.title ?? "").transliteration(forPermlink: true),
                                                               author:             User.current!.name,
                                                               title:              self?.commentTitle ?? "",
                                                               body:               self?.commentBody ?? "",
