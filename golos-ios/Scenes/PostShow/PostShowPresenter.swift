@@ -15,6 +15,7 @@ import GoloSwift
 
 // MARK: - Presentation Logic protocols
 protocol PostShowPresentationLogic {
+    func presentSubscribe(fromResponseModel responseModel: PostShowModels.Item.ResponseModel)
     func presentLoadContent(fromResponseModel responseModel: PostShowModels.Post.ResponseModel)
     func presentLoadContentComments(fromResponseModel responseModel: PostShowModels.Post.ResponseModel)
     func presentCheckFollowing(fromResponseModel responseModel: PostShowModels.Following.ResponseModel)
@@ -32,6 +33,11 @@ class PostShowPresenter: PostShowPresentationLogic {
     
 
     // MARK: - Presentation Logic implementation
+    func presentSubscribe(fromResponseModel responseModel: PostShowModels.Item.ResponseModel) {
+        let viewModel = PostShowModels.Item.ViewModel(isFollowing: responseModel.isFollowing, errorAPI: responseModel.errorAPI)
+        viewController?.displaySubscribe(fromViewModel: viewModel)
+    }
+    
     func presentLoadContent(fromResponseModel responseModel: PostShowModels.Post.ResponseModel) {
         let viewModel = PostShowModels.Post.ViewModel(errorAPI: responseModel.errorAPI)
         viewController?.displayLoadContent(fromViewModel: viewModel)

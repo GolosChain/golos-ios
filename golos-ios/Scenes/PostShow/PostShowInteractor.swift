@@ -18,6 +18,7 @@ import GoloSwift
 protocol PostShowBusinessLogic {
     func save(comment: PostShortInfo)
     func save(postShortInfo: PostShortInfo)
+    func subscribe(withRequestModel requestModel: PostShowModels.Item.RequestModel)
     func loadContent(withRequestModel requestModel: PostShowModels.Post.RequestModel)
     func loadContentComments(withRequestModel requestModel: PostShowModels.Post.RequestModel)
     func checkFollowing(withRequestModel requestModel: PostShowModels.Following.RequestModel)
@@ -102,5 +103,34 @@ class PostShowInteractor: PostShowBusinessLogic, PostShowDataStore {
             let responseModel = PostShowModels.Following.ResponseModel(isFollowing: isFollowing, errorAPI: errorAPI)
             self?.presenter?.presentCheckFollowing(fromResponseModel: responseModel)
         })
+    }
+    
+    func subscribe(withRequestModel requestModel: PostShowModels.Item.RequestModel) {
+        let subscription = RequestParameterAPI.Subscription(userName:       User.current!.name,
+                                                            authorName:     self.postShortInfo!.author ?? "XXX",
+                                                            what:           requestModel.willSubscribe ? "blog" : nil)
+        
+        let operationAPIType = OperationAPIType.subscribe(fields: subscription)
+        let postRequestQueue = DispatchQueue.global(qos: .background)
+        
+        postRequestQueue.async {
+            broadcast.executePOST(requestByOperationAPIType:    operationAPIType,
+                                  userName:                     User.current!.name,
+                                  onResult:                     { [weak self] responseAPIResult in
+                                    var errorAPI: ErrorAPI?
+                                    
+                                    if let error = (responseAPIResult as! ResponseAPIBlockchainPostResult).error {
+                                        errorAPI = ErrorAPI.requestFailed(message: error.message)
+                                    }
+                                    
+                                    let responseModel = PostShowModels.Item.ResponseModel(isFollowing: errorAPI == nil, errorAPI: errorAPI)
+                                    self?.presenter?.presentSubscribe(fromResponseModel: responseModel)
+                },
+                                  onError: { [weak self] errorAPI in
+                                    Logger.log(message: "nresponse API Error = \(errorAPI.caseInfo.message)\n", event: .error)
+                                    let responseModel = PostShowModels.Item.ResponseModel(isFollowing: false, errorAPI: errorAPI)
+                                    self?.presenter?.presentSubscribe(fromResponseModel: responseModel)
+            })
+        }
     }
 }

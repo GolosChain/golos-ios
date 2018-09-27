@@ -40,7 +40,7 @@ public class WebSocketManager {
         let isSendedRequestMethodAPI    =   requestOperationAPIStore == nil
         
         isSendedRequestMethodAPI ?  requestMethodAPIStore!.completion((responseAPI: nil, errorAPI: ErrorAPI.responseUnsuccessful(message: "No Internet Connection"))) :
-                                    requestOperationAPIStore!.completion((responseAPI: nil, errorAPI: ErrorAPI.responseUnsuccessful(message: "No Internet Connection")))
+            requestOperationAPIStore!.completion((responseAPI: nil, errorAPI: ErrorAPI.responseUnsuccessful(message: "No Internet Connection")))
         
         // Clean store lists
         requestIDs                      =   [Int]()
@@ -143,6 +143,9 @@ public class WebSocketManager {
                 
             case .createPost(_):
                 return (responseAPI: try JSONDecoder().decode(ResponseAPIBlockchainPostResult.self, from: jsonData), errorAPI: nil)
+                
+            case .subscribe(_):
+                return (responseAPI: try JSONDecoder().decode(ResponseAPIBlockchainPostResult.self, from: jsonData), errorAPI: nil)
             }
         } catch {
             Logger.log(message: "\(error)", event: .error)
@@ -201,7 +204,7 @@ extension WebSocketManager: WebSocketDelegate {
                             return  requestMethodAPIStore.completion((responseAPI: nil, errorAPI: self?.errorAPI))
                         }
                         
-//                        Logger.log(message: "\nresponseMethodAPIResult model:\n\t\(responseAPIResult)", event: .debug)
+                        //                        Logger.log(message: "\nresponseMethodAPIResult model:\n\t\(responseAPIResult)", event: .debug)
                         
                         // Check websocket timeout: resend current request message
                         self?.checkTimeout(result: responseAPIResult, byMethodAPI: true, requestMethodAPIStore: requestMethodAPIStore, requestOperationAPIStore: nil)
@@ -218,7 +221,7 @@ extension WebSocketManager: WebSocketDelegate {
                             return requestOperationAPIStore.completion((responseAPI: nil, errorAPI: self?.errorAPI))
                         }
                         
-//                        Logger.log(message: "\nresponseOperationAPIResult model:\n\t\(responseAPIResult)", event: .debug)
+                        //                        Logger.log(message: "\nresponseOperationAPIResult model:\n\t\(responseAPIResult)", event: .debug)
                         
                         // Check websocket timeout: resend current request message
                         self?.checkTimeout(result: responseAPIResult, byMethodAPI: false, requestMethodAPIStore: nil, requestOperationAPIStore: requestOperationAPIStore)
@@ -280,7 +283,7 @@ extension WebSocketManager: WebSocketDelegate {
             // Check websocket timeout: handler completion
         else {
             byMethodAPI ?   requestMethodAPIStore!.completion((responseAPI: result, errorAPI: self.errorAPI)) :
-                            requestOperationAPIStore!.completion((responseAPI: result, errorAPI: self.errorAPI))
+                requestOperationAPIStore!.completion((responseAPI: result, errorAPI: self.errorAPI))
             
             // Clean requestsAPIStore
             self.requestMethodsAPIStore[codeID] = nil

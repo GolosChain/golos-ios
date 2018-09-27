@@ -20,10 +20,11 @@ typealias OperationRequestParameters = (operationAPIType: OperationAPIType, para
 public indirect enum OperationAPIType {
     /// In Work
     // API: POST
+    case createPost(operations: [Encodable])
     case vote(fields: RequestParameterAPI.Vote)
     case comment(fields: RequestParameterAPI.Comment)
+    case subscribe(fields: RequestParameterAPI.Subscription)
     case commentOptions(fields: RequestParameterAPI.CommentOptions)
-    case createPost(operations: [Encodable])
     
     
     /// In Reserve
@@ -100,6 +101,11 @@ public indirect enum OperationAPIType {
         case .createPost(let operations):                   return  (operationAPIType:      self,
                                                                      paramsFirst:           ["network_broadcast_api", "broadcast_transaction"],
                                                                      paramsSecond:          operations)
+            
+        case .subscribe(let subscriptionValue):             return  (operationAPIType:      self,
+                                                                     paramsFirst:           ["network_broadcast_api", "broadcast_transaction"],
+                                                                     paramsSecond:          [subscriptionValue])
+            
         }
     }
 }

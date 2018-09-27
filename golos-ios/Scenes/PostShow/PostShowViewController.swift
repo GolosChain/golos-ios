@@ -20,6 +20,7 @@ import AlignedCollectionViewFlowLayout
 
 // MARK: - Input & Output protocols
 protocol PostShowDisplayLogic: class {
+    func displaySubscribe(fromViewModel viewModel: PostShowModels.Item.ViewModel)
     func displayLoadContent(fromViewModel viewModel: PostShowModels.Post.ViewModel)
     func displayLoadContentComments(fromViewModel viewModel: PostShowModels.Post.ViewModel)
     func displayCheckFollowing(fromViewModel viewModel: PostShowModels.Following.ViewModel)
@@ -690,7 +691,26 @@ class PostShowViewController: GSBaseViewController {
     @IBAction func subscribeButtonTapped(_ sender: UIButton) {
         sender.setBorder(color: UIColor(hexString: "#dbdbdb").cgColor, cornerRadius: 4.0 * heightRatio)
         
-        self.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+        guard isNetworkAvailable else {
+            self.showAlertView(withTitle: "Info", andMessage: "No Internet Connection", needCancel: false, completion: { _ in })
+            return
+        }
+        
+        guard !User.isAnonymous else {
+            self.showAlertView(withTitle: "Info", andMessage: "Please Login in App", needCancel: true, completion: { success in
+                if success {
+                    NotificationCenter.default.post(name:       NSNotification.Name.appStateChanged,
+                                                    object:     nil,
+                                                    userInfo:   nil)
+                }
+            })
+            
+            return
+        }
+        
+        // API
+        let requestModel = PostShowModels.Item.RequestModel(willSubscribe: !sender.isSelected)
+        interactor?.subscribe(withRequestModel: requestModel)
     }
     
     @IBAction func subscribeButtonTappedDown(_ sender: UIButton) {
@@ -701,6 +721,19 @@ class PostShowViewController: GSBaseViewController {
 
 // MARK: - PostShowDisplayLogic
 extension PostShowViewController: PostShowDisplayLogic {
+    func displaySubscribe(fromViewModel viewModel: PostShowModels.Item.ViewModel) {
+        // NOTE: Display the result from the Presenter
+        if let error = viewModel.errorAPI {
+            self.showAlertView(withTitle: "Error", andMessage: error.localizedDescription, needCancel: false, completion: { _ in })
+        }
+        
+        // Set post author subscribe button title
+        DispatchQueue.main.async {
+            self.subscribeButtonsCollection.first(where: { $0.tag == 1})?.isSelected = viewModel.isFollowing
+            self.subscribeButtonsCollection.first(where: { $0.tag == 1 })?.setTitle(viewModel.isFollowing ? "Unsubscribe".localized() : "Subscribe".localized(), for: .normal)
+        }
+    }
+    
     func displayLoadContent(fromViewModel viewModel: PostShowModels.Post.ViewModel) {
         // NOTE: Display the result from the Presenter
         if let error = viewModel.errorAPI {
@@ -729,6 +762,7 @@ extension PostShowViewController: PostShowDisplayLogic {
         
         // Set post author subscribe button title
         DispatchQueue.main.async {
+            self.subscribeButtonsCollection.first(where: { $0.tag == 1})?.isSelected = viewModel.isFollowing
             self.subscribeButtonsCollection.first(where: { $0.tag == 1 })?.setTitle(viewModel.isFollowing ? "Unsubscribe".localized() : "Subscribe".localized(), for: .normal)
         }
     }
@@ -758,6 +792,16 @@ extension PostShowViewController {
     }
     
     private func runCheckFollowing() {
+        guard isNetworkAvailable && !User.isAnonymous else {
+            DispatchQueue.main.async {
+                self.subscribeButtonsCollection.first(where: { $0.tag == 1})?.isSelected = false
+                self.subscribeButtonsCollection.first(where: { $0.tag == 1 })?.setTitle("Subscribe".localized(), for: .normal)
+            }
+            
+            return
+        }
+        
+        // API
         let requestModel = PostShowModels.Following.RequestModel()
         self.interactor?.checkFollowing(withRequestModel: requestModel)
     }

@@ -47,9 +47,9 @@ public struct RequestParameterAPI {
             }
             
             return  result
-                        .replacingOccurrences(of: "{{", with: "{")
-                        .replacingOccurrences(of: "}{", with: ",")
-                        .replacingOccurrences(of: "}\"}", with: "}\"")
+                .replacingOccurrences(of: "{{", with: "{")
+                .replacingOccurrences(of: "}{", with: ",")
+                .replacingOccurrences(of: "}\"}", with: "}\"")
         } catch {
             Logger.log(message: "Error: \(error.localizedDescription)", event: .error)
             return nil
@@ -86,6 +86,8 @@ public struct RequestParameterAPI {
         }
     }
     
+    
+    // MARK: -
     public struct Discussion: Encodable {
         // MARK: - Properties
         public let limit: UInt
@@ -119,6 +121,8 @@ public struct RequestParameterAPI {
         }
     }
     
+    
+    // MARK: -
     public struct Comment: Encodable, RequestParameterAPIOperationPropertiesSupport {
         // MARK: - Properties
         public let parentAuthor: String
@@ -141,10 +145,10 @@ public struct RequestParameterAPI {
             self.needTiming     =   needTiming
             
             let permlinkTemp    =   (parentAuthor.isEmpty ? String(format: "%@", title.transliteration()) :
-                                                            String(format: "re-%@-%@-%@", parentAuthor, parentPermlink, author))
-                                        .replacingOccurrences(of: " ", with: "-")
-                                        .replacingOccurrences(of: ".", with: "-")
-                                        .lowercased()
+                String(format: "re-%@-%@-%@", parentAuthor, parentPermlink, author))
+                .replacingOccurrences(of: " ", with: "-")
+                .replacingOccurrences(of: ".", with: "-")
+                .lowercased()
             
             self.permlink   =   needTiming ? (permlinkTemp + "-\(Int64(Date().timeIntervalSince1970))") : permlinkTemp
             
@@ -165,14 +169,14 @@ public struct RequestParameterAPI {
         
         public func getProperties() -> [String: Any] {
             return  [
-                        "parent_author":    self.parentAuthor,
-                        "parent_permlink":  self.parentPermlink,
-                        "author":           self.author,
-                        "permlink":         self.permlink,
-                        "title":            self.title,
-                        "body":             self.body,
-                        "json_metadata":    self.jsonMetadata
-                    ]
+                "parent_author":    self.parentAuthor,
+                "parent_permlink":  self.parentPermlink,
+                "author":           self.author,
+                "permlink":         self.permlink,
+                "title":            self.title,
+                "body":             self.body,
+                "json_metadata":    self.jsonMetadata
+            ]
         }
         
         func getPropertiesNames() -> [String] {
@@ -181,6 +185,7 @@ public struct RequestParameterAPI {
     }
     
     
+    // MARK: -
     public struct CommentOptions: Encodable, RequestParameterAPIOperationPropertiesSupport {
         // MARK: - Properties
         public let author: String
@@ -211,14 +216,14 @@ public struct RequestParameterAPI {
         
         public func getProperties() -> [String: Any] {
             return  [
-                        "author":                   self.author,
-                        "permlink":                 self.permlink,
-                        "max_accepted_payout":      self.max_accepted_payout,
-                        "percent_steem_dollars":    self.percent_steem_dollars,
-                        "allow_votes":              self.allow_votes,
-                        "allow_curation_rewards":   self.allow_curation_rewards,
-                        "extensions":               self.extensions
-                    ]
+                "author":                   self.author,
+                "permlink":                 self.permlink,
+                "max_accepted_payout":      self.max_accepted_payout,
+                "percent_steem_dollars":    self.percent_steem_dollars,
+                "allow_votes":              self.allow_votes,
+                "allow_curation_rewards":   self.allow_curation_rewards,
+                "extensions":               self.extensions
+            ]
         }
         
         func getPropertiesNames() -> [String] {
@@ -226,6 +231,8 @@ public struct RequestParameterAPI {
         }
     }
     
+    
+    // MARK: -
     public struct Vote: Encodable, RequestParameterAPIOperationPropertiesSupport {
         // MARK: - Properties
         public let voter: String
@@ -250,15 +257,51 @@ public struct RequestParameterAPI {
         
         public func getProperties() -> [String: Any] {
             return  [
-                        "voter":        self.voter,
-                        "author":       self.author,
-                        "permlink":     self.permlink,
-                        "weight":       self.weight
-                    ]
+                "voter":        self.voter,
+                "author":       self.author,
+                "permlink":     self.permlink,
+                "weight":       self.weight
+            ]
         }
         
         func getPropertiesNames() -> [String] {
             return [ "voter", "author", "permlink", "weight" ]
+        }
+    }
+    
+    
+    // MARK: -
+    public struct Subscription: Encodable, RequestParameterAPIOperationPropertiesSupport {
+        // MARK: - Properties
+        public let what: String?
+        public let userName: String
+        public var authorName: String
+        
+        
+        // MARK: - Initialization
+        public init(userName: String, authorName: String, what: String? = nil) {
+            self.what       =   what
+            self.userName   =   userName
+            self.authorName =   authorName
+        }
+        
+        
+        // MARK: - RequestParameterAPIOperationPropertiesSupport protocol implementation
+        // https://github.com/GolosChain/golos-js/blob/master/src/auth/serializer/src/ChainTypes.js
+        var code: Int?      =   25
+        var name: String?   =   "custom_json"
+        
+        public func getProperties() -> [String: Any] {
+            return  [
+                        "required_auths":           "[]",
+                        "required_posting_auths":   [self.userName],
+                        "id":                       "follow",
+                        "json":                     "[\"follow\", {\"follower\":\"\(self.userName)\",\"following\":\"\(self.authorName)\",\"what\":[\"\(self.what ?? "")\"]}]"
+                    ]
+        }
+        
+        func getPropertiesNames() -> [String] {
+            return [ "required_auths", "required_posting_auths", "id", "json" ]
         }
     }
 }
