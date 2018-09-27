@@ -84,7 +84,7 @@ public class WebSocketManager {
      
      */
     private func validate(json: [String: Any], completion: @escaping (_ codeID: Int, _ hasError: Bool) -> Void) {
-        //        Logger.log(message: json.description, event:6 .debug)
+//        Logger.log(message: json.description, event:6 .debug)
         completion(json["id"] as! Int, json["error"] != nil)
     }
     

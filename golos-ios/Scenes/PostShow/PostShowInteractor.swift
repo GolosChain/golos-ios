@@ -123,7 +123,9 @@ class PostShowInteractor: PostShowBusinessLogic, PostShowDataStore {
                                         errorAPI = ErrorAPI.requestFailed(message: error.message)
                                     }
                                     
-                                    let responseModel = PostShowModels.Item.ResponseModel(isFollowing: errorAPI == nil, errorAPI: errorAPI)
+                                    let isFollowing = errorAPI == nil && requestModel.willSubscribe
+                                    
+                                    let responseModel = PostShowModels.Item.ResponseModel(isFollowing: isFollowing, errorAPI: errorAPI)
                                     self?.presenter?.presentSubscribe(fromResponseModel: responseModel)
                 },
                                   onError: { [weak self] errorAPI in

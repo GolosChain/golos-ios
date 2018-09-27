@@ -40,7 +40,7 @@ class SettingsShowViewController: GSBaseViewController {
     
     @IBOutlet weak var contentView: UIView! {
         didSet {
-            contentView.tune(withThemeColorPicker: lightGrayishBlueWhiteColorPickers)
+            contentView.tune(withThemeColorPicker: whiteBlackColorPickers)
         }
     }
     

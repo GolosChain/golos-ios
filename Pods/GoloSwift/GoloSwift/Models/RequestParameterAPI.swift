@@ -300,14 +300,17 @@ public struct RequestParameterAPI {
         var name: String?   =   "custom_json"
         
         public func getProperties() -> [String: Any] {
+            let isWhatNil = self.what == nil
+            
             return  [
-                        "required_auths":           [],
-                        "required_posting_auths":   self.userName,
-                        "id":                       "follow",
-                        "json":                     "[\"follow\",{\"follower\":\"\(self.follower)\",\"following\":\"\(self.authorName)\",\"what\":[\"\(self.what ?? "")\"]}]"
-                    ]
+                "required_auths":           [],
+                "required_posting_auths":   self.userName,
+                "id":                       "follow",
+                "json":                     isWhatNil ? "[\"follow\",{\"follower\":\"\(self.follower)\",\"following\":\"\(self.authorName)\",\"what\":[]}]" :
+                                                        "[\"follow\",{\"follower\":\"\(self.follower)\",\"following\":\"\(self.authorName)\",\"what\":[\"\(self.what!)\"]}]"
+            ]
         }
-        
+
         func getPropertiesNames() -> [String] {
             return [ "required_auths", "required_posting_auths", "id", "json" ]
         }
