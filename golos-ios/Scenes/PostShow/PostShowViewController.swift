@@ -701,7 +701,7 @@ class PostShowViewController: GSBaseViewController {
         }
         
         guard !User.isAnonymous else {
-            self.showAlertView(withTitle: "Info", andMessage: "Please Login in App", needCancel: true, completion: { success in
+            self.showAlertView(withTitle: "Enter Title", andMessage: "Please Login in App", needCancel: true, completion: { success in
                 if success {
                     NotificationCenter.default.post(name:       NSNotification.Name.appStateChanged,
                                                     object:     nil,

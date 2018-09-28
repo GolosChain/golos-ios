@@ -85,14 +85,8 @@ class GSBaseViewController: UIViewController {
                                                                     action:     nil)
     }
 
-    func showAlertView(withTitle title: String, andMessage message: String, needCancel cancel: Bool, completion: @escaping ((Bool) -> Void)) {
+    func showAlertView(withTitle title: String, andMessage message: String, actionTitle: String? = "Enter Title", needCancel cancel: Bool, completion: @escaping ((Bool) -> Void)) {
         let alertViewController = UIAlertController.init(title: title.localized(), message: message.localized(), preferredStyle: .alert)
-        
-        let alertViewControllerOkAction = UIAlertAction.init(title: (cancel ? "ActionYes".localized() : "ActionOk".localized()), style: .default, handler: { _ in
-            return completion(true)
-        })
-        
-        alertViewController.addAction(alertViewControllerOkAction)
         
         if cancel {
             let alertViewControllerCancelAction = UIAlertAction.init(title: "ActionCancel".localized(), style: .destructive, handler: { _ in
@@ -101,6 +95,12 @@ class GSBaseViewController: UIViewController {
             
             alertViewController.addAction(alertViewControllerCancelAction)
         }
+        
+        let alertViewControllerOkAction = UIAlertAction.init(title: (cancel ? actionTitle!.localized() : "ActionOk".localized()), style: .default, handler: { _ in
+            return completion(true)
+        })
+        
+        alertViewController.addAction(alertViewControllerOkAction)
         
         alertViewController.show()
     }

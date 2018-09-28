@@ -211,7 +211,7 @@ class SettingsShowViewController: GSBaseViewController {
     }
     
     @IBAction func logOutButtonTapped(_ sender: UIButton) {
-        self.showAlertView(withTitle: "Exit", andMessage: "Are Your Sure?", needCancel: true, completion: { [weak self] success in
+        self.showAlertView(withTitle: "Exit", andMessage: "Are Your Sure?", actionTitle: "ActionYes", needCancel: true, completion: { [weak self] success in
             if success {
                 self?.router?.routeToLoginShowScene()
             }
