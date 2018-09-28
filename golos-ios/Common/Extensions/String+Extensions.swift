@@ -70,7 +70,7 @@ extension String {
     
     /// Add proxy part to image URL
     func addImageProxy(withSize size: CGSize) -> String {
-        return self.hasPrefix("https://images.golos.io") ?  self : "https://imgp.golos.io" + String(format: "/%dx%d/", size.width, size.height) + self
+        return self.hasPrefix("https://images.golos.io") ? self : "https://imgp.golos.io" + "/\(Int(size.width))x\(Int(size.height))/" + self
     }
     
     

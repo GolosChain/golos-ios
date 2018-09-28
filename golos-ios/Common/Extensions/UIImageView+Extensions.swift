@@ -23,7 +23,7 @@ extension UIImageView {
         self.alpha                  =   0.0
         
         let imagePathWithProxy      =   path.trimmingCharacters(in: .whitespacesAndNewlines).addImageProxy(withSize: size)
-        let imageURL                =   URL(string: imagePathWithProxy.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!.replacingOccurrences(of: "%20", with: "_"))
+        let imageURL                =   URL(string: imagePathWithProxy)
         
         Logger.log(message: "imageURL = \(imageURL!)", event: .debug)
         
@@ -70,7 +70,7 @@ extension UIImageView {
                     
                 // Download image by URL
                 else if isNetworkAvailable {
-                    let downloadImageQueue = DispatchQueue.global(qos: .userInteractive)
+                    let downloadImageQueue = DispatchQueue.global(qos: .utility)
                     
                     // Run queue in Async Thread
                     downloadImageQueue.async {
@@ -119,7 +119,7 @@ extension UIImageView {
     }
     
     private func fadeIn(image: UIImage) {
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1, execute: {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5, execute: {
             self.image = image
 
             UIView.animate(withDuration: 0.75, animations: {
