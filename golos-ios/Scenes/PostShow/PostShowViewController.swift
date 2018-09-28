@@ -98,12 +98,6 @@ class PostShowViewController: GSBaseViewController {
     
     
     // MARK: - IBOutlets
-    @IBOutlet weak var scrollView: UIScrollView! {
-        didSet {
-            self.scrollView.isUserInteractionEnabled = !self.scrollCommentsDown
-        }
-    }
-    
     @IBOutlet weak var navbarShadowView: UIView!
     @IBOutlet weak var postFeedHeaderView: PostFeedHeaderView!
     @IBOutlet weak var commentsView: UIView!
@@ -111,6 +105,23 @@ class PostShowViewController: GSBaseViewController {
     @IBOutlet weak var subscribesStackView: UIStackView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    @IBOutlet weak var scrollView: UIScrollView! {
+        didSet {
+            self.scrollView.isUserInteractionEnabled = !self.scrollCommentsDown
+        }
+    }
+    
+    @IBOutlet weak var emptyCommentsButton: UIButton! {
+        didSet {
+            self.emptyCommentsButton.tune(withTitle:    "No Comments Title".localized(),
+                                          hexColors:    [veryDarkGrayWhiteColorPickers, darkGrayWhiteColorPickers, darkGrayWhiteColorPickers, darkGrayWhiteColorPickers],
+                                          font:         UIFont(name: "SFProDisplay-Regular", size: 13.0),
+                                          alignment:    .left)
+            
+            self.emptyCommentsButton.isHidden = true
+        }
+    }
+
     @IBOutlet weak var markdownViewManager: MarkdownViewManager! {
         didSet {
             // Handler Markdown
@@ -380,7 +391,7 @@ class PostShowViewController: GSBaseViewController {
     @IBOutlet var circleImagesCollection: [UIView]! {
         didSet {
             circleImagesCollection.forEach({ imageView in
-                imageView.layer.cornerRadius = imageView.bounds.height / 2 * heightRatio
+                imageView.layer.cornerRadius = imageView.bounds.width / 2 * widthRatio
                 
                 if imageView.tag == 0 {
                     imageView.layer.borderWidth     =   1.0
@@ -406,6 +417,12 @@ class PostShowViewController: GSBaseViewController {
     @IBOutlet weak var buttonsStackViewTopConstraint: NSLayoutConstraint! {
         didSet {
             buttonsStackViewTopConstraint.constant = -34.0 * heightRatio * 0.0
+        }
+    }
+    
+    @IBOutlet weak var emptyCommentsButtonTopConstraint: NSLayoutConstraint! {
+        didSet {
+            self.emptyCommentsButtonTopConstraint.constant = -44.0 * heightRatio
         }
     }
     
@@ -490,11 +507,13 @@ class PostShowViewController: GSBaseViewController {
         self.navbarShadowView?.add(shadow: true, onside: .bottom)
 
         if let user = User.current {
-            self.subscribesStackViewTopConstraint.constant = user.name == self.router?.dataStore?.postShortInfo?.author ? -90.0 * heightRatio : 0.0
+            let isNamesMatch = user.name == self.router?.dataStore?.postShortInfo?.author
+            
+            self.subscribesStackViewTopConstraint.constant = isNamesMatch ? -100.0 * heightRatio : 0.0
+            self.backgroundGrayViewsCollection.first(where: { $0.tag == 0})?.isHidden = isNamesMatch
             
             UIView.animate(withDuration: 0.3) {
-                self.subscribesStackView.isHidden = true
-                self.contentView.sendSubviewToBack(self.subscribesStackView)
+                self.subscribesStackView.isHidden = isNamesMatch
                 self.view.layoutIfNeeded()
             }
         }
@@ -517,7 +536,16 @@ class PostShowViewController: GSBaseViewController {
         self.commentsView.isHidden                      =   hided
         self.commentsStackView.isHidden                 =   hided
         
-        if !hided {
+        if hided {
+            self.emptyCommentsButton.isHidden = false
+            self.emptyCommentsButtonTopConstraint.constant = 0.0
+            
+            UIView.animate(withDuration: 0.3) {
+                self.view.layoutIfNeeded()
+            }
+        }
+        
+        else {
             self.commentsButton.setTitle("\(self.commentsViews.count)", for: .normal)
             self.commentsCountLabel.text = String(format: "%i", self.commentsViews.count)
         }
@@ -530,7 +558,7 @@ class PostShowViewController: GSBaseViewController {
         if let displayedPost = self.router?.dataStore?.displayedPost {
             self.titleLabel.text = displayedPost.title
 
-            DispatchQueue.main.async {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
                 self.tagsCollectionView.reloadData()
                 self.markdownViewManager.load(markdown: displayedPost.body)
             }
@@ -597,6 +625,7 @@ class PostShowViewController: GSBaseViewController {
         self.flauntButton.setTitle("Flaunt Verb".localized(), for: .normal)
         self.donateButton.setTitle("Donate Verb".localized(), for: .normal)
         self.promoteButton.setTitle("Promote Post Verb".localized(), for: .normal)
+        self.emptyCommentsButton.setTitle("No Comments Title".localized(), for: .normal)
         self.commentsHideButton.setTitle("Hide Comments Verb".localized(), for: .normal)
         self.commentsSortByButton.setTitle("Action Sheet First New".localized(), for: .normal)
         self.subscribeButtonsCollection.forEach({ $0.setTitle("Subscribe".localized(), for: .normal )})
@@ -610,12 +639,12 @@ class PostShowViewController: GSBaseViewController {
     }
 
     private func didCommentsScrollDown() {
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.3, execute: {
-            if self.scrollCommentsDown {
+        if self.scrollCommentsDown {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.3, execute: {
 //                self.scrollView.scrollToBottom(animated: true)
                 self.scrollView.scrollRectToVisible(CGRect(origin: self.commentsView.frame.origin, size: CGSize(width: self.commentsView.frame.width, height: max(0, self.commentsStackView.frame.maxY))), animated: true)
-            }
-        })
+            })
+        }
     }
     
     

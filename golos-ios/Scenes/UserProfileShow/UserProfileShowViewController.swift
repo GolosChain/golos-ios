@@ -428,6 +428,7 @@ extension UserProfileShowViewController {
                 }
                 
                 activeVC.handlerCommentsButtonTapped    =   { [weak self] postShortInfo in
+                    self?.settingsShow = true
                     self?.interactor?.save(blog: postShortInfo)
                     self?.router?.routeToPostShowScene(withScrollToComments: true)
                 }
@@ -445,6 +446,7 @@ extension UserProfileShowViewController {
                                                                    parentPermlink:      blog.parentPermlink))
                         
                         self?.router?.routeToPostShowScene(withScrollToComments: false)
+                        self?.settingsShow = true
                     }
                 }
                 
