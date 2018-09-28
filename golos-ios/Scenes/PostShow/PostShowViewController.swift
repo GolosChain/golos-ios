@@ -476,6 +476,10 @@ class PostShowViewController: GSBaseViewController {
         self.postFeedHeaderView.handlerAuthorTapped         =   { [weak self] userName in
             self?.router?.routeToUserProfileScene(byUserName: userName)
         }
+   
+        self.postFeedHeaderView.handlerReblogAuthorTapped   =   { [weak self] reblogAuthorName in
+            self?.router?.routeToUserProfileScene(byUserName: reblogAuthorName)
+        }
         
         // Load Post
         self.loadContent()

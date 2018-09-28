@@ -80,6 +80,7 @@ extension UIButton {
         
         self.titleLabel?.font               =   font
         self.titleLabel?.textAlignment      =   alignment
+        self.contentMode                    =   .scaleAspectFill
 
         self.setTitle(title.localized(), for: .normal)
         self.theme_setTitleColor(hexColors[0], forState: .normal)

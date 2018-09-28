@@ -13,7 +13,7 @@
             <connections>
                 <outlet property="authorNameButton" destination="eTP-vD-Kt8" id="7iy-kn-6MZ"/>
                 <outlet property="authorProfileAddButton" destination="cy5-Ia-Z4f" id="IeY-qa-QHD"/>
-                <outlet property="authorProfileImageButton" destination="mlh-OO-ald" id="bM1-bF-0qN"/>
+                <outlet property="authorProfileImageView" destination="mdT-NO-nly" id="hnN-Ty-BMb"/>
                 <outlet property="commentsButton" destination="cvI-fZ-UGc" id="dbi-Ke-2yJ"/>
                 <outlet property="contentView" destination="tNf-H6-dtq" id="pgg-SB-0Y3"/>
                 <outlet property="leadingConstraint" destination="rJH-dn-TBo" id="UmV-KF-Fgi"/>
@@ -23,19 +23,15 @@
                 <outlet property="timeLabel" destination="JV1-jP-ZcQ" id="Tgb-ss-qh4"/>
                 <outlet property="upvotesButton" destination="RVe-ej-86a" id="Icj-bh-8Ok"/>
                 <outlet property="view" destination="iN0-l3-epB" id="fR0-Z6-6hX"/>
-                <outletCollection property="widthsCollection" destination="K8l-41-h6y" collectionClass="NSMutableArray" id="egR-wR-70K"/>
-                <outletCollection property="widthsCollection" destination="D4v-Ma-HTj" collectionClass="NSMutableArray" id="ueX-rf-z3E"/>
                 <outletCollection property="widthsCollection" destination="WGM-xK-IuN" collectionClass="NSMutableArray" id="yeY-jf-8kq"/>
-                <outletCollection property="widthsCollection" destination="0Jc-1M-vHe" collectionClass="NSMutableArray" id="xoa-yy-vc2"/>
                 <outletCollection property="heightsCollection" destination="cCs-s7-z6A" collectionClass="NSMutableArray" id="XIy-ft-m4d"/>
                 <outletCollection property="widthsCollection" destination="rJH-dn-TBo" collectionClass="NSMutableArray" id="6B4-ke-uLT"/>
                 <outletCollection property="heightsCollection" destination="hRo-AH-T67" collectionClass="NSMutableArray" id="XUQ-zE-BTi"/>
                 <outletCollection property="circleViewsCollection" destination="yNw-9n-yzN" collectionClass="NSMutableArray" id="9K9-TC-dMn"/>
                 <outletCollection property="circleViewsCollection" destination="cy5-Ia-Z4f" collectionClass="NSMutableArray" id="RZR-XR-43a"/>
                 <outletCollection property="circleViewsCollection" destination="mlh-OO-ald" collectionClass="NSMutableArray" id="gHh-Op-X1v"/>
-                <outletCollection property="widthsCollection" destination="Ol7-c9-mB8" collectionClass="NSMutableArray" id="HVh-BF-B2v"/>
-                <outletCollection property="widthsCollection" destination="E7k-6F-MBy" collectionClass="NSMutableArray" id="CBa-Q5-k0c"/>
                 <outletCollection property="widthsCollection" destination="jXL-gx-aSk" collectionClass="NSMutableArray" id="bA0-QA-1tA"/>
+                <outletCollection property="circleViewsCollection" destination="mdT-NO-nly" collectionClass="NSMutableArray" id="qjF-Vv-XeQ"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -46,14 +42,17 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tNf-H6-dtq" userLabel="Content View">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="85"/>
                     <subviews>
-                        <button clipsSubviews="YES" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mlh-OO-ald" userLabel="Author Profile Image Button">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-user-profile-image-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="mdT-NO-nly" userLabel="Author Profile Image View">
+                            <rect key="frame" x="2" y="5" width="40" height="40"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </imageView>
+                        <button contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mlh-OO-ald" userLabel="Author Profile Image Button">
                             <rect key="frame" x="2" y="5" width="40" height="40"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="mlh-OO-ald" secondAttribute="height" multiplier="1:1" id="7RT-1B-L2t"/>
                                 <constraint firstAttribute="width" constant="40" id="Ol7-c9-mB8"/>
                             </constraints>
-                            <state key="normal" image="icon-user-profile-image-placeholder"/>
                             <connections>
                                 <action selector="authorProfileImageButtonTapped:" destination="-1" eventType="touchUpInside" id="c5H-AB-tKT"/>
                             </connections>
@@ -209,9 +208,13 @@
                         <constraint firstItem="Mnb-Ny-ryB" firstAttribute="top" secondItem="eTP-vD-Kt8" secondAttribute="bottom" constant="3" id="DOx-JU-Tjk"/>
                         <constraint firstAttribute="trailing" secondItem="bW7-se-LaC" secondAttribute="trailing" id="DQT-JO-Lfz"/>
                         <constraint firstItem="eTP-vD-Kt8" firstAttribute="leading" secondItem="mlh-OO-ald" secondAttribute="trailing" constant="10" id="K8l-41-h6y"/>
+                        <constraint firstItem="mdT-NO-nly" firstAttribute="width" secondItem="mlh-OO-ald" secondAttribute="width" id="KO0-h5-JpD"/>
                         <constraint firstItem="yNw-9n-yzN" firstAttribute="leading" secondItem="mlh-OO-ald" secondAttribute="leading" constant="-2" id="Mje-bE-iK1"/>
                         <constraint firstItem="bW7-se-LaC" firstAttribute="leading" secondItem="eTP-vD-Kt8" secondAttribute="leading" id="PJf-Ow-DpU"/>
+                        <constraint firstItem="mdT-NO-nly" firstAttribute="height" secondItem="mlh-OO-ald" secondAttribute="height" id="RKS-8c-Yd4"/>
                         <constraint firstAttribute="trailing" secondItem="Mnb-Ny-ryB" secondAttribute="trailing" constant="-14" id="WGM-xK-IuN"/>
+                        <constraint firstItem="mdT-NO-nly" firstAttribute="centerX" secondItem="mlh-OO-ald" secondAttribute="centerX" id="bOG-Ok-y8j"/>
+                        <constraint firstItem="mdT-NO-nly" firstAttribute="centerY" secondItem="mlh-OO-ald" secondAttribute="centerY" id="bZS-MS-EyC"/>
                         <constraint firstItem="yNw-9n-yzN" firstAttribute="bottom" secondItem="mlh-OO-ald" secondAttribute="bottom" constant="2" id="cCs-s7-z6A"/>
                         <constraint firstItem="eTP-vD-Kt8" firstAttribute="top" secondItem="mlh-OO-ald" secondAttribute="top" id="eg7-rP-TKm"/>
                         <constraint firstAttribute="bottom" secondItem="Mnb-Ny-ryB" secondAttribute="bottom" constant="40" id="hRo-AH-T67"/>

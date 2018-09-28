@@ -35,9 +35,9 @@ class CommentView: UIView, HandlersCellSupport {
     @IBOutlet var view: UIView!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var upvotesButton: UIButton!
-    @IBOutlet weak var authorProfileImageButton: UIButton!
-    @IBOutlet weak var markdownViewManager: MarkdownViewManager!
-    
+    @IBOutlet weak var markdownViewManager: MarkdownViewManager!    
+    @IBOutlet weak var authorProfileImageView: UIImageView!
+
     @IBOutlet weak var commentsButton: UIButton! {
         didSet {
             self.commentsButton.tune(withTitle:         "",
@@ -49,7 +49,7 @@ class CommentView: UIView, HandlersCellSupport {
 
     @IBOutlet var circleViewsCollection: [UIView]! {
         didSet {
-            _ = circleViewsCollection.map({ $0.layer.cornerRadius = $0.bounds.width / 2 * widthRatio })
+            _ = circleViewsCollection.map({ $0.layer.cornerRadius = $0.bounds.width / 2 })
         }
     }
     
@@ -137,17 +137,18 @@ class CommentView: UIView, HandlersCellSupport {
         RestAPIManager.loadUsersInfo(byNames: [comment.author], completion: { [weak self] errorAPI in
             if errorAPI == nil, let author = User.fetch(byName: comment.author) {
                 if let authorProfileImageURL = author.profileImageURL {
-                    self?.authorProfileImageButton.uploadImage(byStringPath:     authorProfileImageURL,
-                                                               size:             CGSize(width: 40.0 * widthRatio, height: 40.0 * widthRatio),
-                                                               createdDate:      author.created.convert(toDateFormat: .expirationDateType),
-                                                               fromItem:         (author as CachedImageFrom).fromItem)
+                    self?.authorProfileImageView.uploadImage(byStringPath:  authorProfileImageURL,
+                                                             imageType:     ImageType.userProfileImage,
+                                                             size:          CGSize(width: 40.0, height: 40.0),
+                                                             tags:          nil,
+                                                             createdDate:   author.created.convert(toDateFormat: .expirationDateType),
+                                                             fromItem:      (author as CachedImageFrom).fromItem)
                 }
             }
         })
         
         // Set cell level
-        self.leadingConstraint.constant = CGFloat(self.level.count - 2) > 0 ? 52.0 * widthRatio : 0.0
-//        self.leadingConstraint.constant = 52.0 * widthRatio * CGFloat(self.level.count - 2) / 2
+        self.leadingConstraint.constant = CGFloat(self.level.count - 2) > 0 ? 52.0 : 0.0
         self.markdownViewManager.layoutIfNeeded()
     }
     

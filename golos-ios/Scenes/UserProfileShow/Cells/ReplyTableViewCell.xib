@@ -112,8 +112,8 @@
                     <stackView clipsSubviews="YES" contentMode="left" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Ty5-mp-LK8" userLabel="Bottom Stack View">
                         <rect key="frame" x="90" y="63" width="309" height="44.5"/>
                         <subviews>
-                            <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bgm-nf-yUO">
-                                <rect key="frame" x="0.0" y="0.0" width="46" height="44.5"/>
+                            <button hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bgm-nf-yUO">
+                                <rect key="frame" x="0.0" y="0.0" width="0.0" height="44.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <inset key="contentEdgeInsets" minX="0.0" minY="10" maxX="0.0" maxY="10"/>
@@ -125,7 +125,7 @@
                                 </connections>
                             </button>
                             <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TiI-Qb-jdB">
-                                <rect key="frame" x="58" y="0.0" width="128" height="44.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="186" height="44.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <nil key="textColor"/>
@@ -186,7 +186,6 @@
                 <outlet property="replyTypeButton" destination="VLM-nf-vOI" id="hSh-NI-1Ey"/>
                 <outlet property="reputationLabel" destination="t2H-N7-b5G" id="s2x-2l-fB7"/>
                 <outlet property="timeLabel" destination="TiI-Qb-jdB" id="y6L-oF-tyn"/>
-                <outletCollection property="widthCollection" destination="zrk-md-k2b" collectionClass="NSMutableArray" id="Jga-a8-lWm"/>
                 <outletCollection property="heightCollection" destination="SV9-7q-AEL" collectionClass="NSMutableArray" id="whw-sw-qlf"/>
                 <outletCollection property="widthCollection" destination="N1g-Ea-QZh" collectionClass="NSMutableArray" id="awc-Xr-elo"/>
                 <outletCollection property="heightCollection" destination="xaM-cH-VDo" collectionClass="NSMutableArray" id="GrH-ZJ-h5D"/>
