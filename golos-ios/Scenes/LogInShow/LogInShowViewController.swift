@@ -61,7 +61,7 @@ class LogInShowViewController: GSBaseViewController {
     @IBOutlet weak var changeKeyTypeButton: UIButton! {
         didSet {
             changeKeyTypeButton.theme_setTitleColor(veryDarkGrayWhiteColorPickers, forState: .normal)
-            changeKeyTypeButton.titleLabel?.font = UIFont(name: "SFUIDisplay-Regular", size: 14.0)
+            changeKeyTypeButton.titleLabel?.font = UIFont(name: "SFProDisplay-Regular", size: 14.0)
         }
     }
 
@@ -69,7 +69,7 @@ class LogInShowViewController: GSBaseViewController {
         didSet {
             notRegisteredLabel.tune(withText:           notRegisteredLabel.text ?? "Zorro",
                                     hexColors:          darkGrayWhiteColorPickers,
-                                    font:               UIFont(name: "SFUIDisplay-Regular", size: 16.0),
+                                    font:               UIFont(name: "SFProDisplay-Regular", size: 16.0),
                                     alignment:          .center,
                                     isMultiLines:       false)
         }

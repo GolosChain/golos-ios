@@ -53,7 +53,7 @@ class PostCommentReply: UIView {
         didSet {
             commentLabel.tune(withText:             "",
                               hexColors:            darkGrayWhiteColorPickers,
-                              font:                 UIFont(name: "SFUIDisplay-Regular", size: 13.0),
+                              font:                 UIFont(name: "SFProDisplay-Regular", size: 13.0),
                               alignment:            .left,
                               isMultiLines:         true)
             

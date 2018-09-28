@@ -33,7 +33,7 @@ class WelcomeShowViewController: GSBaseViewController {
         didSet {
             welcomeLabel.tune(withText:         welcomeLabel.text ?? "Zorro",
                               hexColors:        blackWhiteColorPickers,
-                              font:             UIFont.init(name: "SFUIDisplay-Regular", size: 25.0 * widthRatio),
+                              font:             UIFont.init(name: "SFProDisplay-Regular", size: 25.0 * widthRatio),
                               alignment:        .center,
                               isMultiLines:     false)
         }
@@ -43,7 +43,7 @@ class WelcomeShowViewController: GSBaseViewController {
         didSet {
             inGolosLabel.tune(withText:         inGolosLabel.text ?? "Zorro",
                               hexColors:        blackWhiteColorPickers,
-                              font:             UIFont.init(name: "SFUIDisplay-Regular", size: 40.0 * widthRatio),
+                              font:             UIFont.init(name: "SFProDisplay-Regular", size: 40.0 * widthRatio),
                               alignment:        .center,
                               isMultiLines:     false)
         }
@@ -58,7 +58,7 @@ class WelcomeShowViewController: GSBaseViewController {
                 
                 titleLabel.tune(withText:       string,
                                 hexColors:      blackWhiteColorPickers,
-                                font:           UIFont.init(name: "SFUIDisplay-Regular", size: 16.0 * widthRatio),
+                                font:           UIFont.init(name: "SFProDisplay-Regular", size: 16.0 * widthRatio),
                                 alignment:      .center,
                                 isMultiLines:   true)
                 
@@ -197,7 +197,7 @@ class WelcomeShowViewController: GSBaseViewController {
 
         moreInfoButton.setTitle("More Info".localized(), for: .normal)
         moreInfoButton.setTitleColor(UIColor(hexString: "#7D7D7D"), for: .normal)
-        moreInfoButton.titleLabel?.font =   UIFont(name: "SFUIDisplay-Regular", size: 14.0)
+        moreInfoButton.titleLabel?.font =   UIFont(name: "SFProDisplay-Regular", size: 14.0)
     }
     
     

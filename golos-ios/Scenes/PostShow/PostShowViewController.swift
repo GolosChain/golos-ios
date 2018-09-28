@@ -175,7 +175,7 @@ class PostShowViewController: GSBaseViewController {
         didSet {
             upvoteButton.tune(withTitle:        "",
                               hexColors:        [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
-                              font:             UIFont(name: "SFUIDisplay-Regular", size: 10.0),
+                              font:             UIFont(name: "SFProDisplay-Regular", size: 10.0),
                               alignment:        .left)
             
             upvoteButton.isEnabled      =   true
@@ -186,7 +186,7 @@ class PostShowViewController: GSBaseViewController {
         didSet {
             usersButton.tune(withTitle:        "42",
                              hexColors:        [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
-                             font:             UIFont(name: "SFUIDisplay-Regular", size: 10.0),
+                             font:             UIFont(name: "SFProDisplay-Regular", size: 10.0),
                              alignment:        .left)
             
             usersButton.isEnabled       =   false
@@ -198,7 +198,7 @@ class PostShowViewController: GSBaseViewController {
         didSet {
             commentsButton.tune(withTitle:      "",
                                 hexColors:      [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
-                                font:           UIFont(name: "SFUIDisplay-Regular", size: 10.0),
+                                font:           UIFont(name: "SFProDisplay-Regular", size: 10.0),
                                 alignment:      .left)
             
             commentsButton.isEnabled    =   true
@@ -209,7 +209,7 @@ class PostShowViewController: GSBaseViewController {
         didSet {
             flauntButton.tune(withTitle:        "Flaunt Verb",
                               hexColors:        [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
-                              font:             UIFont(name: "SFUIDisplay-Regular", size: 10.0),
+                              font:             UIFont(name: "SFProDisplay-Regular", size: 10.0),
                               alignment:        .left)
             
             flauntButton.isEnabled      =   true
@@ -249,7 +249,7 @@ class PostShowViewController: GSBaseViewController {
         didSet {
             topicPublishedInLabel.tune(withText:         "Published in",
                                        hexColors:        darkGrayWhiteColorPickers,
-                                       font:             UIFont(name: "SFUIDisplay-Regular", size: 8.0),
+                                       font:             UIFont(name: "SFProDisplay-Regular", size: 8.0),
                                        alignment:        .left,
                                        isMultiLines:     false)
         }
@@ -259,7 +259,7 @@ class PostShowViewController: GSBaseViewController {
         didSet {
             topicTitleLabel.tune(withText:         "",
                                  hexColors:        darkGrayWhiteColorPickers,
-                                 font:             UIFont(name: "SFUIDisplay-Regular", size: 12.0),
+                                 font:             UIFont(name: "SFProDisplay-Regular", size: 12.0),
                                  alignment:        .left,
                                  isMultiLines:     false)
         }
@@ -272,7 +272,7 @@ class PostShowViewController: GSBaseViewController {
         didSet {
             userNameLabel.tune(withText:        "",
                                hexColors:       veryDarkGrayWhiteColorPickers,
-                               font:            UIFont(name: "SFUIDisplay-Regular", size: 12.0),
+                               font:            UIFont(name: "SFProDisplay-Regular", size: 12.0),
                                alignment:       .left,
                                isMultiLines:    false)
         }
@@ -282,7 +282,7 @@ class PostShowViewController: GSBaseViewController {
         didSet {
             userRecentPastLabel.tune(withText:          "Recent Past:",
                                      hexColors:         darkGrayWhiteColorPickers,
-                                     font:              UIFont(name: "SFUIDisplay-Regular", size: 8.0),
+                                     font:              UIFont(name: "SFProDisplay-Regular", size: 8.0),
                                      alignment:         .left,
                                      isMultiLines:      false)
         }
@@ -292,7 +292,7 @@ class PostShowViewController: GSBaseViewController {
         didSet {
             userPreviouslyLabel.tune(withText:          "Previously:",
                                      hexColors:         darkGrayWhiteColorPickers,
-                                     font:              UIFont(name: "SFUIDisplay-Regular", size: 8.0),
+                                     font:              UIFont(name: "SFProDisplay-Regular", size: 8.0),
                                      alignment:         .left,
                                      isMultiLines:      false)
         }
@@ -327,7 +327,7 @@ class PostShowViewController: GSBaseViewController {
         didSet {
             commentsTitleLabel.tune(withText:           "Comments Noun",
                                     hexColors:          veryDarkGrayWhiteColorPickers,
-                                    font:               UIFont(name: "SFUIDisplay-Regular", size: 14.0),
+                                    font:               UIFont(name: "SFProDisplay-Regular", size: 14.0),
                                     alignment:          .left,
                                     isMultiLines:       false)
         }
@@ -337,7 +337,7 @@ class PostShowViewController: GSBaseViewController {
         didSet {
             commentsCountLabel.tune(withText:           "",
                                     hexColors:          grayWhiteColorPickers,
-                                    font:               UIFont(name: "SFUIDisplay-Regular", size: 14.0),
+                                    font:               UIFont(name: "SFProDisplay-Regular", size: 14.0),
                                     alignment:          .left,
                                     isMultiLines:       false)
         }
@@ -347,7 +347,7 @@ class PostShowViewController: GSBaseViewController {
         didSet {
             sortByLabel.tune(withText:           "Sort by",
                              hexColors:          grayWhiteColorPickers,
-                             font:               UIFont(name: "SFUIDisplay-Regular", size: 10.0),
+                             font:               UIFont(name: "SFProDisplay-Regular", size: 10.0),
                              alignment:          .left,
                              isMultiLines:       false)
         }
@@ -357,7 +357,7 @@ class PostShowViewController: GSBaseViewController {
         didSet {
             commentsSortByButton.tune(withTitle:        "Action Sheet First New",
                                       hexColors:        [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
-                                      font:             UIFont(name: "SFUIDisplay-Regular", size: 10.0),
+                                      font:             UIFont(name: "SFProDisplay-Regular", size: 10.0),
                                       alignment:        .center)
             
             commentsSortByButton.isEnabled  =   true

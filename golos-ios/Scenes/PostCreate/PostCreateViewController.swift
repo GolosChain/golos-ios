@@ -90,7 +90,7 @@ class PostCreateViewController: GSBaseViewController {
         didSet {
             tagsTitleLabel.tune(withText:           "Add Max 5 Tags",
                                 hexColors:          darkGrayWhiteColorPickers,
-                                font:               UIFont(name: "SFUIDisplay-Regular", size: 12.0),
+                                font:               UIFont(name: "SFProDisplay-Regular", size: 12.0),
                                 alignment:          .left,
                                 isMultiLines:       false)
         }
@@ -104,7 +104,7 @@ class PostCreateViewController: GSBaseViewController {
             contentTextView.placeholder     =   (sceneType == .createPost ? "Enter Text Placeholder" : "Enter Comment Placeholder").localized()
             
             contentTextView.tune(textColors:    darkGrayWhiteColorPickers,
-                                 font:          UIFont(name: "SFUIDisplay-Regular", size: 13.0),
+                                 font:          UIFont(name: "SFProDisplay-Regular", size: 13.0),
                                  alignment:     .left)
         }
     }

@@ -75,7 +75,7 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
             self.buttonsCollection.forEach({ actionButton in
                 actionButton.tune(withTitle:        actionButton.titleLabel?.text ?? "XXX",
                                   hexColors:        [veryLightGrayColorPickers, veryLightGrayColorPickers, veryLightGrayColorPickers, veryLightGrayColorPickers],
-                                  font:             UIFont(name: "SFUIDisplay-Regular", size: 13.0),
+                                  font:             UIFont(name: "SFProDisplay-Regular", size: 13.0),
                                   alignment:        .center)
             })
         }

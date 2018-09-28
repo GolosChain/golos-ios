@@ -27,7 +27,7 @@ class PostFeedHeaderView: UIView {
         didSet {
             authorLabel.tune(withText:          "",
                              hexColors:         veryDarkGrayWhiteColorPickers,
-                             font:              UIFont(name: "SFUIDisplay-Regular", size: 12.0),
+                             font:              UIFont(name: "SFProDisplay-Regular", size: 12.0),
                              alignment:         .left,
                              isMultiLines:      false)
         }
@@ -43,7 +43,7 @@ class PostFeedHeaderView: UIView {
         didSet {
             reblogAuthorLabel.tune(withText:          "",
                                    hexColors:         veryDarkGrayWhiteColorPickers,
-                                   font:              UIFont(name: "SFUIDisplay-Regular", size: 12.0),
+                                   font:              UIFont(name: "SFProDisplay-Regular", size: 12.0),
                                    alignment:         .left,
                                    isMultiLines:      false)
             
@@ -55,7 +55,7 @@ class PostFeedHeaderView: UIView {
         didSet {
             categoryLabel.tune(withText:          "",
                                hexColors:         darkGrayWhiteColorPickers,
-                               font:              UIFont(name: "SFUIDisplay-Regular", size: 10.0),
+                               font:              UIFont(name: "SFProDisplay-Regular", size: 10.0),
                                alignment:         .left,
                                isMultiLines:      false)
         }

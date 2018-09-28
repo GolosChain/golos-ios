@@ -247,7 +247,7 @@ extension UITextView {
         }
         else {
             let label                   =   PlaceholderLabel(frame: .zero)
-            label.font                  =   UIFont(name: "SFUIDisplay-Regular", size: 13.0)
+            label.font                  =   UIFont(name: "SFProDisplay-Regular", size: 13.0)
             label.theme_textColor       =   darkGrayWhiteColorPickers
             
             addSubview(label)

@@ -62,7 +62,7 @@ class CommentView: UIView, HandlersCellSupport {
         didSet {
             authorNameButton.tune(withTitle:    "",
                                   hexColors:    [darkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
-                                  font:         UIFont(name: "SFUIDisplay-Regular", size: 10.0),
+                                  font:         UIFont(name: "SFProDisplay-Regular", size: 10.0),
                                   alignment:    .left)
         }
     }
@@ -71,7 +71,7 @@ class CommentView: UIView, HandlersCellSupport {
         didSet {
             timeLabel.tune(withText:            "",
                            hexColors:           darkGrayWhiteColorPickers,
-                           font:                UIFont(name: "SFUIDisplay-Regular", size: 10.0),
+                           font:                UIFont(name: "SFProDisplay-Regular", size: 10.0),
                            alignment:           .left,
                            isMultiLines:        false)
         }

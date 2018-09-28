@@ -27,7 +27,7 @@ class PostingKeyShowViewController: GSBaseViewController {
         didSet {
             loginTextField.tune(withPlaceholder:        "Enter Login Placeholder",
                                 textColors:             blackWhiteColorPickers,
-                                font:                   UIFont.init(name: "SFUIDisplay-Regular", size: 16.0 * widthRatio),
+                                font:                   UIFont.init(name: "SFProDisplay-Regular", size: 16.0 * widthRatio),
                                 alignment:              .left)
             
             loginTextField.delegate     =   self
@@ -38,7 +38,7 @@ class PostingKeyShowViewController: GSBaseViewController {
         didSet {
             postingKeyTextField.tune(withPlaceholder:        "Enter Posting Key Placeholder",
                                      textColors:             veryDarkGrayWhiteColorPickers,
-                                     font:                   UIFont.init(name: "SFUIDisplay-Regular", size: 16.0 * widthRatio),
+                                     font:                   UIFont.init(name: "SFProDisplay-Regular", size: 16.0 * widthRatio),
                                      alignment:              .left)
             
             let rightView                       =   UIView(frame: CGRect(x: 0.0, y: 0.0, width: 90.0 * widthRatio, height: postingKeyTextField.frame.height))

@@ -37,7 +37,6 @@
 		B11AA7F720CB018E00212713 /* WelcomeShow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B11AA7F620CB018E00212713 /* WelcomeShow.storyboard */; };
 		B11AA80020CB04AA00212713 /* WelcomeShowRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11AA7FA20CB04AA00212713 /* WelcomeShowRouter.swift */; };
 		B11AA80220CB04AA00212713 /* WelcomeShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11AA7FC20CB04AA00212713 /* WelcomeShowViewController.swift */; };
-		B11AA80520CB13BA00212713 /* SFUIDisplay-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = B11AA80420CB13BA00212713 /* SFUIDisplay-Regular.otf */; };
 		B11AA80720CB9FC800212713 /* UILabel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11AA80620CB9FC800212713 /* UILabel+Extensions.swift */; };
 		B120D067210824C600D949F5 /* SettingsUserProfileEditPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B120D061210824C600D949F5 /* SettingsUserProfileEditPresenter.swift */; };
 		B120D068210824C600D949F5 /* SettingsUserProfileEditWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B120D062210824C600D949F5 /* SettingsUserProfileEditWorker.swift */; };
@@ -294,7 +293,6 @@
 		B11AA7F620CB018E00212713 /* WelcomeShow.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WelcomeShow.storyboard; sourceTree = "<group>"; };
 		B11AA7FA20CB04AA00212713 /* WelcomeShowRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeShowRouter.swift; sourceTree = "<group>"; };
 		B11AA7FC20CB04AA00212713 /* WelcomeShowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeShowViewController.swift; sourceTree = "<group>"; };
-		B11AA80420CB13BA00212713 /* SFUIDisplay-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIDisplay-Regular.otf"; sourceTree = "<group>"; };
 		B11AA80620CB9FC800212713 /* UILabel+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extensions.swift"; sourceTree = "<group>"; };
 		B120D061210824C600D949F5 /* SettingsUserProfileEditPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsUserProfileEditPresenter.swift; sourceTree = "<group>"; };
 		B120D062210824C600D949F5 /* SettingsUserProfileEditWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsUserProfileEditWorker.swift; sourceTree = "<group>"; };
@@ -888,7 +886,6 @@
 			children = (
 				B146891920F2013F00D36794 /* SFProDisplay-Medium.otf */,
 				B198DB9320B9C560008011A3 /* SFProDisplay-Regular.otf */,
-				B11AA80420CB13BA00212713 /* SFUIDisplay-Regular.otf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -1326,7 +1323,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B198DB9420B9C560008011A3 /* SFProDisplay-Regular.otf in Resources */,
-				B11AA80520CB13BA00212713 /* SFUIDisplay-Regular.otf in Resources */,
 				B1E09E182101EE8F002CC5B7 /* PostFeedTableViewCell.xib in Resources */,
 				B1084CAF211378780065CAC0 /* PostShowTagCollectionViewCell.xib in Resources */,
 				B11AA7F720CB018E00212713 /* WelcomeShow.storyboard in Resources */,
