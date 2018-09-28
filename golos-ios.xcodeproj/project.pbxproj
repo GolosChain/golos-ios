@@ -88,7 +88,6 @@
 		B13FE9B520F5004F00F907BC /* Lenta+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13FE9B120F5004F00F907BC /* Lenta+CoreDataProperties.swift */; };
 		B13FE9BA20F512BA00F907BC /* ReplyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13FE9B820F512BA00F907BC /* ReplyTableViewCell.swift */; };
 		B13FE9BB20F512BA00F907BC /* ReplyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B13FE9B920F512BA00F907BC /* ReplyTableViewCell.xib */; };
-		B13FE9C320F5E74700F907BC /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B13FE9C220F5E74000F907BC /* Roboto-Medium.ttf */; };
 		B14199C220F65A1B00D927DA /* SFUIDisplay-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B14199C120F65A1A00D927DA /* SFUIDisplay-Medium.ttf */; };
 		B146891420F1F30E00D36794 /* UserProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B146891320F1F30E00D36794 /* UserProfileHeaderView.swift */; };
 		B146891820F1F5D000D36794 /* UserProfileHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B146891720F1F5D000D36794 /* UserProfileHeaderView.xib */; };
@@ -350,7 +349,6 @@
 		B13FE9B620F505D800F907BC /* Golos 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Golos 3.xcdatamodel"; sourceTree = "<group>"; };
 		B13FE9B820F512BA00F907BC /* ReplyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplyTableViewCell.swift; sourceTree = "<group>"; };
 		B13FE9B920F512BA00F907BC /* ReplyTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReplyTableViewCell.xib; sourceTree = "<group>"; };
-		B13FE9C220F5E74000F907BC /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
 		B14199C120F65A1A00D927DA /* SFUIDisplay-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIDisplay-Medium.ttf"; sourceTree = "<group>"; };
 		B146891320F1F30E00D36794 /* UserProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileHeaderView.swift; sourceTree = "<group>"; };
 		B146891720F1F5D000D36794 /* UserProfileHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserProfileHeaderView.xib; sourceTree = "<group>"; };
@@ -890,7 +888,6 @@
 		B198DB9220B9C4E6008011A3 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				B13FE9C220F5E74000F907BC /* Roboto-Medium.ttf */,
 				B146891920F2013F00D36794 /* SFProDisplay-Medium.otf */,
 				B198DB9320B9C560008011A3 /* SFProDisplay-Regular.otf */,
 				B14199C120F65A1A00D927DA /* SFUIDisplay-Medium.ttf */,
@@ -1340,7 +1337,6 @@
 				B120D06E2108252300D949F5 /* SettingsUserProfileEdit.storyboard in Resources */,
 				B13FE9BB20F512BA00F907BC /* ReplyTableViewCell.xib in Resources */,
 				B1B6B39520D37F3100284387 /* PostCommentReply.xib in Resources */,
-				B13FE9C320F5E74700F907BC /* Roboto-Medium.ttf in Resources */,
 				B146891E20F234BE00D36794 /* UserProfileInfoTitleView.xib in Resources */,
 				B164CECA2119F6EB00349D79 /* Localizable.strings in Resources */,
 				B120D0702108256B00D949F5 /* SettingsNotificationsShow.storyboard in Resources */,

@@ -17,7 +17,6 @@ class CommentView: UIView, HandlersCellSupport {
     var created: Date!
     var postShortInfo: PostShortInfo!
 
-    
     // Handlers
     var handlerUsersButtonTapped: (() -> Void)?
     var handlerAuthorNameButtonTapped: ((String) -> Void)?

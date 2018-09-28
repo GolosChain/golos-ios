@@ -414,6 +414,7 @@ class PostShowViewController: GSBaseViewController {
     @IBOutlet weak var commentsViewTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var commentsStackViewTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var commentsStackViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var subscribesStackViewTopConstraint: NSLayoutConstraint!
     
     
     // MARK: - Class Initialization
@@ -487,6 +488,16 @@ class PostShowViewController: GSBaseViewController {
         self.loadContentComments()
         
         self.navbarShadowView?.add(shadow: true, onside: .bottom)
+
+        if let user = User.current {
+            self.subscribesStackViewTopConstraint.constant = user.name == self.router?.dataStore?.postShortInfo?.author ? -90.0 * heightRatio : 0.0
+            
+            UIView.animate(withDuration: 0.3) {
+                self.subscribesStackView.isHidden = true
+                self.contentView.sendSubviewToBack(self.subscribesStackView)
+                self.view.layoutIfNeeded()
+            }
+        }
 
         NotificationCenter.default.addObserver(self, selector: #selector(localizeTitles), name: NSNotification.Name(LCLLanguageChangeNotification), object: nil)
     }

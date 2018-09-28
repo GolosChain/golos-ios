@@ -53,7 +53,7 @@ class ReplyTableViewCell: UITableViewCell, ReusableCell {
         didSet {
             reputationLabel.tune(withText: "",
                                  hexColors:           whiteColorPickers,
-                                 font:                UIFont(name: "Roboto-Medium", size: 6.0),
+                                 font:                UIFont(name: "SFProDisplay-Medium", size: 6.0),
                                  alignment:           .center,
                                  isMultiLines:        false)
         }
@@ -123,15 +123,15 @@ class ReplyTableViewCell: UITableViewCell, ReusableCell {
         }
     }
     
-    @IBOutlet var widthCollection: [NSLayoutConstraint]! {
+    @IBOutlet var widthsCollection: [NSLayoutConstraint]! {
         didSet {
-            _ = widthCollection.map({ $0.constant *= widthRatio })
+            _ = widthsCollection.map({ $0.constant *= widthRatio })
         }
     }
 
-    @IBOutlet var heightCollection: [NSLayoutConstraint]! {
+    @IBOutlet var heightsCollection: [NSLayoutConstraint]! {
         didSet {
-            _ = heightCollection.map({ $0.constant *= heightRatio })
+            _ = heightsCollection.map({ $0.constant *= heightRatio })
         }
     }
 

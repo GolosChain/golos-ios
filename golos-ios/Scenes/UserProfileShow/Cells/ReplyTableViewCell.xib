@@ -10,8 +10,8 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="Roboto-Medium.ttf">
-            <string>Roboto-Medium</string>
+        <array key="SFProDisplay-Medium.otf">
+            <string>SFProDisplay-Medium</string>
         </array>
     </customFonts>
     <objects>
@@ -41,7 +41,7 @@
                                     <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t2H-N7-b5G" userLabel="User Reputation Label">
                                         <rect key="frame" x="2" y="2" width="9" height="9"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="17"/>
+                                        <fontDescription key="fontDescription" name="SFProDisplay-Medium" family="SF Pro Display" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -186,20 +186,20 @@
                 <outlet property="replyTypeButton" destination="VLM-nf-vOI" id="hSh-NI-1Ey"/>
                 <outlet property="reputationLabel" destination="t2H-N7-b5G" id="s2x-2l-fB7"/>
                 <outlet property="timeLabel" destination="TiI-Qb-jdB" id="y6L-oF-tyn"/>
-                <outletCollection property="heightCollection" destination="SV9-7q-AEL" collectionClass="NSMutableArray" id="whw-sw-qlf"/>
-                <outletCollection property="widthCollection" destination="N1g-Ea-QZh" collectionClass="NSMutableArray" id="awc-Xr-elo"/>
-                <outletCollection property="heightCollection" destination="xaM-cH-VDo" collectionClass="NSMutableArray" id="GrH-ZJ-h5D"/>
-                <outletCollection property="widthCollection" destination="tee-0k-JaO" collectionClass="NSMutableArray" id="v4X-J2-ZTy"/>
-                <outletCollection property="widthCollection" destination="EuF-mN-reR" collectionClass="NSMutableArray" id="nZR-27-8UG"/>
-                <outletCollection property="heightCollection" destination="xaM-cH-VDo" collectionClass="NSMutableArray" id="rzf-WG-Mc1"/>
-                <outletCollection property="widthCollection" destination="Ijq-Wj-5mz" collectionClass="NSMutableArray" id="8MQ-rG-dHV"/>
-                <outletCollection property="widthCollection" destination="XSd-XP-l02" collectionClass="NSMutableArray" id="Zyj-kn-gNG"/>
-                <outletCollection property="widthCollection" destination="enc-E8-S5j" collectionClass="NSMutableArray" id="Qkz-lO-WzA"/>
+                <outletCollection property="heightsCollection" destination="SV9-7q-AEL" collectionClass="NSMutableArray" id="whw-sw-qlf"/>
+                <outletCollection property="widthsCollection" destination="N1g-Ea-QZh" collectionClass="NSMutableArray" id="awc-Xr-elo"/>
+                <outletCollection property="heightsCollection" destination="xaM-cH-VDo" collectionClass="NSMutableArray" id="GrH-ZJ-h5D"/>
+                <outletCollection property="widthsCollection" destination="tee-0k-JaO" collectionClass="NSMutableArray" id="v4X-J2-ZTy"/>
+                <outletCollection property="widthsCollection" destination="EuF-mN-reR" collectionClass="NSMutableArray" id="nZR-27-8UG"/>
+                <outletCollection property="widthsCollection" destination="Ijq-Wj-5mz" collectionClass="NSMutableArray" id="8MQ-rG-dHV"/>
+                <outletCollection property="widthsCollection" destination="XSd-XP-l02" collectionClass="NSMutableArray" id="Zyj-kn-gNG"/>
+                <outletCollection property="widthsCollection" destination="enc-E8-S5j" collectionClass="NSMutableArray" id="Qkz-lO-WzA"/>
                 <outletCollection property="circleViewsCollection" destination="5dM-W2-WiW" collectionClass="NSMutableArray" id="0pI-ob-CzD"/>
                 <outletCollection property="circleViewsCollection" destination="vrc-AX-Q5Q" collectionClass="NSMutableArray" id="xdZ-tR-gGv"/>
                 <outletCollection property="circleViewsCollection" destination="oIT-Sh-GeD" collectionClass="NSMutableArray" id="SUI-Lt-NE2"/>
-                <outletCollection property="heightCollection" destination="GTG-UV-FGE" collectionClass="NSMutableArray" id="tWq-KJ-pqR"/>
-                <outletCollection property="heightCollection" destination="1GZ-un-hga" collectionClass="NSMutableArray" id="upI-6l-1To"/>
+                <outletCollection property="heightsCollection" destination="GTG-UV-FGE" collectionClass="NSMutableArray" id="tWq-KJ-pqR"/>
+                <outletCollection property="heightsCollection" destination="1GZ-un-hga" collectionClass="NSMutableArray" id="upI-6l-1To"/>
+                <outletCollection property="widthsCollection" destination="zrk-md-k2b" collectionClass="NSMutableArray" id="0RR-ds-wFY"/>
             </connections>
             <point key="canvasLocation" x="74" y="7"/>
         </tableViewCell>
