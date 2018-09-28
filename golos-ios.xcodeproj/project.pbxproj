@@ -88,7 +88,6 @@
 		B13FE9B520F5004F00F907BC /* Lenta+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13FE9B120F5004F00F907BC /* Lenta+CoreDataProperties.swift */; };
 		B13FE9BA20F512BA00F907BC /* ReplyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13FE9B820F512BA00F907BC /* ReplyTableViewCell.swift */; };
 		B13FE9BB20F512BA00F907BC /* ReplyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B13FE9B920F512BA00F907BC /* ReplyTableViewCell.xib */; };
-		B14199C220F65A1B00D927DA /* SFUIDisplay-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B14199C120F65A1A00D927DA /* SFUIDisplay-Medium.ttf */; };
 		B146891420F1F30E00D36794 /* UserProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B146891320F1F30E00D36794 /* UserProfileHeaderView.swift */; };
 		B146891820F1F5D000D36794 /* UserProfileHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B146891720F1F5D000D36794 /* UserProfileHeaderView.xib */; };
 		B146891A20F2013F00D36794 /* SFProDisplay-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = B146891920F2013F00D36794 /* SFProDisplay-Medium.otf */; };
@@ -349,7 +348,6 @@
 		B13FE9B620F505D800F907BC /* Golos 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Golos 3.xcdatamodel"; sourceTree = "<group>"; };
 		B13FE9B820F512BA00F907BC /* ReplyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplyTableViewCell.swift; sourceTree = "<group>"; };
 		B13FE9B920F512BA00F907BC /* ReplyTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReplyTableViewCell.xib; sourceTree = "<group>"; };
-		B14199C120F65A1A00D927DA /* SFUIDisplay-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIDisplay-Medium.ttf"; sourceTree = "<group>"; };
 		B146891320F1F30E00D36794 /* UserProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileHeaderView.swift; sourceTree = "<group>"; };
 		B146891720F1F5D000D36794 /* UserProfileHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserProfileHeaderView.xib; sourceTree = "<group>"; };
 		B146891920F2013F00D36794 /* SFProDisplay-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Medium.otf"; sourceTree = "<group>"; };
@@ -890,7 +888,6 @@
 			children = (
 				B146891920F2013F00D36794 /* SFProDisplay-Medium.otf */,
 				B198DB9320B9C560008011A3 /* SFProDisplay-Regular.otf */,
-				B14199C120F65A1A00D927DA /* SFUIDisplay-Medium.ttf */,
 				B11AA80420CB13BA00212713 /* SFUIDisplay-Regular.otf */,
 			);
 			path = Fonts;
@@ -1357,7 +1354,6 @@
 				B114192A20CD21530025B07F /* LogInShow.storyboard in Resources */,
 				B136D50020D8BA2E003AD279 /* ThemeTagCollectionViewCell.xib in Resources */,
 				B18B937220B91D4E000CF503 /* ForegroundRemoteNotificationView.xib in Resources */,
-				B14199C220F65A1B00D927DA /* SFUIDisplay-Medium.ttf in Resources */,
 				B12B3ACB20FCC07300071B97 /* PostsShow.storyboard in Resources */,
 				B167FA96211D5CF600662E93 /* CommentView.xib in Resources */,
 				B146891820F1F5D000D36794 /* UserProfileHeaderView.xib in Resources */,

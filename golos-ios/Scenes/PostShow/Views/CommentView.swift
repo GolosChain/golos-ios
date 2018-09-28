@@ -41,7 +41,7 @@ class CommentView: UIView, HandlersCellSupport {
         didSet {
             self.commentsButton.tune(withTitle:         "",
                                      hexColors:         [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
-                                     font:              UIFont(name: "SFUIDisplay-Medium", size: 10.0),
+                                     font:              UIFont(name: "SFProDisplay-Medium", size: 10.0),
                                      alignment:         .left)
         }
     }
@@ -83,7 +83,7 @@ class CommentView: UIView, HandlersCellSupport {
         didSet {
             replyButton.tune(withTitle:         "Reply Verb",
                              hexColors:         [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
-                             font:              UIFont(name: "SFUIDisplay-Medium", size: 10.0),
+                             font:              UIFont(name: "SFProDisplay-Medium", size: 10.0),
                              alignment:         .left)
         }
     }

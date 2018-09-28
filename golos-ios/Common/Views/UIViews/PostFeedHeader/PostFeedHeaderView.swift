@@ -65,7 +65,7 @@ class PostFeedHeaderView: UIView {
         didSet {
             authorReputationLabel.tune(withText:          "",
                                        hexColors:         whiteColorPickers,
-                                       font:              UIFont(name: "SFUIDisplay-Medium", size: 6.0),
+                                       font:              UIFont(name: "SFProDisplay-Medium", size: 6.0),
                                        alignment:         .center,
                                        isMultiLines:      false)
         }

@@ -165,7 +165,7 @@ class PostShowViewController: GSBaseViewController {
         didSet {
             titleLabel.tune(withText:           "",
                             hexColors:          veryDarkGrayWhiteColorPickers,
-                            font:               UIFont(name: "SFUIDisplay-Medium", size: 15.0),
+                            font:               UIFont(name: "SFProDisplay-Medium", size: 15.0),
                             alignment:          .left,
                             isMultiLines:       true)
         }
@@ -220,7 +220,7 @@ class PostShowViewController: GSBaseViewController {
         didSet {
             promoteButton.tune(withTitle:        "Promote Post Verb",
                                hexColors:        [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
-                               font:             UIFont(name: "SFUIDisplay-Medium", size: 11.0),
+                               font:             UIFont(name: "SFProDisplay-Medium", size: 11.0),
                                alignment:        .center)
             
             promoteButton.isEnabled     =   false
@@ -233,7 +233,7 @@ class PostShowViewController: GSBaseViewController {
         didSet {
             donateButton.tune(withTitle:        "Donate Verb",
                                hexColors:        [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
-                               font:             UIFont(name: "SFUIDisplay-Medium", size: 11.0),
+                               font:             UIFont(name: "SFProDisplay-Medium", size: 11.0),
                                alignment:        .center)
             
             donateButton.isEnabled      =   true
@@ -303,7 +303,7 @@ class PostShowViewController: GSBaseViewController {
             subscribeButtonsCollection.forEach({ button in
                 button.tune(withTitle:         "Subscribe",
                             hexColors:         [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers],
-                            font:              UIFont(name: "SFUIDisplay-Medium", size: 10.0),
+                            font:              UIFont(name: "SFProDisplay-Medium", size: 10.0),
                             alignment:         .center)
                 
                 button.setBorder(color: UIColor(hexString: "#dbdbdb").cgColor, cornerRadius: 4.0 * heightRatio)
@@ -368,7 +368,7 @@ class PostShowViewController: GSBaseViewController {
         didSet {
             commentsHideButton.tune(withTitle:        "Hide Comments Verb",
                                     hexColors:        [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers],
-                                    font:             UIFont(name: "SFUIDisplay-Medium", size: 8.0),
+                                    font:             UIFont(name: "SFProDisplay-Medium", size: 8.0),
                                     alignment:        .center)
             
             commentsHideButton.isEnabled    =   true
