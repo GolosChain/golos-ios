@@ -546,7 +546,7 @@
                             </view>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZkM-23-awk" userLabel="Shadow View">
                                 <rect key="frame" x="0.0" y="63" width="320" height="1"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="0.8784313725490196" green="0.8784313725490196" blue="0.8784313725490196" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="xhV-K2-9Ri"/>
                                 </constraints>
@@ -610,7 +610,6 @@
                         <outlet property="flauntButton" destination="aLP-ZP-yPw" id="fNr-aW-I76"/>
                         <outlet property="markdownViewHeightConstraint" destination="XZb-1l-yIm" id="yCU-ia-4mb"/>
                         <outlet property="markdownViewManager" destination="Vl1-2x-lVp" id="fWB-4H-ItD"/>
-                        <outlet property="navbarShadowView" destination="ZkM-23-awk" id="uhW-x3-iZa"/>
                         <outlet property="navbarView" destination="7Js-bQ-ZpY" id="Clv-Dx-YjD"/>
                         <outlet property="postFeedHeaderView" destination="a7j-dG-pvN" id="Ite-uT-Le9"/>
                         <outlet property="promoteButton" destination="Imt-Ze-f0t" id="fkT-dD-4Xm"/>

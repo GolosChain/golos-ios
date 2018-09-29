@@ -39,18 +39,26 @@ class UserProfileShowRouter: NSObject, UserProfileShowRoutingLogic, UserProfileS
 
     // MARK: - Routing
     func routeToPostShowScene(withScrollToComments needScrolling: Bool) {
-        let storyboard                  =   UIStoryboard(name: "PostShow", bundle: nil)
-        let destinationVC               =   storyboard.instantiateViewController(withIdentifier: "PostShowVC") as! PostShowViewController
-        destinationVC.scrollCommentsDown   =   needScrolling
-        var destinationDS               =   destinationVC.router!.dataStore!
+        let storyboard                      =   UIStoryboard(name: "PostShow", bundle: nil)
+        let destinationVC                   =   storyboard.instantiateViewController(withIdentifier: "PostShowVC") as! PostShowViewController
+        destinationVC.scrollCommentsDown    =   needScrolling
+        var destinationDS                   =   destinationVC.router!.dataStore!
         
         passDataToPostShowScene(source: dataStore!, destination: &destinationDS)
         navigateToPostShowScene(source: viewController!, destination: destinationVC)
+        
+        // Handlers
+        destinationVC.handlerCommentsCountReturn    =   { [weak self] commentsCount in
+            if  let activeVC = self?.viewController?.containerView.activeVC,
+                let postCell = activeVC.postsTableView.cellForRow(at: (self?.dataStore?.selectedBlog?.indexPath)!) as? PostFeedTableViewCell {
+                postCell.setCommentsCount(value: commentsCount)
+            }
+        }
     }
 
     func routeToSettingsShowScene() {
-        let storyboard              =   UIStoryboard(name: "SettingsShow", bundle: nil)
-        let destinationVC           =   storyboard.instantiateViewController(withIdentifier: "SettingsShowVC") as! SettingsShowViewController
+        let storyboard      =   UIStoryboard(name: "SettingsShow", bundle: nil)
+        let destinationVC   =   storyboard.instantiateViewController(withIdentifier: "SettingsShowVC") as! SettingsShowViewController
 
         navigateToSettingsShowScene(source: viewController!, destination: destinationVC)
     }

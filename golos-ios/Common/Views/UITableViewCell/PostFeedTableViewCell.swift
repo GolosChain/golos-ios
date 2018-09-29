@@ -103,7 +103,7 @@ class PostFeedTableViewCell: UITableViewCell, HandlersCellSupport {
         self.postFeedHeaderView.authorProfileImageView.image    =   UIImage(named: "icon-user-profile-image-placeholder")
 
         self.titleLabel.text                                    =   nil
-        self.postImageView.image                                =   nil // UIImage(named: "image-user-cover-placeholder")
+        self.postImageView.image                                =   nil
         self.postImageViewHeightConstraint.constant             =   180.0 * heightRatio
         
         self.postFeedHeaderView.reblogAuthorLabel.text          =   nil
@@ -111,6 +111,14 @@ class PostFeedTableViewCell: UITableViewCell, HandlersCellSupport {
         self.postFeedHeaderView.reblogIconImageView.isHidden    =   true
         
         self.commentsButton.setTitle(nil, for: .normal)
+    }
+    
+    
+    // MARK: - Custom Functions
+    func setCommentsCount(value: Int64) {
+        if value > 0 {
+            self.commentsButton.setTitle("\(value)", for: .normal)
+        }
     }
     
     

@@ -56,7 +56,7 @@ class GSTableViewController: GSBaseViewController, HandlersCellSupport {
     var handlerAnswerButtonTapped: ((PostShortInfo) -> Void)?
     var handlerReplyTypeButtonTapped: (() -> Void)?
     var handlerPushRefreshData: ((NSManagedObject?) -> Void)?
-    var handlerSelectItem: ((NSManagedObject?) -> Void)?
+    var handlerSelectItem: ((PostShortInfo) -> Void)?
     var handlerUsersButtonTapped: (() -> Void)?
     var handlerAuthorProfileAddButtonTapped: (() -> Void)?
     var handlerAuthorProfileImageButtonTapped: ((String) -> Void)?
@@ -395,20 +395,16 @@ extension GSTableViewController: UITableViewDataSource {
             }
             
             (cell as! PostFeedTableViewCell).handlerCommentsButtonTapped    =   { [weak self] postShortInfo in
-                if postShortInfo.id == nil {
-                    if let model = self?.fetchedResultsController.object(at: postShortInfo.indexPath!) as? PostCellSupport {
-                        self?.handlerCommentsButtonTapped!(PostShortInfo(id:                model.id,
-                                                                         title:             model.title,
-                                                                         author:            model.author,
-                                                                         permlink:          model.permlink,
-                                                                         parentTag:         model.tags?.first,
-                                                                         indexPath:         nil,
-                                                                         parentAuthor:      model.parentAuthor,
-                                                                         parentPermlink:    model.parentPermlink))
-                    }
-                } else {
-                    self?.handlerCommentsButtonTapped!(postShortInfo)
-                }
+                let model = self?.fetchedResultsController.object(at: postShortInfo.indexPath!) as! PostCellSupport
+
+                self?.handlerCommentsButtonTapped!(PostShortInfo(id:                model.id,
+                                                                 title:             model.title,
+                                                                 author:            model.author,
+                                                                 permlink:          model.permlink,
+                                                                 parentTag:         model.tags?.first,
+                                                                 indexPath:         postShortInfo.indexPath,
+                                                                 parentAuthor:      model.parentAuthor,
+                                                                 parentPermlink:    model.parentPermlink))
             }
 
             (cell as! PostFeedTableViewCell).handlerAuthorPostSelected      =   { [weak self] userName in
@@ -452,8 +448,15 @@ extension GSTableViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let selectedElement = fetchedResultsController.sections![indexPath.section].objects![indexPath.row] as? NSManagedObject {
-            self.handlerSelectItem!(selectedElement)
+        if let model = fetchedResultsController.sections![indexPath.section].objects![indexPath.row] as? PostCellSupport {
+            self.handlerSelectItem!(PostShortInfo(id:               model.id,
+                                                  title:            model.title,
+                                                  author:           model.author,
+                                                  permlink:         model.permlink,
+                                                  parentTag:        model.tags?.first,
+                                                  indexPath:        indexPath,
+                                                  parentAuthor:     model.parentAuthor,
+                                                  parentPermlink:   model.parentPermlink))
         }
     }
 }

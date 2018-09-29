@@ -38,20 +38,28 @@ class PostsShowRouter: NSObject, PostsShowRoutingLogic, PostsShowDataPassing {
 
     // MARK: - Routing
     func routeToPostShowScene(withScrollToComments needScrolling: Bool) {
-        let storyboard                  =   UIStoryboard(name: "PostShow", bundle: nil)
-        let destinationVC               =   storyboard.instantiateViewController(withIdentifier: "PostShowVC") as! PostShowViewController
+        let storyboard      =   UIStoryboard(name: "PostShow", bundle: nil)
+        let destinationVC   =   storyboard.instantiateViewController(withIdentifier: "PostShowVC") as! PostShowViewController
         destinationVC.scrollCommentsDown   =   needScrolling
-        var destinationDS               =   destinationVC.router!.dataStore!
+        var destinationDS   =   destinationVC.router!.dataStore!
         
         passDataToPostShowScene(source: dataStore!, destination: &destinationDS)
         navigateToPostShowScene(source: viewController!, destination: destinationVC)
+        
+        // Handlers
+        destinationVC.handlerCommentsCountReturn    =   { [weak self] commentsCount in
+            if  let activeVC = self?.viewController?.containerView.activeVC,
+                let postCell = activeVC.postsTableView.cellForRow(at: (self?.dataStore?.postShortInfo?.indexPath)!) as? PostFeedTableViewCell {
+                postCell.setCommentsCount(value: commentsCount)
+            }
+        }
     }
     
     func routeToUserProfileScene(byUserName name: String) {
-        let storyboard                  =   UIStoryboard(name: "UserProfileShow", bundle: nil)
-        let destinationVC               =   storyboard.instantiateViewController(withIdentifier: "UserProfileShowVC") as! UserProfileShowViewController
-        destinationVC.sceneMode         =   .preview
-        var destinationDS               =   destinationVC.router!.dataStore!
+        let storyboard          =   UIStoryboard(name: "UserProfileShow", bundle: nil)
+        let destinationVC       =   storyboard.instantiateViewController(withIdentifier: "UserProfileShowVC") as! UserProfileShowViewController
+        destinationVC.sceneMode =   .preview
+        var destinationDS       =   destinationVC.router!.dataStore!
         
         passDataToUserProfileScene(userName: name, destination: &destinationDS)
         navigateToUserProfileScene(source: viewController!, destination: destinationVC)

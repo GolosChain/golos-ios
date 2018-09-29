@@ -48,7 +48,7 @@ class CommentView: UIView, HandlersCellSupport {
 
     @IBOutlet var circleViewsCollection: [UIView]! {
         didSet {
-            _ = circleViewsCollection.map({ $0.layer.cornerRadius = $0.bounds.width / 2 })
+            _ = circleViewsCollection.map({ $0.layer.cornerRadius = $0.bounds.width / 2 * widthRatio })
         }
     }
     
@@ -76,8 +76,6 @@ class CommentView: UIView, HandlersCellSupport {
                            isMultiLines:        false)
         }
     }
-    
-    
     
     @IBOutlet weak var replyButton: UIButton! {
         didSet {

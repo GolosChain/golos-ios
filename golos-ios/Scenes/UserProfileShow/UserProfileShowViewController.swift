@@ -429,25 +429,15 @@ extension UserProfileShowViewController {
                 
                 activeVC.handlerCommentsButtonTapped    =   { [weak self] postShortInfo in
                     self?.settingsShow = true
-                    self?.interactor?.save(blog: postShortInfo)
+                    self?.interactor?.save(blogShortInfo: postShortInfo)
                     self?.router?.routeToPostShowScene(withScrollToComments: true)
                 }
                 
                 // Select Blog
-                activeVC.handlerSelectItem              =   { [weak self] selectedBlog in
-                    if let blog = selectedBlog as? Blog {
-                        self?.interactor?.save(blog: PostShortInfo(id:                  blog.id,
-                                                                   title:               blog.title,
-                                                                   author:              blog.author,
-                                                                   permlink:            blog.permlink,
-                                                                   parentTag:           blog.tags?.first,
-                                                                   indexPath:           nil,
-                                                                   parentAuthor:        blog.parentAuthor,
-                                                                   parentPermlink:      blog.parentPermlink))
-                        
-                        self?.router?.routeToPostShowScene(withScrollToComments: false)
-                        self?.settingsShow = true
-                    }
+                activeVC.handlerSelectItem              =   { [weak self] postShortInfo in
+                    self?.interactor?.save(blogShortInfo: postShortInfo)
+                    self?.router?.routeToPostShowScene(withScrollToComments: false)
+                    self?.settingsShow = true
                 }
                 
                 // Reply handlers

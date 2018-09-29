@@ -96,9 +96,11 @@ class PostShowViewController: GSBaseViewController {
     var interactor: PostShowBusinessLogic?
     var router: (NSObjectProtocol & PostShowRoutingLogic & PostShowDataPassing)?
     
+    // Handlers
+    var handlerCommentsCountReturn: ((Int64) -> Void)?
+
     
     // MARK: - IBOutlets
-    @IBOutlet weak var navbarShadowView: UIView!
     @IBOutlet weak var postFeedHeaderView: PostFeedHeaderView!
     @IBOutlet weak var commentsView: UIView!
     @IBOutlet weak var commentsStackView: UIStackView!
@@ -504,8 +506,6 @@ class PostShowViewController: GSBaseViewController {
         self.runCheckFollowing()
         self.loadContentComments()
         
-        self.navbarShadowView?.add(shadow: true, onside: .bottom)
-
         if let user = User.current {
             let isNamesMatch = user.name == self.router?.dataStore?.postShortInfo?.author
             
@@ -650,6 +650,8 @@ class PostShowViewController: GSBaseViewController {
     
     // MARK: - Actions
     @IBAction func backButtonTapped(_ sender: UIButton) {
+        // Return comments count
+        self.handlerCommentsCountReturn!(self.commentsCount)
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -942,7 +944,7 @@ extension PostShowViewController {
             DispatchQueue.main.async {
                 guard let comments = CoreDataManager.instance.readEntities(withName:                    "Comment",
                                                                            withPredicateParameters:     NSPredicate(format: "parentAuthor == %@ AND parentPermlink == %@", postShortInfo.author ?? "XXX", postShortInfo.permlink ?? "XXX"),
-                                                                           andSortDescriptor:           NSSortDescriptor(key: "created", ascending: true)) as? [Comment], comments.count > 0 else {
+                                                                           andSortDescriptor:           NSSortDescriptor(key: "created", ascending: false)) as? [Comment], comments.count > 0 else {
                                                                             self.didCommentsView(hided: true)
                                                                             return
                 }

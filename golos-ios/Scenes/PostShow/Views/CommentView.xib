@@ -24,14 +24,18 @@
                 <outlet property="upvotesButton" destination="RVe-ej-86a" id="Icj-bh-8Ok"/>
                 <outlet property="view" destination="iN0-l3-epB" id="fR0-Z6-6hX"/>
                 <outletCollection property="widthsCollection" destination="WGM-xK-IuN" collectionClass="NSMutableArray" id="yeY-jf-8kq"/>
-                <outletCollection property="heightsCollection" destination="cCs-s7-z6A" collectionClass="NSMutableArray" id="XIy-ft-m4d"/>
                 <outletCollection property="widthsCollection" destination="rJH-dn-TBo" collectionClass="NSMutableArray" id="6B4-ke-uLT"/>
-                <outletCollection property="heightsCollection" destination="hRo-AH-T67" collectionClass="NSMutableArray" id="XUQ-zE-BTi"/>
                 <outletCollection property="circleViewsCollection" destination="yNw-9n-yzN" collectionClass="NSMutableArray" id="9K9-TC-dMn"/>
                 <outletCollection property="circleViewsCollection" destination="cy5-Ia-Z4f" collectionClass="NSMutableArray" id="RZR-XR-43a"/>
                 <outletCollection property="circleViewsCollection" destination="mlh-OO-ald" collectionClass="NSMutableArray" id="gHh-Op-X1v"/>
-                <outletCollection property="widthsCollection" destination="jXL-gx-aSk" collectionClass="NSMutableArray" id="bA0-QA-1tA"/>
                 <outletCollection property="circleViewsCollection" destination="mdT-NO-nly" collectionClass="NSMutableArray" id="qjF-Vv-XeQ"/>
+                <outletCollection property="widthsCollection" destination="jXL-gx-aSk" collectionClass="NSMutableArray" id="99I-9h-5rp"/>
+                <outletCollection property="widthsCollection" destination="Ol7-c9-mB8" collectionClass="NSMutableArray" id="fQi-Ue-2tr"/>
+                <outletCollection property="widthsCollection" destination="E7k-6F-MBy" collectionClass="NSMutableArray" id="lxc-wb-z2s"/>
+                <outletCollection property="widthsCollection" destination="Mje-bE-iK1" collectionClass="NSMutableArray" id="TW4-He-hVu"/>
+                <outletCollection property="widthsCollection" destination="0Jc-1M-vHe" collectionClass="NSMutableArray" id="fFf-Ns-vOP"/>
+                <outletCollection property="widthsCollection" destination="K8l-41-h6y" collectionClass="NSMutableArray" id="EbC-Yd-5xL"/>
+                <outletCollection property="widthsCollection" destination="D4v-Ma-HTj" collectionClass="NSMutableArray" id="LaM-dk-hvT"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

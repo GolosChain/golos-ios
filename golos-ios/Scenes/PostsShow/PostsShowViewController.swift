@@ -275,19 +275,9 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
                     self?.router?.routeToPostShowScene(withScrollToComments: true)
                 }
                 
-                activeVC.handlerSelectItem                          =   { [weak self] selectedPost in
-                    if let post = selectedPost as? PostCellSupport {
-                        self?.interactor?.save(postShortInfo: PostShortInfo(id:                  post.id,
-                                                                   title:               post.title,
-                                                                   author:              post.author,
-                                                                   permlink:            post.permlink,
-                                                                   parentTag:           post.tags?.first,
-                                                                   indexPath:           nil,
-                                                                   parentAuthor:        post.parentAuthor,
-                                                                   parentPermlink:      post.parentPermlink))
-                        
-                        self?.router?.routeToPostShowScene(withScrollToComments: false)
-                    }
+                activeVC.handlerSelectItem                          =   { [weak self] postShortInfo in
+                    self?.interactor?.save(postShortInfo: postShortInfo)                        
+                    self?.router?.routeToPostShowScene(withScrollToComments: false)
                 }
                 
                 activeVC.handlerAuthorProfileImageButtonTapped      =   { [weak self] userName in
