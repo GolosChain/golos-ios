@@ -313,6 +313,9 @@
                                                     <constraint firstAttribute="height" constant="90" id="f8Z-8u-tnH"/>
                                                 </constraints>
                                             </stackView>
+                                            <activityIndicatorView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="3Lz-nN-lGc">
+                                                <rect key="frame" x="150" y="203.5" width="20" height="20"/>
+                                            </activityIndicatorView>
                                             <view clipsSubviews="YES" tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tqm-aY-SVr" userLabel="Bottom Background Gray View">
                                                 <rect key="frame" x="0.0" y="258.5" width="320" height="10"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -445,10 +448,12 @@
                                             <constraint firstItem="PIF-m4-RqQ" firstAttribute="leading" secondItem="BtF-Gk-D12" secondAttribute="leading" constant="16" id="Afc-dQ-3ax"/>
                                             <constraint firstItem="tHL-Id-QDj" firstAttribute="leading" secondItem="BtF-Gk-D12" secondAttribute="leading" id="BcU-Z1-Qtf"/>
                                             <constraint firstItem="tqm-aY-SVr" firstAttribute="top" secondItem="hL9-He-JpB" secondAttribute="bottom" id="BrC-7Y-Atz"/>
+                                            <constraint firstItem="3Lz-nN-lGc" firstAttribute="centerY" secondItem="hL9-He-JpB" secondAttribute="centerY" id="CQ7-cd-zgK"/>
                                             <constraint firstItem="B0e-yR-6At" firstAttribute="top" secondItem="tqm-aY-SVr" secondAttribute="bottom" id="CWx-fy-a7E"/>
                                             <constraint firstAttribute="trailing" secondItem="tHL-Id-QDj" secondAttribute="trailing" id="EjG-ui-SBY"/>
                                             <constraint firstItem="hL9-He-JpB" firstAttribute="top" secondItem="tHL-Id-QDj" secondAttribute="bottom" id="IGQ-Cb-Z91"/>
                                             <constraint firstAttribute="trailing" secondItem="tqm-aY-SVr" secondAttribute="trailing" id="Jgk-6F-7KU"/>
+                                            <constraint firstItem="3Lz-nN-lGc" firstAttribute="centerX" secondItem="hL9-He-JpB" secondAttribute="centerX" id="Jph-ba-BfY"/>
                                             <constraint firstAttribute="trailing" secondItem="MhK-Vc-x7K" secondAttribute="trailing" constant="120" id="QAV-gt-84U"/>
                                             <constraint firstItem="tqm-aY-SVr" firstAttribute="leading" secondItem="BtF-Gk-D12" secondAttribute="leading" id="RRT-Ii-59C"/>
                                             <constraint firstAttribute="trailing" secondItem="lwn-iM-8rz" secondAttribute="trailing" constant="16" id="T9i-xq-yw4"/>
@@ -615,6 +620,7 @@
                         <outlet property="promoteButton" destination="Imt-Ze-f0t" id="fkT-dD-4Xm"/>
                         <outlet property="scrollView" destination="7f0-ZC-o8d" id="fET-LD-QHE"/>
                         <outlet property="sortByLabel" destination="NIC-bg-8Kq" id="Ilg-Ir-Tfj"/>
+                        <outlet property="subscribeActivityIndicator" destination="3Lz-nN-lGc" id="7Rp-Yt-buk"/>
                         <outlet property="subscribesStackView" destination="hL9-He-JpB" id="uDW-uB-Fb5"/>
                         <outlet property="subscribesStackViewTopConstraint" destination="u8K-s0-eby" id="r9r-cU-InB"/>
                         <outlet property="tagsCollectionView" destination="lwn-iM-8rz" id="KAp-WL-toG"/>

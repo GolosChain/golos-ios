@@ -107,6 +107,12 @@ class PostShowViewController: GSBaseViewController {
     @IBOutlet weak var subscribesStackView: UIStackView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    @IBOutlet weak var subscribeActivityIndicator: UIActivityIndicatorView! {
+        didSet {
+            self.subscribeActivityIndicator.stopAnimating()
+        }
+    }
+    
     @IBOutlet weak var scrollView: UIScrollView! {
         didSet {
             self.scrollView.isUserInteractionEnabled = !self.scrollCommentsDown
@@ -754,6 +760,11 @@ class PostShowViewController: GSBaseViewController {
             return
         }
         
+        // Run spinner
+        DispatchQueue.main.async {
+            self.subscribeActivityIndicator.startAnimating()
+        }
+        
         // API
         let requestModel = PostShowModels.Item.RequestModel(willSubscribe: !sender.isSelected)
         interactor?.subscribe(withRequestModel: requestModel)
@@ -768,16 +779,20 @@ class PostShowViewController: GSBaseViewController {
 // MARK: - PostShowDisplayLogic
 extension PostShowViewController: PostShowDisplayLogic {
     func displaySubscribe(fromViewModel viewModel: PostShowModels.Item.ViewModel) {
+        self.subscribeActivityIndicator.stopAnimating()
+        
         // NOTE: Display the result from the Presenter
         if let error = viewModel.errorAPI {
             self.showAlertView(withTitle: "Error", andMessage: error.localizedDescription, needCancel: false, completion: { _ in })
         }
         
         // Set post author subscribe button title
-        DispatchQueue.main.async {
-            self.subscribeButtonsCollection.first(where: { $0.tag == 1})?.isSelected = viewModel.isFollowing
-            self.subscribeButtonsCollection.first(where: { $0.tag == 1 })?.setTitle(viewModel.isFollowing ? "Unsubscribe".localized() : "Subscribe".localized(), for: .normal)
-        }
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5, execute: {
+            self.showAlertView(withTitle: "Info", andMessage: viewModel.isFollowing ? "Subscribe Success" : "Unsubscribe Success", needCancel: false, completion: { [weak self] _ in
+                self?.subscribeButtonsCollection.first(where: { $0.tag == 1})?.isSelected = viewModel.isFollowing
+                self?.subscribeButtonsCollection.first(where: { $0.tag == 1 })?.setTitle(viewModel.isFollowing ? "Unsubscribe".localized() : "Subscribe".localized(), for: .normal)
+            })
+        })
     }
     
     func displayLoadContent(fromViewModel viewModel: PostShowModels.Post.ViewModel) {
