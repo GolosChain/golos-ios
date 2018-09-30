@@ -62,7 +62,7 @@ extension NSManagedObject {
                 
                 if let user = User.current {
                     model.active_votes.forEach({ activeVote in
-                        if activeVote.voter == user.name {
+                        if activeVote.voter == user.nickName {
                             if let weight = activeVote.weight.stringValue {
                                 if weight.hasPrefix("-") {
                                     entity.currentUserFlaunted  =   true

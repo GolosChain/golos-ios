@@ -26,7 +26,6 @@ enum VoicePower: String {
 public class User: NSManagedObject, CachedImageFrom {
     // MARK: - CachedImageFrom protocol implementation
     var fromItem: String    =   "user"
-    var profileName: String?
     
     
     // MARK: - Properties
@@ -64,9 +63,9 @@ public class User: NSManagedObject, CachedImageFrom {
         }
     }
     
-    class func fetch(byName name: String) -> User? {
+    class func fetch(byNickName nickName: String) -> User? {
         return CoreDataManager.instance.readEntity(withName:                        "User",
-                                                   andPredicateParameters:           NSPredicate(format: "name == %@", name)) as? User
+                                                   andPredicateParameters:          NSPredicate(format: "nickName == %@", nickName)) as? User
     }
         
 
@@ -82,8 +81,8 @@ public class User: NSManagedObject, CachedImageFrom {
             return user
         }
         
-        let userEntity          =   CoreDataManager.instance.createEntity("User") as! User
-        userEntity.id           =   userID
+        let userEntity  =   CoreDataManager.instance.createEntity("User") as! User
+        userEntity.id   =   userID
         userEntity.save()
 
         return userEntity
@@ -92,7 +91,7 @@ public class User: NSManagedObject, CachedImageFrom {
     func updateEntity(fromResponseAPI responseAPI: Decodable) {
         if let userModel = responseAPI as? ResponseAPIUser {
             self.id             =   userModel.id
-            self.name           =   userModel.name
+            self.nickName       =   userModel.name
             self.postsCount     =   userModel.post_count
             self.json_metadata  =   userModel.json_metadata
             self.memoKey        =   userModel.memo_key
@@ -105,17 +104,17 @@ public class User: NSManagedObject, CachedImageFrom {
             // UserSecretPostingKey
             let userSecretKeyPostingEntity  =   UserSecretPostingKey.instance(byUserID: userModel.id)
             userSecretKeyPostingEntity.updateEntity(fromResponseAPI: userModel.posting)
-            self.posting                    =   userSecretKeyPostingEntity
+            self.posting        =   userSecretKeyPostingEntity
             
             // UserSecretOwnerKey
             let userSecretKeyOwnerEntity    =   UserSecretOwnerKey.instance(byUserID: userModel.id)
             userSecretKeyOwnerEntity.updateEntity(fromResponseAPI: userModel.owner)
-            self.owner                      =   userSecretKeyOwnerEntity
+            self.owner          =   userSecretKeyOwnerEntity
             
             // UserSecretActiveKey
             let userSecretKeyActiveEntity   =   UserSecretActiveKey.instance(byUserID: userModel.id)
             userSecretKeyActiveEntity.updateEntity(fromResponseAPI: userModel.active)
-            self.active                     =   userSecretKeyActiveEntity
+            self.active         =   userSecretKeyActiveEntity
             
             // Parse 'json_metadata'
             if let metaData = userModel.json_metadata {
@@ -124,9 +123,9 @@ public class User: NSManagedObject, CachedImageFrom {
         }
         
         if let userFollowModel = responseAPI as? ResponseAPIUserFollowCounts {
-            self.followerCount      =   Int64(userFollowModel.follower_count)
-            self.followingCount     =   Int64(userFollowModel.following_count)
-            self.followingLimit     =   userFollowModel.limit
+            self.followerCount  =   Int64(userFollowModel.follower_count)
+            self.followingCount =   Int64(userFollowModel.following_count)
+            self.followingLimit =   userFollowModel.limit
         }
         
         // Extensions
@@ -149,7 +148,10 @@ public class User: NSManagedObject, CachedImageFrom {
             self.profileImageURL    =   profile["profile_image"] as? String
             self.coverImageURL      =   profile["cover_image"] as? String
             self.selectTags         =   profile["select_tags"] as? [String]
-            self.profileName        =   profile["name"] as? String
+            
+            if let userName = profile["name"] as? String {
+                self.name = userName
+            }
         }
     }
     

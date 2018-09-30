@@ -14,7 +14,7 @@ import UIKit
 import CoreData
 import GoloSwift
 
-typealias UserProfileDetailsParams    =   (type: PostsFeedType, lastItem: NSManagedObject?)
+typealias UserProfileDetailsParams = (type: PostsFeedType, lastItem: NSManagedObject?)
 
 class UserProfileShowWorker {
     // MARK: - Class Initialization
@@ -24,27 +24,27 @@ class UserProfileShowWorker {
     
 
     // MARK: - Business Logic
-    func prepareRequestMethod(byUsername userName: String, andParameters parameters: UserProfileDetailsParams) -> MethodAPIType {
+    func prepareRequestMethod(byUserNickName userNickName: String, andParameters parameters: UserProfileDetailsParams) -> MethodAPIType {
         var methodAPIType: MethodAPIType
-        let lastItem        =   parameters.lastItem
+        let lastItem = parameters.lastItem
         
         switch parameters.type {
         // Replies
         case .reply:
-            methodAPIType   =   MethodAPIType.getUserReplies(startAuthor:           (lastItem as? Reply)?.author ?? userName,
-                                                             startPermlink:         (lastItem as? Reply)?.permlink,
-                                                             limit:                 loadDataLimit,
-                                                             voteLimit:             0)
+            methodAPIType = MethodAPIType.getUserReplies(startAuthor:       (lastItem as? Reply)?.author ?? userNickName,
+                                                         startPermlink:     (lastItem as? Reply)?.permlink,
+                                                         limit:             loadDataLimit,
+                                                         voteLimit:         0)
 
         // Blogs
         default:
-            let discussion  =   RequestParameterAPI.Discussion.init(limit:          loadDataLimit,
-                                                                    truncateBody:   0,
-                                                                    selectAuthors:  [ userName ],
-                                                                    startAuthor:    (lastItem as? PostCellSupport)?.author,
-                                                                    startPermlink:  (lastItem as? PostCellSupport)?.permlink)
+            let discussion = RequestParameterAPI.Discussion.init(limit:             loadDataLimit,
+                                                                 truncateBody:      0,
+                                                                 selectAuthors:     [ userNickName ],
+                                                                 startAuthor:       (lastItem as? PostCellSupport)?.author,
+                                                                 startPermlink:     (lastItem as? PostCellSupport)?.permlink)
             
-            methodAPIType   =   MethodAPIType.getDiscussions(type: parameters.type, parameters: discussion)
+            methodAPIType = MethodAPIType.getDiscussions(type: parameters.type, parameters: discussion)
         }
         
         return methodAPIType

@@ -17,9 +17,9 @@ enum ReplyType: String {
 
     func caseTitle() -> String {
         switch self {
-        case .post:         return "Post Title".localized()
-        case .answer:       return "Answer Title".localized()
-        case .comment:      return "Comment Title Noun".localized()
+        case .post:     return "Post Title".localized()
+        case .answer:   return "Answer Title".localized()
+        case .comment:  return "Comment Title Noun".localized()
         }
     }
 }
@@ -125,19 +125,19 @@ class ReplyTableViewCell: UITableViewCell, ReusableCell {
     
     @IBOutlet var widthsCollection: [NSLayoutConstraint]! {
         didSet {
-            _ = widthsCollection.map({ $0.constant *= widthRatio })
+            self.widthsCollection.forEach({ $0.constant *= widthRatio })
         }
     }
 
     @IBOutlet var heightsCollection: [NSLayoutConstraint]! {
         didSet {
-            _ = heightsCollection.map({ $0.constant *= heightRatio })
+            self.heightsCollection.forEach({ $0.constant *= heightRatio })
         }
     }
 
     @IBOutlet var circleViewsCollection: [UIView]! {
         didSet {
-            _ = circleViewsCollection.map({ $0.layer.cornerRadius = $0.bounds.width / 2 * widthRatio })
+            self.circleViewsCollection.forEach({ $0.layer.cornerRadius = $0.bounds.width / 2 * widthRatio })
         }
     }
     
@@ -155,10 +155,6 @@ class ReplyTableViewCell: UITableViewCell, ReusableCell {
     
 
     // MARK: - Class Functions
-//    override func layoutSubviews() {
-//        super.layoutSubviews()
-//    }
-    
     override func prepareForReuse() {
         super.prepareForReuse()
         
@@ -197,13 +193,13 @@ class ReplyTableViewCell: UITableViewCell, ReusableCell {
 
     // MARK: - Actions
     @objc func authorLabelTapped(sender: UITapGestureRecognizer) {
-        if self.authorLabel.text! != User.current!.name {
+        if self.authorLabel.text! != User.current!.nickName {
             self.handlerAuthorCommentReplyTapped!(self.authorLabel.text!)
         }
     }
     
     @IBAction func answerButtonTapped(_ sender: UIButton) {
-        if self.authorLabel.text! != User.current!.name {
+        if self.authorLabel.text! != User.current!.nickName {
             self.handlerAnswerButtonTapped!(self.postShortInfo)
         }
     }
@@ -241,12 +237,12 @@ extension ReplyTableViewCell: ConfigureCell {
                                               parentPermlink:   model.parentPermlink)
         
         // Load commentator info
-        RestAPIManager.loadUsersInfo(byNames: [reply.author], completion: { [weak self] errorAPI in
-            if errorAPI == nil, let commentator = User.fetch(byName: reply.author) {
-                self?.authorLabel.text      =   commentator.name
+        RestAPIManager.loadUsersInfo(byNickNames: [reply.author], completion: { [weak self] errorAPI in
+            if errorAPI == nil, let commentator = User.fetch(byNickName: reply.author) {
+                self?.authorLabel.text = commentator.nickName
                 
                 // Commentator Reputation -> Int
-                self?.reputationLabel.text  =   String(format: "%i", commentator.reputation.convertWithLogarithm10())
+                self?.reputationLabel.text = String(format: "%i", commentator.reputation.convertWithLogarithm10())
                 
                 // Load commentator profile image
                 if let commentatorProfileImageURL = commentator.profileImageURL {
@@ -265,10 +261,10 @@ extension ReplyTableViewCell: ConfigureCell {
             }
         })
         
-        self.timeLabel.text             =   reply.created.convertToDaysAgo()
-        self.replyTextLabel.text        =   reply.body
+        self.timeLabel.text = reply.created.convertToDaysAgo()
+        self.replyTextLabel.text = reply.body
         
-        selectionStyle                  =   .none
+        selectionStyle = .none
 
         self.setReplyType(reply)
     }

@@ -282,15 +282,15 @@ public struct RequestParameterAPI {
         // MARK: - Properties
         public let what: String?
         public let follower: String
-        public let userName: [String]
-        public let authorName: String
+        public let userNickNames: [String]
+        public let authorNickName: String
         
         // MARK: - Initialization
-        public init(userName: String, authorName: String, what: String? = nil) {
+        public init(userNickName: String, authorNickName: String, what: String? = nil) {
             self.what           =   what
-            self.follower       =   userName
-            self.userName       =   [userName]
-            self.authorName     =   authorName
+            self.follower       =   userNickName
+            self.userNickNames  =   [userNickName]
+            self.authorNickName =   authorNickName
         }
         
         
@@ -304,13 +304,13 @@ public struct RequestParameterAPI {
             
             return  [
                 "required_auths":           [],
-                "required_posting_auths":   self.userName,
+                "required_posting_auths":   self.userNickNames,
                 "id":                       "follow",
-                "json":                     isWhatNil ? "[\"follow\",{\"follower\":\"\(self.follower)\",\"following\":\"\(self.authorName)\",\"what\":[]}]" :
-                                                        "[\"follow\",{\"follower\":\"\(self.follower)\",\"following\":\"\(self.authorName)\",\"what\":[\"\(self.what!)\"]}]"
+                "json":                     isWhatNil ? "[\"follow\",{\"follower\":\"\(self.follower)\",\"following\":\"\(self.authorNickName)\",\"what\":[]}]" :
+                "[\"follow\",{\"follower\":\"\(self.follower)\",\"following\":\"\(self.authorNickName)\",\"what\":[\"\(self.what!)\"]}]"
             ]
         }
-
+        
         func getPropertiesNames() -> [String] {
             return [ "required_auths", "required_posting_auths", "id", "json" ]
         }

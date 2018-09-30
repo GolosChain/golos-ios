@@ -19,6 +19,7 @@ extension User {
 
     @NSManaged public var id: Int64
     @NSManaged public var name: String
+    @NSManaged public var nickName: String
     @NSManaged public var memoKey: String?
     @NSManaged public var postsCount: Int64
     @NSManaged public var isAuthorized: Bool

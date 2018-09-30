@@ -30,7 +30,7 @@ class GSTestManager {
         
         // API `Create new post`
         broadcast.executePOST(requestByOperationAPIType:    operationAPIType,
-                              userName:                     User.current!.name,
+                              userNickName:                 User.current!.nickName,
                               onResult:                 { /*[weak self]*/ responseAPIResult in
                                 if let error = (responseAPIResult as! ResponseAPIBlockchainPostResult).error {
                                     Logger.log(message: "nresponse API Error = \(error.message)\n", event: .error)

@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -31,13 +29,13 @@
                                 <rect key="frame" x="0.0" y="2" width="375" height="665"/>
                                 <subviews>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U1e-gJ-kMS" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="720"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="718.5"/>
                                         <subviews>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aUS-iZ-th2" userLabel="Header View">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="180.5"/>
                                                 <subviews>
                                                     <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hew-iT-lim" userLabel="Change Avatar Button">
-                                                        <rect key="frame" x="164" y="117" width="46" height="30"/>
+                                                        <rect key="frame" x="164.5" y="116" width="46" height="30"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <state key="normal" title="Button"/>
                                                         <connections>
@@ -45,7 +43,7 @@
                                                         </connections>
                                                     </button>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-user-profile-image-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="hTB-dk-cSa" userLabel="User Avatar Image View">
-                                                        <rect key="frame" x="147.5" y="26" width="80" height="80.5"/>
+                                                        <rect key="frame" x="147.5" y="26" width="80" height="80"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="hTB-dk-cSa" secondAttribute="height" multiplier="1:1" id="J3C-XN-5H9"/>
@@ -60,22 +58,22 @@
                                                     <constraint firstItem="hTB-dk-cSa" firstAttribute="top" secondItem="aUS-iZ-th2" secondAttribute="top" constant="26" id="pTz-BJ-YpC"/>
                                                 </constraints>
                                             </view>
-                                            <stackView clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="o9n-qV-Nuu" userLabel="Info Stack View">
-                                                <rect key="frame" x="16" y="180.5" width="327" height="337.5"/>
+                                            <stackView contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="o9n-qV-Nuu" userLabel="Info Stack View">
+                                                <rect key="frame" x="16" y="180.5" width="327" height="336.5"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </stackView>
-                                            <stackView clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Elp-4x-TRy" userLabel="Buttons Stack View">
-                                                <rect key="frame" x="16" y="578" width="343" height="118"/>
+                                            <stackView contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Elp-4x-TRy" userLabel="Buttons Stack View">
+                                                <rect key="frame" x="16" y="577" width="343" height="117.5"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NRu-0X-bs0" userLabel="Change Cover Button">
-                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="54"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="53.5"/>
                                                         <state key="normal" title="Button"/>
                                                         <connections>
                                                             <action selector="changeCoverButtonTapped:" destination="OEO-Ix-hmA" eventType="touchUpInside" id="57a-Mn-OlE"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k4R-k9-5pR" userLabel="Save Button">
-                                                        <rect key="frame" x="0.0" y="64" width="343" height="54"/>
+                                                        <rect key="frame" x="0.0" y="63.5" width="343" height="54"/>
                                                         <state key="normal" title="Button"/>
                                                         <connections>
                                                             <action selector="saveButtonTapped:" destination="OEO-Ix-hmA" eventType="touchUpInside" id="mzy-G1-gnR"/>

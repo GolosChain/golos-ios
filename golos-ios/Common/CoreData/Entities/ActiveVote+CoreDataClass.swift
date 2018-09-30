@@ -22,7 +22,7 @@ public class ActiveVote: NSManagedObject {
     
     class func isUserVoted(currentPost postID: Int64) -> Bool {
         return CoreDataManager.instance.readEntities(withName:                  "ActiveVote",
-                                                     withPredicateParameters:   NSPredicate(format: "postID == \(postID) AND voter == %@", User.current?.name ?? ""),
+                                                     withPredicateParameters:   NSPredicate(format: "postID == \(postID) AND voter == %@", User.current?.nickName ?? ""),
                                                      andSortDescriptor:         nil)?.first != nil
     }
     

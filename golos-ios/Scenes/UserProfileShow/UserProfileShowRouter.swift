@@ -86,7 +86,7 @@ class UserProfileShowRouter: NSObject, UserProfileShowRoutingLogic, UserProfileS
         let destinationVC           =   storyboard.instantiateViewController(withIdentifier: "UserProfileShowVC") as! UserProfileShowViewController
         destinationVC.sceneMode     =   .preview
         var destinationDS           =   destinationVC.router!.dataStore!
-        destinationDS.userName      =   name
+        destinationDS.userNickName      =   name
         
         navigateToUserProfileScene(source: viewController!, destination: destinationVC)
     }

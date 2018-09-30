@@ -20,11 +20,11 @@ public class Lenta: NSManagedObject, CachedImageFrom {
     // MARK: - Properties
     var userNameValue: String {
         set {
-            self.userName = userNameValue
+            self.userNickName = userNameValue
         }
         
         get {
-            return self.userName
+            return self.userNickName
         }
     }
 
@@ -51,7 +51,7 @@ public class Lenta: NSManagedObject, CachedImageFrom {
         }
         
         // Update entity
-        entity!.userName = User.current!.name
+        entity!.userNickName = User.current!.nickName
         entity!.update(withModel: model)
     }
 }

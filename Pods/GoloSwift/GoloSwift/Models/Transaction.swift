@@ -22,7 +22,7 @@ public struct Transaction {
     var operations: [Encodable]
     var extensions: [String]?
     var signatures: [String]
-    var userName: String = ""
+    var userNickName: String = ""
     var serializedBuffer: [Byte]
     
     
@@ -39,9 +39,10 @@ public struct Transaction {
     
     
     // MARK: - Custom Functions
-    public mutating func setUser(name: String) {
-        self.userName   =   name
+    public mutating func setUser(nickName: String) {
+        self.userNickName = nickName
     }
+
     
     /// Service function to remove `operation code` from transaction
     private mutating func deleteOperationCode() {
@@ -97,7 +98,7 @@ public struct Transaction {
         Logger.log(message: "\nmessageSHA256:\n\t\(messageSHA256.toHexString())\n", event: .debug)
         
         // ECC signing
-        guard let signature = SigningManager.signingECC(messageSHA256: messageSHA256, userName: self.userName) else {
+        guard let signature = SigningManager.signingECC(messageSHA256: messageSHA256, userNickName: self.userNickName) else {
             return ErrorAPI.signingECCKeychainPostingKeyFailure(message: "Signing Transaction Failure")
         }
         

@@ -32,11 +32,11 @@ class LogInShowInteractor: LogInShowBusinessLogic {
     // MARK: - Business logic implementation
     func authorizeUser(withRequestModel requestModel: LogInShowModels.Parameters.RequestModel) {
         // AP 'get_accounts'
-        RestAPIManager.loadUsersInfo(byNames: [requestModel.userName], completion: { [weak self] errorAPI in
+        RestAPIManager.loadUsersInfo(byNickNames: [requestModel.userNickName], completion: { [weak self] errorAPI in
             var success: Bool   =   false
             
             // Prepare & Display user info
-            guard errorAPI == nil, let user = User.fetch(byName: requestModel.userName) else {
+            guard errorAPI == nil, let user = User.fetch(byNickName: requestModel.userNickName) else {
                 let responseModel = LogInShowModels.Parameters.ResponseModel(success: success)
                 self?.presenter?.presentAuthorizeUser(fromResponseModel: responseModel)
 
@@ -61,7 +61,7 @@ class LogInShowInteractor: LogInShowBusinessLogic {
                 
                 // Save Private key in Keychain
                 if success {
-                    _ = KeychainManager.save(requestModel.wif, forUserName: requestModel.userName)
+                    _ = KeychainManager.save(key: requestModel.wif, userNickName: requestModel.userNickName)
                 }
             }
             

@@ -31,7 +31,7 @@ class LogInHelpShowViewController: GSBaseViewController {
                         "Login Help Step Title 3 Active".localized()
                 }
                 
-                $0.tune(withAttributedText:     $0.text ?? "Zorro",
+                $0.tune(withAttributedText:     $0.text ?? "XXX",
                         hexColors:              blackWhiteColorPickers,
                         font:                   UIFont(name: "SFProDisplay-Regular", size: 13.0),
                         alignment:              .left,

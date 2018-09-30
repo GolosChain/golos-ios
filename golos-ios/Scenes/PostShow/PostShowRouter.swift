@@ -84,6 +84,6 @@ class PostShowRouter: NSObject, PostShowRoutingLogic, PostShowDataPassing {
     }
 
     func passDataToUserProfileScene(userName: String, destination: inout UserProfileShowDataStore) {
-        destination.userName    =   userName
+        destination.userNickName    =   userName
     }
 }

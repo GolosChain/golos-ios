@@ -146,7 +146,7 @@ public class Broadcast {
      - Parameter completion: Blockchain response.
      
      */
-    public func executePOST(requestByOperationAPIType operationAPIType: OperationAPIType, userName: String, onResult: @escaping (Decodable) -> Void, onError: @escaping (ErrorAPI) -> Void) {
+    public func executePOST(requestByOperationAPIType operationAPIType: OperationAPIType, userNickName: String, onResult: @escaping (Decodable) -> Void, onError: @escaping (ErrorAPI) -> Void) {
         // API `get_dynamic_global_properties`
         self.getDynamicGlobalProperties(completion: { success in
             guard success else {
@@ -160,7 +160,7 @@ public class Broadcast {
             
             // Create Transaction (tx)
             var tx: Transaction = Transaction(withOperations: operations)
-            tx.setUser(name: userName)
+            tx.setUser(nickName: userNickName)
             Logger.log(message: "\nexecutePOST - transaction:\n\t\(tx)\n", event: .debug)
             
             // Transaction (tx): serialize & SHA256 & ECC signing

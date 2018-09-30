@@ -31,7 +31,7 @@
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IZe-iE-639" userLabel="Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="845"/>
                                         <subviews>
-                                            <stackView clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="jcs-cQ-xDw" userLabel="Top Stack View">
+                                            <stackView contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="jcs-cQ-xDw" userLabel="Top Stack View">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="280"/>
                                                 <subviews>
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="76i-ty-bAE" userLabel="Common View">
@@ -109,11 +109,11 @@
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </stackView>
-                                            <stackView clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Jd1-if-qni" userLabel="Middle Stack View">
+                                            <stackView contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Jd1-if-qni" userLabel="Middle Stack View">
                                                 <rect key="frame" x="0.0" y="290" width="375" height="250"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </stackView>
-                                            <stackView clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="UBu-iY-XBV" userLabel="BottomStack View">
+                                            <stackView contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="UBu-iY-XBV" userLabel="BottomStack View">
                                                 <rect key="frame" x="0.0" y="550" width="375" height="295"/>
                                                 <subviews>
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uon-Ic-wwA" userLabel="Wiki View">

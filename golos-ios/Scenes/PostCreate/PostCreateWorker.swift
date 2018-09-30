@@ -26,7 +26,7 @@ class PostCreateWorker {
         
         for (index, imageAttachment) in imagesAttachments.enumerated() {
             // Create image signature
-            if let image = imageAttachment.origin as? UIImage, let imageSignature = Attachment.createURL(forImage: image, userName: User.current!.name) {
+            if let image = imageAttachment.origin as? UIImage, let imageSignature = Attachment.createURL(forImage: image, userNickName: User.current!.nickName) {
                 // API 'Posting image'
                 RestAPIManager.posting(image, imageSignature, completion: { imageURL in
                     Logger.log(message: "imageURL = \(imageURL ?? "XXX")", event: .debug)
@@ -44,7 +44,7 @@ class PostCreateWorker {
     }
     
     func load(postPermlink: String, completion: @escaping (ErrorAPI) -> Void) {
-        let content = RequestParameterAPI.Content(author: User.current!.name, permlink: postPermlink)
+        let content = RequestParameterAPI.Content(author: User.current!.nickName, permlink: postPermlink)
         
         RestAPIManager.loadPostPermlink(byContent: content, completion: { errorAPI in
             completion(errorAPI)

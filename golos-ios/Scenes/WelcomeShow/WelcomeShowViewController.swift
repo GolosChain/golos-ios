@@ -31,7 +31,7 @@ class WelcomeShowViewController: GSBaseViewController {
     // MARK: - IBOutlets
     @IBOutlet weak var welcomeLabel: UILabel! {
         didSet {
-            welcomeLabel.tune(withText:         welcomeLabel.text ?? "Zorro",
+            welcomeLabel.tune(withText:         welcomeLabel.text ?? "XXX",
                               hexColors:        blackWhiteColorPickers,
                               font:             UIFont.init(name: "SFProDisplay-Regular", size: 25.0 * widthRatio),
                               alignment:        .center,
@@ -41,7 +41,7 @@ class WelcomeShowViewController: GSBaseViewController {
     
     @IBOutlet weak var inGolosLabel: UILabel! {
         didSet {
-            inGolosLabel.tune(withText:         inGolosLabel.text ?? "Zorro",
+            inGolosLabel.tune(withText:         inGolosLabel.text ?? "XXX",
                               hexColors:        blackWhiteColorPickers,
                               font:             UIFont.init(name: "SFProDisplay-Regular", size: 40.0 * widthRatio),
                               alignment:        .center,

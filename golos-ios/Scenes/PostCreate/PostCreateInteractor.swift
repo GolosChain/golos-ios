@@ -97,7 +97,7 @@ class PostCreateInteractor: PostCreateBusinessLogic, PostCreateDataStore {
                     // Create Post with transliteration
                     let newPost = RequestParameterAPI.Comment(parentAuthor:       "",
                                                               parentPermlink:     (self?.tags?.first?.title ?? "").transliteration(forPermlink: true),
-                                                              author:             User.current!.name,
+                                                              author:             User.current!.nickName,
                                                               title:              self?.commentTitle ?? "",
                                                               body:               self?.commentBody ?? "",
                                                               jsonMetadata:       jsonMetadataString,
@@ -120,7 +120,7 @@ class PostCreateInteractor: PostCreateBusinessLogic, PostCreateDataStore {
                 // Create Comment with transliteration
                 let newCommentOrReply = RequestParameterAPI.Comment(parentAuthor:       self?.commentParentAuthor ?? "",
                                                                     parentPermlink:     self?.commentParentPermlink ?? "",
-                                                                    author:             (User.current?.name)!,
+                                                                    author:             (User.current?.nickName)!,
                                                                     title:              "",
                                                                     body:               self?.commentBody ?? "",
                                                                     jsonMetadata:       jsonMetadataString,
@@ -141,20 +141,20 @@ class PostCreateInteractor: PostCreateBusinessLogic, PostCreateDataStore {
         // Run queue in Async Thread
         postRequestQueue.async {
             broadcast.executePOST(requestByOperationAPIType:    operationAPIType,
-                                  userName:                     User.current!.name,
+                                  userNickName:                 User.current!.nickName,
                                   onResult:                     { [weak self] responseAPIResult in
                                     var errorAPI: ErrorAPI?
                                     
                                     if let error = (responseAPIResult as! ResponseAPIBlockchainPostResult).error {
-                                        errorAPI        =   ErrorAPI.requestFailed(message: error.message)
+                                        errorAPI = ErrorAPI.requestFailed(message: error.message)
                                     }
                                     
-                                    let responseModel   =   PostCreateModels.Item.ResponseModel(errorAPI: errorAPI)
+                                    let responseModel = PostCreateModels.Item.ResponseModel(errorAPI: errorAPI)
                                     self?.presenter?.presentPublishItem(fromResponseModel: responseModel)
                 },
                                   onError: { [weak self] errorAPI in
                                     Logger.log(message: "nresponse API Error = \(errorAPI.caseInfo.message)\n", event: .error)
-                                    let responseModel   =   PostCreateModels.Item.ResponseModel(errorAPI: errorAPI)
+                                    let responseModel = PostCreateModels.Item.ResponseModel(errorAPI: errorAPI)
                                     self?.presenter?.presentPublishItem(fromResponseModel: responseModel)
             })
         }

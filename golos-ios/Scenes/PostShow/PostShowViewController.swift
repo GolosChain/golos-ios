@@ -115,6 +115,7 @@ class PostShowViewController: GSBaseViewController {
     
     @IBOutlet weak var scrollView: UIScrollView! {
         didSet {
+            self.scrollView.delegate = self
             self.scrollView.isUserInteractionEnabled = !self.scrollCommentsDown
         }
     }
@@ -480,6 +481,8 @@ class PostShowViewController: GSBaseViewController {
     
     // MARK: - Routing
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        Logger.log(message: "Success", event: .severe)
+        
         if let scene = segue.identifier {
             let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
             
@@ -491,12 +494,14 @@ class PostShowViewController: GSBaseViewController {
     
     
     // MARK: - Class Functions
-    override func viewDidLayoutSubviews() {
-        self.tagsCollectionViewheightConstraint.constant    =   self.tagsCollectionView.contentSize.height
-    }
+//    override func viewDidLayoutSubviews() {
+//        Logger.log(message: "Success", event: .severe)
+//        self.tagsCollectionViewheightConstraint.constant    =   self.tagsCollectionView.contentSize.height
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        Logger.log(message: "Success", event: .severe)
 
         // Handlers
         self.postFeedHeaderView.handlerAuthorTapped         =   { [weak self] userName in
@@ -529,7 +534,8 @@ class PostShowViewController: GSBaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        Logger.log(message: "Success", event: .severe)
+
         self.hideNavigationBar()
         UIApplication.shared.statusBarStyle = .default
     }
@@ -537,6 +543,8 @@ class PostShowViewController: GSBaseViewController {
     
     // MARK: - Custom Functions
     private func didCommentsView(hided: Bool) {
+        Logger.log(message: "Success", event: .severe)
+
         self.commentsViewTopConstraint.constant         =   heightRatio * (hided ? -30.0 : 0.0)
         self.commentsStackViewTopConstraint.constant    =   hided ? (-1 * self.commentsStackViewHeightConstraint.constant + 40.0 * heightRatio) : 0.0
         self.commentsView.isHidden                      =   hided
@@ -556,11 +564,16 @@ class PostShowViewController: GSBaseViewController {
             self.commentsCountLabel.text = String(format: "%i", self.commentsViews.count)
         }
         
-        self.didCommentsScrollDown()
         self.scrollView.isUserInteractionEnabled = true
+
+        if self.scrollCommentsDown {
+            self.didCommentsScrollDown()
+        }
     }
     
     private func loadViewSettings() {
+        Logger.log(message: "Success", event: .severe)
+
         if let displayedPost = self.router?.dataStore?.displayedPost {
             self.titleLabel.text = displayedPost.title
 
@@ -597,7 +610,7 @@ class PostShowViewController: GSBaseViewController {
             
             // Subscribe User
             if  let author = self.router?.dataStore?.postShortInfo?.author,
-                let user = User.fetch(byName: author), let userProfileImageURL = user.profileImageURL {
+                let user = User.fetch(byNickName: author), let userProfileImageURL = user.profileImageURL {
                 self.userAvatarImageView.uploadImage(byStringPath:       userProfileImageURL,
                                                      imageType:          .userProfileImage,
                                                      size:               CGSize(width: 50.0 * widthRatio, height: 50.0 * widthRatio),
@@ -606,7 +619,7 @@ class PostShowViewController: GSBaseViewController {
                                                      fromItem:           (user as CachedImageFrom).fromItem)
             }
 
-            self.userNameLabel.text = self.postFeedHeaderView.authorLabel.text
+            self.userNameLabel.text = self.postFeedHeaderView.authorNameButton.titleLabel!.text
             
             // User action buttons
             if displayedPost.children > 0 {
@@ -621,12 +634,14 @@ class PostShowViewController: GSBaseViewController {
     }
     
     override func localizeTitles() {
+        Logger.log(message: "Success", event: .severe)
+
         self.tagsCollectionView.reloadData()
         (self.commentsStackView.arrangedSubviews as! [CommentView]).forEach({ $0.localizeTitles() })
         
         self.postFeedHeaderView.categoryLabel.text = self.router!.dataStore!.displayedPost!.category
-                                                        .transliteration(forPermlink: false)
-                                                        .uppercaseFirst
+                                                    .transliteration(forPermlink: false)
+                                                    .uppercaseFirst
             
         self.flauntButton.setTitle("Flaunt Verb".localized(), for: .normal)
         self.donateButton.setTitle("Donate Verb".localized(), for: .normal)
@@ -645,12 +660,22 @@ class PostShowViewController: GSBaseViewController {
     }
 
     private func didCommentsScrollDown() {
-        if self.scrollCommentsDown {
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.3, execute: {
-//                self.scrollView.scrollToBottom(animated: true)
-                self.scrollView.scrollRectToVisible(CGRect(origin: self.commentsView.frame.origin, size: CGSize(width: self.commentsView.frame.width, height: max(0, self.commentsStackView.frame.maxY))), animated: true)
+        Logger.log(message: "Success", event: .severe)
+
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5, execute: {
+            UIView.animate(withDuration:    0.7,
+                           delay:           0.2,
+                           options:         .transitionCrossDissolve,
+                           animations:      {
+                            if self.commentsCount == 0 {
+                                self.scrollView.contentOffset.y = 10_000.0
+                            }
+                                
+                            else {
+                                self.scrollView.scrollRectToVisible(CGRect(origin: self.commentsView.frame.origin, size: CGSize(width: self.commentsView.frame.width, height: max(0, self.commentsStackView.frame.maxY))), animated: true)
+                            }
             })
-        }
+        })
     }
     
     
@@ -732,14 +757,18 @@ class PostShowViewController: GSBaseViewController {
         
         UIView.animate(withDuration: 1.2) {
             self.commentsStackView.layoutIfNeeded()
-            
+
             // Scrolling to bottom
-            if !sender.isSelected {
+            if !sender.isSelected && self.scrollCommentsDown {
                 self.didCommentsScrollDown()
             }
         }
     }
     
+    @IBAction func userProfileImageButtonTapped(_ sender: UIButton) {
+        self.postFeedHeaderView.authorProfileButtonTapped(sender)
+    }
+   
     @IBAction func subscribeButtonTapped(_ sender: UIButton) {
         sender.setBorder(color: UIColor(hexString: "#dbdbdb").cgColor, cornerRadius: 4.0 * heightRatio)
         
@@ -797,6 +826,8 @@ extension PostShowViewController: PostShowDisplayLogic {
     
     func displayLoadContent(fromViewModel viewModel: PostShowModels.Post.ViewModel) {
         // NOTE: Display the result from the Presenter
+        Logger.log(message: "Success", event: .severe)
+
         if let error = viewModel.errorAPI {
             self.showAlertView(withTitle: "Error", andMessage: error.localizedDescription, needCancel: false, completion: { _ in })
         }
@@ -807,6 +838,8 @@ extension PostShowViewController: PostShowDisplayLogic {
     
     func displayLoadContentComments(fromViewModel viewModel: PostShowModels.Post.ViewModel) {
         // NOTE: Display the result from the Presenter
+        Logger.log(message: "Success", event: .severe)
+
         if let error = viewModel.errorAPI {
             self.showAlertView(withTitle: "Error", andMessage: error.localizedDescription, needCancel: false, completion: { _ in })
         }
@@ -817,6 +850,8 @@ extension PostShowViewController: PostShowDisplayLogic {
     
     func displayCheckFollowing(fromViewModel viewModel: PostShowModels.Following.ViewModel) {
         // NOTE: Display the result from the Presenter
+        Logger.log(message: "Success", event: .severe)
+
         if let error = viewModel.errorAPI {
             self.showAlertView(withTitle: "Error", andMessage: error.localizedDescription, needCancel: false, completion: { _ in })
         }
@@ -833,6 +868,8 @@ extension PostShowViewController: PostShowDisplayLogic {
 // MARK: - Load data from Blockchain by API
 extension PostShowViewController {
     private func loadContent() {
+        Logger.log(message: "Success", event: .severe)
+
         let loadPostContentQueue = DispatchQueue.global(qos: .background)
         
         loadPostContentQueue.async {
@@ -842,6 +879,8 @@ extension PostShowViewController {
     }
     
     func loadContentComments() {
+        Logger.log(message: "Success", event: .severe)
+
         // Remove subviews in Buttons Stack view
         self.commentsViews.forEach({ self.commentsStackView.removeArrangedSubview($0)})
         self.commentsViews.removeAll()
@@ -853,9 +892,11 @@ extension PostShowViewController {
     }
     
     private func runCheckFollowing() {
+        Logger.log(message: "Success", event: .severe)
+
         guard isNetworkAvailable && !User.isAnonymous else {
             DispatchQueue.main.async {
-                self.subscribeButtonsCollection.first(where: { $0.tag == 1})?.isSelected = false
+                self.subscribeButtonsCollection.first(where: { $0.tag == 1 })?.isSelected = false
                 self.subscribeButtonsCollection.first(where: { $0.tag == 1 })?.setTitle("Subscribe".localized(), for: .normal)
             }
             
@@ -918,7 +959,7 @@ extension PostShowViewController {
                     self.commentsViews.forEach({ self.commentsStackView.removeArrangedSubview($0)})
                     
                     // Sort subviews for Stack view
-                    let sortedSubviews = self.commentsViews.sorted(by: { $0.level < $1.level })
+                    let sortedSubviews = self.commentsViews.sorted(by: { $0.level < $1.level && $0.created > $1.created })
                     
                     // Add subview to Stack view
                     for subview in sortedSubviews {
@@ -1044,5 +1085,13 @@ extension PostShowViewController: UICollectionViewDelegateFlowLayout {
         let width   =   (CGFloat(tag.count) * 7.0 + 30.0) * widthRatio
         
         return CGSize.init(width: width, height: 30.0 * heightRatio)
+    }
+}
+
+
+// MARK: - UIScrollViewDelegate
+extension PostShowViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        Logger.log(message: "contentOffset = \(scrollView.contentOffset.y)", event: .debug)
     }
 }

@@ -17,71 +17,78 @@ class PostFeedHeaderView: UIView {
 
     
     // MARK: - IBOutlets
-    @IBOutlet weak var authorProfileImageView: UIImageView! {
+    @IBOutlet weak var authorProfileImageView: UIImageView!
+
+    @IBOutlet weak var contentView: UIView! {
         didSet {
-            authorProfileImageView.layer.cornerRadius = authorProfileImageView.bounds.width / 2 * widthRatio
+            self.contentView.tune(withThemeColorPicker: whiteColorPickers)
         }
     }
     
-    @IBOutlet weak var authorLabel: UILabel! {
+    @IBOutlet weak var authorNameButton: UIButton! {
         didSet {
-            authorLabel.tune(withText:          "",
-                             hexColors:         veryDarkGrayWhiteColorPickers,
-                             font:              UIFont(name: "SFProDisplay-Regular", size: 12.0),
-                             alignment:         .left,
-                             isMultiLines:      false)
+            self.authorNameButton.tune(withTitle:   "",
+                                       hexColors:   [blackWhiteColorPickers, grayWhiteColorPickers, grayWhiteColorPickers, grayWhiteColorPickers],
+                                       font:        UIFont(name: "SFProDisplay-Bold", size: 12.0),
+                                       alignment:   .left)
         }
     }
     
-    @IBOutlet weak var reblogIconImageView: UIImageView! {
+    @IBOutlet weak var rebloggedAuthorButton: UIButton! {
         didSet {
-            reblogIconImageView.isHidden    =   true
-        }
-    }
-    
-    @IBOutlet weak var reblogAuthorLabel: UILabel! {
-        didSet {
-            reblogAuthorLabel.tune(withText:          "",
-                                   hexColors:         veryDarkGrayWhiteColorPickers,
-                                   font:              UIFont(name: "SFProDisplay-Regular", size: 12.0),
-                                   alignment:         .left,
-                                   isMultiLines:      false)
+            self.rebloggedAuthorButton.tune(withTitle:      "",
+                                            hexColors:      [darkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
+                                            font:           UIFont(name: "SFProDisplay-Regular", size: 10.0),
+                                            alignment:      .left)
             
-            reblogAuthorLabel.isHidden      =   true
+            self.rebloggedAuthorButton.isHidden = true
+        }
+    }
+    
+    @IBOutlet weak var reblogIconButton: UIButton! {
+        didSet {
+            self.reblogIconButton.isHidden = true
+        }
+    }
+    
+    @IBOutlet weak var authorNickNameButton: UIButton! {
+        didSet {
+            self.authorNickNameButton.tune(withTitle:      "",
+                                           hexColors:      [darkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
+                                           font:           UIFont(name: "SFProDisplay-Regular", size: 10.0),
+                                           alignment:      .left)
+            
+            self.authorNickNameButton.isHidden = false
         }
     }
     
     @IBOutlet weak var categoryLabel: UILabel! {
         didSet {
-            categoryLabel.tune(withText:          "",
-                               hexColors:         darkGrayWhiteColorPickers,
-                               font:              UIFont(name: "SFProDisplay-Regular", size: 10.0),
-                               alignment:         .left,
-                               isMultiLines:      false)
+            self.categoryLabel.tune(withText:        "",
+                                    hexColors:       darkGrayWhiteColorPickers,
+                                    font:            UIFont(name: "SFProDisplay-Regular", size: 10.0),
+                                    alignment:       .left,
+                                    isMultiLines:    false)
+        }
+    }
+    
+    @IBOutlet weak var timeLabel: UILabel! {
+        didSet {
+            self.timeLabel.tune(withText:        "",
+                                hexColors:       darkGrayWhiteColorPickers,
+                                font:            UIFont(name: "SFProDisplay-Regular", size: 10.0),
+                                alignment:       .right,
+                                isMultiLines:    false)
         }
     }
     
     @IBOutlet weak var authorReputationLabel: UILabel! {
         didSet {
-            authorReputationLabel.tune(withText:          "",
-                                       hexColors:         whiteColorPickers,
-                                       font:              UIFont(name: "SFProDisplay-Medium", size: 6.0),
-                                       alignment:         .center,
-                                       isMultiLines:      false)
-        }
-    }
-    
-    @IBOutlet weak var authorInteractiveView: UIView! {
-        didSet {
-            let authorTapGesture        =   UITapGestureRecognizer(target: self, action: #selector(didPressAuthor))
-            authorInteractiveView.addGestureRecognizer(authorTapGesture)
-        }
-    }
-    
-    @IBOutlet weak var reblogAuthorInteractiveView: UIView! {
-        didSet {
-            let reblogAuthorTapGesture  =   UITapGestureRecognizer(target: self, action: #selector(didPressReblogAuthor))
-            reblogAuthorInteractiveView.addGestureRecognizer(reblogAuthorTapGesture)
+            authorReputationLabel.tune(withText:        "",
+                                       hexColors:       whiteColorPickers,
+                                       font:            UIFont(name: "SFProDisplay-Medium", size: 6.0),
+                                       alignment:       .center,
+                                       isMultiLines:    false)
         }
     }
     
@@ -122,10 +129,10 @@ class PostFeedHeaderView: UIView {
     }
     
     private func commonInit() {
-        backgroundColor     =   .clear
+        backgroundColor = .clear
         
-        let nib             =   UINib(nibName: String(describing: PostFeedHeaderView.self), bundle: nil)
-        let view            =   nib.instantiate(withOwner: self, options: nil).first as! UIView
+        let nib     =   UINib(nibName: String(describing: PostFeedHeaderView.self), bundle: nil)
+        let view    =   nib.instantiate(withOwner: self, options: nil).first as! UIView
         
         addSubview(view)
         
@@ -152,41 +159,43 @@ class PostFeedHeaderView: UIView {
     // MARK: - Custom Functions
     func display(_ post: PostCellSupport) {
         // Set User info
-        if let user = User.fetch(byName: post.author) {
-            self.authorLabel.text           =   user.name
-            self.categoryLabel.text         =   post.category
-                                                    .transliteration(forPermlink: false)
-                                                    .uppercaseFirst
-           
-            // User Reputation -> Int
+        if let user = User.fetch(byNickName: post.author) {
+            self.authorNickNameButton.setTitle(user.nickName, for: .normal)
+            self.authorNameButton.setTitle((user.name == "XXX" || user.name.isEmpty ? user.nickName : user.name).uppercaseFirst, for: .normal)
+
+            self.timeLabel.text             =   post.created.convertToDaysAgo(dateFormatType: .expirationDateType)
             self.authorReputationLabel.text =   String(format: "%i", user.reputation.convertWithLogarithm10())
             
+            self.categoryLabel.text = post.category
+                                        .transliteration(forPermlink: false)
+                                        .uppercaseFirst
+           
             // Load User author profile image
             if let userProfileImageURL = user.profileImageURL {
-                self.authorProfileImageView.uploadImage(byStringPath:       userProfileImageURL,
-                                                        imageType:          .userProfileImage,
-                                                        size:               CGSize(width: 30.0 * widthRatio, height: 30.0 * widthRatio),
-                                                        tags:               nil,
-                                                        createdDate:        user.created.convert(toDateFormat: .expirationDateType),
-                                                        fromItem:           (user as CachedImageFrom).fromItem)
+                self.authorProfileImageView.uploadImage(byStringPath:   userProfileImageURL,
+                                                        imageType:      .userProfileImage,
+                                                        size:           CGSize(width: 30.0 * widthRatio, height: 30.0 * widthRatio),
+                                                        tags:           nil,
+                                                        createdDate:    user.created.convert(toDateFormat: .expirationDateType),
+                                                        fromItem:       (user as CachedImageFrom).fromItem)
             }            
         }
         
         // Set reblogged user info (default isHidden = true)
         if let rebloggedBy = post.rebloggedBy, rebloggedBy.count > 0 {
-            self.reblogAuthorLabel.text         =   rebloggedBy.first ?? ""
-            self.reblogAuthorLabel.isHidden     =   false
-            self.reblogIconImageView.isHidden   =   false
+            self.reblogIconButton.isHidden      =   false
+            self.rebloggedAuthorButton.isHidden =   false
+            self.rebloggedAuthorButton.setTitle(rebloggedBy.first ?? "XXX", for: .normal)
         }
     }
     
     
     // MARK: - Actions
-    @objc private func didPressAuthor() {
-        self.handlerAuthorTapped!(self.authorLabel.text!)
+    @IBAction open func authorProfileButtonTapped(_ sender: UIButton) {
+        self.handlerAuthorTapped!(self.authorNickNameButton.titleLabel!.text!)
     }
     
-    @objc private func didPressReblogAuthor() {
-        self.handlerReblogAuthorTapped!(self.reblogAuthorLabel.text!)
+    @IBAction func rebloggedAuthorNickNameButtonTapped(_ sender: UIButton) {
+        self.handlerReblogAuthorTapped!(sender.titleLabel!.text!)
     }
 }

@@ -16,7 +16,7 @@ class RestAPIManager {
         guard let imageData = image.jpegData(compressionQuality: 1.0) else { return }
 
         let session             =   URLSession(configuration: .default)
-        let requestURL          =   URL(string: String(format: "%@/%@/%@", imagesURL, User.current!.name, signature))!
+        let requestURL          =   URL(string: String(format: "%@/%@/%@", imagesURL, User.current!.nickName, signature))!
         
         let request             =   NSMutableURLRequest(url: requestURL)
         request.httpMethod      =   "POST"
@@ -27,7 +27,7 @@ class RestAPIManager {
         request.setValue(contentType, forHTTPHeaderField: "Content-Type")
         
         // Create upload data to send
-        let uploadData          =   NSMutableData()
+        let uploadData = NSMutableData()
         
         // Add image
         uploadData.append("\r\n--\(boundaryConstant)\r\n".data(using: String.Encoding.utf8)!)
@@ -36,9 +36,9 @@ class RestAPIManager {
         uploadData.append(imageData)
         uploadData.append("\r\n--\(boundaryConstant)--\r\n".data(using: String.Encoding.utf8)!)
         
-        request.httpBody        =   uploadData as Data
+        request.httpBody = uploadData as Data
         
-        let task                =   session.dataTask(with: request as URLRequest, completionHandler: { (data, _, error) -> Void in
+        let task = session.dataTask(with: request as URLRequest, completionHandler: { (data, _, error) -> Void in
             guard error == nil else {
                 completion(nil)
                 return
@@ -58,28 +58,28 @@ class RestAPIManager {
     
     
     /// Load list of Users
-    class func loadUsersInfo(byNames names: [String], completion: @escaping (ErrorAPI?) -> Void) {
+    class func loadUsersInfo(byNickNames nickNames: [String], completion: @escaping (ErrorAPI?) -> Void) {
         // API 'get_accounts'
         if isNetworkAvailable {
             // Search available user in CoreData
-            if names.count == 1, let userName = names.first, (User.fetch(byName: userName) != nil) {
+            if nickNames.count == 1, let nickName = nickNames.first, (User.fetch(byNickName: nickName) != nil) {
                 completion(nil)
             }
                 
             else {
-                let methodAPIType = MethodAPIType.getAccounts(names: names)
+                let methodAPIType = MethodAPIType.getAccounts(nickNames: nickNames)
                 
                 broadcast.executeGET(byMethodAPIType: methodAPIType,
                                      onResult: { responseAPIResult in
 //                                        Logger.log(message: "\nresponse API Result = \(responseAPIResult)\n", event: .debug)
                                         
                                         guard let result = (responseAPIResult as! ResponseAPIUserResult).result, result.count > 0 else {
-                                            completion(ErrorAPI.requestFailed(message: names.count == 1 ? "User is not found" : "List of users is empty"))
+                                            completion(ErrorAPI.requestFailed(message: nickNames.count == 1 ? "User is not found" : "List of users is empty"))
                                             return
                                         }
                                         
                                         // CoreData: Update User entities
-                                        _ = result.map({
+                                        result.forEach({
                                             let userEntity = User.instance(byUserID: $0.id)
                                             userEntity.updateEntity(fromResponseAPI: $0)
                                         })
@@ -147,7 +147,7 @@ class RestAPIManager {
                                     })
                                     
                                     // Load authors info
-                                    loadUsersInfo(byNames: Array(Set(result.compactMap({ $0.author }))), completion: { errorAPI in
+                                    loadUsersInfo(byNickNames: Array(Set(result.compactMap({ $0.author }))), completion: { errorAPI in
                                         completion(errorAPI)
                                     })
             },
@@ -168,7 +168,7 @@ class RestAPIManager {
     class func loadPost(byContent content: RequestParameterAPI.Content, andPostType postType: PostsFeedType, completion: @escaping (ErrorAPI?) -> Void) {
         // API 'get_content'
         if isNetworkAvailable {
-            let methodAPIType   =   MethodAPIType.getContent(parameters: content)
+            let methodAPIType = MethodAPIType.getContent(parameters: content)
             
             broadcast.executeGET(byMethodAPIType: methodAPIType,
                                  onResult: { responseAPIResult in
@@ -229,7 +229,7 @@ class RestAPIManager {
     class func loadPostComments(byContent content: RequestParameterAPI.Content, andPostType postType: PostsFeedType, completion: @escaping (ErrorAPI?) -> Void) {
         // API 'get_all_content_replies'
         if isNetworkAvailable {
-            let methodAPIType   =   MethodAPIType.getContentAllReplies(parameters: content)
+            let methodAPIType = MethodAPIType.getContentAllReplies(parameters: content)
             
             broadcast.executeGET(byMethodAPIType: methodAPIType,
                                  onResult: { responseAPIResult in
@@ -259,10 +259,10 @@ class RestAPIManager {
 
 
     /// Load User Follow counts
-    class func loadUserFollowCounts(byName name: String, completion: @escaping (ErrorAPI?) -> Void) {
+    class func loadUserFollowCounts(byNickName nickName: String, completion: @escaping (ErrorAPI?) -> Void) {
         // API 'get_follow_count'
         if isNetworkAvailable {
-            let methodAPIType   =   MethodAPIType.getUserFollowCounts(name: name)
+            let methodAPIType = MethodAPIType.getUserFollowCounts(nickName: nickName)
             
             broadcast.executeGET(byMethodAPIType: methodAPIType,
                                  onResult: { responseAPIResult in
@@ -274,7 +274,7 @@ class RestAPIManager {
                                     }
                                     
                                     // CoreData: Update User entity
-                                    if let user = User.fetch(byName: name) {
+                                    if let user = User.fetch(byNickName: nickName) {
                                         user.updateEntity(fromResponseAPI: result)
                                     }
                                     
@@ -294,21 +294,21 @@ class RestAPIManager {
 
 
     /// Load Current User Followings list
-    class func loadFollowingsList(byUserName userName: String, authorName: String, pagination: UInt, completion: @escaping (Bool, ErrorAPI?) -> Void) {
+    class func loadFollowingsList(byUserNickName userNickName: String, authorNickName: String, pagination: UInt, completion: @escaping (Bool, ErrorAPI?) -> Void) {
         // API 'get_following'
         if isNetworkAvailable {
-            let methodAPIType = MethodAPIType.getUserFollowings(userName: userName, authorName: authorName, pagination: pagination)
+            let methodAPIType = MethodAPIType.getUserFollowings(userNickName: userNickName, authorNickName: authorNickName, pagination: pagination)
             
             broadcast.executeGET(byMethodAPIType: methodAPIType,
                                  onResult: { responseAPIResult in
 //                                    Logger.log(message: "\nresponse API Result = \(responseAPIResult)\n", event: .debug)
                                     
-                                    guard let result = (responseAPIResult as! ResponseAPIUserFollowingsResult).result, let postAuthorName = result.first?.following else {
+                                    guard let result = (responseAPIResult as! ResponseAPIUserFollowingsResult).result, let postAuthorNickName = result.first?.following else {
                                         completion(false, ErrorAPI.requestFailed(message: "User followings are not found"))
                                         return
                                     }
                                     
-                                    completion(authorName == postAuthorName, nil)
+                                    completion(authorNickName == postAuthorNickName, nil)
             },
                                  onError: { errorAPI in
                                     Logger.log(message: "nresponse API Error = \(errorAPI.caseInfo.message)\n", event: .error)
@@ -327,7 +327,7 @@ class RestAPIManager {
     class func loadPostPermlink(byContent content: RequestParameterAPI.Content, completion: @escaping (ErrorAPI) -> Void) {
         // API 'get_content'
         if isNetworkAvailable {
-            let methodAPIType   =   MethodAPIType.getContent(parameters: content)
+            let methodAPIType = MethodAPIType.getContent(parameters: content)
             
             broadcast.executeGET(byMethodAPIType: methodAPIType,
                                  onResult: { responseAPIResult in

@@ -106,9 +106,9 @@ class PostFeedTableViewCell: UITableViewCell, HandlersCellSupport {
         self.postImageView.image                                =   nil
         self.postImageViewHeightConstraint.constant             =   180.0 * heightRatio
         
-        self.postFeedHeaderView.reblogAuthorLabel.text          =   nil
-        self.postFeedHeaderView.reblogAuthorLabel.isHidden      =   true
-        self.postFeedHeaderView.reblogIconImageView.isHidden    =   true
+//        self.postFeedHeaderView.authorReblogLabel.text          =   nil
+//        self.postFeedHeaderView.authorReblogLabel.isHidden      =   true
+//        self.postFeedHeaderView.reblogIconImageView.isHidden    =   true
         
         self.commentsButton.setTitle(nil, for: .normal)
     }
@@ -156,35 +156,19 @@ extension PostFeedTableViewCell: ConfigureCell {
         
         self.postShortInfo = PostShortInfo(indexPath: indexPath)
         
-        // Set User info
-        if let user = User.fetch(byName: model.author) {
-            self.postFeedHeaderView.authorLabel.text            =   user.name
-            
-            // User Reputation -> Int
-            self.postFeedHeaderView.authorReputationLabel.text  =   String(format: "%i", user.reputation.convertWithLogarithm10())
-            
-            
-            // TODO: - RECOMMENT IN BETA-VERSION
-            // Author Post Reputation -> Int
+        // Display PostFeedHeaderView
+        self.postFeedHeaderView.display(model)
+        
+        // TODO: - RECOMMENT IN BETA-VERSION
+        // Author Post Reputation -> Int
 //            let pendingPayoutValue = String(format: "%@%.2f", "gbg", model.pendingPayoutValue)
 //            self.upvotesButton.setTitle(pendingPayoutValue, for: .normal)
-
-            // Set upvotes icon
-            if model.activeVotesCount > 0 {
-                self.upvotesButton.isSelected = model.currentUserVoted
-            }
-
-            // Load User author profile image
-            if let userProfileImageURL = user.profileImageURL {
-                self.postFeedHeaderView.authorProfileImageView.uploadImage(byStringPath:    userProfileImageURL,
-                                                                           imageType:       .userProfileImage,
-                                                                           size:            CGSize(width: 30.0 * widthRatio, height: 30.0 * widthRatio),
-                                                                           tags:            nil,
-                                                                           createdDate:     user.created.convert(toDateFormat: .expirationDateType),
-                                                                           fromItem:        (user as CachedImageFrom).fromItem)
-            }
+        
+        // Set upvotes icon
+        if model.activeVotesCount > 0 {
+            self.upvotesButton.isSelected = model.currentUserVoted
         }
-
+        
         // Load model user cover image
         if let coverImageURL = model.coverImageURL, !coverImageURL.isEmpty {
             self.postImageView.uploadImage(byStringPath:    coverImageURL,
@@ -194,18 +178,15 @@ extension PostFeedTableViewCell: ConfigureCell {
                                            createdDate:     model.created,
                                            fromItem:        (model as! CachedImageFrom).fromItem)
         }
-
+            
         // Hide post image
         else {
-            self.postImageViewHeightConstraint.constant     =   0
+            self.postImageViewHeightConstraint.constant = 0
         }
-
-        self.titleLabel.text                                =   model.title
-        self.postFeedHeaderView.authorLabel.text            =   model.author
-        self.postFeedHeaderView.categoryLabel.text          =   model.category.transliteration(forPermlink: false)
-
-        selectionStyle                                      =   .none
-
+        
+        self.titleLabel.text    =   model.title
+        selectionStyle          =   .none
+        
         if model.children > 0 {
             self.commentsButton.setTitle("\(model.children)", for: .normal)
 //            self.commentsButton.isSelected = model.currentUserVoted
@@ -216,12 +197,5 @@ extension PostFeedTableViewCell: ConfigureCell {
         }
         
         self.layoutIfNeeded()
-        
-        // Set reblogged user info (default isHidden = true)
-        if let rebloggedBy = model.rebloggedBy, rebloggedBy.count > 0 {
-            self.postFeedHeaderView.reblogAuthorLabel.text          =   rebloggedBy.first ?? ""
-            self.postFeedHeaderView.reblogAuthorLabel.isHidden      =   false
-            self.postFeedHeaderView.reblogIconImageView.isHidden    =   false
-        }
     }
 }

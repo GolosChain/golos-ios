@@ -51,6 +51,7 @@
 	<array>
 		<string>SFProDisplay-Regular.otf</string>
 		<string>SFProDisplay-Medium.otf</string>
+		<string>SFProDisplay-Bold.otf</string>
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>

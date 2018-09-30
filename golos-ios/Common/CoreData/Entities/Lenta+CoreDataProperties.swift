@@ -31,7 +31,7 @@ extension Lenta: PostCellSupport {
     @NSManaged public var jsonMetadata: String?
     @NSManaged public var url: String?
     @NSManaged public var coverImageURL: String?
-    @NSManaged public var userName: String
+    @NSManaged public var userNickName: String
     @NSManaged public var pendingPayoutValue: Float
     @NSManaged public var children: Int64
 

@@ -67,7 +67,7 @@ class LogInShowViewController: GSBaseViewController {
 
     @IBOutlet weak var notRegisteredLabel: UILabel! {
         didSet {
-            notRegisteredLabel.tune(withText:           notRegisteredLabel.text ?? "Zorro",
+            notRegisteredLabel.tune(withText:           notRegisteredLabel.text ?? "XXX",
                                     hexColors:          darkGrayWhiteColorPickers,
                                     font:               UIFont(name: "SFProDisplay-Regular", size: 16.0),
                                     alignment:          .center,
@@ -176,7 +176,7 @@ class LogInShowViewController: GSBaseViewController {
         let emptyTextField = self.textFieldsCollection?.first(where: { ($0.text?.isEmpty)! })
         
         guard emptyTextField == nil else {
-            self.showAlertView(withTitle: "Error", andMessage: emptyTextField!.accessibilityHint ?? "Zorro", needCancel: false, completion: { _ in })
+            self.showAlertView(withTitle: "Error", andMessage: emptyTextField!.accessibilityHint ?? "XXX", needCancel: false, completion: { _ in })
             return false
         }
         
@@ -207,9 +207,9 @@ class LogInShowViewController: GSBaseViewController {
             self.cancelButton.isEnabled     =   false
 
             // API 'login'
-            let requestModel = LogInShowModels.Parameters.RequestModel(userName:    self.textFieldsCollection!.first!.text!,
-                                                                       wif:         self.textFieldsCollection!.last!.text!,
-                                                                       wifType:     self.textFieldsCollection!.last!.tag)
+            let requestModel = LogInShowModels.Parameters.RequestModel(userNickName:    self.textFieldsCollection!.first!.text!,
+                                                                       wif:             self.textFieldsCollection!.last!.text!,
+                                                                       wifType:         self.textFieldsCollection!.last!.tag)
             interactor?.authorizeUser(withRequestModel: requestModel)
         }
     }

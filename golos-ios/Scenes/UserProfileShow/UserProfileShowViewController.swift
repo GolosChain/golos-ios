@@ -240,7 +240,7 @@ class UserProfileShowViewController: GSBaseViewController, ContainerViewSupport 
         self.hideNavigationBar()
         self.settingsShow = false
         
-        UIApplication.shared.statusBarStyle     =   User.fetch(byName: self.router!.dataStore!.userName ?? "")?.coverImageURL == nil ? .default : (scrollView.parallaxHeader.progress == 0.0 ? .default : .lightContent)
+        UIApplication.shared.statusBarStyle     =   User.fetch(byNickName: self.router!.dataStore!.userNickName ?? "")?.coverImageURL == nil ? .default : (scrollView.parallaxHeader.progress == 0.0 ? .default : .lightContent)
 
         // Load User info
         self.loadUserInfo()
@@ -381,7 +381,7 @@ extension UserProfileShowViewController {
 extension UserProfileShowViewController {
     // User Profile
     private func fetchUserInfo() {
-        if let userEntity = User.fetch(byName: self.router!.dataStore!.userName ?? "") {
+        if let userEntity = User.fetch(byNickName: self.router!.dataStore!.userNickName ?? "") {
             self.userProfileInfoTitleViewHeightConstraint.constant = 58.0
             self.userProfileHeaderView.updateUI(fromUserInfo: userEntity)
             self.userProfileInfoTitleView.updateUI(fromUserInfo: userEntity)
@@ -397,7 +397,7 @@ extension UserProfileShowViewController {
     private func fetchUserDetails() {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1, execute: {
             if let activeVC = self.containerView.activeVC {
-                activeVC.fetchPosts(byParameters: (author: self.router?.dataStore?.userName, postFeedType: self.postFeedTypes[self.selectedButton.tag], permlink: nil, sortBy: nil))
+                activeVC.fetchPosts(byParameters: (author: self.router?.dataStore?.userNickName, postFeedType: self.postFeedTypes[self.selectedButton.tag], permlink: nil, sortBy: nil))
                 
                 // Handler Pull Refresh/Infinite Scrolling data
                 activeVC.handlerPushRefreshData         =   { [weak self] lastItem in
@@ -492,7 +492,7 @@ extension UserProfileShowViewController: MXParallaxHeaderDelegate {
 
         guard !self.settingsShow else { return }
         
-        UIApplication.shared.statusBarStyle = User.fetch(byName: (self.router?.dataStore?.userName)!)?.coverImageURL == nil ? .default : (parallaxHeader.progress == 0.0 ? .default : .lightContent)
+        UIApplication.shared.statusBarStyle = User.fetch(byNickName: (self.router?.dataStore?.userNickName)!)?.coverImageURL == nil ? .default : (parallaxHeader.progress == 0.0 ? .default : .lightContent)
         self.userProfileHeaderView.whiteStatusBarView.isHidden = parallaxHeader.progress != 0.0
     }
 }

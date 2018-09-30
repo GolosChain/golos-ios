@@ -128,15 +128,12 @@ class UserProfileHeaderView: PassthroughView {
     
     // MARK: - Custom Functions
     func updateUI(fromUserInfo userInfo: User) {
-        // TODO: - SET THIS CODE IN RELEASE VERSION
-//        self.nameLabel.text                 =   userInfo.profileName
-
-        self.nameLabel.text                 =   userInfo.name
-        self.voicePowerLabel.text           =   userInfo.voicePower.introduced().localized()
-        self.voicePowerImageView.image      =   UIImage(named: String(format: "icon-voice-power-%@", userInfo.voicePower.introduced().lowercased()))
+        self.nameLabel.text             =   userInfo.name == "XXX" ? userInfo.nickName : userInfo.name
+        self.voicePowerLabel.text       =   userInfo.voicePower.introduced().localized()
+        self.voicePowerImageView.image  =   UIImage(named: String(format: "icon-voice-power-%@", userInfo.voicePower.introduced().lowercased()))
 
         // Reputation -> Int
-        self.reputationLabel.text           =   String(format: "%i", userInfo.reputation.convertWithLogarithm10())
+        self.reputationLabel.text       =   String(format: "%i", userInfo.reputation.convertWithLogarithm10())
         
         // Upload User profile image
         if let userProfileImageURL = userInfo.profileImageURL {

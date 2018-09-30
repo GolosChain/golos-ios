@@ -241,7 +241,7 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
     private func setActiveViewControllerHandlers() {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1, execute: {
             if let activeVC = self.containerView.activeVC {
-                activeVC.fetchPosts(byParameters: (author: User.current?.name, postFeedType: self.postFeedTypes[self.selectedIndex], permlink: nil, sortBy: nil))
+                activeVC.fetchPosts(byParameters: (author: User.current?.nickName, postFeedType: self.postFeedTypes[self.selectedIndex], permlink: nil, sortBy: nil))
                 
                 // Handler Pull Refresh/Infinite Scrolling data
                 activeVC.handlerPushRefreshData                     =   { [weak self] lastItem in

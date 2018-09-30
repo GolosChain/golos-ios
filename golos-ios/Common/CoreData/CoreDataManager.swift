@@ -169,7 +169,7 @@ class CoreDataManager {
         }
         
         do {
-            let deletedEntities     =   try self.managedObjectContext.fetch(deleteFetchRequest)
+            let deletedEntities = try self.managedObjectContext.fetch(deleteFetchRequest)
 
             for deletedEntity in deletedEntities as! [NSManagedObject] {
                 self.managedObjectContext.delete(deletedEntity)

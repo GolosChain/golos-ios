@@ -38,7 +38,7 @@
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iBe-t9-Q5H" userLabel="Content View">
                                                 <rect key="frame" x="0.0" y="0.0" width="336" height="50"/>
                                                 <subviews>
-                                                    <stackView clipsSubviews="YES" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="VOV-AR-H2g">
+                                                    <stackView contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="VOV-AR-H2g">
                                                         <rect key="frame" x="0.0" y="0.0" width="336" height="50"/>
                                                         <subviews>
                                                             <view clipsSubviews="YES" tag="5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UQl-Kx-lVg">

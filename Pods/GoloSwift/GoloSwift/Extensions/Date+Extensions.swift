@@ -31,4 +31,14 @@ extension Date {
         
         return String(format: "%@", self.convert(toStringFormat: .commentDate))
     }
+    
+    /// Convet Date to 'days ago'
+    public func convertToDaysAgo(dateFormatType: DateFormatType) -> String {
+        let dateFormatter           =   DateFormatter()
+        dateFormatter.dateFormat    =   dateFormatType.rawValue
+        dateFormatter.timeZone      =   TimeZone(identifier: "UTC")
+        let days                    =   Calendar.current.dateComponents([.day], from: self, to: Date()).day ?? 0
+        
+        return String(format: "%@", days == 0 ? "Today ago".localized() : "\(days) " + "Days ago".localized())
+    }
 }

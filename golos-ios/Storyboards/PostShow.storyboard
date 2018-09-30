@@ -22,21 +22,21 @@
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                                 <subviews>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BtF-Gk-D12" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="338.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="328.5"/>
                                         <subviews>
-                                            <stackView clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="PIF-m4-RqQ" userLabel="Comments Stack View">
-                                                <rect key="frame" x="16" y="338.5" width="288" height="0.0"/>
+                                            <stackView contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="PIF-m4-RqQ" userLabel="Comments Stack View">
+                                                <rect key="frame" x="16" y="328.5" width="288" height="0.0"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" id="TgC-Uq-le7"/>
                                                 </constraints>
                                             </stackView>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dZE-L5-SIs" userLabel="Hide View">
-                                                <rect key="frame" x="0.0" y="0.0" width="320" height="268.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="258.5"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
                                             <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B0e-yR-6At" userLabel="Empty Comments Button">
-                                                <rect key="frame" x="16" y="268.5" width="304" height="44"/>
+                                                <rect key="frame" x="16" y="258.5" width="304" height="44"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="44" id="X1e-I5-bpL"/>
@@ -50,7 +50,7 @@
                                                 </connections>
                                             </button>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nt5-Bc-nF3" userLabel="Comments View">
-                                                <rect key="frame" x="0.0" y="268.5" width="320" height="70"/>
+                                                <rect key="frame" x="0.0" y="258.5" width="320" height="70"/>
                                                 <subviews>
                                                     <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comments Noun" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dVT-lc-meT" userLabel="Comments Title Label">
                                                         <rect key="frame" x="16" y="15" width="129" height="20.5"/>
@@ -119,7 +119,7 @@
                                                     <constraint firstItem="lI5-dI-xCS" firstAttribute="top" secondItem="nt5-Bc-nF3" secondAttribute="top" constant="21" id="jnh-ae-TK2"/>
                                                 </constraints>
                                             </view>
-                                            <stackView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" distribution="fillEqually" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="h9e-KO-AhW" userLabel="Buttons Stack View">
+                                            <stackView hidden="YES" contentMode="scaleToFill" distribution="fillEqually" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="h9e-KO-AhW" userLabel="Buttons Stack View">
                                                 <rect key="frame" x="16" y="158.5" width="288" height="34"/>
                                                 <subviews>
                                                     <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Imt-Ze-f0t" userLabel="Promote Button">
@@ -161,8 +161,8 @@
                                                     <constraint firstAttribute="height" constant="10" id="1Sx-7f-Mvj"/>
                                                 </constraints>
                                             </view>
-                                            <stackView clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="hL9-He-JpB" userLabel="Subscribes Stack View">
-                                                <rect key="frame" x="0.0" y="168.5" width="320" height="90"/>
+                                            <stackView contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="hL9-He-JpB" userLabel="Subscribes Stack View">
+                                                <rect key="frame" x="0.0" y="168.5" width="320" height="80"/>
                                                 <subviews>
                                                     <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QZ1-ab-xUw" userLabel="Subscribe Topic View">
                                                         <rect key="frame" x="0.0" y="0.0" width="320" height="0.0"/>
@@ -174,7 +174,7 @@
                                                                     <constraint firstAttribute="height" constant="50" id="ViH-ru-v31"/>
                                                                 </constraints>
                                                             </imageView>
-                                                            <stackView clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="FWj-A1-RtJ" userLabel="Labels Stack View">
+                                                            <stackView contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="FWj-A1-RtJ" userLabel="Labels Stack View">
                                                                 <rect key="frame" x="76" y="-17.5" width="118" height="35"/>
                                                                 <subviews>
                                                                     <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Published in" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3l6-xe-i7n">
@@ -235,10 +235,10 @@
                                                         </constraints>
                                                     </view>
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n52-gC-8Jz" userLabel="Subscribe User View">
-                                                        <rect key="frame" x="0.0" y="0.0" width="320" height="90"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-user-profile-image-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="ZH2-hK-oIK" userLabel="User Avatar Image View">
-                                                                <rect key="frame" x="16" y="20" width="50" height="50"/>
+                                                                <rect key="frame" x="16" y="15" width="50" height="50"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="50" id="c5A-Bm-dxL"/>
@@ -246,7 +246,7 @@
                                                                 </constraints>
                                                             </imageView>
                                                             <button clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eEn-P4-Nhn" userLabel="Subscribe User Button">
-                                                                <rect key="frame" x="204" y="30" width="100" height="30"/>
+                                                                <rect key="frame" x="204" y="25" width="100" height="30"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="100" id="pdk-dM-cga"/>
@@ -261,8 +261,8 @@
                                                                     <action selector="subscribeButtonTappedDown:" destination="EfY-4r-YFi" eventType="touchDown" id="bzj-XS-XOT"/>
                                                                 </connections>
                                                             </button>
-                                                            <stackView clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="jR5-dE-efI" userLabel="Labels Stack View">
-                                                                <rect key="frame" x="76" y="25" width="118" height="40"/>
+                                                            <stackView contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="jR5-dE-efI" userLabel="Labels Stack View">
+                                                                <rect key="frame" x="76" y="20" width="118" height="40"/>
                                                                 <subviews>
                                                                     <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TQB-vz-8Uo" userLabel="User Name Label">
                                                                         <rect key="frame" x="0.0" y="0.0" width="118" height="40"/>
@@ -271,7 +271,7 @@
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <stackView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="aCJ-ZS-yTX">
+                                                                    <stackView hidden="YES" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="aCJ-ZS-yTX">
                                                                         <rect key="frame" x="0.0" y="0.0" width="118" height="2"/>
                                                                         <subviews>
                                                                             <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X2g-fj-Wl3" userLabel="Recent Past Label">
@@ -310,14 +310,21 @@
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="90" id="f8Z-8u-tnH"/>
+                                                    <constraint firstAttribute="height" constant="80" id="f8Z-8u-tnH"/>
                                                 </constraints>
                                             </stackView>
                                             <activityIndicatorView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="3Lz-nN-lGc">
-                                                <rect key="frame" x="150" y="203.5" width="20" height="20"/>
+                                                <rect key="frame" x="150" y="198.5" width="20" height="20"/>
                                             </activityIndicatorView>
+                                            <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VyW-ed-xji" userLabel="User Profile Image Button">
+                                                <rect key="frame" x="0.0" y="168.5" width="194" height="80"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <connections>
+                                                    <action selector="userProfileImageButtonTapped:" destination="EfY-4r-YFi" eventType="touchUpInside" id="Dkc-eE-c5l"/>
+                                                </connections>
+                                            </button>
                                             <view clipsSubviews="YES" tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tqm-aY-SVr" userLabel="Bottom Background Gray View">
-                                                <rect key="frame" x="0.0" y="258.5" width="320" height="10"/>
+                                                <rect key="frame" x="0.0" y="248.5" width="320" height="10"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="10" id="5i8-Ig-cw7"/>
@@ -345,7 +352,7 @@
                                                     <constraint firstAttribute="height" id="XZb-1l-yIm"/>
                                                 </constraints>
                                             </view>
-                                            <stackView clipsSubviews="YES" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="MhK-Vc-x7K" userLabel="Active Buttons Stack View">
+                                            <stackView contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="MhK-Vc-x7K" userLabel="Active Buttons Stack View">
                                                 <rect key="frame" x="16" y="98.5" width="184" height="60"/>
                                                 <subviews>
                                                     <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fb3-VQ-GlM" userLabel="Upvote Button">
@@ -443,7 +450,9 @@
                                             <constraint firstItem="h9e-KO-AhW" firstAttribute="leading" secondItem="BtF-Gk-D12" secondAttribute="leading" constant="16" id="24g-ha-yWK"/>
                                             <constraint firstItem="dZE-L5-SIs" firstAttribute="bottom" secondItem="tqm-aY-SVr" secondAttribute="bottom" id="3ia-Ns-xyE"/>
                                             <constraint firstItem="tHL-Id-QDj" firstAttribute="top" secondItem="h9e-KO-AhW" secondAttribute="bottom" priority="750" constant="20" id="4nI-Ir-YHS"/>
+                                            <constraint firstItem="VyW-ed-xji" firstAttribute="leading" secondItem="BtF-Gk-D12" secondAttribute="leading" id="5gQ-4Z-ReG"/>
                                             <constraint firstAttribute="trailing" secondItem="Vl1-2x-lVp" secondAttribute="trailing" id="7GF-bG-0GC"/>
+                                            <constraint firstItem="VyW-ed-xji" firstAttribute="trailing" secondItem="TQB-vz-8Uo" secondAttribute="trailing" id="8fZ-qG-a9I"/>
                                             <constraint firstItem="nt5-Bc-nF3" firstAttribute="leading" secondItem="BtF-Gk-D12" secondAttribute="leading" id="A4x-Ss-gif"/>
                                             <constraint firstItem="PIF-m4-RqQ" firstAttribute="leading" secondItem="BtF-Gk-D12" secondAttribute="leading" constant="16" id="Afc-dQ-3ax"/>
                                             <constraint firstItem="tHL-Id-QDj" firstAttribute="leading" secondItem="BtF-Gk-D12" secondAttribute="leading" id="BcU-Z1-Qtf"/>
@@ -454,6 +463,8 @@
                                             <constraint firstItem="hL9-He-JpB" firstAttribute="top" secondItem="tHL-Id-QDj" secondAttribute="bottom" id="IGQ-Cb-Z91"/>
                                             <constraint firstAttribute="trailing" secondItem="tqm-aY-SVr" secondAttribute="trailing" id="Jgk-6F-7KU"/>
                                             <constraint firstItem="3Lz-nN-lGc" firstAttribute="centerX" secondItem="hL9-He-JpB" secondAttribute="centerX" id="Jph-ba-BfY"/>
+                                            <constraint firstItem="VyW-ed-xji" firstAttribute="bottom" secondItem="n52-gC-8Jz" secondAttribute="bottom" id="LFI-wT-ilU"/>
+                                            <constraint firstItem="VyW-ed-xji" firstAttribute="top" secondItem="n52-gC-8Jz" secondAttribute="top" id="Os2-4F-O1G"/>
                                             <constraint firstAttribute="trailing" secondItem="MhK-Vc-x7K" secondAttribute="trailing" constant="120" id="QAV-gt-84U"/>
                                             <constraint firstItem="tqm-aY-SVr" firstAttribute="leading" secondItem="BtF-Gk-D12" secondAttribute="leading" id="RRT-Ii-59C"/>
                                             <constraint firstAttribute="trailing" secondItem="lwn-iM-8rz" secondAttribute="trailing" constant="16" id="T9i-xq-yw4"/>
@@ -493,11 +504,14 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                                 <subviews>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a7j-dG-pvN" customClass="PostFeedHeaderView" customModule="Golos" customModuleProvider="target">
-                                        <rect key="frame" x="36" y="20" width="188" height="44"/>
+                                        <rect key="frame" x="36" y="14" width="284" height="50"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="qu2-Ft-Su1"/>
+                                        </constraints>
                                     </view>
                                     <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Udv-hI-u2X" userLabel="Back Button">
-                                        <rect key="frame" x="0.0" y="20" width="44" height="44"/>
+                                        <rect key="frame" x="0.0" y="17" width="44" height="44"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="Udv-hI-u2X" secondAttribute="height" multiplier="1:1" id="KyM-0v-CgZ"/>
@@ -508,45 +522,15 @@
                                             <action selector="backButtonTapped:" destination="EfY-4r-YFi" eventType="touchUpInside" id="K5x-Wa-NRY"/>
                                         </connections>
                                     </button>
-                                    <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nst-fN-DH3" userLabel="Share Button">
-                                        <rect key="frame" x="224" y="20" width="44" height="44"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="nst-fN-DH3" secondAttribute="height" multiplier="1:1" id="Ldg-CU-4wI"/>
-                                            <constraint firstAttribute="height" constant="44" id="enV-AJ-b2M"/>
-                                        </constraints>
-                                        <state key="normal" image="icon-button-share-normal"/>
-                                        <connections>
-                                            <action selector="shareButtonTapped:" destination="EfY-4r-YFi" eventType="touchUpInside" id="zp6-XH-vVG"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Z1-Vd-Evl" userLabel="More Button">
-                                        <rect key="frame" x="268" y="20" width="44" height="44"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="44" id="GDF-8R-QnG"/>
-                                            <constraint firstAttribute="width" secondItem="8Z1-Vd-Evl" secondAttribute="height" multiplier="1:1" id="Hah-6y-EU9"/>
-                                        </constraints>
-                                        <state key="normal" image="icon-button-vertical-more-normal"/>
-                                        <state key="disabled" image="icon-button-vertical-more-highlighted"/>
-                                        <state key="highlighted" image="icon-button-vertical-more-highlighted"/>
-                                        <connections>
-                                            <action selector="moreButtonTapped:" destination="EfY-4r-YFi" eventType="touchUpInside" id="E1e-Yg-OUz"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="a7j-dG-pvN" secondAttribute="bottom" id="2D1-h1-czx"/>
                                     <constraint firstItem="a7j-dG-pvN" firstAttribute="leading" secondItem="Udv-hI-u2X" secondAttribute="trailing" constant="-8" id="754-es-Dtx"/>
-                                    <constraint firstItem="8Z1-Vd-Evl" firstAttribute="leading" secondItem="nst-fN-DH3" secondAttribute="trailing" id="ALe-Ec-WN6"/>
+                                    <constraint firstAttribute="trailing" secondItem="a7j-dG-pvN" secondAttribute="trailing" id="IEX-07-NWV"/>
                                     <constraint firstItem="Udv-hI-u2X" firstAttribute="leading" secondItem="7Js-bQ-ZpY" secondAttribute="leading" id="JJv-Ok-ROH"/>
-                                    <constraint firstAttribute="trailing" secondItem="8Z1-Vd-Evl" secondAttribute="trailing" constant="8" id="NNl-ve-cFE"/>
-                                    <constraint firstItem="nst-fN-DH3" firstAttribute="leading" secondItem="a7j-dG-pvN" secondAttribute="trailing" id="UYb-1O-sYB"/>
-                                    <constraint firstAttribute="bottom" secondItem="8Z1-Vd-Evl" secondAttribute="bottom" id="cGy-GZ-2GV"/>
-                                    <constraint firstItem="a7j-dG-pvN" firstAttribute="height" secondItem="Udv-hI-u2X" secondAttribute="height" id="mX0-fI-YTU"/>
+                                    <constraint firstItem="a7j-dG-pvN" firstAttribute="centerY" secondItem="Udv-hI-u2X" secondAttribute="centerY" id="cuH-qt-tqe"/>
                                     <constraint firstAttribute="height" constant="64" id="p07-Sd-p3F"/>
-                                    <constraint firstAttribute="bottom" secondItem="nst-fN-DH3" secondAttribute="bottom" id="qi1-lv-S1a"/>
-                                    <constraint firstAttribute="bottom" secondItem="Udv-hI-u2X" secondAttribute="bottom" id="vNH-xC-FkJ"/>
+                                    <constraint firstAttribute="bottom" secondItem="Udv-hI-u2X" secondAttribute="bottom" constant="3" id="vNH-xC-FkJ"/>
                                 </constraints>
                             </view>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZkM-23-awk" userLabel="Shadow View">
@@ -640,8 +624,6 @@
                         <outletCollection property="widthsCollection" destination="gGh-Ki-O6Z" collectionClass="NSMutableArray" id="qKg-Hb-Lxx"/>
                         <outletCollection property="heightsCollection" destination="Igq-aA-EI4" collectionClass="NSMutableArray" id="ZlP-oL-1QB"/>
                         <outletCollection property="heightsCollection" destination="iyq-uX-JO5" collectionClass="NSMutableArray" id="bZ0-yq-IEQ"/>
-                        <outletCollection property="heightsCollection" destination="enV-AJ-b2M" collectionClass="NSMutableArray" id="Hkr-ms-xz5"/>
-                        <outletCollection property="heightsCollection" destination="GDF-8R-QnG" collectionClass="NSMutableArray" id="ezi-s8-qXy"/>
                         <outletCollection property="heightsCollection" destination="nb7-Km-WjT" collectionClass="NSMutableArray" id="Y4b-xQ-P6P"/>
                         <outletCollection property="widthsCollection" destination="QAV-gt-84U" collectionClass="NSMutableArray" id="DPz-JQ-cts"/>
                         <outletCollection property="widthsCollection" destination="fUC-kO-iPy" collectionClass="NSMutableArray" id="Y5Y-Ml-EWh"/>
@@ -664,7 +646,6 @@
                         <outletCollection property="heightsCollection" destination="4nI-Ir-YHS" collectionClass="NSMutableArray" id="S2q-sw-Jam"/>
                         <outletCollection property="widthsCollection" destination="8A6-dT-b1z" collectionClass="NSMutableArray" id="k4Q-EE-dHR"/>
                         <outletCollection property="widthsCollection" destination="754-es-Dtx" collectionClass="NSMutableArray" id="X3E-X3-ku2"/>
-                        <outletCollection property="widthsCollection" destination="NNl-ve-cFE" collectionClass="NSMutableArray" id="FMR-Ug-zuu"/>
                         <outletCollection property="heightsCollection" destination="rDi-pt-7XW" collectionClass="NSMutableArray" id="Zr8-KU-dFc"/>
                         <outletCollection property="heightsCollection" destination="0cK-Wq-U7s" collectionClass="NSMutableArray" id="crn-ew-my6"/>
                         <outletCollection property="heightsCollection" destination="pJh-g4-f8G" collectionClass="NSMutableArray" id="9JT-dA-ALZ"/>
@@ -706,12 +687,9 @@
         <image name="icon-button-donate-normal" width="19" height="14"/>
         <image name="icon-button-flaunt-default" width="13" height="18"/>
         <image name="icon-button-promote-normal" width="14" height="14"/>
-        <image name="icon-button-share-normal" width="24" height="24"/>
         <image name="icon-button-upvotes-default" width="20" height="20"/>
         <image name="icon-button-upvotes-highlighted" width="20" height="20"/>
         <image name="icon-button-upvotes-selected" width="20" height="20"/>
-        <image name="icon-button-vertical-more-highlighted" width="24" height="24"/>
-        <image name="icon-button-vertical-more-normal" width="24" height="24"/>
         <image name="icon-cell-user-profile" width="18" height="18"/>
         <image name="icon-topic-cover" width="14" height="16"/>
         <image name="icon-user-profile-image-placeholder" width="40" height="40"/>

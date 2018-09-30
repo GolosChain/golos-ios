@@ -24,7 +24,7 @@ protocol UserProfileShowBusinessLogic {
 }
 
 protocol UserProfileShowDataStore {
-    var userName: String? { get set }
+    var userNickName: String? { get set }
     var lastItem: NSManagedObject? { get set }
     var commentReply: PostShortInfo? { get set }
     var selectedBlog: PostShortInfo? { get set }
@@ -37,7 +37,7 @@ class UserProfileShowInteractor: UserProfileShowBusinessLogic, UserProfileShowDa
 
     
     // MARK: - UserProfileShowDataStore implementation
-    var userName: String?   =   User.current?.name
+    var userNickName: String? = User.current?.nickName
     var lastItem: NSManagedObject?
     var commentReply: PostShortInfo?
     var selectedBlog: PostShortInfo?
@@ -63,9 +63,9 @@ class UserProfileShowInteractor: UserProfileShowBusinessLogic, UserProfileShowDa
     }
 
     func loadUserInfo(withRequestModel requestModel: UserProfileShowModels.UserInfo.RequestModel) {
-        RestAPIManager.loadUsersInfo(byNames: [self.userName ?? ""], completion: { errorAPI in
+        RestAPIManager.loadUsersInfo(byNickNames: [self.userNickName ?? ""], completion: { errorAPI in
             if errorAPI == nil {
-                RestAPIManager.loadUserFollowCounts(byName: self.userName ?? "", completion: { [weak self] error in
+                RestAPIManager.loadUserFollowCounts(byNickName: self.userNickName ?? "", completion: { [weak self] error in
                     let userInfoResponseModel = UserProfileShowModels.UserInfo.ResponseModel(error: errorAPI)
                     self?.presenter?.presentUserInfo(fromResponseModel: userInfoResponseModel)
                 })
@@ -76,7 +76,7 @@ class UserProfileShowInteractor: UserProfileShowBusinessLogic, UserProfileShowDa
     func loadUserDetails(withRequestModel requestModel: UserProfileShowModels.UserDetails.RequestModel) {
         worker = UserProfileShowWorker()
 
-        if let methodAPIType = worker?.prepareRequestMethod(byUsername: self.userName ?? "", andParameters: (type: requestModel.postFeedType, lastItem: self.lastItem)) {
+        if let methodAPIType = worker?.prepareRequestMethod(byUserNickName: self.userNickName ?? "", andParameters: (type: requestModel.postFeedType, lastItem: self.lastItem)) {
             RestAPIManager.loadPostsFeed(byMethodAPIType: methodAPIType, andPostFeedType: requestModel.postFeedType, completion: { [weak self] errorAPI in
                 let userDetailsResponseModel = UserProfileShowModels.UserDetails.ResponseModel(error: errorAPI)
                 self?.presenter?.presentUserDetails(fromResponseModel: userDetailsResponseModel)

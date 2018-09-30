@@ -11,7 +11,7 @@ import CoreData
 import GoloSwift
 import SwiftTheme
 
-typealias FetchPostParameters   =   (author: String?, postFeedType: PostsFeedType, permlink: String?, sortBy: String?)
+typealias FetchPostParameters = (author: String?, postFeedType: PostsFeedType, permlink: String?, sortBy: String?)
 
 class GSTableViewController: GSBaseViewController, HandlersCellSupport {
     // MARK: - Properties
@@ -19,17 +19,17 @@ class GSTableViewController: GSBaseViewController, HandlersCellSupport {
         didSet {
             self.postsTableView.register(UINib(nibName: self.cellIdentifier, bundle: nil), forCellReuseIdentifier: self.cellIdentifier)
 
-            self.postsTableView.delegate              =   self
-            self.postsTableView.dataSource            =   self
+            self.postsTableView.delegate    =   self
+            self.postsTableView.dataSource  =   self
             
             self.postsTableView.tune()
 
             // Set automatic dimensions for row height
-            self.postsTableView.rowHeight             =   UITableView.automaticDimension
-            self.postsTableView.estimatedRowHeight    =   320.0 * heightRatio
+            self.postsTableView.rowHeight = UITableView.automaticDimension
+            self.postsTableView.estimatedRowHeight = 320.0 * heightRatio
             
             if #available(iOS 10.0, *) {
-                self.postsTableView.refreshControl    =   refreshControl
+                self.postsTableView.refreshControl = refreshControl
             }
                 
             else {
@@ -159,12 +159,12 @@ class GSTableViewController: GSBaseViewController, HandlersCellSupport {
             
             self.activityIndicatorView  =   UIActivityIndicatorView.init(frame: CGRect(origin:  .zero,
                                                                                        size:    CGSize(width: self.postsTableView.frame.width, height: 64.0 * heightRatio)))
-            self.activityIndicatorView.style        = .gray
-            self.postsTableView.separatorStyle      =   .none
+            self.activityIndicatorView.style    = .gray
+            self.postsTableView.separatorStyle  =   .none
             
             self.activityIndicatorView.startAnimating()
             
-            self.postsTableView.tableHeaderView     =   self.activityIndicatorView
+            self.postsTableView.tableHeaderView =   self.activityIndicatorView
         }
     }
     
@@ -188,33 +188,33 @@ class GSTableViewController: GSBaseViewController, HandlersCellSupport {
             titleLabel.topAnchor.constraint(equalTo: headerView.topAnchor, constant: 20.0 * heightRatio).isActive = true
             titleLabel.centerXAnchor.constraint(equalTo: headerView.centerXAnchor).isActive = true
             
-            self.postsTableView.tableHeaderView     =   headerView
+            self.postsTableView.tableHeaderView = headerView
         }
     }
     
     func fetchPosts(byParameters parameters: FetchPostParameters) {
         var fetchRequest: NSFetchRequest<NSFetchRequestResult>
 
-        self.postType   =   parameters.postFeedType
-        fetchRequest    =   NSFetchRequest<NSFetchRequestResult>(entityName: parameters.postFeedType.caseTitle())
+        self.postType = parameters.postFeedType
+        fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: parameters.postFeedType.caseTitle())
 
         switch parameters.postFeedType {
         // Replies
         case .reply:
             if let author = parameters.author {
-                fetchRequest.predicate      =   NSPredicate(format: "parentAuthor == %@", author)
+                fetchRequest.predicate = NSPredicate(format: "parentAuthor == %@", author)
             }
             
         // Blog
         case .blog:
             if let author = parameters.author {
-                fetchRequest.predicate      =   NSPredicate(format: "author == %@", author)
+                fetchRequest.predicate = NSPredicate(format: "author == %@", author)
             }
 
         // Lenta
         case .lenta:
             if let author = parameters.author {
-                fetchRequest.predicate      =   NSPredicate(format: "userName == %@", author)
+                fetchRequest.predicate = NSPredicate(format: "userNickName == %@", author)
             }
 
         // Popular, Actual, New, Promo
@@ -222,26 +222,26 @@ class GSTableViewController: GSBaseViewController, HandlersCellSupport {
             break
         }
 
-        fetchRequest.sortDescriptors        =   []
+        fetchRequest.sortDescriptors = []
 
         if self.lastIndex == 0 {
-            fetchRequest.fetchLimit         =   Int(loadDataLimit)
+            fetchRequest.fetchLimit = Int(loadDataLimit)
         }
             
         else {
-            fetchRequest.fetchLimit         =   Int(loadDataLimit) + self.lastIndex
+            fetchRequest.fetchLimit = Int(loadDataLimit) + self.lastIndex
         }
      
         self.run(fetchRequest: fetchRequest)
     }
         
     private func run(fetchRequest: NSFetchRequest<NSFetchRequestResult>) {
-        fetchedResultsController            =   NSFetchedResultsController(fetchRequest:            fetchRequest,
-                                                                           managedObjectContext:    CoreDataManager.instance.managedObjectContext,
-                                                                           sectionNameKeyPath:      nil,
-                                                                           cacheName:               nil)
+        fetchedResultsController    =   NSFetchedResultsController(fetchRequest:            fetchRequest,
+                                                                   managedObjectContext:    CoreDataManager.instance.managedObjectContext,
+                                                                   sectionNameKeyPath:      nil,
+                                                                   cacheName:               nil)
         
-        fetchedResultsController.delegate   =   self
+        fetchedResultsController.delegate = self
         
         // Pull to refresh data
         let refreshDataQueue = DispatchQueue.global(qos: .background)

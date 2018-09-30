@@ -54,14 +54,14 @@ class CommentView: UIView, HandlersCellSupport {
     
     @IBOutlet weak var authorProfileAddButton: UIButton! {
         didSet {
-            authorProfileAddButton.layer.cornerRadius       =   18.0 * heightRatio / 2
+            authorProfileAddButton.layer.cornerRadius = 18.0 * heightRatio / 2
         }
     }
     
     @IBOutlet weak var authorNameButton: UIButton! {
         didSet {
             authorNameButton.tune(withTitle:    "",
-                                  hexColors:    [darkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
+                                  hexColors:    [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
                                   font:         UIFont(name: "SFProDisplay-Regular", size: 10.0),
                                   alignment:    .left)
         }
@@ -104,7 +104,7 @@ class CommentView: UIView, HandlersCellSupport {
     
     // MARK: - Class Initialization
     init(withComment comment: Comment, atLevel level: String) {
-        super.init(frame: CGRect.init(origin: .zero, size: CGSize.init(width: 351.0 * widthRatio, height: 85.0))) // * heightRatio)))
+        super.init(frame: CGRect.init(origin: .zero, size: CGSize.init(width: 351.0 * widthRatio, height: 85.0)))
         
         createFromXIB()
         
@@ -131,12 +131,12 @@ class CommentView: UIView, HandlersCellSupport {
         self.authorNameButton.setTitle(comment.author, for: .normal)
         
         // Load author profile image
-        RestAPIManager.loadUsersInfo(byNames: [comment.author], completion: { [weak self] errorAPI in
-            if errorAPI == nil, let author = User.fetch(byName: comment.author) {
+        RestAPIManager.loadUsersInfo(byNickNames: [comment.author], completion: { [weak self] errorAPI in
+            if errorAPI == nil, let author = User.fetch(byNickName: comment.author) {
                 if let authorProfileImageURL = author.profileImageURL {
                     self?.authorProfileImageView.uploadImage(byStringPath:  authorProfileImageURL,
                                                              imageType:     ImageType.userProfileImage,
-                                                             size:          CGSize(width: 40.0, height: 40.0),
+                                                             size:          CGSize(width: 40.0 * widthRatio, height: 40.0 * widthRatio),
                                                              tags:          nil,
                                                              createdDate:   author.created.convert(toDateFormat: .expirationDateType),
                                                              fromItem:      (author as CachedImageFrom).fromItem)
@@ -145,7 +145,7 @@ class CommentView: UIView, HandlersCellSupport {
         })
         
         // Set cell level
-        self.leadingConstraint.constant = CGFloat(self.level.count - 2) > 0 ? 52.0 : 0.0
+        self.leadingConstraint.constant = (CGFloat(self.level.count - 2) > 0 ? 52.0 : 2.0) * widthRatio
         self.markdownViewManager.layoutIfNeeded()
     }
     
@@ -180,7 +180,7 @@ class CommentView: UIView, HandlersCellSupport {
         }
 
         self.markdownViewManager.onRendered = { [weak self] height in
-            let viewHeight      =   height + 85.0 //* heightRatio
+            let viewHeight = height + 85.0
             
             self?.markdownViewHeightConstraint.constant = height
             self?.layoutIfNeeded()
@@ -193,7 +193,7 @@ class CommentView: UIView, HandlersCellSupport {
     }
     
     override var intrinsicContentSize: CGSize {
-        return CGSize(width: 375.0 * widthRatio, height: 85.0) // * heightRatio)
+        return CGSize(width: 375.0 * widthRatio, height: 85.0)
     }
 
     func localizeTitles() {

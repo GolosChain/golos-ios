@@ -17,7 +17,7 @@ enum LogInShowModels {
     // MARK: - Use cases
     enum Parameters {
         struct RequestModel {
-            let userName: String
+            let userNickName: String
             let wif: String
             let wifType: Int
         }

@@ -99,23 +99,23 @@ class PostShowInteractor: PostShowBusinessLogic, PostShowDataStore {
     
     func checkFollowing(withRequestModel requestModel: PostShowModels.Following.RequestModel) {
         // API 'get_following'
-        RestAPIManager.loadFollowingsList(byUserName: User.current!.name, authorName: self.postShortInfo?.author ?? "XXX", pagination: 1, completion: { [weak self] (isFollowing, errorAPI) in
+        RestAPIManager.loadFollowingsList(byUserNickName: User.current!.nickName, authorNickName: self.postShortInfo?.author ?? "XXX", pagination: 1, completion: { [weak self] (isFollowing, errorAPI) in
             let responseModel = PostShowModels.Following.ResponseModel(isFollowing: isFollowing, errorAPI: errorAPI)
             self?.presenter?.presentCheckFollowing(fromResponseModel: responseModel)
         })
     }
     
     func subscribe(withRequestModel requestModel: PostShowModels.Item.RequestModel) {
-        let subscription = RequestParameterAPI.Subscription(userName:       User.current!.name,
-                                                            authorName:     self.postShortInfo!.author ?? "XXX",
-                                                            what:           requestModel.willSubscribe ? "blog" : nil)
+        let subscription = RequestParameterAPI.Subscription(userNickName:       User.current!.nickName,
+                                                            authorNickName:     self.postShortInfo!.author ?? "XXX",
+                                                            what:               requestModel.willSubscribe ? "blog" : nil)
         
         let operationAPIType = OperationAPIType.subscribe(fields: subscription)
         let postRequestQueue = DispatchQueue.global(qos: .background)
         
         postRequestQueue.async {
             broadcast.executePOST(requestByOperationAPIType:    operationAPIType,
-                                  userName:                     User.current!.name,
+                                  userNickName:                 User.current!.nickName,
                                   onResult:                     { [weak self] responseAPIResult in
                                     var errorAPI: ErrorAPI?
                                     

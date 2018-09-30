@@ -11,9 +11,9 @@ import Foundation
 
 public class KeychainManager {
     /// Delete stored data from Keychain
-    public static func deleteKey(byType type: PrivateKeyType, forUserName userName: String) -> Bool {
+    public static func deleteKey(byType type: PrivateKeyType, forUserNickName userNickName: String) -> Bool {
         do {
-            try Locksmith.deleteDataForUserAccount(userAccount: userName)
+            try Locksmith.deleteDataForUserAccount(userAccount: userNickName)
             Logger.log(message: "Successfully delete Login data from Keychain.", event: .severe)
             return true
         } catch {
@@ -24,10 +24,10 @@ public class KeychainManager {
     
     
     /// Load data from Keychain
-    public static func loadPrivateKey(forUserName userName: String) -> String? {
+    public static func loadPrivateKey(forUserNickName userNickName: String) -> String? {
         var privateKey: String?
         
-        if let data = Locksmith.loadDataForUserAccount(userAccount: userName) {
+        if let data = Locksmith.loadDataForUserAccount(userAccount: userNickName) {
             privateKey = data["privateKey"] as? String
         }
         
@@ -36,14 +36,14 @@ public class KeychainManager {
     
     
     /// Save login data to Keychain
-    public static func save(_ key: String, forUserName userName: String) -> Bool {
+    public static func save(key: String, userNickName: String) -> Bool {
         do {
-            if loadPrivateKey(forUserName: userName) == nil {
-                try Locksmith.saveData(data: [ "privateKey": key ], forUserAccount: userName)
+            if loadPrivateKey(forUserNickName: userNickName) == nil {
+                try Locksmith.saveData(data: [ "privateKey": key ], forUserAccount: userNickName)
             }
                 
             else {
-                try Locksmith.updateData(data: [ "privateKey": key ], forUserAccount: userName)
+                try Locksmith.updateData(data: [ "privateKey": key ], forUserAccount: userNickName)
             }
             
             Logger.log(message: "Successfully save Login data to Keychain.", event: .severe)

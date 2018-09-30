@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -32,14 +31,14 @@
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6yF-0e-qNO" userLabel="Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="498.5"/>
                                         <subviews>
-                                            <stackView clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="inC-Ni-lNd">
+                                            <stackView contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="inC-Ni-lNd">
                                                 <rect key="frame" x="16" y="0.0" width="339" height="498.5"/>
                                                 <subviews>
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pbt-sT-bLK" userLabel="Title View">
                                                         <rect key="frame" x="0.0" y="0.0" width="339" height="55.5"/>
                                                         <subviews>
                                                             <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aez-4A-ILl" userLabel="Title Label">
-                                                                <rect key="frame" x="0.0" y="17" width="42" height="20.5"/>
+                                                                <rect key="frame" x="0.0" y="17.5" width="42" height="20.5"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
@@ -56,14 +55,14 @@
                                                         <rect key="frame" x="0.0" y="55.5" width="339" height="55.5"/>
                                                         <subviews>
                                                             <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upvote" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GnA-yU-eSl" userLabel="Upvote Label">
-                                                                <rect key="frame" x="0.0" y="18" width="55.5" height="20.5"/>
+                                                                <rect key="frame" x="0.0" y="17.5" width="55" height="20.5"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VIa-di-HRS" userLabel="Background View">
-                                                                <rect key="frame" x="283" y="12.5" width="49" height="31"/>
+                                                                <rect key="frame" x="283" y="12" width="49" height="31"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </view>
                                                             <switch clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CKP-6x-fFC" userLabel="Upvote Switch">
@@ -87,10 +86,10 @@
                                                         </constraints>
                                                     </view>
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VOE-z1-2B0" userLabel="Comment View">
-                                                        <rect key="frame" x="0.0" y="111" width="339" height="55"/>
+                                                        <rect key="frame" x="0.0" y="111" width="339" height="55.5"/>
                                                         <subviews>
                                                             <label clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Short Comment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dbA-5d-20u" userLabel="Comment Label">
-                                                                <rect key="frame" x="0.0" y="17" width="121.5" height="20.5"/>
+                                                                <rect key="frame" x="0.0" y="17.5" width="121.5" height="20.5"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
@@ -121,21 +120,21 @@
                                                         </constraints>
                                                     </view>
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wid-hu-CCe" userLabel="Subscriptions View">
-                                                        <rect key="frame" x="0.0" y="166" width="339" height="55.5"/>
+                                                        <rect key="frame" x="0.0" y="166.5" width="339" height="55"/>
                                                         <subviews>
                                                             <label clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subscriptions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yx2-9P-urQ" userLabel="Subscriptions Label">
-                                                                <rect key="frame" x="0.0" y="18" width="105" height="20.5"/>
+                                                                <rect key="frame" x="0.0" y="17" width="105" height="20.5"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AbW-eB-LxO" userLabel="Background View">
-                                                                <rect key="frame" x="283" y="12.5" width="49" height="31"/>
+                                                                <rect key="frame" x="283" y="12" width="49" height="31"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </view>
                                                             <switch clipsSubviews="YES" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J8p-NI-TtG" userLabel="Subscriptions Switch">
-                                                                <rect key="frame" x="282" y="12.5" width="51" height="31"/>
+                                                                <rect key="frame" x="282" y="12" width="51" height="31"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <connections>
                                                                     <action selector="switchChangeState:" destination="zQc-9G-j5D" eventType="valueChanged" id="tq6-nJ-GL1"/>
@@ -158,7 +157,7 @@
                                                         <rect key="frame" x="0.0" y="221.5" width="339" height="55.5"/>
                                                         <subviews>
                                                             <label clipsSubviews="YES" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Remote Notifications Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EPg-by-9DK" userLabel="Notifications Label">
-                                                                <rect key="frame" x="0.0" y="18" width="197.5" height="20.5"/>
+                                                                <rect key="frame" x="0.0" y="17.5" width="197.5" height="20.5"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
@@ -192,7 +191,7 @@
                                                         <rect key="frame" x="0.0" y="277" width="339" height="55.5"/>
                                                         <subviews>
                                                             <label clipsSubviews="YES" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reblog" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WEE-dC-OPR" userLabel="Reblog Label">
-                                                                <rect key="frame" x="0.0" y="18" width="53.5" height="20.5"/>
+                                                                <rect key="frame" x="0.0" y="17.5" width="53.5" height="20.5"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
@@ -223,21 +222,21 @@
                                                         </constraints>
                                                     </view>
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yfg-3c-xaI" userLabel="Personal Messages View">
-                                                        <rect key="frame" x="0.0" y="332.5" width="339" height="55"/>
+                                                        <rect key="frame" x="0.0" y="332.5" width="339" height="55.5"/>
                                                         <subviews>
                                                             <label clipsSubviews="YES" userInteractionEnabled="NO" tag="5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Private Messages" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6kT-gM-bhN" userLabel="Personal Messages Label">
-                                                                <rect key="frame" x="0.0" y="17" width="135" height="20.5"/>
+                                                                <rect key="frame" x="0.0" y="17.5" width="135" height="20.5"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kFO-pp-UsM" userLabel="Background View">
-                                                                <rect key="frame" x="283" y="11.5" width="49" height="31"/>
+                                                                <rect key="frame" x="283" y="12" width="49" height="31"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </view>
                                                             <switch clipsSubviews="YES" tag="5" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FE4-TO-V0x" userLabel="Personal Messages Switch">
-                                                                <rect key="frame" x="282" y="11.5" width="51" height="31"/>
+                                                                <rect key="frame" x="282" y="12" width="51" height="31"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <connections>
                                                                     <action selector="switchChangeState:" destination="zQc-9G-j5D" eventType="valueChanged" id="IM5-uw-3ku"/>
@@ -257,7 +256,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qg7-qr-xpm" userLabel="Post Replies View">
-                                                        <rect key="frame" x="0.0" y="387.5" width="339" height="55.5"/>
+                                                        <rect key="frame" x="0.0" y="388" width="339" height="55.5"/>
                                                         <subviews>
                                                             <label clipsSubviews="YES" userInteractionEnabled="NO" tag="6" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Post Replies" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ciq-5E-SCj" userLabel="Post Replies Label">
                                                                 <rect key="frame" x="0.0" y="17.5" width="94" height="20.5"/>
@@ -267,11 +266,11 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gc6-Ry-Evm" userLabel="Background View">
-                                                                <rect key="frame" x="283" y="11.5" width="49" height="31"/>
+                                                                <rect key="frame" x="283" y="12" width="49" height="31"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </view>
                                                             <switch clipsSubviews="YES" tag="6" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ewk-sE-rvO" userLabel="Post Replies Switch">
-                                                                <rect key="frame" x="282" y="11.5" width="51" height="31"/>
+                                                                <rect key="frame" x="282" y="12" width="51" height="31"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <connections>
                                                                     <action selector="switchChangeState:" destination="zQc-9G-j5D" eventType="valueChanged" id="aCq-O8-Azx"/>
@@ -291,7 +290,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c6J-jX-9Ba" userLabel="Comments Replies View">
-                                                        <rect key="frame" x="0.0" y="443" width="339" height="55.5"/>
+                                                        <rect key="frame" x="0.0" y="443.5" width="339" height="55"/>
                                                         <subviews>
                                                             <label clipsSubviews="YES" userInteractionEnabled="NO" tag="7" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comments Replies" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1rQ-jG-xFM" userLabel="Comments Replies Label">
                                                                 <rect key="frame" x="0.0" y="17.5" width="143" height="20.5"/>
@@ -301,11 +300,11 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g39-6k-6Aq" userLabel="Background View">
-                                                                <rect key="frame" x="283" y="12.5" width="49" height="31"/>
+                                                                <rect key="frame" x="283" y="12" width="49" height="31"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </view>
                                                             <switch clipsSubviews="YES" tag="7" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="seT-K4-edP" userLabel="Comments Replies Switch">
-                                                                <rect key="frame" x="282" y="12.5" width="51" height="31"/>
+                                                                <rect key="frame" x="282" y="12" width="51" height="31"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <connections>
                                                                     <action selector="switchChangeState:" destination="zQc-9G-j5D" eventType="valueChanged" id="BA3-Bf-MKG"/>

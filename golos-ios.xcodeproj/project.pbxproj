@@ -26,8 +26,10 @@
 		B1084CAE211378780065CAC0 /* PostShowTagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1084CAC211378780065CAC0 /* PostShowTagCollectionViewCell.swift */; };
 		B1084CAF211378780065CAC0 /* PostShowTagCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1084CAD211378780065CAC0 /* PostShowTagCollectionViewCell.xib */; };
 		B10F487E20F793DE00F2BCAC /* RestAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10F487D20F793DE00F2BCAC /* RestAPIManager.swift */; };
+		B10FB7AC215FCA9300CA585E /* SFProDisplay-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = B10FB7AB215FCA9300CA585E /* SFProDisplay-Bold.otf */; };
 		B111322420CD51EA00BC7F33 /* PostingKeyShowRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B111321E20CD51EA00BC7F33 /* PostingKeyShowRouter.swift */; };
 		B111322620CD51EA00BC7F33 /* PostingKeyShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B111322020CD51EA00BC7F33 /* PostingKeyShowViewController.swift */; };
+		B111C344215FB41300DE1F6E /* NSLayoutConstraint+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B111C343215FB41300DE1F6E /* NSLayoutConstraint+Extensions.swift */; };
 		B114192820CD1E260025B07F /* ReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B114192720CD1E260025B07F /* ReachabilityManager.swift */; };
 		B114192A20CD21530025B07F /* LogInShow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B114192920CD21530025B07F /* LogInShow.storyboard */; };
 		B114193320CD26710025B07F /* LogInShowRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B114192D20CD26710025B07F /* LogInShowRouter.swift */; };
@@ -282,8 +284,10 @@
 		B1084CAC211378780065CAC0 /* PostShowTagCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostShowTagCollectionViewCell.swift; sourceTree = "<group>"; };
 		B1084CAD211378780065CAC0 /* PostShowTagCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostShowTagCollectionViewCell.xib; sourceTree = "<group>"; };
 		B10F487D20F793DE00F2BCAC /* RestAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestAPIManager.swift; sourceTree = "<group>"; };
+		B10FB7AB215FCA9300CA585E /* SFProDisplay-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Bold.otf"; sourceTree = "<group>"; };
 		B111321E20CD51EA00BC7F33 /* PostingKeyShowRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingKeyShowRouter.swift; sourceTree = "<group>"; };
 		B111322020CD51EA00BC7F33 /* PostingKeyShowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingKeyShowViewController.swift; sourceTree = "<group>"; };
+		B111C343215FB41300DE1F6E /* NSLayoutConstraint+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutConstraint+Extensions.swift"; sourceTree = "<group>"; };
 		B114192720CD1E260025B07F /* ReachabilityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityManager.swift; sourceTree = "<group>"; };
 		B114192920CD21530025B07F /* LogInShow.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LogInShow.storyboard; sourceTree = "<group>"; };
 		B114192D20CD26710025B07F /* LogInShowRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInShowRouter.swift; sourceTree = "<group>"; };
@@ -884,6 +888,7 @@
 		B198DB9220B9C4E6008011A3 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				B10FB7AB215FCA9300CA585E /* SFProDisplay-Bold.otf */,
 				B146891920F2013F00D36794 /* SFProDisplay-Medium.otf */,
 				B198DB9320B9C560008011A3 /* SFProDisplay-Regular.otf */,
 			);
@@ -1150,6 +1155,7 @@
 				B1EE684920D261C4006BF802 /* UITextView+Extensions.swift */,
 				ECA8E35D2018D119003B8ABA /* UIView+Shadow.swift */,
 				EC6FD59D200AD53100DCB824 /* UIViewController+Extensions.swift */,
+				B111C343215FB41300DE1F6E /* NSLayoutConstraint+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1344,6 +1350,7 @@
 				EC1DFB9620063C400080BC50 /* Assets.xcassets in Resources */,
 				B12F43FB20EA0192003FFF58 /* ScannerShow.storyboard in Resources */,
 				B146891A20F2013F00D36794 /* SFProDisplay-Medium.otf in Resources */,
+				B10FB7AC215FCA9300CA585E /* SFProDisplay-Bold.otf in Resources */,
 				B1DCE31A2109A44C00487DE0 /* test-sound.wav in Resources */,
 				B164F04920E62B5A00C5CDD3 /* UserProfileShow.storyboard in Resources */,
 				B1F3747520C2B483005EF767 /* RootShow.storyboard in Resources */,
@@ -1490,6 +1497,7 @@
 				EC9ABBE82018036E00AF8597 /* UIDevice+Size.swift in Sources */,
 				B1A2AE442105B1640021A34B /* ActiveVote+CoreDataProperties.swift in Sources */,
 				7DA06328203256D700B5630C /* PropertyStoring.swift in Sources */,
+				B111C344215FB41300DE1F6E /* NSLayoutConstraint+Extensions.swift in Sources */,
 				B13FE9BA20F512BA00F907BC /* ReplyTableViewCell.swift in Sources */,
 				B1EE684C20D27628006BF802 /* UIBarButtonItem+Extensions.swift in Sources */,
 				EC24FF59200C30B800A0AE15 /* MainContainerViewController.swift in Sources */,

@@ -106,7 +106,7 @@ class PostsShowRouter: NSObject, PostsShowRoutingLogic, PostsShowDataPassing {
     }
     
     func passDataToUserProfileScene(userName: String, destination: inout UserProfileShowDataStore) {
-        destination.userName    =   userName
+        destination.userNickName    =   userName
     }
     
     func passDataToPostCreateScene(selectedPost: PostCellSupport, destination: inout PostCreateDataStore) {
