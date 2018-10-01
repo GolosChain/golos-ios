@@ -412,11 +412,10 @@ extension PostCreateViewController: PostCreateDisplayLogic {
             return
         }
         
-        self.clearAllEnteredValues()
-
         self.showAlertView(withTitle: "Info", andMessage: self.loadMessage(), needCancel: false, completion: { [weak self] _ in
             self?.router?.save(success: true)
             self?.router?.routeToNextScene()
+            self?.clearAllEnteredValues()
         })
     }
 }

@@ -29,7 +29,7 @@ protocol PostShowDisplayLogic: class {
 class PostShowViewController: GSBaseViewController {
     // MARK: - Properties
     var commentsCount: Int64 = 0
-    
+    var addedNewItem: Bool = false
     var scrollCommentsDown: Bool = false
 
     var commentsViews = [CommentView]() {
@@ -952,14 +952,14 @@ extension PostShowViewController {
             DispatchQueue.main.async {
                 let comments = CoreDataManager.instance.readEntities(withName:                    "Comment",
                                                                      withPredicateParameters:     NSPredicate(format: "parentPermlink == %@", commentPermlink),
-                                                                     andSortDescriptor:           NSSortDescriptor(key: "created", ascending: false)) as! [Comment]
+                                                                     andSortDescriptor:           NSSortDescriptor(key: "created", ascending: true)) as! [Comment]
                 
-                guard let displayedPost = self.router?.dataStore?.displayedPost, self.commentsCount < displayedPost.children else {
+                guard let displayedPost = self.router?.dataStore?.displayedPost, self.commentsCount < (displayedPost.children + (self.addedNewItem ? 1 : 0)) else {
                     // Remove subviews in Stack view
                     self.commentsViews.forEach({ self.commentsStackView.removeArrangedSubview($0)})
                     
                     // Sort subviews for Stack view
-                    let sortedSubviews = self.commentsViews.sorted(by: { $0.level < $1.level && $0.created > $1.created })
+                    let sortedSubviews = self.commentsViews.sorted(by: { $0.level < $1.level && $0.created < $1.created })
                     
                     // Add subview to Stack view
                     for subview in sortedSubviews {
@@ -973,12 +973,13 @@ extension PostShowViewController {
 
                     // Show comments count
                     self.didCommentsView(hided: false)
+                    self.addedNewItem = false
                     
                     return
                 }
                 
                 // "00_01_02_03_04_05"
-                for (tag, comment) in comments.enumerated() {
+                for (tag, comment) in comments.sorted(by: { $0.created < $1.created }).enumerated() {
                     let commentView = CommentView.init(withComment: comment, atLevel: parentLevel + "\(tag + 1)".addFirstZero())
                     
                     // Level N
@@ -1000,7 +1001,7 @@ extension PostShowViewController {
             DispatchQueue.main.async {
                 guard let comments = CoreDataManager.instance.readEntities(withName:                    "Comment",
                                                                            withPredicateParameters:     NSPredicate(format: "parentAuthor == %@ AND parentPermlink == %@", postShortInfo.author ?? "XXX", postShortInfo.permlink ?? "XXX"),
-                                                                           andSortDescriptor:           NSSortDescriptor(key: "created", ascending: false)) as? [Comment], comments.count > 0 else {
+                                                                           andSortDescriptor:           NSSortDescriptor(key: "created", ascending: true)) as? [Comment], comments.count > 0 else {
                                                                             self.didCommentsView(hided: true)
                                                                             return
                 }
@@ -1008,7 +1009,7 @@ extension PostShowViewController {
                 self.commentsStackViewHeightConstraint.constant = 0.0
                 var tagIndex            =   1
                 
-                for comment in comments {
+                for comment in comments.sorted(by: { $0.created < $1.created }) {
                     let commentView     =   CommentView.init(withComment: comment, atLevel: "\(tagIndex)".addFirstZero())
                     tagIndex            +=  1
                     

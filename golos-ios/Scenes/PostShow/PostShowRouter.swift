@@ -49,6 +49,7 @@ class PostShowRouter: NSObject, PostShowRoutingLogic, PostShowDataPassing {
         destinationVC.handlerSuccessCreatedItem     =   { [weak self] success in
             // Reload posts in selected list
             if success {
+                self?.viewController?.addedNewItem = true
                 self?.viewController?.loadContentComments()
             }
         }
