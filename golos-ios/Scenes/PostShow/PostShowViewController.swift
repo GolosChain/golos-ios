@@ -653,7 +653,7 @@ class PostShowViewController: GSBaseViewController {
     
     override func localizeTitles() {
         Logger.log(message: "Success", event: .severe)
-
+        
         self.tagsCollectionView.reloadData()
         (self.commentsViewsView.subviews as! [CommentView]).forEach({ $0.localizeTitles() })
         
@@ -674,7 +674,10 @@ class PostShowViewController: GSBaseViewController {
         self.userRecentPastLabel.text = "Recent Past:".localized()
         self.userPreviouslyLabel.text = "Previously:".localized()
         self.topicPublishedInLabel.text = "Published in".localized()
-        self.topicTitleLabel.text = self.router!.dataStore!.displayedPost!.tags!.first!.transliteration(forPermlink: false).uppercaseFirst
+        
+        if let topicTitle = self.router?.dataStore?.displayedPost?.tags?.first?.transliteration(forPermlink: false).uppercaseFirst {
+            self.topicTitleLabel.text = topicTitle
+        }
     }
 
     private func didContentViewScrollToCommentsView() {

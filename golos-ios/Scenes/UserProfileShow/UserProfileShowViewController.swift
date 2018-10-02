@@ -335,6 +335,7 @@ class UserProfileShowViewController: GSBaseViewController, ContainerViewSupport 
         self.userProfileInfoTitleView.labelsCollection.forEach({ $0.text = $0.accessibilityIdentifier!.localized() })
     }
     
+    
     // MARK: - Actions
     @IBAction func buttonTapped(_ sender: UIButton) {
         // Scroll content to first row

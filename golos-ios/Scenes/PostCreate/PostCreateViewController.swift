@@ -12,6 +12,7 @@
 
 import UIKit
 import GoloSwift
+import Localize_Swift
 import SafariServices
 import MobileCoreServices
 import IQKeyboardManagerSwift
@@ -167,6 +168,8 @@ class PostCreateViewController: GSBaseViewController {
 
     deinit {
         Logger.log(message: "Success", event: .severe)
+
+        NotificationCenter.default.removeObserver(self)
     }
     
     
@@ -253,6 +256,8 @@ class PostCreateViewController: GSBaseViewController {
         } else {
             self.showContent()
         }
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(localizeTitles), name: NSNotification.Name(LCLLanguageChangeNotification), object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -366,6 +371,13 @@ class PostCreateViewController: GSBaseViewController {
         }
     }
     
+    override func localizeTitles() {
+        self.tagsTitleLabel.text = "Add Max 5 Tags".localized()
+        self.postCreateView.titleTextField.placeholder = "Enter Post Title Placeholder".localized()
+        contentTextView.placeholder     =   (sceneType == .createPost ? "Enter Text Placeholder" : "Enter Comment Placeholder").localized()
+        self.navigationItem.title       =   (sceneType == .createPost) ? "Publish Title".localized() : "Comment Title Verb".localized()
+    }
+
     
     // MARK: - Actions
     @IBAction func cancelBarButtonTapped(_ sender: UIBarButtonItem) {

@@ -148,6 +148,7 @@ public class User: NSManagedObject, CachedImageFrom {
             self.profileImageURL    =   profile["profile_image"] as? String
             self.coverImageURL      =   profile["cover_image"] as? String
             self.selectTags         =   profile["select_tags"] as? [String]
+            self.name               =   "XXX"
             
             if let userName = profile["name"] as? String {
                 self.name = userName
