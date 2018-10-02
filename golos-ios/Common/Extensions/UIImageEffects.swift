@@ -307,18 +307,33 @@ public extension UIImage {
         return outputImage
     }
     
-    public func resize(width: CGFloat) -> UIImage {
-        let image = self
-        let scale = width / image.size.width
-        let height = image.size.height * scale
-        UIGraphicsBeginImageContext(CGSize(width: width, height: height))
-        image.draw(in: CGRect(x: 0, y: 0, width: width, height: height))
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+//    public func resizeBy(width: CGFloat) -> UIImage {
+//        let image = self
+//        let scale = width / image.size.width
+//        let height = image.size.height * scale
+//        UIGraphicsBeginImageContext(CGSize(width: width, height: height))
+//        image.draw(in: CGRect(x: 0, y: 0, width: width, height: height))
+//        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+//        UIGraphicsEndImageContext()
+//
+//        return newImage!
+//    }
+    
+    func resizeBy(width: CGFloat) -> UIImage? {
+        let imageView = UIImageView(frame: CGRect(origin: .zero, size: CGSize(width: width, height: CGFloat(ceil(width/size.width * size.height)))))
+        imageView.contentMode = .scaleAspectFit
+        imageView.image = self
+        UIGraphicsBeginImageContextWithOptions(imageView.bounds.size, false, scale)
+        guard let context = UIGraphicsGetCurrentContext() else { return nil }
+        
+        imageView.layer.render(in: context)
+        
+        guard let result = UIGraphicsGetImageFromCurrentImageContext() else { return nil }
+        
         UIGraphicsEndImageContext()
         
-        return newImage!
+        return result
     }
-    
     
     /// Compare two images
     func isEqual(whiteImage: UIImage) -> Bool {
@@ -327,5 +342,23 @@ public extension UIImage {
         }
         
         return false
+    }
+    
+    
+    
+    ///
+    func upOrientationImage() -> UIImage? {
+        switch imageOrientation {
+        case .up:
+            return self
+        
+        default:
+            UIGraphicsBeginImageContextWithOptions(size, false, scale)
+            draw(in: CGRect(origin: .zero, size: size))
+            let result = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+        
+            return result
+        }
     }
 }

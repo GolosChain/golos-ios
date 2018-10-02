@@ -63,9 +63,9 @@ class UserProfileShowInteractor: UserProfileShowBusinessLogic, UserProfileShowDa
     }
 
     func loadUserInfo(withRequestModel requestModel: UserProfileShowModels.UserInfo.RequestModel) {
-        RestAPIManager.loadUsersInfo(byNickNames: [self.userNickName ?? ""], completion: { errorAPI in
+        RestAPIManager.loadUsersInfo(byNickNames: [self.userNickName ?? "XXX"], completion: { errorAPI in
             if errorAPI == nil {
-                RestAPIManager.loadUserFollowCounts(byNickName: self.userNickName ?? "", completion: { [weak self] error in
+                RestAPIManager.loadUserFollowCounts(byNickName: self.userNickName ?? "XXX", completion: { [weak self] error in
                     let userInfoResponseModel = UserProfileShowModels.UserInfo.ResponseModel(error: errorAPI)
                     self?.presenter?.presentUserInfo(fromResponseModel: userInfoResponseModel)
                 })

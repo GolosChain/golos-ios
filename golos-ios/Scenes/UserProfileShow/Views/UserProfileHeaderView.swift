@@ -139,7 +139,7 @@ class UserProfileHeaderView: PassthroughView {
         if let userProfileImageURL = userInfo.profileImageURL {
             self.userProfileImageView.uploadImage(byStringPath:     userProfileImageURL,
                                                   imageType:        .userProfileImage,
-                                                  size:             CGSize(width: 80.0 * widthRatio, height: 80.0 * widthRatio),
+                                                  size:             CGSize(width: 80.0, height: 80.0),
                                                   tags:             nil,
                                                   createdDate:      userInfo.created.convert(toDateFormat: .expirationDateType),
                                                   fromItem:         "user")
@@ -159,7 +159,7 @@ class UserProfileHeaderView: PassthroughView {
 
             self.userCoverImageView.uploadImage(byStringPath:       userCoverImagePath,
                                                 imageType:          .userCoverImage,
-                                                size:               CGSize(width: 375.0 * widthRatio, height: 240.0 * heightRatio),
+                                                size:               CGSize(width: 375.0, height: 240.0),
                                                 tags:               userInfo.selectTags,
                                                 createdDate:        userInfo.created.convert(toDateFormat: .expirationDateType),
                                                 fromItem:           (userInfo as CachedImageFrom).fromItem)

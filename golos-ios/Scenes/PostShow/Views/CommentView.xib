@@ -89,7 +89,7 @@
                                 <constraint firstItem="cy5-Ia-Z4f" firstAttribute="centerY" secondItem="yNw-9n-yzN" secondAttribute="centerY" id="rCs-K8-6jn"/>
                             </constraints>
                         </view>
-                        <button clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eTP-vD-Kt8" userLabel="Author Name Button">
+                        <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eTP-vD-Kt8" userLabel="Author Name Button">
                             <rect key="frame" x="54" y="5" width="46" height="32"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
@@ -114,7 +114,7 @@
                                 <constraint firstAttribute="height" priority="900" identifier="markdownViewHeightConstraint" id="7cj-30-Ntl"/>
                             </constraints>
                         </view>
-                        <view clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="251" verticalCompressionResistancePriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bW7-se-LaC" userLabel="Buttons View">
+                        <view clipsSubviews="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="bW7-se-LaC" userLabel="Buttons View">
                             <rect key="frame" x="54" y="50" width="321" height="25"/>
                             <subviews>
                                 <stackView clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z0C-dr-aat" userLabel="Actions Buttons Stack View">
@@ -199,7 +199,7 @@
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstItem="z0C-dr-aat" firstAttribute="centerY" secondItem="bW7-se-LaC" secondAttribute="centerY" id="5Nc-BX-nJI"/>
-                                <constraint firstAttribute="height" constant="25" id="9sJ-K0-GQc"/>
+                                <constraint firstAttribute="height" constant="25" identifier="buttonsViewHeightConstraint" id="9sJ-K0-GQc"/>
                                 <constraint firstAttribute="trailing" secondItem="z0C-dr-aat" secondAttribute="trailing" id="LsC-p4-p08"/>
                                 <constraint firstItem="z0C-dr-aat" firstAttribute="leading" secondItem="bW7-se-LaC" secondAttribute="leading" id="hwf-M5-g25"/>
                             </constraints>
@@ -214,7 +214,7 @@
                         <constraint firstItem="Mnb-Ny-ryB" firstAttribute="top" secondItem="eTP-vD-Kt8" secondAttribute="bottom" constant="3" id="DOx-JU-Tjk"/>
                         <constraint firstAttribute="trailing" secondItem="bW7-se-LaC" secondAttribute="trailing" id="DQT-JO-Lfz"/>
                         <constraint firstItem="yNw-9n-yzN" firstAttribute="leading" secondItem="mlh-OO-ald" secondAttribute="leading" id="Dx2-zW-S4L"/>
-                        <constraint firstAttribute="bottom" secondItem="bW7-se-LaC" secondAttribute="bottom" constant="10" id="HgQ-yQ-J4F"/>
+                        <constraint firstAttribute="bottom" secondItem="bW7-se-LaC" secondAttribute="bottom" constant="10" identifier="buttonsViewBottomConstraint" id="HgQ-yQ-J4F"/>
                         <constraint firstItem="bW7-se-LaC" firstAttribute="leading" secondItem="eTP-vD-Kt8" secondAttribute="leading" id="PJf-Ow-DpU"/>
                         <constraint firstItem="eTP-vD-Kt8" firstAttribute="top" secondItem="mdT-NO-nly" secondAttribute="top" id="PeV-OT-067"/>
                         <constraint firstAttribute="trailing" secondItem="Mnb-Ny-ryB" secondAttribute="trailing" constant="16" id="WGM-xK-IuN"/>

@@ -13,7 +13,8 @@ import SwiftTheme
 extension UIButton {    
     /// Download image
     func uploadImage(byStringPath path: String, size: CGSize, createdDate: Date, fromItem: String) {
-        let imagePathWithProxy      =   path.trimmingCharacters(in: .whitespacesAndNewlines).addImageProxy(withSize: size)
+        let uploadedSize            =   CGSize(width: size.width * 3, height: size.height * 3)
+        let imagePathWithProxy      =   path.trimmingCharacters(in: .whitespacesAndNewlines).addImageProxy(withSize: uploadedSize)
         let imageURL                =   URL(string: imagePathWithProxy.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!)
         
         Logger.log(message: "imageURL = \(imageURL!)", event: .debug)

@@ -157,7 +157,7 @@ extension PostFeedTableViewCell: ConfigureCell {
         self.postShortInfo = PostShortInfo(indexPath: indexPath)
         
         // Display PostFeedHeaderView
-        self.postFeedHeaderView.display(model)
+        self.postFeedHeaderView.display(post: model)
         
         // TODO: - RECOMMENT IN BETA-VERSION
         // Author Post Reputation -> Int

@@ -157,7 +157,7 @@ class PostFeedHeaderView: UIView {
     
     
     // MARK: - Custom Functions
-    func display(_ post: PostCellSupport) {
+    func display(post: PostCellSupport) {
         // Set User info
         if let user = User.fetch(byNickName: post.author) {
             self.authorNickNameButton.setTitle(user.nickName, for: .normal)
@@ -174,7 +174,7 @@ class PostFeedHeaderView: UIView {
             if let userProfileImageURL = user.profileImageURL {
                 self.authorProfileImageView.uploadImage(byStringPath:   userProfileImageURL,
                                                         imageType:      .userProfileImage,
-                                                        size:           CGSize(width: 30.0 * widthRatio, height: 30.0 * widthRatio),
+                                                        size:           CGSize(width: 30.0, height: 30.0),
                                                         tags:           nil,
                                                         createdDate:    user.created.convert(toDateFormat: .expirationDateType),
                                                         fromItem:       (user as CachedImageFrom).fromItem)

@@ -248,7 +248,7 @@ extension ReplyTableViewCell: ConfigureCell {
                 if let commentatorProfileImageURL = commentator.profileImageURL {
                     self?.authorAvatarImageView.uploadImage(byStringPath:    commentatorProfileImageURL,
                                                             imageType:       .userProfileImage,
-                                                            size:            CGSize(width: 50.0 * widthRatio, height: 50.0 * widthRatio),
+                                                            size:            CGSize(width: 50.0, height: 50.0),
                                                             tags:            nil,
                                                             createdDate:     commentator.created.convert(toDateFormat: .expirationDateType),
                                                             fromItem:        (commentator as CachedImageFrom).fromItem)

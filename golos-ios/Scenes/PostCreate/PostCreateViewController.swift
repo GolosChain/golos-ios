@@ -51,6 +51,12 @@ class PostCreateViewController: GSBaseViewController {
         }
     }
 
+    @IBOutlet weak var postingActivityIndicator: UIActivityIndicatorView! {
+        didSet {
+            self.postingActivityIndicator.stopAnimating()
+        }
+    }
+    
     @IBOutlet weak var commentReplyView: PostCommentReply! {
         didSet {
             // Handlers
@@ -267,7 +273,7 @@ class PostCreateViewController: GSBaseViewController {
             UIImageWriteToSavedPhotosAlbum(compressedJPGImage, nil, nil, nil)
             
             self.showAlertView(withTitle: "Info", andMessage: "Image saved to Photo Library", needCancel: false, completion: { [weak self] _ in
-                self?.contentTextView.add(object: image)
+                self?.contentTextView.add(object: image.upOrientationImage()!)
             })
         }
     }
@@ -373,13 +379,19 @@ class PostCreateViewController: GSBaseViewController {
             return
         }
         
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1, execute: {
+            self.postingActivityIndicator.startAnimating()
+        })
+        
         // Get content parts
         let contentParts = self.contentTextView.getParts()
         self.interactor?.save(attachments: contentParts)
 
         // API
-        let requestModel = PostCreateModels.Item.RequestModel(sceneType: self.sceneType)
-        interactor?.publishItem(withRequestModel: requestModel)
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.3, execute: {
+            let requestModel = PostCreateModels.Item.RequestModel(sceneType: self.sceneType)
+            self.interactor?.publishItem(withRequestModel: requestModel)
+        })
     }
 }
 
@@ -387,6 +399,8 @@ class PostCreateViewController: GSBaseViewController {
 // MARK: - PostCreateDisplayLogic
 extension PostCreateViewController: PostCreateDisplayLogic {
     func displayPublishItem(fromViewModel viewModel: PostCreateModels.Item.ViewModel) {
+        self.postingActivityIndicator.stopAnimating()
+        
         // NOTE: Display the result from the Presenter
         guard viewModel.errorAPI == nil else {
             if let message = viewModel.errorAPI?.caseInfo.message {
@@ -490,7 +504,7 @@ extension PostCreateViewController: UITextViewDelegate {
                         imagePicker.delegate        =   self
                         imagePicker.sourceType      =   .camera
                         imagePicker.mediaTypes      =   [kUTTypeImage as String]
-                        imagePicker.allowsEditing   =   true
+                        imagePicker.allowsEditing   =   false
                         
                         textView.resignFirstResponder()
                         
@@ -510,7 +524,7 @@ extension PostCreateViewController: UITextViewDelegate {
                         imagePicker.delegate        =   self
                         imagePicker.sourceType      =   .photoLibrary
                         imagePicker.mediaTypes      =   [kUTTypeImage as String]
-                        imagePicker.allowsEditing   =   true
+                        imagePicker.allowsEditing   =   false
                         
                         self?.present(imagePicker, animated: true, completion: nil)
                     }
@@ -547,9 +561,9 @@ extension PostCreateViewController: UINavigationControllerDelegate {
 // MARK: - UIImagePickerControllerDelegate
 extension PostCreateViewController: UIImagePickerControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-// Local variable inserted by Swift 4.2 migrator.
-let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
-
+        // Local variable inserted by Swift 4.2 migrator.
+        let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+        
         picker.dismiss(animated: true)
 
 //        let videoURL = info[UIImagePickerControllerMediaURL] as? NSURL
@@ -567,19 +581,13 @@ let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
 
 //        let origImage = info[UIImagePickerControllerOriginalImage] as! UIImage
 
-        guard let image = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.editedImage)] as? UIImage else {
+        guard let originalImage = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)] as? UIImage else {
             showAlertView(withTitle: "Error", andMessage: "No image found", needCancel: false, completion: { _ in })
 
             return
         }
 
-        if picker.sourceType == .camera {
-            self.saveToAlbum(image: image)
-        }
-
-        else {
-            self.contentTextView.add(object: image)
-        }
+        picker.sourceType == .camera ? self.saveToAlbum(image: originalImage) : self.contentTextView.add(object: originalImage)
     }
 }
 

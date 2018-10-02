@@ -27,8 +27,20 @@ class PostCreateWorker {
         for (index, imageAttachment) in imagesAttachments.enumerated() {
             // Create image signature
             if let image = imageAttachment.origin as? UIImage, let imageSignature = Attachment.createURL(forImage: image, userNickName: User.current!.nickName) {
+                var repeatCount: CGFloat        =   -0.2
+                var uploadedImage: UIImage      =   image
+                var uploadedImageSize: CGFloat  =   1500.0
+                repeat {
+                    repeatCount                 +=  0.2
+                    uploadedImage               =   image.resizeBy(width: image.size.width * (3 - repeatCount))!
+                    
+                    let uploadedImageData       =   NSData(data: uploadedImage.jpegData(compressionQuality: 1)!)
+                    uploadedImageSize           =   CGFloat(uploadedImageData.length) / 1024.0
+                    
+                } while (uploadedImageSize > 800.0)
+                
                 // API 'Posting image'
-                RestAPIManager.posting(image, imageSignature, completion: { imageURL in
+                RestAPIManager.posting(uploadedImage, imageSignature, completion: { imageURL in
                     Logger.log(message: "imageURL = \(imageURL ?? "XXX")", event: .debug)
                     
                     if let imagePath = imageURL {

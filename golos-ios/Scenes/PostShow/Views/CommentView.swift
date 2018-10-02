@@ -13,7 +13,7 @@ import MarkdownView
 
 class CommentView: UIView, HandlersCellSupport {
     // MARK: - Properties
-    var level: String = ""
+    var level: Int = 0
     var created: Date!
     var postShortInfo: PostShortInfo!
 
@@ -88,13 +88,13 @@ class CommentView: UIView, HandlersCellSupport {
     
     @IBOutlet var heightsCollection: [NSLayoutConstraint]! {
         didSet {
-            _ = heightsCollection.map({ $0.constant *= heightRatio })
+            self.heightsCollection.forEach({ $0.constant *= heightRatio })
         }
     }
     
     @IBOutlet var widthsCollection: [NSLayoutConstraint]! {
         didSet {
-            _ = widthsCollection.map({ $0.constant *= widthRatio })
+            self.widthsCollection.forEach({ $0.constant *= widthRatio })
         }
     }
     
@@ -103,7 +103,7 @@ class CommentView: UIView, HandlersCellSupport {
 
     
     // MARK: - Class Initialization
-    init(withComment comment: Comment, atLevel level: String) {
+    init(withComment comment: Comment, atLevel level: Int) {
         super.init(frame: CGRect.init(origin: .zero, size: CGSize.init(width: 351.0 * widthRatio, height: 85.0)))
         
         createFromXIB()
@@ -136,7 +136,7 @@ class CommentView: UIView, HandlersCellSupport {
                 if let authorProfileImageURL = author.profileImageURL {
                     self?.authorProfileImageView.uploadImage(byStringPath:  authorProfileImageURL,
                                                              imageType:     ImageType.userProfileImage,
-                                                             size:          CGSize(width: 40.0 * widthRatio, height: 40.0 * widthRatio),
+                                                             size:          CGSize(width: 40.0, height: 40.0),
                                                              tags:          nil,
                                                              createdDate:   author.created.convert(toDateFormat: .expirationDateType),
                                                              fromItem:      (author as CachedImageFrom).fromItem)
@@ -145,7 +145,7 @@ class CommentView: UIView, HandlersCellSupport {
         })
         
         // Set cell level
-        self.leadingConstraint.constant = (CGFloat(self.level.count - 2) > 0 ? 52.0 : 2.0) * widthRatio
+        self.leadingConstraint.constant = (self.level == 1 ? 52.0 : 2.0) * widthRatio
         self.markdownViewManager.layoutIfNeeded()
     }
     
@@ -177,18 +177,19 @@ class CommentView: UIView, HandlersCellSupport {
         // Load markdown content
         DispatchQueue.main.async {
             self.markdownViewManager.load(markdown: body)
-        }
-
-        self.markdownViewManager.onRendered = { [weak self] height in
-            let viewHeight = height + 85.0
             
-            self?.markdownViewHeightConstraint.constant = height
-            self?.layoutIfNeeded()
-            
-            UIView.animate(withDuration: 0.5, animations: {
-                self?.contentView.alpha = 1.0
-                completion(viewHeight)
-            })
+            self.markdownViewManager.onRendered = { [weak self] height in
+                let viewHeight = height + 85.0
+                
+                self?.markdownViewHeightConstraint.constant = height
+                self?.frame = CGRect(origin: .zero, size: CGSize(width: self?.frame.width ?? 0.0, height: viewHeight))
+                self?.layoutIfNeeded()
+                
+                UIView.animate(withDuration: 0.5, animations: {
+                    self?.contentView.alpha = 1.0
+                    completion(viewHeight)
+                })
+            }
         }
     }
     

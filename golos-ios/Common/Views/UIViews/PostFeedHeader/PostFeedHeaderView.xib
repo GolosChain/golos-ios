@@ -86,11 +86,11 @@
                                 <action selector="authorProfileButtonTapped:" destination="-1" eventType="touchUpInside" id="Me1-y2-h3f"/>
                             </connections>
                         </button>
-                        <button clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" verticalHuggingPriority="249" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hco-Nf-h9M" userLabel="Author Name Button">
-                            <rect key="frame" x="52" y="11" width="75" height="15.5"/>
+                        <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hco-Nf-h9M" userLabel="Author Name Button">
+                            <rect key="frame" x="52" y="11" width="75" height="15"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="height" priority="750" constant="15" id="9bQ-BH-5Tf"/>
+                                <constraint firstAttribute="height" constant="15" id="9bQ-BH-5Tf"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                             <state key="normal" title="Author Name">
@@ -100,30 +100,30 @@
                                 <action selector="authorProfileButtonTapped:" destination="-1" eventType="touchUpInside" id="Axj-z3-TXM"/>
                             </connections>
                         </button>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-cell-theme-small" translatesAutoresizingMaskIntoConstraints="NO" id="qKc-ni-GB8">
-                            <rect key="frame" x="137" y="15" width="11" height="8"/>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="icon-cell-theme-small" translatesAutoresizingMaskIntoConstraints="NO" id="qKc-ni-GB8">
+                            <rect key="frame" x="137" y="14.5" width="11" height="8"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="8" id="D7l-KK-VHE"/>
                                 <constraint firstAttribute="width" constant="11" id="uWa-He-Lak"/>
                             </constraints>
                         </imageView>
-                        <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="751" text="Category Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ew1-p2-hei" userLabel="Category Label">
-                            <rect key="frame" x="158" y="11" width="73.5" height="15.5"/>
+                        <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="749" text="Category Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ew1-p2-hei" userLabel="Category Label">
+                            <rect key="frame" x="158" y="11" width="73.5" height="15"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Time Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bL4-Mv-TbY" userLabel="Time Label">
-                            <rect key="frame" x="306" y="13" width="53" height="12"/>
+                            <rect key="frame" x="306" y="12.5" width="53" height="12"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="4ra-lA-6MX" userLabel="Reblog Stack View">
-                            <rect key="frame" x="52" y="28" width="183" height="15"/>
+                            <rect key="frame" x="52" y="27.5" width="183" height="15"/>
                             <subviews>
                                 <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xe8-IZ-dSK" userLabel="Reblogged Author Nick Name Button">
                                     <rect key="frame" x="0.0" y="0.0" width="100" height="15"/>
@@ -165,7 +165,7 @@
                         <constraint firstAttribute="bottom" secondItem="UBX-pB-YrX" secondAttribute="bottom" id="6vV-7x-f0F"/>
                         <constraint firstItem="l3m-Ud-Qba" firstAttribute="bottom" secondItem="dcr-dx-zC5" secondAttribute="bottom" id="89K-Ps-2xy"/>
                         <constraint firstItem="l3m-Ud-Qba" firstAttribute="leading" secondItem="dcr-dx-zC5" secondAttribute="leading" id="A7Y-Nh-jc8"/>
-                        <constraint firstAttribute="bottom" secondItem="4ra-lA-6MX" secondAttribute="bottom" constant="8" id="Pk6-ro-U1P"/>
+                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="4ra-lA-6MX" secondAttribute="bottom" constant="8" id="Pk6-ro-U1P"/>
                         <constraint firstItem="Ew1-p2-hei" firstAttribute="leading" secondItem="qKc-ni-GB8" secondAttribute="trailing" constant="10" id="WRZ-UV-Gfb"/>
                         <constraint firstItem="bL4-Mv-TbY" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Ew1-p2-hei" secondAttribute="trailing" constant="8" id="XeL-MW-b0c"/>
                         <constraint firstItem="4ra-lA-6MX" firstAttribute="top" secondItem="Hco-Nf-h9M" secondAttribute="bottom" constant="1.5" id="Xls-lS-kOB"/>
@@ -183,6 +183,11 @@
                         <constraint firstItem="dcr-dx-zC5" firstAttribute="top" secondItem="cOg-fB-ag6" secondAttribute="top" constant="11" id="x6y-at-8G3"/>
                         <constraint firstItem="bL4-Mv-TbY" firstAttribute="centerY" secondItem="Ew1-p2-hei" secondAttribute="centerY" id="zQE-sx-zsd"/>
                     </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="Pk6-ro-U1P"/>
+                        </mask>
+                    </variation>
                 </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

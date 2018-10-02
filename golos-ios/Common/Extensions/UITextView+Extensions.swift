@@ -155,17 +155,12 @@ extension UITextView {
         var attributedString            =   NSMutableAttributedString(string: "\n")
         
         // Image
-        if let image = object as? UIImage, let imageGIF = UIImage.gif(data: image.pngData()!) {
-            attachment.image            =   UIImage.gif(data: image.jpegData(compressionQuality: 0)!)
+        if let image = object as? UIImage { //}, let imageGIF = UIImage.gif(data: image.pngData()!) {
+            let attachedImage           =   image.resizeBy(width: self.frame.width * 3)!
 //            attachment.image            =   imageGIF
-            
-            // Calculate new size
-            let imageWidthNew           =   self.bounds.size.width
-            let imageRatio              =   imageGIF.size.width / imageWidthNew
-            let imageHeightNew          =   imageGIF.size.height / imageRatio
 
-            // Resize
-            attachment.bounds           =   CGRect.init(x: 0, y: 0, width: imageWidthNew, height: imageHeightNew)
+            attachment.image            =   attachedImage
+            attachment.bounds           =   CGRect.init(origin: .zero, size: CGSize(width: attachedImage.size.width / 3, height: attachedImage.size.height / 3))
             attributedStringWithImage   =   NSAttributedString(attachment: attachment)
  
             attributedString.append(NSAttributedString(string: "\n"))
@@ -181,11 +176,11 @@ extension UITextView {
                                                                     .underlineStyle:    NSUnderlineStyle.single.rawValue
                                                                 ]
 
-            let linkAttributedString    =   NSMutableAttributedString(string: String(format: "%@", link.0))
+            let linkAttributedString = NSMutableAttributedString(string: String(format: "%@", link.0))
             linkAttributedString.setAttributes(linkAttributes, range: NSRange.init(location: 0, length: link.0.count))
             linkAttributedString.append(NSAttributedString(string: " "))
             
-            attributedString            =   linkAttributedString
+            attributedString = linkAttributedString
         }
         
         // Add this attributed string to the current position

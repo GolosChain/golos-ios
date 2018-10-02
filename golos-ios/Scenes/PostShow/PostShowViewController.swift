@@ -34,7 +34,7 @@ class PostShowViewController: GSBaseViewController {
 
     var commentsViews = [CommentView]() {
         didSet {
-            _ = commentsViews.map( { commentView in
+            self.commentsViews.forEach( { commentView in
                 // Handlers
                 commentView.handlerUpvotesButtonTapped                  =   { [weak self] in
                     self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
@@ -102,10 +102,28 @@ class PostShowViewController: GSBaseViewController {
     
     // MARK: - IBOutlets
     @IBOutlet weak var postFeedHeaderView: PostFeedHeaderView!
-    @IBOutlet weak var commentsView: UIView!
-    @IBOutlet weak var commentsStackView: UIStackView!
+    @IBOutlet weak var commentsControlView: UIView!
     @IBOutlet weak var subscribesStackView: UIStackView!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
+    @IBOutlet weak var loadingPostContentActivityIndicator: UIActivityIndicatorView! {
+        didSet {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
+                self.loadingPostContentActivityIndicator.startAnimating()
+            }
+        }
+    }
+    
+    @IBOutlet var hiddenViewsCollection: [UIView]! {
+        didSet {
+            self.hiddenViewsCollection.forEach({ $0.alpha = 0.0 })
+        }
+    }
+    
+    @IBOutlet weak var commentsViewsView: UIView! {
+        didSet {
+            self.commentsViewsView.tune(withThemeColorPicker: whiteColorPickers)
+        }
+    }
     
     @IBOutlet weak var subscribeActivityIndicator: UIActivityIndicatorView! {
         didSet {
@@ -171,7 +189,6 @@ class PostShowViewController: GSBaseViewController {
     @IBOutlet weak var contentView: UIView! {
         didSet {
             contentView.tune()
-            contentView.alpha = 0.0
         }
     }
     
@@ -339,7 +356,7 @@ class PostShowViewController: GSBaseViewController {
     
     @IBOutlet var backgroundGrayViewsCollection: [UIView]! {
         didSet {
-            _ = backgroundGrayViewsCollection.map({ $0.theme_backgroundColor = veryLightGrayColorPickers })
+            self.backgroundGrayViewsCollection.forEach({ $0.theme_backgroundColor = veryLightGrayColorPickers })
         }
     }
     
@@ -437,9 +454,9 @@ class PostShowViewController: GSBaseViewController {
     
     @IBOutlet weak var tagsCollectionViewheightConstraint: NSLayoutConstraint!
     @IBOutlet weak var markdownViewHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var commentsViewTopConstraint: NSLayoutConstraint!
-    @IBOutlet weak var commentsStackViewTopConstraint: NSLayoutConstraint!
-    @IBOutlet weak var commentsStackViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var commentsControlViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var commentsViewsViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var commentsViewsViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var subscribesStackViewTopConstraint: NSLayoutConstraint!
     
     
@@ -494,11 +511,6 @@ class PostShowViewController: GSBaseViewController {
     
     
     // MARK: - Class Functions
-//    override func viewDidLayoutSubviews() {
-//        Logger.log(message: "Success", event: .severe)
-//        self.tagsCollectionViewheightConstraint.constant    =   self.tagsCollectionView.contentSize.height
-//    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         Logger.log(message: "Success", event: .severe)
@@ -518,10 +530,11 @@ class PostShowViewController: GSBaseViewController {
         self.loadContentComments()
         
         if let user = User.current {
-            let isNamesMatch = user.name == self.router?.dataStore?.postShortInfo?.author
+            let isNamesMatch = user.nickName == self.router?.dataStore?.postShortInfo?.author
             
             self.subscribesStackViewTopConstraint.constant = isNamesMatch ? -100.0 * heightRatio : 0.0
-            self.backgroundGrayViewsCollection.first(where: { $0.tag == 0})?.isHidden = isNamesMatch
+            self.backgroundGrayViewsCollection.first(where: { $0.tag == 0 })?.isHidden = isNamesMatch
+            self.contentView.bringSubviewToFront(self.backgroundGrayViewsCollection.first(where: { $0.tag == 1 })!)
             
             UIView.animate(withDuration: 0.3) {
                 self.subscribesStackView.isHidden = isNamesMatch
@@ -542,13 +555,13 @@ class PostShowViewController: GSBaseViewController {
     
     
     // MARK: - Custom Functions
-    private func didCommentsView(hided: Bool) {
+    private func didCommentsControlView(hided: Bool) {
         Logger.log(message: "Success", event: .severe)
 
-        self.commentsViewTopConstraint.constant         =   heightRatio * (hided ? -30.0 : 0.0)
-        self.commentsStackViewTopConstraint.constant    =   hided ? (-1 * self.commentsStackViewHeightConstraint.constant + 40.0 * heightRatio) : 0.0
-        self.commentsView.isHidden                      =   hided
-        self.commentsStackView.isHidden                 =   hided
+        self.commentsControlViewTopConstraint.constant  =   heightRatio * (hided ? -30.0 : 0.0)
+        self.commentsViewsViewTopConstraint.constant    =   hided ? (-1 * self.commentsViewsViewHeightConstraint.constant + 40.0 * heightRatio) : 0.0
+        self.commentsControlView.isHidden               =   hided
+        self.commentsViewsView.isHidden                 =   hided
         
         if hided {
             self.emptyCommentsButton.isHidden = false
@@ -560,14 +573,19 @@ class PostShowViewController: GSBaseViewController {
         }
         
         else {
-            self.commentsButton.setTitle("\(self.commentsViews.count)", for: .normal)
-            self.commentsCountLabel.text = String(format: "%i", self.commentsViews.count)
+            self.commentsButton.setTitle("\(self.commentsCount)", for: .normal)
+            self.commentsCountLabel.text = String(format: "%i", self.commentsCount)
+            
+            UIView.animate(withDuration: 0.7) {
+                self.commentsViewsView.alpha = 1.0
+            }
         }
         
         self.scrollView.isUserInteractionEnabled = true
+        self.loadingPostContentActivityIndicator.stopAnimating()
 
         if self.scrollCommentsDown {
-            self.didCommentsScrollDown()
+            self.didContentViewScrollToCommentsView()
         }
     }
     
@@ -585,10 +603,10 @@ class PostShowViewController: GSBaseViewController {
             // Load markdown content
             self.markdownViewManager.onRendered = { [weak self] height in
                 self?.markdownViewHeightConstraint.constant = height
-                self?.activityIndicator.stopAnimating()
+//                self?.activityIndicator.stopAnimating()
                 
                 UIView.animate(withDuration: 0.5, animations: {
-                    self?.contentView.alpha = 1.0
+                    self?.hiddenViewsCollection.forEach({ $0.alpha = 1.0 })
                 })
             }
             
@@ -613,7 +631,7 @@ class PostShowViewController: GSBaseViewController {
                 let user = User.fetch(byNickName: author), let userProfileImageURL = user.profileImageURL {
                 self.userAvatarImageView.uploadImage(byStringPath:       userProfileImageURL,
                                                      imageType:          .userProfileImage,
-                                                     size:               CGSize(width: 50.0 * widthRatio, height: 50.0 * widthRatio),
+                                                     size:               CGSize(width: 50.0, height: 50.0),
                                                      tags:               nil,
                                                      createdDate:        user.created.convert(toDateFormat: .expirationDateType),
                                                      fromItem:           (user as CachedImageFrom).fromItem)
@@ -637,11 +655,11 @@ class PostShowViewController: GSBaseViewController {
         Logger.log(message: "Success", event: .severe)
 
         self.tagsCollectionView.reloadData()
-        (self.commentsStackView.arrangedSubviews as! [CommentView]).forEach({ $0.localizeTitles() })
+        (self.commentsViewsView.subviews as! [CommentView]).forEach({ $0.localizeTitles() })
         
         self.postFeedHeaderView.categoryLabel.text = self.router!.dataStore!.displayedPost!.category
-                                                    .transliteration(forPermlink: false)
-                                                    .uppercaseFirst
+                                                        .transliteration(forPermlink: false)
+                                                        .uppercaseFirst
             
         self.flauntButton.setTitle("Flaunt Verb".localized(), for: .normal)
         self.donateButton.setTitle("Donate Verb".localized(), for: .normal)
@@ -659,7 +677,7 @@ class PostShowViewController: GSBaseViewController {
         self.topicTitleLabel.text = self.router!.dataStore!.displayedPost!.tags!.first!.transliteration(forPermlink: false).uppercaseFirst
     }
 
-    private func didCommentsScrollDown() {
+    private func didContentViewScrollToCommentsView() {
         Logger.log(message: "Success", event: .severe)
 
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5, execute: {
@@ -667,12 +685,15 @@ class PostShowViewController: GSBaseViewController {
                            delay:           0.2,
                            options:         .transitionCrossDissolve,
                            animations:      {
+                            let bottomViewFrame = self.backgroundGrayViewsCollection.first(where: { $0.tag == 1 })!.frame
+
                             if self.commentsCount == 0 {
                                 self.scrollView.contentOffset.y = 10_000.0
                             }
-                                
+
                             else {
-                                self.scrollView.scrollRectToVisible(CGRect(origin: self.commentsView.frame.origin, size: CGSize(width: self.commentsView.frame.width, height: max(0, self.commentsStackView.frame.maxY))), animated: true)
+                                self.scrollView.contentOffset.y = bottomViewFrame.maxY
+//                                self.scrollView.scrollRectToVisible(CGRect(origin: self.commentsControlView.frame.origin, size: CGSize(width: self.commentsControlView.frame.width, height: max(0, self.commentsViewsView.frame.maxY))), animated: true)
                             }
             })
         })
@@ -752,15 +773,15 @@ class PostShowViewController: GSBaseViewController {
         sender.setTitle("Hide Comments Verb".localized(), for: .normal)
         sender.setTitle("Show Comments Verb".localized(), for: .selected)
         
-        self.commentsStackView.alpha = sender.isSelected ? 0.0 : 1.0
-        self.commentsStackViewTopConstraint.constant = sender.isSelected ? -self.commentsStackView.bounds.height : 0.0
+        self.commentsViewsView.alpha = sender.isSelected ? 0.0 : 1.0
+        self.commentsViewsViewTopConstraint.constant = sender.isSelected ? -self.commentsViewsView.bounds.height : 0.0
         
         UIView.animate(withDuration: 1.2) {
-            self.commentsStackView.layoutIfNeeded()
+            self.commentsViewsView.layoutIfNeeded()
 
             // Scrolling to bottom
             if !sender.isSelected && self.scrollCommentsDown {
-                self.didCommentsScrollDown()
+                self.didContentViewScrollToCommentsView()
             }
         }
     }
@@ -845,7 +866,7 @@ extension PostShowViewController: PostShowDisplayLogic {
         }
         
         // CoreData
-        self.fetchCommentsFirstLevel()
+        self.fetchComments()
     }
     
     func displayCheckFollowing(fromViewModel viewModel: PostShowModels.Following.ViewModel) {
@@ -882,9 +903,9 @@ extension PostShowViewController {
         Logger.log(message: "Success", event: .severe)
 
         // Remove subviews in Buttons Stack view
-        self.commentsViews.forEach({ self.commentsStackView.removeArrangedSubview($0)})
+        self.commentsViews.forEach({ $0.removeFromSuperview() })
         self.commentsViews.removeAll()
-        self.commentsStackViewHeightConstraint.constant = 0.0
+        self.commentsViewsViewHeightConstraint.constant = 0.0
         self.commentsCount = 0
         
         let contentRepliesRequestModel = PostShowModels.Post.RequestModel()
@@ -923,7 +944,7 @@ extension PostShowViewController {
         
         do {
             if let displayedPost = try CoreDataManager.instance.managedObjectContext.fetch(fetchRequest).first as? PostCellSupport {
-                self.postFeedHeaderView.display(displayedPost)
+                self.postFeedHeaderView.display(post: displayedPost)
                
                 self.interactor?.save(postShortInfo: PostShortInfo(id:               displayedPost.id,
                                                                    title:            displayedPost.title,
@@ -945,86 +966,120 @@ extension PostShowViewController {
     }
     
     // Post Comments list
-    private func nextCommentLevel(byPermlink permlink: String?, andParentLevel parentLevel: String) {
-        if let commentPermlink = permlink {
-            self.commentsCount += 1
-            
-            DispatchQueue.main.async {
-                let comments = CoreDataManager.instance.readEntities(withName:                    "Comment",
-                                                                     withPredicateParameters:     NSPredicate(format: "parentPermlink == %@", commentPermlink),
-                                                                     andSortDescriptor:           NSSortDescriptor(key: "created", ascending: true)) as! [Comment]
+    private func nextCommentLevel(byPermlink permlink: String?, andParentLevel parentLevel: String, completion: @escaping () -> Void) {
+//        if let commentPermlink = permlink {
+//            self.commentsCount += 1
+//
+//            DispatchQueue.main.async {
+//                let comments = CoreDataManager.instance.readEntities(withName:                    "Comment",
+//                                                                     withPredicateParameters:     NSPredicate(format: "parentPermlink == %@", commentPermlink),
+//                                                                     andSortDescriptor:           NSSortDescriptor(key: "created", ascending: true)) as! [Comment]
+//
+//                guard let displayedPost = self.router?.dataStore?.displayedPost, self.commentsCount < (displayedPost.children + (self.addedNewItem ? 1 : 0)) else {
+//                    // Remove subviews in Stack view
+//                    self.commentsViews.forEach({ $0.removeFromSuperview() })
+//
+//                    // Sort subviews for Stack view
+//                    let sortedSubviews = self.commentsViews.sorted(by: { $0.level < $1.level && $0.created < $1.created })
+//
+//                    // Add subview to Stack view
+//                    for subview in sortedSubviews {
+//                        self.commentsViewsView.addSubview(subview)
+//                    }
+//
+//                    // Show comments count
+//                    self.didCommentsControlView(hided: false)
+//                    self.addedNewItem = false
+//
+//                    return
+//                }
+//
+//                // "00_01_02_03_04_05"
+//                for (tag, comment) in comments.sorted(by: { $0.created < $1.created }).enumerated() {
+//                    let commentView = CommentView.init(withComment: comment, atLevel: parentLevel + "\(tag + 1)".addFirstZero())
+//
+//                    // Level N
+//                    self.load(body: comment.body, forCommentView: commentView, completionLoadBody: {
+//
+//                    })
+//                }
+//            }
+//        }
+    }
+    
+    private func fetchComments() {
+        if let postShortInfo = self.router?.dataStore?.postShortInfo {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1, execute: {
+                var commentsTree: [Comment] = [Comment]()
                 
-                guard let displayedPost = self.router?.dataStore?.displayedPost, self.commentsCount < (displayedPost.children + (self.addedNewItem ? 1 : 0)) else {
-                    // Remove subviews in Stack view
-                    self.commentsViews.forEach({ self.commentsStackView.removeArrangedSubview($0)})
-                    
-                    // Sort subviews for Stack view
-                    let sortedSubviews = self.commentsViews.sorted(by: { $0.level < $1.level && $0.created < $1.created })
-                    
-                    // Add subview to Stack view
-                    for subview in sortedSubviews {
-                        self.commentsStackView.addArrangedSubview(subview)
-                    }
-                    
-                    // Show scene
-                    UIView.animate(withDuration: 0.5) {
-                        self.view.alpha = 1.0
-                    }
+                // Remove subviews in Stack view
+                self.commentsViews.forEach({ $0.removeFromSuperview() })
+                self.commentsViews.removeAll()
 
-                    // Show comments count
-                    self.didCommentsView(hided: false)
-                    self.addedNewItem = false
+                guard let comments = CoreDataManager.instance.readEntities(withName:                    "Comment",
+                                                                           withPredicateParameters:     NSPredicate(format: "parentPermlink contains[c] %@", postShortInfo.permlink ?? "XXX"),
+                                                                           andSortDescriptor:           NSSortDescriptor(key: "created", ascending: true)) as? [Comment], comments.count > 0 else {
+                                                                            self.didCommentsControlView(hided: true)
+                                                                            return
+                }
+
+                
+//                guard let comments = CoreDataManager.instance.readEntities(withName:                    "Comment",
+//                                                                           withPredicateParameters:     NSPredicate(format: "parentAuthor == %@ AND parentPermlink contains[c] %@", postShortInfo.author ?? "XXX", postShortInfo.permlink ?? "XXX"),
+//                                                                           andSortDescriptor:           NSSortDescriptor(key: "created", ascending: true)) as? [Comment], comments.count > 0 else {
+//                                                                            self.didCommentsControlView(hided: true)
+//                                                                            return
+//                }
+                
+                self.commentsViewsViewHeightConstraint.constant = 0.0
+                
+                // Filter & sort comments first level
+                let commentsFirstLevel = comments.filter({ !$0.parentPermlink!.contains("re-") }).sorted(by: { $0.created < $1.created })
+                
+                // Create hierarchical tree
+                for commentFirstLevel in commentsFirstLevel {
+                    commentsTree.append(commentFirstLevel)
                     
-                    return
+                    let commentsByFirstLevel = comments.filter({ $0.parentPermlink!.contains(commentFirstLevel.permlink) && $0.parentPermlink!.hasPrefix("re-") }).sorted(by: { $0.created < $1.created })
+                    
+                    if commentsByFirstLevel.count > 0 {
+                        commentsByFirstLevel.forEach({ commentsTree.append($0) })
+                    }
                 }
                 
-                // "00_01_02_03_04_05"
-                for (tag, comment) in comments.sorted(by: { $0.created < $1.created }).enumerated() {
-                    let commentView = CommentView.init(withComment: comment, atLevel: parentLevel + "\(tag + 1)".addFirstZero())
+                // Create comments views view
+                for comment in commentsTree {
+                    let level = comment.parentPermlink!.hasPrefix("re-") ? 1 : 0
+                    let commentView = CommentView.init(withComment: comment, atLevel: level)
                     
-                    // Level N
-                    commentView.loadData(fromBody: comment.body, completion: { [weak self] viewHeight in
-                        self?.commentsStackViewHeightConstraint.constant += viewHeight
-                        self?.commentsStackView.layoutIfNeeded()
-                        self?.commentsViews.append(commentView)
+                    // Load body content
+                    self.load(body: comment.body, forCommentView: commentView, completionLoadBody: {
+                        self.commentsCount += 1
                         
-                        // Get next Comment level
-                        self?.nextCommentLevel(byPermlink: commentView.postShortInfo.permlink ?? "XXX", andParentLevel: commentView.level)
+                        if self.commentsCount == comments.count {
+                            // Show comments count
+                            self.commentsViews.forEach({ self.commentsViewsView.addSubview($0) })
+                            self.didCommentsControlView(hided: false)
+                            self.addedNewItem = false
+                        }
                     })
                 }
-            }
+            })
         }
     }
     
-    private func fetchCommentsFirstLevel() {
-        if let postShortInfo = self.router?.dataStore?.postShortInfo {
-            DispatchQueue.main.async {
-                guard let comments = CoreDataManager.instance.readEntities(withName:                    "Comment",
-                                                                           withPredicateParameters:     NSPredicate(format: "parentAuthor == %@ AND parentPermlink == %@", postShortInfo.author ?? "XXX", postShortInfo.permlink ?? "XXX"),
-                                                                           andSortDescriptor:           NSSortDescriptor(key: "created", ascending: true)) as? [Comment], comments.count > 0 else {
-                                                                            self.didCommentsView(hided: true)
-                                                                            return
-                }
-                
-                self.commentsStackViewHeightConstraint.constant = 0.0
-                var tagIndex            =   1
-                
-                for comment in comments.sorted(by: { $0.created < $1.created }) {
-                    let commentView     =   CommentView.init(withComment: comment, atLevel: "\(tagIndex)".addFirstZero())
-                    tagIndex            +=  1
-                    
-                    // Level 0
-                    commentView.loadData(fromBody: comment.body, completion: { [weak self] viewHeight in
-                        self?.commentsStackViewHeightConstraint.constant += viewHeight
-                        self?.commentsStackView.layoutIfNeeded()
-                        self?.commentsViews.append(commentView)
+    private func load(body: String, forCommentView commentView: CommentView, completionLoadBody: @escaping () -> Void) {
+        commentView.loadData(fromBody: body, completion: { [weak self] viewHeight in
+            let nextCommentViewOrigin = CGPoint(x: 0.0, y: self?.commentsViewsViewHeightConstraint.constant ?? 0)
 
-                        // Levels 2...n
-                        self?.nextCommentLevel(byPermlink: commentView.postShortInfo.permlink ?? "XXX", andParentLevel: commentView.level)
-                    })
-                }
-            }
-        }
+            commentView.frame = CGRect(origin: nextCommentViewOrigin, size: commentView.frame.size)
+
+            self?.commentsViewsViewHeightConstraint.constant += viewHeight
+            self?.view.layoutIfNeeded()
+            self?.commentsViews.append(commentView)
+            
+            completionLoadBody()
+        })
     }
 }
 
@@ -1093,6 +1148,6 @@ extension PostShowViewController: UICollectionViewDelegateFlowLayout {
 // MARK: - UIScrollViewDelegate
 extension PostShowViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        Logger.log(message: "contentOffset = \(scrollView.contentOffset.y)", event: .debug)
+        Logger.log(message: "contentOffset = \(scrollView.contentOffset.y)", event: .debug)
     }
 }
