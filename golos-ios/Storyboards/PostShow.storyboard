@@ -22,7 +22,7 @@
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                                 <subviews>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BtF-Gk-D12" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="348.5"/>
+                                        <rect key="frame" x="0.0" y="52" width="320" height="348.5"/>
                                         <subviews>
                                             <view clipsSubviews="YES" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fPl-dp-sjq" userLabel="Comments Views View">
                                                 <rect key="frame" x="16" y="348.5" width="288" height="0.0"/>
@@ -496,7 +496,7 @@
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="BtF-Gk-D12" secondAttribute="trailing" id="2QT-d7-WaC"/>
                                     <constraint firstItem="BtF-Gk-D12" firstAttribute="leading" secondItem="7f0-ZC-o8d" secondAttribute="leading" id="Kja-qz-TOu"/>
-                                    <constraint firstItem="BtF-Gk-D12" firstAttribute="top" secondItem="7f0-ZC-o8d" secondAttribute="top" id="qo5-eR-zwm"/>
+                                    <constraint firstItem="BtF-Gk-D12" firstAttribute="top" secondItem="7f0-ZC-o8d" secondAttribute="top" constant="52" id="qo5-eR-zwm"/>
                                     <constraint firstAttribute="bottom" secondItem="BtF-Gk-D12" secondAttribute="bottom" id="wnd-Uz-U0c"/>
                                 </constraints>
                             </scrollView>
@@ -592,6 +592,7 @@
                         <outlet property="commentsViewsViewHeightConstraint" destination="3Np-Aa-lVL" id="6p8-QY-mHD"/>
                         <outlet property="commentsViewsViewTopConstraint" destination="HOv-gG-mnW" id="ubh-2V-S2H"/>
                         <outlet property="contentView" destination="BtF-Gk-D12" id="nZE-7q-KU1"/>
+                        <outlet property="contentViewTopConstraint" destination="qo5-eR-zwm" id="QIl-kX-mrj"/>
                         <outlet property="donateButton" destination="SQB-q3-brD" id="pGH-FJ-UVL"/>
                         <outlet property="emptyCommentsButton" destination="B0e-yR-6At" id="6ph-gH-QYS"/>
                         <outlet property="emptyCommentsButtonTopConstraint" destination="CWx-fy-a7E" id="NsB-vv-0XF"/>
@@ -682,6 +683,7 @@
                         <outletCollection property="hiddenViewsCollection" destination="Vl1-2x-lVp" collectionClass="NSMutableArray" id="ps8-OM-5Uk"/>
                         <outletCollection property="hiddenViewsCollection" destination="MhK-Vc-x7K" collectionClass="NSMutableArray" id="K5v-h6-vck"/>
                         <outletCollection property="hiddenViewsCollection" destination="lwn-iM-8rz" collectionClass="NSMutableArray" id="J2U-2U-c8S"/>
+                        <outletCollection property="heightsCollection" destination="qo5-eR-zwm" collectionClass="NSMutableArray" id="iz8-EG-isn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CXI-Zv-5XY" userLabel="First Responder" sceneMemberID="firstResponder"/>

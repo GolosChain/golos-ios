@@ -430,13 +430,13 @@ class PostShowViewController: GSBaseViewController {
     
     @IBOutlet var heightsCollection: [NSLayoutConstraint]! {
         didSet {
-            _ = heightsCollection.map({ $0.constant *= heightRatio })
+            self.heightsCollection.forEach({ $0.constant *= heightRatio })
         }
     }
     
     @IBOutlet var widthsCollection: [NSLayoutConstraint]! {
         didSet {
-            _ = widthsCollection.map({ $0.constant *= widthRatio })
+            self.widthsCollection.forEach({ $0.constant *= widthRatio })
         }
     }
     
@@ -449,6 +449,12 @@ class PostShowViewController: GSBaseViewController {
     @IBOutlet weak var emptyCommentsButtonTopConstraint: NSLayoutConstraint! {
         didSet {
             self.emptyCommentsButtonTopConstraint.constant = -44.0 * heightRatio
+        }
+    }
+    
+    @IBOutlet weak var contentViewTopConstraint: NSLayoutConstraint! {
+        didSet {
+            self.contentViewTopConstraint.constant = 52.0 * heightRatio
         }
     }
     
@@ -582,8 +588,15 @@ class PostShowViewController: GSBaseViewController {
         }
         
         self.scrollView.isUserInteractionEnabled = true
-        self.loadingPostContentActivityIndicator.stopAnimating()
 
+        // Hide loading activity interactior
+        self.loadingPostContentActivityIndicator.stopAnimating()
+        self.contentViewTopConstraint.constant = 0.0
+        
+        UIView.animate(withDuration: 0.3) {
+            self.view.layoutIfNeeded()
+        }
+        
         if self.scrollCommentsDown {
             self.didContentViewScrollToCommentsView()
         }
@@ -969,51 +982,11 @@ extension PostShowViewController {
     }
     
     // Post Comments list
-    private func nextCommentLevel(byPermlink permlink: String?, andParentLevel parentLevel: String, completion: @escaping () -> Void) {
-//        if let commentPermlink = permlink {
-//            self.commentsCount += 1
-//
-//            DispatchQueue.main.async {
-//                let comments = CoreDataManager.instance.readEntities(withName:                    "Comment",
-//                                                                     withPredicateParameters:     NSPredicate(format: "parentPermlink == %@", commentPermlink),
-//                                                                     andSortDescriptor:           NSSortDescriptor(key: "created", ascending: true)) as! [Comment]
-//
-//                guard let displayedPost = self.router?.dataStore?.displayedPost, self.commentsCount < (displayedPost.children + (self.addedNewItem ? 1 : 0)) else {
-//                    // Remove subviews in Stack view
-//                    self.commentsViews.forEach({ $0.removeFromSuperview() })
-//
-//                    // Sort subviews for Stack view
-//                    let sortedSubviews = self.commentsViews.sorted(by: { $0.level < $1.level && $0.created < $1.created })
-//
-//                    // Add subview to Stack view
-//                    for subview in sortedSubviews {
-//                        self.commentsViewsView.addSubview(subview)
-//                    }
-//
-//                    // Show comments count
-//                    self.didCommentsControlView(hided: false)
-//                    self.addedNewItem = false
-//
-//                    return
-//                }
-//
-//                // "00_01_02_03_04_05"
-//                for (tag, comment) in comments.sorted(by: { $0.created < $1.created }).enumerated() {
-//                    let commentView = CommentView.init(withComment: comment, atLevel: parentLevel + "\(tag + 1)".addFirstZero())
-//
-//                    // Level N
-//                    self.load(body: comment.body, forCommentView: commentView, completionLoadBody: {
-//
-//                    })
-//                }
-//            }
-//        }
-    }
-    
     private func fetchComments() {
         if let postShortInfo = self.router?.dataStore?.postShortInfo {
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1, execute: {
                 var commentsTree: [Comment] = [Comment]()
+                var commentsTreeIndex: Int = -1
                 
                 // Remove subviews in Stack view
                 self.commentsViews.forEach({ $0.removeFromSuperview() })
@@ -1026,14 +999,6 @@ extension PostShowViewController {
                                                                             return
                 }
 
-                
-//                guard let comments = CoreDataManager.instance.readEntities(withName:                    "Comment",
-//                                                                           withPredicateParameters:     NSPredicate(format: "parentAuthor == %@ AND parentPermlink contains[c] %@", postShortInfo.author ?? "XXX", postShortInfo.permlink ?? "XXX"),
-//                                                                           andSortDescriptor:           NSSortDescriptor(key: "created", ascending: true)) as? [Comment], comments.count > 0 else {
-//                                                                            self.didCommentsControlView(hided: true)
-//                                                                            return
-//                }
-                
                 self.commentsViewsViewHeightConstraint.constant = 0.0
                 
                 // Filter & sort comments first level
@@ -1041,27 +1006,42 @@ extension PostShowViewController {
                 
                 // Create hierarchical tree
                 for commentFirstLevel in commentsFirstLevel {
+                    commentsTreeIndex += 1
+                    commentFirstLevel.treeIndex = commentsTreeIndex
                     commentsTree.append(commentFirstLevel)
                     
                     let commentsByFirstLevel = comments.filter({ $0.parentPermlink!.contains(commentFirstLevel.permlink) && $0.parentPermlink!.hasPrefix("re-") }).sorted(by: { $0.created < $1.created })
                     
                     if commentsByFirstLevel.count > 0 {
-                        commentsByFirstLevel.forEach({ commentsTree.append($0) })
+                        commentsByFirstLevel.forEach({
+                            commentsTreeIndex += commentsByFirstLevel.index(of: $0)! + 1
+                            $0.treeIndex = commentsTreeIndex
+                            commentsTree.append($0)
+                        })
                     }
                 }
+
+                commentsTree.forEach({ Logger.log(message: "treeIndex = \($0.treeIndex), author = \($0.author)", event: .debug) })
                 
                 // Create comments views view
                 for comment in commentsTree {
                     let level = comment.parentPermlink!.hasPrefix("re-") ? 1 : 0
                     let commentView = CommentView.init(withComment: comment, atLevel: level)
-                    
+                    commentView.tag = comment.treeIndex
+
+                    self.commentsViews.append(commentView)
+
                     // Load body content
                     self.load(body: comment.body, forCommentView: commentView, completionLoadBody: {
                         self.commentsCount += 1
                         
                         if self.commentsCount == comments.count {
                             // Show comments count
+                            self.commentsViews = self.commentsViews.sorted(by: { $0.tag < $1.tag })
                             self.commentsViews.forEach({ self.commentsViewsView.addSubview($0) })
+
+                            (self.commentsViewsView.subviews as! [CommentView]).forEach({ Logger.log(message: "tag = \($0.tag), level = \($0.level), author = \($0.authorNameButton.titleLabel!.text!)", event: .debug) })
+
                             self.didCommentsControlView(hided: false)
                             self.addedNewItem = false
                         }
@@ -1079,8 +1059,9 @@ extension PostShowViewController {
 
             self?.commentsViewsViewHeightConstraint.constant += viewHeight
             self?.view.layoutIfNeeded()
-            self?.commentsViews.append(commentView)
             
+//            self?.commentsViews.append(commentView)
+
             completionLoadBody()
         })
     }

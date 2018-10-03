@@ -176,15 +176,13 @@
                                                 <action selector="replyButtonTapped:" destination="-1" eventType="touchUpInside" id="TGL-3d-iBL"/>
                                             </connections>
                                         </button>
-                                        <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="3pH-mp-bUu" userLabel="Share Button">
+                                        <button clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="3pH-mp-bUu" userLabel="Share Button">
                                             <rect key="frame" x="88" y="0.0" width="233" height="20"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                            <state key="normal" image="icon-button-horizontal-more-normal">
+                                            <state key="normal">
                                                 <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                             </state>
-                                            <state key="disabled" image="icon-button-horizontal-more-highlighted"/>
-                                            <state key="highlighted" image="icon-button-horizontal-more-highlighted"/>
                                             <connections>
                                                 <action selector="shareButtonTapped:" destination="-1" eventType="touchUpInside" id="hJI-tb-4WM"/>
                                             </connections>
@@ -246,8 +244,6 @@
         <image name="icon-button-comments-default" width="20" height="20"/>
         <image name="icon-button-comments-highlighted" width="20" height="20"/>
         <image name="icon-button-comments-selected" width="20" height="20"/>
-        <image name="icon-button-horizontal-more-highlighted" width="18" height="4.5"/>
-        <image name="icon-button-horizontal-more-normal" width="18" height="4.5"/>
         <image name="icon-button-plus-white-normal" width="10" height="10"/>
         <image name="icon-button-upvotes-default" width="20" height="20"/>
         <image name="icon-button-upvotes-highlighted" width="20" height="20"/>

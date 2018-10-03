@@ -128,7 +128,7 @@ class PostingKeyShowViewController: GSBaseViewController {
             self.textFieldsCollection.first!.text   =   "joseph.kalu"
             self.textFieldsCollection.last!.text    =   "5K6CfG8gzhTZNwHDxPmeQiPChx6FpgiVYN7USVp2aGC2WsDqH4h"
 
-            // User "joseph.kalu"
+            // User "nick.lick"
 //            self.textFieldsCollection.first!.text   =   "nick.lick"
 //            self.textFieldsCollection.last!.text    =   "5HuxaRnfHNTS4HA5EA5SQPqAZogP2GoCuZR2yuL1jdfoqjLZAFD"
         }

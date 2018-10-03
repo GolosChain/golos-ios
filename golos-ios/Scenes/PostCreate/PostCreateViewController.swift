@@ -375,7 +375,7 @@ class PostCreateViewController: GSBaseViewController {
         self.tagsTitleLabel.text = "Add Max 5 Tags".localized()
         self.postCreateView.titleTextField.placeholder = "Enter Post Title Placeholder".localized()
         contentTextView.placeholder     =   (sceneType == .createPost ? "Enter Text Placeholder" : "Enter Comment Placeholder").localized()
-        self.navigationItem.title       =   (sceneType == .createPost) ? "Publish Title".localized() : "Comment Title Verb".localized()
+        self.navigationItem.title       =   (sceneType == .createPost ? "Publish Title" : "Comment Title Verb").localized()
     }
 
     

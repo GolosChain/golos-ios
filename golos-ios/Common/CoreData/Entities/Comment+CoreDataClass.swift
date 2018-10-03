@@ -13,9 +13,10 @@ import Foundation
 
 @objc(Comment)
 public class Comment: NSManagedObject, CachedImageFrom {
+    var treeIndex: Int = 0
+
     // MARK: - CachedImageFrom protocol implementation
     var fromItem: String = "comment"
-
     
     // MARK: - MetaDataSupport protocol implementation
     func set(tags: [String]?) {
