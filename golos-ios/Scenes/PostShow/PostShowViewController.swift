@@ -993,7 +993,7 @@ extension PostShowViewController {
                 self.commentsViews.removeAll()
 
                 guard let comments = CoreDataManager.instance.readEntities(withName:                    "Comment",
-                                                                           withPredicateParameters:     NSPredicate(format: "parentPermlink contains[c] %@", postShortInfo.permlink ?? "XXX"),
+                                                                           withPredicateParameters:     NSPredicate(format: "parentPermlink contains[cd] %@", postShortInfo.permlink ?? "XXX"),
                                                                            andSortDescriptor:           NSSortDescriptor(key: "created", ascending: true)) as? [Comment], comments.count > 0 else {
                                                                             self.didCommentsControlView(hided: true)
                                                                             return
@@ -1032,18 +1032,33 @@ extension PostShowViewController {
                     self.commentsViews.append(commentView)
 
                     // Load body content
-                    self.load(body: comment.body, forCommentView: commentView, completionLoadBody: {
-                        self.commentsCount += 1
+                    commentView.loadData(fromBody: comment.body, completion: { [weak self] viewHeight in
+                        commentView.frame = CGRect(origin: .zero, size: commentView.frame.size)
+                        self?.commentsViewsViewHeightConstraint.constant += viewHeight
+                        self?.view.layoutIfNeeded()
                         
-                        if self.commentsCount == comments.count {
+                        self?.commentsCount += 1
+                        
+                        if (self?.commentsCount)! == comments.count {
                             // Show comments count
-                            self.commentsViews = self.commentsViews.sorted(by: { $0.tag < $1.tag })
-                            self.commentsViews.forEach({ self.commentsViewsView.addSubview($0) })
-
-                            (self.commentsViewsView.subviews as! [CommentView]).forEach({ Logger.log(message: "tag = \($0.tag), level = \($0.level), author = \($0.authorNameButton.titleLabel!.text!)", event: .debug) })
-
-                            self.didCommentsControlView(hided: false)
-                            self.addedNewItem = false
+                            self?.commentsViews.sort(by: { $0.tag < $1.tag })
+                           
+                            var height: CGFloat = 0.0
+                            
+                            self?.commentsViews.forEach({
+                                if $0.tag == 0 {
+                                    height = $0.frame.height
+                                } else {
+                                    let nextCommentViewOrigin = CGPoint(x: 0.0, y: height)
+                                    $0.frame.origin = nextCommentViewOrigin
+                                    height += $0.frame.height
+                                }
+ 
+                                self?.commentsViewsView.addSubview($0)
+                            })
+                            
+                            self?.didCommentsControlView(hided: false)
+                            self?.addedNewItem = false
                         }
                     })
                 }
