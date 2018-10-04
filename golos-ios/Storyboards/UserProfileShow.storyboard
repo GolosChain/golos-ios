@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--User Profile Show View Controller-->
+        <!-- -->
         <scene sceneID="0DG-h1-0u8">
             <objects>
-                <viewController storyboardIdentifier="UserProfileShowVC" id="NXs-oA-1DJ" customClass="UserProfileShowViewController" customModule="Golos" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UserProfileShowVC" title=" " id="NXs-oA-1DJ" customClass="UserProfileShowViewController" customModule="Golos" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="43m-gv-AxQ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

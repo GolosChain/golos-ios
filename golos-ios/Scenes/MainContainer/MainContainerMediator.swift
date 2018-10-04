@@ -18,8 +18,13 @@ class MainContainerMediator: NSObject {
             
         case true:
             if AppSettings.instance().startWithWelcomeScene {
-                let storyboard  =   UIStoryboard(name: "WelcomeShow", bundle: nil)
-                viewController  =   storyboard.instantiateViewController(withIdentifier: "WelcomeShowNC") as! UINavigationController
+                // FIX-ME: - USE ONLY IN ALFA-VERSION
+                let storyboard  =   UIStoryboard(name: "LogInShow", bundle: nil)
+                viewController  =   storyboard.instantiateViewController(withIdentifier: "LogInShowNC") as! UINavigationController
+
+                // TODO: - USE IN BETA-VERSION
+//                let storyboard  =   UIStoryboard(name: "WelcomeShow", bundle: nil)
+//                viewController  =   storyboard.instantiateViewController(withIdentifier: "WelcomeShowNC") as! UINavigationController
             }
             
             else {
