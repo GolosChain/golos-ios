@@ -48,15 +48,15 @@ class PostsShowRouter: NSObject, PostsShowRoutingLogic, PostsShowDataPassing {
         
         // Handlers
         destinationVC.handlerPostShowSceneClose     =   { [weak self] isPostContentModify in
-            // Reload current cell content by indexPath
-            if isPostContentModify, let activeVC = self?.viewController?.containerView.activeVC {
-                activeVC.postsTableView.reloadRows(at: [(self?.dataStore?.postShortInfo?.indexPath)!], with: .automatic)
+            // Reload & refresh current cell content by indexPath
+            if isPostContentModify, let activeVC = self?.viewController?.containerView.activeVC, let postShortInfo = self?.dataStore?.postShortInfo, let indexPath = postShortInfo.indexPath {
+                RestAPIManager.loadModifiedPost(author: postShortInfo.author ?? "XXX", permlink: postShortInfo.permlink ?? "XXX", postType: activeVC.postType, completion: { model in
+                    if let postEntity = model {
+                        activeVC.postsList![indexPath.row] = postEntity
+                        activeVC.postsTableView.reloadRows(at: [indexPath], with: .automatic)
+                    }
+                })
             }
-
-//            if  let activeVC = self?.viewController?.containerView.activeVC,
-//                let postCell = activeVC.postsTableView.cellForRow(at: (self?.dataStore?.postShortInfo?.indexPath)!) as? PostFeedTableViewCell {
-//                postCell.setCommentsCount(value: commentsCount)
-//            }
         }
     }
     

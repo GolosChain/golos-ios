@@ -157,6 +157,27 @@ class RestAPIManager {
     }
     
     
+    /// Load modified Post
+    class func loadModifiedPost(author: String, permlink: String, postType: PostsFeedType, completion: @escaping (NSManagedObject?) -> Void) {
+        let content = RequestParameterAPI.Content(author: author, permlink: permlink, active_votes: 1_000)
+        
+        RestAPIManager.loadPost(byContent: content, andPostType: postType, completion: { errorAPI in
+            guard errorAPI == nil else {
+                completion(nil)
+                return
+            }
+            
+            guard let postEntity = CoreDataManager.instance.readEntity(withName:                  postType.caseTitle(),
+                                                                       andPredicateParameters:    NSPredicate(format: "author == %@ AND permlink == %@", author, permlink)) else {
+                                                                        completion(nil)
+                                                                        return
+            }
+            
+            completion(postEntity)
+        })
+    }
+
+    
     /// Load selected Post
     class func loadPost(byContent content: RequestParameterAPI.Content, andPostType postType: PostsFeedType, completion: @escaping (ErrorAPI?) -> Void) {
         // API 'get_content'
