@@ -51,6 +51,7 @@ class GSTableViewController: GSBaseViewController, HandlersCellSupport {
     var cellIdentifier: String  =   "PostFeedTableViewCell"
     
     var postType: PostsFeedType!
+    var postsList: [NSManagedObject]?
     
     // Handlers
     var handlerAnswerButtonTapped: ((PostShortInfo) -> Void)?
@@ -358,14 +359,20 @@ extension GSTableViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let sectionInfo = fetchedResultsController.sections![section]
+        let sectionInfo =   fetchedResultsController.sections![section]
         
-        return sectionInfo.numberOfObjects
+        guard let posts = sectionInfo.objects as? [NSManagedObject], posts.count > 0 else {
+            return 0
+        }
+       
+        self.postsList = posts
+        
+        return posts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell    =   self.postsTableView.dequeueReusableCell(withIdentifier: self.cellIdentifier, for: indexPath)
-        let entity  =   fetchedResultsController.object(at: indexPath) as! NSManagedObject
+        let entity  =   self.postsList![indexPath.row]
 
         (cell as! ConfigureCell).setup(withItem: entity, andIndexPath: indexPath)
         
@@ -404,7 +411,7 @@ extension GSTableViewController: UITableViewDataSource {
             }
             
             (cell as! PostFeedTableViewCell).handlerCommentsButtonTapped    =   { [weak self] postShortInfo in
-                let model = self?.fetchedResultsController.object(at: postShortInfo.indexPath!) as! PostCellSupport
+                let model = self?.postsList![indexPath.row] as! PostCellSupport
 
                 self?.handlerCommentsButtonTapped!(PostShortInfo(id:                model.id,
                                                                  title:             model.title,
@@ -436,7 +443,7 @@ extension GSTableViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        guard self.fetchedResultsController.sections![indexPath.section].numberOfObjects > 0 else {
+        guard let posts = self.postsList, posts.count > 0 else {
             return
         }
         
@@ -449,7 +456,7 @@ extension GSTableViewController: UITableViewDelegate {
             }
             
             self.lastIndex                  =   lastItemIndex
-            let lastElement                 =   fetchedResultsController.sections![indexPath.section].objects![self.lastIndex] as! NSManagedObject
+            let lastElement                 =   posts[self.lastIndex]
             self.infiniteScrollingData      =   true
 
             self.handlerPushRefreshData!(lastElement)
@@ -457,7 +464,7 @@ extension GSTableViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let model = fetchedResultsController.sections![indexPath.section].objects![indexPath.row] as? PostCellSupport {
+        if let model = self.postsList?[indexPath.row] as? PostCellSupport {
             self.handlerSelectItem!(PostShortInfo(id:               model.id,
                                                   title:            model.title,
                                                   author:           model.author,

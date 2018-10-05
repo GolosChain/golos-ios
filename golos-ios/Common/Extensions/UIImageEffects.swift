@@ -107,6 +107,10 @@ import GoloSwift
 import Accelerate
 
 public extension UIImage {
+    public func sidesAspectRatio() -> CGFloat {
+        return self.size.height / self.size.width
+    }
+    
     public func isEqualTo(image: UIImage) -> Bool {
         let data1: NSData   =   self.pngData()! as NSData
         let data2: NSData   =   image.pngData()! as NSData

@@ -177,7 +177,15 @@ extension PostFeedTableViewCell: ConfigureCell {
                                            size:            CGSize(width: UIScreen.main.bounds.width, height: 180.0 * heightRatio),
                                            tags:            model.tags,
                                            createdDate:     model.created,
-                                           fromItem:        (model as! CachedImageFrom).fromItem)
+                                           fromItem:        (model as! CachedImageFrom).fromItem,
+                                           completion:      { [weak self] sidesAspectRatio in
+                                            if sidesAspectRatio >= 1.0 { //}(375.0 / 180.0) {
+                                                DispatchQueue.main.async(execute: {
+                                                    self?.postImageViewHeightConstraint.constant = UIScreen.main.bounds.width * sidesAspectRatio
+                                                    self?.layoutIfNeeded()
+                                                })
+                                            }
+            })
         }
             
         // Hide post image

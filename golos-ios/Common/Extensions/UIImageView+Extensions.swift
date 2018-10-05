@@ -19,7 +19,7 @@ enum ImageType: String {
 
 extension UIImageView {
     /// Download image
-    func uploadImage(byStringPath path: String, imageType: ImageType, size: CGSize, tags: [String]?, createdDate: Date, fromItem: String) {
+    func uploadImage(byStringPath path: String, imageType: ImageType, size: CGSize, tags: [String]?, createdDate: Date, fromItem: String, completion: @escaping (CGFloat) -> Void) {
         let uploadedSize            =   CGSize(width: size.width * 3, height: size.height * 3)
         self.alpha                  =   0.0
         
@@ -49,9 +49,10 @@ extension UIImageView {
                 // Run queue in Async Thread
                 getImageFromCacheQueue.async {
                     if imageType == .userCoverImage {
-                        self.contentMode = cachedImage.size.width > cachedImage.size.height ? .scaleAspectFill : .scaleAspectFit
+                        self.contentMode = .scaleAspectFill // cachedImage.size.width > cachedImage.size.height ? .scaleAspectFill : .scaleAspectFit
                     }
                     
+                    completion(cachedImage.sidesAspectRatio())
                     self.fadeIn(image: cachedImage)
                 }
             }
@@ -67,6 +68,7 @@ extension UIImageView {
                             // Save image to NSCache
                             cacheApp.setObject(imageGIF, forKey: imageKey)
                         
+                            completion(imageGIF.sidesAspectRatio())
                             self.fadeIn(image: imageGIF)
                         }
                     }
@@ -80,20 +82,23 @@ extension UIImageView {
                     downloadImageQueue.async {
                         URLSession.shared.dataTask(with: imageURL) { data, _, error in
                             guard error == nil else {
+                                completion(UIImage(named: imagePlaceholderName)!.sidesAspectRatio())
                                 self.fadeIn(image: UIImage(named: imagePlaceholderName)!)
                                 return
                             }
                             
                             if let data = data, let downloadedImage = UIImage(data: data) {
                                 if imageType == .userCoverImage {
-                                    self.contentMode = downloadedImage.size.width > downloadedImage.size.height ? .scaleAspectFill : .scaleAspectFit
+                                    self.contentMode = .scaleAspectFill //downloadedImage.size.width > downloadedImage.size.height ? .scaleAspectFill : .scaleAspectFit
                                 }
                                 
                                 if downloadedImage.isEqualTo(image: UIImage(named: "image-mock-white")!) {
+                                    completion(UIImage(named: imagePlaceholderName)!.sidesAspectRatio())
                                     self.fadeIn(image: UIImage(named: imagePlaceholderName)!)
                                 }
                                     
                                 else {
+                                    completion(downloadedImage.sidesAspectRatio())
                                     self.fadeIn(image: downloadedImage)
                                 }
                                 
@@ -106,7 +111,7 @@ extension UIImageView {
                                 
                                 // Save ImageCached to CoreData
                                 let saveImageToCoreDataQueue = DispatchQueue.global(qos: .background)
-                                
+
                                 saveImageToCoreDataQueue.async {
                                     ImageCached.updateEntity(fromItem: fromItem, byDate: createdDate, andKey: imageKey as String)
                                 }
@@ -117,6 +122,7 @@ extension UIImageView {
                     
                 else {
                     self.fadeIn(image: UIImage(named: imagePlaceholderName)!)
+                    completion(UIImage(named: imagePlaceholderName)!.sidesAspectRatio())
                 }
             }
         }

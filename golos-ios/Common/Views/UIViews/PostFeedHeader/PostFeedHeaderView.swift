@@ -177,7 +177,8 @@ class PostFeedHeaderView: UIView {
                                                         size:           CGSize(width: 30.0, height: 30.0),
                                                         tags:           nil,
                                                         createdDate:    user.created.convert(toDateFormat: .expirationDateType),
-                                                        fromItem:       (user as CachedImageFrom).fromItem)
+                                                        fromItem:       (user as CachedImageFrom).fromItem,
+                                                        completion:     { _ in })
             }            
         }
         

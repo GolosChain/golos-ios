@@ -269,6 +269,17 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
                 
                 activeVC.handlerActiveVotesButtonTapped                 =   { [weak self] (isUpvote, indexPath) in
                     let requestModel = PostsShowModels.ActiveVote.RequestModel(isUpvote: isUpvote)
+                    
+                    guard isUpvote else {
+                        self?.showAlertView(withTitle: "Info", andMessage: "Cancel Vote Message", actionTitle: "ActionOk", needCancel: true, completion: { success in
+                            if success {
+                                self?.interactor?.upvote(withRequestModel: requestModel)
+                            }
+                        })
+                        
+                        return
+                    }
+                    
                     self?.interactor?.upvote(withRequestModel: requestModel)
                 }
                 

@@ -47,8 +47,9 @@ class PostsShowRouter: NSObject, PostsShowRoutingLogic, PostsShowDataPassing {
         navigateToPostShowScene(source: viewController!, destination: destinationVC)
         
         // Handlers
-        destinationVC.handlerCommentsCountReturn    =   { [weak self] commentsCount in
-            if  let activeVC = self?.viewController?.containerView.activeVC {
+        destinationVC.handlerPostShowSceneClose     =   { [weak self] isPostContentModify in
+            // Reload current cell content by indexPath
+            if isPostContentModify, let activeVC = self?.viewController?.containerView.activeVC {
                 activeVC.postsTableView.reloadRows(at: [(self?.dataStore?.postShortInfo?.indexPath)!], with: .automatic)
             }
 

@@ -48,11 +48,17 @@ class UserProfileShowRouter: NSObject, UserProfileShowRoutingLogic, UserProfileS
         navigateToPostShowScene(source: viewController!, destination: destinationVC)
         
         // Handlers
-        destinationVC.handlerCommentsCountReturn    =   { [weak self] commentsCount in
-            if  let activeVC = self?.viewController?.containerView.activeVC,
-                let postCell = activeVC.postsTableView.cellForRow(at: (self?.dataStore?.selectedBlog?.indexPath)!) as? PostFeedTableViewCell {
-                postCell.setCommentsCount(value: commentsCount)
+        destinationVC.handlerPostShowSceneClose     =   { [weak self] isPostContentModify in
+            // Reload current cell content by indexPath
+            if isPostContentModify, let activeVC = self?.viewController?.containerView.activeVC {
+                activeVC.postsTableView.reloadRows(at: [(self?.dataStore?.selectedBlog?.indexPath)!], with: .automatic)
             }
+
+//            if  isPostContentModify,
+//                let activeVC = self?.viewController?.containerView.activeVC,
+//                let postCell = activeVC.postsTableView.cellForRow(at: (self?.dataStore?.selectedBlog?.indexPath)!) as? PostFeedTableViewCell {
+//                postCell.setCommentsCount(value: commentsCount)
+//            }
         }
     }
 

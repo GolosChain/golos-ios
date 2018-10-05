@@ -139,7 +139,8 @@ class CommentView: UIView, HandlersCellSupport {
                                                              size:          CGSize(width: 40.0, height: 40.0),
                                                              tags:          nil,
                                                              createdDate:   author.created.convert(toDateFormat: .expirationDateType),
-                                                             fromItem:      (author as CachedImageFrom).fromItem)
+                                                             fromItem:      (author as CachedImageFrom).fromItem,
+                                                             completion:    { _ in })
                 }
             }
         })

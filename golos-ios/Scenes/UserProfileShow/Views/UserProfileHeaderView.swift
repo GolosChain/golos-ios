@@ -142,7 +142,8 @@ class UserProfileHeaderView: PassthroughView {
                                                   size:             CGSize(width: 80.0, height: 80.0),
                                                   tags:             nil,
                                                   createdDate:      userInfo.created.convert(toDateFormat: .expirationDateType),
-                                                  fromItem:         "user")
+                                                  fromItem:         "user",
+                                                  completion:       { _ in })
         }
         
         // Upload User cover image
@@ -162,7 +163,8 @@ class UserProfileHeaderView: PassthroughView {
                                                 size:               CGSize(width: 375.0, height: 240.0),
                                                 tags:               userInfo.selectTags,
                                                 createdDate:        userInfo.created.convert(toDateFormat: .expirationDateType),
-                                                fromItem:           (userInfo as CachedImageFrom).fromItem)
+                                                fromItem:           (userInfo as CachedImageFrom).fromItem,
+                                                completion:         { _ in })
             
             self.backgroundColor = UIColor.black.withAlphaComponent(0.3)
             UIApplication.shared.statusBarStyle     =   .lightContent

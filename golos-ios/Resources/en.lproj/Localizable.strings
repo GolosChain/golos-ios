@@ -147,8 +147,7 @@
 "Unknown User"                              =   "Unknown User";
 "Subscribe Success"                         =   "Thanks,\nYou subscribed to the author";
 "Unsubscribe Success"                       =   "Thanks,\nYou unsubscribed from the author";
-"Upvote Success"                            =   "Upvote Success";
-"Cancel Upvote Success"                     =   "Cancel Upvote Success";
+"Cancel Vote Message"                       =   "Deleting a voice will reset\nyour curator fees for this post";
 
 
 // Placeholders

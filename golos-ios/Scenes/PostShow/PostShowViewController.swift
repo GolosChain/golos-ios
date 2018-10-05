@@ -30,12 +30,11 @@ protocol PostShowDisplayLogic: class {
 class PostShowViewController: GSBaseViewController {
     // MARK: - Properties
     var commentsCount: Int64 = 0
-    var addedNewItem: Bool = false
-    var scrollCommentsDown: Bool = false
     var activeVotesCount: Int = 0
-    
-    var commentsTree: [Comment] = [Comment]()
     var commentsTreeIndex: Int = -1
+    var scrollCommentsDown: Bool = false
+    var isPostContentModify: Bool = false
+    var commentsTree: [Comment] = [Comment]()
 
     var commentsViews = [CommentView]() {
         didSet {
@@ -102,7 +101,7 @@ class PostShowViewController: GSBaseViewController {
     var router: (NSObjectProtocol & PostShowRoutingLogic & PostShowDataPassing)?
     
     // Handlers
-    var handlerCommentsCountReturn: ((Int64) -> Void)?
+    var handlerPostShowSceneClose: ((Bool) -> Void)?
 
     
     // MARK: - IBOutlets
@@ -642,12 +641,14 @@ class PostShowViewController: GSBaseViewController {
             // Subscribe User
             if  let author = self.router?.dataStore?.postShortInfo?.author,
                 let user = User.fetch(byNickName: author), let userProfileImageURL = user.profileImageURL {
-                self.userAvatarImageView.uploadImage(byStringPath:       userProfileImageURL,
-                                                     imageType:          .userProfileImage,
-                                                     size:               CGSize(width: 50.0, height: 50.0),
-                                                     tags:               nil,
-                                                     createdDate:        user.created.convert(toDateFormat: .expirationDateType),
-                                                     fromItem:           (user as CachedImageFrom).fromItem)
+                
+                self.userAvatarImageView.uploadImage(byStringPath:      userProfileImageURL,
+                                                     imageType:         .userProfileImage,
+                                                     size:              CGSize(width: 50.0, height: 50.0),
+                                                     tags:              nil,
+                                                     createdDate:       user.created.convert(toDateFormat: .expirationDateType),
+                                                     fromItem:          (user as CachedImageFrom).fromItem,
+                                                     completion:        { _ in })
             }
 
             self.userNameLabel.text = self.postFeedHeaderView.authorNameButton.titleLabel!.text
@@ -719,7 +720,7 @@ class PostShowViewController: GSBaseViewController {
     // MARK: - Actions
     @IBAction func backButtonTapped(_ sender: UIButton) {
         // Return comments count
-        self.handlerCommentsCountReturn!(self.commentsCount)
+        self.handlerPostShowSceneClose!(self.isPostContentModify)
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -749,6 +750,17 @@ class PostShowViewController: GSBaseViewController {
     
     @IBAction func activeVoteButtonTapped(_ sender: UIButton) {
         let requestModel = PostShowModels.ActiveVote.RequestModel(isUpvote: sender.tag == 0)
+
+        guard sender.tag == 0 else {
+            self.showAlertView(withTitle: "Info", andMessage: "Cancel Vote Message", actionTitle: "ActionOk", needCancel: true, completion: { [weak self] success in
+                if success {
+                    self?.interactor?.upvote(withRequestModel: requestModel)
+                }
+            })
+            
+            return
+        }
+        
         self.interactor?.upvote(withRequestModel: requestModel)
     }
 
@@ -912,13 +924,12 @@ extension PostShowViewController: PostShowDisplayLogic {
         }
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
-            self.showAlertView(withTitle: "Info", andMessage: (viewModel.isUpvote ? "Upvote Success" : "Cancel Upvote Success").localized(), needCancel: false, completion: { [weak self] _ in
-                // Active Vote button: change icon & count
-                self?.activeVotesCount     +=  viewModel.isUpvote ? 1 : -1
-                self?.activeVoteButton.tag  =   viewModel.isUpvote ? 99 : 0
-                self?.activeVoteButton.setTitle("\((self?.activeVotesCount)!)", for: .normal)
-                self?.activeVoteButton.setImage(UIImage(named: viewModel.isUpvote ? "icon-button-upvotes-selected" : "icon-button-upvotes-default"), for: .normal)
-            })
+            // Active Vote button: change icon & count
+            self.isPostContentModify    =   true
+            self.activeVotesCount       +=  viewModel.isUpvote ? 1 : -1
+            self.activeVoteButton.tag   =   viewModel.isUpvote ? 99 : 0
+            self.activeVoteButton.setTitle("\(self.activeVotesCount)", for: .normal)
+            self.activeVoteButton.setImage(UIImage(named: viewModel.isUpvote ? "icon-button-upvotes-selected" : "icon-button-upvotes-default"), for: .normal)
         }
     }
 }
@@ -1099,7 +1110,6 @@ extension PostShowViewController {
                             })
                             
                             self?.didCommentsControlView(hided: false)
-                            self?.addedNewItem = false
                         }
                     })
                 }
