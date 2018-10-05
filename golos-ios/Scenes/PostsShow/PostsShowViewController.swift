@@ -267,7 +267,9 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
                     self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
                 }
                 
-                activeVC.handlerActiveVotesButtonTapped                 =   { [weak self] (isUpvote, indexPath) in
+                activeVC.handlerActiveVotesButtonTapped                 =   { [weak self] (isUpvote, postShortInfo) in
+                    self?.interactor?.save(postShortInfo: postShortInfo)
+ 
                     let requestModel = PostsShowModels.ActiveVote.RequestModel(isUpvote: isUpvote)
                     
                     guard isUpvote else {
@@ -369,14 +371,16 @@ extension PostsShowViewController: PostsShowDisplayLogic {
             return
         }
         
+        // Reload & refresh current cell content by indexPath
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
-            self.showAlertView(withTitle: "Info", andMessage: (viewModel.isUpvote ? "Upvote Success" : "Cancel Upvote Success").localized(), needCancel: false, completion: { [weak self] _ in
-                // Active Vote button: change icon & count
-//                self?.activeVotesCount     +=  viewModel.isUpvote ? 1 : -1
-//                self?.activeVoteButton.tag  =   viewModel.isUpvote ? 99 : 0
-//                self?.activeVoteButton.setTitle("\((self?.activeVotesCount)!)", for: .normal)
-//                self?.activeVoteButton.setImage(UIImage(named: viewModel.isUpvote ? "icon-button-upvotes-selected" : "icon-button-upvotes-default"), for: .normal)
-            })
+            if let activeVC = self.containerView.activeVC, let postShortInfo = self.router?.dataStore?.postShortInfo, let indexPath = postShortInfo.indexPath {
+                RestAPIManager.loadModifiedPost(author: postShortInfo.author ?? "XXX", permlink: postShortInfo.permlink ?? "XXX", postType: activeVC.postType, completion: { model in
+                    if let postEntity = model {
+                        activeVC.postsList![indexPath.row] = postEntity
+                        activeVC.postsTableView.reloadRows(at: [indexPath], with: .automatic)
+                    }
+                })
+            }
         }
     }
 }
