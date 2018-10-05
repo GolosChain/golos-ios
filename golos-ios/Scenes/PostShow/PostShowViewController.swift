@@ -629,7 +629,7 @@ class PostShowViewController: GSBaseViewController {
             }
             
             // Set Active Votes icon
-            self.activeVotesCount       =   Int(displayedPost.activeVotesCount)
+            self.activeVotesCount       =   Int(displayedPost.netVotes)
             self.activeVoteButton.tag   =   displayedPost.currentUserVoted ? 99 : 0
             self.activeVoteButton.setTitle(self.activeVotesCount > 0 ? "\(self.activeVotesCount)" : nil, for: .normal)
             self.activeVoteButton.setImage(UIImage(named: displayedPost.currentUserVoted ? "icon-button-upvotes-selected" : "icon-button-upvotes-default"), for: .normal)

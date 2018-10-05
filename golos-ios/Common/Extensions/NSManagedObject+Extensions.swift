@@ -42,6 +42,7 @@ extension NSManagedObject {
             entity.url                          =   model.url
             entity.pendingPayoutValue           =   (model.pending_payout_value as NSString).floatValue
             entity.children                     =   Int64(model.children)
+            entity.netVotes                     =   model.net_votes
             
             if let authorReputation = model.author_reputation.stringValue {
                 entity.authorReputation         =   authorReputation
@@ -57,24 +58,21 @@ extension NSManagedObject {
                                                         .convertUsersAccounts()
             
             // Set Active Vote values
-            if model.active_votes.count > 0 {
-                entity.activeVotesCount         =   Int64(model.active_votes.filter({  $0.weight.stringValue! != "0" }).count)
+            if model.net_votes > 0, let user = User.current {
+                model.active_votes.forEach({ activeVote in
+                    if activeVote.voter == user.nickName {
+                        switch activeVote.percent {
+                        case activeVote.percent where activeVote.percent == 0:
+                            entity.currentUserVoted = false
 
-                if let user = User.current {
-                    model.active_votes.forEach({ activeVote in
-                        if activeVote.voter == user.nickName {
-                            if let weight = activeVote.weight.stringValue {
-                                if weight.hasPrefix("-") {
-                                    entity.currentUserFlaunted  =   true
-                                }
-                                
-                                else {
-                                    entity.currentUserVoted     =   weight != "0"
-                                }
-                            }
+                        case activeVote.percent where activeVote.percent > 0:
+                            entity.currentUserVoted = true
+
+                        default:
+                            entity.currentUserFlaunted = true
                         }
-                    })
-                }
+                    }
+                })
             }
             
             

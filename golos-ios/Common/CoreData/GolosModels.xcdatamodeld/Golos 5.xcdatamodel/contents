@@ -11,7 +11,6 @@
     </entity>
     <entity name="Actual" representedClassName="Actual" syncable="YES">
         <attribute name="active" attributeType="Date" defaultDateTimeInterval="555426480" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="activeVotesCount" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="allowReplies" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="allowVotes" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="author" attributeType="String" defaultValueString="XXX" syncable="YES"/>
@@ -29,6 +28,7 @@
         <attribute name="jsonMetadata" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastPayout" attributeType="Date" defaultDateTimeInterval="555426540" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="lastUpdate" attributeType="Date" defaultDateTimeInterval="555426540" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="netVotes" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="parentAuthor" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="parentPermlink" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="pendingPayoutValue" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
@@ -56,7 +56,6 @@
     </entity>
     <entity name="Blog" representedClassName="Blog" syncable="YES">
         <attribute name="active" attributeType="Date" defaultDateTimeInterval="555426540" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="activeVotesCount" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="allowReplies" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="allowVotes" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="author" attributeType="String" defaultValueString="XXX" syncable="YES"/>
@@ -74,6 +73,7 @@
         <attribute name="jsonMetadata" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastPayout" attributeType="Date" defaultDateTimeInterval="555426540" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="lastUpdate" attributeType="Date" defaultDateTimeInterval="555426540" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="netVotes" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="parentAuthor" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="parentPermlink" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="pendingPayoutValue" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
@@ -92,7 +92,6 @@
     </entity>
     <entity name="Comment" representedClassName="Comment" syncable="YES">
         <attribute name="active" attributeType="Date" defaultDateTimeInterval="555426540" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="activeVotesCount" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="allowReplies" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="allowVotes" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="author" attributeType="String" defaultValueString="XXX" syncable="YES"/>
@@ -110,6 +109,7 @@
         <attribute name="jsonMetadata" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastPayout" attributeType="Date" defaultDateTimeInterval="555426600" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="lastUpdate" attributeType="Date" defaultDateTimeInterval="555426600" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="netVotes" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="parentAuthor" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="parentPermlink" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="pendingPayoutValue" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
@@ -137,7 +137,6 @@
     </entity>
     <entity name="Lenta" representedClassName="Lenta" syncable="YES">
         <attribute name="active" attributeType="Date" defaultDateTimeInterval="555426480" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="activeVotesCount" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="allowReplies" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="allowVotes" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="author" attributeType="String" defaultValueString="XXX" syncable="YES"/>
@@ -155,6 +154,7 @@
         <attribute name="jsonMetadata" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastPayout" attributeType="Date" defaultDateTimeInterval="555426480" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="lastUpdate" attributeType="Date" defaultDateTimeInterval="555426480" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="netVotes" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="parentAuthor" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="parentPermlink" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="pendingPayoutValue" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
@@ -173,7 +173,6 @@
     </entity>
     <entity name="New" representedClassName="New" syncable="YES">
         <attribute name="active" attributeType="Date" defaultDateTimeInterval="555426600" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="activeVotesCount" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="allowReplies" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="allowVotes" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="author" attributeType="String" defaultValueString="XXX" syncable="YES"/>
@@ -191,6 +190,7 @@
         <attribute name="jsonMetadata" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastPayout" attributeType="Date" defaultDateTimeInterval="555426600" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="lastUpdate" attributeType="Date" defaultDateTimeInterval="555426600" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="netVotes" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="parentAuthor" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="parentPermlink" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="pendingPayoutValue" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
@@ -208,7 +208,6 @@
     </entity>
     <entity name="Popular" representedClassName="Popular" syncable="YES">
         <attribute name="active" attributeType="Date" defaultDateTimeInterval="555426600" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="activeVotesCount" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="allowReplies" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="allowVotes" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="author" attributeType="String" defaultValueString="XXX" syncable="YES"/>
@@ -226,6 +225,7 @@
         <attribute name="jsonMetadata" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastPayout" attributeType="Date" defaultDateTimeInterval="555426600" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="lastUpdate" attributeType="Date" defaultDateTimeInterval="555426600" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="netVotes" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="parentAuthor" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="parentPermlink" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="pendingPayoutValue" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
@@ -243,7 +243,6 @@
     </entity>
     <entity name="Promo" representedClassName="Promo" syncable="YES">
         <attribute name="active" attributeType="Date" defaultDateTimeInterval="555426600" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="activeVotesCount" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="allowReplies" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="allowVotes" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="author" attributeType="String" defaultValueString="XXX" syncable="YES"/>
@@ -261,6 +260,7 @@
         <attribute name="jsonMetadata" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastPayout" attributeType="Date" defaultDateTimeInterval="555426600" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="lastUpdate" attributeType="Date" defaultDateTimeInterval="555426600" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="netVotes" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="parentAuthor" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="parentPermlink" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="pendingPayoutValue" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
@@ -278,7 +278,6 @@
     </entity>
     <entity name="Reply" representedClassName="Reply" syncable="YES">
         <attribute name="active" attributeType="Date" defaultDateTimeInterval="555426660" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="activeVotesCount" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="allowReplies" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="allowVotes" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="author" attributeType="String" defaultValueString="XXX" syncable="YES"/>
@@ -296,6 +295,7 @@
         <attribute name="jsonMetadata" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastPayout" attributeType="Date" defaultDateTimeInterval="555426660" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="lastUpdate" attributeType="Date" defaultDateTimeInterval="555426660" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="netVotes" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="parentAuthor" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="parentPermlink" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="pendingPayoutValue" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>

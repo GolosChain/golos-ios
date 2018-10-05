@@ -35,7 +35,7 @@ extension Actual: PostCellSupport {
     @NSManaged public var pendingPayoutValue: Float
     @NSManaged public var children: Int64
 
-    @NSManaged public var activeVotesCount: Int64
+    @NSManaged public var netVotes: Int64
     @NSManaged public var currentUserVoted: Bool
 
     @NSManaged public var commentsCount: Int64

@@ -23,7 +23,7 @@ protocol PostCellSupport: PaginationSupport, MetaDataSupport {
     var pendingPayoutValue: Float { get set }
     var children: Int64 { get set }
     
-    var activeVotesCount: Int64 { get set }
+    var netVotes: Int64 { get set }
     var currentUserVoted: Bool { get set }
     
     var commentsCount: Int64 { get set }

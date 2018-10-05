@@ -167,7 +167,7 @@ extension PostFeedTableViewCell: ConfigureCell {
         
         // Set Active Votes icon
         self.activeVotesButton.tag = model.currentUserVoted ? 99 : 0
-        self.activeVotesButton.setTitle(model.activeVotesCount > 0 ? "\(model.activeVotesCount)" : nil, for: .normal)
+        self.activeVotesButton.setTitle(model.netVotes > 0 ? "\(model.netVotes)" : nil, for: .normal)
         self.activeVotesButton.setImage(UIImage(named: model.currentUserVoted ? "icon-button-upvotes-selected" : "icon-button-upvotes-default"), for: .normal)
         
         // Load model user cover image
