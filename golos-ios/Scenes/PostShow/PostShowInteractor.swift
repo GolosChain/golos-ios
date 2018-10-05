@@ -22,6 +22,7 @@ protocol PostShowBusinessLogic {
     func loadContent(withRequestModel requestModel: PostShowModels.Post.RequestModel)
     func loadContentComments(withRequestModel requestModel: PostShowModels.Post.RequestModel)
     func checkFollowing(withRequestModel requestModel: PostShowModels.Following.RequestModel)
+    func upvote(withRequestModel requestModel: PostShowModels.ActiveVote.RequestModel)
 }
 
 protocol PostShowDataStore {
@@ -34,7 +35,6 @@ protocol PostShowDataStore {
 class PostShowInteractor: PostShowBusinessLogic, PostShowDataStore {
     // MARK: - Properties
     var presenter: PostShowPresentationLogic?
-    var worker: PostShowWorker?
     
     // PostShowDataStore protocol implementation
     var comment: PostShortInfo?
@@ -65,7 +65,7 @@ class PostShowInteractor: PostShowBusinessLogic, PostShowDataStore {
     
     func loadContent(withRequestModel requestModel: PostShowModels.Post.RequestModel) {
         // API 'get_content'
-        let content = RequestParameterAPI.Content(author: self.postShortInfo?.author ?? "XXX", permlink: self.postShortInfo?.permlink ?? "XXX")
+        let content = RequestParameterAPI.Content(author: self.postShortInfo?.author ?? "XXX", permlink: self.postShortInfo?.permlink ?? "XXX", active_votes: 1_000)
         
         RestAPIManager.loadPost(byContent: content, andPostType: self.postType!, completion: { [weak self] errorAPI in
             guard errorAPI?.caseInfo.message != "No Internet Connection" || !(errorAPI?.caseInfo.message.hasSuffix("timing"))! else {
@@ -134,5 +134,12 @@ class PostShowInteractor: PostShowBusinessLogic, PostShowDataStore {
                                     self?.presenter?.presentSubscribe(fromResponseModel: responseModel)
             })
         }
+    }
+    
+    func upvote(withRequestModel requestModel: PostShowModels.ActiveVote.RequestModel) {
+        RestAPIManager.vote(up: requestModel.isUpvote, postShortInfo: self.postShortInfo!, completion: { [weak self] errorAPI in
+            let responseModel = PostShowModels.ActiveVote.ResponseModel(isUpvote: requestModel.isUpvote, errorAPI: errorAPI)
+            self?.presenter?.presentUpvote(fromResponseModel: responseModel)
+        })
     }
 }

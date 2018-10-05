@@ -424,7 +424,7 @@ extension UserProfileShowViewController {
                     self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
                 }
                 
-                activeVC.handlerUpvotesButtonTapped     =   { [weak self] in
+                activeVC.handlerActiveVotesButtonTapped     =   { [weak self] (isUpvote, indexPath) in
                     self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
                 }
                 

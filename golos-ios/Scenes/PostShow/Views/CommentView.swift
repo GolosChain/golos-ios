@@ -26,9 +26,9 @@ class CommentView: UIView, HandlersCellSupport {
 
     // HandlersCellSupport
     var handlerShareButtonTapped: (() -> Void)?
-    var handlerUpvotesButtonTapped: (() -> Void)?
     var handlerCommentsButtonTapped: ((PostShortInfo) -> Void)?
-
+    var handlerActiveVotesButtonTapped: ((Bool, PostShortInfo) -> Void)?
+    
     
     // MARK: - IBOutlets
     @IBOutlet var view: UIView!
@@ -103,7 +103,7 @@ class CommentView: UIView, HandlersCellSupport {
 
     
     // MARK: - Class Initialization
-    init(withComment comment: Comment, atLevel level: Int) {
+    init(withComment comment: Comment, atLevel level: Int, andIndexPath indexPath: IndexPath) {
         super.init(frame: CGRect.init(origin: .zero, size: CGSize.init(width: 351.0 * widthRatio, height: 85.0)))
         
         createFromXIB()
@@ -115,7 +115,7 @@ class CommentView: UIView, HandlersCellSupport {
                                                   author:           comment.author,
                                                   permlink:         comment.permlink,
                                                   parentTag:        comment.tags?.first,
-                                                  indexPath:        nil,
+                                                  indexPath:        indexPath,
                                                   parentAuthor:     comment.parentAuthor,
                                                   parentPermlink:   comment.parentPermlink)
 
@@ -218,7 +218,7 @@ class CommentView: UIView, HandlersCellSupport {
     
     // Action buttons
     @IBAction func upvotesButtonTapped(_ sender: UIButton) {
-        self.handlerUpvotesButtonTapped!()
+        self.handlerActiveVotesButtonTapped!(sender.tag == 0, self.postShortInfo)
     }
     
     @IBAction func usersButtonTapped(_ sender: UIButton) {

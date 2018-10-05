@@ -48,10 +48,14 @@ class PostsShowRouter: NSObject, PostsShowRoutingLogic, PostsShowDataPassing {
         
         // Handlers
         destinationVC.handlerCommentsCountReturn    =   { [weak self] commentsCount in
-            if  let activeVC = self?.viewController?.containerView.activeVC,
-                let postCell = activeVC.postsTableView.cellForRow(at: (self?.dataStore?.postShortInfo?.indexPath)!) as? PostFeedTableViewCell {
-                postCell.setCommentsCount(value: commentsCount)
+            if  let activeVC = self?.viewController?.containerView.activeVC {
+                activeVC.postsTableView.reloadRows(at: [(self?.dataStore?.postShortInfo?.indexPath)!], with: .automatic)
             }
+
+//            if  let activeVC = self?.viewController?.containerView.activeVC,
+//                let postCell = activeVC.postsTableView.cellForRow(at: (self?.dataStore?.postShortInfo?.indexPath)!) as? PostFeedTableViewCell {
+//                postCell.setCommentsCount(value: commentsCount)
+//            }
         }
     }
     

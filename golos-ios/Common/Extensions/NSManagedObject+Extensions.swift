@@ -55,19 +55,21 @@ extension NSManagedObject {
             entity.body                         =   model.body
                                                         .convertImagePathToMarkdown()
                                                         .convertUsersAccounts()
-
-            // Set ActiveVote values
+            
+            // Set Active Vote values
             if model.active_votes.count > 0 {
-                entity.activeVotesCount         =   Int64(model.active_votes.count)
-                
+                entity.activeVotesCount         =   Int64(model.active_votes.filter({  $0.weight.stringValue! != "0" }).count)
+
                 if let user = User.current {
                     model.active_votes.forEach({ activeVote in
                         if activeVote.voter == user.nickName {
                             if let weight = activeVote.weight.stringValue {
                                 if weight.hasPrefix("-") {
                                     entity.currentUserFlaunted  =   true
-                                } else {
-                                    entity.currentUserVoted     =   true
+                                }
+                                
+                                else {
+                                    entity.currentUserVoted     =   weight != "0"
                                 }
                             }
                         }

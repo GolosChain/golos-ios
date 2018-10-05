@@ -63,7 +63,7 @@
                                 <action selector="authorProfileImageButtonTapped:" destination="-1" eventType="touchUpInside" id="c5H-AB-tKT"/>
                             </connections>
                         </button>
-                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yNw-9n-yzN" userLabel="Background View">
+                        <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yNw-9n-yzN" userLabel="Background View">
                             <rect key="frame" x="2" y="25" width="20" height="20"/>
                             <subviews>
                                 <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cy5-Ia-Z4f" userLabel="Author Profile Image Add Button">

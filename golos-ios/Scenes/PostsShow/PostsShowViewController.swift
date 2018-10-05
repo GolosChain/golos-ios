@@ -21,6 +21,7 @@ typealias LoadDataCondition = (isRefreshData: Bool, isInfiniteScrolling: Bool)
 // MARK: - Input & Output protocols
 protocol PostsShowDisplayLogic: class {
     func displayLoadPosts(fromViewModel viewModel: PostsShowModels.Items.ViewModel)
+    func displayUpvote(fromViewModel viewModel: PostsShowModels.ActiveVote.ViewModel)
 }
 
 class PostsShowViewController: GSTableViewController, ContainerViewSupport {
@@ -266,8 +267,9 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
                     self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
                 }
                 
-                activeVC.handlerUpvotesButtonTapped                 =   { [weak self] in
-                    self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+                activeVC.handlerActiveVotesButtonTapped                 =   { [weak self] (isUpvote, indexPath) in
+                    let requestModel = PostsShowModels.ActiveVote.RequestModel(isUpvote: isUpvote)
+                    self?.interactor?.upvote(withRequestModel: requestModel)
                 }
                 
                 activeVC.handlerCommentsButtonTapped                =   { [weak self] postShortInfo in
@@ -344,6 +346,27 @@ extension PostsShowViewController: PostsShowDisplayLogic {
         
         // CoreData
         self.fetchPosts()
+    }
+    
+    func displayUpvote(fromViewModel viewModel: PostsShowModels.ActiveVote.ViewModel) {
+        // NOTE: Display the result from the Presenter
+        guard viewModel.errorAPI == nil else {
+            if let message = viewModel.errorAPI?.caseInfo.message {
+                self.showAlertView(withTitle: viewModel.errorAPI!.caseInfo.title, andMessage: message, needCancel: false, completion: { _ in })
+            }
+            
+            return
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
+            self.showAlertView(withTitle: "Info", andMessage: (viewModel.isUpvote ? "Upvote Success" : "Cancel Upvote Success").localized(), needCancel: false, completion: { [weak self] _ in
+                // Active Vote button: change icon & count
+//                self?.activeVotesCount     +=  viewModel.isUpvote ? 1 : -1
+//                self?.activeVoteButton.tag  =   viewModel.isUpvote ? 99 : 0
+//                self?.activeVoteButton.setTitle("\((self?.activeVotesCount)!)", for: .normal)
+//                self?.activeVoteButton.setImage(UIImage(named: viewModel.isUpvote ? "icon-button-upvotes-selected" : "icon-button-upvotes-default"), for: .normal)
+            })
+        }
     }
 }
 

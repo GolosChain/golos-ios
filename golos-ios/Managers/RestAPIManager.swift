@@ -340,4 +340,37 @@ class RestAPIManager {
             completion(ErrorAPI.requestFailed(message: "No Internet Connection"))
         }
     }
+    
+    
+    /// Upvote
+    class func vote(up: Bool, postShortInfo: PostShortInfo, completion: @escaping (ErrorAPI?) -> Void) {
+        let vote    =   RequestParameterAPI.Vote(voter:         User.current!.nickName,
+                                                 author:        postShortInfo.author ?? "XXX",
+                                                 permlink:      postShortInfo.permlink ?? "XXX",
+                                                 weight:        up ? 10_000 : 0)
+
+        let operationAPIType = OperationAPIType.vote(fields: vote)
+        
+        // Run API
+        let postRequestQueue = DispatchQueue.global(qos: .background)
+        
+        // Run queue in Async Thread
+        postRequestQueue.async {
+            broadcast.executePOST(requestByOperationAPIType:    operationAPIType,
+                                  userNickName:                 User.current!.nickName,
+                                  onResult:                     { responseAPIResult in
+                                    var errorAPI: ErrorAPI?
+                                    
+                                    if let error = (responseAPIResult as! ResponseAPIBlockchainPostResult).error {
+                                        errorAPI = ErrorAPI.requestFailed(message: error.message)
+                                    }
+                                    
+                                    completion(errorAPI)
+                },
+                                  onError: { errorAPI in
+                                    Logger.log(message: "nresponse API Error = \(errorAPI.caseInfo.message)\n", event: .error)
+                                    completion(errorAPI)
+            })
+        }
+    }
 }

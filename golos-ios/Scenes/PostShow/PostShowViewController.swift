@@ -24,6 +24,7 @@ protocol PostShowDisplayLogic: class {
     func displayLoadContent(fromViewModel viewModel: PostShowModels.Post.ViewModel)
     func displayLoadContentComments(fromViewModel viewModel: PostShowModels.Post.ViewModel)
     func displayCheckFollowing(fromViewModel viewModel: PostShowModels.Following.ViewModel)
+    func displayUpvote(fromViewModel viewModel: PostShowModels.ActiveVote.ViewModel)
 }
 
 class PostShowViewController: GSBaseViewController {
@@ -31,12 +32,16 @@ class PostShowViewController: GSBaseViewController {
     var commentsCount: Int64 = 0
     var addedNewItem: Bool = false
     var scrollCommentsDown: Bool = false
+    var activeVotesCount: Int = 0
+    
+    var commentsTree: [Comment] = [Comment]()
+    var commentsTreeIndex: Int = -1
 
     var commentsViews = [CommentView]() {
         didSet {
             self.commentsViews.forEach( { commentView in
                 // Handlers
-                commentView.handlerUpvotesButtonTapped                  =   { [weak self] in
+                commentView.handlerActiveVotesButtonTapped                  =   { [weak self] (isUpvote, indexPath) in
                     self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
                 }
                 
@@ -208,14 +213,14 @@ class PostShowViewController: GSBaseViewController {
         }
     }
     
-    @IBOutlet weak var upvoteButton: UIButton! {
+    @IBOutlet weak var activeVoteButton: UIButton! {
         didSet {
-            upvoteButton.tune(withTitle:        "",
+            activeVoteButton.tune(withTitle:    "",
                               hexColors:        [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
                               font:             UIFont(name: "SFProDisplay-Regular", size: 10.0),
                               alignment:        .left)
             
-            upvoteButton.isEnabled      =   true
+            activeVoteButton.isEnabled  =   true
         }
     }
     
@@ -623,16 +628,11 @@ class PostShowViewController: GSBaseViewController {
                 })
             }
             
-            // Set upvotes icon
-            if displayedPost.activeVotesCount > 0 {
-                self.upvoteButton.setTitle("\(displayedPost.activeVotesCount)", for: .normal)
-                self.upvoteButton.isSelected = displayedPost.currentUserVoted
-
-                if self.upvoteButton.isSelected {
-                    self.upvoteButton.alpha = 1.0
-                    Logger.log(message: "Set green upvote icon", event: .debug)
-                }
-            }
+            // Set Active Votes icon
+            self.activeVotesCount       =   Int(displayedPost.activeVotesCount)
+            self.activeVoteButton.tag   =   displayedPost.currentUserVoted ? 99 : 0
+            self.activeVoteButton.setTitle(self.activeVotesCount > 0 ? "\(self.activeVotesCount)" : nil, for: .normal)
+            self.activeVoteButton.setImage(UIImage(named: displayedPost.currentUserVoted ? "icon-button-upvotes-selected" : "icon-button-upvotes-default"), for: .normal)
 
             // Subscribe topic
             if let firstTag = displayedPost.tags?.first {
@@ -747,8 +747,9 @@ class PostShowViewController: GSBaseViewController {
         }
     }
     
-    @IBAction func upvoteButtonTapped(_ sender: UIButton) {
-        self.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+    @IBAction func activeVoteButtonTapped(_ sender: UIButton) {
+        let requestModel = PostShowModels.ActiveVote.RequestModel(isUpvote: sender.tag == 0)
+        self.interactor?.upvote(withRequestModel: requestModel)
     }
 
     @IBAction func usersButtonTapped(_ sender: UIButton) {
@@ -899,6 +900,27 @@ extension PostShowViewController: PostShowDisplayLogic {
             self.subscribeButtonsCollection.first(where: { $0.tag == 1 })?.setTitle(viewModel.isFollowing ? "Unsubscribe".localized() : "Subscribe".localized(), for: .normal)
         }
     }
+    
+    func displayUpvote(fromViewModel viewModel: PostShowModels.ActiveVote.ViewModel) {
+        // NOTE: Display the result from the Presenter
+        guard viewModel.errorAPI == nil else {
+            if let message = viewModel.errorAPI?.caseInfo.message {
+                self.showAlertView(withTitle: viewModel.errorAPI!.caseInfo.title, andMessage: message, needCancel: false, completion: { _ in })
+            }
+            
+            return
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
+            self.showAlertView(withTitle: "Info", andMessage: (viewModel.isUpvote ? "Upvote Success" : "Cancel Upvote Success").localized(), needCancel: false, completion: { [weak self] _ in
+                // Active Vote button: change icon & count
+                self?.activeVotesCount     +=  viewModel.isUpvote ? 1 : -1
+                self?.activeVoteButton.tag  =   viewModel.isUpvote ? 99 : 0
+                self?.activeVoteButton.setTitle("\((self?.activeVotesCount)!)", for: .normal)
+                self?.activeVoteButton.setImage(UIImage(named: viewModel.isUpvote ? "icon-button-upvotes-selected" : "icon-button-upvotes-default"), for: .normal)
+            })
+        }
+    }
 }
 
 
@@ -981,19 +1003,35 @@ extension PostShowViewController {
         }
     }
     
+    //
+    private func search(comments: [Comment], byCurrentLevel currentLevelComment: Comment, completion: @escaping () -> Void) {
+        let commentsByCurrentLevel = comments.filter({ $0.parentPermlink!.contains(currentLevelComment.permlink) && $0.parentPermlink!.contains("re-") }).sorted(by: { $0.created < $1.created })
+        
+        if commentsByCurrentLevel.count > 0 {
+            commentsByCurrentLevel.forEach({
+                commentsTreeIndex += commentsByCurrentLevel.index(of: $0)! + 1
+                $0.treeIndex = commentsTreeIndex
+                commentsTree.append($0)
+                
+                search(comments: comments, byCurrentLevel: $0, completion: {
+                    completion()
+                })
+            })
+        } else {
+            completion()
+        }
+    }
+    
     // Post Comments list
     private func fetchComments() {
         if let postShortInfo = self.router?.dataStore?.postShortInfo {
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1, execute: {
-                var commentsTree: [Comment] = [Comment]()
-                var commentsTreeIndex: Int = -1
-                
                 // Remove subviews in Stack view
                 self.commentsViews.forEach({ $0.removeFromSuperview() })
                 self.commentsViews.removeAll()
-
+                
                 guard let comments = CoreDataManager.instance.readEntities(withName:                    "Comment",
-                                                                           withPredicateParameters:     NSPredicate(format: "parentPermlink contains[cd] %@", postShortInfo.permlink ?? "XXX"),
+                                                                           withPredicateParameters:     NSPredicate(format: "url contains[cd] %@ AND url contains[cd] %@", postShortInfo.author ?? "XXX", postShortInfo.permlink ?? "XXX"),
                                                                            andSortDescriptor:           NSSortDescriptor(key: "created", ascending: true)) as? [Comment], comments.count > 0 else {
                                                                             self.didCommentsControlView(hided: true)
                                                                             return
@@ -1002,31 +1040,34 @@ extension PostShowViewController {
                 self.commentsViewsViewHeightConstraint.constant = 0.0
                 
                 // Filter & sort comments first level
-                let commentsFirstLevel = comments.filter({ !$0.parentPermlink!.contains("re-") }).sorted(by: { $0.created < $1.created })
+                let commentsFirstLevel = comments.count == 1 ?  comments :
+                                                                comments.filter({ !$0.parentPermlink!.contains("-re-") && !$0.parentPermlink!.hasPrefix("re-") }).sorted(by: { $0.created < $1.created })
                 
                 // Create hierarchical tree
                 for commentFirstLevel in commentsFirstLevel {
-                    commentsTreeIndex += 1
-                    commentFirstLevel.treeIndex = commentsTreeIndex
-                    commentsTree.append(commentFirstLevel)
+                    self.commentsTreeIndex += 1
+                    commentFirstLevel.treeIndex = self.commentsTreeIndex
+                    self.commentsTree.append(commentFirstLevel)
                     
-                    let commentsByFirstLevel = comments.filter({ $0.parentPermlink!.contains(commentFirstLevel.permlink) && $0.parentPermlink!.hasPrefix("re-") }).sorted(by: { $0.created < $1.created })
+                    let commentsByFirstLevel = comments.filter({ $0.parentPermlink!.contains(commentFirstLevel.permlink) && $0.parentPermlink!.contains("re-") }).sorted(by: { $0.created < $1.created })
                     
                     if commentsByFirstLevel.count > 0 {
                         commentsByFirstLevel.forEach({
-                            commentsTreeIndex += commentsByFirstLevel.index(of: $0)! + 1
-                            $0.treeIndex = commentsTreeIndex
-                            commentsTree.append($0)
+                            self.commentsTreeIndex += commentsByFirstLevel.index(of: $0)! + 1
+                            $0.treeIndex = self.commentsTreeIndex
+                            self.commentsTree.append($0)
+                            
+                            self.search(comments: comments, byCurrentLevel: $0, completion: {})
                         })
                     }
                 }
 
-                commentsTree.forEach({ Logger.log(message: "treeIndex = \($0.treeIndex), author = \($0.author)", event: .debug) })
+                self.commentsTree.forEach({ Logger.log(message: "treeIndex = \($0.treeIndex), author = \($0.author)", event: .debug) })
                 
                 // Create comments views view
-                for comment in commentsTree {
-                    let level = comment.parentPermlink!.hasPrefix("re-") ? 1 : 0
-                    let commentView = CommentView.init(withComment: comment, atLevel: level)
+                for comment in self.commentsTree {
+                    let level = comment.parentPermlink! == postShortInfo.permlink ? 0 : 1 // .hasPrefix("re-") ? 1 : 0
+                    let commentView = CommentView.init(withComment: comment, atLevel: level, andIndexPath: IndexPath(row: comment.treeIndex, section: 0))
                     commentView.tag = comment.treeIndex
 
                     self.commentsViews.append(commentView)

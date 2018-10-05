@@ -66,14 +66,14 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sort by" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NIC-bg-8Kq" userLabel="Sort By Label">
+                                                    <label hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sort by" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NIC-bg-8Kq" userLabel="Sort By Label">
                                                         <rect key="frame" x="16" y="40.5" width="55.5" height="20.5"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bfp-bA-aPN" userLabel="Sort Comments By Button">
+                                                    <button hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bfp-bA-aPN" userLabel="Sort Comments By Button">
                                                         <rect key="frame" x="79.5" y="36" width="120" height="30"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
@@ -355,7 +355,7 @@
                                             <stackView contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="MhK-Vc-x7K" userLabel="Active Buttons Stack View">
                                                 <rect key="frame" x="16" y="98.5" width="184" height="80"/>
                                                 <subviews>
-                                                    <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fb3-VQ-GlM" userLabel="Upvote Button">
+                                                    <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fb3-VQ-GlM" userLabel="Active Vote Button">
                                                         <rect key="frame" x="0.0" y="0.0" width="61" height="80"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
@@ -369,7 +369,7 @@
                                                         </state>
                                                         <state key="selected" image="icon-button-upvotes-selected"/>
                                                         <connections>
-                                                            <action selector="upvoteButtonTapped:" destination="EfY-4r-YFi" eventType="touchUpInside" id="VnV-le-tjc"/>
+                                                            <action selector="activeVoteButtonTapped:" destination="EfY-4r-YFi" eventType="touchUpInside" id="VnV-le-tjc"/>
                                                         </connections>
                                                     </button>
                                                     <button hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bFD-G5-iNE" userLabel="Users Button">
@@ -579,6 +579,7 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="activeVoteButton" destination="fb3-VQ-GlM" id="p9Q-2w-lYk"/>
                         <outlet property="bottomLineView" destination="FJs-iF-r9g" id="Mm9-MF-0Zc"/>
                         <outlet property="buttonsStackViewTopConstraint" destination="qS2-XR-4rB" id="2OA-OO-1m2"/>
                         <outlet property="commentsButton" destination="wPR-xc-S9f" id="hb2-8D-Y0m"/>
@@ -614,7 +615,6 @@
                         <outlet property="topicCoverImageView" destination="brE-kk-Xo3" id="NVx-2c-k93"/>
                         <outlet property="topicPublishedInLabel" destination="3l6-xe-i7n" id="UpH-IX-lau"/>
                         <outlet property="topicTitleLabel" destination="E1r-jk-0eB" id="TV8-N1-TGP"/>
-                        <outlet property="upvoteButton" destination="fb3-VQ-GlM" id="p9Q-2w-lYk"/>
                         <outlet property="userAvatarImageView" destination="ZH2-hK-oIK" id="8U9-8Y-Dxn"/>
                         <outlet property="userNameLabel" destination="TQB-vz-8Uo" id="izY-VZ-zdO"/>
                         <outlet property="userPreviouslyLabel" destination="KoR-Pb-edd" id="z2y-oy-p57"/>

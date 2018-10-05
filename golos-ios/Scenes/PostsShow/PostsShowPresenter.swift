@@ -16,6 +16,7 @@ import GoloSwift
 // MARK: - Presentation Logic protocols
 protocol PostsShowPresentationLogic {
     func presentLoadPosts(fromResponseModel responseModel: PostsShowModels.Items.ResponseModel)
+    func presentUpvote(fromResponseModel responseModel: PostsShowModels.ActiveVote.ResponseModel)
 }
 
 class PostsShowPresenter: PostsShowPresentationLogic {
@@ -33,5 +34,10 @@ class PostsShowPresenter: PostsShowPresentationLogic {
     func presentLoadPosts(fromResponseModel responseModel: PostsShowModels.Items.ResponseModel) {
         let loadPostsViewModel = PostsShowModels.Items.ViewModel(error: responseModel.error)
         viewController?.displayLoadPosts(fromViewModel: loadPostsViewModel)
+    }
+    
+    func presentUpvote(fromResponseModel responseModel: PostsShowModels.ActiveVote.ResponseModel) {
+        let viewModel = PostsShowModels.ActiveVote.ViewModel(isUpvote: responseModel.isUpvote, errorAPI: responseModel.errorAPI)
+        viewController?.displayUpvote(fromViewModel: viewModel)
     }
 }

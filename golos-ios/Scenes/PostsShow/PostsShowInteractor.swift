@@ -19,6 +19,7 @@ protocol PostsShowBusinessLogic {
     func save(postShortInfo: PostShortInfo)
     func save(lastItem: NSManagedObject?)
     func loadPosts(withRequestModel requestModel: PostsShowModels.Items.RequestModel)
+    func upvote(withRequestModel requestModel: PostsShowModels.ActiveVote.RequestModel)
 }
 
 protocol PostsShowDataStore {
@@ -60,5 +61,12 @@ class PostsShowInteractor: PostsShowBusinessLogic, PostsShowDataStore {
                 self?.presenter?.presentLoadPosts(fromResponseModel: loadPostsResponseModel)
             })
         }
+    }
+    
+    func upvote(withRequestModel requestModel: PostsShowModels.ActiveVote.RequestModel) {
+        RestAPIManager.vote(up: requestModel.isUpvote, postShortInfo: self.postShortInfo!, completion: { [weak self] errorAPI in
+            let responseModel = PostsShowModels.ActiveVote.ResponseModel(isUpvote: requestModel.isUpvote, errorAPI: errorAPI)
+            self?.presenter?.presentUpvote(fromResponseModel: responseModel)
+        })
     }
 }

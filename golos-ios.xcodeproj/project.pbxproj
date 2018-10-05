@@ -102,7 +102,6 @@
 		B157661620B59D80009619A6 /* RemoteNotificationTransfer.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = B157660820B59D80009619A6 /* RemoteNotificationTransfer.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		B15C29AE21101F760030D249 /* PostShow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B15C29AD21101F760030D249 /* PostShow.storyboard */; };
 		B15C29B621101FEA0030D249 /* PostShowPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15C29B021101FEA0030D249 /* PostShowPresenter.swift */; };
-		B15C29B721101FEA0030D249 /* PostShowWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15C29B121101FEA0030D249 /* PostShowWorker.swift */; };
 		B15C29B821101FEA0030D249 /* PostShowRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15C29B221101FEA0030D249 /* PostShowRouter.swift */; };
 		B15C29B921101FEA0030D249 /* PostShowModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15C29B321101FEA0030D249 /* PostShowModels.swift */; };
 		B15C29BA21101FEA0030D249 /* PostShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15C29B421101FEA0030D249 /* PostShowViewController.swift */; };
@@ -364,7 +363,6 @@
 		B157661320B59D80009619A6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B15C29AD21101F760030D249 /* PostShow.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PostShow.storyboard; sourceTree = "<group>"; };
 		B15C29B021101FEA0030D249 /* PostShowPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostShowPresenter.swift; sourceTree = "<group>"; };
-		B15C29B121101FEA0030D249 /* PostShowWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostShowWorker.swift; sourceTree = "<group>"; };
 		B15C29B221101FEA0030D249 /* PostShowRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostShowRouter.swift; sourceTree = "<group>"; };
 		B15C29B321101FEA0030D249 /* PostShowModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostShowModels.swift; sourceTree = "<group>"; };
 		B15C29B421101FEA0030D249 /* PostShowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostShowViewController.swift; sourceTree = "<group>"; };
@@ -807,7 +805,6 @@
 				B15C29B021101FEA0030D249 /* PostShowPresenter.swift */,
 				B15C29B221101FEA0030D249 /* PostShowRouter.swift */,
 				B15C29B421101FEA0030D249 /* PostShowViewController.swift */,
-				B15C29B121101FEA0030D249 /* PostShowWorker.swift */,
 			);
 			path = PostShow;
 			sourceTree = "<group>";
@@ -1657,7 +1654,6 @@
 				B1961953211C90D2001DF789 /* MarkdownViewManager.swift in Sources */,
 				B1EA155920FE22980015EF76 /* ActualPostsShowViewController.swift in Sources */,
 				ECF31725200A9D2800F7B703 /* UIAlertController+Window.swift in Sources */,
-				B15C29B721101FEA0030D249 /* PostShowWorker.swift in Sources */,
 				B1317CD4212E696C0025D429 /* ImageCached+CoreDataClass.swift in Sources */,
 				B1F3748120C2C5E1005EF767 /* RootShowRouter.swift in Sources */,
 				B1DCE322210A32B600487DE0 /* GSTestManager.swift in Sources */,

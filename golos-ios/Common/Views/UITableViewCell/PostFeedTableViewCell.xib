@@ -46,7 +46,7 @@
                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rgg-s6-oxm" userLabel="Bottom View">
                         <rect key="frame" x="0.0" y="294.5" width="372" height="45"/>
                         <subviews>
-                            <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="a2D-jz-RAy" userLabel="Upvotes Button">
+                            <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="a2D-jz-RAy" userLabel="Active Votes Button">
                                 <rect key="frame" x="6" y="13" width="71" height="20"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
@@ -56,9 +56,8 @@
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
                                 <state key="disabled" image="icon-button-upvotes-highlighted"/>
-                                <state key="selected" image="icon-button-upvotes-selected"/>
                                 <connections>
-                                    <action selector="upvotesButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="WL0-Kq-e6N"/>
+                                    <action selector="activeVotesButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="WL0-Kq-e6N"/>
                                 </connections>
                             </button>
                             <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="YHf-4Q-6Ih" userLabel="Comments Button">
@@ -130,13 +129,13 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="activeVotesButton" destination="a2D-jz-RAy" id="Oz7-IV-lSz"/>
                 <outlet property="bottomView" destination="rgg-s6-oxm" id="i6M-lf-bbh"/>
                 <outlet property="commentsButton" destination="YHf-4Q-6Ih" id="GcT-Bz-AHG"/>
                 <outlet property="postFeedHeaderView" destination="x0K-7b-ZlY" id="Tv9-zR-sE1"/>
                 <outlet property="postImageView" destination="cNc-UC-tpt" id="Wky-e0-vzt"/>
                 <outlet property="postImageViewHeightConstraint" destination="peV-ev-Tz3" id="AFD-To-NGh"/>
                 <outlet property="titleLabel" destination="VKV-nZ-kLa" id="ukM-uL-n0N"/>
-                <outlet property="upvotesButton" destination="a2D-jz-RAy" id="Oz7-IV-lSz"/>
                 <outletCollection property="heightsCollection" destination="dwe-r9-QvL" collectionClass="NSMutableArray" id="rd0-Vw-niQ"/>
                 <outletCollection property="heightsCollection" destination="MgH-9n-NbH" collectionClass="NSMutableArray" id="4SJ-Mv-Wma"/>
                 <outletCollection property="heightsCollection" destination="smg-Rx-Uvh" collectionClass="NSMutableArray" id="hNs-gF-CFF"/>
@@ -155,6 +154,5 @@
         <image name="icon-button-share-normal" width="24" height="24"/>
         <image name="icon-button-upvotes-default" width="20" height="20"/>
         <image name="icon-button-upvotes-highlighted" width="20" height="20"/>
-        <image name="icon-button-upvotes-selected" width="20" height="20"/>
     </resources>
 </document>

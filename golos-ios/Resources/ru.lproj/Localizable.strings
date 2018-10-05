@@ -147,6 +147,8 @@
 "Unknown User"                              =   "неизвестный аккаунт";
 "Subscribe Success"                         =   "Спасибо,\nВы подписались на автора";
 "Unsubscribe Success"                       =   "Спасибо,\nВы отписались от автора";
+"Upvote Success"                            =   "Upvote Success";
+"Cancel Upvote Success"                     =   "Cancel Upvote Success";
 
 
 // Placeholders

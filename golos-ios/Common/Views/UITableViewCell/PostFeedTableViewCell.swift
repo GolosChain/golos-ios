@@ -19,8 +19,8 @@ class PostFeedTableViewCell: UITableViewCell, HandlersCellSupport {
 
     // HandlersCellSupport
     var handlerShareButtonTapped: (() -> Void)?
-    var handlerUpvotesButtonTapped: (() -> Void)?
     var handlerCommentsButtonTapped: ((PostShortInfo) -> Void)?
+    var handlerActiveVotesButtonTapped: ((Bool, PostShortInfo) -> Void)?
 
     
     // MARK: - IBOutlets
@@ -59,9 +59,9 @@ class PostFeedTableViewCell: UITableViewCell, HandlersCellSupport {
         }
     }
 
-    @IBOutlet private weak var upvotesButton: UIButton! {
+    @IBOutlet private weak var activeVotesButton: UIButton! {
         didSet {
-            upvotesButton.tune(withTitle:       "",
+            activeVotesButton.tune(withTitle:       "",
                                hexColors:       [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
                                font:            UIFont(name: "SFProDisplay-Regular", size: 10.0),
                                alignment:       .center)
@@ -79,13 +79,13 @@ class PostFeedTableViewCell: UITableViewCell, HandlersCellSupport {
     
     @IBOutlet var widthsCollection: [NSLayoutConstraint]! {
         didSet {
-            _ = widthsCollection.map({ $0.constant *= widthRatio })
+            self.widthsCollection.forEach({ $0.constant *= widthRatio })
         }
     }
     
     @IBOutlet var heightsCollection: [NSLayoutConstraint]! {
         didSet {
-            _ = heightsCollection.map({ $0.constant *= heightRatio })
+            self.heightsCollection.forEach({ $0.constant *= heightRatio })
         }
     }
     
@@ -106,11 +106,12 @@ class PostFeedTableViewCell: UITableViewCell, HandlersCellSupport {
         self.postImageView.image                                =   nil
         self.postImageViewHeightConstraint.constant             =   180.0 * heightRatio
         
-//        self.postFeedHeaderView.authorReblogLabel.text          =   nil
-//        self.postFeedHeaderView.authorReblogLabel.isHidden      =   true
-//        self.postFeedHeaderView.reblogIconImageView.isHidden    =   true
+        self.postFeedHeaderView.reblogIconButton.isHidden       =   true
+        self.postFeedHeaderView.rebloggedAuthorButton.isHidden  =   true
         
         self.commentsButton.setTitle(nil, for: .normal)
+        self.activeVotesButton.setTitle(nil, for: .normal)
+        self.postFeedHeaderView.rebloggedAuthorButton.setTitle(nil, for: .normal)
     }
     
     
@@ -123,8 +124,8 @@ class PostFeedTableViewCell: UITableViewCell, HandlersCellSupport {
     
     
     // MARK: - Actions
-    @IBAction func upvotesButtonTapped(_ sender: UIButton) {
-        self.handlerUpvotesButtonTapped!()
+    @IBAction func activeVotesButtonTapped(_ sender: UIButton) {
+        self.handlerActiveVotesButtonTapped!(sender.tag == 0, self.postShortInfo)
     }
     
     @IBAction func commentsButtonTapped(_ sender: UIButton) {
@@ -164,10 +165,10 @@ extension PostFeedTableViewCell: ConfigureCell {
 //            let pendingPayoutValue = String(format: "%@%.2f", "gbg", model.pendingPayoutValue)
 //            self.upvotesButton.setTitle(pendingPayoutValue, for: .normal)
         
-        // Set upvotes icon
-        if model.activeVotesCount > 0 {
-            self.upvotesButton.isSelected = model.currentUserVoted
-        }
+        // Set Active Votes icon
+        self.activeVotesButton.tag = model.currentUserVoted ? 99 : 0
+        self.activeVotesButton.setTitle(model.activeVotesCount > 0 ? "\(model.activeVotesCount)" : nil, for: .normal)
+        self.activeVotesButton.setImage(UIImage(named: model.currentUserVoted ? "icon-button-upvotes-selected" : "icon-button-upvotes-default"), for: .normal)
         
         // Load model user cover image
         if let coverImageURL = model.coverImageURL, !coverImageURL.isEmpty {

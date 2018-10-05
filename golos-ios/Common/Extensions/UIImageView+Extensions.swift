@@ -24,14 +24,17 @@ extension UIImageView {
         self.alpha                  =   0.0
         
         let imagePathWithProxy      =   path.trimmingCharacters(in: .whitespacesAndNewlines).addImageProxy(withSize: uploadedSize)
-        let imageURL                =   URL(string: imagePathWithProxy)
         
-        Logger.log(message: "imageURL = \(imageURL!)", event: .debug)
+        guard let imageURL = URL(string: imagePathWithProxy) else {
+            return
+        }
+        
+        Logger.log(message: "imageURL = \(imageURL)", event: .debug)
         
         let imagePlaceholderName    =   imageType == .defaultImage ? "image-placeholder" : (imageType == .userProfileImage ?    "icon-user-profile-image-placeholder" :
                                                                                                                                 "image-user-cover-placeholder")
         
-        let imageKey: NSString      =   imageURL!.absoluteString as NSString
+        let imageKey: NSString      =   imageURL.absoluteString as NSString
 
         // Cover as 'NSFW'
         if let tagsTemp = tags, tagsTemp.map({ $0.lowercased() }).contains("image-nsfw"), imageType == .userCoverImage {
@@ -75,7 +78,7 @@ extension UIImageView {
                     
                     // Run queue in Async Thread
                     downloadImageQueue.async {
-                        URLSession.shared.dataTask(with: imageURL!) { data, _, error in
+                        URLSession.shared.dataTask(with: imageURL) { data, _, error in
                             guard error == nil else {
                                 self.fadeIn(image: UIImage(named: imagePlaceholderName)!)
                                 return
