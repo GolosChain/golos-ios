@@ -21,8 +21,6 @@ extension UIImageView {
     /// Download image
     func uploadImage(byStringPath path: String, imageType: ImageType, size: CGSize, tags: [String]?, createdDate: Date, fromItem: String, completion: @escaping (CGFloat) -> Void) {
         let uploadedSize            =   CGSize(width: size.width * 3, height: size.height * 3)
-        self.alpha                  =   0.0
-        
         let imagePathWithProxy      =   path.trimmingCharacters(in: .whitespacesAndNewlines).addImageProxy(withSize: uploadedSize)
         
         guard let imageURL = URL(string: imagePathWithProxy) else {
@@ -49,10 +47,13 @@ extension UIImageView {
                 // Run queue in Async Thread
                 getImageFromCacheQueue.async {
                     if imageType == .userCoverImage {
-                        self.contentMode = .scaleAspectFill // cachedImage.size.width > cachedImage.size.height ? .scaleAspectFill : .scaleAspectFit
+                        self.contentMode = .scaleAspectFill
                     }
                     
-                    completion(cachedImage.sidesAspectRatio())
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.01, execute: {
+                        completion(cachedImage.sidesAspectRatio())
+                    })
+                    
                     self.fadeIn(image: cachedImage)
                 }
             }
@@ -68,7 +69,10 @@ extension UIImageView {
                             // Save image to NSCache
                             cacheApp.setObject(imageGIF, forKey: imageKey)
                         
-                            completion(imageGIF.sidesAspectRatio())
+                            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.01, execute: {
+                                completion(imageGIF.sidesAspectRatio())
+                            })
+                            
                             self.fadeIn(image: imageGIF)
                         }
                     }
@@ -82,59 +86,73 @@ extension UIImageView {
                     downloadImageQueue.async {
                         URLSession.shared.dataTask(with: imageURL) { data, _, error in
                             guard error == nil else {
-                                completion(UIImage(named: imagePlaceholderName)!.sidesAspectRatio())
+                                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.01, execute: {
+                                    completion(UIImage(named: imagePlaceholderName)!.sidesAspectRatio())
+                                })
+                                
                                 self.fadeIn(image: UIImage(named: imagePlaceholderName)!)
                                 return
                             }
                             
                             if let data = data, let downloadedImage = UIImage(data: data) {
                                 if imageType == .userCoverImage {
-                                    self.contentMode = .scaleAspectFill //downloadedImage.size.width > downloadedImage.size.height ? .scaleAspectFill : .scaleAspectFit
+                                    self.contentMode = .scaleAspectFill
                                 }
                                 
                                 if downloadedImage.isEqualTo(image: UIImage(named: "image-mock-white")!) {
-                                    completion(UIImage(named: imagePlaceholderName)!.sidesAspectRatio())
+                                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.01, execute: {
+                                        completion(UIImage(named: imagePlaceholderName)!.sidesAspectRatio())
+                                    })
+                                    
                                     self.fadeIn(image: UIImage(named: imagePlaceholderName)!)
                                 }
                                     
                                 else {
-                                    completion(downloadedImage.sidesAspectRatio())
+                                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.01, execute: {
+                                        completion(downloadedImage.sidesAspectRatio())
+                                    })
+                                    
                                     self.fadeIn(image: downloadedImage)
                                 }
                                 
                                 // Save image to NSCache
-                                let saveImageToCacheQueue = DispatchQueue.global(qos: .background)
+//                                let saveImageToCacheQueue = DispatchQueue.global(qos: .background)
                                 
-                                saveImageToCacheQueue.async {
+//                                saveImageToCacheQueue.async {
                                     cacheApp.setObject(downloadedImage, forKey: imageKey)
-                                }
+//                                }
                                 
                                 // Save ImageCached to CoreData
-                                let saveImageToCoreDataQueue = DispatchQueue.global(qos: .background)
+//                                let saveImageToCoreDataQueue = DispatchQueue.global(qos: .background)
 
-                                saveImageToCoreDataQueue.async {
+//                                saveImageToCoreDataQueue.async {
+                                DispatchQueue.main.async(execute: {
                                     ImageCached.updateEntity(fromItem: fromItem, byDate: createdDate, andKey: imageKey as String)
-                                }
+                                })
+//                                }
                             }
                         }.resume()
                     }
                 }
                     
                 else {
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.01, execute: {
+                        completion(UIImage(named: imagePlaceholderName)!.sidesAspectRatio())
+                    })
+
                     self.fadeIn(image: UIImage(named: imagePlaceholderName)!)
-                    completion(UIImage(named: imagePlaceholderName)!.sidesAspectRatio())
                 }
             }
         }
     }
     
     private func fadeIn(image: UIImage) {
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5, execute: {
-            self.image = image
-
-            UIView.animate(withDuration: 0.75, animations: {
-                self.alpha = 1.0
-            })
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.01, execute: {
+            UIView.transition(with:         self,
+                              duration:     0.75,
+                              options:      .transitionCrossDissolve,
+                              animations:   { self.image = image },
+                              completion:   nil)
         })
     }
 }

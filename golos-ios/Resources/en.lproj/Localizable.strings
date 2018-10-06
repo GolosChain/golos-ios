@@ -207,6 +207,7 @@
 "Fetching Failed"                           =   "Fetching Failed from CoreData";
 "Broken Link Failure"                       =   "Broken Link Failure";
 "Response All Content Replies error"        =   "Response All Content Replies Result Error";
+"Voter maximum number error"                =   "You have used the maximum number of attempts to vote for this entry.";
 
 
 // Segmented controls

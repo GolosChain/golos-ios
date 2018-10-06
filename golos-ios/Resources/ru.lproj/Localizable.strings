@@ -207,3 +207,4 @@
 "Fetching Failed"                           =   "Ошибка загрузки данных из CoreData";
 "Broken Link Failure"                       =   "Указана битая ссылка";
 "Response All Content Replies error"        =   "Ошибка загрузки списка комментариев\nдля выбранного поста";
+"Voter maximum number error"                =   "Вы использовали максимальное количество попыток проголосовать за данную запись.";

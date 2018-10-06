@@ -245,9 +245,9 @@ class GSTableViewController: GSBaseViewController, HandlersCellSupport {
         fetchedResultsController.delegate = self
         
         // Pull to refresh data
-        let refreshDataQueue = DispatchQueue.global(qos: .background)
-        
-        refreshDataQueue.async {
+//        let refreshDataQueue = DispatchQueue.global(qos: .background)
+//
+//        refreshDataQueue.async {
             do {
                 try self.fetchedResultsController.performFetch()
                 
@@ -265,31 +265,33 @@ class GSTableViewController: GSBaseViewController, HandlersCellSupport {
             } catch {
                 Logger.log(message: error.localizedDescription, event: .error)
             }
-        }
+//        }
     }
 
     private func loadDataFinished() {
-        self.postsTableView?.reloadDataWithCompletion {
-            Logger.log(message: "Load data is finished!!!", event: .debug)
-            
-            guard self.fetchedResultsController != nil else {
-                return
-            }
-            
-            // Hide activity indicator
-            self.displaySpinner(false)
-//            self.postsTableView.layoutIfNeeded()
-            
-            if self.fetchedResultsController.fetchedObjects?.count == 0 {
-                self.displayEmptyTitle(byType: self.postType)
-            }
+        DispatchQueue.main.async {
+            self.postsTableView?.reloadDataWithCompletion {
+                Logger.log(message: "Load data is finished!!!", event: .debug)
                 
-            else {
-                self.postsTableView.tableHeaderView = nil
+                guard self.fetchedResultsController != nil else {
+                    return
+                }
+                
+                // Hide activity indicator
+                self.displaySpinner(false)
+//            self.postsTableView.layoutIfNeeded()
+                
+                if self.fetchedResultsController.fetchedObjects?.count == 0 {
+                    self.displayEmptyTitle(byType: self.postType)
+                }
+                    
+                else {
+                    self.postsTableView.tableHeaderView = nil
+                }
+                
+                self.refreshData            =   false
+                self.infiniteScrollingData  =   false
             }
-            
-            self.refreshData            =   false
-            self.infiniteScrollingData  =   false
         }
     }
     

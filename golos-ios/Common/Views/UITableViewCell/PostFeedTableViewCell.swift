@@ -106,12 +106,10 @@ class PostFeedTableViewCell: UITableViewCell, HandlersCellSupport {
         self.postImageView.image                                =   nil
         self.postImageViewHeightConstraint.constant             =   180.0 * heightRatio
         
-        self.postFeedHeaderView.reblogIconButton.isHidden       =   true
-        self.postFeedHeaderView.rebloggedAuthorButton.isHidden  =   true
+        self.postFeedHeaderView.clearValues()
         
         self.commentsButton.setTitle(nil, for: .normal)
         self.activeVotesButton.setTitle(nil, for: .normal)
-        self.postFeedHeaderView.rebloggedAuthorButton.setTitle(nil, for: .normal)
     }
     
     
@@ -198,7 +196,6 @@ extension PostFeedTableViewCell: ConfigureCell {
         
         if model.children > 0 {
             self.commentsButton.setTitle("\(model.children)", for: .normal)
-//            self.commentsButton.isSelected = model.currentUserVoted
             
             if self.commentsButton.isSelected {
                 Logger.log(message: "Set green like icon", event: .debug)

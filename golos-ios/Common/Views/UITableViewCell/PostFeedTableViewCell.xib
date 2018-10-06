@@ -20,14 +20,14 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x0K-7b-ZlY" customClass="PostFeedHeaderView" customModule="Golos" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="372" height="46"/>
+                        <rect key="frame" x="0.0" y="0.0" width="372" height="51"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="46" id="dwe-r9-QvL"/>
+                            <constraint firstAttribute="height" constant="51" identifier="postFeedHeaderViewHeightConstraint" id="dwe-r9-QvL"/>
                         </constraints>
                     </view>
                     <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalCompressionResistancePriority="1000" text="" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VKV-nZ-kLa" userLabel="Title Label">
-                        <rect key="frame" x="16" y="56" width="340" height="46.5"/>
+                        <rect key="frame" x="16" y="61" width="340" height="41.5"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <nil key="textColor"/>
@@ -35,9 +35,9 @@
                     </label>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="cNc-UC-tpt">
                         <rect key="frame" x="0.0" y="114.5" width="372" height="180"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="height" priority="750" constant="180" id="peV-ev-Tz3"/>
+                            <constraint firstAttribute="height" priority="750" constant="180" identifier="postImageViewHeightConstraint" id="peV-ev-Tz3"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
@@ -93,7 +93,7 @@
                             <constraint firstItem="YHf-4Q-6Ih" firstAttribute="leading" secondItem="a2D-jz-RAy" secondAttribute="trailing" constant="5" id="1Pz-7P-tSU"/>
                             <constraint firstItem="3Me-i8-z48" firstAttribute="centerY" secondItem="YHf-4Q-6Ih" secondAttribute="centerY" id="2tt-VO-6gf"/>
                             <constraint firstItem="a2D-jz-RAy" firstAttribute="leading" secondItem="rgg-s6-oxm" secondAttribute="leading" constant="6" id="CRS-zz-HeW"/>
-                            <constraint firstAttribute="height" constant="45" id="MgH-9n-NbH"/>
+                            <constraint firstAttribute="height" constant="45" identifier="bottomViewHeightConstraint" id="MgH-9n-NbH"/>
                             <constraint firstAttribute="trailing" secondItem="3Me-i8-z48" secondAttribute="trailing" constant="8" id="Vfo-EY-ayY"/>
                             <constraint firstItem="YHf-4Q-6Ih" firstAttribute="centerY" secondItem="a2D-jz-RAy" secondAttribute="centerY" id="hNI-He-MoJ"/>
                             <constraint firstAttribute="bottom" secondItem="a2D-jz-RAy" secondAttribute="bottom" constant="12" id="smg-Rx-Uvh"/>
@@ -115,11 +115,11 @@
                     <constraint firstItem="jE4-pU-s2P" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="5cr-ed-Cqz"/>
                     <constraint firstItem="x0K-7b-ZlY" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="GoF-tS-EU1"/>
                     <constraint firstAttribute="bottom" secondItem="rgg-s6-oxm" secondAttribute="bottom" id="Phh-kP-0gf"/>
-                    <constraint firstItem="VKV-nZ-kLa" firstAttribute="top" secondItem="x0K-7b-ZlY" secondAttribute="bottom" constant="10" id="TZ0-Je-35T"/>
+                    <constraint firstItem="VKV-nZ-kLa" firstAttribute="top" secondItem="x0K-7b-ZlY" secondAttribute="bottom" constant="10" identifier="titleLabelTopConstraint" id="TZ0-Je-35T"/>
                     <constraint firstItem="VKV-nZ-kLa" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="TZf-fc-GqU"/>
                     <constraint firstItem="x0K-7b-ZlY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="YBj-9B-EKd"/>
                     <constraint firstAttribute="trailing" secondItem="cNc-UC-tpt" secondAttribute="trailing" id="aG2-dG-Iu3"/>
-                    <constraint firstItem="cNc-UC-tpt" firstAttribute="top" secondItem="VKV-nZ-kLa" secondAttribute="bottom" constant="12" id="ktp-dm-LFz"/>
+                    <constraint firstItem="cNc-UC-tpt" firstAttribute="top" secondItem="VKV-nZ-kLa" secondAttribute="bottom" constant="12" identifier="postImageViewTopConstraint" id="ktp-dm-LFz"/>
                     <constraint firstItem="cNc-UC-tpt" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="pqL-1V-tKY"/>
                     <constraint firstAttribute="trailing" secondItem="rgg-s6-oxm" secondAttribute="trailing" id="s1R-fc-8OZ"/>
                     <constraint firstAttribute="trailing" secondItem="x0K-7b-ZlY" secondAttribute="trailing" id="tJq-RC-0f1"/>
@@ -143,6 +143,7 @@
                 <outletCollection property="heightsCollection" destination="gj9-nR-R3l" collectionClass="NSMutableArray" id="DVb-RK-8xF"/>
                 <outletCollection property="heightsCollection" destination="peV-ev-Tz3" collectionClass="NSMutableArray" id="kll-eq-rdk"/>
                 <outletCollection property="heightsCollection" destination="ktp-dm-LFz" collectionClass="NSMutableArray" id="Lj3-bo-e0J"/>
+                <outletCollection property="heightsCollection" destination="TZ0-Je-35T" collectionClass="NSMutableArray" id="34s-bo-g1u"/>
             </connections>
             <point key="canvasLocation" x="-276" y="246"/>
         </tableViewCell>

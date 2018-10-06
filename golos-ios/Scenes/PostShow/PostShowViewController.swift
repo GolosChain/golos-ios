@@ -917,7 +917,10 @@ extension PostShowViewController: PostShowDisplayLogic {
         // NOTE: Display the result from the Presenter
         guard viewModel.errorAPI == nil else {
             if let message = viewModel.errorAPI?.caseInfo.message {
-                self.showAlertView(withTitle: viewModel.errorAPI!.caseInfo.title, andMessage: message, needCancel: false, completion: { _ in })
+                self.showAlertView(withTitle:   viewModel.errorAPI!.caseInfo.title,
+                                   andMessage:  message.contains("Voter has used the maximum number of vote changes on this comment.") ? "Voter maximum number error".localized() : message,
+                                   needCancel:  false,
+                                   completion:  { _ in })
             }
             
             return

@@ -100,13 +100,13 @@ class PostFeedHeaderView: UIView {
     
     @IBOutlet var widthsCollection: [NSLayoutConstraint]! {
         didSet {
-            _ = widthsCollection.map({ $0.constant *= widthRatio })
+            self.widthsCollection.forEach({ $0.constant *= widthRatio })
         }
     }
     
     @IBOutlet var heightsCollection: [NSLayoutConstraint]! {
         didSet {
-            _ = heightsCollection.map({ $0.constant *= heightRatio })
+            self.heightsCollection.forEach({ $0.constant *= heightRatio })
         }
     }
     
@@ -152,7 +152,7 @@ class PostFeedHeaderView: UIView {
     
     // MARK: - Class Functions
     override var intrinsicContentSize: CGSize {
-        return CGSize(width: 300.0 * widthRatio, height: 46.0 * heightRatio)
+        return CGSize(width: 300.0 * widthRatio, height: 51.0 * heightRatio)
     }
     
     
@@ -179,10 +179,13 @@ class PostFeedHeaderView: UIView {
                                                         createdDate:    user.created.convert(toDateFormat: .expirationDateType),
                                                         fromItem:       (user as CachedImageFrom).fromItem,
                                                         completion:     { _ in })
-            }            
+            }
         }
         
         // Set reblogged user info (default isHidden = true)
+        self.reblogIconButton.isHidden          =   true
+        self.rebloggedAuthorButton.isHidden     =   true
+
         switch post {
         case is Blog:
             if post.author != User.current!.nickName {
@@ -198,6 +201,19 @@ class PostFeedHeaderView: UIView {
                 self.rebloggedAuthorButton.setTitle(rebloggedBy.first ?? "XXX", for: .normal)
             }
         }
+    }
+    
+    func clearValues() {
+//        self.reblogIconButton.isHidden          =   true
+//        self.rebloggedAuthorButton.isHidden     =   true
+        
+        self.timeLabel.text                     =   nil
+        self.categoryLabel.text                 =   nil
+//        self.authorProfileImageView.image       =   nil
+        
+        self.authorNameButton.setTitle(nil, for: .normal)
+        self.authorNickNameButton.setTitle(nil, for: .normal)
+        self.rebloggedAuthorButton.setTitle(nil, for: .normal)
     }
     
     
