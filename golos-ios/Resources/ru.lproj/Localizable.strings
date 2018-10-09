@@ -208,3 +208,5 @@
 "Broken Link Failure"                       =   "Указана битая ссылка";
 "Response All Content Replies error"        =   "Ошибка загрузки списка комментариев\nдля выбранного поста";
 "Voter maximum number error"                =   "Вы использовали максимальное количество попыток проголосовать за данную запись.";
+"Can only vote once every 3 seconds"        =   "Вы можете голосовать только раз в 3 секунды";
+"You have already voted in a similar way"   =   "Вы уже голосовали аналогичным образом.";

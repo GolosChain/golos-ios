@@ -381,7 +381,7 @@ extension PostsShowViewController: PostsShowDisplayLogic {
             guard viewModel.errorAPI == nil else {
                 if let message = viewModel.errorAPI?.caseInfo.message {
                     self.showAlertView(withTitle:   viewModel.errorAPI!.caseInfo.title,
-                                       andMessage:  message.contains("Voter has used the maximum number of vote changes on this comment.") ? "Voter maximum number error".localized() : message,
+                                       andMessage:  message.translate(),
                                        needCancel:  false,
                                        completion:  { _ in
                                         activeVC.postsTableView.reloadRows(at: [indexPath], with: .automatic)

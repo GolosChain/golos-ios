@@ -151,8 +151,6 @@
 		B1DCE322210A32B600487DE0 /* GSTestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DCE321210A32B600487DE0 /* GSTestManager.swift */; };
 		B1E09E182101EE8F002CC5B7 /* PostFeedTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1E09E162101EE8F002CC5B7 /* PostFeedTableViewCell.xib */; };
 		B1E09E192101EE8F002CC5B7 /* PostFeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E09E172101EE8F002CC5B7 /* PostFeedTableViewCell.swift */; };
-		B1E09E1D2101EFBE002CC5B7 /* PostFeedHeaderViewOld.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1E09E1B2101EFBE002CC5B7 /* PostFeedHeaderViewOld.xib */; };
-		B1E09E1E2101EFBE002CC5B7 /* PostFeedHeaderViewOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E09E1C2101EFBE002CC5B7 /* PostFeedHeaderViewOld.swift */; };
 		B1E09E202101F222002CC5B7 /* MetaDataSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E09E1F2101F222002CC5B7 /* MetaDataSupport.swift */; };
 		B1E09E222101F26C002CC5B7 /* PaginationSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E09E212101F26C002CC5B7 /* PaginationSupport.swift */; };
 		B1E09E242101F2CB002CC5B7 /* ConfigureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E09E232101F2CB002CC5B7 /* ConfigureCell.swift */; };
@@ -422,8 +420,6 @@
 		B1DCE321210A32B600487DE0 /* GSTestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GSTestManager.swift; sourceTree = "<group>"; };
 		B1E09E162101EE8F002CC5B7 /* PostFeedTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostFeedTableViewCell.xib; sourceTree = "<group>"; };
 		B1E09E172101EE8F002CC5B7 /* PostFeedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostFeedTableViewCell.swift; sourceTree = "<group>"; };
-		B1E09E1B2101EFBE002CC5B7 /* PostFeedHeaderViewOld.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostFeedHeaderViewOld.xib; sourceTree = "<group>"; };
-		B1E09E1C2101EFBE002CC5B7 /* PostFeedHeaderViewOld.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostFeedHeaderViewOld.swift; sourceTree = "<group>"; };
 		B1E09E1F2101F222002CC5B7 /* MetaDataSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaDataSupport.swift; sourceTree = "<group>"; };
 		B1E09E212101F26C002CC5B7 /* PaginationSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginationSupport.swift; sourceTree = "<group>"; };
 		B1E09E232101F2CB002CC5B7 /* ConfigureCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureCell.swift; sourceTree = "<group>"; };
@@ -940,8 +936,6 @@
 		B1E09E2B2102D354002CC5B7 /* PostFeedHeader */ = {
 			isa = PBXGroup;
 			children = (
-				B1E09E1C2101EFBE002CC5B7 /* PostFeedHeaderViewOld.swift */,
-				B1E09E1B2101EFBE002CC5B7 /* PostFeedHeaderViewOld.xib */,
 				B1F2B552216BBABD00CBAFC9 /* PostFeedHeaderView.swift */,
 				B1F2B554216BBAC900CBAFC9 /* PostFeedHeaderView.xib */,
 			);
@@ -1346,7 +1340,6 @@
 				B164CECA2119F6EB00349D79 /* Localizable.strings in Resources */,
 				B120D0702108256B00D949F5 /* SettingsNotificationsShow.storyboard in Resources */,
 				7DE3531C2048CA3400C04CB2 /* LogInHelpShowViewController.xib in Resources */,
-				B1E09E1D2101EFBE002CC5B7 /* PostFeedHeaderViewOld.xib in Resources */,
 				B1F2B555216BBAC900CBAFC9 /* PostFeedHeaderView.xib in Resources */,
 				EC24FF7F200C4E2C00A0AE15 /* NavigationDropDownView.xib in Resources */,
 				B1050CBF20CECFBE003CE4EE /* PostCreate.storyboard in Resources */,
@@ -1541,7 +1534,6 @@
 				B15267AE210DB4980037CAAA /* NSAttributedString+Extensions.swift in Sources */,
 				B164CECE211AA84800349D79 /* Comment+CoreDataProperties.swift in Sources */,
 				B1E78A9320F9D30400B2901D /* GSScrollView.swift in Sources */,
-				B1E09E1E2101EFBE002CC5B7 /* PostFeedHeaderViewOld.swift in Sources */,
 				B1EE684A20D261C4006BF802 /* UITextView+Extensions.swift in Sources */,
 				ECF2808C200A9A210000D949 /* UIButton+Extensions.swift in Sources */,
 				B1D7EFAE20EB704000819401 /* UserSecretPostingKey+CoreDataProperties.swift in Sources */,

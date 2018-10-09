@@ -8,6 +8,7 @@
 
 import UIKit
 import GoloSwift
+import Localize_Swift
 
 extension String {
     func addFirstZero() -> String {
@@ -183,5 +184,27 @@ extension String {
         }
         
         return title
+    }
+    
+    
+    /// Select error message for translation
+    func translate() -> String {
+        if self.contains("Voter has used the maximum number of vote changes on this comment") {
+            return "Voter maximum number error".localized()
+        }
+        
+        if self.contains("Can only vote once every 3 seconds") {
+            return "Can only vote once every 3 seconds".localized()
+        }
+
+        if self.contains("Voter maximum number error") {
+            return "Voter maximum number error".localized()
+        }
+        
+        if self.contains("You have already voted in a similar way") {
+            return "You have already voted in a similar way".localized()
+        }
+
+        return self
     }
 }

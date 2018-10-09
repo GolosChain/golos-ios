@@ -962,14 +962,16 @@ extension PostShowViewController: PostShowDisplayLogic {
         guard viewModel.errorAPI == nil else {
             if let message = viewModel.errorAPI?.caseInfo.message {
                 self.showAlertView(withTitle:   viewModel.errorAPI!.caseInfo.title,
-                                   andMessage:  message.contains("Voter has used the maximum number of vote changes on this comment.") ? "Voter maximum number error".localized() : message,
+                                   andMessage:  message.translate(),
                                    needCancel:  false,
                                    completion:  { _ in
                                     if viewModel.forPost {
                                         self.scrollCommentsDown = false
                                         self.fetchContent()
-                                    } else if let commentShortInfo = self.router?.dataStore?.comment, let indexPath = commentShortInfo.indexPath {
-                                        self.commentsViews[indexPath.row].setup(withComment: self.router?.dataStore?.displayedPost as! Comment)
+                                    } else if let commentShortInfo = self.router?.dataStore?.comment, let indexPath = commentShortInfo.indexPath,
+                                        let commentEntity = CoreDataManager.instance.readEntity(withName: "Comment",
+                                                                                                andPredicateParameters: NSPredicate(format: "author == %@ AND permlink == %@", commentShortInfo.author!, commentShortInfo.permlink!)) as? Comment {
+                                        self.commentsViews[indexPath.row].setup(withComment: commentEntity)
                                     }
                 })
             }

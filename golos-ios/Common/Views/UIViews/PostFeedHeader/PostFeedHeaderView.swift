@@ -148,20 +148,18 @@ class PostFeedHeaderView: UIView {
         
         // Set User info
         if let user = User.fetch(byNickName: post.author) {
-            self.authorNickNameButton.setTitle(user.nickName, for: .normal)
             self.authorNameButton.setTitle((user.name == "XXX" || user.name.isEmpty ? user.nickName : user.name).uppercaseFirst, for: .normal)
             
-            self.timeLabel.text             =   post.created.convertToDaysAgo(dateFormatType: .expirationDateType)
-            self.authorReputationLabel.text =   String(format: "%i", user.reputation.convertWithLogarithm10())
+            self.authorNickNameButton.setTitle(user.nickName, for: .normal)
+            self.authorNickNameButton.isHidden  =   user.name == user.nickName && post is Blog
+
+            self.timeLabel.text                 =   post.created.convertToDaysAgo(dateFormatType: .expirationDateType)
+            self.authorReputationLabel.text     =   String(format: "%i", user.reputation.convertWithLogarithm10())
             
             self.categoryLabel.text = post.category
                                         .transliteration(forPermlink: false)
                                         .uppercaseFirst
             
-//            self.timeLabel.sizeToFit()
-//            self.categoryLabel.sizeToFit()
-//            self.authorNameButton.sizeToFit()
-
             Logger.log(message: "category \(self.categoryLabel.text!) frame: \(self.categoryLabel.frame.maxX)", event: .debug)
             Logger.log(message: "timeLabel frame: \(self.timeLabel.frame.minX)", event: .debug)
 
@@ -213,10 +211,6 @@ class PostFeedHeaderView: UIView {
         self.authorProfileImageView.image       =   nil
         self.timeLabelTopConstraint.constant    =   11.0 * heightRatio
 
-//        self.timeLabel.sizeToFit()
-//        self.categoryLabel.sizeToFit()
-//        self.authorNameButton.sizeToFit()
-        
         self.authorNameButton.setTitle(nil, for: .normal)
         self.authorNickNameButton.setTitle(nil, for: .normal)
         self.rebloggedAuthorButton.setTitle(nil, for: .normal)
