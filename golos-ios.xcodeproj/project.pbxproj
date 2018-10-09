@@ -151,8 +151,8 @@
 		B1DCE322210A32B600487DE0 /* GSTestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DCE321210A32B600487DE0 /* GSTestManager.swift */; };
 		B1E09E182101EE8F002CC5B7 /* PostFeedTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1E09E162101EE8F002CC5B7 /* PostFeedTableViewCell.xib */; };
 		B1E09E192101EE8F002CC5B7 /* PostFeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E09E172101EE8F002CC5B7 /* PostFeedTableViewCell.swift */; };
-		B1E09E1D2101EFBE002CC5B7 /* PostFeedHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1E09E1B2101EFBE002CC5B7 /* PostFeedHeaderView.xib */; };
-		B1E09E1E2101EFBE002CC5B7 /* PostFeedHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E09E1C2101EFBE002CC5B7 /* PostFeedHeaderView.swift */; };
+		B1E09E1D2101EFBE002CC5B7 /* PostFeedHeaderViewOld.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1E09E1B2101EFBE002CC5B7 /* PostFeedHeaderViewOld.xib */; };
+		B1E09E1E2101EFBE002CC5B7 /* PostFeedHeaderViewOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E09E1C2101EFBE002CC5B7 /* PostFeedHeaderViewOld.swift */; };
 		B1E09E202101F222002CC5B7 /* MetaDataSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E09E1F2101F222002CC5B7 /* MetaDataSupport.swift */; };
 		B1E09E222101F26C002CC5B7 /* PaginationSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E09E212101F26C002CC5B7 /* PaginationSupport.swift */; };
 		B1E09E242101F2CB002CC5B7 /* ConfigureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E09E232101F2CB002CC5B7 /* ConfigureCell.swift */; };
@@ -184,6 +184,8 @@
 		B1EE684A20D261C4006BF802 /* UITextView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EE684920D261C4006BF802 /* UITextView+Extensions.swift */; };
 		B1EE684C20D27628006BF802 /* UIBarButtonItem+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EE684B20D27628006BF802 /* UIBarButtonItem+Extensions.swift */; };
 		B1EE686C20D2D713006BF802 /* PostCommentReply.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EE686B20D2D713006BF802 /* PostCommentReply.swift */; };
+		B1F2B553216BBABD00CBAFC9 /* PostFeedHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F2B552216BBABD00CBAFC9 /* PostFeedHeaderView.swift */; };
+		B1F2B555216BBAC900CBAFC9 /* PostFeedHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1F2B554216BBAC900CBAFC9 /* PostFeedHeaderView.xib */; };
 		B1F3747520C2B483005EF767 /* RootShow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1F3747420C2B483005EF767 /* RootShow.storyboard */; };
 		B1F3748120C2C5E1005EF767 /* RootShowRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F3747B20C2C5E1005EF767 /* RootShowRouter.swift */; };
 		B1F3748320C2C5E1005EF767 /* RootShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F3747D20C2C5E1005EF767 /* RootShowViewController.swift */; };
@@ -419,8 +421,8 @@
 		B1DCE321210A32B600487DE0 /* GSTestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GSTestManager.swift; sourceTree = "<group>"; };
 		B1E09E162101EE8F002CC5B7 /* PostFeedTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostFeedTableViewCell.xib; sourceTree = "<group>"; };
 		B1E09E172101EE8F002CC5B7 /* PostFeedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostFeedTableViewCell.swift; sourceTree = "<group>"; };
-		B1E09E1B2101EFBE002CC5B7 /* PostFeedHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostFeedHeaderView.xib; sourceTree = "<group>"; };
-		B1E09E1C2101EFBE002CC5B7 /* PostFeedHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostFeedHeaderView.swift; sourceTree = "<group>"; };
+		B1E09E1B2101EFBE002CC5B7 /* PostFeedHeaderViewOld.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostFeedHeaderViewOld.xib; sourceTree = "<group>"; };
+		B1E09E1C2101EFBE002CC5B7 /* PostFeedHeaderViewOld.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostFeedHeaderViewOld.swift; sourceTree = "<group>"; };
 		B1E09E1F2101F222002CC5B7 /* MetaDataSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaDataSupport.swift; sourceTree = "<group>"; };
 		B1E09E212101F26C002CC5B7 /* PaginationSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginationSupport.swift; sourceTree = "<group>"; };
 		B1E09E232101F2CB002CC5B7 /* ConfigureCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureCell.swift; sourceTree = "<group>"; };
@@ -452,6 +454,8 @@
 		B1EE684920D261C4006BF802 /* UITextView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+Extensions.swift"; sourceTree = "<group>"; };
 		B1EE684B20D27628006BF802 /* UIBarButtonItem+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Extensions.swift"; sourceTree = "<group>"; };
 		B1EE686B20D2D713006BF802 /* PostCommentReply.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCommentReply.swift; sourceTree = "<group>"; };
+		B1F2B552216BBABD00CBAFC9 /* PostFeedHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostFeedHeaderView.swift; sourceTree = "<group>"; };
+		B1F2B554216BBAC900CBAFC9 /* PostFeedHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostFeedHeaderView.xib; sourceTree = "<group>"; };
 		B1F3747420C2B483005EF767 /* RootShow.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RootShow.storyboard; sourceTree = "<group>"; };
 		B1F3747B20C2C5E1005EF767 /* RootShowRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootShowRouter.swift; sourceTree = "<group>"; };
 		B1F3747D20C2C5E1005EF767 /* RootShowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootShowViewController.swift; sourceTree = "<group>"; };
@@ -934,8 +938,10 @@
 		B1E09E2B2102D354002CC5B7 /* PostFeedHeader */ = {
 			isa = PBXGroup;
 			children = (
-				B1E09E1C2101EFBE002CC5B7 /* PostFeedHeaderView.swift */,
-				B1E09E1B2101EFBE002CC5B7 /* PostFeedHeaderView.xib */,
+				B1E09E1C2101EFBE002CC5B7 /* PostFeedHeaderViewOld.swift */,
+				B1E09E1B2101EFBE002CC5B7 /* PostFeedHeaderViewOld.xib */,
+				B1F2B552216BBABD00CBAFC9 /* PostFeedHeaderView.swift */,
+				B1F2B554216BBAC900CBAFC9 /* PostFeedHeaderView.xib */,
 			);
 			path = PostFeedHeader;
 			sourceTree = "<group>";
@@ -1337,7 +1343,8 @@
 				B164CECA2119F6EB00349D79 /* Localizable.strings in Resources */,
 				B120D0702108256B00D949F5 /* SettingsNotificationsShow.storyboard in Resources */,
 				7DE3531C2048CA3400C04CB2 /* LogInHelpShowViewController.xib in Resources */,
-				B1E09E1D2101EFBE002CC5B7 /* PostFeedHeaderView.xib in Resources */,
+				B1E09E1D2101EFBE002CC5B7 /* PostFeedHeaderViewOld.xib in Resources */,
+				B1F2B555216BBAC900CBAFC9 /* PostFeedHeaderView.xib in Resources */,
 				EC24FF7F200C4E2C00A0AE15 /* NavigationDropDownView.xib in Resources */,
 				B1050CBF20CECFBE003CE4EE /* PostCreate.storyboard in Resources */,
 				B15C29AE21101F760030D249 /* PostShow.storyboard in Resources */,
@@ -1500,6 +1507,7 @@
 				EC24FF59200C30B800A0AE15 /* MainContainerViewController.swift in Sources */,
 				B1E09E2A2101F7D9002CC5B7 /* Blog+CoreDataProperties.swift in Sources */,
 				EC24FF54200C080300A0AE15 /* Notifications+Extensions.swift in Sources */,
+				B1F2B553216BBABD00CBAFC9 /* PostFeedHeaderView.swift in Sources */,
 				B163EE88214905B3004F3906 /* PostShortInfo.swift in Sources */,
 				B18B937420B91DB8000CF503 /* ForegroundRemoteNotificationView.swift in Sources */,
 				B1E78A6F20F99CD500B2901D /* UserProfileBlogShowViewController.swift in Sources */,
@@ -1529,7 +1537,7 @@
 				B15267AE210DB4980037CAAA /* NSAttributedString+Extensions.swift in Sources */,
 				B164CECE211AA84800349D79 /* Comment+CoreDataProperties.swift in Sources */,
 				B1E78A9320F9D30400B2901D /* GSScrollView.swift in Sources */,
-				B1E09E1E2101EFBE002CC5B7 /* PostFeedHeaderView.swift in Sources */,
+				B1E09E1E2101EFBE002CC5B7 /* PostFeedHeaderViewOld.swift in Sources */,
 				B1EE684A20D261C4006BF802 /* UITextView+Extensions.swift in Sources */,
 				ECF2808C200A9A210000D949 /* UIButton+Extensions.swift in Sources */,
 				B1D7EFAE20EB704000819401 /* UserSecretPostingKey+CoreDataProperties.swift in Sources */,

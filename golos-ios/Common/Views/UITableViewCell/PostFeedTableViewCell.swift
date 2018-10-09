@@ -106,8 +106,6 @@ class PostFeedTableViewCell: UITableViewCell, HandlersCellSupport {
         self.postImageView.image                                =   nil
         self.postImageViewHeightConstraint.constant             =   180.0 * heightRatio
         
-        self.postFeedHeaderView.clearValues()
-        
         self.commentsButton.setTitle(nil, for: .normal)
         self.activeVotesButton.setTitle(nil, for: .normal)
     }

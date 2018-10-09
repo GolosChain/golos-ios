@@ -31,11 +31,10 @@ class PostShowViewController: GSBaseViewController {
     // MARK: - Properties
     var commentsCount: Int64 = 0
     var activeVotesCount: Int = 0
-    var commentsTreeIndex: Int = -1
     var scrollCommentsDown: Bool = false
     var isPostContentModify: Bool = false
-    var commentsTree: [Comment] = [Comment]()
-
+    var commentsSecondLevel: [Comment] = [Comment]()
+    
     var commentsViews = [CommentView]() {
         didSet {
             self.commentsViews.forEach( { commentView in
@@ -535,9 +534,13 @@ class PostShowViewController: GSBaseViewController {
         }
         
         // Load Post
-        self.loadContent()
-        self.runCheckFollowing()
-        self.loadContentComments()
+        let loadPostContentQueue = DispatchQueue.global(qos: .background)
+        
+        loadPostContentQueue.sync {
+            self.loadContent()
+            self.runCheckFollowing()
+//            self.loadContentComments()
+        }
         
         if let user = User.current {
             let isNamesMatch = user.nickName == self.router?.dataStore?.postShortInfo?.author
@@ -663,6 +666,8 @@ class PostShowViewController: GSBaseViewController {
             self.flauntButton.isSelected = displayedPost.currentUserFlaunted
             self.flauntButton.setImage(displayedPost.currentUserFlaunted ? UIImage(named: "icon-button-flaunt-selected") : UIImage(named: "icon-button-flaunt-default"), for: .normal)
         }
+        
+        self.loadContentComments()
     }
     
     override func localizeTitles() {
@@ -674,7 +679,7 @@ class PostShowViewController: GSBaseViewController {
         self.postFeedHeaderView.categoryLabel.text = self.router!.dataStore!.displayedPost!.category
                                                         .transliteration(forPermlink: false)
                                                         .uppercaseFirst
-            
+        
         self.flauntButton.setTitle("Flaunt Verb".localized(), for: .normal)
         self.donateButton.setTitle("Donate Verb".localized(), for: .normal)
         self.promoteButton.setTitle("Promote Post Verb".localized(), for: .normal)
@@ -943,12 +948,12 @@ extension PostShowViewController {
     private func loadContent() {
         Logger.log(message: "Success", event: .severe)
 
-        let loadPostContentQueue = DispatchQueue.global(qos: .background)
-        
-        loadPostContentQueue.async {
+//        let loadPostContentQueue = DispatchQueue.global(qos: .background)
+//
+//        loadPostContentQueue.sync {
             let contentRequestModel = PostShowModels.Post.RequestModel()
             self.interactor?.loadContent(withRequestModel: contentRequestModel)
-        }
+//        }
     }
     
     func loadContentComments() {
@@ -960,8 +965,12 @@ extension PostShowViewController {
         self.commentsViewsViewHeightConstraint.constant = 0.0
         self.commentsCount = 0
         
-        let contentRepliesRequestModel = PostShowModels.Post.RequestModel()
-        self.interactor?.loadContentComments(withRequestModel: contentRepliesRequestModel)
+        let loadPostContentCommentsQueue = DispatchQueue.global(qos: .utility)
+
+        loadPostContentCommentsQueue.async {
+            let contentRepliesRequestModel = PostShowModels.Post.RequestModel()
+            self.interactor?.loadContentComments(withRequestModel: contentRepliesRequestModel)
+        }
     }
     
     private func runCheckFollowing() {
@@ -1006,6 +1015,7 @@ extension PostShowViewController {
                                                                    indexPath:        nil,
                                                                    parentAuthor:     displayedPost.parentAuthor,
                                                                    parentPermlink:   displayedPost.parentPermlink))
+                
                 self.loadViewSettings()
             }
         }
@@ -1017,26 +1027,25 @@ extension PostShowViewController {
         }
     }
     
-    //
-    private func search(comments: [Comment], byCurrentLevel currentLevelComment: Comment, completion: @escaping () -> Void) {
-        let commentsByCurrentLevel = comments.filter({ $0.parentPermlink!.contains(currentLevelComment.permlink) && $0.parentPermlink!.contains("re-") }).sorted(by: { $0.created < $1.created })
+    // Build Post Comments views tree
+    private func buildViewsTree(byComment comment: Comment) {
+        let commentChildrens = self.commentsSecondLevel.filter({ $0 != comment }).filter({ $0.parentPermlink!.contains(comment.permlink) })
+
+        guard commentChildrens.count > 0 else {
+            print("ggg")
+            return
+        }
         
-        if commentsByCurrentLevel.count > 0 {
-            commentsByCurrentLevel.forEach({
-                commentsTreeIndex += commentsByCurrentLevel.index(of: $0)! + 1
-                $0.treeIndex = commentsTreeIndex
-                commentsTree.append($0)
-                
-                search(comments: comments, byCurrentLevel: $0, completion: {
-                    completion()
-                })
-            })
-        } else {
-            completion()
+        for commentChildren in commentChildrens {
+//            commentChildren.treeIndex = self.commentsViews.count
+//            let commentView = CommentView.init(withComment: commentChildren)
+//            self.commentsViews.append(commentView)
+//            _ = self.commentsSecondLevel.removeAll(where: { $0 == commentChildren })
+            
+            self.buildViewsTree(byComment: commentChildren)
         }
     }
     
-    // Post Comments list
     private func fetchComments() {
         if let postShortInfo = self.router?.dataStore?.postShortInfo {
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1, execute: {
@@ -1053,53 +1062,54 @@ extension PostShowViewController {
 
                 self.commentsViewsViewHeightConstraint.constant = 0.0
                 
-                // Filter & sort comments first level
-                let commentsFirstLevel = comments.count == 1 ?  comments :
-                                                                comments.filter({ !$0.parentPermlink!.contains("-re-") && !$0.parentPermlink!.hasPrefix("re-") }).sorted(by: { $0.created < $1.created })
-                
-                // Create hierarchical tree
-                for commentFirstLevel in commentsFirstLevel {
-                    self.commentsTreeIndex += 1
-                    commentFirstLevel.treeIndex = self.commentsTreeIndex
-                    self.commentsTree.append(commentFirstLevel)
-                    
-                    let commentsByFirstLevel = comments.filter({ $0.parentPermlink!.contains(commentFirstLevel.permlink) && $0.parentPermlink!.contains("re-") }).sorted(by: { $0.created < $1.created })
-                    
-                    if commentsByFirstLevel.count > 0 {
-                        commentsByFirstLevel.forEach({
-                            self.commentsTreeIndex += commentsByFirstLevel.index(of: $0)! + 1
-                            $0.treeIndex = self.commentsTreeIndex
-                            self.commentsTree.append($0)
-                            
-                            self.search(comments: comments, byCurrentLevel: $0, completion: {})
-                        })
-                    }
-                }
+                // Set CommentView's levels
+                let commentsFirstLevel: [Comment] = comments.filter({ $0.parentPermlink == postShortInfo.permlink }).sorted(by: { $0.created < $1.created })
+                commentsFirstLevel.forEach({ $0.treeLevel = 0 })
 
-                self.commentsTree.forEach({ Logger.log(message: "treeIndex = \($0.treeIndex), author = \($0.author)", event: .debug) })
+                self.commentsSecondLevel = comments.filter({ $0.parentPermlink != postShortInfo.permlink }).sorted(by: { $0.created < $1.created })
+                self.commentsSecondLevel.forEach({ $0.treeLevel = 1 })
                 
-                // Create comments views view
-                for comment in self.commentsTree {
-                    let level = comment.parentPermlink! == postShortInfo.permlink ? 0 : 1 // .hasPrefix("re-") ? 1 : 0
-                    let commentView = CommentView.init(withComment: comment, atLevel: level, andIndexPath: IndexPath(row: comment.treeIndex, section: 0))
-                    commentView.tag = comment.treeIndex
-
+                for comment in commentsFirstLevel {
+                    comment.treeIndex = self.commentsViews.count
+                    let commentView = CommentView.init(withComment: comment)
                     self.commentsViews.append(commentView)
 
+                    self.buildViewsTree(byComment: comment)
+                }
+                
+//                    let commentChildrens = comments.filter({ $0 != comment }).filter({ $0.parentPermlink!.contains(comment.permlink) })
+//
+//                    if commentChildrens.count == 0 {
+//                        comment.treeIndex = "\(index)"
+//                        treeIndex = "\(index)"
+//                    } else {
+//                        for (commentChildrenIndex, commentChildren) in commentChildrens.enumerated() {
+//                            commentChildren.treeIndex = treeIndex + "\(commentChildrenIndex)"
+//                            childrens.append(commentChildren)
+//                        }
+//                    }
+//                }
+                
+                
+                
+//                    let commentView = CommentView.init(withComment: comment)
+//                    self.commentsViews.append(commentView)
+
                     // Load body content
-                    commentView.loadData(fromBody: comment.body, completion: { [weak self] viewHeight in
+                for commentView in self.commentsViews {
+                    commentView.loadData(fromBody: comments[commentView.postShortInfo.indexPath!.row].body, completion: { [weak self] viewHeight in
                         commentView.frame = CGRect(origin: .zero, size: commentView.frame.size)
                         self?.commentsViewsViewHeightConstraint.constant += viewHeight
                         self?.view.layoutIfNeeded()
-                        
+
                         self?.commentsCount += 1
-                        
+
                         if (self?.commentsCount)! == comments.count {
                             // Show comments count
                             self?.commentsViews.sort(by: { $0.tag < $1.tag })
-                           
+
                             var height: CGFloat = 0.0
-                            
+
                             self?.commentsViews.forEach({
                                 if $0.tag == 0 {
                                     height = $0.frame.height
@@ -1108,10 +1118,10 @@ extension PostShowViewController {
                                     $0.frame.origin = nextCommentViewOrigin
                                     height += $0.frame.height
                                 }
- 
+
                                 self?.commentsViewsView.addSubview($0)
                             })
-                            
+
                             self?.didCommentsControlView(hided: false)
                         }
                     })
@@ -1129,8 +1139,6 @@ extension PostShowViewController {
             self?.commentsViewsViewHeightConstraint.constant += viewHeight
             self?.view.layoutIfNeeded()
             
-//            self?.commentsViews.append(commentView)
-
             completionLoadBody()
         })
     }

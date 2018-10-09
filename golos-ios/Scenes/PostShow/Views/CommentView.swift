@@ -103,19 +103,20 @@ class CommentView: UIView, HandlersCellSupport {
 
     
     // MARK: - Class Initialization
-    init(withComment comment: Comment, atLevel level: Int, andIndexPath indexPath: IndexPath) {
+    init(withComment comment: Comment) {
         super.init(frame: CGRect.init(origin: .zero, size: CGSize.init(width: 351.0 * widthRatio, height: 85.0)))
         
         createFromXIB()
         
-        self.level              =   level
-        
+        self.tag                =   comment.treeIndex
+        self.level              =   comment.treeLevel
+
         self.postShortInfo      =   PostShortInfo(id:               comment.id,
                                                   title:            comment.body.substring(withCharactersCount: 120),
                                                   author:           comment.author,
                                                   permlink:         comment.permlink,
                                                   parentTag:        comment.tags?.first,
-                                                  indexPath:        indexPath,
+                                                  indexPath:        IndexPath(row: comment.treeIndex, section: 0),
                                                   parentAuthor:     comment.parentAuthor,
                                                   parentPermlink:   comment.parentPermlink)
 

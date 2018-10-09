@@ -2,7 +2,7 @@
 //  PostFeedHeaderView.swift
 //  Golos
 //
-//  Created by msm72 on 10/8/18.
+//  Created by Grigory on 29/01/2018.
 //  Copyright © 2018 golos. All rights reserved.
 //
 
@@ -10,24 +10,25 @@ import UIKit
 import CoreData
 import GoloSwift
 
-class PostFeedHeaderView: UIView {
+class PostFeedHeaderViewOld: UIView {
     // MARK: - Properties
     var handlerAuthorTapped: ((String) -> Void)?
     var handlerReblogAuthorTapped: ((String) -> Void)?
 
     
     // MARK: - IBOutlets
-    @IBOutlet var contentView: UIView! {
-        didSet {
-//            self.contentView.tune(withThemeColorPicker: whiteColorPickers)
-        }
-    }
- 
+    @IBOutlet var view: UIView!
     @IBOutlet weak var authorProfileImageView: UIImageView!
     
     @IBOutlet weak var timeLabelTopConstraint: NSLayoutConstraint! {
         didSet {
             self.timeLabelTopConstraint.constant = 11.0 * heightRatio
+        }
+    }
+
+    @IBOutlet weak var contentView: UIView! {
+        didSet {
+            self.contentView.tune(withThemeColorPicker: whiteColorPickers)
         }
     }
     
@@ -100,7 +101,7 @@ class PostFeedHeaderView: UIView {
     
     @IBOutlet var circleViewsCollection: [UIView]! {
         didSet {
-            self.circleViewsCollection.forEach({ $0.layer.cornerRadius = $0.bounds.size.width / 2 * widthRatio })
+            _ = circleViewsCollection.map({ $0.layer.cornerRadius = $0.bounds.size.width / 2 * widthRatio })
         }
     }
     
@@ -115,32 +116,56 @@ class PostFeedHeaderView: UIView {
             self.heightsCollection.forEach({ $0.constant *= heightRatio })
         }
     }
-
+    
     
     // MARK: - Class Initialization
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        createFromXIB()
+        commonInit()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        createFromXIB()
+        commonInit()
     }
     
     deinit {
         Logger.log(message: "Success", event: .severe)
     }
 
-    
-    // MARK: - Class Functions
-    func createFromXIB() {
-        Bundle.main.loadNibNamed("PostFeedHeaderView", owner: self, options: nil)
-        contentView.fixInView(self)
+    private func commonInit() {
+        backgroundColor = .clear
+        
+        UINib(nibName: String(describing: PostFeedHeaderViewOld.self), bundle: Bundle(for: PostFeedHeaderViewOld.self)).instantiate(withOwner: self, options: nil)
+        addSubview(view)
+        view.frame = frame
+
+//        let nib     =   UINib(nibName: String(describing: PostFeedHeaderView.self), bundle: nil)
+//        let view    =   nib.instantiate(withOwner: self, options: nil).first as! UIView
+//
+//        addSubview(view)
+        
+//        view.translatesAutoresizingMaskIntoConstraints                  =   false
+//        view.topAnchor.constraint(equalTo: topAnchor).isActive          =   true
+//        view.rightAnchor.constraint(equalTo: rightAnchor).isActive      =   true
+//        view.leftAnchor.constraint(equalTo: leftAnchor).isActive        =   true
+//        view.bottomAnchor.constraint(equalTo: bottomAnchor).isActive    =   true
     }
 
+    
+    // MARK: - Layouts
+    override func layoutSubviews() {
+        super.layoutSubviews()
+    }
+
+    
+    // MARK: - Class Functions
+    override var intrinsicContentSize: CGSize {
+        return CGSize(width: 300.0 * widthRatio, height: 51.0 * heightRatio)
+    }
+    
     
     // MARK: - Custom Functions
     func display(post: PostCellSupport) {
@@ -150,27 +175,22 @@ class PostFeedHeaderView: UIView {
         if let user = User.fetch(byNickName: post.author) {
             self.authorNickNameButton.setTitle(user.nickName, for: .normal)
             self.authorNameButton.setTitle((user.name == "XXX" || user.name.isEmpty ? user.nickName : user.name).uppercaseFirst, for: .normal)
-            
+
             self.timeLabel.text             =   post.created.convertToDaysAgo(dateFormatType: .expirationDateType)
             self.authorReputationLabel.text =   String(format: "%i", user.reputation.convertWithLogarithm10())
             
             self.categoryLabel.text = post.category
                                         .transliteration(forPermlink: false)
                                         .uppercaseFirst
-            
-//            self.timeLabel.sizeToFit()
-//            self.categoryLabel.sizeToFit()
-//            self.authorNameButton.sizeToFit()
 
-            Logger.log(message: "category \(self.categoryLabel.text!) frame: \(self.categoryLabel.frame.maxX)", event: .debug)
-            Logger.log(message: "timeLabel frame: \(self.timeLabel.frame.minX)", event: .debug)
-
-            if self.categoryLabel.frame.maxX >= (self.timeLabel.frame.minX - 10.0 * widthRatio) {
+            if self.categoryLabel.frame.maxX >= self.timeLabel.frame.minX - 10.0 * widthRatio {
+                Logger.log(message: "category \(self.categoryLabel.text!) frame: \(self.categoryLabel.frame.maxX)", event: .debug)
+                Logger.log(message: "timeStackView frame: \(self.timeLabel.frame.minX)", event: .debug)
                 self.timeLabelTopConstraint.constant = 28.0 * heightRatio
             } else {
                 self.timeLabelTopConstraint.constant = 11.0 * heightRatio
             }
-            
+
             // Load User author profile image
             if let userProfileImageURL = user.profileImageURL {
                 self.authorProfileImageView.uploadImage(byStringPath:   userProfileImageURL,
@@ -186,7 +206,7 @@ class PostFeedHeaderView: UIView {
         // Set reblogged user info (default isHidden = true)
         self.reblogIconButton.isHidden          =   true
         self.rebloggedAuthorButton.isHidden     =   true
-        
+
         switch post {
         case is Blog:
             if post.author != User.current!.nickName {
@@ -205,17 +225,13 @@ class PostFeedHeaderView: UIView {
     }
     
     private func clearValues() {
-        self.reblogIconButton.isHidden          =   true
-        self.rebloggedAuthorButton.isHidden     =   true
+//        self.emptyLabel.isHidden                =   true
+//        self.reblogIconButton.isHidden          =   true
+//        self.rebloggedAuthorButton.isHidden     =   true
         
         self.timeLabel.text                     =   nil
         self.categoryLabel.text                 =   nil
-        self.authorProfileImageView.image       =   nil
-        self.timeLabelTopConstraint.constant    =   11.0 * heightRatio
-
-//        self.timeLabel.sizeToFit()
-//        self.categoryLabel.sizeToFit()
-//        self.authorNameButton.sizeToFit()
+//        self.authorProfileImageView.image       =   nil
         
         self.authorNameButton.setTitle(nil, for: .normal)
         self.authorNickNameButton.setTitle(nil, for: .normal)
@@ -230,20 +246,5 @@ class PostFeedHeaderView: UIView {
     
     @IBAction func rebloggedAuthorNickNameButtonTapped(_ sender: UIButton) {
         self.handlerReblogAuthorTapped!(sender.titleLabel!.text!)
-    }
-}
-
-
-extension UIView {
-    func fixInView(_ container: UIView!) {
-        self.translatesAutoresizingMaskIntoConstraints = false
-        self.frame = container.frame
-        
-        container.addSubview(self)
-        
-        NSLayoutConstraint(item: self, attribute: .leading, relatedBy: .equal, toItem: container, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
-        NSLayoutConstraint(item: self, attribute: .trailing, relatedBy: .equal, toItem: container, attribute: .trailing, multiplier: 1.0, constant: 0).isActive = true
-        NSLayoutConstraint(item: self, attribute: .top, relatedBy: .equal, toItem: container, attribute: .top, multiplier: 1.0, constant: 0).isActive = true
-        NSLayoutConstraint(item: self, attribute: .bottom, relatedBy: .equal, toItem: container, attribute: .bottom, multiplier: 1.0, constant: 0).isActive = true
     }
 }

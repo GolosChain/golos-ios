@@ -504,10 +504,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                                 <subviews>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a7j-dG-pvN" customClass="PostFeedHeaderView" customModule="Golos" customModuleProvider="target">
-                                        <rect key="frame" x="36" y="14" width="284" height="50"/>
+                                        <rect key="frame" x="28" y="20" width="292" height="44"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="qu2-Ft-Su1"/>
+                                            <constraint firstAttribute="height" constant="44" identifier="postFeedHeaderViewHeightConstraint" id="qu2-Ft-Su1"/>
                                         </constraints>
                                     </view>
                                     <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Udv-hI-u2X" userLabel="Back Button">
@@ -525,10 +525,10 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="a7j-dG-pvN" firstAttribute="leading" secondItem="Udv-hI-u2X" secondAttribute="trailing" constant="-8" id="754-es-Dtx"/>
+                                    <constraint firstItem="a7j-dG-pvN" firstAttribute="leading" secondItem="Udv-hI-u2X" secondAttribute="trailing" constant="-16" identifier="postFeedHeaderViewLeadingConstraint" id="754-es-Dtx"/>
                                     <constraint firstAttribute="trailing" secondItem="a7j-dG-pvN" secondAttribute="trailing" id="IEX-07-NWV"/>
                                     <constraint firstItem="Udv-hI-u2X" firstAttribute="leading" secondItem="7Js-bQ-ZpY" secondAttribute="leading" id="JJv-Ok-ROH"/>
-                                    <constraint firstItem="a7j-dG-pvN" firstAttribute="centerY" secondItem="Udv-hI-u2X" secondAttribute="centerY" id="cuH-qt-tqe"/>
+                                    <constraint firstAttribute="bottom" secondItem="a7j-dG-pvN" secondAttribute="bottom" id="Ofo-RB-VxT"/>
                                     <constraint firstAttribute="height" constant="64" id="p07-Sd-p3F"/>
                                     <constraint firstAttribute="bottom" secondItem="Udv-hI-u2X" secondAttribute="bottom" constant="3" id="vNH-xC-FkJ"/>
                                 </constraints>
@@ -684,6 +684,7 @@
                         <outletCollection property="hiddenViewsCollection" destination="MhK-Vc-x7K" collectionClass="NSMutableArray" id="K5v-h6-vck"/>
                         <outletCollection property="hiddenViewsCollection" destination="lwn-iM-8rz" collectionClass="NSMutableArray" id="J2U-2U-c8S"/>
                         <outletCollection property="heightsCollection" destination="qo5-eR-zwm" collectionClass="NSMutableArray" id="iz8-EG-isn"/>
+                        <outletCollection property="hiddenViewsCollection" destination="a7j-dG-pvN" collectionClass="NSMutableArray" id="8uJ-x9-3XL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CXI-Zv-5XY" userLabel="First Responder" sceneMemberID="firstResponder"/>
