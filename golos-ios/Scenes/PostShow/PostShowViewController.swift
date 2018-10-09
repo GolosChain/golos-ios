@@ -39,8 +39,22 @@ class PostShowViewController: GSBaseViewController {
         didSet {
             self.commentsViews.forEach( { commentView in
                 // Handlers
-                commentView.handlerActiveVotesButtonTapped                  =   { [weak self] (isUpvote, indexPath) in
-                    self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+                commentView.handlerActiveVoteButtonTapped               =   { [weak self] (isUpvote, postShortInfo) in
+                    self?.interactor?.save(postShortInfo: postShortInfo)
+                    
+                    let requestModel = PostShowModels.ActiveVote.RequestModel(isUpvote: isUpvote)
+                    
+                    guard isUpvote else {
+                        self?.showAlertView(withTitle: "Info", andMessage: "Cancel Vote Message", actionTitle: "ActionOk", needCancel: true, completion: { success in
+                            if success {
+                                self?.interactor?.upvote(withRequestModel: requestModel)
+                            }
+                        })
+                        
+                        return
+                    }
+                    
+                    self?.interactor?.upvote(withRequestModel: requestModel)
                 }
                 
                 commentView.handlerUsersButtonTapped                    =   { [weak self] in
@@ -539,7 +553,6 @@ class PostShowViewController: GSBaseViewController {
         loadPostContentQueue.sync {
             self.loadContent()
             self.runCheckFollowing()
-//            self.loadContentComments()
         }
         
         if let user = User.current {
@@ -623,7 +636,6 @@ class PostShowViewController: GSBaseViewController {
             // Load markdown content
             self.markdownViewManager.onRendered = { [weak self] height in
                 self?.markdownViewHeightConstraint.constant = height
-//                self?.activityIndicator.stopAnimating()
                 
                 UIView.animate(withDuration: 0.5, animations: {
                     self?.hiddenViewsCollection.forEach({ $0.alpha = 1.0 })
@@ -931,13 +943,16 @@ extension PostShowViewController: PostShowDisplayLogic {
             return
         }
         
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
-            // Active Vote button: change icon & count
-            self.isPostContentModify    =   true
-            self.activeVotesCount       +=  viewModel.isUpvote ? 1 : -1
-            self.activeVoteButton.tag   =   viewModel.isUpvote ? 99 : 0
-            self.activeVoteButton.setTitle("\(self.activeVotesCount)", for: .normal)
-            self.activeVoteButton.setImage(UIImage(named: viewModel.isUpvote ? "icon-button-upvotes-selected" : "icon-button-upvotes-default"), for: .normal)
+        // Reload & refresh current cell content by indexPath
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2.5) {
+            if let postShortInfo = self.router?.dataStore?.postShortInfo, let indexPath = postShortInfo.indexPath {
+                RestAPIManager.loadModifiedPost(author: postShortInfo.author ?? "XXX", permlink: postShortInfo.permlink ?? "XXX", postType: .comment, completion: { model in
+                    if let commentEntity = model as? Comment {
+                        // Modify Comment
+                        self.commentsViews[indexPath.row].setup(withComment: commentEntity)
+                    }
+                })
+            }
         }
     }
 }
@@ -947,13 +962,9 @@ extension PostShowViewController: PostShowDisplayLogic {
 extension PostShowViewController {
     private func loadContent() {
         Logger.log(message: "Success", event: .severe)
-
-//        let loadPostContentQueue = DispatchQueue.global(qos: .background)
-//
-//        loadPostContentQueue.sync {
-            let contentRequestModel = PostShowModels.Post.RequestModel()
-            self.interactor?.loadContent(withRequestModel: contentRequestModel)
-//        }
+        
+        let contentRequestModel = PostShowModels.Post.RequestModel()
+        self.interactor?.loadContent(withRequestModel: contentRequestModel)
     }
     
     func loadContentComments() {

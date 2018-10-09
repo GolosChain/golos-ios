@@ -20,7 +20,7 @@ class PostFeedTableViewCell: UITableViewCell, HandlersCellSupport {
     // HandlersCellSupport
     var handlerShareButtonTapped: (() -> Void)?
     var handlerCommentsButtonTapped: ((PostShortInfo) -> Void)?
-    var handlerActiveVotesButtonTapped: ((Bool, PostShortInfo) -> Void)?
+    var handlerActiveVoteButtonTapped: ((Bool, PostShortInfo) -> Void)?
 
     
     // MARK: - IBOutlets
@@ -121,7 +121,7 @@ class PostFeedTableViewCell: UITableViewCell, HandlersCellSupport {
     
     // MARK: - Actions
     @IBAction func activeVotesButtonTapped(_ sender: UIButton) {
-        self.handlerActiveVotesButtonTapped!(sender.tag == 0, self.postShortInfo)
+        self.handlerActiveVoteButtonTapped!(sender.tag == 0, self.postShortInfo)
     }
     
     @IBAction func commentsButtonTapped(_ sender: UIButton) {

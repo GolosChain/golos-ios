@@ -44,6 +44,10 @@ extension NSManagedObject {
             entity.children                     =   Int64(model.children)
             entity.netVotes                     =   model.net_votes
             
+            entity.currentUserVoted             =   false
+            entity.currentUserFlaunted          =   false
+            entity.currentUserCommented         =   false
+
             if let authorReputation = model.author_reputation.stringValue {
                 entity.authorReputation         =   authorReputation
             }
@@ -73,8 +77,7 @@ extension NSManagedObject {
                         }
                     }
                 })
-            }
-            
+            }            
             
             // Extension: parse & save
             self.parse(metaData: model.json_metadata, fromBody: model.body)

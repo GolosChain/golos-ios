@@ -110,7 +110,7 @@
                 </imageView>
                 <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Category Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aki-nt-sGv" userLabel="Category Label">
                     <rect key="frame" x="153" y="11" width="73.5" height="15"/>
-                    <color key="backgroundColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="15" identifier="categoryLabelHeightConstraint" id="D96-5E-Xuu"/>
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="wxX-0J-YUv"/>
@@ -121,7 +121,7 @@
                 </label>
                 <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="249" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" text="Time Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e3S-GM-Rrf" userLabel="Time Label">
                     <rect key="frame" x="306" y="28" width="53" height="15"/>
-                    <color key="backgroundColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="15" id="Vpy-UU-EiU"/>
                     </constraints>
@@ -166,7 +166,7 @@
                     </constraints>
                 </stackView>
             </subviews>
-            <color key="backgroundColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="8pZ-cO-uTP" firstAttribute="top" secondItem="CDW-mc-LZt" secondAttribute="top" id="2p0-9r-ivT"/>
                 <constraint firstItem="aki-nt-sGv" firstAttribute="centerY" secondItem="Obg-ts-apO" secondAttribute="centerY" id="A5S-mS-HtO"/>

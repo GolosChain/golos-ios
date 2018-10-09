@@ -90,8 +90,8 @@ extension PostCreateView: UITextFieldDelegate {
         
         let textLength = (textField.text?.count)! + string.count
         
-        // Max Tag title length = 120
-        guard textLength < 121 else {
+        // Max Title length = 128
+        guard textLength < 129 else {
             return false
         }
 

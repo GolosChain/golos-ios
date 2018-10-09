@@ -19,7 +19,7 @@ class PostFeedHeaderView: UIView {
     // MARK: - IBOutlets
     @IBOutlet var contentView: UIView! {
         didSet {
-//            self.contentView.tune(withThemeColorPicker: whiteColorPickers)
+            self.contentView.tune(withThemeColorPicker: whiteColorPickers)
         }
     }
  

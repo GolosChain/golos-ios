@@ -113,6 +113,10 @@ class RestAPIManager {
                                         case .reply:
                                             Reply.updateEntity(fromResponseAPI: responseAPIFeed)
                                             
+                                        // Comment
+                                        case .comment:
+                                            Comment.updateEntity(fromResponseAPI: responseAPIFeed)
+                                            
                                         // Popular
                                         case .popular:
                                             Popular.updateEntity(fromResponseAPI: responseAPIFeed)
@@ -199,6 +203,10 @@ class RestAPIManager {
                                     case .reply:
                                         Reply.updateEntity(fromResponseAPI: result)
                                         
+                                    // Comment
+                                    case .comment:
+                                        Comment.updateEntity(fromResponseAPI: result)
+                                        
                                     // Popular
                                     case .popular:
                                         Popular.updateEntity(fromResponseAPI: result)
@@ -248,11 +256,16 @@ class RestAPIManager {
             broadcast.executeGET(byMethodAPIType: methodAPIType,
                                  onResult: { responseAPIResult in
 //                                    Logger.log(message: "\nresponse API Result = \(responseAPIResult)\n", event: .debug)
-                                    
-                                    guard let result = (responseAPIResult as! ResponseAPIAllContentRepliesResult).result else {
-                                        completion(ErrorAPI.requestFailed(message: (responseAPIResult as! ResponseAPIAllContentRepliesResult).error!.message))
+
+                                    guard let result = (responseAPIResult as! ResponseAPIPostsResult).result else {
+                                        completion(ErrorAPI.requestFailed(message: (responseAPIResult as! ResponseAPIPostResult).error!.message))
                                         return
                                     }
+
+//                                    guard let result = (responseAPIResult as! ResponseAPIAllContentRepliesResult).result else {
+//                                        completion(ErrorAPI.requestFailed(message: (responseAPIResult as! ResponseAPIAllContentRepliesResult).error!.message))
+//                                        return
+//                                    }
                                     
                                     // CoreData: Update Comment entity
                                     result.forEach({ Comment.updateEntity(fromResponseAPI: $0) })

@@ -27,16 +27,22 @@ class CommentView: UIView, HandlersCellSupport {
     // HandlersCellSupport
     var handlerShareButtonTapped: (() -> Void)?
     var handlerCommentsButtonTapped: ((PostShortInfo) -> Void)?
-    var handlerActiveVotesButtonTapped: ((Bool, PostShortInfo) -> Void)?
+    var handlerActiveVoteButtonTapped: ((Bool, PostShortInfo) -> Void)?
     
     
     // MARK: - IBOutlets
     @IBOutlet var view: UIView!
     @IBOutlet weak var contentView: UIView!
-    @IBOutlet weak var upvotesButton: UIButton!
+    @IBOutlet weak var activeVoteButton: UIButton!
     @IBOutlet weak var markdownViewManager: MarkdownViewManager!    
     @IBOutlet weak var authorProfileImageView: UIImageView!
 
+    @IBOutlet weak var activeVoteActivityIndicator: UIActivityIndicatorView! {
+        didSet {
+            self.activeVoteActivityIndicator.stopAnimating()
+        }
+    }
+   
     @IBOutlet weak var commentsButton: UIButton! {
         didSet {
             self.commentsButton.tune(withTitle:         "",
@@ -48,7 +54,7 @@ class CommentView: UIView, HandlersCellSupport {
 
     @IBOutlet var circleViewsCollection: [UIView]! {
         didSet {
-            _ = circleViewsCollection.map({ $0.layer.cornerRadius = $0.bounds.width / 2 * widthRatio })
+            self.circleViewsCollection.forEach({ $0.layer.cornerRadius = $0.bounds.width / 2 * widthRatio })
         }
     }
     
@@ -111,6 +117,10 @@ class CommentView: UIView, HandlersCellSupport {
         self.tag                =   comment.treeIndex
         self.level              =   comment.treeLevel
 
+        self.setup(withComment: comment)
+    }
+    
+    func setup(withComment comment: Comment) {
         self.postShortInfo      =   PostShortInfo(id:               comment.id,
                                                   title:            comment.body.substring(withCharactersCount: 120),
                                                   author:           comment.author,
@@ -123,6 +133,12 @@ class CommentView: UIView, HandlersCellSupport {
         self.created            =   comment.created
         self.timeLabel.text     =   comment.created.convertToDaysAgo()
         
+        // Set Active Votes icon
+        self.activeVoteActivityIndicator.stopAnimating()
+        self.activeVoteButton.tag = comment.currentUserVoted ? 99 : 0
+        self.activeVoteButton.setTitle(comment.netVotes > 0 ? "\(comment.netVotes)" : nil, for: .normal)
+        self.activeVoteButton.setImage(UIImage(named: comment.currentUserVoted ? "icon-button-upvotes-selected" : "icon-button-upvotes-default"), for: .normal)
+
         if comment.netVotes > 0 {
             self.commentsButton.setTitle("\(comment.netVotes)", for: .normal)
             self.commentsButton.isSelected = comment.currentUserVoted
@@ -219,8 +235,13 @@ class CommentView: UIView, HandlersCellSupport {
     }
     
     // Action buttons
-    @IBAction func upvotesButtonTapped(_ sender: UIButton) {
-        self.handlerActiveVotesButtonTapped!(sender.tag == 0, self.postShortInfo)
+    @IBAction func activeVoteButtonTapped(_ sender: UIButton) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
+            self.activeVoteActivityIndicator.startAnimating()
+            self.activeVoteButton.setImage(UIImage(named: "icon-button-active-vote-empty"), for: .normal)
+        }
+        
+        self.handlerActiveVoteButtonTapped!(sender.tag == 0, self.postShortInfo)
     }
     
     @IBAction func usersButtonTapped(_ sender: UIButton) {

@@ -355,8 +355,9 @@ public struct ResponseAPIAllContentReply: Decodable {
     public let url: String
     public let reblogged_by: [String]?
     public let children: Int16
-    //    public let active_votes: [ResponseAPIActiveVote]
-    
+    public let net_votes: Int64
+    public let active_votes: [ResponseAPIActiveVote]
+
     // "2018-04-13T10:19:54"
     public let created: String
     public let active: String

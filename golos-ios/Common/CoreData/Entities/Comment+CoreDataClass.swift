@@ -31,8 +31,7 @@ public class Comment: NSManagedObject, CachedImageFrom {
     
     // MARK: - Class Functions
     class func updateEntity(fromResponseAPI responseAPI: Decodable) {
-        let model   =   responseAPI as! ResponseAPIAllContentReply
-        
+        let model   =   responseAPI as! ResponseAPIPost
         var entity  =   CoreDataManager.instance.readEntity(withName:                   "Comment",
                                                             andPredicateParameters:     NSPredicate.init(format: "id == \(model.id)")) as? Comment
         
@@ -42,27 +41,6 @@ public class Comment: NSManagedObject, CachedImageFrom {
         }
         
         // Update entity
-        entity!.id                  =   model.id
-        entity!.author              =   model.author
-        entity!.category            =   model.category
-        
-        entity!.title               =   model.title
-        entity!.permlink            =   model.permlink
-        entity!.active              =   model.active.convert(toDateFormat: .expirationDateType)
-        entity!.created             =   model.created.convert(toDateFormat: .expirationDateType)
-        entity!.lastUpdate          =   model.last_update.convert(toDateFormat: .expirationDateType)
-        entity!.lastPayout          =   model.last_payout.convert(toDateFormat: .expirationDateType)
-        entity!.parentAuthor        =   model.parent_author
-        entity!.parentPermlink      =   model.parent_permlink
-        entity!.url                 =   model.url
-        entity!.rebloggedBy         =   model.reblogged_by
-        
-        // Modify body
-        entity!.body                =   model.body
-                                            .convertImagePathToMarkdown()
-                                            .convertUsersAccounts()
-        
-        // Extension: parse & save
-        (entity! as NSManagedObject).parse(metaData: model.json_metadata, fromBody: model.body)
+        entity!.update(withModel: model)
     }
 }

@@ -267,7 +267,7 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
                     self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
                 }
                 
-                activeVC.handlerActiveVotesButtonTapped                 =   { [weak self] (isUpvote, postShortInfo) in
+                activeVC.handlerActiveVoteButtonTapped                 =   { [weak self] (isUpvote, postShortInfo) in
                     self?.interactor?.save(postShortInfo: postShortInfo)
  
                     let requestModel = PostsShowModels.ActiveVote.RequestModel(isUpvote: isUpvote)

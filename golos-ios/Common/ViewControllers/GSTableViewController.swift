@@ -65,7 +65,7 @@ class GSTableViewController: GSBaseViewController, HandlersCellSupport {
 
     // HandlersCellSupport
     var handlerShareButtonTapped: (() -> Void)?
-    var handlerActiveVotesButtonTapped: ((Bool, PostShortInfo) -> Void)?
+    var handlerActiveVoteButtonTapped: ((Bool, PostShortInfo) -> Void)?
     var handlerCommentsButtonTapped: ((PostShortInfo) -> Void)?
 
     
@@ -399,10 +399,10 @@ extension GSTableViewController: UITableViewDataSource {
                 self?.handlerShareButtonTapped!()
             }
             
-            (cell as! PostFeedTableViewCell).handlerActiveVotesButtonTapped     =   { [weak self] (isUpvote, postShortInfo) in
+            (cell as! PostFeedTableViewCell).handlerActiveVoteButtonTapped     =   { [weak self] (isUpvote, postShortInfo) in
                 let model = self?.fetchedResultsController.object(at: postShortInfo.indexPath!) as! PostCellSupport
 
-                self?.handlerActiveVotesButtonTapped!(isUpvote, PostShortInfo(id:                model.id,
+                self?.handlerActiveVoteButtonTapped!(isUpvote, PostShortInfo(id:                model.id,
                                                                               title:             model.title,
                                                                               author:            model.author,
                                                                               permlink:          model.permlink,

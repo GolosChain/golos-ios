@@ -11,6 +11,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CommentView" customModule="Golos" customModuleProvider="target">
             <connections>
+                <outlet property="activeVoteActivityIndicator" destination="t3P-dC-AWg" id="N3i-it-AQr"/>
+                <outlet property="activeVoteButton" destination="RVe-ej-86a" id="Icj-bh-8Ok"/>
                 <outlet property="authorNameButton" destination="eTP-vD-Kt8" id="7iy-kn-6MZ"/>
                 <outlet property="authorProfileAddButton" destination="cy5-Ia-Z4f" id="IeY-qa-QHD"/>
                 <outlet property="authorProfileImageView" destination="mdT-NO-nly" id="hnN-Ty-BMb"/>
@@ -21,7 +23,6 @@
                 <outlet property="markdownViewManager" destination="Mnb-Ny-ryB" id="dXy-AN-Otj"/>
                 <outlet property="replyButton" destination="0FV-JI-k6m" id="LqE-42-Edz"/>
                 <outlet property="timeLabel" destination="JV1-jP-ZcQ" id="Tgb-ss-qh4"/>
-                <outlet property="upvotesButton" destination="RVe-ej-86a" id="Icj-bh-8Ok"/>
                 <outlet property="view" destination="iN0-l3-epB" id="fR0-Z6-6hX"/>
                 <outletCollection property="widthsCollection" destination="WGM-xK-IuN" collectionClass="NSMutableArray" id="yeY-jf-8kq"/>
                 <outletCollection property="circleViewsCollection" destination="yNw-9n-yzN" collectionClass="NSMutableArray" id="9K9-TC-dMn"/>
@@ -120,7 +121,7 @@
                                 <stackView clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z0C-dr-aat" userLabel="Actions Buttons Stack View">
                                     <rect key="frame" x="0.0" y="2.5" width="321" height="20"/>
                                     <subviews>
-                                        <button clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="RVe-ej-86a" userLabel="Upvotes Button">
+                                        <button clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="RVe-ej-86a" userLabel="Active Upvote Button">
                                             <rect key="frame" x="0.0" y="0.0" width="30" height="20"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
@@ -131,7 +132,7 @@
                                             </state>
                                             <state key="disabled" image="icon-button-upvotes-highlighted"/>
                                             <connections>
-                                                <action selector="upvotesButtonTapped:" destination="-1" eventType="touchUpInside" id="9Gu-1D-TsJ"/>
+                                                <action selector="activeVoteButtonTapped:" destination="-1" eventType="touchUpInside" id="9Gu-1D-TsJ"/>
                                             </connections>
                                         </button>
                                         <button hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="KPh-OS-JoL" userLabel="Users Button">
@@ -202,12 +203,19 @@
                                 <constraint firstItem="z0C-dr-aat" firstAttribute="leading" secondItem="bW7-se-LaC" secondAttribute="leading" id="hwf-M5-g25"/>
                             </constraints>
                         </view>
+                        <activityIndicatorView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="t3P-dC-AWg">
+                            <rect key="frame" x="54" y="52.5" width="20" height="20"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="color" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                        </activityIndicatorView>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
+                        <constraint firstItem="t3P-dC-AWg" firstAttribute="height" secondItem="RVe-ej-86a" secondAttribute="height" id="12L-91-atv"/>
                         <constraint firstItem="eTP-vD-Kt8" firstAttribute="leading" secondItem="mdT-NO-nly" secondAttribute="trailing" constant="12" id="5X4-Je-dEv"/>
                         <constraint firstItem="yNw-9n-yzN" firstAttribute="bottom" secondItem="mlh-OO-ald" secondAttribute="bottom" id="7L6-pV-4oc"/>
                         <constraint firstItem="mdT-NO-nly" firstAttribute="leading" secondItem="tNf-H6-dtq" secondAttribute="leading" constant="2" id="7eC-if-bVP"/>
+                        <constraint firstItem="t3P-dC-AWg" firstAttribute="width" secondItem="RVe-ej-86a" secondAttribute="height" multiplier="1:1" id="AwC-M6-SPw"/>
                         <constraint firstItem="JV1-jP-ZcQ" firstAttribute="leading" secondItem="eTP-vD-Kt8" secondAttribute="trailing" constant="8" id="D4v-Ma-HTj"/>
                         <constraint firstItem="Mnb-Ny-ryB" firstAttribute="top" secondItem="eTP-vD-Kt8" secondAttribute="bottom" constant="3" id="DOx-JU-Tjk"/>
                         <constraint firstAttribute="trailing" secondItem="bW7-se-LaC" secondAttribute="trailing" id="DQT-JO-Lfz"/>
@@ -215,6 +223,8 @@
                         <constraint firstAttribute="bottom" secondItem="bW7-se-LaC" secondAttribute="bottom" constant="10" identifier="buttonsViewBottomConstraint" id="HgQ-yQ-J4F"/>
                         <constraint firstItem="bW7-se-LaC" firstAttribute="leading" secondItem="eTP-vD-Kt8" secondAttribute="leading" id="PJf-Ow-DpU"/>
                         <constraint firstItem="eTP-vD-Kt8" firstAttribute="top" secondItem="mdT-NO-nly" secondAttribute="top" id="PeV-OT-067"/>
+                        <constraint firstItem="t3P-dC-AWg" firstAttribute="bottom" secondItem="RVe-ej-86a" secondAttribute="bottom" id="QuQ-9a-6WX"/>
+                        <constraint firstItem="t3P-dC-AWg" firstAttribute="leading" secondItem="RVe-ej-86a" secondAttribute="leading" id="TE2-Mi-fZv"/>
                         <constraint firstAttribute="trailing" secondItem="Mnb-Ny-ryB" secondAttribute="trailing" constant="16" id="WGM-xK-IuN"/>
                         <constraint firstItem="mlh-OO-ald" firstAttribute="centerY" secondItem="mdT-NO-nly" secondAttribute="centerY" id="XmL-yu-0r4"/>
                         <constraint firstItem="mlh-OO-ald" firstAttribute="centerX" secondItem="mdT-NO-nly" secondAttribute="centerX" id="f47-Wm-IiC"/>

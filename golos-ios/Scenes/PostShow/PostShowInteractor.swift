@@ -82,7 +82,7 @@ class PostShowInteractor: PostShowBusinessLogic, PostShowDataStore {
 
     func loadContentComments(withRequestModel requestModel: PostShowModels.Post.RequestModel) {
         // API 'get_all_content_replies'
-        let content = RequestParameterAPI.Content(author: self.postShortInfo?.author ?? "XXX", permlink: self.postShortInfo?.permlink ?? "XXX")
+        let content = RequestParameterAPI.Content(author: self.postShortInfo?.author ?? "XXX", permlink: self.postShortInfo?.permlink ?? "XXX", active_votes: 1_000)
         
         RestAPIManager.loadPostComments(byContent: content, andPostType: .comment, completion: { [weak self] errorAPI in
             guard errorAPI?.caseInfo.message != "No Internet Connection" || !(errorAPI?.caseInfo.message.hasSuffix("timing"))! else {

@@ -120,7 +120,7 @@ public class WebSocketManager {
                 return (responseAPI: try JSONDecoder().decode(ResponseAPIPostResult.self, from: jsonData), errorAPI: nil)
                 
             case .getContentAllReplies(_):
-                return (responseAPI: try JSONDecoder().decode(ResponseAPIAllContentRepliesResult.self, from: jsonData), errorAPI: nil)
+                return (responseAPI: try JSONDecoder().decode(ResponseAPIPostsResult.self, from: jsonData), errorAPI: nil)
             }
         } catch {
             Logger.log(message: "\(error)", event: .error)
