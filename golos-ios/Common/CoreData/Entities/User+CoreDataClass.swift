@@ -92,6 +92,7 @@ public class User: NSManagedObject, CachedImageFrom {
         if let userModel = responseAPI as? ResponseAPIUser {
             self.id             =   userModel.id
             self.nickName       =   userModel.name
+            self.name           =   userModel.name
             self.postsCount     =   userModel.post_count
             self.json_metadata  =   userModel.json_metadata
             self.memoKey        =   userModel.memo_key
@@ -148,7 +149,6 @@ public class User: NSManagedObject, CachedImageFrom {
             self.profileImageURL    =   profile["profile_image"] as? String
             self.coverImageURL      =   profile["cover_image"] as? String
             self.selectTags         =   profile["select_tags"] as? [String]
-            self.name               =   "XXX"
             
             if let userName = profile["name"] as? String {
                 self.name = userName

@@ -95,9 +95,7 @@ extension PostCreateView: UITextFieldDelegate {
             return false
         }
 
-        let regex = "[а-я0-9a-z,ґ,є,і,ї]"
-        
-        return NSPredicate(format: "SELF MATCHES %@", regex).evaluate(with: string.lowercased())
+        return true
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
