@@ -21,6 +21,7 @@ protocol UserProfileShowBusinessLogic {
     func save(commentReply: PostShortInfo)
     func loadUserInfo(withRequestModel requestModel: UserProfileShowModels.UserInfo.RequestModel)
     func loadUserDetails(withRequestModel requestModel: UserProfileShowModels.UserDetails.RequestModel)
+    func upvote(withRequestModel requestModel: UserProfileShowModels.ActiveVote.RequestModel)
 }
 
 protocol UserProfileShowDataStore {
@@ -82,5 +83,12 @@ class UserProfileShowInteractor: UserProfileShowBusinessLogic, UserProfileShowDa
                 self?.presenter?.presentUserDetails(fromResponseModel: userDetailsResponseModel)
             })
         }
+    }
+    
+    func upvote(withRequestModel requestModel: UserProfileShowModels.ActiveVote.RequestModel) {
+        RestAPIManager.vote(up: requestModel.isUpvote, postShortInfo: self.selectedBlog!, completion: { [weak self] errorAPI in
+            let responseModel = UserProfileShowModels.ActiveVote.ResponseModel(isUpvote: requestModel.isUpvote, errorAPI: errorAPI)
+            self?.presenter?.presentUpvote(fromResponseModel: responseModel)
+        })
     }
 }

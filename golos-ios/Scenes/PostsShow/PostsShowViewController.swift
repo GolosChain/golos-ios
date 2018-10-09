@@ -275,6 +275,13 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
                     guard isUpvote else {
                         self?.showAlertView(withTitle: "Info", andMessage: "Cancel Vote Message", actionTitle: "ActionOk", needCancel: true, completion: { success in
                             if success {
+                                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
+                                    let postCell = activeVC.postsTableView.cellForRow(at: postShortInfo.indexPath!) as! PostCellActiveVoteSupport
+                                    
+                                    postCell.activeVoteActivityIndicator.startAnimating()
+                                    postCell.activeVoteButton.setImage(UIImage(named: "icon-button-active-vote-empty"), for: .normal)
+                                }
+
                                 self?.interactor?.upvote(withRequestModel: requestModel)
                             }
                         })
@@ -282,6 +289,13 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
                         return
                     }
                     
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
+                        let postCell = activeVC.postsTableView.cellForRow(at: postShortInfo.indexPath!) as! PostCellActiveVoteSupport
+                        
+                        postCell.activeVoteActivityIndicator.startAnimating()
+                        postCell.activeVoteButton.setImage(UIImage(named: "icon-button-active-vote-empty"), for: .normal)
+                    }
+
                     self?.interactor?.upvote(withRequestModel: requestModel)
                 }
                 
@@ -363,20 +377,22 @@ extension PostsShowViewController: PostsShowDisplayLogic {
     
     func displayUpvote(fromViewModel viewModel: PostsShowModels.ActiveVote.ViewModel) {
         // NOTE: Display the result from the Presenter
-        guard viewModel.errorAPI == nil else {
-            if let message = viewModel.errorAPI?.caseInfo.message {
-                self.showAlertView(withTitle:   viewModel.errorAPI!.caseInfo.title,
-                                   andMessage:  message.contains("Voter has used the maximum number of vote changes on this comment.") ? "Voter maximum number error".localized() : message,
-                                   needCancel:  false,
-                                   completion:  { _ in })
+        if let activeVC = self.containerView.activeVC, let postShortInfo = self.router?.dataStore?.postShortInfo, let indexPath = postShortInfo.indexPath {
+            guard viewModel.errorAPI == nil else {
+                if let message = viewModel.errorAPI?.caseInfo.message {
+                    self.showAlertView(withTitle:   viewModel.errorAPI!.caseInfo.title,
+                                       andMessage:  message.contains("Voter has used the maximum number of vote changes on this comment.") ? "Voter maximum number error".localized() : message,
+                                       needCancel:  false,
+                                       completion:  { _ in
+                                        activeVC.postsTableView.reloadRows(at: [indexPath], with: .automatic)
+                    })
+                }
+                
+                return
             }
             
-            return
-        }
-        
-        // Reload & refresh current cell content by indexPath
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
-            if let activeVC = self.containerView.activeVC, let postShortInfo = self.router?.dataStore?.postShortInfo, let indexPath = postShortInfo.indexPath {
+            // Reload & refresh current cell content by indexPath
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
                 RestAPIManager.loadModifiedPost(author: postShortInfo.author ?? "XXX", permlink: postShortInfo.permlink ?? "XXX", postType: activeVC.postType, completion: { model in
                     if let postEntity = model {
                         activeVC.postsList![indexPath.row] = postEntity

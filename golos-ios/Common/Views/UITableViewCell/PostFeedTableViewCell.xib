@@ -87,15 +87,25 @@
                                     <action selector="shareButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="lC1-V3-WhW"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="qkH-S3-zTY">
+                                <rect key="frame" x="16" y="13" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="qkH-S3-zTY" secondAttribute="height" multiplier="1:1" id="UW7-a6-8FZ"/>
+                                </constraints>
+                                <color key="color" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="YHf-4Q-6Ih" firstAttribute="leading" secondItem="a2D-jz-RAy" secondAttribute="trailing" constant="5" id="1Pz-7P-tSU"/>
                             <constraint firstItem="3Me-i8-z48" firstAttribute="centerY" secondItem="YHf-4Q-6Ih" secondAttribute="centerY" id="2tt-VO-6gf"/>
+                            <constraint firstItem="qkH-S3-zTY" firstAttribute="leading" secondItem="a2D-jz-RAy" secondAttribute="leading" constant="10" id="3Pm-KA-C1L"/>
                             <constraint firstItem="a2D-jz-RAy" firstAttribute="leading" secondItem="rgg-s6-oxm" secondAttribute="leading" constant="6" id="CRS-zz-HeW"/>
+                            <constraint firstItem="qkH-S3-zTY" firstAttribute="centerY" secondItem="a2D-jz-RAy" secondAttribute="centerY" id="Ia0-KM-3c4"/>
                             <constraint firstAttribute="height" constant="45" identifier="bottomViewHeightConstraint" id="MgH-9n-NbH"/>
                             <constraint firstAttribute="trailing" secondItem="3Me-i8-z48" secondAttribute="trailing" constant="8" id="Vfo-EY-ayY"/>
                             <constraint firstItem="YHf-4Q-6Ih" firstAttribute="centerY" secondItem="a2D-jz-RAy" secondAttribute="centerY" id="hNI-He-MoJ"/>
+                            <constraint firstItem="qkH-S3-zTY" firstAttribute="height" secondItem="a2D-jz-RAy" secondAttribute="height" id="kcs-K9-kDV"/>
                             <constraint firstAttribute="bottom" secondItem="a2D-jz-RAy" secondAttribute="bottom" constant="12" id="smg-Rx-Uvh"/>
                         </constraints>
                     </view>
@@ -129,7 +139,8 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="activeVotesButton" destination="a2D-jz-RAy" id="Oz7-IV-lSz"/>
+                <outlet property="activeVoteActivityIndicator" destination="qkH-S3-zTY" id="VDb-6r-gfa"/>
+                <outlet property="activeVoteButton" destination="a2D-jz-RAy" id="Oz7-IV-lSz"/>
                 <outlet property="bottomView" destination="rgg-s6-oxm" id="i6M-lf-bbh"/>
                 <outlet property="commentsButton" destination="YHf-4Q-6Ih" id="GcT-Bz-AHG"/>
                 <outlet property="postFeedHeaderView" destination="x0K-7b-ZlY" id="Tv9-zR-sE1"/>

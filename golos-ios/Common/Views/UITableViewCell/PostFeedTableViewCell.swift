@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 import GoloSwift
 
-class PostFeedTableViewCell: UITableViewCell, HandlersCellSupport {
+class PostFeedTableViewCell: UITableViewCell, HandlersCellSupport, PostCellActiveVoteSupport {
     // MARK: - Properties
     var postShortInfo: PostShortInfo!
 
@@ -59,9 +59,9 @@ class PostFeedTableViewCell: UITableViewCell, HandlersCellSupport {
         }
     }
 
-    @IBOutlet private weak var activeVotesButton: UIButton! {
+    @IBOutlet weak var activeVoteButton: UIButton! {
         didSet {
-            activeVotesButton.tune(withTitle:       "",
+            activeVoteButton.tune(withTitle:    "",
                                hexColors:       [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
                                font:            UIFont(name: "SFProDisplay-Regular", size: 10.0),
                                alignment:       .center)
@@ -74,6 +74,12 @@ class PostFeedTableViewCell: UITableViewCell, HandlersCellSupport {
                                 hexColors:      [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
                                 font:           UIFont(name: "SFProDisplay-Regular", size: 10.0),
                                 alignment:      .center)
+        }
+    }
+    
+    @IBOutlet weak var activeVoteActivityIndicator: UIActivityIndicatorView! {
+        didSet {
+            self.activeVoteActivityIndicator.stopAnimating()
         }
     }
     
@@ -107,7 +113,7 @@ class PostFeedTableViewCell: UITableViewCell, HandlersCellSupport {
         self.postImageViewHeightConstraint.constant             =   180.0 * heightRatio
         
         self.commentsButton.setTitle(nil, for: .normal)
-        self.activeVotesButton.setTitle(nil, for: .normal)
+        self.activeVoteButton.setTitle(nil, for: .normal)
     }
     
     
@@ -152,6 +158,7 @@ extension PostFeedTableViewCell: ConfigureCell {
         }
         
         self.postShortInfo = PostShortInfo(indexPath: indexPath)
+        self.activeVoteActivityIndicator.stopAnimating()
         
         // Display PostFeedHeaderView
         self.postFeedHeaderView.display(post: model)
@@ -162,9 +169,9 @@ extension PostFeedTableViewCell: ConfigureCell {
 //            self.upvotesButton.setTitle(pendingPayoutValue, for: .normal)
         
         // Set Active Votes icon
-        self.activeVotesButton.tag = model.currentUserVoted ? 99 : 0
-        self.activeVotesButton.setTitle(model.netVotes > 0 ? "\(model.netVotes)" : nil, for: .normal)
-        self.activeVotesButton.setImage(UIImage(named: model.currentUserVoted ? "icon-button-upvotes-selected" : "icon-button-upvotes-default"), for: .normal)
+        self.activeVoteButton.tag = model.currentUserVoted ? 99 : 0
+        self.activeVoteButton.setTitle(model.netVotes > 0 ? "\(model.netVotes)" : nil, for: .normal)
+        self.activeVoteButton.setImage(UIImage(named: model.currentUserVoted ? "icon-button-upvotes-selected" : "icon-button-upvotes-default"), for: .normal)
         
         // Load model user cover image
         if let coverImageURL = model.coverImageURL, !coverImageURL.isEmpty {

@@ -40,18 +40,28 @@ class PostShowViewController: GSBaseViewController {
             self.commentsViews.forEach( { commentView in
                 // Handlers
                 commentView.handlerActiveVoteButtonTapped               =   { [weak self] (isUpvote, postShortInfo) in
-                    self?.interactor?.save(postShortInfo: postShortInfo)
+                    self?.interactor?.save(comment: postShortInfo)
                     
-                    let requestModel = PostShowModels.ActiveVote.RequestModel(isUpvote: isUpvote)
+                    let requestModel = PostShowModels.ActiveVote.RequestModel(isUpvote: isUpvote, forPost: false)
                     
                     guard isUpvote else {
                         self?.showAlertView(withTitle: "Info", andMessage: "Cancel Vote Message", actionTitle: "ActionOk", needCancel: true, completion: { success in
                             if success {
+                                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
+                                    commentView.activeVoteActivityIndicator.startAnimating()
+                                    commentView.activeVoteButton.setImage(UIImage(named: "icon-button-active-vote-empty"), for: .normal)
+                                }
+
                                 self?.interactor?.upvote(withRequestModel: requestModel)
                             }
                         })
                         
                         return
+                    }
+                    
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
+                        commentView.activeVoteActivityIndicator.startAnimating()
+                        commentView.activeVoteButton.setImage(UIImage(named: "icon-button-active-vote-empty"), for: .normal)
                     }
                     
                     self?.interactor?.upvote(withRequestModel: requestModel)
@@ -127,6 +137,12 @@ class PostShowViewController: GSBaseViewController {
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
                 self.loadingPostContentActivityIndicator.startAnimating()
             }
+        }
+    }
+    
+    @IBOutlet weak var activeVoteActivityIndicator: UIActivityIndicatorView! {
+        didSet {
+            self.activeVoteActivityIndicator.stopAnimating()
         }
     }
     
@@ -627,7 +643,8 @@ class PostShowViewController: GSBaseViewController {
 
         if let displayedPost = self.router?.dataStore?.displayedPost {
             self.titleLabel.text = displayedPost.title
-
+            self.activeVoteActivityIndicator.stopAnimating()
+            
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
                 self.tagsCollectionView.reloadData()
                 self.markdownViewManager.load(markdown: displayedPost.body)
@@ -766,11 +783,16 @@ class PostShowViewController: GSBaseViewController {
     }
     
     @IBAction func activeVoteButtonTapped(_ sender: UIButton) {
-        let requestModel = PostShowModels.ActiveVote.RequestModel(isUpvote: sender.tag == 0)
-
+        let requestModel = PostShowModels.ActiveVote.RequestModel(isUpvote: sender.tag == 0, forPost: true)
+        
         guard sender.tag == 0 else {
             self.showAlertView(withTitle: "Info", andMessage: "Cancel Vote Message", actionTitle: "ActionOk", needCancel: true, completion: { [weak self] success in
                 if success {
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
+                        self?.activeVoteActivityIndicator.startAnimating()
+                        self?.activeVoteButton.setImage(UIImage(named: "icon-button-active-vote-empty"), for: .normal)
+                    }
+
                     self?.interactor?.upvote(withRequestModel: requestModel)
                 }
             })
@@ -778,6 +800,11 @@ class PostShowViewController: GSBaseViewController {
             return
         }
         
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
+            self.activeVoteActivityIndicator.startAnimating()
+            self.activeVoteButton.setImage(UIImage(named: "icon-button-active-vote-empty"), for: .normal)
+        }
+
         self.interactor?.upvote(withRequestModel: requestModel)
     }
 
@@ -937,17 +964,30 @@ extension PostShowViewController: PostShowDisplayLogic {
                 self.showAlertView(withTitle:   viewModel.errorAPI!.caseInfo.title,
                                    andMessage:  message.contains("Voter has used the maximum number of vote changes on this comment.") ? "Voter maximum number error".localized() : message,
                                    needCancel:  false,
-                                   completion:  { _ in })
+                                   completion:  { _ in
+                                    if viewModel.forPost {
+                                        self.scrollCommentsDown = false
+                                        self.fetchContent()
+                                    } else if let commentShortInfo = self.router?.dataStore?.comment, let indexPath = commentShortInfo.indexPath {
+                                        self.commentsViews[indexPath.row].setup(withComment: self.router?.dataStore?.displayedPost as! Comment)
+                                    }
+                })
             }
             
             return
         }
         
         // Reload & refresh current cell content by indexPath
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2.5) {
-            if let postShortInfo = self.router?.dataStore?.postShortInfo, let indexPath = postShortInfo.indexPath {
-                RestAPIManager.loadModifiedPost(author: postShortInfo.author ?? "XXX", permlink: postShortInfo.permlink ?? "XXX", postType: .comment, completion: { model in
-                    if let commentEntity = model as? Comment {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
+            let postType = viewModel.forPost ? self.router!.dataStore!.postType : PostsFeedType.comment
+            self.isPostContentModify = true
+            
+            if let postShortInfo = viewModel.forPost ? self.router?.dataStore?.postShortInfo : self.router?.dataStore?.comment, let indexPath = postShortInfo.indexPath {
+                RestAPIManager.loadModifiedPost(author: postShortInfo.author ?? "XXX", permlink: postShortInfo.permlink ?? "XXX", postType: postType!, completion: { model in
+                    if viewModel.forPost {
+                        self.scrollCommentsDown = false
+                        self.fetchContent()
+                    } else if let commentEntity = model as? Comment {
                         // Modify Comment
                         self.commentsViews[indexPath.row].setup(withComment: commentEntity)
                     }
@@ -1023,7 +1063,7 @@ extension PostShowViewController {
                                                                    author:           displayedPost.author,
                                                                    permlink:         displayedPost.permlink,
                                                                    parentTag:        displayedPost.tags?.first,
-                                                                   indexPath:        nil,
+                                                                   indexPath:        IndexPath(row: 0, section: 0),
                                                                    parentAuthor:     displayedPost.parentAuthor,
                                                                    parentPermlink:   displayedPost.parentPermlink))
                 

@@ -53,12 +53,6 @@ class UserProfileShowRouter: NSObject, UserProfileShowRoutingLogic, UserProfileS
             if isPostContentModify, let activeVC = self?.viewController?.containerView.activeVC {
                 activeVC.postsTableView.reloadRows(at: [(self?.dataStore?.selectedBlog?.indexPath)!], with: .automatic)
             }
-
-//            if  isPostContentModify,
-//                let activeVC = self?.viewController?.containerView.activeVC,
-//                let postCell = activeVC.postsTableView.cellForRow(at: (self?.dataStore?.selectedBlog?.indexPath)!) as? PostFeedTableViewCell {
-//                postCell.setCommentsCount(value: commentsCount)
-//            }
         }
     }
 

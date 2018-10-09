@@ -11,7 +11,7 @@ import CoreData
 import GoloSwift
 import MarkdownView
 
-class CommentView: UIView, HandlersCellSupport {
+class CommentView: UIView, HandlersCellSupport, PostCellActiveVoteSupport {
     // MARK: - Properties
     var level: Int = 0
     var created: Date!
@@ -236,11 +236,6 @@ class CommentView: UIView, HandlersCellSupport {
     
     // Action buttons
     @IBAction func activeVoteButtonTapped(_ sender: UIButton) {
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
-            self.activeVoteActivityIndicator.startAnimating()
-            self.activeVoteButton.setImage(UIImage(named: "icon-button-active-vote-empty"), for: .normal)
-        }
-        
         self.handlerActiveVoteButtonTapped!(sender.tag == 0, self.postShortInfo)
     }
     

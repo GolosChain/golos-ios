@@ -417,6 +417,15 @@
                                                     <constraint firstAttribute="height" constant="80" id="nb7-Km-WjT"/>
                                                 </constraints>
                                             </stackView>
+                                            <activityIndicatorView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="bie-f8-jaU">
+                                                <rect key="frame" x="16" y="128.5" width="20" height="20"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="20" id="9yn-34-a8j"/>
+                                                    <constraint firstAttribute="width" secondItem="bie-f8-jaU" secondAttribute="height" multiplier="1:1" id="IAt-Z9-c6D"/>
+                                                </constraints>
+                                                <color key="color" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                            </activityIndicatorView>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="lwn-iM-8rz" userLabel="Tags Collection View">
                                                 <rect key="frame" x="16" y="68.5" width="288" height="30"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -444,6 +453,7 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstItem="bie-f8-jaU" firstAttribute="leading" secondItem="fb3-VQ-GlM" secondAttribute="leading" id="05e-4y-gbS"/>
                                             <constraint firstAttribute="trailing" secondItem="hL9-He-JpB" secondAttribute="trailing" id="0NR-rB-Aj5"/>
                                             <constraint firstItem="lwn-iM-8rz" firstAttribute="top" secondItem="Vl1-2x-lVp" secondAttribute="bottom" constant="16" id="0cK-Wq-U7s"/>
                                             <constraint firstItem="h9e-KO-AhW" firstAttribute="leading" secondItem="BtF-Gk-D12" secondAttribute="leading" constant="16" id="24g-ha-yWK"/>
@@ -477,6 +487,7 @@
                                             <constraint firstItem="zPm-d9-LiX" firstAttribute="leading" secondItem="BtF-Gk-D12" secondAttribute="leading" constant="16" id="gGh-Ki-O6Z"/>
                                             <constraint firstAttribute="trailing" secondItem="B0e-yR-6At" secondAttribute="trailing" id="khl-l2-EMh"/>
                                             <constraint firstItem="lwn-iM-8rz" firstAttribute="leading" secondItem="BtF-Gk-D12" secondAttribute="leading" constant="16" id="nHj-Vg-MQe"/>
+                                            <constraint firstItem="bie-f8-jaU" firstAttribute="centerY" secondItem="fb3-VQ-GlM" secondAttribute="centerY" id="oeX-jg-DRW"/>
                                             <constraint firstItem="MhK-Vc-x7K" firstAttribute="top" secondItem="lwn-iM-8rz" secondAttribute="bottom" id="pJh-g4-f8G"/>
                                             <constraint firstItem="h9e-KO-AhW" firstAttribute="top" secondItem="MhK-Vc-x7K" secondAttribute="bottom" id="qS2-XR-4rB"/>
                                             <constraint firstItem="Vl1-2x-lVp" firstAttribute="top" secondItem="zPm-d9-LiX" secondAttribute="bottom" constant="16" id="rDi-pt-7XW"/>
@@ -579,6 +590,7 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="activeVoteActivityIndicator" destination="bie-f8-jaU" id="OQ5-Nz-0w2"/>
                         <outlet property="activeVoteButton" destination="fb3-VQ-GlM" id="p9Q-2w-lYk"/>
                         <outlet property="bottomLineView" destination="FJs-iF-r9g" id="Mm9-MF-0Zc"/>
                         <outlet property="buttonsStackViewTopConstraint" destination="qS2-XR-4rB" id="2OA-OO-1m2"/>

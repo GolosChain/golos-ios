@@ -63,15 +63,18 @@ enum PostShowModels {
     enum ActiveVote {
         struct RequestModel {
             let isUpvote: Bool
+            let forPost: Bool
         }
         
         struct ResponseModel {
             let isUpvote: Bool
+            let forPost: Bool
             let errorAPI: ErrorAPI?
         }
         
         struct ViewModel {
             let isUpvote: Bool
+            let forPost: Bool
             let errorAPI: ErrorAPI?
         }
     }

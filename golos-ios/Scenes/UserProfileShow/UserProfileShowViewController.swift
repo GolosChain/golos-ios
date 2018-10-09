@@ -26,6 +26,7 @@ enum UserProfileSceneMode {
 protocol UserProfileShowDisplayLogic: class {
     func displayUserInfo(fromViewModel viewModel: UserProfileShowModels.UserInfo.ViewModel)
     func displayUserDetails(fromViewModel viewModel: UserProfileShowModels.UserDetails.ViewModel)
+    func displayUpvote(fromViewModel viewModel: UserProfileShowModels.ActiveVote.ViewModel)
 }
 
 class UserProfileShowViewController: GSBaseViewController, ContainerViewSupport {
@@ -424,8 +425,36 @@ extension UserProfileShowViewController {
                     self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
                 }
                 
-                activeVC.handlerActiveVoteButtonTapped     =   { [weak self] (isUpvote, indexPath) in
-                    self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+                activeVC.handlerActiveVoteButtonTapped  =   { [weak self] (isUpvote, postShortInfo) in
+                    self?.interactor?.save(blogShortInfo: postShortInfo)
+                    
+                    let requestModel = UserProfileShowModels.ActiveVote.RequestModel(isUpvote: isUpvote)
+                    
+                    guard isUpvote else {
+                        self?.showAlertView(withTitle: "Info", andMessage: "Cancel Vote Message", actionTitle: "ActionOk", needCancel: true, completion: { success in
+                            if success {
+                                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
+                                    let blogCell = activeVC.postsTableView.cellForRow(at: postShortInfo.indexPath!) as! PostCellActiveVoteSupport
+                                    
+                                    blogCell.activeVoteActivityIndicator.startAnimating()
+                                    blogCell.activeVoteButton.setImage(UIImage(named: "icon-button-active-vote-empty"), for: .normal)
+                                }
+
+                                self?.interactor?.upvote(withRequestModel: requestModel)
+                            }
+                        })
+                        
+                        return
+                    }
+                    
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
+                        let blogCell = activeVC.postsTableView.cellForRow(at: postShortInfo.indexPath!) as! PostCellActiveVoteSupport
+                        
+                        blogCell.activeVoteActivityIndicator.startAnimating()
+                        blogCell.activeVoteButton.setImage(UIImage(named: "icon-button-active-vote-empty"), for: .normal)
+                    }
+                    
+                    self?.interactor?.upvote(withRequestModel: requestModel)
                 }
                 
                 activeVC.handlerCommentsButtonTapped    =   { [weak self] postShortInfo in
@@ -471,6 +500,34 @@ extension UserProfileShowViewController: UserProfileShowDisplayLogic {
         
         // CoreData
         self.fetchUserDetails()
+    }
+    
+    func displayUpvote(fromViewModel viewModel: UserProfileShowModels.ActiveVote.ViewModel) {
+        // NOTE: Display the result from the Presenter
+        if let activeVC = self.containerView.activeVC, let postShortInfo = self.router?.dataStore?.selectedBlog, let indexPath = postShortInfo.indexPath {
+            guard viewModel.errorAPI == nil else {
+                if let message = viewModel.errorAPI?.caseInfo.message {
+                    self.showAlertView(withTitle:   viewModel.errorAPI!.caseInfo.title,
+                                       andMessage:  message.contains("Voter has used the maximum number of vote changes on this comment.") ? "Voter maximum number error".localized() : message,
+                                       needCancel:  false,
+                                       completion:  { _ in
+                                        activeVC.postsTableView.reloadRows(at: [indexPath], with: .automatic)
+                    })
+                }
+                
+                return
+            }
+            
+            // Reload & refresh current cell content by indexPath
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2.5) {
+                RestAPIManager.loadModifiedPost(author: postShortInfo.author ?? "XXX", permlink: postShortInfo.permlink ?? "XXX", postType: PostsFeedType.blog, completion: { model in
+                    if let blogEntity = model {
+                        activeVC.postsList![indexPath.row] = blogEntity
+                        activeVC.postsTableView.reloadRows(at: [indexPath], with: .automatic)
+                    }
+                })
+            }
+        }
     }
 }
 

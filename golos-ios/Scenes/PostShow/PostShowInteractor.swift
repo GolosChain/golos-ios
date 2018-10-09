@@ -137,8 +137,10 @@ class PostShowInteractor: PostShowBusinessLogic, PostShowDataStore {
     }
     
     func upvote(withRequestModel requestModel: PostShowModels.ActiveVote.RequestModel) {
-        RestAPIManager.vote(up: requestModel.isUpvote, postShortInfo: self.postShortInfo!, completion: { [weak self] errorAPI in
-            let responseModel = PostShowModels.ActiveVote.ResponseModel(isUpvote: requestModel.isUpvote, errorAPI: errorAPI)
+        let postShortInfo = requestModel.forPost ? self.postShortInfo! : self.comment!
+        
+        RestAPIManager.vote(up: requestModel.isUpvote, postShortInfo: postShortInfo, completion: { [weak self] errorAPI in
+            let responseModel = PostShowModels.ActiveVote.ResponseModel(isUpvote: requestModel.isUpvote, forPost: requestModel.forPost, errorAPI: errorAPI)
             self?.presenter?.presentUpvote(fromResponseModel: responseModel)
         })
     }

@@ -160,7 +160,7 @@ public struct RequestParameterAPI {
                                         .lowercased()
 
             self.permlink   =   needTiming ? (permlinkTemp + "-\(Int64(Date().timeIntervalSince1970))") : permlinkTemp
-            self.permlink   =   self.permlink.replacingOccurrences(of: regex, with: "_", options: .regularExpression)
+//            self.permlink   =   self.permlink.replacingOccurrences(of: regex, with: "_", options: .regularExpression)
             
             if let parameters = attachments {
                 self.body   =   parameters.compactMap({ $0.markdownValue ?? ""}).joined(separator: " ")
