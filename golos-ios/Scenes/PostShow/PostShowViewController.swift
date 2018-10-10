@@ -696,8 +696,6 @@ class PostShowViewController: GSBaseViewController {
             self.flauntButton.isSelected = displayedPost.currentUserFlaunted
             self.flauntButton.setImage(displayedPost.currentUserFlaunted ? UIImage(named: "icon-button-flaunt-selected") : UIImage(named: "icon-button-flaunt-default"), for: .normal)
         }
-        
-        self.loadContentComments()
     }
     
     override func localizeTitles() {
@@ -931,6 +929,9 @@ extension PostShowViewController: PostShowDisplayLogic {
         
         // CoreData
         self.fetchContent()
+        
+        // Load comments
+        self.loadContentComments()
     }
     
     func displayLoadContentComments(fromViewModel viewModel: PostShowModels.Post.ViewModel) {

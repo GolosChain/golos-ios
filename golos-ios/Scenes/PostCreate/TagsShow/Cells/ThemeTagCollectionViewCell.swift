@@ -13,7 +13,7 @@ import IQKeyboardManagerSwift
 
 class ThemeTagCollectionViewCell: UICollectionViewCell {
     // MARK: - Properties
-    var isClearbuttonTaped: Bool = false
+    var isClearButtonTaped: Bool = false
     var firstResponderWidth: CGFloat = 78.0 * widthRatio
     
     var completionEndEditing: (() -> Void)?
@@ -55,7 +55,7 @@ class ThemeTagCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet var widthsCollection: [NSLayoutConstraint]! {
         didSet {
-            _ = widthsCollection.map( { $0.constant *= widthRatio })
+            self.widthsCollection.forEach( { $0.constant *= widthRatio })
         }
     }
         
@@ -68,7 +68,7 @@ class ThemeTagCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Actions
     @IBAction func clearButtonTapped(_ sender: UIButton) {
-        self.isClearbuttonTaped = true
+        self.isClearButtonTaped = true
         self.completionClearButton!(IQKeyboardManager.sharedManager().keyboardShowing)
     }
 }
@@ -91,7 +91,7 @@ extension ThemeTagCollectionViewCell: ConfigureCell {
 extension ThemeTagCollectionViewCell: UITextFieldDelegate {
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         self.firstResponderWidth        =   textField.frame.width
-        self.isClearbuttonTaped         =   false
+        self.isClearButtonTaped         =   false
 
         self.completionStartEditing!()
         
@@ -99,7 +99,7 @@ extension ThemeTagCollectionViewCell: UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        if !self.isClearbuttonTaped {
+        if !self.isClearButtonTaped {
             self.completionEndEditing!()
         }
     }

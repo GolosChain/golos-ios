@@ -163,6 +163,7 @@
                         <outlet property="markdownViewHeightConstraint" destination="dMZ-WP-C4t" id="Zo7-1T-MhU"/>
                         <outlet property="postCreateView" destination="nPS-aX-y2M" id="SMe-Ux-6Dv"/>
                         <outlet property="postingActivityIndicator" destination="Ynn-WP-oBX" id="tew-Dy-3Oj"/>
+                        <outlet property="publishBarButton" destination="odW-AC-b4Z" id="q1w-ey-pOD"/>
                         <outlet property="stackView" destination="1yk-b9-MRG" id="RNp-R4-kXA"/>
                         <outlet property="stackViewTopConstraint" destination="Ijx-17-6xw" id="zHi-uw-vWM"/>
                         <outlet property="tagsTitleLabel" destination="mLA-QB-vdt" id="hZ2-xt-aeQ"/>

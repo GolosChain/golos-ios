@@ -45,7 +45,8 @@ class PostCreateViewController: GSBaseViewController {
     
     // MARK: - IBOutlets
     @IBOutlet weak var stackView: UIStackView!
-
+    @IBOutlet weak var publishBarButton: UIBarButtonItem!
+    
     @IBOutlet weak var tagsView: UIView! {
         didSet {
             tagsView.alpha = 0.0
@@ -393,6 +394,7 @@ class PostCreateViewController: GSBaseViewController {
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1, execute: {
             self.postingActivityIndicator.startAnimating()
+            sender.isEnabled = false
         })
         
         // Get content parts
@@ -412,6 +414,7 @@ class PostCreateViewController: GSBaseViewController {
 extension PostCreateViewController: PostCreateDisplayLogic {
     func displayPublishItem(fromViewModel viewModel: PostCreateModels.Item.ViewModel) {
         self.postingActivityIndicator.stopAnimating()
+        self.publishBarButton.isEnabled = true
         
         // NOTE: Display the result from the Presenter
         guard viewModel.errorAPI == nil else {

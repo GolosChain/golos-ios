@@ -13,8 +13,10 @@
 import UIKit
 import GoloSwift
 
+
 // MARK: - Input & Output protocols
 @objc protocol SettingsShowRoutingLogic {
+    func showOnlineGolosPage()
     func routeToLoginShowScene()
     func routeToSettingsNotificationsScene()
     func routeToSettingsUserProfileEditScene()
@@ -62,6 +64,26 @@ class SettingsShowRouter: NSObject, SettingsShowRoutingLogic, SettingsShowDataPa
         navigateToSettingsUserProfileEditScene(source: viewController!, destination: destinationVC)
     }
 
+    func showOnlineGolosPage() {
+        guard isNetworkAvailable else {
+            viewController?.showAlertView(withTitle: "Info", andMessage: "No Internet Connection", needCancel: false, completion: { _ in })
+            return
+        }
+        
+        guard let stringURL = viewController?.onlinePage?.rawValue, let pageURL = URL.init(string: stringURL) else {
+            viewController?.showAlertView(withTitle: "Error", andMessage: "Developer error!", needCancel: false, completion: { _ in })
+            return
+        }
+        
+        if #available(iOS 10.0, *) {
+            UIApplication.shared.open(pageURL, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
+        }
+            
+        else {
+            UIApplication.shared.openURL(pageURL)
+        }
+    }
+
     
     // MARK: - Navigation
     func navigateToSettingsNotificationsScene(source: SettingsShowViewController, destination: SettingsNotificationsShowViewController) {
@@ -77,4 +99,10 @@ class SettingsShowRouter: NSObject, SettingsShowRoutingLogic, SettingsShowDataPa
         source.show(destination, sender: nil)
         viewController?.showNavigationBar()
     }
+}
+
+
+// Helper function inserted by Swift 4.2 migrator.
+private func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
+    return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
 }

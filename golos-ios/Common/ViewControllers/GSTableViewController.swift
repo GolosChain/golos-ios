@@ -210,6 +210,7 @@ class GSTableViewController: GSBaseViewController, HandlersCellSupport {
         case .blog:
             if let author = parameters.author {
                 fetchRequest.predicate = NSPredicate(format: "author == %@", author)
+//                fetchRequest.predicate = NSPredicate(format: "author == %@ OR reblog_author == %@", author, author)
             }
 
         // Lenta

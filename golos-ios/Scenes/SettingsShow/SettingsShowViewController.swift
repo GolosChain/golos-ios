@@ -14,6 +14,12 @@ import UIKit
 import GoloSwift
 import Localize_Swift
 
+enum GolosWebPage: String {
+    case wiki           =   "https://wiki.golos.io/"
+    case welcome        =   "https://golos.io/welcome"
+    case privacyPolicy  =   "https://golos.io/ru--konfidenczialxnostx/@golos/politika-konfidencialnosti"
+}
+
 // MARK: - Input & Output protocols
 protocol SettingsShowDisplayLogic: class {
     func displaySomething(fromViewModel viewModel: SettingsShowModels.Items.ViewModel)
@@ -21,11 +27,49 @@ protocol SettingsShowDisplayLogic: class {
 
 class SettingsShowViewController: GSBaseViewController {
     // MARK: - Properties
+    var onlinePage: GolosWebPage?
+    
     var interactor: SettingsShowBusinessLogic?
     var router: (NSObjectProtocol & SettingsShowRoutingLogic & SettingsShowDataPassing)?
     
     
     // MARK: - IBOutlets
+    @IBOutlet weak var logOutButton: UIButton!
+    @IBOutlet weak var welcomeButton: UIButton!
+    @IBOutlet weak var currencyButton: UIButton!
+    @IBOutlet weak var languageButton: UIButton!
+    @IBOutlet weak var wikiGolosButton: UIButton!
+    @IBOutlet weak var voicePowerButton: UIButton!
+    @IBOutlet weak var switchAccountButton: UIButton!
+    @IBOutlet weak var notificationsButton: UIButton!
+    @IBOutlet weak var privacyPolicyButton: UIButton!
+    @IBOutlet weak var editUserProfileButton: UIButton!
+    
+    @IBOutlet weak var commonLabel: UILabel!
+    
+    @IBOutlet var actionButtonsCollection: [UIButton]! {
+        didSet {
+            actionButtonsCollection.forEach({
+                $0.tune(withTitle:      "",
+                        hexColors:      [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
+                        font:           UIFont(name: "SFProDisplay-Regular", size: 14.0),
+                        alignment:      .left)
+            })
+        }
+    }
+    
+    @IBOutlet var labelsCollection: [UILabel]! {
+        didSet {
+            labelsCollection.forEach({
+                $0.tune(withText:       "",
+                        hexColors:      darkGrayWhiteColorPickers,
+                        font:           UIFont(name: "SFProDisplay-Regular", size: 12.0),
+                        alignment:      .left,
+                        isMultiLines:   false)
+            })
+        }
+    }
+    
     @IBOutlet weak var topLineView: UIView! {
         didSet {
             topLineView.tune(withThemeColorPicker: lightGrayishBlueWhiteColorPickers)
@@ -46,7 +90,7 @@ class SettingsShowViewController: GSBaseViewController {
     
     @IBOutlet var viewsCollection: [UIView]! {
         didSet {
-            _ = viewsCollection.map({ $0.tune(withThemeColorPicker: whiteBlackColorPickers )})
+            self.viewsCollection.forEach({ $0.tune(withThemeColorPicker: whiteBlackColorPickers )})
         }
     }
     
@@ -60,52 +104,21 @@ class SettingsShowViewController: GSBaseViewController {
         }
     }
     
-    @IBOutlet weak var languageButton: UIButton! {
-        didSet {
-            languageButton.tune(withTitle:      "Interface Language".localized(),
-                                hexColors:      [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
-                                font:           UIFont(name: "SFProDisplay-Regular", size: 14.0),
-                                alignment:      .left)
-        }
-    }
-    
-    
-    @IBOutlet weak var logOutButton: UIButton! {
-        didSet {
-            logOutButton.tune(withTitle:        "Exit Verb".localized(),
-                              hexColors:        [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
-                              font:             UIFont(name: "SFProDisplay-Regular", size: 14.0),
-                              alignment:        .left)
-        }
-    }
-    
-    @IBOutlet weak var editUserProfileButton: UIButton! {
-        didSet {
-            editUserProfileButton.tune(withTitle:       "Edit Profile Title".localized(),
-                                       hexColors:       [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
-                                       font:            UIFont(name: "SFProDisplay-Regular", size: 14.0),
-                                       alignment:       .left)
-        }
-    }
-    
-    @IBOutlet weak var notificationsButton: UIButton! {
-        didSet {
-            notificationsButton.tune(withTitle: "Remote Notifications Title".localized(),
-                              hexColors:        [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
-                              font:             UIFont(name: "SFProDisplay-Regular", size: 14.0),
-                              alignment:        .left)
-        }
-    }
-    
     @IBOutlet var constraintsCollection: [NSLayoutConstraint]! {
         didSet {
-            _ = constraintsCollection.map({ $0.constant *= heightRatio })
+            self.constraintsCollection.forEach({ $0.constant *= heightRatio })
         }
     }
     
     @IBOutlet var widthsCollection: [NSLayoutConstraint]! {
         didSet {
-            _ = widthsCollection.map({ $0.constant *= widthRatio })
+            self.widthsCollection.forEach({ $0.constant *= widthRatio })
+        }
+    }
+    
+    @IBOutlet var heightsCollection: [NSLayoutConstraint]! {
+        didSet {
+            self.heightsCollection.forEach({ $0.constant *= heightRatio })
         }
     }
     
@@ -210,6 +223,33 @@ class SettingsShowViewController: GSBaseViewController {
         self.present(actionSheet, animated: true, completion: nil)
     }
     
+    @IBAction func currencyButtonTapped(_ sender: Any) {
+        self.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+    }
+    
+    @IBAction func voicePowerButtonTapped(_ sender: Any) {
+        self.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+    }
+    
+    @IBAction func wikiGolosButtonTapped(_ sender: Any) {
+        self.onlinePage = .wiki
+        self.router?.showOnlineGolosPage()
+    }
+    
+    @IBAction func welcomeButtonTapped(_ sender: Any) {
+        self.onlinePage = .welcome
+        self.router?.showOnlineGolosPage()
+    }
+    
+    @IBAction func privacyPolicyButtonTapped(_ sender: Any) {
+        self.onlinePage = .privacyPolicy
+        self.router?.showOnlineGolosPage()
+    }
+    
+    @IBAction func switchAccountButtonTapped(_ sender: Any) {
+        self.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+    }
+    
     @IBAction func logOutButtonTapped(_ sender: UIButton) {
         self.showAlertView(withTitle: "Exit", andMessage: "Are Your Sure?", actionTitle: "ActionYes", needCancel: true, completion: { [weak self] success in
             if success {
@@ -219,20 +259,29 @@ class SettingsShowViewController: GSBaseViewController {
     }
     
     @IBAction func editUserProfileButtonTapped(_ sender: UIButton) {
-        self.router?.routeToSettingsUserProfileEditScene()
+        self.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+//        self.router?.routeToSettingsUserProfileEditScene()
     }
 
     @IBAction func notificationsButtonTapped(_ sender: UIButton) {
-        self.router?.routeToSettingsNotificationsScene()
+        self.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+//        self.router?.routeToSettingsNotificationsScene()
     }
     
     // Set titles with support App language
     @objc override func localizeTitles() {
-        self.title                  =   "Settings".localized()
-        self.versionLabel.text      =   String(format: "Golos %@ iOS %@", "for".localized(), appVersion)
+        self.title              =   "Settings".localized()
+        self.commonLabel.text   =   "COMMON".localized()
+        self.versionLabel.text  =   String(format: "Golos %@ iOS %@", "for".localized(), appVersion)
         
         self.logOutButton.setTitle("Exit Verb".localized(), for: .normal)
+        self.wikiGolosButton.setTitle("Wiki Golos".localized(), for: .normal)
+        self.welcomeButton.setTitle("About Golos.io".localized(), for: .normal)
+        self.voicePowerButton.setTitle("Voice Power".localized(), for: .normal)
+        self.currencyButton.setTitle("Select Currency".localized(), for: .normal)
         self.languageButton.setTitle("Interface Language".localized(), for: .normal)
+        self.privacyPolicyButton.setTitle("Privacy Policy".localized(), for: .normal)
+        self.switchAccountButton.setTitle("Switch Account Verb".localized(), for: .normal)
         self.editUserProfileButton.setTitle("Edit Profile Title".localized(), for: .normal)
         self.notificationsButton.setTitle("Remote Notifications Title".localized(), for: .normal)
     }
