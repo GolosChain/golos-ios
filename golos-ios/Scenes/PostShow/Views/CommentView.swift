@@ -114,7 +114,7 @@ class CommentView: UIView, HandlersCellSupport, PostCellActiveVoteSupport {
         
         createFromXIB()
         
-        self.tag                =   comment.treeIndex
+        self.tag                =   Int(comment.treeIndex) ?? 0
         self.level              =   comment.treeLevel
 
         self.setup(withComment: comment)
@@ -126,7 +126,7 @@ class CommentView: UIView, HandlersCellSupport, PostCellActiveVoteSupport {
                                                   author:           comment.author,
                                                   permlink:         comment.permlink,
                                                   parentTag:        comment.tags?.first,
-                                                  indexPath:        IndexPath(row: comment.treeIndex, section: 0),
+                                                  indexPath:        IndexPath(row: self.tag, section: 0),
                                                   parentAuthor:     comment.parentAuthor,
                                                   parentPermlink:   comment.parentPermlink)
 

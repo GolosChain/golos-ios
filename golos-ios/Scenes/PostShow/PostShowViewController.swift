@@ -155,6 +155,7 @@ class PostShowViewController: GSBaseViewController {
     @IBOutlet weak var commentsViewsView: UIView! {
         didSet {
             self.commentsViewsView.tune(withThemeColorPicker: whiteColorPickers)
+            self.commentsViewsView.alpha = 0.0
         }
     }
     
@@ -746,6 +747,8 @@ class PostShowViewController: GSBaseViewController {
                                 self.scrollView.contentOffset.y = bottomViewFrame.maxY
 //                                self.scrollView.scrollRectToVisible(CGRect(origin: self.commentsControlView.frame.origin, size: CGSize(width: self.commentsControlView.frame.width, height: max(0, self.commentsViewsView.frame.maxY))), animated: true)
                             }
+                            
+                            self.commentsViewsView.alpha = 1.0
             })
         })
     }
@@ -1081,21 +1084,16 @@ extension PostShowViewController {
     }
     
     // Build Post Comments views tree
-    private func buildViewsTree(byComment comment: Comment) {
+    private func setViewTreeIndex(byComment comment: Comment) {
         let commentChildrens = self.commentsSecondLevel.filter({ $0 != comment }).filter({ $0.parentPermlink!.contains(comment.permlink) })
 
         guard commentChildrens.count > 0 else {
-            print("ggg")
             return
         }
         
-        for commentChildren in commentChildrens {
-//            commentChildren.treeIndex = self.commentsViews.count
-//            let commentView = CommentView.init(withComment: commentChildren)
-//            self.commentsViews.append(commentView)
-//            _ = self.commentsSecondLevel.removeAll(where: { $0 == commentChildren })
-            
-            self.buildViewsTree(byComment: commentChildren)
+        for (index, commentChildren) in commentChildrens.enumerated() {
+            commentChildren.treeIndex = comment.treeIndex + "\(index)"
+            self.setViewTreeIndex(byComment: commentChildren)
         }
     }
     
@@ -1122,47 +1120,35 @@ extension PostShowViewController {
                 self.commentsSecondLevel = comments.filter({ $0.parentPermlink != postShortInfo.permlink }).sorted(by: { $0.created < $1.created })
                 self.commentsSecondLevel.forEach({ $0.treeLevel = 1 })
                 
-                for comment in commentsFirstLevel {
-                    comment.treeIndex = self.commentsViews.count
-                    let commentView = CommentView.init(withComment: comment)
-                    self.commentsViews.append(commentView)
-
-                    self.buildViewsTree(byComment: comment)
+                for (index, comment) in commentsFirstLevel.enumerated() {
+                    comment.treeIndex = "\(index)"
+                    self.setViewTreeIndex(byComment: comment)
                 }
                 
-//                    let commentChildrens = comments.filter({ $0 != comment }).filter({ $0.parentPermlink!.contains(comment.permlink) })
-//
-//                    if commentChildrens.count == 0 {
-//                        comment.treeIndex = "\(index)"
-//                        treeIndex = "\(index)"
-//                    } else {
-//                        for (commentChildrenIndex, commentChildren) in commentChildrens.enumerated() {
-//                            commentChildren.treeIndex = treeIndex + "\(commentChildrenIndex)"
-//                            childrens.append(commentChildren)
-//                        }
-//                    }
-//                }
-                
-                
-                
-//                    let commentView = CommentView.init(withComment: comment)
-//                    self.commentsViews.append(commentView)
+                // Build comments view tree
+                for (index, comment) in comments.sorted(by: { $0.treeIndex < $1.treeIndex }).enumerated() {
+                    Logger.log(message: "treeIndex = \(comment.treeIndex), author = \(comment.author), body = \(comment.body)", event: .debug)
 
-                    // Load body content
+                    comment.treeIndex = "\(index)"
+                    let commentView = CommentView.init(withComment: comment)
+                    self.commentsViews.append(commentView)
+                }
+                
+                // Load comment body content
                 for commentView in self.commentsViews {
-                    commentView.loadData(fromBody: comments[commentView.postShortInfo.indexPath!.row].body, completion: { [weak self] viewHeight in
+                    commentView.loadData(fromBody: comments.sorted(by: { $0.treeIndex < $1.treeIndex })[commentView.postShortInfo.indexPath!.row].body, completion: { [weak self] viewHeight in
                         commentView.frame = CGRect(origin: .zero, size: commentView.frame.size)
                         self?.commentsViewsViewHeightConstraint.constant += viewHeight
                         self?.view.layoutIfNeeded()
-
+                        
                         self?.commentsCount += 1
-
+                        
                         if (self?.commentsCount)! == comments.count {
                             // Show comments count
                             self?.commentsViews.sort(by: { $0.tag < $1.tag })
-
+                            
                             var height: CGFloat = 0.0
-
+                            
                             self?.commentsViews.forEach({
                                 if $0.tag == 0 {
                                     height = $0.frame.height
@@ -1171,10 +1157,10 @@ extension PostShowViewController {
                                     $0.frame.origin = nextCommentViewOrigin
                                     height += $0.frame.height
                                 }
-
+                                
                                 self?.commentsViewsView.addSubview($0)
                             })
-
+                            
                             self?.didCommentsControlView(hided: false)
                         }
                     })

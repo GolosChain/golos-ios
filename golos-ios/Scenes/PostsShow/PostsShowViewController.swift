@@ -300,9 +300,11 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
                 }
                 
                 activeVC.handlerCommentsButtonTapped                =   { [weak self] postShortInfo in
-                    self?.interactor?.save(postShortInfo: postShortInfo)
-                    self?.router?.routeToPostShowScene(withScrollToComments: true)
-                }
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1, execute: {
+                        self?.interactor?.save(postShortInfo: postShortInfo)
+                        self?.router?.routeToPostShowScene(withScrollToComments: true)
+                    })
+                 }
                 
                 activeVC.handlerSelectItem                          =   { [weak self] postShortInfo in
                     self?.interactor?.save(postShortInfo: postShortInfo)                        

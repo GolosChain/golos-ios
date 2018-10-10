@@ -13,7 +13,7 @@ import Foundation
 
 @objc(Comment)
 public class Comment: NSManagedObject, CachedImageFrom {
-    var treeIndex: Int = 0
+    var treeIndex: String = ""
     var treeLevel: Int = 0
     
     // MARK: - CachedImageFrom protocol implementation
