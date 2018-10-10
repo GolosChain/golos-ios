@@ -268,12 +268,14 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
                 }
                 
                 activeVC.handlerActiveVoteButtonTapped                 =   { [weak self] (isUpvote, postShortInfo) in
+                    guard (self?.isCurrentOperationPossible())! else { return }
+                    
                     self?.interactor?.save(postShortInfo: postShortInfo)
  
                     let requestModel = PostsShowModels.ActiveVote.RequestModel(isUpvote: isUpvote)
                     
                     guard isUpvote else {
-                        self?.showAlertView(withTitle: "Info", andMessage: "Cancel Vote Message", actionTitle: "ActionOk", needCancel: true, completion: { success in
+                        self?.showAlertView(withTitle: "Voting Verb", andMessage: "Cancel Vote Message", actionTitle: "ActionChange", needCancel: true, completion: { success in
                             if success {
                                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
                                     let postCell = activeVC.postsTableView.cellForRow(at: postShortInfo.indexPath!) as! PostCellActiveVoteSupport

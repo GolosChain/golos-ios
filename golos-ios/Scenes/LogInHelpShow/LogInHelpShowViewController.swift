@@ -49,13 +49,13 @@ class LogInHelpShowViewController: GSBaseViewController {
     
     @IBOutlet var topConstraintsCollection: [NSLayoutConstraint]! {
         didSet {
-            _ = topConstraintsCollection.map({ $0.constant *= heightRatio })
+            self.topConstraintsCollection.forEach({ $0.constant *= heightRatio })
         }
     }
     
     @IBOutlet var leadingConstraintsCollection: [NSLayoutConstraint]! {
         didSet {
-            _ = leadingConstraintsCollection.map({ $0.constant *= widthRatio })
+            self.leadingConstraintsCollection.forEach({ $0.constant *= widthRatio })
         }
     }
     
@@ -65,7 +65,6 @@ class LogInHelpShowViewController: GSBaseViewController {
         super.viewDidLoad()
         
         self.contentView.tune()
-        contentView.add(shadow: true, onside: .bottom)
     }
     
     

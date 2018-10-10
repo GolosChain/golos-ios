@@ -28,6 +28,7 @@
 "ActionOk"                                  =   "Ok";
 "ActionYes"                                 =   "Yes";
 "ActionCancel"                              =   "Cancel";
+"ActionChange"                              =   "Change";
 "Log In"                                    =   "Log In";
 "Sign In"                                   =   "Sign In";
 "More Info"                                 =   "More about Golos.io";
@@ -76,6 +77,7 @@
 "Info"                                      =   "Info";
 "Error"                                     =   "Error";
 "In development"                            =   "In development";
+"Voting Verb"                               =   "Voting";
 "New"                                       =   "New";
 "Actual"                                    =   "Actual";
 "Popular"                                   =   "Popular";
@@ -147,7 +149,7 @@
 "Unknown User"                              =   "Unknown User";
 "Subscribe Success"                         =   "Thanks,\nYou subscribed to the author";
 "Unsubscribe Success"                       =   "Thanks,\nYou unsubscribed from the author";
-"Cancel Vote Message"                       =   "Deleting a voice will reset\nyour curator fees for this post";
+"Cancel Vote Message"                       =   "Deleting a vote will change your decision to vote for this post";
 
 
 // Placeholders

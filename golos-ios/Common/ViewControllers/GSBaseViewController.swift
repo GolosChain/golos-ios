@@ -105,6 +105,22 @@ class GSBaseViewController: UIViewController {
         alertViewController.show()
     }
     
+    func isCurrentOperationPossible() -> Bool {
+        guard !User.isAnonymous else {
+            self.showAlertView(withTitle: "Enter Title", andMessage: "Please Login in App", needCancel: true, completion: { success in
+                if success {
+                    NotificationCenter.default.post(name:       NSNotification.Name.appStateChanged,
+                                                    object:     nil,
+                                                    userInfo:   nil)
+                }
+            })
+            
+            return false
+        }
+        
+        return true
+    }
+    
     
     // MARK: - Actions
     @objc func adjustForKeyboard(notification: Notification) {

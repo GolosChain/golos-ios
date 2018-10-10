@@ -161,7 +161,7 @@
                                                 <rect key="frame" x="0.0" y="430" width="375" height="0.0"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </stackView>
-                                            <view clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xwL-85-b5M" userLabel="Gray View 2">
+                                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xwL-85-b5M" userLabel="Gray View 2">
                                                 <rect key="frame" x="0.0" y="430" width="375" height="10"/>
                                                 <color key="backgroundColor" red="0.94901960780000005" green="0.95686274510000002" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
@@ -297,11 +297,13 @@
                                             <constraint firstItem="jcs-cQ-xDw" firstAttribute="leading" secondItem="IZe-iE-639" secondAttribute="leading" id="1N6-B5-i6y"/>
                                             <constraint firstItem="xwL-85-b5M" firstAttribute="top" secondItem="Jd1-if-qni" secondAttribute="bottom" id="3WP-gw-40M"/>
                                             <constraint firstAttribute="trailing" secondItem="Jd1-if-qni" secondAttribute="trailing" id="4GX-KF-Fm2"/>
+                                            <constraint firstAttribute="trailing" secondItem="xwL-85-b5M" secondAttribute="trailing" id="6nL-Ge-rF1"/>
                                             <constraint firstAttribute="trailing" secondItem="UBu-iY-XBV" secondAttribute="trailing" id="F0x-6H-ARe"/>
                                             <constraint firstAttribute="bottom" secondItem="UBu-iY-XBV" secondAttribute="bottom" id="PnX-9l-tkb"/>
                                             <constraint firstAttribute="trailing" secondItem="V1W-H9-hJs" secondAttribute="trailing" id="VTu-nW-uQL"/>
                                             <constraint firstItem="jcs-cQ-xDw" firstAttribute="top" secondItem="IZe-iE-639" secondAttribute="top" id="WSS-q3-xub"/>
                                             <constraint firstItem="V1W-H9-hJs" firstAttribute="leading" secondItem="IZe-iE-639" secondAttribute="leading" id="Zpm-Vd-yFh"/>
+                                            <constraint firstItem="xwL-85-b5M" firstAttribute="leading" secondItem="IZe-iE-639" secondAttribute="leading" id="avQ-Iq-h7a"/>
                                             <constraint firstItem="Jd1-if-qni" firstAttribute="leading" secondItem="IZe-iE-639" secondAttribute="leading" id="d0j-JO-2p2"/>
                                             <constraint firstItem="UBu-iY-XBV" firstAttribute="leading" secondItem="IZe-iE-639" secondAttribute="leading" id="fr6-yP-ywN"/>
                                             <constraint firstAttribute="height" priority="250" constant="128" id="n90-NR-FGA"/>

@@ -40,12 +40,14 @@ class PostShowViewController: GSBaseViewController {
             self.commentsViews.forEach( { commentView in
                 // Handlers
                 commentView.handlerActiveVoteButtonTapped               =   { [weak self] (isUpvote, postShortInfo) in
+                    guard (self?.isCurrentOperationPossible())! else { return }
+                    
                     self?.interactor?.save(comment: postShortInfo)
                     
                     let requestModel = PostShowModels.ActiveVote.RequestModel(isUpvote: isUpvote, forPost: false)
                     
                     guard isUpvote else {
-                        self?.showAlertView(withTitle: "Info", andMessage: "Cancel Vote Message", actionTitle: "ActionOk", needCancel: true, completion: { success in
+                        self?.showAlertView(withTitle: "Voting Verb", andMessage: "Cancel Vote Message", actionTitle: "ActionChange", needCancel: true, completion: { success in
                             if success {
                                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
                                     commentView.activeVoteActivityIndicator.startAnimating()
@@ -72,11 +74,15 @@ class PostShowViewController: GSBaseViewController {
                 }
                 
                 commentView.handlerCommentsButtonTapped                 =   { [weak self] postShortInfo in
+                    guard (self?.isCurrentOperationPossible())! else { return }
+                    
                     self?.interactor?.save(comment: postShortInfo)
                     self?.router?.routeToPostCreateScene(withType: .createComment)
                 }
                 
                 commentView.handlerReplyButtonTapped                    =   { [weak self] postShortInfo in
+                    guard (self?.isCurrentOperationPossible())! else { return }
+                    
                     self?.interactor?.save(comment: postShortInfo)
                     self?.router?.routeToPostCreateScene(withType: .createCommentReply)
                 }
@@ -90,10 +96,14 @@ class PostShowViewController: GSBaseViewController {
                 }
                 
                 commentView.handlerAuthorProfileImageButtonTapped       =   { [weak self] authorName in
+                    guard (self?.isCurrentOperationPossible())! else { return }
+                    
                     self?.router?.routeToUserProfileScene(byUserName: authorName)
                 }
 
                 commentView.handlerAuthorNameButtonTapped               =   { [weak self] authorName in
+                    guard (self?.isCurrentOperationPossible())! else { return }
+                    
                     self?.router?.routeToUserProfileScene(byUserName: authorName)
                 }
                 
@@ -103,6 +113,8 @@ class PostShowViewController: GSBaseViewController {
                 }
 
                 commentView.markdownViewManager.completionCommentAuthorTapped       =   { [weak self] authorName in
+                    guard (self?.isCurrentOperationPossible())! else { return }
+                    
                     self?.router?.routeToUserProfileScene(byUserName: authorName)
                 }
                 
@@ -784,10 +796,12 @@ class PostShowViewController: GSBaseViewController {
     }
     
     @IBAction func activeVoteButtonTapped(_ sender: UIButton) {
+        guard self.isCurrentOperationPossible() else { return }
+
         let requestModel = PostShowModels.ActiveVote.RequestModel(isUpvote: sender.tag == 0, forPost: true)
         
         guard sender.tag == 0 else {
-            self.showAlertView(withTitle: "Info", andMessage: "Cancel Vote Message", actionTitle: "ActionOk", needCancel: true, completion: { [weak self] success in
+            self.showAlertView(withTitle: "Voting Verb", andMessage: "Cancel Vote Message", actionTitle: "ActionChange", needCancel: true, completion: { [weak self] success in
                 if success {
                     DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
                         self?.activeVoteActivityIndicator.startAnimating()
@@ -814,7 +828,9 @@ class PostShowViewController: GSBaseViewController {
     }
 
     @IBAction func commentsButtonTapped(_ sender: UIButton) {
-         self.router?.routeToPostCreateScene(withType: .createComment)
+        guard self.isCurrentOperationPossible() else { return }
+
+        self.router?.routeToPostCreateScene(withType: .createComment)
     }
 
     @IBAction func flauntButtonTapped(_ sender: UIButton) {
@@ -865,22 +881,12 @@ class PostShowViewController: GSBaseViewController {
     }
    
     @IBAction func subscribeButtonTapped(_ sender: UIButton) {
+        guard self.isCurrentOperationPossible() else { return }
+
         sender.setBorder(color: UIColor(hexString: "#dbdbdb").cgColor, cornerRadius: 4.0 * heightRatio)
         
         guard isNetworkAvailable else {
             self.showAlertView(withTitle: "Info", andMessage: "No Internet Connection", needCancel: false, completion: { _ in })
-            return
-        }
-        
-        guard !User.isAnonymous else {
-            self.showAlertView(withTitle: "Enter Title", andMessage: "Please Login in App", needCancel: true, completion: { success in
-                if success {
-                    NotificationCenter.default.post(name:       NSNotification.Name.appStateChanged,
-                                                    object:     nil,
-                                                    userInfo:   nil)
-                }
-            })
-            
             return
         }
         
