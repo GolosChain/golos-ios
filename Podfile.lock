@@ -1,11 +1,11 @@
 PODS:
   - AlignedCollectionViewFlowLayout (1.1.2)
   - BeyovaJSON (0.0.7)
-  - Crashlytics (3.10.7):
-    - Fabric (~> 1.7.11)
+  - Crashlytics (3.10.9):
+    - Fabric (~> 1.7.13)
   - CryptoSwift (0.12.0)
   - Down (0.5.2)
-  - Fabric (1.7.11)
+  - Fabric (1.7.13)
   - Firebase/Core (5.0.1):
     - Firebase/CoreOnly
     - FirebaseAnalytics (= 5.0.0)
@@ -57,7 +57,7 @@ PODS:
   - Protobuf (3.5.0)
   - secp256k1.swift (0.1.4)
   - SnapKit (4.0.0)
-  - Starscream (3.0.5)
+  - Starscream (3.0.6)
   - SwiftGifOrigin (1.6.1)
   - SwiftLint (0.25.1)
   - SwiftTheme (0.4.1)
@@ -120,16 +120,16 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   GoloSwift:
-    :commit: a69a3d9918ce83107c66393534f87772c276e41b
+    :commit: 0995dd39358040ccf76fb48b55dfe4532a6983b5
     :git: https://github.com/GolosChain/GoloSwift.git
 
 SPEC CHECKSUMS:
   AlignedCollectionViewFlowLayout: ee2ef451e741ec08f8e0967d828001e2f051c20a
   BeyovaJSON: 085c9fa886fa0b13e2964cc8c6965fab5bc7f90f
-  Crashlytics: ccaac42660eb9351b9960c0d66106b0bcf99f4fa
+  Crashlytics: 55e24fc23989680285a21cb1146578d9d18e432c
   CryptoSwift: 1c07ca50843dd48bc54e6ea53d7a4dba3b645716
   Down: 587371ad58002b06023d9c602519216862c3acbc
-  Fabric: f233c9492b3bbc1f04e3882986740f7988a58edb
+  Fabric: 25d0963b691fc97be566392243ff0ecef5a68338
   Firebase: d6861c2059d8c32d1e6dd8932e22ada346d90a3a
   FirebaseAnalytics: 19812b49fa5f283dd6b23edf8a14b5d477029ab8
   FirebaseCore: cafc814b2d84fc8733f09e653041cc2165332ad7
@@ -149,7 +149,7 @@ SPEC CHECKSUMS:
   Protobuf: 8a9838fba8dae3389230e1b7f8c104aa32389c03
   secp256k1.swift: a7e7a214f6db6ce5db32cc6b2b45e5c4dd633634
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
-  Starscream: faf918b2f2eff7d5dd21180646bf015a669673bd
+  Starscream: ef3ece99d765eeccb67de105bfa143f929026cf5
   SwiftGifOrigin: d6679d3ebe9df2e049a84bc52582635107b581f6
   SwiftLint: ce933681be10c3266e82576dad676fa815a602e9
   SwiftTheme: 36d71c4eed4b2c401c782cf036e4586c749a8173

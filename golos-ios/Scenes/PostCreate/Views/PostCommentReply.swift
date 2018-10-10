@@ -63,7 +63,7 @@ class PostCommentReply: UIView {
     
     @IBOutlet var hightsCollection: [NSLayoutConstraint]! {
         didSet {
-            _ = hightsCollection.map({ $0.constant *= heightRatio })
+            self.hightsCollection.forEach({ $0.constant *= heightRatio })
         }
     }
     
