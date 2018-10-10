@@ -153,14 +153,16 @@ public struct RequestParameterAPI {
             
             let regex           =   "[^а-я0-9a-z,ґ,є,і,ї]"
 
-            let permlinkTemp    =   (parentAuthor.isEmpty ? String(format: "%@", title.transliteration(forPermlink: true)) :
+            var permlinkTemp    =   (parentAuthor.isEmpty ? String(format: "%@", title.transliteration(forPermlink: true)) :
                                                             String(format: "re-%@-%@-%@", parentAuthor, parentPermlink, author))
                                         .replacingOccurrences(of: " ", with: "-")
                                         .replacingOccurrences(of: ".", with: "-")
                                         .lowercased()
 
+            permlinkTemp        =   permlinkTemp.replacingOccurrences(of: regex, with: "", options: .regularExpression)
+                                        .replacingOccurrences(of: "-- ", with: "-")
+
             self.permlink   =   needTiming ? (permlinkTemp + "-\(Int64(Date().timeIntervalSince1970))") : permlinkTemp
-//            self.permlink   =   self.permlink.replacingOccurrences(of: regex, with: "_", options: .regularExpression)
             
             if let parameters = attachments {
                 self.body   =   parameters.compactMap({ $0.markdownValue ?? ""}).joined(separator: " ")

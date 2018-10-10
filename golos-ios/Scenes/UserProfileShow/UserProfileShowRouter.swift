@@ -49,9 +49,14 @@ class UserProfileShowRouter: NSObject, UserProfileShowRoutingLogic, UserProfileS
         
         // Handlers
         destinationVC.handlerPostShowSceneClose     =   { [weak self] isPostContentModify in
-            // Reload current cell content by indexPath
-            if isPostContentModify, let activeVC = self?.viewController?.containerView.activeVC {
-                activeVC.postsTableView.reloadRows(at: [(self?.dataStore?.selectedBlog?.indexPath)!], with: .automatic)
+            // Reload & refresh content of the current cell by indexPath
+            if isPostContentModify, let activeVC = self?.viewController?.containerView.activeVC, let blogShortInfo = self?.dataStore?.selectedBlog, let indexPath = blogShortInfo.indexPath {
+                RestAPIManager.loadModifiedPost(author: blogShortInfo.author ?? "XXX", permlink: blogShortInfo.permlink ?? "XXX", postType: activeVC.postType, completion: { model in
+                    if let blogEntity = model {
+                        activeVC.postsList![indexPath.row] = blogEntity
+                        activeVC.postsTableView.reloadRows(at: [indexPath], with: .automatic)
+                    }
+                })
             }
         }
     }

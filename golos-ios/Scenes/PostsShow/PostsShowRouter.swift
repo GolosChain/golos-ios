@@ -48,7 +48,7 @@ class PostsShowRouter: NSObject, PostsShowRoutingLogic, PostsShowDataPassing {
         
         // Handlers
         destinationVC.handlerPostShowSceneClose     =   { [weak self] isPostContentModify in
-            // Reload & refresh current cell content by indexPath
+            // Reload & refresh content of the current cell by indexPath
             if isPostContentModify, let activeVC = self?.viewController?.containerView.activeVC, let postShortInfo = self?.dataStore?.postShortInfo, let indexPath = postShortInfo.indexPath {
                 RestAPIManager.loadModifiedPost(author: postShortInfo.author ?? "XXX", permlink: postShortInfo.permlink ?? "XXX", postType: activeVC.postType, completion: { model in
                     if let postEntity = model {

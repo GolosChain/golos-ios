@@ -1,8 +1,9 @@
 import UIKit
 
-var x = "раз два 9 три % ;;;* ;; ? <> море за рекой"  //"1293812908-()*7-7sdajsdj-?-<>"
-let regex = "[^а-я0-9a-z,ґ,є,і,ї]"
+let regex = "[^а-я0-9a-z,ґ,є,і,ї,-]"
+var temp = "hi,-thi.,s-is-⚡️ jjj авбгдка🔥☄️"
+    //"hajdh-ja%6ma-na-000-=+-adjas-$$$$ :-)"
 
-x = x.replacingOccurrences(of: regex, with: "_", options: .regularExpression)
+temp = temp.replacingOccurrences(of: regex, with: "", options: .regularExpression)//.replacingOccurrences(of: "--", with: "-")
 
-print(x)
+print(temp)

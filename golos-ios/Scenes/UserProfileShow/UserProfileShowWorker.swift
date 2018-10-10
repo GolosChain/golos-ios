@@ -34,7 +34,7 @@ class UserProfileShowWorker {
             methodAPIType = MethodAPIType.getUserReplies(startAuthor:       (lastItem as? Reply)?.author ?? userNickName,
                                                          startPermlink:     (lastItem as? Reply)?.permlink,
                                                          limit:             loadDataLimit,
-                                                         voteLimit:         0)
+                                                         voteLimit:         1000)
 
         // Blogs
         default:
@@ -42,7 +42,8 @@ class UserProfileShowWorker {
                                                                  truncateBody:      0,
                                                                  selectAuthors:     [ userNickName ],
                                                                  startAuthor:       (lastItem as? PostCellSupport)?.author,
-                                                                 startPermlink:     (lastItem as? PostCellSupport)?.permlink)
+                                                                 startPermlink:     (lastItem as? PostCellSupport)?.permlink,
+                                                                 voteLimit:         1000)
             
             methodAPIType = MethodAPIType.getDiscussions(type: parameters.type, parameters: discussion)
         }
