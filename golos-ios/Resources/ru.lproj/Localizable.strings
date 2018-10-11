@@ -22,6 +22,12 @@
 "Add Max 5 Tags"                            =   "Напишите 5 тегов";
 "No QR code is detected"                    =   "QR-код не обнаружен";
 "QR code is detected"                       =   "QR-код обнаружен";
+"Voice Power Title"                         =   "Голосовать против";
+"Voice Power Subtitle"                      =   "Голос против может снять вознаграждения и сделать пост менее видимым. Голосование против должно основываться на:";
+"Voice Power Label 1"                       =   "Несогласие на награды";
+"Voice Power Label 2"                       =   "Мошенничество или плагиат";
+"Voice Power Label 3"                       =   "Разжигание ненависти или Интернет троллинг";
+"Voice Power Label 4"                       =   "Преднамеренная неправильная категоризация контента или спам";
 
 
 // Buttons
@@ -71,6 +77,7 @@
 "Action Sheet First Old"                    =   "Сначала старые";
 "Reply Verb"                                =   "Ответить";
 "No Comments Title"                         =   "Пока нет комментариев. Будь первым!";
+"Vote Verb"                                 =   "Голосовать";
 
 
 // Titles
@@ -212,3 +219,4 @@
 "Voter maximum number error"                =   "Вы использовали максимальное количество попыток проголосовать за данную запись.";
 "Can only vote once every 3 seconds"        =   "Вы можете голосовать только раз в 3 секунды";
 "You have already voted in a similar way"   =   "Вы уже голосовали аналогичным образом.";
+"Missing Posting Authority"                 =   "У Вас недостаточно прав для голосования";

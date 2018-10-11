@@ -425,7 +425,7 @@ extension UserProfileShowViewController {
                     self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
                 }
                 
-                activeVC.handlerActiveVoteButtonTapped  =   { [weak self] (isUpvote, postShortInfo) in
+                activeVC.handlerActiveVoteButtonTapped  =   { [weak self] (isVote, postShortInfo) in
                     // Check network connection
                     guard isNetworkAvailable else {
                         self?.showAlertView(withTitle: "Info", andMessage: "No Internet Connection", needCancel: false, completion: { _ in })
@@ -437,12 +437,12 @@ extension UserProfileShowViewController {
                     self?.interactor?.save(blogShortInfo: postShortInfo)
                     
                     let blogCell        =   activeVC.postsTableView.cellForRow(at: postShortInfo.indexPath!) as! PostCellActiveVoteSupport
-                    let requestModel    =   UserProfileShowModels.ActiveVote.RequestModel(isUpvote: isUpvote)
+                    let requestModel    =   UserProfileShowModels.ActiveVote.RequestModel(isVote: isVote, isFlaunt: false)
 
-                    guard isUpvote else {
+                    guard isVote else {
                         self?.showAlertView(withTitle: "Voting Verb", andMessage: "Cancel Vote Message", actionTitle: "ActionChange", needCancel: true, completion: { success in
                             if success {
-                                blogCell.activeVoteButton.start(vote: false, spinner: blogCell.activeVoteActivityIndicator)
+                                blogCell.activeVoteButton.startVote(withSpinner: blogCell.activeVoteActivityIndicator)
                                 self?.interactor?.upvote(withRequestModel: requestModel)
                             } else {
                                 blogCell.activeVoteButton.breakVote(withSpinner: blogCell.activeVoteActivityIndicator)
@@ -452,7 +452,7 @@ extension UserProfileShowViewController {
                         return
                     }
                     
-                    blogCell.activeVoteButton.start(vote: true, spinner: blogCell.activeVoteActivityIndicator)
+                    blogCell.activeVoteButton.startVote(withSpinner: blogCell.activeVoteActivityIndicator)
                     self?.interactor?.upvote(withRequestModel: requestModel)
                 }
                 

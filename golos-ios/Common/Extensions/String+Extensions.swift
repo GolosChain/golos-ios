@@ -204,6 +204,10 @@ extension String {
         if self.contains("You have already voted in a similar way") {
             return "You have already voted in a similar way".localized()
         }
+        
+        if self.contains("missing required posting authority") {
+            return "Missing Posting Authority".localized()
+        }
 
         return self
     }

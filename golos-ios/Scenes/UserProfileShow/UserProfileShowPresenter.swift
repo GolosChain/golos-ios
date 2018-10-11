@@ -43,7 +43,7 @@ class UserProfileShowPresenter: UserProfileShowPresentationLogic {
     }
     
     func presentUpvote(fromResponseModel responseModel: UserProfileShowModels.ActiveVote.ResponseModel) {
-        let viewModel = UserProfileShowModels.ActiveVote.ViewModel(isUpvote: responseModel.isUpvote, errorAPI: responseModel.errorAPI)
+        let viewModel = UserProfileShowModels.ActiveVote.ViewModel(isVote: responseModel.isVote, isFlaunt: responseModel.isFlaunt, errorAPI: responseModel.errorAPI)
         viewController?.displayUpvote(fromViewModel: viewModel)
     }
 }

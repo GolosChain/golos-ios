@@ -267,7 +267,7 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
                     self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
                 }
                 
-                activeVC.handlerActiveVoteButtonTapped                 =   { [weak self] (isUpvote, postShortInfo) in
+                activeVC.handlerActiveVoteButtonTapped                 =   { [weak self] (isVote, postShortInfo) in
                     // Check network connection
                     guard isNetworkAvailable else {
                         self?.showAlertView(withTitle: "Info", andMessage: "No Internet Connection", needCancel: false, completion: { _ in })
@@ -279,12 +279,12 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
                     self?.interactor?.save(postShortInfo: postShortInfo)
  
                     let postCell        =   activeVC.postsTableView.cellForRow(at: postShortInfo.indexPath!) as! PostCellActiveVoteSupport
-                    let requestModel    =   PostsShowModels.ActiveVote.RequestModel(isUpvote: isUpvote)
+                    let requestModel    =   PostsShowModels.ActiveVote.RequestModel(isVote: isVote, isFlaunt: false)
 
-                    guard isUpvote else {
+                    guard isVote else {
                         self?.showAlertView(withTitle: "Voting Verb", andMessage: "Cancel Vote Message", actionTitle: "ActionChange", needCancel: true, completion: { success in
                             if success {
-                                postCell.activeVoteButton.start(vote: false, spinner: postCell.activeVoteActivityIndicator)
+                                postCell.activeVoteButton.startVote(withSpinner: postCell.activeVoteActivityIndicator)
                                 self?.interactor?.upvote(withRequestModel: requestModel)
                             } else {
                                 postCell.activeVoteButton.breakVote(withSpinner: postCell.activeVoteActivityIndicator)
@@ -294,7 +294,7 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
                         return
                     }
                     
-                    postCell.activeVoteButton.start(vote: true, spinner: postCell.activeVoteActivityIndicator)
+                    postCell.activeVoteButton.startVote(withSpinner: postCell.activeVoteActivityIndicator)
                     self?.interactor?.upvote(withRequestModel: requestModel)
                 }
                 

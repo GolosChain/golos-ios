@@ -17,12 +17,11 @@ import GoloSwift
 // MARK: - Business Logic protocols
 protocol PostShowBusinessLogic {
     func save(comment: PostShortInfo)
-    func save(postShortInfo: PostShortInfo)
     func subscribe(withRequestModel requestModel: PostShowModels.Item.RequestModel)
     func loadContent(withRequestModel requestModel: PostShowModels.Post.RequestModel)
     func loadContentComments(withRequestModel requestModel: PostShowModels.Post.RequestModel)
     func checkFollowing(withRequestModel requestModel: PostShowModels.Following.RequestModel)
-    func upvote(withRequestModel requestModel: PostShowModels.ActiveVote.RequestModel)
+    func vote(withRequestModel requestModel: PostShowModels.ActiveVote.RequestModel)
 }
 
 protocol PostShowDataStore {
@@ -39,8 +38,16 @@ class PostShowInteractor: PostShowBusinessLogic, PostShowDataStore {
     // PostShowDataStore protocol implementation
     var comment: PostShortInfo?
     var postType: PostsFeedType?
-    var postShortInfo: PostShortInfo?
     var displayedPost: PostCellSupport?
+
+    var postShortInfo: PostShortInfo? {
+        didSet {
+            if let selectedPost = CoreDataManager.instance.readEntity(withName:                   self.postType!.caseTitle().uppercaseFirst,
+                                                                      andPredicateParameters:     NSPredicate(format: "id == \(self.postShortInfo!.id ?? 0)")) as? PostCellSupport {
+                self.displayedPost = selectedPost
+            }
+        }
+    }
 
     
     // MARK: - Class Initialization
@@ -50,22 +57,15 @@ class PostShowInteractor: PostShowBusinessLogic, PostShowDataStore {
     
 
     // MARK: - Business logic implementation
-    func save(postShortInfo: PostShortInfo) {
-        self.postShortInfo = postShortInfo
-        
-        if let selectedPost = CoreDataManager.instance.readEntity(withName:                   self.postType!.caseTitle().uppercaseFirst,
-                                                                  andPredicateParameters:     NSPredicate(format: "id == \(postShortInfo.id ?? 0)")) as? PostCellSupport {
-            self.displayedPost = selectedPost
-        }
-    }
-
     func save(comment: PostShortInfo) {
         self.comment = comment
     }
     
     func loadContent(withRequestModel requestModel: PostShowModels.Post.RequestModel) {
         // API 'get_content'
-        let content = RequestParameterAPI.Content(author: self.postShortInfo?.author ?? "XXX", permlink: self.postShortInfo?.permlink ?? "XXX", active_votes: 1_000)
+        guard let author = self.postShortInfo?.author, let permlink = self.postShortInfo?.permlink else { return }
+            
+        let content = RequestParameterAPI.Content(author: author, permlink: permlink, active_votes: 1_000)
         
         RestAPIManager.loadPost(byContent: content, andPostType: self.postType!, completion: { [weak self] errorAPI in
             guard errorAPI?.caseInfo.message != "No Internet Connection" || !(errorAPI?.caseInfo.message.hasSuffix("timing"))! else {
@@ -136,12 +136,12 @@ class PostShowInteractor: PostShowBusinessLogic, PostShowDataStore {
         }
     }
     
-    func upvote(withRequestModel requestModel: PostShowModels.ActiveVote.RequestModel) {
+    func vote(withRequestModel requestModel: PostShowModels.ActiveVote.RequestModel) {
         let postShortInfo = requestModel.forPost ? self.postShortInfo! : self.comment!
         
-        RestAPIManager.vote(up: requestModel.isUpvote, postShortInfo: postShortInfo, completion: { [weak self] errorAPI in
-            let responseModel = PostShowModels.ActiveVote.ResponseModel(isUpvote: requestModel.isUpvote, forPost: requestModel.forPost, errorAPI: errorAPI)
-            self?.presenter?.presentUpvote(fromResponseModel: responseModel)
+        RestAPIManager.vote(up: requestModel.isVote, flaunt: requestModel.isFlaunt, postShortInfo: postShortInfo, completion: { [weak self] errorAPI in
+            let responseModel = PostShowModels.ActiveVote.ResponseModel(isVote: requestModel.isVote, isFlaunt: requestModel.isFlaunt, forPost: requestModel.forPost, errorAPI: errorAPI)
+            self?.presenter?.presentVote(fromResponseModel: responseModel)
         })
     }
 }

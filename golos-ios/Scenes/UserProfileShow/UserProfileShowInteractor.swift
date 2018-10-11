@@ -86,8 +86,8 @@ class UserProfileShowInteractor: UserProfileShowBusinessLogic, UserProfileShowDa
     }
     
     func upvote(withRequestModel requestModel: UserProfileShowModels.ActiveVote.RequestModel) {
-        RestAPIManager.vote(up: requestModel.isUpvote, postShortInfo: self.selectedBlog!, completion: { [weak self] errorAPI in
-            let responseModel = UserProfileShowModels.ActiveVote.ResponseModel(isUpvote: requestModel.isUpvote, errorAPI: errorAPI)
+        RestAPIManager.vote(up: requestModel.isVote, flaunt: requestModel.isFlaunt, postShortInfo: self.selectedBlog!, completion: { [weak self] errorAPI in
+            let responseModel = UserProfileShowModels.ActiveVote.ResponseModel(isVote: requestModel.isVote, isFlaunt: requestModel.isFlaunt, errorAPI: errorAPI)
             self?.presenter?.presentUpvote(fromResponseModel: responseModel)
         })
     }

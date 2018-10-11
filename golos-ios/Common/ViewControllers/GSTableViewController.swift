@@ -400,17 +400,17 @@ extension GSTableViewController: UITableViewDataSource {
                 self?.handlerShareButtonTapped!()
             }
             
-            (cell as! PostFeedTableViewCell).handlerActiveVoteButtonTapped     =   { [weak self] (isUpvote, postShortInfo) in
+            (cell as! PostFeedTableViewCell).handlerActiveVoteButtonTapped     =   { [weak self] (isVote, postShortInfo) in
                 let model = self?.fetchedResultsController.object(at: postShortInfo.indexPath!) as! PostCellSupport
 
-                self?.handlerActiveVoteButtonTapped!(isUpvote, PostShortInfo(id:                model.id,
-                                                                              title:             model.title,
-                                                                              author:            model.author,
-                                                                              permlink:          model.permlink,
-                                                                              parentTag:         model.tags?.first,
-                                                                              indexPath:         postShortInfo.indexPath,
-                                                                              parentAuthor:      model.parentAuthor,
-                                                                              parentPermlink:    model.parentPermlink))
+                self?.handlerActiveVoteButtonTapped!(isVote, PostShortInfo(id:                model.id,
+                                                                           title:             model.title,
+                                                                           author:            model.author,
+                                                                           permlink:          model.permlink,
+                                                                           parentTag:         model.tags?.first,
+                                                                           indexPath:         postShortInfo.indexPath,
+                                                                           parentAuthor:      model.parentAuthor,
+                                                                           parentPermlink:    model.parentPermlink))
             }
             
             (cell as! PostFeedTableViewCell).handlerCommentsButtonTapped    =   { [weak self] postShortInfo in

@@ -15,7 +15,7 @@ import GoloSwift
 
 // MARK: - Presentation Logic protocols
 protocol PostCreatePresentationLogic {
-    func presentPublishItem(fromResponseModel responseModel: PostCreateModels.Item.ResponseModel)
+    func presentPostingItem(fromResponseModel responseModel: PostCreateModels.Item.ResponseModel)
 }
 
 class PostCreatePresenter: PostCreatePresentationLogic {
@@ -30,8 +30,8 @@ class PostCreatePresenter: PostCreatePresentationLogic {
     
 
     // MARK: - Presentation Logic implementation
-    func presentPublishItem(fromResponseModel responseModel: PostCreateModels.Item.ResponseModel) {
+    func presentPostingItem(fromResponseModel responseModel: PostCreateModels.Item.ResponseModel) {
         let viewModel = PostCreateModels.Item.ViewModel(errorAPI: responseModel.errorAPI)
-        viewController?.displayPublishItem(fromViewModel: viewModel)
+        viewController?.displayPostingItem(fromViewModel: viewModel)
     }
 }

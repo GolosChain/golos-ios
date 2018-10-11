@@ -377,12 +377,23 @@ class RestAPIManager {
     
     
     /// Upvote
-    class func vote(up: Bool, postShortInfo: PostShortInfo, completion: @escaping (ErrorAPI?) -> Void) {
-        let vote    =   RequestParameterAPI.Vote(voter:         User.current!.nickName,
+    class func vote(up: Bool?, flaunt: Bool?, postShortInfo: PostShortInfo, completion: @escaping (ErrorAPI?) -> Void) {
+        var vote: RequestParameterAPI.Vote!
+        
+        if let isVote = up {
+            vote    =   RequestParameterAPI.Vote(voter:         User.current!.nickName,
                                                  author:        postShortInfo.author ?? "XXX",
                                                  permlink:      postShortInfo.permlink ?? "XXX",
-                                                 weight:        up ? 10_000 : 0)
-
+                                                 weight:        isVote ? 10_000 : 0)
+        }
+        
+        if let isFlaunt = flaunt {
+            vote    =   RequestParameterAPI.Vote(voter:         User.current!.nickName,
+                                                 author:        postShortInfo.author ?? "XXX",
+                                                 permlink:      postShortInfo.permlink ?? "XXX",
+                                                 weight:        isFlaunt ? -10_000 : 0)
+        }
+        
         let operationAPIType = OperationAPIType.vote(fields: vote)
         
         // Run API

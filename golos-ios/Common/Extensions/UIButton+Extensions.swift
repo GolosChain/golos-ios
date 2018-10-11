@@ -141,8 +141,8 @@ extension UIButton {
     }
     
     
-    // For Active Vote button
-    func start(vote: Bool, spinner: UIActivityIndicatorView) {
+    // For Active Vote / Flaunt buttons
+    func startVote(withSpinner spinner: UIActivityIndicatorView) {
         self.isEnabled = false
 
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {

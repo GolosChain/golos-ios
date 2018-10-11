@@ -98,15 +98,10 @@
                                     <constraint firstItem="G0A-uk-2YJ" firstAttribute="top" secondItem="mLA-QB-vdt" secondAttribute="bottom" constant="9" id="lkh-gS-M4d"/>
                                 </constraints>
                             </view>
-                            <activityIndicatorView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Ynn-WP-oBX">
-                                <rect key="frame" x="177.5" y="291.5" width="20" height="20"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="1yk-b9-MRG" firstAttribute="leading" secondItem="Jhp-G8-l53" secondAttribute="leading" id="1dd-nc-sgl"/>
-                            <constraint firstItem="Ynn-WP-oBX" firstAttribute="centerY" secondItem="Sw0-IZ-LYW" secondAttribute="centerY" id="3gj-Jl-xpY"/>
                             <constraint firstItem="1yk-b9-MRG" firstAttribute="trailing" secondItem="Jhp-G8-l53" secondAttribute="trailing" id="9C1-lc-N48"/>
                             <constraint firstItem="doW-uc-lK0" firstAttribute="top" secondItem="1yk-b9-MRG" secondAttribute="bottom" constant="16" id="Hmh-EF-sLe"/>
                             <constraint firstItem="Jhp-G8-l53" firstAttribute="trailing" secondItem="doW-uc-lK0" secondAttribute="trailing" constant="16" id="IWD-rY-84t"/>
@@ -115,7 +110,6 @@
                             <constraint firstItem="Jhp-G8-l53" firstAttribute="bottom" secondItem="Tte-BZ-PFa" secondAttribute="bottom" id="OLz-1c-pK1"/>
                             <constraint firstItem="Tte-BZ-PFa" firstAttribute="leading" secondItem="Jhp-G8-l53" secondAttribute="leading" id="Pes-Y0-XQL"/>
                             <constraint firstItem="doW-uc-lK0" firstAttribute="leading" secondItem="Jhp-G8-l53" secondAttribute="leading" constant="16" id="QvI-Xz-Lu4"/>
-                            <constraint firstItem="Ynn-WP-oBX" firstAttribute="centerX" secondItem="Sw0-IZ-LYW" secondAttribute="centerX" id="nAZ-al-EAd"/>
                             <constraint firstItem="Tte-BZ-PFa" firstAttribute="height" secondItem="Sw0-IZ-LYW" secondAttribute="height" multiplier="80:554" priority="750" id="oIW-Uf-4yH"/>
                             <constraint firstItem="Tte-BZ-PFa" firstAttribute="top" secondItem="doW-uc-lK0" secondAttribute="bottom" constant="16" id="q4O-KT-Lla"/>
                             <constraint firstItem="Tte-BZ-PFa" firstAttribute="height" secondItem="Sw0-IZ-LYW" secondAttribute="height" multiplier="80:311" id="uFX-aC-1sO"/>
@@ -151,7 +145,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="icon-button-publish-normal" id="odW-AC-b4Z">
                             <connections>
-                                <action selector="publishBarButtonTapped:" destination="K52-Ba-FnU" id="338-RI-kGu"/>
+                                <action selector="postingBarButtonTapped:" destination="K52-Ba-FnU" id="338-RI-kGu"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -162,8 +156,7 @@
                         <outlet property="contentViewBottomConstraint" destination="q4O-KT-Lla" id="MuT-1Y-RPP"/>
                         <outlet property="markdownViewHeightConstraint" destination="dMZ-WP-C4t" id="Zo7-1T-MhU"/>
                         <outlet property="postCreateView" destination="nPS-aX-y2M" id="SMe-Ux-6Dv"/>
-                        <outlet property="postingActivityIndicator" destination="Ynn-WP-oBX" id="tew-Dy-3Oj"/>
-                        <outlet property="publishBarButton" destination="odW-AC-b4Z" id="q1w-ey-pOD"/>
+                        <outlet property="postingBarButton" destination="odW-AC-b4Z" id="q1w-ey-pOD"/>
                         <outlet property="stackView" destination="1yk-b9-MRG" id="RNp-R4-kXA"/>
                         <outlet property="stackViewTopConstraint" destination="Ijx-17-6xw" id="zHi-uw-vWM"/>
                         <outlet property="tagsTitleLabel" destination="mLA-QB-vdt" id="hZ2-xt-aeQ"/>

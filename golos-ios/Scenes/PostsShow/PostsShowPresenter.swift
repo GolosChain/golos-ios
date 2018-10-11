@@ -37,7 +37,7 @@ class PostsShowPresenter: PostsShowPresentationLogic {
     }
     
     func presentUpvote(fromResponseModel responseModel: PostsShowModels.ActiveVote.ResponseModel) {
-        let viewModel = PostsShowModels.ActiveVote.ViewModel(isUpvote: responseModel.isUpvote, errorAPI: responseModel.errorAPI)
+        let viewModel = PostsShowModels.ActiveVote.ViewModel(isVote: responseModel.isVote, isFlaunt: responseModel.isFlaunt, errorAPI: responseModel.errorAPI)
         viewController?.displayUpvote(fromViewModel: viewModel)
     }
 }

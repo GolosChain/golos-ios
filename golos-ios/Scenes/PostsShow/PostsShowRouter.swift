@@ -93,6 +93,7 @@ class PostsShowRouter: NSObject, PostsShowRoutingLogic, PostsShowDataPassing {
     func navigateToPostShowScene(source: PostsShowViewController, destination: PostShowViewController) {
         viewController?.hideNavigationBar()
         source.show(destination, sender: nil)
+        destination.loadContent()
     }
     
     func navigateToUserProfileScene(source: PostsShowViewController, destination: UserProfileShowViewController) {
@@ -106,12 +107,12 @@ class PostsShowRouter: NSObject, PostsShowRoutingLogic, PostsShowDataPassing {
     
     // MARK: - Passing data
     func passDataToPostShowScene(source: PostsShowDataStore, destination: inout PostShowDataStore) {
-        destination.postShortInfo           =   source.postShortInfo
         destination.postType                =   viewController!.postFeedTypes[viewController!.selectedIndex]
+        destination.postShortInfo           =   source.postShortInfo
     }
     
     func passDataToUserProfileScene(userName: String, destination: inout UserProfileShowDataStore) {
-        destination.userNickName    =   userName
+        destination.userNickName            =   userName
     }
     
     func passDataToPostCreateScene(selectedPost: PostCellSupport, destination: inout PostCreateDataStore) {

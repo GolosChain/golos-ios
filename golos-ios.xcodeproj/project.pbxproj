@@ -124,6 +124,8 @@
 		B167FA94211D5CE600662E93 /* CommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B167FA93211D5CE600662E93 /* CommentView.swift */; };
 		B167FA96211D5CF600662E93 /* CommentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B167FA95211D5CF600662E93 /* CommentView.xib */; };
 		B181586020B976FD00835034 /* GSBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B181585F20B976FD00835034 /* GSBaseViewController.swift */; };
+		B18A9E47216F5AD600BB632E /* VoicePowerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18A9E46216F5AD600BB632E /* VoicePowerView.swift */; };
+		B18A9E49216F5B0200BB632E /* VoicePowerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B18A9E48216F5B0200BB632E /* VoicePowerView.xib */; };
 		B18B937220B91D4E000CF503 /* ForegroundRemoteNotificationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B18B937120B91D4E000CF503 /* ForegroundRemoteNotificationView.xib */; };
 		B18B937420B91DB8000CF503 /* ForegroundRemoteNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18B937320B91DB8000CF503 /* ForegroundRemoteNotificationView.swift */; };
 		B1961953211C90D2001DF789 /* MarkdownViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1961952211C90D2001DF789 /* MarkdownViewManager.swift */; };
@@ -387,6 +389,8 @@
 		B167FA93211D5CE600662E93 /* CommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentView.swift; sourceTree = "<group>"; };
 		B167FA95211D5CF600662E93 /* CommentView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentView.xib; sourceTree = "<group>"; };
 		B181585F20B976FD00835034 /* GSBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GSBaseViewController.swift; sourceTree = "<group>"; };
+		B18A9E46216F5AD600BB632E /* VoicePowerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoicePowerView.swift; sourceTree = "<group>"; };
+		B18A9E48216F5B0200BB632E /* VoicePowerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VoicePowerView.xib; sourceTree = "<group>"; };
 		B18B937120B91D4E000CF503 /* ForegroundRemoteNotificationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ForegroundRemoteNotificationView.xib; sourceTree = "<group>"; };
 		B18B937320B91DB8000CF503 /* ForegroundRemoteNotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForegroundRemoteNotificationView.swift; sourceTree = "<group>"; };
 		B18DB44F2085D22A00BA5D50 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -849,6 +853,8 @@
 			children = (
 				B167FA93211D5CE600662E93 /* CommentView.swift */,
 				B167FA95211D5CF600662E93 /* CommentView.xib */,
+				B18A9E46216F5AD600BB632E /* VoicePowerView.swift */,
+				B18A9E48216F5B0200BB632E /* VoicePowerView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1351,6 +1357,7 @@
 				B12F43FB20EA0192003FFF58 /* ScannerShow.storyboard in Resources */,
 				B146891A20F2013F00D36794 /* SFProDisplay-Medium.otf in Resources */,
 				B10FB7AC215FCA9300CA585E /* SFProDisplay-Bold.otf in Resources */,
+				B18A9E49216F5B0200BB632E /* VoicePowerView.xib in Resources */,
 				B1DCE31A2109A44C00487DE0 /* test-sound.wav in Resources */,
 				B164F04920E62B5A00C5CDD3 /* UserProfileShow.storyboard in Resources */,
 				B1F3747520C2B483005EF767 /* RootShow.storyboard in Resources */,
@@ -1558,6 +1565,7 @@
 				B12B3AC920FCBFCA00071B97 /* PostsShowInteractor.swift in Sources */,
 				B127A87B20EB8ABF007133AB /* UserSecretActiveKey+CoreDataProperties.swift in Sources */,
 				B15C29BA21101FEA0030D249 /* PostShowViewController.swift in Sources */,
+				B18A9E47216F5AD600BB632E /* VoicePowerView.swift in Sources */,
 				B136D4FF20D8BA2E003AD279 /* ThemeTagCollectionViewCell.swift in Sources */,
 				B1EE686C20D2D713006BF802 /* PostCommentReply.swift in Sources */,
 				B1084CAE211378780065CAC0 /* PostShowTagCollectionViewCell.swift in Sources */,

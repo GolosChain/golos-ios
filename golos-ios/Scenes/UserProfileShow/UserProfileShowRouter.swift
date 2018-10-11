@@ -108,6 +108,7 @@ class UserProfileShowRouter: NSObject, UserProfileShowRoutingLogic, UserProfileS
     func navigateToPostShowScene(source: UserProfileShowViewController, destination: PostShowViewController) {
         viewController?.hideNavigationBar()
         source.show(destination, sender: nil)
+        destination.loadContent()
     }
     
     func navigateToPostCreateScene(source: UserProfileShowViewController, destination: PostCreateViewController) {
@@ -121,8 +122,8 @@ class UserProfileShowRouter: NSObject, UserProfileShowRoutingLogic, UserProfileS
     
     // MARK: - Passing data
     func passDataToPostShowScene(source: UserProfileShowDataStore, destination: inout PostShowDataStore) {
-        destination.postShortInfo           =   source.selectedBlog
         destination.postType                =   PostsFeedType.blog
+        destination.postShortInfo           =   source.selectedBlog
     }
     
     func passDataToPostCreateScene(postShortInfo: PostShortInfo, destination: inout PostCreateDataStore) {

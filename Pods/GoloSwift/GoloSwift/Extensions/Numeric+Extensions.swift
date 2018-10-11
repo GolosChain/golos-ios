@@ -18,6 +18,29 @@ extension Numeric {
 }
 
 
+extension Int16 {
+    var bytesReverse: [Byte] {
+        guard self > 0 else {
+            let selfConverted = Int(UInt8.max) + Int(self) + 1
+            
+            return [UInt8(truncatingIfNeeded: selfConverted), UInt8(truncatingIfNeeded: selfConverted >> 8)]
+        }
+        
+        return [UInt8(truncatingIfNeeded: self), UInt8(truncatingIfNeeded: self >> 8)]
+    }
+    
+    var bytesDirect: [Byte] {
+        guard self > 0 else {
+            let selfConverted = Int(UInt8.max) + Int(self) + 1
+            
+            return [UInt8(truncatingIfNeeded: selfConverted >> 8), UInt8(truncatingIfNeeded: selfConverted)]
+        }
+        
+        return [UInt8(truncatingIfNeeded: self >> 8), UInt8(truncatingIfNeeded: self)]
+    }
+}
+
+
 extension UInt16 {
     var bytesReverse: [Byte] {
         return [UInt8(truncatingIfNeeded: self), UInt8(truncatingIfNeeded: self >> 8)]

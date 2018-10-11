@@ -24,7 +24,7 @@ protocol PostShowDisplayLogic: class {
     func displayLoadContent(fromViewModel viewModel: PostShowModels.Post.ViewModel)
     func displayLoadContentComments(fromViewModel viewModel: PostShowModels.Post.ViewModel)
     func displayCheckFollowing(fromViewModel viewModel: PostShowModels.Following.ViewModel)
-    func displayUpvote(fromViewModel viewModel: PostShowModels.ActiveVote.ViewModel)
+    func displayVote(fromViewModel viewModel: PostShowModels.ActiveVote.ViewModel)
 }
 
 class PostShowViewController: GSBaseViewController {
@@ -35,11 +35,13 @@ class PostShowViewController: GSBaseViewController {
     var isPostContentModify: Bool = false
     var commentsSecondLevel: [Comment] = [Comment]()
     
+    var voicePowerView: VoicePowerView?
+
     var commentsViews = [CommentView]() {
         didSet {
             self.commentsViews.forEach( { commentView in
                 // Handlers
-                commentView.handlerActiveVoteButtonTapped               =   { [weak self] (isUpvote, postShortInfo) in
+                commentView.handlerActiveVoteButtonTapped               =   { [weak self] (isVote, postShortInfo) in
                     // Check network connection
                     guard isNetworkAvailable else {
                         self?.showAlertView(withTitle: "Info", andMessage: "No Internet Connection", needCancel: false, completion: { _ in })
@@ -50,13 +52,13 @@ class PostShowViewController: GSBaseViewController {
                     
                     self?.interactor?.save(comment: postShortInfo)
                     
-                    let requestModel = PostShowModels.ActiveVote.RequestModel(isUpvote: isUpvote, forPost: false)
+                    let requestModel = PostShowModels.ActiveVote.RequestModel(isVote: isVote, isFlaunt: false, forPost: false)
                     
-                    guard isUpvote else {
+                    guard isVote else {
                         self?.showAlertView(withTitle: "Voting Verb", andMessage: "Cancel Vote Message", actionTitle: "ActionChange", needCancel: true, completion: { success in
                             if success {
-                                commentView.activeVoteButton.start(vote: false, spinner: commentView.activeVoteActivityIndicator)
-                                self?.interactor?.upvote(withRequestModel: requestModel)
+                                commentView.activeVoteButton.startVote(withSpinner: commentView.activeVoteActivityIndicator)
+                                self?.interactor?.vote(withRequestModel: requestModel)
                             } else {
                                 commentView.activeVoteButton.breakVote(withSpinner: commentView.activeVoteActivityIndicator)
                             }
@@ -65,8 +67,8 @@ class PostShowViewController: GSBaseViewController {
                         return
                     }
                     
-                    commentView.activeVoteButton.start(vote: true, spinner: commentView.activeVoteActivityIndicator)
-                    self?.interactor?.upvote(withRequestModel: requestModel)
+                    commentView.activeVoteButton.startVote(withSpinner: commentView.activeVoteActivityIndicator)
+                    self?.interactor?.vote(withRequestModel: requestModel)
                 }
                 
                 commentView.handlerUsersButtonTapped                    =   { [weak self] in
@@ -158,6 +160,12 @@ class PostShowViewController: GSBaseViewController {
         }
     }
     
+    @IBOutlet weak var flauntActivityIndicator: UIActivityIndicatorView! {
+        didSet {
+            self.flauntActivityIndicator.stopAnimating()
+        }
+    }
+    
     @IBOutlet var hiddenViewsCollection: [UIView]! {
         didSet {
             self.hiddenViewsCollection.forEach({ $0.alpha = 0.0 })
@@ -232,6 +240,14 @@ class PostShowViewController: GSBaseViewController {
         }
     }
     
+//    @IBOutlet weak var voicePowerView: VoicePowerView! {
+//        didSet {
+//            self.voicePowerView.alpha       =   0.0
+//            self.voicePowerView.frame       =   UIScreen.main.bounds
+//            self.voicePowerView.center      =   self.view.center
+//        }
+//    }
+    
     @IBOutlet weak var contentView: UIView! {
         didSet {
             contentView.tune()
@@ -290,7 +306,7 @@ class PostShowViewController: GSBaseViewController {
     
     @IBOutlet weak var flauntButton: UIButton! {
         didSet {
-            flauntButton.tune(withTitle:        "Flaunt Verb",
+            flauntButton.tune(withTitle:        "",
                               hexColors:        [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
                               font:             UIFont(name: "SFProDisplay-Regular", size: 10.0),
                               alignment:        .left)
@@ -576,13 +592,13 @@ class PostShowViewController: GSBaseViewController {
             self?.router?.routeToUserProfileScene(byUserName: reblogAuthorName)
         }
         
-        // Load Post
-        let loadPostContentQueue = DispatchQueue.global(qos: .background)
-        
-        loadPostContentQueue.sync {
-            self.loadContent()
-            self.runCheckFollowing()
-        }
+//        // Load Post
+//        let loadPostContentQueue = DispatchQueue.global(qos: .background)
+//
+//        loadPostContentQueue.sync {
+//            self.loadContent()
+//            self.runCheckFollowing()
+//        }
         
         if let user = User.current {
             let isNamesMatch = user.nickName == self.router?.dataStore?.postShortInfo?.author
@@ -656,7 +672,11 @@ class PostShowViewController: GSBaseViewController {
 
         if let displayedPost = self.router?.dataStore?.displayedPost {
             self.titleLabel.text                =   displayedPost.title
+            self.flauntButton.isEnabled         =   true
             self.activeVoteButton.isEnabled     =   true
+            self.flauntButton.isHidden          =   displayedPost.author == User.current!.nickName
+
+            self.flauntActivityIndicator.stopAnimating()
             self.activeVoteActivityIndicator.stopAnimating()
             
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
@@ -706,7 +726,7 @@ class PostShowViewController: GSBaseViewController {
             }
             
             // Flaunt icon
-            self.flauntButton.isSelected = displayedPost.currentUserFlaunted
+            self.flauntButton.tag   =   displayedPost.currentUserFlaunted ? 99 : 0
             self.flauntButton.setImage(displayedPost.currentUserFlaunted ? UIImage(named: "icon-button-flaunt-selected") : UIImage(named: "icon-button-flaunt-default"), for: .normal)
         }
     }
@@ -721,7 +741,6 @@ class PostShowViewController: GSBaseViewController {
                                                         .transliteration(forPermlink: false)
                                                         .uppercaseFirst
         
-        self.flauntButton.setTitle("Flaunt Verb".localized(), for: .normal)
         self.donateButton.setTitle("Donate Verb".localized(), for: .normal)
         self.promoteButton.setTitle("Promote Post Verb".localized(), for: .normal)
         self.emptyCommentsButton.setTitle("No Comments Title".localized(), for: .normal)
@@ -796,6 +815,7 @@ class PostShowViewController: GSBaseViewController {
         }
     }
     
+    // Use for Active Vote & Flaunt buttons
     @IBAction func activeVoteButtonTapped(_ sender: UIButton) {
         // Check network connection
         guard isNetworkAvailable else {
@@ -805,13 +825,13 @@ class PostShowViewController: GSBaseViewController {
 
         guard self.isCurrentOperationPossible() else { return }
 
-        let requestModel = PostShowModels.ActiveVote.RequestModel(isUpvote: sender.tag == 0, forPost: true)
+        let requestModel = PostShowModels.ActiveVote.RequestModel(isVote: sender.tag == 0, isFlaunt: nil, forPost: true)
         
         guard sender.tag == 0 else {
             self.showAlertView(withTitle: "Voting Verb", andMessage: "Cancel Vote Message", actionTitle: "ActionChange", needCancel: true, completion: { [weak self] success in
                 if success {
-                    self?.activeVoteButton.start(vote: false, spinner: (self?.activeVoteActivityIndicator)!)
-                    self?.interactor?.upvote(withRequestModel: requestModel)
+                    self?.activeVoteButton.startVote(withSpinner: (self?.activeVoteActivityIndicator)!)
+                    self?.interactor?.vote(withRequestModel: requestModel)
                 } else {
                     self?.activeVoteButton.breakVote(withSpinner: (self?.activeVoteActivityIndicator)!)
                 }
@@ -820,10 +840,45 @@ class PostShowViewController: GSBaseViewController {
             return
         }
         
-        self.activeVoteButton.start(vote: true, spinner: self.activeVoteActivityIndicator)
-        self.interactor?.upvote(withRequestModel: requestModel)
+        self.activeVoteButton.startVote(withSpinner: self.activeVoteActivityIndicator)
+        self.interactor?.vote(withRequestModel: requestModel)
     }
 
+    @IBAction func flauntButtonTapped(_ sender: UIButton) {
+        // Check network connection
+        guard isNetworkAvailable else {
+            self.showAlertView(withTitle: "Info", andMessage: "No Internet Connection", needCancel: false, completion: { _ in })
+            return
+        }
+        
+        guard self.isCurrentOperationPossible() else { return }
+        
+        let requestModel = PostShowModels.ActiveVote.RequestModel(isVote: nil, isFlaunt: sender.tag == 0, forPost: true)
+        
+        // Flaunt
+        if sender.tag == 0 {
+            self.voicePowerView = VoicePowerView.init(frame: UIScreen.main.bounds)
+            self.voicePowerView!.display()
+        
+            self.voicePowerView!.handlerActionButtonTapped       =   { [weak self] success in
+                if success {
+                    self?.flauntButton.startVote(withSpinner: (self?.flauntActivityIndicator)!)
+                    self?.interactor?.vote(withRequestModel: requestModel)
+                }
+                
+                self?.voicePowerView!.hide()
+                self?.voicePowerView = nil
+            }
+        }
+        
+        // Unflaunt (tag == 99)
+        else {
+            // TODO: - ADD UNFLAUNT POPUP
+            self.flauntButton.startVote(withSpinner: self.flauntActivityIndicator)
+            self.interactor?.vote(withRequestModel: requestModel)
+        }
+    }
+    
     @IBAction func usersButtonTapped(_ sender: UIButton) {
         self.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
     }
@@ -838,10 +893,6 @@ class PostShowViewController: GSBaseViewController {
         guard self.isCurrentOperationPossible() else { return }
 
         self.router?.routeToPostCreateScene(withType: .createComment)
-    }
-
-    @IBAction func flauntButtonTapped(_ sender: UIButton) {
-        self.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
     }
 
     @IBAction func promoteButtonTapped(_ sender: UIButton) {
@@ -974,7 +1025,7 @@ extension PostShowViewController: PostShowDisplayLogic {
         }
     }
     
-    func displayUpvote(fromViewModel viewModel: PostShowModels.ActiveVote.ViewModel) {
+    func displayVote(fromViewModel viewModel: PostShowModels.ActiveVote.ViewModel) {
         // NOTE: Display the result from the Presenter
         guard viewModel.errorAPI == nil else {
             if let message = viewModel.errorAPI?.caseInfo.message {
@@ -1023,11 +1074,16 @@ extension PostShowViewController: PostShowDisplayLogic {
 
 // MARK: - Load data from Blockchain by API
 extension PostShowViewController {
-    private func loadContent() {
-        Logger.log(message: "Success", event: .severe)
+    func loadContent() {
+        // Load Post
+        let loadPostContentQueue = DispatchQueue.global(qos: .background)
         
-        let contentRequestModel = PostShowModels.Post.RequestModel()
-        self.interactor?.loadContent(withRequestModel: contentRequestModel)
+        loadPostContentQueue.sync {
+            let contentRequestModel = PostShowModels.Post.RequestModel()
+            self.interactor?.loadContent(withRequestModel: contentRequestModel)
+
+            self.runCheckFollowing()
+        }
     }
     
     func loadContentComments() {
@@ -1079,17 +1135,7 @@ extension PostShowViewController {
         
         do {
             if let displayedPost = try CoreDataManager.instance.managedObjectContext.fetch(fetchRequest).first as? PostCellSupport {
-                self.postFeedHeaderView.display(post: displayedPost)
-               
-                self.interactor?.save(postShortInfo: PostShortInfo(id:               displayedPost.id,
-                                                                   title:            displayedPost.title,
-                                                                   author:           displayedPost.author,
-                                                                   permlink:         displayedPost.permlink,
-                                                                   parentTag:        displayedPost.tags?.first,
-                                                                   indexPath:        IndexPath(row: 0, section: 0),
-                                                                   parentAuthor:     displayedPost.parentAuthor,
-                                                                   parentPermlink:   displayedPost.parentPermlink))
-                
+                self.postFeedHeaderView.display(post: displayedPost)               
                 self.loadViewSettings()
             }
         }

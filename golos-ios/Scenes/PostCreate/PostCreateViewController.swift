@@ -25,14 +25,15 @@ import IQKeyboardManagerSwift
 
 // MARK: - Input & Output protocols
 protocol PostCreateDisplayLogic: class {
-    func displayPublishItem(fromViewModel viewModel: PostCreateModels.Item.ViewModel)
+    func displayPostingItem(fromViewModel viewModel: PostCreateModels.Item.ViewModel)
 }
 
 class PostCreateViewController: GSBaseViewController {
     // MARK: - Properties
     var firstResponder: UIView!
     var isKeyboardShow = false
-   
+    var postingActivityIndicator: UIActivityIndicatorView?
+    
     var tagsVC: TagsCollectionViewController!
     var sceneType: SceneType = .createPost
     
@@ -45,7 +46,7 @@ class PostCreateViewController: GSBaseViewController {
     
     // MARK: - IBOutlets
     @IBOutlet weak var stackView: UIStackView!
-    @IBOutlet weak var publishBarButton: UIBarButtonItem!
+    @IBOutlet var postingBarButton: UIBarButtonItem!
     
     @IBOutlet weak var tagsView: UIView! {
         didSet {
@@ -53,12 +54,6 @@ class PostCreateViewController: GSBaseViewController {
         }
     }
 
-    @IBOutlet weak var postingActivityIndicator: UIActivityIndicatorView! {
-        didSet {
-            self.postingActivityIndicator.stopAnimating()
-        }
-    }
-    
     @IBOutlet weak var commentReplyView: PostCommentReply! {
         didSet {
             // Handlers
@@ -387,7 +382,7 @@ class PostCreateViewController: GSBaseViewController {
         self.router?.routeToNextScene()
     }
     
-    @IBAction func publishBarButtonTapped(_ sender: UIBarButtonItem) {
+    @IBAction func postingBarButtonTapped(_ sender: UIBarButtonItem) {
         // Check network connection
         guard isNetworkAvailable else {
             self.showAlertView(withTitle: "Info", andMessage: "No Internet Connection", needCancel: false, completion: { _ in })
@@ -398,19 +393,16 @@ class PostCreateViewController: GSBaseViewController {
             return
         }
         
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1, execute: {
-            self.postingActivityIndicator.startAnimating()
-            sender.isEnabled = false
-        })
+        self.displayPostingBarButtonActivityIndicator()
         
         // Get content parts
         let contentParts = self.contentTextView.getParts()
         self.interactor?.save(attachments: contentParts)
 
         // API
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.3, execute: {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1, execute: {
             let requestModel = PostCreateModels.Item.RequestModel(sceneType: self.sceneType)
-            self.interactor?.publishItem(withRequestModel: requestModel)
+            self.interactor?.postingItem(withRequestModel: requestModel)
         })
     }
 }
@@ -418,9 +410,8 @@ class PostCreateViewController: GSBaseViewController {
 
 // MARK: - PostCreateDisplayLogic
 extension PostCreateViewController: PostCreateDisplayLogic {
-    func displayPublishItem(fromViewModel viewModel: PostCreateModels.Item.ViewModel) {
-        self.postingActivityIndicator.stopAnimating()
-        self.publishBarButton.isEnabled = true
+    func displayPostingItem(fromViewModel viewModel: PostCreateModels.Item.ViewModel) {
+        self.hidePostingBarButtonActivityIndicator()
         
         // NOTE: Display the result from the Presenter
         guard viewModel.errorAPI == nil else {
@@ -620,4 +611,25 @@ private func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIIma
 // Helper function inserted by Swift 4.2 migrator.
 private func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
 	return input.rawValue
+}
+
+
+// Spinner
+extension PostCreateViewController {
+    func displayPostingBarButtonActivityIndicator() {
+        self.postingActivityIndicator           =   UIActivityIndicatorView(frame: CGRect(x: 0.0, y: 0.0, width: 20.0, height: 20.0))
+        self.postingActivityIndicator?.color    =   UIColor(hexString: "#6F7179")
+        
+        let barButton   =   UIBarButtonItem(customView: self.postingActivityIndicator!)
+        self.navigationItem.setRightBarButton(barButton, animated: true)
+        
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1, execute: {
+            self.postingActivityIndicator!.startAnimating()
+        })
+    }
+    
+    func hidePostingBarButtonActivityIndicator() {
+        self.postingActivityIndicator!.stopAnimating()
+        navigationItem.setRightBarButton(self.postingBarButton, animated: true)
+    }
 }

@@ -157,7 +157,7 @@ public struct Transaction {
     }
     
     private mutating func serialize(int64: Int64) {
-        self.serializedBuffer   +=  UInt16(int64).bytesReverse
+        self.serializedBuffer   +=  Int16(int64).bytesReverse
     }
 }
 

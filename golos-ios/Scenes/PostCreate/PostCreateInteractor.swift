@@ -19,7 +19,7 @@ protocol PostCreateBusinessLogic {
     func save(commentBody: String)
     func save(commentTitle: String)
     func save(attachments: [Attachment])
-    func publishItem(withRequestModel requestModel: PostCreateModels.Item.RequestModel)
+    func postingItem(withRequestModel requestModel: PostCreateModels.Item.RequestModel)
 }
 
 protocol PostCreateDataStore {
@@ -70,7 +70,7 @@ class PostCreateInteractor: PostCreateBusinessLogic, PostCreateDataStore {
         self.attachments    =   attachments
     }
     
-    func publishItem(withRequestModel requestModel: PostCreateModels.Item.RequestModel) {
+    func postingItem(withRequestModel requestModel: PostCreateModels.Item.RequestModel) {
         worker = PostCreateWorker()
 
         // Create markdown titles for all images & links
@@ -84,7 +84,7 @@ class PostCreateInteractor: PostCreateBusinessLogic, PostCreateDataStore {
                 self?.worker?.load(postPermlink: (self?.tags?.first?.title)!.transliteration(forPermlink: false), completion: { errorAPI in
                     guard errorAPI.caseInfo.message != "No Internet Connection" else {
                         let responseModel = PostCreateModels.Item.ResponseModel(errorAPI: errorAPI)
-                        self?.presenter?.presentPublishItem(fromResponseModel: responseModel)
+                        self?.presenter?.presentPostingItem(fromResponseModel: responseModel)
                         
                         return
                     }
@@ -150,12 +150,12 @@ class PostCreateInteractor: PostCreateBusinessLogic, PostCreateDataStore {
                                     }
                                     
                                     let responseModel = PostCreateModels.Item.ResponseModel(errorAPI: errorAPI)
-                                    self?.presenter?.presentPublishItem(fromResponseModel: responseModel)
+                                    self?.presenter?.presentPostingItem(fromResponseModel: responseModel)
                 },
                                   onError: { [weak self] errorAPI in
                                     Logger.log(message: "nresponse API Error = \(errorAPI.caseInfo.message)\n", event: .error)
                                     let responseModel = PostCreateModels.Item.ResponseModel(errorAPI: errorAPI)
-                                    self?.presenter?.presentPublishItem(fromResponseModel: responseModel)
+                                    self?.presenter?.presentPostingItem(fromResponseModel: responseModel)
             })
         }
     }

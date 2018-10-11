@@ -46,16 +46,19 @@ enum UserProfileShowModels {
     
     enum ActiveVote {
         struct RequestModel {
-            let isUpvote: Bool
+            let isVote: Bool
+            let isFlaunt: Bool
         }
         
         struct ResponseModel {
-            let isUpvote: Bool
+            let isVote: Bool
+            let isFlaunt: Bool
             let errorAPI: ErrorAPI?
         }
         
         struct ViewModel {
-            let isUpvote: Bool
+            let isVote: Bool
+            let isFlaunt: Bool
             let errorAPI: ErrorAPI?
         }
     }
