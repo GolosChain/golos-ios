@@ -43,6 +43,7 @@ extension NSManagedObject {
             entity.pendingPayoutValue           =   (model.pending_payout_value as NSString).floatValue
             entity.children                     =   Int64(model.children)
             entity.netVotes                     =   model.net_votes
+            entity.netFlaunt                    =   0
             
             entity.currentUserVoted             =   false
             entity.currentUserFlaunted          =   false
@@ -78,6 +79,15 @@ extension NSManagedObject {
                     }
                 })
             }            
+
+            // Set Flaunt Vote values
+            if model.net_votes > 0 {
+                entity.netFlaunt    =   Int64(model.active_votes.filter({ $0.percent < 0 }).count)
+                
+                if entity.netFlaunt > 0 {
+                    Logger.log(message: "netFlaunt = \(entity.netFlaunt)", event: .debug)
+                }
+            }
             
             // Extension: parse & save
             self.parse(metaData: model.json_metadata, fromBody: model.body)

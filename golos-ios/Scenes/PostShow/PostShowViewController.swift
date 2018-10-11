@@ -727,6 +727,7 @@ class PostShowViewController: GSBaseViewController {
             
             // Flaunt icon
             self.flauntButton.tag   =   displayedPost.currentUserFlaunted ? 99 : 0
+            self.flauntButton.setTitle(displayedPost.netFlaunt > 0 ? "\(displayedPost.netFlaunt)" : nil, for: .normal)
             self.flauntButton.setImage(displayedPost.currentUserFlaunted ? UIImage(named: "icon-button-flaunt-selected") : UIImage(named: "icon-button-flaunt-default"), for: .normal)
         }
     }

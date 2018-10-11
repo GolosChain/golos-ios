@@ -36,6 +36,7 @@ extension New: PostCellSupport {
     @NSManaged public var netVotes: Int64
     @NSManaged public var currentUserVoted: Bool
     
+    @NSManaged public var netFlaunt: Int64
     @NSManaged public var currentUserFlaunted: Bool
     
     @NSManaged public var commentsCount: Int64
