@@ -134,7 +134,9 @@ class CommentView: UIView, HandlersCellSupport, PostCellActiveVoteSupport {
         self.timeLabel.text     =   comment.created.convertToDaysAgo()
         
         // Set Active Votes icon
+        self.activeVoteButton.isEnabled = true
         self.activeVoteActivityIndicator.stopAnimating()
+
         self.activeVoteButton.tag = comment.currentUserVoted ? 99 : 0
         self.activeVoteButton.setTitle(comment.netVotes > 0 ? "\(comment.netVotes)" : nil, for: .normal)
         self.activeVoteButton.setImage(UIImage(named: comment.currentUserVoted ? "icon-button-upvotes-selected" : "icon-button-upvotes-default"), for: .normal)
@@ -236,6 +238,7 @@ class CommentView: UIView, HandlersCellSupport, PostCellActiveVoteSupport {
     
     // Action buttons
     @IBAction func activeVoteButtonTapped(_ sender: UIButton) {
+        sender.isEnabled = false
         self.handlerActiveVoteButtonTapped!(sender.tag == 0, self.postShortInfo)
     }
     

@@ -47,7 +47,7 @@
                         <rect key="frame" x="0.0" y="294.5" width="372" height="45"/>
                         <subviews>
                             <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="a2D-jz-RAy" userLabel="Active Votes Button">
-                                <rect key="frame" x="6" y="13" width="71" height="20"/>
+                                <rect key="frame" x="6" y="0.0" width="71" height="45"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
@@ -55,13 +55,12 @@
                                 <state key="normal" title="10000" image="icon-button-upvotes-default">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
-                                <state key="disabled" image="icon-button-upvotes-highlighted"/>
                                 <connections>
                                     <action selector="activeVotesButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="WL0-Kq-e6N"/>
                                 </connections>
                             </button>
                             <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="YHf-4Q-6Ih" userLabel="Comments Button">
-                                <rect key="frame" x="82" y="13" width="63" height="20"/>
+                                <rect key="frame" x="82" y="0.0" width="63" height="45"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="20" maxY="0.0"/>
@@ -76,11 +75,10 @@
                                 </connections>
                             </button>
                             <button hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Me-i8-z48" userLabel="Share Button">
-                                <rect key="frame" x="320" y="1" width="44" height="44"/>
+                                <rect key="frame" x="319" y="0.0" width="45" height="45"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="3Me-i8-z48" secondAttribute="height" multiplier="1:1" id="mYe-xS-vHh"/>
-                                    <constraint firstAttribute="height" constant="44" id="rcj-cI-jCg"/>
                                 </constraints>
                                 <state key="normal" image="icon-button-share-normal"/>
                                 <connections>
@@ -88,7 +86,7 @@
                                 </connections>
                             </button>
                             <activityIndicatorView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="qkH-S3-zTY">
-                                <rect key="frame" x="16" y="13" width="20" height="20"/>
+                                <rect key="frame" x="16" y="12.5" width="20" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="qkH-S3-zTY" secondAttribute="height" multiplier="1:1" id="UW7-a6-8FZ"/>
                                 </constraints>
@@ -98,15 +96,17 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="YHf-4Q-6Ih" firstAttribute="leading" secondItem="a2D-jz-RAy" secondAttribute="trailing" constant="5" id="1Pz-7P-tSU"/>
-                            <constraint firstItem="3Me-i8-z48" firstAttribute="centerY" secondItem="YHf-4Q-6Ih" secondAttribute="centerY" id="2tt-VO-6gf"/>
                             <constraint firstItem="qkH-S3-zTY" firstAttribute="leading" secondItem="a2D-jz-RAy" secondAttribute="leading" constant="10" id="3Pm-KA-C1L"/>
                             <constraint firstItem="a2D-jz-RAy" firstAttribute="leading" secondItem="rgg-s6-oxm" secondAttribute="leading" constant="6" id="CRS-zz-HeW"/>
                             <constraint firstItem="qkH-S3-zTY" firstAttribute="centerY" secondItem="a2D-jz-RAy" secondAttribute="centerY" id="Ia0-KM-3c4"/>
                             <constraint firstAttribute="height" constant="45" identifier="bottomViewHeightConstraint" id="MgH-9n-NbH"/>
+                            <constraint firstAttribute="bottom" secondItem="a2D-jz-RAy" secondAttribute="bottom" id="Obm-1e-5u4"/>
+                            <constraint firstItem="a2D-jz-RAy" firstAttribute="top" secondItem="rgg-s6-oxm" secondAttribute="top" id="ShL-5M-prp"/>
                             <constraint firstAttribute="trailing" secondItem="3Me-i8-z48" secondAttribute="trailing" constant="8" id="Vfo-EY-ayY"/>
-                            <constraint firstItem="YHf-4Q-6Ih" firstAttribute="centerY" secondItem="a2D-jz-RAy" secondAttribute="centerY" id="hNI-He-MoJ"/>
-                            <constraint firstItem="qkH-S3-zTY" firstAttribute="height" secondItem="a2D-jz-RAy" secondAttribute="height" id="kcs-K9-kDV"/>
-                            <constraint firstAttribute="bottom" secondItem="a2D-jz-RAy" secondAttribute="bottom" constant="12" id="smg-Rx-Uvh"/>
+                            <constraint firstItem="3Me-i8-z48" firstAttribute="top" secondItem="rgg-s6-oxm" secondAttribute="top" id="afq-Hj-XrL"/>
+                            <constraint firstAttribute="bottom" secondItem="YHf-4Q-6Ih" secondAttribute="bottom" id="ebA-Ww-b3F"/>
+                            <constraint firstAttribute="bottom" secondItem="3Me-i8-z48" secondAttribute="bottom" id="pD5-QY-gDV"/>
+                            <constraint firstItem="YHf-4Q-6Ih" firstAttribute="top" secondItem="rgg-s6-oxm" secondAttribute="top" id="tqm-4m-dEu"/>
                         </constraints>
                     </view>
                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jE4-pU-s2P" userLabel="Bottom Line View">
@@ -149,7 +149,6 @@
                 <outlet property="titleLabel" destination="VKV-nZ-kLa" id="ukM-uL-n0N"/>
                 <outletCollection property="heightsCollection" destination="dwe-r9-QvL" collectionClass="NSMutableArray" id="rd0-Vw-niQ"/>
                 <outletCollection property="heightsCollection" destination="MgH-9n-NbH" collectionClass="NSMutableArray" id="4SJ-Mv-Wma"/>
-                <outletCollection property="heightsCollection" destination="smg-Rx-Uvh" collectionClass="NSMutableArray" id="hNs-gF-CFF"/>
                 <outletCollection property="widthsCollection" destination="Vfo-EY-ayY" collectionClass="NSMutableArray" id="5up-nU-gQd"/>
                 <outletCollection property="heightsCollection" destination="gj9-nR-R3l" collectionClass="NSMutableArray" id="DVb-RK-8xF"/>
                 <outletCollection property="heightsCollection" destination="peV-ev-Tz3" collectionClass="NSMutableArray" id="kll-eq-rdk"/>
@@ -165,6 +164,5 @@
         <image name="icon-button-comments-selected" width="20" height="20"/>
         <image name="icon-button-share-normal" width="24" height="24"/>
         <image name="icon-button-upvotes-default" width="20" height="20"/>
-        <image name="icon-button-upvotes-highlighted" width="20" height="20"/>
     </resources>
 </document>

@@ -426,34 +426,33 @@ extension UserProfileShowViewController {
                 }
                 
                 activeVC.handlerActiveVoteButtonTapped  =   { [weak self] (isUpvote, postShortInfo) in
+                    // Check network connection
+                    guard isNetworkAvailable else {
+                        self?.showAlertView(withTitle: "Info", andMessage: "No Internet Connection", needCancel: false, completion: { _ in })
+                        return
+                    }
+                    
+                    guard (self?.isCurrentOperationPossible())! else { return }
+
                     self?.interactor?.save(blogShortInfo: postShortInfo)
                     
-                    let requestModel = UserProfileShowModels.ActiveVote.RequestModel(isUpvote: isUpvote)
-                    
+                    let blogCell        =   activeVC.postsTableView.cellForRow(at: postShortInfo.indexPath!) as! PostCellActiveVoteSupport
+                    let requestModel    =   UserProfileShowModels.ActiveVote.RequestModel(isUpvote: isUpvote)
+
                     guard isUpvote else {
                         self?.showAlertView(withTitle: "Voting Verb", andMessage: "Cancel Vote Message", actionTitle: "ActionChange", needCancel: true, completion: { success in
                             if success {
-                                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
-                                    let blogCell = activeVC.postsTableView.cellForRow(at: postShortInfo.indexPath!) as! PostCellActiveVoteSupport
-                                    
-                                    blogCell.activeVoteActivityIndicator.startAnimating()
-                                    blogCell.activeVoteButton.setImage(UIImage(named: "icon-button-active-vote-empty"), for: .normal)
-                                }
-
+                                blogCell.activeVoteButton.start(vote: false, spinner: blogCell.activeVoteActivityIndicator)
                                 self?.interactor?.upvote(withRequestModel: requestModel)
+                            } else {
+                                blogCell.activeVoteButton.breakVote(withSpinner: blogCell.activeVoteActivityIndicator)
                             }
                         })
                         
                         return
                     }
                     
-                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
-                        let blogCell = activeVC.postsTableView.cellForRow(at: postShortInfo.indexPath!) as! PostCellActiveVoteSupport
-                        
-                        blogCell.activeVoteActivityIndicator.startAnimating()
-                        blogCell.activeVoteButton.setImage(UIImage(named: "icon-button-active-vote-empty"), for: .normal)
-                    }
-                    
+                    blogCell.activeVoteButton.start(vote: true, spinner: blogCell.activeVoteActivityIndicator)
                     self?.interactor?.upvote(withRequestModel: requestModel)
                 }
                 

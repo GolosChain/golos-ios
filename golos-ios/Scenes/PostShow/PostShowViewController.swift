@@ -40,6 +40,12 @@ class PostShowViewController: GSBaseViewController {
             self.commentsViews.forEach( { commentView in
                 // Handlers
                 commentView.handlerActiveVoteButtonTapped               =   { [weak self] (isUpvote, postShortInfo) in
+                    // Check network connection
+                    guard isNetworkAvailable else {
+                        self?.showAlertView(withTitle: "Info", andMessage: "No Internet Connection", needCancel: false, completion: { _ in })
+                        return
+                    }
+
                     guard (self?.isCurrentOperationPossible())! else { return }
                     
                     self?.interactor?.save(comment: postShortInfo)
@@ -49,23 +55,17 @@ class PostShowViewController: GSBaseViewController {
                     guard isUpvote else {
                         self?.showAlertView(withTitle: "Voting Verb", andMessage: "Cancel Vote Message", actionTitle: "ActionChange", needCancel: true, completion: { success in
                             if success {
-                                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
-                                    commentView.activeVoteActivityIndicator.startAnimating()
-                                    commentView.activeVoteButton.setImage(UIImage(named: "icon-button-active-vote-empty"), for: .normal)
-                                }
-
+                                commentView.activeVoteButton.start(vote: false, spinner: commentView.activeVoteActivityIndicator)
                                 self?.interactor?.upvote(withRequestModel: requestModel)
+                            } else {
+                                commentView.activeVoteButton.breakVote(withSpinner: commentView.activeVoteActivityIndicator)
                             }
                         })
                         
                         return
                     }
                     
-                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
-                        commentView.activeVoteActivityIndicator.startAnimating()
-                        commentView.activeVoteButton.setImage(UIImage(named: "icon-button-active-vote-empty"), for: .normal)
-                    }
-                    
+                    commentView.activeVoteButton.start(vote: true, spinner: commentView.activeVoteActivityIndicator)
                     self?.interactor?.upvote(withRequestModel: requestModel)
                 }
                 
@@ -655,7 +655,8 @@ class PostShowViewController: GSBaseViewController {
         Logger.log(message: "Success", event: .severe)
 
         if let displayedPost = self.router?.dataStore?.displayedPost {
-            self.titleLabel.text = displayedPost.title
+            self.titleLabel.text                =   displayedPost.title
+            self.activeVoteButton.isEnabled     =   true
             self.activeVoteActivityIndicator.stopAnimating()
             
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
@@ -796,6 +797,12 @@ class PostShowViewController: GSBaseViewController {
     }
     
     @IBAction func activeVoteButtonTapped(_ sender: UIButton) {
+        // Check network connection
+        guard isNetworkAvailable else {
+            self.showAlertView(withTitle: "Info", andMessage: "No Internet Connection", needCancel: false, completion: { _ in })
+            return
+        }
+
         guard self.isCurrentOperationPossible() else { return }
 
         let requestModel = PostShowModels.ActiveVote.RequestModel(isUpvote: sender.tag == 0, forPost: true)
@@ -803,23 +810,17 @@ class PostShowViewController: GSBaseViewController {
         guard sender.tag == 0 else {
             self.showAlertView(withTitle: "Voting Verb", andMessage: "Cancel Vote Message", actionTitle: "ActionChange", needCancel: true, completion: { [weak self] success in
                 if success {
-                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
-                        self?.activeVoteActivityIndicator.startAnimating()
-                        self?.activeVoteButton.setImage(UIImage(named: "icon-button-active-vote-empty"), for: .normal)
-                    }
-
+                    self?.activeVoteButton.start(vote: false, spinner: (self?.activeVoteActivityIndicator)!)
                     self?.interactor?.upvote(withRequestModel: requestModel)
+                } else {
+                    self?.activeVoteButton.breakVote(withSpinner: (self?.activeVoteActivityIndicator)!)
                 }
             })
             
             return
         }
         
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
-            self.activeVoteActivityIndicator.startAnimating()
-            self.activeVoteButton.setImage(UIImage(named: "icon-button-active-vote-empty"), for: .normal)
-        }
-
+        self.activeVoteButton.start(vote: true, spinner: self.activeVoteActivityIndicator)
         self.interactor?.upvote(withRequestModel: requestModel)
     }
 
@@ -828,6 +829,12 @@ class PostShowViewController: GSBaseViewController {
     }
 
     @IBAction func commentsButtonTapped(_ sender: UIButton) {
+        // Check network connection
+        guard isNetworkAvailable else {
+            self.showAlertView(withTitle: "Info", andMessage: "No Internet Connection", needCancel: false, completion: { _ in })
+            return
+        }
+        
         guard self.isCurrentOperationPossible() else { return }
 
         self.router?.routeToPostCreateScene(withType: .createComment)
@@ -989,17 +996,21 @@ extension PostShowViewController: PostShowDisplayLogic {
             return
         }
         
-        // Reload & refresh current cell content by indexPath
+        // Reload & refresh content by indexPath
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
             let postType = viewModel.forPost ? self.router!.dataStore!.postType : PostsFeedType.comment
             self.isPostContentModify = true
             
             if let postShortInfo = viewModel.forPost ? self.router?.dataStore?.postShortInfo : self.router?.dataStore?.comment, let indexPath = postShortInfo.indexPath {
                 RestAPIManager.loadModifiedPost(author: postShortInfo.author ?? "XXX", permlink: postShortInfo.permlink ?? "XXX", postType: postType!, completion: { model in
+                    // PostShow
                     if viewModel.forPost {
                         self.scrollCommentsDown = false
                         self.fetchContent()
-                    } else if let commentEntity = model as? Comment {
+                    }
+                    
+                    // CommentView
+                    else if let commentEntity = model as? Comment {
                         // Modify Comment
                         self.commentsViews[indexPath.row].setup(withComment: commentEntity)
                     }

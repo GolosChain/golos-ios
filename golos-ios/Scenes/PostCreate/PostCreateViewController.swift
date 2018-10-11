@@ -388,6 +388,12 @@ class PostCreateViewController: GSBaseViewController {
     }
     
     @IBAction func publishBarButtonTapped(_ sender: UIBarButtonItem) {
+        // Check network connection
+        guard isNetworkAvailable else {
+            self.showAlertView(withTitle: "Info", andMessage: "No Internet Connection", needCancel: false, completion: { _ in })
+            return
+        }
+        
         guard isRequestAvailable() else {
             return
         }

@@ -157,7 +157,8 @@ extension PostFeedTableViewCell: ConfigureCell {
             return
         }
         
-        self.postShortInfo = PostShortInfo(indexPath: indexPath)
+        self.postShortInfo                  =   PostShortInfo(indexPath: indexPath)
+        self.activeVoteButton.isEnabled     =   true
         self.activeVoteActivityIndicator.stopAnimating()
         
         // Display PostFeedHeaderView

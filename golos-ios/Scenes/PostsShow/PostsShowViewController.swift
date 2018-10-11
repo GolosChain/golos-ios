@@ -268,36 +268,33 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
                 }
                 
                 activeVC.handlerActiveVoteButtonTapped                 =   { [weak self] (isUpvote, postShortInfo) in
+                    // Check network connection
+                    guard isNetworkAvailable else {
+                        self?.showAlertView(withTitle: "Info", andMessage: "No Internet Connection", needCancel: false, completion: { _ in })
+                        return
+                    }
+                    
                     guard (self?.isCurrentOperationPossible())! else { return }
                     
                     self?.interactor?.save(postShortInfo: postShortInfo)
  
-                    let requestModel = PostsShowModels.ActiveVote.RequestModel(isUpvote: isUpvote)
-                    
+                    let postCell        =   activeVC.postsTableView.cellForRow(at: postShortInfo.indexPath!) as! PostCellActiveVoteSupport
+                    let requestModel    =   PostsShowModels.ActiveVote.RequestModel(isUpvote: isUpvote)
+
                     guard isUpvote else {
                         self?.showAlertView(withTitle: "Voting Verb", andMessage: "Cancel Vote Message", actionTitle: "ActionChange", needCancel: true, completion: { success in
                             if success {
-                                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
-                                    let postCell = activeVC.postsTableView.cellForRow(at: postShortInfo.indexPath!) as! PostCellActiveVoteSupport
-                                    
-                                    postCell.activeVoteActivityIndicator.startAnimating()
-                                    postCell.activeVoteButton.setImage(UIImage(named: "icon-button-active-vote-empty"), for: .normal)
-                                }
-
+                                postCell.activeVoteButton.start(vote: false, spinner: postCell.activeVoteActivityIndicator)
                                 self?.interactor?.upvote(withRequestModel: requestModel)
+                            } else {
+                                postCell.activeVoteButton.breakVote(withSpinner: postCell.activeVoteActivityIndicator)
                             }
                         })
                         
                         return
                     }
                     
-                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
-                        let postCell = activeVC.postsTableView.cellForRow(at: postShortInfo.indexPath!) as! PostCellActiveVoteSupport
-                        
-                        postCell.activeVoteActivityIndicator.startAnimating()
-                        postCell.activeVoteButton.setImage(UIImage(named: "icon-button-active-vote-empty"), for: .normal)
-                    }
-
+                    postCell.activeVoteButton.start(vote: true, spinner: postCell.activeVoteActivityIndicator)
                     self?.interactor?.upvote(withRequestModel: requestModel)
                 }
                 

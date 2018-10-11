@@ -138,5 +138,21 @@ extension UIButton {
     private func setRoundEdges(cornerRadius: CGFloat) {
         layer.masksToBounds = true
         layer.cornerRadius = cornerRadius
-    }    
+    }
+    
+    
+    // For Active Vote button
+    func start(vote: Bool, spinner: UIActivityIndicatorView) {
+        self.isEnabled = false
+
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
+            spinner.startAnimating()
+            self.setImage(UIImage(named: isAppThemeDark ? "icon-button-active-vote-black-empty" : "icon-button-active-vote-white-empty"), for: .normal)
+        }
+    }
+    
+    func breakVote(withSpinner spinner: UIActivityIndicatorView) {
+        self.isEnabled = true
+        spinner.stopAnimating()
+    }
 }
