@@ -66,8 +66,6 @@ public struct ResponseAPIPost: Decodable {
     public let children: Int16
     public let net_votes: Int64
 
-//    public let reblog_author: String?
-    
     // "2018-04-13T10:19:54"
     public let created: String
     public let active: String

@@ -157,11 +157,10 @@ public struct RequestParameterAPI {
                                                             String(format: "re-%@-%@-%@", parentAuthor, parentPermlink, author))
                                         .replacingOccurrences(of: " ", with: "-")
                                         .replacingOccurrences(of: ".", with: "-")
-                                        .replacingOccurrences(of: ",", with: "-")
                                         .lowercased()
             
             permlinkTemp        =   permlinkTemp.replacingOccurrences(of: regex, with: "", options: .regularExpression)
-                                        .replacingOccurrences(of: "--", with: "-")
+                                        .replacingOccurrences(of: "-- ", with: "-")
             
             self.permlink   =   needTiming ? (permlinkTemp + "-\(Int64(Date().timeIntervalSince1970))") : permlinkTemp
             

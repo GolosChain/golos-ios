@@ -157,7 +157,8 @@ public struct Transaction {
     }
     
     private mutating func serialize(int64: Int64) {
-        self.serializedBuffer   +=  Int16(int64).bytesReverse
+        self.serializedBuffer   +=  UInt16(bitPattern: Int16(int64)).bytesReverse
+        Logger.log(message: "\nserializedBuffer:\n\t\(self.serializedBuffer.toHexString())\n", event: .debug)
     }
 }
 
