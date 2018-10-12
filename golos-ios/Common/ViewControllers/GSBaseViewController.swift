@@ -85,27 +85,33 @@ class GSBaseViewController: UIViewController {
                                                                     action:     nil)
     }
 
-    func showAlertView(withTitle title: String, andMessage message: String, attributedText: NSMutableAttributedString? = nil, actionTitle: String? = "Enter Title", needCancel cancel: Bool, completion: @escaping ((Bool) -> Void)) {
+    func showAlertView(withTitle title: String, andMessage message: String, attributedText: NSMutableAttributedString? = nil, actionTitle: String? = "Enter Title", needCancel cancel: Bool, isCancelLeft: Bool = true, completion: @escaping ((Bool) -> Void)) {
         let alertViewController = UIAlertController.init(title: title.localized(), message: message.localized(), preferredStyle: .alert)
 
         if let attrText = attributedText {
             alertViewController.setValue(attrText, forKey: "attributedMessage")
         }
         
-        if cancel {
-            let alertViewControllerCancelAction = UIAlertAction.init(title: "ActionCancel".localized(), style: .destructive, handler: { _ in
-                return completion(false)
-            })
-            
-            alertViewController.addAction(alertViewControllerCancelAction)
-        }
-        
+        let alertViewControllerCancelAction = UIAlertAction.init(title: "ActionCancel".localized(), style: .destructive, handler: { _ in
+            return completion(false)
+        })
+
         let alertViewControllerOkAction = UIAlertAction.init(title: (cancel ? actionTitle!.localized() : "ActionOk".localized()), style: .default, handler: { _ in
             return completion(true)
         })
         
-        alertViewController.addAction(alertViewControllerOkAction)
-        
+        if cancel {
+            if isCancelLeft {
+                alertViewController.addAction(alertViewControllerCancelAction)
+                alertViewController.addAction(alertViewControllerOkAction)
+            } else {
+                alertViewController.addAction(alertViewControllerOkAction)
+                alertViewController.addAction(alertViewControllerCancelAction)
+            }
+        } else {
+            alertViewController.addAction(alertViewControllerOkAction)
+        }
+
         alertViewController.show()
     }
     

@@ -23,11 +23,11 @@
 "No QR code is detected"                    =   "No QR code is detected";
 "QR code is detected"                       =   "QR code is detected";
 "Voice Power Title"                         =   "Vote against";
-"Voice Power Subtitle"                      =   "A vote against can remove rewards and make the post less visible. Voting against should be based on:\n";
+"Voice Power Subtitle"                      =   "By voting against you make the post less noticeable in the feed. There should be a good reason to vote against, for example:\n";
 "Voice Power Label 1"                       =   "Disagreement on awards\n";
 "Voice Power Label 2"                       =   "Fraud or plagiarism\n";
-"Voice Power Label 3"                       =   "Hate speech or Internet trolling\n";
-"Voice Power Label 4"                       =   "Intentional mis-categorization of content or spam\n";
+"Voice Power Label 3"                       =   "Incitement of hatred or Internet trolling\n";
+"Voice Power Label 4"                       =   "Intentionally false information or spam\n";
 
 
 // Buttons

@@ -182,26 +182,14 @@ class PostFeedHeaderView: UIView {
             self.rebloggedAuthorButton.isHidden =   true
             self.authorNickNameButton.isHidden  =   true
 
-//            switch post {
-//            case is Blog:
-//                if let rebloggedBy = post.rebloggedBy, rebloggedBy.count > 0 {
-////                if post.author != User.current!.nickName {
-//                    self.reblogIconButton.isHidden      =   false
-//                    self.rebloggedAuthorButton.isHidden =   false
-//                    self.authorNickNameButton.isHidden  =   false
-//                    self.rebloggedAuthorButton.setTitle(post.author, for: .normal)
-//                    self.authorNickNameButton.setTitle(user.nickName, for: .normal)
-//                }
-//
-//            default:
-                if let rebloggedBy = post.rebloggedBy, rebloggedBy.count > 0 {
-                    self.reblogIconButton.isHidden      =   false
-                    self.rebloggedAuthorButton.isHidden =   false
-                    self.authorNickNameButton.isHidden  =   false
-                    self.rebloggedAuthorButton.setTitle(rebloggedBy.first ?? "XXX", for: .normal)
-                    self.authorNickNameButton.setTitle(user.nickName, for: .normal)
-                }
-//            }
+            self.authorNickNameButton.setTitle(user.nickName, for: .normal)
+            
+            if let rebloggedBy = post.rebloggedBy, rebloggedBy.count > 0 {
+                self.reblogIconButton.isHidden      =   false
+                self.rebloggedAuthorButton.isHidden =   false
+                self.authorNickNameButton.isHidden  =   false
+                self.rebloggedAuthorButton.setTitle(rebloggedBy.first ?? "XXX", for: .normal)
+            }
         }
     }
     

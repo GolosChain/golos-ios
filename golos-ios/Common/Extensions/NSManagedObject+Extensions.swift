@@ -77,6 +77,8 @@ extension NSManagedObject {
                             entity.currentUserFlaunted = true
                         }
                     }
+                    
+                    entity.netVotes = Int64(model.active_votes.filter({ $0.percent > 0 }).count)
                 })
             }            
 

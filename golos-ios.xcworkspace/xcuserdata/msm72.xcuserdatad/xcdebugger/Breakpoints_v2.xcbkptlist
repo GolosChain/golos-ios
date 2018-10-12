@@ -28,7 +28,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "golos-ios/Managers/RestAPIManager.swift"
-            timestampString = "561023524.533664"
+            timestampString = "561032381.342651"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "118"
@@ -50,22 +50,6 @@
             startingLineNumber = "513"
             endingLineNumber = "513"
             landmarkName = "displayUpvote(fromViewModel:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "golos-ios/Common/Views/UIViews/PostFeedHeader/PostFeedHeaderView.swift"
-            timestampString = "560891580.35428"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "198"
-            endingLineNumber = "198"
-            landmarkName = "display(post:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -108,7 +92,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "golos-ios/Managers/RestAPIManager.swift"
-            timestampString = "561023524.534364"
+            timestampString = "561032381.3427891"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "417"
