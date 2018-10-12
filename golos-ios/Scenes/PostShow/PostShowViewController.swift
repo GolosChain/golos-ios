@@ -858,25 +858,17 @@ class PostShowViewController: GSBaseViewController {
         
         // Flaunt
         if sender.tag == 0 {
-            self.voicePowerView = VoicePowerView.init(frame: UIScreen.main.bounds)
-            self.voicePowerView!.display()
-        
-            self.voicePowerView!.handlerActionButtonTapped       =   { [weak self] success in
-                if success {
-                    self?.flauntButton.startVote(withSpinner: (self?.flauntActivityIndicator)!)
-                    self?.interactor?.vote(withRequestModel: requestModel)
-                }
-                
-                self?.voicePowerView!.hide()
-                self?.voicePowerView = nil
-            }
+            self.displayFlauntAlertView(withRequestModel: requestModel)
         }
         
         // Unflaunt (tag == 99)
         else {
-            // TODO: - ADD UNFLAUNT POPUP
-            self.flauntButton.startVote(withSpinner: self.flauntActivityIndicator)
-            self.interactor?.vote(withRequestModel: requestModel)
+            self.showAlertView(withTitle: "Cancel Vote", andMessage: "Cancel Vote Message", actionTitle: "ActionChange", needCancel: true, completion: { [weak self] success in
+                guard success else { return }
+
+                self?.flauntButton.startVote(withSpinner: (self?.flauntActivityIndicator)!)
+                self?.interactor?.vote(withRequestModel: requestModel)
+            })
         }
     }
     
@@ -1314,5 +1306,50 @@ extension PostShowViewController: UICollectionViewDelegateFlowLayout {
 extension PostShowViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         Logger.log(message: "contentOffset = \(scrollView.contentOffset.y)", event: .debug)
+    }
+}
+
+
+// MARK: - UIAlertController
+extension PostShowViewController {
+    func displayFlauntAlertView(withRequestModel requestModel: PostShowModels.ActiveVote.RequestModel) {
+        let text1       =   "Voice Power Label 1".localized()
+        let text2       =   "Voice Power Label 2".localized()
+        let text3       =   "Voice Power Label 3".localized()
+        let text4       =   "Voice Power Label 4".localized()
+        let subtitle    =   "Voice Power Subtitle".localized()
+        
+        let strings     =   [subtitle, text1, text2, text3, text4]
+        
+        let fullAttributedString = NSMutableAttributedString()
+        
+        // Set Subtitle
+        for (index, string) in strings.enumerated() {
+            let bulletPoint         =   "\u{2022}"
+            let formattedString     =   index == 0 ? "\n\(string)\n" : "\(bulletPoint) \(string)\n"
+            let attributedString    =   NSMutableAttributedString(string: formattedString)
+            var paragraphStyle: NSMutableParagraphStyle
+            
+            paragraphStyle          =   NSParagraphStyle.default.mutableCopy() as! NSMutableParagraphStyle
+            paragraphStyle.tabStops =   [NSTextTab(textAlignment: .left, location: 20, options: [NSTextTab.OptionKey: Any]())]
+            
+            paragraphStyle.headIndent           =   index == 0 ? 5 : 15
+            paragraphStyle.lineSpacing          =   1.4
+            paragraphStyle.defaultTabInterval   =   20
+            paragraphStyle.firstLineHeadIndent  =   5
+            
+            attributedString.addAttribute(.paragraphStyle, value: paragraphStyle, range: NSRange(location: 0, length: attributedString.length))
+            attributedString.addAttribute(.foregroundColor, value: UIColor.black, range: NSRange(location: 0, length: attributedString.length))
+            attributedString.addAttribute(.font, value: UIFont(name: "SFProDisplay-Regular", size: 14.0)!, range: NSRange(location: 0, length: attributedString.length))
+            
+            fullAttributedString.append(attributedString)
+        }
+        
+        self.showAlertView(withTitle: "Voice Power Title", andMessage: "Voice Power Subtitle", attributedText: fullAttributedString, actionTitle: "Vote Verb", needCancel: true, completion: { success in
+            guard success else { return }
+            
+            self.flauntButton.startVote(withSpinner: self.flauntActivityIndicator)
+            self.interactor?.vote(withRequestModel: requestModel)
+        })
     }
 }

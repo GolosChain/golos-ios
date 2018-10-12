@@ -7,7 +7,7 @@ line_length:
 - 400 #error
 
 file_length:
-- 1350 #warning
+- 1550 #warning
 - 1950 #error
 
 type_body_length:

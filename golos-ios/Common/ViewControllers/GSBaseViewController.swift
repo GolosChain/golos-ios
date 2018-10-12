@@ -85,8 +85,12 @@ class GSBaseViewController: UIViewController {
                                                                     action:     nil)
     }
 
-    func showAlertView(withTitle title: String, andMessage message: String, actionTitle: String? = "Enter Title", needCancel cancel: Bool, completion: @escaping ((Bool) -> Void)) {
+    func showAlertView(withTitle title: String, andMessage message: String, attributedText: NSMutableAttributedString? = nil, actionTitle: String? = "Enter Title", needCancel cancel: Bool, completion: @escaping ((Bool) -> Void)) {
         let alertViewController = UIAlertController.init(title: title.localized(), message: message.localized(), preferredStyle: .alert)
+
+        if let attrText = attributedText {
+            alertViewController.setValue(attrText, forKey: "attributedMessage")
+        }
         
         if cancel {
             let alertViewControllerCancelAction = UIAlertAction.init(title: "ActionCancel".localized(), style: .destructive, handler: { _ in
