@@ -213,7 +213,6 @@
 "User followings are not found"             =   "Информация о подписках не найдена";
 "List of users is empty"                    =   "Список пользователей пустой";
 "List of posts is empty"                    =   "Список постов пустой";
-"You may only post once every 5 minutes"    =   "Вы можете отправлять новые\nсообщения каждые 5 минут";
 "Fetching Failed"                           =   "Ошибка загрузки данных из CoreData";
 "Broken Link Failure"                       =   "Указана битая ссылка";
 "Response All Content Replies error"        =   "Ошибка загрузки списка комментариев\nдля выбранного поста";
@@ -221,3 +220,5 @@
 "Can only vote once every 3 seconds"        =   "Вы можете голосовать только раз в 3 секунды";
 "You have already voted in a similar way"   =   "Вы уже голосовали аналогичным образом.";
 "Missing Posting Authority"                 =   "У Вас недостаточно прав для голосования";
+"Error Comment 20 seconds"                  =   "Вы можете комментировать только раз в 20 секунд";
+"Error Post 5 minutes"                      =   "Вы можете отправлять новые\nсообщения каждые 5 минут";

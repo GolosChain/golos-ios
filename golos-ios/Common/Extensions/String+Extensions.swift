@@ -208,6 +208,15 @@ extension String {
         if self.contains("missing required posting authority") {
             return "Missing Posting Authority".localized()
         }
+        
+        if self.contains("You may only comment once every 20 seconds") {
+            return "Error Comment 20 seconds".localized()
+        }
+
+        if self.contains("You may only post once every 5 minutes") {
+            return "Error Post 5 minutes".localized()
+        }
+
 
         return self
     }

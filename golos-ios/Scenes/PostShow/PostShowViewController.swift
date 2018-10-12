@@ -674,8 +674,11 @@ class PostShowViewController: GSBaseViewController {
             self.titleLabel.text                =   displayedPost.title
             self.flauntButton.isEnabled         =   true
             self.activeVoteButton.isEnabled     =   true
-            self.flauntButton.isHidden          =   displayedPost.author == User.current!.nickName
-
+            
+            if let userNickName = User.current?.nickName {
+                self.flauntButton.isHidden      =   displayedPost.author == userNickName
+            }
+            
             self.flauntActivityIndicator.stopAnimating()
             self.activeVoteActivityIndicator.stopAnimating()
             
