@@ -387,7 +387,7 @@ class RestAPIManager {
                                                  weight:        isVote ? 10_000 : 0)
         }
         
-        if let isFlaunt = flaunt {
+        else if let isFlaunt = flaunt {
             vote    =   RequestParameterAPI.Vote(voter:         User.current!.nickName,
                                                  author:        postShortInfo.author ?? "XXX",
                                                  permlink:      postShortInfo.permlink ?? "XXX",
