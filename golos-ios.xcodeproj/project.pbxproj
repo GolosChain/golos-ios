@@ -25,6 +25,7 @@
 		B1072C93210EDA990001019C /* SettingNotification+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1072C91210EDA990001019C /* SettingNotification+CoreDataProperties.swift */; };
 		B1084CAE211378780065CAC0 /* PostShowTagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1084CAC211378780065CAC0 /* PostShowTagCollectionViewCell.swift */; };
 		B1084CAF211378780065CAC0 /* PostShowTagCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1084CAD211378780065CAC0 /* PostShowTagCollectionViewCell.xib */; };
+		B10C9DF02171A096000D9915 /* GSTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10C9DEF2171A096000D9915 /* GSTimer.swift */; };
 		B10F487E20F793DE00F2BCAC /* RestAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10F487D20F793DE00F2BCAC /* RestAPIManager.swift */; };
 		B10FB7AC215FCA9300CA585E /* SFProDisplay-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = B10FB7AB215FCA9300CA585E /* SFProDisplay-Bold.otf */; };
 		B111322420CD51EA00BC7F33 /* PostingKeyShowRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B111321E20CD51EA00BC7F33 /* PostingKeyShowRouter.swift */; };
@@ -36,7 +37,6 @@
 		B114193520CD26710025B07F /* LogInShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B114192F20CD26710025B07F /* LogInShowViewController.swift */; };
 		B114194120CD51740025B07F /* ActiveKeyShowRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B114193B20CD51740025B07F /* ActiveKeyShowRouter.swift */; };
 		B114194320CD51740025B07F /* ActiveKeyShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B114193D20CD51740025B07F /* ActiveKeyShowViewController.swift */; };
-		B11AA7F720CB018E00212713 /* WelcomeShow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B11AA7F620CB018E00212713 /* WelcomeShow.storyboard */; };
 		B11AA80020CB04AA00212713 /* WelcomeShowRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11AA7FA20CB04AA00212713 /* WelcomeShowRouter.swift */; };
 		B11AA80220CB04AA00212713 /* WelcomeShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11AA7FC20CB04AA00212713 /* WelcomeShowViewController.swift */; };
 		B11AA80720CB9FC800212713 /* UILabel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11AA80620CB9FC800212713 /* UILabel+Extensions.swift */; };
@@ -133,6 +133,7 @@
 		B198DB9420B9C560008011A3 /* SFProDisplay-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = B198DB9320B9C560008011A3 /* SFProDisplay-Regular.otf */; };
 		B1A2AE432105B1640021A34B /* ActiveVote+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A2AE412105B1640021A34B /* ActiveVote+CoreDataClass.swift */; };
 		B1A2AE442105B1640021A34B /* ActiveVote+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A2AE422105B1640021A34B /* ActiveVote+CoreDataProperties.swift */; };
+		B1A7580621719739002CEE50 /* WelcomeShow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1A7580821719739002CEE50 /* WelcomeShow.storyboard */; };
 		B1B6B39520D37F3100284387 /* PostCommentReply.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1B6B39420D37F3100284387 /* PostCommentReply.xib */; };
 		B1B6B4DE21514823005AB846 /* LentaPostsShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B6B4DD21514823005AB846 /* LentaPostsShowViewController.swift */; };
 		B1BAAA522111F1E300B2F165 /* PostCreateWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BAAA4C2111F1E300B2F165 /* PostCreateWorker.swift */; };
@@ -285,6 +286,7 @@
 		B1072C91210EDA990001019C /* SettingNotification+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingNotification+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		B1084CAC211378780065CAC0 /* PostShowTagCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostShowTagCollectionViewCell.swift; sourceTree = "<group>"; };
 		B1084CAD211378780065CAC0 /* PostShowTagCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostShowTagCollectionViewCell.xib; sourceTree = "<group>"; };
+		B10C9DEF2171A096000D9915 /* GSTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GSTimer.swift; sourceTree = "<group>"; };
 		B10F487D20F793DE00F2BCAC /* RestAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestAPIManager.swift; sourceTree = "<group>"; };
 		B10FB7AB215FCA9300CA585E /* SFProDisplay-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Bold.otf"; sourceTree = "<group>"; };
 		B111321E20CD51EA00BC7F33 /* PostingKeyShowRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingKeyShowRouter.swift; sourceTree = "<group>"; };
@@ -296,7 +298,6 @@
 		B114192F20CD26710025B07F /* LogInShowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInShowViewController.swift; sourceTree = "<group>"; };
 		B114193B20CD51740025B07F /* ActiveKeyShowRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveKeyShowRouter.swift; sourceTree = "<group>"; };
 		B114193D20CD51740025B07F /* ActiveKeyShowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveKeyShowViewController.swift; sourceTree = "<group>"; };
-		B11AA7F620CB018E00212713 /* WelcomeShow.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WelcomeShow.storyboard; sourceTree = "<group>"; };
 		B11AA7FA20CB04AA00212713 /* WelcomeShowRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeShowRouter.swift; sourceTree = "<group>"; };
 		B11AA7FC20CB04AA00212713 /* WelcomeShowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeShowViewController.swift; sourceTree = "<group>"; };
 		B11AA80620CB9FC800212713 /* UILabel+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extensions.swift"; sourceTree = "<group>"; };
@@ -404,6 +405,7 @@
 		B198DB9320B9C560008011A3 /* SFProDisplay-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Regular.otf"; sourceTree = "<group>"; };
 		B1A2AE412105B1640021A34B /* ActiveVote+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ActiveVote+CoreDataClass.swift"; sourceTree = "<group>"; };
 		B1A2AE422105B1640021A34B /* ActiveVote+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ActiveVote+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B1A758092171974D002CEE50 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/WelcomeShow.storyboard; sourceTree = "<group>"; };
 		B1B6B39420D37F3100284387 /* PostCommentReply.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostCommentReply.xib; sourceTree = "<group>"; };
 		B1B6B4DD21514823005AB846 /* LentaPostsShowViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LentaPostsShowViewController.swift; sourceTree = "<group>"; };
 		B1BAAA4C2111F1E300B2F165 /* PostCreateWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCreateWorker.swift; sourceTree = "<group>"; };
@@ -744,7 +746,7 @@
 				B1CF44E12106D6CB00483A01 /* SettingsShow.storyboard */,
 				B120D06D2108252300D949F5 /* SettingsUserProfileEdit.storyboard */,
 				B164F04820E62B5A00C5CDD3 /* UserProfileShow.storyboard */,
-				B11AA7F620CB018E00212713 /* WelcomeShow.storyboard */,
+				B1A7580821719739002CEE50 /* WelcomeShow.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -1022,11 +1024,12 @@
 			children = (
 				B1DCE31621098E5F00487DE0 /* FCManager.swift */,
 				B1DCE321210A32B600487DE0 /* GSTestManager.swift */,
+				B10C9DEF2171A096000D9915 /* GSTimer.swift */,
+				B1961952211C90D2001DF789 /* MarkdownViewManager.swift */,
 				B1F6A36D20C130780096C393 /* Parser.swift */,
 				B114192720CD1E260025B07F /* ReachabilityManager.swift */,
 				B10F487D20F793DE00F2BCAC /* RestAPIManager.swift */,
 				B15F228020EEB14700C44282 /* StateMachine */,
-				B1961952211C90D2001DF789 /* MarkdownViewManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -1309,6 +1312,7 @@
 			knownRegions = (
 				en,
 				ru,
+				Base,
 			);
 			mainGroup = EC1DFB8220063C400080BC50;
 			productRefGroup = EC1DFB8C20063C400080BC50 /* Products */;
@@ -1337,7 +1341,7 @@
 				B198DB9420B9C560008011A3 /* SFProDisplay-Regular.otf in Resources */,
 				B1E09E182101EE8F002CC5B7 /* PostFeedTableViewCell.xib in Resources */,
 				B1084CAF211378780065CAC0 /* PostShowTagCollectionViewCell.xib in Resources */,
-				B11AA7F720CB018E00212713 /* WelcomeShow.storyboard in Resources */,
+				B1A7580621719739002CEE50 /* WelcomeShow.storyboard in Resources */,
 				B136D4FC20D8BA14003AD279 /* AddTagCollectionViewCell.xib in Resources */,
 				B120D06E2108252300D949F5 /* SettingsUserProfileEdit.storyboard in Resources */,
 				B13FE9BB20F512BA00F907BC /* ReplyTableViewCell.xib in Resources */,
@@ -1544,6 +1548,7 @@
 				B1EE684A20D261C4006BF802 /* UITextView+Extensions.swift in Sources */,
 				ECF2808C200A9A210000D949 /* UIButton+Extensions.swift in Sources */,
 				B1D7EFAE20EB704000819401 /* UserSecretPostingKey+CoreDataProperties.swift in Sources */,
+				B10C9DF02171A096000D9915 /* GSTimer.swift in Sources */,
 				B114193320CD26710025B07F /* LogInShowRouter.swift in Sources */,
 				EC24FF2B200BFAA100A0AE15 /* Validator.swift in Sources */,
 				B120D06C210824C600D949F5 /* SettingsUserProfileEditInteractor.swift in Sources */,
@@ -1716,6 +1721,14 @@
 				B1918FFA20B5421A00F6CE63 /* ru */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		B1A7580821719739002CEE50 /* WelcomeShow.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B1A758092171974D002CEE50 /* Base */,
+			);
+			name = WelcomeShow.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

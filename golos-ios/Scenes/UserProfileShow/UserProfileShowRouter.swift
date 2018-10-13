@@ -108,7 +108,7 @@ class UserProfileShowRouter: NSObject, UserProfileShowRoutingLogic, UserProfileS
     func navigateToPostShowScene(source: UserProfileShowViewController, destination: PostShowViewController) {
         viewController?.hideNavigationBar()
         source.show(destination, sender: nil)
-        destination.loadContent()
+        destination.loadPostContent()
     }
     
     func navigateToPostCreateScene(source: UserProfileShowViewController, destination: PostCreateViewController) {

@@ -16,8 +16,8 @@ import GoloSwift
 // MARK: - Presentation Logic protocols
 protocol PostShowPresentationLogic {
     func presentSubscribe(fromResponseModel responseModel: PostShowModels.Item.ResponseModel)
-    func presentLoadContent(fromResponseModel responseModel: PostShowModels.Post.ResponseModel)
-    func presentLoadContentComments(fromResponseModel responseModel: PostShowModels.Post.ResponseModel)
+    func presentLoadPostContent(fromResponseModel responseModel: PostShowModels.Post.ResponseModel)
+    func presentLoadPostComments(fromResponseModel responseModel: PostShowModels.Post.ResponseModel)
     func presentCheckFollowing(fromResponseModel responseModel: PostShowModels.Following.ResponseModel)
     func presentVote(fromResponseModel responseModel: PostShowModels.ActiveVote.ResponseModel)
 }
@@ -39,14 +39,14 @@ class PostShowPresenter: PostShowPresentationLogic {
         viewController?.displaySubscribe(fromViewModel: viewModel)
     }
     
-    func presentLoadContent(fromResponseModel responseModel: PostShowModels.Post.ResponseModel) {
+    func presentLoadPostContent(fromResponseModel responseModel: PostShowModels.Post.ResponseModel) {
         let viewModel = PostShowModels.Post.ViewModel(errorAPI: responseModel.errorAPI)
-        viewController?.displayLoadContent(fromViewModel: viewModel)
+        viewController?.displayLoadPostContent(fromViewModel: viewModel)
     }
 
-    func presentLoadContentComments(fromResponseModel responseModel: PostShowModels.Post.ResponseModel) {
+    func presentLoadPostComments(fromResponseModel responseModel: PostShowModels.Post.ResponseModel) {
         let viewModel = PostShowModels.Post.ViewModel(errorAPI: responseModel.errorAPI)
-        viewController?.displayLoadContentComments(fromViewModel: viewModel)
+        viewController?.displayLoadPostComments(fromViewModel: viewModel)
     }
     
     func presentCheckFollowing(fromResponseModel responseModel: PostShowModels.Following.ResponseModel) {

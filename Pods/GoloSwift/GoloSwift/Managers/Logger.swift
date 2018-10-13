@@ -51,6 +51,14 @@ public class Logger {
             print("\(Date().toString()) \(event.rawValue)[\(sourceFileName(filePath: fileName))]:\(line) \(column) \(funcName) -> \(message)")
         }
     }
+    
+    
+    /// Helper function for measuring execution time with closure
+    public class func printExecutionTime(forOperation operationName: String = "Test", of closure: () -> ()) {
+        let start = CACurrentMediaTime()
+        closure()
+        print("\(LogEvent.verbose.rawValue)[\(sourceFileName(filePath: #file))]:\n\tOperation \"\(operationName)\" execution took \(CACurrentMediaTime() - start) seconds")
+    }
 }
 
 

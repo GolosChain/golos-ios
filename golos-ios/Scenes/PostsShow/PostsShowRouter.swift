@@ -93,7 +93,7 @@ class PostsShowRouter: NSObject, PostsShowRoutingLogic, PostsShowDataPassing {
     func navigateToPostShowScene(source: PostsShowViewController, destination: PostShowViewController) {
         viewController?.hideNavigationBar()
         source.show(destination, sender: nil)
-        destination.loadContent()
+        destination.loadPostContent()
     }
     
     func navigateToUserProfileScene(source: PostsShowViewController, destination: UserProfileShowViewController) {

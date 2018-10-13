@@ -21,8 +21,8 @@ import AlignedCollectionViewFlowLayout
 // MARK: - Input & Output protocols
 protocol PostShowDisplayLogic: class {
     func displaySubscribe(fromViewModel viewModel: PostShowModels.Item.ViewModel)
-    func displayLoadContent(fromViewModel viewModel: PostShowModels.Post.ViewModel)
-    func displayLoadContentComments(fromViewModel viewModel: PostShowModels.Post.ViewModel)
+    func displayLoadPostContent(fromViewModel viewModel: PostShowModels.Post.ViewModel)
+    func displayLoadPostComments(fromViewModel viewModel: PostShowModels.Post.ViewModel)
     func displayCheckFollowing(fromViewModel viewModel: PostShowModels.Following.ViewModel)
     func displayVote(fromViewModel viewModel: PostShowModels.ActiveVote.ViewModel)
 }
@@ -35,6 +35,7 @@ class PostShowViewController: GSBaseViewController {
     var isPostContentModify: Bool = false
     var commentsSecondLevel: [Comment] = [Comment]()
     
+    var gsTimer: GSTimer?
     var voicePowerView: VoicePowerView?
 
     var commentsViews = [CommentView]() {
@@ -592,14 +593,6 @@ class PostShowViewController: GSBaseViewController {
             self?.router?.routeToUserProfileScene(byUserName: reblogAuthorName)
         }
         
-//        // Load Post
-//        let loadPostContentQueue = DispatchQueue.global(qos: .background)
-//
-//        loadPostContentQueue.sync {
-//            self.loadContent()
-//            self.runCheckFollowing()
-//        }
-        
         if let user = User.current {
             let isNamesMatch = user.nickName == self.router?.dataStore?.postShortInfo?.author
             
@@ -667,7 +660,7 @@ class PostShowViewController: GSBaseViewController {
         }
     }
     
-    private func loadViewSettings() {
+    private func loadViewSettings(withoutComments: Bool) {
         Logger.log(message: "Success", event: .severe)
 
         if let displayedPost = self.router?.dataStore?.displayedPost {
@@ -694,6 +687,13 @@ class PostShowViewController: GSBaseViewController {
                 UIView.animate(withDuration: 0.5, animations: {
                     self?.hiddenViewsCollection.forEach({ $0.alpha = 1.0 })
                 })
+                
+                self?.gsTimer?.stop()
+
+                // Load comments
+                if !withoutComments {
+                    self?.loadPostComments()
+                }
             }
             
             // Set Active Votes icon
@@ -774,12 +774,12 @@ class PostShowViewController: GSBaseViewController {
                             let bottomViewFrame = self.backgroundGrayViewsCollection.first(where: { $0.tag == 1 })!.frame
 
                             if self.commentsCount == 0 {
-                                self.scrollView.contentOffset.y = 10_000.0
+                                print(("XXX"))
+                                self.scrollView.contentOffset.y = (self.emptyCommentsButton.frame.maxY > self.view.frame.height) ? (self.emptyCommentsButton.frame.maxY + 90.0 - self.view.frame.height) : 0.0
                             }
 
                             else {
                                 self.scrollView.contentOffset.y = bottomViewFrame.maxY
-//                                self.scrollView.scrollRectToVisible(CGRect(origin: self.commentsControlView.frame.origin, size: CGSize(width: self.commentsControlView.frame.width, height: max(0, self.commentsViewsView.frame.maxY))), animated: true)
                             }
                             
                             self.commentsViewsView.alpha = 1.0
@@ -980,7 +980,7 @@ extension PostShowViewController: PostShowDisplayLogic {
         })
     }
     
-    func displayLoadContent(fromViewModel viewModel: PostShowModels.Post.ViewModel) {
+    func displayLoadPostContent(fromViewModel viewModel: PostShowModels.Post.ViewModel) {
         // NOTE: Display the result from the Presenter
         Logger.log(message: "Success", event: .severe)
 
@@ -989,13 +989,13 @@ extension PostShowViewController: PostShowDisplayLogic {
         }
         
         // CoreData
-        self.fetchContent()
+        self.fetchPostContent(only: false)
         
-        // Load comments
-        self.loadContentComments()
+//        // Load comments
+//        self.loadPostComments()
     }
     
-    func displayLoadContentComments(fromViewModel viewModel: PostShowModels.Post.ViewModel) {
+    func displayLoadPostComments(fromViewModel viewModel: PostShowModels.Post.ViewModel) {
         // NOTE: Display the result from the Presenter
         Logger.log(message: "Success", event: .severe)
 
@@ -1004,7 +1004,7 @@ extension PostShowViewController: PostShowDisplayLogic {
         }
         
         // CoreData
-        self.fetchComments()
+        self.fetchPostComments()
     }
     
     func displayCheckFollowing(fromViewModel viewModel: PostShowModels.Following.ViewModel) {
@@ -1032,7 +1032,7 @@ extension PostShowViewController: PostShowDisplayLogic {
                                    completion:  { _ in
                                     if viewModel.forPost {
                                         self.scrollCommentsDown = false
-                                        self.fetchContent()
+                                        self.fetchPostContent(only: true)
                                     } else if let commentShortInfo = self.router?.dataStore?.comment, let indexPath = commentShortInfo.indexPath,
                                         let commentEntity = CoreDataManager.instance.readEntity(withName: "Comment",
                                                                                                 andPredicateParameters: NSPredicate(format: "author == %@ AND permlink == %@", commentShortInfo.author!, commentShortInfo.permlink!)) as? Comment {
@@ -1054,7 +1054,7 @@ extension PostShowViewController: PostShowDisplayLogic {
                     // PostShow
                     if viewModel.forPost {
                         self.scrollCommentsDown = false
-                        self.fetchContent()
+                        self.fetchPostContent(only: true)
                     }
                     
                     // CommentView
@@ -1071,19 +1071,21 @@ extension PostShowViewController: PostShowDisplayLogic {
 
 // MARK: - Load data from Blockchain by API
 extension PostShowViewController {
-    func loadContent() {
+    func loadPostContent() {
+        self.gsTimer = GSTimer(operationName: "Load Post content...")
+        
         // Load Post
         let loadPostContentQueue = DispatchQueue.global(qos: .background)
         
         loadPostContentQueue.sync {
             let contentRequestModel = PostShowModels.Post.RequestModel()
-            self.interactor?.loadContent(withRequestModel: contentRequestModel)
-
+            self.interactor?.loadPostContent(withRequestModel: contentRequestModel)
+            
             self.runCheckFollowing()
         }
     }
     
-    func loadContentComments() {
+    func loadPostComments() {
         Logger.log(message: "Success", event: .severe)
 
         // Remove subviews in Buttons Stack view
@@ -1092,11 +1094,11 @@ extension PostShowViewController {
         self.commentsViewsViewHeightConstraint.constant = 0.0
         self.commentsCount = 0
         
-        let loadPostContentCommentsQueue = DispatchQueue.global(qos: .utility)
+        let loadPostCommentsQueue = DispatchQueue.global(qos: .utility)
 
-        loadPostContentCommentsQueue.async {
+        loadPostCommentsQueue.async {
             let contentRepliesRequestModel = PostShowModels.Post.RequestModel()
-            self.interactor?.loadContentComments(withRequestModel: contentRepliesRequestModel)
+            self.interactor?.loadPostComments(withRequestModel: contentRepliesRequestModel)
         }
     }
     
@@ -1129,7 +1131,7 @@ extension PostShowViewController {
 // MARK: - Fetch data from CoreData
 extension PostShowViewController {
     // User Profile
-    private func fetchContent() {
+    private func fetchPostContent(only: Bool) {
         let postType        =   self.router!.dataStore!.postType!
         let fetchRequest    =   NSFetchRequest<NSFetchRequestResult>(entityName: postType.caseTitle())
         
@@ -1140,7 +1142,7 @@ extension PostShowViewController {
         do {
             if let displayedPost = try CoreDataManager.instance.managedObjectContext.fetch(fetchRequest).first as? PostCellSupport {
                 self.postFeedHeaderView.display(post: displayedPost)               
-                self.loadViewSettings()
+                self.loadViewSettings(withoutComments: only)
             }
         }
         
@@ -1165,7 +1167,7 @@ extension PostShowViewController {
         }
     }
     
-    private func fetchComments() {
+    private func fetchPostComments() {
         if let postShortInfo = self.router?.dataStore?.postShortInfo {
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1, execute: {
                 // Remove subviews in Stack view

@@ -50,7 +50,7 @@ class PostShowRouter: NSObject, PostShowRoutingLogic, PostShowDataPassing {
             // Reload posts in selected list
             if success {
                 self?.viewController?.isPostContentModify = true
-                self?.viewController?.loadContentComments()
+                self?.viewController?.loadPostComments()
             }
         }
     }

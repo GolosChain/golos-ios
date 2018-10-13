@@ -18,8 +18,8 @@ import GoloSwift
 protocol PostShowBusinessLogic {
     func save(comment: PostShortInfo)
     func subscribe(withRequestModel requestModel: PostShowModels.Item.RequestModel)
-    func loadContent(withRequestModel requestModel: PostShowModels.Post.RequestModel)
-    func loadContentComments(withRequestModel requestModel: PostShowModels.Post.RequestModel)
+    func loadPostContent(withRequestModel requestModel: PostShowModels.Post.RequestModel)
+    func loadPostComments(withRequestModel requestModel: PostShowModels.Post.RequestModel)
     func checkFollowing(withRequestModel requestModel: PostShowModels.Following.RequestModel)
     func vote(withRequestModel requestModel: PostShowModels.ActiveVote.RequestModel)
 }
@@ -61,7 +61,7 @@ class PostShowInteractor: PostShowBusinessLogic, PostShowDataStore {
         self.comment = comment
     }
     
-    func loadContent(withRequestModel requestModel: PostShowModels.Post.RequestModel) {
+    func loadPostContent(withRequestModel requestModel: PostShowModels.Post.RequestModel) {
         // API 'get_content'
         guard let author = self.postShortInfo?.author, let permlink = self.postShortInfo?.permlink else { return }
             
@@ -70,30 +70,30 @@ class PostShowInteractor: PostShowBusinessLogic, PostShowDataStore {
         RestAPIManager.loadPost(byContent: content, andPostType: self.postType!, completion: { [weak self] errorAPI in
             guard errorAPI?.caseInfo.message != "No Internet Connection" || !(errorAPI?.caseInfo.message.hasSuffix("timing"))! else {
                 let responseModel = PostShowModels.Post.ResponseModel(errorAPI: errorAPI)
-                self?.presenter?.presentLoadContent(fromResponseModel: responseModel)
+                self?.presenter?.presentLoadPostContent(fromResponseModel: responseModel)
                 
                 return
             }
             
             let responseModel = PostShowModels.Post.ResponseModel(errorAPI: nil)
-            self?.presenter?.presentLoadContent(fromResponseModel: responseModel)
+            self?.presenter?.presentLoadPostContent(fromResponseModel: responseModel)
         })
     }
 
-    func loadContentComments(withRequestModel requestModel: PostShowModels.Post.RequestModel) {
+    func loadPostComments(withRequestModel requestModel: PostShowModels.Post.RequestModel) {
         // API 'get_all_content_replies'
         let content = RequestParameterAPI.Content(author: self.postShortInfo?.author ?? "XXX", permlink: self.postShortInfo?.permlink ?? "XXX", active_votes: 1_000)
         
         RestAPIManager.loadPostComments(byContent: content, andPostType: .comment, completion: { [weak self] errorAPI in
             guard errorAPI?.caseInfo.message != "No Internet Connection" || !(errorAPI?.caseInfo.message.hasSuffix("timing"))! else {
                 let responseModel = PostShowModels.Post.ResponseModel(errorAPI: errorAPI)
-                self?.presenter?.presentLoadContentComments(fromResponseModel: responseModel)
+                self?.presenter?.presentLoadPostComments(fromResponseModel: responseModel)
                 
                 return
             }
             
             let responseModel = PostShowModels.Post.ResponseModel(errorAPI: nil)
-            self?.presenter?.presentLoadContentComments(fromResponseModel: responseModel)
+            self?.presenter?.presentLoadPostComments(fromResponseModel: responseModel)
         })
     }
     

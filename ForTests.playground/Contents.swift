@@ -1,34 +1,68 @@
 import UIKit
+import GoloSwift
+import CoreFoundation
 
-func bytesReverse(uint64: UInt64) -> [UInt8] {
-    return [UInt8(truncatingIfNeeded: uint64), UInt8(truncatingIfNeeded: uint64 >> 8)]
-}
-
-//func bytesReverse(int64: Int64) -> [UInt8] {
-//    return [UInt8(truncatingIfNeeded: int64), UInt8(truncatingIfNeeded: int64 >> 8)]
+//class ParkBenchTimer {
+//    // MARK: - Properties
+//    let startTime: CFAbsoluteTime
+//    let operationName: String
+//    var endTime: CFAbsoluteTime?
+//    let showNanoSec: Bool
+//
+//
+//    // MARK: - Class Initialization
+//    init(operationName: String = "Test operation", showNanoSec: Bool = true) {
+//        self.startTime      =   CFAbsoluteTimeGetCurrent()
+//        self.operationName  =   operationName
+//        self.showNanoSec    =   showNanoSec
+//    }
+//
+//    deinit {
+//        Logger.log(message: "Success", event: .severe)
+//    }
+//
+//
+//    // MARK: - Class Functions
+////    func stop() {
+////        let endTime = CFAbsoluteTimeGetCurrent()
+////
+////        Logger.log(message: "The operation \(self.operationName) took \(endTime) seconds", event: .verbose)
+////    }
+//
+//    func stop() {
+//        endTime = CFAbsoluteTimeGetCurrent()
+//
+//        DispatchQueue.main.async {
+//        print("The task \"\(timer.operationName)\" took \(self.duration) seconds.")
+//        }
+//
+////        return duration!
+//    }
+//
+//    private var duration: Float {
+//        if let endTime = endTime {
+//            return Float(endTime - startTime) / (self.showNanoSec ? 1 : 1_000_000_000.0)
+//        } else {
+//            return 0
+//        }
+//    }
 //}
-
-func bytesDirect(int64: Int64) -> [UInt8] {
-    return [UInt8(truncatingIfNeeded: int64 >> 8), UInt8(truncatingIfNeeded: int64)]
-}
-
-//let reverseInt = bytesReverse(int64: 10_000)
-//// 1027
-//print(reverseInt)
-
-let directInt = bytesDirect(int64: 10_000)
-//2710
-print(directInt)
-
-
-let fff = UInt64(bitPattern: -10_000)
-print(bytesReverse(uint64: fff))
-// f0d8
-
-//let regex = "[^а-я0-9a-z,ґ,є,і,ї,-]"
-//var temp = "hi,-thi.,s-is-⚡️ jjj авбгдка🔥☄️"
-//    //"hajdh-ja%6ma-na-000-=+-adjas-$$$$ :-)"
 //
-//temp = temp.replacingOccurrences(of: regex, with: "", options: .regularExpression)//.replacingOccurrences(of: "--", with: "-")
+////let timer = ParkBenchTimer()
+////
+////for i in 0...2_000 {
+////    print(i)
+////}
+
+
+//func printExecutionTime(withTag tag: String, of closure: () -> ()) {
+//    let start = CACurrentMediaTime()
+//    closure()
+//    Logger.log(message: "#\(tag) - execution took \(CACurrentMediaTime() - start) seconds", event: .verbose)
+//}
 //
-//print(temp)
+//printExecutionTime(withTag: "Test operaion") {
+//    for i in 0...2_000 {
+//        print(i)
+//    }
+//}

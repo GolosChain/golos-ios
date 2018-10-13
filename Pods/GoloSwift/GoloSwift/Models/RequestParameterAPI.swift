@@ -156,7 +156,8 @@ public struct RequestParameterAPI {
             var permlinkTemp    =   (parentAuthor.isEmpty ? String(format: "%@", title.transliteration(forPermlink: true)) :
                                                             String(format: "re-%@-%@-%@", parentAuthor, parentPermlink, author))
                                         .replacingOccurrences(of: " ", with: "-")
-                                        .replacingOccurrences(of: ".", with: "-")
+                                        .replacingOccurrences(of: ".", with: "")
+                                        .replacingOccurrences(of: ",", with: "")
                                         .lowercased()
             
             permlinkTemp        =   permlinkTemp.replacingOccurrences(of: regex, with: "", options: .regularExpression)
