@@ -68,8 +68,6 @@
                                 <state key="normal" title="32" image="icon-button-comments-default">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
-                                <state key="disabled" image="icon-button-comments-highlighted"/>
-                                <state key="selected" image="icon-button-comments-selected"/>
                                 <connections>
                                     <action selector="commentsButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="e1b-9C-E2h"/>
                                 </connections>
@@ -92,19 +90,29 @@
                                 </constraints>
                                 <color key="color" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </activityIndicatorView>
+                            <activityIndicatorView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="OQu-Kr-8Lm" userLabel="Comments Activity Indicator">
+                                <rect key="frame" x="92" y="12.5" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="OQu-Kr-8Lm" secondAttribute="height" multiplier="1:1" id="mzR-mx-IVY"/>
+                                </constraints>
+                                <color key="color" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="OQu-Kr-8Lm" firstAttribute="width" secondItem="OQu-Kr-8Lm" secondAttribute="height" multiplier="1:1" id="0vb-mR-ODO"/>
                             <constraint firstItem="YHf-4Q-6Ih" firstAttribute="leading" secondItem="a2D-jz-RAy" secondAttribute="trailing" constant="5" id="1Pz-7P-tSU"/>
                             <constraint firstItem="qkH-S3-zTY" firstAttribute="leading" secondItem="a2D-jz-RAy" secondAttribute="leading" constant="10" id="3Pm-KA-C1L"/>
                             <constraint firstItem="a2D-jz-RAy" firstAttribute="leading" secondItem="rgg-s6-oxm" secondAttribute="leading" constant="6" id="CRS-zz-HeW"/>
                             <constraint firstItem="qkH-S3-zTY" firstAttribute="centerY" secondItem="a2D-jz-RAy" secondAttribute="centerY" id="Ia0-KM-3c4"/>
+                            <constraint firstItem="OQu-Kr-8Lm" firstAttribute="leading" secondItem="YHf-4Q-6Ih" secondAttribute="leading" constant="10" id="IpT-Jh-9GS"/>
                             <constraint firstAttribute="height" constant="45" identifier="bottomViewHeightConstraint" id="MgH-9n-NbH"/>
                             <constraint firstAttribute="bottom" secondItem="a2D-jz-RAy" secondAttribute="bottom" id="Obm-1e-5u4"/>
                             <constraint firstItem="a2D-jz-RAy" firstAttribute="top" secondItem="rgg-s6-oxm" secondAttribute="top" id="ShL-5M-prp"/>
                             <constraint firstAttribute="trailing" secondItem="3Me-i8-z48" secondAttribute="trailing" constant="8" id="Vfo-EY-ayY"/>
                             <constraint firstItem="3Me-i8-z48" firstAttribute="top" secondItem="rgg-s6-oxm" secondAttribute="top" id="afq-Hj-XrL"/>
                             <constraint firstAttribute="bottom" secondItem="YHf-4Q-6Ih" secondAttribute="bottom" id="ebA-Ww-b3F"/>
+                            <constraint firstItem="OQu-Kr-8Lm" firstAttribute="centerY" secondItem="rgg-s6-oxm" secondAttribute="centerY" id="lvw-Wu-hzg"/>
                             <constraint firstAttribute="bottom" secondItem="3Me-i8-z48" secondAttribute="bottom" id="pD5-QY-gDV"/>
                             <constraint firstItem="YHf-4Q-6Ih" firstAttribute="top" secondItem="rgg-s6-oxm" secondAttribute="top" id="tqm-4m-dEu"/>
                         </constraints>
@@ -142,6 +150,7 @@
                 <outlet property="activeVoteActivityIndicator" destination="qkH-S3-zTY" id="VDb-6r-gfa"/>
                 <outlet property="activeVoteButton" destination="a2D-jz-RAy" id="Oz7-IV-lSz"/>
                 <outlet property="bottomView" destination="rgg-s6-oxm" id="i6M-lf-bbh"/>
+                <outlet property="commentsActivityIndicator" destination="OQu-Kr-8Lm" id="s8d-Hh-exc"/>
                 <outlet property="commentsButton" destination="YHf-4Q-6Ih" id="GcT-Bz-AHG"/>
                 <outlet property="postFeedHeaderView" destination="x0K-7b-ZlY" id="Tv9-zR-sE1"/>
                 <outlet property="postImageView" destination="cNc-UC-tpt" id="Wky-e0-vzt"/>
@@ -160,8 +169,6 @@
     </objects>
     <resources>
         <image name="icon-button-comments-default" width="20" height="20"/>
-        <image name="icon-button-comments-highlighted" width="20" height="20"/>
-        <image name="icon-button-comments-selected" width="20" height="20"/>
         <image name="icon-button-share-normal" width="24" height="24"/>
         <image name="icon-button-upvotes-default" width="20" height="20"/>
     </resources>

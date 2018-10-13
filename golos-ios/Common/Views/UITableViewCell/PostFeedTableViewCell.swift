@@ -83,6 +83,12 @@ class PostFeedTableViewCell: UITableViewCell, HandlersCellSupport, PostCellActiv
         }
     }
     
+    @IBOutlet weak var commentsActivityIndicator: UIActivityIndicatorView! {
+        didSet {
+            self.commentsActivityIndicator.stopAnimating()
+        }
+    }
+    
     @IBOutlet var widthsCollection: [NSLayoutConstraint]! {
         didSet {
             self.widthsCollection.forEach({ $0.constant *= widthRatio })
@@ -131,7 +137,23 @@ class PostFeedTableViewCell: UITableViewCell, HandlersCellSupport, PostCellActiv
     }
     
     @IBAction func commentsButtonTapped(_ sender: UIButton) {
+        let senderIcon = sender.imageView?.image
+
+        // Start spinner
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()) {
+            self.commentsActivityIndicator.startAnimating()
+            sender.isEnabled = false
+            sender.setImage(UIImage(named: isAppThemeDark ? "icon-button-active-vote-black-empty" : "icon-button-active-vote-white-empty"), for: .normal)
+        }
+        
         self.handlerCommentsButtonTapped!(self.postShortInfo)
+        
+        // Stop spinner
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+            sender.isEnabled = true
+            self.commentsActivityIndicator.stopAnimating()
+            sender.setImage(senderIcon, for: .normal)
+        }
     }
     
     @IBAction func shareButtonTapped(_ sender: UIButton) {
@@ -159,8 +181,9 @@ extension PostFeedTableViewCell: ConfigureCell {
         
         self.postShortInfo                  =   PostShortInfo(indexPath: indexPath)
         self.activeVoteButton.isEnabled     =   true
-        self.activeVoteActivityIndicator.stopAnimating()
         
+        self.activeVoteActivityIndicator.stopAnimating()
+
         // Display PostFeedHeaderView
         self.postFeedHeaderView.display(post: model)
         
