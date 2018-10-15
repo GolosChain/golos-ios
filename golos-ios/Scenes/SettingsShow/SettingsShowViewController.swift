@@ -206,7 +206,7 @@ class SettingsShowViewController: GSBaseViewController {
     @IBAction func languageButtonTapped(_ sender: UIButton) {
         let actionSheet     =   UIAlertController(title: nil, message: "Interface Language".localized(), preferredStyle: .actionSheet)
         
-        for language in Localize.availableLanguages() {
+        for language in Localize.availableLanguages().filter({ $0 != "Base" }) {
             let displayName     =   Localize.displayNameForLanguage(language).uppercaseFirst
             
             let languageAction  =   UIAlertAction(title: displayName, style: .default, handler: { _ in
