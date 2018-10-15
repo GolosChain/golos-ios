@@ -772,12 +772,8 @@ class PostShowViewController: GSBaseViewController {
                             let bottomViewFrame = self.backgroundGrayViewsCollection.first(where: { $0.tag == 1 })!.frame
 
                             if self.commentsCount == 0 {
-                                print(("XXX"))
-                                // TODO: - SCROLL TO COMMENTS TABLE VIEW
-//                                self.scrollView.contentOffset.y = (self.emptyCommentsButton.frame.maxY > self.view.frame.height) ? (self.emptyCommentsButton.frame.maxY + 90.0 - self.view.frame.height) : 0.0
-                            }
-
-                            else {
+                                self.scrollView.contentOffset.y = (self.commentsTableView.frame.maxY > self.view.frame.height) ? (64.0 + self.commentsTableView.frame.maxY - self.view.frame.height) : 0.0
+                            } else {
                                 self.scrollView.contentOffset.y = bottomViewFrame.maxY
                             }
             })
