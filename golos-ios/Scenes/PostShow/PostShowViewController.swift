@@ -33,12 +33,25 @@ class PostShowViewController: GSBaseViewController {
     var activeVotesCount: Int = 0
     var scrollCommentsDown: Bool = false
     var isPostContentModify: Bool = false
-    var commentsSecondLevel: [Comment] = [Comment]()
     
+    // Comments pagination
+    let paginationOffset = 4
+    var paginationCurrentIndex = 0
+    var commentsFirstLevel: [Comment] = [Comment]()
+    var commentsSecondLevel: [Comment] = [Comment]()
+
     var gsTimer: GSTimer?
     var voicePowerView: VoicePowerView?
 
-    var commentsViews = [CommentView]() {
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(handlerTableViewRefreshData), for: .valueChanged)
+        
+        return refreshControl
+    }()
+
+    
+    var commentsViews = [CommentView]() /*{
         didSet {
             self.commentsViews.forEach( { commentView in
                 // Handlers
@@ -134,7 +147,8 @@ class PostShowViewController: GSBaseViewController {
             })
         }
     }
-
+*/
+    
     var interactor: PostShowBusinessLogic?
     var router: (NSObjectProtocol & PostShowRoutingLogic & PostShowDataPassing)?
     
@@ -146,6 +160,28 @@ class PostShowViewController: GSBaseViewController {
     @IBOutlet weak var postFeedHeaderView: PostFeedHeaderView!
     @IBOutlet weak var commentsControlView: UIView!
     @IBOutlet weak var subscribesStackView: UIStackView!
+    
+    @IBOutlet weak var commentsTableView: UITableView! {
+        didSet {
+            self.commentsTableView.delegate     =   self
+            self.commentsTableView.dataSource   =   self
+            
+            self.commentsTableView.register(UINib(nibName: "CommentTableViewCell", bundle: nil), forCellReuseIdentifier: "CommentTableViewCell")
+            self.commentsTableView.register(UINib(nibName: "CommentHeaderView", bundle: nil), forHeaderFooterViewReuseIdentifier: "CommentHeaderView")
+            
+            // Set automatic dimensions for row height
+            self.commentsTableView.rowHeight = UITableView.automaticDimension
+            self.commentsTableView.estimatedRowHeight = 320.0 * heightRatio
+            
+            if #available(iOS 10.0, *) {
+                self.commentsTableView.refreshControl = refreshControl
+            }
+                
+            else {
+                self.commentsTableView.addSubview(refreshControl)
+            }
+        }
+    }
     
     @IBOutlet weak var loadingPostContentActivityIndicator: UIActivityIndicatorView! {
         didSet {
@@ -173,13 +209,6 @@ class PostShowViewController: GSBaseViewController {
         }
     }
     
-    @IBOutlet weak var commentsViewsView: UIView! {
-        didSet {
-            self.commentsViewsView.tune(withThemeColorPicker: whiteColorPickers)
-            self.commentsViewsView.alpha = 0.0
-        }
-    }
-    
     @IBOutlet weak var subscribeActivityIndicator: UIActivityIndicatorView! {
         didSet {
             self.subscribeActivityIndicator.stopAnimating()
@@ -193,17 +222,6 @@ class PostShowViewController: GSBaseViewController {
         }
     }
     
-    @IBOutlet weak var emptyCommentsButton: UIButton! {
-        didSet {
-            self.emptyCommentsButton.tune(withTitle:    "No Comments Title".localized(),
-                                          hexColors:    [veryDarkGrayWhiteColorPickers, darkGrayWhiteColorPickers, darkGrayWhiteColorPickers, darkGrayWhiteColorPickers],
-                                          font:         UIFont(name: "SFProDisplay-Regular", size: 13.0),
-                                          alignment:    .left)
-            
-            self.emptyCommentsButton.isHidden = true
-        }
-    }
-
     @IBOutlet weak var markdownViewManager: MarkdownViewManager! {
         didSet {
             // Handler Markdown
@@ -240,14 +258,6 @@ class PostShowViewController: GSBaseViewController {
             tagsCollectionView.collectionViewLayout = AlignedCollectionViewFlowLayout.init(horizontalAlignment: .left, verticalAlignment: .top)
         }
     }
-    
-//    @IBOutlet weak var voicePowerView: VoicePowerView! {
-//        didSet {
-//            self.voicePowerView.alpha       =   0.0
-//            self.voicePowerView.frame       =   UIScreen.main.bounds
-//            self.voicePowerView.center      =   self.view.center
-//        }
-//    }
     
     @IBOutlet weak var contentView: UIView! {
         didSet {
@@ -509,12 +519,6 @@ class PostShowViewController: GSBaseViewController {
         }
     }
     
-    @IBOutlet weak var emptyCommentsButtonTopConstraint: NSLayoutConstraint! {
-        didSet {
-            self.emptyCommentsButtonTopConstraint.constant = -44.0 * heightRatio
-        }
-    }
-    
     @IBOutlet weak var contentViewTopConstraint: NSLayoutConstraint! {
         didSet {
             self.contentViewTopConstraint.constant = 52.0 * heightRatio
@@ -524,9 +528,8 @@ class PostShowViewController: GSBaseViewController {
     @IBOutlet weak var tagsCollectionViewheightConstraint: NSLayoutConstraint!
     @IBOutlet weak var markdownViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var commentsControlViewTopConstraint: NSLayoutConstraint!
-    @IBOutlet weak var commentsViewsViewTopConstraint: NSLayoutConstraint!
-    @IBOutlet weak var commentsViewsViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var subscribesStackViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var commentsTableViewHeightConstraint: NSLayoutConstraint!
     
     
     // MARK: - Class Initialization
@@ -623,26 +626,15 @@ class PostShowViewController: GSBaseViewController {
         Logger.log(message: "Success", event: .severe)
 
         self.commentsControlViewTopConstraint.constant  =   heightRatio * (hided ? -30.0 : 0.0)
-        self.commentsViewsViewTopConstraint.constant    =   hided ? (-1 * self.commentsViewsViewHeightConstraint.constant + 40.0 * heightRatio) : 0.0
         self.commentsControlView.isHidden               =   hided
-        self.commentsViewsView.isHidden                 =   hided
         
         if hided {
-            self.emptyCommentsButton.isHidden = false
-            self.emptyCommentsButtonTopConstraint.constant = 0.0
-            
-            UIView.animate(withDuration: 0.3) {
-                self.view.layoutIfNeeded()
-            }
+            // TODO: - DISPLAY COMMENTS HEADER
         }
         
         else {
             self.commentsButton.setTitle("\(self.commentsCount)", for: .normal)
             self.commentsCountLabel.text = String(format: "%i", self.commentsCount)
-            
-            UIView.animate(withDuration: 0.7) {
-                self.commentsViewsView.alpha = 1.0
-            }
         }
         
         self.scrollView.isUserInteractionEnabled = true
@@ -739,7 +731,6 @@ class PostShowViewController: GSBaseViewController {
         Logger.log(message: "Success", event: .severe)
         
         self.tagsCollectionView.reloadData()
-        (self.commentsViewsView.subviews as! [CommentView]).forEach({ $0.localizeTitles() })
         
         self.postFeedHeaderView.categoryLabel.text = self.router!.dataStore!.displayedPost!.category
                                                         .transliteration(forPermlink: false)
@@ -747,7 +738,14 @@ class PostShowViewController: GSBaseViewController {
         
         self.donateButton.setTitle("Donate Verb".localized(), for: .normal)
         self.promoteButton.setTitle("Promote Post Verb".localized(), for: .normal)
-        self.emptyCommentsButton.setTitle("No Comments Title".localized(), for: .normal)
+        
+        if self.commentsFirstLevel.count == 0 {
+            (self.commentsTableView.headerView(forSection: 0) as! CommentHeaderView).translateTitle()
+        } else {
+            // TODO: - TRANSLATE ALL VISIBLE COMMENT CELLS
+//        (self.commentsViewsView.subviews as! [CommentView]).forEach({ $0.localizeTitles() })
+        }
+        
         self.commentsHideButton.setTitle("Hide Comments Verb".localized(), for: .normal)
         self.commentsSortByButton.setTitle("Action Sheet First New".localized(), for: .normal)
         self.subscribeButtonsCollection.forEach({ $0.setTitle("Subscribe".localized(), for: .normal )})
@@ -775,14 +773,13 @@ class PostShowViewController: GSBaseViewController {
 
                             if self.commentsCount == 0 {
                                 print(("XXX"))
-                                self.scrollView.contentOffset.y = (self.emptyCommentsButton.frame.maxY > self.view.frame.height) ? (self.emptyCommentsButton.frame.maxY + 90.0 - self.view.frame.height) : 0.0
+                                // TODO: - SCROLL TO COMMENTS TABLE VIEW
+//                                self.scrollView.contentOffset.y = (self.emptyCommentsButton.frame.maxY > self.view.frame.height) ? (self.emptyCommentsButton.frame.maxY + 90.0 - self.view.frame.height) : 0.0
                             }
 
                             else {
                                 self.scrollView.contentOffset.y = bottomViewFrame.maxY
                             }
-                            
-                            self.commentsViewsView.alpha = 1.0
             })
         })
     }
@@ -918,12 +915,7 @@ class PostShowViewController: GSBaseViewController {
         sender.setTitle("Hide Comments Verb".localized(), for: .normal)
         sender.setTitle("Show Comments Verb".localized(), for: .selected)
         
-        self.commentsViewsView.alpha = sender.isSelected ? 0.0 : 1.0
-        self.commentsViewsViewTopConstraint.constant = sender.isSelected ? -self.commentsViewsView.bounds.height : 0.0
-        
         UIView.animate(withDuration: 1.2) {
-            self.commentsViewsView.layoutIfNeeded()
-
             // Scrolling to bottom
             if !sender.isSelected && self.scrollCommentsDown {
                 self.didContentViewScrollToCommentsView()
@@ -958,6 +950,25 @@ class PostShowViewController: GSBaseViewController {
     @IBAction func subscribeButtonTappedDown(_ sender: UIButton) {
         sender.setBorder(color: UIColor(hexString: "#e3e3e3").cgColor, cornerRadius: 4.0 * heightRatio)
     }
+    
+    // Refresh Comments
+    @objc func handlerTableViewRefreshData(refreshControl: UIRefreshControl) {
+        guard isNetworkAvailable else {
+            return
+        }
+        
+        // Clear pagination
+        self.paginationCurrentIndex = 0
+        
+        // Clean CoreData entities
+        DispatchQueue.main.async {
+            CoreDataManager.instance.deleteEntities(withName: "Comment", andPredicateParameters: nil, completion: { [weak self] success in
+                if success {
+                    self?.loadPostComments()
+                }
+            })
+        }
+    }
 }
 
 
@@ -990,9 +1001,6 @@ extension PostShowViewController: PostShowDisplayLogic {
         
         // CoreData
         self.fetchPostContent(only: false)
-        
-//        // Load comments
-//        self.loadPostComments()
     }
     
     func displayLoadPostComments(fromViewModel viewModel: PostShowModels.Post.ViewModel) {
@@ -1036,7 +1044,7 @@ extension PostShowViewController: PostShowDisplayLogic {
                                     } else if let commentShortInfo = self.router?.dataStore?.comment, let indexPath = commentShortInfo.indexPath,
                                         let commentEntity = CoreDataManager.instance.readEntity(withName: "Comment",
                                                                                                 andPredicateParameters: NSPredicate(format: "author == %@ AND permlink == %@", commentShortInfo.author!, commentShortInfo.permlink!)) as? Comment {
-                                        self.commentsViews[indexPath.row].setup(withComment: commentEntity)
+//                                        self.commentsViews[indexPath.row].setup(withComment: commentEntity)
                                     }
                 })
             }
@@ -1060,7 +1068,7 @@ extension PostShowViewController: PostShowDisplayLogic {
                     // CommentView
                     else if let commentEntity = model as? Comment {
                         // Modify Comment
-                        self.commentsViews[indexPath.row].setup(withComment: commentEntity)
+//                        self.commentsViews[indexPath.row].setup(withComment: commentEntity)
                     }
                 })
             }
@@ -1089,10 +1097,10 @@ extension PostShowViewController {
         Logger.log(message: "Success", event: .severe)
 
         // Remove subviews in Buttons Stack view
-        self.commentsViews.forEach({ $0.removeFromSuperview() })
-        self.commentsViews.removeAll()
-        self.commentsViewsViewHeightConstraint.constant = 0.0
+//        self.commentsViews.forEach({ $0.removeFromSuperview() })
+//        self.commentsViews.removeAll()
         self.commentsCount = 0
+        self.paginationCurrentIndex = 0
         
         let loadPostCommentsQueue = DispatchQueue.global(qos: .utility)
 
@@ -1171,8 +1179,8 @@ extension PostShowViewController {
         if let postShortInfo = self.router?.dataStore?.postShortInfo {
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1, execute: {
                 // Remove subviews in Stack view
-                self.commentsViews.forEach({ $0.removeFromSuperview() })
-                self.commentsViews.removeAll()
+//                self.commentsViews.forEach({ $0.removeFromSuperview() })
+//                self.commentsViews.removeAll()
                 
                 guard let comments = CoreDataManager.instance.readEntities(withName:                    "Comment",
                                                                            withPredicateParameters:     NSPredicate(format: "url contains[cd] %@ AND url contains[cd] %@", postShortInfo.author ?? "XXX", postShortInfo.permlink ?? "XXX"),
@@ -1180,17 +1188,15 @@ extension PostShowViewController {
                                                                             self.didCommentsControlView(hided: true)
                                                                             return
                 }
-
-                self.commentsViewsViewHeightConstraint.constant = 0.0
                 
                 // Set CommentView's levels
-                let commentsFirstLevel: [Comment] = comments.filter({ $0.parentPermlink == postShortInfo.permlink }).sorted(by: { $0.created < $1.created })
-                commentsFirstLevel.forEach({ $0.treeLevel = 0 })
+                self.commentsFirstLevel = comments.filter({ $0.parentPermlink == postShortInfo.permlink }).sorted(by: { $0.created < $1.created })
+                self.commentsFirstLevel.forEach({ $0.treeLevel = 0 })
 
                 self.commentsSecondLevel = comments.filter({ $0.parentPermlink != postShortInfo.permlink }).sorted(by: { $0.created < $1.created })
                 self.commentsSecondLevel.forEach({ $0.treeLevel = 1 })
                 
-                for (index, comment) in commentsFirstLevel.enumerated() {
+                for (index, comment) in self.commentsFirstLevel.enumerated() {
                     comment.treeIndex = "\(index)"
                     self.setViewTreeIndex(byComment: comment)
                 }
@@ -1201,14 +1207,15 @@ extension PostShowViewController {
 
                     comment.treeIndex = "\(index)"
                     let commentView = CommentView.init(withComment: comment)
-                    self.commentsViews.append(commentView)
+//                    self.commentsViews.append(commentView)
                 }
                 
                 // Load comment body content
                 for commentView in self.commentsViews {
                     commentView.loadData(fromBody: comments.sorted(by: { $0.treeIndex < $1.treeIndex })[commentView.postShortInfo.indexPath!.row].body, completion: { [weak self] viewHeight in
                         commentView.frame = CGRect(origin: .zero, size: commentView.frame.size)
-                        self?.commentsViewsViewHeightConstraint.constant += viewHeight
+                        // FIXME: - HEIGHT OF COMMENTS CELL
+//                        self?.commentsViewsViewHeightConstraint.constant += viewHeight
                         self?.view.layoutIfNeeded()
                         
                         self?.commentsCount += 1
@@ -1228,7 +1235,7 @@ extension PostShowViewController {
                                     height += $0.frame.height
                                 }
                                 
-                                self?.commentsViewsView.addSubview($0)
+//                                self?.commentsViewsView.addSubview($0)
                             })
                             
                             self?.didCommentsControlView(hided: false)
@@ -1239,18 +1246,18 @@ extension PostShowViewController {
         }
     }
     
-    private func load(body: String, forCommentView commentView: CommentView, completionLoadBody: @escaping () -> Void) {
-        commentView.loadData(fromBody: body, completion: { [weak self] viewHeight in
-            let nextCommentViewOrigin = CGPoint(x: 0.0, y: self?.commentsViewsViewHeightConstraint.constant ?? 0)
-
-            commentView.frame = CGRect(origin: nextCommentViewOrigin, size: commentView.frame.size)
-
-            self?.commentsViewsViewHeightConstraint.constant += viewHeight
-            self?.view.layoutIfNeeded()
-            
-            completionLoadBody()
-        })
-    }
+//    private func load(body: String, forCommentView commentView: CommentView, completionLoadBody: @escaping () -> Void) {
+//        commentView.loadData(fromBody: body, completion: { [weak self] viewHeight in
+//            let nextCommentViewOrigin = CGPoint(x: 0.0, y: self?.commentsViewsViewHeightConstraint.constant ?? 0)
+//
+//            commentView.frame = CGRect(origin: nextCommentViewOrigin, size: commentView.frame.size)
+//
+//            self?.commentsViewsViewHeightConstraint.constant += viewHeight
+//            self?.view.layoutIfNeeded()
+//
+//            completionLoadBody()
+//        })
+//    }
 }
 
 
@@ -1386,5 +1393,53 @@ extension PostShowViewController {
         }
         
         return fullAttributedString
+    }
+}
+
+
+// MARK: - UITableViewDataSource
+extension PostShowViewController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cellIdentifier = "Cell"
+        var cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) //as UITableViewCell
+        
+        if cell == nil {
+            cell = UINib(nibName: cellIdentifier, bundle: nil).instantiate(withOwner: nil, options: nil).first as! UITableViewCell?
+        }
+        
+        return cell!
+    }
+}
+
+
+// MARK: - UITableViewDelegate
+extension PostShowViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return (self.commentsFirstLevel.count == 0 ? 44.0 : 0.0) * heightRatio
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let commentsHeaderView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "CommentHeaderView") as! CommentHeaderView
+        
+        self.commentsTableViewHeightConstraint.constant = commentsHeaderView.frame.height * heightRatio
+        
+        // Handler
+        commentsHeaderView.handlerCreateCommentButtonTapped    =   { [weak self] in
+            self?.router?.routeToPostCreateScene(withType: .createComment)
+        }
+        
+        return commentsHeaderView
     }
 }

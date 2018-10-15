@@ -131,6 +131,10 @@
 		B1961953211C90D2001DF789 /* MarkdownViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1961952211C90D2001DF789 /* MarkdownViewManager.swift */; };
 		B198DB9120B9A21A008011A3 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B198DB9020B9A21A008011A3 /* UIColor+Extensions.swift */; };
 		B198DB9420B9C560008011A3 /* SFProDisplay-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = B198DB9320B9C560008011A3 /* SFProDisplay-Regular.otf */; };
+		B1A0850D2174451700BB4C9D /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A0850B2174451700BB4C9D /* CommentTableViewCell.swift */; };
+		B1A0850E2174451700BB4C9D /* CommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1A0850C2174451700BB4C9D /* CommentTableViewCell.xib */; };
+		B1A08510217450DB00BB4C9D /* CommentHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A0850F217450DB00BB4C9D /* CommentHeaderView.swift */; };
+		B1A08512217450E500BB4C9D /* CommentHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1A08511217450E500BB4C9D /* CommentHeaderView.xib */; };
 		B1A2AE432105B1640021A34B /* ActiveVote+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A2AE412105B1640021A34B /* ActiveVote+CoreDataClass.swift */; };
 		B1A2AE442105B1640021A34B /* ActiveVote+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A2AE422105B1640021A34B /* ActiveVote+CoreDataProperties.swift */; };
 		B1A7580621719739002CEE50 /* WelcomeShow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1A7580821719739002CEE50 /* WelcomeShow.storyboard */; };
@@ -403,6 +407,10 @@
 		B1961952211C90D2001DF789 /* MarkdownViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownViewManager.swift; sourceTree = "<group>"; };
 		B198DB9020B9A21A008011A3 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		B198DB9320B9C560008011A3 /* SFProDisplay-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Regular.otf"; sourceTree = "<group>"; };
+		B1A0850B2174451700BB4C9D /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
+		B1A0850C2174451700BB4C9D /* CommentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentTableViewCell.xib; sourceTree = "<group>"; };
+		B1A0850F217450DB00BB4C9D /* CommentHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentHeaderView.swift; sourceTree = "<group>"; };
+		B1A08511217450E500BB4C9D /* CommentHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentHeaderView.xib; sourceTree = "<group>"; };
 		B1A2AE412105B1640021A34B /* ActiveVote+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ActiveVote+CoreDataClass.swift"; sourceTree = "<group>"; };
 		B1A2AE422105B1640021A34B /* ActiveVote+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ActiveVote+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		B1A758092171974D002CEE50 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/WelcomeShow.storyboard; sourceTree = "<group>"; };
@@ -574,6 +582,10 @@
 		B1084CAB211377B00065CAC0 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				B1A0850F217450DB00BB4C9D /* CommentHeaderView.swift */,
+				B1A08511217450E500BB4C9D /* CommentHeaderView.xib */,
+				B1A0850B2174451700BB4C9D /* CommentTableViewCell.swift */,
+				B1A0850C2174451700BB4C9D /* CommentTableViewCell.xib */,
 				B1084CAC211378780065CAC0 /* PostShowTagCollectionViewCell.swift */,
 				B1084CAD211378780065CAC0 /* PostShowTagCollectionViewCell.xib */,
 			);
@@ -1342,6 +1354,7 @@
 				B1E09E182101EE8F002CC5B7 /* PostFeedTableViewCell.xib in Resources */,
 				B1084CAF211378780065CAC0 /* PostShowTagCollectionViewCell.xib in Resources */,
 				B1A7580621719739002CEE50 /* WelcomeShow.storyboard in Resources */,
+				B1A08512217450E500BB4C9D /* CommentHeaderView.xib in Resources */,
 				B136D4FC20D8BA14003AD279 /* AddTagCollectionViewCell.xib in Resources */,
 				B120D06E2108252300D949F5 /* SettingsUserProfileEdit.storyboard in Resources */,
 				B13FE9BB20F512BA00F907BC /* ReplyTableViewCell.xib in Resources */,
@@ -1349,6 +1362,7 @@
 				B146891E20F234BE00D36794 /* UserProfileInfoTitleView.xib in Resources */,
 				B164CECA2119F6EB00349D79 /* Localizable.strings in Resources */,
 				B120D0702108256B00D949F5 /* SettingsNotificationsShow.storyboard in Resources */,
+				B1A0850E2174451700BB4C9D /* CommentTableViewCell.xib in Resources */,
 				7DE3531C2048CA3400C04CB2 /* LogInHelpShowViewController.xib in Resources */,
 				B1F2B555216BBAC900CBAFC9 /* PostFeedHeaderView.xib in Resources */,
 				EC24FF7F200C4E2C00A0AE15 /* NavigationDropDownView.xib in Resources */,
@@ -1662,6 +1676,7 @@
 				B1E09E242101F2CB002CC5B7 /* ConfigureCell.swift in Sources */,
 				B1050CA520CECF75003CE4EE /* PostCreateInteractor.swift in Sources */,
 				EC24FF7D200C4DE300A0AE15 /* NavigationDropDownView.swift in Sources */,
+				B1A08510217450DB00BB4C9D /* CommentHeaderView.swift in Sources */,
 				B12B3AC420FCBFCA00071B97 /* PostsShowPresenter.swift in Sources */,
 				B1EA154820FE007A0015EF76 /* Promo+CoreDataClass.swift in Sources */,
 				B164F04720E62AE600C5CDD3 /* UserProfileShowInteractor.swift in Sources */,
@@ -1673,6 +1688,7 @@
 				ECF31725200A9D2800F7B703 /* UIAlertController+Window.swift in Sources */,
 				B1317CD4212E696C0025D429 /* ImageCached+CoreDataClass.swift in Sources */,
 				B1F3748120C2C5E1005EF767 /* RootShowRouter.swift in Sources */,
+				B1A0850D2174451700BB4C9D /* CommentTableViewCell.swift in Sources */,
 				B1DCE322210A32B600487DE0 /* GSTestManager.swift in Sources */,
 				B15F228220EEB16500C44282 /* StateMachine.swift in Sources */,
 				B1B6B4DE21514823005AB846 /* LentaPostsShowViewController.swift in Sources */,

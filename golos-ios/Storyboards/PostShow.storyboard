@@ -22,33 +22,19 @@
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                                 <subviews>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BtF-Gk-D12" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="52" width="320" height="348.5"/>
+                                        <rect key="frame" x="0.0" y="52" width="320" height="322.5"/>
                                         <subviews>
-                                            <view clipsSubviews="YES" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fPl-dp-sjq" userLabel="Comments Views View">
-                                                <rect key="frame" x="16" y="348.5" width="288" height="0.0"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="249" verticalCompressionResistancePriority="749" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" contentViewInsetsToSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QAN-qd-bh6" userLabel="Comments Table View">
+                                                <rect key="frame" x="16" y="278.5" width="288" height="44"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" id="3Np-Aa-lVL"/>
+                                                    <constraint firstAttribute="height" constant="44" id="W0v-81-I2x"/>
                                                 </constraints>
-                                            </view>
+                                            </tableView>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dZE-L5-SIs" userLabel="Hide View">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="278.5"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
-                                            <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B0e-yR-6At" userLabel="Empty Comments Button">
-                                                <rect key="frame" x="16" y="278.5" width="304" height="44"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="44" id="X1e-I5-bpL"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                <state key="normal" title="No Comments Title">
-                                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="commentsButtonTapped:" destination="EfY-4r-YFi" eventType="touchUpInside" id="cq5-o5-9kE"/>
-                                                </connections>
-                                            </button>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nt5-Bc-nF3" userLabel="Comments Control View">
                                                 <rect key="frame" x="0.0" y="278.5" width="320" height="70"/>
                                                 <subviews>
@@ -460,11 +446,11 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="bie-f8-jaU" firstAttribute="leading" secondItem="fb3-VQ-GlM" secondAttribute="leading" id="05e-4y-gbS"/>
+                                            <constraint firstAttribute="bottom" secondItem="QAN-qd-bh6" secondAttribute="bottom" id="0Eb-t1-6M2"/>
                                             <constraint firstAttribute="trailing" secondItem="hL9-He-JpB" secondAttribute="trailing" id="0NR-rB-Aj5"/>
                                             <constraint firstItem="lwn-iM-8rz" firstAttribute="top" secondItem="Vl1-2x-lVp" secondAttribute="bottom" constant="16" id="0cK-Wq-U7s"/>
                                             <constraint firstItem="h9e-KO-AhW" firstAttribute="leading" secondItem="BtF-Gk-D12" secondAttribute="leading" constant="16" id="24g-ha-yWK"/>
                                             <constraint firstItem="dZE-L5-SIs" firstAttribute="bottom" secondItem="tqm-aY-SVr" secondAttribute="bottom" id="3ia-Ns-xyE"/>
-                                            <constraint firstAttribute="bottom" secondItem="fPl-dp-sjq" secondAttribute="bottom" id="4bF-yH-xNh"/>
                                             <constraint firstItem="tHL-Id-QDj" firstAttribute="top" secondItem="h9e-KO-AhW" secondAttribute="bottom" priority="750" constant="20" id="4nI-Ir-YHS"/>
                                             <constraint firstItem="VyW-ed-xji" firstAttribute="leading" secondItem="BtF-Gk-D12" secondAttribute="leading" id="5gQ-4Z-ReG"/>
                                             <constraint firstAttribute="trailing" secondItem="Vl1-2x-lVp" secondAttribute="trailing" id="7GF-bG-0GC"/>
@@ -473,27 +459,24 @@
                                             <constraint firstItem="tHL-Id-QDj" firstAttribute="leading" secondItem="BtF-Gk-D12" secondAttribute="leading" id="BcU-Z1-Qtf"/>
                                             <constraint firstItem="tqm-aY-SVr" firstAttribute="top" secondItem="hL9-He-JpB" secondAttribute="bottom" id="BrC-7Y-Atz"/>
                                             <constraint firstItem="3Lz-nN-lGc" firstAttribute="centerY" secondItem="hL9-He-JpB" secondAttribute="centerY" id="CQ7-cd-zgK"/>
-                                            <constraint firstItem="B0e-yR-6At" firstAttribute="top" secondItem="tqm-aY-SVr" secondAttribute="bottom" id="CWx-fy-a7E"/>
                                             <constraint firstAttribute="trailing" secondItem="tHL-Id-QDj" secondAttribute="trailing" id="EjG-ui-SBY"/>
-                                            <constraint firstItem="fPl-dp-sjq" firstAttribute="leading" secondItem="BtF-Gk-D12" secondAttribute="leading" constant="16" id="Fh1-eP-UVX"/>
-                                            <constraint firstItem="fPl-dp-sjq" firstAttribute="top" secondItem="nt5-Bc-nF3" secondAttribute="bottom" id="HOv-gG-mnW"/>
                                             <constraint firstItem="AYT-cY-Zsi" firstAttribute="centerY" secondItem="aLP-ZP-yPw" secondAttribute="centerY" id="Hhq-Lo-TK8"/>
                                             <constraint firstItem="hL9-He-JpB" firstAttribute="top" secondItem="tHL-Id-QDj" secondAttribute="bottom" id="IGQ-Cb-Z91"/>
+                                            <constraint firstItem="QAN-qd-bh6" firstAttribute="top" secondItem="tqm-aY-SVr" secondAttribute="bottom" id="IaS-Be-l3l"/>
                                             <constraint firstAttribute="trailing" secondItem="tqm-aY-SVr" secondAttribute="trailing" id="Jgk-6F-7KU"/>
                                             <constraint firstItem="3Lz-nN-lGc" firstAttribute="centerX" secondItem="hL9-He-JpB" secondAttribute="centerX" id="Jph-ba-BfY"/>
                                             <constraint firstItem="VyW-ed-xji" firstAttribute="bottom" secondItem="n52-gC-8Jz" secondAttribute="bottom" id="LFI-wT-ilU"/>
+                                            <constraint firstAttribute="trailing" secondItem="QAN-qd-bh6" secondAttribute="trailing" constant="16" id="NQR-zm-DRu"/>
                                             <constraint firstItem="VyW-ed-xji" firstAttribute="top" secondItem="n52-gC-8Jz" secondAttribute="top" id="Os2-4F-O1G"/>
+                                            <constraint firstItem="QAN-qd-bh6" firstAttribute="leading" secondItem="BtF-Gk-D12" secondAttribute="leading" constant="16" id="PAa-w3-YhY"/>
                                             <constraint firstAttribute="trailing" secondItem="MhK-Vc-x7K" secondAttribute="trailing" constant="120" id="QAV-gt-84U"/>
                                             <constraint firstItem="tqm-aY-SVr" firstAttribute="leading" secondItem="BtF-Gk-D12" secondAttribute="leading" id="RRT-Ii-59C"/>
                                             <constraint firstItem="AYT-cY-Zsi" firstAttribute="leading" secondItem="aLP-ZP-yPw" secondAttribute="leading" constant="-4" id="Ski-b7-KcF"/>
                                             <constraint firstAttribute="trailing" secondItem="lwn-iM-8rz" secondAttribute="trailing" constant="16" id="T9i-xq-yw4"/>
                                             <constraint firstAttribute="trailing" secondItem="zPm-d9-LiX" secondAttribute="trailing" constant="16" id="ZOe-fx-a6L"/>
-                                            <constraint firstAttribute="trailing" secondItem="fPl-dp-sjq" secondAttribute="trailing" constant="16" id="ZYT-jd-SH4"/>
                                             <constraint firstItem="hL9-He-JpB" firstAttribute="leading" secondItem="BtF-Gk-D12" secondAttribute="leading" id="cgt-dp-hh8"/>
-                                            <constraint firstItem="B0e-yR-6At" firstAttribute="leading" secondItem="BtF-Gk-D12" secondAttribute="leading" constant="16" id="dqZ-XY-5CD"/>
                                             <constraint firstItem="MhK-Vc-x7K" firstAttribute="leading" secondItem="BtF-Gk-D12" secondAttribute="leading" constant="16" id="fUC-kO-iPy"/>
                                             <constraint firstItem="zPm-d9-LiX" firstAttribute="leading" secondItem="BtF-Gk-D12" secondAttribute="leading" constant="16" id="gGh-Ki-O6Z"/>
-                                            <constraint firstAttribute="trailing" secondItem="B0e-yR-6At" secondAttribute="trailing" id="khl-l2-EMh"/>
                                             <constraint firstItem="lwn-iM-8rz" firstAttribute="leading" secondItem="BtF-Gk-D12" secondAttribute="leading" constant="16" id="nHj-Vg-MQe"/>
                                             <constraint firstItem="bie-f8-jaU" firstAttribute="centerY" secondItem="fb3-VQ-GlM" secondAttribute="centerY" id="oeX-jg-DRW"/>
                                             <constraint firstItem="MhK-Vc-x7K" firstAttribute="top" secondItem="lwn-iM-8rz" secondAttribute="bottom" id="pJh-g4-f8G"/>
@@ -608,15 +591,12 @@
                         <outlet property="commentsCountLabel" destination="gp2-Gr-TVH" id="jvz-Eh-ACN"/>
                         <outlet property="commentsHideButton" destination="lI5-dI-xCS" id="dWe-7E-fFv"/>
                         <outlet property="commentsSortByButton" destination="bfp-bA-aPN" id="KtW-ld-YVF"/>
+                        <outlet property="commentsTableView" destination="QAN-qd-bh6" id="ucA-zo-NAW"/>
+                        <outlet property="commentsTableViewHeightConstraint" destination="W0v-81-I2x" id="d2Q-ra-E5q"/>
                         <outlet property="commentsTitleLabel" destination="dVT-lc-meT" id="enZ-ZK-Zgo"/>
-                        <outlet property="commentsViewsView" destination="fPl-dp-sjq" id="pD8-0f-dca"/>
-                        <outlet property="commentsViewsViewHeightConstraint" destination="3Np-Aa-lVL" id="6p8-QY-mHD"/>
-                        <outlet property="commentsViewsViewTopConstraint" destination="HOv-gG-mnW" id="ubh-2V-S2H"/>
                         <outlet property="contentView" destination="BtF-Gk-D12" id="nZE-7q-KU1"/>
                         <outlet property="contentViewTopConstraint" destination="qo5-eR-zwm" id="QIl-kX-mrj"/>
                         <outlet property="donateButton" destination="SQB-q3-brD" id="pGH-FJ-UVL"/>
-                        <outlet property="emptyCommentsButton" destination="B0e-yR-6At" id="6ph-gH-QYS"/>
-                        <outlet property="emptyCommentsButtonTopConstraint" destination="CWx-fy-a7E" id="NsB-vv-0XF"/>
                         <outlet property="flauntActivityIndicator" destination="AYT-cY-Zsi" id="kql-Sy-njs"/>
                         <outlet property="flauntButton" destination="aLP-ZP-yPw" id="fNr-aW-I76"/>
                         <outlet property="loadingPostContentActivityIndicator" destination="NB0-PC-C9r" id="AFf-ry-tS6"/>
@@ -693,8 +673,6 @@
                         <outletCollection property="widthsCollection" destination="VPy-H7-8W7" collectionClass="NSMutableArray" id="qZt-Zy-7IM"/>
                         <outletCollection property="widthsCollection" destination="c5A-Bm-dxL" collectionClass="NSMutableArray" id="Wcm-rO-AGq"/>
                         <outletCollection property="heightsCollection" destination="yVe-xd-hGk" collectionClass="NSMutableArray" id="HXK-ob-fWW"/>
-                        <outletCollection property="widthsCollection" destination="dqZ-XY-5CD" collectionClass="NSMutableArray" id="07r-8t-vVT"/>
-                        <outletCollection property="hiddenViewsCollection" destination="B0e-yR-6At" collectionClass="NSMutableArray" id="C8B-X4-e2m"/>
                         <outletCollection property="hiddenViewsCollection" destination="nt5-Bc-nF3" collectionClass="NSMutableArray" id="EwO-3K-R1V"/>
                         <outletCollection property="hiddenViewsCollection" destination="h9e-KO-AhW" collectionClass="NSMutableArray" id="7xT-rh-ff0"/>
                         <outletCollection property="hiddenViewsCollection" destination="tHL-Id-QDj" collectionClass="NSMutableArray" id="hxN-U8-0Ay"/>
@@ -706,6 +684,10 @@
                         <outletCollection property="hiddenViewsCollection" destination="lwn-iM-8rz" collectionClass="NSMutableArray" id="J2U-2U-c8S"/>
                         <outletCollection property="heightsCollection" destination="qo5-eR-zwm" collectionClass="NSMutableArray" id="iz8-EG-isn"/>
                         <outletCollection property="hiddenViewsCollection" destination="a7j-dG-pvN" collectionClass="NSMutableArray" id="8uJ-x9-3XL"/>
+                        <outletCollection property="widthsCollection" destination="NQR-zm-DRu" collectionClass="NSMutableArray" id="Nik-wh-V0w"/>
+                        <outletCollection property="widthsCollection" destination="PAa-w3-YhY" collectionClass="NSMutableArray" id="gOw-qc-bVg"/>
+                        <outletCollection property="hiddenViewsCollection" destination="QAN-qd-bh6" collectionClass="NSMutableArray" id="TSw-CF-6ZI"/>
+                        <outletCollection property="heightsCollection" destination="W0v-81-I2x" collectionClass="NSMutableArray" id="zyd-WY-iVM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CXI-Zv-5XY" userLabel="First Responder" sceneMemberID="firstResponder"/>
