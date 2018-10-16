@@ -110,11 +110,27 @@ class CommentTableViewCell: UITableViewCell, HandlersCellSupport, PostCellActive
     }
     
     
-    // MARK: - Class Functions
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        
-    }
+    // MARK: - Custom Functions
+    func loadData(fromBody body: String, completion: @escaping (CGFloat) -> Void) {
+        // Load markdown content
+        DispatchQueue.main.async {
+            self.markdownViewManager.load(markdown: body)
+            
+            self.markdownViewManager.onRendered = { [weak self] height in
+                let viewHeight = height + 85.0
+                
+                self?.markdownViewHeightConstraint.constant = height
+                self?.frame = CGRect(origin: .zero, size: CGSize(width: self?.frame.width ?? 0.0, height: viewHeight))
+                self?.markdownViewManager.layoutIfNeeded()
+                ///                self?.contentView.layoutIfNeeded()
+
+                UIView.animate(withDuration: 0.5, animations: {
+                    self?.contentView.alpha = 1.0
+                    completion(viewHeight)
+                })
+            }
+        }
+    }    
 
 
     // MARK: - Actions
@@ -156,26 +172,6 @@ class CommentTableViewCell: UITableViewCell, HandlersCellSupport, PostCellActive
 
 // MARK: - ConfigureCell implementation
 extension CommentTableViewCell: ConfigureCell {
-    func loadData(fromBody body: String, completion: @escaping (CGFloat) -> Void) {
-        // Load markdown content
-        DispatchQueue.main.async {
-            self.markdownViewManager.load(markdown: body)
-            
-            self.markdownViewManager.onRendered = { [weak self] height in
-                let viewHeight = height + 85.0
-                
-                self?.markdownViewHeightConstraint.constant = height
-                self?.frame = CGRect(origin: .zero, size: CGSize(width: self?.frame.width ?? 0.0, height: viewHeight))
-                self?.layoutIfNeeded()
-                
-                UIView.animate(withDuration: 0.5, animations: {
-                    self?.contentView.alpha = 1.0
-                    completion(viewHeight)
-                })
-            }
-        }
-    }
-    
     func setup(withItem item: Any?, andIndexPath indexPath: IndexPath) {
         guard let comment = item as? Comment else {
             return
@@ -226,6 +222,6 @@ extension CommentTableViewCell: ConfigureCell {
         
         // Set cell level
         self.leadingConstraint.constant = (self.level == 1 ? 52.0 : 2.0) * widthRatio
-        self.markdownViewManager.layoutIfNeeded()
+//        self.markdownViewManager.layoutIfNeeded()
     }
 }

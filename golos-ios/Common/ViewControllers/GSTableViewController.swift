@@ -38,11 +38,11 @@ class GSTableViewController: GSBaseViewController, HandlersCellSupport {
         }
     }
 
-    var commentsViewHeight: CGFloat = 0.0 {
-        didSet {
-            self.postsTableView.frame.size = CGSize(width: self.postsTableView.bounds.width, height: self.postsTableView.frame.height + commentsViewHeight)
-        }
-    }
+//    var commentsViewHeight: CGFloat = 0.0 {
+//        didSet {
+//            self.postsTableView.frame.size = CGSize(width: self.postsTableView.bounds.width, height: self.postsTableView.frame.height + commentsViewHeight)
+//        }
+//    }
     
     var refreshData: Bool       =   false
     var infiniteScrollingData   =   false

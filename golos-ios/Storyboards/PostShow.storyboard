@@ -22,13 +22,13 @@
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                                 <subviews>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BtF-Gk-D12" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="52" width="320" height="322.5"/>
+                                        <rect key="frame" x="0.0" y="52" width="320" height="348.5"/>
                                         <subviews>
-                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="249" verticalCompressionResistancePriority="749" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" contentViewInsetsToSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QAN-qd-bh6" userLabel="Comments Table View">
-                                                <rect key="frame" x="16" y="278.5" width="288" height="44"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QAN-qd-bh6" userLabel="Comments Table View">
+                                                <rect key="frame" x="16" y="348.5" width="288" height="0.0"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="44" id="W0v-81-I2x"/>
+                                                    <constraint firstAttribute="height" priority="750" id="W0v-81-I2x"/>
                                                 </constraints>
                                             </tableView>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dZE-L5-SIs" userLabel="Hide View">
@@ -462,7 +462,7 @@
                                             <constraint firstAttribute="trailing" secondItem="tHL-Id-QDj" secondAttribute="trailing" id="EjG-ui-SBY"/>
                                             <constraint firstItem="AYT-cY-Zsi" firstAttribute="centerY" secondItem="aLP-ZP-yPw" secondAttribute="centerY" id="Hhq-Lo-TK8"/>
                                             <constraint firstItem="hL9-He-JpB" firstAttribute="top" secondItem="tHL-Id-QDj" secondAttribute="bottom" id="IGQ-Cb-Z91"/>
-                                            <constraint firstItem="QAN-qd-bh6" firstAttribute="top" secondItem="tqm-aY-SVr" secondAttribute="bottom" id="IaS-Be-l3l"/>
+                                            <constraint firstItem="QAN-qd-bh6" firstAttribute="top" secondItem="nt5-Bc-nF3" secondAttribute="bottom" id="IaS-Be-l3l"/>
                                             <constraint firstAttribute="trailing" secondItem="tqm-aY-SVr" secondAttribute="trailing" id="Jgk-6F-7KU"/>
                                             <constraint firstItem="3Lz-nN-lGc" firstAttribute="centerX" secondItem="hL9-He-JpB" secondAttribute="centerX" id="Jph-ba-BfY"/>
                                             <constraint firstItem="VyW-ed-xji" firstAttribute="bottom" secondItem="n52-gC-8Jz" secondAttribute="bottom" id="LFI-wT-ilU"/>
@@ -593,6 +593,7 @@
                         <outlet property="commentsSortByButton" destination="bfp-bA-aPN" id="KtW-ld-YVF"/>
                         <outlet property="commentsTableView" destination="QAN-qd-bh6" id="ucA-zo-NAW"/>
                         <outlet property="commentsTableViewHeightConstraint" destination="W0v-81-I2x" id="d2Q-ra-E5q"/>
+                        <outlet property="commentsTableViewTopConstraint" destination="IaS-Be-l3l" id="Qhi-jh-gAt"/>
                         <outlet property="commentsTitleLabel" destination="dVT-lc-meT" id="enZ-ZK-Zgo"/>
                         <outlet property="contentView" destination="BtF-Gk-D12" id="nZE-7q-KU1"/>
                         <outlet property="contentViewTopConstraint" destination="qo5-eR-zwm" id="QIl-kX-mrj"/>

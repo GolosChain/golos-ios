@@ -1,5 +1,5 @@
 //
-//  CommentHeaderView.swift
+//  EmptyCommentTableViewCell.swift
 //  Golos
 //
 //  Created by msm72 on 10/15/18.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CommentHeaderView: UITableViewHeaderFooterView {
+class EmptyCommentTableViewCell: UITableViewCell {
     // MARK: - Properties
     var handlerCreateCommentButtonTapped: (() -> Void)?
     
@@ -22,6 +22,12 @@ class CommentHeaderView: UITableViewHeaderFooterView {
                                           alignment:    .left)
             
             self.contentView.tune()
+        }
+    }
+    
+    @IBOutlet var heightsCollection: [NSLayoutConstraint]! {
+        didSet {
+            self.heightsCollection.forEach({ $0.constant *= heightRatio })
         }
     }
     
