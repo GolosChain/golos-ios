@@ -57,9 +57,8 @@ class ScannerShowViewController: GSBaseViewController {
         super.viewDidLoad()
         
         // Navigation Bar
-        title                               =   "QR сканер".localized()
-        self.navigationController?.navigationBar.isTranslucent = true
-        
+        title = "QR сканер".localized()
+
         self.loadViewSettings()
     }
     
@@ -90,8 +89,13 @@ class ScannerShowViewController: GSBaseViewController {
     
     // MARK: - Custom Functions
     private func loadViewSettings() {
-        view.backgroundColor    =   UIColor.black
+        self.navigationController?.navigationBar.isTranslucent          =   true
+        self.navigationController?.navigationBar.titleTextAttributes    =   [NSAttributedString.Key.foregroundColor: UIColor.white]
+
+        UIApplication.shared.statusBarStyle = .lightContent
+
         captureSession          =   AVCaptureSession()
+        view.backgroundColor    =   UIColor.black
         
         guard let videoCaptureDevice = AVCaptureDevice.default(for: .video) else { return }
         let videoInput: AVCaptureDeviceInput
@@ -151,7 +155,7 @@ class ScannerShowViewController: GSBaseViewController {
         }
             
         else {
-            self.showAlertView(withTitle: "Error", andMessage: "Scanner Key Code error", needCancel: false, completion: { [weak self] _ in
+            self.showAlertView(withTitle: "Error", andMessage: "Error Scan Key Code", needCancel: false, completion: { [weak self] _ in
                 self?.captureSession.startRunning()
             })
         }

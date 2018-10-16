@@ -204,7 +204,6 @@
 "Create Post Title Hint"                    =   "Enter an interesting title";
 "Post Text Body Hint"                       =   "Enter message text";
 "Scanner device error"                      =   "Your device does not support scanning a code from an item. Please use a device with a camera.";
-"Scanner Key Code error"                    =   "The code of the scanned key\n must begin with 5 or 1";
 "CoreData saved error"                      =   "There was an error creating or loading the application's saved data";
 "CoreData init error"                       =   "Failed to initialize the application's saved data";
 "Login error"                               =   "Wrong login or password. Try entering again";
@@ -223,6 +222,9 @@
 "Missing Posting Authority"                 =   "Missing Posting Authority";
 "Error Comment 20 seconds"                  =   "You may only comment once every 20 seconds";
 "Error Post 5 minutes"                      =   "You may only post once every 5 minutes";
+"Error Copy Key Code"                       =   "The code of the copied key\nmust start with 5 or 1";
+"Erro Scan Key Code"                        =   "The code of the scanned key\n must begin with 5 or 1";
+
 
 // Segmented controls
 "Лента"                                     =   "Lenta";

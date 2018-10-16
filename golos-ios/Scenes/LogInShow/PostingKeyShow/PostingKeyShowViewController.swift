@@ -152,7 +152,12 @@ extension PostingKeyShowViewController: UITextFieldDelegate {
         self.handlerReturnComletion!(self.textFieldsCollection)
         
         if textField == postingKeyTextField, let text = textField.text, text.count == 0 {
-            return (string == "1" || string == "5" || string.hasPrefix("1") || string.hasPrefix("5")) ? true : false
+            guard string == "1" || string == "5" || string.hasPrefix("1") || string.hasPrefix("5") else {
+                self.showAlertView(withTitle: "Error", andMessage: "Error Copy Key Code", needCancel: false, completion: { success in })
+                return false
+            }
+            
+            return true
         }
         
         return true
