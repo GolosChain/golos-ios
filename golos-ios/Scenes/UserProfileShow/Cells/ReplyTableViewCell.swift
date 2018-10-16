@@ -262,9 +262,10 @@ extension ReplyTableViewCell: ConfigureCell {
             }
         })
         
-        self.timeLabel.text = reply.created.convertToDaysAgo()
-        self.replyTextLabel.text = reply.body
-        
+        self.timeLabel.text         =   reply.created.convertToDaysAgo()
+        self.replyTextLabel.text    =   reply.body
+        self.authorTitleLabel.text  =   "Answered your".localized()
+
         selectionStyle = .none
 
         self.setReplyType(reply)

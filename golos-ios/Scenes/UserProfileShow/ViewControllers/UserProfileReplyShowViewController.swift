@@ -44,6 +44,16 @@ class UserProfileReplyShowViewController: GSTableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        // Reload only visible cells
+        guard self.replyTableView.visibleCells.count > 0 else {
+            return
+        }
+        
+        self.replyTableView.beginUpdates()
+        self.replyTableView.reloadRows(at: self.replyTableView.indexPathsForVisibleRows!, with: .automatic)
+        self.replyTableView.endUpdates()
+
     }
     
     override func viewWillDisappear(_ animated: Bool) {

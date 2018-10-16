@@ -31,7 +31,7 @@ class UserProfileHeaderView: PassthroughView {
     
     @IBOutlet private weak var nameLabel: UILabel! {
         didSet {
-            nameLabel.tune(withText:        "",
+            nameLabel.tune(withText:        "        ",
                            hexColors:       blackWhiteColorPickers,
                            font:            UIFont(name: "SFProDisplay-Regular", size: 18.0),
                            alignment:       .left,
@@ -39,11 +39,15 @@ class UserProfileHeaderView: PassthroughView {
         }
     }
     
-    @IBOutlet weak var whiteStatusBarView: UIView!
+    @IBOutlet private weak var voicePowerImageView: UIImageView! {
+        didSet {
+            self.voicePowerImageView.image = nil
+        }
+    }
 
+    @IBOutlet weak var whiteStatusBarView: UIView!
     @IBOutlet private weak var voicePowerLabel: UILabel!
     @IBOutlet private weak var reputationLabel: UILabel!
-    @IBOutlet private weak var voicePowerImageView: UIImageView!
     @IBOutlet private weak var reputationImageView: UIImageView!
     @IBOutlet private weak var activityView: UIActivityIndicatorView!
 

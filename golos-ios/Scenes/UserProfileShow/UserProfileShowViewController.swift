@@ -31,11 +31,11 @@ protocol UserProfileShowDisplayLogic: class {
 
 class UserProfileShowViewController: GSBaseViewController, ContainerViewSupport {
     // MARK: - Properties
-    var sceneMode: UserProfileSceneMode         =   .edit
+    var sceneMode: UserProfileSceneMode =   .edit
     
     var selectedButton: UIButton!
-    let postFeedTypes: [PostsFeedType]          =   [ .blog, .reply ]
-    var settingsShow: Bool                      =   false
+    let postFeedTypes: [PostsFeedType]  =   [ .blog, .reply ]
+    var settingsShow: Bool              =   false
     
     var interactor: UserProfileShowBusinessLogic?
     var router: (NSObjectProtocol & UserProfileShowRoutingLogic & UserProfileShowDataPassing)?
@@ -44,6 +44,7 @@ class UserProfileShowViewController: GSBaseViewController, ContainerViewSupport 
     // MARK: - IBOutlets
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var blogButton: UIButton!
+    @IBOutlet weak var segmentedControlView: UIView!
     @IBOutlet weak var buttonsStackView: UIStackView!
     @IBOutlet weak var lineViewLeadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var contentViewWidthConstraint: NSLayoutConstraint!
@@ -132,8 +133,6 @@ class UserProfileShowViewController: GSBaseViewController, ContainerViewSupport 
         }
     }
     
-    @IBOutlet weak var segmentedControlView: UIView!
-
     @IBOutlet weak var walletBalanceView: UIView! {
         didSet {
             walletBalanceView.isHidden = true
@@ -159,10 +158,6 @@ class UserProfileShowViewController: GSBaseViewController, ContainerViewSupport 
         }
     }
     
-    @IBOutlet weak var userProfileInfoControlViewTopConstraint: NSLayoutConstraint!
-    @IBOutlet weak var userProfileInfoTitleViewTopConstraint: NSLayoutConstraint!
-    @IBOutlet weak var userProfileInfoTitleViewHeightConstraint: NSLayoutConstraint!
-    
     @IBOutlet var heightsCollection: [NSLayoutConstraint]! {
         didSet {
             self.heightsCollection.forEach({ $0.constant *= heightRatio })
@@ -175,7 +170,10 @@ class UserProfileShowViewController: GSBaseViewController, ContainerViewSupport 
         }
     }
     
+    @IBOutlet weak var userProfileInfoControlViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var userProfileInfoTitleViewHeightConstraint: NSLayoutConstraint!
     
+
     // MARK: - Class Initialization
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -191,8 +189,6 @@ class UserProfileShowViewController: GSBaseViewController, ContainerViewSupport 
 
     deinit {
         Logger.log(message: "Success", event: .severe)
-        
-        NotificationCenter.default.removeObserver(self)
     }
 
     
@@ -232,7 +228,11 @@ class UserProfileShowViewController: GSBaseViewController, ContainerViewSupport 
         self.containerView.mainVC = self
         self.containerView.setActiveViewController(index: 0)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(localizeTitles), name: NSNotification.Name(LCLLanguageChangeNotification), object: nil)
+        // Load User info
+        self.loadUserInfo()
+        
+        // Load User details
+        self.loadUserDetails(byCondition: (isRefreshData: true, isInfiniteScrolling: false))
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -242,12 +242,6 @@ class UserProfileShowViewController: GSBaseViewController, ContainerViewSupport 
         self.settingsShow = false
         
         UIApplication.shared.statusBarStyle     =   User.fetch(byNickName: self.router!.dataStore!.userNickName ?? "")?.coverImageURL == nil ? .default : (scrollView.parallaxHeader.progress == 0.0 ? .default : .lightContent)
-
-        // Load User info
-        self.loadUserInfo()
-
-        // Load User details
-        self.loadUserDetails(byCondition: (isRefreshData: true, isInfiniteScrolling: false))
 
         self.localizeTitles()
     }
@@ -265,8 +259,8 @@ class UserProfileShowViewController: GSBaseViewController, ContainerViewSupport 
         // Wallet Balance View show/hide
         if !walletBalanceView.isHidden {
             view.bringSubviewToFront(walletBalanceView)
-            walletBalanceViewTopConstraint.constant                 =   0.0
-            userProfileInfoControlViewTopConstraint.constant        =   10.0
+            walletBalanceViewTopConstraint.constant             =   0.0
+            userProfileInfoControlViewTopConstraint.constant    =   10.0
             walletBalanceView.add(shadow: true, onside: .bottom)
         }
         
@@ -321,21 +315,6 @@ class UserProfileShowViewController: GSBaseViewController, ContainerViewSupport 
         }
     }
     
-    override func localizeTitles() {
-        self.buttonsCollection.forEach({ $0.setTitle($0.titleLabel!.text!.localized(), for: .normal) })
-        self.buttonsStackView.layoutIfNeeded()
-        
-        // TODO: - RECOMMENT FOR ALL SEGMENTED TITLES!!!
-        // Set UIStackView spacing
-//        if self.buttonsStackView.frame.width < UIScreen.main.bounds.width {
-//            self.buttonsStackView.spacing               +=  (UIScreen.main.bounds.width - self.buttonsStackView.frame.width) / 6
-//            self.lineViewLeadingConstraint.constant     =   self.buttonsStackView.spacing
-//        }
-        
-        self.selectedButton = self.buttonsStackView.arrangedSubviews.filter({ $0.isHidden == false })[self.selectedButton.tag + 1] as? UIButton
-        self.userProfileInfoTitleView.labelsCollection.forEach({ $0.text = $0.accessibilityIdentifier!.localized() })
-    }
-    
     
     // MARK: - Actions
     @IBAction func buttonTapped(_ sender: UIButton) {
@@ -355,6 +334,21 @@ class UserProfileShowViewController: GSBaseViewController, ContainerViewSupport 
         }
         
         self.scrollHorizontalTo(sender: sender)
+    }
+    
+    override func localizeTitles() {
+        self.buttonsCollection.forEach({ $0.setTitle($0.titleLabel!.text!.localized(), for: .normal) })
+        self.buttonsStackView.layoutIfNeeded()
+        
+        // TODO: - RECOMMENT FOR ALL SEGMENTED TITLES!!!
+        // Set UIStackView spacing
+        //        if self.buttonsStackView.frame.width < UIScreen.main.bounds.width {
+        //            self.buttonsStackView.spacing               +=  (UIScreen.main.bounds.width - self.buttonsStackView.frame.width) / 6
+        //            self.lineViewLeadingConstraint.constant     =   self.buttonsStackView.spacing
+        //        }
+        
+        self.selectedButton = self.buttonsStackView.arrangedSubviews.filter({ $0.isHidden == false })[self.selectedButton.tag + 1] as? UIButton
+        self.userProfileInfoTitleView.labelsCollection.forEach({ $0.text = $0.accessibilityIdentifier!.localized() })
     }
 }
 

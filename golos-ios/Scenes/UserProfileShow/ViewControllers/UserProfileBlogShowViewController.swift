@@ -43,6 +43,15 @@ class UserProfileBlogShowViewController: GSTableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        // Reload only visible cells
+        guard self.blogTableView.visibleCells.count > 0 else {
+            return
+        }
+        
+        self.blogTableView.beginUpdates()
+        self.blogTableView.reloadRows(at: self.blogTableView.indexPathsForVisibleRows!, with: .automatic)
+        self.blogTableView.endUpdates()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
