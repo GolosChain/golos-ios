@@ -60,8 +60,11 @@ class LogInShowViewController: GSBaseViewController {
     
     @IBOutlet weak var changeKeyTypeButton: UIButton! {
         didSet {
-            changeKeyTypeButton.theme_setTitleColor(veryDarkGrayWhiteColorPickers, forState: .normal)
-            changeKeyTypeButton.titleLabel?.font = UIFont(name: "SFProDisplay-Regular", size: 14.0)
+            self.changeKeyTypeButton.theme_setTitleColor(veryDarkGrayWhiteColorPickers, forState: .normal)
+            self.changeKeyTypeButton.titleLabel?.font = UIFont(name: "SFProDisplay-Regular", size: 14.0)
+            
+            // FIXME: - SET FALSE IN BETA-VERSION
+            self.changeKeyTypeButton.isHidden = true
         }
     }
 
@@ -191,6 +194,8 @@ class LogInShowViewController: GSBaseViewController {
     
     // MARK: - Actions
     @IBAction func changeKeyTypePressed(_ sender: Any) {
+        // FIXME: - RE-COMMENT IN BETA VERSION
+        /*
         switch self.activeViewController {
         case is ActiveKeyShowViewController:
             self.router?.routeToPostingKeyScene()
@@ -198,6 +203,7 @@ class LogInShowViewController: GSBaseViewController {
         default:
             self.router?.routeToActiveKeyScene()
         }
+         */
     }
 
     @IBAction func enterButtonPressed(_ sender: Any) {
