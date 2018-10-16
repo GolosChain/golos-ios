@@ -20,14 +20,14 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x0K-7b-ZlY" customClass="PostFeedHeaderView" customModule="Golos" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="372" height="51"/>
+                        <rect key="frame" x="0.0" y="0.0" width="372" height="52"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="51" identifier="postFeedHeaderViewHeightConstraint" id="dwe-r9-QvL"/>
+                            <constraint firstAttribute="height" constant="52" identifier="postFeedHeaderViewHeightConstraint" id="dwe-r9-QvL"/>
                         </constraints>
                     </view>
                     <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalCompressionResistancePriority="1000" text="" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VKV-nZ-kLa" userLabel="Title Label">
-                        <rect key="frame" x="16" y="61" width="340" height="41.5"/>
+                        <rect key="frame" x="16" y="62" width="340" height="40.5"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <nil key="textColor"/>

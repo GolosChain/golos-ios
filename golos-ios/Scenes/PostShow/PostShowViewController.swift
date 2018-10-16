@@ -39,7 +39,7 @@ class PostShowViewController: GSBaseViewController {
     var paginationSection = 1
     let paginationOffset = 4
 
-    var gsTimer: GSTimer?
+    weak var gsTimer: GSTimer?
 
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -653,6 +653,23 @@ class PostShowViewController: GSBaseViewController {
         Logger.log(message: "Success", event: .severe)
 
         if let displayedPost = self.router?.dataStore?.displayedPost {
+            self.markdownViewManager.load(markdown: Parser.repair(body: displayedPost.body))
+
+            self.markdownViewManager.onRendered = { [weak self] height in
+                self?.markdownViewHeightConstraint.constant = height
+                
+                UIView.animate(withDuration: 0.5, animations: {
+                    self?.hiddenViewsCollection.forEach({ $0.alpha = 1.0 })
+                })
+                
+                self?.gsTimer?.stop()
+                
+                // Load comments
+                if !withoutComments {
+                    self?.loadPostComments()
+                }
+            }
+
             self.titleLabel.text                =   displayedPost.title
             self.flauntButton.isEnabled         =   true
             self.activeVoteButton.isEnabled     =   true
@@ -666,23 +683,6 @@ class PostShowViewController: GSBaseViewController {
             
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
                 self.tagsCollectionView.reloadData()
-                self.markdownViewManager.load(markdown: displayedPost.body)
-            }
-            
-            // Load markdown content
-            self.markdownViewManager.onRendered = { [weak self] height in
-                self?.markdownViewHeightConstraint.constant = height
-                
-                UIView.animate(withDuration: 0.5, animations: {
-                    self?.hiddenViewsCollection.forEach({ $0.alpha = 1.0 })
-                })
-                
-                self?.gsTimer?.stop()
-
-                // Load comments
-                if !withoutComments {
-                    self?.loadPostComments()
-                }
             }
             
             // Set Active Votes icon
@@ -1446,8 +1446,9 @@ extension PostShowViewController: UITableViewDataSource {
             commentTableViewCell!.setup(withItem: comment, andIndexPath: indexPath)
 
             commentTableViewCell!.loadData(fromBody: comment.body, completion: { [weak self] height in
+                commentTableViewCell?.frame.origin = CGPoint(x: 0.0, y: (self?.commentsTableViewHeightConstraint.constant)!)
                 self?.commentsTableViewHeightConstraint.constant += height
-
+                
                 if self?.comments![indexPath.section]!.count == indexPath.row + 1 {
                     self?.contentView.layoutIfNeeded()
                     self?.didCommentsControlView(hided: false)
@@ -1465,6 +1466,11 @@ extension PostShowViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {}
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        guard self.comments != nil else {
+            return 44.0 * heightRatio
+        }
+        
+        // CommentTableViewCell
         return UITableView.automaticDimension
     }
 }

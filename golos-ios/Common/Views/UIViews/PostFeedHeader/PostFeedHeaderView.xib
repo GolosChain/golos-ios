@@ -37,11 +37,12 @@
                 <outletCollection property="widthsCollection" destination="3kW-1H-NpI" collectionClass="NSMutableArray" id="kl3-mN-XG5"/>
                 <outletCollection property="circleViewsCollection" destination="Ggt-Mp-ead" collectionClass="NSMutableArray" id="Vrv-BR-WBc"/>
                 <outletCollection property="circleViewsCollection" destination="Nz4-9G-SQv" collectionClass="NSMutableArray" id="VQs-Wf-yxX"/>
+                <outletCollection property="heightsCollection" destination="OhR-TD-FWv" collectionClass="NSMutableArray" id="e6q-yb-WId"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clipsSubviews="YES" contentMode="scaleToFill" id="iN0-l3-epB" userLabel="Content View">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="51"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="52"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-user-profile-image-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="CDW-mc-LZt" userLabel="Author Profile Image View">
@@ -80,7 +81,7 @@
                     </constraints>
                 </view>
                 <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uIf-55-Ixe" userLabel="Author Profile Button">
-                    <rect key="frame" x="0.0" y="0.0" width="44" height="51"/>
+                    <rect key="frame" x="0.0" y="0.0" width="44" height="52"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <connections>
                         <action selector="authorProfileButtonTapped:" destination="-1" eventType="touchUpInside" id="knC-GP-H5p"/>
@@ -170,19 +171,20 @@
             <constraints>
                 <constraint firstItem="8pZ-cO-uTP" firstAttribute="top" secondItem="CDW-mc-LZt" secondAttribute="top" id="2p0-9r-ivT"/>
                 <constraint firstItem="aki-nt-sGv" firstAttribute="centerY" secondItem="Obg-ts-apO" secondAttribute="centerY" id="A5S-mS-HtO"/>
-                <constraint firstItem="AQ6-r5-F3T" firstAttribute="trailing" secondItem="e3S-GM-Rrf" secondAttribute="trailing" constant="16" id="AoY-nX-FfD"/>
+                <constraint firstAttribute="trailing" secondItem="e3S-GM-Rrf" secondAttribute="trailing" constant="16" id="AoY-nX-FfD"/>
                 <constraint firstItem="Nz4-9G-SQv" firstAttribute="leading" secondItem="CDW-mc-LZt" secondAttribute="leading" id="Egw-E1-o64"/>
-                <constraint firstItem="uIf-55-Ixe" firstAttribute="top" secondItem="AQ6-r5-F3T" secondAttribute="top" id="GUQ-LY-VRV"/>
+                <constraint firstItem="uIf-55-Ixe" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="GUQ-LY-VRV"/>
+                <constraint firstAttribute="bottom" secondItem="CDW-mc-LZt" secondAttribute="bottom" constant="11" id="OhR-TD-FWv"/>
                 <constraint firstItem="aki-nt-sGv" firstAttribute="leading" secondItem="Obg-ts-apO" secondAttribute="trailing" constant="5" id="Qcx-gm-OWA"/>
                 <constraint firstItem="Nz4-9G-SQv" firstAttribute="bottom" secondItem="CDW-mc-LZt" secondAttribute="bottom" id="ScJ-qY-QeZ"/>
                 <constraint firstItem="uIf-55-Ixe" firstAttribute="bottom" secondItem="iN0-l3-epB" secondAttribute="bottom" id="X8Z-O8-MrJ"/>
                 <constraint firstItem="KYh-S4-SUA" firstAttribute="leading" secondItem="8pZ-cO-uTP" secondAttribute="leading" id="aG4-za-FfW"/>
                 <constraint firstItem="uIf-55-Ixe" firstAttribute="trailing" secondItem="CDW-mc-LZt" secondAttribute="trailing" id="cgL-3V-6EF"/>
-                <constraint firstItem="e3S-GM-Rrf" firstAttribute="top" secondItem="AQ6-r5-F3T" secondAttribute="top" constant="28" identifier="timeLabelTopConstraint" id="dvi-YH-ORh"/>
+                <constraint firstItem="e3S-GM-Rrf" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="28" identifier="timeLabelTopConstraint" id="dvi-YH-ORh"/>
                 <constraint firstItem="KYh-S4-SUA" firstAttribute="top" secondItem="8pZ-cO-uTP" secondAttribute="bottom" constant="1" id="f4R-Es-p0l"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="aki-nt-sGv" secondAttribute="trailing" constant="16" id="gD9-iS-laO"/>
-                <constraint firstItem="CDW-mc-LZt" firstAttribute="leading" secondItem="AQ6-r5-F3T" secondAttribute="leading" constant="14" id="jVC-uP-2eK"/>
-                <constraint firstItem="CDW-mc-LZt" firstAttribute="top" secondItem="AQ6-r5-F3T" secondAttribute="top" constant="11" id="jwy-c4-VdV"/>
+                <constraint firstItem="CDW-mc-LZt" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="14" id="jVC-uP-2eK"/>
+                <constraint firstItem="CDW-mc-LZt" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="11" id="jwy-c4-VdV"/>
                 <constraint firstItem="8pZ-cO-uTP" firstAttribute="leading" secondItem="CDW-mc-LZt" secondAttribute="trailing" constant="8" id="k4Z-cE-nic"/>
                 <constraint firstItem="uIf-55-Ixe" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="kgZ-y0-q3t"/>
                 <constraint firstItem="Obg-ts-apO" firstAttribute="centerY" secondItem="8pZ-cO-uTP" secondAttribute="centerY" id="owM-U3-ual"/>

@@ -12,7 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="CommentTableViewCell" rowHeight="85" id="KGk-i7-Jjw" customClass="CommentTableViewCell" customModule="Golos" customModuleProvider="target">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="CommentTableViewCell" id="KGk-i7-Jjw" customClass="CommentTableViewCell" customModule="Golos" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="85"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
@@ -163,6 +163,7 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstAttribute="height" constant="44.5" id="0z6-Nx-1N5"/>
                             <constraint firstItem="xxl-dy-MTo" firstAttribute="leading" secondItem="oZR-kf-aQN" secondAttribute="leading" id="AvS-nQ-IsA"/>
                             <constraint firstItem="xxl-dy-MTo" firstAttribute="top" secondItem="oZR-kf-aQN" secondAttribute="top" id="NZw-8B-VzB"/>
                             <constraint firstAttribute="trailing" secondItem="xxl-dy-MTo" secondAttribute="trailing" id="Px6-Tv-8eW"/>
@@ -210,7 +211,7 @@
                 <outlet property="authorProfileImageView" destination="kYz-MJ-mvr" id="317-M6-cqH"/>
                 <outlet property="commentsButton" destination="ady-45-jkM" id="pg0-xQ-0O0"/>
                 <outlet property="leadingConstraint" destination="8jj-HM-nHI" id="Z7s-pv-b8c"/>
-                <outlet property="markdownViewHeightConstraint" destination="XsJ-w7-Hig" id="5E4-qi-6Y6"/>
+                <outlet property="markdownViewHeightConstraint" destination="XsJ-w7-Hig" id="idZ-NV-UTz"/>
                 <outlet property="markdownViewManager" destination="KTQ-RT-Y29" id="iAN-KI-5xC"/>
                 <outlet property="replyButton" destination="tZa-nd-lcu" id="nvb-to-Dqe"/>
                 <outlet property="timeLabel" destination="jJe-Mc-eUw" id="ERI-wJ-2ti"/>
@@ -228,6 +229,8 @@
                 <outletCollection property="widthsCollection" destination="y3Q-w0-txg" collectionClass="NSMutableArray" id="29a-T8-cUO"/>
                 <outletCollection property="widthsCollection" destination="ROb-NZ-65M" collectionClass="NSMutableArray" id="cNI-aq-iam"/>
                 <outletCollection property="heightsCollection" destination="4bH-Ah-AGN" collectionClass="NSMutableArray" id="8QU-zq-kfz"/>
+                <outletCollection property="heightsCollection" destination="spP-87-G3K" collectionClass="NSMutableArray" id="xI4-b5-2IG"/>
+                <outletCollection property="heightsCollection" destination="0z6-Nx-1N5" collectionClass="NSMutableArray" id="oo9-cq-i9M"/>
             </connections>
         </tableViewCell>
     </objects>

@@ -506,10 +506,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                                 <subviews>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a7j-dG-pvN" customClass="PostFeedHeaderView" customModule="Golos" customModuleProvider="target">
-                                        <rect key="frame" x="28" y="20" width="292" height="44"/>
+                                        <rect key="frame" x="28" y="14" width="292" height="52"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="44" identifier="postFeedHeaderViewHeightConstraint" id="qu2-Ft-Su1"/>
+                                            <constraint firstAttribute="height" constant="52" identifier="postFeedHeaderViewHeightConstraint" id="qu2-Ft-Su1"/>
                                         </constraints>
                                     </view>
                                     <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Udv-hI-u2X" userLabel="Back Button">
@@ -530,7 +530,7 @@
                                     <constraint firstItem="a7j-dG-pvN" firstAttribute="leading" secondItem="Udv-hI-u2X" secondAttribute="trailing" constant="-16" identifier="postFeedHeaderViewLeadingConstraint" id="754-es-Dtx"/>
                                     <constraint firstAttribute="trailing" secondItem="a7j-dG-pvN" secondAttribute="trailing" id="IEX-07-NWV"/>
                                     <constraint firstItem="Udv-hI-u2X" firstAttribute="leading" secondItem="7Js-bQ-ZpY" secondAttribute="leading" id="JJv-Ok-ROH"/>
-                                    <constraint firstAttribute="bottom" secondItem="a7j-dG-pvN" secondAttribute="bottom" id="Ofo-RB-VxT"/>
+                                    <constraint firstAttribute="bottom" secondItem="a7j-dG-pvN" secondAttribute="bottom" constant="-2" id="Ofo-RB-VxT"/>
                                     <constraint firstAttribute="height" constant="64" id="p07-Sd-p3F"/>
                                     <constraint firstAttribute="bottom" secondItem="Udv-hI-u2X" secondAttribute="bottom" constant="3" id="vNH-xC-FkJ"/>
                                 </constraints>
@@ -689,6 +689,7 @@
                         <outletCollection property="widthsCollection" destination="PAa-w3-YhY" collectionClass="NSMutableArray" id="gOw-qc-bVg"/>
                         <outletCollection property="hiddenViewsCollection" destination="QAN-qd-bh6" collectionClass="NSMutableArray" id="TSw-CF-6ZI"/>
                         <outletCollection property="heightsCollection" destination="W0v-81-I2x" collectionClass="NSMutableArray" id="zyd-WY-iVM"/>
+                        <outletCollection property="heightsCollection" destination="Ofo-RB-VxT" collectionClass="NSMutableArray" id="yuC-Z1-o95"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CXI-Zv-5XY" userLabel="First Responder" sceneMemberID="firstResponder"/>

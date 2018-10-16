@@ -82,4 +82,12 @@ class Parser {
         
         return newString
     }
+    
+    static func repair(body: String) -> String {
+        if body.contains("//pp.userapi.com") {
+            return body.replacingOccurrences(of: "//pp.userapi.com", with: "//imgp.golos.io/0x0/https://pp.userapi.com")
+        }
+        
+        return body
+    }
 }

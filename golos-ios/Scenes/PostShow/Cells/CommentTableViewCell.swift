@@ -45,6 +45,8 @@ class CommentTableViewCell: UITableViewCell, HandlersCellSupport, PostCellActive
                                      hexColors:         [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
                                      font:              UIFont(name: "SFProDisplay-Medium", size: 10.0),
                                      alignment:         .left)
+            
+            self.contentView.tune()
         }
     }
     
@@ -121,8 +123,7 @@ class CommentTableViewCell: UITableViewCell, HandlersCellSupport, PostCellActive
                 
                 self?.markdownViewHeightConstraint.constant = height
                 self?.frame = CGRect(origin: .zero, size: CGSize(width: self?.frame.width ?? 0.0, height: viewHeight))
-                self?.markdownViewManager.layoutIfNeeded()
-                ///                self?.contentView.layoutIfNeeded()
+                self?.contentView.layoutIfNeeded()
 
                 UIView.animate(withDuration: 0.5, animations: {
                     self?.contentView.alpha = 1.0
@@ -222,6 +223,6 @@ extension CommentTableViewCell: ConfigureCell {
         
         // Set cell level
         self.leadingConstraint.constant = (self.level == 1 ? 52.0 : 2.0) * widthRatio
-//        self.markdownViewManager.layoutIfNeeded()
+        self.markdownViewManager.layoutIfNeeded()
     }
 }
