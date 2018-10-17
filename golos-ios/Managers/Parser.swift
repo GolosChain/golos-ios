@@ -84,10 +84,16 @@ class Parser {
     }
     
     static func repair(body: String) -> String {
-        if body.contains("//pp.userapi.com") {
-            return body.replacingOccurrences(of: "//pp.userapi.com", with: "//imgp.golos.io/0x0/https://pp.userapi.com")
+        var modifiedBody = body
+        
+        if modifiedBody.contains("//pp.userapi.com") {
+            modifiedBody = modifiedBody.replacingOccurrences(of: "//pp.userapi.com", with: "//imgp.golos.io/0x0/https://pp.userapi.com")
         }
         
-        return body
+        if modifiedBody.contains("(![](") {
+            modifiedBody = modifiedBody.replacingOccurrences(of: "(![](", with: "(").replacingOccurrences(of: "))", with: ")\n")
+        }
+        
+        return modifiedBody
     }
 }
