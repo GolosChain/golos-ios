@@ -11,7 +11,6 @@ import GoloSwift
 
 class CommentTableViewCell: UITableViewCell, HandlersCellSupport, PostCellActiveVoteSupport {
     // MARK: - Properties
-    var level: Int = 0
     var created: Date!
     var postShortInfo: PostShortInfo!
     
@@ -30,7 +29,7 @@ class CommentTableViewCell: UITableViewCell, HandlersCellSupport, PostCellActive
     
     // MARK: - IBOutlets
     @IBOutlet weak var activeVoteButton: UIButton!
-    @IBOutlet weak var markdownViewManager: MarkdownViewManager!
+    @IBOutlet var markdownViewManager: MarkdownViewManager!
     @IBOutlet weak var authorProfileImageView: UIImageView!
     
     @IBOutlet weak var activeVoteActivityIndicator: UIActivityIndicatorView! {
@@ -118,15 +117,16 @@ class CommentTableViewCell: UITableViewCell, HandlersCellSupport, PostCellActive
         DispatchQueue.main.async {
             self.markdownViewManager.load(markdown: body)
             
-            self.markdownViewManager.onRendered = { [weak self] height in
-                let viewHeight = height + 85.0
+            self.markdownViewManager.onRendered = { height in
+                let viewHeight = height + 74.0
                 
-                self?.markdownViewHeightConstraint.constant = height
-                self?.frame = CGRect(origin: .zero, size: CGSize(width: self?.frame.width ?? 0.0, height: viewHeight))
-                self?.contentView.layoutIfNeeded()
+                self.markdownViewHeightConstraint.constant = height
+                self.markdownViewManager.layoutIfNeeded()
+//                self.frame = CGRect(origin: .zero, size: CGSize(width: self.frame.width, height: viewHeight))
+//                self.layoutIfNeeded()
 
                 UIView.animate(withDuration: 0.5, animations: {
-                    self?.contentView.alpha = 1.0
+                    self.contentView.alpha = 1.0
                     completion(viewHeight)
                 })
             }
@@ -222,7 +222,6 @@ extension CommentTableViewCell: ConfigureCell {
         })
         
         // Set cell level
-        self.leadingConstraint.constant = (self.level == 1 ? 52.0 : 2.0) * widthRatio
-        self.markdownViewManager.layoutIfNeeded()
+        self.leadingConstraint.constant = (comment.treeLevel == 0 ? 2.0 : 52.0) * widthRatio
     }
 }

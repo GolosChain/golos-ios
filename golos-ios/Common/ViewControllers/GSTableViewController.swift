@@ -37,12 +37,6 @@ class GSTableViewController: GSBaseViewController, HandlersCellSupport {
             }
         }
     }
-
-//    var commentsViewHeight: CGFloat = 0.0 {
-//        didSet {
-//            self.postsTableView.frame.size = CGSize(width: self.postsTableView.bounds.width, height: self.postsTableView.frame.height + commentsViewHeight)
-//        }
-//    }
     
     var refreshData: Bool       =   false
     var infiniteScrollingData   =   false
@@ -280,7 +274,6 @@ class GSTableViewController: GSBaseViewController, HandlersCellSupport {
                 
                 // Hide activity indicator
                 self.displaySpinner(false)
-//            self.postsTableView.layoutIfNeeded()
                 
                 if self.fetchedResultsController.fetchedObjects?.count == 0 {
                     self.displayEmptyTitle(byType: self.postType)
@@ -289,6 +282,17 @@ class GSTableViewController: GSBaseViewController, HandlersCellSupport {
                 else {
                     self.postsTableView.tableHeaderView = nil
                 }
+
+                // Infinite scrolling: update new cells
+//                if self.lastIndex > 0 {
+//                    self.postsTableView.beginUpdates()
+//
+//                    for index in 0 ..< (loadDataLimit - 1) {
+//                        self.postsTableView.insertRows(at: [IndexPath(row: self.lastIndex + Int(index), section: 0)], with: .none)
+//                    }
+//
+//                    self.postsTableView.endUpdates()
+//                }
                 
                 self.refreshData            =   false
                 self.infiniteScrollingData  =   false

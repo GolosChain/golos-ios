@@ -46,7 +46,12 @@ final class GSTableViewWithReloadCompletion: UITableView {
     func reloadDataWithCompletion(completion: @escaping () -> Void) {
         DispatchQueue.main.async(execute: {
             self.reloadDataCompletionBlock = completion
-            super.reloadData()
+            
+            // Reload only after start App
+//            guard self.visibleCells.count > 0 else {
+                super.reloadData()
+//                return
+//            }            
         })
     }
     

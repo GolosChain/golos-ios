@@ -168,8 +168,6 @@ class PostShowViewController: GSBaseViewController {
             self.commentsTableView.register(UINib(nibName: "EmptyCommentTableViewCell", bundle: nil), forCellReuseIdentifier: "EmptyCommentTableViewCell")
             
             self.commentsTableView.tableFooterView      =   UIView.init(frame: .zero)
-            self.commentsTableView.estimatedRowHeight   =   85.0 * heightRatio
-
 
             if #available(iOS 10.0, *) {
                 self.commentsTableView.refreshControl   =   refreshControl
@@ -1446,7 +1444,9 @@ extension PostShowViewController: UITableViewDataSource {
             commentTableViewCell!.setup(withItem: comment, andIndexPath: indexPath)
 
             commentTableViewCell!.loadData(fromBody: comment.body, completion: { [weak self] height in
-                commentTableViewCell?.frame.origin = CGPoint(x: 0.0, y: (self?.commentsTableViewHeightConstraint.constant)!)
+                commentTableViewCell?.frame = CGRect(origin: CGPoint(x: 0.0, y: (self?.commentsTableViewHeightConstraint.constant)!),
+                                                     size: CGSize(width: tableView.frame.width, height: height))
+                
                 self?.commentsTableViewHeightConstraint.constant += height
                 
                 if self?.comments![indexPath.section]!.count == indexPath.row + 1 {
@@ -1464,13 +1464,4 @@ extension PostShowViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 extension PostShowViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {}
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        guard self.comments != nil else {
-            return 44.0 * heightRatio
-        }
-        
-        // CommentTableViewCell
-        return UITableView.automaticDimension
-    }
 }

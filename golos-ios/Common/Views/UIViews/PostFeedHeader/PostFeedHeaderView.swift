@@ -17,14 +17,14 @@ class PostFeedHeaderView: UIView {
 
     
     // MARK: - IBOutlets
+    @IBOutlet weak var authorProfileImageView: UIImageView!
+    
     @IBOutlet var contentView: UIView! {
         didSet {
             self.contentView.tune(withThemeColorPicker: whiteColorPickers)
         }
     }
  
-    @IBOutlet weak var authorProfileImageView: UIImageView!
-    
     @IBOutlet weak var timeLabelTopConstraint: NSLayoutConstraint! {
         didSet {
             self.timeLabelTopConstraint.constant = 11.0 * heightRatio
@@ -175,6 +175,8 @@ class PostFeedHeaderView: UIView {
                                                         createdDate:    user.created.convert(toDateFormat: .expirationDateType),
                                                         fromItem:       (user as CachedImageFrom).fromItem,
                                                         completion:     { _ in })
+            } else {
+                self.authorProfileImageView.image = UIImage(named: "icon-user-profile-image-placeholder")
             }
             
             // Set reblogged user info (default isHidden = true)
