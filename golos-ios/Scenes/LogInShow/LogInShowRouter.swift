@@ -17,7 +17,6 @@ import GoloSwift
 @objc protocol LogInShowRoutingLogic {
     func routeToActiveKeyScene()
     func routeToPostingKeyScene()
-    func showRegisterFormOnline()
     func updateActiveViewController()
     func remove(inactiveViewController: GSBaseViewController?)
 }
@@ -122,26 +121,6 @@ class LogInShowRouter: NSObject, LogInShowRoutingLogic {
     
 
     // MARK: - Routing
-    func showRegisterFormOnline() {
-        guard isNetworkAvailable else {
-            viewController?.showAlertView(withTitle: "Info", andMessage: "No Internet Connection", needCancel: false, completion: { _ in })
-            return
-        }
-        
-        guard let moreUrl = URL.init(string: ConstantsApp.Urls.registration) else {
-            viewController?.showAlertView(withTitle: "Error", andMessage: "Developer error!", needCancel: false, completion: { _ in })
-            return
-        }
-        
-        if #available(iOS 10.0, *) {
-            UIApplication.shared.open(moreUrl, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
-        }
-            
-        else {
-            UIApplication.shared.openURL(moreUrl)
-        }
-    }
-
     /*
     func navigateBetweenContainerSubviews() {
         // Apply Container childVC

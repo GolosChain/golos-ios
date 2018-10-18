@@ -14,12 +14,6 @@ import UIKit
 import GoloSwift
 import Localize_Swift
 
-enum GolosWebPage: String {
-    case wiki           =   "https://wiki.golos.io/"
-    case welcome        =   "https://golos.io/welcome"
-    case privacyPolicy  =   "https://golos.io/ru--konfidenczialxnostx/@golos/politika-konfidencialnosti"
-}
-
 // MARK: - Input & Output protocols
 protocol SettingsShowDisplayLogic: class {
     func displaySomething(fromViewModel viewModel: SettingsShowModels.Items.ViewModel)

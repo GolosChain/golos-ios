@@ -48,17 +48,17 @@ class WelcomeShowRouter: NSObject, WelcomeShowRoutingLogic, WelcomeShowDataPassi
             return
         }
         
-        guard let moreUrl = URL.init(string: ConstantsApp.Urls.registration) else {
+        guard let registrationURL = URL.init(string: GolosWebPage.registration.rawValue) else {
             viewController?.showAlertView(withTitle: "Error", andMessage: "Developer error!", needCancel: false, completion: { _ in })
             return
         }
         
         if #available(iOS 10.0, *) {
-            UIApplication.shared.open(moreUrl, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
+            UIApplication.shared.open(registrationURL, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
         }
             
         else {
-            UIApplication.shared.openURL(moreUrl)
+            UIApplication.shared.openURL(registrationURL)
         }
     }
     
@@ -68,17 +68,17 @@ class WelcomeShowRouter: NSObject, WelcomeShowRoutingLogic, WelcomeShowDataPassi
             return
         }
         
-        guard let moreUrl = URL.init(string: ConstantsApp.Urls.moreInfoAbout) else {
+        guard let welcomeURL = URL.init(string: GolosWebPage.welcome.rawValue) else {
             viewController?.showAlertView(withTitle: "Error", andMessage: "Developer error!", needCancel: false, completion: { _ in })
             return
         }
         
         if #available(iOS 10.0, *) {
-            UIApplication.shared.open(moreUrl, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
+            UIApplication.shared.open(welcomeURL, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
         }
             
         else {
-            UIApplication.shared.openURL(moreUrl)
+            UIApplication.shared.openURL(welcomeURL)
         }
     }
 }

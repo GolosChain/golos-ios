@@ -15,16 +15,18 @@ enum LanguageSupport: String {
     case russian    =   "Russian"
 }
 
+enum GolosWebPage: String {
+    case wiki           =   "https://wiki.golos.io/"
+    case welcome        =   "https://golos.io/welcome"
+    case registration   =   "https://reg.golos.io"
+    case privacyPolicy  =   "https://golos.io/ru--konfidenczialxnostx/@golos/politika-konfidencialnosti"
+}
+
 struct ConstantsApp {
     struct ButtonParameters {
         static let cornerRadius: CGFloat = 22.0
     }
-    
-    struct Urls {
-        static let moreInfoAbout        =   "https://golos.io/welcome"
-        static let registration         =   "https://golos.io/create_account"
-    }
-    
+        
     struct StateMachine {
         static let oldStateKey          =   "oldStateKey"
     }
