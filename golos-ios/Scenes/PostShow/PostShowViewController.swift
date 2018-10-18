@@ -67,10 +67,8 @@ class PostShowViewController: GSBaseViewController {
             self.commentsTableView.delegate     =   self
             self.commentsTableView.dataSource   =   self
             
+            self.commentsTableView.register(UINib(nibName: "CommentHeaderView", bundle: nil), forHeaderFooterViewReuseIdentifier: "CommentHeaderView")
             self.commentsTableView.register(UINib(nibName: "CommentTableViewCell", bundle: nil), forCellReuseIdentifier: "CommentTableViewCell")
-            self.commentsTableView.register(UINib(nibName: "EmptyCommentTableViewCell", bundle: nil), forCellReuseIdentifier: "EmptyCommentTableViewCell")
-            
-            self.commentsTableView.tableFooterView      =   UIView.init(frame: .zero)
 
             if #available(iOS 10.0, *) {
                 self.commentsTableView.refreshControl   =   refreshControl
@@ -447,8 +445,6 @@ class PostShowViewController: GSBaseViewController {
 
     deinit {
         Logger.log(message: "Success", event: .severe)
-
-        NotificationCenter.default.removeObserver(self)
     }
     
     
@@ -508,14 +504,13 @@ class PostShowViewController: GSBaseViewController {
                 self.view.layoutIfNeeded()
             }
         }
-
-        NotificationCenter.default.addObserver(self, selector: #selector(localizeTitles), name: NSNotification.Name(LCLLanguageChangeNotification), object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         Logger.log(message: "Success", event: .severe)
 
+        self.localizeTitles()
         self.hideNavigationBar()
         UIApplication.shared.statusBarStyle = .default
     }
@@ -529,7 +524,7 @@ class PostShowViewController: GSBaseViewController {
         self.commentsControlView.isHidden               =   hided
         
         if hided {
-            self.commentsTableView.reloadSections(IndexSet(integer: 0), with: .automatic)
+//            self.commentsTableView.reloadSections(IndexSet(integer: 0), with: .automatic)
         }
         
         self.scrollView.isUserInteractionEnabled = true
@@ -626,6 +621,8 @@ class PostShowViewController: GSBaseViewController {
         
         self.tagsCollectionView.reloadData()
         
+        self.postFeedHeaderView.display(post: self.router!.dataStore!.displayedPost!)
+        
         self.postFeedHeaderView.categoryLabel.text = self.router!.dataStore!.displayedPost!.category
                                                         .transliteration(forPermlink: false)
                                                         .uppercaseFirst
@@ -633,11 +630,11 @@ class PostShowViewController: GSBaseViewController {
         self.donateButton.setTitle("Donate Verb".localized(), for: .normal)
         self.promoteButton.setTitle("Promote Post Verb".localized(), for: .normal)
         
-        if let comments = self.comments, comments.count == 0 {
-            (self.commentsTableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! EmptyCommentTableViewCell).translateTitle()
+        if self.comments == nil {
+            (self.commentsTableView.headerView(forSection: 0) as! CommentHeaderView).translateTitle()
         } else {
-            // TODO: - TRANSLATE ALL VISIBLE COMMENT CELLS
-//        (self.commentsViewsView.subviews as! [CommentView]).forEach({ $0.localizeTitles() })
+            // FIXME: - ADD LOCALIZE COMMENT CELLS
+//            self.commentsTableView.reloadRows(at: self.commentsTableView.indexPathsForVisibleRows!, with: .none)
         }
         
         self.commentsHideButton.setTitle("Hide Comments Verb".localized(), for: .normal)
@@ -1279,6 +1276,8 @@ extension PostShowViewController {
 // MARK: - UITableViewDataSource
 extension PostShowViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
+//        guard let items = self.comments, items.count > 0 else { return 0 }
+
         return 1
     }
     
@@ -1289,145 +1288,126 @@ extension PostShowViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch self.comments {
-        // EmptyCommentTableViewCell
-        case nil:
-            self.commentsTableViewHeightConstraint.constant = 48.0 * heightRatio
-            let emptyCommentTableViewCell = self.commentsTableView.dequeueReusableCell(withIdentifier: "EmptyCommentTableViewCell") as! EmptyCommentTableViewCell
-            
-            emptyCommentTableViewCell.translateTitle()
-            
-            // Handlers
-            emptyCommentTableViewCell.handlerCreateCommentButtonTapped      =   { [weak self] in
-                self?.router?.routeToPostCreateScene(withType: .createComment)
+        let commentTableViewCell = self.commentsTableView.dequeueReusableCell(withIdentifier: "CommentTableViewCell") as? CommentTableViewCell
+        let comment = self.comments![indexPath.row]
+        
+        commentTableViewCell!.setup(withItem: comment, andIndexPath: indexPath)
+        
+        commentTableViewCell!.loadData(fromBody: comment.body, completion: { [weak self] height in
+            while comment.treeIndex != commentTableViewCell?.treeIndex {
+                continue
             }
             
-            return emptyCommentTableViewCell
-
+            let cellFrame = CGRect(origin:    CGPoint(x: 0.0, y: (self?.commentsTableViewHeightConstraint.constant)!),
+                                   size:      CGSize(width: tableView.frame.width, height: height))
             
-        // CommentTableViewCell
-        default:
-            let commentTableViewCell = self.commentsTableView.dequeueReusableCell(withIdentifier: "CommentTableViewCell") as? CommentTableViewCell
-            let comment = self.comments![indexPath.row]
-
-            commentTableViewCell!.setup(withItem: comment, andIndexPath: indexPath)
-
-            commentTableViewCell!.loadData(fromBody: comment.body, completion: { [weak self] height in
-                while comment.treeIndex != commentTableViewCell?.treeIndex {
-                    continue
-                }
-                
-                let cellFrame = CGRect(origin:    CGPoint(x: 0.0, y: (self?.commentsTableViewHeightConstraint.constant)!),
-                                       size:      CGSize(width: tableView.frame.width, height: height))
-
-                commentTableViewCell?.frame = cellFrame
-                self?.commentsTableViewHeightConstraint.constant += height
-
-                if self?.frames == nil {
-                    self?.frames = [0: cellFrame]
-                } else {
-                    self?.frames![indexPath.row] = cellFrame
-                }
-                
-                if self?.comments!.count == indexPath.row + 1 {
-                    self?.contentView.layoutIfNeeded()
-                    self?.didCommentsControlView(hided: false)
-                }
-            })
+            commentTableViewCell?.frame = cellFrame
+            self?.commentsTableViewHeightConstraint.constant += height
             
-            // Handlers
-            commentTableViewCell!.handlerActiveVoteButtonTapped             =   { [weak self] (isVote, postShortInfo) in
-                // Check network connection
-                guard isNetworkAvailable else {
-                    self?.showAlertView(withTitle: "Info", andMessage: "No Internet Connection", needCancel: false, completion: { _ in })
-                    return
-                }
-                
-                guard (self?.isCurrentOperationPossible())! else { return }
-                
-                self?.interactor?.save(comment: postShortInfo)
-                
-                let requestModel = PostShowModels.ActiveVote.RequestModel(isVote: isVote, isFlaunt: false, forPost: false)
-                
-                guard isVote else {
-                    self?.showAlertView(withTitle: "Voting Verb", andMessage: "Cancel Vote Message", actionTitle: "ActionChange", needCancel: true, completion: { success in
-                        if success {
-                            commentTableViewCell!.activeVoteButton.startVote(withSpinner: commentTableViewCell!.activeVoteActivityIndicator)
-                            self?.interactor?.vote(withRequestModel: requestModel)
-                        } else {
-                            commentTableViewCell!.activeVoteButton.breakVote(withSpinner: commentTableViewCell!.activeVoteActivityIndicator)
-                        }
-                    })
-                    
-                    return
-                }
-                
-                commentTableViewCell!.activeVoteButton.startVote(withSpinner: commentTableViewCell!.activeVoteActivityIndicator)
-                self?.interactor?.vote(withRequestModel: requestModel)
+            if self?.frames == nil {
+                self?.frames = [0: cellFrame]
+            } else {
+                self?.frames![indexPath.row] = cellFrame
             }
             
-            commentTableViewCell!.handlerUsersButtonTapped                  =   { [weak self] in
-                self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+            if self?.comments!.count == indexPath.row + 1 {
+                self?.contentView.layoutIfNeeded()
+                self?.didCommentsControlView(hided: false)
+            }
+        })
+        
+        // Handlers
+        commentTableViewCell!.handlerActiveVoteButtonTapped             =   { [weak self] (isVote, postShortInfo) in
+            // Check network connection
+            guard isNetworkAvailable else {
+                self?.showAlertView(withTitle: "Info", andMessage: "No Internet Connection", needCancel: false, completion: { _ in })
+                return
             }
             
-            commentTableViewCell!.handlerCommentsButtonTapped               =   { [weak self] postShortInfo in
-                guard (self?.isCurrentOperationPossible())! else { return }
+            guard (self?.isCurrentOperationPossible())! else { return }
+            
+            self?.interactor?.save(comment: postShortInfo)
+            
+            let requestModel = PostShowModels.ActiveVote.RequestModel(isVote: isVote, isFlaunt: false, forPost: false)
+            
+            guard isVote else {
+                self?.showAlertView(withTitle: "Voting Verb", andMessage: "Cancel Vote Message", actionTitle: "ActionChange", needCancel: true, completion: { success in
+                    if success {
+                        commentTableViewCell!.activeVoteButton.startVote(withSpinner: commentTableViewCell!.activeVoteActivityIndicator)
+                        self?.interactor?.vote(withRequestModel: requestModel)
+                    } else {
+                        commentTableViewCell!.activeVoteButton.breakVote(withSpinner: commentTableViewCell!.activeVoteActivityIndicator)
+                    }
+                })
                 
-                self?.interactor?.save(comment: postShortInfo)
-                self?.router?.routeToPostCreateScene(withType: .createComment)
+                return
             }
             
-            commentTableViewCell!.handlerReplyButtonTapped                  =   { [weak self] postShortInfo in
-                guard (self?.isCurrentOperationPossible())! else { return }
-                
-                self?.interactor?.save(comment: postShortInfo)
-                self?.router?.routeToPostCreateScene(withType: .createCommentReply)
-            }
-            
-            commentTableViewCell!.handlerShareButtonTapped                  =   { [weak self] in
-                self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
-            }
-            
-            commentTableViewCell!.handlerAuthorProfileAddButtonTapped       =   { [weak self] in
-                self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
-            }
-            
-            commentTableViewCell!.handlerAuthorProfileImageButtonTapped     =   { [weak self] authorName in
-                guard (self?.isCurrentOperationPossible())! else { return }
-                
-                self?.router?.routeToUserProfileScene(byUserName: authorName)
-            }
-            
-            commentTableViewCell!.handlerAuthorNameButtonTapped                 =   { [weak self] authorName in
-                guard (self?.isCurrentOperationPossible())! else { return }
-                
-                self?.router?.routeToUserProfileScene(byUserName: authorName)
-            }
-            
-            // Handler Markdown
-            commentTableViewCell!.markdownViewManager.completionErrorAlertView          =   { [weak self] errorMessage in
-                self?.showAlertView(withTitle: "Error", andMessage: errorMessage, needCancel: false, completion: { _ in })
-            }
-            
-            commentTableViewCell!.markdownViewManager.completionCommentAuthorTapped     =   { [weak self] authorName in
-                guard (self?.isCurrentOperationPossible())! else { return }
-                
-                self?.router?.routeToUserProfileScene(byUserName: authorName)
-            }
-            
-            commentTableViewCell!.markdownViewManager.completionShowSafariURL           =   { [weak self] url in
-                if isNetworkAvailable {
-                    let safari = SFSafariViewController(url: url)
-                    self?.present(safari, animated: true, completion: nil)
-                }
-                    
-                else {
-                    self?.showAlertView(withTitle: "Info", andMessage: "No Internet Connection", needCancel: false, completion: { _ in })
-                }
-            }
-
-            return commentTableViewCell!
+            commentTableViewCell!.activeVoteButton.startVote(withSpinner: commentTableViewCell!.activeVoteActivityIndicator)
+            self?.interactor?.vote(withRequestModel: requestModel)
         }
+        
+        commentTableViewCell!.handlerUsersButtonTapped                  =   { [weak self] in
+            self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+        }
+        
+        commentTableViewCell!.handlerCommentsButtonTapped               =   { [weak self] postShortInfo in
+            guard (self?.isCurrentOperationPossible())! else { return }
+            
+            self?.interactor?.save(comment: postShortInfo)
+            self?.router?.routeToPostCreateScene(withType: .createComment)
+        }
+        
+        commentTableViewCell!.handlerReplyButtonTapped                  =   { [weak self] postShortInfo in
+            guard (self?.isCurrentOperationPossible())! else { return }
+            
+            self?.interactor?.save(comment: postShortInfo)
+            self?.router?.routeToPostCreateScene(withType: .createCommentReply)
+        }
+        
+        commentTableViewCell!.handlerShareButtonTapped                  =   { [weak self] in
+            self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+        }
+        
+        commentTableViewCell!.handlerAuthorProfileAddButtonTapped       =   { [weak self] in
+            self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+        }
+        
+        commentTableViewCell!.handlerAuthorProfileImageButtonTapped     =   { [weak self] authorName in
+            guard (self?.isCurrentOperationPossible())! else { return }
+            
+            self?.router?.routeToUserProfileScene(byUserName: authorName)
+        }
+        
+        commentTableViewCell!.handlerAuthorNameButtonTapped                 =   { [weak self] authorName in
+            guard (self?.isCurrentOperationPossible())! else { return }
+            
+            self?.router?.routeToUserProfileScene(byUserName: authorName)
+        }
+        
+        // Handler Markdown
+        commentTableViewCell!.markdownViewManager.completionErrorAlertView          =   { [weak self] errorMessage in
+            self?.showAlertView(withTitle: "Error", andMessage: errorMessage, needCancel: false, completion: { _ in })
+        }
+        
+        commentTableViewCell!.markdownViewManager.completionCommentAuthorTapped     =   { [weak self] authorName in
+            guard (self?.isCurrentOperationPossible())! else { return }
+            
+            self?.router?.routeToUserProfileScene(byUserName: authorName)
+        }
+        
+        commentTableViewCell!.markdownViewManager.completionShowSafariURL           =   { [weak self] url in
+            if isNetworkAvailable {
+                let safari = SFSafariViewController(url: url)
+                self?.present(safari, animated: true, completion: nil)
+            }
+                
+            else {
+                self?.showAlertView(withTitle: "Info", andMessage: "No Internet Connection", needCancel: false, completion: { _ in })
+            }
+        }
+        
+        return commentTableViewCell!
     }
 }
 
@@ -1444,5 +1424,23 @@ extension PostShowViewController: UITableViewDelegate {
         }
         
         return frames[indexPath.row]!.height
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let commentHeaderView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "CommentHeaderView") as! CommentHeaderView
+        
+        commentHeaderView.translateTitle()
+        
+        // Handlers
+        commentHeaderView.handlerCreateCommentButtonTapped  =   { [weak self] in
+            self?.router?.routeToPostCreateScene(withType: .createComment)
+        }
+        
+        return commentHeaderView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        self.commentsTableViewHeightConstraint.constant = 48.0 * heightRatio
+        return 48.0 * heightRatio
     }
 }

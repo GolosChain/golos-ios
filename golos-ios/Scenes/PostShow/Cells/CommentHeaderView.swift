@@ -1,19 +1,25 @@
 //
-//  EmptyCommentTableViewCell.swift
+//  CommentHeaderView.swift
 //  Golos
 //
-//  Created by msm72 on 10/15/18.
+//  Created by msm72 on 10/18/18.
 //  Copyright © 2018 golos. All rights reserved.
 //
 
 import UIKit
 
-class EmptyCommentTableViewCell: UITableViewCell {
+class CommentHeaderView: UITableViewHeaderFooterView {
     // MARK: - Properties
     var handlerCreateCommentButtonTapped: (() -> Void)?
     
     
     // MARK: - IBOutlets
+    @IBOutlet weak var contextView: UIView! {
+        didSet {
+            self.contextView.tune()
+        }
+    }
+    
     @IBOutlet weak var createCommentButton: UIButton! {
         didSet {
             self.createCommentButton.tune(withTitle:    "No Comments Title".localized(),
