@@ -1442,6 +1442,10 @@ extension PostShowViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        guard let displayedPost = self.router?.dataStore?.displayedPost, displayedPost.children == 0 else {
+            return 0.0
+        }
+        
         self.commentsTableViewHeightConstraint.constant = 48.0 * heightRatio
         return 48.0 * heightRatio
     }
