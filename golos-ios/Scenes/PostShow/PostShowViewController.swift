@@ -631,7 +631,9 @@ class PostShowViewController: GSBaseViewController {
         self.promoteButton.setTitle("Promote Post Verb".localized(), for: .normal)
         
         if self.comments == nil {
-            (self.commentsTableView.headerView(forSection: 0) as! CommentHeaderView).translateTitle()
+            if let headerView = self.commentsTableView.headerView(forSection: 0) as? CommentHeaderView {
+                headerView.translateTitle()
+            }
         } else {
             // FIXME: - ADD LOCALIZE COMMENT CELLS
 //            self.commentsTableView.reloadRows(at: self.commentsTableView.indexPathsForVisibleRows!, with: .none)

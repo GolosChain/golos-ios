@@ -349,6 +349,9 @@ class UserProfileShowViewController: GSBaseViewController, ContainerViewSupport 
         
         self.selectedButton = self.buttonsStackView.arrangedSubviews.filter({ $0.isHidden == false })[self.selectedButton.tag + 1] as? UIButton
         self.userProfileInfoTitleView.labelsCollection.forEach({ $0.text = $0.accessibilityIdentifier!.localized() })
+        
+        self.userProfileHeaderView.showLabelsForAnimationCollection(true)
+        self.userProfileInfoTitleView.showLabelsForAnimationCollection(true)
     }
 }
 
