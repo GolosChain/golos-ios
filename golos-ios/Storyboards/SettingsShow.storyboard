@@ -29,7 +29,7 @@
                                 <rect key="frame" x="0.0" y="22" width="375" height="645"/>
                                 <subviews>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IZe-iE-639" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="630"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="560"/>
                                         <subviews>
                                             <stackView contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="jcs-cQ-xDw" userLabel="Top Stack View">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="140"/>
@@ -169,7 +169,7 @@
                                                 </constraints>
                                             </view>
                                             <stackView contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="UBu-iY-XBV" userLabel="BottomStack View">
-                                                <rect key="frame" x="0.0" y="140" width="375" height="490"/>
+                                                <rect key="frame" x="0.0" y="140" width="375" height="420"/>
                                                 <subviews>
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uon-Ic-wwA" userLabel="Wiki View">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
@@ -228,11 +228,11 @@
                                                             <constraint firstItem="bgZ-MG-t6B" firstAttribute="leading" secondItem="iev-Xk-xLa" secondAttribute="leading" constant="16" id="g03-us-ZhU"/>
                                                         </constraints>
                                                     </view>
-                                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xbA-9q-nzV" userLabel="Switch Acount View">
-                                                        <rect key="frame" x="0.0" y="210" width="375" height="70"/>
+                                                    <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xbA-9q-nzV" userLabel="Switch Acount View">
+                                                        <rect key="frame" x="0.0" y="210" width="375" height="0.0"/>
                                                         <subviews>
                                                             <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vHW-aG-Cm8" userLabel="Switch Acount Button">
-                                                                <rect key="frame" x="16" y="0.0" width="343" height="70"/>
+                                                                <rect key="frame" x="16" y="0.0" width="343" height="0.0"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <connections>
                                                                     <action selector="switchAccountButtonTapped:" destination="5Fz-c1-bKn" eventType="touchUpInside" id="VE7-lt-O7C"/>
@@ -248,7 +248,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6J8-Zi-uUr" userLabel="Log Out View">
-                                                        <rect key="frame" x="0.0" y="280" width="375" height="70"/>
+                                                        <rect key="frame" x="0.0" y="210" width="375" height="70"/>
                                                         <subviews>
                                                             <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gQD-QH-PUB" userLabel="Log Out Button">
                                                                 <rect key="frame" x="16" y="0.0" width="343" height="70"/>
@@ -268,11 +268,11 @@
                                                         </constraints>
                                                     </view>
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f6N-uo-wj0" userLabel="Empty View">
-                                                        <rect key="frame" x="0.0" y="350" width="375" height="70"/>
+                                                        <rect key="frame" x="0.0" y="280" width="375" height="70"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </view>
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="617-0L-gmR" userLabel="Version View">
-                                                        <rect key="frame" x="0.0" y="420" width="375" height="70"/>
+                                                        <rect key="frame" x="0.0" y="350" width="375" height="70"/>
                                                         <subviews>
                                                             <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MUM-yE-fsH" userLabel="Version Label">
                                                                 <rect key="frame" x="166.5" y="25" width="42" height="20.5"/>
@@ -331,14 +331,14 @@
                             <constraint firstItem="q5f-EP-qYE" firstAttribute="trailing" secondItem="eGZ-Iu-UAZ" secondAttribute="trailing" id="GJb-lV-NEr"/>
                             <constraint firstItem="vjD-ob-m17" firstAttribute="top" secondItem="q5f-EP-qYE" secondAttribute="top" id="Ge6-yJ-zx3"/>
                             <constraint firstItem="IZe-iE-639" firstAttribute="width" secondItem="cD3-Sv-AfB" secondAttribute="width" id="MY9-oW-6Sl"/>
-                            <constraint firstItem="UBu-iY-XBV" firstAttribute="height" secondItem="cD3-Sv-AfB" secondAttribute="height" multiplier="490:667" id="NAo-Cu-4Mb"/>
+                            <constraint firstItem="UBu-iY-XBV" firstAttribute="height" secondItem="cD3-Sv-AfB" secondAttribute="height" multiplier="420:667" id="NAo-Cu-4Mb"/>
                             <constraint firstItem="jcs-cQ-xDw" firstAttribute="height" secondItem="cD3-Sv-AfB" secondAttribute="height" multiplier="140:375" id="PDX-dr-HGM"/>
                             <constraint firstItem="q5f-EP-qYE" firstAttribute="trailing" secondItem="vjD-ob-m17" secondAttribute="trailing" id="TGz-dh-xgY"/>
                             <constraint firstItem="jcs-cQ-xDw" firstAttribute="height" secondItem="cD3-Sv-AfB" secondAttribute="height" multiplier="140:667" id="UeH-G8-G4s"/>
                             <constraint firstItem="Jd1-if-qni" firstAttribute="height" secondItem="cD3-Sv-AfB" secondAttribute="height" multiplier="250:375" id="fr3-Ta-ZCk"/>
                             <constraint firstItem="eGZ-Iu-UAZ" firstAttribute="top" secondItem="vjD-ob-m17" secondAttribute="bottom" id="lfP-ch-TLp"/>
                             <constraint firstItem="Jd1-if-qni" firstAttribute="height" secondItem="cD3-Sv-AfB" secondAttribute="height" multiplier="250:667" id="oYM-H7-1pC"/>
-                            <constraint firstItem="UBu-iY-XBV" firstAttribute="height" secondItem="cD3-Sv-AfB" secondAttribute="height" multiplier="490:375" id="wIl-Ua-VZ0"/>
+                            <constraint firstItem="UBu-iY-XBV" firstAttribute="height" secondItem="cD3-Sv-AfB" secondAttribute="height" multiplier="420:375" id="wIl-Ua-VZ0"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="q5f-EP-qYE"/>
                         <variation key="default">
