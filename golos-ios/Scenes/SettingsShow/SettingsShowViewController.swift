@@ -245,6 +245,8 @@ class SettingsShowViewController: GSBaseViewController {
     }
     
     @IBAction func logOutButtonTapped(_ sender: UIButton) {
+        guard self.isCurrentOperationPossible() else { return }
+
         self.showAlertView(withTitle: "Exit", andMessage: "Are Your Sure?", actionTitle: "ActionYes", needCancel: true, completion: { [weak self] success in
             if success {
                 self?.router?.routeToLoginShowScene()
@@ -268,7 +270,6 @@ class SettingsShowViewController: GSBaseViewController {
         self.commonLabel.text   =   "COMMON".localized()
         self.versionLabel.text  =   String(format: "Golos %@ iOS %@", "for".localized(), appVersion)
         
-        self.logOutButton.setTitle("Exit Verb".localized(), for: .normal)
         self.wikiGolosButton.setTitle("Wiki Golos".localized(), for: .normal)
         self.welcomeButton.setTitle("About Golos.io".localized(), for: .normal)
         self.voicePowerButton.setTitle("Voice Power".localized(), for: .normal)
@@ -278,6 +279,7 @@ class SettingsShowViewController: GSBaseViewController {
         self.switchAccountButton.setTitle("Switch Account Verb".localized(), for: .normal)
         self.editUserProfileButton.setTitle("Edit Profile Title".localized(), for: .normal)
         self.notificationsButton.setTitle("Remote Notifications Title".localized(), for: .normal)
+        self.logOutButton.setTitle((User.isAnonymous ? "Log In" : "Exit Verb").localized(), for: .normal)
     }
 }
 
