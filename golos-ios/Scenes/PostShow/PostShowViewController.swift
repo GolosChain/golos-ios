@@ -1354,6 +1354,12 @@ extension PostShowViewController: UITableViewDataSource {
         }
         
         commentTableViewCell!.handlerCommentsButtonTapped               =   { [weak self] postShortInfo in
+            // Check network connection
+            guard isNetworkAvailable else {
+                self?.showAlertView(withTitle: "Info", andMessage: "No Internet Connection", needCancel: false, completion: { _ in })
+                return
+            }
+            
             guard (self?.isCurrentOperationPossible())! else { return }
             
             self?.interactor?.save(comment: postShortInfo)
@@ -1361,6 +1367,12 @@ extension PostShowViewController: UITableViewDataSource {
         }
         
         commentTableViewCell!.handlerReplyButtonTapped                  =   { [weak self] postShortInfo in
+            // Check network connection
+            guard isNetworkAvailable else {
+                self?.showAlertView(withTitle: "Info", andMessage: "No Internet Connection", needCancel: false, completion: { _ in })
+                return
+            }
+            
             guard (self?.isCurrentOperationPossible())! else { return }
             
             self?.interactor?.save(comment: postShortInfo)
@@ -1435,6 +1447,14 @@ extension PostShowViewController: UITableViewDelegate {
         
         // Handlers
         commentHeaderView.handlerCreateCommentButtonTapped  =   { [weak self] in
+            // Check network connection
+            guard isNetworkAvailable else {
+                self?.showAlertView(withTitle: "Info", andMessage: "No Internet Connection", needCancel: false, completion: { _ in })
+                return
+            }
+            
+            guard (self?.isCurrentOperationPossible())! else { return }
+            
             self?.router?.routeToPostCreateScene(withType: .createComment)
         }
         
