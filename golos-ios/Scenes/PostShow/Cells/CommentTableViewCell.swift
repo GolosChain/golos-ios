@@ -12,6 +12,7 @@ import GoloSwift
 class CommentTableViewCell: UITableViewCell, HandlersCellSupport, PostCellActiveVoteSupport {
     // MARK: - Properties
     var created: Date!
+    var treeIndex: String!
     var postShortInfo: PostShortInfo!
     
     // Handlers
@@ -114,7 +115,7 @@ class CommentTableViewCell: UITableViewCell, HandlersCellSupport, PostCellActive
     // MARK: - Custom Functions
     func loadData(fromBody body: String, completion: @escaping (CGFloat) -> Void) {
         // Load markdown content
-        DispatchQueue.main.async {
+//        DispatchQueue.main.sync {
             self.markdownViewManager.load(markdown: body)
             
             self.markdownViewManager.onRendered = { height in
@@ -130,8 +131,8 @@ class CommentTableViewCell: UITableViewCell, HandlersCellSupport, PostCellActive
                     completion(viewHeight)
                 })
             }
-        }
-    }    
+//        }
+    }
 
 
     // MARK: - Actions
@@ -188,6 +189,7 @@ extension CommentTableViewCell: ConfigureCell {
                                                   parentPermlink:   comment.parentPermlink)
         
         self.created            =   comment.created
+        self.treeIndex          =   comment.treeIndex
         self.timeLabel.text     =   comment.created.convertToDaysAgo()
         
         // Set Active Votes icon
