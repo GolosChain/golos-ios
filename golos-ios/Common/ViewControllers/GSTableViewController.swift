@@ -48,13 +48,13 @@ class GSTableViewController: GSBaseViewController, HandlersCellSupport {
     var postsList: [NSManagedObject]?
     
     // Handlers
-    var handlerAnswerButtonTapped: ((PostShortInfo) -> Void)?
-    var handlerReplyTypeButtonTapped: (() -> Void)?
+    var handlerAnswerButtonTapped: ((PostShortInfo?) -> Void)?
+    var handlerReplyTypeButtonTapped: ((Bool) -> Void)?
     var handlerPushRefreshData: ((NSManagedObject?) -> Void)?
     var handlerSelectItem: ((PostShortInfo) -> Void)?
     var handlerUsersButtonTapped: (() -> Void)?
     var handlerAuthorProfileAddButtonTapped: (() -> Void)?
-    var handlerAuthorProfileImageButtonTapped: ((String) -> Void)?
+    var handlerAuthorProfileImageButtonTapped: ((String?) -> Void)?
     var handlerHorizontalScrolling: ((CGFloat) -> Void)?
 
     // HandlersCellSupport
@@ -389,8 +389,8 @@ extension GSTableViewController: UITableViewDataSource {
                 self?.handlerAnswerButtonTapped!(postShortInfo)
             }
             
-            (cell as! ReplyTableViewCell).handlerReplyTypeButtonTapped      =   { [weak self] in
-                self?.handlerReplyTypeButtonTapped!()
+            (cell as! ReplyTableViewCell).handlerReplyTypeButtonTapped      =   { [weak self] isOperationAvailable in
+                self?.handlerReplyTypeButtonTapped!(isOperationAvailable)
             }
 
             (cell as! ReplyTableViewCell).handlerAuthorCommentReplyTapped   =   { [weak self] authorName in

@@ -523,10 +523,6 @@ class PostShowViewController: GSBaseViewController {
         self.commentsControlViewTopConstraint.constant  =   heightRatio * (hided ? -70.0 : 0.0)
         self.commentsControlView.isHidden               =   hided
         
-        if hided {
-//            self.commentsTableView.reloadSections(IndexSet(integer: 0), with: .automatic)
-        }
-        
         self.scrollView.isUserInteractionEnabled = true
 
         // Hide loading activity interactior

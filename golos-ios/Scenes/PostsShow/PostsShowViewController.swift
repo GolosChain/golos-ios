@@ -259,8 +259,12 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
                     self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
                 }
                 
-                activeVC.handlerReplyTypeButtonTapped               =   { [weak self] in
-                    self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+                activeVC.handlerReplyTypeButtonTapped               =   { [weak self] isOperationAvailable in
+                    if isOperationAvailable {
+                        self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+                    } else {
+                        _ = self?.isCurrentOperationPossible()
+                    }
                 }
                 
                 activeVC.handlerShareButtonTapped                   =   { [weak self] in
@@ -311,7 +315,11 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
                 }
                 
                 activeVC.handlerAuthorProfileImageButtonTapped      =   { [weak self] userName in
-                    self?.router?.routeToUserProfileScene(byUserName: userName)
+                    guard (self?.isCurrentOperationPossible())! else {
+                        return
+                    }
+
+                    self?.router?.routeToUserProfileScene(byUserName: userName!)
                 }
             }
         })

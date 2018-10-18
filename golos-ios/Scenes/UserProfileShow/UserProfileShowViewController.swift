@@ -410,12 +410,20 @@ extension UserProfileShowViewController {
                 }
                 
                 activeVC.handlerAnswerButtonTapped      =   { [weak self] postShortInfo in
-                    self?.interactor?.save(commentReply: postShortInfo)
+                    guard (self?.isCurrentOperationPossible())! else {
+                        return
+                    }
+                    
+                    self?.interactor?.save(commentReply: postShortInfo!)
                     self?.router?.routeToPostCreateScene(withType: .createCommentReply)
                 }
                 
-                activeVC.handlerReplyTypeButtonTapped   =   { [weak self] in
-                    self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+                activeVC.handlerReplyTypeButtonTapped   =   { [weak self] isOperationAvailable in
+                    if isOperationAvailable {
+                        self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+                    } else {
+                        _ = self?.isCurrentOperationPossible()
+                    }
                 }
                 
                 activeVC.handlerShareButtonTapped       =   { [weak self] in
@@ -468,7 +476,11 @@ extension UserProfileShowViewController {
                 
                 // Reply handlers
                 activeVC.handlerAuthorProfileImageButtonTapped    =   { [weak self] authorName in
-                    self?.router?.routeToUserProfileScene(byUserName: authorName)
+                    guard (self?.isCurrentOperationPossible())! else {
+                        return
+                    }
+
+                    self?.router?.routeToUserProfileScene(byUserName: authorName!)
                 }
             }
         })
