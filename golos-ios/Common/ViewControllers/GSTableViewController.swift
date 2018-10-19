@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 import GoloSwift
 import SwiftTheme
+import SafariServices
 
 typealias FetchPostParameters = (author: String?, postFeedType: PostsFeedType, permlink: String?, sortBy: String?)
 
@@ -396,6 +397,26 @@ extension GSTableViewController: UITableViewDataSource {
             (cell as! ReplyTableViewCell).handlerAuthorCommentReplyTapped   =   { [weak self] authorName in
                 self?.handlerAuthorProfileImageButtonTapped!(authorName)
             }
+            
+            // Markdown handlers
+            (cell as! ReplyTableViewCell).handlerMarkdownError              =   { [weak self] errorMessage in
+                self?.showAlertView(withTitle: "Error", andMessage: errorMessage, needCancel: false, completion: { _ in })
+            }
+            
+            (cell as! ReplyTableViewCell).handlerMarkdownURLTapped          =   { [weak self] url in
+                if isNetworkAvailable {
+                    let safari = SFSafariViewController(url: url)
+                    self?.present(safari, animated: true, completion: nil)
+                }
+                    
+                else {
+                    self?.showAlertView(withTitle: "Info", andMessage: "No Internet Connection", needCancel: false, completion: { _ in })
+                }
+            }
+
+            (cell as! ReplyTableViewCell).handlerMarkdownAuthorNameTapped   =   { [weak self] authorName in
+                self?.handlerAuthorProfileImageButtonTapped!(authorName)
+            }
         }
         
         // Handlers Lenta, Blog, Popular, Actual, New, Promo comletion
@@ -471,7 +492,7 @@ extension GSTableViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let model = self.postsList?[indexPath.row] as? PostCellSupport {
+        if let model = self.postsList?[indexPath.row] as? PostCellSupport, type(of: model) != Reply.self {
             self.handlerSelectItem!(PostShortInfo(id:               model.id,
                                                   title:            model.title,
                                                   author:           model.author,

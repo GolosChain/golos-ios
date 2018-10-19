@@ -542,7 +542,7 @@ class PostShowViewController: GSBaseViewController {
         Logger.log(message: "Success", event: .severe)
 
         if let displayedPost = self.router?.dataStore?.displayedPost {
-            self.markdownViewManager.load(markdown: Parser.repair(body: displayedPost.body))
+             self.markdownViewManager.load(markdown: Parser.repair(body: displayedPost.body))
 
             self.markdownViewManager.onRendered = { [weak self] height in
                 self?.markdownViewHeightConstraint.constant = height
@@ -1397,7 +1397,7 @@ extension PostShowViewController: UITableViewDataSource {
         }
         
         commentTableViewCell!.markdownViewManager.completionCommentAuthorTapped     =   { [weak self] authorName in
-            guard (self?.isCurrentOperationPossible())! else { return }
+//            guard (self?.isCurrentOperationPossible())! else { return }
             
             self?.router?.routeToUserProfileScene(byUserName: authorName)
         }

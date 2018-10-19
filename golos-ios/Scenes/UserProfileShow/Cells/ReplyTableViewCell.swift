@@ -38,9 +38,31 @@ class ReplyTableViewCell: UITableViewCell, ReusableCell {
     var handlerAnswerButtonTapped: ((PostShortInfo?) -> Void)?
     var handlerReplyTypeButtonTapped: ((Bool) -> Void)?
     var handlerAuthorCommentReplyTapped: ((String) -> Void)?
+    
+    // Markdown handlers
+    var handlerMarkdownError: ((String) -> Void)?
+    var handlerMarkdownURLTapped: ((URL) -> Void)?
+    var handlerMarkdownAuthorNameTapped: ((String) -> Void)?
 
     
     // MARK: - IBOutlets
+    @IBOutlet var markdownViewManager: MarkdownViewManager! {
+        didSet {
+            // Handlers
+            self.markdownViewManager.completionShowSafariURL            =   { [weak self] url in
+                self?.handlerMarkdownURLTapped!(url)
+            }
+            
+            self.markdownViewManager.completionErrorAlertView           =   { [weak self] errorMessage in
+                self?.handlerMarkdownError!(errorMessage)
+            }
+            
+            self.markdownViewManager.completionCommentAuthorTapped      =   { [weak self] commentAuthorName in
+                self?.handlerAuthorCommentReplyTapped!(commentAuthorName)
+            }
+        }
+    }
+
     @IBOutlet weak var authorAvatarImageView: UIImageView! {
         didSet {
             let tap = UITapGestureRecognizer(target: self, action: #selector(authorLabelTapped))
@@ -80,18 +102,6 @@ class ReplyTableViewCell: UITableViewCell, ReusableCell {
                                   font:              UIFont(name: "SFProDisplay-Regular", size: 10.0),
                                   alignment:         .left,
                                   isMultiLines:      false)
-        }
-    }
-    
-    @IBOutlet weak var replyTextLabel: UILabel! {
-        didSet {
-            replyTextLabel.tune(withText:           "",
-                                 hexColors:         veryDarkGrayWhiteColorPickers,
-                                 font:              UIFont(name: "SFProDisplay-Regular", size: 12.0),
-                                 alignment:         .left,
-                                 isMultiLines:      false)
-            
-            replyTextLabel.numberOfLines = 2
         }
     }
     
@@ -246,6 +256,11 @@ extension ReplyTableViewCell: ConfigureCell {
                                               parentAuthor:     model.parentAuthor,
                                               parentPermlink:   model.parentPermlink)
         
+        // Load markdown content
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
+            self.markdownViewManager.load(markdown: model.body)
+        }
+
         // Load commentator info
         RestAPIManager.loadUsersInfo(byNickNames: [reply.author], completion: { [weak self] errorAPI in
             if errorAPI == nil, let commentator = User.fetch(byNickName: reply.author) {
@@ -273,7 +288,6 @@ extension ReplyTableViewCell: ConfigureCell {
         })
         
         self.timeLabel.text         =   reply.created.convertToDaysAgo()
-        self.replyTextLabel.text    =   reply.body
         self.authorTitleLabel.text  =   "Answered your".localized()
 
         selectionStyle = .none

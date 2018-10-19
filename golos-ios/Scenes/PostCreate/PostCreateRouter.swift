@@ -48,10 +48,10 @@ class PostCreateRouter: NSObject, PostCreateRoutingLogic, PostCreateDataPassing 
     }
 
     func routeToUserProfileScene(byUserName name: String) {
-        let storyboard          =   UIStoryboard(name: "UserProfileShow", bundle: nil)
-        let destinationVC       =   storyboard.instantiateViewController(withIdentifier: "UserProfileShowVC") as! UserProfileShowViewController
-        destinationVC.sceneMode =   .preview
-        var destinationDS       =   destinationVC.router!.dataStore!
+        let storyboard              =   UIStoryboard(name: "UserProfileShow", bundle: nil)
+        let destinationVC           =   storyboard.instantiateViewController(withIdentifier: "UserProfileShowVC") as! UserProfileShowViewController
+        destinationVC.sceneMode     =   .preview
+        var destinationDS           =   destinationVC.router!.dataStore!
         destinationDS.userNickName  =   name
         
         navigateToUserProfileScene(source: viewController!, destination: destinationVC)

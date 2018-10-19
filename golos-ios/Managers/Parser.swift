@@ -86,6 +86,21 @@ class Parser {
     static func repair(body: String) -> String {
         var modifiedBody = body
         
+        // Modify YouTube video link
+        if modifiedBody.contains("https://www.youtube.com/") {
+            if let linkComponent = modifiedBody.components(separatedBy: "\"").first(where: { $0.contains("https://www.youtube.com/")})!.components(separatedBy: "/").last {
+                let youtubeVideoID = linkComponent.replacingOccurrences(of: "\\", with: "")
+                modifiedBody = String(format: "[![](https://img.youtube.com/vi/%@/0.jpg)](https://www.youtube.com/watch?v=%@)", youtubeVideoID, youtubeVideoID)
+            }
+        }
+        
+        if modifiedBody.contains("https://youtu.be/") {
+            if let linkComponent = modifiedBody.components(separatedBy: "://").last!.components(separatedBy: "/").last {
+                let youtubeVideoID = linkComponent.replacingOccurrences(of: "\\", with: "")
+                modifiedBody = String(format: "[![](https://img.youtube.com/vi/%@/0.jpg)](https://www.youtube.com/watch?v=%@)", youtubeVideoID, youtubeVideoID)
+            }
+        }
+        
         if modifiedBody.contains("//pp.userapi.com") {
             modifiedBody = modifiedBody.replacingOccurrences(of: "//pp.userapi.com", with: "//imgp.golos.io/0x0/https://pp.userapi.com")
         }

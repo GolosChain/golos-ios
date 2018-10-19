@@ -18,7 +18,7 @@ class UserProfileInfoTitleView: PassthroughView {
     
     @IBOutlet weak var aboutLabelView: UIView! {
         didSet {
-            aboutLabelView.isHidden =   false
+            aboutLabelView.isHidden =   true
         }
     }
     
@@ -86,7 +86,6 @@ class UserProfileInfoTitleView: PassthroughView {
     
     func updateUI(fromUserInfo userInfo: User) {
         self.aboutLabel.text            =   userInfo.about
-        self.aboutLabelView.isHidden    =   userInfo.about == nil
         self.postsCountLabel.text       =   String(format: "%i", userInfo.postsCount)
         self.followerCountLabel.text    =   String(format: "%i", userInfo.followerCount)
         self.followingCountLabel.text   =   String(format: "%i", userInfo.followingCount)

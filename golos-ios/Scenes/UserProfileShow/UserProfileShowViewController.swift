@@ -387,6 +387,7 @@ extension UserProfileShowViewController {
             
             // Change profileInfoView height
             if let info = userEntity.about, !info.isEmpty {
+                self.userProfileInfoTitleView.aboutLabelView.isHidden = false
                 userProfileInfoTitleViewHeightConstraint.constant *= 2
             }
         }
