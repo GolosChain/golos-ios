@@ -1384,14 +1384,10 @@ extension PostShowViewController: UITableViewDataSource {
         }
         
         commentTableViewCell!.handlerAuthorProfileImageButtonTapped     =   { [weak self] authorName in
-            guard (self?.isCurrentOperationPossible())! else { return }
-            
             self?.router?.routeToUserProfileScene(byUserName: authorName)
         }
         
         commentTableViewCell!.handlerAuthorNameButtonTapped                 =   { [weak self] authorName in
-            guard (self?.isCurrentOperationPossible())! else { return }
-            
             self?.router?.routeToUserProfileScene(byUserName: authorName)
         }
         

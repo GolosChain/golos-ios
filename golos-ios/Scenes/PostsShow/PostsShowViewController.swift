@@ -315,11 +315,7 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
                 }
                 
                 activeVC.handlerAuthorProfileImageButtonTapped      =   { [weak self] userName in
-                    guard (self?.isCurrentOperationPossible())! else {
-                        return
-                    }
-
-                    self?.router?.routeToUserProfileScene(byUserName: userName!)
+                    self?.router?.routeToUserProfileScene(byUserName: userName)
                 }
             }
         })

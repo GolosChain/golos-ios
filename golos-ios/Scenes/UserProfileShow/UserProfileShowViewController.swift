@@ -476,11 +476,7 @@ extension UserProfileShowViewController {
                 
                 // Reply handlers
                 activeVC.handlerAuthorProfileImageButtonTapped    =   { [weak self] authorName in
-                    guard (self?.isCurrentOperationPossible())! else {
-                        return
-                    }
-
-                    self?.router?.routeToUserProfileScene(byUserName: authorName!)
+                     self?.router?.routeToUserProfileScene(byUserName: authorName)
                 }
             }
         })

@@ -37,7 +37,7 @@ class ReplyTableViewCell: UITableViewCell, ReusableCell {
     // Handlers
     var handlerAnswerButtonTapped: ((PostShortInfo?) -> Void)?
     var handlerReplyTypeButtonTapped: ((Bool) -> Void)?
-    var handlerAuthorCommentReplyTapped: ((String?) -> Void)?
+    var handlerAuthorCommentReplyTapped: ((String) -> Void)?
 
     
     // MARK: - IBOutlets
@@ -194,7 +194,7 @@ class ReplyTableViewCell: UITableViewCell, ReusableCell {
     // MARK: - Actions
     @objc func authorLabelTapped(sender: UITapGestureRecognizer) {
         guard !User.isAnonymous else {
-            self.handlerAuthorCommentReplyTapped!(nil)
+            self.handlerAuthorCommentReplyTapped!(self.authorLabel.text!)
             return
         }
         

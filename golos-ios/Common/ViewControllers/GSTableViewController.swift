@@ -54,7 +54,7 @@ class GSTableViewController: GSBaseViewController, HandlersCellSupport {
     var handlerSelectItem: ((PostShortInfo) -> Void)?
     var handlerUsersButtonTapped: (() -> Void)?
     var handlerAuthorProfileAddButtonTapped: (() -> Void)?
-    var handlerAuthorProfileImageButtonTapped: ((String?) -> Void)?
+    var handlerAuthorProfileImageButtonTapped: ((String) -> Void)?
     var handlerHorizontalScrolling: ((CGFloat) -> Void)?
 
     // HandlersCellSupport
