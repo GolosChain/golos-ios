@@ -12,7 +12,6 @@
 
 import UIKit
 import GoloSwift
-import SafariServices
 
 enum LoginType {
     case postingKey
@@ -222,19 +221,7 @@ class LogInShowViewController: GSBaseViewController {
     }
     
     @IBAction func registerButtonPressed(_ sender: Any) {
-        guard isNetworkAvailable else {
-            self.showAlertView(withTitle: "Info", andMessage: "No Internet Connection", needCancel: false, completion: { _ in })
-            
-            return
-        }
-        
-        guard let registrationURL = URL.init(string: GolosWebPage.registration.rawValue) else {
-            self.showAlertView(withTitle: "Error", andMessage: "Developer error!", needCancel: false, completion: { _ in })
-            return
-        }
-        
-        let safari = SFSafariViewController(url: registrationURL)
-        self.present(safari, animated: true, completion: nil)
+        self.openExternalLink(byURL: GolosWebPage.registration.rawValue)
     }
 }
 

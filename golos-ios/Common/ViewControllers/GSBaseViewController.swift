@@ -7,10 +7,7 @@
 //
 
 import UIKit
-
-//protocol GSBaseViewControllerName {
-//    var nameVC: String! { get set }
-//}
+import SafariServices
 
 class GSBaseViewController: UIViewController {
     // MARK: - Properties
@@ -129,6 +126,22 @@ class GSBaseViewController: UIViewController {
         }
         
         return true
+    }
+    
+    func openExternalLink(byURL url: String) {
+        guard isNetworkAvailable else {
+            self.showAlertView(withTitle: "Info", andMessage: "No Internet Connection", needCancel: false, completion: { _ in })
+            
+            return
+        }
+        
+        guard let pageURL = URL.init(string: url) else {
+            self.showAlertView(withTitle: "Error", andMessage: "Developer error!", needCancel: false, completion: { _ in })
+            return
+        }
+        
+        let safari = SFSafariViewController(url: pageURL)
+        self.present(safari, animated: true, completion: nil)
     }
     
     

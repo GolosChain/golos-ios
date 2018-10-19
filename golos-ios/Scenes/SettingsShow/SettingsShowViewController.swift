@@ -226,18 +226,15 @@ class SettingsShowViewController: GSBaseViewController {
     }
     
     @IBAction func wikiGolosButtonTapped(_ sender: Any) {
-        self.onlinePage = .wiki
-        self.router?.showOnlineGolosPage()
+        self.openExternalLink(byURL: GolosWebPage.wiki.rawValue)
     }
     
     @IBAction func welcomeButtonTapped(_ sender: Any) {
-        self.onlinePage = .welcome
-        self.router?.showOnlineGolosPage()
+        self.openExternalLink(byURL: GolosWebPage.welcome.rawValue)
     }
     
     @IBAction func privacyPolicyButtonTapped(_ sender: Any) {
-        self.onlinePage = .privacyPolicy
-        self.router?.showOnlineGolosPage()
+        self.openExternalLink(byURL: GolosWebPage.privacyPolicy.rawValue)
     }
     
     @IBAction func switchAccountButtonTapped(_ sender: Any) {

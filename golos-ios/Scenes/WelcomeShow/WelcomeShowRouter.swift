@@ -16,8 +16,6 @@ import GoloSwift
 // MARK: - Input & Output protocols
 @objc protocol WelcomeShowRoutingLogic {
     func routeToLoginShowScene()
-    func showRegisterFormOnline()
-    func showMoreInfoPageOnline()
 }
 
 protocol WelcomeShowDataPassing {}
@@ -37,49 +35,9 @@ class WelcomeShowRouter: NSObject, WelcomeShowRoutingLogic, WelcomeShowDataPassi
     func routeToLoginShowScene() {
         let storyboard      =   UIStoryboard(name: "LogInShow", bundle: nil)
         let destinationVC   =   storyboard.instantiateViewController(withIdentifier: "LogInShowVC") as! LogInShowViewController
-
+        
         viewController?.show(destinationVC, sender: nil)
         viewController?.showNavigationBar()
-     }
-    
-    func showRegisterFormOnline() {
-        guard isNetworkAvailable else {
-            viewController?.showAlertView(withTitle: "Info", andMessage: "No Internet Connection", needCancel: false, completion: { _ in })
-            return
-        }
-        
-        guard let registrationURL = URL.init(string: GolosWebPage.registration.rawValue) else {
-            viewController?.showAlertView(withTitle: "Error", andMessage: "Developer error!", needCancel: false, completion: { _ in })
-            return
-        }
-        
-        if #available(iOS 10.0, *) {
-            UIApplication.shared.open(registrationURL, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
-        }
-            
-        else {
-            UIApplication.shared.openURL(registrationURL)
-        }
-    }
-    
-    func showMoreInfoPageOnline() {
-        guard isNetworkAvailable else {
-            viewController?.showAlertView(withTitle: "Info", andMessage: "No Internet Connection", needCancel: false, completion: { _ in })
-            return
-        }
-        
-        guard let welcomeURL = URL.init(string: GolosWebPage.welcome.rawValue) else {
-            viewController?.showAlertView(withTitle: "Error", andMessage: "Developer error!", needCancel: false, completion: { _ in })
-            return
-        }
-        
-        if #available(iOS 10.0, *) {
-            UIApplication.shared.open(welcomeURL, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
-        }
-            
-        else {
-            UIApplication.shared.openURL(welcomeURL)
-        }
     }
 }
 

@@ -76,7 +76,15 @@ class WelcomeShowViewController: GSBaseViewController {
 
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var signInButton: UIButton!
-    @IBOutlet weak var moreInfoButton: UIButton!
+    
+    @IBOutlet weak var welcomeButton: UIButton! {
+        didSet {
+            self.welcomeButton.tune(withTitle:      "More Info".localized(),
+                                    hexColors:      [darkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
+                                    font:           UIFont(name: "SFProDisplay-Regular", size: 14.0),
+                                    alignment:      .center)
+        }
+    }
 
     @IBOutlet var heightConstraintsCollection: [NSLayoutConstraint]! {
         didSet {
@@ -194,10 +202,6 @@ class WelcomeShowViewController: GSBaseViewController {
 
         signInButton.setTitle("Sign In".localized(), for: .normal)
         signInButton.setBorderButtonRoundEdges()
-
-        moreInfoButton.setTitle("More Info".localized(), for: .normal)
-        moreInfoButton.setTitleColor(UIColor(hexString: "#7D7D7D"), for: .normal)
-        moreInfoButton.titleLabel?.font =   UIFont(name: "SFProDisplay-Regular", size: 14.0)
     }
     
     
@@ -207,11 +211,11 @@ class WelcomeShowViewController: GSBaseViewController {
     }
     
     @IBAction func signInButtonPressed(_ sender: Any) {
-        router?.showRegisterFormOnline()
+        self.openExternalLink(byURL: GolosWebPage.registration.rawValue)
     }
     
-    @IBAction func moreInfoButtonPressed(_ sender: Any) {
-        router?.showMoreInfoPageOnline()
+    @IBAction func welcomeButtonPressed(_ sender: Any) {
+        self.openExternalLink(byURL: GolosWebPage.welcome.rawValue)
     }
     
     @IBAction func handlerSelectNewPage(_ sender: UIPageControl) {

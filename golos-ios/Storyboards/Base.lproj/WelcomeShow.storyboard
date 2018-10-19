@@ -90,13 +90,13 @@
                                                     <action selector="signInButtonPressed:" destination="Lf4-WS-m1Z" eventType="touchUpInside" id="b2e-G9-D8o"/>
                                                 </connections>
                                             </button>
-                                            <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nWl-Yg-qF2" userLabel="More Info Button">
+                                            <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nWl-Yg-qF2" userLabel="Welcome Button">
                                                 <rect key="frame" x="134.5" y="594" width="58" height="44"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                 <state key="normal" title="More Info"/>
                                                 <connections>
-                                                    <action selector="moreInfoButtonPressed:" destination="Lf4-WS-m1Z" eventType="touchUpInside" id="MFL-kL-Gzt"/>
+                                                    <action selector="welcomeButtonPressed:" destination="Lf4-WS-m1Z" eventType="touchUpInside" id="MFL-kL-Gzt"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -210,10 +210,10 @@
                     <connections>
                         <outlet property="inGolosLabel" destination="eEs-Xc-jd5" id="JTY-z2-pwU"/>
                         <outlet property="loginButton" destination="n04-8W-lqo" id="Uku-VU-LHk"/>
-                        <outlet property="moreInfoButton" destination="nWl-Yg-qF2" id="Osv-jU-OJZ"/>
                         <outlet property="signInButton" destination="nbr-ET-bGL" id="Zzq-OI-3vH"/>
                         <outlet property="titlesPageControl" destination="8Nq-kE-QJu" id="JZS-tX-8Bb"/>
                         <outlet property="titlesScrollView" destination="E2y-ns-DzP" id="V9B-OK-s4r"/>
+                        <outlet property="welcomeButton" destination="nWl-Yg-qF2" id="Osv-jU-OJZ"/>
                         <outlet property="welcomeLabel" destination="cec-Yj-ujp" id="e7c-Xc-ciS"/>
                         <outletCollection property="heightConstraintsCollection" destination="rOp-uc-0p6" collectionClass="NSMutableArray" id="8os-in-iON"/>
                         <outletCollection property="heightConstraintsCollection" destination="Se0-r0-Mus" collectionClass="NSMutableArray" id="EH3-Jg-ONj"/>
