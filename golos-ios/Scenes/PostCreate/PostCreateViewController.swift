@@ -62,14 +62,7 @@ class PostCreateViewController: GSBaseViewController {
             }
             
             commentReplyView.handlerMarkdownURLTapped               =   { [weak self] url in
-                if isNetworkAvailable {
-                    let safari = SFSafariViewController(url: url)
-                    self?.present(safari, animated: true, completion: nil)
-                }
-                    
-                else {
-                    self?.showAlertView(withTitle: "Info", andMessage: "No Internet Connection", needCancel: false, completion: { _ in })
-                }
+                self?.openExternalLink(byURL: url.absoluteString)
             }
             
             commentReplyView.handlerMarkdownAuthorNameTapped        =   { [weak self] authorName in

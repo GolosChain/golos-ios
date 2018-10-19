@@ -88,7 +88,6 @@ class WelcomeShowViewController: GSBaseViewController {
 
     @IBOutlet var heightConstraintsCollection: [NSLayoutConstraint]! {
         didSet {
-//            _ = heightConstraintsCollection.map({ $0.constant = $0.constant * heightRatio })
         }
     }
     
@@ -146,14 +145,11 @@ class WelcomeShowViewController: GSBaseViewController {
         
         self.hideNavigationBar()
         UIApplication.shared.statusBarStyle = .default
-//        navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         Logger.log(message: "Success", event: .severe)
-        
-//        navigationController?.setNavigationBarHidden(false, animated: true)
     }
 
     

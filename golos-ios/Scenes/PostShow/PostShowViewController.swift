@@ -131,14 +131,7 @@ class PostShowViewController: GSBaseViewController {
             }
             
             markdownViewManager.completionShowSafariURL             =   { [weak self] url in
-                if isNetworkAvailable {
-                    let safari = SFSafariViewController(url: url)
-                    self?.present(safari, animated: true, completion: nil)
-                }
-                    
-                else {
-                    self?.showAlertView(withTitle: "Info", andMessage: "No Internet Connection", needCancel: false, completion: { _ in })
-                }
+                self?.openExternalLink(byURL: url.absoluteString)
             }
         }
     }
@@ -1397,20 +1390,11 @@ extension PostShowViewController: UITableViewDataSource {
         }
         
         commentTableViewCell!.markdownViewManager.completionCommentAuthorTapped     =   { [weak self] authorName in
-//            guard (self?.isCurrentOperationPossible())! else { return }
-            
             self?.router?.routeToUserProfileScene(byUserName: authorName)
         }
         
         commentTableViewCell!.markdownViewManager.completionShowSafariURL           =   { [weak self] url in
-            if isNetworkAvailable {
-                let safari = SFSafariViewController(url: url)
-                self?.present(safari, animated: true, completion: nil)
-            }
-                
-            else {
-                self?.showAlertView(withTitle: "Info", andMessage: "No Internet Connection", needCancel: false, completion: { _ in })
-            }
+            self?.openExternalLink(byURL: url.absoluteString)
         }
         
         return commentTableViewCell!
