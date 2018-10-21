@@ -22,15 +22,30 @@
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                                 <subviews>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BtF-Gk-D12" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="52" width="320" height="348.5"/>
+                                        <rect key="frame" x="0.0" y="52" width="320" height="422.5"/>
                                         <subviews>
-                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="QAN-qd-bh6" userLabel="Comments Table View">
-                                                <rect key="frame" x="16" y="348.5" width="288" height="0.0"/>
+                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="QAN-qd-bh6" userLabel="Comments Table View" customClass="GSTableViewWithReloadCompletion" customModule="Golos" customModuleProvider="target">
+                                                <rect key="frame" x="16" y="348.5" width="288" height="74"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" priority="750" id="W0v-81-I2x"/>
+                                                    <constraint firstAttribute="height" priority="750" constant="74" id="W0v-81-I2x"/>
                                                 </constraints>
                                             </tableView>
+                                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zdg-xS-0Il" userLabel="Infinite Scrolling View">
+                                                <rect key="frame" x="0.0" y="422.5" width="320" height="0.0"/>
+                                                <subviews>
+                                                    <activityIndicatorView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="xNz-QS-4GD">
+                                                        <rect key="frame" x="150" y="-10" width="20" height="20"/>
+                                                        <color key="color" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                                    </activityIndicatorView>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" identifier="infiniteScrollingViewHeightConstraint" id="9xg-Zt-xNb"/>
+                                                    <constraint firstItem="xNz-QS-4GD" firstAttribute="centerX" secondItem="zdg-xS-0Il" secondAttribute="centerX" id="cff-dN-PO0"/>
+                                                    <constraint firstItem="xNz-QS-4GD" firstAttribute="centerY" secondItem="zdg-xS-0Il" secondAttribute="centerY" id="yAH-Fa-fcz"/>
+                                                </constraints>
+                                            </view>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dZE-L5-SIs" userLabel="Hide View">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="278.5"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -446,7 +461,6 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="bie-f8-jaU" firstAttribute="leading" secondItem="fb3-VQ-GlM" secondAttribute="leading" id="05e-4y-gbS"/>
-                                            <constraint firstAttribute="bottom" secondItem="QAN-qd-bh6" secondAttribute="bottom" id="0Eb-t1-6M2"/>
                                             <constraint firstAttribute="trailing" secondItem="hL9-He-JpB" secondAttribute="trailing" id="0NR-rB-Aj5"/>
                                             <constraint firstItem="lwn-iM-8rz" firstAttribute="top" secondItem="Vl1-2x-lVp" secondAttribute="bottom" constant="16" id="0cK-Wq-U7s"/>
                                             <constraint firstItem="h9e-KO-AhW" firstAttribute="leading" secondItem="BtF-Gk-D12" secondAttribute="leading" constant="16" id="24g-ha-yWK"/>
@@ -469,6 +483,7 @@
                                             <constraint firstAttribute="trailing" secondItem="QAN-qd-bh6" secondAttribute="trailing" constant="16" id="NQR-zm-DRu"/>
                                             <constraint firstItem="VyW-ed-xji" firstAttribute="top" secondItem="n52-gC-8Jz" secondAttribute="top" id="Os2-4F-O1G"/>
                                             <constraint firstItem="QAN-qd-bh6" firstAttribute="leading" secondItem="BtF-Gk-D12" secondAttribute="leading" constant="16" id="PAa-w3-YhY"/>
+                                            <constraint firstAttribute="leading" secondItem="bie-f8-jaU" secondAttribute="trailing" constant="-36" id="PZN-8T-mOK"/>
                                             <constraint firstAttribute="trailing" secondItem="MhK-Vc-x7K" secondAttribute="trailing" constant="120" id="QAV-gt-84U"/>
                                             <constraint firstItem="tqm-aY-SVr" firstAttribute="leading" secondItem="BtF-Gk-D12" secondAttribute="leading" id="RRT-Ii-59C"/>
                                             <constraint firstItem="AYT-cY-Zsi" firstAttribute="leading" secondItem="aLP-ZP-yPw" secondAttribute="leading" constant="-4" id="Ski-b7-KcF"/>
@@ -477,13 +492,17 @@
                                             <constraint firstItem="hL9-He-JpB" firstAttribute="leading" secondItem="BtF-Gk-D12" secondAttribute="leading" id="cgt-dp-hh8"/>
                                             <constraint firstItem="MhK-Vc-x7K" firstAttribute="leading" secondItem="BtF-Gk-D12" secondAttribute="leading" constant="16" id="fUC-kO-iPy"/>
                                             <constraint firstItem="zPm-d9-LiX" firstAttribute="leading" secondItem="BtF-Gk-D12" secondAttribute="leading" constant="16" id="gGh-Ki-O6Z"/>
+                                            <constraint firstAttribute="bottom" secondItem="zdg-xS-0Il" secondAttribute="bottom" id="kwN-Ep-OSG"/>
                                             <constraint firstItem="lwn-iM-8rz" firstAttribute="leading" secondItem="BtF-Gk-D12" secondAttribute="leading" constant="16" id="nHj-Vg-MQe"/>
+                                            <constraint firstItem="zdg-xS-0Il" firstAttribute="leading" secondItem="BtF-Gk-D12" secondAttribute="leading" id="nTW-Rq-G6E"/>
                                             <constraint firstItem="bie-f8-jaU" firstAttribute="centerY" secondItem="fb3-VQ-GlM" secondAttribute="centerY" id="oeX-jg-DRW"/>
                                             <constraint firstItem="MhK-Vc-x7K" firstAttribute="top" secondItem="lwn-iM-8rz" secondAttribute="bottom" id="pJh-g4-f8G"/>
                                             <constraint firstItem="h9e-KO-AhW" firstAttribute="top" secondItem="MhK-Vc-x7K" secondAttribute="bottom" id="qS2-XR-4rB"/>
+                                            <constraint firstAttribute="trailing" secondItem="zdg-xS-0Il" secondAttribute="trailing" id="qgg-VM-Zs4"/>
                                             <constraint firstItem="Vl1-2x-lVp" firstAttribute="top" secondItem="zPm-d9-LiX" secondAttribute="bottom" constant="16" id="rDi-pt-7XW"/>
                                             <constraint firstAttribute="trailing" secondItem="dZE-L5-SIs" secondAttribute="trailing" id="rFS-LF-C6k"/>
                                             <constraint firstAttribute="trailing" secondItem="nt5-Bc-nF3" secondAttribute="trailing" id="rcV-lt-t9Y"/>
+                                            <constraint firstItem="zdg-xS-0Il" firstAttribute="top" secondItem="QAN-qd-bh6" secondAttribute="bottom" id="sEh-Hb-ZlU"/>
                                             <constraint firstItem="tHL-Id-QDj" firstAttribute="top" secondItem="MhK-Vc-x7K" secondAttribute="bottom" id="u8K-s0-eby"/>
                                             <constraint firstItem="dZE-L5-SIs" firstAttribute="top" secondItem="BtF-Gk-D12" secondAttribute="top" id="vqu-Hh-h5L"/>
                                             <constraint firstItem="dZE-L5-SIs" firstAttribute="leading" secondItem="BtF-Gk-D12" secondAttribute="leading" id="wnW-sW-cjs"/>
@@ -600,6 +619,7 @@
                         <outlet property="donateButton" destination="SQB-q3-brD" id="pGH-FJ-UVL"/>
                         <outlet property="flauntActivityIndicator" destination="AYT-cY-Zsi" id="kql-Sy-njs"/>
                         <outlet property="flauntButton" destination="aLP-ZP-yPw" id="fNr-aW-I76"/>
+                        <outlet property="infiniteScrollingViewHeightConstraint" destination="9xg-Zt-xNb" id="Vva-KX-4mF"/>
                         <outlet property="loadingPostContentActivityIndicator" destination="NB0-PC-C9r" id="AFf-ry-tS6"/>
                         <outlet property="markdownViewHeightConstraint" destination="XZb-1l-yIm" id="yCU-ia-4mb"/>
                         <outlet property="markdownViewManager" destination="Vl1-2x-lVp" id="fWB-4H-ItD"/>

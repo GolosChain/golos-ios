@@ -34,21 +34,15 @@ class PostShowViewController: GSBaseViewController {
     var isPostContentModify: Bool = false
 
     var comments: [Comment]?
-
+    
     // Comments pagination
     let paginationOffset    =   5
-    var isPaginationRun     =   false
+    var isPaginationRun     =   true
     var needPagination      =   false
-    var frames: [Int: CGRect]?
+    
+    var cellHeights: [Int: CGFloat]?
     
     var gsTimer: GSTimer?
-
-    lazy var refreshControl: UIRefreshControl = {
-        let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(handlerTableViewRefreshData), for: .valueChanged)
-        
-        return refreshControl
-    }()
     
     var interactor: PostShowBusinessLogic?
     var router: (NSObjectProtocol & PostShowRoutingLogic & PostShowDataPassing)?
@@ -62,21 +56,18 @@ class PostShowViewController: GSBaseViewController {
     @IBOutlet weak var commentsControlView: UIView!
     @IBOutlet weak var subscribesStackView: UIStackView!
     
-    @IBOutlet var commentsTableView: UITableView! {
+    @IBOutlet var commentsMarkdownView: MarkdownViewManager!
+    
+    @IBOutlet var commentsTableView: GSTableViewWithReloadCompletion! {
         didSet {
             self.commentsTableView.delegate     =   self
             self.commentsTableView.dataSource   =   self
             
-            self.commentsTableView.register(UINib(nibName: "CommentHeaderView", bundle: nil), forHeaderFooterViewReuseIdentifier: "CommentHeaderView")
-            self.commentsTableView.register(UINib(nibName: "CommentTableViewCell", bundle: nil), forCellReuseIdentifier: "CommentTableViewCell")
+            self.commentsTableView.rowHeight            =   UITableView.automaticDimension
+            self.commentsTableView.estimatedRowHeight   =   74.0
 
-            if #available(iOS 10.0, *) {
-                self.commentsTableView.refreshControl   =   refreshControl
-            }
-                
-            else {
-                self.commentsTableView.addSubview(refreshControl)
-            }
+            self.commentsTableView.register(UINib(nibName: "CommentTableViewCell", bundle: nil), forCellReuseIdentifier: "CommentTableViewCell")
+            self.commentsTableView.register(UINib(nibName: "CommentHeaderView", bundle: nil), forHeaderFooterViewReuseIdentifier: "CommentHeaderView")
         }
     }
     
@@ -415,6 +406,12 @@ class PostShowViewController: GSBaseViewController {
         }
     }
     
+    @IBOutlet weak var infiniteScrollingViewHeightConstraint: NSLayoutConstraint! {
+        didSet {
+            self.infiniteScrollingViewHeightConstraint.constant = 0.0
+        }
+    }
+
     @IBOutlet weak var tagsCollectionViewheightConstraint: NSLayoutConstraint!
     @IBOutlet weak var markdownViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var commentsControlViewTopConstraint: NSLayoutConstraint!
@@ -929,7 +926,7 @@ extension PostShowViewController: PostShowDisplayLogic {
                                     } else if let commentShortInfo = self.router?.dataStore?.comment, let indexPath = commentShortInfo.indexPath,
                                         let commentEntity = CoreDataManager.instance.readEntity(withName: "Comment",
                                                                                                 andPredicateParameters: NSPredicate(format: "author == %@ AND permlink == %@", commentShortInfo.author!, commentShortInfo.permlink!)) as? Comment {
-                                        (self.commentsTableView.cellForRow(at: indexPath) as! CommentTableViewCell).setup(withItem: commentEntity, andIndexPath: indexPath)
+//                                        (self.commentsTableView.cellForRow(at: indexPath) as! CommentTableViewCell).setup(withItem: commentEntity, andIndexPath: indexPath)
                                     }
                 })
             }
@@ -953,7 +950,7 @@ extension PostShowViewController: PostShowDisplayLogic {
                     // CommentView
                     else if let commentEntity = model as? Comment {
                         // Modify Comment
-                        (self.commentsTableView.cellForRow(at: indexPath) as! CommentTableViewCell).setup(withItem: commentEntity, andIndexPath: indexPath)
+//                        (self.commentsTableView.cellForRow(at: indexPath) as! CommentTableViewCell).setup(withItem: commentEntity, andIndexPath: indexPath)
                     }
                 })
             }
@@ -981,12 +978,12 @@ extension PostShowViewController {
     func loadPostComments() {
         Logger.log(message: "Success", event: .severe)
 
-        let loadPostCommentsQueue = DispatchQueue.global(qos: .utility)
+//        let loadPostCommentsQueue = DispatchQueue.global(qos: .utility)
 
-        loadPostCommentsQueue.async {
+//        loadPostCommentsQueue.async {
             let contentRepliesRequestModel = PostShowModels.Post.RequestModel()
             self.interactor?.loadPostComments(withRequestModel: contentRepliesRequestModel)
-        }
+//        }
     }
     
     private func runCheckFollowing() {
@@ -1056,7 +1053,7 @@ extension PostShowViewController {
     
     private func fetchPostComments() {
         if let postShortInfo = self.router?.dataStore?.postShortInfo {
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1, execute: {
+//            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1, execute: {
                 guard var commentEntities = CoreDataManager.instance.readEntities(withName:                    "Comment",
                                                                                   withPredicateParameters:     NSPredicate(format: "url contains[cd] %@ AND url contains[cd] %@", postShortInfo.author ?? "XXX", postShortInfo.permlink ?? "XXX"),
                                                                                   andSortDescriptor:           nil) as? [Comment], commentEntities.count > 0 else {
@@ -1077,46 +1074,76 @@ extension PostShowViewController {
                 }
                 
                 commentEntities = commentEntities.sorted(by: { $0.treeIndex < $1.treeIndex })
-                
+
                 self.commentsButton.setTitle("\(commentEntities.count)", for: .normal)
                 self.commentsCountLabel.text = String(format: "%i", commentEntities.count)
-
+                
                 let startIndex  =   self.comments?.count ?? 0 * self.paginationOffset
                 let endIndex    =   startIndex + self.paginationOffset < commentEntities.count ? (startIndex + self.paginationOffset) : commentEntities.count
-
-                if commentEntities.count <= self.paginationOffset {
-                    self.comments = commentEntities
-                } else if startIndex == 0 {
-                    self.comments = Array(commentEntities[startIndex..<endIndex])
+            
+                if self.comments == nil {
+                    self.comments   =   Array(commentEntities[startIndex..<endIndex])
                 } else {
-                    self.comments?.append(contentsOf: Array(commentEntities[startIndex..<endIndex]))
+                    self.comments!.append(contentsOf: Array(commentEntities[startIndex..<endIndex]))
+                    self.comments   =   self.comments!.sorted(by: { $0.treeIndex < $1.treeIndex })
                 }
-                
-                // Reload data
+            
+            // Reload data
             self.needPagination = endIndex != commentEntities.count
-            
-            self.commentsTableView.beginUpdates()
+            self.commentsTableViewHeightConstraint.constant = CGFloat(self.comments!.count * 74)
 
-            for index in startIndex..<endIndex {
-                self.commentsTableView.insertRows(at: [IndexPath(row: index, section: 0)], with: .none)
+//            self.commentsTableView.beginUpdates()
+//
+//            for index in startIndex..<endIndex {
+//                let indexPath = IndexPath(row: index, section: 0)
+//                self.commentsTableView.insertRows(at: [indexPath], with: .fade)
+//
+////                self.loadData(fromBody: self.comments![index].body, andIndexPath: indexPath)
+//            }
+//
+//            self.commentsTableView.endUpdates()
+
+            self.commentsTableView.reloadDataWithCompletion {
+                print("XXXXX")
+                self.commentsTableView.reloadData()
             }
-
-            self.commentsTableView.endUpdates()
-
-//                DispatchQueue.main.async {
-//                    self.commentsTableView.reloadData()
-//                }
-            
-//            self.commentsTableView.reloadSections(IndexSet(integer: 0), with: .automatic)
             
             if self.isPaginationRun {
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2.5, execute: {
                     self.isPaginationRun = false
+                    self.scrollView.isUserInteractionEnabled = true
+                    
+                    self.infiniteScrollingViewHeightConstraint.constant = 0.0
+                    
+                    UIView.animate(withDuration: 0.3, animations: {
+                        self.view.layoutIfNeeded()
+                        self.commentsTableView.scrollToRow(at: IndexPath(row: startIndex, section: 0), at: UITableView.ScrollPosition.bottom, animated: true)
+                    })
                 })
             }
-            })
+//        })
         }
     }
+    
+//    private func loadData(fromBody body: String, andIndexPath indexPath: IndexPath) {
+//        // Load markdown content
+//        self.commentsMarkdownView.load(markdown: body)
+//
+//        self.commentsMarkdownView.onRendered = { [weak self] height in
+//            self?.commentsTableViewHeightConstraint.constant += height + 74.0
+//
+//            if let comment = self?.comments?[indexPath.row] {
+//                self?.markdownViewManager.height    =   height + 74.0
+//                comment.markdownManager             =   self?.markdownViewManager
+//            }
+//
+//            DispatchQueue.main.async(execute: {
+//                self?.commentsTableView.beginUpdates()
+//                self?.commentsTableView.reloadRows(at: [indexPath], with: .fade)
+//                self?.commentsTableView.endUpdates()
+//            })
+//        }
+//    }
 }
 
 
@@ -1188,10 +1215,20 @@ extension PostShowViewController: UIScrollViewDelegate {
         
         let bottom          =   scrollView.contentSize.height - scrollView.frame.size.height
         let scrollPosition  =   scrollView.contentOffset.y
-        
+
         if bottom - scrollPosition <= 150.0 && !self.isPaginationRun && self.needPagination {
             self.isPaginationRun = true
+            self.scrollView.isUserInteractionEnabled = false
             self.fetchPostComments()
+            
+            // Display Infinite Scrolling view
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
+                self.infiniteScrollingViewHeightConstraint.constant = 44.0 * heightRatio
+                
+                UIView.animate(withDuration: 0.3) {
+                    self.view.layoutIfNeeded()
+                }
+            }
         }
     }
 }
@@ -1267,8 +1304,6 @@ extension PostShowViewController {
 // MARK: - UITableViewDataSource
 extension PostShowViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-//        guard let items = self.comments, items.count > 0 else { return 0 }
-
         return 1
     }
     
@@ -1279,33 +1314,39 @@ extension PostShowViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let commentTableViewCell = self.commentsTableView.dequeueReusableCell(withIdentifier: "CommentTableViewCell") as? CommentTableViewCell
-        let comment = self.comments![indexPath.row]
+        var commentTableViewCell: CommentTableViewCell!
         
-        commentTableViewCell!.setup(withItem: comment, andIndexPath: indexPath)
+        if self.cellHeights == nil {
+            commentTableViewCell    =   (self.commentsTableView.dequeueReusableCell(withIdentifier: "CommentTableViewCell") as! CommentTableViewCell)
+            let comment             =   self.comments![indexPath.row]
+
+            commentTableViewCell.setup(withItem: comment, andIndexPath: indexPath)
+
+            commentTableViewCell.loadData(completion: { [weak self] cellHeight in
+                self?.commentsTableViewHeightConstraint.constant += cellHeight
+                
+                if self?.cellHeights == nil {
+                    self?.cellHeights = [indexPath.row: cellHeight + 74]
+                } else {
+                    self?.cellHeights![indexPath.row] = cellHeight + 74
+                }
+                
+//                self?.commentsTableView.beginUpdates()
+//                self?.commentsTableView.reloadRows(at: [indexPath], with: .fade)
+//                self?.commentsTableView.endUpdates()
+            })
+        }
         
-        commentTableViewCell!.loadData(fromBody: comment.body, completion: { [weak self] height in
-            while comment.treeIndex != commentTableViewCell?.treeIndex {
-                continue
+        else {
+            commentTableViewCell    =   (self.commentsTableView.cellForRow(at: indexPath) as! CommentTableViewCell)
+
+            if self.comments!.count == indexPath.row + 1 {
+                self.contentView.layoutIfNeeded()
+                self.didCommentsControlView(hided: false)
             }
-            
-            let cellFrame = CGRect(origin:    CGPoint(x: 0.0, y: (self?.commentsTableViewHeightConstraint.constant)!),
-                                   size:      CGSize(width: tableView.frame.width, height: height))
-            
-            commentTableViewCell?.frame = cellFrame
-            self?.commentsTableViewHeightConstraint.constant += height
-            
-            if self?.frames == nil {
-                self?.frames = [0: cellFrame]
-            } else {
-                self?.frames![indexPath.row] = cellFrame
-            }
-            
-            if self?.comments!.count == indexPath.row + 1 {
-                self?.contentView.layoutIfNeeded()
-                self?.didCommentsControlView(hided: false)
-            }
-        })
+        }
+
+        
         
         // Handlers
         commentTableViewCell!.handlerActiveVoteButtonTapped             =   { [weak self] (isVote, postShortInfo) in
@@ -1405,15 +1446,15 @@ extension PostShowViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 extension PostShowViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-
+        print("XXX")
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        guard let frames = self.frames, frames.count > indexPath.row else {
+        guard let cellHeights = self.cellHeights, let cellHeight = cellHeights[indexPath.row] else {
             return UITableView.automaticDimension
         }
         
-        return frames[indexPath.row]!.height
+        return cellHeight
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

@@ -41,7 +41,6 @@ class UserProfileHeaderView: PassthroughView {
     
     @IBOutlet private weak var voicePowerImageView: UIImageView! {
         didSet {
-            self.voicePowerImageView.image = nil
         }
     }
 
@@ -132,7 +131,7 @@ class UserProfileHeaderView: PassthroughView {
     
     // MARK: - Custom Functions
     func updateUI(fromUserInfo userInfo: User) {
-        self.nameLabel.text             =   userInfo.name == "XXX" ? userInfo.nickName : userInfo.name
+        self.nameLabel.text             =   (userInfo.name == "XXX" || userInfo.name.isEmpty) ? userInfo.nickName : userInfo.name
         self.voicePowerLabel.text       =   userInfo.voicePower.introduced().localized()
         self.voicePowerImageView.image  =   UIImage(named: String(format: "icon-voice-power-%@", userInfo.voicePower.introduced().lowercased()))
 

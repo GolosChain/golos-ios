@@ -16,6 +16,7 @@ public class Comment: NSManagedObject, CachedImageFrom {
     var treeIndex: String = ""
     var treeLevel: Int = 0
     
+    
     // MARK: - CachedImageFrom protocol implementation
     var fromItem: String = "comment"
     

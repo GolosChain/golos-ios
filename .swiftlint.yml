@@ -3,7 +3,7 @@ excluded:
 - Carthage
 
 line_length:
-- 350 #warning
+- 390 #warning
 - 400 #error
 
 file_length:

@@ -11,8 +11,10 @@ import GoloSwift
 
 class CommentTableViewCell: UITableViewCell, HandlersCellSupport, PostCellActiveVoteSupport {
     // MARK: - Properties
+    var body: String!
     var created: Date!
     var treeIndex: String!
+    var indexPath: IndexPath!
     var postShortInfo: PostShortInfo!
     
     // Handlers
@@ -30,9 +32,9 @@ class CommentTableViewCell: UITableViewCell, HandlersCellSupport, PostCellActive
     
     // MARK: - IBOutlets
     @IBOutlet weak var activeVoteButton: UIButton!
-    @IBOutlet var markdownViewManager: MarkdownViewManager!
     @IBOutlet weak var authorProfileImageView: UIImageView!
-    
+    @IBOutlet var markdownViewManager: MarkdownViewManager!
+
     @IBOutlet weak var activeVoteActivityIndicator: UIActivityIndicatorView! {
         didSet {
             self.activeVoteActivityIndicator.stopAnimating()
@@ -113,28 +115,24 @@ class CommentTableViewCell: UITableViewCell, HandlersCellSupport, PostCellActive
     
     
     // MARK: - Custom Functions
-    func loadData(fromBody body: String, completion: @escaping (CGFloat) -> Void) {
+    func loadData(completion: @escaping (CGFloat) -> Void) {
         // Load markdown content
-//        DispatchQueue.main.sync {
-            self.markdownViewManager.load(markdown: body)
-            
-            self.markdownViewManager.onRendered = { height in
-                let viewHeight = height + 74.0
-                
-                self.markdownViewHeightConstraint.constant = height
-                self.markdownViewManager.layoutIfNeeded()
-//                self.frame = CGRect(origin: .zero, size: CGSize(width: self.frame.width, height: viewHeight))
-//                self.layoutIfNeeded()
+        self.markdownViewManager.load(markdown: body)
 
-                UIView.animate(withDuration: 0.5, animations: {
-                    self.contentView.alpha = 1.0
-                    completion(viewHeight)
-                })
-            }
-//        }
+        self.markdownViewManager.onRendered = { height in
+            let viewHeight = height + 74.0
+
+            self.markdownViewHeightConstraint.constant = height
+            self.layoutIfNeeded()
+
+            UIView.animate(withDuration: 0.5, animations: {
+                self.contentView.alpha = 1.0
+                completion(height)
+            })
+        }
     }
-
-
+    
+    
     // MARK: - Actions
     @IBAction func authorProfileImageButtonTapped(_ sender: UIButton) {
         self.handlerAuthorProfileImageButtonTapped!(self.authorNameButton.titleLabel?.text ?? "XXX")
@@ -173,7 +171,7 @@ class CommentTableViewCell: UITableViewCell, HandlersCellSupport, PostCellActive
 
 
 // MARK: - ConfigureCell implementation
-extension CommentTableViewCell: ConfigureCell {
+extension CommentTableViewCell {
     func setup(withItem item: Any?, andIndexPath indexPath: IndexPath) {
         guard let comment = item as? Comment else {
             return
@@ -188,8 +186,10 @@ extension CommentTableViewCell: ConfigureCell {
                                                   parentAuthor:     comment.parentAuthor,
                                                   parentPermlink:   comment.parentPermlink)
         
+        self.body               =   comment.body
         self.created            =   comment.created
         self.treeIndex          =   comment.treeIndex
+        self.indexPath          =   indexPath
         self.timeLabel.text     =   comment.created.convertToDaysAgo()
         
         // Set Active Votes icon

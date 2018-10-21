@@ -23,15 +23,25 @@ extension Date {
     }
     
     public func convertToDaysAgo() -> String {
-        let dateComponents          =   Calendar.current.dateComponents([ .day ], from: self, to: Date())
+        let dateComponents          =   Calendar.current.dateComponents([ .day, .hour, .minute ], from: self, to: Date())
         
-        guard let day = dateComponents.day, day > 0 else {
+        // Days ago
+        if let day = dateComponents.day, day > 0 {
+            return String(format: "%d %@", day, "Days ago".localized())
+        }
+        
+        // Hours ago
+        if let hour = dateComponents.hour, hour > 0 {
+            return String(format: "%d %@", hour, (hour == 1 ? "1 Hour ago" : (hour <= 4) ? "2-4 Hour ago" : "More 5 Hour ago").localized())
+        }
+        
+        if dateComponents.minute != nil {
             return "Today ago".localized()
         }
         
         return String(format: "%@", self.convert(toStringFormat: .commentDate))
     }
-    
+
     /// Convet Date to 'days ago'
     public func convertToDaysAgo(dateFormatType: DateFormatType) -> String {
         let dateFormatter           =   DateFormatter()

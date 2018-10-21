@@ -112,6 +112,9 @@
 "Whale"                                     =   "Кит";
 "Answered your"                             =   "ответил на ваш";
 "Days ago"                                  =   "дн назад";
+"1 Hour ago"                                =   "час назад";
+"2-4 Hour ago"                              =   "часа назад";
+"More 5 Hour ago"                           =   "часов назад";
 "Today ago"                                 =   "меньше часа назад";
 "Settings"                                  =   "Настройки";
 "COMMON"                                    =   "ОБЩИЕ";

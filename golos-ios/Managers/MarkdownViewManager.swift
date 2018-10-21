@@ -12,6 +12,9 @@ import MarkdownView
 
 class MarkdownViewManager: MarkdownView {
     // MARK: - Properties
+    var height: CGFloat = 0.0
+    
+    // Handlers
     var completionErrorAlertView: ((String) -> Void)?
     var completionCommentAuthorTapped: ((String) -> Void)?
     var completionShowSafariURL: ((URL) -> Void)?

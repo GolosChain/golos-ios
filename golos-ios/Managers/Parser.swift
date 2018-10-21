@@ -109,6 +109,25 @@ class Parser {
             modifiedBody = modifiedBody.replacingOccurrences(of: "(![](", with: "(").replacingOccurrences(of: "))", with: ")\n")
         }
         
+        // Delete alt
+        if modifiedBody.contains("alt") {
+            let rangeStart  =   modifiedBody.range(of: " alt=")
+            let rangeEnd    =   modifiedBody.range(of: "<br>")
+            
+            if let startLocation = rangeStart?.lowerBound, let endLocation = rangeEnd?.lowerBound {
+                modifiedBody.replaceSubrange(startLocation ..< endLocation, with: "")
+                modifiedBody = modifiedBody.replacingOccurrences(of: "\"<br>", with: "<br>")
+            }
+        }
+
+        // Delete @userName
+//        let regexUserName1 = "(\\[.*?\\])"
+//        let regexUserName2 = "(\\(.*\\))"
+//        if let regex = try? NSRegularExpression(pattern: regexUserName1 + regexUserName2, options: .caseInsensitive) {
+//            let userName = regexUserName1.
+//            modifiedBody = regex.stringByReplacingMatches(in: modifiedBody, options: .withTransparentBounds, range: NSMakeRange(0, modifiedBody.count), withTemplate: "XX")
+//        }
+
         return modifiedBody
     }
 }
