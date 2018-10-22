@@ -258,7 +258,7 @@ extension ReplyTableViewCell: ConfigureCell {
         
         // Load markdown content
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
-            self.markdownViewManager.load(markdown: model.body)
+            self.markdownViewManager.load(markdown: Parser.repair(body: model.body))
         }
 
         // Load commentator info

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CommentHeaderView" customModule="Golos" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="MCm-ae-Amp" id="WS4-MC-bYf"/>
+                <outlet property="createCommentButton" destination="hOq-YF-kG8" id="GP0-me-2up"/>
+                <outlet property="infiniteScrollingActivityIndicator" destination="894-bB-rg4" id="r2p-my-HnT"/>
+                <outlet property="view" destination="iN0-l3-epB" id="6w6-c4-5aR"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clipsSubviews="YES" contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="48"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+            <subviews>
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MCm-ae-Amp" userLabel="Content View">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="48"/>
+                    <subviews>
+                        <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hOq-YF-kG8" userLabel="Create Comment Button">
+                            <rect key="frame" x="16" y="0.0" width="359" height="48"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="createCommentButtonTapped:" destination="-1" eventType="touchUpInside" id="yZc-vQ-WUL"/>
+                            </connections>
+                        </button>
+                        <activityIndicatorView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="894-bB-rg4" userLabel="Infinite Scrolling Activity Indicator">
+                            <rect key="frame" x="177.5" y="14" width="20" height="20"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="color" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                        </activityIndicatorView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="hOq-YF-kG8" secondAttribute="trailing" id="GzU-co-qwt"/>
+                        <constraint firstAttribute="bottom" secondItem="hOq-YF-kG8" secondAttribute="bottom" id="KLR-g0-G5C"/>
+                        <constraint firstItem="hOq-YF-kG8" firstAttribute="leading" secondItem="MCm-ae-Amp" secondAttribute="leading" constant="16" id="U08-kl-WZo"/>
+                        <constraint firstItem="894-bB-rg4" firstAttribute="centerY" secondItem="MCm-ae-Amp" secondAttribute="centerY" id="aiZ-Rr-o1E"/>
+                        <constraint firstItem="hOq-YF-kG8" firstAttribute="top" secondItem="MCm-ae-Amp" secondAttribute="top" id="tWL-sW-a3Y"/>
+                        <constraint firstItem="894-bB-rg4" firstAttribute="centerX" secondItem="MCm-ae-Amp" secondAttribute="centerX" id="yag-o1-YOT"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="MCm-ae-Amp" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="3Kt-dM-3Eb"/>
+                <constraint firstItem="MCm-ae-Amp" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="JI1-4T-uGb"/>
+                <constraint firstAttribute="trailing" secondItem="MCm-ae-Amp" secondAttribute="trailing" id="O4s-vb-Kuh"/>
+                <constraint firstAttribute="bottom" secondItem="MCm-ae-Amp" secondAttribute="bottom" id="uRv-r3-J6T"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+        </view>
+    </objects>
+</document>

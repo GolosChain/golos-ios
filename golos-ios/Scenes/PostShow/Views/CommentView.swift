@@ -1,22 +1,21 @@
 //
-//  CommentTableViewCell.swift
+//  CommentView.swift
 //  Golos
 //
-//  Created by msm72 on 10/15/18.
+//  Created by msm72 on 10.08.2018.
 //  Copyright © 2018 golos. All rights reserved.
 //
 
 import UIKit
+import CoreData
 import GoloSwift
 
-class CommentTableViewCell: UITableViewCell, HandlersCellSupport, PostCellActiveVoteSupport {
+class CommentView: UIView, HandlersCellSupport {
     // MARK: - Properties
-    var body: String!
+    var treeIndex: Int = 0
     var created: Date!
-    var treeIndex: String!
-    var indexPath: IndexPath!
     var postShortInfo: PostShortInfo!
-    
+
     // Handlers
     var handlerUsersButtonTapped: (() -> Void)?
     var handlerAuthorNameButtonTapped: ((String) -> Void)?
@@ -28,13 +27,16 @@ class CommentTableViewCell: UITableViewCell, HandlersCellSupport, PostCellActive
     var handlerShareButtonTapped: (() -> Void)?
     var handlerCommentsButtonTapped: ((PostShortInfo) -> Void)?
     var handlerActiveVoteButtonTapped: ((Bool, PostShortInfo) -> Void)?
-
     
-    // MARK: - IBOutlets
-    @IBOutlet weak var activeVoteButton: UIButton!
-    @IBOutlet weak var authorProfileImageView: UIImageView!
-    @IBOutlet var markdownViewManager: MarkdownViewManager!
 
+    // MARK: - IBOutlets
+    @IBOutlet var view: UIView!
+    @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var activeVoteButton: UIButton!
+    @IBOutlet weak var markdownViewManager: MarkdownViewManager!    
+    @IBOutlet weak var authorProfileImageView: UIImageView!
+    @IBOutlet weak var buttonsView: UIView!
+    
     @IBOutlet weak var activeVoteActivityIndicator: UIActivityIndicatorView! {
         didSet {
             self.activeVoteActivityIndicator.stopAnimating()
@@ -47,11 +49,9 @@ class CommentTableViewCell: UITableViewCell, HandlersCellSupport, PostCellActive
                                      hexColors:         [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
                                      font:              UIFont(name: "SFProDisplay-Medium", size: 10.0),
                                      alignment:         .left)
-            
-            self.contentView.tune()
         }
     }
-    
+
     @IBOutlet var circleViewsCollection: [UIView]! {
         didSet {
             self.circleViewsCollection.forEach({ $0.layer.cornerRadius = $0.bounds.width / 2 * widthRatio })
@@ -67,7 +67,7 @@ class CommentTableViewCell: UITableViewCell, HandlersCellSupport, PostCellActive
     @IBOutlet weak var authorNameButton: UIButton! {
         didSet {
             authorNameButton.tune(withTitle:    "",
-                                  hexColors:    [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
+                                  hexColors:    [darkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
                                   font:         UIFont(name: "SFProDisplay-Regular", size: 10.0),
                                   alignment:    .left)
         }
@@ -85,7 +85,7 @@ class CommentTableViewCell: UITableViewCell, HandlersCellSupport, PostCellActive
     
     @IBOutlet weak var replyButton: UIButton! {
         didSet {
-            replyButton.tune(withTitle:         "Reply Verb",
+            replyButton.tune(withTitle:         "Reply Verb".localized(),
                              hexColors:         [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
                              font:              UIFont(name: "SFProDisplay-Medium", size: 10.0),
                              alignment:         .left)
@@ -103,94 +103,32 @@ class CommentTableViewCell: UITableViewCell, HandlersCellSupport, PostCellActive
             self.widthsCollection.forEach({ $0.constant *= widthRatio })
         }
     }
-    
+
     @IBOutlet weak var leadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var markdownViewHeightConstraint: NSLayoutConstraint!
 
     
     // MARK: - Class Initialization
-    deinit {
-        Logger.log(message: "Success", event: .severe)
+    init(withComment comment: Comment, forRow row: Int) {
+        super.init(frame: CGRect.init(origin: .zero, size: CGSize.init(width: 351.0 * widthRatio, height: 79.0)))
+        
+        createFromXIB()
+        
+        self.setupUI(withComment: comment, forRow: row)
     }
     
-    
-    // MARK: - Custom Functions
-    func loadData(completion: @escaping (CGFloat) -> Void) {
-        // Load markdown content
-        self.markdownViewManager.load(markdown: body)
-
-        self.markdownViewManager.onRendered = { height in
-            let viewHeight = height + 74.0
-
-            self.markdownViewHeightConstraint.constant = height
-            self.layoutIfNeeded()
-
-            UIView.animate(withDuration: 0.5, animations: {
-                self.contentView.alpha = 1.0
-                completion(height)
-            })
-        }
-    }
-    
-    
-    // MARK: - Actions
-    @IBAction func authorProfileImageButtonTapped(_ sender: UIButton) {
-        self.handlerAuthorProfileImageButtonTapped!(self.authorNameButton.titleLabel?.text ?? "XXX")
-    }
-    
-    @IBAction func authorProfileAddButtonTapped(_ sender: UIButton) {
-        self.handlerAuthorProfileAddButtonTapped!()
-    }
-    
-    @IBAction func authorNameButtonTapped(_ sender: UIButton) {
-        self.handlerAuthorNameButtonTapped!(sender.titleLabel?.text ?? "XXX")
-    }
-    
-    // Action buttons
-    @IBAction func activeVoteButtonTapped(_ sender: UIButton) {
-        sender.isEnabled = false
-        self.handlerActiveVoteButtonTapped!(sender.tag == 0, self.postShortInfo)
-    }
-    
-    @IBAction func usersButtonTapped(_ sender: UIButton) {
-        self.handlerUsersButtonTapped!()
-    }
-    
-    @IBAction func commentsButtonTapped(_ sender: UIButton) {
-        self.handlerCommentsButtonTapped!(self.postShortInfo)
-    }
-    
-    @IBAction func replyButtonTapped(_ sender: UIButton) {
-        self.handlerReplyButtonTapped!(self.postShortInfo)
-    }
-    
-    @IBAction func shareButtonTapped(_ sender: UIButton) {
-        self.handlerShareButtonTapped!()
-    }
-}
-
-
-// MARK: - ConfigureCell implementation
-extension CommentTableViewCell {
-    func setup(withItem item: Any?, andIndexPath indexPath: IndexPath) {
-        guard let comment = item as? Comment else {
-            return
-        }
-
+    func setupUI(withComment comment: Comment, forRow row: Int) {
         self.postShortInfo      =   PostShortInfo(id:               comment.id,
                                                   title:            comment.body.substring(withCharactersCount: 120),
                                                   author:           comment.author,
                                                   permlink:         comment.permlink,
                                                   parentTag:        comment.tags?.first,
-                                                  indexPath:        indexPath,
+                                                  indexPath:        IndexPath(row: row, section: 0),
                                                   parentAuthor:     comment.parentAuthor,
                                                   parentPermlink:   comment.parentPermlink)
         
-        self.body               =   comment.body
         self.created            =   comment.created
-        self.treeIndex          =   comment.treeIndex
-        self.indexPath          =   indexPath
-        self.timeLabel.text     =   comment.created.convertToDaysAgo()
+        self.treeIndex          =   row
         
         // Set Active Votes icon
         self.activeVoteButton.isEnabled = true
@@ -225,5 +163,89 @@ extension CommentTableViewCell {
         
         // Set cell level
         self.leadingConstraint.constant = (comment.treeLevel == 0 ? 2.0 : 52.0) * widthRatio
+        self.markdownViewManager.layoutIfNeeded()
+        self.layoutIfNeeded()
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        createFromXIB()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+        createFromXIB()
+    }
+    
+    deinit {
+        Logger.log(message: "Success", event: .severe)
+    }
+
+    
+    // MARK: - Class Functions
+    func createFromXIB() {
+        UINib(nibName: String(describing: CommentView.self), bundle: Bundle(for: CommentView.self)).instantiate(withOwner: self, options: nil)
+        addSubview(view)
+        view.frame = frame
+        
+        self.view.tune()
+        self.contentView.tune()
+    }
+    
+    func loadData(fromBody body: String, completion: @escaping (CGFloat) -> Void) {
+        // Load markdown content
+        self.markdownViewManager.load(markdown: Parser.repair(body: body))
+
+        self.markdownViewManager.onRendered = { height in
+            completion(height)
+//            completion(self.leadingConstraint.constant == 52.0 * widthRatio ? height + 10.0 : height)
+        }
+    }
+    
+    override var intrinsicContentSize: CGSize {
+        return CGSize(width: 375.0 * widthRatio, height: 79.0)
+    }
+
+    func localizeTitles() {
+        self.timeLabel.text = self.created.convertToDaysAgo()
+        self.replyButton.setTitle("Reply Verb".localized(), for: .normal)
+    }
+    
+    
+    // MARK: - Actions
+    @IBAction func authorProfileImageButtonTapped(_ sender: UIButton) {
+        self.handlerAuthorProfileImageButtonTapped!(self.authorNameButton.titleLabel?.text ?? "XXX")
+    }
+    
+    @IBAction func authorProfileAddButtonTapped(_ sender: UIButton) {
+        self.handlerAuthorProfileAddButtonTapped!()
+    }
+    
+    @IBAction func authorNameButtonTapped(_ sender: UIButton) {
+        self.handlerAuthorNameButtonTapped!(sender.titleLabel?.text ?? "XXX")
+    }
+    
+    // Action buttons
+    @IBAction func activeVoteButtonTapped(_ sender: UIButton) {
+        sender.isEnabled = false
+        self.handlerActiveVoteButtonTapped!(sender.tag == 0, self.postShortInfo)
+    }
+
+    @IBAction func usersButtonTapped(_ sender: UIButton) {
+        self.handlerUsersButtonTapped!()
+    }
+
+    @IBAction func commentsButtonTapped(_ sender: UIButton) {
+        self.handlerCommentsButtonTapped!(self.postShortInfo)
+    }
+
+    @IBAction func replyButtonTapped(_ sender: UIButton) {
+        self.handlerReplyButtonTapped!(self.postShortInfo)
+    }
+
+    @IBAction func shareButtonTapped(_ sender: UIButton) {
+        self.handlerShareButtonTapped!()
     }
 }

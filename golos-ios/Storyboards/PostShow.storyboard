@@ -22,28 +22,20 @@
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                                 <subviews>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BtF-Gk-D12" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="52" width="320" height="422.5"/>
+                                        <rect key="frame" x="0.0" y="52" width="320" height="348.5"/>
                                         <subviews>
-                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="QAN-qd-bh6" userLabel="Comments Table View" customClass="GSTableViewWithReloadCompletion" customModule="Golos" customModuleProvider="target">
-                                                <rect key="frame" x="16" y="348.5" width="288" height="74"/>
+                                            <stackView contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="hj6-Ie-c5P" userLabel="Comments Stack View">
+                                                <rect key="frame" x="14" y="348.5" width="290" height="0.0"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" priority="750" constant="74" id="W0v-81-I2x"/>
+                                                    <constraint firstAttribute="height" identifier="commentsStackViewHeightConstraint" id="i0s-JR-gEA"/>
                                                 </constraints>
-                                            </tableView>
-                                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zdg-xS-0Il" userLabel="Infinite Scrolling View">
-                                                <rect key="frame" x="0.0" y="422.5" width="320" height="0.0"/>
-                                                <subviews>
-                                                    <activityIndicatorView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="xNz-QS-4GD">
-                                                        <rect key="frame" x="150" y="-10" width="20" height="20"/>
-                                                        <color key="color" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
-                                                    </activityIndicatorView>
-                                                </subviews>
+                                            </stackView>
+                                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zdg-xS-0Il" userLabel="Comments Header View" customClass="CommentHeaderView" customModule="Golos" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="348.5" width="320" height="0.0"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" identifier="infiniteScrollingViewHeightConstraint" id="9xg-Zt-xNb"/>
-                                                    <constraint firstItem="xNz-QS-4GD" firstAttribute="centerX" secondItem="zdg-xS-0Il" secondAttribute="centerX" id="cff-dN-PO0"/>
-                                                    <constraint firstItem="xNz-QS-4GD" firstAttribute="centerY" secondItem="zdg-xS-0Il" secondAttribute="centerY" id="yAH-Fa-fcz"/>
+                                                    <constraint firstAttribute="height" identifier="commentsHeaderViewHeightConstraint" id="9xg-Zt-xNb"/>
                                                 </constraints>
                                             </view>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dZE-L5-SIs" userLabel="Hide View">
@@ -464,8 +456,10 @@
                                             <constraint firstAttribute="trailing" secondItem="hL9-He-JpB" secondAttribute="trailing" id="0NR-rB-Aj5"/>
                                             <constraint firstItem="lwn-iM-8rz" firstAttribute="top" secondItem="Vl1-2x-lVp" secondAttribute="bottom" constant="16" id="0cK-Wq-U7s"/>
                                             <constraint firstItem="h9e-KO-AhW" firstAttribute="leading" secondItem="BtF-Gk-D12" secondAttribute="leading" constant="16" id="24g-ha-yWK"/>
+                                            <constraint firstItem="hj6-Ie-c5P" firstAttribute="top" secondItem="nt5-Bc-nF3" secondAttribute="bottom" identifier="commentsStackViewTopConstraint" id="3YN-XU-Hlf"/>
                                             <constraint firstItem="dZE-L5-SIs" firstAttribute="bottom" secondItem="tqm-aY-SVr" secondAttribute="bottom" id="3ia-Ns-xyE"/>
                                             <constraint firstItem="tHL-Id-QDj" firstAttribute="top" secondItem="h9e-KO-AhW" secondAttribute="bottom" priority="750" constant="20" id="4nI-Ir-YHS"/>
+                                            <constraint firstAttribute="trailing" secondItem="hj6-Ie-c5P" secondAttribute="trailing" constant="16" id="5LC-Le-clu"/>
                                             <constraint firstItem="VyW-ed-xji" firstAttribute="leading" secondItem="BtF-Gk-D12" secondAttribute="leading" id="5gQ-4Z-ReG"/>
                                             <constraint firstAttribute="trailing" secondItem="Vl1-2x-lVp" secondAttribute="trailing" id="7GF-bG-0GC"/>
                                             <constraint firstItem="VyW-ed-xji" firstAttribute="trailing" secondItem="TQB-vz-8Uo" secondAttribute="trailing" id="8fZ-qG-a9I"/>
@@ -476,13 +470,11 @@
                                             <constraint firstAttribute="trailing" secondItem="tHL-Id-QDj" secondAttribute="trailing" id="EjG-ui-SBY"/>
                                             <constraint firstItem="AYT-cY-Zsi" firstAttribute="centerY" secondItem="aLP-ZP-yPw" secondAttribute="centerY" id="Hhq-Lo-TK8"/>
                                             <constraint firstItem="hL9-He-JpB" firstAttribute="top" secondItem="tHL-Id-QDj" secondAttribute="bottom" id="IGQ-Cb-Z91"/>
-                                            <constraint firstItem="QAN-qd-bh6" firstAttribute="top" secondItem="nt5-Bc-nF3" secondAttribute="bottom" id="IaS-Be-l3l"/>
+                                            <constraint firstItem="hj6-Ie-c5P" firstAttribute="leading" secondItem="BtF-Gk-D12" secondAttribute="leading" constant="14" id="J1E-xZ-z6s"/>
                                             <constraint firstAttribute="trailing" secondItem="tqm-aY-SVr" secondAttribute="trailing" id="Jgk-6F-7KU"/>
                                             <constraint firstItem="3Lz-nN-lGc" firstAttribute="centerX" secondItem="hL9-He-JpB" secondAttribute="centerX" id="Jph-ba-BfY"/>
                                             <constraint firstItem="VyW-ed-xji" firstAttribute="bottom" secondItem="n52-gC-8Jz" secondAttribute="bottom" id="LFI-wT-ilU"/>
-                                            <constraint firstAttribute="trailing" secondItem="QAN-qd-bh6" secondAttribute="trailing" constant="16" id="NQR-zm-DRu"/>
                                             <constraint firstItem="VyW-ed-xji" firstAttribute="top" secondItem="n52-gC-8Jz" secondAttribute="top" id="Os2-4F-O1G"/>
-                                            <constraint firstItem="QAN-qd-bh6" firstAttribute="leading" secondItem="BtF-Gk-D12" secondAttribute="leading" constant="16" id="PAa-w3-YhY"/>
                                             <constraint firstAttribute="leading" secondItem="bie-f8-jaU" secondAttribute="trailing" constant="-36" id="PZN-8T-mOK"/>
                                             <constraint firstAttribute="trailing" secondItem="MhK-Vc-x7K" secondAttribute="trailing" constant="120" id="QAV-gt-84U"/>
                                             <constraint firstItem="tqm-aY-SVr" firstAttribute="leading" secondItem="BtF-Gk-D12" secondAttribute="leading" id="RRT-Ii-59C"/>
@@ -502,8 +494,8 @@
                                             <constraint firstItem="Vl1-2x-lVp" firstAttribute="top" secondItem="zPm-d9-LiX" secondAttribute="bottom" constant="16" id="rDi-pt-7XW"/>
                                             <constraint firstAttribute="trailing" secondItem="dZE-L5-SIs" secondAttribute="trailing" id="rFS-LF-C6k"/>
                                             <constraint firstAttribute="trailing" secondItem="nt5-Bc-nF3" secondAttribute="trailing" id="rcV-lt-t9Y"/>
-                                            <constraint firstItem="zdg-xS-0Il" firstAttribute="top" secondItem="QAN-qd-bh6" secondAttribute="bottom" id="sEh-Hb-ZlU"/>
                                             <constraint firstItem="tHL-Id-QDj" firstAttribute="top" secondItem="MhK-Vc-x7K" secondAttribute="bottom" id="u8K-s0-eby"/>
+                                            <constraint firstItem="zdg-xS-0Il" firstAttribute="top" secondItem="hj6-Ie-c5P" secondAttribute="bottom" id="vbT-f5-bcD"/>
                                             <constraint firstItem="dZE-L5-SIs" firstAttribute="top" secondItem="BtF-Gk-D12" secondAttribute="top" id="vqu-Hh-h5L"/>
                                             <constraint firstItem="dZE-L5-SIs" firstAttribute="leading" secondItem="BtF-Gk-D12" secondAttribute="leading" id="wnW-sW-cjs"/>
                                             <constraint firstItem="Vl1-2x-lVp" firstAttribute="leading" secondItem="BtF-Gk-D12" secondAttribute="leading" id="xZX-FY-WXJ"/>
@@ -608,18 +600,19 @@
                         <outlet property="commentsControlView" destination="nt5-Bc-nF3" id="bGv-Rq-jd9"/>
                         <outlet property="commentsControlViewTopConstraint" destination="yY2-1e-3ly" id="sFi-Zi-Zu5"/>
                         <outlet property="commentsCountLabel" destination="gp2-Gr-TVH" id="jvz-Eh-ACN"/>
+                        <outlet property="commentsHeaderView" destination="zdg-xS-0Il" id="8nb-UK-z0r"/>
+                        <outlet property="commentsHeaderViewHeightConstraint" destination="9xg-Zt-xNb" id="gZQ-R0-VhP"/>
                         <outlet property="commentsHideButton" destination="lI5-dI-xCS" id="dWe-7E-fFv"/>
                         <outlet property="commentsSortByButton" destination="bfp-bA-aPN" id="KtW-ld-YVF"/>
-                        <outlet property="commentsTableView" destination="QAN-qd-bh6" id="ucA-zo-NAW"/>
-                        <outlet property="commentsTableViewHeightConstraint" destination="W0v-81-I2x" id="d2Q-ra-E5q"/>
-                        <outlet property="commentsTableViewTopConstraint" destination="IaS-Be-l3l" id="Qhi-jh-gAt"/>
+                        <outlet property="commentsStackView" destination="hj6-Ie-c5P" id="Fji-8G-8Sg"/>
+                        <outlet property="commentsStackViewHeightConstraint" destination="i0s-JR-gEA" id="qe0-Dr-zGj"/>
+                        <outlet property="commentsStackViewTopConstraint" destination="3YN-XU-Hlf" id="CSB-EY-Knr"/>
                         <outlet property="commentsTitleLabel" destination="dVT-lc-meT" id="enZ-ZK-Zgo"/>
                         <outlet property="contentView" destination="BtF-Gk-D12" id="nZE-7q-KU1"/>
                         <outlet property="contentViewTopConstraint" destination="qo5-eR-zwm" id="QIl-kX-mrj"/>
                         <outlet property="donateButton" destination="SQB-q3-brD" id="pGH-FJ-UVL"/>
                         <outlet property="flauntActivityIndicator" destination="AYT-cY-Zsi" id="kql-Sy-njs"/>
                         <outlet property="flauntButton" destination="aLP-ZP-yPw" id="fNr-aW-I76"/>
-                        <outlet property="infiniteScrollingViewHeightConstraint" destination="9xg-Zt-xNb" id="Vva-KX-4mF"/>
                         <outlet property="loadingPostContentActivityIndicator" destination="NB0-PC-C9r" id="AFf-ry-tS6"/>
                         <outlet property="markdownViewHeightConstraint" destination="XZb-1l-yIm" id="yCU-ia-4mb"/>
                         <outlet property="markdownViewManager" destination="Vl1-2x-lVp" id="fWB-4H-ItD"/>
@@ -705,11 +698,9 @@
                         <outletCollection property="hiddenViewsCollection" destination="lwn-iM-8rz" collectionClass="NSMutableArray" id="J2U-2U-c8S"/>
                         <outletCollection property="heightsCollection" destination="qo5-eR-zwm" collectionClass="NSMutableArray" id="iz8-EG-isn"/>
                         <outletCollection property="hiddenViewsCollection" destination="a7j-dG-pvN" collectionClass="NSMutableArray" id="8uJ-x9-3XL"/>
-                        <outletCollection property="widthsCollection" destination="NQR-zm-DRu" collectionClass="NSMutableArray" id="Nik-wh-V0w"/>
-                        <outletCollection property="widthsCollection" destination="PAa-w3-YhY" collectionClass="NSMutableArray" id="gOw-qc-bVg"/>
-                        <outletCollection property="hiddenViewsCollection" destination="QAN-qd-bh6" collectionClass="NSMutableArray" id="TSw-CF-6ZI"/>
-                        <outletCollection property="heightsCollection" destination="W0v-81-I2x" collectionClass="NSMutableArray" id="zyd-WY-iVM"/>
                         <outletCollection property="heightsCollection" destination="Ofo-RB-VxT" collectionClass="NSMutableArray" id="yuC-Z1-o95"/>
+                        <outletCollection property="widthsCollection" destination="J1E-xZ-z6s" collectionClass="NSMutableArray" id="U3Z-5q-BvR"/>
+                        <outletCollection property="widthsCollection" destination="5LC-Le-clu" collectionClass="NSMutableArray" id="Dy5-lm-L46"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CXI-Zv-5XY" userLabel="First Responder" sceneMemberID="firstResponder"/>

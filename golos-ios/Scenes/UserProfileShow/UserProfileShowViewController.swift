@@ -352,6 +352,11 @@ class UserProfileShowViewController: GSBaseViewController, ContainerViewSupport 
         
         self.userProfileHeaderView.showLabelsForAnimationCollection(true)
         self.userProfileInfoTitleView.showLabelsForAnimationCollection(true)
+        
+        if let userEntity = User.fetch(byNickName: self.router!.dataStore!.userNickName ?? "XXX") {
+            self.userProfileHeaderView.updateUI(fromUserInfo: userEntity)
+            self.userProfileInfoTitleView.updateUI(fromUserInfo: userEntity)
+        }
     }
 }
 

@@ -154,8 +154,6 @@ public extension UIImage {
         return applyBlurWithRadius(10, tintColor: effectColor, saturationDeltaFactor: -1.0, maskImage: nil)
     }
 
-    // swiftlint:disable cyclomatic_complexity
-    // swiftlint:disable function_body_length
     public func applyBlurWithRadius(_ blurRadius: CGFloat, tintColor: UIColor?, saturationDeltaFactor: CGFloat, maskImage: UIImage? = nil) -> UIImage? {
         // Check pre-conditions.
         if size.width < 1 || size.height < 1 {

@@ -46,11 +46,14 @@ class PostShowRouter: NSObject, PostShowRoutingLogic, PostShowDataPassing {
         navigateToPostCreateScene(source: viewController!, destination: destinationVC)
         
         // Handlers
-        destinationVC.handlerSuccessCreatedItem     =   { [weak self] success in
+        destinationVC.handlerSuccessCreatedItem             =   { [weak self] success in
             // Reload posts in selected list
             if success {
-                self?.viewController?.isPostContentModify = true
+                self?.viewController?.isPostContentModify   =   true
                 self?.viewController?.loadPostComments()
+            } else {
+                self?.viewController?.selectedRow           =   0
+                self?.viewController?.isPostContentModify   =   false
             }
         }
     }

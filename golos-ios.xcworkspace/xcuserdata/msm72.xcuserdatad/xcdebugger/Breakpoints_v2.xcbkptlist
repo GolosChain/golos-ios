@@ -28,7 +28,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "golos-ios/Common/ViewControllers/GSTableViewController.swift"
-            timestampString = "561656906.275481"
+            timestampString = "561891095.824459"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "207"
@@ -40,27 +40,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "golos-ios/Scenes/PostShow/PostShowViewController.swift"
-            timestampString = "561797687.544597"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "662"
-            endingLineNumber = "662"
-            landmarkName = "didContentViewScrollToCommentsView()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "golos-ios/Scenes/PostShow/PostShowInteractor.swift"
-            timestampString = "561647550.058726"
+            timestampString = "561888302.595953"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "55"
@@ -76,7 +60,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "golos-ios/Scenes/UserProfileShow/Cells/ReplyTableViewCell.swift"
-            timestampString = "561622556.951385"
+            timestampString = "561919283.202382"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "291"
@@ -108,29 +92,45 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "golos-ios/Scenes/PostShow/PostShowViewController.swift"
-            timestampString = "561797687.545189"
+            timestampString = "561919283.202487"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "933"
-            endingLineNumber = "933"
+            startingLineNumber = "964"
+            endingLineNumber = "964"
             landmarkName = "displayVote(fromViewModel:)"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "golos-ios/Scenes/PostShow/PostShowViewController.swift"
-            timestampString = "561797687.545544"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "440"
-            endingLineNumber = "440"
-            landmarkName = "PostShowViewController"
-            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Bool) -&gt; () in Golos.PostShowViewController.displayVote(fromViewModel: Golos.PostShowModels.ActiveVote.ViewModel) -&gt; ()"
+                  moduleName = "Golos"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/msm72/My%20Projects/GolosChain/App/golos-ios/Scenes/PostShow/PostShowViewController.swift"
+                  timestampString = "561919283.480458"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "964"
+                  endingLineNumber = "964"
+                  offsetFromSymbolStart = "4214">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Bool) -&gt; () in Golos.PostShowViewController.displayVote(fromViewModel: Golos.PostShowModels.ActiveVote.ViewModel) -&gt; ()"
+                  moduleName = "Golos"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/msm72/My%20Projects/GolosChain/App/golos-ios/Scenes/PostShow/PostShowViewController.swift"
+                  timestampString = "561919283.483132"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "964"
+                  endingLineNumber = "964"
+                  offsetFromSymbolStart = "4652">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -140,11 +140,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "golos-ios/Scenes/UserProfileShow/UserProfileShowViewController.swift"
-            timestampString = "561792595.941316"
+            timestampString = "561919283.203243"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "414"
-            endingLineNumber = "414"
+            startingLineNumber = "419"
+            endingLineNumber = "419"
             landmarkName = "fetchUserDetails()"
             landmarkType = "7">
          </BreakpointContent>
@@ -156,11 +156,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "golos-ios/Scenes/UserProfileShow/UserProfileShowViewController.swift"
-            timestampString = "561792595.941696"
+            timestampString = "561919283.203307"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "423"
-            endingLineNumber = "423"
+            startingLineNumber = "428"
+            endingLineNumber = "428"
             landmarkName = "fetchUserDetails()"
             landmarkType = "7">
          </BreakpointContent>
@@ -172,7 +172,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "golos-ios/Scenes/PostsShow/PostsShowViewController.swift"
-            timestampString = "561622556.954218"
+            timestampString = "561919283.203357"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "263"
@@ -188,7 +188,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "golos-ios/Common/ViewControllers/GSTableViewController.swift"
-            timestampString = "561656906.278298"
+            timestampString = "561891095.82635"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "404"
@@ -204,7 +204,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "golos-ios/Common/ViewControllers/GSTableViewController.swift"
-            timestampString = "561656906.278344"
+            timestampString = "561891095.826654"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "411"
@@ -220,28 +220,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "golos-ios/Common/ViewControllers/GSTableViewController.swift"
-            timestampString = "561656906.278383"
+            timestampString = "561891095.826941"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "408"
             endingLineNumber = "408"
             landmarkName = "tableView(_:cellForRowAt:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "golos-ios/Scenes/UserProfileShow/UserProfileShowRouter.swift"
-            timestampString = "561622556.955671"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "126"
-            endingLineNumber = "126"
-            landmarkName = "passDataToPostShowScene(source:destination:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -268,11 +252,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "golos-ios/Scenes/PostShow/PostShowViewController.swift"
-            timestampString = "561797687.546136"
+            timestampString = "561919283.203534"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "852"
-            endingLineNumber = "852"
+            startingLineNumber = "885"
+            endingLineNumber = "885"
             landmarkName = "handlerTableViewRefreshData(refreshControl:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -300,27 +284,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "golos-ios/Scenes/PostShow/PostShowViewController.swift"
-            timestampString = "561797687.54653"
+            timestampString = "561919283.204208"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1223"
-            endingLineNumber = "1223"
-            landmarkName = "scrollViewDidScroll(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "golos-ios/Scenes/PostShow/PostShowViewController.swift"
-            timestampString = "561797687.546882"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "535"
-            endingLineNumber = "535"
+            startingLineNumber = "550"
+            endingLineNumber = "550"
             landmarkName = "loadViewSettings(withoutComments:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -331,12 +299,44 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "golos-ios/Scenes/PostShow/PostShowViewController.swift"
-            timestampString = "561797687.547235"
+            filePath = "golos-ios/Scenes/PostShow/Views/CommentHeaderView.swift"
+            timestampString = "561919283.204798"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1108"
-            endingLineNumber = "1108"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
+            landmarkName = "set(mode:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "golos-ios/Scenes/PostShow/Views/CommentView.swift"
+            timestampString = "561919283.204904"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "199"
+            endingLineNumber = "199"
+            landmarkName = "loadData(fromBody:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "golos-ios/Scenes/PostShow/PostShowViewController.swift"
+            timestampString = "561919283.204964"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1219"
+            endingLineNumber = "1219"
             landmarkName = "fetchPostComments()"
             landmarkType = "7">
          </BreakpointContent>
@@ -348,13 +348,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "golos-ios/Scenes/PostShow/PostShowViewController.swift"
-            timestampString = "561797687.547581"
+            timestampString = "561919283.20531"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1345"
-            endingLineNumber = "1345"
-            landmarkName = "tableView(_:cellForRowAt:)"
-            landmarkType = "7">
+            startingLineNumber = "81"
+            endingLineNumber = "81"
+            landmarkName = "commentsHeaderView"
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -364,12 +364,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "golos-ios/Scenes/PostShow/PostShowViewController.swift"
-            timestampString = "561797687.547918"
+            timestampString = "561919283.205649"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1457"
-            endingLineNumber = "1457"
-            landmarkName = "tableView(_:heightForRowAt:)"
+            startingLineNumber = "799"
+            endingLineNumber = "799"
+            landmarkName = "commentsButtonTapped(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -379,29 +379,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "golos-ios/Scenes/PostShow/PostShowViewController.swift"
-            timestampString = "561797687.548538"
+            filePath = "golos-ios/Scenes/UserProfileShow/UserProfileShowViewController.swift"
+            timestampString = "561919283.206017"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1329"
-            endingLineNumber = "1329"
-            landmarkName = "tableView(_:cellForRowAt:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "golos-ios/Scenes/PostShow/PostShowViewController.swift"
-            timestampString = "561797687.548864"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1331"
-            endingLineNumber = "1331"
-            landmarkName = "tableView(_:cellForRowAt:)"
+            startingLineNumber = "390"
+            endingLineNumber = "390"
+            landmarkName = "fetchUserInfo()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
