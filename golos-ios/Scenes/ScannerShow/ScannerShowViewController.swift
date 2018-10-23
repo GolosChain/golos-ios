@@ -24,6 +24,14 @@ class ScannerShowViewController: GSBaseViewController {
     var completionDetectQRCode: ((String) -> Void)?
     
     
+    // MARK: - IBOutlets
+    @IBOutlet weak var cancelBarButton: UIBarButtonItem! {
+        didSet {
+            self.cancelBarButton.title = "Cancel Title".localized()
+        }
+    }
+    
+    
     // MARK: - Class Initialization
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -57,8 +65,8 @@ class ScannerShowViewController: GSBaseViewController {
         super.viewDidLoad()
         
         // Navigation Bar
-        title = "QR сканер".localized()
-
+        title = "QR Scanner".localized()
+        
         self.loadViewSettings()
     }
     
@@ -160,7 +168,7 @@ class ScannerShowViewController: GSBaseViewController {
             })
         }
     }
-    
+        
     
     // MARK: - Actions
     @IBAction func cancelBarButtonTapped(_ sender: UIBarButtonItem) {

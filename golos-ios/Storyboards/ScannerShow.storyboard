@@ -21,13 +21,16 @@
                         <viewLayoutGuide key="safeArea" id="l9d-YI-RNO"/>
                     </view>
                     <navigationItem key="navigationItem" id="ame-Up-eh8">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="fyt-7t-kzZ">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="fyt-7t-kzZ">
                             <color key="tintColor" red="0.94901960780000005" green="0.95686274510000002" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="cancelBarButtonTapped:" destination="9Hg-bQ-DbF" id="Khz-Ng-jFx"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="cancelBarButton" destination="fyt-7t-kzZ" id="MgQ-0D-abe"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yjm-bG-hlZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
