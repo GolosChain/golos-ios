@@ -39,7 +39,7 @@ class PostShowViewController: GSBaseViewController {
     
     // Comments pagination
     let paginationOffset    =   5
-    var isPaginationRun     =   true
+    var isPaginationRun     =   false
     var needPagination      =   false
     
     var gsTimer: GSTimer?
@@ -666,7 +666,10 @@ class PostShowViewController: GSBaseViewController {
                                 return
                             }
 
-                            self.scrollView.contentOffset.y = bottomViewFrame.maxY
+                            // Scrolling down only once after open scene
+                            if !self.isPaginationRun {
+                                self.scrollView.contentOffset.y = bottomViewFrame.maxY
+                            }
             })
         })
     }
@@ -687,6 +690,24 @@ class PostShowViewController: GSBaseViewController {
         })
         
         self.commentsStackView.layoutIfNeeded()
+    }
+    
+    private func didFinishLoadComments(afterPagination isPaginationRun: Bool) {
+        self.commentsHeaderViewHeightConstraint.constant = 0.0
+        
+        // Hide commentsHeaderView animation
+        UIView.animate(withDuration: 0.3, animations: {
+            self.commentsHeaderView.layoutIfNeeded()
+        })
+        
+        self.didCommentsControlView(hided: false)
+        self.insertedRow = nil
+        
+        if isPaginationRun {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2.5, execute: {
+                self.isPaginationRun = false
+            })
+        }
     }
     
     
@@ -903,8 +924,10 @@ extension PostShowViewController: PostShowDisplayLogic {
             self.showAlertView(withTitle: "Error", andMessage: error.localizedDescription, needCancel: false, completion: { _ in })
         }
         
-        // CoreData
-        self.fetchPostComments()
+        // Load Comments from CoreData
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1, execute: {
+            self.fetchPostComments()
+        })
     }
     
     func displayCheckFollowing(fromViewModel viewModel: PostShowModels.Following.ViewModel) {
@@ -1047,10 +1070,201 @@ extension PostShowViewController {
         }
     }
     
+    private func fetchPostComments() {
+        if let postShortInfo = self.router?.dataStore?.postShortInfo {
+            guard var commentEntities = CoreDataManager.instance.readEntities(withName:                    "Comment",
+                                                                              withPredicateParameters:     NSPredicate(format: "url contains[cd] %@ AND url contains[cd] %@", postShortInfo.author ?? "XXX", postShortInfo.permlink ?? "XXX"),
+                                                                              andSortDescriptor:           nil) as? [Comment], commentEntities.count > 0 else {
+                                                                                self.didFinishLoadComments(afterPagination: false)
+                                                                                self.didCommentsControlView(hided: true)
+                                                                                return
+            }
+            
+            // Set comments levels
+            let commentsFirstLevel = commentEntities.filter({ $0.parentPermlink == postShortInfo.permlink }).sorted(by: { $0.created < $1.created })
+            commentsFirstLevel.forEach({ $0.treeLevel = 0 })
+            
+            let commentsSecondLevel = commentEntities.filter({ $0.parentPermlink != postShortInfo.permlink }).sorted(by: { $0.created < $1.created })
+            commentsSecondLevel.forEach({ $0.treeLevel = 1 })
+            
+            for (index, comment) in commentsFirstLevel.enumerated() {
+                comment.treeIndex = "\(index)"
+                self.setViewTreeIndex(byComment: comment, andCommentsSecondLevel: commentsSecondLevel)
+            }
+            
+            commentEntities = commentEntities.sorted(by: { $0.treeIndex < $1.treeIndex })
+            
+            self.commentsButton.setTitle("\(commentEntities.count)", for: .normal)
+            self.commentsCountLabel.text = String(format: "%i", commentEntities.count)
+            
+            let startIndex  =   self.insertedRow ?? (self.comments?.count ?? 0 * self.paginationOffset)
+            var endIndex    =   self.insertedRow ?? (startIndex + self.paginationOffset < commentEntities.count ? (startIndex + self.paginationOffset) : commentEntities.count)
+            
+            if endIndex == startIndex && self.insertedRow != nil {
+                endIndex += 1
+            }
+            
+            // Add comments to list first time
+            if self.comments == nil {
+                self.comments = Array(commentEntities[startIndex..<endIndex])
+            }
+                
+                // Add comments to list other time
+            else if self.insertedRow == nil {
+                self.comments!.append(contentsOf: Array(commentEntities[startIndex..<endIndex]))
+            }
+                
+                // Add new comment to end of list
+            else if self.insertedRow == self.comments!.count {
+                self.comments!.append(contentsOf: Array(commentEntities[startIndex..<endIndex]))
+            }
+                
+                // Add new Reply to list
+            else {
+                self.comments!.insert(commentEntities[startIndex], at: startIndex)
+            }
+            
+            // Sort comments list
+            self.comments = self.comments!.sorted(by: { $0.treeIndex < $1.treeIndex })
+            
+            // Reload data
+            self.needPagination =   endIndex != commentEntities.count
+            self.commentViews   =   [CommentView]()
+            var counter         =   startIndex
+            
+            // Create comments tree
+            for index in startIndex..<endIndex {
+                if let comment = self.comments?[index] {
+                    let commentView = CommentView(withComment: comment, forRow: index)
+                    commentView.localizeTitles()
+                    
+                    commentView.loadData(fromBody: comment.body, completion: { [weak self] height in
+                        counter += 1
+                        
+                        commentView.markdownViewHeightConstraint.constant = height
+                        commentView.frame.size = CGSize(width: commentView.frame.width, height: height + 79.0)
+                        commentView.layoutIfNeeded()
+                        
+                        self?.commentsStackViewHeightConstraint.constant += height + 79.0
+                        self?.commentViews?.append(commentView)
+                        
+                        if (counter == endIndex && self?.insertedRow == nil) || self?.insertedRow != nil {
+                            for index in startIndex..<endIndex {
+                                self?.insertedRow == nil || self?.insertedRow == self?.comments!.count ?
+                                    self?.commentsStackView.addArrangedSubview((self?.commentViews!.first(where: { $0.treeIndex == index }))!) :
+                                    self?.commentsStackView.insertArrangedSubview((self?.commentViews!.first(where: { $0.treeIndex == index }))!, at: index)
+                                
+                                // Hide UIStackView animation
+                                UIView.performWithoutAnimation {
+                                    self?.commentsStackView.setNeedsLayout()
+                                    self?.commentsStackView.layoutIfNeeded()
+                                }
+                            }
+                            
+                            self?.didFinishLoadComments(afterPagination: (self?.isPaginationRun)!)
+                        }
+                    })
+                    
+                    // Handlers
+                    commentView.handlerActiveVoteButtonTapped                       =   { [weak self] (isVote, postShortInfo) in
+                        // Check network connection
+                        guard isNetworkAvailable else {
+                            self?.showAlertView(withTitle: "Info", andMessage: "No Internet Connection", needCancel: false, completion: { _ in })
+                            return
+                        }
+                        
+                        guard (self?.isCurrentOperationPossible())! else { return }
+                        
+                        self?.interactor?.save(comment: postShortInfo)
+                        
+                        let requestModel = PostShowModels.ActiveVote.RequestModel(isVote: isVote, isFlaunt: false, forPost: false)
+                        
+                        guard isVote else {
+                            self?.showAlertView(withTitle: "Voting Verb", andMessage: "Cancel Vote Message", actionTitle: "ActionChange", needCancel: true, completion: { success in
+                                if success {
+                                    commentView.activeVoteButton.startVote(withSpinner: commentView.activeVoteActivityIndicator)
+                                    self?.interactor?.vote(withRequestModel: requestModel)
+                                } else {
+                                    commentView.activeVoteButton.breakVote(withSpinner: commentView.activeVoteActivityIndicator)
+                                }
+                            })
+                            
+                            return
+                        }
+                        
+                        commentView.activeVoteButton.startVote(withSpinner: commentView.activeVoteActivityIndicator)
+                        self?.interactor?.vote(withRequestModel: requestModel)
+                    }
+                    
+                    commentView.handlerUsersButtonTapped                            =   { [weak self] in
+                        self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+                    }
+                    
+                    commentView.handlerCommentsButtonTapped                         =   { [weak self] postShortInfo in
+                        // Check network connection
+                        guard isNetworkAvailable else {
+                            self?.showAlertView(withTitle: "Info", andMessage: "No Internet Connection", needCancel: false, completion: { _ in })
+                            return
+                        }
+                        
+                        guard (self?.isCurrentOperationPossible())! else { return }
+                        
+                        self?.interactor?.save(comment: postShortInfo)
+                        self?.router?.routeToPostCreateScene(withType: .createComment)
+                    }
+                    
+                    commentView.handlerReplyButtonTapped                            =   { [weak self] postShortInfo in
+                        // Check network connection
+                        guard isNetworkAvailable else {
+                            self?.showAlertView(withTitle: "Info", andMessage: "No Internet Connection", needCancel: false, completion: { _ in })
+                            return
+                        }
+                        
+                        guard (self?.isCurrentOperationPossible())! else { return }
+                        
+                        self?.interactor?.save(comment: postShortInfo)
+                        self?.router?.routeToPostCreateScene(withType: .createCommentReply)
+                        
+                        self?.insertedRow = (postShortInfo.indexPath?.row)! + 1
+                    }
+                    
+                    commentView.handlerShareButtonTapped                            =   { [weak self] in
+                        self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+                    }
+                    
+                    commentView.handlerAuthorProfileAddButtonTapped                 =   { [weak self] in
+                        self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
+                    }
+                    
+                    commentView.handlerAuthorProfileImageButtonTapped               =   { [weak self] authorName in
+                        self?.router?.routeToUserProfileScene(byUserName: authorName)
+                    }
+                    
+                    commentView.handlerAuthorNameButtonTapped                       =   { [weak self] authorName in
+                        self?.router?.routeToUserProfileScene(byUserName: authorName)
+                    }
+                    
+                    // Handler Markdown
+                    commentView.markdownViewManager.completionErrorAlertView        =   { [weak self] errorMessage in
+                        self?.showAlertView(withTitle: "Error", andMessage: errorMessage, needCancel: false, completion: { _ in })
+                    }
+                    
+                    commentView.markdownViewManager.completionCommentAuthorTapped   =   { [weak self] authorName in
+                        self?.router?.routeToUserProfileScene(byUserName: authorName)
+                    }
+                    
+                    commentView.markdownViewManager.completionShowSafariURL         =   { [weak self] url in
+                        self?.openExternalLink(byURL: url.absoluteString)
+                    }
+                }
+            }
+        }
+    }
+    
     // Build Post Comments views tree
     private func setViewTreeIndex(byComment comment: Comment, andCommentsSecondLevel commentsSecondLevel: [Comment]) {
         let commentChildrens = commentsSecondLevel.filter({ $0 != comment }).filter({ $0.parentPermlink!.contains(comment.permlink) })
-
+        
         guard commentChildrens.count > 0 else {
             return
         }
@@ -1058,204 +1272,6 @@ extension PostShowViewController {
         for (index, commentChildren) in commentChildrens.enumerated() {
             commentChildren.treeIndex = comment.treeIndex + "\(index)"
             self.setViewTreeIndex(byComment: commentChildren, andCommentsSecondLevel: commentsSecondLevel)
-        }
-    }
-    
-    private func fetchPostComments() {
-        if let postShortInfo = self.router?.dataStore?.postShortInfo {
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1, execute: {
-                guard var commentEntities = CoreDataManager.instance.readEntities(withName:                    "Comment",
-                                                                                  withPredicateParameters:     NSPredicate(format: "url contains[cd] %@ AND url contains[cd] %@", postShortInfo.author ?? "XXX", postShortInfo.permlink ?? "XXX"),
-                                                                                  andSortDescriptor:           nil) as? [Comment], commentEntities.count > 0 else {
-                                                                                    self.didCommentsControlView(hided: true)
-                                                                                    return
-                }
-                
-                // Set comments levels
-                let commentsFirstLevel = commentEntities.filter({ $0.parentPermlink == postShortInfo.permlink }).sorted(by: { $0.created < $1.created })
-                commentsFirstLevel.forEach({ $0.treeLevel = 0 })
-                
-                let commentsSecondLevel = commentEntities.filter({ $0.parentPermlink != postShortInfo.permlink }).sorted(by: { $0.created < $1.created })
-                commentsSecondLevel.forEach({ $0.treeLevel = 1 })
-                
-                for (index, comment) in commentsFirstLevel.enumerated() {
-                    comment.treeIndex = "\(index)"
-                    self.setViewTreeIndex(byComment: comment, andCommentsSecondLevel: commentsSecondLevel)
-                }
-                
-                commentEntities = commentEntities.sorted(by: { $0.treeIndex < $1.treeIndex })
-                
-                self.commentsButton.setTitle("\(commentEntities.count)", for: .normal)
-                self.commentsCountLabel.text = String(format: "%i", commentEntities.count)
-                
-                let startIndex  =   self.insertedRow ?? (self.comments?.count ?? 0 * self.paginationOffset)
-                var endIndex    =   self.insertedRow ?? (startIndex + self.paginationOffset < commentEntities.count ? (startIndex + self.paginationOffset) : commentEntities.count)
-                
-                if endIndex == startIndex && self.insertedRow != nil {
-                    endIndex += 1
-                }
-                
-                // Add comments to list first time
-                if self.comments == nil {
-                    self.comments = Array(commentEntities[startIndex..<endIndex])
-                }
-                
-                // Add comments to list other time
-                else if self.insertedRow == nil {
-                    self.comments!.append(contentsOf: Array(commentEntities[startIndex..<endIndex]))
-                }
-                
-                // Add new comment to end of list
-                else if self.insertedRow == self.comments!.count {
-                    self.comments!.append(contentsOf: Array(commentEntities[startIndex..<endIndex]))
-                }
-                
-                // Add new Reply to list
-                else {
-                    self.comments!.insert(commentEntities[startIndex], at: startIndex)
-                }
-                
-                // Sort comments list
-                self.comments = self.comments!.sorted(by: { $0.treeIndex < $1.treeIndex })
-                
-                // Reload data
-                self.needPagination =   endIndex != commentEntities.count
-                self.commentViews   =   [CommentView]()
-                var counter         =   startIndex
-                
-                // Create comments tree
-                for index in startIndex..<endIndex {
-                    if let comment = self.comments?[index] {
-                        let commentView = CommentView(withComment: comment, forRow: index)
-                        commentView.localizeTitles()
-                        
-                        commentView.loadData(fromBody: comment.body, completion: { [weak self] height in
-                            counter += 1
-
-                            commentView.markdownViewHeightConstraint.constant = height
-                            commentView.frame.size = CGSize(width: commentView.frame.width, height: height + 79.0)
-                            commentView.layoutIfNeeded()
-                            
-                            self?.commentsStackViewHeightConstraint.constant += height + 79.0
-                            self?.commentViews?.append(commentView)
-                            
-                            if (counter == endIndex && self?.insertedRow == nil) || self?.insertedRow != nil {
-                                for index in startIndex..<endIndex {
-                                    self?.insertedRow == nil || self?.insertedRow == self?.comments!.count ?
-                                        self?.commentsStackView.addArrangedSubview((self?.commentViews!.first(where: { $0.treeIndex == index }))!) :
-                                        self?.commentsStackView.insertArrangedSubview((self?.commentViews!.first(where: { $0.treeIndex == index }))!, at: index)
-                                }
-
-                                self?.didCommentsControlView(hided: false)
-                                self?.insertedRow = nil
-                            }
-                        })
-                        
-                        // Handlers
-                        commentView.handlerActiveVoteButtonTapped                       =   { [weak self] (isVote, postShortInfo) in
-                            // Check network connection
-                            guard isNetworkAvailable else {
-                                self?.showAlertView(withTitle: "Info", andMessage: "No Internet Connection", needCancel: false, completion: { _ in })
-                                return
-                            }
-                            
-                            guard (self?.isCurrentOperationPossible())! else { return }
-                            
-                            self?.interactor?.save(comment: postShortInfo)
-                            
-                            let requestModel = PostShowModels.ActiveVote.RequestModel(isVote: isVote, isFlaunt: false, forPost: false)
-                            
-                            guard isVote else {
-                                self?.showAlertView(withTitle: "Voting Verb", andMessage: "Cancel Vote Message", actionTitle: "ActionChange", needCancel: true, completion: { success in
-                                    if success {
-                                        commentView.activeVoteButton.startVote(withSpinner: commentView.activeVoteActivityIndicator)
-                                        self?.interactor?.vote(withRequestModel: requestModel)
-                                    } else {
-                                        commentView.activeVoteButton.breakVote(withSpinner: commentView.activeVoteActivityIndicator)
-                                    }
-                                })
-                                
-                                return
-                            }
-                            
-                            commentView.activeVoteButton.startVote(withSpinner: commentView.activeVoteActivityIndicator)
-                            self?.interactor?.vote(withRequestModel: requestModel)
-                        }
-                        
-                        commentView.handlerUsersButtonTapped                            =   { [weak self] in
-                            self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
-                        }
-                        
-                        commentView.handlerCommentsButtonTapped                         =   { [weak self] postShortInfo in
-                            // Check network connection
-                            guard isNetworkAvailable else {
-                                self?.showAlertView(withTitle: "Info", andMessage: "No Internet Connection", needCancel: false, completion: { _ in })
-                                return
-                            }
-                            
-                            guard (self?.isCurrentOperationPossible())! else { return }
-                            
-                            self?.interactor?.save(comment: postShortInfo)
-                            self?.router?.routeToPostCreateScene(withType: .createComment)
-                        }
-                        
-                        commentView.handlerReplyButtonTapped                            =   { [weak self] postShortInfo in
-                            // Check network connection
-                            guard isNetworkAvailable else {
-                                self?.showAlertView(withTitle: "Info", andMessage: "No Internet Connection", needCancel: false, completion: { _ in })
-                                return
-                            }
-                            
-                            guard (self?.isCurrentOperationPossible())! else { return }
-                            
-                            self?.interactor?.save(comment: postShortInfo)
-                            self?.router?.routeToPostCreateScene(withType: .createCommentReply)
-                            
-                            self?.insertedRow = (postShortInfo.indexPath?.row)! + 1
-                        }
-                        
-                        commentView.handlerShareButtonTapped                            =   { [weak self] in
-                            self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
-                        }
-                        
-                        commentView.handlerAuthorProfileAddButtonTapped                 =   { [weak self] in
-                            self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
-                        }
-                        
-                        commentView.handlerAuthorProfileImageButtonTapped               =   { [weak self] authorName in
-                            self?.router?.routeToUserProfileScene(byUserName: authorName)
-                        }
-                        
-                        commentView.handlerAuthorNameButtonTapped                       =   { [weak self] authorName in
-                            self?.router?.routeToUserProfileScene(byUserName: authorName)
-                        }
-                        
-                        // Handler Markdown
-                        commentView.markdownViewManager.completionErrorAlertView        =   { [weak self] errorMessage in
-                            self?.showAlertView(withTitle: "Error", andMessage: errorMessage, needCancel: false, completion: { _ in })
-                        }
-                        
-                        commentView.markdownViewManager.completionCommentAuthorTapped   =   { [weak self] authorName in
-                            self?.router?.routeToUserProfileScene(byUserName: authorName)
-                        }
-                        
-                        commentView.markdownViewManager.completionShowSafariURL         =   { [weak self] url in
-                            self?.openExternalLink(byURL: url.absoluteString)
-                        }
-                    }
-                }
-                
-                if self.isPaginationRun {
-                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2.5, execute: {
-                        self.isPaginationRun = false
-                        self.commentsHeaderViewHeightConstraint.constant = 0.0
-                        
-                        UIView.animate(withDuration: 0.3, animations: {
-                            self.view.layoutIfNeeded()
-                        })
-                    })
-                }
-            })
         }
     }
 }
@@ -1399,13 +1415,17 @@ extension PostShowViewController: UIScrollViewDelegate {
         
         if bottom - scrollPosition <= 150.0 && !self.isPaginationRun && self.needPagination {
             self.isPaginationRun = true
-            self.fetchPostComments()
             
             // Display Infinite Scrolling view in bottom of sceen
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
                 self.commentsHeaderView.set(mode: .footer)
                 self.commentsHeaderViewHeightConstraint.constant = 48.0 * heightRatio
             }
+            
+            // Load Comments from CoreData
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2, execute: {
+                self.fetchPostComments()
+            })
         }
     }
 }

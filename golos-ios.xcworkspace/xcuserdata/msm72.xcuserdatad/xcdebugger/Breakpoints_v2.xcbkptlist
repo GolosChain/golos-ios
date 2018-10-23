@@ -220,7 +220,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "golos-ios/Scenes/PostShow/PostShowViewController.swift"
-            timestampString = "561965785.394693"
+            timestampString = "561969794.689944"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "547"
@@ -232,16 +232,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "golos-ios/Scenes/PostShow/Views/CommentView.swift"
-            timestampString = "561923498.273728"
+            filePath = "golos-ios/Scenes/PostsShow/PostsShowRouter.swift"
+            timestampString = "561969794.69078"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "199"
-            endingLineNumber = "199"
-            landmarkName = "loadData(fromBody:completion:)"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
+            landmarkName = "routeToPostShowScene(withScrollToComments:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

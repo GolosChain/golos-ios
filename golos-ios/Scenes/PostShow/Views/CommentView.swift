@@ -200,7 +200,6 @@ class CommentView: UIView, HandlersCellSupport {
 
         self.markdownViewManager.onRendered = { height in
             completion(height)
-//            completion(self.leadingConstraint.constant == 52.0 * widthRatio ? height + 10.0 : height)
         }
     }
     
