@@ -52,7 +52,7 @@ class PostShowRouter: NSObject, PostShowRoutingLogic, PostShowDataPassing {
                 self?.viewController?.isPostContentModify   =   true
                 self?.viewController?.loadPostComments()
             } else {
-                self?.viewController?.selectedRow           =   0
+                self?.viewController?.insertedRow           =   0
                 self?.viewController?.isPostContentModify   =   false
             }
         }

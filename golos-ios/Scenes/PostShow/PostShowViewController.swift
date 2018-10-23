@@ -29,7 +29,7 @@ protocol PostShowDisplayLogic: class {
 
 class PostShowViewController: GSBaseViewController {
     // MARK: - Properties
-    var selectedRow: Int?
+    var insertedRow: Int?
     var activeVotesCount: Int = 0
     var scrollCommentsDown: Bool = false
     var isPostContentModify: Bool = false
@@ -78,7 +78,7 @@ class PostShowViewController: GSBaseViewController {
                 
                 self?.router?.routeToPostCreateScene(withType: .createComment)
                 
-                self?.selectedRow = self?.comments?.count ?? 0
+                self?.insertedRow = self?.comments?.count ?? 0
             }
         }
     }
@@ -118,7 +118,6 @@ class PostShowViewController: GSBaseViewController {
     @IBOutlet weak var scrollView: UIScrollView! {
         didSet {
             self.scrollView.delegate = self
-            self.scrollView.isUserInteractionEnabled = !self.scrollCommentsDown
         }
     }
     
@@ -527,8 +526,6 @@ class PostShowViewController: GSBaseViewController {
         self.commentsHeaderViewHeightConstraint.constant        =   hided ? 48.0 * heightRatio : 0.0
         self.commentsHeaderView.createCommentButton.isHidden    =   !hided
         
-        self.scrollView.isUserInteractionEnabled = true
-
         // Hide loading activity interactior
         self.loadingPostContentActivityIndicator.stopAnimating()
         self.contentViewTopConstraint.constant = 0.0
@@ -676,7 +673,7 @@ class PostShowViewController: GSBaseViewController {
     
     private func clearComments(byIndex index: Int) {
         // Clear Comment array
-        let range = self.selectedRow!..<self.comments!.count
+        let range = self.insertedRow!..<self.comments!.count
         self.comments?.removeSubrange(range)
         
         // Clear CommentView array
@@ -796,7 +793,7 @@ class PostShowViewController: GSBaseViewController {
 
         self.router?.routeToPostCreateScene(withType: .createComment)
         
-        self.selectedRow = self.comments?.count ?? 0
+        self.insertedRow = self.comments?.count ?? 0
     }
 
     @IBAction func promoteButtonTapped(_ sender: UIButton) {
@@ -863,26 +860,6 @@ class PostShowViewController: GSBaseViewController {
     
     @IBAction func subscribeButtonTappedDown(_ sender: UIButton) {
         sender.setBorder(color: UIColor(hexString: "#e3e3e3").cgColor, cornerRadius: 4.0 * heightRatio)
-    }
-    
-    // Refresh Comments
-    @objc func handlerTableViewRefreshData(refreshControl: UIRefreshControl) {
-        guard isNetworkAvailable else {
-            return
-        }
-        
-//        // Clear pagination
-//        self.paginationSection = 1
-//        self.paginationCurrentIndex = 0
-        
-        // Clean CoreData entities
-        DispatchQueue.main.async {
-            CoreDataManager.instance.deleteEntities(withName: "Comment", andPredicateParameters: nil, completion: { [weak self] success in
-                if success {
-                    self?.loadPostComments()
-                }
-            })
-        }
     }
 }
 
@@ -960,7 +937,6 @@ extension PostShowViewController: PostShowDisplayLogic {
                                         let commentEntity = CoreDataManager.instance.readEntity(withName: "Comment",
                                                                                                 andPredicateParameters: NSPredicate(format: "author == %@ AND permlink == %@", commentShortInfo.author!, commentShortInfo.permlink!)) as? Comment {
                                         (self.commentsStackView.arrangedSubviews[indexPath.row] as! CommentView).setupUI(withComment: commentEntity, forRow: indexPath.row)
-//                                        (self.commentsTableView.cellForRow(at: indexPath) as! CommentTableViewCell).setup(withItem: commentEntity, andIndexPath: indexPath)
                                     }
                 })
             }
@@ -1112,23 +1088,42 @@ extension PostShowViewController {
                 self.commentsButton.setTitle("\(commentEntities.count)", for: .normal)
                 self.commentsCountLabel.text = String(format: "%i", commentEntities.count)
                 
-                let startIndex  =   self.selectedRow ?? (self.comments?.count ?? 0 * self.paginationOffset)
-                let endIndex    =   self.selectedRow ?? (startIndex + self.paginationOffset < commentEntities.count ? (startIndex + self.paginationOffset) : commentEntities.count)
+                let startIndex  =   self.insertedRow ?? (self.comments?.count ?? 0 * self.paginationOffset)
+                var endIndex    =   self.insertedRow ?? (startIndex + self.paginationOffset < commentEntities.count ? (startIndex + self.paginationOffset) : commentEntities.count)
                 
-                if self.comments == nil {
-                    self.comments   =   Array(commentEntities[startIndex..<endIndex])
-                } else {
-                    self.selectedRow == nil || self.selectedRow == self.comments!.count ?   self.comments!.append(contentsOf: Array(commentEntities[startIndex..<endIndex])) :
-                                                                                            self.comments!.insert(commentEntities[startIndex], at: startIndex)
-                        
-                    self.comments   =   self.comments!.sorted(by: { $0.treeIndex < $1.treeIndex })
+                if endIndex == startIndex && self.insertedRow != nil {
+                    endIndex += 1
                 }
+                
+                // Add comments to list first time
+                if self.comments == nil {
+                    self.comments = Array(commentEntities[startIndex..<endIndex])
+                }
+                
+                // Add comments to list other time
+                else if self.insertedRow == nil {
+                    self.comments!.append(contentsOf: Array(commentEntities[startIndex..<endIndex]))
+                }
+                
+                // Add new comment to end of list
+                else if self.insertedRow == self.comments!.count {
+                    self.comments!.append(contentsOf: Array(commentEntities[startIndex..<endIndex]))
+                }
+                
+                // Add new Reply to list
+                else {
+                    self.comments!.insert(commentEntities[startIndex], at: startIndex)
+                }
+                
+                // Sort comments list
+                self.comments = self.comments!.sorted(by: { $0.treeIndex < $1.treeIndex })
                 
                 // Reload data
                 self.needPagination =   endIndex != commentEntities.count
                 self.commentViews   =   [CommentView]()
                 var counter         =   0
                 
+                // Create comments tree
                 for index in startIndex..<endIndex {
                     if let comment = self.comments?[index] {
                         let commentView = CommentView(withComment: comment, forRow: index)
@@ -1144,16 +1139,16 @@ extension PostShowViewController {
                             self?.commentsStackViewHeightConstraint.constant += height + 79.0
                             self?.commentViews?.append(commentView)
                             
-                            if counter == endIndex {
+                            if (counter == endIndex && self?.insertedRow == nil) || self?.insertedRow != nil {
                                 for index in startIndex..<endIndex {
-                                    self?.selectedRow == nil || self?.selectedRow == self?.comments!.count ?
+                                    self?.insertedRow == nil || self?.insertedRow == self?.comments!.count ?
                                         self?.commentsStackView.addArrangedSubview((self?.commentViews!.first(where: { $0.treeIndex == index }))!) :
                                         self?.commentsStackView.insertArrangedSubview((self?.commentViews!.first(where: { $0.treeIndex == index }))!, at: index)
                                 }
+
+                                self?.didCommentsControlView(hided: false)
+                                self?.insertedRow = nil
                             }
-                            
-                            self?.didCommentsControlView(hided: false)
-                            self?.selectedRow = nil
                         })
                         
                         // Handlers
@@ -1216,7 +1211,7 @@ extension PostShowViewController {
                             self?.interactor?.save(comment: postShortInfo)
                             self?.router?.routeToPostCreateScene(withType: .createCommentReply)
                             
-                            self?.selectedRow = postShortInfo.indexPath?.row
+                            self?.insertedRow = (postShortInfo.indexPath?.row)! + 1
                         }
                         
                         commentView.handlerShareButtonTapped                            =   { [weak self] in
@@ -1253,8 +1248,6 @@ extension PostShowViewController {
                 if self.isPaginationRun {
                     DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2.5, execute: {
                         self.isPaginationRun = false
-                        self.scrollView.isUserInteractionEnabled = true
-                        
                         self.commentsHeaderViewHeightConstraint.constant = 0.0
                         
                         UIView.animate(withDuration: 0.3, animations: {
@@ -1340,7 +1333,6 @@ extension PostShowViewController: UIScrollViewDelegate {
         /*
         if bottom - scrollPosition <= 150.0 && !self.isPaginationRun && self.needPagination {
             self.isPaginationRun = true
-            self.scrollView.isUserInteractionEnabled = false
             self.fetchPostComments()
             
             // Display Infinite Scrolling view
