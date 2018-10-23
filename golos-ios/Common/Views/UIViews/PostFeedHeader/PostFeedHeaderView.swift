@@ -186,13 +186,22 @@ class PostFeedHeaderView: UIView {
 
             self.authorNickNameButton.setTitle(user.nickName, for: .normal)
             
-            if let rebloggedBy = post.rebloggedBy, rebloggedBy.count > 0 {
-                self.reblogIconButton.isHidden      =   false
-                self.rebloggedAuthorButton.isHidden =   false
-                self.authorNickNameButton.isHidden  =   false
-                self.rebloggedAuthorButton.setTitle(rebloggedBy.first ?? "XXX", for: .normal)
+            if let authorReblog = post.authorReblog, authorReblog != post.author {
+                self.setReblog(byAuthorName: authorReblog)
+            }
+            
+            else if let rebloggedBy = post.rebloggedBy, rebloggedBy.count > 0, let authorReblog = rebloggedBy.first {
+                self.setReblog(byAuthorName: authorReblog)
             }
         }
+    }
+    
+    private func setReblog(byAuthorName nickName: String) {
+        self.reblogIconButton.isHidden          =   false
+        self.rebloggedAuthorButton.isHidden     =   false
+        self.authorNickNameButton.isHidden      =   false
+        
+        self.rebloggedAuthorButton.setTitle(nickName, for: .normal)
     }
     
     private func clearValues() {

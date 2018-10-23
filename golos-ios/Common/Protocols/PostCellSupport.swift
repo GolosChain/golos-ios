@@ -33,6 +33,8 @@ protocol PostCellSupport: PaginationSupport, MetaDataSupport {
     var currentUserFlaunted: Bool { get set }
 
     var tags: [String]? { get set }
+
+    var authorReblog: String? { get set }
     var rebloggedBy: [String]? { get set }
 
     var active: Date { get set }

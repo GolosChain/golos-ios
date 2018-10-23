@@ -1024,8 +1024,10 @@ extension PostShowViewController {
 
         guard isNetworkAvailable && !User.isAnonymous else {
             DispatchQueue.main.async {
-                self.subscribeButtonsCollection.first(where: { $0.tag == 1 })?.isSelected = false
-                self.subscribeButtonsCollection.first(where: { $0.tag == 1 })?.setTitle("Subscribe".localized(), for: .normal)
+                if let subscribeButtons = self.subscribeButtonsCollection {
+                    subscribeButtons.first(where: { $0.tag == 1 })?.isSelected = false
+                    subscribeButtons.first(where: { $0.tag == 1 })?.setTitle("Subscribe".localized(), for: .normal)
+                }
             }
             
             return

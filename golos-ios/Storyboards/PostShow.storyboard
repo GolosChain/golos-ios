@@ -85,7 +85,7 @@
                                                         <rect key="frame" x="194" y="21" width="110" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="110" id="CMb-x3-YcA"/>
-                                                            <constraint firstAttribute="height" constant="30" id="SAs-Xj-sbJ"/>
+                                                            <constraint firstAttribute="height" constant="30" identifier="hideCommentsButtonHeightConstraint" id="SAs-Xj-sbJ"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="8"/>
                                                         <state key="normal" title="Hide Comments Verb">
@@ -101,11 +101,11 @@
                                                     <constraint firstItem="NIC-bg-8Kq" firstAttribute="leading" secondItem="nt5-Bc-nF3" secondAttribute="leading" constant="16" id="2mh-xf-Jtc"/>
                                                     <constraint firstItem="dVT-lc-meT" firstAttribute="top" secondItem="nt5-Bc-nF3" secondAttribute="top" constant="15" id="44z-oF-6P4"/>
                                                     <constraint firstItem="bfp-bA-aPN" firstAttribute="centerY" secondItem="NIC-bg-8Kq" secondAttribute="centerY" id="4Uj-gq-vA3"/>
-                                                    <constraint firstAttribute="height" constant="70" id="62h-iQ-2EM"/>
+                                                    <constraint firstAttribute="height" constant="70" identifier="commentsControlViewHeightConstraint" id="62h-iQ-2EM"/>
                                                     <constraint firstItem="bfp-bA-aPN" firstAttribute="leading" secondItem="NIC-bg-8Kq" secondAttribute="trailing" constant="8" id="Dqb-8R-Al5"/>
                                                     <constraint firstAttribute="trailing" secondItem="lI5-dI-xCS" secondAttribute="trailing" constant="16" id="JTG-WK-R4O"/>
                                                     <constraint firstItem="gp2-Gr-TVH" firstAttribute="leading" secondItem="dVT-lc-meT" secondAttribute="trailing" constant="8" id="QDG-1p-rPh"/>
-                                                    <constraint firstItem="lI5-dI-xCS" firstAttribute="height" secondItem="bfp-bA-aPN" secondAttribute="height" id="Xhb-Ms-8zX"/>
+                                                    <constraint firstItem="lI5-dI-xCS" firstAttribute="height" secondItem="bfp-bA-aPN" secondAttribute="height" identifier="sortCommentsButtonHeightConstraint" id="Xhb-Ms-8zX"/>
                                                     <constraint firstItem="dVT-lc-meT" firstAttribute="leading" secondItem="nt5-Bc-nF3" secondAttribute="leading" constant="16" id="Z82-qG-aDV"/>
                                                     <constraint firstItem="gp2-Gr-TVH" firstAttribute="centerY" secondItem="dVT-lc-meT" secondAttribute="centerY" id="ZB6-cI-lPh"/>
                                                     <constraint firstItem="NIC-bg-8Kq" firstAttribute="top" secondItem="dVT-lc-meT" secondAttribute="bottom" constant="5" id="haj-jd-NUZ"/>
@@ -144,14 +144,14 @@
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="34" id="cWb-2n-6vU"/>
+                                                    <constraint firstAttribute="height" constant="34" identifier="buttonsStackViewHeightConstraint" id="cWb-2n-6vU"/>
                                                 </constraints>
                                             </stackView>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tHL-Id-QDj" userLabel="Top Background Gray View">
                                                 <rect key="frame" x="0.0" y="178.5" width="320" height="10"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="10" id="1Sx-7f-Mvj"/>
+                                                    <constraint firstAttribute="height" constant="10" identifier="topBackgroundGrayViewHeightConstraint" id="1Sx-7f-Mvj"/>
                                                 </constraints>
                                             </view>
                                             <stackView contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="hL9-He-JpB" userLabel="Subscribes Stack View">
@@ -164,7 +164,7 @@
                                                                 <rect key="frame" x="16" y="-25" width="50" height="50"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="height" constant="50" id="ViH-ru-v31"/>
+                                                                    <constraint firstAttribute="height" constant="50" identifier="subscribeTopicCoverImageViewHeightConstraint" id="ViH-ru-v31"/>
                                                                 </constraints>
                                                             </imageView>
                                                             <stackView contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="FWj-A1-RtJ" userLabel="Labels Stack View">
@@ -192,7 +192,7 @@
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="100" id="ae4-xp-nk8"/>
-                                                                    <constraint firstAttribute="height" constant="30" id="dhc-wp-wmh"/>
+                                                                    <constraint firstAttribute="height" constant="30" identifier="subcribeTopicButtonHeightConstraint" id="dhc-wp-wmh"/>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <state key="normal" title="Subscribe">
@@ -207,7 +207,7 @@
                                                                 <rect key="frame" x="0.0" y="-1" width="320" height="1"/>
                                                                 <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="height" constant="1" id="8wU-ag-IAJ"/>
+                                                                    <constraint firstAttribute="height" constant="1" identifier="bottomLineViewHeightConstraint" id="8wU-ag-IAJ"/>
                                                                 </constraints>
                                                             </view>
                                                         </subviews>
@@ -243,7 +243,7 @@
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="100" id="pdk-dM-cga"/>
-                                                                    <constraint firstAttribute="height" constant="30" id="pwV-Lk-m0t"/>
+                                                                    <constraint firstAttribute="height" constant="30" identifier="subscribeUserButtonHeightConstraint" id="pwV-Lk-m0t"/>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <state key="normal" title="Subscribe">
@@ -303,7 +303,7 @@
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="80" id="f8Z-8u-tnH"/>
+                                                    <constraint firstAttribute="height" constant="80" identifier="subscribesStackViewHeightConstraint" id="f8Z-8u-tnH"/>
                                                 </constraints>
                                             </stackView>
                                             <activityIndicatorView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="3Lz-nN-lGc">
@@ -320,14 +320,14 @@
                                                 <rect key="frame" x="0.0" y="268.5" width="320" height="10"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="10" id="5i8-Ig-cw7"/>
+                                                    <constraint firstAttribute="height" constant="10" identifier="bottomBackgroundGrayViewHeightConstraint" id="5i8-Ig-cw7"/>
                                                 </constraints>
                                             </view>
                                             <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="260" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zPm-d9-LiX" userLabel="Title Label">
                                                 <rect key="frame" x="16" y="16" width="288" height="20.5"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="Igq-aA-EI4"/>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" identifier="titleLabelHeightConstraint" id="Igq-aA-EI4"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
@@ -342,7 +342,7 @@
                                                 <rect key="frame" x="0.0" y="52.5" width="320" height="0.0"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" id="XZb-1l-yIm"/>
+                                                    <constraint firstAttribute="height" identifier="markdownViewHeightConstraint" id="XZb-1l-yIm"/>
                                                 </constraints>
                                             </view>
                                             <stackView contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="MhK-Vc-x7K" userLabel="Active Buttons Stack View">
@@ -406,7 +406,7 @@
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="80" id="nb7-Km-WjT"/>
+                                                    <constraint firstAttribute="height" constant="80" identifier="activeButtonsStackViewHeightConstraint" id="nb7-Km-WjT"/>
                                                 </constraints>
                                             </stackView>
                                             <activityIndicatorView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="bie-f8-jaU">
@@ -429,7 +429,7 @@
                                                 <rect key="frame" x="16" y="68.5" width="288" height="30"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="30" id="cI2-Yu-NIy"/>
+                                                    <constraint firstAttribute="height" constant="30" identifier="tagsCollectionViewHeightConstraint" id="cI2-Yu-NIy"/>
                                                 </constraints>
                                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="fBM-RK-HmS">
                                                     <size key="itemSize" width="50" height="50"/>
@@ -528,7 +528,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="Udv-hI-u2X" secondAttribute="height" multiplier="1:1" id="KyM-0v-CgZ"/>
-                                            <constraint firstAttribute="height" constant="44" id="iyq-uX-JO5"/>
+                                            <constraint firstAttribute="height" constant="44" identifier="backButtonHeightConstraint" id="iyq-uX-JO5"/>
                                         </constraints>
                                         <state key="normal" image="icon-button-back-black-normal"/>
                                         <connections>
@@ -542,7 +542,7 @@
                                     <constraint firstAttribute="trailing" secondItem="a7j-dG-pvN" secondAttribute="trailing" id="IEX-07-NWV"/>
                                     <constraint firstItem="Udv-hI-u2X" firstAttribute="leading" secondItem="7Js-bQ-ZpY" secondAttribute="leading" id="JJv-Ok-ROH"/>
                                     <constraint firstAttribute="bottom" secondItem="a7j-dG-pvN" secondAttribute="bottom" id="Ofo-RB-VxT"/>
-                                    <constraint firstAttribute="height" constant="64" id="p07-Sd-p3F"/>
+                                    <constraint firstAttribute="height" constant="64" identifier="navbarViewHeightConstraint" id="p07-Sd-p3F"/>
                                     <constraint firstAttribute="bottom" secondItem="Udv-hI-u2X" secondAttribute="bottom" constant="3" id="vNH-xC-FkJ"/>
                                 </constraints>
                             </view>
@@ -550,7 +550,7 @@
                                 <rect key="frame" x="0.0" y="63" width="320" height="1"/>
                                 <color key="backgroundColor" red="0.8784313725490196" green="0.8784313725490196" blue="0.8784313725490196" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="1" id="xhV-K2-9Ri"/>
+                                    <constraint firstAttribute="height" constant="1" identifier="shadowViewHeightConstraint" id="xhV-K2-9Ri"/>
                                 </constraints>
                             </view>
                             <activityIndicatorView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="NB0-PC-C9r" userLabel="Loading Post Activity Indicator">
@@ -565,7 +565,7 @@
                             <constraint firstItem="NB0-PC-C9r" firstAttribute="centerX" secondItem="AJS-P4-Hkt" secondAttribute="centerX" id="Nvm-5Z-Pgo"/>
                             <constraint firstItem="ZkM-23-awk" firstAttribute="trailing" secondItem="UNP-hf-cFI" secondAttribute="trailing" id="TUm-7b-gkA"/>
                             <constraint firstItem="7Js-bQ-ZpY" firstAttribute="top" secondItem="AJS-P4-Hkt" secondAttribute="top" id="VIL-0O-CY8"/>
-                            <constraint firstItem="BtF-Gk-D12" firstAttribute="height" secondItem="AJS-P4-Hkt" secondAttribute="height" priority="250" id="Xao-g2-cMG"/>
+                            <constraint firstItem="BtF-Gk-D12" firstAttribute="height" secondItem="AJS-P4-Hkt" secondAttribute="height" priority="250" identifier="contentViewHeightConstraint" id="Xao-g2-cMG"/>
                             <constraint firstItem="BtF-Gk-D12" firstAttribute="width" secondItem="AJS-P4-Hkt" secondAttribute="width" id="bZf-1n-jZ3"/>
                             <constraint firstItem="7Js-bQ-ZpY" firstAttribute="leading" secondItem="UNP-hf-cFI" secondAttribute="leading" id="frb-bE-B30"/>
                             <constraint firstItem="7f0-ZC-o8d" firstAttribute="top" secondItem="7Js-bQ-ZpY" secondAttribute="bottom" id="gqN-tc-vlr"/>
@@ -639,7 +639,6 @@
                         <outletCollection property="widthsCollection" destination="ZOe-fx-a6L" collectionClass="NSMutableArray" id="U3V-cl-wbc"/>
                         <outletCollection property="widthsCollection" destination="gGh-Ki-O6Z" collectionClass="NSMutableArray" id="qKg-Hb-Lxx"/>
                         <outletCollection property="heightsCollection" destination="Igq-aA-EI4" collectionClass="NSMutableArray" id="ZlP-oL-1QB"/>
-                        <outletCollection property="heightsCollection" destination="iyq-uX-JO5" collectionClass="NSMutableArray" id="bZ0-yq-IEQ"/>
                         <outletCollection property="heightsCollection" destination="nb7-Km-WjT" collectionClass="NSMutableArray" id="Y4b-xQ-P6P"/>
                         <outletCollection property="widthsCollection" destination="QAV-gt-84U" collectionClass="NSMutableArray" id="DPz-JQ-cts"/>
                         <outletCollection property="widthsCollection" destination="fUC-kO-iPy" collectionClass="NSMutableArray" id="Y5Y-Ml-EWh"/>

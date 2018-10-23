@@ -45,6 +45,12 @@ extension New: PostCellSupport {
     @NSManaged public var tags: [String]?
     @NSManaged public var rebloggedBy: [String]?
     
+    @NSManaged public var reblogBody: String?
+    @NSManaged public var reblogTitle: String?
+    @NSManaged public var authorReblog: String?
+    @NSManaged public var rebloggedFirstOn: String?
+    @NSManaged public var jsonMetadataReblog: String?
+    
     @NSManaged public var active: Date
     @NSManaged public var created: Date
     @NSManaged public var lastUpdate: Date

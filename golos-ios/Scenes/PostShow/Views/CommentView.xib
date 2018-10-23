@@ -52,7 +52,7 @@
                             <rect key="frame" x="39" y="35" width="336" height="0.0"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="height" id="7cj-30-Ntl"/>
+                                <constraint firstAttribute="height" identifier="markdownViewHeightConstraint" id="7cj-30-Ntl"/>
                             </constraints>
                         </view>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-user-profile-image-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="mdT-NO-nly" userLabel="Author Profile Image View">
@@ -100,7 +100,7 @@
                             <rect key="frame" x="52" y="0.0" width="46" height="32"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="32" id="Y2d-Sy-T19"/>
+                                <constraint firstAttribute="height" constant="32" identifier="authorNameButtonHeightConstraint" id="Y2d-Sy-T19"/>
                             </constraints>
                             <state key="normal" title="Button"/>
                             <connections>
@@ -108,7 +108,7 @@
                             </connections>
                         </button>
                         <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JV1-jP-ZcQ" userLabel="Time Label">
-                            <rect key="frame" x="106" y="5.5" width="42" height="21"/>
+                            <rect key="frame" x="106" y="6" width="42" height="20.5"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
@@ -192,7 +192,7 @@
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="44" id="9sJ-K0-GQc"/>
+                                <constraint firstAttribute="height" constant="44" identifier="buttonsViewHeightConstraint" id="9sJ-K0-GQc"/>
                                 <constraint firstItem="0WO-mS-vAo" firstAttribute="leading" secondItem="bW7-se-LaC" secondAttribute="leading" id="YMJ-E9-tIi"/>
                                 <constraint firstItem="0WO-mS-vAo" firstAttribute="top" secondItem="bW7-se-LaC" secondAttribute="top" id="f3g-iF-IJa"/>
                                 <constraint firstAttribute="trailing" secondItem="0WO-mS-vAo" secondAttribute="trailing" id="hTe-HK-uul"/>
@@ -217,8 +217,9 @@
                         <constraint firstItem="mdT-NO-nly" firstAttribute="width" secondItem="mlh-OO-ald" secondAttribute="width" id="KO0-h5-JpD"/>
                         <constraint firstItem="yNw-9n-yzN" firstAttribute="leading" secondItem="mlh-OO-ald" secondAttribute="leading" constant="-2" id="Mje-bE-iK1"/>
                         <constraint firstItem="eTP-vD-Kt8" firstAttribute="top" secondItem="tNf-H6-dtq" secondAttribute="top" id="O1g-Rr-psh"/>
+                        <constraint firstItem="Mnb-Ny-ryB" firstAttribute="top" secondItem="tNf-H6-dtq" secondAttribute="top" constant="35" identifier="markdownViewTopConstraint" id="OJk-RS-0eV"/>
                         <constraint firstItem="bW7-se-LaC" firstAttribute="leading" secondItem="eTP-vD-Kt8" secondAttribute="leading" id="PJf-Ow-DpU"/>
-                        <constraint firstItem="mdT-NO-nly" firstAttribute="height" secondItem="mlh-OO-ald" secondAttribute="height" id="RKS-8c-Yd4"/>
+                        <constraint firstItem="mdT-NO-nly" firstAttribute="height" secondItem="mlh-OO-ald" secondAttribute="height" identifier="authorProfileImageViewHeightConstraint" id="RKS-8c-Yd4"/>
                         <constraint firstAttribute="trailing" secondItem="Mnb-Ny-ryB" secondAttribute="trailing" id="WGM-xK-IuN"/>
                         <constraint firstItem="mdT-NO-nly" firstAttribute="centerX" secondItem="mlh-OO-ald" secondAttribute="centerX" id="bOG-Ok-y8j"/>
                         <constraint firstItem="mdT-NO-nly" firstAttribute="centerY" secondItem="mlh-OO-ald" secondAttribute="centerY" id="bZS-MS-EyC"/>
@@ -230,6 +231,12 @@
                         <constraint firstItem="9vY-Xd-25N" firstAttribute="leading" secondItem="hi7-82-SU3" secondAttribute="leading" id="tkU-yN-O6M"/>
                         <constraint firstItem="Mnb-Ny-ryB" firstAttribute="top" secondItem="eTP-vD-Kt8" secondAttribute="bottom" constant="3" id="vJ4-Nh-Erq"/>
                     </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="nrc-W2-SGl"/>
+                            <exclude reference="vJ4-Nh-Erq"/>
+                        </mask>
+                    </variation>
                 </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

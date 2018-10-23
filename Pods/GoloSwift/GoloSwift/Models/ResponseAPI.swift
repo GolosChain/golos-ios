@@ -72,7 +72,14 @@ public struct ResponseAPIPost: Decodable {
     public let last_update: String
     public let last_payout: String
     
-    
+    public let first_reblogged_on: String?
+    public let reblog_author: String?
+    public let reblog_title: String?
+    public let reblog_body: String?
+    public let reblog_json_metadata: String?
+//    public let reblogged_by: [0]
+//    public let reblog_entries: [0]
+
     // MARK: - In reserve
     /*
      public let abs_rshares: Conflicted

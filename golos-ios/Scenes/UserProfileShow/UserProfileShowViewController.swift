@@ -238,11 +238,10 @@ class UserProfileShowViewController: GSBaseViewController, ContainerViewSupport 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
        
+        self.setStatusBarStyle()
         self.hideNavigationBar()
         self.settingsShow = false
         
-        UIApplication.shared.statusBarStyle     =   User.fetch(byNickName: self.router!.dataStore!.userNickName ?? "")?.coverImageURL == nil ? .default : (scrollView.parallaxHeader.progress == 0.0 ? .default : .lightContent)
-
         self.localizeTitles()
     }
     
@@ -255,6 +254,16 @@ class UserProfileShowViewController: GSBaseViewController, ContainerViewSupport 
     
     
     // MARK: - Custom Functions
+    private func setStatusBarStyle() {
+        if User.fetch(byNickName: self.router!.dataStore!.userNickName ?? "")?.coverImageURL == nil {
+            UIApplication.shared.statusBarStyle = .lightContent
+        } else if scrollView.parallaxHeader.progress == 0.0 {
+            UIApplication.shared.statusBarStyle = .default
+        } else {
+            UIApplication.shared.statusBarStyle = .lightContent
+        }
+    }
+    
     private func loadViewSettings() {
         // Wallet Balance View show/hide
         if !walletBalanceView.isHidden {
@@ -482,7 +491,9 @@ extension UserProfileShowViewController {
                 
                 // Reply handlers
                 activeVC.handlerAuthorProfileImageButtonTapped    =   { [weak self] authorName in
-                     self?.router?.routeToUserProfileScene(byUserName: authorName)
+                    if (self?.isCurrentOperationPossible())!, let userNickName = self?.router?.dataStore?.userNickName, userNickName != authorName {
+                        self?.router?.routeToUserProfileScene(byUserName: authorName)
+                    }
                 }
             }
         })
@@ -560,7 +571,7 @@ extension UserProfileShowViewController: MXParallaxHeaderDelegate {
 
         guard !self.settingsShow else { return }
         
-        UIApplication.shared.statusBarStyle = User.fetch(byNickName: (self.router?.dataStore?.userNickName)!)?.coverImageURL == nil ? .default : (parallaxHeader.progress == 0.0 ? .default : .lightContent)
+        self.setStatusBarStyle()
         self.userProfileHeaderView.whiteStatusBarView.isHidden = parallaxHeader.progress != 0.0
     }
 }

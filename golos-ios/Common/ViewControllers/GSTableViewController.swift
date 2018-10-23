@@ -204,8 +204,7 @@ class GSTableViewController: GSBaseViewController, HandlersCellSupport {
         // Blog
         case .blog:
             if let author = parameters.author {
-                fetchRequest.predicate = NSPredicate(format: "author == %@", author)
-//                fetchRequest.predicate = NSPredicate(format: "author == %@ OR reblog_author == %@", author, author)
+                fetchRequest.predicate = NSPredicate(format: "authorReblog == %@", author)
             }
 
         // Lenta
@@ -445,10 +444,7 @@ extension GSTableViewController: UITableViewDataSource {
             }
 
             (cell as! PostFeedTableViewCell).handlerAuthorPostSelected      =   { [weak self] userName in
-                // Transition blocked in UserProfileShow scene
-                if type(of: entity) != Blog.self {
-                    self?.handlerAuthorProfileImageButtonTapped!(userName)
-                }
+                self?.handlerAuthorProfileImageButtonTapped!(userName)
             }
         }
         

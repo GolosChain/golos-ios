@@ -32,7 +32,7 @@ class UserProfileHeaderView: PassthroughView {
     @IBOutlet private weak var nameLabel: UILabel! {
         didSet {
             nameLabel.tune(withText:        "        ",
-                           hexColors:       blackWhiteColorPickers,
+                           hexColors:       whiteBlackColorPickers,
                            font:            UIFont(name: "SFProDisplay-Regular", size: 18.0),
                            alignment:       .left,
                            isMultiLines:    false)
@@ -71,7 +71,7 @@ class UserProfileHeaderView: PassthroughView {
             self.labelsCollection.forEach({
                 $0.text?.localize()
                 $0.font                 =   UIFont(name: "SFProDisplay-Regular", size: 12.0)
-                $0.theme_textColor      =   blackWhiteColorPickers
+                $0.theme_textColor      =   whiteBlackColorPickers
                 $0.textAlignment        =   .left
                 $0.numberOfLines        =   1
             })
@@ -152,7 +152,7 @@ class UserProfileHeaderView: PassthroughView {
         // Upload User cover image
         if let userCoverImagePath = userInfo.coverImageURL {
             // Set white color for existing cover image
-            _ = labelsForAnimationCollection.map({ $0.theme_textColor = whiteBlackColorPickers })
+            self.labelsForAnimationCollection.forEach({ $0.theme_textColor = whiteBlackColorPickers })
             
             self.editProfileButton.setImage(UIImage(named: "icon-button-edit-white-normal"), for: .normal)
             self.editProfileButton.setImage(UIImage(named: "icon-button-edit-black-normal"), for: .highlighted)
@@ -170,11 +170,6 @@ class UserProfileHeaderView: PassthroughView {
                                                 completion:         { _ in })
             
             self.backgroundColor = UIColor.black.withAlphaComponent(0.3)
-            UIApplication.shared.statusBarStyle     =   .lightContent
-        }
-        
-        else {
-            UIApplication.shared.statusBarStyle     =   .default
         }
         
         self.showLabelsForAnimationCollection(true)

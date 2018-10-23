@@ -45,6 +45,8 @@ extension NSManagedObject {
             entity.netVotes                     =   model.net_votes
             entity.netFlaunt                    =   0
             
+            entity.authorReblog                 =   model.reblog_author
+            
             entity.currentUserVoted             =   false
             entity.currentUserFlaunted          =   false
             entity.currentUserCommented         =   false
