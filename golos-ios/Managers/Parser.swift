@@ -5,9 +5,12 @@
 //  Created by Grigory on 16/02/2018.
 //  Copyright © 2018 golos. All rights reserved.
 //
+//  https://regex101.com
+//
 
-import Foundation
 import Down
+import GoloSwift
+import Foundation
 
 class Parser {    
     func getPictureURL(from body: String) -> String? {
@@ -88,7 +91,18 @@ class Parser {
         
         // Modify YouTube video link
         if modifiedBody.contains("https://www.youtube.com/") {
-            if let linkComponent = modifiedBody.components(separatedBy: "\"").first(where: { $0.contains("https://www.youtube.com/")})!.components(separatedBy: "/").last {
+            if modifiedBody.contains("https://www.youtube.com/watch?v=") {
+                if let youtubeVideoID = modifiedBody.components(separatedBy: "https://www.youtube.com/watch?v=").last!.components(separatedBy: "\n").first {
+                    let youtubeVideoLink    =   String(format: "[![](https://img.youtube.com/vi/%@/0.jpg)](https://www.youtube.com/watch?v=%@)", youtubeVideoID, youtubeVideoID)
+                    let youtubePattern      =   "https\\:\\/\\/www\\.youtube\\.com\\/watch\\?v=\\w*"
+                    
+                    if let regex = try? NSRegularExpression(pattern: youtubePattern, options: .caseInsensitive) {
+                        modifiedBody = regex.stringByReplacingMatches(in: modifiedBody, options: .withTransparentBounds, range: NSRange(location: 0, length: modifiedBody.count), withTemplate: youtubeVideoLink)
+                    }
+                }
+            }
+            
+            else if let linkComponent = modifiedBody.components(separatedBy: "\"").first(where: { $0.contains("https://www.youtube.com/")})!.components(separatedBy: "/").last {
                 let youtubeVideoID = linkComponent.replacingOccurrences(of: "\\", with: "")
                 modifiedBody = String(format: "[![](https://img.youtube.com/vi/%@/0.jpg)](https://www.youtube.com/watch?v=%@)", youtubeVideoID, youtubeVideoID)
             }
@@ -120,13 +134,21 @@ class Parser {
             }
         }
 
-        // Delete @userName
-//        let regexUserName1 = "(\\[.*?\\])"
-//        let regexUserName2 = "(\\(.*\\))"
-//        if let regex = try? NSRegularExpression(pattern: regexUserName1 + regexUserName2, options: .caseInsensitive) {
-//            let userName = regexUserName1.
-//            modifiedBody = regex.stringByReplacingMatches(in: modifiedBody, options: .withTransparentBounds, range: NSMakeRange(0, modifiedBody.count), withTemplate: "XX")
-//        }
+        // Delete @userName in link
+        let userNamePattern         =   "\\/\\[\\@(\\w*\\W?\\w*)\\]\\("
+        let userNameRegex           =   try! NSRegularExpression(pattern: userNamePattern, options: [])
+        var userName: String        =   "XXX"
+        
+        if let userNameMatches = userNameRegex.firstMatch(in: modifiedBody, options: .withTransparentBounds, range: NSRange(location: 0, length: modifiedBody.count)) {
+            userName = (modifiedBody as NSString).substring(with: NSRange(location:  userNameMatches.range.location + 3, length:  userNameMatches.range.length - 5))
+        }
+
+        let userNameLinkPattern     =   "\\/\\[\\@\\w*\\W?\\w*\\]\\(\\@\\w*\\W?\\w*\\)\\/"
+
+        if userName != "XXX", let regex = try? NSRegularExpression(pattern: userNameLinkPattern, options: .caseInsensitive) {
+            modifiedBody    =   regex.stringByReplacingMatches(in: modifiedBody, options: .withTransparentBounds, range: NSRange(location: 0, length: modifiedBody.count), withTemplate: "/\(userName)/")
+//            modifiedBody    =   modifiedBody.replacingOccurrences(of: ")](", with: ")\n(")
+        }
 
         return modifiedBody
     }
