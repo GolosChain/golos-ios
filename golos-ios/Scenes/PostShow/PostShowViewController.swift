@@ -1121,7 +1121,7 @@ extension PostShowViewController {
                 // Reload data
                 self.needPagination =   endIndex != commentEntities.count
                 self.commentViews   =   [CommentView]()
-                var counter         =   0
+                var counter         =   startIndex
                 
                 // Create comments tree
                 for index in startIndex..<endIndex {
@@ -1399,7 +1399,7 @@ extension PostShowViewController: UIScrollViewDelegate {
         
         if bottom - scrollPosition <= 150.0 && !self.isPaginationRun && self.needPagination {
             self.isPaginationRun = true
-//            self.fetchPostComments()
+            self.fetchPostComments()
             
             // Display Infinite Scrolling view in bottom of sceen
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
