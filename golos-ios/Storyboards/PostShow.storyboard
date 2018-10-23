@@ -33,7 +33,7 @@
                                             </stackView>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zdg-xS-0Il" userLabel="Comments Header View" customClass="CommentHeaderView" customModule="Golos" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="348.5" width="320" height="0.0"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" identifier="commentsHeaderViewHeightConstraint" id="9xg-Zt-xNb"/>
                                                 </constraints>
@@ -481,20 +481,20 @@
                                             <constraint firstItem="AYT-cY-Zsi" firstAttribute="leading" secondItem="aLP-ZP-yPw" secondAttribute="leading" constant="-4" id="Ski-b7-KcF"/>
                                             <constraint firstAttribute="trailing" secondItem="lwn-iM-8rz" secondAttribute="trailing" constant="16" id="T9i-xq-yw4"/>
                                             <constraint firstAttribute="trailing" secondItem="zPm-d9-LiX" secondAttribute="trailing" constant="16" id="ZOe-fx-a6L"/>
+                                            <constraint firstItem="zdg-xS-0Il" firstAttribute="width" secondItem="BtF-Gk-D12" secondAttribute="width" id="a4E-bK-7dG"/>
                                             <constraint firstItem="hL9-He-JpB" firstAttribute="leading" secondItem="BtF-Gk-D12" secondAttribute="leading" id="cgt-dp-hh8"/>
                                             <constraint firstItem="MhK-Vc-x7K" firstAttribute="leading" secondItem="BtF-Gk-D12" secondAttribute="leading" constant="16" id="fUC-kO-iPy"/>
                                             <constraint firstItem="zPm-d9-LiX" firstAttribute="leading" secondItem="BtF-Gk-D12" secondAttribute="leading" constant="16" id="gGh-Ki-O6Z"/>
                                             <constraint firstAttribute="bottom" secondItem="zdg-xS-0Il" secondAttribute="bottom" id="kwN-Ep-OSG"/>
                                             <constraint firstItem="lwn-iM-8rz" firstAttribute="leading" secondItem="BtF-Gk-D12" secondAttribute="leading" constant="16" id="nHj-Vg-MQe"/>
-                                            <constraint firstItem="zdg-xS-0Il" firstAttribute="leading" secondItem="BtF-Gk-D12" secondAttribute="leading" id="nTW-Rq-G6E"/>
                                             <constraint firstItem="bie-f8-jaU" firstAttribute="centerY" secondItem="fb3-VQ-GlM" secondAttribute="centerY" id="oeX-jg-DRW"/>
                                             <constraint firstItem="MhK-Vc-x7K" firstAttribute="top" secondItem="lwn-iM-8rz" secondAttribute="bottom" id="pJh-g4-f8G"/>
                                             <constraint firstItem="h9e-KO-AhW" firstAttribute="top" secondItem="MhK-Vc-x7K" secondAttribute="bottom" id="qS2-XR-4rB"/>
-                                            <constraint firstAttribute="trailing" secondItem="zdg-xS-0Il" secondAttribute="trailing" id="qgg-VM-Zs4"/>
                                             <constraint firstItem="Vl1-2x-lVp" firstAttribute="top" secondItem="zPm-d9-LiX" secondAttribute="bottom" constant="16" id="rDi-pt-7XW"/>
                                             <constraint firstAttribute="trailing" secondItem="dZE-L5-SIs" secondAttribute="trailing" id="rFS-LF-C6k"/>
                                             <constraint firstAttribute="trailing" secondItem="nt5-Bc-nF3" secondAttribute="trailing" id="rcV-lt-t9Y"/>
                                             <constraint firstItem="tHL-Id-QDj" firstAttribute="top" secondItem="MhK-Vc-x7K" secondAttribute="bottom" id="u8K-s0-eby"/>
+                                            <constraint firstItem="zdg-xS-0Il" firstAttribute="centerX" secondItem="BtF-Gk-D12" secondAttribute="centerX" id="vYG-vx-8sA"/>
                                             <constraint firstItem="zdg-xS-0Il" firstAttribute="top" secondItem="hj6-Ie-c5P" secondAttribute="bottom" id="vbT-f5-bcD"/>
                                             <constraint firstItem="dZE-L5-SIs" firstAttribute="top" secondItem="BtF-Gk-D12" secondAttribute="top" id="vqu-Hh-h5L"/>
                                             <constraint firstItem="dZE-L5-SIs" firstAttribute="leading" secondItem="BtF-Gk-D12" secondAttribute="leading" id="wnW-sW-cjs"/>

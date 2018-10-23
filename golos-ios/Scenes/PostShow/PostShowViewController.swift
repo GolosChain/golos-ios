@@ -1322,34 +1322,6 @@ extension PostShowViewController: UICollectionViewDelegateFlowLayout {
 }
 
 
-// MARK: - UIScrollViewDelegate
-extension PostShowViewController: UIScrollViewDelegate {
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        Logger.log(message: "contentOffset = \(scrollView.contentOffset.y)", event: .debug)
-        
-        let bottom          =   scrollView.contentSize.height - scrollView.frame.size.height
-        let scrollPosition  =   scrollView.contentOffset.y
-
-        /*
-        if bottom - scrollPosition <= 150.0 && !self.isPaginationRun && self.needPagination {
-            self.isPaginationRun = true
-            self.fetchPostComments()
-            
-            // Display Infinite Scrolling view
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
-                self.commentsHeaderView.set(mode: .footer)
-                self.commentsHeaderViewHeightConstraint.constant = 48.0 * heightRatio
-                
-                UIView.animate(withDuration: 0.3) {
-                    self.view.layoutIfNeeded()
-                }
-            }
-        }
-         */
-    }
-}
-
-
 // MARK: - UIAlertController
 extension PostShowViewController {
     func displayAlertView(byFlaunt isFlaunt: Bool) -> NSMutableAttributedString {
@@ -1413,5 +1385,27 @@ extension PostShowViewController {
         }
         
         return fullAttributedString
+    }
+}
+
+
+// MARK: - UIScrollViewDelegate
+extension PostShowViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        Logger.log(message: "contentOffset = \(scrollView.contentOffset.y)", event: .debug)
+        
+        let bottom          =   scrollView.contentSize.height - scrollView.frame.size.height
+        let scrollPosition  =   scrollView.contentOffset.y
+        
+        if bottom - scrollPosition <= 150.0 && !self.isPaginationRun && self.needPagination {
+            self.isPaginationRun = true
+//            self.fetchPostComments()
+            
+            // Display Infinite Scrolling view in bottom of sceen
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
+                self.commentsHeaderView.set(mode: .footer)
+                self.commentsHeaderViewHeightConstraint.constant = 48.0 * heightRatio
+            }
+        }
     }
 }
