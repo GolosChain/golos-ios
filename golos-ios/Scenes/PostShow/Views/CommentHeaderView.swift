@@ -38,8 +38,8 @@ class CommentHeaderView: UIView {
     
     @IBOutlet weak var contentView: UIView! {
         didSet {
-            self.contentView.backgroundColor = UIColor.red
-//            self.contentView.tune()
+//            self.contentView.backgroundColor = UIColor.red
+            self.contentView.tune()
         }
     }
     

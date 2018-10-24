@@ -136,7 +136,7 @@ class CommentView: UIView, HandlersCellSupport {
         
         self.activeVoteButton.tag = comment.currentUserVoted ? 99 : 0
         self.activeVoteButton.setTitle(comment.netVotes > 0 ? "\(comment.netVotes)" : nil, for: .normal)
-        self.activeVoteButton.setImage(UIImage(named: comment.currentUserVoted ? "icon-button-upvotes-selected" : "icon-button-upvotes-default"), for: .normal)
+        self.activeVoteButton.setImage(UIImage(named: comment.currentUserVoted ? "icon-button-post-like-selected" : "icon-button-post-like-normal"), for: .normal)
         
         if comment.netVotes > 0 {
             self.commentsButton.setTitle("\(comment.netVotes)", for: .normal)

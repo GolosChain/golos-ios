@@ -30,7 +30,7 @@ protocol PostShowDisplayLogic: class {
 class PostShowViewController: GSBaseViewController {
     // MARK: - Properties
     var insertedRow: Int?
-    var activeVotesCount: Int = 0
+    var likesCount: Int = 0
     var scrollCommentsDown: Bool = false
     var isPostContentModify: Bool = false
     
@@ -91,15 +91,15 @@ class PostShowViewController: GSBaseViewController {
         }
     }
     
-    @IBOutlet weak var activeVoteActivityIndicator: UIActivityIndicatorView! {
+    @IBOutlet weak var likeActivityIndicator: UIActivityIndicatorView! {
         didSet {
-            self.activeVoteActivityIndicator.stopAnimating()
+            self.likeActivityIndicator.stopAnimating()
         }
     }
     
-    @IBOutlet weak var flauntActivityIndicator: UIActivityIndicatorView! {
+    @IBOutlet weak var dislikeActivityIndicator: UIActivityIndicatorView! {
         didSet {
-            self.flauntActivityIndicator.stopAnimating()
+            self.dislikeActivityIndicator.stopAnimating()
         }
     }
     
@@ -173,48 +173,47 @@ class PostShowViewController: GSBaseViewController {
         }
     }
     
-    @IBOutlet weak var activeVoteButton: UIButton! {
+    @IBOutlet weak var likeButton: UIButton! {
         didSet {
-            activeVoteButton.tune(withTitle:    "",
+            likeButton.tune(withTitle:          "    ",
                               hexColors:        [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
-                              font:             UIFont(name: "SFProDisplay-Regular", size: 10.0),
+                              font:             UIFont(name: "SFProDisplay-Regular", size: 12.0),
                               alignment:        .left)
             
-            activeVoteButton.isEnabled  =   true
+            likeButton.isEnabled = true
         }
     }
     
-    @IBOutlet weak var usersButton: UIButton! {
+    @IBOutlet weak var repostButton: UIButton! {
         didSet {
-            usersButton.tune(withTitle:        "42",
+            repostButton.tune(withTitle:        "    ",
                              hexColors:        [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
-                             font:             UIFont(name: "SFProDisplay-Regular", size: 10.0),
+                             font:             UIFont(name: "SFProDisplay-Regular", size: 12.0),
                              alignment:        .left)
             
-            usersButton.isEnabled       =   false
-            usersButton.isHidden        =   true
+            repostButton.isEnabled = false
         }
     }
     
     @IBOutlet weak var commentsButton: UIButton! {
         didSet {
-            commentsButton.tune(withTitle:      "",
+            commentsButton.tune(withTitle:      "    ",
                                 hexColors:      [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
                                 font:           UIFont(name: "SFProDisplay-Regular", size: 10.0),
                                 alignment:      .left)
             
-            commentsButton.isEnabled    =   true
+            commentsButton.isEnabled = true
         }
     }
     
-    @IBOutlet weak var flauntButton: UIButton! {
+    @IBOutlet weak var dislikeButton: UIButton! {
         didSet {
-            flauntButton.tune(withTitle:        "",
+            dislikeButton.tune(withTitle:       "    ",
                               hexColors:        [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
-                              font:             UIFont(name: "SFProDisplay-Regular", size: 10.0),
+                              font:             UIFont(name: "SFProDisplay-Regular", size: 12.0),
                               alignment:        .left)
             
-            flauntButton.isEnabled      =   true
+            dislikeButton.isEnabled = true
         }
     }
     
@@ -225,7 +224,7 @@ class PostShowViewController: GSBaseViewController {
                                font:             UIFont(name: "SFProDisplay-Medium", size: 11.0),
                                alignment:        .center)
             
-            promoteButton.isEnabled     =   false
+            promoteButton.isEnabled = false
             
             promoteButton.setBorder(color: UIColor(hexString: "#6ad381").cgColor, cornerRadius: 4.0 * heightRatio)
         }
@@ -238,7 +237,7 @@ class PostShowViewController: GSBaseViewController {
                                font:             UIFont(name: "SFProDisplay-Medium", size: 11.0),
                                alignment:        .center)
             
-            donateButton.isEnabled      =   true
+            donateButton.isEnabled = true
            
             donateButton.setBorder(color: UIColor(hexString: "#6ad381").cgColor, cornerRadius: 4.0 * heightRatio)
         }
@@ -562,25 +561,25 @@ class PostShowViewController: GSBaseViewController {
             }
 
             self.titleLabel.text                =   displayedPost.title
-            self.flauntButton.isEnabled         =   true
-            self.activeVoteButton.isEnabled     =   true
-            
+            self.likeButton.isEnabled           =   true
+            self.dislikeButton.isEnabled        =   true
+
             if let userNickName = User.current?.nickName {
-                self.flauntButton.isHidden      =   displayedPost.author == userNickName
+                self.dislikeButton.isHidden     =   displayedPost.author == userNickName
             }
             
-            self.flauntActivityIndicator.stopAnimating()
-            self.activeVoteActivityIndicator.stopAnimating()
+            self.dislikeActivityIndicator.stopAnimating()
+            self.likeActivityIndicator.stopAnimating()
             
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
                 self.tagsCollectionView.reloadData()
             }
             
-            // Set Active Votes icon
-            self.activeVotesCount       =   Int(displayedPost.netVotes)
-            self.activeVoteButton.tag   =   displayedPost.currentUserVoted ? 99 : 0
-            self.activeVoteButton.setTitle(self.activeVotesCount > 0 ? "\(self.activeVotesCount)" : nil, for: .normal)
-            self.activeVoteButton.setImage(UIImage(named: displayedPost.currentUserVoted ? "icon-button-upvotes-selected" : "icon-button-upvotes-default"), for: .normal)
+            // Like icon
+            self.likesCount       =   Int(displayedPost.netVotes)
+            self.likeButton.tag   =   displayedPost.currentUserVoted ? 99 : 0
+            self.likeButton.setTitle(self.likesCount > 0 ? "\(self.likesCount)" : "    ", for: .normal)
+            self.likeButton.setImage(UIImage(named: displayedPost.currentUserVoted ? "icon-button-post-like-selected" : "icon-button-post-like-normal"), for: .normal)
 
             // Subscribe topic
             if let firstTag = displayedPost.tags?.first {
@@ -607,10 +606,10 @@ class PostShowViewController: GSBaseViewController {
                 self.commentsButton.isSelected = displayedPost.currentUserVoted
             }
             
-            // Flaunt icon
-            self.flauntButton.tag   =   displayedPost.currentUserFlaunted ? 99 : 0
-            self.flauntButton.setTitle(displayedPost.netFlaunt > 0 ? "\(displayedPost.netFlaunt)" : nil, for: .normal)
-            self.flauntButton.setImage(displayedPost.currentUserFlaunted ? UIImage(named: "icon-button-flaunt-selected") : UIImage(named: "icon-button-flaunt-normal"), for: .normal)
+            // Dislike icon
+            self.dislikeButton.tag   =   displayedPost.currentUserFlaunted ? 99 : 0
+            self.dislikeButton.setTitle(displayedPost.netFlaunt > 0 ? "\(displayedPost.netFlaunt)" : "    ", for: .normal)
+            self.dislikeButton.setImage(displayedPost.currentUserFlaunted ? UIImage(named: "icon-button-post-dislike-selected") : UIImage(named: "icon-button-post-dislike-normal"), for: .normal)
         }
     }
     
@@ -742,8 +741,7 @@ class PostShowViewController: GSBaseViewController {
         }
     }
     
-    // Use for Active Vote & Flaunt buttons
-    @IBAction func activeVoteButtonTapped(_ sender: UIButton) {
+    @IBAction func likeButtonTapped(_ sender: UIButton) {
         // Check network connection
         guard isNetworkAvailable else {
             self.showAlertView(withTitle: "Info", andMessage: "No Internet Connection", needCancel: false, completion: { _ in })
@@ -757,21 +755,21 @@ class PostShowViewController: GSBaseViewController {
         guard sender.tag == 0 else {
             self.showAlertView(withTitle: "Voting Verb", andMessage: "Cancel Vote Message", actionTitle: "ActionChange", needCancel: true, completion: { [weak self] success in
                 if success {
-                    self?.activeVoteButton.startVote(withSpinner: (self?.activeVoteActivityIndicator)!)
+                    self?.likeButton.startVote(withSpinner: (self?.likeActivityIndicator)!)
                     self?.interactor?.vote(withRequestModel: requestModel)
                 } else {
-                    self?.activeVoteButton.breakVote(withSpinner: (self?.activeVoteActivityIndicator)!)
+                    self?.likeButton.breakVote(withSpinner: (self?.likeActivityIndicator)!)
                 }
             })
             
             return
         }
         
-        self.activeVoteButton.startVote(withSpinner: self.activeVoteActivityIndicator)
+        self.likeButton.startVote(withSpinner: self.likeActivityIndicator)
         self.interactor?.vote(withRequestModel: requestModel)
     }
 
-    @IBAction func flauntButtonTapped(_ sender: UIButton) {
+    @IBAction func dislikeButtonTapped(_ sender: UIButton) {
         // Check network connection
         guard isNetworkAvailable else {
             self.showAlertView(withTitle: "Info", andMessage: "No Internet Connection", needCancel: false, completion: { _ in })
@@ -780,18 +778,18 @@ class PostShowViewController: GSBaseViewController {
         
         guard self.isCurrentOperationPossible() else { return }
         
-        // Flaunt
+        // Dislike
         if sender.tag == 0 {
-            self.showAlertView(withTitle: "Voice Power Title", andMessage: "Voice Power Subtitle", attributedText: self.displayAlertView(byFlaunt: true), actionTitle: "Voice Power Title", needCancel: true, isCancelLeft: false, completion: { [weak self] success in
+            self.showAlertView(withTitle: "Voice Power Title", andMessage: "Voice Power Subtitle", attributedText: self.displayAlertView(byDislike: true), actionTitle: "Voice Power Title", needCancel: true, isCancelLeft: false, completion: { [weak self] success in
                 guard success else { return }
                 
                 self?.runningRequest(isFlaunt: true)
             })
         }
         
-        // Unflaunt (tag == 99)
+        // Undislike (tag == 99)
         else {
-            self.showAlertView(withTitle: "Voting Verb", andMessage: "Cancel Vote Message", attributedText: self.displayAlertView(byFlaunt: false), actionTitle: "ActionChange", needCancel: true, completion: { [weak self] success in
+            self.showAlertView(withTitle: "Voting Verb", andMessage: "Cancel Vote Message", attributedText: self.displayAlertView(byDislike: false), actionTitle: "ActionChange", needCancel: true, completion: { [weak self] success in
                 guard success else { return }
 
                 self?.runningRequest(isFlaunt: false)
@@ -799,7 +797,7 @@ class PostShowViewController: GSBaseViewController {
         }
     }
     
-    @IBAction func usersButtonTapped(_ sender: UIButton) {
+    @IBAction func repostButtonTapped(_ sender: UIButton) {
         self.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
     }
 
@@ -1041,7 +1039,7 @@ extension PostShowViewController {
     private func runningRequest(isFlaunt: Bool) {
         let requestModel = PostShowModels.ActiveVote.RequestModel(isVote: nil, isFlaunt: isFlaunt, forPost: true)
         
-        self.flauntButton.startVote(withSpinner: self.flauntActivityIndicator)
+        self.dislikeButton.startVote(withSpinner: self.dislikeActivityIndicator)
         self.interactor?.vote(withRequestModel: requestModel)
     }
 }
@@ -1366,10 +1364,10 @@ extension PostShowViewController: UICollectionViewDelegateFlowLayout {
 
 // MARK: - UIAlertController
 extension PostShowViewController {
-    func displayAlertView(byFlaunt isFlaunt: Bool) -> NSMutableAttributedString {
+    func displayAlertView(byDislike isDislike: Bool) -> NSMutableAttributedString {
         let fullAttributedString = NSMutableAttributedString()
 
-        if isFlaunt {
+        if isDislike {
             let text1       =   "Voice Power Label 2".localized()
             let text2       =   "Voice Power Label 3".localized()
             let text3       =   "Voice Power Label 4".localized()
@@ -1436,10 +1434,10 @@ extension PostShowViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         Logger.log(message: "contentOffset = \(scrollView.contentOffset.y)", event: .debug)
         
-        let bottom          =   scrollView.contentSize.height - scrollView.frame.size.height
+        let bottom          =   self.commentsStackView.frame.maxY - scrollView.frame.size.height
         let scrollPosition  =   scrollView.contentOffset.y
         
-        if bottom - scrollPosition <= 150.0 && !self.isPaginationRun && self.needPagination {
+        if bottom - scrollPosition <= 50.0 && !self.isPaginationRun && self.needPagination {
             self.isPaginationRun = true
             
             // Display Infinite Scrolling view in bottom of sceen
