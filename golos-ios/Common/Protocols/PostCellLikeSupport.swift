@@ -9,7 +9,7 @@
 import UIKit
 import GoloSwift
 
-protocol PostCellActiveVoteSupport {
-    var activeVoteButton: UIButton! { get set }
-    var activeVoteActivityIndicator: UIActivityIndicatorView! { get set }
+protocol PostCellLikeSupport {
+    var likeButton: UIButton! { get set }
+    var likeActivityIndicator: UIActivityIndicatorView! { get set }
 }

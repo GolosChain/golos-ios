@@ -11,18 +11,20 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CommentView" customModule="Golos" customModuleProvider="target">
             <connections>
-                <outlet property="activeVoteActivityIndicator" destination="9vY-Xd-25N" id="beO-x2-7tj"/>
-                <outlet property="activeVoteButton" destination="hi7-82-SU3" id="5fv-J1-GTL"/>
                 <outlet property="authorNameButton" destination="eTP-vD-Kt8" id="7iy-kn-6MZ"/>
                 <outlet property="authorProfileAddButton" destination="cy5-Ia-Z4f" id="IeY-qa-QHD"/>
                 <outlet property="authorProfileImageView" destination="mdT-NO-nly" id="hnN-Ty-BMb"/>
                 <outlet property="buttonsView" destination="bW7-se-LaC" id="S4A-tV-YYc"/>
-                <outlet property="commentsButton" destination="aZD-KF-usg" id="lvq-dC-H3d"/>
                 <outlet property="contentView" destination="tNf-H6-dtq" id="pgg-SB-0Y3"/>
+                <outlet property="dislikeActivityIndicator" destination="g5F-k1-w0f" id="RAF-bH-ezA"/>
+                <outlet property="dislikeButton" destination="FWp-8o-9XQ" id="Bog-dy-Keq"/>
                 <outlet property="leadingConstraint" destination="rJH-dn-TBo" id="UmV-KF-Fgi"/>
+                <outlet property="likeActivityIndicator" destination="9vY-Xd-25N" id="beO-x2-7tj"/>
+                <outlet property="likeButton" destination="o8N-iq-pgK" id="Ier-SR-DmE"/>
                 <outlet property="markdownViewHeightConstraint" destination="7cj-30-Ntl" id="vk3-fi-xVa"/>
                 <outlet property="markdownViewManager" destination="Mnb-Ny-ryB" id="dXy-AN-Otj"/>
-                <outlet property="replyButton" destination="MQR-4y-ukc" id="Fop-pp-ahK"/>
+                <outlet property="replyButton" destination="aru-HA-jeG" id="HLH-Xw-BoF"/>
+                <outlet property="shareButton" destination="DE8-0c-DrM" id="bkx-RC-ijk"/>
                 <outlet property="timeLabel" destination="JV1-jP-ZcQ" id="Tgb-ss-qh4"/>
                 <outlet property="view" destination="iN0-l3-epB" id="fR0-Z6-6hX"/>
                 <outletCollection property="widthsCollection" destination="rJH-dn-TBo" collectionClass="NSMutableArray" id="6B4-ke-uLT"/>
@@ -117,91 +119,84 @@
                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bW7-se-LaC" userLabel="Buttons View">
                             <rect key="frame" x="52" y="35" width="323" height="44"/>
                             <subviews>
-                                <stackView clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0WO-mS-vAo" userLabel="Actions Buttons Stack View">
+                                <stackView contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="qfO-v9-tpQ" userLabel="Active Buttons Stack View">
                                     <rect key="frame" x="0.0" y="0.0" width="323" height="44"/>
                                     <subviews>
-                                        <button clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="hi7-82-SU3" userLabel="Active Vote Button">
-                                            <rect key="frame" x="0.0" y="0.0" width="27" height="44"/>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <button clipsSubviews="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o8N-iq-pgK" userLabel="Like Button">
+                                            <rect key="frame" x="0.0" y="0.0" width="81" height="44"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                            <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
-                                            <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="-5" maxY="0.0"/>
-                                            <state key="normal" image="icon-button-post-like-normal">
-                                                <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <inset key="titleEdgeInsets" minX="18" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="6"/>
+                                            <state key="normal" title="20" image="icon-button-post-like-normal">
+                                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </state>
+                                            <state key="disabled">
+                                                <color key="titleColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </state>
                                             <connections>
-                                                <action selector="activeVoteButtonTapped:" destination="-1" eventType="touchUpInside" id="QyP-R7-omY"/>
+                                                <action selector="likeButtonTapped:" destination="-1" eventType="touchUpInside" id="dFl-hW-w4I"/>
                                             </connections>
                                         </button>
-                                        <button hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="zF8-Cb-7hh" userLabel="Users Button">
-                                            <rect key="frame" x="27" y="0.0" width="0.0" height="44"/>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <button clipsSubviews="YES" tag="1" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FWp-8o-9XQ" userLabel="Dislike Button">
+                                            <rect key="frame" x="81" y="0.0" width="80.5" height="44"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                            <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="15" maxY="0.0"/>
-                                            <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="-5" maxY="0.0"/>
-                                            <state key="normal" title="42" image="icon-button-user-profile-normal">
-                                                <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <inset key="titleEdgeInsets" minX="32" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                            <inset key="imageEdgeInsets" minX="0.0" minY="6" maxX="4" maxY="0.0"/>
+                                            <state key="normal" title="    " image="icon-button-post-dislike-normal">
+                                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </state>
-                                            <state key="disabled" image="icon-button-user-profile-highlighted"/>
                                             <connections>
-                                                <action selector="usersButtonTapped:" destination="-1" eventType="touchUpInside" id="tdl-3Q-RjB"/>
+                                                <action selector="dislikeButtonTapped:" destination="-1" eventType="touchUpInside" id="Yj1-PT-noa"/>
                                             </connections>
                                         </button>
-                                        <button hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="aZD-KF-usg" userLabel="Comments Button">
-                                            <rect key="frame" x="27" y="0.0" width="0.0" height="44"/>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <button clipsSubviews="YES" tag="2" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="aru-HA-jeG" userLabel="Reply Button">
+                                            <rect key="frame" x="161.5" y="0.0" width="81" height="44"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                            <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="15" maxY="0.0"/>
-                                            <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="-15" maxY="0.0"/>
-                                            <state key="normal" title="32" image="icon-button-comments-default">
-                                                <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            </state>
-                                            <state key="disabled" image="icon-button-comments-highlighted"/>
-                                            <state key="selected" image="icon-button-comments-selected"/>
-                                            <connections>
-                                                <action selector="commentsButtonTapped:" destination="-1" eventType="touchUpInside" id="spC-G3-aEo"/>
-                                            </connections>
-                                        </button>
-                                        <button clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="MQR-4y-ukc" userLabel="Reply Button">
-                                            <rect key="frame" x="27" y="0.0" width="58" height="44"/>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                            <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="5" maxY="0.0"/>
                                             <state key="normal" title="Reply Verb">
-                                                <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </state>
-                                            <state key="disabled" title="Reply Verb"/>
                                             <connections>
-                                                <action selector="replyButtonTapped:" destination="-1" eventType="touchUpInside" id="eP4-qp-WyM"/>
+                                                <action selector="replyButtonTapped:" destination="-1" eventType="touchUpInside" id="8Jr-Vo-eKr"/>
                                             </connections>
                                         </button>
-                                        <button clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="iu9-09-Sk3" userLabel="Share Button">
-                                            <rect key="frame" x="85" y="0.0" width="238" height="44"/>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <button clipsSubviews="YES" tag="3" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DE8-0c-DrM" userLabel="Share Button">
+                                            <rect key="frame" x="242.5" y="0.0" width="80.5" height="44"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <state key="normal">
-                                                <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </state>
                                             <connections>
-                                                <action selector="shareButtonTapped:" destination="-1" eventType="touchUpInside" id="zXT-6t-SNI"/>
+                                                <action selector="shareButtonTapped:" destination="-1" eventType="touchUpInside" id="hST-Dh-5Z4"/>
                                             </connections>
                                         </button>
                                     </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </stackView>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
+                                <constraint firstItem="qfO-v9-tpQ" firstAttribute="top" secondItem="bW7-se-LaC" secondAttribute="top" id="0bA-3W-7EG"/>
                                 <constraint firstAttribute="height" constant="44" identifier="buttonsViewHeightConstraint" id="9sJ-K0-GQc"/>
-                                <constraint firstItem="0WO-mS-vAo" firstAttribute="leading" secondItem="bW7-se-LaC" secondAttribute="leading" id="YMJ-E9-tIi"/>
-                                <constraint firstItem="0WO-mS-vAo" firstAttribute="top" secondItem="bW7-se-LaC" secondAttribute="top" id="f3g-iF-IJa"/>
-                                <constraint firstAttribute="trailing" secondItem="0WO-mS-vAo" secondAttribute="trailing" id="hTe-HK-uul"/>
-                                <constraint firstAttribute="bottom" secondItem="0WO-mS-vAo" secondAttribute="bottom" id="xE0-Ba-Duh"/>
+                                <constraint firstItem="qfO-v9-tpQ" firstAttribute="leading" secondItem="bW7-se-LaC" secondAttribute="leading" id="OEP-tg-Ax1"/>
+                                <constraint firstAttribute="trailing" secondItem="qfO-v9-tpQ" secondAttribute="trailing" id="psh-EO-IAW"/>
+                                <constraint firstAttribute="bottom" secondItem="qfO-v9-tpQ" secondAttribute="bottom" id="qdN-MD-xP1"/>
                             </constraints>
                         </view>
                         <activityIndicatorView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="9vY-Xd-25N">
                             <rect key="frame" x="52" y="47" width="20" height="20"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="color" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                        </activityIndicatorView>
+                        <activityIndicatorView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="g5F-k1-w0f" userLabel="Dislike Activity Indicator">
+                            <rect key="frame" x="155" y="47" width="20" height="20"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="g5F-k1-w0f" secondAttribute="height" multiplier="1:1" id="ouK-Sh-JDZ"/>
+                            </constraints>
                             <color key="color" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                         </activityIndicatorView>
                     </subviews>
@@ -211,8 +206,10 @@
                         <constraint firstItem="9vY-Xd-25N" firstAttribute="centerY" secondItem="bW7-se-LaC" secondAttribute="centerY" id="0S2-ZY-ZVr"/>
                         <constraint firstAttribute="bottom" secondItem="bW7-se-LaC" secondAttribute="bottom" id="6pU-gQ-bHT"/>
                         <constraint firstItem="mlh-OO-ald" firstAttribute="top" secondItem="tNf-H6-dtq" secondAttribute="top" constant="10" id="ALu-zV-3cZ"/>
+                        <constraint firstItem="g5F-k1-w0f" firstAttribute="centerX" secondItem="FWp-8o-9XQ" secondAttribute="centerX" constant="-8" id="CNs-pU-NqI"/>
                         <constraint firstItem="JV1-jP-ZcQ" firstAttribute="leading" secondItem="eTP-vD-Kt8" secondAttribute="trailing" constant="8" id="D4v-Ma-HTj"/>
                         <constraint firstAttribute="trailing" secondItem="bW7-se-LaC" secondAttribute="trailing" id="DQT-JO-Lfz"/>
+                        <constraint firstItem="9vY-Xd-25N" firstAttribute="centerY" secondItem="o8N-iq-pgK" secondAttribute="centerY" id="HKy-Vo-dUA"/>
                         <constraint firstItem="eTP-vD-Kt8" firstAttribute="leading" secondItem="mlh-OO-ald" secondAttribute="trailing" constant="10" id="K8l-41-h6y"/>
                         <constraint firstItem="mdT-NO-nly" firstAttribute="width" secondItem="mlh-OO-ald" secondAttribute="width" id="KO0-h5-JpD"/>
                         <constraint firstItem="yNw-9n-yzN" firstAttribute="leading" secondItem="mlh-OO-ald" secondAttribute="leading" constant="-2" id="Mje-bE-iK1"/>
@@ -221,14 +218,16 @@
                         <constraint firstItem="bW7-se-LaC" firstAttribute="leading" secondItem="eTP-vD-Kt8" secondAttribute="leading" id="PJf-Ow-DpU"/>
                         <constraint firstItem="mdT-NO-nly" firstAttribute="height" secondItem="mlh-OO-ald" secondAttribute="height" identifier="authorProfileImageViewHeightConstraint" id="RKS-8c-Yd4"/>
                         <constraint firstAttribute="trailing" secondItem="Mnb-Ny-ryB" secondAttribute="trailing" id="WGM-xK-IuN"/>
+                        <constraint firstItem="g5F-k1-w0f" firstAttribute="width" secondItem="g5F-k1-w0f" secondAttribute="height" multiplier="1:1" id="Zb8-1f-D9l"/>
                         <constraint firstItem="mdT-NO-nly" firstAttribute="centerX" secondItem="mlh-OO-ald" secondAttribute="centerX" id="bOG-Ok-y8j"/>
                         <constraint firstItem="mdT-NO-nly" firstAttribute="centerY" secondItem="mlh-OO-ald" secondAttribute="centerY" id="bZS-MS-EyC"/>
                         <constraint firstItem="yNw-9n-yzN" firstAttribute="bottom" secondItem="mlh-OO-ald" secondAttribute="bottom" constant="2" id="cCs-s7-z6A"/>
                         <constraint firstItem="JV1-jP-ZcQ" firstAttribute="centerY" secondItem="eTP-vD-Kt8" secondAttribute="centerY" id="hdo-bQ-3nY"/>
                         <constraint firstItem="bW7-se-LaC" firstAttribute="top" secondItem="Mnb-Ny-ryB" secondAttribute="bottom" id="ixt-cE-Hoz"/>
+                        <constraint firstItem="9vY-Xd-25N" firstAttribute="leading" secondItem="o8N-iq-pgK" secondAttribute="leading" id="ltK-yd-m1H"/>
                         <constraint firstItem="Mnb-Ny-ryB" firstAttribute="top" secondItem="JV1-jP-ZcQ" secondAttribute="bottom" constant="8.5" id="nrc-W2-SGl"/>
                         <constraint firstItem="yNw-9n-yzN" firstAttribute="leading" secondItem="tNf-H6-dtq" secondAttribute="leading" id="rJH-dn-TBo"/>
-                        <constraint firstItem="9vY-Xd-25N" firstAttribute="leading" secondItem="hi7-82-SU3" secondAttribute="leading" id="tkU-yN-O6M"/>
+                        <constraint firstItem="g5F-k1-w0f" firstAttribute="centerY" secondItem="FWp-8o-9XQ" secondAttribute="centerY" id="sIh-Dq-Tks"/>
                         <constraint firstItem="Mnb-Ny-ryB" firstAttribute="top" secondItem="eTP-vD-Kt8" secondAttribute="bottom" constant="3" id="vJ4-Nh-Erq"/>
                     </constraints>
                     <variation key="default">
@@ -253,13 +252,9 @@
         </view>
     </objects>
     <resources>
-        <image name="icon-button-comments-default" width="20" height="20"/>
-        <image name="icon-button-comments-highlighted" width="20" height="20"/>
-        <image name="icon-button-comments-selected" width="20" height="20"/>
         <image name="icon-button-plus-white-normal" width="10" height="10"/>
+        <image name="icon-button-post-dislike-normal" width="17" height="17"/>
         <image name="icon-button-post-like-normal" width="17" height="17"/>
-        <image name="icon-button-user-profile-highlighted" width="18" height="18"/>
-        <image name="icon-button-user-profile-normal" width="27" height="27"/>
         <image name="icon-user-profile-image-placeholder" width="40" height="40"/>
     </resources>
 </document>

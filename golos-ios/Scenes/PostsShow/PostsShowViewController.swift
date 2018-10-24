@@ -21,7 +21,7 @@ typealias LoadDataCondition = (isRefreshData: Bool, isInfiniteScrolling: Bool)
 // MARK: - Input & Output protocols
 protocol PostsShowDisplayLogic: class {
     func displayLoadPosts(fromViewModel viewModel: PostsShowModels.Items.ViewModel)
-    func displayUpvote(fromViewModel viewModel: PostsShowModels.ActiveVote.ViewModel)
+    func displayLikeVote(fromViewModel viewModel: PostsShowModels.Like.ViewModel)
 }
 
 class PostsShowViewController: GSTableViewController, ContainerViewSupport {
@@ -267,11 +267,11 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
                     }
                 }
                 
-                activeVC.handlerShareButtonTapped                   =   { [weak self] in
+                activeVC.handlerRepostButtonTapped                  =   { [weak self] in
                     self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
                 }
                 
-                activeVC.handlerActiveVoteButtonTapped                 =   { [weak self] (isVote, postShortInfo) in
+                activeVC.handlerLikeButtonTapped                    =   { [weak self] (isLike, postShortInfo) in
                     // Check network connection
                     guard isNetworkAvailable else {
                         self?.showAlertView(withTitle: "Info", andMessage: "No Internet Connection", needCancel: false, completion: { _ in })
@@ -282,24 +282,67 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
                     
                     self?.interactor?.save(postShortInfo: postShortInfo)
  
-                    let postCell        =   activeVC.postsTableView.cellForRow(at: postShortInfo.indexPath!) as! PostCellActiveVoteSupport
-                    let requestModel    =   PostsShowModels.ActiveVote.RequestModel(isVote: isVote, isFlaunt: false)
+                    let postCell        =   activeVC.postsTableView.cellForRow(at: postShortInfo.indexPath!) as! PostCellLikeSupport
+                    let requestModel    =   PostsShowModels.Like.RequestModel(isLike: isLike, isDislike: false)
 
-                    guard isVote else {
+                    guard isLike else {
                         self?.showAlertView(withTitle: "Voting Verb", andMessage: "Cancel Vote Message", actionTitle: "ActionChange", needCancel: true, completion: { success in
                             if success {
-                                postCell.activeVoteButton.startVote(withSpinner: postCell.activeVoteActivityIndicator)
-                                self?.interactor?.upvote(withRequestModel: requestModel)
+                                postCell.likeButton.startLikeVote(withSpinner: postCell.likeActivityIndicator)
+                                self?.interactor?.likeVote(withRequestModel: requestModel)
                             } else {
-                                postCell.activeVoteButton.breakVote(withSpinner: postCell.activeVoteActivityIndicator)
+                                postCell.likeButton.breakLikeVote(withSpinner: postCell.likeActivityIndicator)
                             }
                         })
                         
                         return
                     }
                     
-                    postCell.activeVoteButton.startVote(withSpinner: postCell.activeVoteActivityIndicator)
-                    self?.interactor?.upvote(withRequestModel: requestModel)
+                    postCell.likeButton.startLikeVote(withSpinner: postCell.likeActivityIndicator)
+                    self?.interactor?.likeVote(withRequestModel: requestModel)
+                }
+                
+                activeVC.handlerDislikeButtonTapped                 =   { [weak self] (isDislike, postShortInfo) in
+                    // Check network connection
+                    guard isNetworkAvailable else {
+                        self?.showAlertView(withTitle: "Info", andMessage: "No Internet Connection", needCancel: false, completion: { _ in })
+                        return
+                    }
+                    
+                    guard (self?.isCurrentOperationPossible())! else { return }
+                    
+                    self?.interactor?.save(postShortInfo: postShortInfo)
+                    
+                    let postCell        =   activeVC.postsTableView.cellForRow(at: postShortInfo.indexPath!) as! PostFeedTableViewCell
+                    let requestModel    =   PostsShowModels.Like.RequestModel(isLike: nil, isDislike: isDislike)
+                    
+                    // Dislike
+                    if isDislike {
+                        self?.showAlertView(withTitle: "Voice Power Title", andMessage: "Voice Power Subtitle", attributedText: self?.displayAlertView(byDislike: true), actionTitle: "Voice Power Title", needCancel: true, isCancelLeft: false, completion: { [weak self] success in
+                            if success {
+                                postCell.dislikeButton.startLikeVote(withSpinner: postCell.dislikeActivityIndicator)
+                                self?.interactor?.likeVote(withRequestModel: requestModel)
+                            }
+                            
+                            else {
+                                postCell.dislikeButton.breakLikeVote(withSpinner: postCell.dislikeActivityIndicator)
+                            }
+                        })
+                    }
+                        
+                    // Undislike
+                    else {
+                        self?.showAlertView(withTitle: "Voting Verb", andMessage: "Cancel Vote Message", attributedText: self?.displayAlertView(byDislike: false), actionTitle: "ActionChange", needCancel: true, completion: { [weak self] success in
+                            if success {
+                                postCell.dislikeButton.startLikeVote(withSpinner: postCell.dislikeActivityIndicator)
+                                self?.interactor?.likeVote(withRequestModel: requestModel)
+                            }
+                                
+                            else {
+                                postCell.dislikeButton.breakLikeVote(withSpinner: postCell.dislikeActivityIndicator)
+                            }
+                        })
+                    }
                 }
                 
                 activeVC.handlerCommentsButtonTapped                =   { [weak self] postShortInfo in
@@ -382,7 +425,7 @@ extension PostsShowViewController: PostsShowDisplayLogic {
         self.fetchPosts()
     }
     
-    func displayUpvote(fromViewModel viewModel: PostsShowModels.ActiveVote.ViewModel) {
+    func displayLikeVote(fromViewModel viewModel: PostsShowModels.Like.ViewModel) {
         // NOTE: Display the result from the Presenter
         if let activeVC = self.containerView.activeVC, let postShortInfo = self.router?.dataStore?.postShortInfo, let indexPath = postShortInfo.indexPath {
             guard viewModel.errorAPI == nil else {

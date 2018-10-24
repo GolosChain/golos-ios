@@ -21,7 +21,7 @@ protocol PostShowBusinessLogic {
     func loadPostContent(withRequestModel requestModel: PostShowModels.Post.RequestModel)
     func loadPostComments(withRequestModel requestModel: PostShowModels.Post.RequestModel)
     func checkFollowing(withRequestModel requestModel: PostShowModels.Following.RequestModel)
-    func vote(withRequestModel requestModel: PostShowModels.ActiveVote.RequestModel)
+    func likeVote(withRequestModel requestModel: PostShowModels.Like.RequestModel)
 }
 
 protocol PostShowDataStore {
@@ -136,12 +136,12 @@ class PostShowInteractor: PostShowBusinessLogic, PostShowDataStore {
         }
     }
     
-    func vote(withRequestModel requestModel: PostShowModels.ActiveVote.RequestModel) {
+    func likeVote(withRequestModel requestModel: PostShowModels.Like.RequestModel) {
         let postShortInfo = requestModel.forPost ? self.postShortInfo! : self.comment!
         
-        RestAPIManager.vote(up: requestModel.isVote, flaunt: requestModel.isFlaunt, postShortInfo: postShortInfo, completion: { [weak self] errorAPI in
-            let responseModel = PostShowModels.ActiveVote.ResponseModel(isVote: requestModel.isVote, isFlaunt: requestModel.isFlaunt, forPost: requestModel.forPost, errorAPI: errorAPI)
-            self?.presenter?.presentVote(fromResponseModel: responseModel)
+        RestAPIManager.vote(isLike: requestModel.isLike, isDislike: requestModel.isDislike, postShortInfo: postShortInfo, completion: { [weak self] errorAPI in
+            let responseModel = PostShowModels.Like.ResponseModel(isLike: requestModel.isLike, isDislike: requestModel.isDislike, forPost: requestModel.forPost, errorAPI: errorAPI)
+            self?.presenter?.presentLikeVote(fromResponseModel: responseModel)
         })
     }
 }

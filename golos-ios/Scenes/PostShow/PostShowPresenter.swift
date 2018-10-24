@@ -19,7 +19,7 @@ protocol PostShowPresentationLogic {
     func presentLoadPostContent(fromResponseModel responseModel: PostShowModels.Post.ResponseModel)
     func presentLoadPostComments(fromResponseModel responseModel: PostShowModels.Post.ResponseModel)
     func presentCheckFollowing(fromResponseModel responseModel: PostShowModels.Following.ResponseModel)
-    func presentVote(fromResponseModel responseModel: PostShowModels.ActiveVote.ResponseModel)
+    func presentLikeVote(fromResponseModel responseModel: PostShowModels.Like.ResponseModel)
 }
 
 class PostShowPresenter: PostShowPresentationLogic {
@@ -54,8 +54,8 @@ class PostShowPresenter: PostShowPresentationLogic {
         viewController?.displayCheckFollowing(fromViewModel: viewModel)
     }
     
-    func presentVote(fromResponseModel responseModel: PostShowModels.ActiveVote.ResponseModel) {
-        let viewModel = PostShowModels.ActiveVote.ViewModel(isVote: responseModel.isVote, isFlaunt: responseModel.isFlaunt, forPost: responseModel.forPost, errorAPI: responseModel.errorAPI)
-        viewController?.displayVote(fromViewModel: viewModel)
+    func presentLikeVote(fromResponseModel responseModel: PostShowModels.Like.ResponseModel) {
+        let viewModel = PostShowModels.Like.ViewModel(isLike: responseModel.isLike, isDislike: responseModel.isDislike, forPost: responseModel.forPost, errorAPI: responseModel.errorAPI)
+        viewController?.displayLikeVote(fromViewModel: viewModel)
     }
 }

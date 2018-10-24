@@ -33,15 +33,15 @@ extension New: PostCellSupport {
     @NSManaged public var pendingPayoutValue: Float
     @NSManaged public var children: Int64
 
-    @NSManaged public var netVotes: Int64
-    @NSManaged public var currentUserVoted: Bool
+    @NSManaged public var likeCount: Int64
+    @NSManaged public var currentUserLiked: Bool
     
-    @NSManaged public var netFlaunt: Int64
-    @NSManaged public var currentUserFlaunted: Bool
-    
+    @NSManaged public var dislikeCount: Int64
+    @NSManaged public var currentUserDisliked: Bool
+
     @NSManaged public var commentsCount: Int64
     @NSManaged public var currentUserCommented: Bool
-
+    
     @NSManaged public var tags: [String]?
     @NSManaged public var rebloggedBy: [String]?
     

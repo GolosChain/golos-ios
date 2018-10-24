@@ -15,9 +15,10 @@ protocol ReusableCell {
 }
 
 protocol HandlersCellSupport {
-    var handlerShareButtonTapped: (() -> Void)? { get set }
+    var handlerLikeButtonTapped: ((Bool, PostShortInfo) -> Void)? { get set }
+    var handlerRepostButtonTapped: (() -> Void)? { get set }
+    var handlerDislikeButtonTapped: ((Bool, PostShortInfo) -> Void)? { get set }
     var handlerCommentsButtonTapped: ((PostShortInfo) -> Void)? { get set }
-    var handlerActiveVoteButtonTapped: ((Bool, PostShortInfo) -> Void)? { get set }
 }
 
 

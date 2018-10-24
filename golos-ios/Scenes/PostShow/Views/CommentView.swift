@@ -24,34 +24,64 @@ class CommentView: UIView, HandlersCellSupport {
     var handlerAuthorProfileImageButtonTapped: ((String) -> Void)?
 
     // HandlersCellSupport
-    var handlerShareButtonTapped: (() -> Void)?
+    var handlerLikeButtonTapped: ((Bool, PostShortInfo) -> Void)?
+    var handlerRepostButtonTapped: (() -> Void)?
+    var handlerDislikeButtonTapped: ((Bool, PostShortInfo) -> Void)?
     var handlerCommentsButtonTapped: ((PostShortInfo) -> Void)?
-    var handlerActiveVoteButtonTapped: ((Bool, PostShortInfo) -> Void)?
-    
+
 
     // MARK: - IBOutlets
     @IBOutlet var view: UIView!
     @IBOutlet weak var contentView: UIView!
-    @IBOutlet weak var activeVoteButton: UIButton!
-    @IBOutlet weak var markdownViewManager: MarkdownViewManager!    
+    @IBOutlet weak var markdownViewManager: MarkdownViewManager!
     @IBOutlet weak var authorProfileImageView: UIImageView!
     @IBOutlet weak var buttonsView: UIView!
+    @IBOutlet weak var shareButton: UIButton!
     
-    @IBOutlet weak var activeVoteActivityIndicator: UIActivityIndicatorView! {
+    @IBOutlet weak var likeActivityIndicator: UIActivityIndicatorView! {
         didSet {
-            self.activeVoteActivityIndicator.stopAnimating()
+            self.likeActivityIndicator.stopAnimating()
         }
     }
     
-    @IBOutlet weak var commentsButton: UIButton! {
+    @IBOutlet weak var dislikeActivityIndicator: UIActivityIndicatorView! {
         didSet {
-            self.commentsButton.tune(withTitle:         "",
-                                     hexColors:         [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
-                                     font:              UIFont(name: "SFProDisplay-Medium", size: 10.0),
-                                     alignment:         .left)
+            self.dislikeActivityIndicator.stopAnimating()
+        }
+    }
+    
+    @IBOutlet weak var likeButton: UIButton! {
+        didSet {
+            likeButton.tune(withTitle:          "    ",
+                            hexColors:          [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
+                            font:               UIFont(name: "SFProDisplay-Regular", size: 12.0),
+                            alignment:          .left)
+            
+            likeButton.isEnabled = true
+        }
+    }
+    
+    @IBOutlet weak var dislikeButton: UIButton! {
+        didSet {
+            dislikeButton.tune(withTitle:       "    ",
+                               hexColors:       [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
+                               font:            UIFont(name: "SFProDisplay-Regular", size: 12.0),
+                               alignment:       .center)
+            
+            dislikeButton.isEnabled = true
         }
     }
 
+    @IBOutlet weak var replyButton: UIButton! {
+        didSet {
+            replyButton.tune(withTitle:         "Reply Verb".localized(),
+                             hexColors:         [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
+                             font:              UIFont(name: "SFProDisplay-Medium", size: 12.0),
+                             alignment:         .center)
+        }
+    }
+    
+    
     @IBOutlet var circleViewsCollection: [UIView]! {
         didSet {
             self.circleViewsCollection.forEach({ $0.layer.cornerRadius = $0.bounds.width / 2 * widthRatio })
@@ -83,15 +113,6 @@ class CommentView: UIView, HandlersCellSupport {
         }
     }
     
-    @IBOutlet weak var replyButton: UIButton! {
-        didSet {
-            replyButton.tune(withTitle:         "Reply Verb".localized(),
-                             hexColors:         [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
-                             font:              UIFont(name: "SFProDisplay-Medium", size: 10.0),
-                             alignment:         .left)
-        }
-    }
-    
     @IBOutlet var heightsCollection: [NSLayoutConstraint]! {
         didSet {
             self.heightsCollection.forEach({ $0.constant *= heightRatio })
@@ -118,31 +139,31 @@ class CommentView: UIView, HandlersCellSupport {
     }
     
     func setupUI(withComment comment: Comment, forRow row: Int) {
-        self.postShortInfo      =   PostShortInfo(id:               comment.id,
-                                                  title:            comment.body.substring(withCharactersCount: 120),
-                                                  author:           comment.author,
-                                                  permlink:         comment.permlink,
-                                                  parentTag:        comment.tags?.first,
-                                                  indexPath:        IndexPath(row: row, section: 0),
-                                                  parentAuthor:     comment.parentAuthor,
-                                                  parentPermlink:   comment.parentPermlink)
+        self.postShortInfo = PostShortInfo(id:               comment.id,
+                                           title:            comment.body.substring(withCharactersCount: 120),
+                                           author:           comment.author,
+                                           permlink:         comment.permlink,
+                                           parentTag:        comment.tags?.first,
+                                           indexPath:        IndexPath(row: row, section: 0),
+                                           parentAuthor:     comment.parentAuthor,
+                                           parentPermlink:   comment.parentPermlink)
         
-        self.created            =   comment.created
-        self.treeIndex          =   row
+        self.created    =   comment.created
+        self.treeIndex  =   row
         
-        // Set Active Votes icon
-        self.activeVoteButton.isEnabled = true
-        self.activeVoteActivityIndicator.stopAnimating()
+        // Like icon
+        self.likeButton.isEnabled = true
+        self.likeActivityIndicator.stopAnimating()
         
-        self.activeVoteButton.tag = comment.currentUserVoted ? 99 : 0
-        self.activeVoteButton.setTitle(comment.netVotes > 0 ? "\(comment.netVotes)" : nil, for: .normal)
-        self.activeVoteButton.setImage(UIImage(named: comment.currentUserVoted ? "icon-button-post-like-selected" : "icon-button-post-like-normal"), for: .normal)
+        self.likeButton.tag = comment.currentUserLiked ? 99 : 0
+        self.likeButton.setTitle(comment.likeCount > 0 ? "\(comment.likeCount)" : "    ", for: .normal)
+        self.likeButton.setImage(UIImage(named: comment.currentUserLiked ? "icon-button-post-like-selected" : "icon-button-post-like-normal"), for: .normal)
         
-        if comment.netVotes > 0 {
-            self.commentsButton.setTitle("\(comment.netVotes)", for: .normal)
-            self.commentsButton.isSelected = comment.currentUserVoted
-        }
-        
+        // Dislike icon
+        self.dislikeButton.tag = comment.currentUserDisliked ? 99 : 0
+        self.dislikeButton.setTitle(comment.dislikeCount > 0 ? "\(comment.dislikeCount)" : "    ", for: .normal)
+        self.dislikeButton.setImage(comment.currentUserDisliked ? UIImage(named: "icon-button-post-dislike-selected") : UIImage(named: "icon-button-post-dislike-normal"), for: .normal)
+
         // Avatar
         self.authorNameButton.setTitle(comment.author, for: .normal)
         
@@ -227,17 +248,13 @@ class CommentView: UIView, HandlersCellSupport {
     }
     
     // Action buttons
-    @IBAction func activeVoteButtonTapped(_ sender: UIButton) {
+    @IBAction func likeButtonTapped(_ sender: UIButton) {
         sender.isEnabled = false
-        self.handlerActiveVoteButtonTapped!(sender.tag == 0, self.postShortInfo)
+        self.handlerLikeButtonTapped!(sender.tag == 0, self.postShortInfo)
     }
 
-    @IBAction func usersButtonTapped(_ sender: UIButton) {
-        self.handlerUsersButtonTapped!()
-    }
-
-    @IBAction func commentsButtonTapped(_ sender: UIButton) {
-        self.handlerCommentsButtonTapped!(self.postShortInfo)
+    @IBAction func dislikeButtonTapped(_ sender: UIButton) {
+    
     }
 
     @IBAction func replyButtonTapped(_ sender: UIButton) {
@@ -245,6 +262,6 @@ class CommentView: UIView, HandlersCellSupport {
     }
 
     @IBAction func shareButtonTapped(_ sender: UIButton) {
-        self.handlerShareButtonTapped!()
+
     }
 }

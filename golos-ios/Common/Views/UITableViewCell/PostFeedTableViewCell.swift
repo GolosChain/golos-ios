@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 import GoloSwift
 
-class PostFeedTableViewCell: UITableViewCell, HandlersCellSupport, PostCellActiveVoteSupport {
+class PostFeedTableViewCell: UITableViewCell, HandlersCellSupport, PostCellLikeSupport {
     // MARK: - Properties
     var postShortInfo: PostShortInfo!
 
@@ -18,14 +18,16 @@ class PostFeedTableViewCell: UITableViewCell, HandlersCellSupport, PostCellActiv
     var handlerAuthorPostSelected: ((String) -> Void)?
 
     // HandlersCellSupport
-    var handlerShareButtonTapped: (() -> Void)?
+    var handlerRepostButtonTapped: (() -> Void)?
     var handlerCommentsButtonTapped: ((PostShortInfo) -> Void)?
-    var handlerActiveVoteButtonTapped: ((Bool, PostShortInfo) -> Void)?
+    var handlerLikeButtonTapped: ((Bool, PostShortInfo) -> Void)?
+    var handlerDislikeButtonTapped: ((Bool, PostShortInfo) -> Void)?
 
     
     // MARK: - IBOutlets
     @IBOutlet weak var postImageView: UIImageView!
-    
+    @IBOutlet weak var postImageViewHeightConstraint: NSLayoutConstraint!
+
     @IBOutlet private weak var titleLabel: UILabel! {
         didSet {
             titleLabel.tune(withText:           "",
@@ -35,8 +37,6 @@ class PostFeedTableViewCell: UITableViewCell, HandlersCellSupport, PostCellActiv
                             isMultiLines:       true)
         }
     }
-
-    @IBOutlet weak var postImageViewHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet private weak var postFeedHeaderView: PostFeedHeaderView! {
         didSet {
@@ -53,33 +53,59 @@ class PostFeedTableViewCell: UITableViewCell, HandlersCellSupport, PostCellActiv
         }
     }
     
-    @IBOutlet private weak var bottomView: UIView! {
+    @IBOutlet weak var likeActivityIndicator: UIActivityIndicatorView! {
         didSet {
-            bottomView.tune()
+            self.likeActivityIndicator.stopAnimating()
+        }
+    }
+    
+    @IBOutlet weak var dislikeActivityIndicator: UIActivityIndicatorView! {
+        didSet {
+            self.dislikeActivityIndicator.stopAnimating()
         }
     }
 
-    @IBOutlet weak var activeVoteButton: UIButton! {
+    @IBOutlet weak var likeButton: UIButton! {
         didSet {
-            activeVoteButton.tune(withTitle:    "",
-                               hexColors:       [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
-                               font:            UIFont(name: "SFProDisplay-Regular", size: 10.0),
-                               alignment:       .center)
+            likeButton.tune(withTitle:          "    ",
+                            hexColors:        [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
+                            font:             UIFont(name: "SFProDisplay-Regular", size: 12.0),
+                            alignment:        .left)
+            
+            likeButton.isEnabled = true
         }
     }
     
-    @IBOutlet private weak var commentsButton: UIButton! {
+    @IBOutlet weak var dislikeButton: UIButton! {
         didSet {
-            commentsButton.tune(withTitle:      "",
+            dislikeButton.tune(withTitle:       "    ",
+                               hexColors:        [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
+                               font:             UIFont(name: "SFProDisplay-Regular", size: 12.0),
+                               alignment:        .left)
+            
+            dislikeButton.isEnabled = true
+        }
+    }
+    
+    @IBOutlet weak var repostButton: UIButton! {
+        didSet {
+            repostButton.tune(withTitle:        "    ",
+                              hexColors:        [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
+                              font:             UIFont(name: "SFProDisplay-Regular", size: 12.0),
+                              alignment:        .left)
+            
+            repostButton.isEnabled = false
+        }
+    }
+    
+    @IBOutlet weak var commentsButton: UIButton! {
+        didSet {
+            commentsButton.tune(withTitle:      "    ",
                                 hexColors:      [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
-                                font:           UIFont(name: "SFProDisplay-Regular", size: 10.0),
-                                alignment:      .center)
-        }
-    }
-    
-    @IBOutlet weak var activeVoteActivityIndicator: UIActivityIndicatorView! {
-        didSet {
-            self.activeVoteActivityIndicator.stopAnimating()
+                                font:           UIFont(name: "SFProDisplay-Regular", size: 12.0),
+                                alignment:      .left)
+            
+            commentsButton.isEnabled = true
         }
     }
     
@@ -112,8 +138,9 @@ class PostFeedTableViewCell: UITableViewCell, HandlersCellSupport, PostCellActiv
         self.postImageView.image                                =   nil
         self.postImageViewHeightConstraint.constant             =   180.0 * heightRatio
         
-        self.commentsButton.setTitle(nil, for: .normal)
-        self.activeVoteButton.setTitle(nil, for: .normal)
+        self.likeButton.setTitle("    ", for: .normal)
+        self.dislikeButton.setTitle("    ", for: .normal)
+        self.commentsButton.setTitle("    ", for: .normal)
     }
     
     
@@ -126,8 +153,12 @@ class PostFeedTableViewCell: UITableViewCell, HandlersCellSupport, PostCellActiv
     
     
     // MARK: - Actions
-    @IBAction func activeVotesButtonTapped(_ sender: UIButton) {
-        self.handlerActiveVoteButtonTapped!(sender.tag == 0, self.postShortInfo)
+    @IBAction func likeButtonTapped(_ sender: UIButton) {
+        self.handlerLikeButtonTapped!(sender.tag == 0, self.postShortInfo)
+    }
+    
+    @IBAction func dislikeButtonTapped(_ sender: UIButton) {
+        self.handlerDislikeButtonTapped!(sender.tag == 0, self.postShortInfo)
     }
     
     @IBAction func commentsButtonTapped(_ sender: UIButton) {
@@ -141,10 +172,10 @@ class PostFeedTableViewCell: UITableViewCell, HandlersCellSupport, PostCellActiv
         }
     }
     
-    @IBAction func shareButtonTapped(_ sender: UIButton) {
-        self.handlerShareButtonTapped!()
-    }
+    @IBAction func repostButtonTapped(_ sender: UIButton) {
     
+    }
+        
     
     // MARK: - Reuse identifier
     override var reuseIdentifier: String? {
@@ -164,10 +195,11 @@ extension PostFeedTableViewCell: ConfigureCell {
             return
         }
         
-        self.postShortInfo                  =   PostShortInfo(indexPath: indexPath)
-        self.activeVoteButton.isEnabled     =   true
-        
-        self.activeVoteActivityIndicator.stopAnimating()
+        self.postShortInfo              =   PostShortInfo(indexPath: indexPath)
+        self.likeButton.isEnabled       =   true
+        self.dislikeButton.isEnabled    =   true
+
+        self.likeActivityIndicator.stopAnimating()
 
         // Display PostFeedHeaderView
         self.postFeedHeaderView.display(post: model)
@@ -177,11 +209,7 @@ extension PostFeedTableViewCell: ConfigureCell {
 //            let pendingPayoutValue = String(format: "%@%.2f", "gbg", model.pendingPayoutValue)
 //            self.upvotesButton.setTitle(pendingPayoutValue, for: .normal)
         
-        // Set Active Votes icon
-        self.activeVoteButton.tag = model.currentUserVoted ? 99 : 0
-        self.activeVoteButton.setTitle(model.netVotes > 0 ? "\(model.netVotes)" : nil, for: .normal)
-        self.activeVoteButton.setImage(UIImage(named: model.currentUserVoted ? "icon-button-post-like-selected" : "icon-button-post-like-normal"), for: .normal)
-        
+
         // Load model user cover image
         if let coverImageURL = model.coverImageURL, !coverImageURL.isEmpty {
             self.postImageView.uploadImage(byStringPath:    coverImageURL,
@@ -208,13 +236,19 @@ extension PostFeedTableViewCell: ConfigureCell {
         self.titleLabel.text    =   model.title
         selectionStyle          =   .none
         
-        if model.children > 0 {
-            self.commentsButton.setTitle("\(model.children)", for: .normal)
-            
-            if self.commentsButton.isSelected {
-                Logger.log(message: "Set green like icon", event: .debug)
-            }
-        }
+        // Like icon
+        self.likeButton.tag = model.currentUserLiked ? 99 : 0
+        self.likeButton.setTitle(model.likeCount > 0 ? "\(model.likeCount)" : "    ", for: .normal)
+        self.likeButton.setImage(UIImage(named: model.currentUserLiked ? "icon-button-post-like-selected" : "icon-button-post-like-normal"), for: .normal)
+        
+        // Dislike icon
+        self.dislikeButton.tag = model.currentUserDisliked ? 99 : 0
+        self.dislikeButton.setTitle(model.dislikeCount > 0 ? "\(model.dislikeCount)" : "    ", for: .normal)
+        self.dislikeButton.setImage(UIImage(named: model.currentUserDisliked ? "icon-button-post-dislike-selected" : "icon-button-post-dislike-normal"), for: .normal)
+        
+        // Comments icon
+        self.commentsButton.setTitle(model.children > 0 ? "\(model.children)" : "    ", for: .normal)
+        self.commentsButton.setImage(UIImage(named: model.currentUserCommented ? "icon-button-post-comments-selected" : "icon-button-post-comments-normal"), for: .normal)
         
         self.layoutIfNeeded()
     }

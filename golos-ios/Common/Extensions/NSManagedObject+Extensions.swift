@@ -42,13 +42,13 @@ extension NSManagedObject {
             entity.url                          =   model.url
             entity.pendingPayoutValue           =   (model.pending_payout_value as NSString).floatValue
             entity.children                     =   Int64(model.children)
-            entity.netVotes                     =   model.net_votes
-            entity.netFlaunt                    =   0
+            entity.likeCount                    =   model.net_votes
+            entity.dislikeCount                 =   0
             
             entity.authorReblog                 =   model.reblog_author
             
-            entity.currentUserVoted             =   false
-            entity.currentUserFlaunted          =   false
+            entity.currentUserLiked             =   false
+            entity.currentUserDisliked          =   false
             entity.currentUserCommented         =   false
 
             if let authorReputation = model.author_reputation.stringValue {
@@ -70,26 +70,26 @@ extension NSManagedObject {
                     if activeVote.voter == user.nickName {
                         switch activeVote.percent {
                         case activeVote.percent where activeVote.percent == 0:
-                            entity.currentUserVoted = false
+                            entity.currentUserLiked = false
 
                         case activeVote.percent where activeVote.percent > 0:
-                            entity.currentUserVoted = true
+                            entity.currentUserLiked = true
 
                         default:
-                            entity.currentUserFlaunted = true
+                            entity.currentUserDisliked = true
                         }
                     }
                     
-                    entity.netVotes = Int64(model.active_votes.filter({ $0.percent > 0 }).count)
+                    entity.likeCount = Int64(model.active_votes.filter({ $0.percent > 0 }).count)
                 })
             }            
 
-            // Set Flaunt Vote values
+            // Dislike count
             if model.net_votes > 0 {
-                entity.netFlaunt    =   Int64(model.active_votes.filter({ $0.percent < 0 }).count)
+                entity.dislikeCount = Int64(model.active_votes.filter({ $0.percent < 0 }).count)
                 
-                if entity.netFlaunt > 0 {
-                    Logger.log(message: "netFlaunt = \(entity.netFlaunt)", event: .debug)
+                if entity.dislikeCount > 0 {
+                    Logger.log(message: "dislikeCount = \(entity.dislikeCount)", event: .debug)
                 }
             }
             

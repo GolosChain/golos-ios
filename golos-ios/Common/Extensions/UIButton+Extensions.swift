@@ -141,8 +141,8 @@ extension UIButton {
     }
     
     
-    // For Active Vote / Flaunt buttons
-    func startVote(withSpinner spinner: UIActivityIndicatorView) {
+    // For Like / Dislike buttons
+    func startLikeVote(withSpinner spinner: UIActivityIndicatorView) {
         self.isEnabled = false
 
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
@@ -151,7 +151,7 @@ extension UIButton {
         }
     }
     
-    func breakVote(withSpinner spinner: UIActivityIndicatorView) {
+    func breakLikeVote(withSpinner spinner: UIActivityIndicatorView) {
         self.isEnabled = true
         spinner.stopAnimating()
     }

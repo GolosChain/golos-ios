@@ -59,8 +59,9 @@ class GSTableViewController: GSBaseViewController, HandlersCellSupport {
     var handlerHorizontalScrolling: ((CGFloat) -> Void)?
 
     // HandlersCellSupport
-    var handlerShareButtonTapped: (() -> Void)?
-    var handlerActiveVoteButtonTapped: ((Bool, PostShortInfo) -> Void)?
+    var handlerLikeButtonTapped: ((Bool, PostShortInfo) -> Void)?
+    var handlerRepostButtonTapped: (() -> Void)?
+    var handlerDislikeButtonTapped: ((Bool, PostShortInfo) -> Void)?
     var handlerCommentsButtonTapped: ((PostShortInfo) -> Void)?
 
     
@@ -413,14 +414,27 @@ extension GSTableViewController: UITableViewDataSource {
         
         // Handlers Lenta, Blog, Popular, Actual, New, Promo comletion
         else {
-            (cell as! PostFeedTableViewCell).handlerShareButtonTapped       =   { [weak self] in
-                self?.handlerShareButtonTapped!()
+            (cell as! PostFeedTableViewCell).handlerRepostButtonTapped      =   { [weak self] in
+                self?.handlerRepostButtonTapped!()
             }
             
-            (cell as! PostFeedTableViewCell).handlerActiveVoteButtonTapped     =   { [weak self] (isVote, postShortInfo) in
+            (cell as! PostFeedTableViewCell).handlerLikeButtonTapped        =   { [weak self] (isLike, postShortInfo) in
                 let model = self?.fetchedResultsController.object(at: postShortInfo.indexPath!) as! PostCellSupport
 
-                self?.handlerActiveVoteButtonTapped!(isVote, PostShortInfo(id:                model.id,
+                self?.handlerLikeButtonTapped!(isLike, PostShortInfo(id:                model.id,
+                                                                     title:             model.title,
+                                                                     author:            model.author,
+                                                                     permlink:          model.permlink,
+                                                                     parentTag:         model.tags?.first,
+                                                                     indexPath:         postShortInfo.indexPath,
+                                                                     parentAuthor:      model.parentAuthor,
+                                                                     parentPermlink:    model.parentPermlink))
+            }
+            
+            (cell as! PostFeedTableViewCell).handlerDislikeButtonTapped     =   { [weak self] (isDislike, postShortInfo) in
+                let model = self?.fetchedResultsController.object(at: postShortInfo.indexPath!) as! PostCellSupport
+                
+                self?.handlerDislikeButtonTapped!(isDislike, PostShortInfo(id:                model.id,
                                                                            title:             model.title,
                                                                            author:            model.author,
                                                                            permlink:          model.permlink,

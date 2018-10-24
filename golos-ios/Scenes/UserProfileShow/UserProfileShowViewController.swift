@@ -26,7 +26,7 @@ enum UserProfileSceneMode {
 protocol UserProfileShowDisplayLogic: class {
     func displayUserInfo(fromViewModel viewModel: UserProfileShowModels.UserInfo.ViewModel)
     func displayUserDetails(fromViewModel viewModel: UserProfileShowModels.UserDetails.ViewModel)
-    func displayUpvote(fromViewModel viewModel: UserProfileShowModels.ActiveVote.ViewModel)
+    func displayLikeVote(fromViewModel viewModel: UserProfileShowModels.Like.ViewModel)
 }
 
 class UserProfileShowViewController: GSBaseViewController, ContainerViewSupport {
@@ -441,11 +441,11 @@ extension UserProfileShowViewController {
                     }
                 }
                 
-                activeVC.handlerShareButtonTapped       =   { [weak self] in
+                activeVC.handlerRepostButtonTapped       =   { [weak self] in
                     self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
                 }
                 
-                activeVC.handlerActiveVoteButtonTapped  =   { [weak self] (isVote, postShortInfo) in
+                activeVC.handlerLikeButtonTapped  =   { [weak self] (isVote, postShortInfo) in
                     // Check network connection
                     guard isNetworkAvailable else {
                         self?.showAlertView(withTitle: "Info", andMessage: "No Internet Connection", needCancel: false, completion: { _ in })
@@ -456,24 +456,24 @@ extension UserProfileShowViewController {
 
                     self?.interactor?.save(blogShortInfo: postShortInfo)
                     
-                    let blogCell        =   activeVC.postsTableView.cellForRow(at: postShortInfo.indexPath!) as! PostCellActiveVoteSupport
-                    let requestModel    =   UserProfileShowModels.ActiveVote.RequestModel(isVote: isVote, isFlaunt: false)
+                    let blogCell        =   activeVC.postsTableView.cellForRow(at: postShortInfo.indexPath!) as! PostCellLikeSupport
+                    let requestModel    =   UserProfileShowModels.Like.RequestModel(isLike: isVote, isDislike: false)
 
                     guard isVote else {
                         self?.showAlertView(withTitle: "Voting Verb", andMessage: "Cancel Vote Message", actionTitle: "ActionChange", needCancel: true, completion: { success in
                             if success {
-                                blogCell.activeVoteButton.startVote(withSpinner: blogCell.activeVoteActivityIndicator)
-                                self?.interactor?.upvote(withRequestModel: requestModel)
+                                blogCell.likeButton.startLikeVote(withSpinner: blogCell.likeActivityIndicator)
+                                self?.interactor?.likeVote(withRequestModel: requestModel)
                             } else {
-                                blogCell.activeVoteButton.breakVote(withSpinner: blogCell.activeVoteActivityIndicator)
+                                blogCell.likeButton.breakLikeVote(withSpinner: blogCell.likeActivityIndicator)
                             }
                         })
                         
                         return
                     }
                     
-                    blogCell.activeVoteButton.startVote(withSpinner: blogCell.activeVoteActivityIndicator)
-                    self?.interactor?.upvote(withRequestModel: requestModel)
+                    blogCell.likeButton.startLikeVote(withSpinner: blogCell.likeActivityIndicator)
+                    self?.interactor?.likeVote(withRequestModel: requestModel)
                 }
                 
                 activeVC.handlerCommentsButtonTapped    =   { [weak self] postShortInfo in
@@ -523,7 +523,7 @@ extension UserProfileShowViewController: UserProfileShowDisplayLogic {
         self.fetchUserDetails()
     }
     
-    func displayUpvote(fromViewModel viewModel: UserProfileShowModels.ActiveVote.ViewModel) {
+    func displayLikeVote(fromViewModel viewModel: UserProfileShowModels.Like.ViewModel) {
         // NOTE: Display the result from the Presenter
         if let activeVC = self.containerView.activeVC, let postShortInfo = self.router?.dataStore?.selectedBlog, let indexPath = postShortInfo.indexPath {
             guard viewModel.errorAPI == nil else {

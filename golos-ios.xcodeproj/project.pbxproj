@@ -187,7 +187,7 @@
 		B1EE686C20D2D713006BF802 /* PostCommentReply.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EE686B20D2D713006BF802 /* PostCommentReply.swift */; };
 		B1F2B553216BBABD00CBAFC9 /* PostFeedHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F2B552216BBABD00CBAFC9 /* PostFeedHeaderView.swift */; };
 		B1F2B555216BBAC900CBAFC9 /* PostFeedHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1F2B554216BBAC900CBAFC9 /* PostFeedHeaderView.xib */; };
-		B1F2B557216CE50900CBAFC9 /* PostCellActiveVoteSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F2B556216CE50900CBAFC9 /* PostCellActiveVoteSupport.swift */; };
+		B1F2B557216CE50900CBAFC9 /* PostCellLikeSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F2B556216CE50900CBAFC9 /* PostCellLikeSupport.swift */; };
 		B1F3747520C2B483005EF767 /* RootShow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1F3747420C2B483005EF767 /* RootShow.storyboard */; };
 		B1F3748120C2C5E1005EF767 /* RootShowRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F3747B20C2C5E1005EF767 /* RootShowRouter.swift */; };
 		B1F3748320C2C5E1005EF767 /* RootShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F3747D20C2C5E1005EF767 /* RootShowViewController.swift */; };
@@ -459,7 +459,7 @@
 		B1EE686B20D2D713006BF802 /* PostCommentReply.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCommentReply.swift; sourceTree = "<group>"; };
 		B1F2B552216BBABD00CBAFC9 /* PostFeedHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostFeedHeaderView.swift; sourceTree = "<group>"; };
 		B1F2B554216BBAC900CBAFC9 /* PostFeedHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostFeedHeaderView.xib; sourceTree = "<group>"; };
-		B1F2B556216CE50900CBAFC9 /* PostCellActiveVoteSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCellActiveVoteSupport.swift; sourceTree = "<group>"; };
+		B1F2B556216CE50900CBAFC9 /* PostCellLikeSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCellLikeSupport.swift; sourceTree = "<group>"; };
 		B1F3747420C2B483005EF767 /* RootShow.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RootShow.storyboard; sourceTree = "<group>"; };
 		B1F3747B20C2C5E1005EF767 /* RootShowRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootShowRouter.swift; sourceTree = "<group>"; };
 		B1F3747D20C2C5E1005EF767 /* RootShowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootShowViewController.swift; sourceTree = "<group>"; };
@@ -1176,7 +1176,7 @@
 				B1E09E1F2101F222002CC5B7 /* MetaDataSupport.swift */,
 				B1E09E212101F26C002CC5B7 /* PaginationSupport.swift */,
 				B1E09E252101F303002CC5B7 /* PostCellSupport.swift */,
-				B1F2B556216CE50900CBAFC9 /* PostCellActiveVoteSupport.swift */,
+				B1F2B556216CE50900CBAFC9 /* PostCellLikeSupport.swift */,
 				7DA06327203256D700B5630C /* PropertyStoring.swift */,
 				7D79C3472034686B00794447 /* ReusableCell.swift */,
 				EC24FF27200BEBE600A0AE15 /* ViewProtocol.swift */,
@@ -1518,7 +1518,7 @@
 				B163EE88214905B3004F3906 /* PostShortInfo.swift in Sources */,
 				B18B937420B91DB8000CF503 /* ForegroundRemoteNotificationView.swift in Sources */,
 				B1E78A6F20F99CD500B2901D /* UserProfileBlogShowViewController.swift in Sources */,
-				B1F2B557216CE50900CBAFC9 /* PostCellActiveVoteSupport.swift in Sources */,
+				B1F2B557216CE50900CBAFC9 /* PostCellLikeSupport.swift in Sources */,
 				EC24FF5D200C30CF00A0AE15 /* MainContainerMediator.swift in Sources */,
 				B120D07C210825AD00D949F5 /* SettingsNotificationsShowInteractor.swift in Sources */,
 				B1CF44DE2106D65600483A01 /* SettingsShowModels.swift in Sources */,

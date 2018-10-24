@@ -60,23 +60,23 @@ enum PostShowModels {
         }
     }
     
-    enum ActiveVote {
+    enum Like {
         struct RequestModel {
-            let isVote: Bool?
-            let isFlaunt: Bool?
+            let isLike: Bool?
+            let isDislike: Bool?
             let forPost: Bool
         }
         
         struct ResponseModel {
-            let isVote: Bool?
-            let isFlaunt: Bool?
+            let isLike: Bool?
+            let isDislike: Bool?
             let forPost: Bool
             let errorAPI: ErrorAPI?
         }
         
         struct ViewModel {
-            let isVote: Bool?
-            let isFlaunt: Bool?
+            let isLike: Bool?
+            let isDislike: Bool?
             let forPost: Bool
             let errorAPI: ErrorAPI?
         }

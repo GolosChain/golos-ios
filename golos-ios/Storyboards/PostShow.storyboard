@@ -385,7 +385,6 @@
                                                         <state key="normal" title="12" image="icon-button-post-comments-normal">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
-                                                        <state key="disabled" image="icon-button-comments-highlighted"/>
                                                         <connections>
                                                             <action selector="commentsButtonTapped:" destination="EfY-4r-YFi" eventType="touchUpInside" id="vab-GB-iuF"/>
                                                         </connections>
@@ -711,7 +710,6 @@
     <resources>
         <image name="icon-button-arrow-down-gray-normal" width="11.5" height="6"/>
         <image name="icon-button-back-black-normal" width="8" height="14"/>
-        <image name="icon-button-comments-highlighted" width="20" height="20"/>
         <image name="icon-button-donate-normal" width="19" height="14"/>
         <image name="icon-button-post-comments-normal" width="17" height="17"/>
         <image name="icon-button-post-dislike-normal" width="17" height="17"/>

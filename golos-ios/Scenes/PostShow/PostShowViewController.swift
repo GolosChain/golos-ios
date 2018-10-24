@@ -24,7 +24,7 @@ protocol PostShowDisplayLogic: class {
     func displayLoadPostContent(fromViewModel viewModel: PostShowModels.Post.ViewModel)
     func displayLoadPostComments(fromViewModel viewModel: PostShowModels.Post.ViewModel)
     func displayCheckFollowing(fromViewModel viewModel: PostShowModels.Following.ViewModel)
-    func displayVote(fromViewModel viewModel: PostShowModels.ActiveVote.ViewModel)
+    func displayLikeVote(fromViewModel viewModel: PostShowModels.Like.ViewModel)
 }
 
 class PostShowViewController: GSBaseViewController {
@@ -184,12 +184,23 @@ class PostShowViewController: GSBaseViewController {
         }
     }
     
+    @IBOutlet weak var dislikeButton: UIButton! {
+        didSet {
+            dislikeButton.tune(withTitle:       "    ",
+                               hexColors:       [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
+                               font:            UIFont(name: "SFProDisplay-Regular", size: 12.0),
+                               alignment:       .center)
+            
+            dislikeButton.isEnabled = true
+        }
+    }
+    
     @IBOutlet weak var repostButton: UIButton! {
         didSet {
             repostButton.tune(withTitle:        "    ",
-                             hexColors:        [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
-                             font:             UIFont(name: "SFProDisplay-Regular", size: 12.0),
-                             alignment:        .left)
+                             hexColors:         [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
+                             font:              UIFont(name: "SFProDisplay-Regular", size: 12.0),
+                             alignment:         .center)
             
             repostButton.isEnabled = false
         }
@@ -200,20 +211,9 @@ class PostShowViewController: GSBaseViewController {
             commentsButton.tune(withTitle:      "    ",
                                 hexColors:      [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
                                 font:           UIFont(name: "SFProDisplay-Regular", size: 10.0),
-                                alignment:      .left)
+                                alignment:      .center)
             
             commentsButton.isEnabled = true
-        }
-    }
-    
-    @IBOutlet weak var dislikeButton: UIButton! {
-        didSet {
-            dislikeButton.tune(withTitle:       "    ",
-                              hexColors:        [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
-                              font:             UIFont(name: "SFProDisplay-Regular", size: 12.0),
-                              alignment:        .left)
-            
-            dislikeButton.isEnabled = true
         }
     }
     
@@ -390,7 +390,6 @@ class PostShowViewController: GSBaseViewController {
             })
         }
     }
-    
     
     @IBOutlet var heightsCollection: [NSLayoutConstraint]! {
         didSet {
@@ -575,12 +574,6 @@ class PostShowViewController: GSBaseViewController {
                 self.tagsCollectionView.reloadData()
             }
             
-            // Like icon
-            self.likesCount       =   Int(displayedPost.netVotes)
-            self.likeButton.tag   =   displayedPost.currentUserVoted ? 99 : 0
-            self.likeButton.setTitle(self.likesCount > 0 ? "\(self.likesCount)" : "    ", for: .normal)
-            self.likeButton.setImage(UIImage(named: displayedPost.currentUserVoted ? "icon-button-post-like-selected" : "icon-button-post-like-normal"), for: .normal)
-
             // Subscribe topic
             if let firstTag = displayedPost.tags?.first {
                 self.topicTitleLabel.text = firstTag.transliteration(forPermlink: false).uppercaseFirst
@@ -601,15 +594,20 @@ class PostShowViewController: GSBaseViewController {
 
             self.userNameLabel.text = self.postFeedHeaderView.authorNameButton.titleLabel!.text
             
-            // User action buttons
-            if displayedPost.children > 0 {
-                self.commentsButton.isSelected = displayedPost.currentUserVoted
-            }
+            // Like icon
+            self.likesCount       =   Int(displayedPost.likeCount)
+            self.likeButton.tag   =   displayedPost.currentUserLiked ? 99 : 0
+            self.likeButton.setTitle(self.likesCount > 0 ? "\(self.likesCount)" : "    ", for: .normal)
+            self.likeButton.setImage(UIImage(named: displayedPost.currentUserLiked ? "icon-button-post-like-selected" : "icon-button-post-like-normal"), for: .normal)
             
             // Dislike icon
-            self.dislikeButton.tag   =   displayedPost.currentUserFlaunted ? 99 : 0
-            self.dislikeButton.setTitle(displayedPost.netFlaunt > 0 ? "\(displayedPost.netFlaunt)" : "    ", for: .normal)
-            self.dislikeButton.setImage(displayedPost.currentUserFlaunted ? UIImage(named: "icon-button-post-dislike-selected") : UIImage(named: "icon-button-post-dislike-normal"), for: .normal)
+            self.dislikeButton.tag   =   displayedPost.currentUserDisliked ? 99 : 0
+            self.dislikeButton.setTitle(displayedPost.dislikeCount > 0 ? "\(displayedPost.dislikeCount)" : "    ", for: .normal)
+            self.dislikeButton.setImage(displayedPost.currentUserDisliked ? UIImage(named: "icon-button-post-dislike-selected") : UIImage(named: "icon-button-post-dislike-normal"), for: .normal)
+            
+            // Comments icon
+            self.commentsButton.setTitle(displayedPost.children > 0 ? "\(displayedPost.children)" : "    ", for: .normal)
+            self.commentsButton.setImage(UIImage(named: displayedPost.currentUserCommented ? "icon-button-post-comments-selected" : "icon-button-post-comments-normal"), for: .normal)
         }
     }
     
@@ -750,23 +748,23 @@ class PostShowViewController: GSBaseViewController {
 
         guard self.isCurrentOperationPossible() else { return }
 
-        let requestModel = PostShowModels.ActiveVote.RequestModel(isVote: sender.tag == 0, isFlaunt: nil, forPost: true)
+        let requestModel = PostShowModels.Like.RequestModel(isLike: sender.tag == 0, isDislike: nil, forPost: true)
         
         guard sender.tag == 0 else {
             self.showAlertView(withTitle: "Voting Verb", andMessage: "Cancel Vote Message", actionTitle: "ActionChange", needCancel: true, completion: { [weak self] success in
                 if success {
-                    self?.likeButton.startVote(withSpinner: (self?.likeActivityIndicator)!)
-                    self?.interactor?.vote(withRequestModel: requestModel)
+                    self?.likeButton.startLikeVote(withSpinner: (self?.likeActivityIndicator)!)
+                    self?.interactor?.likeVote(withRequestModel: requestModel)
                 } else {
-                    self?.likeButton.breakVote(withSpinner: (self?.likeActivityIndicator)!)
+                    self?.likeButton.breakLikeVote(withSpinner: (self?.likeActivityIndicator)!)
                 }
             })
             
             return
         }
         
-        self.likeButton.startVote(withSpinner: self.likeActivityIndicator)
-        self.interactor?.vote(withRequestModel: requestModel)
+        self.likeButton.startLikeVote(withSpinner: self.likeActivityIndicator)
+        self.interactor?.likeVote(withRequestModel: requestModel)
     }
 
     @IBAction func dislikeButtonTapped(_ sender: UIButton) {
@@ -783,7 +781,7 @@ class PostShowViewController: GSBaseViewController {
             self.showAlertView(withTitle: "Voice Power Title", andMessage: "Voice Power Subtitle", attributedText: self.displayAlertView(byDislike: true), actionTitle: "Voice Power Title", needCancel: true, isCancelLeft: false, completion: { [weak self] success in
                 guard success else { return }
                 
-                self?.runningRequest(isFlaunt: true)
+                self?.runningRequest(isDislike: true)
             })
         }
         
@@ -792,7 +790,7 @@ class PostShowViewController: GSBaseViewController {
             self.showAlertView(withTitle: "Voting Verb", andMessage: "Cancel Vote Message", attributedText: self.displayAlertView(byDislike: false), actionTitle: "ActionChange", needCancel: true, completion: { [weak self] success in
                 guard success else { return }
 
-                self?.runningRequest(isFlaunt: false)
+                self?.runningRequest(isDislike: false)
             })
         }
     }
@@ -943,7 +941,7 @@ extension PostShowViewController: PostShowDisplayLogic {
         }
     }
     
-    func displayVote(fromViewModel viewModel: PostShowModels.ActiveVote.ViewModel) {
+    func displayLikeVote(fromViewModel viewModel: PostShowModels.Like.ViewModel) {
         // NOTE: Display the result from the Presenter
         guard viewModel.errorAPI == nil else {
             if let message = viewModel.errorAPI?.caseInfo.message {
@@ -1036,11 +1034,11 @@ extension PostShowViewController {
         self.interactor?.checkFollowing(withRequestModel: requestModel)
     }
     
-    private func runningRequest(isFlaunt: Bool) {
-        let requestModel = PostShowModels.ActiveVote.RequestModel(isVote: nil, isFlaunt: isFlaunt, forPost: true)
+    private func runningRequest(isDislike: Bool) {
+        let requestModel = PostShowModels.Like.RequestModel(isLike: nil, isDislike: isDislike, forPost: true)
         
-        self.dislikeButton.startVote(withSpinner: self.dislikeActivityIndicator)
-        self.interactor?.vote(withRequestModel: requestModel)
+        self.dislikeButton.startLikeVote(withSpinner: self.dislikeActivityIndicator)
+        self.interactor?.likeVote(withRequestModel: requestModel)
     }
 }
 
@@ -1167,7 +1165,7 @@ extension PostShowViewController {
                     })
                     
                     // Handlers
-                    commentView.handlerActiveVoteButtonTapped                       =   { [weak self] (isVote, postShortInfo) in
+                    commentView.handlerLikeButtonTapped                       =   { [weak self] (isVote, postShortInfo) in
                         // Check network connection
                         guard isNetworkAvailable else {
                             self?.showAlertView(withTitle: "Info", andMessage: "No Internet Connection", needCancel: false, completion: { _ in })
@@ -1178,23 +1176,23 @@ extension PostShowViewController {
                         
                         self?.interactor?.save(comment: postShortInfo)
                         
-                        let requestModel = PostShowModels.ActiveVote.RequestModel(isVote: isVote, isFlaunt: false, forPost: false)
+                        let requestModel = PostShowModels.Like.RequestModel(isLike: isVote, isDislike: false, forPost: false)
                         
                         guard isVote else {
                             self?.showAlertView(withTitle: "Voting Verb", andMessage: "Cancel Vote Message", actionTitle: "ActionChange", needCancel: true, completion: { success in
                                 if success {
-                                    commentView.activeVoteButton.startVote(withSpinner: commentView.activeVoteActivityIndicator)
-                                    self?.interactor?.vote(withRequestModel: requestModel)
+                                    commentView.likeButton.startLikeVote(withSpinner: commentView.likeActivityIndicator)
+                                    self?.interactor?.likeVote(withRequestModel: requestModel)
                                 } else {
-                                    commentView.activeVoteButton.breakVote(withSpinner: commentView.activeVoteActivityIndicator)
+                                    commentView.likeButton.breakLikeVote(withSpinner: commentView.likeActivityIndicator)
                                 }
                             })
                             
                             return
                         }
                         
-                        commentView.activeVoteButton.startVote(withSpinner: commentView.activeVoteActivityIndicator)
-                        self?.interactor?.vote(withRequestModel: requestModel)
+                        commentView.likeButton.startLikeVote(withSpinner: commentView.likeActivityIndicator)
+                        self?.interactor?.likeVote(withRequestModel: requestModel)
                     }
                     
                     commentView.handlerUsersButtonTapped                            =   { [weak self] in
@@ -1252,7 +1250,7 @@ extension PostShowViewController {
                         self?.router?.routeToPostCreateScene(withType: .createCommentReply)
                     }
                     
-                    commentView.handlerShareButtonTapped                            =   { [weak self] in
+                    commentView.handlerRepostButtonTapped                            =   { [weak self] in
                         self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
                     }
                     
@@ -1358,73 +1356,6 @@ extension PostShowViewController: UICollectionViewDelegateFlowLayout {
         let width   =   (CGFloat(tag.count) * 7.0 + 30.0) * widthRatio
         
         return CGSize.init(width: width, height: 30.0 * heightRatio)
-    }
-}
-
-
-// MARK: - UIAlertController
-extension PostShowViewController {
-    func displayAlertView(byDislike isDislike: Bool) -> NSMutableAttributedString {
-        let fullAttributedString = NSMutableAttributedString()
-
-        if isDislike {
-            let text1       =   "Voice Power Label 2".localized()
-            let text2       =   "Voice Power Label 3".localized()
-            let text3       =   "Voice Power Label 4".localized()
-            let subtitle    =   "Voice Power Subtitle".localized()
-            
-            let strings     =   [subtitle, text1, text2, text3]
-            
-            // Set Subtitle
-            for (index, string) in strings.enumerated() {
-                let bulletPoint         =   "\u{2022}"
-                let formattedString     =   index == 0 ? "\n\(string)\n" : "\(bulletPoint) \(string)\n"
-                let attributedString    =   NSMutableAttributedString(string: formattedString)
-              
-                var paragraphStyle: NSMutableParagraphStyle
-                
-                paragraphStyle          =   NSParagraphStyle.default.mutableCopy() as! NSMutableParagraphStyle
-                paragraphStyle.tabStops =   [NSTextTab(textAlignment: .left, location: 20, options: [NSTextTab.OptionKey: Any]())]
-                
-                paragraphStyle.headIndent           =   index == 0 ? 5 : 15
-                paragraphStyle.lineSpacing          =   1.4
-                paragraphStyle.defaultTabInterval   =   20
-                paragraphStyle.firstLineHeadIndent  =   5
-                
-                attributedString.addAttribute(.paragraphStyle, value: paragraphStyle, range: NSRange(location: 0, length: attributedString.length))
-                attributedString.addAttribute(.foregroundColor, value: UIColor.black, range: NSRange(location: 0, length: attributedString.length))
-                attributedString.addAttribute(.font, value: UIFont(name: "SFProDisplay-Regular", size: 14.0)!, range: NSRange(location: 0, length: attributedString.length))
-                
-                fullAttributedString.append(attributedString)
-            }
-        }
-        
-        else {
-            let subtitle    =   "Cancel Vote Message".localized()
-
-            
-            // Set Subtitle
-            let formattedString     =   "\n\(subtitle)\n"
-            let attributedString    =   NSMutableAttributedString(string: formattedString)
-            
-            var paragraphStyle: NSMutableParagraphStyle
-            
-            paragraphStyle          =   NSParagraphStyle.default.mutableCopy() as! NSMutableParagraphStyle
-            paragraphStyle.tabStops =   [NSTextTab(textAlignment: .left, location: 20, options: [NSTextTab.OptionKey: Any]())]
-            
-            paragraphStyle.headIndent           =   5
-            paragraphStyle.lineSpacing          =   1.4
-            paragraphStyle.defaultTabInterval   =   20
-            paragraphStyle.firstLineHeadIndent  =   5
-            
-            attributedString.addAttribute(.paragraphStyle, value: paragraphStyle, range: NSRange(location: 0, length: attributedString.length))
-            attributedString.addAttribute(.foregroundColor, value: UIColor.black, range: NSRange(location: 0, length: attributedString.length))
-            attributedString.addAttribute(.font, value: UIFont(name: "SFProDisplay-Regular", size: 14.0)!, range: NSRange(location: 0, length: attributedString.length))
-            
-            fullAttributedString.append(attributedString)
-        }
-        
-        return fullAttributedString
     }
 }
 

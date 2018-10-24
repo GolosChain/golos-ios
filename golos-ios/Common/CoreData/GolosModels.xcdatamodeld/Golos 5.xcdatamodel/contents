@@ -23,15 +23,15 @@
         <attribute name="coverImageURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="created" attributeType="Date" defaultDateTimeInterval="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="currentUserCommented" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="currentUserFlaunted" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="currentUserVoted" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="currentUserDisliked" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="currentUserLiked" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="dislikeCount" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="jsonMetadata" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="jsonMetadataReblog" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastPayout" attributeType="Date" defaultDateTimeInterval="555426540" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="lastUpdate" attributeType="Date" defaultDateTimeInterval="555426540" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="netFlaunt" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="netVotes" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="likeCount" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="parentAuthor" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="parentPermlink" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="pendingPayoutValue" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
@@ -74,15 +74,15 @@
         <attribute name="coverImageURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="created" attributeType="Date" defaultDateTimeInterval="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="currentUserCommented" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="currentUserFlaunted" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="currentUserVoted" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="currentUserDisliked" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="currentUserLiked" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="dislikeCount" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="jsonMetadata" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="jsonMetadataReblog" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastPayout" attributeType="Date" defaultDateTimeInterval="555426540" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="lastUpdate" attributeType="Date" defaultDateTimeInterval="555426540" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="netFlaunt" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="netVotes" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="likeCount" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="parentAuthor" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="parentPermlink" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="pendingPayoutValue" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
@@ -116,15 +116,15 @@
         <attribute name="coverImageURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="created" attributeType="Date" defaultDateTimeInterval="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="currentUserCommented" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="currentUserFlaunted" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="currentUserVoted" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="currentUserDisliked" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="currentUserLiked" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="dislikeCount" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="jsonMetadata" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="jsonMetadataReblog" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastPayout" attributeType="Date" defaultDateTimeInterval="555426600" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="lastUpdate" attributeType="Date" defaultDateTimeInterval="555426600" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="netFlaunt" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="netVotes" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="likeCount" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="parentAuthor" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="parentPermlink" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="pendingPayoutValue" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
@@ -167,15 +167,15 @@
         <attribute name="coverImageURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="created" attributeType="Date" defaultDateTimeInterval="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="currentUserCommented" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="currentUserFlaunted" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="currentUserVoted" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="currentUserDisliked" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="currentUserLiked" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="dislikeCount" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="jsonMetadata" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="jsonMetadataReblog" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastPayout" attributeType="Date" defaultDateTimeInterval="555426480" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="lastUpdate" attributeType="Date" defaultDateTimeInterval="555426480" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="netFlaunt" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="netVotes" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="likeCount" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="parentAuthor" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="parentPermlink" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="pendingPayoutValue" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
@@ -209,15 +209,15 @@
         <attribute name="coverImageURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="created" attributeType="Date" defaultDateTimeInterval="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="currentUserCommented" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="currentUserFlaunted" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="currentUserVoted" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="currentUserDisliked" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="currentUserLiked" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="dislikeCount" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="jsonMetadata" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="jsonMetadataReblog" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastPayout" attributeType="Date" defaultDateTimeInterval="555426600" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="lastUpdate" attributeType="Date" defaultDateTimeInterval="555426600" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="netFlaunt" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="netVotes" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="likeCount" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="parentAuthor" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="parentPermlink" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="pendingPayoutValue" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
@@ -250,15 +250,15 @@
         <attribute name="coverImageURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="created" attributeType="Date" defaultDateTimeInterval="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="currentUserCommented" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="currentUserFlaunted" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="currentUserVoted" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="currentUserDisliked" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="currentUserLiked" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="dislikeCount" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="jsonMetadata" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="jsonMetadataReblog" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastPayout" attributeType="Date" defaultDateTimeInterval="555426600" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="lastUpdate" attributeType="Date" defaultDateTimeInterval="555426600" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="netFlaunt" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="netVotes" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="likeCount" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="parentAuthor" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="parentPermlink" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="pendingPayoutValue" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
@@ -291,15 +291,15 @@
         <attribute name="coverImageURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="created" attributeType="Date" defaultDateTimeInterval="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="currentUserCommented" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="currentUserFlaunted" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="currentUserVoted" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="currentUserDisliked" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="currentUserLiked" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="dislikeCount" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="jsonMetadata" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="jsonMetadataReblog" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastPayout" attributeType="Date" defaultDateTimeInterval="555426600" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="lastUpdate" attributeType="Date" defaultDateTimeInterval="555426600" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="netFlaunt" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="netVotes" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="likeCount" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="parentAuthor" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="parentPermlink" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="pendingPayoutValue" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
@@ -332,15 +332,15 @@
         <attribute name="coverImageURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="created" attributeType="Date" defaultDateTimeInterval="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="currentUserCommented" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="currentUserFlaunted" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="currentUserVoted" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="currentUserDisliked" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="currentUserLiked" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="dislikeCount" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="jsonMetadata" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="jsonMetadataReblog" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastPayout" attributeType="Date" defaultDateTimeInterval="555426660" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="lastUpdate" attributeType="Date" defaultDateTimeInterval="555426660" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="netFlaunt" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="netVotes" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="likeCount" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="parentAuthor" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="parentPermlink" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="pendingPayoutValue" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>

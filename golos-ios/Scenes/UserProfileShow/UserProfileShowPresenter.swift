@@ -17,7 +17,7 @@ import GoloSwift
 protocol UserProfileShowPresentationLogic {
     func presentUserInfo(fromResponseModel responseModel: UserProfileShowModels.UserInfo.ResponseModel)
     func presentUserDetails(fromResponseModel responseModel: UserProfileShowModels.UserDetails.ResponseModel)
-    func presentUpvote(fromResponseModel responseModel: UserProfileShowModels.ActiveVote.ResponseModel)
+    func presentLikeVote(fromResponseModel responseModel: UserProfileShowModels.Like.ResponseModel)
 }
 
 class UserProfileShowPresenter: UserProfileShowPresentationLogic {
@@ -42,8 +42,8 @@ class UserProfileShowPresenter: UserProfileShowPresentationLogic {
         viewController?.displayUserDetails(fromViewModel: userDetailsViewModel)
     }
     
-    func presentUpvote(fromResponseModel responseModel: UserProfileShowModels.ActiveVote.ResponseModel) {
-        let viewModel = UserProfileShowModels.ActiveVote.ViewModel(isVote: responseModel.isVote, isFlaunt: responseModel.isFlaunt, errorAPI: responseModel.errorAPI)
-        viewController?.displayUpvote(fromViewModel: viewModel)
+    func presentLikeVote(fromResponseModel responseModel: UserProfileShowModels.Like.ResponseModel) {
+        let viewModel = UserProfileShowModels.Like.ViewModel(isLike: responseModel.isLike, isDislike: responseModel.isDislike, errorAPI: responseModel.errorAPI)
+        viewController?.displayLikeVote(fromViewModel: viewModel)
     }
 }

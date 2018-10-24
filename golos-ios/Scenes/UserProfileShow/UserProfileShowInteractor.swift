@@ -21,7 +21,7 @@ protocol UserProfileShowBusinessLogic {
     func save(commentReply: PostShortInfo)
     func loadUserInfo(withRequestModel requestModel: UserProfileShowModels.UserInfo.RequestModel)
     func loadUserDetails(withRequestModel requestModel: UserProfileShowModels.UserDetails.RequestModel)
-    func upvote(withRequestModel requestModel: UserProfileShowModels.ActiveVote.RequestModel)
+    func likeVote(withRequestModel requestModel: UserProfileShowModels.Like.RequestModel)
 }
 
 protocol UserProfileShowDataStore {
@@ -85,10 +85,10 @@ class UserProfileShowInteractor: UserProfileShowBusinessLogic, UserProfileShowDa
         }
     }
     
-    func upvote(withRequestModel requestModel: UserProfileShowModels.ActiveVote.RequestModel) {
-        RestAPIManager.vote(up: requestModel.isVote, flaunt: requestModel.isFlaunt, postShortInfo: self.selectedBlog!, completion: { [weak self] errorAPI in
-            let responseModel = UserProfileShowModels.ActiveVote.ResponseModel(isVote: requestModel.isVote, isFlaunt: requestModel.isFlaunt, errorAPI: errorAPI)
-            self?.presenter?.presentUpvote(fromResponseModel: responseModel)
+    func likeVote(withRequestModel requestModel: UserProfileShowModels.Like.RequestModel) {
+        RestAPIManager.vote(isLike: requestModel.isLike, isDislike: requestModel.isDislike, postShortInfo: self.selectedBlog!, completion: { [weak self] errorAPI in
+            let responseModel = UserProfileShowModels.Like.ResponseModel(isLike: requestModel.isLike, isDislike: requestModel.isDislike, errorAPI: errorAPI)
+            self?.presenter?.presentLikeVote(fromResponseModel: responseModel)
         })
     }
 }

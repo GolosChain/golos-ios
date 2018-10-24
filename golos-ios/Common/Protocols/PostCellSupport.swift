@@ -23,14 +23,14 @@ protocol PostCellSupport: PaginationSupport, MetaDataSupport {
     var pendingPayoutValue: Float { get set }
     var children: Int64 { get set }
     
-    var netVotes: Int64 { get set }
-    var currentUserVoted: Bool { get set }
+    var likeCount: Int64 { get set }
+    var currentUserLiked: Bool { get set }
     
     var commentsCount: Int64 { get set }
     var currentUserCommented: Bool { get set }
 
-    var netFlaunt: Int64 { get set }
-    var currentUserFlaunted: Bool { get set }
+    var dislikeCount: Int64 { get set }
+    var currentUserDisliked: Bool { get set }
 
     var tags: [String]? { get set }
 
