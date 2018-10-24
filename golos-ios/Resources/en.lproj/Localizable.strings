@@ -19,7 +19,7 @@
 "Login Help Step Title 3 Active"            =   "3. In “Permissions“ section press show private active key (it starts from 5 or 1)";
 "Login Help Step Title 4"                   =   "4. You can copy-paste it, or\nscan through QR-code.";
 "Do Not Registered"                         =   "Don’t have an account?";
-"Add Max 5 Tags"                            =   "Add tags (max 5)";
+"Add Tags"                                  =   "Add tags";
 "No QR code is detected"                    =   "No QR code is detected";
 "QR code is detected"                       =   "QR code is detected";
 "Voice Power Title"                         =   "Vote against";

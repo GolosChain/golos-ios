@@ -14,7 +14,6 @@ import IQKeyboardManagerSwift
 class TagsCollectionViewController: GSBaseViewController {
     // MARK: - Properties
     var tags: [Tag]!
-    var tagIndex: Int       =   1
     var offsetIndex: Int    =   -1
     var isKeyboardShow      =   false
     
@@ -53,47 +52,43 @@ class TagsCollectionViewController: GSBaseViewController {
                                             forCellWithReuseIdentifier:     "AddTagCollectionViewCell")
 
         // Create first tag
-        self.createFirstTab()
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+        self.createAddTag()
     }
     
     
     // MARK: - Custom Functions
-    func createFirstTab() {
+    func createAddTag() {
         self.tags   =   [Tag]()
-        let tag     =   Tag(placeholder: "Tag".localized() + " 1", id: tagIndex, isFirst: true)
+        let tag     =   Tag(id: Int.max, isAddTag: true)
         
         self.tags.append(tag)
         self.collectionView.reloadData()
         self.completionTagsChanged!()
     }
     
-    private func addNewTag() {
-        guard self.tags.count <= 4 else {
-            self.showAlertView(withTitle: "Info", andMessage: "You can add up to 5 tags", needCancel: false, completion: { _ in })
-            return
+    private func addThemeTag() {
+        let id = self.tags.count - 1
+        
+        if id == 0 {
+            self.createThemeTag(id: id)
         }
         
-        // Check current Tag title
-        guard let title = self.tags.last?.title, !title.isEmpty else {
-            return
+        else if id > 0, let title = self.tags[id - 1].title, !title.isEmpty {
+            self.createThemeTag(id: id)
         }
-        
-        self.tagIndex           +=  1
-        let insertIndexPath     =   IndexPath(row: self.tags.count, section: 0)
+    }
+    
+    private func createThemeTag(id: Int) {
+        let indexPath = IndexPath(row: id, section: 0)
 
-        self.tags.append(Tag(placeholder: "Tag".localized() + " \(self.tags.count + 1)", id: self.tagIndex, isFirst: false))
-        self.collectionView.insertItems(at: [insertIndexPath])
-        self.collectionView.reloadItems(at: [insertIndexPath])
+        self.tags.insert(Tag(id: id), at: id)
+        self.collectionView.insertItems(at: [indexPath])
+        self.collectionView.reloadItems(at: [indexPath])
 
         self.calculateCollectionViewHeight()
 
-        (self.collectionView.cellForItem(at: IndexPath(row: self.tags.count - 1, section: 0)) as! ThemeTagCollectionViewCell).textField.becomeFirstResponder()
+        (self.collectionView.cellForItem(at: indexPath) as! ThemeTagCollectionViewCell).textField.becomeFirstResponder()
         self.collectionView.collectionViewLayout.invalidateLayout()
-
     }
     
     func calculateCollectionViewHeight() {
@@ -117,46 +112,41 @@ extension TagsCollectionViewController: UICollectionViewDataSource {
             return 0
         }
         
-        return self.tags.count + 1
+        return self.tags.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         var cell: UICollectionViewCell
         
-        if indexPath.row == self.tags.count {
-            self.addNewTagCell  =   collectionView.dequeueReusableCell(withReuseIdentifier: "AddTagCollectionViewCell", for: indexPath) as? AddTagCollectionViewCell
-            cell                =   self.addNewTagCell
-            
-            // Handler add button
-            self.addNewTagCell.completionAddNewTag              =   { [weak self] in
-                self?.addNewTag()
+        switch self.tags[indexPath.row].isAddTag {
+        // AddTag
+        case true:
+            cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AddTagCollectionViewCell", for: indexPath)
+           
+            // Handlerы
+            (cell as! AddTagCollectionViewCell).completionAddNewTag                 =   { [weak self] in
+                self?.addThemeTag()
             }
-            
-           self.addNewTagCell.completionAddButtonChangeFrame    =   { [weak self] newFrame in
+           
+            (cell as! AddTagCollectionViewCell).completionAddButtonChangeFrame      =   { [weak self] newFrame in
                 self?.complationCollectionViewChangeHeight!((newFrame.maxY + 18.0) * heightRatio)
             }
-        }
             
-        else {
-            cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ThemeTagCollectionViewCell", for: indexPath) as! ThemeTagCollectionViewCell
+        // ThemeTag
+        default:
+            cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ThemeTagCollectionViewCell", for: indexPath)
 
-            // First Tag
-            if indexPath.row == 0 {
-                (cell as! ThemeTagCollectionViewCell).clearButton.isHidden = true
-            }
-            
             // Configure the cell
-            let item = (indexPath.row == self.tags.count) ? nil : self.tags[indexPath.row]
+            let item = self.tags[indexPath.row]
             (cell as! ConfigureCell).setup(withItem: item, andIndexPath: indexPath)
             
-            // Handler clear button
+            /// Handlers
             (cell as! ThemeTagCollectionViewCell).completionClearButton = { [weak self] isKeyboardShow in
-                let deleteIndex         =   self?.tags.index(where: { $0.id == item?.id })!
+                let deleteIndex         =   self?.tags.index(where: { $0.id == item.id })!
                 let deleteIndexPath     =   IndexPath(row: deleteIndex!, section: 0)
                 self?.tags.remove(at: deleteIndex!)
                 
                 for (index, tag) in (self?.tags.enumerated())! {
-                    tag.placeholder     =   "Tag".localized() + " \(index + 1)"
                     self?.tags[index]   =   tag
                 }
                 
@@ -167,14 +157,13 @@ extension TagsCollectionViewController: UICollectionViewDataSource {
                 }
                 
                 // Last tag becomeFirstResponder
-                if isKeyboardShow {
-                    (self?.collectionView.cellForItem(at: IndexPath(row: (self?.tags.count)! - 1, section: 0)) as! ThemeTagCollectionViewCell).textField.becomeFirstResponder()
+                if isKeyboardShow && (self?.tags.count)! > 1 {
+                    (self?.collectionView.cellForItem(at: IndexPath(row: (self?.tags.count)! - 2, section: 0)) as! ThemeTagCollectionViewCell).textField.becomeFirstResponder()
                 }
                 
                 self?.collectionView.collectionViewLayout.invalidateLayout()
             }
             
-            // Handler end editing
             (cell as! ThemeTagCollectionViewCell).completionEndEditing = {
                 guard self.tags != nil else {
                     self.view.endEditing(true)
@@ -199,12 +188,12 @@ extension TagsCollectionViewController: UICollectionViewDataSource {
             
             // Handler change title
             (cell as! ThemeTagCollectionViewCell).completionChangeTitle = { [weak self] offset, enteredName, newCharacter in
-                self?.offsetIndex       =   indexPath.row
-                item?.cellWidth         =   offset
+                self?.offsetIndex   =   indexPath.row
+                item.cellWidth      =   offset
                 
                 // Add new Tag
                 if !(enteredName?.isEmpty)! && newCharacter == " " {
-                    self?.addNewTag()
+                    self?.addThemeTag()
                 }
                 
                 else {

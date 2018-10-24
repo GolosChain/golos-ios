@@ -112,7 +112,5 @@ extension Int {
                 return (self == 0 ? "Today Ago" : "Less 20 Seconds Ago").localized()
             }
         }
-        
-        return "Today Ago".localized()
     }
 }

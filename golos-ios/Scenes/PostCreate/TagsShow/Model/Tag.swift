@@ -10,19 +10,21 @@ import UIKit
 
 class Tag: NSObject {
     // MARK: - Properties
+    var id: Int             =   0
     var title: String?
-    var placeholder: String?
-    var id: Int                 =   0
-    var isFirst: Bool           =   false
-    var cellWidth: CGFloat      =   78.0 * widthRatio
+    var isAddTag: Bool      =   false
+    var cellWidth: CGFloat  =   78.0 * widthRatio
     
     
     // MARK: - Class Initialization
-    init(placeholder: String?, id: Int, isFirst: Bool) {
+    init(id: Int, isAddTag: Bool = false) {
         super.init()
         
-//        self.placeholder        =   placeholder
-        self.id                 =   id
-        self.isFirst            =   isFirst
+        self.id             =   id
+        self.isAddTag       =   isAddTag
+        
+        if isAddTag {
+            self.cellWidth  =   36.0 * widthRatio
+        }
     }
 }

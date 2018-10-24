@@ -78,10 +78,8 @@ class ThemeTagCollectionViewCell: UICollectionViewCell {
 extension ThemeTagCollectionViewCell: ConfigureCell {
     func setup(withItem item: Any?, andIndexPath indexPath: IndexPath) {
         if let tag = item as? Tag {
-            self.textField.text         =   tag.title
-            self.textField.placeholder  =   tag.placeholder
-            self.clearButton.isEnabled  =   !tag.isFirst
-            self.textField.tag          =   tag.id
+            self.textField.tag  = tag.id
+            self.textField.text = tag.title
         }
     }
 }
@@ -90,8 +88,8 @@ extension ThemeTagCollectionViewCell: ConfigureCell {
 // MARK: - UITextFieldDelegate
 extension ThemeTagCollectionViewCell: UITextFieldDelegate {
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        self.firstResponderWidth        =   textField.frame.width
-        self.isClearButtonTaped         =   false
+        self.isClearButtonTaped = false
+        self.firstResponderWidth = textField.frame.width
 
         self.completionStartEditing!()
         
@@ -148,20 +146,20 @@ extension ThemeTagCollectionViewCell: UITextFieldDelegate {
         if string.isEmpty {
             // Delete character
             if range.length == 1 {
-                stringWidth     =   ("\(textField.text!.last!)" as NSString).size(withAttributes: [NSAttributedString.Key.font: UIFont(name: "SFProDisplay-Regular", size: 13.0)!]).width
+                stringWidth = ("\(textField.text!.last!)" as NSString).size(withAttributes: [NSAttributedString.Key.font: UIFont(name: "SFProDisplay-Regular", size: 13.0)!]).width
             }
                 
             // Delete text block
             else {
-                let start       =   textField.text!.index(textField.text!.startIndex, offsetBy: range.location)
-                let end         =   textField.text!.index(start, offsetBy: range.length)
+                let start = textField.text!.index(textField.text!.startIndex, offsetBy: range.location)
+                let end = textField.text!.index(start, offsetBy: range.length)
                 
-                stringWidth     =   ("\(textField.text![start..<end])" as NSString).size(withAttributes: [NSAttributedString.Key.font: UIFont(name: "SFProDisplay-Regular", size: 13.0)!]).width
+                stringWidth = ("\(textField.text![start..<end])" as NSString).size(withAttributes: [NSAttributedString.Key.font: UIFont(name: "SFProDisplay-Regular", size: 13.0)!]).width
             }
         }
             
         else {
-            stringWidth         =   (string as NSString).size(withAttributes: [NSAttributedString.Key.font: UIFont(name: "SFProDisplay-Regular", size: 13.0)!]).width
+            stringWidth = (string as NSString).size(withAttributes: [NSAttributedString.Key.font: UIFont(name: "SFProDisplay-Regular", size: 13.0)!]).width
         }
         
         if textLength > 2 {

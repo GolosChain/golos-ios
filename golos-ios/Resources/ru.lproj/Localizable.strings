@@ -19,7 +19,7 @@
 "Login Help Step Title 3 Active"            =   "3. В разделе \"Разрешения\"\nнажмите показать приватный активный ключ\n(он начинается с 5 или 1)";
 "Login Help Step Title 4"                   =   "4. Его нужно скопировать или\nсканировать через QR-код";
 "Do Not Registered"                         =   "Вы ещё не зарегистрированы?";
-"Add Max 5 Tags"                            =   "Напишите 5 тегов";
+"Add Tags"                                  =   "Добавьте теги";
 "No QR code is detected"                    =   "QR-код не обнаружен";
 "QR code is detected"                       =   "QR-код обнаружен";
 "Voice Power Title"                         =   "Голосовать против";

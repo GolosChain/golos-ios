@@ -62,7 +62,7 @@ class PostCreateRouter: NSObject, PostCreateRoutingLogic, PostCreateDataPassing 
         let toView: UIView      =   (self.viewController!.navigationController!.tabBarController?.viewControllers?.first!.view)!
         
         // Clean all tags only by tapped Cancel button
-        viewController?.tagsVC.createFirstTab()
+//        viewController?.tagsVC.createAddTag()
         
         UIView.animate(withDuration: 0.3,
                        animations: {

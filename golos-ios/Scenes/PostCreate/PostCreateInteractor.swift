@@ -89,7 +89,9 @@ class PostCreateInteractor: PostCreateBusinessLogic, PostCreateDataStore {
                         return
                     }
 
-                    let jsonMetadataString = ("{\"tags\":[\"" + (self?.tags)!.compactMap({ $0.title!.transliteration(forPermlink: false) }).joined(separator: ",") + "\"]")
+                    let jsonMetadataString = ("{\"tags\":[\"" + (self?.tags)!
+                                                .filter({ $0.isAddTag == false })
+                                                .compactMap({ $0.title!.transliteration(forPermlink: false) }).joined(separator: ",") + "\"]")
                                                 .replacingOccurrences(of: ",", with: "\",\"") + ",\"app\":\"golos.io/0.1\",\"format\":\"markdown\"}"
                     
 //                    Logger.log(message: "\njsonMetadataString:\n\t\(jsonMetadataString!)", event: .debug)

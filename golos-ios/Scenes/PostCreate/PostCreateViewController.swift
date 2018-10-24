@@ -84,7 +84,7 @@ class PostCreateViewController: GSBaseViewController {
     
     @IBOutlet weak var tagsTitleLabel: UILabel! {
         didSet {
-            tagsTitleLabel.tune(withText:           "Add Max 5 Tags",
+            tagsTitleLabel.tune(withText:           "Add Tags",
                                 hexColors:          darkGrayWhiteColorPickers,
                                 font:               UIFont(name: "SFProDisplay-Regular", size: 12.0),
                                 alignment:          .left,
@@ -337,6 +337,7 @@ class PostCreateViewController: GSBaseViewController {
         self.tagsVC.collectionView.reloadData()
 
         self.interactor?.save(tags: nil)
+        self.tagsVC.createAddTag()
     }
     
     private func showContent() {
@@ -361,7 +362,7 @@ class PostCreateViewController: GSBaseViewController {
     }
     
     override func localizeTitles() {
-        self.tagsTitleLabel.text = "Add Max 5 Tags".localized()
+        self.tagsTitleLabel.text = "Add Tags".localized()
         self.postCreateView.titleTextField.placeholder = "Enter Post Title Placeholder".localized()
         contentTextView.placeholder     =   (sceneType == .createPost ? "Enter Text Placeholder" : "Enter Comment Placeholder").localized()
         self.navigationItem.title       =   (sceneType == .createPost ? "Publish Title" : "Comment Title Verb").localized()
@@ -386,7 +387,9 @@ class PostCreateViewController: GSBaseViewController {
             return
         }
         
-        self.displayPostingBarButtonActivityIndicator()
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1, execute: {
+            self.displayPostingBarButtonActivityIndicator()
+        })
         
         // Get content parts
         let contentParts = self.contentTextView.getParts()
