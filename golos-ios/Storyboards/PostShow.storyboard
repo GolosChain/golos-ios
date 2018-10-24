@@ -345,11 +345,11 @@
                                                     <constraint firstAttribute="height" identifier="markdownViewHeightConstraint" id="XZb-1l-yIm"/>
                                                 </constraints>
                                             </view>
-                                            <stackView contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="MhK-Vc-x7K" userLabel="Active Buttons Stack View">
+                                            <stackView contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="MhK-Vc-x7K" userLabel="Active Buttons Stack View">
                                                 <rect key="frame" x="16" y="98.5" width="343" height="80"/>
                                                 <subviews>
                                                     <button clipsSubviews="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fb3-VQ-GlM" userLabel="Like Button">
-                                                        <rect key="frame" x="0.0" y="0.0" width="78.5" height="80"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="86" height="80"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                         <inset key="titleEdgeInsets" minX="18" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -365,7 +365,7 @@
                                                         </connections>
                                                     </button>
                                                     <button clipsSubviews="YES" tag="1" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aLP-ZP-yPw" userLabel="Dislike Button">
-                                                        <rect key="frame" x="88.5" y="0.0" width="78" height="80"/>
+                                                        <rect key="frame" x="86" y="0.0" width="85.5" height="80"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                         <inset key="titleEdgeInsets" minX="32" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -378,7 +378,7 @@
                                                         </connections>
                                                     </button>
                                                     <button clipsSubviews="YES" tag="2" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wPR-xc-S9f" userLabel="Comments Button">
-                                                        <rect key="frame" x="176.5" y="0.0" width="78.5" height="80"/>
+                                                        <rect key="frame" x="171.5" y="0.0" width="86" height="80"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                         <inset key="titleEdgeInsets" minX="32" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -390,7 +390,7 @@
                                                         </connections>
                                                     </button>
                                                     <button clipsSubviews="YES" tag="3" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bFD-G5-iNE" userLabel="Repost Button">
-                                                        <rect key="frame" x="265" y="0.0" width="78" height="80"/>
+                                                        <rect key="frame" x="257.5" y="0.0" width="85.5" height="80"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                         <state key="normal">
@@ -415,7 +415,7 @@
                                                 <color key="color" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                             </activityIndicatorView>
                                             <activityIndicatorView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="AYT-cY-Zsi" userLabel="Dislike Activity Indicator">
-                                                <rect key="frame" x="125.5" y="128.5" width="20" height="20"/>
+                                                <rect key="frame" x="126.5" y="128.5" width="20" height="20"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="AYT-cY-Zsi" secondAttribute="height" multiplier="1:1" id="KLI-if-npM"/>

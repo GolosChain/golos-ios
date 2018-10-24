@@ -30,7 +30,6 @@ protocol PostShowDisplayLogic: class {
 class PostShowViewController: GSBaseViewController {
     // MARK: - Properties
     var insertedRow: Int?
-    var likesCount: Int = 0
     var scrollCommentsDown: Bool = false
     var isPostContentModify: Bool = false
     
@@ -563,9 +562,9 @@ class PostShowViewController: GSBaseViewController {
             self.likeButton.isEnabled           =   true
             self.dislikeButton.isEnabled        =   true
 
-            if let userNickName = User.current?.nickName {
-                self.dislikeButton.isHidden     =   displayedPost.author == userNickName
-            }
+//            if let userNickName = User.current?.nickName {
+//                self.dislikeButton.isHidden     =   displayedPost.author == userNickName
+//            }
             
             self.dislikeActivityIndicator.stopAnimating()
             self.likeActivityIndicator.stopAnimating()
@@ -595,13 +594,12 @@ class PostShowViewController: GSBaseViewController {
             self.userNameLabel.text = self.postFeedHeaderView.authorNameButton.titleLabel!.text
             
             // Like icon
-            self.likesCount       =   Int(displayedPost.likeCount)
-            self.likeButton.tag   =   displayedPost.currentUserLiked ? 99 : 0
-            self.likeButton.setTitle(self.likesCount > 0 ? "\(self.likesCount)" : "    ", for: .normal)
+            self.likeButton.tag = displayedPost.currentUserLiked ? 99 : 0
+            self.likeButton.setTitle(displayedPost.likeCount > 0 ? "\(displayedPost.likeCount)" : "    ", for: .normal)
             self.likeButton.setImage(UIImage(named: displayedPost.currentUserLiked ? "icon-button-post-like-selected" : "icon-button-post-like-normal"), for: .normal)
             
             // Dislike icon
-            self.dislikeButton.tag   =   displayedPost.currentUserDisliked ? 99 : 0
+            self.dislikeButton.tag = displayedPost.currentUserDisliked ? 99 : 0
             self.dislikeButton.setTitle(displayedPost.dislikeCount > 0 ? "\(displayedPost.dislikeCount)" : "    ", for: .normal)
             self.dislikeButton.setImage(displayedPost.currentUserDisliked ? UIImage(named: "icon-button-post-dislike-selected") : UIImage(named: "icon-button-post-dislike-normal"), for: .normal)
             
