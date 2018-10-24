@@ -150,7 +150,7 @@ class PostFeedHeaderView: UIView {
         if let user = User.fetch(byNickName: post.author) {
             self.authorNameButton.setTitle((user.name == "XXX" || user.name.isEmpty ? user.nickName : user.name).uppercaseFirst, for: .normal)
             
-            self.timeLabel.text                 =   post.created.convertToDaysAgo() // convertToDaysAgo(dateFormatType: .expirationDateType)
+            self.timeLabel.text                 =   post.created.convertToTimeAgo()
             self.authorReputationLabel.text     =   String(format: "%i", user.reputation.convertWithLogarithm10())
             
             self.categoryLabel.text = post.category

@@ -287,7 +287,7 @@ extension ReplyTableViewCell: ConfigureCell {
             }
         })
         
-        self.timeLabel.text         =   reply.created.convertToDaysAgo()
+        self.timeLabel.text         =   reply.created.convertToTimeAgo()
         self.authorTitleLabel.text  =   "Answered your".localized()
 
         selectionStyle = .none

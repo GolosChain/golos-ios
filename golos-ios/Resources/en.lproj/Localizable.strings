@@ -111,11 +111,6 @@
 "Killer Whale"                              =   "Killer Whale";
 "Whale"                                     =   "Whale";
 "Answered your"                             =   "answered your";
-"Days ago"                                  =   "days ago";
-"1 Hour ago"                                =   "hour ago";
-"2-4 Hour ago"                              =   "hour ago";
-"More 5 Hour ago"                           =   "hour ago";
-"Today ago"                                 =   "less than an hour ago";
 "Settings"                                  =   "Settings";
 "COMMON"                                    =   "COMMON";
 "Interface Language"                        =   "Interface Language";
@@ -237,3 +232,19 @@
 "Промо"                                     =   "Promo";
 "Посты"                                     =   "Posts";
 "Ответы"                                    =   "Replies";
+
+
+// Time
+"Today Ago"                                 =   "less than an hour ago";
+"1 Day Ago"                                 =   "day ago";
+"1 Hour Ago"                                =   "hour ago";
+"1 Minute Ago"                              =   "minute ago";
+"1 Second Ago"                              =   "second ago";
+"2-4 Days Ago"                              =   "day ago";
+"2-4 Hours Ago"                             =   "hour ago";
+"2-4 Minutes Ago"                           =   "minutes ago";
+"2-4 Seconds Ago"                           =   "seconds ago";
+"Less 20 Days Ago"                          =   "day ago";
+"Less 20 Hours Ago"                         =   "hours ago";
+"Less 20 Minutes Ago"                       =   "minutes ago";
+"Less 20 Seconds Ago"                       =   "seconds ago";

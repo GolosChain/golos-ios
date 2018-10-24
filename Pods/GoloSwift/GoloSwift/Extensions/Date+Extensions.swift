@@ -22,26 +22,39 @@ extension Date {
         return dateFormatter.string(from: self)
     }
     
-    public func convertToDaysAgo() -> String {
-        let dateComponents          =   Calendar.current.dateComponents([ .day, .hour, .minute ], from: self, to: Date())
+    // Issue #129
+    public func convertToTimeAgo() -> String {
+        let dateComponents          =   Calendar.current.dateComponents([ .year, .month, .day, .hour, .minute, .second ], from: self, to: Date())
         
-        // Days ago
-        if let day = dateComponents.day, day > 0 {
-            return String(format: "%d %@", day, "Days ago".localized())
+        // Date in format '25-02-1972'
+        if let days = dateComponents.day, days > 7, let month = dateComponents.month, let year = dateComponents.year {
+            return String(format: "%d-%d-%d", days, month, year)
+        }
+            
+        // Date in format 'N days ago'
+        else if let days = dateComponents.day, 1...7 ~= days {
+            return String(format: "%d %@", days, days.localized(byTimeMode: .days))
         }
         
-        // Hours ago
-        if let hour = dateComponents.hour, hour > 0 {
-            return String(format: "%d %@", hour, (hour == 1 ? "1 Hour ago" : (hour <= 4) ? "2-4 Hour ago" : "More 5 Hour ago").localized())
-        }
-        
-        if dateComponents.minute != nil {
-            return "Today ago".localized()
+        // Date in format 'N hours/minutes/seconds ago'
+        if let days = dateComponents.day, days == 0, let hours = dateComponents.hour, let minutes = dateComponents.minute, let seconds = dateComponents.second {
+            if hours > 0 {
+                return String(format: "%d %@", hours, hours.localized(byTimeMode: .hours))
+            }
+                
+            else if minutes > 0 {
+                return String(format: "%d %@", minutes, minutes.localized(byTimeMode: .minutes))
+            }
+                
+            else {
+                return String(format: "%d %@", seconds, seconds.localized(byTimeMode: .seconds))
+            }
         }
         
         return String(format: "%@", self.convert(toStringFormat: .commentDate))
     }
-
+    
+    
     /// Convet Date to 'days ago'
     public func convertToDaysAgo(dateFormatType: DateFormatType) -> String {
         let dateFormatter           =   DateFormatter()

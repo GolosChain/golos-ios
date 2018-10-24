@@ -208,7 +208,7 @@ class CommentView: UIView, HandlersCellSupport {
     }
 
     func localizeTitles() {
-        self.timeLabel.text = self.created.convertToDaysAgo()
+        self.timeLabel.text = self.created.convertToTimeAgo()
         self.replyButton.setTitle("Reply Verb".localized(), for: .normal)
     }
     
