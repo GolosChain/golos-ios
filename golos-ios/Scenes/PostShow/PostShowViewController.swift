@@ -39,7 +39,7 @@ class PostShowViewController: GSBaseViewController {
     
     // Comments pagination
     let paginationOffset    =   5
-    var isPaginationRun     =   true
+    var isPaginationRun     =   false
     var needPagination      =   false
     
     var gsTimer: GSTimer?
@@ -714,8 +714,8 @@ class PostShowViewController: GSBaseViewController {
     // MARK: - Actions
     @IBAction func backButtonTapped(_ sender: UIButton) {
         // Return comments count
-        self.handlerPostShowSceneClose!(self.isPostContentModify)
         self.navigationController?.popViewController(animated: true)
+        self.handlerPostShowSceneClose!(self.isPostContentModify)
     }
     
     @IBAction func moreButtonTapped(_ sender: UIButton) {
@@ -1109,6 +1109,7 @@ extension PostShowViewController {
             // Add comments to list first time
             if self.comments == nil {
                 self.comments = Array(commentEntities[startIndex..<endIndex])
+                self.isPaginationRun = false
             }
                 
             // Add comments to list other time
