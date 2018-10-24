@@ -39,7 +39,7 @@ class PostShowViewController: GSBaseViewController {
     
     // Comments pagination
     let paginationOffset    =   5
-    var isPaginationRun     =   false
+    var isPaginationRun     =   true
     var needPagination      =   false
     
     var gsTimer: GSTimer?
@@ -610,7 +610,7 @@ class PostShowViewController: GSBaseViewController {
             // Flaunt icon
             self.flauntButton.tag   =   displayedPost.currentUserFlaunted ? 99 : 0
             self.flauntButton.setTitle(displayedPost.netFlaunt > 0 ? "\(displayedPost.netFlaunt)" : nil, for: .normal)
-            self.flauntButton.setImage(displayedPost.currentUserFlaunted ? UIImage(named: "icon-button-flaunt-selected") : UIImage(named: "icon-button-flaunt-default"), for: .normal)
+            self.flauntButton.setImage(displayedPost.currentUserFlaunted ? UIImage(named: "icon-button-flaunt-selected") : UIImage(named: "icon-button-flaunt-normal"), for: .normal)
         }
     }
     
@@ -1111,17 +1111,17 @@ extension PostShowViewController {
                 self.comments = Array(commentEntities[startIndex..<endIndex])
             }
                 
-                // Add comments to list other time
+            // Add comments to list other time
             else if self.insertedRow == nil {
                 self.comments!.append(contentsOf: Array(commentEntities[startIndex..<endIndex]))
             }
                 
-                // Add new comment to end of list
+            // Add new comment to end of list
             else if self.insertedRow == self.comments!.count {
                 self.comments!.append(contentsOf: Array(commentEntities[startIndex..<endIndex]))
             }
                 
-                // Add new Reply to list
+            // Add new Reply to list
             else {
                 self.comments!.insert(commentEntities[startIndex], at: startIndex)
             }
@@ -1130,7 +1130,6 @@ extension PostShowViewController {
             self.comments = self.comments!.sorted(by: { $0.treeIndex < $1.treeIndex })
             
             // Reload data
-            self.needPagination =   endIndex != commentEntities.count
             self.commentViews   =   [CommentView]()
             var counter         =   startIndex
             
@@ -1163,6 +1162,7 @@ extension PostShowViewController {
                                 }
                             }
                             
+                            self?.needPagination = endIndex != commentEntities.count
                             self?.didFinishLoadComments(afterPagination: (self?.isPaginationRun)!)
                         }
                     })
@@ -1213,6 +1213,8 @@ extension PostShowViewController {
                         
                         self?.interactor?.save(comment: postShortInfo)
                         self?.router?.routeToPostCreateScene(withType: .createComment)
+                        
+                        self?.insertedRow = (postShortInfo.indexPath?.row)! + 1
                     }
                     
                     commentView.handlerReplyButtonTapped                            =   { [weak self] postShortInfo in
@@ -1224,10 +1226,31 @@ extension PostShowViewController {
                         
                         guard (self?.isCurrentOperationPossible())! else { return }
                         
+                        if let index = postShortInfo.indexPath?.row, let comments = self?.comments {
+                            // Select last Comment in tree
+                            if index + 1 == comments.count {
+                                self?.insertedRow = comments.count
+                            }
+                            
+                            // Select Comment inside tree
+                            else {
+                                let comment     =   comments[index]
+                                let childrens   =   comments.filter({ $0.treeIndex.hasPrefix(comment.treeIndex) }).reduce(0, { (result, comment) -> Int in
+                                    return result + Int(comment.children)
+                                })
+                                
+                                if index + childrens + 1 < comments.count {
+                                    self?.insertedRow = index + childrens + 1
+                                }
+                                
+                                else {
+                                    self?.insertedRow = nil
+                                }
+                            }
+                        }
+                        
                         self?.interactor?.save(comment: postShortInfo)
                         self?.router?.routeToPostCreateScene(withType: .createCommentReply)
-                        
-                        self?.insertedRow = (postShortInfo.indexPath?.row)! + 1
                     }
                     
                     commentView.handlerShareButtonTapped                            =   { [weak self] in

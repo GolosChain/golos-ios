@@ -32,13 +32,14 @@ class CommentHeaderView: UIView {
     
     @IBOutlet var view: UIView! {
         didSet {
-            self.view.tune()
+//            self.view.tune()
         }
     }
     
     @IBOutlet weak var contentView: UIView! {
         didSet {
-            self.contentView.tune()
+            self.contentView.backgroundColor = UIColor.red
+//            self.contentView.tune()
         }
     }
     
@@ -76,7 +77,7 @@ class CommentHeaderView: UIView {
     func createFromXIB() {
         UINib(nibName: String(describing: CommentHeaderView.self), bundle: Bundle(for: CommentHeaderView.self)).instantiate(withOwner: self, options: nil)
         addSubview(view)
-        view.frame = CGRect(origin: .zero, size: CGSize(width: UIScreen.main.bounds.width, height: 48.0 * heightRatio))
+//        view.frame = CGRect(origin: .zero, size: CGSize(width: UIScreen.main.bounds.width, height: 48.0 * heightRatio))
     }
 
     func translateTitle() {

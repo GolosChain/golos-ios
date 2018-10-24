@@ -396,7 +396,7 @@
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                         <inset key="titleEdgeInsets" minX="8" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                        <state key="normal" image="icon-button-flaunt-default">
+                                                        <state key="normal" image="icon-button-flaunt-normal">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
@@ -481,7 +481,6 @@
                                             <constraint firstItem="AYT-cY-Zsi" firstAttribute="leading" secondItem="aLP-ZP-yPw" secondAttribute="leading" constant="-4" id="Ski-b7-KcF"/>
                                             <constraint firstAttribute="trailing" secondItem="lwn-iM-8rz" secondAttribute="trailing" constant="16" id="T9i-xq-yw4"/>
                                             <constraint firstAttribute="trailing" secondItem="zPm-d9-LiX" secondAttribute="trailing" constant="16" id="ZOe-fx-a6L"/>
-                                            <constraint firstItem="zdg-xS-0Il" firstAttribute="width" secondItem="BtF-Gk-D12" secondAttribute="width" id="a4E-bK-7dG"/>
                                             <constraint firstItem="hL9-He-JpB" firstAttribute="leading" secondItem="BtF-Gk-D12" secondAttribute="leading" id="cgt-dp-hh8"/>
                                             <constraint firstItem="MhK-Vc-x7K" firstAttribute="leading" secondItem="BtF-Gk-D12" secondAttribute="leading" constant="16" id="fUC-kO-iPy"/>
                                             <constraint firstItem="zPm-d9-LiX" firstAttribute="leading" secondItem="BtF-Gk-D12" secondAttribute="leading" constant="16" id="gGh-Ki-O6Z"/>
@@ -560,6 +559,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="zdg-xS-0Il" firstAttribute="width" secondItem="AJS-P4-Hkt" secondAttribute="width" id="AGr-vQ-X40"/>
                             <constraint firstItem="7Js-bQ-ZpY" firstAttribute="height" secondItem="AJS-P4-Hkt" secondAttribute="height" multiplier="64:623" id="Lx4-fU-huY"/>
                             <constraint firstItem="ZkM-23-awk" firstAttribute="leading" secondItem="UNP-hf-cFI" secondAttribute="leading" id="NJu-wh-mfP"/>
                             <constraint firstItem="NB0-PC-C9r" firstAttribute="centerX" secondItem="AJS-P4-Hkt" secondAttribute="centerX" id="Nvm-5Z-Pgo"/>
@@ -713,7 +713,7 @@
         <image name="icon-button-comments-default" width="20" height="20"/>
         <image name="icon-button-comments-highlighted" width="20" height="20"/>
         <image name="icon-button-donate-normal" width="19" height="14"/>
-        <image name="icon-button-flaunt-default" width="13" height="18"/>
+        <image name="icon-button-flaunt-normal" width="13" height="18"/>
         <image name="icon-button-promote-normal" width="14" height="14"/>
         <image name="icon-button-upvotes-default" width="20" height="20"/>
         <image name="icon-cell-user-profile" width="18" height="18"/>
