@@ -308,7 +308,7 @@ class PostCreateViewController: GSBaseViewController {
         
         // Check tags
         else if self.router?.dataStore?.tags == nil || self.router?.dataStore?.tags?.first?.title == nil || (self.router?.dataStore?.tags?.first?.title?.isEmpty)!  {
-            self.showAlertView(withTitle: "Info", andMessage: "Select topic", needCancel: false, completion: { _ in })
+            self.showAlertView(withTitle: "Info", andMessage: "Add at least one tag", needCancel: false, completion: { _ in })
             return false
         }
         
