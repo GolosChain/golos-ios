@@ -42,7 +42,7 @@ extension NSManagedObject {
             entity.url                          =   model.url
             entity.pendingPayoutValue           =   (model.pending_payout_value as NSString).floatValue
             entity.children                     =   Int64(model.children)
-            entity.likeCount                    =   model.net_votes
+            entity.likeCount                    =   abs(model.net_votes)
             entity.dislikeCount                 =   0
             
             entity.authorReblog                 =   model.reblog_author
@@ -61,11 +61,11 @@ extension NSManagedObject {
             
             // Modify body
             entity.body                         =   model.body
-                                                        .convertImagePathToMarkdown()
+//                                                        .convertImagePathToMarkdown()
                                                         .convertUsersAccounts()
             
             // Set Active Vote values
-            if model.net_votes > 0, let user = User.current {
+            if abs(model.net_votes) > 0, let user = User.current {
                 model.active_votes.forEach({ activeVote in
                     if activeVote.voter == user.nickName {
                         switch activeVote.percent {
@@ -85,7 +85,7 @@ extension NSManagedObject {
             }            
 
             // Dislike count
-            if model.net_votes > 0 {
+            if abs(model.net_votes) > 0 {
                 entity.dislikeCount = Int64(model.active_votes.filter({ $0.percent < 0 }).count)
                 
                 if entity.dislikeCount > 0 {

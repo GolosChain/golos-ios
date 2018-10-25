@@ -113,6 +113,72 @@ class GSBaseViewController: UIViewController {
         alertViewController.show()
     }
     
+    func showAlertAction(withTitle title: String, andMessage message: String, icon: UIImage? = nil, actionTitle: String? = "Enter Title", needCancel cancel: Bool, isCancelLeft: Bool = true, completion: @escaping ((Bool) -> Void)) {
+        let alertViewController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        let attributedTitle = NSMutableAttributedString(string: title.localized())
+        attributedTitle.addAttribute(.font, value: UIFont(name: "SFProDisplay-Regular", size: 18.0)!, range: NSRange(location: 0, length: attributedTitle.length))
+        alertViewController.setValue(attributedTitle, forKey: "attributedTitle")
+
+        let attributedMessage = NSMutableAttributedString(string: String(format: "%@%@", icon == nil ? "" : "\n\n\n", message.localized()))
+        attributedMessage.addAttribute(.font, value: UIFont(name: "SFProDisplay-Regular", size: 17.0)!, range: NSRange(location: 0, length: attributedMessage.length))
+        
+        let userNamePattern         =   "\\@\\w*"
+        let userNameRegex           =   try! NSRegularExpression(pattern: userNamePattern, options: [])
+        
+        if let userNameMatches = userNameRegex.firstMatch(in: message.localized(), options: .withTransparentBounds, range: NSRange(location: 0, length: message.localized().count)) {
+            let range = NSRange(location:  userNameMatches.range.location + 3, length:  userNameMatches.range.length)
+            attributedMessage.addAttribute(.foregroundColor, value: UIColor.blue, range: range)
+        }
+
+        
+        
+        
+        
+//        let userName = message.localized().components(separatedBy: "@").last!
+//        let range = (message.localized() as NSString).range(of: "@\(userName.replacingOccurrences(of: "?", with: "").trimmingCharacters(in: .whitespaces))")
+//        attributedMessage.addAttribute(.foregroundColor, value: UIColor.blue, range: range)
+
+        alertViewController.setValue(attributedMessage, forKey: "attributedMessage")
+        
+        let alertViewControllerCancelAction = UIAlertAction.init(title: "ActionCancel".localized(), style: .cancel, handler: { _ in
+            return completion(false)
+        })
+        
+        let alertViewControllerOkAction = UIAlertAction.init(title: (cancel ? actionTitle!.localized() : "ActionOk".localized()), style: .destructive, handler: { _ in
+            return completion(true)
+        })
+        
+        if cancel {
+            if isCancelLeft {
+                alertViewController.addAction(alertViewControllerCancelAction)
+                alertViewController.addAction(alertViewControllerOkAction)
+            }
+            
+            else {
+                alertViewController.addAction(alertViewControllerOkAction)
+                alertViewController.addAction(alertViewControllerCancelAction)
+            }
+        }
+        
+        else {
+            alertViewController.addAction(alertViewControllerOkAction)
+        }
+
+        // Add icon
+        if let iconImage = icon {
+            let iconView = UIImageView(frame: CGRect(origin:    CGPoint(x: self.view.frame.midX - 30.0 * widthRatio, y: alertViewController.view.frame.minY + 40.0 * heightRatio),
+                                                     size:      CGSize(width: 50 * widthRatio, height: 50 * widthRatio)))
+            iconView.image = iconImage
+            iconView.layer.cornerRadius = 25.0 * widthRatio
+            iconView.clipsToBounds = true
+            
+            alertViewController.view.addSubview(iconView)
+        }
+        
+        self.present(alertViewController, animated: true, completion: nil)
+    }
+    
     func isCurrentOperationPossible() -> Bool {
         guard !User.isAnonymous else {
             self.showAlertView(withTitle: "Enter Title", andMessage: "Please Login in App", needCancel: true, completion: { success in

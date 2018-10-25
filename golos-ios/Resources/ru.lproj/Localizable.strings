@@ -44,6 +44,7 @@
 "Enter With Posting Key"                    =   "Войти с постинг ключом";
 "Add at least one tag"                      =   "Добавьте минимум один тег";
 "Subscribe Verb"                            =   "Подписаться";
+"Unsubscribe Verb"                          =   "Отписаться";
 "Write"                                     =   "Написать";
 "Posts"                                     =   "Посты";
 "Replies"                                   =   "Ответы";
@@ -76,6 +77,7 @@
 "Reply Verb"                                =   "Ответить";
 "No Comments Title"                         =   "Пока нет комментариев. Будь первым!";
 "Vote Verb"                                 =   "Голосовать";
+"Cancel Subscribe Verb"                     =   "Отменить подписку";
 
 
 // Titles
@@ -156,6 +158,7 @@
 "Cancel Vote Message"                       =   "Удаление голоса изменит ваше решение по голосованию за этот пост";
 "Voted Verb"                                =   "Проголосовали";
 "Voted Against Verb"                        =   "Проголосовали против";
+"Unsubscribe are you sure"                  =   "Вы уверены, что хотите\nотменить подписку";
 
 
 // Placeholders

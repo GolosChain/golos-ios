@@ -861,21 +861,35 @@ class PostShowViewController: GSBaseViewController {
     @IBAction func subscribeButtonTapped(_ sender: UIButton) {
         guard self.isCurrentOperationPossible() else { return }
 
-        sender.setBorder(color: UIColor(hexString: "#dbdbdb").cgColor, cornerRadius: 4.0 * heightRatio)
+        self.userNameLabel.text = self.postFeedHeaderView.authorNameButton.titleLabel!.text
+
+        self.showAlertAction(withTitle: "Unsubscribe Verb", andMessage: String(format: "%@ @%@ ?", "Unsubscribe are you sure".localized(), self.postFeedHeaderView.authorNickNameButton.titleLabel!.text!), icon: self.postFeedHeaderView.authorProfileImageView.image, actionTitle: "Cancel Subscribe Verb", needCancel: true, isCancelLeft: false, completion: { [weak self] success in
+            if success {
+                print("XXX")
+            }
+            
+            else {
+                print("YYY")
+            }
+        })
         
-        guard isNetworkAvailable else {
-            self.showAlertView(withTitle: "Info", andMessage: "No Internet Connection", needCancel: false, completion: { _ in })
-            return
-        }
         
-        // Run spinner
-        DispatchQueue.main.async {
-            self.subscribeActivityIndicator.startAnimating()
-        }
         
-        // API
-        let requestModel = PostShowModels.Item.RequestModel(willSubscribe: !sender.isSelected)
-        interactor?.subscribe(withRequestModel: requestModel)
+//        sender.setBorder(color: UIColor(hexString: "#dbdbdb").cgColor, cornerRadius: 4.0 * heightRatio)
+//
+//        guard isNetworkAvailable else {
+//            self.showAlertView(withTitle: "Info", andMessage: "No Internet Connection", needCancel: false, completion: { _ in })
+//            return
+//        }
+//
+//        // Run spinner
+//        DispatchQueue.main.async {
+//            self.subscribeActivityIndicator.startAnimating()
+//        }
+//
+//        // API
+//        let requestModel = PostShowModels.Item.RequestModel(willSubscribe: !sender.isSelected)
+//        interactor?.subscribe(withRequestModel: requestModel)
     }
     
     @IBAction func subscribeButtonTappedDown(_ sender: UIButton) {
