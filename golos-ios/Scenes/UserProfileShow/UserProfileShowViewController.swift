@@ -414,7 +414,7 @@ extension UserProfileShowViewController {
                 activeVC.fetchPosts(byParameters: (author: self.router?.dataStore?.userNickName, postFeedType: self.postFeedTypes[self.selectedButton.tag], permlink: nil, sortBy: nil))
                 
                 // Handler Pull Refresh/Infinite Scrolling data
-                activeVC.handlerPushRefreshData         =   { [weak self] lastItem in
+                activeVC.handlerPushRefreshData                     =   { [weak self] lastItem in
                     self?.interactor?.save(lastItem: lastItem)
                     
                     if lastItem == nil {
@@ -424,7 +424,7 @@ extension UserProfileShowViewController {
                     }
                 }
                 
-                activeVC.handlerAnswerButtonTapped      =   { [weak self] postShortInfo in
+                activeVC.handlerAnswerButtonTapped                  =   { [weak self] postShortInfo in
                     guard (self?.isCurrentOperationPossible())! else {
                         return
                     }
@@ -433,7 +433,7 @@ extension UserProfileShowViewController {
                     self?.router?.routeToPostCreateScene(withType: .createCommentReply)
                 }
                 
-                activeVC.handlerReplyTypeButtonTapped   =   { [weak self] isOperationAvailable in
+                activeVC.handlerReplyTypeButtonTapped               =   { [weak self] isOperationAvailable in
                     if isOperationAvailable {
                         self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
                     } else {
@@ -441,11 +441,11 @@ extension UserProfileShowViewController {
                     }
                 }
                 
-                activeVC.handlerRepostButtonTapped       =   { [weak self] in
+                activeVC.handlerRepostButtonTapped                  =   { [weak self] in
                     self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
                 }
                 
-                activeVC.handlerLikeButtonTapped  =   { [weak self] (isVote, postShortInfo) in
+                activeVC.handlerLikeButtonTapped                    =   { [weak self] (isLike, postShortInfo) in
                     // Check network connection
                     guard isNetworkAvailable else {
                         self?.showAlertView(withTitle: "Info", andMessage: "No Internet Connection", needCancel: false, completion: { _ in })
@@ -457,14 +457,16 @@ extension UserProfileShowViewController {
                     self?.interactor?.save(blogShortInfo: postShortInfo)
                     
                     let blogCell        =   activeVC.postsTableView.cellForRow(at: postShortInfo.indexPath!) as! PostCellLikeSupport
-                    let requestModel    =   UserProfileShowModels.Like.RequestModel(isLike: isVote, isDislike: false)
+                    let requestModel    =   UserProfileShowModels.Like.RequestModel(isLike: isLike, isDislike: false)
 
-                    guard isVote else {
+                    guard isLike else {
                         self?.showAlertView(withTitle: "Voting Verb", andMessage: "Cancel Vote Message", actionTitle: "ActionChange", needCancel: true, completion: { success in
                             if success {
                                 blogCell.likeButton.startLikeVote(withSpinner: blogCell.likeActivityIndicator)
                                 self?.interactor?.likeVote(withRequestModel: requestModel)
-                            } else {
+                            }
+                            
+                            else {
                                 blogCell.likeButton.breakLikeVote(withSpinner: blogCell.likeActivityIndicator)
                             }
                         })
@@ -476,21 +478,41 @@ extension UserProfileShowViewController {
                     self?.interactor?.likeVote(withRequestModel: requestModel)
                 }
                 
-                activeVC.handlerCommentsButtonTapped    =   { [weak self] postShortInfo in
+                activeVC.handlerDislikeButtonTapped                 =   { [weak self] (isDislike, postShortInfo) in
+                    let handlersManager = HandlersManager()
+                    
+                    self?.interactor?.save(blogShortInfo: postShortInfo)
+                    
+                    let blogCell        =   activeVC.postsTableView.cellForRow(at: postShortInfo.indexPath!) as! PostFeedTableViewCell
+                    let requestModel    =   UserProfileShowModels.Like.RequestModel(isLike: nil, isDislike: isDislike)
+
+                    handlersManager.handlerTapped(isDislike: isDislike, completion: { [weak self] success in
+                        if success {
+                            blogCell.dislikeButton.startLikeVote(withSpinner: blogCell.dislikeActivityIndicator)
+                            self?.interactor?.likeVote(withRequestModel: requestModel)
+                        }
+                            
+                        else {
+                            blogCell.dislikeButton.breakLikeVote(withSpinner: blogCell.dislikeActivityIndicator)
+                        }
+                    })
+                }
+
+                activeVC.handlerCommentsButtonTapped                =   { [weak self] postShortInfo in
                     self?.settingsShow = true
                     self?.interactor?.save(blogShortInfo: postShortInfo)
                     self?.router?.routeToPostShowScene(withScrollToComments: true)
                 }
                 
                 // Select Blog
-                activeVC.handlerSelectItem              =   { [weak self] postShortInfo in
+                activeVC.handlerSelectItem                          =   { [weak self] postShortInfo in
                     self?.interactor?.save(blogShortInfo: postShortInfo)
                     self?.router?.routeToPostShowScene(withScrollToComments: false)
                     self?.settingsShow = true
                 }
                 
                 // Reply handlers
-                activeVC.handlerAuthorProfileImageButtonTapped    =   { [weak self] authorName in
+                activeVC.handlerAuthorProfileImageButtonTapped      =   { [weak self] authorName in
                     if (self?.isCurrentOperationPossible())!, let userNickName = self?.router?.dataStore?.userNickName, userNickName != authorName {
                         self?.router?.routeToUserProfileScene(byUserName: authorName)
                     }

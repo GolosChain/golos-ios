@@ -303,46 +303,23 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
                 }
                 
                 activeVC.handlerDislikeButtonTapped                 =   { [weak self] (isDislike, postShortInfo) in
-                    // Check network connection
-                    guard isNetworkAvailable else {
-                        self?.showAlertView(withTitle: "Info", andMessage: "No Internet Connection", needCancel: false, completion: { _ in })
-                        return
-                    }
-                    
-                    guard (self?.isCurrentOperationPossible())! else { return }
+                    let handlersManager = HandlersManager()
                     
                     self?.interactor?.save(postShortInfo: postShortInfo)
                     
                     let postCell        =   activeVC.postsTableView.cellForRow(at: postShortInfo.indexPath!) as! PostFeedTableViewCell
                     let requestModel    =   PostsShowModels.Like.RequestModel(isLike: nil, isDislike: isDislike)
                     
-                    // Dislike
-                    if isDislike {
-                        self?.showAlertView(withTitle: "Voice Power Title", andMessage: "Voice Power Subtitle", attributedText: self?.displayAlertView(byDislike: true), actionTitle: "Voice Power Title", needCancel: true, isCancelLeft: false, completion: { [weak self] success in
-                            if success {
-                                postCell.dislikeButton.startLikeVote(withSpinner: postCell.dislikeActivityIndicator)
-                                self?.interactor?.likeVote(withRequestModel: requestModel)
-                            }
+                    handlersManager.handlerTapped(isDislike: isDislike, completion: { [weak self] success in
+                        if success {
+                            postCell.dislikeButton.startLikeVote(withSpinner: postCell.dislikeActivityIndicator)
+                            self?.interactor?.likeVote(withRequestModel: requestModel)
+                        }
                             
-                            else {
-                                postCell.dislikeButton.breakLikeVote(withSpinner: postCell.dislikeActivityIndicator)
-                            }
-                        })
-                    }
-                        
-                    // Undislike
-                    else {
-                        self?.showAlertView(withTitle: "Voting Verb", andMessage: "Cancel Vote Message", attributedText: self?.displayAlertView(byDislike: false), actionTitle: "ActionChange", needCancel: true, completion: { [weak self] success in
-                            if success {
-                                postCell.dislikeButton.startLikeVote(withSpinner: postCell.dislikeActivityIndicator)
-                                self?.interactor?.likeVote(withRequestModel: requestModel)
-                            }
-                                
-                            else {
-                                postCell.dislikeButton.breakLikeVote(withSpinner: postCell.dislikeActivityIndicator)
-                            }
-                        })
-                    }
+                        else {
+                            postCell.dislikeButton.breakLikeVote(withSpinner: postCell.dislikeActivityIndicator)
+                        }
+                    })
                 }
                 
                 activeVC.handlerCommentsButtonTapped                =   { [weak self] postShortInfo in

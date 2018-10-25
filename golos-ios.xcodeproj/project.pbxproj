@@ -74,6 +74,7 @@
 		B12F442D20EB4AFC003FFF58 /* GolosModels.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B12F442B20EB4AFC003FFF58 /* GolosModels.xcdatamodeld */; };
 		B1317CD4212E696C0025D429 /* ImageCached+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1317CD2212E696C0025D429 /* ImageCached+CoreDataClass.swift */; };
 		B1317CD5212E696C0025D429 /* ImageCached+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1317CD3212E696C0025D429 /* ImageCached+CoreDataProperties.swift */; };
+		B13493392181536700B59827 /* HandlersManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13493382181536700B59827 /* HandlersManager.swift */; };
 		B136D4F820D8B9E8003AD279 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = B136D4F720D8B9E8003AD279 /* Tag.swift */; };
 		B136D4FB20D8BA14003AD279 /* AddTagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B136D4F920D8BA14003AD279 /* AddTagCollectionViewCell.swift */; };
 		B136D4FC20D8BA14003AD279 /* AddTagCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B136D4FA20D8BA14003AD279 /* AddTagCollectionViewCell.xib */; };
@@ -336,6 +337,7 @@
 		B12F442C20EB4AFC003FFF58 /* Golos.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Golos.xcdatamodel; sourceTree = "<group>"; };
 		B1317CD2212E696C0025D429 /* ImageCached+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ImageCached+CoreDataClass.swift"; sourceTree = "<group>"; };
 		B1317CD3212E696C0025D429 /* ImageCached+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ImageCached+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B13493382181536700B59827 /* HandlersManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandlersManager.swift; sourceTree = "<group>"; };
 		B136D4F720D8B9E8003AD279 /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		B136D4F920D8BA14003AD279 /* AddTagCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTagCollectionViewCell.swift; sourceTree = "<group>"; };
 		B136D4FA20D8BA14003AD279 /* AddTagCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddTagCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -1029,6 +1031,7 @@
 				B1F6A36D20C130780096C393 /* Parser.swift */,
 				B114192720CD1E260025B07F /* ReachabilityManager.swift */,
 				B10F487D20F793DE00F2BCAC /* RestAPIManager.swift */,
+				B13493382181536700B59827 /* HandlersManager.swift */,
 				B15F228020EEB14700C44282 /* StateMachine */,
 			);
 			path = Managers;
@@ -1626,6 +1629,7 @@
 				B1E09E192101EE8F002CC5B7 /* PostFeedTableViewCell.swift in Sources */,
 				B12B3AC820FCBFCA00071B97 /* PostsShowViewController.swift in Sources */,
 				B11AA80720CB9FC800212713 /* UILabel+Extensions.swift in Sources */,
+				B13493392181536700B59827 /* HandlersManager.swift in Sources */,
 				B1CF44DF2106D65600483A01 /* SettingsShowViewController.swift in Sources */,
 				B15C29B921101FEA0030D249 /* PostShowModels.swift in Sources */,
 				B1DCE31721098E5F00487DE0 /* FCManager.swift in Sources */,

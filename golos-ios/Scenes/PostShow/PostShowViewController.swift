@@ -766,31 +766,21 @@ class PostShowViewController: GSBaseViewController {
     }
 
     @IBAction func dislikeButtonTapped(_ sender: UIButton) {
-        // Check network connection
-        guard isNetworkAvailable else {
-            self.showAlertView(withTitle: "Info", andMessage: "No Internet Connection", needCancel: false, completion: { _ in })
-            return
-        }
+        let isDislike           =   sender.tag == 0
+        let handlersManager     =   HandlersManager()
         
-        guard self.isCurrentOperationPossible() else { return }
-        
-        // Dislike
-        if sender.tag == 0 {
-            self.showAlertView(withTitle: "Voice Power Title", andMessage: "Voice Power Subtitle", attributedText: self.displayAlertView(byDislike: true), actionTitle: "Voice Power Title", needCancel: true, isCancelLeft: false, completion: { [weak self] success in
-                guard success else { return }
+        handlersManager.handlerTapped(isDislike: isDislike, completion: { [weak self] success in
+            if success {
+                let requestModel = PostShowModels.Like.RequestModel(isLike: nil, isDislike: isDislike, forPost: true)
                 
-                self?.runningRequest(isDislike: true)
-            })
-        }
-        
-        // Undislike (tag == 99)
-        else {
-            self.showAlertView(withTitle: "Voting Verb", andMessage: "Cancel Vote Message", attributedText: self.displayAlertView(byDislike: false), actionTitle: "ActionChange", needCancel: true, completion: { [weak self] success in
-                guard success else { return }
-
-                self?.runningRequest(isDislike: false)
-            })
-        }
+                self?.dislikeButton.startLikeVote(withSpinner: (self?.dislikeActivityIndicator)!)
+                self?.interactor?.likeVote(withRequestModel: requestModel)
+            }
+                
+            else {
+                self?.dislikeButton.breakLikeVote(withSpinner: (self?.dislikeActivityIndicator)!)
+            }
+        })
     }
     
     @IBAction func repostButtonTapped(_ sender: UIButton) {
@@ -1030,13 +1020,6 @@ extension PostShowViewController {
         // API
         let requestModel = PostShowModels.Following.RequestModel()
         self.interactor?.checkFollowing(withRequestModel: requestModel)
-    }
-    
-    private func runningRequest(isDislike: Bool) {
-        let requestModel = PostShowModels.Like.RequestModel(isLike: nil, isDislike: isDislike, forPost: true)
-        
-        self.dislikeButton.startLikeVote(withSpinner: self.dislikeActivityIndicator)
-        self.interactor?.likeVote(withRequestModel: requestModel)
     }
 }
 
