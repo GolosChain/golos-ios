@@ -22,6 +22,8 @@ class PostFeedTableViewCell: UITableViewCell, HandlersCellSupport, PostCellLikeS
     var handlerCommentsButtonTapped: ((PostShortInfo) -> Void)?
     var handlerLikeButtonTapped: ((Bool, PostShortInfo) -> Void)?
     var handlerDislikeButtonTapped: ((Bool, PostShortInfo) -> Void)?
+    var handlerLikeCountButtonTapped: ((PostShortInfo) -> Void)?
+    var handlerDislikeCountButtonTapped: ((PostShortInfo) -> Void)?
 
     
     // MARK: - IBOutlets
@@ -67,26 +69,38 @@ class PostFeedTableViewCell: UITableViewCell, HandlersCellSupport, PostCellLikeS
 
     @IBOutlet weak var likeButton: UIButton! {
         didSet {
-            likeButton.tune(withTitle:          "    ",
-                            hexColors:        [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
-                            font:             UIFont(name: "SFProDisplay-Regular", size: 12.0),
-                            alignment:        .left)
-            
             likeButton.isEnabled = true
         }
     }
     
+    @IBOutlet weak var likeCountButton: UIButton! {
+        didSet {
+            likeCountButton.tune(withTitle:     "",
+                                 hexColors:     [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
+                                 font:          UIFont(name: "SFProDisplay-Regular", size: 12.0),
+                                 alignment:     .left)
+            
+            likeCountButton.isEnabled = true
+        }
+    }
+
     @IBOutlet weak var dislikeButton: UIButton! {
         didSet {
-            dislikeButton.tune(withTitle:       "    ",
-                               hexColors:        [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
-                               font:             UIFont(name: "SFProDisplay-Regular", size: 12.0),
-                               alignment:        .left)
-            
             dislikeButton.isEnabled = true
         }
     }
     
+    @IBOutlet weak var dislikeCountButton: UIButton! {
+        didSet {
+            dislikeCountButton.tune(withTitle:      "",
+                                    hexColors:      [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
+                                    font:           UIFont(name: "SFProDisplay-Regular", size: 12.0),
+                                    alignment:      .center)
+            
+            dislikeCountButton.isEnabled = true
+        }
+    }
+
     @IBOutlet weak var repostButton: UIButton! {
         didSet {
             repostButton.tune(withTitle:        "    ",
@@ -138,9 +152,9 @@ class PostFeedTableViewCell: UITableViewCell, HandlersCellSupport, PostCellLikeS
         self.postImageView.image                                =   nil
         self.postImageViewHeightConstraint.constant             =   180.0 * heightRatio
         
-        self.likeButton.setTitle("    ", for: .normal)
-        self.dislikeButton.setTitle("    ", for: .normal)
+        self.likeCountButton.setTitle(nil, for: .normal)
         self.commentsButton.setTitle("    ", for: .normal)
+        self.dislikeCountButton.setTitle(nil, for: .normal)
     }
     
     
@@ -157,10 +171,22 @@ class PostFeedTableViewCell: UITableViewCell, HandlersCellSupport, PostCellLikeS
         self.handlerLikeButtonTapped!(sender.tag == 0, self.postShortInfo)
     }
     
+    @IBAction func likeCountButtonTapped(_ sender: UIButton) {
+        if let countText = sender.titleLabel?.text, let countInt = Int(countText), countInt > 0 {
+            self.handlerLikeCountButtonTapped!(self.postShortInfo)
+        }
+    }
+
     @IBAction func dislikeButtonTapped(_ sender: UIButton) {
         self.handlerDislikeButtonTapped!(sender.tag == 0, self.postShortInfo)
     }
     
+    @IBAction func dislikeCountButtonTapped(_ sender: UIButton) {
+        if let countText = sender.titleLabel?.text, let countInt = Int(countText), countInt > 0 {
+            self.handlerDislikeCountButtonTapped!(self.postShortInfo)
+        }
+    }
+
     @IBAction func commentsButtonTapped(_ sender: UIButton) {
         sender.isEnabled = false
         
@@ -238,12 +264,12 @@ extension PostFeedTableViewCell: ConfigureCell {
         
         // Like icon
         self.likeButton.tag = model.currentUserLiked ? 99 : 0
-        self.likeButton.setTitle(model.likeCount > 0 ? "\(model.likeCount)" : "    ", for: .normal)
+        self.likeCountButton.setTitle(model.likeCount > 0 ? "\(model.likeCount)" : nil, for: .normal)
         self.likeButton.setImage(UIImage(named: model.currentUserLiked ? "icon-button-post-like-selected" : "icon-button-post-like-normal"), for: .normal)
         
         // Dislike icon
         self.dislikeButton.tag = model.currentUserDisliked ? 99 : 0
-        self.dislikeButton.setTitle(model.dislikeCount > 0 ? "\(model.dislikeCount)" : "    ", for: .normal)
+        self.dislikeCountButton.setTitle(model.dislikeCount > 0 ? "\(model.dislikeCount)" : nil, for: .normal)
         self.dislikeButton.setImage(UIImage(named: model.currentUserDisliked ? "icon-button-post-dislike-selected" : "icon-button-post-dislike-normal"), for: .normal)
         
         // Comments icon

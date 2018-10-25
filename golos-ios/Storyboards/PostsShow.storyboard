@@ -177,7 +177,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="2uN-82-qIf"/>
                     </view>
-                    <navigationItem key="navigationItem" id="BcM-ap-ILq"/>
+                    <navigationItem key="navigationItem" id="BcM-ap-ILq">
+                        <barButtonItem key="backBarButtonItem" title=" " id="BG5-In-rcF"/>
+                    </navigationItem>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="buttonsStackView" destination="VOV-AR-H2g" id="3ng-Qq-lVg"/>

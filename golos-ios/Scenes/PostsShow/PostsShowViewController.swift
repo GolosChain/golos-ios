@@ -302,6 +302,11 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
                     self?.interactor?.likeVote(withRequestModel: requestModel)
                 }
                 
+                activeVC.handlerLikeCountButtonTapped               =   { [weak self] postShortInfo in
+                    self?.interactor?.save(postShortInfo: postShortInfo)
+                    self?.router?.routeToUsersVotedShowScene(withMode: .like)
+                }
+                
                 activeVC.handlerDislikeButtonTapped                 =   { [weak self] (isDislike, postShortInfo) in
                     let handlersManager = HandlersManager()
                     
@@ -320,6 +325,11 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
                             postCell.dislikeButton.breakLikeVote(withSpinner: postCell.dislikeActivityIndicator)
                         }
                     })
+                }
+                
+                activeVC.handlerDislikeCountButtonTapped            =   { [weak self] postShortInfo in
+                    self?.interactor?.save(postShortInfo: postShortInfo)
+                    self?.router?.routeToUsersVotedShowScene(withMode: .dislike)
                 }
                 
                 activeVC.handlerCommentsButtonTapped                =   { [weak self] postShortInfo in

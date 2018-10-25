@@ -63,6 +63,8 @@ class GSTableViewController: GSBaseViewController, HandlersCellSupport {
     var handlerRepostButtonTapped: (() -> Void)?
     var handlerDislikeButtonTapped: ((Bool, PostShortInfo) -> Void)?
     var handlerCommentsButtonTapped: ((PostShortInfo) -> Void)?
+    var handlerLikeCountButtonTapped: ((PostShortInfo) -> Void)?
+    var handlerDislikeCountButtonTapped: ((PostShortInfo) -> Void)?
 
     
     // Markdown completions
@@ -430,7 +432,20 @@ extension GSTableViewController: UITableViewDataSource {
                                                                      parentAuthor:      model.parentAuthor,
                                                                      parentPermlink:    model.parentPermlink))
             }
-            
+
+            (cell as! PostFeedTableViewCell).handlerLikeCountButtonTapped   =   { [weak self] postShortInfo in
+                let model = self?.fetchedResultsController.object(at: postShortInfo.indexPath!) as! PostCellSupport
+                
+                self?.handlerLikeCountButtonTapped!(PostShortInfo(id:                model.id,
+                                                                  title:             model.title,
+                                                                  author:            model.author,
+                                                                  permlink:          model.permlink,
+                                                                  parentTag:         model.tags?.first,
+                                                                  indexPath:         postShortInfo.indexPath,
+                                                                  parentAuthor:      model.parentAuthor,
+                                                                  parentPermlink:    model.parentPermlink))
+            }
+
             (cell as! PostFeedTableViewCell).handlerDislikeButtonTapped     =   { [weak self] (isDislike, postShortInfo) in
                 let model = self?.fetchedResultsController.object(at: postShortInfo.indexPath!) as! PostCellSupport
                 
@@ -442,6 +457,19 @@ extension GSTableViewController: UITableViewDataSource {
                                                                            indexPath:         postShortInfo.indexPath,
                                                                            parentAuthor:      model.parentAuthor,
                                                                            parentPermlink:    model.parentPermlink))
+            }
+            
+            (cell as! PostFeedTableViewCell).handlerDislikeCountButtonTapped =   { [weak self] postShortInfo in
+                let model = self?.fetchedResultsController.object(at: postShortInfo.indexPath!) as! PostCellSupport
+                
+                self?.handlerDislikeCountButtonTapped!(PostShortInfo(id:                model.id,
+                                                                     title:             model.title,
+                                                                     author:            model.author,
+                                                                     permlink:          model.permlink,
+                                                                     parentTag:         model.tags?.first,
+                                                                     indexPath:         postShortInfo.indexPath,
+                                                                     parentAuthor:      model.parentAuthor,
+                                                                     parentPermlink:    model.parentPermlink))
             }
             
             (cell as! PostFeedTableViewCell).handlerCommentsButtonTapped    =   { [weak self] postShortInfo in

@@ -66,6 +66,7 @@ class GSBaseViewController: UIViewController {
     
     func showNavigationBar(withBackButtonTitle title: String? = nil) {
         self.navigationController?.setNavigationBarHidden(false, animated: true)
+        self.navigationController?.add(shadow: true, withBarTintColor: .white)
 
         self.configureBackButton(withTitle: title)
     }

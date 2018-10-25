@@ -75,6 +75,14 @@
 		B1317CD4212E696C0025D429 /* ImageCached+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1317CD2212E696C0025D429 /* ImageCached+CoreDataClass.swift */; };
 		B1317CD5212E696C0025D429 /* ImageCached+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1317CD3212E696C0025D429 /* ImageCached+CoreDataProperties.swift */; };
 		B13493392181536700B59827 /* HandlersManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13493382181536700B59827 /* HandlersManager.swift */; };
+		B134933B2181878600B59827 /* UsersVoteShow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B134933A2181878600B59827 /* UsersVoteShow.storyboard */; };
+		B13493432181881200B59827 /* UsersVoteShowPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B134933D2181881200B59827 /* UsersVoteShowPresenter.swift */; };
+		B13493452181881200B59827 /* UsersVoteShowRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B134933F2181881200B59827 /* UsersVoteShowRouter.swift */; };
+		B13493462181881200B59827 /* UsersVoteShowModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13493402181881200B59827 /* UsersVoteShowModels.swift */; };
+		B13493472181881200B59827 /* UsersVoteShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13493412181881200B59827 /* UsersVoteShowViewController.swift */; };
+		B13493482181881200B59827 /* UsersVoteShowInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13493422181881200B59827 /* UsersVoteShowInteractor.swift */; };
+		B134934C21819A0600B59827 /* UserVoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B134934A21819A0600B59827 /* UserVoteTableViewCell.swift */; };
+		B134934D21819A0600B59827 /* UserVoteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B134934B21819A0600B59827 /* UserVoteTableViewCell.xib */; };
 		B136D4F820D8B9E8003AD279 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = B136D4F720D8B9E8003AD279 /* Tag.swift */; };
 		B136D4FB20D8BA14003AD279 /* AddTagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B136D4F920D8BA14003AD279 /* AddTagCollectionViewCell.swift */; };
 		B136D4FC20D8BA14003AD279 /* AddTagCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B136D4FA20D8BA14003AD279 /* AddTagCollectionViewCell.xib */; };
@@ -338,6 +346,14 @@
 		B1317CD2212E696C0025D429 /* ImageCached+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ImageCached+CoreDataClass.swift"; sourceTree = "<group>"; };
 		B1317CD3212E696C0025D429 /* ImageCached+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ImageCached+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		B13493382181536700B59827 /* HandlersManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandlersManager.swift; sourceTree = "<group>"; };
+		B134933A2181878600B59827 /* UsersVoteShow.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UsersVoteShow.storyboard; sourceTree = "<group>"; };
+		B134933D2181881200B59827 /* UsersVoteShowPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersVoteShowPresenter.swift; sourceTree = "<group>"; };
+		B134933F2181881200B59827 /* UsersVoteShowRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersVoteShowRouter.swift; sourceTree = "<group>"; };
+		B13493402181881200B59827 /* UsersVoteShowModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersVoteShowModels.swift; sourceTree = "<group>"; };
+		B13493412181881200B59827 /* UsersVoteShowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersVoteShowViewController.swift; sourceTree = "<group>"; };
+		B13493422181881200B59827 /* UsersVoteShowInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersVoteShowInteractor.swift; sourceTree = "<group>"; };
+		B134934A21819A0600B59827 /* UserVoteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserVoteTableViewCell.swift; sourceTree = "<group>"; };
+		B134934B21819A0600B59827 /* UserVoteTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserVoteTableViewCell.xib; sourceTree = "<group>"; };
 		B136D4F720D8B9E8003AD279 /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		B136D4F920D8BA14003AD279 /* AddTagCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTagCollectionViewCell.swift; sourceTree = "<group>"; };
 		B136D4FA20D8BA14003AD279 /* AddTagCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddTagCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -698,6 +714,28 @@
 			path = Entities;
 			sourceTree = "<group>";
 		};
+		B134933C218187FA00B59827 /* UsersVoteShow */ = {
+			isa = PBXGroup;
+			children = (
+				B1349349218199DA00B59827 /* Cells */,
+				B13493422181881200B59827 /* UsersVoteShowInteractor.swift */,
+				B13493402181881200B59827 /* UsersVoteShowModels.swift */,
+				B134933D2181881200B59827 /* UsersVoteShowPresenter.swift */,
+				B134933F2181881200B59827 /* UsersVoteShowRouter.swift */,
+				B13493412181881200B59827 /* UsersVoteShowViewController.swift */,
+			);
+			path = UsersVoteShow;
+			sourceTree = "<group>";
+		};
+		B1349349218199DA00B59827 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				B134934A21819A0600B59827 /* UserVoteTableViewCell.swift */,
+				B134934B21819A0600B59827 /* UserVoteTableViewCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		B136D4F420D8B986003AD279 /* TagsShow */ = {
 			isa = PBXGroup;
 			children = (
@@ -748,6 +786,7 @@
 				B1CF44E12106D6CB00483A01 /* SettingsShow.storyboard */,
 				B120D06D2108252300D949F5 /* SettingsUserProfileEdit.storyboard */,
 				B164F04820E62B5A00C5CDD3 /* UserProfileShow.storyboard */,
+				B134933A2181878600B59827 /* UsersVoteShow.storyboard */,
 				B1A7580821719739002CEE50 /* WelcomeShow.storyboard */,
 			);
 			path = Storyboards;
@@ -1117,6 +1156,7 @@
 				B120D0602108248C00D949F5 /* SettingsUserProfileEdit */,
 				EC24FF6A200C3FE700A0AE15 /* TabBarShow */,
 				B164F03B20E62A7300C5CDD3 /* UserProfileShow */,
+				B134933C218187FA00B59827 /* UsersVoteShow */,
 				ECC15F9D2009757A0099BBC9 /* WelcomeShow */,
 			);
 			path = Scenes;
@@ -1351,6 +1391,7 @@
 				B13FE9BB20F512BA00F907BC /* ReplyTableViewCell.xib in Resources */,
 				B1B6B39520D37F3100284387 /* PostCommentReply.xib in Resources */,
 				B146891E20F234BE00D36794 /* UserProfileInfoTitleView.xib in Resources */,
+				B134934D21819A0600B59827 /* UserVoteTableViewCell.xib in Resources */,
 				B164CECA2119F6EB00349D79 /* Localizable.strings in Resources */,
 				B120D0702108256B00D949F5 /* SettingsNotificationsShow.storyboard in Resources */,
 				7DE3531C2048CA3400C04CB2 /* LogInHelpShowViewController.xib in Resources */,
@@ -1359,6 +1400,7 @@
 				B1050CBF20CECFBE003CE4EE /* PostCreate.storyboard in Resources */,
 				B15C29AE21101F760030D249 /* PostShow.storyboard in Resources */,
 				B1CF44E22106D6CB00483A01 /* SettingsShow.storyboard in Resources */,
+				B134933B2181878600B59827 /* UsersVoteShow.storyboard in Resources */,
 				B12A577420B432C8000CF8BF /* GoogleService-Info.plist in Resources */,
 				B1EE684820D243FF006BF802 /* PostCreateView.xib in Resources */,
 				EC1DFB9620063C400080BC50 /* Assets.xcassets in Resources */,
@@ -1533,6 +1575,7 @@
 				B1E78A7120F99FF100B2901D /* GSContainerView.swift in Sources */,
 				B1D7EFAD20EB704000819401 /* UserSecretPostingKey+CoreDataClass.swift in Sources */,
 				B1EE684620D243F5006BF802 /* PostCreateView.swift in Sources */,
+				B13493482181881200B59827 /* UsersVoteShowInteractor.swift in Sources */,
 				EC24FF5B200C30C500A0AE15 /* MainContainerPresenter.swift in Sources */,
 				B1E09E262101F303002CC5B7 /* PostCellSupport.swift in Sources */,
 				B12B3AC620FCBFCA00071B97 /* PostsShowRouter.swift in Sources */,
@@ -1559,6 +1602,7 @@
 				B1F6A36E20C130780096C393 /* Parser.swift in Sources */,
 				B1CF44E02106D65600483A01 /* SettingsShowInteractor.swift in Sources */,
 				EC9ABBEA2018072600AF8597 /* GSTableView.swift in Sources */,
+				B134934C21819A0600B59827 /* UserVoteTableViewCell.swift in Sources */,
 				B127A87720EB822F007133AB /* UserSecretOwnerKey+CoreDataProperties.swift in Sources */,
 				EC9ABBBF20179CEF00AF8597 /* Images.swift in Sources */,
 				B1C1DFE420CF887F00D1A837 /* LogInShowInteractor.swift in Sources */,
@@ -1593,6 +1637,7 @@
 				B164F04220E62AE600C5CDD3 /* UserProfileShowPresenter.swift in Sources */,
 				7D911D1A2035DE5D00F19D3C /* String+Extensions.swift in Sources */,
 				B120D07B210825AD00D949F5 /* SettingsNotificationsShowViewController.swift in Sources */,
+				B13493452181881200B59827 /* UsersVoteShowRouter.swift in Sources */,
 				B120D067210824C600D949F5 /* SettingsUserProfileEditPresenter.swift in Sources */,
 				B10F487E20F793DE00F2BCAC /* RestAPIManager.swift in Sources */,
 				7DA0632C203315A300B5630C /* PassthroughView.swift in Sources */,
@@ -1601,6 +1646,7 @@
 				B12B3AC720FCBFCA00071B97 /* PostsShowModels.swift in Sources */,
 				B15F228420EEB16C00C44282 /* AppState.swift in Sources */,
 				B11AA80220CB04AA00212713 /* WelcomeShowViewController.swift in Sources */,
+				B13493462181881200B59827 /* UsersVoteShowModels.swift in Sources */,
 				B120D06B210824C600D949F5 /* SettingsUserProfileEditViewController.swift in Sources */,
 				B1CF44DB2106D65600483A01 /* SettingsShowPresenter.swift in Sources */,
 				EC24FF82200C625800A0AE15 /* DropDownViewController.swift in Sources */,
@@ -1654,6 +1700,7 @@
 				B120D079210825AD00D949F5 /* SettingsNotificationsShowRouter.swift in Sources */,
 				EC24FF6C200C400300A0AE15 /* GSTabBarController.swift in Sources */,
 				B164F04520E62AE600C5CDD3 /* UserProfileShowModels.swift in Sources */,
+				B13493432181881200B59827 /* UsersVoteShowPresenter.swift in Sources */,
 				B120D068210824C600D949F5 /* SettingsUserProfileEditWorker.swift in Sources */,
 				B1050CA420CECF75003CE4EE /* PostCreateViewController.swift in Sources */,
 				B15F228820EEB31C00C44282 /* AppSettings+CoreDataProperties.swift in Sources */,
@@ -1680,6 +1727,7 @@
 				B1DCE322210A32B600487DE0 /* GSTestManager.swift in Sources */,
 				B15F228220EEB16500C44282 /* StateMachine.swift in Sources */,
 				B1B6B4DE21514823005AB846 /* LentaPostsShowViewController.swift in Sources */,
+				B13493472181881200B59827 /* UsersVoteShowViewController.swift in Sources */,
 				B1CF44DC2106D65600483A01 /* SettingsShowWorker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

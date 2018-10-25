@@ -174,23 +174,35 @@ class PostShowViewController: GSBaseViewController {
     
     @IBOutlet weak var likeButton: UIButton! {
         didSet {
-            likeButton.tune(withTitle:          "    ",
-                              hexColors:        [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
-                              font:             UIFont(name: "SFProDisplay-Regular", size: 12.0),
-                              alignment:        .left)
-            
             likeButton.isEnabled = true
         }
     }
-    
+
+    @IBOutlet weak var likeCountButton: UIButton! {
+        didSet {
+            likeCountButton.tune(withTitle:     "",
+                                 hexColors:     [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
+                                 font:          UIFont(name: "SFProDisplay-Regular", size: 12.0),
+                                 alignment:     .left)
+            
+            likeCountButton.isEnabled = true
+        }
+    }
+
     @IBOutlet weak var dislikeButton: UIButton! {
         didSet {
-            dislikeButton.tune(withTitle:       "    ",
-                               hexColors:       [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
-                               font:            UIFont(name: "SFProDisplay-Regular", size: 12.0),
-                               alignment:       .center)
-            
             dislikeButton.isEnabled = true
+        }
+    }
+    
+    @IBOutlet weak var dislikeCountButton: UIButton! {
+        didSet {
+            dislikeCountButton.tune(withTitle:      "",
+                                    hexColors:      [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
+                                    font:           UIFont(name: "SFProDisplay-Regular", size: 12.0),
+                                    alignment:      .center)
+            
+            dislikeCountButton.isEnabled = true
         }
     }
     
@@ -218,10 +230,10 @@ class PostShowViewController: GSBaseViewController {
     
     @IBOutlet weak var promoteButton: UIButton! {
         didSet {
-            promoteButton.tune(withTitle:        "Promote Post Verb",
-                               hexColors:        [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
-                               font:             UIFont(name: "SFProDisplay-Medium", size: 11.0),
-                               alignment:        .center)
+            promoteButton.tune(withTitle:       "Promote Post Verb",
+                               hexColors:       [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
+                               font:            UIFont(name: "SFProDisplay-Medium", size: 11.0),
+                               alignment:       .center)
             
             promoteButton.isEnabled = false
             
@@ -270,38 +282,38 @@ class PostShowViewController: GSBaseViewController {
     
     @IBOutlet weak var userNameLabel: UILabel! {
         didSet {
-            userNameLabel.tune(withText:        "",
-                               hexColors:       veryDarkGrayWhiteColorPickers,
-                               font:            UIFont(name: "SFProDisplay-Regular", size: 12.0),
-                               alignment:       .left,
-                               isMultiLines:    false)
+            userNameLabel.tune(withText:            "",
+                               hexColors:           veryDarkGrayWhiteColorPickers,
+                               font:                UIFont(name: "SFProDisplay-Regular", size: 12.0),
+                               alignment:           .left,
+                               isMultiLines:        false)
         }
     }
     
     @IBOutlet weak var userRecentPastLabel: UILabel! {
         didSet {
-            userRecentPastLabel.tune(withText:          "Recent Past:",
-                                     hexColors:         darkGrayWhiteColorPickers,
-                                     font:              UIFont(name: "SFProDisplay-Regular", size: 8.0),
-                                     alignment:         .left,
-                                     isMultiLines:      false)
+            userRecentPastLabel.tune(withText:      "Recent Past:",
+                                     hexColors:     darkGrayWhiteColorPickers,
+                                     font:          UIFont(name: "SFProDisplay-Regular", size: 8.0),
+                                     alignment:     .left,
+                                     isMultiLines:  false)
         }
     }
     
     @IBOutlet weak var userPreviouslyLabel: UILabel! {
         didSet {
-            userPreviouslyLabel.tune(withText:          "Previously:",
-                                     hexColors:         darkGrayWhiteColorPickers,
-                                     font:              UIFont(name: "SFProDisplay-Regular", size: 8.0),
-                                     alignment:         .left,
-                                     isMultiLines:      false)
+            userPreviouslyLabel.tune(withText:      "Previously:",
+                                     hexColors:     darkGrayWhiteColorPickers,
+                                     font:          UIFont(name: "SFProDisplay-Regular", size: 8.0),
+                                     alignment:     .left,
+                                     isMultiLines:  false)
         }
     }
     
     @IBOutlet var subscribeButtonsCollection: [UIButton]! {
         didSet {
             subscribeButtonsCollection.forEach({ button in
-                button.tune(withTitle:         "Subscribe",
+                button.tune(withTitle:         "Subscribe Verb",
                             hexColors:         [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers],
                             font:              UIFont(name: "SFProDisplay-Medium", size: 10.0),
                             alignment:         .center)
@@ -549,12 +561,12 @@ class PostShowViewController: GSBaseViewController {
 
             // Like icon
             self.likeButton.tag = displayedPost.currentUserLiked ? 99 : 0
-            self.likeButton.setTitle(displayedPost.likeCount > 0 ? "\(displayedPost.likeCount)" : "    ", for: .normal)
+            self.likeCountButton.setTitle(displayedPost.likeCount > 0 ? "\(displayedPost.likeCount)" : nil, for: .normal)
             self.likeButton.setImage(UIImage(named: displayedPost.currentUserLiked ? "icon-button-post-like-selected" : "icon-button-post-like-normal"), for: .normal)
             
             // Dislike icon
             self.dislikeButton.tag = displayedPost.currentUserDisliked ? 99 : 0
-            self.dislikeButton.setTitle(displayedPost.dislikeCount > 0 ? "\(displayedPost.dislikeCount)" : "    ", for: .normal)
+            self.dislikeCountButton.setTitle(displayedPost.dislikeCount > 0 ? "\(displayedPost.dislikeCount)" : nil, for: .normal)
             self.dislikeButton.setImage(displayedPost.currentUserDisliked ? UIImage(named: "icon-button-post-dislike-selected") : UIImage(named: "icon-button-post-dislike-normal"), for: .normal)
             
             // Comments icon
@@ -631,7 +643,7 @@ class PostShowViewController: GSBaseViewController {
         
         self.commentsHideButton.setTitle("Hide Comments Verb".localized(), for: .normal)
         self.commentsSortByButton.setTitle("Action Sheet First New".localized(), for: .normal)
-        self.subscribeButtonsCollection.forEach({ $0.setTitle("Subscribe".localized(), for: .normal )})
+        self.subscribeButtonsCollection.forEach({ $0.setTitle("Subscribe Verb".localized(), for: .normal )})
         
         self.sortByLabel.text = "Sort by".localized()
         self.commentsTitleLabel.text = "Comments Noun".localized()
@@ -760,6 +772,10 @@ class PostShowViewController: GSBaseViewController {
         })
     }
 
+    @IBAction func likeCountButtonTapped(_ sender: UIButton) {
+
+    }
+    
     @IBAction func dislikeButtonTapped(_ sender: UIButton) {
         let isDislike           =   sender.tag == 0
         let handlersManager     =   HandlersManager()
@@ -776,6 +792,10 @@ class PostShowViewController: GSBaseViewController {
                 self?.dislikeButton.breakLikeVote(withSpinner: (self?.dislikeActivityIndicator)!)
             }
         })
+    }
+    
+    @IBAction func dislikeCountButtonTapped(_ sender: UIButton) {
+
     }
     
     @IBAction func repostButtonTapped(_ sender: UIButton) {
@@ -877,8 +897,8 @@ extension PostShowViewController: PostShowDisplayLogic {
         // Set post author subscribe button title
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5, execute: {
             self.showAlertView(withTitle: "Info", andMessage: viewModel.isFollowing ? "Subscribe Success" : "Unsubscribe Success", needCancel: false, completion: { [weak self] _ in
-                self?.subscribeButtonsCollection.first(where: { $0.tag == 1})?.isSelected = viewModel.isFollowing
-                self?.subscribeButtonsCollection.first(where: { $0.tag == 1 })?.setTitle(viewModel.isFollowing ? "Unsubscribe".localized() : "Subscribe".localized(), for: .normal)
+                self?.subscribeButtonsCollection.first(where: { $0.tag == 1 })?.isSelected = viewModel.isFollowing
+                self?.subscribeButtonsCollection.first(where: { $0.tag == 1 })?.setTitle(viewModel.isFollowing ? "Subscriptions".localized() : "Subscribe Verb".localized(), for: .normal)
             })
         })
     }
@@ -920,7 +940,7 @@ extension PostShowViewController: PostShowDisplayLogic {
         // Set post author subscribe button title
         DispatchQueue.main.async {
             self.subscribeButtonsCollection.first(where: { $0.tag == 1})?.isSelected = viewModel.isFollowing
-            self.subscribeButtonsCollection.first(where: { $0.tag == 1 })?.setTitle(viewModel.isFollowing ? "Unsubscribe".localized() : "Subscribe".localized(), for: .normal)
+            self.subscribeButtonsCollection.first(where: { $0.tag == 1 })?.setTitle(viewModel.isFollowing ? "Subscriptions".localized() : "Subscribe Verb".localized(), for: .normal)
         }
     }
     
@@ -1005,7 +1025,7 @@ extension PostShowViewController {
             DispatchQueue.main.async {
                 if let subscribeButtons = self.subscribeButtonsCollection {
                     subscribeButtons.first(where: { $0.tag == 1 })?.isSelected = false
-                    subscribeButtons.first(where: { $0.tag == 1 })?.setTitle("Subscribe".localized(), for: .normal)
+                    subscribeButtons.first(where: { $0.tag == 1 })?.setTitle("Subscribe Verb".localized(), for: .normal)
                 }
             }
             

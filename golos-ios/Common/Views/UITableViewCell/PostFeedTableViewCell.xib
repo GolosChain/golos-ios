@@ -43,16 +43,18 @@
                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                         </userDefinedRuntimeAttributes>
                     </imageView>
-                    <stackView contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Ue8-6R-IBd" userLabel="Active Buttons Stack View">
+                    <stackView contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="Ue8-6R-IBd" userLabel="Active Buttons Stack View">
                         <rect key="frame" x="16" y="272.5" width="340" height="45"/>
                         <subviews>
                             <button clipsSubviews="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jro-Kl-0WQ" userLabel="Like Button">
-                                <rect key="frame" x="0.0" y="0.0" width="77.5" height="45"/>
+                                <rect key="frame" x="0.0" y="0.0" width="40" height="45"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" identifier="likeButtonWidthConstraint" id="Mgq-FH-osg"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                <inset key="titleEdgeInsets" minX="18" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="4"/>
-                                <state key="normal" title="20" image="icon-button-post-like-normal">
+                                <state key="normal" image="icon-button-post-like-normal">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <state key="disabled">
@@ -62,22 +64,63 @@
                                     <action selector="likeButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="t7o-pp-JfK"/>
                                 </connections>
                             </button>
-                            <button clipsSubviews="YES" tag="1" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tTd-m2-4DM" userLabel="Dislike Button">
-                                <rect key="frame" x="87.5" y="0.0" width="77.5" height="45"/>
+                            <button clipsSubviews="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M7G-UA-1e0" userLabel="Like Count Button">
+                                <rect key="frame" x="40" y="0.0" width="50" height="45"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" identifier="likeCountButtonWidthConstraint" id="Hdh-9F-G5b"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                <inset key="titleEdgeInsets" minX="32" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <inset key="imageEdgeInsets" minX="0.0" minY="6" maxX="4" maxY="0.0"/>
-                                <state key="normal" title="    " image="icon-button-post-dislike-normal">
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="6"/>
+                                <state key="normal">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <state key="disabled">
+                                    <color key="titleColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="likeCountButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="wEx-4J-ekA"/>
+                                </connections>
+                            </button>
+                            <button clipsSubviews="YES" tag="1" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tTd-m2-4DM" userLabel="Dislike Button">
+                                <rect key="frame" x="90" y="0.0" width="40" height="45"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" identifier="dislikeButtonWidthConstraint" id="WZu-rl-5hD"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="6" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" image="icon-button-post-dislike-normal">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
                                     <action selector="dislikeButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="xeM-Ea-0oe"/>
                                 </connections>
                             </button>
-                            <button clipsSubviews="YES" tag="2" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ypr-q4-mMn" userLabel="Comments Button">
-                                <rect key="frame" x="175" y="0.0" width="77.5" height="45"/>
+                            <button clipsSubviews="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Urd-GW-UZd" userLabel="Dislike Count Button">
+                                <rect key="frame" x="130" y="0.0" width="50" height="45"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" identifier="dislikeCountButtonWidthConstraint" id="ahc-MG-ONs"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="6"/>
+                                <state key="normal">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <state key="disabled">
+                                    <color key="titleColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="dislikeCountButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="rpn-ti-5YD"/>
+                                </connections>
+                            </button>
+                            <button clipsSubviews="YES" tag="2" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ypr-q4-mMn" userLabel="Comments Button">
+                                <rect key="frame" x="180" y="0.0" width="80" height="45"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" identifier="commentsButtonWidthConstraint" id="tGH-ko-eCj"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <inset key="titleEdgeInsets" minX="32" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <state key="normal" title="12" image="icon-button-post-comments-normal">
@@ -88,7 +131,7 @@
                                 </connections>
                             </button>
                             <button clipsSubviews="YES" tag="3" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1jY-NP-1y9" userLabel="Repost Button">
-                                <rect key="frame" x="262.5" y="0.0" width="77.5" height="45"/>
+                                <rect key="frame" x="260" y="0.0" width="80" height="45"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <state key="normal">
@@ -120,7 +163,7 @@
                         <color key="color" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                     </activityIndicatorView>
                     <activityIndicatorView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="1xx-38-jqd" userLabel="Dislike Activity Indicator">
-                        <rect key="frame" x="124.5" y="287" width="20" height="20"/>
+                        <rect key="frame" x="116" y="287" width="20" height="20"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="1xx-38-jqd" secondAttribute="height" multiplier="1:1" id="BSw-em-pQd"/>
@@ -136,7 +179,7 @@
                     <constraint firstAttribute="trailing" secondItem="Ue8-6R-IBd" secondAttribute="trailing" constant="16" id="7zQ-ZP-Gaw"/>
                     <constraint firstItem="jro-Kl-0WQ" firstAttribute="leading" secondItem="dWs-po-Va7" secondAttribute="leading" id="EFD-wE-0WI"/>
                     <constraint firstItem="x0K-7b-ZlY" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="GoF-tS-EU1"/>
-                    <constraint firstItem="tTd-m2-4DM" firstAttribute="centerX" secondItem="1xx-38-jqd" secondAttribute="centerX" constant="8" id="IC1-F2-CFz"/>
+                    <constraint firstItem="tTd-m2-4DM" firstAttribute="centerX" secondItem="1xx-38-jqd" secondAttribute="centerX" id="IC1-F2-CFz"/>
                     <constraint firstItem="dWs-po-Va7" firstAttribute="width" secondItem="dWs-po-Va7" secondAttribute="height" multiplier="1:1" id="MDX-KS-GWc"/>
                     <constraint firstItem="tTd-m2-4DM" firstAttribute="centerY" secondItem="1xx-38-jqd" secondAttribute="centerY" constant="-2" id="O8S-lF-eAW"/>
                     <constraint firstItem="VKV-nZ-kLa" firstAttribute="top" secondItem="x0K-7b-ZlY" secondAttribute="bottom" constant="10" identifier="titleLabelTopConstraint" id="TZ0-Je-35T"/>
@@ -159,8 +202,10 @@
                 <outlet property="commentsButton" destination="Ypr-q4-mMn" id="8xj-Si-624"/>
                 <outlet property="dislikeActivityIndicator" destination="1xx-38-jqd" id="Si6-LH-B4I"/>
                 <outlet property="dislikeButton" destination="tTd-m2-4DM" id="vnh-XH-8uw"/>
+                <outlet property="dislikeCountButton" destination="Urd-GW-UZd" id="n01-PO-5NX"/>
                 <outlet property="likeActivityIndicator" destination="dWs-po-Va7" id="XIK-BJ-US1"/>
                 <outlet property="likeButton" destination="jro-Kl-0WQ" id="8MQ-yR-9nl"/>
+                <outlet property="likeCountButton" destination="M7G-UA-1e0" id="ijB-9A-Cg5"/>
                 <outlet property="postFeedHeaderView" destination="x0K-7b-ZlY" id="Tv9-zR-sE1"/>
                 <outlet property="postImageView" destination="cNc-UC-tpt" id="Wky-e0-vzt"/>
                 <outlet property="postImageViewHeightConstraint" destination="peV-ev-Tz3" id="AFD-To-NGh"/>
@@ -176,6 +221,11 @@
                 <outletCollection property="widthsCollection" destination="7zQ-ZP-Gaw" collectionClass="NSMutableArray" id="r0x-GB-DlZ"/>
                 <outletCollection property="widthsCollection" destination="3rQ-YB-AzO" collectionClass="NSMutableArray" id="Qd7-Wu-Spi"/>
                 <outletCollection property="widthsCollection" destination="TZf-fc-GqU" collectionClass="NSMutableArray" id="lJu-6z-6zI"/>
+                <outletCollection property="widthsCollection" destination="Mgq-FH-osg" collectionClass="NSMutableArray" id="Sz1-lO-gRP"/>
+                <outletCollection property="widthsCollection" destination="Hdh-9F-G5b" collectionClass="NSMutableArray" id="GIe-Qg-swJ"/>
+                <outletCollection property="widthsCollection" destination="WZu-rl-5hD" collectionClass="NSMutableArray" id="pQs-JO-11j"/>
+                <outletCollection property="widthsCollection" destination="ahc-MG-ONs" collectionClass="NSMutableArray" id="szs-mR-iWA"/>
+                <outletCollection property="widthsCollection" destination="tGH-ko-eCj" collectionClass="NSMutableArray" id="l9c-JX-Uwe"/>
             </connections>
             <point key="canvasLocation" x="-276" y="246"/>
         </tableViewCell>

@@ -52,23 +52,35 @@ class CommentView: UIView, HandlersCellSupport {
     
     @IBOutlet weak var likeButton: UIButton! {
         didSet {
-            likeButton.tune(withTitle:          "    ",
-                            hexColors:          [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
-                            font:               UIFont(name: "SFProDisplay-Regular", size: 12.0),
-                            alignment:          .left)
-            
             likeButton.isEnabled = true
         }
     }
     
+    @IBOutlet weak var likeCountButton: UIButton! {
+        didSet {
+            likeCountButton.tune(withTitle:     "",
+                                 hexColors:     [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
+                                 font:          UIFont(name: "SFProDisplay-Regular", size: 12.0),
+                                 alignment:     .left)
+            
+            likeCountButton.isEnabled = true
+        }
+    }
+
     @IBOutlet weak var dislikeButton: UIButton! {
         didSet {
-            dislikeButton.tune(withTitle:       "    ",
-                               hexColors:       [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
-                               font:            UIFont(name: "SFProDisplay-Regular", size: 12.0),
-                               alignment:       .center)
-            
             dislikeButton.isEnabled = true
+        }
+    }
+
+    @IBOutlet weak var dislikeCountButton: UIButton! {
+        didSet {
+            dislikeCountButton.tune(withTitle:      "",
+                                    hexColors:      [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
+                                    font:           UIFont(name: "SFProDisplay-Regular", size: 12.0),
+                                    alignment:      .center)
+            
+            dislikeCountButton.isEnabled = true
         }
     }
 
@@ -159,12 +171,12 @@ class CommentView: UIView, HandlersCellSupport {
         self.dislikeActivityIndicator.stopAnimating()
 
         self.likeButton.tag = comment.currentUserLiked ? 99 : 0
-        self.likeButton.setTitle(comment.likeCount > 0 ? "\(comment.likeCount)" : "    ", for: .normal)
+        self.likeCountButton.setTitle(comment.likeCount > 0 ? "\(comment.likeCount)" : nil, for: .normal)
         self.likeButton.setImage(UIImage(named: comment.currentUserLiked ? "icon-button-post-like-selected" : "icon-button-post-like-normal"), for: .normal)
         
         // Dislike icon
         self.dislikeButton.tag = comment.currentUserDisliked ? 99 : 0
-        self.dislikeButton.setTitle(comment.dislikeCount > 0 ? "\(comment.dislikeCount)" : "    ", for: .normal)
+        self.dislikeCountButton.setTitle(comment.dislikeCount > 0 ? "\(comment.dislikeCount)" : nil, for: .normal)
         self.dislikeButton.setImage(comment.currentUserDisliked ? UIImage(named: "icon-button-post-dislike-selected") : UIImage(named: "icon-button-post-dislike-normal"), for: .normal)
 
         // Avatar
@@ -256,8 +268,16 @@ class CommentView: UIView, HandlersCellSupport {
         self.handlerLikeButtonTapped!(sender.tag == 0, self.postShortInfo)
     }
 
+    @IBAction func likeCountButtonTapped(_ sender: UIButton) {
+        
+    }
+
     @IBAction func dislikeButtonTapped(_ sender: UIButton) {
         self.handlerDislikeButtonTapped!(sender.tag == 0, self.postShortInfo)
+    }
+
+    @IBAction func dislikeCountButtonTapped(_ sender: UIButton) {
+        
     }
 
     @IBAction func replyButtonTapped(_ sender: UIButton) {

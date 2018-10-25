@@ -43,8 +43,7 @@
 "Enter With Active Key"                     =   "Log In with active key";
 "Enter With Posting Key"                    =   "Log In with posting key";
 "Add at least one tag"                      =   "Add at least one tag";
-"Subscribe"                                 =   "Subscribe";
-"Unsubscribe"                               =   "Unsubscribe";
+"Subscribe Verb"                            =   "Subscribe";
 "Write"                                     =   "Write";
 "Posts"                                     =   "Posts";
 "Replies"                                   =   "Replies";
@@ -155,6 +154,8 @@
 "Unsubscribe Success"                       =   "Thanks,\nYou unsubscribed from the author";
 "Cancel Vote"                               =   "Reset Voices";
 "Cancel Vote Message"                       =   "Deleting a vote will change your decision to vote for this post";
+"Voted Verb"                                =   "Voted";
+"Voted Against Verb"                        =   "Voted Against";
 
 
 // Placeholders
@@ -209,7 +210,6 @@
 "User followings are not found"             =   "User followings are not found";
 "List of users is empty"                    =   "User list is empty";
 "List of posts is empty"                    =   "Post list is empty";
-
 "Fetching Failed"                           =   "Fetching Failed from CoreData";
 "Broken Link Failure"                       =   "Broken Link Failure";
 "Response All Content Replies error"        =   "Response All Content Replies Result Error";

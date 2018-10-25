@@ -43,8 +43,7 @@
 "Enter With Active Key"                     =   "Войти с активным ключом";
 "Enter With Posting Key"                    =   "Войти с постинг ключом";
 "Add at least one tag"                      =   "Добавьте минимум один тег";
-"Subscribe"                                 =   "Подписаться";
-"Unsubscribe"                               =   "Отписаться";
+"Subscribe Verb"                            =   "Подписаться";
 "Write"                                     =   "Написать";
 "Posts"                                     =   "Посты";
 "Replies"                                   =   "Ответы";
@@ -155,6 +154,8 @@
 "Unsubscribe Success"                       =   "Спасибо,\nВы отписались от автора";
 "Cancel Vote"                               =   "Сброс Голоса";
 "Cancel Vote Message"                       =   "Удаление голоса изменит ваше решение по голосованию за этот пост";
+"Voted Verb"                                =   "Проголосовали";
+"Voted Against Verb"                        =   "Проголосовали против";
 
 
 // Placeholders

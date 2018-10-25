@@ -18,9 +18,11 @@
                 <outlet property="contentView" destination="tNf-H6-dtq" id="pgg-SB-0Y3"/>
                 <outlet property="dislikeActivityIndicator" destination="g5F-k1-w0f" id="RAF-bH-ezA"/>
                 <outlet property="dislikeButton" destination="FWp-8o-9XQ" id="Bog-dy-Keq"/>
+                <outlet property="dislikeCountButton" destination="Rwo-6d-XPN" id="ljf-Bh-Och"/>
                 <outlet property="leadingConstraint" destination="rJH-dn-TBo" id="UmV-KF-Fgi"/>
                 <outlet property="likeActivityIndicator" destination="9vY-Xd-25N" id="beO-x2-7tj"/>
                 <outlet property="likeButton" destination="o8N-iq-pgK" id="Ier-SR-DmE"/>
+                <outlet property="likeCountButton" destination="GYN-1u-csa" id="bS4-8M-eBe"/>
                 <outlet property="markdownViewHeightConstraint" destination="7cj-30-Ntl" id="vk3-fi-xVa"/>
                 <outlet property="markdownViewManager" destination="Mnb-Ny-ryB" id="dXy-AN-Otj"/>
                 <outlet property="replyButton" destination="aru-HA-jeG" id="HLH-Xw-BoF"/>
@@ -40,6 +42,11 @@
                 <outletCollection property="widthsCollection" destination="D4v-Ma-HTj" collectionClass="NSMutableArray" id="LaM-dk-hvT"/>
                 <outletCollection property="widthsCollection" destination="0Jc-1M-vHe" collectionClass="NSMutableArray" id="BaB-at-HL6"/>
                 <outletCollection property="widthsCollection" destination="WGM-xK-IuN" collectionClass="NSMutableArray" id="WyD-2c-edF"/>
+                <outletCollection property="widthsCollection" destination="f5e-d8-cHI" collectionClass="NSMutableArray" id="UyZ-iK-IFI"/>
+                <outletCollection property="widthsCollection" destination="22s-Gh-24N" collectionClass="NSMutableArray" id="N0A-z9-uZ0"/>
+                <outletCollection property="widthsCollection" destination="ZbD-uk-x1z" collectionClass="NSMutableArray" id="J33-aB-wjy"/>
+                <outletCollection property="widthsCollection" destination="0Hf-1Q-LzP" collectionClass="NSMutableArray" id="kCb-Op-lUa"/>
+                <outletCollection property="widthsCollection" destination="7g8-30-S2i" collectionClass="NSMutableArray" id="Bzd-0C-Lr1"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -119,16 +126,18 @@
                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bW7-se-LaC" userLabel="Buttons View">
                             <rect key="frame" x="52" y="35" width="323" height="44"/>
                             <subviews>
-                                <stackView contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="qfO-v9-tpQ" userLabel="Active Buttons Stack View">
+                                <stackView contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="qfO-v9-tpQ" userLabel="Active Buttons Stack View">
                                     <rect key="frame" x="0.0" y="0.0" width="323" height="44"/>
                                     <subviews>
                                         <button clipsSubviews="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o8N-iq-pgK" userLabel="Like Button">
-                                            <rect key="frame" x="0.0" y="0.0" width="81" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="40" height="44"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="40" identifier="likeButtonWidthConstraint" id="f5e-d8-cHI"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                            <inset key="titleEdgeInsets" minX="18" minY="0.0" maxX="0.0" maxY="0.0"/>
                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="6"/>
-                                            <state key="normal" title="20" image="icon-button-post-like-normal">
+                                            <state key="normal" image="icon-button-post-like-normal">
                                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </state>
                                             <state key="disabled">
@@ -138,22 +147,63 @@
                                                 <action selector="likeButtonTapped:" destination="-1" eventType="touchUpInside" id="dFl-hW-w4I"/>
                                             </connections>
                                         </button>
-                                        <button clipsSubviews="YES" tag="1" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FWp-8o-9XQ" userLabel="Dislike Button">
-                                            <rect key="frame" x="81" y="0.0" width="80.5" height="44"/>
+                                        <button clipsSubviews="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GYN-1u-csa" userLabel="Like Count Button">
+                                            <rect key="frame" x="40" y="0.0" width="50" height="44"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="50" identifier="likeCountButtonWidthConstraint" id="22s-Gh-24N"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                            <inset key="titleEdgeInsets" minX="32" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                            <inset key="imageEdgeInsets" minX="0.0" minY="6" maxX="4" maxY="0.0"/>
-                                            <state key="normal" title="    " image="icon-button-post-dislike-normal">
+                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="6"/>
+                                            <state key="normal" title="20">
+                                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </state>
+                                            <state key="disabled">
+                                                <color key="titleColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="likeCountButtonTapped:" destination="-1" eventType="touchUpInside" id="6pi-Oz-0jC"/>
+                                            </connections>
+                                        </button>
+                                        <button clipsSubviews="YES" tag="1" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FWp-8o-9XQ" userLabel="Dislike Button">
+                                            <rect key="frame" x="90" y="0.0" width="40" height="44"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="40" identifier="dislikeButtonWidthConstraint" id="ZbD-uk-x1z"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                            <inset key="imageEdgeInsets" minX="0.0" minY="6" maxX="0.0" maxY="0.0"/>
+                                            <state key="normal" image="icon-button-post-dislike-normal">
                                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </state>
                                             <connections>
                                                 <action selector="dislikeButtonTapped:" destination="-1" eventType="touchUpInside" id="Yj1-PT-noa"/>
                                             </connections>
                                         </button>
-                                        <button clipsSubviews="YES" tag="2" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="aru-HA-jeG" userLabel="Reply Button">
-                                            <rect key="frame" x="161.5" y="0.0" width="81" height="44"/>
+                                        <button clipsSubviews="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rwo-6d-XPN" userLabel="Dislike Count Button">
+                                            <rect key="frame" x="130" y="0.0" width="50" height="44"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="50" identifier="dislikeCountButtonWidthConstraint" id="0Hf-1Q-LzP"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="6"/>
+                                            <state key="normal" title="20">
+                                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </state>
+                                            <state key="disabled">
+                                                <color key="titleColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="dislikeCountButtonTapped:" destination="-1" eventType="touchUpInside" id="i9W-FS-cm1"/>
+                                            </connections>
+                                        </button>
+                                        <button clipsSubviews="YES" tag="2" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="aru-HA-jeG" userLabel="Reply Button">
+                                            <rect key="frame" x="180" y="0.0" width="80" height="44"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="80" identifier="replyButtonWidthConstraint" id="7g8-30-S2i"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <state key="normal" title="Reply Verb">
                                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -163,7 +213,7 @@
                                             </connections>
                                         </button>
                                         <button clipsSubviews="YES" tag="3" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DE8-0c-DrM" userLabel="Share Button">
-                                            <rect key="frame" x="242.5" y="0.0" width="80.5" height="44"/>
+                                            <rect key="frame" x="260" y="0.0" width="63" height="44"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <state key="normal">
@@ -192,7 +242,7 @@
                             <color key="color" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                         </activityIndicatorView>
                         <activityIndicatorView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="g5F-k1-w0f" userLabel="Dislike Activity Indicator">
-                            <rect key="frame" x="155" y="47" width="20" height="20"/>
+                            <rect key="frame" x="152" y="47" width="20" height="20"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="g5F-k1-w0f" secondAttribute="height" multiplier="1:1" id="ouK-Sh-JDZ"/>
@@ -206,7 +256,7 @@
                         <constraint firstItem="9vY-Xd-25N" firstAttribute="centerY" secondItem="bW7-se-LaC" secondAttribute="centerY" id="0S2-ZY-ZVr"/>
                         <constraint firstAttribute="bottom" secondItem="bW7-se-LaC" secondAttribute="bottom" id="6pU-gQ-bHT"/>
                         <constraint firstItem="mlh-OO-ald" firstAttribute="top" secondItem="tNf-H6-dtq" secondAttribute="top" constant="10" id="ALu-zV-3cZ"/>
-                        <constraint firstItem="g5F-k1-w0f" firstAttribute="centerX" secondItem="FWp-8o-9XQ" secondAttribute="centerX" constant="-8" id="CNs-pU-NqI"/>
+                        <constraint firstItem="g5F-k1-w0f" firstAttribute="centerX" secondItem="FWp-8o-9XQ" secondAttribute="centerX" id="CNs-pU-NqI"/>
                         <constraint firstItem="JV1-jP-ZcQ" firstAttribute="leading" secondItem="eTP-vD-Kt8" secondAttribute="trailing" constant="8" id="D4v-Ma-HTj"/>
                         <constraint firstAttribute="trailing" secondItem="bW7-se-LaC" secondAttribute="trailing" id="DQT-JO-Lfz"/>
                         <constraint firstItem="9vY-Xd-25N" firstAttribute="centerY" secondItem="o8N-iq-pgK" secondAttribute="centerY" id="HKy-Vo-dUA"/>
@@ -248,7 +298,7 @@
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="32.799999999999997" y="110.19490254872565"/>
+            <point key="canvasLocation" x="-196" y="-17"/>
         </view>
     </objects>
     <resources>

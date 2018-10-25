@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserVoteTableViewCell" rowHeight="64" id="KGk-i7-Jjw" customClass="UserVoteTableViewCell" customModule="Golos" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <tableViewCellContentView key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="63.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-user-profile-image-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="ot7-1j-HhI" userLabel="Author Profile Image View">
+                        <rect key="frame" x="16" y="7" width="50" height="50"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="50" identifier="authorProfileImageViewWidthConstraint" id="8jh-g3-gtQ"/>
+                        </constraints>
+                    </imageView>
+                    <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BbN-TG-Od7" userLabel="Author Reputation Background View">
+                        <rect key="frame" x="16" y="39" width="18" height="18"/>
+                        <subviews>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8tr-1B-jEU" userLabel="Author Reputation View">
+                                <rect key="frame" x="1" y="1" width="16" height="16"/>
+                                <color key="backgroundColor" red="0.4941176471" green="0.52549019610000003" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="16" id="Afy-wh-Ru2"/>
+                                    <constraint firstAttribute="width" secondItem="8tr-1B-jEU" secondAttribute="height" multiplier="1:1" id="huZ-T1-vac"/>
+                                </constraints>
+                            </view>
+                            <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ECr-Zd-24x" userLabel="Author Reputation Label">
+                                <rect key="frame" x="2" y="2" width="14" height="14"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="8tr-1B-jEU" firstAttribute="centerX" secondItem="BbN-TG-Od7" secondAttribute="centerX" id="BBc-Cq-50d"/>
+                            <constraint firstItem="8tr-1B-jEU" firstAttribute="centerY" secondItem="BbN-TG-Od7" secondAttribute="centerY" id="TO0-Hp-Pzw"/>
+                            <constraint firstAttribute="width" constant="18" identifier="authorProfileImageViewWidthConstraint" id="j29-eI-Acy"/>
+                        </constraints>
+                    </view>
+                    <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xfi-bz-xeP" userLabel="Author Profile Button">
+                        <rect key="frame" x="0.0" y="0.0" width="70" height="63.5"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <connections>
+                            <action selector="authorProfileButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="enk-TH-8SL"/>
+                        </connections>
+                    </button>
+                    <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iqb-uo-9wO" userLabel="Subscribe Button">
+                        <rect key="frame" x="269" y="17" width="90" height="30"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="iqb-uo-9wO" secondAttribute="height" multiplier="3:1" id="YZs-8y-dIW"/>
+                        </constraints>
+                        <connections>
+                            <action selector="subscribeButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="JMc-N6-MJU"/>
+                        </connections>
+                    </button>
+                    <stackView contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Zt1-cG-Fei" userLabel="Active Buttons Stack View">
+                        <rect key="frame" x="82" y="7" width="175" height="50"/>
+                        <subviews>
+                            <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rTW-bO-laa" userLabel="Author Name Button">
+                                <rect key="frame" x="0.0" y="0.0" width="175" height="25"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <action selector="authorNameButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="q45-3b-b1U"/>
+                                </connections>
+                            </button>
+                            <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WuU-ff-Nu9" userLabel="Voice Power Button">
+                                <rect key="frame" x="0.0" y="25" width="175" height="25"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <action selector="voicePowerButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="iLn-ly-8Qa"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </stackView>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstItem="xfi-bz-xeP" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="0MO-3j-8Eq"/>
+                    <constraint firstItem="iqb-uo-9wO" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="63x-yA-YjN"/>
+                    <constraint firstItem="iqb-uo-9wO" firstAttribute="leading" secondItem="Zt1-cG-Fei" secondAttribute="trailing" constant="12" identifier="subscribeButtonLeadingConstraint" id="AHh-r6-FfF"/>
+                    <constraint firstItem="Zt1-cG-Fei" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Alw-cK-NBc"/>
+                    <constraint firstItem="Zt1-cG-Fei" firstAttribute="height" secondItem="ot7-1j-HhI" secondAttribute="height" id="BnA-rE-Hhn"/>
+                    <constraint firstItem="Zt1-cG-Fei" firstAttribute="leading" secondItem="xfi-bz-xeP" secondAttribute="trailing" constant="12" identifier="activeButtonsStackViewLeadingConstraint" id="JYz-Ey-fKX"/>
+                    <constraint firstItem="ot7-1j-HhI" firstAttribute="width" secondItem="ot7-1j-HhI" secondAttribute="height" multiplier="1:1" id="MRz-TV-wKd"/>
+                    <constraint firstItem="ot7-1j-HhI" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" identifier="authorProfileImageViewLeadingConstraint" id="Qvr-9x-bwn"/>
+                    <constraint firstItem="ot7-1j-HhI" firstAttribute="trailing" secondItem="xfi-bz-xeP" secondAttribute="trailing" constant="-4" identifier="authorProfileImageViewTrailingConstraint" id="R2k-OB-BIo"/>
+                    <constraint firstItem="BbN-TG-Od7" firstAttribute="width" secondItem="BbN-TG-Od7" secondAttribute="height" multiplier="1:1" id="RvA-1a-Jb4"/>
+                    <constraint firstItem="BbN-TG-Od7" firstAttribute="bottom" secondItem="ot7-1j-HhI" secondAttribute="bottom" id="Soh-dN-QE7"/>
+                    <constraint firstAttribute="bottom" secondItem="xfi-bz-xeP" secondAttribute="bottom" id="Tf6-EK-56B"/>
+                    <constraint firstItem="ot7-1j-HhI" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="UgE-y8-GEJ"/>
+                    <constraint firstItem="xfi-bz-xeP" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="d90-AZ-8I4"/>
+                    <constraint firstItem="BbN-TG-Od7" firstAttribute="leading" secondItem="ot7-1j-HhI" secondAttribute="leading" id="f4i-oH-IdP"/>
+                    <constraint firstAttribute="trailing" secondItem="iqb-uo-9wO" secondAttribute="trailing" constant="16" identifier="subscribeButtonTrailingConstraint" id="xpc-8s-dTT"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="iqb-uo-9wO" firstAttribute="width" secondItem="KGk-i7-Jjw" secondAttribute="width" multiplier="90:375" id="vcl-Mh-pUe"/>
+            </constraints>
+            <connections>
+                <outlet property="authorNameButton" destination="rTW-bO-laa" id="fQb-SQ-6DO"/>
+                <outlet property="authorProfileImageView" destination="ot7-1j-HhI" id="TjT-Ka-uF3"/>
+                <outlet property="authorReputationLabel" destination="ECr-Zd-24x" id="Pj7-2I-PIN"/>
+                <outlet property="subscribeButton" destination="iqb-uo-9wO" id="cRG-ER-742"/>
+                <outlet property="voicePowerButton" destination="WuU-ff-Nu9" id="j4k-H7-mX8"/>
+                <outletCollection property="circleViewsCollection" destination="ot7-1j-HhI" collectionClass="NSMutableArray" id="AfV-0z-JXD"/>
+                <outletCollection property="circleViewsCollection" destination="BbN-TG-Od7" collectionClass="NSMutableArray" id="UGL-5i-6Hz"/>
+                <outletCollection property="circleViewsCollection" destination="8tr-1B-jEU" collectionClass="NSMutableArray" id="xhx-Q4-juO"/>
+                <outletCollection property="widthsCollection" destination="j29-eI-Acy" collectionClass="NSMutableArray" id="eon-z8-UcX"/>
+                <outletCollection property="widthsCollection" destination="Qvr-9x-bwn" collectionClass="NSMutableArray" id="dqT-Nz-wXy"/>
+                <outletCollection property="widthsCollection" destination="R2k-OB-BIo" collectionClass="NSMutableArray" id="iWy-bM-U4l"/>
+                <outletCollection property="widthsCollection" destination="JYz-Ey-fKX" collectionClass="NSMutableArray" id="YBD-rd-WVt"/>
+                <outletCollection property="widthsCollection" destination="AHh-r6-FfF" collectionClass="NSMutableArray" id="xwa-1d-3nl"/>
+                <outletCollection property="widthsCollection" destination="xpc-8s-dTT" collectionClass="NSMutableArray" id="Xsf-6O-Vn6"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="icon-user-profile-image-placeholder" width="40" height="40"/>
+    </resources>
+</document>
