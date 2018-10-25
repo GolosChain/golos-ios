@@ -199,8 +199,8 @@
                                                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                                 </state>
                                                                 <connections>
-                                                                    <action selector="subscribeButtonTapped:" destination="EfY-4r-YFi" eventType="touchUpInside" id="yl9-lK-tWu"/>
                                                                     <action selector="subscribeButtonTappedDown:" destination="EfY-4r-YFi" eventType="touchDown" id="a4Z-Q0-fqr"/>
+                                                                    <action selector="subscribeUserButtonTapped:" destination="EfY-4r-YFi" eventType="touchUpInside" id="yl9-lK-tWu"/>
                                                                 </connections>
                                                             </button>
                                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FJs-iF-r9g" userLabel="Bottom Line View">
@@ -239,10 +239,10 @@
                                                                 </constraints>
                                                             </imageView>
                                                             <button clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eEn-P4-Nhn" userLabel="Subscribe User Button">
-                                                                <rect key="frame" x="259" y="25" width="100" height="30"/>
+                                                                <rect key="frame" x="269" y="25" width="90" height="30"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="width" constant="100" id="pdk-dM-cga"/>
+                                                                    <constraint firstAttribute="width" constant="90" id="pdk-dM-cga"/>
                                                                     <constraint firstAttribute="height" constant="30" identifier="subscribeUserButtonHeightConstraint" id="pwV-Lk-m0t"/>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -250,32 +250,31 @@
                                                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                                 </state>
                                                                 <connections>
-                                                                    <action selector="subscribeButtonTapped:" destination="EfY-4r-YFi" eventType="touchUpInside" id="VZh-9D-8Tv"/>
-                                                                    <action selector="subscribeButtonTappedDown:" destination="EfY-4r-YFi" eventType="touchDown" id="bzj-XS-XOT"/>
+                                                                    <action selector="subscribeUserButtonTapped:" destination="EfY-4r-YFi" eventType="touchUpInside" id="VZh-9D-8Tv"/>
                                                                 </connections>
                                                             </button>
                                                             <stackView contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="jR5-dE-efI" userLabel="Labels Stack View">
-                                                                <rect key="frame" x="76" y="20" width="173" height="40"/>
+                                                                <rect key="frame" x="76" y="20" width="183" height="40"/>
                                                                 <subviews>
                                                                     <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TQB-vz-8Uo" userLabel="User Name Label">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="173" height="40"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="183" height="40"/>
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <stackView hidden="YES" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="aCJ-ZS-yTX">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="173" height="2"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="183" height="2"/>
                                                                         <subviews>
                                                                             <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X2g-fj-Wl3" userLabel="Recent Past Label">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="173" height="0.0"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="183" height="0.0"/>
                                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="8"/>
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KoR-Pb-edd" userLabel="Previously Label">
-                                                                                <rect key="frame" x="0.0" y="2" width="173" height="0.0"/>
+                                                                                <rect key="frame" x="0.0" y="2" width="183" height="0.0"/>
                                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="8"/>
                                                                                 <nil key="textColor"/>
@@ -310,7 +309,7 @@
                                                 <rect key="frame" x="177.5" y="218.5" width="20" height="20"/>
                                             </activityIndicatorView>
                                             <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VyW-ed-xji" userLabel="User Profile Image Button">
-                                                <rect key="frame" x="0.0" y="188.5" width="249" height="80"/>
+                                                <rect key="frame" x="0.0" y="188.5" width="259" height="80"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <connections>
                                                     <action selector="userProfileImageButtonTapped:" destination="EfY-4r-YFi" eventType="touchUpInside" id="Dkc-eE-c5l"/>
@@ -668,6 +667,7 @@
                         <outlet property="scrollView" destination="7f0-ZC-o8d" id="fET-LD-QHE"/>
                         <outlet property="sortByLabel" destination="NIC-bg-8Kq" id="Ilg-Ir-Tfj"/>
                         <outlet property="subscribeActivityIndicator" destination="3Lz-nN-lGc" id="7Rp-Yt-buk"/>
+                        <outlet property="subscribeUserButton" destination="eEn-P4-Nhn" id="6Hh-8I-Do0"/>
                         <outlet property="subscribesStackView" destination="hL9-He-JpB" id="uDW-uB-Fb5"/>
                         <outlet property="subscribesStackViewTopConstraint" destination="u8K-s0-eby" id="r9r-cU-InB"/>
                         <outlet property="tagsCollectionView" destination="lwn-iM-8rz" id="KAp-WL-toG"/>
@@ -718,8 +718,6 @@
                         <outletCollection property="widthsCollection" destination="bRb-U9-bGv" collectionClass="NSMutableArray" id="Jsw-c3-Zd5"/>
                         <outletCollection property="heightsCollection" destination="pwV-Lk-m0t" collectionClass="NSMutableArray" id="VDa-DY-l9A"/>
                         <outletCollection property="widthsCollection" destination="pdk-dM-cga" collectionClass="NSMutableArray" id="qe7-Z4-gyj"/>
-                        <outletCollection property="subscribeButtonsCollection" destination="eEn-P4-Nhn" collectionClass="NSMutableArray" id="TQx-wk-zyP"/>
-                        <outletCollection property="subscribeButtonsCollection" destination="28F-WH-XIS" collectionClass="NSMutableArray" id="deR-sG-bP6"/>
                         <outletCollection property="circleImagesCollection" destination="brE-kk-Xo3" collectionClass="NSMutableArray" id="yGd-Pu-Qa1"/>
                         <outletCollection property="circleImagesCollection" destination="ZH2-hK-oIK" collectionClass="NSMutableArray" id="eT9-9p-i4P"/>
                         <outletCollection property="heightsCollection" destination="tFP-px-vz4" collectionClass="NSMutableArray" id="dZZ-4X-beo"/>

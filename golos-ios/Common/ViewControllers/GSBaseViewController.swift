@@ -159,7 +159,7 @@ class GSBaseViewController: UIViewController {
 
         // Add icon
         if let iconImage = icon {
-            let iconView = UIImageView(frame: CGRect(origin:    CGPoint(x: self.view.frame.midX - 30.0 * widthRatio, y: alertViewController.view.frame.minY + 40.0 * heightRatio),
+            let iconView = UIImageView(frame: CGRect(origin:    CGPoint(x: self.view.frame.midX - 30.0 * widthRatio, y: alertViewController.view.frame.minY + 38.0 * heightRatio),
                                                      size:      CGSize(width: 50 * widthRatio, height: 50 * widthRatio)))
             iconView.image = iconImage
             iconView.layer.cornerRadius = 25.0 * widthRatio
@@ -172,6 +172,12 @@ class GSBaseViewController: UIViewController {
     }
     
     func isCurrentOperationPossible() -> Bool {
+        guard isNetworkAvailable else {
+            self.showAlertView(withTitle: "Info", andMessage: "No Internet Connection", needCancel: false, completion: { _ in })
+            
+            return false
+        }
+
         guard !User.isAnonymous else {
             self.showAlertView(withTitle: "Enter Title", andMessage: "Please Login in App", needCancel: true, completion: { success in
                 if success {

@@ -309,17 +309,15 @@ class PostShowViewController: GSBaseViewController {
                                      isMultiLines:  false)
         }
     }
-    
-    @IBOutlet var subscribeButtonsCollection: [UIButton]! {
+
+    @IBOutlet var subscribeUserButton: UIButton! {
         didSet {
-            subscribeButtonsCollection.forEach({ button in
-                button.tune(withTitle:         "Subscribe Verb",
-                            hexColors:         [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers],
-                            font:              UIFont(name: "SFProDisplay-Medium", size: 10.0),
-                            alignment:         .center)
-                
-                button.setBorder(color: UIColor(hexString: "#dbdbdb").cgColor, cornerRadius: 4.0 * heightRatio)
-            })
+            self.subscribeUserButton.tune(withTitle:    "",
+                                          hexColors:    [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers],
+                                          font:         UIFont(name: "SFProDisplay-Medium", size: 10.0),
+                                          alignment:    .center)
+            
+            self.subscribeUserButton.fill(font: UIFont(name: "SFProDisplay-Medium", size: 10.0)!)
         }
     }
     
@@ -643,7 +641,7 @@ class PostShowViewController: GSBaseViewController {
         
         self.commentsHideButton.setTitle("Hide Comments Verb".localized(), for: .normal)
         self.commentsSortByButton.setTitle("Action Sheet First New".localized(), for: .normal)
-        self.subscribeButtonsCollection.forEach({ $0.setTitle("Subscribe Verb".localized(), for: .normal )})
+        self.subscribeUserButton.setTitle((self.subscribeUserButton.isSelected ? "Subscriptions" : "Subscribe Verb").localized(), for: .normal)
         
         self.sortByLabel.text = "Sort by".localized()
         self.commentsTitleLabel.text = "Comments Noun".localized()
@@ -858,38 +856,33 @@ class PostShowViewController: GSBaseViewController {
         self.postFeedHeaderView.authorProfileButtonTapped(sender)
     }
    
-    @IBAction func subscribeButtonTapped(_ sender: UIButton) {
+    @IBAction func subscribeUserButtonTapped(_ sender: UIButton) {
         guard self.isCurrentOperationPossible() else { return }
 
-        self.userNameLabel.text = self.postFeedHeaderView.authorNameButton.titleLabel!.text
+        // Run spinner
+        DispatchQueue.main.async {
+            self.subscribeActivityIndicator.startAnimating()
+        }
+        
+        guard sender.isSelected else {
+            // API 'Subscribe'
+            let requestModel = PostShowModels.Item.RequestModel(willSubscribe: true)
+            interactor?.subscribe(withRequestModel: requestModel)
 
+            return
+        }
+
+        // API 'Unsibscribe'
         self.showAlertAction(withTitle: "Unsubscribe Verb", andMessage: String(format: "%@ @%@ ?", "Unsubscribe are you sure".localized(), self.postFeedHeaderView.authorNickNameButton.titleLabel!.text!), icon: self.postFeedHeaderView.authorProfileImageView.image, actionTitle: "Cancel Subscribe Verb", needCancel: true, isCancelLeft: false, completion: { [weak self] success in
             if success {
-                print("XXX")
+                let requestModel = PostShowModels.Item.RequestModel(willSubscribe: false)
+                self?.interactor?.subscribe(withRequestModel: requestModel)
             }
             
             else {
-                print("YYY")
+                self?.subscribeActivityIndicator.stopAnimating()
             }
         })
-        
-        
-        
-//        sender.setBorder(color: UIColor(hexString: "#dbdbdb").cgColor, cornerRadius: 4.0 * heightRatio)
-//
-//        guard isNetworkAvailable else {
-//            self.showAlertView(withTitle: "Info", andMessage: "No Internet Connection", needCancel: false, completion: { _ in })
-//            return
-//        }
-//
-//        // Run spinner
-//        DispatchQueue.main.async {
-//            self.subscribeActivityIndicator.startAnimating()
-//        }
-//
-//        // API
-//        let requestModel = PostShowModels.Item.RequestModel(willSubscribe: !sender.isSelected)
-//        interactor?.subscribe(withRequestModel: requestModel)
     }
     
     @IBAction func subscribeButtonTappedDown(_ sender: UIButton) {
@@ -911,8 +904,13 @@ extension PostShowViewController: PostShowDisplayLogic {
         // Set post author subscribe button title
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5, execute: {
             self.showAlertView(withTitle: "Info", andMessage: viewModel.isFollowing ? "Subscribe Success" : "Unsubscribe Success", needCancel: false, completion: { [weak self] _ in
-                self?.subscribeButtonsCollection.first(where: { $0.tag == 1 })?.isSelected = viewModel.isFollowing
-                self?.subscribeButtonsCollection.first(where: { $0.tag == 1 })?.setTitle(viewModel.isFollowing ? "Subscriptions".localized() : "Subscribe Verb".localized(), for: .normal)
+                self?.subscribeUserButton.isSelected = viewModel.isFollowing
+                self?.subscribeUserButton.setTitle((viewModel.isFollowing ? "Subscriptions" : "Subscribe Verb").localized(), for: .normal)
+                
+                UIView.animate(withDuration: 0.5, animations: {
+                    viewModel.isFollowing ? self?.subscribeUserButton.setBorder(color: UIColor(hexString: "#dbdbdb").cgColor, cornerRadius: 5.0) :
+                                            self?.subscribeUserButton.fill(font: UIFont(name: "SFProDisplay-Medium", size: 10.0)!)
+                })
             })
         })
     }
@@ -953,8 +951,13 @@ extension PostShowViewController: PostShowDisplayLogic {
         
         // Set post author subscribe button title
         DispatchQueue.main.async {
-            self.subscribeButtonsCollection.first(where: { $0.tag == 1})?.isSelected = viewModel.isFollowing
-            self.subscribeButtonsCollection.first(where: { $0.tag == 1 })?.setTitle(viewModel.isFollowing ? "Subscriptions".localized() : "Subscribe Verb".localized(), for: .normal)
+            self.subscribeUserButton.isSelected = viewModel.isFollowing
+            self.subscribeUserButton.setTitle((viewModel.isFollowing ? "Subscriptions" : "Subscribe Verb").localized(), for: .normal)
+           
+            UIView.animate(withDuration: 0.5, animations: {
+                viewModel.isFollowing ? self.subscribeUserButton.setBorder(color: UIColor(hexString: "#dbdbdb").cgColor, cornerRadius: 5.0) :
+                                        self.subscribeUserButton.fill(font: UIFont(name: "SFProDisplay-Medium", size: 10.0)!)
+            })
         }
     }
     
@@ -1037,10 +1040,9 @@ extension PostShowViewController {
 
         guard isNetworkAvailable && !User.isAnonymous else {
             DispatchQueue.main.async {
-                if let subscribeButtons = self.subscribeButtonsCollection {
-                    subscribeButtons.first(where: { $0.tag == 1 })?.isSelected = false
-                    subscribeButtons.first(where: { $0.tag == 1 })?.setTitle("Subscribe Verb".localized(), for: .normal)
-                }
+                self.subscribeUserButton.isSelected = false
+                self.subscribeUserButton.setTitle("Subscribe Verb".localized(), for: .normal)
+                self.subscribeUserButton.setBorder(color: UIColor(hexString: "#dbdbdb").cgColor, cornerRadius: 5.0)
             }
             
             return
@@ -1064,17 +1066,7 @@ extension PostShowViewController {
             fetchRequest.predicate = NSPredicate(format: "author == %@ AND permlink == %@", userName, permlink)
         }
         
-        do {
-            if let displayedPost = try CoreDataManager.instance.managedObjectContext.fetch(fetchRequest).first as? PostCellSupport {
-                self.loadViewSettings(withoutComments: only)
-            }
-        }
-        
-        catch {
-            self.showAlertView(withTitle: "Error", andMessage: "Fetching Failed", needCancel: false, completion: { _ in
-                Logger.log(message: "Fetching Failed", event: .error)
-            })
-        }
+        self.loadViewSettings(withoutComments: only)
     }
     
     private func fetchPostComments() {

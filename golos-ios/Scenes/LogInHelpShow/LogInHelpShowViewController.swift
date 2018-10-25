@@ -18,7 +18,7 @@ class LogInHelpShowViewController: GSBaseViewController {
    
     @IBOutlet weak var closeButton: UIButton! {
         didSet {
-            closeButton.setBlueButtonRoundCorners()
+            closeButton.fill()
             closeButton.setTitle("Thanks understood".localized(), for: .normal)
         }
     }
