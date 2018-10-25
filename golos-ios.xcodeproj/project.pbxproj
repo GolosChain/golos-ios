@@ -83,6 +83,8 @@
 		B13493482181881200B59827 /* UsersVoteShowInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13493422181881200B59827 /* UsersVoteShowInteractor.swift */; };
 		B134934C21819A0600B59827 /* UserVoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B134934A21819A0600B59827 /* UserVoteTableViewCell.swift */; };
 		B134934D21819A0600B59827 /* UserVoteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B134934B21819A0600B59827 /* UserVoteTableViewCell.xib */; };
+		B13493532182076C00B59827 /* SFUIDisplay-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = B13493522182076C00B59827 /* SFUIDisplay-Light.otf */; };
+		B13493552182079600B59827 /* SFUIDisplay-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = B13493542182079600B59827 /* SFUIDisplay-Medium.otf */; };
 		B136D4F820D8B9E8003AD279 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = B136D4F720D8B9E8003AD279 /* Tag.swift */; };
 		B136D4FB20D8BA14003AD279 /* AddTagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B136D4F920D8BA14003AD279 /* AddTagCollectionViewCell.swift */; };
 		B136D4FC20D8BA14003AD279 /* AddTagCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B136D4FA20D8BA14003AD279 /* AddTagCollectionViewCell.xib */; };
@@ -354,6 +356,8 @@
 		B13493422181881200B59827 /* UsersVoteShowInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersVoteShowInteractor.swift; sourceTree = "<group>"; };
 		B134934A21819A0600B59827 /* UserVoteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserVoteTableViewCell.swift; sourceTree = "<group>"; };
 		B134934B21819A0600B59827 /* UserVoteTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserVoteTableViewCell.xib; sourceTree = "<group>"; };
+		B13493522182076C00B59827 /* SFUIDisplay-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIDisplay-Light.otf"; sourceTree = "<group>"; };
+		B13493542182079600B59827 /* SFUIDisplay-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIDisplay-Medium.otf"; sourceTree = "<group>"; };
 		B136D4F720D8B9E8003AD279 /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		B136D4F920D8BA14003AD279 /* AddTagCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTagCollectionViewCell.swift; sourceTree = "<group>"; };
 		B136D4FA20D8BA14003AD279 /* AddTagCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddTagCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -939,6 +943,8 @@
 				B10FB7AB215FCA9300CA585E /* SFProDisplay-Bold.otf */,
 				B146891920F2013F00D36794 /* SFProDisplay-Medium.otf */,
 				B198DB9320B9C560008011A3 /* SFProDisplay-Regular.otf */,
+				B13493522182076C00B59827 /* SFUIDisplay-Light.otf */,
+				B13493542182079600B59827 /* SFUIDisplay-Medium.otf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -1400,6 +1406,7 @@
 				B1050CBF20CECFBE003CE4EE /* PostCreate.storyboard in Resources */,
 				B15C29AE21101F760030D249 /* PostShow.storyboard in Resources */,
 				B1CF44E22106D6CB00483A01 /* SettingsShow.storyboard in Resources */,
+				B13493552182079600B59827 /* SFUIDisplay-Medium.otf in Resources */,
 				B134933B2181878600B59827 /* UsersVoteShow.storyboard in Resources */,
 				B12A577420B432C8000CF8BF /* GoogleService-Info.plist in Resources */,
 				B1EE684820D243FF006BF802 /* PostCreateView.xib in Resources */,
@@ -1414,6 +1421,7 @@
 				B136D50020D8BA2E003AD279 /* ThemeTagCollectionViewCell.xib in Resources */,
 				B18A18A8217C8BDE0042398D /* CommentView.xib in Resources */,
 				B18B937220B91D4E000CF503 /* ForegroundRemoteNotificationView.xib in Resources */,
+				B13493532182076C00B59827 /* SFUIDisplay-Light.otf in Resources */,
 				B12B3ACB20FCC07300071B97 /* PostsShow.storyboard in Resources */,
 				B146891820F1F5D000D36794 /* UserProfileHeaderView.xib in Resources */,
 			);

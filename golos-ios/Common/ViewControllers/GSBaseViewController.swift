@@ -117,11 +117,11 @@ class GSBaseViewController: UIViewController {
         let alertViewController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         let attributedTitle = NSMutableAttributedString(string: title.localized())
-        attributedTitle.addAttribute(.font, value: UIFont(name: "SFProDisplay-Regular", size: 18.0)!, range: NSRange(location: 0, length: attributedTitle.length))
+        attributedTitle.addAttribute(.font, value: UIFont(name: "SFUIDisplay-Medium", size: 17.0)!, range: NSRange(location: 0, length: attributedTitle.length))
         alertViewController.setValue(attributedTitle, forKey: "attributedTitle")
 
         let attributedMessage = NSMutableAttributedString(string: String(format: "%@%@", icon == nil ? "" : "\n\n\n", message.localized()))
-        attributedMessage.addAttribute(.font, value: UIFont(name: "SFProDisplay-Regular", size: 17.0)!, range: NSRange(location: 0, length: attributedMessage.length))
+        attributedMessage.addAttribute(.font, value: UIFont(name: "SFUIDisplay-Light", size: 14.0)!, range: NSRange(location: 0, length: attributedMessage.length))
         
         let userNamePattern         =   "\\@\\w*"
         let userNameRegex           =   try! NSRegularExpression(pattern: userNamePattern, options: [])
@@ -130,14 +130,6 @@ class GSBaseViewController: UIViewController {
             let range = NSRange(location:  userNameMatches.range.location + 3, length:  userNameMatches.range.length)
             attributedMessage.addAttribute(.foregroundColor, value: UIColor.blue, range: range)
         }
-
-        
-        
-        
-        
-//        let userName = message.localized().components(separatedBy: "@").last!
-//        let range = (message.localized() as NSString).range(of: "@\(userName.replacingOccurrences(of: "?", with: "").trimmingCharacters(in: .whitespaces))")
-//        attributedMessage.addAttribute(.foregroundColor, value: UIColor.blue, range: range)
 
         alertViewController.setValue(attributedMessage, forKey: "attributedMessage")
         
