@@ -541,58 +541,12 @@ class PostShowViewController: GSBaseViewController {
         Logger.log(message: "Success", event: .severe)
 
         if let displayedPost = self.router?.dataStore?.displayedPost {
-            self.markdownViewManager.load(markdown: Parser.repair(body: displayedPost.body))
+            self.likeButton.isEnabled       =   true
+            self.dislikeButton.isEnabled    =   true
 
-            self.markdownViewManager.onRendered = { [weak self] height in
-                self?.markdownViewHeightConstraint.constant = height
-                
-                UIView.animate(withDuration: 0.5, animations: {
-                    self?.hiddenViewsCollection.forEach({ $0.alpha = 1.0 })
-                })
-                
-                self?.gsTimer?.stop()
-                
-                // Load comments
-                if !withoutComments {
-                    self?.loadPostComments()
-                }
-            }
-
-            self.titleLabel.text                =   displayedPost.title
-            self.likeButton.isEnabled           =   true
-            self.dislikeButton.isEnabled        =   true
-
-//            if let userNickName = User.current?.nickName {
-//                self.dislikeButton.isHidden     =   displayedPost.author == userNickName
-//            }
-            
-            self.dislikeActivityIndicator.stopAnimating()
             self.likeActivityIndicator.stopAnimating()
-            
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
-                self.tagsCollectionView.reloadData()
-            }
-            
-            // Subscribe topic
-            if let firstTag = displayedPost.tags?.first {
-                self.topicTitleLabel.text = firstTag.transliteration(forPermlink: false).uppercaseFirst
-            }
-            
-            // Subscribe User
-            if  let author = self.router?.dataStore?.postShortInfo?.author,
-                let user = User.fetch(byNickName: author), let userProfileImageURL = user.profileImageURL {
-                
-                self.userAvatarImageView.uploadImage(byStringPath:      userProfileImageURL,
-                                                     imageType:         .userProfileImage,
-                                                     size:              CGSize(width: 50.0, height: 50.0),
-                                                     tags:              nil,
-                                                     createdDate:       user.created.convert(toDateFormat: .expirationDateType),
-                                                     fromItem:          (user as CachedImageFrom).fromItem,
-                                                     completion:        { _ in })
-            }
+            self.dislikeActivityIndicator.stopAnimating()
 
-            self.userNameLabel.text = self.postFeedHeaderView.authorNameButton.titleLabel!.text
-            
             // Like icon
             self.likeButton.tag = displayedPost.currentUserLiked ? 99 : 0
             self.likeButton.setTitle(displayedPost.likeCount > 0 ? "\(displayedPost.likeCount)" : "    ", for: .normal)
@@ -606,6 +560,51 @@ class PostShowViewController: GSBaseViewController {
             // Comments icon
             self.commentsButton.setTitle(displayedPost.children > 0 ? "\(displayedPost.children)" : "    ", for: .normal)
             self.commentsButton.setImage(UIImage(named: displayedPost.currentUserCommented ? "icon-button-post-comments-selected" : "icon-button-post-comments-normal"), for: .normal)
+
+            if !withoutComments {
+                self.postFeedHeaderView.display(post: displayedPost)
+                
+                self.markdownViewManager.load(markdown: Parser.repair(body: displayedPost.body))
+                
+                self.markdownViewManager.onRendered = { [weak self] height in
+                    self?.markdownViewHeightConstraint.constant = height
+                    
+                    UIView.animate(withDuration: 0.5, animations: {
+                        self?.hiddenViewsCollection.forEach({ $0.alpha = 1.0 })
+                    })
+                    
+                    self?.gsTimer?.stop()
+                    
+                    // Load comments
+                    self?.loadPostComments()
+                }
+
+                self.titleLabel.text = displayedPost.title
+                
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
+                    self.tagsCollectionView.reloadData()
+                }
+                
+                // Subscribe topic
+                if let firstTag = displayedPost.tags?.first {
+                    self.topicTitleLabel.text = firstTag.transliteration(forPermlink: false).uppercaseFirst
+                }
+                
+                // Subscribe User
+                if  let author = self.router?.dataStore?.postShortInfo?.author,
+                    let user = User.fetch(byNickName: author), let userProfileImageURL = user.profileImageURL {
+                    
+                    self.userAvatarImageView.uploadImage(byStringPath:      userProfileImageURL,
+                                                         imageType:         .userProfileImage,
+                                                         size:              CGSize(width: 50.0, height: 50.0),
+                                                         tags:              nil,
+                                                         createdDate:       user.created.convert(toDateFormat: .expirationDateType),
+                                                         fromItem:          (user as CachedImageFrom).fromItem,
+                                                         completion:        { _ in })
+                }
+                
+                self.userNameLabel.text = self.postFeedHeaderView.authorNameButton.titleLabel!.text
+            }
         }
     }
     
@@ -1037,7 +1036,6 @@ extension PostShowViewController {
         
         do {
             if let displayedPost = try CoreDataManager.instance.managedObjectContext.fetch(fetchRequest).first as? PostCellSupport {
-                self.postFeedHeaderView.display(post: displayedPost)               
                 self.loadViewSettings(withoutComments: only)
             }
         }
