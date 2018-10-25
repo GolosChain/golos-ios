@@ -152,9 +152,12 @@ class CommentView: UIView, HandlersCellSupport {
         self.treeIndex  =   row
         
         // Like icon
-        self.likeButton.isEnabled = true
-        self.likeActivityIndicator.stopAnimating()
+        self.likeButton.isEnabled       =   true
+        self.dislikeButton.isEnabled    =   true
         
+        self.likeActivityIndicator.stopAnimating()
+        self.dislikeActivityIndicator.stopAnimating()
+
         self.likeButton.tag = comment.currentUserLiked ? 99 : 0
         self.likeButton.setTitle(comment.likeCount > 0 ? "\(comment.likeCount)" : "    ", for: .normal)
         self.likeButton.setImage(UIImage(named: comment.currentUserLiked ? "icon-button-post-like-selected" : "icon-button-post-like-normal"), for: .normal)
@@ -254,7 +257,7 @@ class CommentView: UIView, HandlersCellSupport {
     }
 
     @IBAction func dislikeButtonTapped(_ sender: UIButton) {
-    
+        self.handlerDislikeButtonTapped!(sender.tag == 0, self.postShortInfo)
     }
 
     @IBAction func replyButtonTapped(_ sender: UIButton) {

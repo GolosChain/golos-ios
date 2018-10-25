@@ -737,31 +737,27 @@ class PostShowViewController: GSBaseViewController {
     }
     
     @IBAction func likeButtonTapped(_ sender: UIButton) {
-        // Check network connection
-        guard isNetworkAvailable else {
-            self.showAlertView(withTitle: "Info", andMessage: "No Internet Connection", needCancel: false, completion: { _ in })
-            return
-        }
-
-        guard self.isCurrentOperationPossible() else { return }
-
-        let requestModel = PostShowModels.Like.RequestModel(isLike: sender.tag == 0, isDislike: nil, forPost: true)
+        let isLike              =   sender.tag == 0
+        let requestModel        =   PostShowModels.Like.RequestModel(isLike: sender.tag == 0, isDislike: nil, forPost: true)
+        let handlersManager     =   HandlersManager()
         
-        guard sender.tag == 0 else {
-            self.showAlertView(withTitle: "Voting Verb", andMessage: "Cancel Vote Message", actionTitle: "ActionChange", needCancel: true, completion: { [weak self] success in
-                if success {
-                    self?.likeButton.startLikeVote(withSpinner: (self?.likeActivityIndicator)!)
-                    self?.interactor?.likeVote(withRequestModel: requestModel)
-                } else {
-                    self?.likeButton.breakLikeVote(withSpinner: (self?.likeActivityIndicator)!)
-                }
-            })
+        handlersManager.handlerTapped(isLike: isLike, completion: { [weak self] success in
+            guard let result = success else {
+                self?.likeButton.startLikeVote(withSpinner: (self?.likeActivityIndicator)!)
+                self?.interactor?.likeVote(withRequestModel: requestModel)
+
+                return
+            }
             
-            return
-        }
-        
-        self.likeButton.startLikeVote(withSpinner: self.likeActivityIndicator)
-        self.interactor?.likeVote(withRequestModel: requestModel)
+            if result {
+                self?.likeButton.startLikeVote(withSpinner: (self?.likeActivityIndicator)!)
+                self?.interactor?.likeVote(withRequestModel: requestModel)
+            }
+                
+            else {
+                self?.likeButton.breakLikeVote(withSpinner: (self?.likeActivityIndicator)!)
+            }
+        })
     }
 
     @IBAction func dislikeButtonTapped(_ sender: UIButton) {
@@ -1144,34 +1140,47 @@ extension PostShowViewController {
                     })
                     
                     // Handlers
-                    commentView.handlerLikeButtonTapped                       =   { [weak self] (isVote, postShortInfo) in
-                        // Check network connection
-                        guard isNetworkAvailable else {
-                            self?.showAlertView(withTitle: "Info", andMessage: "No Internet Connection", needCancel: false, completion: { _ in })
-                            return
-                        }
-                        
-                        guard (self?.isCurrentOperationPossible())! else { return }
-                        
+                    commentView.handlerLikeButtonTapped                             =   { [weak self] (isLike, postShortInfo) in
+                        let handlersManager     =   HandlersManager()
+                        let requestModel        =   PostShowModels.Like.RequestModel(isLike: isLike, isDislike: nil, forPost: false)
+
                         self?.interactor?.save(comment: postShortInfo)
                         
-                        let requestModel = PostShowModels.Like.RequestModel(isLike: isVote, isDislike: false, forPost: false)
-                        
-                        guard isVote else {
-                            self?.showAlertView(withTitle: "Voting Verb", andMessage: "Cancel Vote Message", actionTitle: "ActionChange", needCancel: true, completion: { success in
-                                if success {
-                                    commentView.likeButton.startLikeVote(withSpinner: commentView.likeActivityIndicator)
-                                    self?.interactor?.likeVote(withRequestModel: requestModel)
-                                } else {
-                                    commentView.likeButton.breakLikeVote(withSpinner: commentView.likeActivityIndicator)
-                                }
-                            })
+                        handlersManager.handlerTapped(isLike: isLike, completion: { [weak self] success in
+                            guard let result = success else {
+                                commentView.likeButton.startLikeVote(withSpinner: commentView.likeActivityIndicator)
+                                self?.interactor?.likeVote(withRequestModel: requestModel)
+
+                                return
+                            }
                             
-                            return
-                        }
+                            if result {
+                                commentView.likeButton.startLikeVote(withSpinner: commentView.likeActivityIndicator)
+                                self?.interactor?.likeVote(withRequestModel: requestModel)
+                            }
+                                
+                            else {
+                                commentView.likeButton.breakLikeVote(withSpinner: commentView.likeActivityIndicator)
+                            }
+                        })
+                    }
+
+                    commentView.handlerDislikeButtonTapped                          =   { [weak self] (isDislike, postShortInfo) in
+                        let handlersManager     =   HandlersManager()
+                        let requestModel        =   PostShowModels.Like.RequestModel(isLike: nil, isDislike: isDislike, forPost: false)
+
+                        self?.interactor?.save(comment: postShortInfo)
                         
-                        commentView.likeButton.startLikeVote(withSpinner: commentView.likeActivityIndicator)
-                        self?.interactor?.likeVote(withRequestModel: requestModel)
+                        handlersManager.handlerTapped(isDislike: isDislike, completion: { [weak self] success in
+                            if success {
+                                commentView.dislikeButton.startLikeVote(withSpinner: commentView.dislikeActivityIndicator)
+                                self?.interactor?.likeVote(withRequestModel: requestModel)
+                            }
+                                
+                            else {
+                                commentView.dislikeButton.breakLikeVote(withSpinner: commentView.dislikeActivityIndicator)
+                            }
+                        })
                     }
                     
                     commentView.handlerUsersButtonTapped                            =   { [weak self] in
@@ -1229,7 +1238,7 @@ extension PostShowViewController {
                         self?.router?.routeToPostCreateScene(withType: .createCommentReply)
                     }
                     
-                    commentView.handlerRepostButtonTapped                            =   { [weak self] in
+                    commentView.handlerRepostButtonTapped                           =   { [weak self] in
                         self?.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
                     }
                     

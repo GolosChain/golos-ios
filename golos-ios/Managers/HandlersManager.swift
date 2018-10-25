@@ -10,6 +10,26 @@ import UIKit
 
 class HandlersManager: GSBaseViewController {
     // MARK: - Class Functions
+    func handlerTapped(isLike: Bool, completion: @escaping (Bool?) -> Void) {
+        // Check network connection
+        guard isNetworkAvailable else {
+            self.showAlertView(withTitle: "Info", andMessage: "No Internet Connection", needCancel: false, completion: { _ in })
+            return
+        }
+        
+        guard self.isCurrentOperationPossible() else { return }
+        
+        guard isLike else {
+            self.showAlertView(withTitle: "Voting Verb", andMessage: "Cancel Vote Message", actionTitle: "ActionChange", needCancel: true, completion: { success in
+                completion(success)
+            })
+            
+            return
+        }
+        
+        completion(nil)
+    }
+    
     func handlerTapped(isDislike: Bool, completion: @escaping (Bool) -> Void) {
         // Check network connection
         guard isNetworkAvailable else {

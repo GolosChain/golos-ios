@@ -446,36 +446,31 @@ extension UserProfileShowViewController {
                 }
                 
                 activeVC.handlerLikeButtonTapped                    =   { [weak self] (isLike, postShortInfo) in
-                    // Check network connection
-                    guard isNetworkAvailable else {
-                        self?.showAlertView(withTitle: "Info", andMessage: "No Internet Connection", needCancel: false, completion: { _ in })
-                        return
-                    }
-                    
-                    guard (self?.isCurrentOperationPossible())! else { return }
+                    let handlersManager = HandlersManager()
 
                     self?.interactor?.save(blogShortInfo: postShortInfo)
                     
-                    let blogCell        =   activeVC.postsTableView.cellForRow(at: postShortInfo.indexPath!) as! PostCellLikeSupport
+                    let blogCell        =   activeVC.postsTableView.cellForRow(at: postShortInfo.indexPath!) as! PostFeedTableViewCell
                     let requestModel    =   UserProfileShowModels.Like.RequestModel(isLike: isLike, isDislike: false)
 
-                    guard isLike else {
-                        self?.showAlertView(withTitle: "Voting Verb", andMessage: "Cancel Vote Message", actionTitle: "ActionChange", needCancel: true, completion: { success in
-                            if success {
-                                blogCell.likeButton.startLikeVote(withSpinner: blogCell.likeActivityIndicator)
-                                self?.interactor?.likeVote(withRequestModel: requestModel)
-                            }
+                    handlersManager.handlerTapped(isLike: isLike, completion: { [weak self] success in
+                        guard let result = success else {
+                            blogCell.likeButton.startLikeVote(withSpinner: blogCell.likeActivityIndicator)
+                            self?.interactor?.likeVote(withRequestModel: requestModel)
                             
-                            else {
-                                blogCell.likeButton.breakLikeVote(withSpinner: blogCell.likeActivityIndicator)
-                            }
-                        })
+                            return
+                        }
                         
-                        return
-                    }
-                    
-                    blogCell.likeButton.startLikeVote(withSpinner: blogCell.likeActivityIndicator)
-                    self?.interactor?.likeVote(withRequestModel: requestModel)
+                        if result {
+                            blogCell.likeButton.startLikeVote(withSpinner: blogCell.likeActivityIndicator)
+                            self?.interactor?.likeVote(withRequestModel: requestModel)
+                        }
+                            
+                        else {
+                            blogCell.likeButton.breakLikeVote(withSpinner: blogCell.likeActivityIndicator)
+                        }
+
+                    })
                 }
                 
                 activeVC.handlerDislikeButtonTapped                 =   { [weak self] (isDislike, postShortInfo) in
