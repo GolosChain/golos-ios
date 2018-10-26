@@ -136,6 +136,7 @@
                 <outletCollection property="widthsCollection" destination="JYz-Ey-fKX" collectionClass="NSMutableArray" id="YBD-rd-WVt"/>
                 <outletCollection property="widthsCollection" destination="AHh-r6-FfF" collectionClass="NSMutableArray" id="xwa-1d-3nl"/>
                 <outletCollection property="widthsCollection" destination="xpc-8s-dTT" collectionClass="NSMutableArray" id="Xsf-6O-Vn6"/>
+                <outletCollection property="widthsCollection" destination="8jh-g3-gtQ" collectionClass="NSMutableArray" id="7xW-19-0Tf"/>
             </connections>
         </tableViewCell>
     </objects>

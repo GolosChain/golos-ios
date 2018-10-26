@@ -123,7 +123,7 @@ class GSBaseViewController: UIViewController {
         let attributedMessage = NSMutableAttributedString(string: String(format: "%@%@", icon == nil ? "" : "\n\n\n", message.localized()))
         attributedMessage.addAttribute(.font, value: UIFont(name: "SFUIDisplay-Light", size: 14.0)!, range: NSRange(location: 0, length: attributedMessage.length))
         
-        let userNamePattern         =   "\\@\\w*"
+        let userNamePattern         =   "\\@\\w*\\W?\\w*"
         let userNameRegex           =   try! NSRegularExpression(pattern: userNamePattern, options: [])
         
         if let userNameMatches = userNameRegex.firstMatch(in: message.localized(), options: .withTransparentBounds, range: NSRange(location: 0, length: message.localized().count)) {
@@ -159,7 +159,7 @@ class GSBaseViewController: UIViewController {
 
         // Add icon
         if let iconImage = icon {
-            let iconView = UIImageView(frame: CGRect(origin:    CGPoint(x: self.view.frame.midX - 30.0 * widthRatio, y: alertViewController.view.frame.minY + 38.0 * heightRatio),
+            let iconView = UIImageView(frame: CGRect(origin:    CGPoint(x: self.view.frame.midX - 30.0, y: alertViewController.view.frame.minY + 38.0),
                                                      size:      CGSize(width: 50 * widthRatio, height: 50 * widthRatio)))
             iconView.image = iconImage
             iconView.layer.cornerRadius = 25.0 * widthRatio
