@@ -11,12 +11,6 @@ import UIKit
 class HandlersManager: GSBaseViewController {
     // MARK: - Class Functions
     func handlerTapped(isLike: Bool, completion: @escaping (Bool?) -> Void) {
-        // Check network connection
-        guard isNetworkAvailable else {
-            self.showAlertView(withTitle: "Info", andMessage: "No Internet Connection", needCancel: false, completion: { _ in })
-            return
-        }
-        
         guard self.isCurrentOperationPossible() else { return }
         
         guard isLike else {
@@ -31,12 +25,6 @@ class HandlersManager: GSBaseViewController {
     }
     
     func handlerTapped(isDislike: Bool, completion: @escaping (Bool) -> Void) {
-        // Check network connection
-        guard isNetworkAvailable else {
-            self.showAlertView(withTitle: "Info", andMessage: "No Internet Connection", needCancel: false, completion: { _ in })
-            return
-        }
-        
         guard self.isCurrentOperationPossible() else { return }
         
         // Dislike

@@ -10,16 +10,16 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Users Vote Show View Controller-->
+        <!--Active Voters Show View Controller-->
         <scene sceneID="n1z-2J-v5j">
             <objects>
-                <viewController storyboardIdentifier="UsersVoteShowVC" id="1fV-XV-rYg" customClass="UsersVoteShowViewController" customModule="Golos" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ActiveVotersShowVC" id="1fV-XV-rYg" customClass="ActiveVotersShowViewController" customModule="Golos" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="GcX-B0-Tew">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZvX-GK-xNj" userLabel="Users Vote Table View">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZvX-GK-xNj" userLabel="Active Voters Table View">
+                                <rect key="frame" x="0.0" y="28" width="375" height="639"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
                         </subviews>
@@ -27,13 +27,14 @@
                         <constraints>
                             <constraint firstItem="ZvX-GK-xNj" firstAttribute="leading" secondItem="wJv-k3-vMx" secondAttribute="leading" id="EN2-D4-9kG"/>
                             <constraint firstItem="wJv-k3-vMx" firstAttribute="trailing" secondItem="ZvX-GK-xNj" secondAttribute="trailing" id="Vgk-UQ-klP"/>
-                            <constraint firstItem="ZvX-GK-xNj" firstAttribute="top" secondItem="wJv-k3-vMx" secondAttribute="top" id="nk7-US-xNn"/>
+                            <constraint firstItem="ZvX-GK-xNj" firstAttribute="top" secondItem="wJv-k3-vMx" secondAttribute="top" constant="8" identifier="tableViewTopConstraint" id="nk7-US-xNn"/>
                             <constraint firstItem="wJv-k3-vMx" firstAttribute="bottom" secondItem="ZvX-GK-xNj" secondAttribute="bottom" id="y0F-7T-NdU"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="wJv-k3-vMx"/>
                     </view>
                     <connections>
                         <outlet property="tableView" destination="ZvX-GK-xNj" id="8X4-e4-3sg"/>
+                        <outletCollection property="heightsCollection" destination="nk7-US-xNn" collectionClass="NSMutableArray" id="fyg-aj-FeG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8QI-Js-zAl" userLabel="First Responder" sceneMemberID="firstResponder"/>

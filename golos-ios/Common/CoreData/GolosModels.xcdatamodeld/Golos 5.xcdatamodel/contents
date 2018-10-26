@@ -5,7 +5,7 @@
         <attribute name="postID" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="reputation" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="rshares" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="time" attributeType="String" defaultValueString="XXX" syncable="YES"/>
+        <attribute name="time" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="voter" attributeType="String" defaultValueString="XXX" syncable="YES"/>
         <attribute name="weight" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
@@ -435,6 +435,21 @@
             </uniquenessConstraint>
         </uniquenessConstraints>
     </entity>
+    <entity name="Voter" representedClassName="Voter" syncable="YES">
+        <attribute name="percent" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="postID" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="reputation" attributeType="String" syncable="YES"/>
+        <attribute name="rshares" attributeType="String" syncable="YES"/>
+        <attribute name="time" attributeType="String" defaultValueString="XXX" syncable="YES"/>
+        <attribute name="voter" attributeType="String" defaultValueString="XXX" syncable="YES"/>
+        <attribute name="weight" attributeType="String" syncable="YES"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="postID"/>
+                <constraint value="voter"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
     <elements>
         <element name="ActiveVote" positionX="-459" positionY="-81" width="128" height="150"/>
         <element name="Actual" positionX="-405" positionY="-27" width="128" height="540"/>
@@ -452,5 +467,6 @@
         <element name="UserSecretActiveKey" positionX="-459" positionY="-81" width="128" height="120"/>
         <element name="UserSecretOwnerKey" positionX="-243" positionY="-234" width="128" height="120"/>
         <element name="UserSecretPostingKey" positionX="-45" positionY="63" width="128" height="120"/>
+        <element name="Voter" positionX="-459" positionY="-81" width="128" height="150"/>
     </elements>
 </model>

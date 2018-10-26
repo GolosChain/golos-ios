@@ -42,17 +42,12 @@ public class ActiveVote: NSManagedObject {
             
             // Update entity
             entity!.postID          =   postID
+//            entity!.voter           =   model.voter
             entity!.percent         =   Int64(model.percent)
             entity!.rshares         =   model.rshares.stringValue
             entity!.weight          =   model.weight.stringValue
-
-
-            // MARK: - In reserve
-            /*
-            entity!.reputation      =   model.reputation.stringValue
-            entity!.time            =   model.time
-            entity!.voter           =   model.voter
-            */
+//            entity!.time            =   model.time
+//            entity!.reputation      =   model.reputation.stringValue
             
             // Extension
             entity!.save()

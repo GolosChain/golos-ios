@@ -40,6 +40,9 @@ public indirect enum MethodAPIType {
     /// Diplays selected user comments list
     case getContentAllReplies(parameters: RequestParameterAPI.Content)
     
+    /// Diplays active vote users list
+    case getActiveVotes(userNickName: String, permlink: String)
+
     
     /// This method return request parameters from selected enum case.
     func introduced() -> MethodRequestParameters {
@@ -85,13 +88,17 @@ public indirect enum MethodAPIType {
                     paramsFirst:        [parameterAPI, type.caseAPIParameters()],
                     paramsSecond:       discussion)
             
-        case .getContent(let contentModel):                 return  (methodAPIType:     self,
-                                                                     paramsFirst:       ["social_network", "get_content"],
-                                                                     paramsSecond:      contentModel.convertToString())
+        case .getContent(let contentModel):                         return  (methodAPIType:     self,
+                                                                             paramsFirst:       ["social_network", "get_content"],
+                                                                             paramsSecond:      contentModel.convertToString())
             
-        case .getContentAllReplies(let contentModel):       return  (methodAPIType:     self,
-                                                                     paramsFirst:       ["social_network", "get_all_content_replies"],
-                                                                     paramsSecond:      contentModel.convertToString())
+        case .getContentAllReplies(let contentModel):               return  (methodAPIType:     self,
+                                                                             paramsFirst:       ["social_network", "get_all_content_replies"],
+                                                                             paramsSecond:      contentModel.convertToString())
+            
+        case .getActiveVotes(let userNickName, let permlink):       return  (methodAPIType:     self,
+                                                                             paramsFirst:       ["social_network", "get_active_votes"],
+                                                                             paramsSecond:      String(format: "\"%@\",\"%@\"", userNickName, permlink))
         } // switch
     }
 }

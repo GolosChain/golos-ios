@@ -121,6 +121,9 @@ public class WebSocketManager {
                 
             case .getContentAllReplies(_):
                 return (responseAPI: try JSONDecoder().decode(ResponseAPIPostsResult.self, from: jsonData), errorAPI: nil)
+            
+            case .getActiveVotes(_):
+                return (responseAPI: try JSONDecoder().decode(ResponseAPIVoterResult.self, from: jsonData), errorAPI: nil)
             }
         } catch {
             Logger.log(message: "\(error)", event: .error)

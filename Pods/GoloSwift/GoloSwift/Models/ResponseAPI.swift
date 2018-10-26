@@ -65,7 +65,7 @@ public struct ResponseAPIPost: Decodable {
     public let reblogged_by: [String]?
     public let children: Int16
     public let net_votes: Int64
-
+    
     // "2018-04-13T10:19:54"
     public let created: String
     public let active: String
@@ -77,9 +77,9 @@ public struct ResponseAPIPost: Decodable {
     public let reblog_title: String?
     public let reblog_body: String?
     public let reblog_json_metadata: String?
-//    public let reblogged_by: [0]
-//    public let reblog_entries: [0]
-
+    //    public let reblogged_by: [0]
+    //    public let reblog_entries: [0]
+    
     // MARK: - In reserve
     /*
      public let abs_rshares: Conflicted
@@ -118,13 +118,8 @@ public struct ResponseAPIActiveVote: Decodable {
     public let percent: Int16
     public let rshares: Conflicted
     public let weight: Conflicted
-    
-    
-    // MARK: - In reserve
-    /*
-     public let time: String
-     public let reputation: Conflicted
-     */
+    //    public let time: String
+    //    public let reputation: Conflicted
 }
 
 
@@ -364,7 +359,7 @@ public struct ResponseAPIAllContentReply: Decodable {
     public let children: Int16
     public let net_votes: Int64
     public let active_votes: [ResponseAPIActiveVote]
-
+    
     // "2018-04-13T10:19:54"
     public let created: String
     public let active: String
@@ -446,4 +441,26 @@ public struct ResponseAPIUserFollowing: Decodable {
     public let follower: String
     public let following: String
     public let what: [String]
+}
+
+
+// MARK: -
+public struct ResponseAPIVoterResult: Decodable {
+    // MARK: - In work
+    public let id: Int64
+    public let jsonrpc: String
+    public let result: [ResponseAPIVoter]?
+    public let error: ResponseAPIError?
+}
+
+
+// MARK: -
+public struct ResponseAPIVoter: Decodable {
+    // MARK: - In work
+    public let voter: String
+    public let percent: Int64
+    public let rshares: Conflicted
+    public let weight: String
+    public let time: String
+    public let reputation: Conflicted
 }

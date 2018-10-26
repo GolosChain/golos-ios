@@ -272,12 +272,6 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
                 }
                 
                 activeVC.handlerLikeButtonTapped                    =   { [weak self] (isLike, postShortInfo) in
-                    // Check network connection
-                    guard isNetworkAvailable else {
-                        self?.showAlertView(withTitle: "Info", andMessage: "No Internet Connection", needCancel: false, completion: { _ in })
-                        return
-                    }
-                    
                     guard (self?.isCurrentOperationPossible())! else { return }
                     
                     self?.interactor?.save(postShortInfo: postShortInfo)
@@ -304,7 +298,7 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
                 
                 activeVC.handlerLikeCountButtonTapped               =   { [weak self] postShortInfo in
                     self?.interactor?.save(postShortInfo: postShortInfo)
-                    self?.router?.routeToUsersVotedShowScene(withMode: .like)
+                    self?.router?.routeToActiveVotersShowScene(withMode: .like)
                 }
                 
                 activeVC.handlerDislikeButtonTapped                 =   { [weak self] (isDislike, postShortInfo) in
@@ -329,7 +323,7 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
                 
                 activeVC.handlerDislikeCountButtonTapped            =   { [weak self] postShortInfo in
                     self?.interactor?.save(postShortInfo: postShortInfo)
-                    self?.router?.routeToUsersVotedShowScene(withMode: .dislike)
+                    self?.router?.routeToActiveVotersShowScene(withMode: .dislike)
                 }
                 
                 activeVC.handlerCommentsButtonTapped                =   { [weak self] postShortInfo in

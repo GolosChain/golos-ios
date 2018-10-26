@@ -93,6 +93,38 @@ class RestAPIManager {
     }
 
     
+    /// Load list of Users
+    class func loadActiveVoters(byNickName nickName: String, permlink: String, itemID: Int64, completion: @escaping (ErrorAPI?) -> Void) {
+        // API 'get_active_votes'
+        if isNetworkAvailable {
+            let methodAPIType = MethodAPIType.getActiveVotes(userNickName: nickName, permlink: permlink)
+
+            broadcast.executeGET(byMethodAPIType: methodAPIType,
+                                 onResult: { responseAPIResult in
+//                                        Logger.log(message: "\nresponse API Result = \(responseAPIResult)\n", event: .debug)
+                                    
+                                    guard let result = (responseAPIResult as! ResponseAPIVoterResult).result, result.count > 0 else {
+                                        completion(ErrorAPI.requestFailed(message: "List of users is empty"))
+                                        return
+                                    }
+                                    
+                                    // CoreData: Update ActiveVote entities
+                                    Voter.updateEntities(fromResponseAPI: result, withPostID: itemID)
+                                    completion(nil)
+            },
+                                 onError: { errorAPI in
+                                    Logger.log(message: "nresponse API Error = \(errorAPI.caseInfo.message)\n", event: .error)
+                                    completion(errorAPI)
+            })
+        }
+            
+        // Offline mode
+        else {
+            completion(nil)
+        }
+    }
+
+    
     /// Load list of PostFeed
     class func loadPostsFeed(byMethodAPIType methodAPIType: MethodAPIType, andPostFeedType postFeedType: PostsFeedType, completion: @escaping (ErrorAPI?) -> Void) {
         // API 'get_discussions_by_blog' & 'get_replies_by_last_update'
@@ -400,6 +432,35 @@ class RestAPIManager {
         let postRequestQueue = DispatchQueue.global(qos: .background)
         
         // Run queue in Async Thread
+        postRequestQueue.async {
+            broadcast.executePOST(requestByOperationAPIType:    operationAPIType,
+                                  userNickName:                 User.current!.nickName,
+                                  onResult:                     { responseAPIResult in
+                                    var errorAPI: ErrorAPI?
+                                    
+                                    if let error = (responseAPIResult as! ResponseAPIBlockchainPostResult).error {
+                                        errorAPI = ErrorAPI.requestFailed(message: error.message)
+                                    }
+                                    
+                                    completion(errorAPI)
+                },
+                                  onError: { errorAPI in
+                                    Logger.log(message: "nresponse API Error = \(errorAPI.caseInfo.message)\n", event: .error)
+                                    completion(errorAPI)
+            })
+        }
+    }
+    
+    
+    /// Subscribe to User
+    class func subscribe(up: Bool, toAuthor authorNickName: String, completion: @escaping (ErrorAPI?) -> Void) {
+        let subscription = RequestParameterAPI.Subscription(userNickName:       User.current!.nickName,
+                                                            authorNickName:     authorNickName,
+                                                            what:               up ? "blog" : nil)
+        
+        let operationAPIType = OperationAPIType.subscribe(fields: subscription)
+        let postRequestQueue = DispatchQueue.global(qos: .background)
+        
         postRequestQueue.async {
             broadcast.executePOST(requestByOperationAPIType:    operationAPIType,
                                   userNickName:                 User.current!.nickName,

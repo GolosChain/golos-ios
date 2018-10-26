@@ -17,8 +17,8 @@ import GoloSwift
 @objc protocol PostsShowRoutingLogic {
     func routeToUserProfileScene(byUserName name: String)
     func routeToPostCreateScene(withType sceneType: SceneType)
-    func routeToUsersVotedShowScene(withMode sceneMode: UsersVoteMode)
     func routeToPostShowScene(withScrollToComments needScrolling: Bool)
+    func routeToActiveVotersShowScene(withMode sceneMode: ActiveVoterMode)
 }
 
 protocol PostsShowDataPassing {
@@ -91,11 +91,11 @@ class PostsShowRouter: NSObject, PostsShowRoutingLogic, PostsShowDataPassing {
         }
     }
 
-    func routeToUsersVotedShowScene(withMode sceneMode: UsersVoteMode) {
-        let storyboard                  =   UIStoryboard(name: "UsersVoteShow", bundle: nil)
-        let destinationVC               =   storyboard.instantiateViewController(withIdentifier: "UsersVoteShowVC") as! UsersVoteShowViewController
+    func routeToActiveVotersShowScene(withMode sceneMode: ActiveVoterMode) {
+        let storyboard                  =   UIStoryboard(name: "ActiveVotersShow", bundle: nil)
+        let destinationVC               =   storyboard.instantiateViewController(withIdentifier: "ActiveVotersShowVC") as! ActiveVotersShowViewController
         var destinationDS               =   destinationVC.router!.dataStore!
-        destinationDS.usersVoteMode     =   sceneMode
+        destinationDS.activeVoterMode   =   sceneMode
         
         passDataToUsersVoteShowScene(source: self.dataStore!, destination: &destinationDS)
         navigateToUsersVoteShowScene(source: viewController!, destination: destinationVC)
@@ -117,7 +117,7 @@ class PostsShowRouter: NSObject, PostsShowRoutingLogic, PostsShowDataPassing {
         source.show(destination, sender: nil)
     }
 
-    func navigateToUsersVoteShowScene(source: PostsShowViewController, destination: UsersVoteShowViewController) {
+    func navigateToUsersVoteShowScene(source: PostsShowViewController, destination: ActiveVotersShowViewController) {
         source.show(destination, sender: nil)
     }
 
@@ -139,7 +139,8 @@ class PostsShowRouter: NSObject, PostsShowRoutingLogic, PostsShowDataPassing {
         destination.commentParentPermlink   =   selectedPost.parentPermlink
     }
     
-    func passDataToUsersVoteShowScene(source: PostsShowDataStore, destination: inout UsersVoteShowDataStore) {
+    func passDataToUsersVoteShowScene(source: PostsShowDataStore, destination: inout ActiveVotersShowDataStore) {
+        destination.itemID                  =   source.postShortInfo!.id
         destination.permlink                =   source.postShortInfo!.permlink
         destination.authorNickName          =   source.postShortInfo!.author
     }

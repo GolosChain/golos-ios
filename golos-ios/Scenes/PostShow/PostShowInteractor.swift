@@ -106,34 +106,12 @@ class PostShowInteractor: PostShowBusinessLogic, PostShowDataStore {
     }
     
     func subscribe(withRequestModel requestModel: PostShowModels.Item.RequestModel) {
-        let subscription = RequestParameterAPI.Subscription(userNickName:       User.current!.nickName,
-                                                            authorNickName:     self.postShortInfo!.author ?? "XXX",
-                                                            what:               requestModel.willSubscribe ? "blog" : nil)
-        
-        let operationAPIType = OperationAPIType.subscribe(fields: subscription)
-        let postRequestQueue = DispatchQueue.global(qos: .background)
-        
-        postRequestQueue.async {
-            broadcast.executePOST(requestByOperationAPIType:    operationAPIType,
-                                  userNickName:                 User.current!.nickName,
-                                  onResult:                     { [weak self] responseAPIResult in
-                                    var errorAPI: ErrorAPI?
-                                    
-                                    if let error = (responseAPIResult as! ResponseAPIBlockchainPostResult).error {
-                                        errorAPI = ErrorAPI.requestFailed(message: error.message)
-                                    }
-                                    
-                                    let isFollowing = errorAPI == nil && requestModel.willSubscribe
-                                    
-                                    let responseModel = PostShowModels.Item.ResponseModel(isFollowing: isFollowing, errorAPI: errorAPI)
-                                    self?.presenter?.presentSubscribe(fromResponseModel: responseModel)
-                },
-                                  onError: { [weak self] errorAPI in
-                                    Logger.log(message: "nresponse API Error = \(errorAPI.caseInfo.message)\n", event: .error)
-                                    let responseModel = PostShowModels.Item.ResponseModel(isFollowing: false, errorAPI: errorAPI)
-                                    self?.presenter?.presentSubscribe(fromResponseModel: responseModel)
-            })
-        }
+        RestAPIManager.subscribe(up: requestModel.willSubscribe, toAuthor: self.postShortInfo!.author ?? "XXX", completion: { [weak self] errorAPI in
+            let isFollowing = errorAPI == nil && requestModel.willSubscribe
+            
+            let responseModel = PostShowModels.Item.ResponseModel(isFollowing: isFollowing, errorAPI: errorAPI)
+            self?.presenter?.presentSubscribe(fromResponseModel: responseModel)
+        })
     }
     
     func likeVote(withRequestModel requestModel: PostShowModels.Like.RequestModel) {

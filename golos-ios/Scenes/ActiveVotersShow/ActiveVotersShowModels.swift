@@ -1,5 +1,5 @@
 //
-//  UsersVoteShowModels.swift
+//  ActiveVotersShowModels.swift
 //  golos-ios
 //
 //  Created by msm72 on 10/25/18.
@@ -14,11 +14,12 @@ import UIKit
 import GoloSwift
 
 // MARK: - Data models
-enum UsersVoteShowModels {
+enum ActiveVotersShowModels {
     // MARK: - Use cases
     enum Sub {
         struct RequestModel {
             let willSubscribe: Bool
+            let authorNickName: String
         }
         
         struct ResponseModel {

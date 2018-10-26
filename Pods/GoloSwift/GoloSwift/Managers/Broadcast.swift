@@ -114,7 +114,7 @@ public class Broadcast {
             case .getDiscussions(_):
                 jsonData = try jsonEncoder.encode(requestParams as? RequestParameterAPI.Discussion)
                 
-            case .getUserReplies(_), .getUserFollowCounts(_), .getContent(_), .getContentAllReplies(_), .getUserFollowings(_):
+            case .getUserReplies(_), .getUserFollowCounts(_), .getContent(_), .getContentAllReplies(_), .getUserFollowings(_), .getActiveVotes(_):
                 jsonData            =   Data((requestParams as! String).utf8)
                 
             default:
@@ -303,7 +303,7 @@ public class Broadcast {
                         return
                 }
                 
-                //                Logger.log(message: "\nglobalProperties:\n\t\(globalProperties)", event: .debug)
+//                Logger.log(message: "\nglobalProperties:\n\t\(globalProperties)", event: .debug)
                 
                 time                =   globalProperties.time.convert(toDateFormat: .expirationDateType).addingTimeInterval(60).convert(toStringFormat: .expirationDateType)
                 headBlockID         =   globalProperties.head_block_id.convert(toIntFromStartByte: 12, toEndByte: 16)

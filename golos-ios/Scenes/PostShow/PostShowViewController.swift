@@ -67,16 +67,9 @@ class PostShowViewController: GSBaseViewController {
             
             // Handlers
             self.commentsHeaderView.handlerCreateCommentButtonTapped  =   { [weak self] in
-                // Check network connection
-                guard isNetworkAvailable else {
-                    self?.showAlertView(withTitle: "Info", andMessage: "No Internet Connection", needCancel: false, completion: { _ in })
-                    return
-                }
-                
                 guard (self?.isCurrentOperationPossible())! else { return }
                 
                 self?.router?.routeToPostCreateScene(withType: .createComment)
-                
                 self?.insertedRow = self?.comments?.count ?? 0
             }
         }
@@ -801,16 +794,9 @@ class PostShowViewController: GSBaseViewController {
     }
 
     @IBAction func commentsButtonTapped(_ sender: UIButton) {
-        // Check network connection
-        guard isNetworkAvailable else {
-            self.showAlertView(withTitle: "Info", andMessage: "No Internet Connection", needCancel: false, completion: { _ in })
-            return
-        }
-        
         guard self.isCurrentOperationPossible() else { return }
 
         self.router?.routeToPostCreateScene(withType: .createComment)
-        
         self.insertedRow = self.comments?.count ?? 0
     }
 
@@ -1214,27 +1200,14 @@ extension PostShowViewController {
                     }
                     
                     commentView.handlerCommentsButtonTapped                         =   { [weak self] postShortInfo in
-                        // Check network connection
-                        guard isNetworkAvailable else {
-                            self?.showAlertView(withTitle: "Info", andMessage: "No Internet Connection", needCancel: false, completion: { _ in })
-                            return
-                        }
-                        
                         guard (self?.isCurrentOperationPossible())! else { return }
                         
                         self?.interactor?.save(comment: postShortInfo)
                         self?.router?.routeToPostCreateScene(withType: .createComment)
-                        
                         self?.insertedRow = (postShortInfo.indexPath?.row)! + 1
                     }
                     
                     commentView.handlerReplyButtonTapped                            =   { [weak self] postShortInfo in
-                        // Check network connection
-                        guard isNetworkAvailable else {
-                            self?.showAlertView(withTitle: "Info", andMessage: "No Internet Connection", needCancel: false, completion: { _ in })
-                            return
-                        }
-                        
                         guard (self?.isCurrentOperationPossible())! else { return }
                         
                         if let index = postShortInfo.indexPath?.row, let comments = self?.comments {

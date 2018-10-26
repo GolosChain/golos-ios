@@ -11,21 +11,21 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserVoteTableViewCell" rowHeight="64" id="KGk-i7-Jjw" customClass="UserVoteTableViewCell" customModule="Golos" customModuleProvider="target">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ActiveVoterTableViewCell" rowHeight="64" id="KGk-i7-Jjw" customClass="ActiveVoterTableViewCell" customModule="Golos" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <tableViewCellContentView key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="375" height="63.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-user-profile-image-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="ot7-1j-HhI" userLabel="Author Profile Image View">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-user-profile-image-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="ot7-1j-HhI" userLabel="Voter Profile Image View">
                         <rect key="frame" x="16" y="7" width="50" height="50"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="50" identifier="authorProfileImageViewWidthConstraint" id="8jh-g3-gtQ"/>
                         </constraints>
                     </imageView>
-                    <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BbN-TG-Od7" userLabel="Author Reputation Background View">
+                    <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BbN-TG-Od7" userLabel="Voter Reputation Background View">
                         <rect key="frame" x="16" y="39" width="18" height="18"/>
                         <subviews>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8tr-1B-jEU" userLabel="Author Reputation View">
@@ -52,11 +52,11 @@
                             <constraint firstAttribute="width" constant="18" identifier="authorProfileImageViewWidthConstraint" id="j29-eI-Acy"/>
                         </constraints>
                     </view>
-                    <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xfi-bz-xeP" userLabel="Author Profile Button">
+                    <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xfi-bz-xeP" userLabel="Voter Profile Button">
                         <rect key="frame" x="0.0" y="0.0" width="70" height="63.5"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <connections>
-                            <action selector="authorProfileButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="enk-TH-8SL"/>
+                            <action selector="authorVoterButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="6af-vV-dB6"/>
                         </connections>
                     </button>
                     <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iqb-uo-9wO" userLabel="Subscribe Button">
@@ -76,7 +76,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="175" height="25"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
-                                    <action selector="authorNameButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="q45-3b-b1U"/>
+                                    <action selector="authorVoterButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="eib-a7-l37"/>
                                 </connections>
                             </button>
                             <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WuU-ff-Nu9" userLabel="Voice Power Button">
@@ -89,6 +89,10 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </stackView>
+                    <activityIndicatorView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="1Ja-a1-dtz" userLabel="Subscribe Activity Indicator">
+                        <rect key="frame" x="177.5" y="22" width="20" height="20"/>
+                        <color key="color" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                    </activityIndicatorView>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
@@ -97,6 +101,7 @@
                     <constraint firstItem="iqb-uo-9wO" firstAttribute="leading" secondItem="Zt1-cG-Fei" secondAttribute="trailing" constant="12" identifier="subscribeButtonLeadingConstraint" id="AHh-r6-FfF"/>
                     <constraint firstItem="Zt1-cG-Fei" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Alw-cK-NBc"/>
                     <constraint firstItem="Zt1-cG-Fei" firstAttribute="height" secondItem="ot7-1j-HhI" secondAttribute="height" id="BnA-rE-Hhn"/>
+                    <constraint firstItem="1Ja-a1-dtz" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="JVf-7m-W3J"/>
                     <constraint firstItem="Zt1-cG-Fei" firstAttribute="leading" secondItem="xfi-bz-xeP" secondAttribute="trailing" constant="12" identifier="activeButtonsStackViewLeadingConstraint" id="JYz-Ey-fKX"/>
                     <constraint firstItem="ot7-1j-HhI" firstAttribute="width" secondItem="ot7-1j-HhI" secondAttribute="height" multiplier="1:1" id="MRz-TV-wKd"/>
                     <constraint firstItem="ot7-1j-HhI" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" identifier="authorProfileImageViewLeadingConstraint" id="Qvr-9x-bwn"/>
@@ -105,6 +110,7 @@
                     <constraint firstItem="BbN-TG-Od7" firstAttribute="bottom" secondItem="ot7-1j-HhI" secondAttribute="bottom" id="Soh-dN-QE7"/>
                     <constraint firstAttribute="bottom" secondItem="xfi-bz-xeP" secondAttribute="bottom" id="Tf6-EK-56B"/>
                     <constraint firstItem="ot7-1j-HhI" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="UgE-y8-GEJ"/>
+                    <constraint firstItem="1Ja-a1-dtz" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="ZJA-Eb-tvV"/>
                     <constraint firstItem="xfi-bz-xeP" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="d90-AZ-8I4"/>
                     <constraint firstItem="BbN-TG-Od7" firstAttribute="leading" secondItem="ot7-1j-HhI" secondAttribute="leading" id="f4i-oH-IdP"/>
                     <constraint firstAttribute="trailing" secondItem="iqb-uo-9wO" secondAttribute="trailing" constant="16" identifier="subscribeButtonTrailingConstraint" id="xpc-8s-dTT"/>
@@ -115,11 +121,12 @@
                 <constraint firstItem="iqb-uo-9wO" firstAttribute="width" secondItem="KGk-i7-Jjw" secondAttribute="width" multiplier="90:375" id="vcl-Mh-pUe"/>
             </constraints>
             <connections>
-                <outlet property="authorNameButton" destination="rTW-bO-laa" id="fQb-SQ-6DO"/>
-                <outlet property="authorProfileImageView" destination="ot7-1j-HhI" id="TjT-Ka-uF3"/>
-                <outlet property="authorReputationLabel" destination="ECr-Zd-24x" id="Pj7-2I-PIN"/>
+                <outlet property="subscribeActivityIndicator" destination="1Ja-a1-dtz" id="kLZ-om-5lx"/>
                 <outlet property="subscribeButton" destination="iqb-uo-9wO" id="cRG-ER-742"/>
                 <outlet property="voicePowerButton" destination="WuU-ff-Nu9" id="j4k-H7-mX8"/>
+                <outlet property="voterNameButton" destination="rTW-bO-laa" id="fQb-SQ-6DO"/>
+                <outlet property="voterProfileImageView" destination="ot7-1j-HhI" id="TjT-Ka-uF3"/>
+                <outlet property="voterReputationLabel" destination="ECr-Zd-24x" id="Pj7-2I-PIN"/>
                 <outletCollection property="circleViewsCollection" destination="ot7-1j-HhI" collectionClass="NSMutableArray" id="AfV-0z-JXD"/>
                 <outletCollection property="circleViewsCollection" destination="BbN-TG-Od7" collectionClass="NSMutableArray" id="UGL-5i-6Hz"/>
                 <outletCollection property="circleViewsCollection" destination="8tr-1B-jEU" collectionClass="NSMutableArray" id="xhx-Q4-juO"/>
