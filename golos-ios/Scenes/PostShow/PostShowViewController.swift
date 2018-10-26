@@ -845,16 +845,17 @@ class PostShowViewController: GSBaseViewController {
     @IBAction func subscribeUserButtonTapped(_ sender: UIButton) {
         guard self.isCurrentOperationPossible() else { return }
 
-        // Run spinner
-        DispatchQueue.main.async {
-            self.subscribeActivityIndicator.startAnimating()
-        }
-        
         guard sender.isSelected else {
             // API 'Subscribe'
             let requestModel = PostShowModels.Item.RequestModel(willSubscribe: true)
             interactor?.subscribe(withRequestModel: requestModel)
 
+            // Run spinner
+            DispatchQueue.main.async {
+                sender.setTitle(nil, for: .normal)
+                self.subscribeActivityIndicator.startAnimating()
+            }
+            
             return
         }
 
@@ -863,6 +864,12 @@ class PostShowViewController: GSBaseViewController {
             if success {
                 let requestModel = PostShowModels.Item.RequestModel(willSubscribe: false)
                 self?.interactor?.subscribe(withRequestModel: requestModel)
+                
+                // Run spinner
+                DispatchQueue.main.async {
+                    sender.setTitle(nil, for: .normal)
+                    self?.subscribeActivityIndicator.startAnimating()
+                }
             }
             
             else {
@@ -880,8 +887,6 @@ class PostShowViewController: GSBaseViewController {
 // MARK: - PostShowDisplayLogic
 extension PostShowViewController: PostShowDisplayLogic {
     func displaySubscribe(fromViewModel viewModel: PostShowModels.Item.ViewModel) {
-        self.subscribeActivityIndicator.stopAnimating()
-        
         // NOTE: Display the result from the Presenter
         if let error = viewModel.errorAPI {
             self.showAlertView(withTitle: "Error", andMessage: error.localizedDescription, needCancel: false, completion: { _ in })
@@ -889,13 +894,16 @@ extension PostShowViewController: PostShowDisplayLogic {
         
         // Set post author subscribe button title
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5, execute: {
-            self.showAlertView(withTitle: "Info", andMessage: viewModel.isFollowing ? "Subscribe Success" : "Unsubscribe Success", needCancel: false, completion: { [weak self] _ in
+            self.showAlertView(withTitle:   viewModel.isFollowing ? "Subscribe Noun" : "Unsubscribe Noun",
+                               andMessage:  (viewModel.isFollowing ? "Subscribe Success" : "Unsubscribe Success").localized() + " @\(self.router!.dataStore!.postShortInfo!.author!)", needCancel: false, completion: { [weak self] _ in
                 self?.subscribeUserButton.isSelected = viewModel.isFollowing
                 self?.subscribeUserButton.setTitle((viewModel.isFollowing ? "Subscriptions" : "Subscribe Verb").localized(), for: .normal)
                 
                 UIView.animate(withDuration: 0.5, animations: {
                     viewModel.isFollowing ? self?.subscribeUserButton.setBorder(color: UIColor(hexString: "#dbdbdb").cgColor, cornerRadius: 5.0) :
                                             self?.subscribeUserButton.fill(font: UIFont(name: "SFProDisplay-Medium", size: 10.0)!)
+                }, completion: { success in
+                    self?.subscribeActivityIndicator.stopAnimating()
                 })
             })
         })

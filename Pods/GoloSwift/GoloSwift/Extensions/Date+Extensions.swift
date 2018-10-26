@@ -27,9 +27,10 @@ extension Date {
         let dateComponents          =   Calendar.current.dateComponents([ .year, .month, .day, .hour, .minute, .second ], from: self, to: Date())
         
         // Date in format '25-02-1972'
-        if let days = dateComponents.day, days > 7, let month = dateComponents.month, let year = dateComponents.year {
-            return String(format: "%d-%d-%d", days, month, year)
+        if let days = dateComponents.day, days > 7 {
+            return self.convert(toStringFormat: .commentDate)
         }
+
             
         // Date in format 'N days ago'
         else if let days = dateComponents.day, 1...7 ~= days {

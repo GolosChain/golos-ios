@@ -53,7 +53,7 @@ class ActiveVotersShowInteractor: ActiveVotersShowBusinessLogic, ActiveVotersSho
         RestAPIManager.subscribe(up: requestModel.willSubscribe, toAuthor: requestModel.authorNickName, completion: { [weak self] errorAPI in
             let isFollowing = errorAPI == nil && requestModel.willSubscribe
             
-            let responseModel = ActiveVotersShowModels.Sub.ResponseModel(isFollowing: isFollowing, errorAPI: errorAPI)
+            let responseModel = ActiveVotersShowModels.Sub.ResponseModel(isFollowing: isFollowing, authorNickName: requestModel.authorNickName, errorAPI: errorAPI)
             self?.presenter?.presentSubscribe(fromResponseModel: responseModel)
         })
     }

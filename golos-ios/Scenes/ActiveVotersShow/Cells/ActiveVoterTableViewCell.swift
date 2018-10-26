@@ -152,6 +152,18 @@ extension ActiveVoterTableViewCell {
         self.cellRow = row
         self.voterReputationLabel.text = String(format: "%i", activeVoter.reputation.convertWithLogarithm10())
         
+        // API 'get_following'
+        RestAPIManager.loadFollowingsList(byUserNickName: User.current!.nickName, authorNickName: activeVoter.voter, pagination: 1, completion: { [weak self] (isFollowing, errorAPI) in
+            guard errorAPI == nil else { return }
+            
+            self?.subscribeButton.isSelected = isFollowing
+            
+            self?.subscribeButton.setTitle(isFollowing ? "Subscriptions".localized() : "Subscribe Verb".localized(), for: .normal)
+            
+            isFollowing ?   self?.subscribeButton.setBorder(color: UIColor(hexString: "#dbdbdb").cgColor, cornerRadius: 5.0) :
+                            self?.subscribeButton.fill(font: UIFont(name: "SFProDisplay-Medium", size: 10.0)!)
+        })
+
         // Load info about Voter
         if let voter = User.fetch(byNickName: activeVoter.voter) {
             self.voterNickName = voter.nickName
@@ -174,9 +186,6 @@ extension ActiveVoterTableViewCell {
             }
         }
         
-//        viewModel.isFollowing ? cell.subscribeButton.setBorder(color: UIColor(hexString: "#dbdbdb").cgColor, cornerRadius: 5.0) :
-//            cell.subscribeButton.fill(font: UIFont(name: "SFProDisplay-Medium", size: 10.0)!)
-
         self.localizeTitles()
     }
 }

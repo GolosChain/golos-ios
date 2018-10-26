@@ -25,7 +25,7 @@
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MCm-ae-Amp" userLabel="Content View">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="48"/>
                     <subviews>
-                        <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hOq-YF-kG8" userLabel="Create Comment Button">
+                        <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hOq-YF-kG8" userLabel="Create Comment Button">
                             <rect key="frame" x="16" y="0.0" width="359" height="48"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>

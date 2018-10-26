@@ -152,13 +152,15 @@
 "Previously:"                               =   "Previously:";
 "Recent Past:"                              =   "Recent Past";
 "Unknown User"                              =   "Unknown User";
-"Subscribe Success"                         =   "Thanks,\nYou subscribed to the author";
-"Unsubscribe Success"                       =   "Thanks,\nYou unsubscribed from the author";
+"Subscribe Success"                         =   "You subscribed to the";
+"Unsubscribe Success"                       =   "You unsubscribed from the";
 "Cancel Vote"                               =   "Reset Voices";
 "Cancel Vote Message"                       =   "Deleting a vote will change your decision to vote for this post";
 "Voted Verb"                                =   "Voted";
 "Voted Against Verb"                        =   "Voted Against";
 "Unsubscribe are you sure"                  =   "Are you sure\nyou want to unsubscribe";
+"Subscribe Noun"                            =   "Subscribe";
+"Unsubscribe Noun"                          =   "Unsubscribe";
 
 
 // Placeholders

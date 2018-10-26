@@ -25,6 +25,8 @@ class ActiveVotersShowViewController: GSBaseViewController {
     var voters: [Voter]                 =   [Voter]()
     var selectedVoterInRow: Int         =   0
 
+    var loadVotersWorkItem: DispatchWorkItem!
+
     var interactor: ActiveVotersShowBusinessLogic?
     var router: (NSObjectProtocol & ActiveVotersShowRoutingLogic & ActiveVotersShowDataPassing)?
     
@@ -37,7 +39,7 @@ class ActiveVotersShowViewController: GSBaseViewController {
             
             self.tableView.tune()
             self.tableView.register(UINib(nibName: "ActiveVoterTableViewCell", bundle: nil), forCellReuseIdentifier: "ActiveVoterTableViewCell")
-       }
+        }
     }
     
     @IBOutlet var heightsCollection: [NSLayoutConstraint]! {
@@ -111,6 +113,12 @@ class ActiveVotersShowViewController: GSBaseViewController {
         self.localizeTitles()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        self.loadVotersWorkItem.cancel()
+    }
+    
     // MARK: - Custom Functions
     private func loadViewSettings() {
 
@@ -129,8 +137,6 @@ extension ActiveVotersShowViewController: ActiveVotersShowDisplayLogic {
     func displaySubscribe(fromViewModel viewModel: ActiveVotersShowModels.Sub.ViewModel) {
         let cell = self.tableView.cellForRow(at: IndexPath(row: self.selectedVoterInRow, section: 0)) as! ActiveVoterTableViewCell
         
-        cell.subscribeActivityIndicator.stopAnimating()
-        
         // NOTE: Display the result from the Presenter
         if let error = viewModel.errorAPI {
             self.showAlertView(withTitle: "Error", andMessage: error.localizedDescription, needCancel: false, completion: { _ in })
@@ -138,13 +144,16 @@ extension ActiveVotersShowViewController: ActiveVotersShowDisplayLogic {
         
         // Set post author subscribe button title
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5, execute: {
-            self.showAlertView(withTitle: "Info", andMessage: viewModel.isFollowing ? "Subscribe Success" : "Unsubscribe Success", needCancel: false, completion: { _ in
+            self.showAlertView(withTitle:   viewModel.isFollowing ? "Subscribe Noun" : "Unsubscribe Noun",
+                               andMessage:  (viewModel.isFollowing ? "Subscribe Success" : "Unsubscribe Success").localized() + " @\(viewModel.authorNickName)", needCancel: false, completion: { _ in
                 cell.subscribeButton.isSelected = viewModel.isFollowing
                 cell.subscribeButton.setTitle(viewModel.isFollowing ? "Subscriptions".localized() : "Subscribe Verb".localized(), for: .normal)
                 
                 UIView.animate(withDuration: 0.5, animations: {
                     viewModel.isFollowing ? cell.subscribeButton.setBorder(color: UIColor(hexString: "#dbdbdb").cgColor, cornerRadius: 5.0) :
                                             cell.subscribeButton.fill(font: UIFont(name: "SFProDisplay-Medium", size: 10.0)!)
+                }, completion: { success in
+                    cell.subscribeActivityIndicator.stopAnimating()
                 })
             })
         })
@@ -169,13 +178,13 @@ extension ActiveVotersShowViewController: ActiveVotersShowDisplayLogic {
 // MARK: - Load data from Blockchain by API
 extension ActiveVotersShowViewController {
     func loadActiveVoters() {
-        // Load Post
-        let loadActiveVotersQueue = DispatchQueue.global(qos: .background)
-        
-        loadActiveVotersQueue.sync {
+        // Load Voters
+        loadVotersWorkItem = DispatchWorkItem {
             let usersVotedRequestModel = ActiveVotersShowModels.Item.RequestModel()
             self.interactor?.loadActiveVoters(withRequestModel: usersVotedRequestModel)
         }
+        
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1, execute: loadVotersWorkItem)
     }
 }
 
@@ -219,15 +228,16 @@ extension ActiveVotersShowViewController: UITableViewDataSource {
 
             self?.selectedVoterInRow = activeVoterShortInfo.row
             
-            // Run spinner
-            DispatchQueue.main.async {
-                cell.subscribeActivityIndicator.startAnimating()
-            }
-            
             guard activeVoterShortInfo.isSubscribe else {
                 // API 'Subscribe'
                 let requestModel = ActiveVotersShowModels.Sub.RequestModel(willSubscribe: true, authorNickName: activeVoterShortInfo.nickName)
                 self?.interactor?.subscribe(withRequestModel: requestModel)
+
+                // Run spinner
+                DispatchQueue.main.async {
+                    cell.subscribeButton.setTitle(nil, for: .normal)
+                    cell.subscribeActivityIndicator.startAnimating()
+                }
                 
                 return
             }
@@ -237,6 +247,12 @@ extension ActiveVotersShowViewController: UITableViewDataSource {
                 if success {
                     let requestModel = ActiveVotersShowModels.Sub.RequestModel(willSubscribe: false, authorNickName: activeVoterShortInfo.nickName)
                     self?.interactor?.subscribe(withRequestModel: requestModel)
+
+                    // Run spinner
+                    DispatchQueue.main.async {
+                        cell.subscribeButton.setTitle(nil, for: .normal)
+                        cell.subscribeActivityIndicator.startAnimating()
+                    }
                 }
                     
                 else {
@@ -258,5 +274,16 @@ extension ActiveVotersShowViewController: UITableViewDataSource {
 extension ActiveVotersShowViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 64.0
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return self.voters.count == 0 ? 48.0 : 0.0
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = CommentHeaderView.init(frame: CGRect(origin: .zero, size: CGSize(width: tableView.frame.width, height: 48.0)))
+        headerView.set(mode: .footer)
+        
+        return headerView
     }
 }

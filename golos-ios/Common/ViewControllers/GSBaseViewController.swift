@@ -72,15 +72,22 @@ class GSBaseViewController: UIViewController {
     }
     
     private func configureBackButton(withTitle title: String? = nil) {
-        let backImage = UIImage(named: "icon-button-back-black-normal")
+        if title == nil {
+            let customBackButton = UIBarButtonItem(image: UIImage(named: "icon-button-back-black-normal"), style: .plain, target: self, action: #selector(backBarButtonTapped))
+            customBackButton.imageInsets = UIEdgeInsets(top: 2, left: -8, bottom: 0, right: 0)
+            self.navigationItem.leftBarButtonItem = customBackButton
+        }
         
-        self.navigationController?.navigationBar.backIndicatorImage                 =   backImage
-        self.navigationController?.navigationBar.backIndicatorTransitionMaskImage   =   backImage
-        
-        self.navigationItem.backBarButtonItem   =   UIBarButtonItem(title:      title == nil ? "" : title!.localized(),
-                                                                    style:      .plain,
-                                                                    target:     nil,
-                                                                    action:     nil)
+        else {
+            self.navigationItem.backBarButtonItem   =   UIBarButtonItem(title:      title!.localized(),
+                                                                        style:      .plain,
+                                                                        target:     self,
+                                                                        action:     #selector(backBarButtonTapped))
+        }
+    }
+
+    @objc func backBarButtonTapped(sender: UIBarButtonItem) {
+        self.navigationController?.popViewController(animated: true)
     }
 
     func showAlertView(withTitle title: String, andMessage message: String, attributedText: NSMutableAttributedString? = nil, actionTitle: String? = "Enter Title", needCancel cancel: Bool, isCancelLeft: Bool = true, completion: @escaping ((Bool) -> Void)) {
@@ -102,12 +109,24 @@ class GSBaseViewController: UIViewController {
             if isCancelLeft {
                 alertViewController.addAction(alertViewControllerCancelAction)
                 alertViewController.addAction(alertViewControllerOkAction)
-            } else {
+            }
+            
+            else {
                 alertViewController.addAction(alertViewControllerOkAction)
                 alertViewController.addAction(alertViewControllerCancelAction)
             }
-        } else {
+        }
+        
+        else if title != "Subscribe Noun" && title != "Unsubscribe Noun" {
             alertViewController.addAction(alertViewControllerOkAction)
+        }
+            
+        else {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2.0) {
+                alertViewController.dismiss(animated: true, completion: {
+                    completion(true)
+                })
+            }
         }
 
         alertViewController.show()

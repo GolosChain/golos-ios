@@ -24,11 +24,13 @@ enum ActiveVotersShowModels {
         
         struct ResponseModel {
             let isFollowing: Bool
+            let authorNickName: String
             let errorAPI: ErrorAPI?
         }
         
         struct ViewModel {
             let isFollowing: Bool
+            let authorNickName: String
             let errorAPI: ErrorAPI?
         }
     }

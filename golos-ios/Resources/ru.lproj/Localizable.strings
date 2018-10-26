@@ -152,13 +152,15 @@
 "Previously:"                               =   "Предварительно:";
 "Recent Past:"                              =   "Недавно";
 "Unknown User"                              =   "неизвестный аккаунт";
-"Subscribe Success"                         =   "Спасибо,\nВы подписались на автора";
-"Unsubscribe Success"                       =   "Спасибо,\nВы отписались от автора";
+"Subscribe Success"                         =   "вы подписались на";
+"Unsubscribe Success"                       =   "вы отписались от";
 "Cancel Vote"                               =   "Сброс Голоса";
 "Cancel Vote Message"                       =   "Удаление голоса изменит ваше решение по голосованию за этот пост";
 "Voted Verb"                                =   "Проголосовали";
 "Voted Against Verb"                        =   "Проголосовали против";
 "Unsubscribe are you sure"                  =   "Вы уверены, что хотите\nотменить подписку";
+"Subscribe Noun"                            =   "Подписка";
+"Unsubscribe Noun"                          =   "Отписка";
 
 
 // Placeholders

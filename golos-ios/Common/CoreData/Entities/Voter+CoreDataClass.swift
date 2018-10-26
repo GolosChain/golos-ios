@@ -45,7 +45,7 @@ public class Voter: NSManagedObject {
             entity!.voter           =   model.voter
             entity!.percent         =   model.percent
             entity!.rshares         =   model.rshares.stringValue!
-            entity!.weight          =   model.weight
+            entity!.weight          =   model.weight.stringValue!
             entity!.time            =   model.time
             entity!.reputation      =   model.reputation.stringValue!
             

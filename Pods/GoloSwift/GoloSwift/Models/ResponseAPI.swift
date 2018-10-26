@@ -460,7 +460,7 @@ public struct ResponseAPIVoter: Decodable {
     public let voter: String
     public let percent: Int64
     public let rshares: Conflicted
-    public let weight: String
+    public let weight: Conflicted
     public let time: String
     public let reputation: Conflicted
 }

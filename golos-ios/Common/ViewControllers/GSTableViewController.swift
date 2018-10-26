@@ -158,12 +158,11 @@ class GSTableViewController: GSBaseViewController, HandlersCellSupport {
             
             self.activityIndicatorView  =   UIActivityIndicatorView.init(frame: CGRect(origin:  .zero,
                                                                                        size:    CGSize(width: self.postsTableView.frame.width, height: 64.0 * heightRatio)))
-            self.activityIndicatorView.style    = .gray
+            self.activityIndicatorView.style    =   .gray
             self.postsTableView.separatorStyle  =   .none
-            
-            self.activityIndicatorView.startAnimating()
-            
             self.postsTableView.tableHeaderView =   self.activityIndicatorView
+
+            self.activityIndicatorView.startAnimating()
         }
     }
     

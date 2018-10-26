@@ -32,7 +32,7 @@ class ActiveVotersShowPresenter: ActiveVotersShowPresentationLogic {
 
     // MARK: - Presentation Logic implementation
     func presentSubscribe(fromResponseModel responseModel: ActiveVotersShowModels.Sub.ResponseModel) {
-        let viewModel = ActiveVotersShowModels.Sub.ViewModel(isFollowing: responseModel.isFollowing, errorAPI: responseModel.errorAPI)
+        let viewModel = ActiveVotersShowModels.Sub.ViewModel(isFollowing: responseModel.isFollowing, authorNickName: responseModel.authorNickName, errorAPI: responseModel.errorAPI)
         viewController?.displaySubscribe(fromViewModel: viewModel)
     }
 

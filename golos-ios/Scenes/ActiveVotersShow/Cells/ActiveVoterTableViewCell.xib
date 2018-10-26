@@ -60,10 +60,10 @@
                         </connections>
                     </button>
                     <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iqb-uo-9wO" userLabel="Subscribe Button">
-                        <rect key="frame" x="269" y="17" width="90" height="30"/>
+                        <rect key="frame" x="269" y="15" width="90" height="33.5"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="width" secondItem="iqb-uo-9wO" secondAttribute="height" multiplier="3:1" id="YZs-8y-dIW"/>
+                            <constraint firstAttribute="width" secondItem="iqb-uo-9wO" secondAttribute="height" multiplier="95:35" id="YZs-8y-dIW"/>
                         </constraints>
                         <connections>
                             <action selector="subscribeButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="JMc-N6-MJU"/>
@@ -90,18 +90,18 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </stackView>
                     <activityIndicatorView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="1Ja-a1-dtz" userLabel="Subscribe Activity Indicator">
-                        <rect key="frame" x="177.5" y="22" width="20" height="20"/>
+                        <rect key="frame" x="304" y="22" width="20" height="20"/>
                         <color key="color" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                     </activityIndicatorView>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="xfi-bz-xeP" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="0MO-3j-8Eq"/>
+                    <constraint firstItem="1Ja-a1-dtz" firstAttribute="centerY" secondItem="iqb-uo-9wO" secondAttribute="centerY" id="4jT-kz-ZeC"/>
                     <constraint firstItem="iqb-uo-9wO" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="63x-yA-YjN"/>
                     <constraint firstItem="iqb-uo-9wO" firstAttribute="leading" secondItem="Zt1-cG-Fei" secondAttribute="trailing" constant="12" identifier="subscribeButtonLeadingConstraint" id="AHh-r6-FfF"/>
                     <constraint firstItem="Zt1-cG-Fei" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Alw-cK-NBc"/>
                     <constraint firstItem="Zt1-cG-Fei" firstAttribute="height" secondItem="ot7-1j-HhI" secondAttribute="height" id="BnA-rE-Hhn"/>
-                    <constraint firstItem="1Ja-a1-dtz" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="JVf-7m-W3J"/>
                     <constraint firstItem="Zt1-cG-Fei" firstAttribute="leading" secondItem="xfi-bz-xeP" secondAttribute="trailing" constant="12" identifier="activeButtonsStackViewLeadingConstraint" id="JYz-Ey-fKX"/>
                     <constraint firstItem="ot7-1j-HhI" firstAttribute="width" secondItem="ot7-1j-HhI" secondAttribute="height" multiplier="1:1" id="MRz-TV-wKd"/>
                     <constraint firstItem="ot7-1j-HhI" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" identifier="authorProfileImageViewLeadingConstraint" id="Qvr-9x-bwn"/>
@@ -110,7 +110,7 @@
                     <constraint firstItem="BbN-TG-Od7" firstAttribute="bottom" secondItem="ot7-1j-HhI" secondAttribute="bottom" id="Soh-dN-QE7"/>
                     <constraint firstAttribute="bottom" secondItem="xfi-bz-xeP" secondAttribute="bottom" id="Tf6-EK-56B"/>
                     <constraint firstItem="ot7-1j-HhI" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="UgE-y8-GEJ"/>
-                    <constraint firstItem="1Ja-a1-dtz" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="ZJA-Eb-tvV"/>
+                    <constraint firstItem="1Ja-a1-dtz" firstAttribute="centerX" secondItem="iqb-uo-9wO" secondAttribute="centerX" id="Wk5-qF-wps"/>
                     <constraint firstItem="xfi-bz-xeP" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="d90-AZ-8I4"/>
                     <constraint firstItem="BbN-TG-Od7" firstAttribute="leading" secondItem="ot7-1j-HhI" secondAttribute="leading" id="f4i-oH-IdP"/>
                     <constraint firstAttribute="trailing" secondItem="iqb-uo-9wO" secondAttribute="trailing" constant="16" identifier="subscribeButtonTrailingConstraint" id="xpc-8s-dTT"/>

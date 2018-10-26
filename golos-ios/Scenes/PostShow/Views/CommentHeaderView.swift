@@ -32,7 +32,7 @@ class CommentHeaderView: UIView {
     
     @IBOutlet var view: UIView! {
         didSet {
-//            self.view.tune()
+            self.view.tune()
         }
     }
     
@@ -65,6 +65,10 @@ class CommentHeaderView: UIView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
+        if frame.height == 0 {
+            frame.size = CGSize(width: UIScreen.main.bounds.width, height: 48.0)
+        }
+        
         createFromXIB()
     }
     
@@ -77,7 +81,7 @@ class CommentHeaderView: UIView {
     func createFromXIB() {
         UINib(nibName: String(describing: CommentHeaderView.self), bundle: Bundle(for: CommentHeaderView.self)).instantiate(withOwner: self, options: nil)
         addSubview(view)
-//        view.frame = CGRect(origin: .zero, size: CGSize(width: UIScreen.main.bounds.width, height: 48.0 * heightRatio))
+        view.frame = frame
     }
 
     func translateTitle() {
