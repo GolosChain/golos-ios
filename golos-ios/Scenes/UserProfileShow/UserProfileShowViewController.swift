@@ -473,6 +473,11 @@ extension UserProfileShowViewController {
                     })
                 }
                 
+                activeVC.handlerLikeCountButtonTapped               =   { [weak self] postShortInfo in
+                    self?.interactor?.save(blogShortInfo: postShortInfo)
+                    self?.router?.routeToActiveVotersShowScene(withMode: .like)
+                }
+
                 activeVC.handlerDislikeButtonTapped                 =   { [weak self] (isDislike, postShortInfo) in
                     let handlersManager = HandlersManager()
                     
@@ -491,6 +496,11 @@ extension UserProfileShowViewController {
                             blogCell.dislikeButton.breakLikeVote(withSpinner: blogCell.dislikeActivityIndicator)
                         }
                     })
+                }
+
+                activeVC.handlerDislikeCountButtonTapped            =   { [weak self] postShortInfo in
+                    self?.interactor?.save(blogShortInfo: postShortInfo)
+                    self?.router?.routeToActiveVotersShowScene(withMode: .dislike)
                 }
 
                 activeVC.handlerCommentsButtonTapped                =   { [weak self] postShortInfo in

@@ -19,6 +19,7 @@ import GoloSwift
     func routeToUserProfileScene(byUserName name: String)
     func routeToPostCreateScene(withType sceneType: SceneType)
     func routeToPostShowScene(withScrollToComments needScrolling: Bool)
+    func routeToActiveVotersShowScene(withMode sceneMode: ActiveVoterMode)
 }
 
 protocol UserProfileShowDataPassing {
@@ -98,6 +99,16 @@ class UserProfileShowRouter: NSObject, UserProfileShowRoutingLogic, UserProfileS
         navigateToUserProfileScene(source: viewController!, destination: destinationVC)
     }
 
+    func routeToActiveVotersShowScene(withMode sceneMode: ActiveVoterMode) {
+        let storyboard                  =   UIStoryboard(name: "ActiveVotersShow", bundle: nil)
+        let destinationVC               =   storyboard.instantiateViewController(withIdentifier: "ActiveVotersShowVC") as! ActiveVotersShowViewController
+        var destinationDS               =   destinationVC.router!.dataStore!
+        destinationDS.activeVoterMode   =   sceneMode
+        
+        passDataToUsersVoteShowScene(source: self.dataStore!, destination: &destinationDS)
+        navigateToUsersVoteShowScene(source: viewController!, destination: destinationVC)
+    }
+
     
     // MARK: - Navigation
     func navigateToSettingsShowScene(source: UserProfileShowViewController, destination: SettingsShowViewController) {
@@ -121,6 +132,10 @@ class UserProfileShowRouter: NSObject, UserProfileShowRoutingLogic, UserProfileS
         source.show(destination, sender: nil)
     }
 
+    func navigateToUsersVoteShowScene(source: UserProfileShowViewController, destination: ActiveVotersShowViewController) {
+        source.show(destination, sender: nil)
+    }
+
     
     // MARK: - Passing data
     func passDataToPostShowScene(source: UserProfileShowDataStore, destination: inout PostShowDataStore) {
@@ -133,5 +148,11 @@ class UserProfileShowRouter: NSObject, UserProfileShowRoutingLogic, UserProfileS
         destination.commentParentTag        =   postShortInfo.parentTag
         destination.commentParentAuthor     =   postShortInfo.parentAuthor
         destination.commentParentPermlink   =   postShortInfo.parentPermlink
+    }
+    
+    func passDataToUsersVoteShowScene(source: UserProfileShowDataStore, destination: inout ActiveVotersShowDataStore) {
+        destination.itemID                  =   source.selectedBlog!.id
+        destination.permlink                =   source.selectedBlog!.permlink
+        destination.authorNickName          =   source.selectedBlog!.author
     }
 }
