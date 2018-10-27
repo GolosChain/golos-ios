@@ -33,6 +33,10 @@ class PostShowViewController: GSBaseViewController {
     var scrollCommentsDown: Bool = false
     var isPostContentModify: Bool = false
     
+    var loadPostContentWorkItem: DispatchWorkItem!
+    var loadPostCommentsWorkItem: DispatchWorkItem!
+    var runCheckFollowingWorkItem: DispatchWorkItem!
+
     var comments: [Comment]?
     var commentViews: [CommentView]?
     
@@ -516,6 +520,22 @@ class PostShowViewController: GSBaseViewController {
         UIApplication.shared.statusBarStyle = .default
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        if let contentWorkItem = self.loadPostContentWorkItem, !contentWorkItem.isCancelled {
+            contentWorkItem.cancel()
+        }
+        
+        if let commentsWorkItem = self.loadPostCommentsWorkItem, !commentsWorkItem.isCancelled {
+            commentsWorkItem.cancel()
+        }
+        
+        if let followingWorkItem = self.runCheckFollowingWorkItem, !followingWorkItem.isCancelled {
+            followingWorkItem.cancel()
+        }
+    }
+
     
     // MARK: - Custom Functions
     private func didCommentsControlView(hided: Bool) {
@@ -1005,28 +1025,31 @@ extension PostShowViewController: PostShowDisplayLogic {
 // MARK: - Load data from Blockchain by API
 extension PostShowViewController {
     func loadPostContent() {
-        self.gsTimer = GSTimer(operationName: "Load Post content...")
-        
-        // Load Post
-        let loadPostContentQueue = DispatchQueue.global(qos: .background)
-        
-        loadPostContentQueue.sync {
+        self.loadPostContentWorkItem = DispatchWorkItem {
+            self.gsTimer = GSTimer(operationName: "Load Post content...")
+            
+            // Load Post
             let contentRequestModel = PostShowModels.Post.RequestModel()
             self.interactor?.loadPostContent(withRequestModel: contentRequestModel)
-            
+        }
+        
+        self.runCheckFollowingWorkItem = DispatchWorkItem {
             self.runCheckFollowing()
         }
+
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1, execute: self.loadPostContentWorkItem)
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5, execute: self.runCheckFollowingWorkItem)
     }
     
     func loadPostComments() {
         Logger.log(message: "Success", event: .severe)
         
-        let loadPostCommentsQueue = DispatchQueue.global(qos: .utility)
-        
-        loadPostCommentsQueue.async {
+        self.loadPostCommentsWorkItem = DispatchWorkItem {
             let contentRepliesRequestModel = PostShowModels.Post.RequestModel()
             self.interactor?.loadPostComments(withRequestModel: contentRepliesRequestModel)
         }
+        
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1, execute: self.loadPostCommentsWorkItem)
     }
     
     private func runCheckFollowing() {

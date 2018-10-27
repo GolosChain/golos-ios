@@ -101,7 +101,6 @@ class ActiveVotersShowViewController: GSBaseViewController {
         
         // API
         self.loadActiveVoters()
-//        self.loadViewSettings()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -116,14 +115,13 @@ class ActiveVotersShowViewController: GSBaseViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        self.loadVotersWorkItem.cancel()
+        if let votersWorkItem = self.loadVotersWorkItem, !votersWorkItem.isCancelled {
+            votersWorkItem.cancel()
+        }
     }
+
     
     // MARK: - Custom Functions
-    private func loadViewSettings() {
-
-    }
-    
     override func localizeTitles() {
         if let dataStore = self.router?.dataStore {
             self.title = (dataStore.activeVoterMode == .like ? "Voted Verb" : "Voted Against Verb").localized()
@@ -179,12 +177,12 @@ extension ActiveVotersShowViewController: ActiveVotersShowDisplayLogic {
 extension ActiveVotersShowViewController {
     func loadActiveVoters() {
         // Load Voters
-        loadVotersWorkItem = DispatchWorkItem {
+        self.loadVotersWorkItem = DispatchWorkItem {
             let usersVotedRequestModel = ActiveVotersShowModels.Item.RequestModel()
             self.interactor?.loadActiveVoters(withRequestModel: usersVotedRequestModel)
         }
         
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1, execute: loadVotersWorkItem)
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1, execute: self.loadVotersWorkItem)
     }
 }
 

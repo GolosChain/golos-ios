@@ -52,7 +52,6 @@ class ActiveVoterTableViewCell: UITableViewCell {
                                       font:         UIFont(name: "SFProDisplay-Medium", size: 10.0),
                                       alignment:    .center)
             
-            self.subscribeButton.fill(font: UIFont(name: "SFProDisplay-Medium", size: 10.0)!)
             self.subscribeButton.isSelected = false
         }
     }
@@ -114,6 +113,7 @@ class ActiveVoterTableViewCell: UITableViewCell {
         
         self.voterNameButton.setTitle(nil, for: .normal)
         self.subscribeButton.setTitle(nil, for: .normal)
+        self.subscribeButton.setBorder(color: UIColor(hexString: "#ffffff").cgColor, cornerRadius: 5.0)
     }
     
     override var reuseIdentifier: String? {
