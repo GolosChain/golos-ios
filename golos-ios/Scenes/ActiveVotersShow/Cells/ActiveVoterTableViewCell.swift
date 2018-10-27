@@ -8,7 +8,6 @@
 
 import UIKit
 import GoloSwift
-import SkeletonView
 
 typealias ActiveVoterShortInfo = (nickName: String, icon: UIImage, isSubscribe: Bool, row: Int)
 
@@ -104,26 +103,26 @@ class ActiveVoterTableViewCell: UITableViewCell {
     
     
     // MARK: - Reuse identifier
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        
-        self.voterReputationLabel.text      =   nil
-        self.voterProfileImageView.image    =   UIImage(named: "icon-user-profile-image-placeholder")
-        self.subscribeButton.isHidden       =   false
-        self.subscribeButton.isSelected     =   false
-        
-        self.voterNameButton.setTitle(nil, for: .normal)
-        self.subscribeButton.setTitle(nil, for: .normal)
-        self.subscribeButton.setBorder(color: UIColor(hexString: "#ffffff").cgColor, cornerRadius: 5.0)
-    }
+//    override func prepareForReuse() {
+//        super.prepareForReuse()
+//        
+////        self.voterReputationLabel.text      =   nil
+////        self.voterProfileImageView.image    =   UIImage(named: "icon-user-profile-image-placeholder")
+////        self.subscribeButton.isHidden       =   false
+////        self.subscribeButton.isSelected     =   false
+////
+////        self.voterNameButton.setTitle(nil, for: .normal)
+////        self.subscribeButton.setTitle(nil, for: .normal)
+////        self.subscribeButton.setBorder(color: UIColor(hexString: "#ffffff").cgColor, cornerRadius: 5.0)
+//    }
     
-    override var reuseIdentifier: String? {
-        return ActiveVoterTableViewCell.reuseIdentifier
-    }
-    
-    class var reuseIdentifier: String? {
-        return String(describing: self)
-    }
+//    override var reuseIdentifier: String? {
+//        return ActiveVoterTableViewCell.reuseIdentifier
+//    }
+//
+//    class var reuseIdentifier: String? {
+//        return String(describing: self)
+//    }
 
 
     // MARK: - Custom Functions

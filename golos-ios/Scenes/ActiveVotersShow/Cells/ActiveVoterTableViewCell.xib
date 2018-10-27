@@ -24,6 +24,9 @@
                         <constraints>
                             <constraint firstAttribute="width" constant="50" identifier="authorProfileImageViewWidthConstraint" id="8jh-g3-gtQ"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                        </userDefinedRuntimeAttributes>
                     </imageView>
                     <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BbN-TG-Od7" userLabel="Voter Reputation Background View">
                         <rect key="frame" x="16" y="39" width="18" height="18"/>
@@ -65,16 +68,29 @@
                         <constraints>
                             <constraint firstAttribute="width" secondItem="iqb-uo-9wO" secondAttribute="height" multiplier="95:35" id="YZs-8y-dIW"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                        </userDefinedRuntimeAttributes>
                         <connections>
                             <action selector="subscribeButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="JMc-N6-MJU"/>
                         </connections>
                     </button>
+                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ltD-km-R4k" userLabel="Skeleton Empty View">
+                        <rect key="frame" x="82" y="15" width="175" height="33.5"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                    </view>
                     <stackView contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Zt1-cG-Fei" userLabel="Active Buttons Stack View">
                         <rect key="frame" x="82" y="7" width="175" height="50"/>
                         <subviews>
                             <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rTW-bO-laa" userLabel="Author Name Button">
                                 <rect key="frame" x="0.0" y="0.0" width="175" height="25"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="NO"/>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="authorVoterButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="eib-a7-l37"/>
                                 </connections>
@@ -82,12 +98,18 @@
                             <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WuU-ff-Nu9" userLabel="Voice Power Button">
                                 <rect key="frame" x="0.0" y="25" width="175" height="25"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="NO"/>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="voicePowerButtonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="iLn-ly-8Qa"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="NO"/>
+                        </userDefinedRuntimeAttributes>
                     </stackView>
                     <activityIndicatorView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="1Ja-a1-dtz" userLabel="Subscribe Activity Indicator">
                         <rect key="frame" x="304" y="22" width="20" height="20"/>
@@ -99,6 +121,7 @@
                     <constraint firstItem="xfi-bz-xeP" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="0MO-3j-8Eq"/>
                     <constraint firstItem="1Ja-a1-dtz" firstAttribute="centerY" secondItem="iqb-uo-9wO" secondAttribute="centerY" id="4jT-kz-ZeC"/>
                     <constraint firstItem="iqb-uo-9wO" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="63x-yA-YjN"/>
+                    <constraint firstItem="iqb-uo-9wO" firstAttribute="leading" secondItem="ltD-km-R4k" secondAttribute="trailing" constant="12" id="79S-uh-d7p"/>
                     <constraint firstItem="iqb-uo-9wO" firstAttribute="leading" secondItem="Zt1-cG-Fei" secondAttribute="trailing" constant="12" identifier="subscribeButtonLeadingConstraint" id="AHh-r6-FfF"/>
                     <constraint firstItem="Zt1-cG-Fei" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Alw-cK-NBc"/>
                     <constraint firstItem="Zt1-cG-Fei" firstAttribute="height" secondItem="ot7-1j-HhI" secondAttribute="height" id="BnA-rE-Hhn"/>
@@ -106,20 +129,29 @@
                     <constraint firstItem="ot7-1j-HhI" firstAttribute="width" secondItem="ot7-1j-HhI" secondAttribute="height" multiplier="1:1" id="MRz-TV-wKd"/>
                     <constraint firstItem="ot7-1j-HhI" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" identifier="authorProfileImageViewLeadingConstraint" id="Qvr-9x-bwn"/>
                     <constraint firstItem="ot7-1j-HhI" firstAttribute="trailing" secondItem="xfi-bz-xeP" secondAttribute="trailing" constant="-4" identifier="authorProfileImageViewTrailingConstraint" id="R2k-OB-BIo"/>
+                    <constraint firstItem="ltD-km-R4k" firstAttribute="height" secondItem="iqb-uo-9wO" secondAttribute="height" id="R6e-xv-Vzr"/>
                     <constraint firstItem="BbN-TG-Od7" firstAttribute="width" secondItem="BbN-TG-Od7" secondAttribute="height" multiplier="1:1" id="RvA-1a-Jb4"/>
                     <constraint firstItem="BbN-TG-Od7" firstAttribute="bottom" secondItem="ot7-1j-HhI" secondAttribute="bottom" id="Soh-dN-QE7"/>
                     <constraint firstAttribute="bottom" secondItem="xfi-bz-xeP" secondAttribute="bottom" id="Tf6-EK-56B"/>
                     <constraint firstItem="ot7-1j-HhI" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="UgE-y8-GEJ"/>
                     <constraint firstItem="1Ja-a1-dtz" firstAttribute="centerX" secondItem="iqb-uo-9wO" secondAttribute="centerX" id="Wk5-qF-wps"/>
+                    <constraint firstItem="ltD-km-R4k" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="c3j-80-07O"/>
                     <constraint firstItem="xfi-bz-xeP" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="d90-AZ-8I4"/>
                     <constraint firstItem="BbN-TG-Od7" firstAttribute="leading" secondItem="ot7-1j-HhI" secondAttribute="leading" id="f4i-oH-IdP"/>
                     <constraint firstAttribute="trailing" secondItem="iqb-uo-9wO" secondAttribute="trailing" constant="16" identifier="subscribeButtonTrailingConstraint" id="xpc-8s-dTT"/>
+                    <constraint firstItem="ltD-km-R4k" firstAttribute="leading" secondItem="xfi-bz-xeP" secondAttribute="trailing" constant="12" id="yx7-eb-MO1"/>
                 </constraints>
+                <userDefinedRuntimeAttributes>
+                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                </userDefinedRuntimeAttributes>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="iqb-uo-9wO" firstAttribute="width" secondItem="KGk-i7-Jjw" secondAttribute="width" multiplier="90:375" id="vcl-Mh-pUe"/>
             </constraints>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+            </userDefinedRuntimeAttributes>
             <connections>
                 <outlet property="subscribeActivityIndicator" destination="1Ja-a1-dtz" id="kLZ-om-5lx"/>
                 <outlet property="subscribeButton" destination="iqb-uo-9wO" id="cRG-ER-742"/>

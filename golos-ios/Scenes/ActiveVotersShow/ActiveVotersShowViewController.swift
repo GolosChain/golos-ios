@@ -13,6 +13,7 @@
 import UIKit
 import CoreData
 import GoloSwift
+import SkeletonView
 
 // MARK: - Input & Output protocols
 protocol ActiveVotersShowDisplayLogic: class {
@@ -34,9 +35,9 @@ class ActiveVotersShowViewController: GSBaseViewController {
     // MARK: - IBOutlets
     @IBOutlet weak var tableView: UITableView! {
         didSet {
-            self.tableView.delegate     =   self
-            self.tableView.dataSource   =   self
-            
+            self.tableView.delegate             =   self
+            self.tableView.dataSource           =   self
+
             self.tableView.tune()
             self.tableView.register(UINib(nibName: "ActiveVoterTableViewCell", bundle: nil), forCellReuseIdentifier: "ActiveVoterTableViewCell")
         }
@@ -99,6 +100,9 @@ class ActiveVotersShowViewController: GSBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // SkeletonView
+        self.view.showSkeleton(usingColor: UIColor.clouds)
+
         // API
         self.loadActiveVoters()
     }
@@ -195,6 +199,7 @@ extension ActiveVotersShowViewController {
             self.voters = items.filter({ votersMode == .like ? $0.percent > 0 : $0.percent < 0 })
             
             self.tableView.reloadData()
+            self.view.hideSkeleton()
         }
         
         else {
@@ -204,14 +209,14 @@ extension ActiveVotersShowViewController {
 }
 
 
-// MARK: - UITableViewDataSource
-extension ActiveVotersShowViewController: UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
+// MARK: - SkeletonTableViewDataSource
+extension ActiveVotersShowViewController: SkeletonTableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.voters.count
+    }
+    
+    func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
+        return "ActiveVoterTableViewCell"
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
