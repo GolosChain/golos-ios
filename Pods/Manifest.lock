@@ -56,6 +56,7 @@ PODS:
   - nanopb/encode (0.3.8)
   - Protobuf (3.5.0)
   - secp256k1.swift (0.1.4)
+  - SkeletonView (1.4.1)
   - SnapKit (4.0.0)
   - Starscream (3.0.6)
   - SwiftGifOrigin (1.6.1)
@@ -76,6 +77,7 @@ DEPENDENCIES:
   - LayoutKit (~> 7.0)
   - MarkdownView
   - MXParallaxHeader (~> 0.6)
+  - SkeletonView
   - SnapKit (~> 4.0)
   - SwiftGifOrigin (~> 1.6.1)
   - SwiftLint
@@ -107,6 +109,7 @@ SPEC REPOS:
     - nanopb
     - Protobuf
     - secp256k1.swift
+    - SkeletonView
     - SnapKit
     - Starscream
     - SwiftGifOrigin
@@ -148,6 +151,7 @@ SPEC CHECKSUMS:
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   Protobuf: 8a9838fba8dae3389230e1b7f8c104aa32389c03
   secp256k1.swift: a7e7a214f6db6ce5db32cc6b2b45e5c4dd633634
+  SkeletonView: 60d6ce7edb0cb4c7758db33c74add50392b3c475
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
   Starscream: ef3ece99d765eeccb67de105bfa143f929026cf5
   SwiftGifOrigin: d6679d3ebe9df2e049a84bc52582635107b581f6
@@ -155,6 +159,6 @@ SPEC CHECKSUMS:
   SwiftTheme: 36d71c4eed4b2c401c782cf036e4586c749a8173
   Tags: 06eb9d45fcc234025d1b0053f78b9bb27f53a9d5
 
-PODFILE CHECKSUM: 669f199cb724b2bf0777646472c063bc7422b8af
+PODFILE CHECKSUM: f0bca9997831c73544a444cc2d1268967690d711
 
 COCOAPODS: 1.6.0.beta.1

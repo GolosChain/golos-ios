@@ -8,6 +8,7 @@
 
 import UIKit
 import GoloSwift
+import SkeletonView
 
 typealias ActiveVoterShortInfo = (nickName: String, icon: UIImage, isSubscribe: Bool, row: Int)
 
