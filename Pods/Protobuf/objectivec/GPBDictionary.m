@@ -14057,14 +14057,14 @@ void GPBDictionaryReadEntry(id mapDictionary,
 
 - (void)enumerateKeysAndObjectsUsingBlock:(void (^)(id key,
                                                     id obj,
-                                                    BOOL *stop))block {
+                                                    BOOL *stop))__attribute__((noescape)) block {
   [_dictionary enumerateKeysAndObjectsUsingBlock:block];
 }
 
 - (void)enumerateKeysAndObjectsWithOptions:(NSEnumerationOptions)opts
                                 usingBlock:(void (^)(id key,
                                                      id obj,
-                                                     BOOL *stop))block {
+                                                     BOOL *stop))__attribute__((noescape)) block {
   [_dictionary enumerateKeysAndObjectsWithOptions:opts usingBlock:block];
 }
 
