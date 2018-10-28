@@ -100,7 +100,8 @@ class ScannerShowViewController: GSBaseViewController {
         self.navigationController?.navigationBar.isTranslucent          =   true
         self.navigationController?.navigationBar.titleTextAttributes    =   [NSAttributedString.Key.foregroundColor: UIColor.white]
 
-        UIApplication.shared.statusBarStyle = .lightContent
+        // Set StatusBarStyle
+        isStatusBarStyleLight   =   true
 
         captureSession          =   AVCaptureSession()
         view.backgroundColor    =   UIColor.black

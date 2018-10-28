@@ -87,17 +87,19 @@ class SettingsShowRouter: NSObject, SettingsShowRoutingLogic, SettingsShowDataPa
     
     // MARK: - Navigation
     func navigateToSettingsNotificationsScene(source: SettingsShowViewController, destination: SettingsNotificationsShowViewController) {
-        UIApplication.shared.statusBarStyle = .default
-
         source.show(destination, sender: nil)
         viewController?.showNavigationBar()
+        
+        // Set StatusBarStyle
+        viewController?.isStatusBarStyleLight = false
     }
 
     func navigateToSettingsUserProfileEditScene(source: SettingsShowViewController, destination: SettingsUserProfileEditViewController) {
-        UIApplication.shared.statusBarStyle = .default
-        
         source.show(destination, sender: nil)
         viewController?.showNavigationBar()
+        
+        // Set StatusBarStyle
+        viewController?.isStatusBarStyleLight = false
     }
 }
 

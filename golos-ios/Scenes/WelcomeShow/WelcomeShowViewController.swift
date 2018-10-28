@@ -144,7 +144,9 @@ class WelcomeShowViewController: GSBaseViewController {
         Logger.log(message: "Success", event: .severe)
         
         self.hideNavigationBar()
-        UIApplication.shared.statusBarStyle = .default
+        
+        // Set StatusBarStyle
+        self.isStatusBarStyleLight = false
     }
     
     override func viewWillDisappear(_ animated: Bool) {

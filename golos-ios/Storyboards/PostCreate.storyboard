@@ -137,12 +137,6 @@
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" id="VFN-aw-MbQ">
-                        <barButtonItem key="leftBarButtonItem" image="icon-button-close-default" id="m9z-jO-zud">
-                            <color key="tintColor" red="0.49019607843137253" green="0.49019607843137253" blue="0.49019607843137253" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <connections>
-                                <action selector="cancelBarButtonTapped:" destination="K52-Ba-FnU" id="lxR-7k-sX0"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="icon-button-publish-normal" id="odW-AC-b4Z">
                             <connections>
                                 <action selector="postingBarButtonTapped:" destination="K52-Ba-FnU" id="338-RI-kGu"/>
@@ -246,7 +240,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="icon-button-close-default" width="14" height="14"/>
         <image name="icon-button-publish-normal" width="24" height="24"/>
     </resources>
 </document>

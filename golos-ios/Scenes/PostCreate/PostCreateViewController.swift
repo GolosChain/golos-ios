@@ -252,12 +252,14 @@ class PostCreateViewController: GSBaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        UIApplication.shared.statusBarStyle = .default
-        self.showNavigationBar()
+        self.showNavigationBar(backButtonImage: UIImage(named: "icon-button-close-default")!)
         self.navigationController?.hidesBarsOnTap = false
         self.navigationController?.add(shadow: true, withBarTintColor: .white)
-
         self.contentTextView.layoutManager.ensureLayout(for: self.contentTextView.textContainer)
+        
+        // Set StatusBarStyle
+        selectedTabBarItem          =   self.navigationController!.tabBarItem.tag
+        self.isStatusBarStyleLight  =   false
     }
 
     
@@ -370,7 +372,7 @@ class PostCreateViewController: GSBaseViewController {
 
     
     // MARK: - Actions
-    @IBAction func cancelBarButtonTapped(_ sender: UIBarButtonItem) {
+    override func backBarButtonTapped(sender: UIBarButtonItem) {
         self.clearAllEnteredValues()
         self.router?.save(success: false)
         self.router?.routeToNextScene()

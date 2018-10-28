@@ -112,10 +112,11 @@ class UserProfileShowRouter: NSObject, UserProfileShowRoutingLogic, UserProfileS
     
     // MARK: - Navigation
     func navigateToSettingsShowScene(source: UserProfileShowViewController, destination: SettingsShowViewController) {
-        UIApplication.shared.statusBarStyle = .default
-        
         source.show(destination, sender: nil)
         viewController?.showNavigationBar()
+        
+        // Set StatusBarStyle
+        viewController?.isStatusBarStyleLight = false
     }
     
     func navigateToPostShowScene(source: UserProfileShowViewController, destination: PostShowViewController) {

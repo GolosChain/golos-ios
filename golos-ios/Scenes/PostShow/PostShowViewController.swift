@@ -517,7 +517,9 @@ class PostShowViewController: GSBaseViewController {
 
         self.localizeTitles()
         self.hideNavigationBar()
-        UIApplication.shared.statusBarStyle = .default
+        
+        // Set StatusBarStyle
+        self.isStatusBarStyleLight = false
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -1059,7 +1061,7 @@ extension PostShowViewController {
             DispatchQueue.main.async {
                 self.subscribeUserButton.isSelected = false
                 self.subscribeUserButton.setTitle("Subscribe Verb".localized(), for: .normal)
-                self.subscribeUserButton.setBorder(color: UIColor(hexString: "#dbdbdb").cgColor, cornerRadius: 5.0)
+                self.subscribeUserButton.fill(font: UIFont(name: "SFProDisplay-Medium", size: 10.0)!)
             }
             
             return

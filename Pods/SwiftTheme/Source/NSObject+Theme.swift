@@ -41,8 +41,8 @@ extension NSObject {
         
         else if let statusBarStylePicker = picker as? ThemeStatusBarStylePicker {
             #if os(iOS)
-            let setStatusBarStyle = unsafeBitCast(method(for: sel), to: setStatusBarStyleValueIMP.self)
-            setStatusBarStyle(self, sel, value as! UIStatusBarStyle, statusBarStylePicker.animated)
+            let setStatusBarStyleOld = unsafeBitCast(method(for: sel), to: setStatusBarStyleValueIMP.self)
+            setStatusBarStyleOld(self, sel, value as! UIStatusBarStyle, statusBarStylePicker.animated)
             #endif
         }
             

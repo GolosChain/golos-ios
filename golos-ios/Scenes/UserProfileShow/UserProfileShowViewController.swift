@@ -238,11 +238,11 @@ class UserProfileShowViewController: GSBaseViewController, ContainerViewSupport 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
        
-        self.setStatusBarStyle()
         self.hideNavigationBar()
         self.settingsShow = false
         
         self.localizeTitles()
+        self.changeStatusBarStyle()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -254,14 +254,9 @@ class UserProfileShowViewController: GSBaseViewController, ContainerViewSupport 
     
     
     // MARK: - Custom Functions
-    private func setStatusBarStyle() {
-        if User.fetch(byNickName: self.router!.dataStore!.userNickName ?? "")?.coverImageURL == nil {
-            UIApplication.shared.statusBarStyle = .lightContent
-        } else if scrollView.parallaxHeader.progress == 0.0 {
-            UIApplication.shared.statusBarStyle = .default
-        } else {
-            UIApplication.shared.statusBarStyle = .lightContent
-        }
+    private func changeStatusBarStyle() {
+        selectedTabBarItem          =   self.navigationController!.tabBarItem.tag
+        self.isStatusBarStyleLight  =   scrollView.parallaxHeader.progress != 0.0
     }
     
     private func loadViewSettings() {
@@ -598,7 +593,7 @@ extension UserProfileShowViewController: MXParallaxHeaderDelegate {
 
         guard !self.settingsShow else { return }
         
-        self.setStatusBarStyle()
+        self.isStatusBarStyleLight = scrollView.parallaxHeader.progress != 0.0
         self.userProfileHeaderView.whiteStatusBarView.isHidden = parallaxHeader.progress != 0.0
     }
 }

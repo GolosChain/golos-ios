@@ -73,6 +73,7 @@ var isNetworkAvailable: Bool {
 }
 
 let appVersion                          =   String(format: "%@.%@", Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String, Bundle.main.infoDictionary?["CFBundleVersion"] as! String)
+var selectedTabBarItem: Int             =   0
 
 
 // Keys

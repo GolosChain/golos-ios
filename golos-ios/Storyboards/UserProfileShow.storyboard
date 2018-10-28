@@ -192,7 +192,7 @@
                                     <constraint firstItem="EqR-p6-NO1" firstAttribute="top" secondItem="6ju-JF-dqe" secondAttribute="top" id="wcl-z6-3Wi"/>
                                 </constraints>
                             </scrollView>
-                            <containerView clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I3j-FI-bZT" customClass="GSContainerView" customModule="Golos" customModuleProvider="target">
+                            <containerView clipsSubviews="YES" tag="200" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I3j-FI-bZT" customClass="GSContainerView" customModule="Golos" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="-10" width="320" height="490"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>

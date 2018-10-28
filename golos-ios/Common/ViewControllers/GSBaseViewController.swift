@@ -13,7 +13,37 @@ class GSBaseViewController: UIViewController {
     // MARK: - Properties
     var foregroundRemoteNotificationView: ForegroundRemoteNotificationView?
     
+    var isStatusBarHidden: Bool = false {
+        didSet {
+            setNeedsStatusBarAppearanceUpdate()
+        }
+    }
 
+    var isStatusBarStyleLight = false {
+        didSet {
+            self.setNeedsStatusBarAppearanceUpdate()
+        }
+    }
+        
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        guard let mainContainerVC = self.navigationController?.viewControllers.last as? MainContainerViewController else { return .default }
+        
+        if let activeNC = mainContainerVC.activeViewController as? UINavigationController, let lastVC = activeNC.viewControllers.last as? GSBaseViewController {
+            return lastVC.isStatusBarStyleLight ? .lightContent : .default
+        }
+        
+        else if let activeVC = mainContainerVC.activeViewController as? GSTabBarController, let nc = activeVC.viewControllers?[selectedTabBarItem] as? UINavigationController, let tabbarVC = nc.viewControllers.last as? GSBaseViewController {
+            return tabbarVC.isStatusBarStyleLight ? .lightContent : .default
+        }
+        
+        return .default
+    }
+
+    override var prefersStatusBarHidden: Bool {
+        return isStatusBarHidden
+    }
+    
+    
     // MARK: - Custom Functions
     @objc func localizeTitles() {}
 
@@ -64,18 +94,17 @@ class GSBaseViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
-    func showNavigationBar(withBackButtonTitle title: String? = nil) {
+    func showNavigationBar(withBackButtonTitle title: String? = nil, backButtonImage: UIImage = UIImage(named: "icon-button-back-black-normal")!) {
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationController?.add(shadow: true, withBarTintColor: .white)
 
-        self.configureBackButton(withTitle: title)
+        self.configureBackButton(withTitle: title, backButtonImage: backButtonImage)
     }
     
-    private func configureBackButton(withTitle title: String? = nil) {
+    private func configureBackButton(withTitle title: String? = nil, backButtonImage: UIImage) {
         if title == nil {
-            let customBackButton = UIBarButtonItem(image: UIImage(named: "icon-button-back-black-normal"), style: .plain, target: self, action: #selector(backBarButtonTapped))
-            customBackButton.imageInsets = UIEdgeInsets(top: 2, left: -8, bottom: 0, right: 0)
-            self.navigationItem.leftBarButtonItem = customBackButton
+            let customBackButton                    =   UIBarButtonItem(image: backButtonImage, style: .plain, target: self, action: #selector(backBarButtonTapped))
+            self.navigationItem.leftBarButtonItem   =   customBackButton
         }
         
         else {
@@ -84,10 +113,6 @@ class GSBaseViewController: UIViewController {
                                                                         target:     self,
                                                                         action:     #selector(backBarButtonTapped))
         }
-    }
-
-    @objc func backBarButtonTapped(sender: UIBarButtonItem) {
-        self.navigationController?.popViewController(animated: true)
     }
 
     func showAlertView(withTitle title: String, andMessage message: String, attributedText: NSMutableAttributedString? = nil, actionTitle: String? = "Enter Title", needCancel cancel: Bool, isCancelLeft: Bool = true, completion: @escaping ((Bool) -> Void)) {
@@ -230,6 +255,10 @@ class GSBaseViewController: UIViewController {
     
     
     // MARK: - Actions
+    @objc func backBarButtonTapped(sender: UIBarButtonItem) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
     @objc func adjustForKeyboard(notification: Notification) {
     }
 }

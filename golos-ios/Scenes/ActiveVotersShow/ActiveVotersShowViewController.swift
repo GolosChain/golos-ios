@@ -110,10 +110,12 @@ class ActiveVotersShowViewController: GSBaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.showNavigationBar()
-        UIApplication.shared.statusBarStyle = .default
-
         self.localizeTitles()
+        self.showNavigationBar()
+        
+        // Set StatusBarStyle
+        selectedTabBarItem          =   self.navigationController!.tabBarItem.tag
+        self.isStatusBarStyleLight  =   false
     }
     
     override func viewWillDisappear(_ animated: Bool) {

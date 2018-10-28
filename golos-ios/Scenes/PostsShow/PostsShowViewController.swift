@@ -167,7 +167,10 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        // Set status bar style
+        self.setNeedsStatusBarAppearanceUpdate()
+
         self.view.tune()
         self.containerView.mainVC = self
         self.containerView.setActiveViewController(index: self.selectedIndex)
@@ -185,15 +188,17 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        UIApplication.shared.statusBarStyle = .lightContent
         self.hideNavigationBar()
+        
+        // Set StatusBarStyle
+        selectedTabBarItem          =   self.navigationController!.tabBarItem.tag
+        self.isStatusBarStyleLight  =   true
     }
     
     
     // MARK: - Custom Functions
     override func localizeTitles() {
         self.buttonsCollection.forEach({ $0.setTitle($0.titleLabel!.text!.localized(), for: .normal) })
-//        self.buttonsStackView.layoutIfNeeded()
         
         // Set UIStackView spacing
         if self.buttonsStackView.frame.width < UIScreen.main.bounds.width {

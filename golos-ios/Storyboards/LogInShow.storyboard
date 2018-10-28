@@ -470,10 +470,10 @@
             </objects>
             <point key="canvasLocation" x="1913.4375" y="405.625"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Base Navigation Controller-->
         <scene sceneID="cVd-Af-7a1">
             <objects>
-                <navigationController storyboardIdentifier="LogInShowNC" automaticallyAdjustsScrollViewInsets="NO" id="dXH-SN-QtQ" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="LogInShowNC" automaticallyAdjustsScrollViewInsets="NO" id="dXH-SN-QtQ" customClass="GSBaseNavigationController" customModule="Golos" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ecb-fn-st8">
                         <rect key="frame" x="0.0" y="20" width="320" height="44"/>

@@ -23,6 +23,7 @@
 		B1050CDF20CEE89C003CE4EE /* UINavigationController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1050CDE20CEE89C003CE4EE /* UINavigationController+Extensions.swift */; };
 		B1072C92210EDA990001019C /* SettingNotification+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1072C90210EDA990001019C /* SettingNotification+CoreDataClass.swift */; };
 		B1072C93210EDA990001019C /* SettingNotification+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1072C91210EDA990001019C /* SettingNotification+CoreDataProperties.swift */; };
+		B108314D21856B4C00025C6B /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B108314C21856B4C00025C6B /* Launch Screen.storyboard */; };
 		B1084CAE211378780065CAC0 /* PostShowTagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1084CAC211378780065CAC0 /* PostShowTagCollectionViewCell.swift */; };
 		B1084CAF211378780065CAC0 /* PostShowTagCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1084CAD211378780065CAC0 /* PostShowTagCollectionViewCell.xib */; };
 		B10C9DF02171A096000D9915 /* GSTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10C9DEF2171A096000D9915 /* GSTimer.swift */; };
@@ -297,6 +298,7 @@
 		B1050CDE20CEE89C003CE4EE /* UINavigationController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Extensions.swift"; sourceTree = "<group>"; };
 		B1072C90210EDA990001019C /* SettingNotification+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingNotification+CoreDataClass.swift"; sourceTree = "<group>"; };
 		B1072C91210EDA990001019C /* SettingNotification+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingNotification+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B108314C21856B4C00025C6B /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		B1084CAC211378780065CAC0 /* PostShowTagCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostShowTagCollectionViewCell.swift; sourceTree = "<group>"; };
 		B1084CAD211378780065CAC0 /* PostShowTagCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostShowTagCollectionViewCell.xib; sourceTree = "<group>"; };
 		B10C9DEF2171A096000D9915 /* GSTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GSTimer.swift; sourceTree = "<group>"; };
@@ -787,6 +789,7 @@
 			isa = PBXGroup;
 			children = (
 				B134933A2181878600B59827 /* ActiveVotersShow.storyboard */,
+				B108314C21856B4C00025C6B /* Launch Screen.storyboard */,
 				B114192920CD21530025B07F /* LogInShow.storyboard */,
 				B1050CBE20CECFBE003CE4EE /* PostCreate.storyboard */,
 				B15C29AD21101F760030D249 /* PostShow.storyboard */,
@@ -1401,6 +1404,7 @@
 				B18A18A5217C89F80042398D /* CommentHeaderView.xib in Resources */,
 				B120D06E2108252300D949F5 /* SettingsUserProfileEdit.storyboard in Resources */,
 				B13FE9BB20F512BA00F907BC /* ReplyTableViewCell.xib in Resources */,
+				B108314D21856B4C00025C6B /* Launch Screen.storyboard in Resources */,
 				B1B6B39520D37F3100284387 /* PostCommentReply.xib in Resources */,
 				B146891E20F234BE00D36794 /* UserProfileInfoTitleView.xib in Resources */,
 				B134934D21819A0600B59827 /* ActiveVoterTableViewCell.xib in Resources */,

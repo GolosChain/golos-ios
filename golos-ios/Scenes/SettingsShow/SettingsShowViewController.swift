@@ -174,7 +174,9 @@ class SettingsShowViewController: GSBaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        UIApplication.shared.statusBarStyle = .default
+        // Set StatusBarStyle
+        selectedTabBarItem          =   self.navigationController!.tabBarItem.tag
+        self.isStatusBarStyleLight  =   false
 
         NotificationCenter.default.addObserver(self, selector: #selector(localizeTitles), name: NSNotification.Name(LCLLanguageChangeNotification), object: nil)
     }
@@ -190,7 +192,8 @@ class SettingsShowViewController: GSBaseViewController {
     // MARK: - Custom Functions
     private func loadViewSettings() {
         self.view.tune()
-
+        self.showNavigationBar()
+        
 //        let requestModel    =   SettingsShowModels.Items.RequestModel()
 //        interactor?.doSomething(withRequestModel: requestModel)
     }

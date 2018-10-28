@@ -47,12 +47,13 @@ class ActiveVoterTableViewCell: UITableViewCell {
 
     @IBOutlet weak var subscribeButton: UIButton! {
         didSet {
-            self.subscribeButton.tune(withTitle:    "",
+            self.subscribeButton.tune(withTitle:    "Subscribe Verb".localized(),
                                       hexColors:    [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers],
                                       font:         UIFont(name: "SFProDisplay-Medium", size: 10.0),
                                       alignment:    .center)
             
             self.subscribeButton.isSelected = false
+            self.subscribeButton.fill(font: UIFont(name: "SFProDisplay-Medium", size: 10.0)!)
         }
     }
     
@@ -79,12 +80,6 @@ class ActiveVoterTableViewCell: UITableViewCell {
         }
     }
 
-//    @IBOutlet var heightsCollection: [NSLayoutConstraint]! {
-//        didSet {
-//            self.heightsCollection.forEach({ $0.constant *= heightRatio })
-//        }
-//    }
-    
     @IBOutlet var widthsCollection: [NSLayoutConstraint]! {
         didSet {
             self.widthsCollection.forEach({ $0.constant *= widthRatio })
@@ -101,29 +96,6 @@ class ActiveVoterTableViewCell: UITableViewCell {
         Logger.log(message: "Success", event: .severe)
     }
     
-    
-    // MARK: - Reuse identifier
-//    override func prepareForReuse() {
-//        super.prepareForReuse()
-//        
-////        self.voterReputationLabel.text      =   nil
-////        self.voterProfileImageView.image    =   UIImage(named: "icon-user-profile-image-placeholder")
-////        self.subscribeButton.isHidden       =   false
-////        self.subscribeButton.isSelected     =   false
-////
-////        self.voterNameButton.setTitle(nil, for: .normal)
-////        self.subscribeButton.setTitle(nil, for: .normal)
-////        self.subscribeButton.setBorder(color: UIColor(hexString: "#ffffff").cgColor, cornerRadius: 5.0)
-//    }
-    
-//    override var reuseIdentifier: String? {
-//        return ActiveVoterTableViewCell.reuseIdentifier
-//    }
-//
-//    class var reuseIdentifier: String? {
-//        return String(describing: self)
-//    }
-
 
     // MARK: - Custom Functions
     func localizeTitles() {
@@ -153,21 +125,23 @@ extension ActiveVoterTableViewCell {
         self.voterReputationLabel.text = String(format: "%i", activeVoter.reputation.convertWithLogarithm10())
         
         // API 'get_following'
-        RestAPIManager.loadFollowingsList(byUserNickName: User.current!.nickName, authorNickName: activeVoter.voter, pagination: 1, completion: { [weak self] (isFollowing, errorAPI) in
-            guard errorAPI == nil else { return }
-            
-            self?.subscribeButton.isSelected = isFollowing
-            
-            self?.subscribeButton.setTitle(isFollowing ? "Subscriptions".localized() : "Subscribe Verb".localized(), for: .normal)
-            
-            isFollowing ?   self?.subscribeButton.setBorder(color: UIColor(hexString: "#dbdbdb").cgColor, cornerRadius: 5.0) :
-                            self?.subscribeButton.fill(font: UIFont(name: "SFProDisplay-Medium", size: 10.0)!)
-        })
-
+        if !User.isAnonymous {
+            RestAPIManager.loadFollowingsList(byUserNickName: User.current!.nickName, authorNickName: activeVoter.voter, pagination: 1, completion: { [weak self] (isFollowing, errorAPI) in
+                guard errorAPI == nil else { return }
+                
+                self?.subscribeButton.isSelected = isFollowing
+                
+                self?.subscribeButton.setTitle(isFollowing ? "Subscriptions".localized() : "Subscribe Verb".localized(), for: .normal)
+                
+                isFollowing ?   self?.subscribeButton.setBorder(color: UIColor(hexString: "#dbdbdb").cgColor, cornerRadius: 5.0) :
+                                self?.subscribeButton.fill(font: UIFont(name: "SFProDisplay-Medium", size: 10.0)!)
+            })
+        }
+        
         // Load info about Voter
         if let voter = User.fetch(byNickName: activeVoter.voter) {
             self.voterNickName = voter.nickName
-            self.subscribeButton.isHidden = voter.nickName == User.current!.nickName
+            self.subscribeButton.isHidden = (User.isAnonymous ? false : (voter.nickName == User.current!.nickName))
             self.voterNameButton.setTitle((voter.name == "XXX" || voter.name.isEmpty ? voter.nickName : voter.name).uppercaseFirst, for: .normal)
             
             // Load Voter author profile image

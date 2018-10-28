@@ -14,7 +14,7 @@
         <scene sceneID="rAz-y9-9mp">
             <objects>
                 <viewController storyboardIdentifier="RootShowVC" id="iy7-83-sEH" customClass="RootShowViewController" customModule="Golos" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="wmV-Pf-tKu">
+                    <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="wmV-Pf-tKu">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -76,10 +76,10 @@
             </objects>
             <point key="canvasLocation" x="1266" y="172"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Base Navigation Controller-->
         <scene sceneID="evN-bk-hDh">
             <objects>
-                <navigationController storyboardIdentifier="RootShowNC" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="5zl-Nf-AHJ" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="RootShowNC" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="5zl-Nf-AHJ" customClass="GSBaseNavigationController" customModule="Golos" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <nil key="simulatedTopBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="kef-hU-7NE">

@@ -108,7 +108,7 @@ extension MainContainerViewController: UITabBarControllerDelegate {
         }
         
         switch viewController.tabBarItem.tag {
-        case 2, 4:
+        case 1, 2:
             self.showAlertView(withTitle: "Enter Title", andMessage: "Please Login in App", actionTitle: "Enter Title", needCancel: true, completion: { success in
                 if success {
                     NotificationCenter.default.post(name:       NSNotification.Name.appStateChanged,

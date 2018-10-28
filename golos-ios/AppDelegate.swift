@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Class Functions
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         Logger.log(message: "Success", event: .severe)
-        
+                
         /// TEST
 //        GSTestManager.createTestPost()
 
