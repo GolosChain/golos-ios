@@ -11,6 +11,12 @@ import GoloSwift
 import SwiftTheme
 
 class UserProfileInfoTitleView: PassthroughView {
+    // MARK: - Properties
+    var handlerPostsCountButtonTapped: (() -> Void)?
+    var handlerSubscribersCountButtonTapped: (() -> Void)?
+    var handlerSubscriptionsCountButtonTapped: (() -> Void)?
+
+    
     // MARK: - IBOutlets
     @IBOutlet private weak var postsCountLabel: UILabel!
     @IBOutlet private weak var followerCountLabel: UILabel!
@@ -18,7 +24,7 @@ class UserProfileInfoTitleView: PassthroughView {
     
     @IBOutlet weak var aboutLabelView: UIView! {
         didSet {
-            aboutLabelView.isHidden =   true
+            self.aboutLabelView.isHidden =   true
         }
     }
     
@@ -91,5 +97,19 @@ class UserProfileInfoTitleView: PassthroughView {
         self.followingCountLabel.text   =   String(format: "%i", userInfo.followingCount)
         
         self.showLabelsForAnimationCollection(true)
+    }
+    
+    
+    // MARK: - Actions
+    @IBAction func postsCountButtonTapped(_ sender: UIButton) {
+        self.handlerPostsCountButtonTapped!()
+    }
+    
+    @IBAction func subscribersCountButtonTapped(_ sender: UIButton) {
+        self.handlerSubscribersCountButtonTapped!()
+    }
+    
+    @IBAction func subscriptionsCountButtonTapped(_ sender: UIButton) {
+        self.handlerSubscriptionsCountButtonTapped!()
     }
 }

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--User Subscribers Show View Controller-->
+        <scene sceneID="n1z-2J-v5j">
+            <objects>
+                <viewController storyboardIdentifier="UserSubscribersShowVC" id="1fV-XV-rYg" customClass="UserSubscribersShowViewController" customModule="Golos" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="GcX-B0-Tew">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="64" estimatedRowHeight="-1" sectionHeaderHeight="48" sectionFooterHeight="28" contentViewInsetsToSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZvX-GK-xNj" userLabel="Subscribers Table View">
+                                <rect key="frame" x="0.0" y="28" width="375" height="639"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ActiveVoterTableViewCell" rowHeight="64" id="vNH-Tx-P7r" customClass="ActiveVoterTableViewCell" customModule="Golos" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="48" width="375" height="64"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vNH-Tx-P7r" id="P9A-Lc-pFN">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </tableViewCellContentView>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </tableViewCell>
+                                </prototypes>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ZvX-GK-xNj" firstAttribute="leading" secondItem="wJv-k3-vMx" secondAttribute="leading" id="EN2-D4-9kG"/>
+                            <constraint firstItem="wJv-k3-vMx" firstAttribute="trailing" secondItem="ZvX-GK-xNj" secondAttribute="trailing" id="Vgk-UQ-klP"/>
+                            <constraint firstItem="ZvX-GK-xNj" firstAttribute="top" secondItem="wJv-k3-vMx" secondAttribute="top" constant="8" identifier="tableViewTopConstraint" id="nk7-US-xNn"/>
+                            <constraint firstItem="wJv-k3-vMx" firstAttribute="bottom" secondItem="ZvX-GK-xNj" secondAttribute="bottom" id="y0F-7T-NdU"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="wJv-k3-vMx"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8QI-Js-zAl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="122" y="-10"/>
+        </scene>
+    </scenes>
+</document>

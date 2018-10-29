@@ -105,6 +105,8 @@
 "Posts Title"                               =   "Постов";
 "Followers"                                 =   "Подписчиков";
 "Followings"                                =   "Подписок";
+"Subscribers"                               =   "Подписчики";
+"Subscriptions"                             =   "Подписки";
 "Dolphin"                                   =   "Дельфин";
 "QR Scanner"                                =   "QR сканер";
 "Gudgeon"                                   =   "Пескарь";
@@ -129,7 +131,6 @@
 "MEMORIES"                                  =   "УПОМИНАНИЯ";
 "Upvote"                                    =   "Апвоут";
 "Short Comment"                             =   "Коммент";
-"Subscriptions"                             =   "Подписки";
 "Reblog"                                    =   "Реблог";
 "Private Messages"                          =   "Личные сообщения";
 "Post Replies"                              =   "Ответы на пост";

@@ -105,6 +105,8 @@
 "Posts Title"                               =   "Posts";
 "Followers"                                 =   "Followers";
 "Followings"                                =   "Followings";
+"Subscribers"                               =   "Followers";
+"Subscriptions"                             =   "Followings";
 "Dolphin"                                   =   "Dolphin";
 "QR Scanner"                                =   "QR Scanner";
 "Gudgeon"                                   =   "Gudgeon";
@@ -129,7 +131,6 @@
 "MEMORIES"                                  =   "MEMORIES";
 "Upvote"                                    =   "Upvote";
 "Short Comment"                             =   "Comment";
-"Subscriptions"                             =   "Subscriptions";
 "Reblog"                                    =   "Reblog";
 "Private Messages"                          =   "Private Messages";
 "Post Replies"                              =   "Post Responses";

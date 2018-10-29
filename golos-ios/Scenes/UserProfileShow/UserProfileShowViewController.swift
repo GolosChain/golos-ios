@@ -116,7 +116,20 @@ class UserProfileShowViewController: GSBaseViewController, ContainerViewSupport 
     
     @IBOutlet weak var userProfileInfoTitleView: UserProfileInfoTitleView! {
         didSet {
-            userProfileInfoTitleView.tune()
+            self.userProfileInfoTitleView.tune()
+            
+            // Handlers
+            self.userProfileInfoTitleView.handlerPostsCountButtonTapped             =   { /*[weak self] in*/
+                Logger.log(message: "ADD FUNC IN BETA-VERSION", event: .warning)
+            }
+
+            self.userProfileInfoTitleView.handlerSubscribersCountButtonTapped       =   { [weak self] in
+                self?.router?.routeToUserSubscribersShowScene(withMode: .subscribes)
+            }
+            
+            self.userProfileInfoTitleView.handlerSubscriptionsCountButtonTapped     =   { [weak self] in
+                self?.router?.routeToUserSubscribersShowScene(withMode: .subscriptions)
+            }
         }
     }
     
