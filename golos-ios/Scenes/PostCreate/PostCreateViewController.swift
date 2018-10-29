@@ -41,7 +41,7 @@ class PostCreateViewController: GSBaseViewController {
     var router: (NSObjectProtocol & PostCreateRoutingLogic & PostCreateDataPassing)?
     
     // Handlers
-    var handlerSuccessCreatedItem: ((Bool) -> Void)?
+    var handlerSuccessCreatedItem: ((String) -> Void)?
 
     
     // MARK: - IBOutlets

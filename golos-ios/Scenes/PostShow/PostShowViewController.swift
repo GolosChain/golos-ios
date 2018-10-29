@@ -31,6 +31,7 @@ class PostShowViewController: GSBaseViewController {
     // MARK: - Properties
     var insertedRow: Int?
     var scrollCommentsDown: Bool = false
+    var permlinkCreatedItem: String = ""
     var isPostContentModify: Bool = false
     
     var loadPostContentWorkItem: DispatchWorkItem!
@@ -74,7 +75,6 @@ class PostShowViewController: GSBaseViewController {
                 guard (self?.isCurrentOperationPossible())! else { return }
                 
                 self?.router?.routeToPostCreateScene(withType: .createComment)
-                self?.insertedRow = self?.comments?.count ?? 0
             }
         }
     }
@@ -719,9 +719,10 @@ class PostShowViewController: GSBaseViewController {
             self.commentsHeaderView.layoutIfNeeded()
         })
         
-        self.didCommentsControlView(hided: false)
         self.insertedRow = nil
-        
+        self.permlinkCreatedItem = ""
+        self.didCommentsControlView(hided: false)
+
         if isPaginationRun {
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2.5, execute: {
                 self.isPaginationRun = false
@@ -1114,6 +1115,10 @@ extension PostShowViewController {
             
             self.commentsButton.setTitle("\(commentEntities.count)", for: .normal)
             self.commentsCountLabel.text = String(format: "%i", commentEntities.count)
+            
+            if self.permlinkCreatedItem != "" {
+                self.insertedRow = commentEntities.firstIndex(of: commentEntities.first(where: { $0.permlink == self.permlinkCreatedItem })!)
+            }
             
             let startIndex  =   self.insertedRow ?? (self.comments?.count ?? 0 * self.paginationOffset)
             var endIndex    =   self.insertedRow ?? (startIndex + self.paginationOffset < commentEntities.count ? (startIndex + self.paginationOffset) : commentEntities.count)

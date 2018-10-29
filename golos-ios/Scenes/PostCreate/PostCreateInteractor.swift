@@ -30,6 +30,7 @@ protocol PostCreateDataStore {
     var commentParentAuthor: String? { get set }
     var commentParentPermlink: String? { get set }
     var commentParentTag: String? { get set }
+    var permlinkCreatedItem: String? { get set }
 }
 
 class PostCreateInteractor: PostCreateBusinessLogic, PostCreateDataStore {
@@ -45,6 +46,7 @@ class PostCreateInteractor: PostCreateBusinessLogic, PostCreateDataStore {
     var commentParentAuthor: String?
     var commentParentPermlink: String?
     var commentParentTag: String?
+    var permlinkCreatedItem: String?
     
     
     // MARK: - Class Initialization
@@ -106,7 +108,8 @@ class PostCreateInteractor: PostCreateBusinessLogic, PostCreateDataStore {
                                                               needTiming:         errorAPI.caseInfo.message.contains("timing"),
                                                               attachments:        self?.attachments)
                     
-                    let operationAPIType = OperationAPIType.createPost(operations: [newPost])
+                    let operationAPIType        =   OperationAPIType.createPost(operations: [newPost])
+                    self?.permlinkCreatedItem   =   newPost.permlink
                     
                     // Run API
                     self?.runRequest(withOperationAPIType: operationAPIType)
@@ -129,8 +132,9 @@ class PostCreateInteractor: PostCreateBusinessLogic, PostCreateDataStore {
                                                                     needTiming:         true,
                                                                     attachments:        self?.attachments)
                 
-                let operationAPIType = OperationAPIType.comment(fields: newCommentOrReply)
-                
+                let operationAPIType            =   OperationAPIType.comment(fields: newCommentOrReply)
+                self?.permlinkCreatedItem       =   newCommentOrReply.permlink
+
                 // Run API
                 self?.runRequest(withOperationAPIType: operationAPIType)
             }
@@ -149,6 +153,7 @@ class PostCreateInteractor: PostCreateBusinessLogic, PostCreateDataStore {
                                     
                                     if let error = (responseAPIResult as! ResponseAPIBlockchainPostResult).error {
                                         errorAPI = ErrorAPI.requestFailed(message: error.message)
+                                        self?.permlinkCreatedItem = nil
                                     }
                                     
                                     let responseModel = PostCreateModels.Item.ResponseModel(errorAPI: errorAPI)
@@ -156,6 +161,7 @@ class PostCreateInteractor: PostCreateBusinessLogic, PostCreateDataStore {
                 },
                                   onError: { [weak self] errorAPI in
                                     Logger.log(message: "nresponse API Error = \(errorAPI.caseInfo.message)\n", event: .error)
+                                    self?.permlinkCreatedItem = nil
                                     let responseModel = PostCreateModels.Item.ResponseModel(errorAPI: errorAPI)
                                     self?.presenter?.presentPostingItem(fromResponseModel: responseModel)
             })

@@ -77,7 +77,7 @@ class PostCreateRouter: NSObject, PostCreateRoutingLogic, PostCreateDataPassing 
 
     private func routeToPreviousScene() {
         self.viewController!.navigationController!.popViewController(animated: true)
-        self.viewController!.handlerSuccessCreatedItem!((self.createItem)!)
+        self.viewController!.handlerSuccessCreatedItem!((self.dataStore?.permlinkCreatedItem)!)
     }
     
 

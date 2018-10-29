@@ -81,9 +81,9 @@ class UserProfileShowRouter: NSObject, UserProfileShowRoutingLogic, UserProfileS
         navigateToPostCreateScene(source: viewController!, destination: destinationVC)
         
         // Handlers
-        destinationVC.handlerSuccessCreatedItem     =   { [weak self] success in
+        destinationVC.handlerSuccessCreatedItem     =   { [weak self] permlinkCreatedItem in
             // Reload posts in selected list
-            if success {
+            if permlinkCreatedItem != "" {
                 self?.viewController?.loadUserDetails(byCondition: (isRefreshData: true, isInfiniteScrolling: false))
             }
         }

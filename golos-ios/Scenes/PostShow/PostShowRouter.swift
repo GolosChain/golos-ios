@@ -46,14 +46,17 @@ class PostShowRouter: NSObject, PostShowRoutingLogic, PostShowDataPassing {
         navigateToPostCreateScene(source: viewController!, destination: destinationVC)
         
         // Handlers
-        destinationVC.handlerSuccessCreatedItem             =   { [weak self] success in
+        destinationVC.handlerSuccessCreatedItem             =   { [weak self] permlinkCreatedItem in
             // Reload posts in selected list
-            if success {
+            if permlinkCreatedItem == "" {
+                self?.viewController?.permlinkCreatedItem   =   ""
+                self?.viewController?.isPostContentModify   =   false
+            }
+            
+            else {
+                self?.viewController?.permlinkCreatedItem   =   permlinkCreatedItem
                 self?.viewController?.isPostContentModify   =   true
                 self?.viewController?.loadPostComments()
-            } else {
-                self?.viewController?.insertedRow           =   0
-                self?.viewController?.isPostContentModify   =   false
             }
         }
     }
