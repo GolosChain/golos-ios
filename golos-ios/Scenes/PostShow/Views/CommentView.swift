@@ -28,6 +28,8 @@ class CommentView: UIView, HandlersCellSupport {
     var handlerRepostButtonTapped: (() -> Void)?
     var handlerDislikeButtonTapped: ((Bool, PostShortInfo) -> Void)?
     var handlerCommentsButtonTapped: ((PostShortInfo) -> Void)?
+    var handlerLikeCountButtonTapped: ((PostShortInfo) -> Void)?
+    var handlerDislikeCountButtonTapped: ((PostShortInfo) -> Void)?
 
 
     // MARK: - IBOutlets
@@ -269,7 +271,9 @@ class CommentView: UIView, HandlersCellSupport {
     }
 
     @IBAction func likeCountButtonTapped(_ sender: UIButton) {
-        
+        if let countText = sender.titleLabel?.text, let countInt = Int(countText), countInt > 0 {
+            self.handlerLikeCountButtonTapped!(self.postShortInfo)
+        }
     }
 
     @IBAction func dislikeButtonTapped(_ sender: UIButton) {
@@ -277,7 +281,9 @@ class CommentView: UIView, HandlersCellSupport {
     }
 
     @IBAction func dislikeCountButtonTapped(_ sender: UIButton) {
-        
+        if let countText = sender.titleLabel?.text, let countInt = Int(countText), countInt > 0 {
+            self.handlerDislikeCountButtonTapped!(self.postShortInfo)
+        }
     }
 
     @IBAction func replyButtonTapped(_ sender: UIButton) {

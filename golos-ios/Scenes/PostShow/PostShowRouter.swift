@@ -17,6 +17,7 @@ import GoloSwift
 @objc protocol PostShowRoutingLogic {
     func routeToUserProfileScene(byUserName name: String)
     func routeToPostCreateScene(withType sceneType: SceneType)
+    func routeToActiveVotersShowScene(asPost: Bool, withMode sceneMode: ActiveVoterMode)
 }
 
 protocol PostShowDataPassing {
@@ -71,6 +72,16 @@ class PostShowRouter: NSObject, PostShowRoutingLogic, PostShowDataPassing {
         navigateToUserProfileScene(source: viewController!, destination: destinationVC)
     }
     
+    func routeToActiveVotersShowScene(asPost: Bool, withMode sceneMode: ActiveVoterMode) {
+        let storyboard                  =   UIStoryboard(name: "ActiveVotersShow", bundle: nil)
+        let destinationVC               =   storyboard.instantiateViewController(withIdentifier: "ActiveVotersShowVC") as! ActiveVotersShowViewController
+        var destinationDS               =   destinationVC.router!.dataStore!
+        destinationDS.activeVoterMode   =   sceneMode
+        
+        passDataToUsersVoteShowScene(source: self.dataStore!, destination: &destinationDS, asPost: asPost)
+        navigateToUsersVoteShowScene(source: viewController!, destination: destinationVC)
+    }
+
     
     // MARK: - Navigation
     func navigateToPostCreateScene(source: PostShowViewController, destination: PostCreateViewController) {
@@ -78,6 +89,10 @@ class PostShowRouter: NSObject, PostShowRoutingLogic, PostShowDataPassing {
     }
 
     func navigateToUserProfileScene(source: PostShowViewController, destination: UserProfileShowViewController) {
+        source.show(destination, sender: nil)
+    }
+    
+    func navigateToUsersVoteShowScene(source: PostShowViewController, destination: ActiveVotersShowViewController) {
         source.show(destination, sender: nil)
     }
     
@@ -92,5 +107,11 @@ class PostShowRouter: NSObject, PostShowRoutingLogic, PostShowDataPassing {
 
     func passDataToUserProfileScene(userName: String, destination: inout UserProfileShowDataStore) {
         destination.userNickName    =   userName
+    }
+    
+    func passDataToUsersVoteShowScene(source: PostShowDataStore, destination: inout ActiveVotersShowDataStore, asPost: Bool) {
+        destination.itemID                  =   asPost ? source.postShortInfo!.id : source.comment!.id
+        destination.permlink                =   asPost ? source.postShortInfo!.permlink : source.comment!.permlink
+        destination.authorNickName          =   asPost ? source.postShortInfo!.author : source.comment!.author
     }
 }

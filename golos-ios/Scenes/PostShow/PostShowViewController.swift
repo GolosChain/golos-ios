@@ -789,7 +789,7 @@ class PostShowViewController: GSBaseViewController {
     }
 
     @IBAction func likeCountButtonTapped(_ sender: UIButton) {
-
+        self.router?.routeToActiveVotersShowScene(asPost: true, withMode: .like)
     }
     
     @IBAction func dislikeButtonTapped(_ sender: UIButton) {
@@ -811,7 +811,7 @@ class PostShowViewController: GSBaseViewController {
     }
     
     @IBAction func dislikeCountButtonTapped(_ sender: UIButton) {
-
+        self.router?.routeToActiveVotersShowScene(asPost: true, withMode: .dislike)
     }
     
     @IBAction func repostButtonTapped(_ sender: UIButton) {
@@ -1217,6 +1217,11 @@ extension PostShowViewController {
                         })
                     }
 
+                    commentView.handlerLikeCountButtonTapped                        =   { [weak self] postShortInfo in
+                        self?.interactor?.save(comment: postShortInfo)
+                        self?.router?.routeToActiveVotersShowScene(asPost: false, withMode: .like)
+                    }
+                        
                     commentView.handlerDislikeButtonTapped                          =   { [weak self] (isDislike, postShortInfo) in
                         let handlersManager     =   HandlersManager()
                         let requestModel        =   PostShowModels.Like.RequestModel(isLike: nil, isDislike: isDislike, forPost: false)
@@ -1233,6 +1238,11 @@ extension PostShowViewController {
                                 commentView.dislikeButton.breakLikeVote(withSpinner: commentView.dislikeActivityIndicator)
                             }
                         })
+                    }
+                    
+                    commentView.handlerDislikeCountButtonTapped                     =   { [weak self] postShortInfo in
+                        self?.interactor?.save(comment: postShortInfo)
+                        self?.router?.routeToActiveVotersShowScene(asPost: false, withMode: .dislike)
                     }
                     
                     commentView.handlerUsersButtonTapped                            =   { [weak self] in
