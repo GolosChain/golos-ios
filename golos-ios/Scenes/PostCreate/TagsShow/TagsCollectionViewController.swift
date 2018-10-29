@@ -8,8 +8,8 @@
 
 import UIKit
 import GoloSwift
-import AlignedCollectionViewFlowLayout
 import IQKeyboardManagerSwift
+import AlignedCollectionViewFlowLayout
 
 class TagsCollectionViewController: GSBaseViewController {
     // MARK: - Properties
@@ -84,16 +84,30 @@ class TagsCollectionViewController: GSBaseViewController {
         self.tags.insert(Tag(id: id), at: id)
         self.collectionView.insertItems(at: [indexPath])
         self.collectionView.reloadItems(at: [indexPath])
-
+        self.collectionView.scrollToItem(at: indexPath, at: .bottom, animated: true)
+        
         self.calculateCollectionViewHeight()
+        
+        if let lastCell = self.collectionView.cellForItem(at: indexPath) {
+            if let cell = lastCell as? ThemeTagCollectionViewCell {
+                cell.textField.becomeFirstResponder()
+            }
+            
+            else if lastCell is AddTagCollectionViewCell {
+                (self.collectionView.cellForItem(at: IndexPath(row: id - 1, section: 0)) as! ThemeTagCollectionViewCell).textField.becomeFirstResponder()
+            }
+        }
+        
+        else {
+            (self.collectionView.cellForItem(at: IndexPath(row: id - 1, section: 0)) as! ThemeTagCollectionViewCell).textField.becomeFirstResponder()
+        }
 
-        (self.collectionView.cellForItem(at: indexPath) as! ThemeTagCollectionViewCell).textField.becomeFirstResponder()
         self.collectionView.collectionViewLayout.invalidateLayout()
     }
     
     func calculateCollectionViewHeight() {
         if let addTagCell = self.addNewTagCell {
-            self.complationCollectionViewChangeHeight!(addTagCell.frame.maxY + 13.0 * heightRatio)
+            self.complationCollectionViewChangeHeight!(addTagCell.frame.maxY + 20.0 * heightRatio)
         }
         
         self.collectionView.collectionViewLayout.invalidateLayout()
@@ -259,7 +273,7 @@ extension TagsCollectionViewController: UICollectionViewDelegateFlowLayout {
         
         if indexPath.row > self.tags.count - 1 {
             self.calculateCollectionViewHeight()
-            return CGSize(width: 46.0 * widthRatio, height: 30.0 * heightRatio)
+            return CGSize(width: 48.0 * widthRatio, height: 30.0 * heightRatio)
         }
         
         // Tag cell

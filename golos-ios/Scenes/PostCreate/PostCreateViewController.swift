@@ -48,6 +48,19 @@ class PostCreateViewController: GSBaseViewController {
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet var postingBarButton: UIBarButtonItem!
     
+    @IBOutlet weak var scrollView: UIScrollView! {
+        didSet {
+            self.scrollView.tune()
+            self.scrollView.delegate = self
+        }
+    }
+    
+    @IBOutlet weak var contentView: UIView! {
+        didSet {
+            self.contentView.tune()
+        }
+    }
+    
     @IBOutlet weak var tagsView: UIView! {
         didSet {
             tagsView.alpha = 0.0
@@ -105,12 +118,6 @@ class PostCreateViewController: GSBaseViewController {
         }
     }
     
-    @IBOutlet weak var contentViewBottomConstraint: NSLayoutConstraint!
-    @IBOutlet weak var markdownViewHeightConstraint: NSLayoutConstraint!
-    
-    // Use with keyboard hide/show
-    @IBOutlet weak var tagsViewBottomConstraint: NSLayoutConstraint!
-    
     @IBOutlet var sceneViewsCollection: [UIView]! {
         didSet {
             _ = sceneViewsCollection.map({ $0.isHidden = ($0.tag == sceneType.rawValue) ? false : true })
@@ -140,6 +147,11 @@ class PostCreateViewController: GSBaseViewController {
             self.widthsCollection.forEach({ $0.constant *= widthRatio })
         }
     }
+    
+    @IBOutlet weak var markdownViewHeightConstraint: NSLayoutConstraint!
+    
+    // Use with keyboard hide/show
+    @IBOutlet weak var tagsViewBottomConstraint: NSLayoutConstraint!
     
 
     // MARK: - Class Initialization
@@ -186,6 +198,7 @@ class PostCreateViewController: GSBaseViewController {
             // Handler change frame
             tagsVC.complationCollectionViewChangeHeight = { [weak self] height in
                 self?.containerViewHeightConstraint.constant = height
+                self?.scrollView.contentOffset.y = height > 48.0 ? height - 48.0 : 0.0
             }
             
             // Handler start editing tags
@@ -282,7 +295,7 @@ class PostCreateViewController: GSBaseViewController {
         let isKeyboardShow = self.isKeyboardShow || IQKeyboardManager.sharedManager().keyboardShowing
         
         if UIApplication.shared.statusBarOrientation.isPortrait {
-            self.tagsViewBottomConstraint.constant  =   isKeyboardShow ? (firstResponder == contentTextView ? 210.0 : 168.0) : (firstResponder == tagsVC.view ? 168.0 : 16.0)
+            self.tagsViewBottomConstraint.constant  =   isKeyboardShow ? (firstResponder == contentTextView ? 210.0 : 178.0) : (firstResponder == tagsVC.view ? 178.0 : 16.0)
         }
 
         else {
@@ -629,5 +642,14 @@ extension PostCreateViewController {
     func hidePostingBarButtonActivityIndicator() {
         self.postingActivityIndicator!.stopAnimating()
         navigationItem.setRightBarButton(self.postingBarButton, animated: true)
+    }
+}
+
+
+
+// MARK: - UIScrollViewDelegate
+extension PostCreateViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        Logger.log(message: "contentOffset = \(scrollView.contentOffset.y)", event: .debug)
     }
 }
