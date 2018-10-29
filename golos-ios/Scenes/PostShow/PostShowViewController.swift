@@ -423,7 +423,8 @@ class PostShowViewController: GSBaseViewController {
     
     @IBOutlet weak var commentsHeaderViewHeightConstraint: NSLayoutConstraint! {
         didSet {
-            self.commentsHeaderViewHeightConstraint.constant = 0.0
+            self.commentsHeaderView.alpha                       =   0.0
+            self.commentsHeaderViewHeightConstraint.constant    =   0.0
         }
     }
 
@@ -554,7 +555,8 @@ class PostShowViewController: GSBaseViewController {
         
         UIView.animate(withDuration: 0.3) {
             self.view.layoutIfNeeded()
-            self.commentsStackView.alpha = 1.0
+            self.commentsStackView.alpha    =   1.0
+            self.commentsHeaderView.alpha   =   1.0
         }
         
         if self.scrollCommentsDown {
@@ -1247,29 +1249,6 @@ extension PostShowViewController {
                     
                     commentView.handlerReplyButtonTapped                            =   { [weak self] postShortInfo in
                         guard (self?.isCurrentOperationPossible())! else { return }
-                        
-                        if let index = postShortInfo.indexPath?.row, let comments = self?.comments {
-                            // Select last Comment in tree
-                            if index + 1 == comments.count {
-                                self?.insertedRow = comments.count
-                            }
-                            
-                            // Select Comment inside tree
-                            else {
-                                let comment     =   comments[index]
-                                let childrens   =   comments.filter({ $0.treeIndex.hasPrefix(comment.treeIndex) }).reduce(0, { (result, comment) -> Int in
-                                    return result + Int(comment.children)
-                                })
-                                
-                                if index + childrens + 1 < comments.count {
-                                    self?.insertedRow = index + childrens + 1
-                                }
-                                
-                                else {
-                                    self?.insertedRow = nil
-                                }
-                            }
-                        }
                         
                         self?.interactor?.save(comment: postShortInfo)
                         self?.router?.routeToPostCreateScene(withType: .createCommentReply)

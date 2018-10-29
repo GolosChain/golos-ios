@@ -66,7 +66,7 @@ class CommentHeaderView: UIView {
         super.init(coder: aDecoder)
         
         if frame.height == 0 {
-            frame.size = CGSize(width: UIScreen.main.bounds.width, height: 48.0)
+            frame = CGRect(origin: .zero, size: CGSize(width: UIScreen.main.bounds.width, height: 48.0))
         }
         
         createFromXIB()
