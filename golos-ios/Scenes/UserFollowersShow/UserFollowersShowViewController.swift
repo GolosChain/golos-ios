@@ -27,6 +27,7 @@ class UserFollowersShowViewController: GSBaseViewController {
     var selectedVoterInRow: Int         =   0
     var isFetchInProgress: Bool         =   false
     var followers: [Follower]           =   [Follower]()
+    var headerView: CommentHeaderView!
     
     var interactor: UserFollowersShowBusinessLogic?
     var router: (NSObjectProtocol & UserFollowersShowRoutingLogic & UserFollowersShowDataPassing)?
@@ -181,6 +182,13 @@ extension UserFollowersShowViewController: UserFollowersShowDisplayLogic {
                 self.fetchFollowers()
             }
         }
+        
+        // Display empty message
+        else if var dataStore = self.router?.dataStore, dataStore.totalIems == -1 {
+            dataStore.totalIems = 0
+            self.tableView.reloadData()
+            self.view.hideSkeleton()
+        }
     }
     
     func displayLoadFollowings(fromViewModel viewModel: UserFollowersShowModels.Item.ViewModel) {
@@ -279,32 +287,16 @@ extension UserFollowersShowViewController: SkeletonTableViewDataSource {
         if !self.isLoadingCell(for: indexPath) {
             let follower = self.followers[indexPath.row]
             cell.display(author: follower, inRow: indexPath.row)
-        }
-        
-        // Handlers
-        cell.handlerSubscribeButtonTapped           =   { [weak self] activeVoterShortInfo in
-            guard (self?.isCurrentOperationPossible())! else { return }
             
-            self?.selectedVoterInRow = activeVoterShortInfo.row
-            
-            guard activeVoterShortInfo.isSubscribe else {
-                // API 'Subscribe'
-                let requestModel = UserFollowersShowModels.Sub.RequestModel(willSubscribe: true, authorNickName: activeVoterShortInfo.nickName)
-                self?.interactor?.subscribe(withRequestModel: requestModel)
+            // Handlers
+            cell.handlerSubscribeButtonTapped           =   { [weak self] activeVoterShortInfo in
+                guard (self?.isCurrentOperationPossible())! else { return }
                 
-                // Run spinner
-                DispatchQueue.main.async {
-                    cell.subscribeButton.setTitle(nil, for: .normal)
-                    cell.subscribeActivityIndicator.startAnimating()
-                }
+                self?.selectedVoterInRow = activeVoterShortInfo.row
                 
-                return
-            }
-            
-            // API 'Unsibscribe'
-            self?.showAlertAction(withTitle: "Unsubscribe Verb", andMessage: String(format: "%@ @%@ ?", "Unsubscribe are you sure".localized(), activeVoterShortInfo.nickName), icon: activeVoterShortInfo.icon, actionTitle: "Cancel Subscribe Verb", needCancel: true, isCancelLeft: false, completion: { [weak self] success in
-                if success {
-                    let requestModel = UserFollowersShowModels.Sub.RequestModel(willSubscribe: false, authorNickName: activeVoterShortInfo.nickName)
+                guard activeVoterShortInfo.isSubscribe else {
+                    // API 'Subscribe'
+                    let requestModel = UserFollowersShowModels.Sub.RequestModel(willSubscribe: true, authorNickName: activeVoterShortInfo.nickName)
                     self?.interactor?.subscribe(withRequestModel: requestModel)
                     
                     // Run spinner
@@ -312,16 +304,32 @@ extension UserFollowersShowViewController: SkeletonTableViewDataSource {
                         cell.subscribeButton.setTitle(nil, for: .normal)
                         cell.subscribeActivityIndicator.startAnimating()
                     }
-                }
                     
-                else {
-                    cell.subscribeActivityIndicator.stopAnimating()
+                    return
                 }
-            })
-        }
-        
-        cell.handlerAuthorVoterTapped               =   { [weak self] voterNickName in
-            self?.router?.routeToUserProfileShowScene(byUserNickName: voterNickName)
+                
+                // API 'Unsibscribe'
+                self?.showAlertAction(withTitle: "Unsubscribe Verb", andMessage: String(format: "%@ @%@ ?", "Unsubscribe are you sure".localized(), activeVoterShortInfo.nickName), icon: activeVoterShortInfo.icon, actionTitle: "Cancel Subscribe Verb", needCancel: true, isCancelLeft: false, completion: { [weak self] success in
+                    if success {
+                        let requestModel = UserFollowersShowModels.Sub.RequestModel(willSubscribe: false, authorNickName: activeVoterShortInfo.nickName)
+                        self?.interactor?.subscribe(withRequestModel: requestModel)
+                        
+                        // Run spinner
+                        DispatchQueue.main.async {
+                            cell.subscribeButton.setTitle(nil, for: .normal)
+                            cell.subscribeActivityIndicator.startAnimating()
+                        }
+                    }
+                        
+                    else {
+                        cell.subscribeActivityIndicator.stopAnimating()
+                    }
+                })
+            }
+            
+            cell.handlerAuthorVoterTapped               =   { [weak self] voterNickName in
+                self?.router?.routeToUserProfileShowScene(byUserNickName: voterNickName)
+            }
         }
         
         return cell
@@ -342,12 +350,23 @@ extension UserFollowersShowViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return self.followers.count == 0 ? 48.0 : 0.0
+        return self.followers.count <= 0 ? 48.0 : 0.0
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = CommentHeaderView.init(frame: CGRect(origin: .zero, size: CGSize(width: tableView.frame.width, height: 48.0)))
-        headerView.set(mode: .footer)
+
+        // Display empty message
+        if let dataStore = self.router?.dataStore, dataStore.totalIems == 0 {
+            headerView.set(mode: .headerEmpty)
+            headerView.emptyItemsLabel.text             =   (dataStore.userSubscribeMode == .followers ? "Followers List is empty" : "Followings List is empty").localized()
+            self.tableView.isUserInteractionEnabled     =   false
+        }
+        
+        // Display spinner
+        else {
+            headerView.set(mode: .header)
+        }
         
         return headerView
     }

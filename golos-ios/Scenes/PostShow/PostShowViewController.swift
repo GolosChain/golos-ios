@@ -68,10 +68,10 @@ class PostShowViewController: GSBaseViewController {
     
     @IBOutlet weak var commentsHeaderView: CommentHeaderView! {
         didSet {
-            self.commentsHeaderView.viewMode = .header
+            self.commentsHeaderView.set(mode: .header)
             
             // Handlers
-            self.commentsHeaderView.handlerCreateCommentButtonTapped  =   { [weak self] in
+            self.commentsHeaderView.handlerCreateCommentButtonTapped    =   { [weak self] in
                 guard (self?.isCurrentOperationPossible())! else { return }
                 
                 self?.router?.routeToPostCreateScene(withType: .createComment)

@@ -174,6 +174,7 @@ class UserProfileShowRouter: NSObject, UserProfileShowRoutingLogic, UserProfileS
 
     func passDataToUserFollowersShowScene(source: UserProfileShowDataStore, destination: inout UserFollowersShowDataStore, sceneMode: UserFollowerMode) {
         destination.authorNickName          =   source.userNickName!
-        destination.totalIems               =   Int(sceneMode == .followers ? source.userFollowersCount : source.userFollowingsCount)
+        destination.totalIems               =   -1 //Int(sceneMode == .followers ?   (source.userFollowersCount == 0 ? -1 : source.userFollowersCount) :
+                                                     //                           (source.userFollowingsCount == 0 ? -1 : source.userFollowingsCount))
     }
 }

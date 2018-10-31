@@ -182,6 +182,8 @@
 "Reply List is empty"                       =   "Список Ответов\nпуст";
 "Blog List is empty"                        =   "Список Моих постов\nпуст";
 "Comment List is empty"                     =   "Список комментариев\nпуст";
+"Followers List is empty"                   =   "Список подписчиков\nпуст";
+"Followings List is empty"                  =   "Список подписок\nпуст";
 "First Name Last Name Placeholder"          =   "Имя Фамилия";
 "Short About Yourself Placeholder"          =   "Немного о себе";
 "Moscow Placeholder"                        =   "Москва";

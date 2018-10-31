@@ -182,6 +182,8 @@
 "Reply List is empty"                       =   "List of Answers\n is empty";
 "Blog List is empty"                        =   "List of My Blog\n is empty";
 "Comment List is empty"                     =   "List of Comments\n is empty";
+"Followers List is empty"                   =   "List of Followers\n is empty";
+"Followings List is empty"                  =   "List of Followings\n is empty";
 "First Name Last Name Placeholder"          =   "First Name Last Name";
 "Short About Yourself Placeholder"          =   "About Yourself";
 "Moscow Placeholder"                        =   "Moscow";

@@ -12,18 +12,11 @@ import GoloSwift
 enum CommentHeaderViewMode {
     case header
     case footer
+    case headerEmpty
 }
 
 class CommentHeaderView: UIView {
     // MARK: - Properties
-    var viewMode: CommentHeaderViewMode = .header {
-        didSet {
-            self.viewMode == .header ? self.infiniteScrollingActivityIndicator.stopAnimating() : self.infiniteScrollingActivityIndicator.startAnimating()
-            self.createCommentButton.isHidden = self.viewMode == .footer
-        }
-    }
-    
-    // Handlers
     var handlerCreateCommentButtonTapped: (() -> Void)?
 
     
@@ -51,6 +44,16 @@ class CommentHeaderView: UIView {
                                           alignment:    .left)
             
             self.createCommentButton.isHidden = false
+        }
+    }
+    
+    @IBOutlet weak var emptyItemsLabel: UILabel! {
+        didSet {
+            self.emptyItemsLabel.tune(withText: "",
+                                      hexColors: veryDarkGrayWhiteColorPickers,
+                                      font: UIFont(name: "SFProDisplay-Regular", size: 13.0),
+                                      alignment: .center,
+                                      isMultiLines: true)
         }
     }
     
@@ -89,7 +92,22 @@ class CommentHeaderView: UIView {
     }
     
     func set(mode: CommentHeaderViewMode) {
-        self.viewMode = mode
+        switch mode {
+        case .headerEmpty:
+            self.emptyItemsLabel.isHidden       =   false
+            self.createCommentButton.isHidden   =   true
+            self.infiniteScrollingActivityIndicator.stopAnimating()
+            
+        case .header:
+            self.emptyItemsLabel.isHidden       =   true
+            self.createCommentButton.isHidden   =   true
+            self.infiniteScrollingActivityIndicator.startAnimating()
+            
+        default:
+            self.emptyItemsLabel.isHidden       =   true
+            self.createCommentButton.isHidden   =   false
+            self.infiniteScrollingActivityIndicator.stopAnimating()
+        }
     }
 
     
