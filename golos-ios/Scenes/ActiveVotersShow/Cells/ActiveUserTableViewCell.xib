@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ActiveVoterTableViewCell" rowHeight="64" id="KGk-i7-Jjw" customClass="ActiveVoterTableViewCell" customModule="Golos" customModuleProvider="target">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ActiveUserTableViewCell" rowHeight="64" id="KGk-i7-Jjw" customClass="ActiveUserTableViewCell" customModule="Golos" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <tableViewCellContentView key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
@@ -155,10 +155,10 @@
             <connections>
                 <outlet property="subscribeActivityIndicator" destination="1Ja-a1-dtz" id="kLZ-om-5lx"/>
                 <outlet property="subscribeButton" destination="iqb-uo-9wO" id="cRG-ER-742"/>
+                <outlet property="userNameButton" destination="rTW-bO-laa" id="fQb-SQ-6DO"/>
+                <outlet property="userProfileImageView" destination="ot7-1j-HhI" id="TjT-Ka-uF3"/>
+                <outlet property="userReputationLabel" destination="ECr-Zd-24x" id="Pj7-2I-PIN"/>
                 <outlet property="voicePowerButton" destination="WuU-ff-Nu9" id="j4k-H7-mX8"/>
-                <outlet property="voterNameButton" destination="rTW-bO-laa" id="fQb-SQ-6DO"/>
-                <outlet property="voterProfileImageView" destination="ot7-1j-HhI" id="TjT-Ka-uF3"/>
-                <outlet property="voterReputationLabel" destination="ECr-Zd-24x" id="Pj7-2I-PIN"/>
                 <outletCollection property="circleViewsCollection" destination="ot7-1j-HhI" collectionClass="NSMutableArray" id="AfV-0z-JXD"/>
                 <outletCollection property="circleViewsCollection" destination="BbN-TG-Od7" collectionClass="NSMutableArray" id="UGL-5i-6Hz"/>
                 <outletCollection property="circleViewsCollection" destination="8tr-1B-jEU" collectionClass="NSMutableArray" id="xhx-Q4-juO"/>

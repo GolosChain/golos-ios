@@ -26,6 +26,8 @@ protocol UserProfileShowBusinessLogic {
 
 protocol UserProfileShowDataStore {
     var userNickName: String? { get set }
+    var userFollowersCount: Int64 { get set }
+    var userFollowingsCount: Int64 { get set }
     var lastItem: NSManagedObject? { get set }
     var commentReply: PostShortInfo? { get set }
     var selectedBlog: PostShortInfo? { get set }
@@ -38,6 +40,8 @@ class UserProfileShowInteractor: UserProfileShowBusinessLogic, UserProfileShowDa
 
     
     // MARK: - UserProfileShowDataStore implementation
+    var userFollowersCount: Int64 = 0
+    var userFollowingsCount: Int64 = 0
     var userNickName: String? = User.current?.nickName
     var lastItem: NSManagedObject?
     var commentReply: PostShortInfo?

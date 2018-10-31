@@ -352,6 +352,42 @@ class RestAPIManager {
     }
 
 
+    /// Load Current User Followers list
+    class func loadFollowersList(byUserNickName userNickName: String, authorNickName: String, paginationPage: Int16, completion: @escaping ([String]?, ErrorAPI?) -> Void) {
+        // API 'get_following'
+        if isNetworkAvailable {
+            let methodAPIType = MethodAPIType.getUserFollowers(userNickName: userNickName, authorNickName: authorNickName, pagination: loadDataLimit + 10)
+            
+            broadcast.executeGET(byMethodAPIType: methodAPIType,
+                                 onResult: { responseAPIResult in
+//                                    Logger.log(message: "\nresponse API Result = \(responseAPIResult)\n", event: .debug)
+                                    
+                                    guard var result = (responseAPIResult as! ResponseAPIUserFollowingsResult).result else {
+                                        completion(nil, ErrorAPI.requestFailed(message: "User followers are not found"))
+                                        return
+                                    }
+                                    
+                                    // CoreData: Update Follower entities
+                                    if paginationPage > 0 {
+                                        _ = result.removeFirst()
+                                    }
+                                    
+                                    Follower.updateEntities(fromResponseAPI: result, withPaginationPage: paginationPage)
+                                    completion(result.compactMap({ $0.follower }), nil)
+            },
+                                 onError: { errorAPI in
+                                    Logger.log(message: "nresponse API Error = \(errorAPI.caseInfo.message)\n", event: .error)
+                                    completion(nil, errorAPI)
+            })
+        }
+            
+        // Offline mode
+        else {
+            completion([userNickName], nil)
+        }
+    }
+    
+    
     /// Load Current User Followings list
     class func loadFollowingsList(byUserNickName userNickName: String, authorNickName: String, pagination: UInt, completion: @escaping (Bool, ErrorAPI?) -> Void) {
         // API 'get_following'

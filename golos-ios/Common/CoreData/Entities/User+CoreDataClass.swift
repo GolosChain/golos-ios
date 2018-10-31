@@ -67,7 +67,7 @@ public class User: NSManagedObject, CachedImageFrom {
         return CoreDataManager.instance.readEntity(withName:                        "User",
                                                    andPredicateParameters:          NSPredicate(format: "nickName == %@", nickName)) as? User
     }
-        
+    
 
     // MARK: - Class Initialization
     deinit {

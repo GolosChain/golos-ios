@@ -28,6 +28,9 @@ public indirect enum MethodAPIType {
     /// Displays current user replies
     case getUserReplies(startAuthor: String, startPermlink: String?, limit: UInt, voteLimit: UInt)
     
+    /// Diplays current user followers list
+    case getUserFollowers(userNickName: String, authorNickName: String, pagination: UInt)
+
     /// Diplays current user follow counts
     case getUserFollowCounts(nickName: String)
     
@@ -60,6 +63,12 @@ public indirect enum MethodAPIType {
                                                                  paramsFirst:       ["follow", "get_follow_count"],
                                                                  paramsSecond:      String(format: "\"%@\"", userNickName))
             
+        // Template: {"id": 22, "method": "call", "jsonrpc": "2.0", "params": ["follow", "get_followers", ["nikulinsb", "atteh", "blog", 50]]}
+        case .getUserFollowers(let userNickName, let authorNickName, let pagination):
+            return  (methodAPIType:     self,
+                     paramsFirst:       ["follow", "get_followers"],
+                     paramsSecond:      String(format: "\"%@\", \"%@\", \"blog\", %i", userNickName, authorNickName, pagination))
+
         // Template: {"id": 11, "method": "call", "jsonrpc": "2.0", "params": ["follow", "get_following", ["joseph.kalu", "bomberuss", "blog", 1]]}
         case .getUserFollowings(let userNickName, let authorNickName, let pagination):
             return  (methodAPIType:     self,

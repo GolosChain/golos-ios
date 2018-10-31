@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14315.18" systemVersion="18A391" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="Golos 3">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="18B75" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="Golos 3">
     <entity name="ActiveVote" representedClassName="ActiveVote" syncable="YES">
         <attribute name="percent" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="postID" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -140,6 +140,19 @@
             <uniquenessConstraint>
                 <constraint value="id"/>
                 <constraint value="created"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="Follower" representedClassName="Follower" syncable="YES">
+        <attribute name="follower" attributeType="String" defaultValueString="XXX" syncable="YES"/>
+        <attribute name="following" attributeType="String" defaultValueString="XXX" syncable="YES"/>
+        <attribute name="paginationPage" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="what" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="follower"/>
+                <constraint value="following"/>
+                <constraint value="paginationPage"/>
             </uniquenessConstraint>
         </uniquenessConstraints>
     </entity>
@@ -468,5 +481,6 @@
         <element name="UserSecretOwnerKey" positionX="-243" positionY="-234" width="128" height="120"/>
         <element name="UserSecretPostingKey" positionX="-45" positionY="63" width="128" height="120"/>
         <element name="Voter" positionX="-459" positionY="-81" width="128" height="150"/>
+        <element name="Follower" positionX="-450" positionY="-72" width="128" height="105"/>
     </elements>
 </model>

@@ -214,6 +214,7 @@
 "User is not found"                         =   "User is not found";
 "User follow counts are not found"          =   "User follow counts are not found";
 "User followings are not found"             =   "User followings are not found";
+"User followers are not found"              =   "User followers are not found";
 "List of users is empty"                    =   "User list is empty";
 "List of posts is empty"                    =   "Post list is empty";
 "Fetching Failed"                           =   "Fetching Failed from CoreData";

@@ -20,7 +20,7 @@ import GoloSwift
     func routeToPostCreateScene(withType sceneType: SceneType)
     func routeToPostShowScene(withScrollToComments needScrolling: Bool)
     func routeToActiveVotersShowScene(withMode sceneMode: ActiveVoterMode)
-    func routeToUserSubscribersShowScene(withMode sceneMode: UserSubscribeMode)
+    func routeToUserFollowersShowScene(withMode sceneMode: UserFollowerMode)
 }
 
 protocol UserProfileShowDataPassing {
@@ -110,14 +110,14 @@ class UserProfileShowRouter: NSObject, UserProfileShowRoutingLogic, UserProfileS
         navigateToUsersVoteShowScene(source: viewController!, destination: destinationVC)
     }
 
-    func routeToUserSubscribersShowScene(withMode sceneMode: UserSubscribeMode) {
-        let storyboard                  =   UIStoryboard(name: "UserSubscribersShow", bundle: nil)
-        let destinationVC               =   storyboard.instantiateViewController(withIdentifier: "UserSubscribersShowVC") as! UserSubscribersShowViewController
+    func routeToUserFollowersShowScene(withMode sceneMode: UserFollowerMode) {
+        let storyboard                  =   UIStoryboard(name: "UserFollowersShow", bundle: nil)
+        let destinationVC               =   storyboard.instantiateViewController(withIdentifier: "UserFollowersShowVC") as! UserFollowersShowViewController
         var destinationDS               =   destinationVC.router!.dataStore!
         destinationDS.userSubscribeMode =   sceneMode
         
-        passDataToUserSubscribersShowScene(source: self.dataStore!, destination: &destinationDS)
-        navigateToUserSubscribersShowScene(source: viewController!, destination: destinationVC)
+        passDataToUserFollowersShowScene(source: self.dataStore!, destination: &destinationDS, sceneMode: sceneMode)
+        navigateToUserFollowersShowScene(source: viewController!, destination: destinationVC)
     }
 
     
@@ -148,7 +148,7 @@ class UserProfileShowRouter: NSObject, UserProfileShowRoutingLogic, UserProfileS
         source.show(destination, sender: nil)
     }
 
-    func navigateToUserSubscribersShowScene(source: UserProfileShowViewController, destination: UserSubscribersShowViewController) {
+    func navigateToUserFollowersShowScene(source: UserProfileShowViewController, destination: UserFollowersShowViewController) {
         source.show(destination, sender: nil)
     }
 
@@ -172,9 +172,8 @@ class UserProfileShowRouter: NSObject, UserProfileShowRoutingLogic, UserProfileS
         destination.authorNickName          =   source.selectedBlog!.author
     }
 
-    func passDataToUserSubscribersShowScene(source: UserProfileShowDataStore, destination: inout UserSubscribersShowDataStore) {
-//        destination.itemID                  =   source.selectedBlog!.id
-//        destination.permlink                =   source.selectedBlog!.permlink
-//        destination.authorNickName          =   source.selectedBlog!.author
+    func passDataToUserFollowersShowScene(source: UserProfileShowDataStore, destination: inout UserFollowersShowDataStore, sceneMode: UserFollowerMode) {
+        destination.authorNickName          =   source.userNickName!
+        destination.totalIems               =   Int(sceneMode == .followers ? source.userFollowersCount : source.userFollowingsCount)
     }
 }

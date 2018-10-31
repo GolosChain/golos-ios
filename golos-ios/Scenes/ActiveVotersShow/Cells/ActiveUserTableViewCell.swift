@@ -1,5 +1,5 @@
 //
-//  ActiveVoterTableViewCell.swift
+//  ActiveUserTableViewCell.swift
 //  Golos
 //
 //  Created by msm72 on 10/25/18.
@@ -7,41 +7,42 @@
 //
 
 import UIKit
+import CoreData
 import GoloSwift
 
-typealias ActiveVoterShortInfo = (nickName: String, icon: UIImage, isSubscribe: Bool, row: Int)
+typealias ActiveUserShortInfo = (nickName: String, icon: UIImage, isSubscribe: Bool, row: Int)
 
-class ActiveVoterTableViewCell: UITableViewCell {
+class ActiveUserTableViewCell: UITableViewCell {
     // MARK: - Properties
     var cellRow: Int!
-    var voterNickName: String!
+    var userNickName: String!
 
     // Handlers
     var handlerAuthorVoterTapped: ((String) -> Void)?
-    var handlerSubscribeButtonTapped: ((ActiveVoterShortInfo) -> Void)?
+    var handlerSubscribeButtonTapped: ((ActiveUserShortInfo) -> Void)?
     
     
     // MARK: - IBOutlets
-    @IBOutlet weak var voterProfileImageView: UIImageView!
+    @IBOutlet weak var userProfileImageView: UIImageView!
     
-    @IBOutlet weak var voterNameButton: UIButton! {
+    @IBOutlet weak var userNameButton: UIButton! {
         didSet {
-            self.voterNameButton.tune(withTitle:   "",
-                                      hexColors:   [blackWhiteColorPickers, grayWhiteColorPickers, grayWhiteColorPickers, grayWhiteColorPickers],
-                                      font:        UIFont(name: "SFProDisplay-Regular", size: 12.0),
-                                      alignment:   .left)
+            self.userNameButton.tune(withTitle:   "",
+                                     hexColors:   [blackWhiteColorPickers, grayWhiteColorPickers, grayWhiteColorPickers, grayWhiteColorPickers],
+                                     font:        UIFont(name: "SFProDisplay-Regular", size: 12.0),
+                                     alignment:   .left)
             
-            self.voterNameButton.isHidden = false
+            self.userNameButton.isHidden = false
         }
     }
 
-    @IBOutlet weak var voterReputationLabel: UILabel! {
+    @IBOutlet weak var userReputationLabel: UILabel! {
         didSet {
-            voterReputationLabel.tune(withText:        "",
-                                      hexColors:       whiteColorPickers,
-                                      font:            UIFont(name: "SFProDisplay-Medium", size: 6.0),
-                                      alignment:       .center,
-                                      isMultiLines:    false)
+            self.userReputationLabel.tune(withText:        "",
+                                          hexColors:       whiteColorPickers,
+                                          font:            UIFont(name: "SFProDisplay-Medium", size: 6.0),
+                                          alignment:       .center,
+                                          isMultiLines:    false)
         }
     }
 
@@ -64,7 +65,7 @@ class ActiveVoterTableViewCell: UITableViewCell {
                                        font:        UIFont(name: "SFProDisplay-Regular", size: 10.0),
                                        alignment:   .left)
 
-            self.voicePowerButton.isHidden = true
+            self.voicePowerButton.isHidden = false
         }
     }
 
@@ -105,11 +106,11 @@ class ActiveVoterTableViewCell: UITableViewCell {
     
     // MARK: - Actions
     @IBAction open func authorVoterButtonTapped(_ sender: UIButton) {
-        self.handlerAuthorVoterTapped!(self.voterNickName)
+        self.handlerAuthorVoterTapped!(self.userNickName)
     }
     
     @IBAction func subscribeButtonTapped(_ sender: UIButton) {
-        self.handlerSubscribeButtonTapped!((nickName: self.voterNickName, icon: self.voterProfileImageView.image!, isSubscribe: sender.isSelected, row: self.cellRow))
+        self.handlerSubscribeButtonTapped!((nickName: self.userNickName, icon: self.userProfileImageView.image!, isSubscribe: sender.isSelected, row: self.cellRow))
     }
     
     @IBAction func voicePowerButtonTapped(_ sender: UIButton) {
@@ -119,14 +120,14 @@ class ActiveVoterTableViewCell: UITableViewCell {
 
 
 // MARK: - ConfigureCell implementation
-extension ActiveVoterTableViewCell {
-    func display(activeVoter: Voter, inRow row: Int) {
+extension ActiveUserTableViewCell {
+    func display(author: UserCellSupport, inRow row: Int) {
         self.cellRow = row
-        self.voterReputationLabel.text = String(format: "%i", activeVoter.reputation.convertWithLogarithm10())
+        self.userReputationLabel.text = String(format: "%i", author.reputationValue.convertWithLogarithm10())
         
         // API 'get_following'
         if !User.isAnonymous {
-            RestAPIManager.loadFollowingsList(byUserNickName: User.current!.nickName, authorNickName: activeVoter.voter, pagination: 1, completion: { [weak self] (isFollowing, errorAPI) in
+            RestAPIManager.loadFollowingsList(byUserNickName: User.current!.nickName, authorNickName: author.nickNameValue, pagination: 1, completion: { [weak self] (isFollowing, errorAPI) in
                 guard errorAPI == nil else { return }
                 
                 self?.subscribeButton.isSelected = isFollowing
@@ -138,25 +139,26 @@ extension ActiveVoterTableViewCell {
             })
         }
         
-        // Load info about Voter
-        if let voter = User.fetch(byNickName: activeVoter.voter) {
-            self.voterNickName = voter.nickName
-            self.subscribeButton.isHidden = (User.isAnonymous ? false : (voter.nickName == User.current!.nickName))
-            self.voterNameButton.setTitle((voter.name == "XXX" || voter.name.isEmpty ? voter.nickName : voter.name).uppercaseFirst, for: .normal)
-            
-            // Load Voter author profile image
-            if let voterProfileImageURL = voter.profileImageURL {
-                self.voterProfileImageView.uploadImage(byStringPath:   voterProfileImageURL,
-                                                       imageType:      .userProfileImage,
-                                                       size:           CGSize(width: 30.0, height: 30.0),
-                                                       tags:           nil,
-                                                       createdDate:    voter.created.convert(toDateFormat: .expirationDateType),
-                                                       fromItem:       (voter as CachedImageFrom).fromItem,
-                                                       completion:     { _ in })
+        // Load info about Author
+        if let user = User.fetch(byNickName: author.nickNameValue) {
+            self.userNickName = user.nickName
+            self.subscribeButton.isHidden = (User.isAnonymous ? false : (author.nickNameValue == User.current!.nickName))
+            self.userNameButton.setTitle(author.nameValue.uppercaseFirst, for: .normal)
+            self.voicePowerButton.setTitle("\(row)", for: .normal)
+
+            // Load Author profile image
+            if let userProfileImageURL = user.profileImageURL {
+                self.userProfileImageView.uploadImage(byStringPath:   userProfileImageURL,
+                                                      imageType:      .userProfileImage,
+                                                      size:           CGSize(width: 30.0, height: 30.0),
+                                                      tags:           nil,
+                                                      createdDate:    user.created.convert(toDateFormat: .expirationDateType),
+                                                      fromItem:       (user as CachedImageFrom).fromItem,
+                                                      completion:     { _ in })
             }
-            
+                
             else {
-                self.voterProfileImageView.image = UIImage(named: "icon-user-profile-image-placeholder")
+                self.userProfileImageView.image = UIImage(named: "icon-user-profile-image-placeholder")
             }
         }
         

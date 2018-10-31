@@ -12,7 +12,33 @@ import GoloSwift
 import Foundation
 
 @objc(Voter)
-public class Voter: NSManagedObject {
+public class Voter: NSManagedObject, UserCellSupport {
+    // UserCellSupport protocol implementation
+    var nameValue: String {
+        set {}
+        
+        get {
+            return self.voter
+        }
+    }
+    
+    var nickNameValue: String {
+        set {}
+        
+        get {
+            return self.voter
+        }
+    }
+    
+    var reputationValue: String {
+        set {}
+        
+        get {
+            return self.reputation
+        }
+    }
+
+    
     // MARK: - Class Functions
     class func loadVoters(byPostID postID: Int64) -> [Voter]? {
         return CoreDataManager.instance.readEntities(withName:                  "Voter",
@@ -48,7 +74,7 @@ public class Voter: NSManagedObject {
             entity!.weight          =   model.weight.stringValue!
             entity!.time            =   model.time
             entity!.reputation      =   model.reputation.stringValue!
-            
+
             // Extension
             entity!.save()
         }

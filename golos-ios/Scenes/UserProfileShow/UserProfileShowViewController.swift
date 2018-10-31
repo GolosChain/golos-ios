@@ -124,11 +124,11 @@ class UserProfileShowViewController: GSBaseViewController, ContainerViewSupport 
             }
 
             self.userProfileInfoTitleView.handlerSubscribersCountButtonTapped       =   { [weak self] in
-                self?.router?.routeToUserSubscribersShowScene(withMode: .subscribes)
+                self?.router?.routeToUserFollowersShowScene(withMode: .followers)
             }
             
             self.userProfileInfoTitleView.handlerSubscriptionsCountButtonTapped     =   { [weak self] in
-                self?.router?.routeToUserSubscribersShowScene(withMode: .subscriptions)
+                self?.router?.routeToUserFollowersShowScene(withMode: .followings)
             }
         }
     }
@@ -406,6 +406,11 @@ extension UserProfileShowViewController {
             self.userProfileInfoTitleViewHeightConstraint.constant = 58.0
             self.userProfileHeaderView.updateUI(fromUserInfo: userEntity)
             self.userProfileInfoTitleView.updateUI(fromUserInfo: userEntity)
+            
+            if var dataStore = self.router?.dataStore {
+                dataStore.userFollowersCount    =   userEntity.followerCount
+                dataStore.userFollowingsCount   =   userEntity.followingCount
+            }
             
             // Change profileInfoView height
             if let info = userEntity.about, !info.isEmpty {
