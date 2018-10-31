@@ -65,7 +65,7 @@ class ActiveUserTableViewCell: UITableViewCell {
                                        font:        UIFont(name: "SFProDisplay-Regular", size: 10.0),
                                        alignment:   .left)
 
-            self.voicePowerButton.isHidden = false
+            self.voicePowerButton.isHidden = true
         }
     }
 

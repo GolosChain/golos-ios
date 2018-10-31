@@ -37,8 +37,12 @@ class UserFollowersShowViewController: GSBaseViewController {
     // MARK: - IBOutlets
     @IBOutlet weak var tableView: UITableView! {
         didSet {
-            self.tableView.delegate             =   self
-            self.tableView.dataSource           =   self
+            self.tableView.delegate     =   self
+            self.tableView.dataSource   =   self
+            
+            if #available(iOS 10.0, *) {
+                self.tableView.prefetchDataSource   =   self
+            }
             
             self.tableView.tune()
             self.tableView.register(UINib(nibName: "ActiveUserTableViewCell", bundle: nil), forCellReuseIdentifier: "ActiveUserTableViewCell")
@@ -229,11 +233,20 @@ extension UserFollowersShowViewController {
     // User Profile
     private func fetchFollowers() {
         if var dataStore = self.router?.dataStore, dataStore.needPagination, let followersNew = Follower.loadFollowers(byUserNickName: dataStore.authorNickName, andPaginationPage: dataStore.paginationPage), followersNew.count > 0 {
-//            let indexPath = IndexPath(row: self.followers.count + Int(dataStore.paginationPage), section: 0)
             self.followers.append(contentsOf: followersNew)
+
+            // Reload data in UITableView
+            let newIndexPathsToReload = self.calculateIndexPathsToReload(from: followersNew)
             
-            self.tableView.reloadData()
-//            self.tableView.reloadRows(at: self.tableView.indexPathsForVisibleRows ?? [IndexPath(row: 0, section: 0)], with: .fade)
+            if dataStore.paginationPage == 0 {
+                self.tableView.reloadData()
+            }
+
+            else {
+                let indexPathsToReload = visibleIndexPathsToReload(intersecting: newIndexPathsToReload)
+                self.tableView.reloadRows(at: indexPathsToReload, with: .fade)
+            }
+            
             dataStore.paginationPage += 1
             self.view.hideSkeleton()
             self.isFetchInProgress = false
@@ -249,7 +262,11 @@ extension UserFollowersShowViewController {
 // MARK: - SkeletonTableViewDataSource
 extension UserFollowersShowViewController: SkeletonTableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.followers.count
+        guard let dataStore = self.router?.dataStore else {
+            return 0
+        }
+        
+        return dataStore.totalIems
     }
     
     func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
@@ -258,9 +275,11 @@ extension UserFollowersShowViewController: SkeletonTableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell        =   tableView.dequeueReusableCell(withIdentifier: "ActiveUserTableViewCell") as! ActiveUserTableViewCell
-        let follower    =   self.followers[indexPath.row]
         
-        cell.display(author: follower, inRow: indexPath.row)
+        if !self.isLoadingCell(for: indexPath) {
+            let follower = self.followers[indexPath.row]
+            cell.display(author: follower, inRow: indexPath.row)
+        }
         
         // Handlers
         cell.handlerSubscribeButtonTapped           =   { [weak self] activeVoterShortInfo in
@@ -331,5 +350,43 @@ extension UserFollowersShowViewController: UITableViewDelegate {
         headerView.set(mode: .footer)
         
         return headerView
+    }
+}
+
+
+// MARK: - UITableViewDataSourcePrefetching
+extension UserFollowersShowViewController: UITableViewDataSourcePrefetching {
+    private func isLoadingCell(for indexPath: IndexPath) -> Bool {
+        return indexPath.row >= self.followers.count
+    }
+    
+    private func visibleIndexPathsToReload(intersecting indexPaths: [IndexPath]) -> [IndexPath] {
+        let indexPathsForVisibleRows    =   self.tableView.indexPathsForVisibleRows ?? []
+        let indexPathsIntersection      =   Set(indexPathsForVisibleRows).intersection(indexPaths)
+        
+        return Array(indexPathsIntersection)
+    }
+
+    private func calculateIndexPathsToReload(from items: [Follower]) -> [IndexPath] {
+        let startIndex  =   self.followers.count - items.count
+        let endIndex    =   startIndex + items.count
+        
+        return (startIndex..<endIndex).map { IndexPath(row: $0, section: 0) }
+    }
+    
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        Logger.log(message: "Prefetching row of \(indexPaths)", event: .warning)
+
+        if indexPaths.contains(where: self.isLoadingCell) {
+            self.loadDataSource()
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, cancelPrefetchingForRowsAt indexPaths: [IndexPath]) {
+        Logger.log(message: "Cancel prefetch row of \(indexPaths)", event: .warning)
+        
+        if let dataWorkItem = self.loadDataWorkItem, !dataWorkItem.isCancelled {
+            dataWorkItem.cancel()
+        }
     }
 }
