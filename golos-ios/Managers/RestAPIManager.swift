@@ -353,7 +353,7 @@ class RestAPIManager {
 
 
     /// Load Current User Followers list
-    class func loadFollowersList(byUserNickName userNickName: String, authorNickName: String, paginationPage: Int16, completion: @escaping ([String]?, ErrorAPI?) -> Void) {
+    class func loadFollowersList(byUserNickName userNickName: String, authorNickName: String, paginationPage: Int16, completion: @escaping (String?, [String]?, ErrorAPI?) -> Void) {
         // API 'get_followers'
         if isNetworkAvailable {
             let methodAPIType = MethodAPIType.getUserFollowers(userNickName: userNickName, authorNickName: authorNickName, pagination: loadDataLimit + 10)
@@ -363,33 +363,31 @@ class RestAPIManager {
 //                                    Logger.log(message: "\nresponse API Result = \(responseAPIResult)\n", event: .debug)
                                     
                                     guard var result = (responseAPIResult as! ResponseAPIUserFollowingsResult).result else {
-                                        completion(nil, ErrorAPI.requestFailed(message: "User followers are not found"))
+                                        completion(nil, nil, ErrorAPI.requestFailed(message: "User followers are not found"))
                                         return
                                     }
                                     
                                     // CoreData: Update Follower entities
-                                    if paginationPage > 0 {
-                                        _ = result.removeFirst()
-                                    }
+                                    let removedItem = result.removeLast()
                                     
                                     Follower.updateEntities(fromResponseAPI: result, withPaginationPage: paginationPage)
-                                    completion(result.compactMap({ $0.follower }), nil)
+                                    completion(removedItem.follower, result.compactMap({ $0.follower }), nil)
             },
                                  onError: { errorAPI in
                                     Logger.log(message: "nresponse API Error = \(errorAPI.caseInfo.message)\n", event: .error)
-                                    completion(nil, errorAPI)
+                                    completion(nil, nil, errorAPI)
             })
         }
             
         // Offline mode
         else {
-            completion([userNickName], nil)
+            completion(userNickName, [userNickName], nil)
         }
     }
     
     
     /// Load Current User Followings list
-    class func loadFollowingsList(byUserNickName userNickName: String, authorNickName: String, paginationPage: Int16, completion: @escaping ([String]?, ErrorAPI?) -> Void) {
+    class func loadFollowingsList(byUserNickName userNickName: String, authorNickName: String, paginationPage: Int16, completion: @escaping (String?, [String]?, ErrorAPI?) -> Void) {
         // API 'get_following'
         if isNetworkAvailable {
             let methodAPIType = MethodAPIType.getUserFollowings(userNickName: userNickName, authorNickName: authorNickName, pagination: loadDataLimit + 10)
@@ -399,27 +397,25 @@ class RestAPIManager {
 //                                    Logger.log(message: "\nresponse API Result = \(responseAPIResult)\n", event: .debug)
                                     
                                     guard var result = (responseAPIResult as! ResponseAPIUserFollowingsResult).result else {
-                                        completion(nil, ErrorAPI.requestFailed(message: "User followings are not found"))
+                                        completion(nil, nil, ErrorAPI.requestFailed(message: "User followings are not found"))
                                         return
                                     }
                                     
                                     // CoreData: Update Follower entities
-                                    if paginationPage > 0 {
-                                        _ = result.removeFirst()
-                                    }
-                                    
+                                    let removedItem = result.removeLast()
+
                                     Follower.updateEntities(fromResponseAPI: result, withPaginationPage: paginationPage)
-                                    completion(result.compactMap({ $0.following }), nil)
+                                    completion(removedItem.following, result.compactMap({ $0.following }), nil)
             },
                                  onError: { errorAPI in
                                     Logger.log(message: "nresponse API Error = \(errorAPI.caseInfo.message)\n", event: .error)
-                                    completion(nil, errorAPI)
+                                    completion(nil, nil, errorAPI)
             })
         }
             
         // Offline mode
         else {
-            completion([userNickName], nil)
+            completion(userNickName, [userNickName], nil)
         }
     }
     

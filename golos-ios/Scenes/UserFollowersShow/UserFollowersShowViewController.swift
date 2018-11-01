@@ -19,7 +19,6 @@ import SkeletonView
 protocol UserFollowersShowDisplayLogic: class {
     func displaySubscribe(fromViewModel viewModel: UserFollowersShowModels.Sub.ViewModel)
     func displayLoadFollowers(fromViewModel viewModel: UserFollowersShowModels.Item.ViewModel)
-    func displayLoadFollowings(fromViewModel viewModel: UserFollowersShowModels.Item.ViewModel)
 }
 
 class UserFollowersShowViewController: GSBaseViewController {
@@ -36,7 +35,7 @@ class UserFollowersShowViewController: GSBaseViewController {
 
     
     // MARK: - IBOutlets
-    @IBOutlet weak var tableView: UITableView! {
+    @IBOutlet var tableView: UITableView! {
         didSet {
             self.tableView.delegate     =   self
             self.tableView.dataSource   =   self
@@ -172,15 +171,6 @@ extension UserFollowersShowViewController: UserFollowersShowDisplayLogic {
 
     func displayLoadFollowers(fromViewModel viewModel: UserFollowersShowModels.Item.ViewModel) {
         // NOTE: Display the result from the Presenter
-        self.handler(viewModel: viewModel)
-    }
-    
-    func displayLoadFollowings(fromViewModel viewModel: UserFollowersShowModels.Item.ViewModel) {
-        // NOTE: Display the result from the Presenter
-        self.handler(viewModel: viewModel)
-    }
-    
-    private func handler(viewModel: UserFollowersShowModels.Item.ViewModel) {
         if let error = viewModel.errorAPI {
             self.showAlertView(withTitle: "Error", andMessage: error.localizedDescription, needCancel: false, completion: { _ in })
         }
@@ -209,20 +199,9 @@ extension UserFollowersShowViewController {
             return
         }
 
-        if let dataStore = self.router?.dataStore {
-            if dataStore.userSubscribeMode == .followers {
-                self.loadDataWorkItem = DispatchWorkItem {
-                    let followersRequestModel = UserFollowersShowModels.Item.RequestModel()
-                    self.interactor?.loadFollowers(withRequestModel: followersRequestModel)
-                }
-            }
-                
-            else {
-                self.loadDataWorkItem = DispatchWorkItem {
-                    let followingsRequestModel = UserFollowersShowModels.Item.RequestModel()
-                    self.interactor?.loadFollowings(withRequestModel: followingsRequestModel)
-                }
-            }
+        self.loadDataWorkItem = DispatchWorkItem {
+            let followersRequestModel = UserFollowersShowModels.Item.RequestModel()
+            self.interactor?.loadFollowers(withRequestModel: followersRequestModel)
         }
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1, execute: self.loadDataWorkItem)

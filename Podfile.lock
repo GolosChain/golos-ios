@@ -1,11 +1,11 @@
 PODS:
   - AlignedCollectionViewFlowLayout (1.1.2)
   - BeyovaJSON (0.0.7)
-  - Crashlytics (3.11.0):
-    - Fabric (~> 1.8.0)
+  - Crashlytics (3.11.1):
+    - Fabric (~> 1.8.1)
   - CryptoSwift (0.13.0)
   - Down (0.5.2)
-  - Fabric (1.8.0)
+  - Fabric (1.8.1)
   - Firebase/Core (5.0.1):
     - Firebase/CoreOnly
     - FirebaseAnalytics (= 5.0.0)
@@ -129,10 +129,10 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   AlignedCollectionViewFlowLayout: ee2ef451e741ec08f8e0967d828001e2f051c20a
   BeyovaJSON: 085c9fa886fa0b13e2964cc8c6965fab5bc7f90f
-  Crashlytics: 1448070c1d2731ab71ea7c3faf84ac0f69657287
+  Crashlytics: ca7ab4bc304aa216bdc2e4c1a96389ee77252203
   CryptoSwift: 16e78bebf567bad1c87b2d58f6547f25b74c31aa
   Down: 587371ad58002b06023d9c602519216862c3acbc
-  Fabric: 4ac1cdfef3004ccd83ce0959b91eda8a6e37df72
+  Fabric: 43ed7bac010f588f63ee23ab1a0276b296db5e17
   Firebase: d6861c2059d8c32d1e6dd8932e22ada346d90a3a
   FirebaseAnalytics: 19812b49fa5f283dd6b23edf8a14b5d477029ab8
   FirebaseCore: cafc814b2d84fc8733f09e653041cc2165332ad7

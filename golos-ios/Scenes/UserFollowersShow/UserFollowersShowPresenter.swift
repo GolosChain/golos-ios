@@ -17,7 +17,6 @@ import GoloSwift
 protocol UserFollowersShowPresentationLogic {
     func presentSubscribe(fromResponseModel responseModel: UserFollowersShowModels.Sub.ResponseModel)
     func presentLoadFollowers(fromResponseModel responseModel: UserFollowersShowModels.Item.ResponseModel)
-    func presentLoadFollowings(fromResponseModel responseModel: UserFollowersShowModels.Item.ResponseModel)
 }
 
 class UserFollowersShowPresenter: UserFollowersShowPresentationLogic {
@@ -40,10 +39,5 @@ class UserFollowersShowPresenter: UserFollowersShowPresentationLogic {
     func presentLoadFollowers(fromResponseModel responseModel: UserFollowersShowModels.Item.ResponseModel) {
         let viewModel = UserFollowersShowModels.Item.ViewModel(errorAPI: responseModel.errorAPI)
         viewController?.displayLoadFollowers(fromViewModel: viewModel)
-    }
-
-    func presentLoadFollowings(fromResponseModel responseModel: UserFollowersShowModels.Item.ResponseModel) {
-        let viewModel = UserFollowersShowModels.Item.ViewModel(errorAPI: responseModel.errorAPI)
-        viewController?.displayLoadFollowings(fromViewModel: viewModel)
     }
 }

@@ -17,7 +17,6 @@ import GoloSwift
 protocol UserFollowersShowBusinessLogic {
     func subscribe(withRequestModel requestModel: UserFollowersShowModels.Sub.RequestModel)
     func loadFollowers(withRequestModel requestModel: UserFollowersShowModels.Item.RequestModel)
-    func loadFollowings(withRequestModel requestModel: UserFollowersShowModels.Item.RequestModel)
 }
 
 protocol UserFollowersShowDataStore {
@@ -64,58 +63,46 @@ class UserFollowersShowInteractor: UserFollowersShowBusinessLogic, UserFollowers
     }
 
     func loadFollowers(withRequestModel requestModel: UserFollowersShowModels.Item.RequestModel) {
-        RestAPIManager.loadFollowersList(byUserNickName: self.authorNickName, authorNickName: self.lastAuthorNickName ?? "", paginationPage: self.paginationPage, completion: { [weak self] (followersNames, errorAPI) in
-            guard errorAPI == nil else {
-                let responseModel = UserFollowersShowModels.Item.ResponseModel(errorAPI: errorAPI)
-                self?.presenter?.presentLoadFollowers(fromResponseModel: responseModel)
-
-                return
-            }
-            
-            if let nickNames = followersNames, let lastNickName = nickNames.last, self?.lastAuthorNickName != lastNickName {
-                self?.loadInfo(forUsers: nickNames, byMode: .followers)
-                self?.lastAuthorNickName = nickNames.last
-                self?.needPagination = true
-            }
-            
-            else {
-                self?.needPagination = false
-                
-                let responseModel = UserFollowersShowModels.Item.ResponseModel(errorAPI: errorAPI)
-                self?.presenter?.presentLoadFollowers(fromResponseModel: responseModel)
-            }
-        })
+        if self.userSubscribeMode == .followers {
+            RestAPIManager.loadFollowersList(byUserNickName: self.authorNickName, authorNickName: self.lastAuthorNickName ?? "", paginationPage: self.paginationPage, completion: { [weak self] (lastFollowerName, followersNames, errorAPI) in
+                self?.handlerResponse(lastFollowerName: lastFollowerName, followersNames: followersNames, errorAPI: errorAPI)
+            })
+        }
+        
+        else {
+            RestAPIManager.loadFollowingsList(byUserNickName: self.authorNickName, authorNickName: self.lastAuthorNickName ?? "", paginationPage: self.paginationPage, completion: { [weak self] (lastFollowingName, followingsNames, errorAPI) in
+                self?.handlerResponse(lastFollowerName: lastFollowingName, followersNames: followingsNames, errorAPI: errorAPI)
+            })
+        }
     }
     
-    func loadFollowings(withRequestModel requestModel: UserFollowersShowModels.Item.RequestModel) {
-        RestAPIManager.loadFollowingsList(byUserNickName: self.authorNickName, authorNickName: self.lastAuthorNickName ?? "", paginationPage: self.paginationPage, completion: { [weak self] (followingsNames, errorAPI) in
-            guard errorAPI == nil else {
-                let responseModel = UserFollowersShowModels.Item.ResponseModel(errorAPI: errorAPI)
-                self?.presenter?.presentLoadFollowings(fromResponseModel: responseModel)
-
-                return
-            }
+    private func handlerResponse(lastFollowerName: String?, followersNames: [String]?, errorAPI: ErrorAPI?) {
+        guard errorAPI == nil else {
+            let responseModel = UserFollowersShowModels.Item.ResponseModel(errorAPI: errorAPI)
+            self.presenter?.presentLoadFollowers(fromResponseModel: responseModel)
             
-            if let nickNames = followingsNames, let lastNickName = nickNames.last, self?.lastAuthorNickName != lastNickName {
-                self?.loadInfo(forUsers: nickNames, byMode: .followings)
-                self?.lastAuthorNickName = nickNames.last
-                self?.needPagination = true
-            }
-                
-            else {
-                self?.needPagination = false
-                
-                let responseModel = UserFollowersShowModels.Item.ResponseModel(errorAPI: errorAPI)
-                self?.presenter?.presentLoadFollowings(fromResponseModel: responseModel)
-            }
-        })
+            return
+        }
+        
+        if let nickNames = followersNames, let lastNickName = nickNames.last, self.lastAuthorNickName != lastNickName {
+            self.loadInfo(forUsers: nickNames, byMode: .followers)
+            self.lastAuthorNickName = lastFollowerName!
+//            self.lastAuthorNickName = nickNames.last
+            self.needPagination = true
+        }
+            
+        else {
+            self.needPagination = false
+            
+            let responseModel = UserFollowersShowModels.Item.ResponseModel(errorAPI: errorAPI)
+            self.presenter?.presentLoadFollowers(fromResponseModel: responseModel)
+        }
     }
     
     private func loadInfo(forUsers nickNames: [String], byMode mode: UserFollowerMode) {
         RestAPIManager.loadUsersInfo(byNickNames: nickNames, completion: { [weak self] errorAPI in
             let responseModel = UserFollowersShowModels.Item.ResponseModel(errorAPI: errorAPI)
-            mode == .followers ?    self?.presenter?.presentLoadFollowers(fromResponseModel: responseModel) :
-                                    self?.presenter?.presentLoadFollowings(fromResponseModel: responseModel)
+            self?.presenter?.presentLoadFollowers(fromResponseModel: responseModel)
         })
     }
 }
