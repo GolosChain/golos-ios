@@ -75,7 +75,6 @@
 "Action Sheet First New"                    =   "First New";
 "Action Sheet First Old"                    =   "First Old";
 "Reply Verb"                                =   "Reply";
-"No Comments Title"                         =   "There are no comments yet. Be first!";
 "Vote Verb"                                 =   "Vote";
 "Cancel Subscribe Verb"                     =   "Unsubscribe";
 
@@ -188,6 +187,8 @@
 "Short About Yourself Placeholder"          =   "About Yourself";
 "Moscow Placeholder"                        =   "Moscow";
 "Website Placeholder"                       =   "http://site.com";
+"No Comments Placeholder"                   =   "There are no comments yet. Be first";
+"Write Own Comment Placeholder"             =   "Write your comment to the post";
 
 
 // Error message

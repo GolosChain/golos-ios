@@ -12,7 +12,6 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CommentHeaderView" customModule="Golos" customModuleProvider="target">
             <connections>
                 <outlet property="contentView" destination="MCm-ae-Amp" id="WS4-MC-bYf"/>
-                <outlet property="createCommentButton" destination="hOq-YF-kG8" id="GP0-me-2up"/>
                 <outlet property="emptyItemsLabel" destination="na5-pT-7Xr" id="DNc-e6-8fo"/>
                 <outlet property="infiniteScrollingActivityIndicator" destination="894-bB-rg4" id="r2p-my-HnT"/>
                 <outlet property="view" destination="iN0-l3-epB" id="6w6-c4-5aR"/>
@@ -26,13 +25,6 @@
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MCm-ae-Amp" userLabel="Content View">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="48"/>
                     <subviews>
-                        <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hOq-YF-kG8" userLabel="Create Comment Button">
-                            <rect key="frame" x="16" y="0.0" width="359" height="48"/>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <connections>
-                                <action selector="createCommentButtonTapped:" destination="-1" eventType="touchUpInside" id="yZc-vQ-WUL"/>
-                            </connections>
-                        </button>
                         <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="na5-pT-7Xr" userLabel="Empty Items Label">
                             <rect key="frame" x="16" y="0.0" width="343" height="48"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -49,14 +41,10 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="na5-pT-7Xr" firstAttribute="leading" secondItem="MCm-ae-Amp" secondAttribute="leading" constant="16" id="88S-hO-Svd"/>
-                        <constraint firstAttribute="trailing" secondItem="hOq-YF-kG8" secondAttribute="trailing" id="GzU-co-qwt"/>
-                        <constraint firstAttribute="bottom" secondItem="hOq-YF-kG8" secondAttribute="bottom" id="KLR-g0-G5C"/>
-                        <constraint firstItem="hOq-YF-kG8" firstAttribute="leading" secondItem="MCm-ae-Amp" secondAttribute="leading" constant="16" id="U08-kl-WZo"/>
                         <constraint firstAttribute="trailing" secondItem="na5-pT-7Xr" secondAttribute="trailing" constant="16" id="Xu1-Ax-m3S"/>
                         <constraint firstItem="894-bB-rg4" firstAttribute="centerY" secondItem="MCm-ae-Amp" secondAttribute="centerY" id="aiZ-Rr-o1E"/>
                         <constraint firstItem="na5-pT-7Xr" firstAttribute="top" secondItem="MCm-ae-Amp" secondAttribute="top" id="cD7-VG-wZP"/>
                         <constraint firstAttribute="bottom" secondItem="na5-pT-7Xr" secondAttribute="bottom" id="hoo-gT-qOV"/>
-                        <constraint firstItem="hOq-YF-kG8" firstAttribute="top" secondItem="MCm-ae-Amp" secondAttribute="top" id="tWL-sW-a3Y"/>
                         <constraint firstItem="894-bB-rg4" firstAttribute="centerX" secondItem="MCm-ae-Amp" secondAttribute="centerX" id="yag-o1-YOT"/>
                     </constraints>
                 </view>

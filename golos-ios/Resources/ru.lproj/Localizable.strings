@@ -75,7 +75,6 @@
 "Action Sheet First New"                    =   "Сначала новые";
 "Action Sheet First Old"                    =   "Сначала старые";
 "Reply Verb"                                =   "Ответить";
-"No Comments Title"                         =   "Пока нет комментариев. Будь первым!";
 "Vote Verb"                                 =   "Голосовать";
 "Cancel Subscribe Verb"                     =   "Отменить подписку";
 
@@ -188,6 +187,8 @@
 "Short About Yourself Placeholder"          =   "Немного о себе";
 "Moscow Placeholder"                        =   "Москва";
 "Website Placeholder"                       =   "http://site.com";
+"No Comments Placeholder"                   =   "Пока нет комментариев. Будь первым";
+"Write Own Comment Placeholder"             =   "Напиши свой комментарий к посту";
 
 
 // Error message

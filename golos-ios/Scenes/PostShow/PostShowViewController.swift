@@ -14,6 +14,7 @@ import UIKit
 import WebKit
 import CoreData
 import GoloSwift
+import SkeletonView
 import SafariServices
 import Localize_Swift
 import AlignedCollectionViewFlowLayout
@@ -60,26 +61,28 @@ class PostShowViewController: GSBaseViewController {
     @IBOutlet weak var commentsControlView: UIView!
     @IBOutlet weak var subscribesStackView: UIStackView!
    
+    @IBOutlet weak var createNewCommentView: UIView! {
+        didSet {
+            self.createNewCommentView.tune()
+        }
+    }
+    
+    @IBOutlet weak var placeholderButton: UIButton! {
+        didSet {
+            self.placeholderButton.tune(withTitle:     "",
+                                        hexColors:     [darkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
+                                        font:          UIFont(name: "SFProDisplay-Regular", size: 14.0),
+                                        alignment:     .left)
+        }
+    }
+    
     @IBOutlet weak var commentsStackView: UIStackView! {
         didSet {
             self.commentsStackView.alpha = 0.0
         }
     }
     
-    @IBOutlet weak var commentsHeaderView: CommentHeaderView! {
-        didSet {
-            self.commentsHeaderView.set(mode: .header)
-            
-            // Handlers
-            self.commentsHeaderView.handlerCreateCommentButtonTapped    =   { [weak self] in
-                guard (self?.isCurrentOperationPossible())! else { return }
-                
-                self?.router?.routeToPostCreateScene(withType: .createComment)
-            }
-        }
-    }
-   
-    @IBOutlet weak var loadingPostContentActivityIndicator: UIActivityIndicatorView! {
+   @IBOutlet weak var loadingPostContentActivityIndicator: UIActivityIndicatorView! {
         didSet {
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
                 self.loadingPostContentActivityIndicator.startAnimating()
@@ -421,13 +424,6 @@ class PostShowViewController: GSBaseViewController {
         }
     }
     
-    @IBOutlet weak var commentsHeaderViewHeightConstraint: NSLayoutConstraint! {
-        didSet {
-            self.commentsHeaderView.alpha                       =   0.0
-            self.commentsHeaderViewHeightConstraint.constant    =   0.0
-        }
-    }
-
     @IBOutlet weak var tagsCollectionViewheightConstraint: NSLayoutConstraint!
     @IBOutlet weak var markdownViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var commentsControlViewTopConstraint: NSLayoutConstraint!
@@ -489,6 +485,9 @@ class PostShowViewController: GSBaseViewController {
         super.viewDidLoad()
         Logger.log(message: "Success", event: .severe)
 
+        // SkeletonView
+        self.view.showSkeleton(usingColor: UIColor.clouds)
+
         // Handlers
         self.postFeedHeaderView.handlerAuthorTapped         =   { [weak self] userName in
             self?.router?.routeToUserProfileScene(byUserName: userName)
@@ -546,8 +545,6 @@ class PostShowViewController: GSBaseViewController {
 
         self.commentsControlViewTopConstraint.constant          =   heightRatio * (hided ? -70.0 : 0.0)
         self.commentsControlView.isHidden                       =   hided
-        self.commentsHeaderViewHeightConstraint.constant        =   hided ? 48.0 * heightRatio : 0.0
-        self.commentsHeaderView.createCommentButton.isHidden    =   !hided
         
         // Hide loading activity interactior
         self.loadingPostContentActivityIndicator.stopAnimating()
@@ -556,7 +553,6 @@ class PostShowViewController: GSBaseViewController {
         UIView.animate(withDuration: 0.3) {
             self.view.layoutIfNeeded()
             self.commentsStackView.alpha    =   1.0
-            self.commentsHeaderView.alpha   =   1.0
         }
         
         if self.scrollCommentsDown {
@@ -588,6 +584,9 @@ class PostShowViewController: GSBaseViewController {
             self.commentsButton.setTitle(displayedPost.children > 0 ? "\(displayedPost.children)" : "    ", for: .normal)
             self.commentsButton.setImage(UIImage(named: displayedPost.currentUserCommented ? "icon-button-post-comments-selected" : "icon-button-post-comments-normal"), for: .normal)
 
+            // Create new comment placeholder
+            self.placeholderButton.setTitle((displayedPost.children == 0  ? "No Comments Placeholder" : "Write Own Comment Placeholder").localized(), for: .normal)
+            
             if !withoutComments {
                 self.postFeedHeaderView.display(post: displayedPost)
                 
@@ -632,6 +631,8 @@ class PostShowViewController: GSBaseViewController {
                 
                 self.userNameLabel.text = self.postFeedHeaderView.authorNameButton.titleLabel!.text
             }
+            
+            self.view.hideSkeleton()
         }
     }
     
@@ -650,8 +651,12 @@ class PostShowViewController: GSBaseViewController {
         self.promoteButton.setTitle("Promote Post Verb".localized(), for: .normal)
         
         if self.comments == nil {
-            self.commentsHeaderView.translateTitle()
-        } else {
+            self.placeholderButton.setTitle("No Comments Placeholder".localized(), for: .normal)
+        }
+        
+        else {
+            self.placeholderButton.setTitle("Write Own Comment Placeholder".localized(), for: .normal)
+
             // FIXME: - ADD LOCALIZE COMMENT CELLS
 //            self.commentsTableView.reloadRows(at: self.commentsTableView.indexPathsForVisibleRows!, with: .none)
         }
@@ -682,7 +687,7 @@ class PostShowViewController: GSBaseViewController {
                             let bottomViewFrame = self.backgroundGrayViewsCollection.first(where: { $0.tag == 1 })!.frame
 
                             guard self.comments != nil else {
-                                self.scrollView.contentOffset.y = (self.commentsHeaderView.frame.maxY > self.view.frame.height) ? (64.0 + self.commentsHeaderView.frame.maxY - self.view.frame.height) : 0.0
+                                self.scrollView.contentOffset.y = (self.commentsStackView.frame.maxY > self.view.frame.height) ? (64.0 + self.commentsStackView.frame.maxY - self.view.frame.height) : 0.0
                                 
                                 return
                             }
@@ -714,13 +719,6 @@ class PostShowViewController: GSBaseViewController {
     }
     
     private func didFinishLoadComments(afterPagination isPaginationRun: Bool) {
-        self.commentsHeaderViewHeightConstraint.constant = 0.0
-        
-        // Hide commentsHeaderView animation
-        UIView.animate(withDuration: 0.3, animations: {
-            self.commentsHeaderView.layoutIfNeeded()
-        })
-        
         self.insertedRow = nil
         self.permlinkCreatedItem = ""
         self.didCommentsControlView(hided: false)
@@ -906,6 +904,8 @@ class PostShowViewController: GSBaseViewController {
     @IBAction func subscribeButtonTappedDown(_ sender: UIButton) {
         sender.setBorder(color: UIColor(hexString: "#e3e3e3").cgColor, cornerRadius: 4.0 * heightRatio)
     }
+    
+    
 }
 
 
@@ -1384,12 +1384,6 @@ extension PostShowViewController: UIScrollViewDelegate {
         
         if bottom - scrollPosition <= 50.0 && !self.isPaginationRun && self.needPagination {
             self.isPaginationRun = true
-            
-            // Display Infinite Scrolling view in bottom of sceen
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
-                self.commentsHeaderView.set(mode: .footer)
-                self.commentsHeaderViewHeightConstraint.constant = 48.0 * heightRatio
-            }
             
             // Load Comments from CoreData
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2, execute: {

@@ -16,10 +16,6 @@ enum CommentHeaderViewMode {
 }
 
 class CommentHeaderView: UIView {
-    // MARK: - Properties
-    var handlerCreateCommentButtonTapped: (() -> Void)?
-
-    
     // MARK: - IBOutlets
     @IBOutlet weak var infiniteScrollingActivityIndicator: UIActivityIndicatorView!
     
@@ -33,17 +29,6 @@ class CommentHeaderView: UIView {
         didSet {
 //            self.contentView.backgroundColor = UIColor.red
             self.contentView.tune()
-        }
-    }
-    
-    @IBOutlet weak var createCommentButton: UIButton! {
-        didSet {
-            self.createCommentButton.tune(withTitle:    "No Comments Title".localized(),
-                                          hexColors:    [veryDarkGrayWhiteColorPickers, darkGrayWhiteColorPickers, darkGrayWhiteColorPickers, darkGrayWhiteColorPickers],
-                                          font:         UIFont(name: "SFProDisplay-Regular", size: 13.0),
-                                          alignment:    .left)
-            
-            self.createCommentButton.isHidden = false
         }
     }
     
@@ -87,32 +72,19 @@ class CommentHeaderView: UIView {
         view.frame = frame
     }
 
-    func translateTitle() {
-        self.createCommentButton.setTitle("No Comments Title".localized(), for: .normal)
-    }
-    
     func set(mode: CommentHeaderViewMode) {
         switch mode {
         case .headerEmpty:
             self.emptyItemsLabel.isHidden       =   false
-            self.createCommentButton.isHidden   =   true
             self.infiniteScrollingActivityIndicator.stopAnimating()
             
         case .header:
             self.emptyItemsLabel.isHidden       =   true
-            self.createCommentButton.isHidden   =   true
             self.infiniteScrollingActivityIndicator.startAnimating()
             
         default:
             self.emptyItemsLabel.isHidden       =   true
-            self.createCommentButton.isHidden   =   false
             self.infiniteScrollingActivityIndicator.stopAnimating()
         }
-    }
-
-    
-    // MARK: - Actions
-    @IBAction func createCommentButtonTapped(_ sender: UIButton) {
-        self.handlerCreateCommentButtonTapped!()
     }
 }
