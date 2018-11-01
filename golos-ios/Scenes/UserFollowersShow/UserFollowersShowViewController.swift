@@ -172,36 +172,31 @@ extension UserFollowersShowViewController: UserFollowersShowDisplayLogic {
 
     func displayLoadFollowers(fromViewModel viewModel: UserFollowersShowModels.Item.ViewModel) {
         // NOTE: Display the result from the Presenter
+        self.handler(viewModel: viewModel)
+    }
+    
+    func displayLoadFollowings(fromViewModel viewModel: UserFollowersShowModels.Item.ViewModel) {
+        // NOTE: Display the result from the Presenter
+        self.handler(viewModel: viewModel)
+    }
+    
+    private func handler(viewModel: UserFollowersShowModels.Item.ViewModel) {
         if let error = viewModel.errorAPI {
             self.showAlertView(withTitle: "Error", andMessage: error.localizedDescription, needCancel: false, completion: { _ in })
         }
-        
+            
         // CoreData
         else if let dataStore = self.router?.dataStore, dataStore.needPagination {
             DispatchQueue.main.async {
                 self.fetchFollowers()
             }
         }
-        
+            
         // Display empty message
-        else if var dataStore = self.router?.dataStore, dataStore.totalIems == -1 {
-            dataStore.totalIems = 0
+        else if var dataStore = self.router?.dataStore, dataStore.totalItems == -1 {
+            dataStore.totalItems = 0
             self.tableView.reloadData()
             self.view.hideSkeleton()
-        }
-    }
-    
-    func displayLoadFollowings(fromViewModel viewModel: UserFollowersShowModels.Item.ViewModel) {
-        // NOTE: Display the result from the Presenter
-        if let error = viewModel.errorAPI {
-            self.showAlertView(withTitle: "Error", andMessage: error.localizedDescription, needCancel: false, completion: { _ in })
-        }
-        
-        // CoreData
-        else if let dataStore = self.router?.dataStore, dataStore.needPagination {
-            DispatchQueue.main.async {
-                self.fetchFollowings()
-            }
         }
     }
 }
@@ -242,14 +237,14 @@ extension UserFollowersShowViewController {
     private func fetchFollowers() {
         if var dataStore = self.router?.dataStore, dataStore.needPagination, let followersNew = Follower.loadFollowers(byUserNickName: dataStore.authorNickName, andPaginationPage: dataStore.paginationPage), followersNew.count > 0 {
             self.followers.append(contentsOf: followersNew)
-
+            
             // Reload data in UITableView
             let newIndexPathsToReload = self.calculateIndexPathsToReload(from: followersNew)
             
             if dataStore.paginationPage == 0 {
                 self.tableView.reloadData()
             }
-
+                
             else {
                 let indexPathsToReload = visibleIndexPathsToReload(intersecting: newIndexPathsToReload)
                 self.tableView.reloadRows(at: indexPathsToReload, with: .fade)
@@ -259,10 +254,6 @@ extension UserFollowersShowViewController {
             self.view.hideSkeleton()
             self.isFetchInProgress = false
         }
-    }
-    
-    private func fetchFollowings() {
-        
     }
 }
 
@@ -274,7 +265,7 @@ extension UserFollowersShowViewController: SkeletonTableViewDataSource {
             return 0
         }
         
-        return dataStore.totalIems
+        return dataStore.totalItems
     }
     
     func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
@@ -292,7 +283,7 @@ extension UserFollowersShowViewController: SkeletonTableViewDataSource {
             cell.handlerSubscribeButtonTapped           =   { [weak self] activeVoterShortInfo in
                 guard (self?.isCurrentOperationPossible())! else { return }
                 
-                self?.selectedVoterInRow = activeVoterShortInfo.row
+                self?.selectedVoterInRow = self?.followers.firstIndex(where: { $0.follower == activeVoterShortInfo.nickName }) ?? 0
                 
                 guard activeVoterShortInfo.isSubscribe else {
                     // API 'Subscribe'
@@ -339,12 +330,6 @@ extension UserFollowersShowViewController: SkeletonTableViewDataSource {
 
 // MARK: - UITableViewDelegate
 extension UserFollowersShowViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if indexPath.row == self.followers.count - 6 && !self.isFetchInProgress && self.followers.count < self.router?.dataStore?.totalIems ?? 0 {
-            self.loadDataSource()
-        }
-    }
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 64.0
     }
@@ -357,7 +342,7 @@ extension UserFollowersShowViewController: UITableViewDelegate {
         let headerView = CommentHeaderView.init(frame: CGRect(origin: .zero, size: CGSize(width: tableView.frame.width, height: 48.0)))
 
         // Display empty message
-        if let dataStore = self.router?.dataStore, dataStore.totalIems == 0 {
+        if let dataStore = self.router?.dataStore, dataStore.totalItems == 0 {
             headerView.set(mode: .headerEmpty)
             headerView.emptyItemsLabel.text             =   (dataStore.userSubscribeMode == .followers ? "Followers List is empty" : "Followings List is empty").localized()
             self.tableView.isUserInteractionEnabled     =   false
@@ -398,14 +383,6 @@ extension UserFollowersShowViewController: UITableViewDataSourcePrefetching {
 
         if indexPaths.contains(where: self.isLoadingCell) {
             self.loadDataSource()
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, cancelPrefetchingForRowsAt indexPaths: [IndexPath]) {
-        Logger.log(message: "Cancel prefetch row of \(indexPaths)", event: .warning)
-        
-        if let dataWorkItem = self.loadDataWorkItem, !dataWorkItem.isCancelled {
-            dataWorkItem.cancel()
         }
     }
 }

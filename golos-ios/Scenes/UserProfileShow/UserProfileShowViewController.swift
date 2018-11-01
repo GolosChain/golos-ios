@@ -124,11 +124,15 @@ class UserProfileShowViewController: GSBaseViewController, ContainerViewSupport 
             }
 
             self.userProfileInfoTitleView.handlerSubscribersCountButtonTapped       =   { [weak self] in
-                self?.router?.routeToUserFollowersShowScene(withMode: .followers)
+                DispatchQueue.main.async(execute: {
+                    self?.router?.routeToUserFollowersShowScene(withMode: .followers)
+                })
             }
             
             self.userProfileInfoTitleView.handlerSubscriptionsCountButtonTapped     =   { [weak self] in
-                self?.router?.routeToUserFollowersShowScene(withMode: .followings)
+                DispatchQueue.main.async(execute: {
+                    self?.router?.routeToUserFollowersShowScene(withMode: .followings)
+                })
             }
         }
     }

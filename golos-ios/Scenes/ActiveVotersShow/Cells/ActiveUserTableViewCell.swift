@@ -127,7 +127,7 @@ extension ActiveUserTableViewCell {
         
         // API 'get_following'
         if !User.isAnonymous {
-            RestAPIManager.loadFollowingsList(byUserNickName: User.current!.nickName, authorNickName: author.nickNameValue, pagination: 1, completion: { [weak self] (isFollowing, errorAPI) in
+            RestAPIManager.loadFollowing(byUserNickName: User.current!.nickName, authorNickName: author.nickNameValue, pagination: 1, completion: { [weak self] (isFollowing, errorAPI) in
                 guard errorAPI == nil else { return }
                 
                 self?.subscribeButton.isSelected = isFollowing
@@ -159,6 +159,10 @@ extension ActiveUserTableViewCell {
                 
             else {
                 self.userProfileImageView.image = UIImage(named: "icon-user-profile-image-placeholder")
+            }
+            
+            if self.userNickName == nil {
+                print("XXX")
             }
         }
         

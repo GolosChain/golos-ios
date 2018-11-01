@@ -99,7 +99,7 @@ class PostShowInteractor: PostShowBusinessLogic, PostShowDataStore {
     
     func checkFollowing(withRequestModel requestModel: PostShowModels.Following.RequestModel) {
         // API 'get_following'
-        RestAPIManager.loadFollowingsList(byUserNickName: User.current!.nickName, authorNickName: self.postShortInfo?.author ?? "XXX", pagination: 1, completion: { [weak self] (isFollowing, errorAPI) in
+        RestAPIManager.loadFollowing(byUserNickName: User.current!.nickName, authorNickName: self.postShortInfo?.author ?? "XXX", pagination: 1, completion: { [weak self] (isFollowing, errorAPI) in
             let responseModel = PostShowModels.Following.ResponseModel(isFollowing: isFollowing, errorAPI: errorAPI)
             self?.presenter?.presentCheckFollowing(fromResponseModel: responseModel)
         })
