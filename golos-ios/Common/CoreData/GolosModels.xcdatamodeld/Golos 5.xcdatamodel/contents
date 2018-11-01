@@ -146,6 +146,7 @@
     <entity name="Follower" representedClassName="Follower" syncable="YES">
         <attribute name="follower" attributeType="String" defaultValueString="XXX" syncable="YES"/>
         <attribute name="following" attributeType="String" defaultValueString="XXX" syncable="YES"/>
+        <attribute name="mode" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="paginationPage" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="what" optional="YES" attributeType="Transformable" syncable="YES"/>
         <uniquenessConstraints>
@@ -469,6 +470,7 @@
         <element name="AppSettings" positionX="-459" positionY="-81" width="128" height="90"/>
         <element name="Blog" positionX="-459" positionY="-81" width="128" height="555"/>
         <element name="Comment" positionX="-459" positionY="-81" width="128" height="540"/>
+        <element name="Follower" positionX="-450" positionY="-72" width="128" height="120"/>
         <element name="ImageCached" positionX="-459" positionY="-81" width="128" height="90"/>
         <element name="Lenta" positionX="-459" positionY="-81" width="128" height="555"/>
         <element name="New" positionX="-450" positionY="-72" width="128" height="540"/>
@@ -481,6 +483,5 @@
         <element name="UserSecretOwnerKey" positionX="-243" positionY="-234" width="128" height="120"/>
         <element name="UserSecretPostingKey" positionX="-45" positionY="63" width="128" height="120"/>
         <element name="Voter" positionX="-459" positionY="-81" width="128" height="150"/>
-        <element name="Follower" positionX="-450" positionY="-72" width="128" height="105"/>
     </elements>
 </model>

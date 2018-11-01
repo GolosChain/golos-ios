@@ -29,8 +29,8 @@ protocol UserFollowersShowDataStore {
 }
 
 @objc enum UserFollowerMode: Int {
-    case followers
-    case followings
+    case followers      =   0
+    case followings     =   1
 }
 
 class UserFollowersShowInteractor: UserFollowersShowBusinessLogic, UserFollowersShowDataStore {
@@ -84,22 +84,28 @@ class UserFollowersShowInteractor: UserFollowersShowBusinessLogic, UserFollowers
             return
         }
         
-        if let nickNames = followersNames, let lastNickName = nickNames.last, self.lastAuthorNickName != lastNickName {
-            self.loadInfo(forUsers: nickNames, byMode: .followers)
-            self.lastAuthorNickName = lastFollowerName!
-//            self.lastAuthorNickName = nickNames.last
-            self.needPagination = true
+        guard lastFollowerName != nil && self.needPagination else {
+            self.needPagination     =   false
+            let responseModel       =   UserFollowersShowModels.Item.ResponseModel(errorAPI: errorAPI)
+            
+            if let newItems = followersNames, newItems.count > 0 {
+                self.loadInfo(forUsers: newItems)
+            }
+            
+            else {
+                self.presenter?.presentLoadFollowers(fromResponseModel: responseModel)
+            }
+            
+            return
         }
-            
-        else {
-            self.needPagination = false
-            
-            let responseModel = UserFollowersShowModels.Item.ResponseModel(errorAPI: errorAPI)
-            self.presenter?.presentLoadFollowers(fromResponseModel: responseModel)
+        
+        if let nickNames = followersNames, self.needPagination {
+            self.loadInfo(forUsers: nickNames)
+            self.lastAuthorNickName = lastFollowerName!
         }
     }
     
-    private func loadInfo(forUsers nickNames: [String], byMode mode: UserFollowerMode) {
+    private func loadInfo(forUsers nickNames: [String]) {
         RestAPIManager.loadUsersInfo(byNickNames: nickNames, completion: { [weak self] errorAPI in
             let responseModel = UserFollowersShowModels.Item.ResponseModel(errorAPI: errorAPI)
             self?.presenter?.presentLoadFollowers(fromResponseModel: responseModel)

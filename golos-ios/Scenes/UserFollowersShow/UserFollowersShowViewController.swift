@@ -110,7 +110,7 @@ class UserFollowersShowViewController: GSBaseViewController {
         self.view.showSkeleton(usingColor: UIColor.clouds)
         
         // API
-        self.loadDataSource()
+//        self.loadDataSource()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -175,18 +175,18 @@ extension UserFollowersShowViewController: UserFollowersShowDisplayLogic {
             self.showAlertView(withTitle: "Error", andMessage: error.localizedDescription, needCancel: false, completion: { _ in })
         }
             
-        // CoreData
-        else if let dataStore = self.router?.dataStore, dataStore.needPagination {
-            DispatchQueue.main.async {
-                self.fetchFollowers()
-            }
-        }
-            
         // Display empty message
         else if var dataStore = self.router?.dataStore, dataStore.totalItems == -1 {
             dataStore.totalItems = 0
             self.tableView.reloadData()
             self.view.hideSkeleton()
+        }
+        
+        // CoreData
+        else {
+            DispatchQueue.main.async {
+                self.fetchFollowers()
+            }
         }
     }
 }
@@ -214,7 +214,7 @@ extension UserFollowersShowViewController {
 extension UserFollowersShowViewController {
     // User Profile
     private func fetchFollowers() {
-        if var dataStore = self.router?.dataStore, dataStore.needPagination, let followersNew = Follower.loadFollowers(byUserNickName: dataStore.authorNickName, andPaginationPage: dataStore.paginationPage), followersNew.count > 0 {
+        if var dataStore = self.router?.dataStore, let followersNew = Follower.loadFollowers(byUserNickName: dataStore.authorNickName, andPaginationPage: dataStore.paginationPage, forMode: dataStore.userSubscribeMode), followersNew.count > 0 {
             self.followers.append(contentsOf: followersNew)
             
             // Reload data in UITableView
@@ -256,7 +256,7 @@ extension UserFollowersShowViewController: SkeletonTableViewDataSource {
         
         if !self.isLoadingCell(for: indexPath) {
             let follower = self.followers[indexPath.row]
-            cell.display(author: follower, inRow: indexPath.row)
+            cell.display(author: follower)
             
             // Handlers
             cell.handlerSubscribeButtonTapped           =   { [weak self] activeVoterShortInfo in

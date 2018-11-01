@@ -17,10 +17,11 @@ extension Follower {
         return NSFetchRequest<Follower>(entityName: "Follower")
     }
 
+    @NSManaged public var mode: Int16
     @NSManaged public var follower: String
     @NSManaged public var following: String
     @NSManaged public var paginationPage: Int16
-    
+
     @NSManaged public var what: [String]?
 
 }

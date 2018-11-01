@@ -225,14 +225,14 @@ extension ActiveVotersShowViewController: SkeletonTableViewDataSource {
         let cell    =   tableView.dequeueReusableCell(withIdentifier: "ActiveUserTableViewCell") as! ActiveUserTableViewCell
         let voter   =   self.voters[indexPath.row]
         
-        cell.display(author: voter, inRow: indexPath.row)
+        cell.display(author: voter)
         
         // Handlers
         cell.handlerSubscribeButtonTapped           =   { [weak self] activeVoterShortInfo in
             guard (self?.isCurrentOperationPossible())! else { return }
 
-            self?.selectedVoterInRow = activeVoterShortInfo.row
-            
+            self?.selectedVoterInRow = self?.voters.firstIndex(where: { $0.voter == activeVoterShortInfo.nickName }) ?? 0
+
             guard activeVoterShortInfo.isSubscribe else {
                 // API 'Subscribe'
                 let requestModel = ActiveVotersShowModels.Sub.RequestModel(willSubscribe: true, authorNickName: activeVoterShortInfo.nickName)

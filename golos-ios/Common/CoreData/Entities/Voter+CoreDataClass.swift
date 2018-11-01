@@ -14,6 +14,8 @@ import Foundation
 @objc(Voter)
 public class Voter: NSManagedObject, UserCellSupport {
     // UserCellSupport protocol implementation
+    var modeValue: Int16?
+    
     var nameValue: String {
         set {}
         

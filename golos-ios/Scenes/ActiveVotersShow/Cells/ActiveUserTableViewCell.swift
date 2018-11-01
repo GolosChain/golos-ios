@@ -10,11 +10,10 @@ import UIKit
 import CoreData
 import GoloSwift
 
-typealias ActiveUserShortInfo = (nickName: String, icon: UIImage, isSubscribe: Bool, row: Int)
+typealias ActiveUserShortInfo = (nickName: String, icon: UIImage, isSubscribe: Bool)
 
 class ActiveUserTableViewCell: UITableViewCell {
     // MARK: - Properties
-    var cellRow: Int!
     var userNickName: String!
 
     // Handlers
@@ -110,7 +109,7 @@ class ActiveUserTableViewCell: UITableViewCell {
     }
     
     @IBAction func subscribeButtonTapped(_ sender: UIButton) {
-        self.handlerSubscribeButtonTapped!((nickName: self.userNickName, icon: self.userProfileImageView.image!, isSubscribe: sender.isSelected, row: self.cellRow))
+        self.handlerSubscribeButtonTapped!((nickName: self.userNickName, icon: self.userProfileImageView.image!, isSubscribe: sender.isSelected))
     }
     
     @IBAction func voicePowerButtonTapped(_ sender: UIButton) {
@@ -121,8 +120,7 @@ class ActiveUserTableViewCell: UITableViewCell {
 
 // MARK: - ConfigureCell implementation
 extension ActiveUserTableViewCell {
-    func display(author: UserCellSupport, inRow row: Int) {
-        self.cellRow = row
+    func display(author: UserCellSupport) {
         self.userReputationLabel.text = String(format: "%i", author.reputationValue.convertWithLogarithm10())
         
         // API 'get_following'
@@ -144,7 +142,6 @@ extension ActiveUserTableViewCell {
             self.userNickName = user.nickName
             self.subscribeButton.isHidden = (User.isAnonymous ? false : (author.nickNameValue == User.current!.nickName))
             self.userNameButton.setTitle(author.nameValue.uppercaseFirst, for: .normal)
-            self.voicePowerButton.setTitle("\(row)", for: .normal)
 
             // Load Author profile image
             if let userProfileImageURL = user.profileImageURL {
@@ -160,10 +157,10 @@ extension ActiveUserTableViewCell {
             else {
                 self.userProfileImageView.image = UIImage(named: "icon-user-profile-image-placeholder")
             }
-            
-            if self.userNickName == nil {
-                print("XXX")
-            }
+        }
+        
+        else {
+            print("XXX: author.nickNameValue = \(author.nickNameValue)")
         }
         
         self.localizeTitles()

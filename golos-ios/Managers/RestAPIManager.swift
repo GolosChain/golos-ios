@@ -362,16 +362,16 @@ class RestAPIManager {
                                  onResult: { responseAPIResult in
 //                                    Logger.log(message: "\nresponse API Result = \(responseAPIResult)\n", event: .debug)
                                     
-                                    guard var result = (responseAPIResult as! ResponseAPIUserFollowingsResult).result else {
-                                        completion(nil, nil, ErrorAPI.requestFailed(message: "User followers are not found"))
+                                    guard var result = (responseAPIResult as! ResponseAPIUserFollowingsResult).result, result.count > 0 else {
+                                        completion(nil, nil, nil)//ErrorAPI.requestFailed(message: "User followers are not found"))
                                         return
                                     }
                                     
                                     // CoreData: Update Follower entities
-                                    let removedItem = result.removeLast()
-                                    
-                                    Follower.updateEntities(fromResponseAPI: result, withPaginationPage: paginationPage)
-                                    completion(removedItem.follower, result.compactMap({ $0.follower }), nil)
+                                    let removedItem = (result.count >= loadDataLimit + 10) ? result.removeLast() : nil
+
+                                    Follower.updateEntities(fromResponseAPI: result, withPaginationPage: paginationPage, inMode: .followers)
+                                    completion(removedItem?.follower, result.compactMap({ $0.follower }), nil)
             },
                                  onError: { errorAPI in
                                     Logger.log(message: "nresponse API Error = \(errorAPI.caseInfo.message)\n", event: .error)
@@ -396,16 +396,16 @@ class RestAPIManager {
                                  onResult: { responseAPIResult in
 //                                    Logger.log(message: "\nresponse API Result = \(responseAPIResult)\n", event: .debug)
                                     
-                                    guard var result = (responseAPIResult as! ResponseAPIUserFollowingsResult).result else {
-                                        completion(nil, nil, ErrorAPI.requestFailed(message: "User followings are not found"))
+                                    guard var result = (responseAPIResult as! ResponseAPIUserFollowingsResult).result, result.count > 0 else {
+                                        completion(nil, nil, nil) //ErrorAPI.requestFailed(message: "User followings are not found"))
                                         return
                                     }
                                     
                                     // CoreData: Update Follower entities
-                                    let removedItem = result.removeLast()
+                                    let removedItem = (result.count >= loadDataLimit + 10) ? result.removeLast() : nil
 
-                                    Follower.updateEntities(fromResponseAPI: result, withPaginationPage: paginationPage)
-                                    completion(removedItem.following, result.compactMap({ $0.following }), nil)
+                                    Follower.updateEntities(fromResponseAPI: result, withPaginationPage: paginationPage, inMode: .followings)
+                                    completion(removedItem?.following, result.compactMap({ $0.following }), nil)
             },
                                  onError: { errorAPI in
                                     Logger.log(message: "nresponse API Error = \(errorAPI.caseInfo.message)\n", event: .error)
