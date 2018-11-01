@@ -11,6 +11,25 @@ import Foundation
 
 class GSTestManager {
     // MARK: - Custom Functions
+    static func getGlobalProperties() {
+        Broadcast.shared.getDynamicGlobalProperties(completion: { properties in
+            if let globalProperties = properties {
+                print("total_vesting_fund_steem = \(globalProperties.total_vesting_fund_steem), total_vesting_shares = \(globalProperties.total_vesting_shares)")
+                
+                RestAPIManager.loadUsersInfo(byNickNames: ["msm72"], completion: { errorAPI in
+                    if let user = User.fetch(byNickName: "msm72") {
+                        let vestingShares           =   Float((user.vestingShares.components(separatedBy: " ").first)!) ?? 0.0
+                        let totalVestingShares      =   Float((globalProperties.total_vesting_shares.components(separatedBy: " ").first)!) ?? 0.0
+                        let totalVestingFundSteem   =   Float((globalProperties.total_vesting_fund_steem.components(separatedBy: " ").first)!) ?? 0.0
+                        
+                        let result  =   totalVestingFundSteem * (vestingShares / totalVestingShares)
+                        print("result = \(result)")
+                    }
+                })
+            }
+        })
+    }
+    
     static func createTestPost() {
         let comment                 =   RequestParameterAPI.Comment(parentAuthor:       "",
                                                                     parentPermlink:     "test",

@@ -148,18 +148,18 @@ public class Broadcast {
      */
     public func executePOST(requestByOperationAPIType operationAPIType: OperationAPIType, userNickName: String, onResult: @escaping (Decodable) -> Void, onError: @escaping (ErrorAPI) -> Void) {
         // API `get_dynamic_global_properties`
-        self.getDynamicGlobalProperties(completion: { success in
-            guard success else {
+        self.getDynamicGlobalProperties(completion: { properties in
+            guard let globalProperties = properties else {
                 onError(ErrorAPI.requestFailed(message: "Dynamic Global Properties Error"))
                 return
             }
             
             // Create Operations for Transaction (tx)
-            let operations: [Encodable]   =   operationAPIType.introduced().paramsSecond
+            let operations: [Encodable] = operationAPIType.introduced().paramsSecond
             Logger.log(message: "\nexecutePOST - operations:\n\t\(operations)\n", event: .debug)
             
             // Create Transaction (tx)
-            var tx: Transaction = Transaction(withOperations: operations)
+            var tx: Transaction = Transaction(withOperations: operations, andGlobalProperties: globalProperties)
             tx.setUser(nickName: userNickName)
             Logger.log(message: "\nexecutePOST - transaction:\n\t\(tx)\n", event: .debug)
             
@@ -285,7 +285,7 @@ public class Broadcast {
     
     
     /// API `get_dynamic_global_properties`
-    private func getDynamicGlobalProperties(completion: @escaping (Bool) -> Void) {
+    public func getDynamicGlobalProperties(completion: @escaping (ResponseAPIDynamicGlobalProperty?) -> Void) {
         let requestMethodAPIType  =   self.prepareGET(requestByMethodAPIType: .getDynamicGlobalProperties())
         Logger.log(message: "\nrequestAPIType =\n\t\(requestMethodAPIType)", event: .debug)
         
@@ -294,22 +294,15 @@ public class Broadcast {
             webSocketManager.sendGETRequest(withMethodAPIType: requestMethodAPIType, completion: { responseAPIType in
                 Logger.log(message: "\nresponseAPIType:\n\t\(responseAPIType)", event: .debug)
                 
-                guard let responseAPI = responseAPIType.responseAPI,
-                    let responseAPIResult   =   responseAPI as? ResponseAPIDynamicGlobalPropertiesResult,
-                    let globalProperties    =   responseAPIResult.result else {
-                        
+                guard   let responseAPI         =   responseAPIType.responseAPI,
+                        let responseAPIResult   =   responseAPI as? ResponseAPIDynamicGlobalPropertiesResult,
+                        let globalProperties    =   responseAPIResult.result else {
                         Logger.log(message: responseAPIType.errorAPI!.caseInfo.message, event: .error)
-                        completion(false)
+                        completion(nil)
                         return
                 }
                 
-//                Logger.log(message: "\nglobalProperties:\n\t\(globalProperties)", event: .debug)
-                
-                time                =   globalProperties.time.convert(toDateFormat: .expirationDateType).addingTimeInterval(60).convert(toStringFormat: .expirationDateType)
-                headBlockID         =   globalProperties.head_block_id.convert(toIntFromStartByte: 12, toEndByte: 16)
-                headBlockNumber     =   UInt16(globalProperties.head_block_number & 0xFFFF)
-                
-                completion(true)
+                completion(globalProperties)
             })
         }
     }

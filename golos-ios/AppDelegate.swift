@@ -26,8 +26,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Logger.log(message: "Success", event: .severe)
                 
         /// TEST
-//        GSTestManager.createTestPost()
-
+//        GSTestManager.getGlobalProperties()
+        
         self.setupNavigationBarAppearance()
         self.setupTabBarAppearance()
         self.setupKeyboardManager()
@@ -37,6 +37,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Run Fabric
         Fabric.with([Crashlytics.self])
+        
+        // Run Amplitude SDK
+        Amplitude.instance()?.initializeApiKey("c08245310510247488d26b9803460eb6")
         
         // APNs
         self.registerForPushNotifications()

@@ -18,15 +18,6 @@ public enum AppBuildConfig: String {
     case development    =   "Development"
 }
 
-// Blockchain Dynamic values
-var time: String                        =   ""
-var headBlockID: UInt32                 =   0
-var headBlockNumber: UInt16             =   0
-
-var chainID: String                     =   (appBuildConfig == AppBuildConfig.development) ?    "5876894a41e6361bde2e73278f07340f2eb8b41c2facd29099de9deef6cdb679" :
-                                                                                                "782a3039b478c839e4cb0c941ff4eaeb7df40bdd68bd441afd444b9da763de12"
-
-
 /// App Scheme
 public let appBuildConfig               =   AppBuildConfig.init(rawValue: (Bundle.main.infoDictionary?["Config"] as? String)!.replacingOccurrences(of: "\\", with: ""))
 

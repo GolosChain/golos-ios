@@ -6,6 +6,7 @@ target 'Golos' do
     
     pod 'Down'
     pod 'MarkdownView'
+
     
     # A tool to enforce Swift style and conventions
     pod 'SwiftLint'
@@ -30,10 +31,11 @@ target 'Golos' do
     pod 'SkeletonView'
     pod 'SnapKit', '~> 4.0'
     pod 'LayoutKit', '~> 7.0'
+    pod 'Amplitude-iOS', '~> 4.0.4'
     pod 'SwiftGifOrigin', '~> 1.6.1'
     pod 'MXParallaxHeader', '~> 0.6'
     pod 'AlignedCollectionViewFlowLayout'
-
+    
 # Pods for golos-ios
 #    pod 'GoloSwift', '~> 1.1'
     pod 'GoloSwift', :git => "https://github.com/GolosChain/GoloSwift.git"

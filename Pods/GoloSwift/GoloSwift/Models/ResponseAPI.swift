@@ -276,7 +276,9 @@ public struct ResponseAPIDynamicGlobalProperty: Decodable {
     public let time: String                            // "2018-04-20T19:01:12"
     public let head_block_id: String
     public let head_block_number: Int64
-    
+    public let total_vesting_shares: String
+    public let total_vesting_fund_steem: String
+
     
     // MARK: - In reserve
     /*
@@ -288,8 +290,6 @@ public struct ResponseAPIDynamicGlobalProperty: Decodable {
      public let confidential_supply: String
      public let current_sbd_supply: String
      public let confidential_sbd_supply: String
-     public let total_vesting_fund_steem: String
-     public let total_vesting_shares: String
      public let total_reward_fund_steem: String
      public let total_reward_shares2: String
      public let sbd_interest_rate: Int64

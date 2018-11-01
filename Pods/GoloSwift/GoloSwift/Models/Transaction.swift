@@ -27,10 +27,10 @@ public struct Transaction {
     
     
     // MARK: - Class Initialization
-    public init(withOperations operations: [Encodable], andExtensions extensions: [String]? = nil) {
-        self.ref_block_num      =   headBlockNumber
-        self.ref_block_prefix   =   headBlockID
-        self.expiration         =   time
+    public init(withOperations operations: [Encodable], andExtensions extensions: [String]? = nil, andGlobalProperties globalProperties: ResponseAPIDynamicGlobalProperty) {
+        self.ref_block_num      =   UInt16(globalProperties.head_block_number & 0xFFFF)
+        self.ref_block_prefix   =   globalProperties.head_block_id.convert(toIntFromStartByte: 12, toEndByte: 16)
+        self.expiration         =   globalProperties.time.convert(toDateFormat: .expirationDateType).addingTimeInterval(60).convert(toStringFormat: .expirationDateType)
         self.operations         =   operations
         self.extensions         =   extensions
         self.signatures         =   [String]()
@@ -67,6 +67,9 @@ public struct Transaction {
      
      */
     public mutating func serialize(byOperationAPIType operationAPIType: OperationAPIType) -> ErrorAPI? {
+        let chainID: String = (appBuildConfig == AppBuildConfig.development) ?  "5876894a41e6361bde2e73278f07340f2eb8b41c2facd29099de9deef6cdb679" :
+                                                                                "782a3039b478c839e4cb0c941ff4eaeb7df40bdd68bd441afd444b9da763de12"
+
         /// Create `serializedBuffer` with `chainID`
         self.serializedBuffer = chainID.hexBytes
         Logger.log(message: "\nserializedBuffer + chainID:\n\t\(self.serializedBuffer.toHexString())\n", event: .debug)

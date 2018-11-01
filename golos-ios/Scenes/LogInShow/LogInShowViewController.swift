@@ -160,6 +160,9 @@ class LogInShowViewController: GSBaseViewController {
         
         self.view.tune()
         self.router?.routeToPostingKeyScene()
+        
+        // Amplitude SDK
+        Amplitude.instance()?.logEvent("Anonymous user open LogInShow scene...")
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -1,5 +1,6 @@
 PODS:
   - AlignedCollectionViewFlowLayout (1.1.2)
+  - Amplitude-iOS (4.0.4)
   - BeyovaJSON (0.0.7)
   - Crashlytics (3.11.1):
     - Fabric (~> 1.8.1)
@@ -66,6 +67,7 @@ PODS:
 
 DEPENDENCIES:
   - AlignedCollectionViewFlowLayout
+  - Amplitude-iOS (~> 4.0.4)
   - Crashlytics (~> 3.10)
   - Down
   - Fabric (~> 1.7)
@@ -87,6 +89,7 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - AlignedCollectionViewFlowLayout
+    - Amplitude-iOS
     - BeyovaJSON
     - Crashlytics
     - CryptoSwift
@@ -123,11 +126,12 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   GoloSwift:
-    :commit: 4a0606f44886f558caf88b64a0750cdb163bd9dc
+    :commit: e6577e991778f20c74e41d6f3e55933dc0905142
     :git: https://github.com/GolosChain/GoloSwift.git
 
 SPEC CHECKSUMS:
   AlignedCollectionViewFlowLayout: ee2ef451e741ec08f8e0967d828001e2f051c20a
+  Amplitude-iOS: 2ad4d7270c99186236c1272a3a9425463b1ae1a7
   BeyovaJSON: 085c9fa886fa0b13e2964cc8c6965fab5bc7f90f
   Crashlytics: ca7ab4bc304aa216bdc2e4c1a96389ee77252203
   CryptoSwift: 16e78bebf567bad1c87b2d58f6547f25b74c31aa
@@ -159,6 +163,6 @@ SPEC CHECKSUMS:
   SwiftTheme: 36d71c4eed4b2c401c782cf036e4586c749a8173
   Tags: 06eb9d45fcc234025d1b0053f78b9bb27f53a9d5
 
-PODFILE CHECKSUM: f0bca9997831c73544a444cc2d1268967690d711
+PODFILE CHECKSUM: efb3a7eb51c076a87fa125d8d7a61f0501a416e1
 
-COCOAPODS: 1.6.0.beta.1
+COCOAPODS: 1.6.0.beta.2
