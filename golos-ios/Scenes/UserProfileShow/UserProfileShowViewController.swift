@@ -386,8 +386,10 @@ class UserProfileShowViewController: GSBaseViewController, ContainerViewSupport 
 extension UserProfileShowViewController {
     // User Profile
     private func loadUserInfo() {
-        let userInfoRequestModel = UserProfileShowModels.UserInfo.RequestModel()
-        interactor?.loadUserInfo(withRequestModel: userInfoRequestModel)
+        DispatchQueue.main.async {
+            let userInfoRequestModel = UserProfileShowModels.UserInfo.RequestModel()
+            self.interactor?.loadUserInfo(withRequestModel: userInfoRequestModel)
+        }
     }
     
     // Blogs
@@ -396,8 +398,10 @@ extension UserProfileShowViewController {
             return
         }
         
-        let userDetailsRequestModel = UserProfileShowModels.UserDetails.RequestModel(postFeedType: postFeedTypes[self.selectedButton.tag])
-        interactor?.loadUserDetails(withRequestModel: userDetailsRequestModel)
+        DispatchQueue.main.async {
+            let userDetailsRequestModel = UserProfileShowModels.UserDetails.RequestModel(postFeedType: self.postFeedTypes[self.selectedButton.tag])
+            self.interactor?.loadUserDetails(withRequestModel: userDetailsRequestModel)
+        }
     }
 }
 
