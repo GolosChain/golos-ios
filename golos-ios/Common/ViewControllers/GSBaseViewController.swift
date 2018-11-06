@@ -237,6 +237,19 @@ class GSBaseViewController: UIViewController {
         return true
     }
     
+    
+    // MARK: - Actions
+    @objc func backBarButtonTapped(sender: UIBarButtonItem) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func adjustForKeyboard(notification: Notification) {
+    }
+}
+
+
+// MARK: - SFSafariViewControllerDelegate
+extension GSBaseViewController: SFSafariViewControllerDelegate {
     func openExternalLink(byURL url: String) {
         guard isNetworkAvailable else {
             self.showAlertView(withTitle: "Info", andMessage: "No Internet Connection", needCancel: false, completion: { _ in })
@@ -250,15 +263,28 @@ class GSBaseViewController: UIViewController {
         }
         
         let safari = SFSafariViewController(url: pageURL)
+        safari.delegate = self
+        
         self.present(safari, animated: true, completion: nil)
     }
     
+//    func safariViewController(_ controller: SFSafariViewController, activityItemsFor URL: URL, title: String?) -> [UIActivity] {
+//
+//    }
+//
+//    func safariViewController(_ controller: SFSafariViewController, excludedActivityTypesFor URL: URL, title: String?) -> [UIActivity.ActivityType] {
+//
+//    }
     
-    // MARK: - Actions
-    @objc func backBarButtonTapped(sender: UIBarButtonItem) {
-        self.navigationController?.popViewController(animated: true)
+    func safariViewController(_ controller: SFSafariViewController, didCompleteInitialLoad didLoadSuccessfully: Bool) {
+
     }
     
-    @objc func adjustForKeyboard(notification: Notification) {
+    func safariViewController(_ controller: SFSafariViewController, initialLoadDidRedirectTo URL: URL) {
+        
+    }
+    
+    func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
+        controller.dismiss(animated: true, completion: nil)
     }
 }

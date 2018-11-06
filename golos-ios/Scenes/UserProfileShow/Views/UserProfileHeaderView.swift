@@ -131,12 +131,16 @@ class UserProfileHeaderView: PassthroughView {
     
     // MARK: - Custom Functions
     func updateUI(fromUserInfo userInfo: User) {
-        self.nameLabel.text             =   (userInfo.name == "XXX" || userInfo.name.isEmpty) ? userInfo.nickName : userInfo.name
-        self.voicePowerLabel.text       =   userInfo.voicePower.introduced().localized()
-        self.voicePowerImageView.image  =   UIImage(named: String(format: "icon-voice-power-%@", userInfo.voicePower.introduced().lowercased()))
+        self.nameLabel.text = (userInfo.name == "XXX" || userInfo.name.isEmpty) ? userInfo.nickName : userInfo.name
+        
+        // Set User Voice Power
+        userInfo.voicePower(completion: { [weak self] voicePower in
+            self?.voicePowerLabel.text = voicePower.introduced().localized()
+            self?.voicePowerImageView.image = UIImage(named: String(format: "icon-voice-power-%@", voicePower.introduced().lowercased()))
+        })
 
         // Reputation -> Int
-        self.reputationLabel.text       =   String(format: "%i", userInfo.reputation.convertWithLogarithm10())
+        self.reputationLabel.text = String(format: "%i", userInfo.reputation.convertWithLogarithm10())
         
         // Upload User profile image
         if let userProfileImageURL = userInfo.profileImageURL {
@@ -170,6 +174,12 @@ class UserProfileHeaderView: PassthroughView {
                                                 completion:         { _ in })
             
             self.backgroundColor = UIColor.black.withAlphaComponent(0.3)
+        }
+        
+        else {
+            self.backButton.setImage(UIImage(named: "icon-button-back-white-normal"), for: .normal)
+            self.backButton.setImage(UIImage(named: "icon-button-back-black-normal"), for: .highlighted)
+            self.backButton.isHidden = userInfo.nickName == User.current?.nickName ?? "XXX"
         }
         
         self.showLabelsForAnimationCollection(true)

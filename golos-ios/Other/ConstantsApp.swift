@@ -44,6 +44,10 @@ let gcmMessageIDKey                     =  "gcm.message_id"
 let fcm                                 =   FCManager.init(withTopics: ["msm72", "sergiy"])
 
 
+// Amplitude exclusion list
+let amplitudeExclusionList              =   ["joseph.kalu", "destroyer2k", "nick.lick"]
+
+
 // Operation values
 let voter: String                       =   "msm72"
 let author: String                      =   "yuri-vlad-second"

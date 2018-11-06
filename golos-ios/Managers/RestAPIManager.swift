@@ -547,4 +547,24 @@ class RestAPIManager {
             })
         }
     }
+    
+    
+    /// Calculate Usr Voice Power
+    static func calculateVoicePower(byUserNickName nickName: String, completion: @escaping (Float) -> Void) {
+        Broadcast.shared.getDynamicGlobalProperties(completion: { properties in
+            if let globalProperties = properties {
+                print("total_vesting_fund_steem = \(globalProperties.total_vesting_fund_steem), total_vesting_shares = \(globalProperties.total_vesting_shares)")
+                
+                RestAPIManager.loadUsersInfo(byNickNames: [nickName], completion: { errorAPI in
+                    if let user = User.fetch(byNickName: nickName) {
+                        let vestingShares           =   Float((user.vestingShares.components(separatedBy: " ").first)!) ?? 0.0
+                        let totalVestingShares      =   Float((globalProperties.total_vesting_shares.components(separatedBy: " ").first)!) ?? 0.0
+                        let totalVestingFundSteem   =   Float((globalProperties.total_vesting_fund_steem.components(separatedBy: " ").first)!) ?? 0.0
+                        
+                        completion(totalVestingFundSteem * (vestingShares / totalVestingShares))
+                    }
+                })
+            }
+        })
+    }
 }

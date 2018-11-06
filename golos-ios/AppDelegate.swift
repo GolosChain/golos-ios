@@ -39,7 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Fabric.with([Crashlytics.self])
         
         // Run Amplitude SDK
-        Amplitude.instance()?.initializeApiKey("c08245310510247488d26b9803460eb6")
+        Amplitude.instance()?.initializeApiKey("52defe807d145e49a6754f89aeaf9b32")
         
         // APNs
         self.registerForPushNotifications()

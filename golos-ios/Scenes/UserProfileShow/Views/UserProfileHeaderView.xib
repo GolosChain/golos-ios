@@ -65,11 +65,11 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="right" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-voice-power-doplhin" translatesAutoresizingMaskIntoConstraints="NO" id="SJ5-yn-dOL" userLabel="Voice Power Image View">
-                    <rect key="frame" x="198" y="105.5" width="14" height="14"/>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="right" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-voice-power-gudgeon" translatesAutoresizingMaskIntoConstraints="NO" id="SJ5-yn-dOL" userLabel="Voice Power Image View">
+                    <rect key="frame" x="198" y="107" width="24" height="11"/>
                 </imageView>
-                <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dolphin" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tbu-zp-zfg" userLabel="Voice Power Label">
-                    <rect key="frame" x="220" y="105.5" width="43.5" height="14.5"/>
+                <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gudgeon" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tbu-zp-zfg" userLabel="Voice Power Label">
+                    <rect key="frame" x="230" y="105.5" width="52" height="14.5"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -252,12 +252,12 @@
     </objects>
     <resources>
         <image name="icon-button-back-while-normal" width="8" height="14"/>
-        <image name="icon-button-back-white-normal" width="24" height="24"/>
+        <image name="icon-button-back-white-normal" width="8" height="14"/>
         <image name="icon-button-edit-white-normal" width="37.5" height="37.5"/>
         <image name="icon-button-settings-white-normal" width="37.5" height="37.5"/>
         <image name="icon-user-profile-image-placeholder" width="40" height="40"/>
         <image name="icon-user-profile-star" width="15" height="14"/>
-        <image name="icon-voice-power-doplhin" width="14" height="14"/>
+        <image name="icon-voice-power-gudgeon" width="24" height="11"/>
         <image name="image-user-cover-placeholder" width="360" height="286"/>
         <image name="image-user-cover-placeholder-old" width="375" height="181"/>
     </resources>

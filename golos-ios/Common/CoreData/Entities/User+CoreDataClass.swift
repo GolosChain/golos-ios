@@ -29,24 +29,6 @@ public class User: NSManagedObject, CachedImageFrom {
     
     
     // MARK: - Properties
-    var voicePower: VoicePower {
-        let powerVoice  =   Int64(self.vestingShares.components(separatedBy: ".").first!)! % 10_000_000
-        
-        switch powerVoice {
-        case 0..<10_000_000:
-            return VoicePower.gudgeon
-       
-        case 10_000_000..<100_000_000:
-            return VoicePower.dolphin
-        
-        case 100_000_000..<1_000_000_000:
-            return VoicePower.killerWhale
-            
-        default:
-            return VoicePower.whale
-        }
-    }
-
     class var isAnonymous: Bool {
         get {
             return CoreDataManager.instance.readEntities(withName:                  "User",
@@ -135,6 +117,24 @@ public class User: NSManagedObject, CachedImageFrom {
     
     
     // MARK: - Custom Functions
+    func voicePower(completion: @escaping (VoicePower) -> Void) {
+        RestAPIManager.calculateVoicePower(byUserNickName: self.nickName, completion: { powerVoice in
+            switch powerVoice {
+            case 0..<10_000_000:
+                completion(VoicePower.gudgeon)
+                
+            case 10_000_000..<100_000_000:
+                completion(VoicePower.dolphin)
+                
+            case 100_000_000..<1_000_000_000:
+                completion(VoicePower.killerWhale)
+                
+            default:
+                completion(VoicePower.whale)
+            }
+        })
+    }
+
     func setIsAuthorized(_ value: Bool) {
         self.isAuthorized = value
         self.save()
