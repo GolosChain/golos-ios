@@ -734,8 +734,10 @@ class PostShowViewController: GSBaseViewController {
     // MARK: - Actions
     @IBAction func backButtonTapped(_ sender: UIButton) {
         // Return comments count
-        self.navigationController?.popViewController(animated: true)
-        self.handlerPostShowSceneClose!(self.isPostContentModify)
+        DispatchQueue.main.async {
+            self.navigationController?.popViewController(animated: true)
+            self.handlerPostShowSceneClose!(self.isPostContentModify)
+        }
     }
     
     @IBAction func moreButtonTapped(_ sender: UIButton) {
@@ -1061,7 +1063,7 @@ extension PostShowViewController {
         Logger.log(message: "Success", event: .severe)
         
         self.loadPostCommentsWorkItem = DispatchWorkItem {
-            self.gsTimer = GSTimer(operationName: "Load Post Comments content...", time: Double((self.router?.dataStore?.comment?.activeVotesCount ?? 0) * 10), completion: { [weak self] success in
+            self.gsTimer = GSTimer(operationName: "Load Post Comments content...", time: 100, completion: { [weak self] success in
                 if success && !(self?.loadPostCommentsWorkItem.isCancelled)! {
                     self?.loadPostCommentsWorkItem.cancel()
                     self?.loadPostComments()
@@ -1166,7 +1168,8 @@ extension PostShowViewController {
                 
             // Add new Reply to list
             else {
-                self.comments!.insert(commentEntities[startIndex], at: startIndex)
+                startIndex == commentEntities.count - 1 ?   self.comments!.append(commentEntities[startIndex]) :
+                                                            self.comments!.insert(commentEntities[startIndex], at: startIndex)
             }
             
             // Sort comments list
