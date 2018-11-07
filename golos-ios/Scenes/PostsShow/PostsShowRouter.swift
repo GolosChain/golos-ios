@@ -143,5 +143,6 @@ class PostsShowRouter: NSObject, PostsShowRoutingLogic, PostsShowDataPassing {
         destination.itemID                  =   source.postShortInfo!.id
         destination.permlink                =   source.postShortInfo!.permlink
         destination.authorNickName          =   source.postShortInfo!.author
+        destination.votersCount             =   source.postShortInfo!.activeVotesCount
     }
 }

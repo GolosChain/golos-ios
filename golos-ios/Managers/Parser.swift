@@ -128,7 +128,7 @@ class Parser {
             let rangeStart  =   modifiedBody.range(of: " alt=")
             let rangeEnd    =   modifiedBody.range(of: "<br>")
             
-            if let startLocation = rangeStart?.lowerBound, let endLocation = rangeEnd?.lowerBound {
+            if let startLocation = rangeStart?.lowerBound, let endLocation = rangeEnd?.lowerBound, startLocation <= endLocation {
                 modifiedBody.replaceSubrange(startLocation ..< endLocation, with: "")
                 modifiedBody = modifiedBody.replacingOccurrences(of: "\"<br>", with: "<br>")
             }

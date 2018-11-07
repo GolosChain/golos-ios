@@ -106,10 +106,26 @@ class UserProfileInfoTitleView: PassthroughView {
     }
     
     @IBAction func subscribersCountButtonTapped(_ sender: UIButton) {
+        self.labelsCollection.filter({ $0.tag == 1 }).forEach({ $0.alpha = 0.3 })
+        self.valuesCollection.filter({ $0.tag == 1 }).forEach({ $0.alpha = 0.3 })
+
+        UIView.animate(withDuration: 0.3, delay: 3, animations: {
+            self.labelsCollection.filter({ $0.tag == 1 }).forEach({ $0.alpha = 1.0 })
+            self.valuesCollection.filter({ $0.tag == 1 }).forEach({ $0.alpha = 1.0 })
+        })
+
         self.handlerSubscribersCountButtonTapped!()
     }
     
     @IBAction func subscriptionsCountButtonTapped(_ sender: UIButton) {
+        self.labelsCollection.filter({ $0.tag == 2 }).forEach({ $0.alpha = 0.3 })
+        self.valuesCollection.filter({ $0.tag == 2 }).forEach({ $0.alpha = 0.3 })
+        
+        UIView.animate(withDuration: 0.3, delay: 3, animations: {
+            self.labelsCollection.filter({ $0.tag == 2 }).forEach({ $0.alpha = 1.0 })
+            self.valuesCollection.filter({ $0.tag == 2 }).forEach({ $0.alpha = 1.0 })
+        })
+
         self.handlerSubscriptionsCountButtonTapped!()
     }
 }

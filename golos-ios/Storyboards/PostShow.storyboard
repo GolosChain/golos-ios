@@ -19,24 +19,24 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7f0-ZC-o8d">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="552"/>
                                 <subviews>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BtF-Gk-D12" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="52" width="375" height="348.5"/>
+                                        <rect key="frame" x="0.0" y="52" width="375" height="338.5"/>
                                         <subviews>
                                             <stackView contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="hj6-Ie-c5P" userLabel="Comments Stack View">
-                                                <rect key="frame" x="14" y="348.5" width="345" height="0.0"/>
+                                                <rect key="frame" x="14" y="338.5" width="345" height="0.0"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" identifier="commentsStackViewHeightConstraint" id="i0s-JR-gEA"/>
                                                 </constraints>
                                             </stackView>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dZE-L5-SIs" userLabel="Hide View">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="278.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="268.5"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nt5-Bc-nF3" userLabel="Comments Control View">
-                                                <rect key="frame" x="0.0" y="278.5" width="375" height="70"/>
+                                                <rect key="frame" x="0.0" y="268.5" width="375" height="70"/>
                                                 <subviews>
                                                     <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comments Noun" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dVT-lc-meT" userLabel="Comments Title Label">
                                                         <rect key="frame" x="16" y="15" width="129" height="20.5"/>
@@ -141,14 +141,14 @@
                                                 </constraints>
                                             </stackView>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tHL-Id-QDj" userLabel="Top Background Gray View">
-                                                <rect key="frame" x="0.0" y="178.5" width="375" height="10"/>
+                                                <rect key="frame" x="0.0" y="178.5" width="375" height="5"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="10" identifier="topBackgroundGrayViewHeightConstraint" id="1Sx-7f-Mvj"/>
+                                                    <constraint firstAttribute="height" constant="5" identifier="topBackgroundGrayViewHeightConstraint" id="1Sx-7f-Mvj"/>
                                                 </constraints>
                                             </view>
                                             <stackView contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="hL9-He-JpB" userLabel="Subscribes Stack View">
-                                                <rect key="frame" x="0.0" y="188.5" width="375" height="80"/>
+                                                <rect key="frame" x="0.0" y="183.5" width="375" height="80"/>
                                                 <subviews>
                                                     <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QZ1-ab-xUw" userLabel="Subscribe Topic View">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="0.0"/>
@@ -299,21 +299,21 @@
                                                 </constraints>
                                             </stackView>
                                             <activityIndicatorView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="3Lz-nN-lGc">
-                                                <rect key="frame" x="301.5" y="218.5" width="20" height="20"/>
+                                                <rect key="frame" x="301.5" y="213.5" width="20" height="20"/>
                                                 <color key="color" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                             </activityIndicatorView>
                                             <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VyW-ed-xji" userLabel="User Profile Image Button">
-                                                <rect key="frame" x="0.0" y="188.5" width="254" height="80"/>
+                                                <rect key="frame" x="0.0" y="183.5" width="254" height="80"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <connections>
                                                     <action selector="userProfileImageButtonTapped:" destination="EfY-4r-YFi" eventType="touchUpInside" id="Dkc-eE-c5l"/>
                                                 </connections>
                                             </button>
                                             <view clipsSubviews="YES" tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tqm-aY-SVr" userLabel="Bottom Background Gray View">
-                                                <rect key="frame" x="0.0" y="268.5" width="375" height="10"/>
+                                                <rect key="frame" x="0.0" y="263.5" width="375" height="5"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="10" identifier="bottomBackgroundGrayViewHeightConstraint" id="5i8-Ig-cw7"/>
+                                                    <constraint firstAttribute="height" constant="5" identifier="bottomBackgroundGrayViewHeightConstraint" id="5i8-Ig-cw7"/>
                                                 </constraints>
                                             </view>
                                             <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="260" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zPm-d9-LiX" userLabel="Title Label">
@@ -655,6 +655,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="UNP-hf-cFI" firstAttribute="bottom" secondItem="7PU-1s-EvT" secondAttribute="bottom" id="8Yf-FI-9bX"/>
+                            <constraint firstItem="TmK-sy-43l" firstAttribute="top" secondItem="7f0-ZC-o8d" secondAttribute="bottom" id="9om-0c-AsV"/>
                             <constraint firstItem="7PU-1s-EvT" firstAttribute="leading" secondItem="AJS-P4-Hkt" secondAttribute="leading" id="HgG-Ra-Ncs"/>
                             <constraint firstItem="7Js-bQ-ZpY" firstAttribute="height" secondItem="AJS-P4-Hkt" secondAttribute="height" multiplier="64:623" id="Lx4-fU-huY"/>
                             <constraint firstItem="ZkM-23-awk" firstAttribute="leading" secondItem="UNP-hf-cFI" secondAttribute="leading" id="NJu-wh-mfP"/>
@@ -674,7 +675,6 @@
                             <constraint firstItem="7PU-1s-EvT" firstAttribute="height" secondItem="AJS-P4-Hkt" secondAttribute="height" multiplier="50:667" id="mLe-pT-Xg2"/>
                             <constraint firstItem="UNP-hf-cFI" firstAttribute="trailing" secondItem="7Js-bQ-ZpY" secondAttribute="trailing" id="rVy-r2-yrE"/>
                             <constraint firstItem="7Js-bQ-ZpY" firstAttribute="height" secondItem="AJS-P4-Hkt" secondAttribute="height" multiplier="44:375" id="t0C-19-mbS"/>
-                            <constraint firstItem="UNP-hf-cFI" firstAttribute="bottom" secondItem="7f0-ZC-o8d" secondAttribute="bottom" id="tFP-px-vz4"/>
                             <constraint firstItem="ZkM-23-awk" firstAttribute="top" secondItem="7Js-bQ-ZpY" secondAttribute="bottom" constant="-1" id="xPp-Ym-QMO"/>
                             <constraint firstItem="NB0-PC-C9r" firstAttribute="top" secondItem="ZkM-23-awk" secondAttribute="bottom" constant="16" id="yVe-xd-hGk"/>
                         </constraints>
@@ -779,7 +779,6 @@
                         <outletCollection property="widthsCollection" destination="pdk-dM-cga" collectionClass="NSMutableArray" id="qe7-Z4-gyj"/>
                         <outletCollection property="circleImagesCollection" destination="brE-kk-Xo3" collectionClass="NSMutableArray" id="yGd-Pu-Qa1"/>
                         <outletCollection property="circleImagesCollection" destination="ZH2-hK-oIK" collectionClass="NSMutableArray" id="eT9-9p-i4P"/>
-                        <outletCollection property="heightsCollection" destination="tFP-px-vz4" collectionClass="NSMutableArray" id="dZZ-4X-beo"/>
                         <outletCollection property="widthsCollection" destination="jyC-Fr-RtI" collectionClass="NSMutableArray" id="n2A-VZ-Xza"/>
                         <outletCollection property="widthsCollection" destination="x5d-ES-U9B" collectionClass="NSMutableArray" id="ZOp-jY-JpF"/>
                         <outletCollection property="heightsCollection" destination="dhc-wp-wmh" collectionClass="NSMutableArray" id="jG4-kQ-kl3"/>

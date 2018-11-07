@@ -687,7 +687,7 @@ class PostShowViewController: GSBaseViewController {
                             let bottomViewFrame = self.backgroundGrayViewsCollection.first(where: { $0.tag == 1 })!.frame
 
                             guard self.comments != nil else {
-                                self.scrollView.contentOffset.y = (self.commentsStackView.frame.maxY > self.view.frame.height) ? (64.0 + self.commentsStackView.frame.maxY - self.view.frame.height) : 0.0
+                                self.scrollView.contentOffset.y = (self.commentsStackView.frame.maxY > self.view.frame.height) ? (64.0 + self.commentsStackView.frame.maxY - self.view.frame.height + self.createNewCommentView.frame.height) : self.createNewCommentView.frame.height
                                 
                                 return
                             }
@@ -787,7 +787,9 @@ class PostShowViewController: GSBaseViewController {
     }
 
     @IBAction func likeCountButtonTapped(_ sender: UIButton) {
-        self.router?.routeToActiveVotersShowScene(asPost: true, withMode: .like)
+        DispatchQueue.main.async {
+            self.router?.routeToActiveVotersShowScene(asPost: true, withMode: .like)
+        }
     }
     
     @IBAction func dislikeButtonTapped(_ sender: UIButton) {
@@ -809,7 +811,9 @@ class PostShowViewController: GSBaseViewController {
     }
     
     @IBAction func dislikeCountButtonTapped(_ sender: UIButton) {
-        self.router?.routeToActiveVotersShowScene(asPost: true, withMode: .dislike)
+        DispatchQueue.main.async {
+            self.router?.routeToActiveVotersShowScene(asPost: true, withMode: .dislike)
+        }
     }
     
     @IBAction func repostButtonTapped(_ sender: UIButton) {
@@ -819,8 +823,10 @@ class PostShowViewController: GSBaseViewController {
     @IBAction func commentsButtonTapped(_ sender: UIButton) {
         guard self.isCurrentOperationPossible() else { return }
 
-        self.router?.routeToPostCreateScene(withType: .createComment)
-        self.insertedRow = self.comments?.count ?? 0
+        DispatchQueue.main.async {
+            self.router?.routeToPostCreateScene(withType: .createComment)
+            self.insertedRow = self.comments?.count ?? 0
+        }
     }
 
     @IBAction func promoteButtonTapped(_ sender: UIButton) {
@@ -1031,7 +1037,12 @@ extension PostShowViewController: PostShowDisplayLogic {
 extension PostShowViewController {
     func loadPostContent() {
         self.loadPostContentWorkItem = DispatchWorkItem {
-            self.gsTimer = GSTimer(operationName: "Load Post content...")
+            self.gsTimer = GSTimer(operationName: "Load Post content...", time: 100.0, completion: { [weak self] success in
+                if success && !(self?.loadPostContentWorkItem.isCancelled)! {
+                    self?.loadPostContentWorkItem.cancel()
+                    self?.loadPostContent()
+                }
+            })
             
             // Load Post
             let contentRequestModel = PostShowModels.Post.RequestModel()
@@ -1050,6 +1061,14 @@ extension PostShowViewController {
         Logger.log(message: "Success", event: .severe)
         
         self.loadPostCommentsWorkItem = DispatchWorkItem {
+            self.gsTimer = GSTimer(operationName: "Load Post Comments content...", time: Double((self.router?.dataStore?.comment?.activeVotesCount ?? 0) * 10), completion: { [weak self] success in
+                if success && !(self?.loadPostCommentsWorkItem.isCancelled)! {
+                    self?.loadPostCommentsWorkItem.cancel()
+                    self?.loadPostComments()
+                }
+            })
+
+            // Load Post Comments
             let contentRepliesRequestModel = PostShowModels.Post.RequestModel()
             self.interactor?.loadPostComments(withRequestModel: contentRepliesRequestModel)
         }
@@ -1218,8 +1237,10 @@ extension PostShowViewController {
                     }
 
                     commentView.handlerLikeCountButtonTapped                        =   { [weak self] postShortInfo in
-                        self?.interactor?.save(comment: postShortInfo)
-                        self?.router?.routeToActiveVotersShowScene(asPost: false, withMode: .like)
+                        DispatchQueue.main.async(execute: {
+                            self?.interactor?.save(comment: postShortInfo)
+                            self?.router?.routeToActiveVotersShowScene(asPost: false, withMode: .like)
+                        })
                     }
                         
                     commentView.handlerDislikeButtonTapped                          =   { [weak self] (isDislike, postShortInfo) in
@@ -1241,8 +1262,10 @@ extension PostShowViewController {
                     }
                     
                     commentView.handlerDislikeCountButtonTapped                     =   { [weak self] postShortInfo in
-                        self?.interactor?.save(comment: postShortInfo)
-                        self?.router?.routeToActiveVotersShowScene(asPost: false, withMode: .dislike)
+                        DispatchQueue.main.async(execute: {
+                            self?.interactor?.save(comment: postShortInfo)
+                            self?.router?.routeToActiveVotersShowScene(asPost: false, withMode: .dislike)
+                        })
                     }
                     
                     commentView.handlerUsersButtonTapped                            =   { [weak self] in

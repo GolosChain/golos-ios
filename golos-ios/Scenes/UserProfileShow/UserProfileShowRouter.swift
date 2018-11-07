@@ -170,6 +170,7 @@ class UserProfileShowRouter: NSObject, UserProfileShowRoutingLogic, UserProfileS
         destination.itemID                  =   source.selectedBlog!.id
         destination.permlink                =   source.selectedBlog!.permlink
         destination.authorNickName          =   source.selectedBlog!.author
+        destination.votersCount             =   source.selectedBlog!.activeVotesCount
     }
 
     func passDataToUserFollowersShowScene(source: UserProfileShowDataStore, destination: inout UserFollowersShowDataStore, sceneMode: UserFollowerMode) {

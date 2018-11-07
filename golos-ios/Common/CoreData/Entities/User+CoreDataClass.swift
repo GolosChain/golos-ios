@@ -136,7 +136,8 @@ public class User: NSManagedObject, CachedImageFrom {
     }
 
     func setIsAuthorized(_ value: Bool) {
-        self.isAuthorized = value
+        self.isAuthorized       =   value
+        self.isAmplitudeUnique  =   true
         self.save()
     }
     
@@ -179,7 +180,7 @@ public class User: NSManagedObject, CachedImageFrom {
         CoreDataManager.instance.deleteEntities(withName: "ActiveVote", andPredicateParameters: nil, completion: { _ in })
         CoreDataManager.instance.deleteEntities(withName: "ImageCached", andPredicateParameters: nil, completion: { _ in })
         CoreDataManager.instance.deleteEntities(withName: "Lenta", andPredicateParameters: nil, completion: { _ in })
-        CoreDataManager.instance.deleteEntities(withName: "User", andPredicateParameters: NSPredicate(format: "isAuthorized == 0"), completion: { _ in })
+        CoreDataManager.instance.deleteEntities(withName: "User", andPredicateParameters: NSPredicate(format: "isAuthorized == 0 AND isAmplitudeUnique == false"), completion: { _ in })
         
         self.clearCache(atLastWeek: false)
     }

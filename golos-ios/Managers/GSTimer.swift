@@ -14,12 +14,29 @@ class GSTimer {
     var endTime: CFAbsoluteTime?
     let startTime: CFAbsoluteTime
     let operationName: String
-
+    var operationTimer: Timer?
+    
     
     // MARK: - Class Initialization
-    init(operationName: String = "Test operation") {
+    init(operationName: String = "Test operation", time: Double = 0.0, completion: @escaping (Bool) -> Void) {
         self.startTime      =   CFAbsoluteTimeGetCurrent()
         self.operationName  =   operationName
+        
+        if time != 0.0 {
+            if #available(iOS 10.0, *) {
+                self.operationTimer = Timer.scheduledTimer(withTimeInterval: time, repeats: false, block: { _ in
+                    completion(true)
+                })
+            }
+            
+            else {
+                // Fallback on earlier versions
+            }
+        }
+        
+        else {
+            completion(false)
+        }
     }
 
     deinit {
@@ -29,7 +46,8 @@ class GSTimer {
 
     // MARK: - Custom Functions
     func stop() {
-        endTime = CFAbsoluteTimeGetCurrent()
+        self.endTime = CFAbsoluteTimeGetCurrent()
+        self.operationTimer?.invalidate()
         
         Logger.log(message: "The operation \(self.operationName) took \(duration) seconds", event: .verbose)
     }

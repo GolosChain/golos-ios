@@ -302,8 +302,10 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
                 }
                 
                 activeVC.handlerLikeCountButtonTapped               =   { [weak self] postShortInfo in
-                    self?.interactor?.save(postShortInfo: postShortInfo)
-                    self?.router?.routeToActiveVotersShowScene(withMode: .like)
+                    DispatchQueue.main.async {
+                        self?.interactor?.save(postShortInfo: postShortInfo)
+                        self?.router?.routeToActiveVotersShowScene(withMode: .like)
+                    }
                 }
                 
                 activeVC.handlerDislikeButtonTapped                 =   { [weak self] (isDislike, postShortInfo) in
@@ -327,8 +329,10 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
                 }
                 
                 activeVC.handlerDislikeCountButtonTapped            =   { [weak self] postShortInfo in
-                    self?.interactor?.save(postShortInfo: postShortInfo)
-                    self?.router?.routeToActiveVotersShowScene(withMode: .dislike)
+                    DispatchQueue.main.async {
+                        self?.interactor?.save(postShortInfo: postShortInfo)
+                        self?.router?.routeToActiveVotersShowScene(withMode: .dislike)
+                    }
                 }
                 
                 activeVC.handlerCommentsButtonTapped                =   { [weak self] postShortInfo in

@@ -113,5 +113,6 @@ class PostShowRouter: NSObject, PostShowRoutingLogic, PostShowDataPassing {
         destination.itemID                  =   asPost ? source.postShortInfo!.id : source.comment!.id
         destination.permlink                =   asPost ? source.postShortInfo!.permlink : source.comment!.permlink
         destination.authorNickName          =   asPost ? source.postShortInfo!.author : source.comment!.author
+        destination.votersCount             =   asPost ? source.postShortInfo?.activeVotesCount : source.comment?.activeVotesCount
     }
 }

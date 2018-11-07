@@ -19,10 +19,11 @@ struct PostShortInfo {
     let indexPath: IndexPath?
     let parentAuthor: String?
     let parentPermlink: String?
+    let activeVotesCount: Int64
     
     
     // MARK: - Class Initialization
-    init(id: Int64? = nil, title: String? = nil, author: String? = nil, permlink: String? = nil, parentTag: String? = nil, indexPath: IndexPath? = nil, parentAuthor: String? = nil, parentPermlink: String? = nil) {
+    init(id: Int64? = nil, title: String? = nil, author: String? = nil, permlink: String? = nil, parentTag: String? = nil, indexPath: IndexPath? = nil, parentAuthor: String? = nil, parentPermlink: String? = nil, activeVotes: Int64 = 0) {
         self.id                 =   id
         self.title              =   title
         self.author             =   author
@@ -31,5 +32,6 @@ struct PostShortInfo {
         self.indexPath          =   indexPath
         self.parentAuthor       =   parentAuthor
         self.parentPermlink     =   parentPermlink
+        self.activeVotesCount   =   activeVotes
     }
 }

@@ -26,6 +26,7 @@ class ActiveVotersShowViewController: GSBaseViewController {
     var voters: [Voter]                 =   [Voter]()
     var selectedVoterInRow: Int         =   0
 
+    var gsTimer: GSTimer?
     var loadVotersWorkItem: DispatchWorkItem!
 
     var interactor: ActiveVotersShowBusinessLogic?
@@ -124,6 +125,9 @@ class ActiveVotersShowViewController: GSBaseViewController {
         if let votersWorkItem = self.loadVotersWorkItem, !votersWorkItem.isCancelled {
             votersWorkItem.cancel()
         }
+        
+        self.gsTimer                =   nil
+        self.loadVotersWorkItem     =   nil
     }
 
     
@@ -184,6 +188,13 @@ extension ActiveVotersShowViewController {
     func loadActiveVoters() {
         // Load Voters
         self.loadVotersWorkItem = DispatchWorkItem {
+            self.gsTimer = GSTimer(operationName: "Load Users Voted list...", time: Double((self.router?.dataStore?.votersCount ?? 0) * 10), completion: { [weak self] success in
+                if success {
+                    self?.loadVotersWorkItem.cancel()
+                    self?.loadActiveVoters()
+                }
+            })
+
             let usersVotedRequestModel = ActiveVotersShowModels.Item.RequestModel()
             self.interactor?.loadActiveVoters(withRequestModel: usersVotedRequestModel)
         }
@@ -202,6 +213,7 @@ extension ActiveVotersShowViewController {
             
             self.tableView.reloadData()
             self.view.hideSkeleton()
+            self.gsTimer?.stop()
         }
         
         else {
@@ -287,7 +299,7 @@ extension ActiveVotersShowViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = CommentHeaderView.init(frame: CGRect(origin: .zero, size: CGSize(width: tableView.frame.width, height: 48.0)))
-        headerView.set(mode: .footer)
+        headerView.set(mode: .header)
         
         return headerView
     }

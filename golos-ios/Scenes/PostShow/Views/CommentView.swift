@@ -153,14 +153,15 @@ class CommentView: UIView, HandlersCellSupport {
     }
     
     func setupUI(withComment comment: Comment, forRow row: Int) {
-        self.postShortInfo = PostShortInfo(id:               comment.id,
-                                           title:            comment.body.substring(withCharactersCount: 120),
-                                           author:           comment.author,
-                                           permlink:         comment.permlink,
-                                           parentTag:        comment.tags?.first,
-                                           indexPath:        IndexPath(row: row, section: 0),
-                                           parentAuthor:     comment.parentAuthor,
-                                           parentPermlink:   comment.parentPermlink)
+        self.postShortInfo = PostShortInfo(id:                  comment.id,
+                                           title:               comment.body.substring(withCharactersCount: 120),
+                                           author:              comment.author,
+                                           permlink:            comment.permlink,
+                                           parentTag:           comment.tags?.first,
+                                           indexPath:           IndexPath(row: row, section: 0),
+                                           parentAuthor:        comment.parentAuthor,
+                                           parentPermlink:      comment.parentPermlink,
+                                           activeVotes:         comment.likeCount)
         
         self.created    =   comment.created
         self.treeIndex  =   row

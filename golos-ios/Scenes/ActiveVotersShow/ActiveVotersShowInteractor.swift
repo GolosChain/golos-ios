@@ -22,6 +22,7 @@ protocol ActiveVotersShowBusinessLogic {
 protocol ActiveVotersShowDataStore {
     var itemID: Int64! { get set }
     var permlink: String! { get set }
+    var votersCount: Int64! { get set }
     var authorNickName: String! { get set }
     var activeVoterMode: ActiveVoterMode! { get set }
 }
@@ -38,6 +39,7 @@ class ActiveVotersShowInteractor: ActiveVotersShowBusinessLogic, ActiveVotersSho
     // UsersVoteShowDataStore protocol implementation
     var itemID: Int64!
     var permlink: String!
+    var votersCount: Int64!
     var authorNickName: String!
     var activeVoterMode: ActiveVoterMode!
 

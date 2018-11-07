@@ -38,6 +38,8 @@ extension User {
     @NSManaged public var followingCount: Int64
     @NSManaged public var followingLimit: Int64
 
+    @NSManaged public var isAmplitudeUnique: Bool
+    
     @NSManaged public var owner: UserSecretOwnerKey?
     @NSManaged public var active: UserSecretActiveKey?
     @NSManaged public var posting: UserSecretPostingKey?

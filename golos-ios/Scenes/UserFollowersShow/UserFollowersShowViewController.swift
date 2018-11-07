@@ -31,6 +31,7 @@ class UserFollowersShowViewController: GSBaseViewController {
     var interactor: UserFollowersShowBusinessLogic?
     var router: (NSObjectProtocol & UserFollowersShowRoutingLogic & UserFollowersShowDataPassing)?
     
+    var gsTimer: GSTimer?
     var loadDataWorkItem: DispatchWorkItem!
 
     
@@ -110,7 +111,7 @@ class UserFollowersShowViewController: GSBaseViewController {
         self.view.showSkeleton(usingColor: UIColor.clouds)
         
         // API
-//        self.loadDataSource()
+        self.loadDataSource()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -130,6 +131,9 @@ class UserFollowersShowViewController: GSBaseViewController {
         if let dataWorkItem = self.loadDataWorkItem, !dataWorkItem.isCancelled {
             dataWorkItem.cancel()
         }
+        
+        self.gsTimer                =   nil
+        self.loadDataWorkItem       =   nil
     }
 
     
@@ -200,6 +204,13 @@ extension UserFollowersShowViewController {
         }
 
         self.loadDataWorkItem = DispatchWorkItem {
+            self.gsTimer = GSTimer(operationName: "Load Followers list...", time: Double((self.router?.dataStore?.totalItems ?? 0) * 10), completion: { [weak self] success in
+                if success && !(self?.loadDataWorkItem.isCancelled)! {
+                    self?.loadDataWorkItem.cancel()
+                    self?.loadDataSource()
+                }
+            })
+
             let followersRequestModel = UserFollowersShowModels.Item.RequestModel()
             self.interactor?.loadFollowers(withRequestModel: followersRequestModel)
         }
@@ -232,6 +243,7 @@ extension UserFollowersShowViewController {
             dataStore.paginationPage += 1
             self.view.hideSkeleton()
             self.isFetchInProgress = false
+            self.gsTimer?.stop()
         }
     }
 }

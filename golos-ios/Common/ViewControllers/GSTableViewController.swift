@@ -422,66 +422,71 @@ extension GSTableViewController: UITableViewDataSource {
             (cell as! PostFeedTableViewCell).handlerLikeButtonTapped        =   { [weak self] (isLike, postShortInfo) in
                 let model = self?.fetchedResultsController.object(at: postShortInfo.indexPath!) as! PostCellSupport
 
-                self?.handlerLikeButtonTapped!(isLike, PostShortInfo(id:                model.id,
-                                                                     title:             model.title,
-                                                                     author:            model.author,
-                                                                     permlink:          model.permlink,
-                                                                     parentTag:         model.tags?.first,
-                                                                     indexPath:         postShortInfo.indexPath,
-                                                                     parentAuthor:      model.parentAuthor,
-                                                                     parentPermlink:    model.parentPermlink))
+                self?.handlerLikeButtonTapped!(isLike, PostShortInfo(id:                        model.id,
+                                                                     title:                     model.title,
+                                                                     author:                    model.author,
+                                                                     permlink:                  model.permlink,
+                                                                     parentTag:                 model.tags?.first,
+                                                                     indexPath:                 postShortInfo.indexPath,
+                                                                     parentAuthor:              model.parentAuthor,
+                                                                     parentPermlink:            model.parentPermlink,
+                                                                     activeVotes:               model.likeCount))
             }
 
             (cell as! PostFeedTableViewCell).handlerLikeCountButtonTapped   =   { [weak self] postShortInfo in
                 let model = self?.fetchedResultsController.object(at: postShortInfo.indexPath!) as! PostCellSupport
                 
-                self?.handlerLikeCountButtonTapped!(PostShortInfo(id:                model.id,
-                                                                  title:             model.title,
-                                                                  author:            model.author,
-                                                                  permlink:          model.permlink,
-                                                                  parentTag:         model.tags?.first,
-                                                                  indexPath:         postShortInfo.indexPath,
-                                                                  parentAuthor:      model.parentAuthor,
-                                                                  parentPermlink:    model.parentPermlink))
+                self?.handlerLikeCountButtonTapped!(PostShortInfo(id:                           model.id,
+                                                                  title:                        model.title,
+                                                                  author:                       model.author,
+                                                                  permlink:                     model.permlink,
+                                                                  parentTag:                    model.tags?.first,
+                                                                  indexPath:                    postShortInfo.indexPath,
+                                                                  parentAuthor:                 model.parentAuthor,
+                                                                  parentPermlink:               model.parentPermlink,
+                                                                  activeVotes:                  model.likeCount))
             }
 
             (cell as! PostFeedTableViewCell).handlerDislikeButtonTapped     =   { [weak self] (isDislike, postShortInfo) in
                 let model = self?.fetchedResultsController.object(at: postShortInfo.indexPath!) as! PostCellSupport
                 
-                self?.handlerDislikeButtonTapped!(isDislike, PostShortInfo(id:                model.id,
-                                                                           title:             model.title,
-                                                                           author:            model.author,
-                                                                           permlink:          model.permlink,
-                                                                           parentTag:         model.tags?.first,
-                                                                           indexPath:         postShortInfo.indexPath,
-                                                                           parentAuthor:      model.parentAuthor,
-                                                                           parentPermlink:    model.parentPermlink))
+                self?.handlerDislikeButtonTapped!(isDislike, PostShortInfo(id:                  model.id,
+                                                                           title:               model.title,
+                                                                           author:              model.author,
+                                                                           permlink:            model.permlink,
+                                                                           parentTag:           model.tags?.first,
+                                                                           indexPath:           postShortInfo.indexPath,
+                                                                           parentAuthor:        model.parentAuthor,
+                                                                           parentPermlink:      model.parentPermlink,
+                                                                           activeVotes:         model.likeCount))
             }
             
             (cell as! PostFeedTableViewCell).handlerDislikeCountButtonTapped =   { [weak self] postShortInfo in
                 let model = self?.fetchedResultsController.object(at: postShortInfo.indexPath!) as! PostCellSupport
                 
-                self?.handlerDislikeCountButtonTapped!(PostShortInfo(id:                model.id,
-                                                                     title:             model.title,
-                                                                     author:            model.author,
-                                                                     permlink:          model.permlink,
-                                                                     parentTag:         model.tags?.first,
-                                                                     indexPath:         postShortInfo.indexPath,
-                                                                     parentAuthor:      model.parentAuthor,
-                                                                     parentPermlink:    model.parentPermlink))
+                self?.handlerDislikeCountButtonTapped!(PostShortInfo(id:                        model.id,
+                                                                     title:                     model.title,
+                                                                     author:                    model.author,
+                                                                     permlink:                  model.permlink,
+                                                                     parentTag:                 model.tags?.first,
+                                                                     indexPath:                 postShortInfo.indexPath,
+                                                                     parentAuthor:              model.parentAuthor,
+                                                                     parentPermlink:            model.parentPermlink,
+                                                                     activeVotes:               model.likeCount))
             }
             
             (cell as! PostFeedTableViewCell).handlerCommentsButtonTapped    =   { [weak self] postShortInfo in
                 let model = self?.postsList![indexPath.row] as! PostCellSupport
 
-                self?.handlerCommentsButtonTapped!(PostShortInfo(id:                model.id,
-                                                                 title:             model.title,
-                                                                 author:            model.author,
-                                                                 permlink:          model.permlink,
-                                                                 parentTag:         model.tags?.first,
-                                                                 indexPath:         postShortInfo.indexPath,
-                                                                 parentAuthor:      model.parentAuthor,
-                                                                 parentPermlink:    model.parentPermlink))
+                self?.handlerCommentsButtonTapped!(PostShortInfo(id:                            model.id,
+                                                                 title:                         model.title,
+                                                                 author:                        model.author,
+                                                                 permlink:                      model.permlink,
+                                                                 parentTag:                     model.tags?.first,
+                                                                 indexPath:                     postShortInfo.indexPath,
+                                                                 parentAuthor:                  model.parentAuthor,
+                                                                 parentPermlink:                model.parentPermlink,
+                                                                 activeVotes:                   model.likeCount))
             }
 
             (cell as! PostFeedTableViewCell).handlerAuthorPostSelected      =   { [weak self] userName in
@@ -530,7 +535,8 @@ extension GSTableViewController: UITableViewDelegate {
                                                   parentTag:        model.tags?.first,
                                                   indexPath:        indexPath,
                                                   parentAuthor:     model.parentAuthor,
-                                                  parentPermlink:   model.parentPermlink))
+                                                  parentPermlink:   model.parentPermlink,
+                                                  activeVotes:      model.likeCount))
         }
     }
 }

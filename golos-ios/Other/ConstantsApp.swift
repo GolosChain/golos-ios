@@ -45,7 +45,7 @@ let fcm                                 =   FCManager.init(withTopics: ["msm72",
 
 
 // Amplitude exclusion list
-let amplitudeExclusionList              =   ["joseph.kalu", "destroyer2k", "nick.lick"]
+let amplitudeExclusionList              =   ["joseph.kalu", "destroyer2k", "nick.lick", "qwe-rty", "piypiy", "satsat", "lol-lol", "d333", "wewe1", "zxcvbn"]
 
 
 // Operation values

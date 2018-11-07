@@ -393,6 +393,7 @@
         <attribute name="followingLimit" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="gender" optional="YES" attributeType="String" defaultValueString="male" syncable="YES"/>
         <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="isAmplitudeUnique" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="isAuthorized" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="json_metadata" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="memoKey" optional="YES" attributeType="String" syncable="YES"/>
@@ -478,7 +479,7 @@
         <element name="Promo" positionX="-459" positionY="-81" width="128" height="540"/>
         <element name="Reply" positionX="-450" positionY="-72" width="128" height="540"/>
         <element name="SettingNotification" positionX="-459" positionY="-81" width="128" height="75"/>
-        <element name="User" positionX="-666" positionY="-90" width="128" height="390"/>
+        <element name="User" positionX="-666" positionY="-90" width="128" height="405"/>
         <element name="UserSecretActiveKey" positionX="-459" positionY="-81" width="128" height="120"/>
         <element name="UserSecretOwnerKey" positionX="-243" positionY="-234" width="128" height="120"/>
         <element name="UserSecretPostingKey" positionX="-45" positionY="63" width="128" height="120"/>
