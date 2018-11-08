@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,13 +13,13 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PostFeedHeaderView" customModule="Golos" customModuleProvider="target">
             <connections>
                 <outlet property="authorNameButton" destination="8pZ-cO-uTP" id="dpt-bx-5sB"/>
-                <outlet property="authorNickNameButton" destination="BzT-BV-wEZ" id="JMM-1t-Pzj"/>
+                <outlet property="authorNickNameButton" destination="B3j-yy-G6R" id="Bdf-xP-yFG"/>
                 <outlet property="authorProfileImageView" destination="CDW-mc-LZt" id="BHJ-pP-QOR"/>
                 <outlet property="authorReputationLabel" destination="iEZ-ed-6NY" id="yOG-NP-eew"/>
                 <outlet property="categoryLabel" destination="aki-nt-sGv" id="PhE-AR-3qb"/>
                 <outlet property="contentView" destination="iN0-l3-epB" id="Ca9-eJ-HBY"/>
+                <outlet property="postAuthorNickNameButton" destination="BzT-BV-wEZ" id="2Jg-6v-Z03"/>
                 <outlet property="reblogIconButton" destination="l3V-N3-dZl" id="a8F-iy-kAi"/>
-                <outlet property="rebloggedAuthorButton" destination="B3j-yy-G6R" id="ffE-SK-KAb"/>
                 <outlet property="timeLabel" destination="e3S-GM-Rrf" id="bma-X1-uPQ"/>
                 <outlet property="timeLabelTopConstraint" destination="dvi-YH-ORh" id="CNf-IL-4zA"/>
                 <outletCollection property="heightsCollection" destination="dvi-YH-ORh" collectionClass="NSMutableArray" id="AkW-29-IWX"/>
@@ -85,7 +85,7 @@
                         <action selector="authorProfileButtonTapped:" destination="-1" eventType="touchUpInside" id="knC-GP-H5p"/>
                     </connections>
                 </button>
-                <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8pZ-cO-uTP" userLabel="Author Full Name Button">
+                <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8pZ-cO-uTP" userLabel="Author Name Button">
                     <rect key="frame" x="52" y="11" width="75" height="15"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
@@ -129,34 +129,34 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <stackView contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="KYh-S4-SUA" userLabel="Reblog Stack View">
-                    <rect key="frame" x="52" y="27" width="183" height="15"/>
+                    <rect key="frame" x="52" y="27" width="219" height="15"/>
                     <subviews>
-                        <button clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B3j-yy-G6R" userLabel="Reblogged Author Nick Name Button">
-                            <rect key="frame" x="0.0" y="0.0" width="100" height="15"/>
+                        <button clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B3j-yy-G6R" userLabel="Author Nick Name Button">
+                            <rect key="frame" x="0.0" y="0.0" width="88" height="15"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                            <state key="normal" title="Reblog Author Name">
+                            <state key="normal" title="Author Nick Name">
                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                             <connections>
-                                <action selector="rebloggedAuthorNickNameButtonTapped:" destination="-1" eventType="touchUpInside" id="tow-3J-DDd"/>
+                                <action selector="authorProfileButtonTapped:" destination="-1" eventType="touchUpInside" id="vhy-IN-VNi"/>
                             </connections>
                         </button>
                         <button clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l3V-N3-dZl" userLabel="Reblog Icon Button">
-                            <rect key="frame" x="100" y="0.0" width="19" height="15"/>
+                            <rect key="frame" x="88" y="0.0" width="19" height="15"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <inset key="contentEdgeInsets" minX="5" minY="0.0" maxX="5" maxY="0.0"/>
                             <state key="normal" image="icon-cell-reblog"/>
                         </button>
                         <button clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="248" horizontalCompressionResistancePriority="748" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BzT-BV-wEZ" userLabel="Post Author Nick Name Button">
-                            <rect key="frame" x="119" y="0.0" width="64" height="15"/>
+                            <rect key="frame" x="107" y="0.0" width="112" height="15"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                            <state key="normal" title="Author Name">
+                            <state key="normal" title="Post Author Nick Name">
                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                             <connections>
-                                <action selector="authorProfileButtonTapped:" destination="-1" eventType="touchUpInside" id="axA-Qd-lYS"/>
+                                <action selector="postAuthorNickNameButtonTapped:" destination="-1" eventType="touchUpInside" id="bpU-HU-rOa"/>
                             </connections>
                         </button>
                     </subviews>

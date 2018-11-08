@@ -13,7 +13,7 @@ import GoloSwift
 class PostFeedHeaderView: UIView {
     // MARK: - Properties
     var handlerAuthorTapped: ((String) -> Void)?
-    var handlerReblogAuthorTapped: ((String) -> Void)?
+    var handlerPostAuthorTapped: ((String) -> Void)?
 
     
     // MARK: - IBOutlets
@@ -40,14 +40,14 @@ class PostFeedHeaderView: UIView {
         }
     }
     
-    @IBOutlet weak var rebloggedAuthorButton: UIButton! {
+    @IBOutlet weak var authorNickNameButton: UIButton! {
         didSet {
-            self.rebloggedAuthorButton.tune(withTitle:      "",
-                                            hexColors:      [darkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
-                                            font:           UIFont(name: "SFProDisplay-Regular", size: 10.0),
-                                            alignment:      .left)
+            self.authorNickNameButton.tune(withTitle:      "",
+                                           hexColors:      [darkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
+                                           font:           UIFont(name: "SFProDisplay-Regular", size: 10.0),
+                                           alignment:      .left)
             
-            self.rebloggedAuthorButton.isHidden = true
+            self.authorNickNameButton.isHidden = true
         }
     }
     
@@ -57,14 +57,14 @@ class PostFeedHeaderView: UIView {
         }
     }
     
-    @IBOutlet weak var authorNickNameButton: UIButton! {
+    @IBOutlet weak var postAuthorNickNameButton: UIButton! {
         didSet {
-            self.authorNickNameButton.tune(withTitle:      "",
-                                           hexColors:      [darkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
-                                           font:           UIFont(name: "SFProDisplay-Regular", size: 10.0),
-                                           alignment:      .left)
+            self.postAuthorNickNameButton.tune(withTitle:      "",
+                                               hexColors:      [darkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
+                                               font:           UIFont(name: "SFProDisplay-Regular", size: 10.0),
+                                               alignment:      .left)
             
-            self.authorNickNameButton.isHidden = false
+            self.postAuthorNickNameButton.isHidden = false
         }
     }
     
@@ -144,11 +144,13 @@ class PostFeedHeaderView: UIView {
     
     // MARK: - Custom Functions
     func display(post: PostCellSupport) {
+        let postAuthorNickName = post.rebloggedBy == nil ? post.author : post.rebloggedBy!.first!
+        
         self.clearValues()
         
         // Set User info
-        if let user = User.fetch(byNickName: post.author) {
-            self.authorNameButton.setTitle((user.name == "XXX" || user.name.isEmpty ? user.nickName : user.name).uppercaseFirst, for: .normal)
+        if let user = User.fetch(byNickName: postAuthorNickName) {
+            self.authorNameButton.setTitle(user.name.uppercaseFirst, for: .normal)
             
             self.timeLabel.text                 =   post.created.convertToTimeAgo()
             self.authorReputationLabel.text     =   String(format: "%i", user.reputation.convertWithLogarithm10())
@@ -162,7 +164,9 @@ class PostFeedHeaderView: UIView {
 
             if self.categoryLabel.frame.maxX >= (self.timeLabel.frame.minX - 10.0 * widthRatio) {
                 self.timeLabelTopConstraint.constant = 28.0 * heightRatio
-            } else {
+            }
+            
+            else {
                 self.timeLabelTopConstraint.constant = 11.0 * heightRatio
             }
             
@@ -175,47 +179,56 @@ class PostFeedHeaderView: UIView {
                                                         createdDate:    user.created.convert(toDateFormat: .expirationDateType),
                                                         fromItem:       (user as CachedImageFrom).fromItem,
                                                         completion:     { _ in })
-            } else {
+            }
+            
+            else {
                 self.authorProfileImageView.image = UIImage(named: "icon-user-profile-image-placeholder")
             }
             
             // Set reblogged user info (default isHidden = true)
-            self.reblogIconButton.isHidden      =   true
-            self.rebloggedAuthorButton.isHidden =   true
-            self.authorNickNameButton.isHidden  =   true
+            self.reblogIconButton.isHidden              =   true
+            self.postAuthorNickNameButton.isHidden      =   true
+            self.authorNickNameButton.isHidden          =   true
 
             self.authorNickNameButton.setTitle(user.nickName, for: .normal)
             
-            if let authorReblog = post.authorReblog, authorReblog != post.author {
-                self.setReblog(byAuthorName: authorReblog)
-            }
-            
-            else if let rebloggedBy = post.rebloggedBy, rebloggedBy.count > 0, let authorReblog = rebloggedBy.first {
-                self.setReblog(byAuthorName: authorReblog)
+            switch type(of: post) == Blog.self {
+            case true:
+                print("XXX")
+                
+            // Lenta and other
+            default:
+//                if let authorReblog = post.authorReblog, authorReblog != post.author {
+//                    self.setReblog(byAuthorNickName: authorReblog)
+//                }
+                
+                if let rebloggedBy = post.rebloggedBy, rebloggedBy.count > 0 {
+                    self.setReblog(byAuthorNickName: post.author)
+                }
             }
         }
     }
     
-    private func setReblog(byAuthorName nickName: String) {
-        self.reblogIconButton.isHidden          =   false
-        self.rebloggedAuthorButton.isHidden     =   false
-        self.authorNickNameButton.isHidden      =   false
+    private func setReblog(byAuthorNickName nickName: String) {
+        self.reblogIconButton.isHidden                  =   false
+        self.postAuthorNickNameButton.isHidden          =   false
+        self.authorNickNameButton.isHidden              =   false
         
-        self.rebloggedAuthorButton.setTitle(nickName, for: .normal)
+        self.postAuthorNickNameButton.setTitle(nickName, for: .normal)
     }
     
     private func clearValues() {
-        self.reblogIconButton.isHidden          =   true
-        self.rebloggedAuthorButton.isHidden     =   true
+        self.reblogIconButton.isHidden                  =   true
+        self.postAuthorNickNameButton.isHidden          =   true
         
-        self.timeLabel.text                     =   nil
-        self.categoryLabel.text                 =   nil
-        self.authorProfileImageView.image       =   nil
-        self.timeLabelTopConstraint.constant    =   11.0 * heightRatio
+        self.timeLabel.text                             =   nil
+        self.categoryLabel.text                         =   nil
+        self.authorProfileImageView.image               =   nil
+        self.timeLabelTopConstraint.constant            =   11.0 * heightRatio
 
         self.authorNameButton.setTitle(nil, for: .normal)
         self.authorNickNameButton.setTitle(nil, for: .normal)
-        self.rebloggedAuthorButton.setTitle(nil, for: .normal)
+        self.postAuthorNickNameButton.setTitle(nil, for: .normal)
     }
     
     
@@ -224,8 +237,8 @@ class PostFeedHeaderView: UIView {
         self.handlerAuthorTapped!(self.authorNickNameButton.titleLabel!.text!)
     }
     
-    @IBAction func rebloggedAuthorNickNameButtonTapped(_ sender: UIButton) {
-        self.handlerReblogAuthorTapped!(self.rebloggedAuthorButton.titleLabel!.text!)
+    @IBAction func postAuthorNickNameButtonTapped(_ sender: UIButton) {
+        self.handlerPostAuthorTapped!(self.postAuthorNickNameButton.titleLabel!.text!)
     }
 }
 

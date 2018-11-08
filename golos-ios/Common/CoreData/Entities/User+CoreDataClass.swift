@@ -73,8 +73,6 @@ public class User: NSManagedObject, CachedImageFrom {
     func updateEntity(fromResponseAPI responseAPI: Decodable) {
         if let userModel = responseAPI as? ResponseAPIUser {
             self.id             =   userModel.id
-            self.nickName       =   userModel.name
-            self.name           =   userModel.name
             self.postsCount     =   userModel.post_count
             self.json_metadata  =   userModel.json_metadata
             self.memoKey        =   userModel.memo_key
@@ -83,7 +81,11 @@ public class User: NSManagedObject, CachedImageFrom {
             self.canVote        =   userModel.can_vote
             self.commentCount   =   userModel.comment_count
             self.created        =   userModel.created
-            
+
+            // Set User full name as nickName
+            self.name           =   userModel.name
+            self.nickName       =   userModel.name
+
             // UserSecretPostingKey
             let userSecretKeyPostingEntity  =   UserSecretPostingKey.instance(byUserID: userModel.id)
             userSecretKeyPostingEntity.updateEntity(fromResponseAPI: userModel.posting)
@@ -151,6 +153,7 @@ public class User: NSManagedObject, CachedImageFrom {
             self.coverImageURL      =   profile["cover_image"] as? String
             self.selectTags         =   profile["select_tags"] as? [String]
             
+            // Modify User full name
             if let userName = profile["name"] as? String {
                 self.name = userName
             }

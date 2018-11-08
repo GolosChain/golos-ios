@@ -175,8 +175,12 @@ class RestAPIManager {
                                         }
                                     })
                                     
-                                    // Load authors info
-                                    loadUsersInfo(byNickNames: Array(Set(result.compactMap({ $0.author }))), completion: { errorAPI in
+                                    // Load post & reblog authors info
+                                    let reblogAuthors   =   result.filter({ $0.reblogged_by != nil }).compactMap({ $0.reblogged_by!.first })
+                                    var postAuthors     =   result.compactMap({ $0.author })
+                                    postAuthors.append(contentsOf: reblogAuthors)
+                                    
+                                    loadUsersInfo(byNickNames: postAuthors, completion: { errorAPI in
                                         completion(errorAPI)
                                     })
             },

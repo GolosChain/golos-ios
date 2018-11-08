@@ -131,7 +131,7 @@ class UserProfileHeaderView: PassthroughView {
     
     // MARK: - Custom Functions
     func updateUI(fromUserInfo userInfo: User) {
-        self.nameLabel.text = (userInfo.name == "XXX" || userInfo.name.isEmpty) ? userInfo.nickName : userInfo.name
+        self.nameLabel.text = userInfo.name
         
         // Set User Voice Power
         userInfo.voicePower(completion: { [weak self] voicePower in

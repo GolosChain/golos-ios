@@ -49,7 +49,7 @@ class PostFeedTableViewCell: UITableViewCell, HandlersCellSupport, PostCellLikeS
                 self?.handlerAuthorPostSelected!(userName)
             }
             
-            postFeedHeaderView.handlerReblogAuthorTapped    =   { [weak self] reblogAuthorName in
+            postFeedHeaderView.handlerPostAuthorTapped    =   { [weak self] reblogAuthorName in
                 self?.handlerAuthorPostSelected!(reblogAuthorName)
             }
         }
