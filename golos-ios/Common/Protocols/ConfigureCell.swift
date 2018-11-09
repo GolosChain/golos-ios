@@ -9,5 +9,5 @@
 import Foundation
 
 protocol ConfigureCell {
-    func setup(withItem item: Any?, andIndexPath indexPath: IndexPath)
+    func setup(withItem item: Any?, andIndexPath indexPath: IndexPath, blogEntry: BlogEntry?)
 }

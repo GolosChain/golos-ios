@@ -125,6 +125,38 @@ class RestAPIManager {
     }
 
     
+    /// Load list of Entries
+    class func loadUserBlogEntries(byNickName nickName: String, startPagination: UInt, completion: @escaping ([BlogEntry]?, ErrorAPI?) -> Void) {
+        // API 'get_blog_entries'
+        if isNetworkAvailable {
+            let methodAPIType = MethodAPIType.getUserBlogEntries(userNickName: nickName, startPagination: startPagination, pagination: loadDataLimit)
+            
+            broadcast.executeGET(byMethodAPIType: methodAPIType,
+                                 onResult: { responseAPIResult in
+//                                        Logger.log(message: "\nresponse API Result = \(responseAPIResult)\n", event: .debug)
+                                    
+                                    guard let result = (responseAPIResult as! ResponseAPIEntryResult).result, result.count > 0 else {
+                                        completion(nil, ErrorAPI.requestFailed(message: "List of blog entries is empty"))
+                                        return
+                                    }
+                                    
+                                    // CoreData: Update Entries entities
+                                    BlogEntry.updateEntity(fromResponseAPIResult: result)
+                                    completion(BlogEntry.loadEntries(byBlog: nickName), nil)
+            },
+                                 onError: { errorAPI in
+                                    Logger.log(message: "nresponse API Error = \(errorAPI.caseInfo.message)\n", event: .error)
+                                    completion(nil, errorAPI)
+            })
+        }
+            
+        // Offline mode
+        else {
+            completion(BlogEntry.loadEntries(byBlog: nickName), nil)
+        }
+    }
+    
+    
     /// Load list of PostFeed
     class func loadPostsFeed(byMethodAPIType methodAPIType: MethodAPIType, andPostFeedType postFeedType: PostsFeedType, completion: @escaping (ErrorAPI?) -> Void) {
         // API 'get_discussions_by_blog' & 'get_replies_by_last_update'

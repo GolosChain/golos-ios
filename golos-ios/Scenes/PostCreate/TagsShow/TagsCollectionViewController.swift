@@ -152,7 +152,7 @@ extension TagsCollectionViewController: UICollectionViewDataSource {
 
             // Configure the cell
             let item = self.tags[indexPath.row]
-            (cell as! ConfigureCell).setup(withItem: item, andIndexPath: indexPath)
+            (cell as! ConfigureCell).setup(withItem: item, andIndexPath: indexPath, blogEntry: nil)
             
             /// Handlers
             (cell as! ThemeTagCollectionViewCell).completionClearButton = { [weak self] isKeyboardShow in

@@ -76,7 +76,7 @@ class ThemeTagCollectionViewCell: UICollectionViewCell {
 
 // MARK: - ConfigureCell
 extension ThemeTagCollectionViewCell: ConfigureCell {
-    func setup(withItem item: Any?, andIndexPath indexPath: IndexPath) {
+    func setup(withItem item: Any?, andIndexPath indexPath: IndexPath, blogEntry: BlogEntry?) {
         if let tag = item as? Tag {
             self.textField.tag  = tag.id
             self.textField.text = tag.title

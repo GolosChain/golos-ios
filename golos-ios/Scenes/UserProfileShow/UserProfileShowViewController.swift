@@ -432,7 +432,7 @@ extension UserProfileShowViewController {
     private func fetchUserDetails() {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1, execute: {
             if let activeVC = self.containerView.activeVC {
-                activeVC.fetchPosts(byParameters: (author: self.router?.dataStore?.userNickName, postFeedType: self.postFeedTypes[self.selectedButton.tag], permlink: nil, sortBy: nil))
+                activeVC.fetchPosts(byParameters: (author: self.router?.dataStore?.userNickName, postFeedType: self.postFeedTypes[self.selectedButton.tag], permlink: nil, sortBy: nil, entries: self.router?.dataStore?.userBlogEntries))
                 
                 // Handler Pull Refresh/Infinite Scrolling data
                 activeVC.handlerPushRefreshData                     =   { [weak self] lastItem in

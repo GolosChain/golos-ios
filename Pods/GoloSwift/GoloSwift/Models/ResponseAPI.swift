@@ -464,3 +464,27 @@ public struct ResponseAPIVoter: Decodable {
     public let time: String
     public let reputation: Conflicted
 }
+
+
+// MARK: -
+public struct ResponseAPIEntryResult: Decodable {
+    // MARK: - In work
+    public let id: Int64
+    public let jsonrpc: String
+    public let result: [ResponseAPIEntry]?
+    public let error: ResponseAPIError?
+}
+
+
+// MARK: -
+public struct ResponseAPIEntry: Decodable {
+    // MARK: - In work
+    public let author: String
+    public let permlink: String
+    public let blog: String
+    public let reblog_on: String        // "1970-01-01T00:00:00"
+    public let entry_id: Int64
+    public let reblog_title: String?
+    public let reblog_body: String?
+    public let reblog_json_metadata: String?
+}

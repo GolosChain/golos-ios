@@ -143,17 +143,18 @@ class PostFeedHeaderView: UIView {
 
     
     // MARK: - Custom Functions
-    func display(post: PostCellSupport) {
-        let postAuthorNickName = post.rebloggedBy == nil ? post.author : post.rebloggedBy!.first!
-        
+    func display(post: PostCellSupport, entry: BlogEntry? = nil) {
+        let postAuthorNickName      =   entry == nil ? post.author : (entry!.author == entry!.blog ? entry!.author : entry!.blog)
+        let profileAuthorNickName   =   entry == nil ? post.author : entry!.author
+
         self.clearValues()
         
-        // Set User info
-        if let user = User.fetch(byNickName: postAuthorNickName) {
-            self.authorNameButton.setTitle(user.name.uppercaseFirst, for: .normal)
+        // Set User profile info
+        if let userProfile = User.fetch(byNickName: profileAuthorNickName) {
+            self.authorNameButton.setTitle(userProfile.name.uppercaseFirst, for: .normal)
             
             self.timeLabel.text                 =   post.created.convertToTimeAgo()
-            self.authorReputationLabel.text     =   String(format: "%i", user.reputation.convertWithLogarithm10())
+            self.authorReputationLabel.text     =   String(format: "%i", userProfile.reputation.convertWithLogarithm10())
             
             self.categoryLabel.text = post.category
                                         .transliteration(forPermlink: false)
@@ -170,14 +171,14 @@ class PostFeedHeaderView: UIView {
                 self.timeLabelTopConstraint.constant = 11.0 * heightRatio
             }
             
-            // Load User author profile image
-            if let userProfileImageURL = user.profileImageURL {
+            // Load User profile avatar image
+            if let userProfileImageURL = userProfile.profileImageURL {
                 self.authorProfileImageView.uploadImage(byStringPath:   userProfileImageURL,
                                                         imageType:      .userProfileImage,
                                                         size:           CGSize(width: 30.0, height: 30.0),
                                                         tags:           nil,
-                                                        createdDate:    user.created.convert(toDateFormat: .expirationDateType),
-                                                        fromItem:       (user as CachedImageFrom).fromItem,
+                                                        createdDate:    userProfile.created.convert(toDateFormat: .expirationDateType),
+                                                        fromItem:       (userProfile as CachedImageFrom).fromItem,
                                                         completion:     { _ in })
             }
             
@@ -185,31 +186,30 @@ class PostFeedHeaderView: UIView {
                 self.authorProfileImageView.image = UIImage(named: "icon-user-profile-image-placeholder")
             }
             
-            // Set reblogged user info (default isHidden = true)
-            self.reblogIconButton.isHidden              =   true
-            self.postAuthorNickNameButton.isHidden      =   true
-            self.authorNickNameButton.isHidden          =   true
+            // Set User author post info (default isHidden = true)
+            self.reblogIconButton.isHidden          =   true
+            self.postAuthorNickNameButton.isHidden  =   true
+            self.authorNickNameButton.isHidden      =   true
 
-            self.authorNickNameButton.setTitle(user.nickName, for: .normal)
+            self.authorNickNameButton.setTitle(profileAuthorNickName, for: .normal)
             
             switch type(of: post) == Blog.self {
+            // Blog
             case true:
-                print("XXX")
+                if profileAuthorNickName != postAuthorNickName {
+                    self.setPostAuthor(byNickName: postAuthorNickName)
+                }
                 
             // Lenta and other
             default:
-//                if let authorReblog = post.authorReblog, authorReblog != post.author {
-//                    self.setReblog(byAuthorNickName: authorReblog)
-//                }
-                
                 if let rebloggedBy = post.rebloggedBy, rebloggedBy.count > 0 {
-                    self.setReblog(byAuthorNickName: post.author)
+                    self.setPostAuthor(byNickName: rebloggedBy.first!)
                 }
             }
         }
     }
     
-    private func setReblog(byAuthorNickName nickName: String) {
+    private func setPostAuthor(byNickName nickName: String) {
         self.reblogIconButton.isHidden                  =   false
         self.postAuthorNickNameButton.isHidden          =   false
         self.authorNickNameButton.isHidden              =   false
@@ -233,7 +233,7 @@ class PostFeedHeaderView: UIView {
     
     
     // MARK: - Actions
-    @IBAction open func authorProfileButtonTapped(_ sender: UIButton) {
+    @IBAction open func profileAuthorButtonTapped(_ sender: UIButton) {
         self.handlerAuthorTapped!(self.authorNickNameButton.titleLabel!.text!)
     }
     

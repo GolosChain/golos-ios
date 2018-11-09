@@ -143,6 +143,8 @@
 		B18ECE9621898F6D008A3B84 /* UserCellSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18ECE9521898F6D008A3B84 /* UserCellSupport.swift */; };
 		B18ECE992189A11F008A3B84 /* Follower+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18ECE972189A11F008A3B84 /* Follower+CoreDataClass.swift */; };
 		B18ECE9A2189A11F008A3B84 /* Follower+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18ECE982189A11F008A3B84 /* Follower+CoreDataProperties.swift */; };
+		B194ECBF21946B5800369B2A /* BlogEntry+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B194ECBD21946B5800369B2A /* BlogEntry+CoreDataClass.swift */; };
+		B194ECC021946B5800369B2A /* BlogEntry+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B194ECBE21946B5800369B2A /* BlogEntry+CoreDataProperties.swift */; };
 		B1961953211C90D2001DF789 /* MarkdownViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1961952211C90D2001DF789 /* MarkdownViewManager.swift */; };
 		B198DB9120B9A21A008011A3 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B198DB9020B9A21A008011A3 /* UIColor+Extensions.swift */; };
 		B198DB9420B9C560008011A3 /* SFProDisplay-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = B198DB9320B9C560008011A3 /* SFProDisplay-Regular.otf */; };
@@ -438,6 +440,8 @@
 		B1918FF820B5421800F6CE63 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B1918FFA20B5421A00F6CE63 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B194891A20F744AA00BF45CF /* ForTests.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = ForTests.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		B194ECBD21946B5800369B2A /* BlogEntry+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BlogEntry+CoreDataClass.swift"; sourceTree = "<group>"; };
+		B194ECBE21946B5800369B2A /* BlogEntry+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BlogEntry+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		B1961952211C90D2001DF789 /* MarkdownViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownViewManager.swift; sourceTree = "<group>"; };
 		B198DB9020B9A21A008011A3 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		B198DB9320B9C560008011A3 /* SFProDisplay-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Regular.otf"; sourceTree = "<group>"; };
@@ -714,6 +718,8 @@
 				B15F228620EEB31C00C44282 /* AppSettings+CoreDataProperties.swift */,
 				B1E09E272101F7D9002CC5B7 /* Blog+CoreDataClass.swift */,
 				B1E09E282101F7D9002CC5B7 /* Blog+CoreDataProperties.swift */,
+				B194ECBD21946B5800369B2A /* BlogEntry+CoreDataClass.swift */,
+				B194ECBE21946B5800369B2A /* BlogEntry+CoreDataProperties.swift */,
 				B164CECB211AA84800349D79 /* Comment+CoreDataClass.swift */,
 				B164CECC211AA84800349D79 /* Comment+CoreDataProperties.swift */,
 				B18ECE972189A11F008A3B84 /* Follower+CoreDataClass.swift */,
@@ -1668,6 +1674,7 @@
 				B134934C21819A0600B59827 /* ActiveUserTableViewCell.swift in Sources */,
 				B127A87720EB822F007133AB /* UserSecretOwnerKey+CoreDataProperties.swift in Sources */,
 				EC9ABBBF20179CEF00AF8597 /* Images.swift in Sources */,
+				B194ECBF21946B5800369B2A /* BlogEntry+CoreDataClass.swift in Sources */,
 				B1C1DFE420CF887F00D1A837 /* LogInShowInteractor.swift in Sources */,
 				B127A87620EB822F007133AB /* UserSecretOwnerKey+CoreDataClass.swift in Sources */,
 				B12F442D20EB4AFC003FFF58 /* GolosModels.xcdatamodeld in Sources */,
@@ -1728,6 +1735,7 @@
 				B14C97CF20F87F6D00569FB1 /* UIImageView+Extensions.swift in Sources */,
 				B13FE99F20F49B8300F907BC /* GSTableViewWithReloadCompletion.swift in Sources */,
 				B1050CA020CECF75003CE4EE /* PostCreatePresenter.swift in Sources */,
+				B194ECC021946B5800369B2A /* BlogEntry+CoreDataProperties.swift in Sources */,
 				B1EA154520FE007A0015EF76 /* Popular+CoreDataProperties.swift in Sources */,
 				B1E09E202101F222002CC5B7 /* MetaDataSupport.swift in Sources */,
 				B11AA80020CB04AA00212713 /* WelcomeShowRouter.swift in Sources */,

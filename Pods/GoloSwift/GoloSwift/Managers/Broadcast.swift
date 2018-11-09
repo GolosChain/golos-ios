@@ -117,6 +117,9 @@ public class Broadcast {
             case .getUserReplies(_), .getUserFollowCounts(_), .getContent(_), .getContentAllReplies(_), .getUserFollowers(_), .getUserFollowings(_), .getActiveVotes(_):
                 jsonData            =   Data((requestParams as! String).utf8)
                 
+            case .getUserBlogEntries(_):
+                jsonData            =   Data((requestParams as! String).utf8)
+
             default:
                 break
             }

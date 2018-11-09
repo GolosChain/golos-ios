@@ -102,6 +102,21 @@
             </uniquenessConstraint>
         </uniquenessConstraints>
     </entity>
+    <entity name="BlogEntry" representedClassName="BlogEntry" syncable="YES">
+        <attribute name="author" attributeType="String" defaultValueString="XXX" syncable="YES"/>
+        <attribute name="blog" attributeType="String" defaultValueString="XXX" syncable="YES"/>
+        <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="permlink" attributeType="String" defaultValueString="XXX" syncable="YES"/>
+        <attribute name="reblogBody" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="reblogMetadataJSON" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="reblogOn" attributeType="String" defaultValueString="XXX" syncable="YES"/>
+        <attribute name="reblogTitle" optional="YES" attributeType="String" syncable="YES"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
     <entity name="Comment" representedClassName="Comment" syncable="YES">
         <attribute name="active" attributeType="Date" defaultDateTimeInterval="555426540" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="allowReplies" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
@@ -484,5 +499,6 @@
         <element name="UserSecretOwnerKey" positionX="-243" positionY="-234" width="128" height="120"/>
         <element name="UserSecretPostingKey" positionX="-45" positionY="63" width="128" height="120"/>
         <element name="Voter" positionX="-459" positionY="-81" width="128" height="150"/>
+        <element name="BlogEntry" positionX="-459" positionY="-81" width="128" height="165"/>
     </elements>
 </model>

@@ -216,7 +216,7 @@ class PostFeedTableViewCell: UITableViewCell, HandlersCellSupport, PostCellLikeS
 
 // MARK: - ConfigureCell implementation
 extension PostFeedTableViewCell: ConfigureCell {
-    func setup(withItem item: Any?, andIndexPath indexPath: IndexPath) {
+    func setup(withItem item: Any?, andIndexPath indexPath: IndexPath, blogEntry: BlogEntry?) {
         guard let model = item as? PostCellSupport else {
             return
         }
@@ -228,7 +228,7 @@ extension PostFeedTableViewCell: ConfigureCell {
         self.likeActivityIndicator.stopAnimating()
 
         // Display PostFeedHeaderView
-        self.postFeedHeaderView.display(post: model)
+        self.postFeedHeaderView.display(post: model, entry: blogEntry)
         
         // TODO: - RECOMMENT IN BETA-VERSION
         // Author Post Reputation -> Int

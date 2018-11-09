@@ -220,6 +220,7 @@
 "User followers are not found"              =   "Информация о подписчиках не найдена";
 "List of users is empty"                    =   "Список пользователей пустой";
 "List of posts is empty"                    =   "Список постов пустой";
+"List of blog entries is empty"             =   "Список записей блога пустой";
 "Fetching Failed"                           =   "Ошибка загрузки данных из CoreData";
 "Broken Link Failure"                       =   "Указана битая ссылка";
 "Response All Content Replies error"        =   "Ошибка загрузки списка комментариев\nдля выбранного поста";

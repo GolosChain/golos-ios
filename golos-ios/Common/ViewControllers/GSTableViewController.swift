@@ -12,7 +12,7 @@ import GoloSwift
 import SwiftTheme
 import SafariServices
 
-typealias FetchPostParameters = (author: String?, postFeedType: PostsFeedType, permlink: String?, sortBy: String?)
+typealias FetchPostParameters = (author: String?, postFeedType: PostsFeedType, permlink: String?, sortBy: String?, entries: [BlogEntry]?)
 
 class GSTableViewController: GSBaseViewController, HandlersCellSupport {
     // MARK: - Properties
@@ -47,6 +47,7 @@ class GSTableViewController: GSBaseViewController, HandlersCellSupport {
     
     var postType: PostsFeedType!
     var postsList: [NSManagedObject]?
+    var blogEntries: [BlogEntry]?
     
     // Handlers
     var handlerAnswerButtonTapped: ((PostShortInfo?) -> Void)?
@@ -193,8 +194,9 @@ class GSTableViewController: GSBaseViewController, HandlersCellSupport {
     func fetchPosts(byParameters parameters: FetchPostParameters) {
         var fetchRequest: NSFetchRequest<NSFetchRequestResult>
 
-        self.postType = parameters.postFeedType
-        fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: parameters.postFeedType.caseTitle())
+        self.blogEntries    =   parameters.entries
+        self.postType       =   parameters.postFeedType
+        fetchRequest        =   NSFetchRequest<NSFetchRequestResult>(entityName: parameters.postFeedType.caseTitle())
 
         switch parameters.postFeedType {
         // Replies
@@ -382,8 +384,15 @@ extension GSTableViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell    =   self.postsTableView.dequeueReusableCell(withIdentifier: self.cellIdentifier, for: indexPath)
         let entity  =   self.postsList![indexPath.row]
-
-        (cell as! ConfigureCell).setup(withItem: entity, andIndexPath: indexPath)
+        
+        // Blog entries
+        if type(of: entity) == Blog.self, let entries = self.blogEntries, entries.count > 0, let blog = entity as? Blog, let entry = entries.first(where: { $0.permlink == blog.permlink }) {
+            (cell as! ConfigureCell).setup(withItem: entity, andIndexPath: indexPath, blogEntry: entry)
+        }
+            
+        else {
+            (cell as! ConfigureCell).setup(withItem: entity, andIndexPath: indexPath, blogEntry: nil)
+        }
         
         // Handlers Reply comletion
         if type(of: entity) == Reply.self {

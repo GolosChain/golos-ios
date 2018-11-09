@@ -52,10 +52,9 @@ class PostShowTagCollectionViewCell: UICollectionViewCell {
 
 // MARK: - ConfigureCell
 extension PostShowTagCollectionViewCell: ConfigureCell {
-    func setup(withItem item: Any?, andIndexPath indexPath: IndexPath) {
+    func setup(withItem item: Any?, andIndexPath indexPath: IndexPath, blogEntry: BlogEntry?) {
         if var title = item as? String {
             title = title.transliteration(forPermlink: false)
-            
             self.tagButton.setTitle(title.uppercaseFirst, for: .normal)
         }
     }

@@ -870,7 +870,7 @@ class PostShowViewController: GSBaseViewController {
     }
     
     @IBAction func userProfileImageButtonTapped(_ sender: UIButton) {
-        self.postFeedHeaderView.authorProfileButtonTapped(sender)
+        self.postFeedHeaderView.profileAuthorButtonTapped(sender)
     }
    
     @IBAction func subscribeUserButtonTapped(_ sender: UIButton) {
@@ -1359,7 +1359,7 @@ extension PostShowViewController: UICollectionViewDataSource {
         let tag = self.router!.dataStore!.displayedPost!.tags![indexPath.row]
         
         // Config tag cell
-        cell.setup(withItem: tag, andIndexPath: indexPath)
+        cell.setup(withItem: tag, andIndexPath: indexPath, blogEntry: nil)
         
         // Handlers
         cell.completionButtonTapped     =   {

@@ -82,7 +82,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="44" height="52"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <connections>
-                        <action selector="authorProfileButtonTapped:" destination="-1" eventType="touchUpInside" id="knC-GP-H5p"/>
+                        <action selector="profileAuthorButtonTapped:" destination="-1" eventType="touchUpInside" id="knC-GP-H5p"/>
                     </connections>
                 </button>
                 <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8pZ-cO-uTP" userLabel="Author Name Button">
@@ -96,7 +96,7 @@
                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                     <connections>
-                        <action selector="authorProfileButtonTapped:" destination="-1" eventType="touchUpInside" id="0ly-X0-CUC"/>
+                        <action selector="profileAuthorButtonTapped:" destination="-1" eventType="touchUpInside" id="0ly-X0-CUC"/>
                     </connections>
                 </button>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="icon-cell-theme-small" translatesAutoresizingMaskIntoConstraints="NO" id="Obg-ts-apO">
@@ -139,7 +139,7 @@
                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                             <connections>
-                                <action selector="authorProfileButtonTapped:" destination="-1" eventType="touchUpInside" id="vhy-IN-VNi"/>
+                                <action selector="profileAuthorButtonTapped:" destination="-1" eventType="touchUpInside" id="vhy-IN-VNi"/>
                             </connections>
                         </button>
                         <button clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l3V-N3-dZl" userLabel="Reblog Icon Button">

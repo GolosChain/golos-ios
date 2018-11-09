@@ -31,6 +31,7 @@ protocol UserProfileShowDataStore {
     var lastItem: NSManagedObject? { get set }
     var commentReply: PostShortInfo? { get set }
     var selectedBlog: PostShortInfo? { get set }
+    var userBlogEntries: [BlogEntry]! { get set }
 }
 
 class UserProfileShowInteractor: UserProfileShowBusinessLogic, UserProfileShowDataStore {
@@ -46,7 +47,8 @@ class UserProfileShowInteractor: UserProfileShowBusinessLogic, UserProfileShowDa
     var lastItem: NSManagedObject?
     var commentReply: PostShortInfo?
     var selectedBlog: PostShortInfo?
-
+    var userBlogEntries: [BlogEntry]! = [BlogEntry]()
+    
     
     // MARK: - Class Initialization
     deinit {
@@ -68,13 +70,19 @@ class UserProfileShowInteractor: UserProfileShowBusinessLogic, UserProfileShowDa
     }
 
     func loadUserInfo(withRequestModel requestModel: UserProfileShowModels.UserInfo.RequestModel) {
-        RestAPIManager.loadUsersInfo(byNickNames: [self.userNickName ?? "XXX"], completion: { errorAPI in
-            if errorAPI == nil {
-                RestAPIManager.loadUserFollowCounts(byNickName: self.userNickName ?? "XXX", completion: { [weak self] error in
-                    let userInfoResponseModel = UserProfileShowModels.UserInfo.ResponseModel(error: errorAPI)
-                    self?.presenter?.presentUserInfo(fromResponseModel: userInfoResponseModel)
-                })
-            }
+        // Load User Blog entries
+        RestAPIManager.loadUserBlogEntries(byNickName: self.userNickName ?? "XXX", startPagination: UInt(self.userBlogEntries.count), completion: { [weak self] (blogEntries, errorAPI) in
+            // First load Blog entries
+            self?.userBlogEntries = blogEntries
+            
+            RestAPIManager.loadUsersInfo(byNickNames: [self?.userNickName ?? "XXX"], completion: { errorAPI in
+                if errorAPI == nil {
+                    RestAPIManager.loadUserFollowCounts(byNickName: self?.userNickName ?? "XXX", completion: { error in
+                        let userInfoResponseModel = UserProfileShowModels.UserInfo.ResponseModel(error: errorAPI)
+                        self?.presenter?.presentUserInfo(fromResponseModel: userInfoResponseModel)
+                    })
+                }
+            })
         })
     }
     
@@ -82,9 +90,14 @@ class UserProfileShowInteractor: UserProfileShowBusinessLogic, UserProfileShowDa
         worker = UserProfileShowWorker()
 
         if let methodAPIType = worker?.prepareRequestMethod(byUserNickName: self.userNickName ?? "", andParameters: (type: requestModel.postFeedType, lastItem: self.lastItem)) {
-            RestAPIManager.loadPostsFeed(byMethodAPIType: methodAPIType, andPostFeedType: requestModel.postFeedType, completion: { [weak self] errorAPI in
-                let userDetailsResponseModel = UserProfileShowModels.UserDetails.ResponseModel(error: errorAPI)
-                self?.presenter?.presentUserDetails(fromResponseModel: userDetailsResponseModel)
+            // Pagination load Blog entries
+            RestAPIManager.loadUserBlogEntries(byNickName: self.userNickName ?? "XXX", startPagination: UInt(self.userBlogEntries.count), completion: { [weak self] (blogEntries, errorAPI) in
+                self?.userBlogEntries = blogEntries
+                
+                RestAPIManager.loadPostsFeed(byMethodAPIType: methodAPIType, andPostFeedType: requestModel.postFeedType, completion: { [weak self] errorAPI in
+                    let userDetailsResponseModel = UserProfileShowModels.UserDetails.ResponseModel(error: errorAPI)
+                    self?.presenter?.presentUserDetails(fromResponseModel: userDetailsResponseModel)
+                })
             })
         }
     }
