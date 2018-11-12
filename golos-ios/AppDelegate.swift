@@ -120,6 +120,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Logger.log(message: "Received Remote Notification userInfo: \(userInfo)", event: .debug)
         completionHandler(UIBackgroundFetchResult.newData)
     }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        // just making sure we send the notification when the URL is opened in SFSafariViewController
+        if let sourceApplication = options[.sourceApplication] {
+            if String(describing: sourceApplication) == "com.apple.mobilesafari" {
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: kCloseSafariViewControllerNotification), object: url)
+                return true
+            }
+        }
+        
+        return false
+    }
+    
+//    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+//        // just making sure we send the notification when the URL is opened in SFSafariViewController
+//        if sourceApplication == "com.apple.SafariViewService" {
+//            NotificationCenter.default.post(name: NSNotification.Name(rawValue: kCloseSafariViewControllerNotification), object: url)
+//            return true
+//        }
+//
+//        return true
+//    }
 }
 
 

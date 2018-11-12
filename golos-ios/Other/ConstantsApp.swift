@@ -6,9 +6,9 @@
 //  Copyright © 2018 golos. All rights reserved.
 //
 
-import Foundation
-import GoloSwift
 import CoreData
+import GoloSwift
+import Foundation
 
 enum LanguageSupport: String {
     case english    =   "English"

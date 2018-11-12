@@ -16,35 +16,32 @@
                 <outlet property="authorNickNameButton" destination="B3j-yy-G6R" id="Bdf-xP-yFG"/>
                 <outlet property="authorProfileImageView" destination="CDW-mc-LZt" id="BHJ-pP-QOR"/>
                 <outlet property="authorReputationLabel" destination="iEZ-ed-6NY" id="yOG-NP-eew"/>
-                <outlet property="categoryLabel" destination="aki-nt-sGv" id="PhE-AR-3qb"/>
+                <outlet property="categoryImageView" destination="Obg-ts-apO" id="WKt-Ot-oFI"/>
+                <outlet property="categoryLabel" destination="aki-nt-sGv" id="Z3U-qX-F05"/>
+                <outlet property="categoryStackView" destination="KFE-iD-xST" id="WFj-Rw-x0R"/>
                 <outlet property="contentView" destination="iN0-l3-epB" id="Ca9-eJ-HBY"/>
                 <outlet property="postAuthorNickNameButton" destination="BzT-BV-wEZ" id="2Jg-6v-Z03"/>
                 <outlet property="reblogIconButton" destination="l3V-N3-dZl" id="a8F-iy-kAi"/>
                 <outlet property="timeLabel" destination="e3S-GM-Rrf" id="bma-X1-uPQ"/>
-                <outlet property="timeLabelTopConstraint" destination="dvi-YH-ORh" id="CNf-IL-4zA"/>
-                <outletCollection property="heightsCollection" destination="dvi-YH-ORh" collectionClass="NSMutableArray" id="AkW-29-IWX"/>
-                <outletCollection property="widthsCollection" destination="AoY-nX-FfD" collectionClass="NSMutableArray" id="iQx-Lm-bRd"/>
                 <outletCollection property="widthsCollection" destination="szF-pt-Pnt" collectionClass="NSMutableArray" id="vpK-aS-atX"/>
                 <outletCollection property="circleViewsCollection" destination="CDW-mc-LZt" collectionClass="NSMutableArray" id="aeU-hS-MOf"/>
                 <outletCollection property="widthsCollection" destination="jVC-uP-2eK" collectionClass="NSMutableArray" id="ym1-b0-QLN"/>
-                <outletCollection property="widthsCollection" destination="k4Z-cE-nic" collectionClass="NSMutableArray" id="xUR-Ni-85p"/>
-                <outletCollection property="widthsCollection" destination="zdv-T0-LTd" collectionClass="NSMutableArray" id="In0-n2-u47"/>
-                <outletCollection property="widthsCollection" destination="wxX-0J-YUv" collectionClass="NSMutableArray" id="gTt-48-LKF"/>
-                <outletCollection property="widthsCollection" destination="Qcx-gm-OWA" collectionClass="NSMutableArray" id="YCu-nd-HHw"/>
-                <outletCollection property="widthsCollection" destination="gD9-iS-laO" collectionClass="NSMutableArray" id="UFG-5Z-aJf"/>
-                <outletCollection property="heightsCollection" destination="f4R-Es-p0l" collectionClass="NSMutableArray" id="WdM-yG-DVj"/>
                 <outletCollection property="widthsCollection" destination="3kW-1H-NpI" collectionClass="NSMutableArray" id="kl3-mN-XG5"/>
                 <outletCollection property="circleViewsCollection" destination="Ggt-Mp-ead" collectionClass="NSMutableArray" id="Vrv-BR-WBc"/>
                 <outletCollection property="circleViewsCollection" destination="Nz4-9G-SQv" collectionClass="NSMutableArray" id="VQs-Wf-yxX"/>
+                <outletCollection property="categoryLabelCollection" destination="eDd-4r-Hls" collectionClass="NSMutableArray" id="AYV-Fp-eZI"/>
+                <outletCollection property="categoryLabelCollection" destination="aki-nt-sGv" collectionClass="NSMutableArray" id="7J4-ZN-E2t"/>
+                <outletCollection property="heightsCollection" destination="O6M-Tr-kuk" collectionClass="NSMutableArray" id="5Gs-pa-lxD"/>
+                <outletCollection property="heightsCollection" destination="Bra-jA-Oby" collectionClass="NSMutableArray" id="Pec-32-jSa"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clipsSubviews="YES" contentMode="scaleToFill" id="iN0-l3-epB" userLabel="Content View">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="52"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="63"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-user-profile-image-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="CDW-mc-LZt" userLabel="Author Profile Image View">
-                    <rect key="frame" x="14" y="11" width="30" height="30"/>
+                    <rect key="frame" x="14" y="8" width="30" height="30"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="CDW-mc-LZt" secondAttribute="height" multiplier="1:1" id="bpC-AQ-c3h"/>
@@ -52,7 +49,7 @@
                     </constraints>
                 </imageView>
                 <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nz4-9G-SQv" userLabel="Author Reputation Background View">
-                    <rect key="frame" x="14" y="23" width="18" height="18"/>
+                    <rect key="frame" x="14" y="20" width="18" height="18"/>
                     <subviews>
                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ggt-Mp-ead" userLabel="Author Reputation View">
                             <rect key="frame" x="1" y="1" width="16" height="16"/>
@@ -79,114 +76,134 @@
                     </constraints>
                 </view>
                 <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uIf-55-Ixe" userLabel="Author Profile Button">
-                    <rect key="frame" x="0.0" y="0.0" width="44" height="52"/>
+                    <rect key="frame" x="0.0" y="0.0" width="44" height="63"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <connections>
                         <action selector="profileAuthorButtonTapped:" destination="-1" eventType="touchUpInside" id="knC-GP-H5p"/>
                     </connections>
                 </button>
-                <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8pZ-cO-uTP" userLabel="Author Name Button">
-                    <rect key="frame" x="52" y="11" width="75" height="15"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="15" id="H21-ep-pHZ"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                    <state key="normal" title="Author Name">
-                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </state>
-                    <connections>
-                        <action selector="profileAuthorButtonTapped:" destination="-1" eventType="touchUpInside" id="0ly-X0-CUC"/>
-                    </connections>
-                </button>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="icon-cell-theme-small" translatesAutoresizingMaskIntoConstraints="NO" id="Obg-ts-apO">
-                    <rect key="frame" x="137" y="14.5" width="11" height="8"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="8" id="Mqj-uo-nmV"/>
-                        <constraint firstAttribute="width" constant="11" id="RKz-oD-ClX"/>
-                    </constraints>
-                </imageView>
-                <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="249" verticalCompressionResistancePriority="749" text="Category Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aki-nt-sGv" userLabel="Category Label">
-                    <rect key="frame" x="153" y="11" width="73.5" height="15"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="15" identifier="categoryLabelHeightConstraint" id="D96-5E-Xuu"/>
-                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="wxX-0J-YUv"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="249" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" text="Time Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e3S-GM-Rrf" userLabel="Time Label">
-                    <rect key="frame" x="306" y="26" width="53" height="15"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="15" id="Vpy-UU-EiU"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <stackView contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="KYh-S4-SUA" userLabel="Reblog Stack View">
-                    <rect key="frame" x="52" y="27" width="219" height="15"/>
+                <stackView contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="dm1-cc-tOw">
+                    <rect key="frame" x="52" y="8" width="307" height="47"/>
                     <subviews>
-                        <button clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B3j-yy-G6R" userLabel="Author Nick Name Button">
-                            <rect key="frame" x="0.0" y="0.0" width="88" height="15"/>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                            <state key="normal" title="Author Nick Name">
-                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </state>
-                            <connections>
-                                <action selector="profileAuthorButtonTapped:" destination="-1" eventType="touchUpInside" id="vhy-IN-VNi"/>
-                            </connections>
-                        </button>
-                        <button clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l3V-N3-dZl" userLabel="Reblog Icon Button">
-                            <rect key="frame" x="88" y="0.0" width="19" height="15"/>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <inset key="contentEdgeInsets" minX="5" minY="0.0" maxX="5" maxY="0.0"/>
-                            <state key="normal" image="icon-cell-reblog"/>
-                        </button>
-                        <button clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="248" horizontalCompressionResistancePriority="748" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BzT-BV-wEZ" userLabel="Post Author Nick Name Button">
-                            <rect key="frame" x="107" y="0.0" width="112" height="15"/>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                            <state key="normal" title="Post Author Nick Name">
-                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </state>
-                            <connections>
-                                <action selector="postAuthorNickNameButtonTapped:" destination="-1" eventType="touchUpInside" id="bpU-HU-rOa"/>
-                            </connections>
-                        </button>
+                        <stackView contentMode="scaleToFill" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Wa1-Jb-Coi" userLabel="Author Name Stack View">
+                            <rect key="frame" x="0.0" y="0.0" width="307" height="15"/>
+                            <subviews>
+                                <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8pZ-cO-uTP" userLabel="Author Name Button">
+                                    <rect key="frame" x="0.0" y="0.0" width="223" height="15"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                    <state key="normal" title="Author Name hghjghghj kjjklkjkj shdfjhs">
+                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="profileAuthorButtonTapped:" destination="-1" eventType="touchUpInside" id="0ly-X0-CUC"/>
+                                    </connections>
+                                </button>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="icon-cell-theme-small" translatesAutoresizingMaskIntoConstraints="NO" id="Obg-ts-apO">
+                                    <rect key="frame" x="228" y="3.5" width="11" height="8"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="8" id="Mqj-uo-nmV"/>
+                                        <constraint firstAttribute="width" constant="11" id="RKz-oD-ClX"/>
+                                    </constraints>
+                                </imageView>
+                                <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="749" text="Category Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aki-nt-sGv" userLabel="Category Label">
+                                    <rect key="frame" x="244" y="1.5" width="0.0" height="12"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="248" horizontalCompressionResistancePriority="748" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rhm-WH-zuo" userLabel="Empty Label">
+                                    <rect key="frame" x="249" y="0.0" width="0.0" height="15"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Time Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e3S-GM-Rrf" userLabel="Time Label">
+                                    <rect key="frame" x="254" y="1.5" width="53" height="12"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                        </stackView>
+                        <stackView contentMode="scaleToFill" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="KFE-iD-xST" userLabel="Category Stack View">
+                            <rect key="frame" x="0.0" y="16" width="307" height="15"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="icon-cell-theme-small" translatesAutoresizingMaskIntoConstraints="NO" id="Go4-Kd-Te3">
+                                    <rect key="frame" x="0.0" y="3.5" width="11" height="8"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="8" id="OLp-N0-q5e"/>
+                                        <constraint firstAttribute="width" constant="11" id="PQG-Ck-UtH"/>
+                                    </constraints>
+                                </imageView>
+                                <label clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="left" verticalHuggingPriority="249" verticalCompressionResistancePriority="749" text="Category Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eDd-4r-Hls" userLabel="Category Label">
+                                    <rect key="frame" x="16" y="0.0" width="291" height="15"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="15" identifier="categoryLabelHeightConstraint" id="KtU-PT-MYR"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                        </stackView>
+                        <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4vJ-cl-ix4" userLabel="Reblog Stack View">
+                            <rect key="frame" x="0.0" y="32" width="307" height="15"/>
+                            <subviews>
+                                <button clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B3j-yy-G6R" userLabel="Author Nick Name Button">
+                                    <rect key="frame" x="0.0" y="0.0" width="88" height="15"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                    <state key="normal" title="Author Nick Name">
+                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="profileAuthorButtonTapped:" destination="-1" eventType="touchUpInside" id="vhy-IN-VNi"/>
+                                    </connections>
+                                </button>
+                                <button clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l3V-N3-dZl" userLabel="Reblog Icon Button">
+                                    <rect key="frame" x="88" y="0.0" width="19" height="15"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <inset key="contentEdgeInsets" minX="5" minY="0.0" maxX="5" maxY="0.0"/>
+                                    <state key="normal" image="icon-cell-reblog"/>
+                                </button>
+                                <button clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="248" horizontalCompressionResistancePriority="748" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BzT-BV-wEZ" userLabel="Post Author Nick Name Button">
+                                    <rect key="frame" x="107" y="0.0" width="200" height="15"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                    <state key="normal" title="Post Author Nick Name">
+                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="postAuthorNickNameButtonTapped:" destination="-1" eventType="touchUpInside" id="bpU-HU-rOa"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                        </stackView>
                     </subviews>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="15" identifier="reblogStackViewHeightConstraint" id="JLd-QD-yU6"/>
-                    </constraints>
                 </stackView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="8pZ-cO-uTP" firstAttribute="top" secondItem="CDW-mc-LZt" secondAttribute="top" id="2p0-9r-ivT"/>
-                <constraint firstItem="aki-nt-sGv" firstAttribute="centerY" secondItem="Obg-ts-apO" secondAttribute="centerY" id="A5S-mS-HtO"/>
-                <constraint firstAttribute="trailing" secondItem="e3S-GM-Rrf" secondAttribute="trailing" constant="16" id="AoY-nX-FfD"/>
+                <constraint firstItem="AQ6-r5-F3T" firstAttribute="trailing" secondItem="dm1-cc-tOw" secondAttribute="trailing" constant="16" id="3j2-39-uVk"/>
+                <constraint firstAttribute="bottom" secondItem="dm1-cc-tOw" secondAttribute="bottom" constant="8" id="Bra-jA-Oby"/>
                 <constraint firstItem="Nz4-9G-SQv" firstAttribute="leading" secondItem="CDW-mc-LZt" secondAttribute="leading" id="Egw-E1-o64"/>
                 <constraint firstItem="uIf-55-Ixe" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="GUQ-LY-VRV"/>
-                <constraint firstItem="aki-nt-sGv" firstAttribute="leading" secondItem="Obg-ts-apO" secondAttribute="trailing" constant="5" id="Qcx-gm-OWA"/>
+                <constraint firstItem="dm1-cc-tOw" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="O6M-Tr-kuk"/>
                 <constraint firstItem="Nz4-9G-SQv" firstAttribute="bottom" secondItem="CDW-mc-LZt" secondAttribute="bottom" id="ScJ-qY-QeZ"/>
                 <constraint firstItem="uIf-55-Ixe" firstAttribute="bottom" secondItem="iN0-l3-epB" secondAttribute="bottom" id="X8Z-O8-MrJ"/>
-                <constraint firstItem="KYh-S4-SUA" firstAttribute="leading" secondItem="8pZ-cO-uTP" secondAttribute="leading" id="aG4-za-FfW"/>
                 <constraint firstItem="uIf-55-Ixe" firstAttribute="trailing" secondItem="CDW-mc-LZt" secondAttribute="trailing" id="cgL-3V-6EF"/>
-                <constraint firstItem="e3S-GM-Rrf" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="26" identifier="timeLabelTopConstraint" id="dvi-YH-ORh"/>
-                <constraint firstItem="KYh-S4-SUA" firstAttribute="top" secondItem="8pZ-cO-uTP" secondAttribute="bottom" constant="1" id="f4R-Es-p0l"/>
-                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="aki-nt-sGv" secondAttribute="trailing" constant="16" id="gD9-iS-laO"/>
                 <constraint firstItem="CDW-mc-LZt" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="14" id="jVC-uP-2eK"/>
-                <constraint firstItem="8pZ-cO-uTP" firstAttribute="leading" secondItem="CDW-mc-LZt" secondAttribute="trailing" constant="8" id="k4Z-cE-nic"/>
                 <constraint firstItem="uIf-55-Ixe" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="kgZ-y0-q3t"/>
-                <constraint firstItem="Obg-ts-apO" firstAttribute="centerY" secondItem="8pZ-cO-uTP" secondAttribute="centerY" id="owM-U3-ual"/>
-                <constraint firstItem="CDW-mc-LZt" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="uF9-41-STO"/>
+                <constraint firstItem="dm1-cc-tOw" firstAttribute="top" secondItem="CDW-mc-LZt" secondAttribute="top" id="qPL-0B-UyS"/>
                 <constraint firstItem="Nz4-9G-SQv" firstAttribute="width" secondItem="Nz4-9G-SQv" secondAttribute="height" multiplier="1:1" id="uOO-Hg-gFW"/>
-                <constraint firstItem="Obg-ts-apO" firstAttribute="leading" secondItem="8pZ-cO-uTP" secondAttribute="trailing" constant="10" id="zdv-T0-LTd"/>
+                <constraint firstItem="dm1-cc-tOw" firstAttribute="leading" secondItem="CDW-mc-LZt" secondAttribute="trailing" constant="8" id="vy0-cr-Cea"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="AQ6-r5-F3T"/>

@@ -7,7 +7,10 @@
 //
 
 import UIKit
+import GoloSwift
 import SafariServices
+
+let kCloseSafariViewControllerNotification = "kCloseSafariViewControllerNotification"
 
 class GSBaseViewController: UIViewController {
     // MARK: - Properties
@@ -265,26 +268,51 @@ extension GSBaseViewController: SFSafariViewControllerDelegate {
         let safari = SFSafariViewController(url: pageURL)
         safari.delegate = self
         
+        if url == GolosWebPage.registration.rawValue {
+            NotificationCenter.default.addObserver(self, selector: #selector(golosWebLogin), name: NSNotification.Name(rawValue: kCloseSafariViewControllerNotification), object: nil)
+        }
+        
         self.present(safari, animated: true, completion: nil)
     }
     
-//    func safariViewController(_ controller: SFSafariViewController, activityItemsFor URL: URL, title: String?) -> [UIActivity] {
-//
-//    }
-//
-//    func safariViewController(_ controller: SFSafariViewController, excludedActivityTypesFor URL: URL, title: String?) -> [UIActivity.ActivityType] {
-//
-//    }
-    
-    func safariViewController(_ controller: SFSafariViewController, didCompleteInitialLoad didLoadSuccessfully: Bool) {
+    @objc private func golosWebLogin(notification: NSNotification) {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: kCloseSafariViewControllerNotification), object: nil)
 
+        // Get the url form the Auth callback
+        guard let url = notification.object as? URL else {
+            return
+        }
+        
+        // Parse url ...
+        Logger.log(message: "url = \(url)", event: .debug)
+        
+        // then do whatever you like, for example :
+        // get the code (token) from the URL
+        // and do a request to get the information you need (id, name, ...)
+        // Finally dismiss the Safari View Controller with:
+//        self.safariVC!.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    func safariViewController(_ controller: SFSafariViewController, activityItemsFor URL: URL, title: String?) -> [UIActivity] {
+        Logger.log(message: "URL = \(URL)", event: .debug)
+        return [UIActivity()]
+    }
+
+//    func safariViewController(_ controller: SFSafariViewController, excludedActivityTypesFor URL: URL, title: String?) -> [UIActivity.ActivityType] {
+//        Logger.log(message: "URL = \(URL)", event: .debug)
+//        return [UIActivity.ActivityType.print]
+//    }
+//    
+//    func safariViewController(_ controller: SFSafariViewController, didCompleteInitialLoad didLoadSuccessfully: Bool) {
+//        Logger.log(message: "didLoadSuccessfully = \(didLoadSuccessfully)", event: .debug)
+//    }
+    
     func safariViewController(_ controller: SFSafariViewController, initialLoadDidRedirectTo URL: URL) {
-        
+        Logger.log(message: "URL = \(URL)", event: .debug)
     }
     
     func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: kCloseSafariViewControllerNotification), object: nil)
         controller.dismiss(animated: true, completion: nil)
     }
 }

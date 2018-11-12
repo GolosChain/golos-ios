@@ -17,17 +17,13 @@ class PostFeedHeaderView: UIView {
 
     
     // MARK: - IBOutlets
+    @IBOutlet weak var categoryLabel: UILabel!
+    @IBOutlet weak var categoryImageView: UIImageView!
     @IBOutlet weak var authorProfileImageView: UIImageView!
     
     @IBOutlet var contentView: UIView! {
         didSet {
             self.contentView.tune(withThemeColorPicker: whiteColorPickers)
-        }
-    }
- 
-    @IBOutlet weak var timeLabelTopConstraint: NSLayoutConstraint! {
-        didSet {
-            self.timeLabelTopConstraint.constant = 11.0 * heightRatio
         }
     }
     
@@ -68,13 +64,13 @@ class PostFeedHeaderView: UIView {
         }
     }
     
-    @IBOutlet weak var categoryLabel: UILabel! {
+    @IBOutlet var categoryLabelCollection: [UILabel]! {
         didSet {
-            self.categoryLabel.tune(withText:        "",
-                                    hexColors:       darkGrayWhiteColorPickers,
-                                    font:            UIFont(name: "SFProDisplay-Regular", size: 10.0),
-                                    alignment:       .left,
-                                    isMultiLines:    false)
+            self.categoryLabelCollection.forEach({ $0.tune(withText:        "",
+                                                           hexColors:       darkGrayWhiteColorPickers,
+                                                           font:            UIFont(name: "SFProDisplay-Regular", size: 10.0),
+                                                           alignment:       .left,
+                                                           isMultiLines:    false)})
         }
     }
     
@@ -95,6 +91,12 @@ class PostFeedHeaderView: UIView {
                                        font:            UIFont(name: "SFProDisplay-Medium", size: 6.0),
                                        alignment:       .center,
                                        isMultiLines:    false)
+        }
+    }
+    
+    @IBOutlet weak var categoryStackView: UIStackView! {
+        didSet {
+            self.categoryStackView.isHidden = true
         }
     }
     
@@ -144,31 +146,26 @@ class PostFeedHeaderView: UIView {
     
     // MARK: - Custom Functions
     func display(post: PostCellSupport, entry: BlogEntry? = nil) {
-        let postAuthorNickName      =   entry == nil ? post.author : (entry!.author == entry!.blog ? entry!.author : entry!.blog)
-        let profileAuthorNickName   =   entry == nil ? post.author : entry!.author
+        let postAuthorNickName      =   entry == nil ? post.author : entry!.author
+        let profileAuthorNickName   =   entry == nil ? (post.rebloggedBy == nil ? post.author : post.rebloggedBy!.first!) : (entry!.author == entry!.blog ? entry!.author : entry!.blog)
 
         self.clearValues()
         
         // Set User profile info
         if let userProfile = User.fetch(byNickName: profileAuthorNickName) {
-            self.authorNameButton.setTitle(userProfile.name.uppercaseFirst, for: .normal)
-            
+            self.authorNameButton.setTitle("sdf sdf sdgf sghgfdhsg fgsdhj gfjhsdg", for: .normal)
+//            self.authorNameButton.setTitle(userProfile.name.uppercaseFirst, for: .normal)
+
             self.timeLabel.text                 =   post.created.convertToTimeAgo()
             self.authorReputationLabel.text     =   String(format: "%i", userProfile.reputation.convertWithLogarithm10())
             
-            self.categoryLabel.text = post.category
-                                        .transliteration(forPermlink: false)
-                                        .uppercaseFirst
+            self.categoryLabelCollection.forEach({ $0.text = post.category.transliteration(forPermlink: false).uppercaseFirst })
             
-            Logger.log(message: "category \(self.categoryLabel.text!) frame: \(self.categoryLabel.frame.maxX)", event: .debug)
-            Logger.log(message: "timeLabel frame: \(self.timeLabel.frame.minX)", event: .debug)
-
-            if self.categoryLabel.frame.maxX >= (self.timeLabel.frame.minX - 10.0 * widthRatio) {
-                self.timeLabelTopConstraint.constant = 28.0 * heightRatio
-            }
-            
-            else {
-                self.timeLabelTopConstraint.constant = 11.0 * heightRatio
+            // Remove Category to second line
+            if self.categoryLabel.frame.width == 0 || CGFloat(self.categoryLabel.text!.count * 4) + self.categoryLabel.frame.maxX >= self.timeLabel.frame.minX + 5.0 {
+                self.categoryLabel.isHidden     =   true
+                self.categoryImageView.isHidden =   true
+                self.categoryStackView.isHidden =   false
             }
             
             // Load User profile avatar image
@@ -202,8 +199,8 @@ class PostFeedHeaderView: UIView {
                 
             // Lenta and other
             default:
-                if let rebloggedBy = post.rebloggedBy, rebloggedBy.count > 0 {
-                    self.setPostAuthor(byNickName: rebloggedBy.first!)
+                if profileAuthorNickName != postAuthorNickName {
+                    self.setPostAuthor(byNickName: postAuthorNickName)
                 }
             }
         }
@@ -224,8 +221,7 @@ class PostFeedHeaderView: UIView {
         self.timeLabel.text                             =   nil
         self.categoryLabel.text                         =   nil
         self.authorProfileImageView.image               =   nil
-        self.timeLabelTopConstraint.constant            =   11.0 * heightRatio
-
+        
         self.authorNameButton.setTitle(nil, for: .normal)
         self.authorNickNameButton.setTitle(nil, for: .normal)
         self.postAuthorNickNameButton.setTitle(nil, for: .normal)
