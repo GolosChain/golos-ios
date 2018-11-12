@@ -996,10 +996,14 @@ extension PostShowViewController: PostShowDisplayLogic {
                                    andMessage:  message.translate(),
                                    needCancel:  false,
                                    completion:  { _ in
+                                    // PostShow
                                     if viewModel.forPost {
                                         self.scrollCommentsDown = false
                                         self.fetchPostContent(only: true)
-                                    } else if let commentShortInfo = self.router?.dataStore?.comment, let indexPath = commentShortInfo.indexPath,
+                                    }
+                                    
+                                    // CommentView
+                                    else if let commentShortInfo = self.router?.dataStore?.comment, let indexPath = commentShortInfo.indexPath,
                                         let commentEntity = CoreDataManager.instance.readEntity(withName: "Comment",
                                                                                                 andPredicateParameters: NSPredicate(format: "author == %@ AND permlink == %@", commentShortInfo.author!, commentShortInfo.permlink!)) as? Comment {
                                         (self.commentsStackView.arrangedSubviews[indexPath.row] as! CommentView).setupUI(withComment: commentEntity, forRow: indexPath.row)
@@ -1030,6 +1034,15 @@ extension PostShowViewController: PostShowDisplayLogic {
                     }
                 })
             }
+        }
+        
+        // Amplitude SDK
+        if viewModel.isLike == true {
+            self.sendAmplitude(event: .like, actionName: "publish")
+        }
+        
+        else if viewModel.isDislike == true {
+            self.sendAmplitude(event: .dislike, actionName: "publish")
         }
     }
 }

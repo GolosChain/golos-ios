@@ -243,6 +243,9 @@ class PostCreateViewController: GSBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Amplitude SDK
+        self.sendEvent(action: "open")
+
         self.view.tune()
         IQKeyboardManager.sharedManager().enable = false
         self.navigationItem.title = (sceneType == .createPost) ? "Publish Title".localized() : "Comment Title Verb".localized()
@@ -255,7 +258,9 @@ class PostCreateViewController: GSBaseViewController {
                 self?.stackView.layoutIfNeeded()
                 self?.showContent()
             }
-        } else {
+        }
+        
+        else {
             self.showContent()
         }
         
@@ -453,7 +458,23 @@ extension PostCreateViewController: PostCreateDisplayLogic {
             self?.router?.save(success: true)
             self?.router?.routeToNextScene()
             self?.clearAllEnteredValues()
+            
+            // Amplitude SDK
+            self?.sendEvent(action: "publish")
         })
+    }
+    
+    private func sendEvent(action: String) {
+        switch self.sceneType {
+        case .createPost:
+            self.sendAmplitude(event: .postCreate, actionName: action)
+            
+        case .createCommentReply:
+            self.sendAmplitude(event: .replyCreate, actionName: action)
+            
+        case .createComment:
+            self.sendAmplitude(event: .commentCreate, actionName: action)
+        }
     }
 }
 

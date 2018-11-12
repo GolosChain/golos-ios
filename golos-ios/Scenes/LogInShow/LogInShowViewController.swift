@@ -162,7 +162,7 @@ class LogInShowViewController: GSBaseViewController {
         self.router?.routeToPostingKeyScene()
         
         // Amplitude SDK
-//        Amplitude.instance()?.logEvent("Anonymous user open LogInShow scene...")
+        self.sendAmplitude(event: .login, actionName: "open")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -238,6 +238,9 @@ extension LogInShowViewController: LogInShowDisplayLogic {
             DispatchQueue.main.async {
                 User.clearCache()
                 self.performSegue(withIdentifier: "FeedPostsShowSceneSegue", sender: nil)
+                
+                // Amplitude SDK
+                self.sendAmplitude(event: .login, actionName: "close")
             }
         }
         

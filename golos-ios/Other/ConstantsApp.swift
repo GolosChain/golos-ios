@@ -83,3 +83,16 @@ var selectedTabBarItem: Int             =   0
 // Keys
 let appThemeKey                         =   "AppTheme"
 let userStateKey                        =   "UserState"
+
+
+// Amplitude SDK
+enum AmplitudeEvent: String {
+    case like                           =   "ios_post_like_"
+    case login                          =   "ios_login_"
+    case dislike                        =   "ios_post_dislike_"
+    case welcome                        =   "webview_ios_welcome_"
+    case postCreate                     =   "ios_post_create_"
+    case replyCreate                    =   "ios_reply_create_"
+    case registration                   =   "webview_ios_registration_screen"
+    case commentCreate                  =   "ios_comment_create_"
+}

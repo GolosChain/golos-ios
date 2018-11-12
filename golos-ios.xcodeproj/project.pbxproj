@@ -106,6 +106,8 @@
 		B146891A20F2013F00D36794 /* SFProDisplay-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = B146891920F2013F00D36794 /* SFProDisplay-Medium.otf */; };
 		B146891D20F234BE00D36794 /* UserProfileInfoTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B146891B20F234BD00D36794 /* UserProfileInfoTitleView.swift */; };
 		B146891E20F234BE00D36794 /* UserProfileInfoTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B146891C20F234BD00D36794 /* UserProfileInfoTitleView.xib */; };
+		B14A23632199993E008781DC /* WKWebViewShow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B14A23622199993E008781DC /* WKWebViewShow.storyboard */; };
+		B14A2366219999A0008781DC /* WebViewShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14A2365219999A0008781DC /* WebViewShowViewController.swift */; };
 		B14C97CF20F87F6D00569FB1 /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14C97CE20F87F6D00569FB1 /* UIImageView+Extensions.swift */; };
 		B15267AE210DB4980037CAAA /* NSAttributedString+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15267AD210DB4980037CAAA /* NSAttributedString+Extensions.swift */; };
 		B157660A20B59D80009619A6 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B157660920B59D80009619A6 /* UserNotifications.framework */; };
@@ -395,6 +397,8 @@
 		B146891920F2013F00D36794 /* SFProDisplay-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Medium.otf"; sourceTree = "<group>"; };
 		B146891B20F234BD00D36794 /* UserProfileInfoTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileInfoTitleView.swift; sourceTree = "<group>"; };
 		B146891C20F234BD00D36794 /* UserProfileInfoTitleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserProfileInfoTitleView.xib; sourceTree = "<group>"; };
+		B14A23622199993E008781DC /* WKWebViewShow.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WKWebViewShow.storyboard; sourceTree = "<group>"; };
+		B14A2365219999A0008781DC /* WebViewShowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewShowViewController.swift; sourceTree = "<group>"; };
 		B14C97CE20F87F6D00569FB1 /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
 		B15267AD210DB4980037CAAA /* NSAttributedString+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Extensions.swift"; sourceTree = "<group>"; };
 		B157660820B59D80009619A6 /* RemoteNotificationTransfer.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = RemoteNotificationTransfer.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -828,6 +832,7 @@
 				B1D5F24221873AB000ABA1ED /* UserFollowersShow.storyboard */,
 				B164F04820E62B5A00C5CDD3 /* UserProfileShow.storyboard */,
 				B1A7580821719739002CEE50 /* WelcomeShow.storyboard */,
+				B14A23622199993E008781DC /* WKWebViewShow.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -864,6 +869,14 @@
 				B146891C20F234BD00D36794 /* UserProfileInfoTitleView.xib */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		B14A23642199996A008781DC /* WebViewShow */ = {
+			isa = PBXGroup;
+			children = (
+				B14A2365219999A0008781DC /* WebViewShowViewController.swift */,
+			);
+			path = WebViewShow;
 			sourceTree = "<group>";
 		};
 		B157660320B59CEF009619A6 /* Notifications */ = {
@@ -1210,8 +1223,9 @@
 				B1CF44D42106D63600483A01 /* SettingsShow */,
 				B120D0602108248C00D949F5 /* SettingsUserProfileEdit */,
 				EC24FF6A200C3FE700A0AE15 /* TabBarShow */,
-				B164F03B20E62A7300C5CDD3 /* UserProfileShow */,
 				B1D5F24421873ABE00ABA1ED /* UserFollowersShow */,
+				B164F03B20E62A7300C5CDD3 /* UserProfileShow */,
+				B14A23642199996A008781DC /* WebViewShow */,
 				ECC15F9D2009757A0099BBC9 /* WelcomeShow */,
 			);
 			path = Scenes;
@@ -1464,6 +1478,7 @@
 				B1EE684820D243FF006BF802 /* PostCreateView.xib in Resources */,
 				EC1DFB9620063C400080BC50 /* Assets.xcassets in Resources */,
 				B12F43FB20EA0192003FFF58 /* ScannerShow.storyboard in Resources */,
+				B14A23632199993E008781DC /* WKWebViewShow.storyboard in Resources */,
 				B146891A20F2013F00D36794 /* SFProDisplay-Medium.otf in Resources */,
 				B10FB7AC215FCA9300CA585E /* SFProDisplay-Bold.otf in Resources */,
 				B1DCE31A2109A44C00487DE0 /* test-sound.wav in Resources */,
@@ -1761,6 +1776,7 @@
 				7D25B4B5201F9218004A3400 /* GSNavigationBar.swift in Sources */,
 				B1D5F25021873AD000ABA1ED /* UserFollowersShowInteractor.swift in Sources */,
 				B146891420F1F30E00D36794 /* UserProfileHeaderView.swift in Sources */,
+				B14A2366219999A0008781DC /* WebViewShowViewController.swift in Sources */,
 				B1EA154320FE007A0015EF76 /* New+CoreDataProperties.swift in Sources */,
 				B164F04420E62AE600C5CDD3 /* UserProfileShowRouter.swift in Sources */,
 				B1D5F24F21873AD000ABA1ED /* UserFollowersShowViewController.swift in Sources */,

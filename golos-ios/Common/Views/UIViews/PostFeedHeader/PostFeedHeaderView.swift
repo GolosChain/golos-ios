@@ -153,8 +153,8 @@ class PostFeedHeaderView: UIView {
         
         // Set User profile info
         if let userProfile = User.fetch(byNickName: profileAuthorNickName) {
-            self.authorNameButton.setTitle("sdf sdf sdgf sghgfdhsg fgsdhj gfjhsdg", for: .normal)
-//            self.authorNameButton.setTitle(userProfile.name.uppercaseFirst, for: .normal)
+//            self.authorNameButton.setTitle("sdf sdf sdgf sghgfdhsg fgsdhj gfjhsdg", for: .normal)
+            self.authorNameButton.setTitle(userProfile.name.uppercaseFirst, for: .normal)
 
             self.timeLabel.text                 =   post.created.convertToTimeAgo()
             self.authorReputationLabel.text     =   String(format: "%i", userProfile.reputation.convertWithLogarithm10())

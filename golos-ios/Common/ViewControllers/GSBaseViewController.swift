@@ -240,6 +240,10 @@ class GSBaseViewController: UIViewController {
         return true
     }
     
+    func sendAmplitude(event: AmplitudeEvent, actionName: String) {
+        Amplitude.instance()?.logEvent(event.rawValue + actionName)
+    }
+    
     
     // MARK: - Actions
     @objc func backBarButtonTapped(sender: UIBarButtonItem) {
@@ -264,15 +268,21 @@ extension GSBaseViewController: SFSafariViewControllerDelegate {
             self.showAlertView(withTitle: "Error", andMessage: "Developer error!", needCancel: false, completion: { _ in })
             return
         }
-        
-        let safari = SFSafariViewController(url: pageURL)
-        safari.delegate = self
-        
+
+        // Registration
         if url == GolosWebPage.registration.rawValue {
-            NotificationCenter.default.addObserver(self, selector: #selector(golosWebLogin), name: NSNotification.Name(rawValue: kCloseSafariViewControllerNotification), object: nil)
+            let storyboard          =   UIStoryboard(name: "WKWebViewShow", bundle: nil)
+            let destinationVC       =   storyboard.instantiateViewController(withIdentifier: "WebViewShowVC") as! WebViewShowViewController
+            destinationVC.url       =   URL(string: url)
+
+            self.navigationController?.show(destinationVC, sender: nil)
         }
-        
-        self.present(safari, animated: true, completion: nil)
+
+        else {
+            let safari = SFSafariViewController(url: pageURL)
+            safari.delegate = self
+            self.present(safari, animated: true, completion: nil)
+        }
     }
     
     @objc private func golosWebLogin(notification: NSNotification) {
@@ -293,10 +303,10 @@ extension GSBaseViewController: SFSafariViewControllerDelegate {
 //        self.safariVC!.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    func safariViewController(_ controller: SFSafariViewController, activityItemsFor URL: URL, title: String?) -> [UIActivity] {
-        Logger.log(message: "URL = \(URL)", event: .debug)
-        return [UIActivity()]
-    }
+//    func safariViewController(_ controller: SFSafariViewController, activityItemsFor URL: URL, title: String?) -> [UIActivity] {
+//        Logger.log(message: "URL = \(URL)", event: .debug)
+//        return [UIActivity()]
+//    }
 
 //    func safariViewController(_ controller: SFSafariViewController, excludedActivityTypesFor URL: URL, title: String?) -> [UIActivity.ActivityType] {
 //        Logger.log(message: "URL = \(URL)", event: .debug)
@@ -312,7 +322,6 @@ extension GSBaseViewController: SFSafariViewControllerDelegate {
     }
     
     func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: kCloseSafariViewControllerNotification), object: nil)
         controller.dismiss(animated: true, completion: nil)
     }
 }

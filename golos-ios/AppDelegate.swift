@@ -5,6 +5,8 @@
 //  Created by Grigory Serebryanyy on 10/01/2018.
 //  Copyright © 2018 golos. All rights reserved.
 //
+//  https://analytics.amplitude.com/golos/manage/project/214847/advanced/events
+//
 
 import UIKit
 import Fabric

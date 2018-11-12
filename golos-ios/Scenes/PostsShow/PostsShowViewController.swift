@@ -440,6 +440,15 @@ extension PostsShowViewController: PostsShowDisplayLogic {
                     }
                 })
             }
+            
+            // Amlitude SDK
+            if viewModel.isLike == true {
+                self.sendAmplitude(event: .like, actionName: "publish")
+            }
+            
+            else if viewModel.isDislike == true {
+                self.sendAmplitude(event: .dislike, actionName: "publish")
+            }
         }
     }
 }
