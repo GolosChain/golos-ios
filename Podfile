@@ -20,6 +20,9 @@ target 'Golos' do
     pod 'Fabric', '~> 1.7'
     pod 'Crashlytics', '~> 3.10'
     
+    # Analitics: https://amplitude.zendesk.com/hc/en-us/articles/115002278527#installation
+    pod 'Amplitude-iOS', '~> 4.0.4'
+
     # Firebase
     pod 'Firebase/Core'
     pod 'Firebase/Messaging'
@@ -31,7 +34,6 @@ target 'Golos' do
     pod 'SkeletonView'
     pod 'SnapKit', '~> 4.0'
     pod 'LayoutKit', '~> 7.0'
-    pod 'Amplitude-iOS', '~> 4.0.4'
     pod 'SwiftGifOrigin', '~> 1.6.1'
     pod 'MXParallaxHeader', '~> 0.6'
     pod 'AlignedCollectionViewFlowLayout'

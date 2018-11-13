@@ -22,6 +22,8 @@
                 <outlet property="contentView" destination="iN0-l3-epB" id="Ca9-eJ-HBY"/>
                 <outlet property="postAuthorNickNameButton" destination="BzT-BV-wEZ" id="2Jg-6v-Z03"/>
                 <outlet property="reblogIconButton" destination="l3V-N3-dZl" id="a8F-iy-kAi"/>
+                <outlet property="reblogStackView" destination="4vJ-cl-ix4" id="Ac9-qJ-WEk"/>
+                <outlet property="stackViewBottomConstraint" destination="Bra-jA-Oby" id="xuQ-ze-Njx"/>
                 <outlet property="timeLabel" destination="e3S-GM-Rrf" id="bma-X1-uPQ"/>
                 <outletCollection property="widthsCollection" destination="szF-pt-Pnt" collectionClass="NSMutableArray" id="vpK-aS-atX"/>
                 <outletCollection property="circleViewsCollection" destination="CDW-mc-LZt" collectionClass="NSMutableArray" id="aeU-hS-MOf"/>
@@ -85,44 +87,33 @@
                 <stackView contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="dm1-cc-tOw">
                     <rect key="frame" x="52" y="8" width="307" height="47"/>
                     <subviews>
-                        <stackView contentMode="scaleToFill" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Wa1-Jb-Coi" userLabel="Author Name Stack View">
+                        <stackView contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Wa1-Jb-Coi" userLabel="Author Name Stack View">
                             <rect key="frame" x="0.0" y="0.0" width="307" height="15"/>
                             <subviews>
                                 <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8pZ-cO-uTP" userLabel="Author Name Button">
-                                    <rect key="frame" x="0.0" y="0.0" width="223" height="15"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="75" height="15"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                    <state key="normal" title="Author Name hghjghghj kjjklkjkj shdfjhs">
+                                    <state key="normal" title="Author Name">
                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
                                     <connections>
                                         <action selector="profileAuthorButtonTapped:" destination="-1" eventType="touchUpInside" id="0ly-X0-CUC"/>
                                     </connections>
                                 </button>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="icon-cell-theme-small" translatesAutoresizingMaskIntoConstraints="NO" id="Obg-ts-apO">
-                                    <rect key="frame" x="228" y="3.5" width="11" height="8"/>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" image="icon-cell-theme-small" translatesAutoresizingMaskIntoConstraints="NO" id="Obg-ts-apO">
+                                    <rect key="frame" x="80" y="0.0" width="12" height="15"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="8" id="Mqj-uo-nmV"/>
-                                        <constraint firstAttribute="width" constant="11" id="RKz-oD-ClX"/>
-                                    </constraints>
                                 </imageView>
-                                <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="749" text="Category Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aki-nt-sGv" userLabel="Category Label">
-                                    <rect key="frame" x="244" y="1.5" width="0.0" height="12"/>
+                                <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Category Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aki-nt-sGv" userLabel="Category Label">
+                                    <rect key="frame" x="97" y="0.0" width="73.5" height="15"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="248" horizontalCompressionResistancePriority="748" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rhm-WH-zuo" userLabel="Empty Label">
-                                    <rect key="frame" x="249" y="0.0" width="0.0" height="15"/>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <nil key="textColor"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Time Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e3S-GM-Rrf" userLabel="Time Label">
-                                    <rect key="frame" x="254" y="1.5" width="53" height="12"/>
+                                <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="749" text="Time Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e3S-GM-Rrf" userLabel="Time Label">
+                                    <rect key="frame" x="175.5" y="0.0" width="131.5" height="15"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                     <nil key="textColor"/>
@@ -130,23 +121,16 @@
                                 </label>
                             </subviews>
                         </stackView>
-                        <stackView contentMode="scaleToFill" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="KFE-iD-xST" userLabel="Category Stack View">
+                        <stackView contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="KFE-iD-xST" userLabel="Category Stack View">
                             <rect key="frame" x="0.0" y="16" width="307" height="15"/>
                             <subviews>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="icon-cell-theme-small" translatesAutoresizingMaskIntoConstraints="NO" id="Go4-Kd-Te3">
-                                    <rect key="frame" x="0.0" y="3.5" width="11" height="8"/>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" image="icon-cell-theme-small" translatesAutoresizingMaskIntoConstraints="NO" id="Go4-Kd-Te3">
+                                    <rect key="frame" x="0.0" y="0.0" width="12" height="15"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="8" id="OLp-N0-q5e"/>
-                                        <constraint firstAttribute="width" constant="11" id="PQG-Ck-UtH"/>
-                                    </constraints>
                                 </imageView>
-                                <label clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="left" verticalHuggingPriority="249" verticalCompressionResistancePriority="749" text="Category Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eDd-4r-Hls" userLabel="Category Label">
-                                    <rect key="frame" x="16" y="0.0" width="291" height="15"/>
+                                <label clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="749" text="Category Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eDd-4r-Hls" userLabel="Category Label">
+                                    <rect key="frame" x="17" y="0.0" width="290" height="15"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="15" identifier="categoryLabelHeightConstraint" id="KtU-PT-MYR"/>
-                                    </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -192,7 +176,7 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="AQ6-r5-F3T" firstAttribute="trailing" secondItem="dm1-cc-tOw" secondAttribute="trailing" constant="16" id="3j2-39-uVk"/>
-                <constraint firstAttribute="bottom" secondItem="dm1-cc-tOw" secondAttribute="bottom" constant="8" id="Bra-jA-Oby"/>
+                <constraint firstAttribute="bottom" secondItem="dm1-cc-tOw" secondAttribute="bottom" constant="8" identifier="stackViewBottomConstraint" id="Bra-jA-Oby"/>
                 <constraint firstItem="Nz4-9G-SQv" firstAttribute="leading" secondItem="CDW-mc-LZt" secondAttribute="leading" id="Egw-E1-o64"/>
                 <constraint firstItem="uIf-55-Ixe" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="GUQ-LY-VRV"/>
                 <constraint firstItem="dm1-cc-tOw" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="O6M-Tr-kuk"/>

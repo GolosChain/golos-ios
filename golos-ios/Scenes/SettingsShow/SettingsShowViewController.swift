@@ -12,6 +12,7 @@
 
 import UIKit
 import GoloSwift
+import Amplitude_iOS
 import Localize_Swift
 
 // MARK: - Input & Output protocols
@@ -250,6 +251,10 @@ class SettingsShowViewController: GSBaseViewController {
         self.showAlertView(withTitle: "Exit", andMessage: "Are Your Sure?", actionTitle: "ActionYes", needCancel: true, completion: { [weak self] success in
             if success {
                 self?.router?.routeToLoginShowScene()
+                
+                // Amplitude SDK
+                Amplitude.instance()?.setUserId(nil)
+                Amplitude.instance()?.regenerateDeviceId()
             }
         })
     }

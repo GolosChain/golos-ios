@@ -100,6 +100,18 @@ class PostFeedHeaderView: UIView {
         }
     }
     
+    @IBOutlet weak var reblogStackView: UIStackView! {
+        didSet {
+            self.reblogStackView.isHidden = true
+        }
+    }
+    
+    @IBOutlet weak var stackViewBottomConstraint: NSLayoutConstraint! {
+        didSet {
+            self.stackViewBottomConstraint.constant = 24.0 * heightRatio
+        }
+    }
+    
     @IBOutlet var circleViewsCollection: [UIView]! {
         didSet {
             self.circleViewsCollection.forEach({ $0.layer.cornerRadius = $0.bounds.size.width / 2 * widthRatio })
@@ -153,19 +165,26 @@ class PostFeedHeaderView: UIView {
         
         // Set User profile info
         if let userProfile = User.fetch(byNickName: profileAuthorNickName) {
-//            self.authorNameButton.setTitle("sdf sdf sdgf sghgfdhsg fgsdhj gfjhsdg", for: .normal)
             self.authorNameButton.setTitle(userProfile.name.uppercaseFirst, for: .normal)
 
             self.timeLabel.text                 =   post.created.convertToTimeAgo()
+//            self.categoryLabel.text             =   "afs djashd jahdj aj djad addddd"
+//            self.categoryLabel.text             =   post.category.transliteration(forPermlink: false).uppercaseFirst
             self.authorReputationLabel.text     =   String(format: "%i", userProfile.reputation.convertWithLogarithm10())
-            
+
+            self.timeLabel.sizeToFit()
+            self.categoryLabel.sizeToFit()
+            self.authorNameButton.sizeToFit()
+
             self.categoryLabelCollection.forEach({ $0.text = post.category.transliteration(forPermlink: false).uppercaseFirst })
             
             // Remove Category to second line
-            if self.categoryLabel.frame.width == 0 || CGFloat(self.categoryLabel.text!.count * 4) + self.categoryLabel.frame.maxX >= self.timeLabel.frame.minX + 5.0 {
+            if self.categoryLabel.frame.width == 0 || self.authorNameButton.frame.maxX + CGFloat(self.categoryLabel.text!.count) * 2.2 >= self.timeLabel.frame.minX + 5.0 {
                 self.categoryLabel.isHidden     =   true
                 self.categoryImageView.isHidden =   true
                 self.categoryStackView.isHidden =   false
+                
+                self.stackViewBottomConstraint.constant = 8.0 * heightRatio
             }
             
             // Load User profile avatar image
@@ -207,21 +226,27 @@ class PostFeedHeaderView: UIView {
     }
     
     private func setPostAuthor(byNickName nickName: String) {
+        self.reblogStackView.isHidden                   =   false
         self.reblogIconButton.isHidden                  =   false
-        self.postAuthorNickNameButton.isHidden          =   false
         self.authorNickNameButton.isHidden              =   false
-        
+        self.postAuthorNickNameButton.isHidden          =   false
+
         self.postAuthorNickNameButton.setTitle(nickName, for: .normal)
+        self.stackViewBottomConstraint.constant         =   8.0 * heightRatio
     }
     
     private func clearValues() {
+        self.reblogStackView.isHidden                   =   true
         self.reblogIconButton.isHidden                  =   true
+        self.categoryStackView.isHidden                 =   true
         self.postAuthorNickNameButton.isHidden          =   true
         
         self.timeLabel.text                             =   nil
         self.categoryLabel.text                         =   nil
         self.authorProfileImageView.image               =   nil
         
+        self.stackViewBottomConstraint.constant         =   24.0 * heightRatio
+
         self.authorNameButton.setTitle(nil, for: .normal)
         self.authorNickNameButton.setTitle(nil, for: .normal)
         self.postAuthorNickNameButton.setTitle(nil, for: .normal)

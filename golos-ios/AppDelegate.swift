@@ -14,6 +14,7 @@ import Firebase
 import GoloSwift
 import Crashlytics
 import FirebaseCore
+import Amplitude_iOS
 import UserNotifications
 import FirebaseInstanceID
 import IQKeyboardManagerSwift
@@ -41,7 +42,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Fabric.with([Crashlytics.self])
         
         // Run Amplitude SDK
-        Amplitude.instance()?.initializeApiKey("52defe807d145e49a6754f89aeaf9b32")
+        if let userNickName = User.current?.nickName {
+            Amplitude.instance()?.initializeApiKey("52defe807d145e49a6754f89aeaf9b32", userId: userNickName)
+        } else {
+            Amplitude.instance()?.initializeApiKey("52defe807d145e49a6754f89aeaf9b32")
+        }
+        
+        Amplitude.instance()?.setDeviceId(UIDevice.current.identifierForVendor!.uuidString)
         
         // APNs
         self.registerForPushNotifications()

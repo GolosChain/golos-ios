@@ -8,6 +8,7 @@
 
 import UIKit
 import GoloSwift
+import Amplitude_iOS
 import SafariServices
 
 let kCloseSafariViewControllerNotification = "kCloseSafariViewControllerNotification"
@@ -240,6 +241,7 @@ class GSBaseViewController: UIViewController {
         return true
     }
     
+    // Amlitude SDK
     func sendAmplitude(event: AmplitudeEvent, actionName: String) {
         Amplitude.instance()?.logEvent(event.rawValue + actionName)
     }
