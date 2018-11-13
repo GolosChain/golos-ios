@@ -122,13 +122,13 @@ public class User: NSManagedObject, CachedImageFrom {
     func voicePower(completion: @escaping (VoicePower) -> Void) {
         RestAPIManager.calculateVoicePower(byUserNickName: self.nickName, completion: { powerVoice in
             switch powerVoice {
-            case 0..<10_000_000:
+            case 0..<1_000:
                 completion(VoicePower.gudgeon)
                 
-            case 10_000_000..<100_000_000:
+            case 1_000_..<100_000:
                 completion(VoicePower.dolphin)
                 
-            case 100_000_000..<1_000_000_000:
+            case 100_000..<1_000_000:
                 completion(VoicePower.killerWhale)
                 
             default:
