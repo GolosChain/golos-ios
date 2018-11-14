@@ -23,11 +23,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="372" height="63"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="63" identifier="postFeedHeaderViewHeightConstraint" id="dwe-r9-QvL"/>
+                            <constraint firstAttribute="height" priority="750" constant="63" identifier="postFeedHeaderViewHeightConstraint" id="dwe-r9-QvL"/>
                         </constraints>
                     </view>
                     <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalCompressionResistancePriority="1000" text="" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VKV-nZ-kLa" userLabel="Title Label">
-                        <rect key="frame" x="16" y="73" width="340" height="7.5"/>
+                        <rect key="frame" x="16" y="63" width="340" height="17.5"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <nil key="textColor"/>
@@ -116,13 +116,13 @@
                                 </connections>
                             </button>
                             <button clipsSubviews="YES" tag="2" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ypr-q4-mMn" userLabel="Comments Button">
-                                <rect key="frame" x="180" y="0.0" width="80" height="45"/>
+                                <rect key="frame" x="180" y="0.0" width="90" height="45"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="80" identifier="commentsButtonWidthConstraint" id="tGH-ko-eCj"/>
+                                    <constraint firstAttribute="width" constant="90" identifier="commentsButtonWidthConstraint" id="tGH-ko-eCj"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                <inset key="titleEdgeInsets" minX="32" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <inset key="titleEdgeInsets" minX="30" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <state key="normal" title="12" image="icon-button-post-comments-normal">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -131,7 +131,7 @@
                                 </connections>
                             </button>
                             <button clipsSubviews="YES" tag="3" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1jY-NP-1y9" userLabel="Repost Button">
-                                <rect key="frame" x="260" y="0.0" width="80" height="45"/>
+                                <rect key="frame" x="270" y="0.0" width="70" height="45"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <state key="normal">
@@ -182,7 +182,7 @@
                     <constraint firstItem="tTd-m2-4DM" firstAttribute="centerX" secondItem="1xx-38-jqd" secondAttribute="centerX" id="IC1-F2-CFz"/>
                     <constraint firstItem="dWs-po-Va7" firstAttribute="width" secondItem="dWs-po-Va7" secondAttribute="height" multiplier="1:1" id="MDX-KS-GWc"/>
                     <constraint firstItem="tTd-m2-4DM" firstAttribute="centerY" secondItem="1xx-38-jqd" secondAttribute="centerY" constant="-2" id="O8S-lF-eAW"/>
-                    <constraint firstItem="VKV-nZ-kLa" firstAttribute="top" secondItem="x0K-7b-ZlY" secondAttribute="bottom" constant="10" identifier="titleLabelTopConstraint" id="TZ0-Je-35T"/>
+                    <constraint firstItem="VKV-nZ-kLa" firstAttribute="top" secondItem="x0K-7b-ZlY" secondAttribute="bottom" identifier="titleLabelTopConstraint" id="TZ0-Je-35T"/>
                     <constraint firstItem="VKV-nZ-kLa" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="TZf-fc-GqU"/>
                     <constraint firstItem="x0K-7b-ZlY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="YBj-9B-EKd"/>
                     <constraint firstAttribute="trailing" secondItem="cNc-UC-tpt" secondAttribute="trailing" id="aG2-dG-Iu3"/>
@@ -207,6 +207,7 @@
                 <outlet property="likeButton" destination="jro-Kl-0WQ" id="8MQ-yR-9nl"/>
                 <outlet property="likeCountButton" destination="M7G-UA-1e0" id="ijB-9A-Cg5"/>
                 <outlet property="postFeedHeaderView" destination="x0K-7b-ZlY" id="Tv9-zR-sE1"/>
+                <outlet property="postFeedHeaderViewHeightConstraint" destination="dwe-r9-QvL" id="len-zd-bnD"/>
                 <outlet property="postImageView" destination="cNc-UC-tpt" id="Wky-e0-vzt"/>
                 <outlet property="postImageViewHeightConstraint" destination="peV-ev-Tz3" id="AFD-To-NGh"/>
                 <outlet property="repostButton" destination="1jY-NP-1y9" id="2m1-Qd-suO"/>

@@ -60,7 +60,8 @@ class PostShowViewController: GSBaseViewController {
     @IBOutlet weak var postFeedHeaderView: PostFeedHeaderView!
     @IBOutlet weak var commentsControlView: UIView!
     @IBOutlet weak var subscribesStackView: UIStackView!
-   
+    @IBOutlet weak var postFeedHeaderViewHeightConstraint: NSLayoutConstraint!
+    
     @IBOutlet weak var createNewCommentView: UIView! {
         didSet {
             self.createNewCommentView.tune()
@@ -588,8 +589,7 @@ class PostShowViewController: GSBaseViewController {
             self.placeholderButton.setTitle((displayedPost.children == 0  ? "No Comments Placeholder" : "Write Own Comment Placeholder").localized(), for: .normal)
             
             if !withoutComments {
-                self.postFeedHeaderView.display(post: displayedPost)
-                
+                self.postFeedHeaderView.display(post: displayedPost, inNavBar: true, completion: { _ in })
                 self.markdownViewManager.load(markdown: Parser.repair(body: displayedPost.body))
                 
                 self.markdownViewManager.onRendered = { [weak self] height in
@@ -641,8 +641,8 @@ class PostShowViewController: GSBaseViewController {
         
         self.tagsCollectionView.reloadData()
         
-        self.postFeedHeaderView.display(post: self.router!.dataStore!.displayedPost!)
-        
+        self.postFeedHeaderView.display(post: self.router!.dataStore!.displayedPost!, inNavBar: true, completion: { _ in })
+
         self.postFeedHeaderView.categoryLabel.text = self.router!.dataStore!.displayedPost!.category
                                                         .transliteration(forPermlink: false)
                                                         .uppercaseFirst

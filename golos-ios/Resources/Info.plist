@@ -2,10 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-		<string>golosLogin</string>
-	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
@@ -36,7 +32,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>40</string>
+	<string>41</string>
 	<key>Config</key>
 	<string>$(CONFIGURATION)</string>
 	<key>Fabric</key>
@@ -53,6 +49,10 @@
 			</dict>
 		</array>
 	</dict>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>golosLogin</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -61,9 +61,9 @@
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>We need access to your device&apos;s camera to scan the QR code</string>
+	<string>We need access to your device's camera to scan the QR code</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>We need access to your device&apos;s album to show photos</string>
+	<string>We need access to your device's album to show photos</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>SFProDisplay-Regular.otf</string>

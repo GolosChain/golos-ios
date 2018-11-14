@@ -20,6 +20,14 @@ class PostFeedHeaderView: UIView {
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var categoryImageView: UIImageView!
     @IBOutlet weak var authorProfileImageView: UIImageView!
+    @IBOutlet weak var authorNameStackView: UIStackView!
+    @IBOutlet var topConstraintsCollection: [NSLayoutConstraint]!
+    
+    @IBOutlet weak var stackViewHeightConstraint: NSLayoutConstraint! {
+        didSet {
+            self.stackViewHeightConstraint.constant = 0.0
+        }
+    }
     
     @IBOutlet var contentView: UIView! {
         didSet {
@@ -106,12 +114,6 @@ class PostFeedHeaderView: UIView {
         }
     }
     
-    @IBOutlet weak var stackViewBottomConstraint: NSLayoutConstraint! {
-        didSet {
-            self.stackViewBottomConstraint.constant = 24.0 * heightRatio
-        }
-    }
-    
     @IBOutlet var circleViewsCollection: [UIView]! {
         didSet {
             self.circleViewsCollection.forEach({ $0.layer.cornerRadius = $0.bounds.size.width / 2 * widthRatio })
@@ -157,7 +159,7 @@ class PostFeedHeaderView: UIView {
 
     
     // MARK: - Custom Functions
-    func display(post: PostCellSupport, entry: BlogEntry? = nil) {
+    func display(post: PostCellSupport, entry: BlogEntry? = nil, inNavBar: Bool, completion: @escaping ((CGFloat) -> Void)) {
         let postAuthorNickName      =   entry == nil ? post.author : entry!.author
         let profileAuthorNickName   =   entry == nil ? (post.rebloggedBy == nil ? post.author : post.rebloggedBy!.first!) : (entry!.author == entry!.blog ? entry!.author : entry!.blog)
 
@@ -165,26 +167,31 @@ class PostFeedHeaderView: UIView {
         
         // Set User profile info
         if let userProfile = User.fetch(byNickName: profileAuthorNickName) {
+//            self.authorNameButton.setTitle(userProfile.name.uppercaseFirst + "dfds fsd fsd fsga gdaghdgasDGASGDGAjsgahg dhjasgd jahgd agsd gahgdahj", for: .normal)
             self.authorNameButton.setTitle(userProfile.name.uppercaseFirst, for: .normal)
 
             self.timeLabel.text                 =   post.created.convertToTimeAgo()
-//            self.categoryLabel.text             =   "afs djashd jahdj aj djad addddd"
-//            self.categoryLabel.text             =   post.category.transliteration(forPermlink: false).uppercaseFirst
+//            self.categoryLabel.text             =   "asd asdas dasdasb vdasdbavsbdvbasvd bav bsbdb vbddddd wfdasdas"
+            self.categoryLabel.text             =   post.category.transliteration(forPermlink: false).uppercaseFirst
             self.authorReputationLabel.text     =   String(format: "%i", userProfile.reputation.convertWithLogarithm10())
 
-            self.timeLabel.sizeToFit()
             self.categoryLabel.sizeToFit()
-            self.authorNameButton.sizeToFit()
-
-            self.categoryLabelCollection.forEach({ $0.text = post.category.transliteration(forPermlink: false).uppercaseFirst })
+            self.authorNameButton.titleLabel?.sizeToFit()
             
+//            self.categoryLabelCollection.forEach({ $0.text = self.categoryLabel.text })
+            self.categoryLabelCollection.forEach({ $0.text = post.category.transliteration(forPermlink: false).uppercaseFirst })
+
             // Remove Category to second line
-            if self.categoryLabel.frame.width == 0 || self.authorNameButton.frame.maxX + CGFloat(self.categoryLabel.text!.count) * 2.2 >= self.timeLabel.frame.minX + 5.0 {
-                self.categoryLabel.isHidden     =   true
-                self.categoryImageView.isHidden =   true
-                self.categoryStackView.isHidden =   false
-                
-                self.stackViewBottomConstraint.constant = 8.0 * heightRatio
+            if self.categoryLabel.frame.width == 0 || self.authorNameStackView.arrangedSubviews[2].frame.minX + self.authorNameStackView.arrangedSubviews[2].frame.width >= self.timeLabel.frame.minX {
+//            authorNameButton.frame.width + 25.0 + CGFloat(self.categoryLabel.text!.count * 5) >= (self.timeLabel.frame.minX - 5.0) {
+//            if self.categoryLabel.frame.width == 0 || self.authorNameButton.frame.width + 25.0 + CGFloat(self.categoryLabel.text!.count * 5) >= (self.timeLabel.frame.minX - 5.0) {
+                self.categoryLabel.isHidden             =   true
+                self.categoryImageView.isHidden         =   true
+                self.categoryStackView.isHidden         =   false
+
+                self.stackViewHeightConstraint.constant =   15.0 * heightRatio
+            } else {
+                print("Look at author name & category widths")
             }
             
             // Load User profile avatar image
@@ -223,6 +230,14 @@ class PostFeedHeaderView: UIView {
                 }
             }
         }
+        
+        if inNavBar {
+            self.topConstraintsCollection.forEach({ $0.constant = self.categoryLabel.isHidden && !self.reblogStackView.isHidden ? 1.0 : 6.0 })
+        }
+    
+        let height = (self.stackViewHeightConstraint.constant == 0.0 ? 46.0 : (self.stackViewHeightConstraint.constant + 31.0)) * heightRatio
+       
+        completion(height)
     }
     
     private func setPostAuthor(byNickName nickName: String) {
@@ -230,9 +245,9 @@ class PostFeedHeaderView: UIView {
         self.reblogIconButton.isHidden                  =   false
         self.authorNickNameButton.isHidden              =   false
         self.postAuthorNickNameButton.isHidden          =   false
+        self.stackViewHeightConstraint.constant         =   (self.categoryLabel.isHidden ? 31.0 : 15.0) * heightRatio
 
         self.postAuthorNickNameButton.setTitle(nickName, for: .normal)
-        self.stackViewBottomConstraint.constant         =   8.0 * heightRatio
     }
     
     private func clearValues() {
@@ -245,8 +260,6 @@ class PostFeedHeaderView: UIView {
         self.categoryLabel.text                         =   nil
         self.authorProfileImageView.image               =   nil
         
-        self.stackViewBottomConstraint.constant         =   24.0 * heightRatio
-
         self.authorNameButton.setTitle(nil, for: .normal)
         self.authorNickNameButton.setTitle(nil, for: .normal)
         self.postAuthorNickNameButton.setTitle(nil, for: .normal)

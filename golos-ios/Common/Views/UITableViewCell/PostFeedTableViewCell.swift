@@ -29,7 +29,8 @@ class PostFeedTableViewCell: UITableViewCell, HandlersCellSupport, PostCellLikeS
     // MARK: - IBOutlets
     @IBOutlet weak var postImageView: UIImageView!
     @IBOutlet weak var postImageViewHeightConstraint: NSLayoutConstraint!
-
+    @IBOutlet weak var postFeedHeaderViewHeightConstraint: NSLayoutConstraint!
+    
     @IBOutlet private weak var titleLabel: UILabel! {
         didSet {
             titleLabel.tune(withText:           "",
@@ -228,7 +229,10 @@ extension PostFeedTableViewCell: ConfigureCell {
         self.likeActivityIndicator.stopAnimating()
 
         // Display PostFeedHeaderView
-        self.postFeedHeaderView.display(post: model, entry: blogEntry)
+        self.postFeedHeaderView.display(post: model, entry: blogEntry, inNavBar: false, completion: { [weak self] postFeedHeaderViewHeight in
+            self?.postFeedHeaderViewHeightConstraint.constant = postFeedHeaderViewHeight
+            self?.layoutIfNeeded()
+        })
         
         // TODO: - RECOMMENT IN BETA-VERSION
         // Author Post Reputation -> Int
