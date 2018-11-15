@@ -388,7 +388,7 @@ extension UserProfileShowViewController {
     private func loadUserInfo() {
         DispatchQueue.main.async {
             let userInfoRequestModel = UserProfileShowModels.UserInfo.RequestModel()
-            self.interactor?.loadUserInfo(withRequestModel: userInfoRequestModel)
+            self.interactor?.loadUserInfo(withRequestModel: userInfoRequestModel)            
         }
     }
     

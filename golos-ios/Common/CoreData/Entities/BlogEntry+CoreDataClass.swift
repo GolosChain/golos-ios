@@ -14,9 +14,15 @@ import Foundation
 @objc(BlogEntry)
 public class BlogEntry: NSManagedObject {
     // MARK: - Class Functions
-    class func loadEntries(byBlog blog: String) -> [BlogEntry]? {
+    class func clear(byBlogAuthorNickName blogAuthorNickName: String) {
+        CoreDataManager.instance.deleteEntities(withName:                   "BlogEntry",
+                                                andPredicateParameters:     NSPredicate(format: "blog == %@", blogAuthorNickName),
+                                                completion:                 { _ in })
+    }
+    
+    class func loadEntries(byBlogAuthorNickName blogAuthorNickName: String) -> [BlogEntry]? {
         return CoreDataManager.instance.readEntities(withName:                  "BlogEntry",
-                                                     withPredicateParameters:   NSPredicate(format: "blog == %@", blog),
+                                                     withPredicateParameters:   NSPredicate(format: "blog == %@", blogAuthorNickName),
                                                      andSortDescriptor:         nil) as? [BlogEntry]
     }
     

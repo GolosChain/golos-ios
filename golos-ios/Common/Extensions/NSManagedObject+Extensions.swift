@@ -65,7 +65,7 @@ extension NSManagedObject {
                                                         .convertUsersAccounts()
             
             // Set Active Vote values
-            if abs(model.net_votes) > 0, let user = User.current {
+            if let user = User.current {
                 model.active_votes.forEach({ activeVote in
                     if activeVote.voter == user.nickName {
                         switch activeVote.percent {
@@ -85,12 +85,10 @@ extension NSManagedObject {
             }            
 
             // Dislike count
-            if abs(model.net_votes) > 0 {
-                entity.dislikeCount = Int64(model.active_votes.filter({ $0.percent < 0 }).count)
-                
-                if entity.dislikeCount > 0 {
-                    Logger.log(message: "dislikeCount = \(entity.dislikeCount)", event: .debug)
-                }
+            entity.dislikeCount = Int64(model.active_votes.filter({ $0.percent < 0 }).count)
+            
+            if entity.dislikeCount > 0 {
+                Logger.log(message: "dislikeCount = \(entity.dislikeCount)", event: .debug)
             }
             
             // Extension: parse & save

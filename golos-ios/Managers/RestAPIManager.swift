@@ -126,7 +126,7 @@ class RestAPIManager {
 
     
     /// Load list of Entries
-    class func loadUserBlogEntries(byNickName nickName: String, startPagination: UInt, completion: @escaping ([BlogEntry]?, ErrorAPI?) -> Void) {
+    class func loadUserBlogEntries(byNickName nickName: String, startPagination: UInt64, completion: @escaping ([BlogEntry]?, ErrorAPI?) -> Void) {
         // API 'get_blog_entries'
         if isNetworkAvailable {
             let methodAPIType = MethodAPIType.getUserBlogEntries(userNickName: nickName, startPagination: startPagination, pagination: loadDataLimit)
@@ -142,7 +142,7 @@ class RestAPIManager {
                                     
                                     // CoreData: Update Entries entities
                                     BlogEntry.updateEntity(fromResponseAPIResult: result)
-                                    completion(BlogEntry.loadEntries(byBlog: nickName), nil)
+                                    completion(BlogEntry.loadEntries(byBlogAuthorNickName: nickName), nil)
             },
                                  onError: { errorAPI in
                                     Logger.log(message: "nresponse API Error = \(errorAPI.caseInfo.message)\n", event: .error)
@@ -152,7 +152,7 @@ class RestAPIManager {
             
         // Offline mode
         else {
-            completion(BlogEntry.loadEntries(byBlog: nickName), nil)
+            completion(BlogEntry.loadEntries(byBlogAuthorNickName: nickName), nil)
         }
     }
     

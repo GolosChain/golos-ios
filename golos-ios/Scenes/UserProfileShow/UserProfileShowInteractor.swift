@@ -71,7 +71,9 @@ class UserProfileShowInteractor: UserProfileShowBusinessLogic, UserProfileShowDa
 
     func loadUserInfo(withRequestModel requestModel: UserProfileShowModels.UserInfo.RequestModel) {
         // Load User Blog entries
-        RestAPIManager.loadUserBlogEntries(byNickName: self.userNickName ?? "XXX", startPagination: UInt(self.userBlogEntries.count), completion: { [weak self] (blogEntries, errorAPI) in
+        BlogEntry.clear(byBlogAuthorNickName: self.userNickName ?? "XXX")
+
+        RestAPIManager.loadUserBlogEntries(byNickName: self.userNickName ?? "XXX", startPagination: UInt64(self.userBlogEntries.count == 0 ? 0 : self.userBlogEntries.last!.id), completion: { [weak self] (blogEntries, errorAPI) in
             // First load Blog entries
             self?.userBlogEntries = blogEntries
             
@@ -91,7 +93,7 @@ class UserProfileShowInteractor: UserProfileShowBusinessLogic, UserProfileShowDa
 
         if let methodAPIType = worker?.prepareRequestMethod(byUserNickName: self.userNickName ?? "", andParameters: (type: requestModel.postFeedType, lastItem: self.lastItem)) {
             // Pagination load Blog entries
-            RestAPIManager.loadUserBlogEntries(byNickName: self.userNickName ?? "XXX", startPagination: UInt(self.userBlogEntries.count), completion: { [weak self] (blogEntries, errorAPI) in
+            RestAPIManager.loadUserBlogEntries(byNickName: self.userNickName ?? "XXX", startPagination: UInt64(self.userBlogEntries.count == 0 ? 0 : self.userBlogEntries.last!.id), completion: { [weak self] (blogEntries, errorAPI) in
                 self?.userBlogEntries = blogEntries
                 
                 RestAPIManager.loadPostsFeed(byMethodAPIType: methodAPIType, andPostFeedType: requestModel.postFeedType, completion: { [weak self] errorAPI in
