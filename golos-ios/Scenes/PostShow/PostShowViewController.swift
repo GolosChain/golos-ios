@@ -552,7 +552,7 @@ class PostShowViewController: GSBaseViewController {
             self.commentsStackView.alpha    =   1.0
         }
         
-        if self.scrollCommentsDown {
+        if self.scrollCommentsDown && !self.isPostContentModify {
             self.didContentViewScrollToCommentsView()
         }
     }
