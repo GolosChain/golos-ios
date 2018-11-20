@@ -31,7 +31,6 @@ target 'Golos' do
     pod 'Tags', '~> 0.1'
     pod 'Kingfisher', '~> 4.10'
     pod 'SwiftTheme'
-    pod 'SkeletonView'
     pod 'SnapKit', '~> 4.0'
     pod 'LayoutKit', '~> 7.0'
     pod 'SwiftGifOrigin', '~> 1.6.1'

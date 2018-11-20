@@ -47,13 +47,13 @@ class ActiveUserTableViewCell: UITableViewCell {
 
     @IBOutlet weak var subscribeButton: UIButton! {
         didSet {
-            self.subscribeButton.tune(withTitle:    "Subscribe Verb".localized(),
+            self.subscribeButton.tune(withTitle:    "Subscriptions".localized(),
                                       hexColors:    [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers],
                                       font:         UIFont(name: "SFProDisplay-Medium", size: 10.0),
                                       alignment:    .center)
             
             self.subscribeButton.isSelected = false
-            self.subscribeButton.fill(font: UIFont(name: "SFProDisplay-Medium", size: 10.0)!)
+            self.subscribeButton.setBorder(color: UIColor(hexString: "#dbdbdb").cgColor, cornerRadius: 5.0)
         }
     }
     
@@ -126,14 +126,16 @@ extension ActiveUserTableViewCell {
         // API 'get_following'
         if !User.isAnonymous {
             RestAPIManager.loadFollowing(byUserNickName: User.current!.nickName, authorNickName: author.nickNameValue, pagination: 1, completion: { [weak self] (isFollowing, errorAPI) in
+                guard let strongSelf = self else {return}
+
                 guard errorAPI == nil else { return }
                 
-                self?.subscribeButton.isSelected = isFollowing
+                strongSelf.subscribeButton.isSelected = isFollowing
                 
-                self?.subscribeButton.setTitle(isFollowing ? "Subscriptions".localized() : "Subscribe Verb".localized(), for: .normal)
+                strongSelf.subscribeButton.setTitle(isFollowing ? "Subscriptions".localized() : "Subscribe Verb".localized(), for: .normal)
                 
-                isFollowing ?   self?.subscribeButton.setBorder(color: UIColor(hexString: "#dbdbdb").cgColor, cornerRadius: 5.0) :
-                                self?.subscribeButton.fill(font: UIFont(name: "SFProDisplay-Medium", size: 10.0)!)
+                isFollowing ?   strongSelf.subscribeButton.setBorder(color: UIColor(hexString: "#dbdbdb").cgColor, cornerRadius: 5.0) :
+                                strongSelf.subscribeButton.fill(font: UIFont(name: "SFProDisplay-Medium", size: 10.0)!)
             })
         }
         
@@ -160,7 +162,14 @@ extension ActiveUserTableViewCell {
         }
         
         else {
-            print("XXX: author.nickNameValue = \(author.nickNameValue)")
+            RestAPIManager.loadUsersInfo(byNickNames: [author.nickNameValue], completion: { [weak self] errorAPI in
+                guard let strongSelf = self else { return }
+                
+                guard errorAPI == nil else { return }
+                
+                strongSelf.userNameButton.setTitle(author.nickNameValue.uppercaseFirst, for: .normal)
+                strongSelf.display(author: author)
+            })
         }
         
         self.localizeTitles()

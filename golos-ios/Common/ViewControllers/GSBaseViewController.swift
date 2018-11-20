@@ -241,9 +241,22 @@ class GSBaseViewController: UIViewController {
         return true
     }
     
-    // Amlitude SDK
+    // Amlitude SDK: https://amplitude.zendesk.com/hc/en-us/articles/215562387-Appendix-Amplitude-User-Property-Definitions
     func sendAmplitude(event: AmplitudeEvent, actionName: String) {
-        Amplitude.instance()?.logEvent(event.rawValue + actionName)
+        var eventProperties: [AnyHashable: Any] = [ UIDevice.current.identifierForVendor!.uuidString: "DEVICE_ID" ]
+        
+        if !actionName.contains("webview") {
+            eventProperties["iOS"] = "OS"
+            eventProperties["UIDevice.current.systemVersion"] = "PLATFORM"
+        }
+        
+        if let userNickName = User.current?.nickName {
+            eventProperties[userNickName] = "USER_ID"
+        } else {
+            eventProperties["Anonymous"] = "USER_ID"
+        }
+
+        Amplitude.instance()?.logEvent(event.rawValue + actionName, withEventProperties: eventProperties)
     }
     
     

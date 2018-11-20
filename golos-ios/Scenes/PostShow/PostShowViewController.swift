@@ -14,7 +14,6 @@ import UIKit
 import WebKit
 import CoreData
 import GoloSwift
-import SkeletonView
 import SafariServices
 import Localize_Swift
 import AlignedCollectionViewFlowLayout
@@ -486,9 +485,6 @@ class PostShowViewController: GSBaseViewController {
         super.viewDidLoad()
         Logger.log(message: "Success", event: .severe)
 
-        // SkeletonView
-        self.view.showSkeleton(usingColor: UIColor.clouds)
-
         // Handlers
         self.postFeedHeaderView.handlerAuthorTapped         =   { [weak self] userName in
             self?.router?.routeToUserProfileScene(byUserName: userName)
@@ -631,8 +627,6 @@ class PostShowViewController: GSBaseViewController {
                 
                 self.userNameLabel.text = self.postFeedHeaderView.authorNameButton.titleLabel!.text
             }
-            
-            self.view.hideSkeleton()
         }
     }
     

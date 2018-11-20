@@ -13,7 +13,6 @@
 import UIKit
 import CoreData
 import GoloSwift
-import SkeletonView
 
 // MARK: - Input & Output protocols
 protocol UserFollowersShowDisplayLogic: class {
@@ -23,11 +22,11 @@ protocol UserFollowersShowDisplayLogic: class {
 
 class UserFollowersShowViewController: GSBaseViewController {
     // MARK: - Properties
-    var selectedVoterInRow: Int         =   0
     var isFetchInProgress: Bool         =   false
     var followers: [Follower]           =   [Follower]()
     var headerView: CommentHeaderView!
-    
+    var selectedCell: ActiveUserTableViewCell?
+
     var interactor: UserFollowersShowBusinessLogic?
     var router: (NSObjectProtocol & UserFollowersShowRoutingLogic & UserFollowersShowDataPassing)?
     
@@ -107,9 +106,6 @@ class UserFollowersShowViewController: GSBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // SkeletonView
-        self.view.showSkeleton(usingColor: UIColor.clouds)
-        
         // API
         self.loadDataSource()
     }
@@ -149,28 +145,28 @@ class UserFollowersShowViewController: GSBaseViewController {
 // MARK: - UserSubscribersShowDisplayLogic
 extension UserFollowersShowViewController: UserFollowersShowDisplayLogic {
     func displaySubscribe(fromViewModel viewModel: UserFollowersShowModels.Sub.ViewModel) {
-        let cell = self.tableView.cellForRow(at: IndexPath(row: self.selectedVoterInRow, section: 0)) as! ActiveUserTableViewCell
-        
         // NOTE: Display the result from the Presenter
         if let error = viewModel.errorAPI {
             self.showAlertView(withTitle: "Error", andMessage: error.localizedDescription, needCancel: false, completion: { _ in })
         }
         
         // Set post author subscribe button title
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5, execute: {
-            self.showAlertView(withTitle:   viewModel.isFollowing ? "Subscribe Noun" : "Unsubscribe Noun",
-                               andMessage:  (viewModel.isFollowing ? "Subscribe Success" : "Unsubscribe Success").localized() + " @\(viewModel.authorNickName)", needCancel: false, completion: { _ in
-                                cell.subscribeButton.isSelected = viewModel.isFollowing
-                                cell.subscribeButton.setTitle(viewModel.isFollowing ? "Subscriptions".localized() : "Subscribe Verb".localized(), for: .normal)
-                                
-                                UIView.animate(withDuration: 0.5, animations: {
-                                    viewModel.isFollowing ? cell.subscribeButton.setBorder(color: UIColor(hexString: "#dbdbdb").cgColor, cornerRadius: 5.0) :
-                                        cell.subscribeButton.fill(font: UIFont(name: "SFProDisplay-Medium", size: 10.0)!)
-                                }, completion: { success in
-                                    cell.subscribeActivityIndicator.stopAnimating()
-                                })
+        if let cell = self.selectedCell {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5, execute: {
+                self.showAlertView(withTitle:   viewModel.isFollowing ? "Subscribe Noun" : "Unsubscribe Noun",
+                                   andMessage:  (viewModel.isFollowing ? "Subscribe Success" : "Unsubscribe Success").localized() + " @\(viewModel.authorNickName)", needCancel: false, completion: { _ in
+                                    cell.subscribeButton.isSelected = viewModel.isFollowing
+                                    cell.subscribeButton.setTitle(viewModel.isFollowing ? "Subscriptions".localized() : "Subscribe Verb".localized(), for: .normal)
+                                    
+                                    UIView.animate(withDuration: 0.5, animations: {
+                                        viewModel.isFollowing ? cell.subscribeButton.setBorder(color: UIColor(hexString: "#dbdbdb").cgColor, cornerRadius: 5.0) :
+                                            cell.subscribeButton.fill(font: UIFont(name: "SFProDisplay-Medium", size: 10.0)!)
+                                    }, completion: { success in
+                                        cell.subscribeActivityIndicator.stopAnimating()
+                                    })
+                })
             })
-        })
+        }
     }
 
     func displayLoadFollowers(fromViewModel viewModel: UserFollowersShowModels.Item.ViewModel) {
@@ -183,7 +179,6 @@ extension UserFollowersShowViewController: UserFollowersShowDisplayLogic {
         else if var dataStore = self.router?.dataStore, dataStore.totalItems == -1 {
             dataStore.totalItems = 0
             self.tableView.reloadData()
-            self.view.hideSkeleton()
         }
         
         // CoreData
@@ -205,9 +200,11 @@ extension UserFollowersShowViewController {
 
         self.loadDataWorkItem = DispatchWorkItem {
             self.gsTimer = GSTimer(operationName: "Load Followers list...", time: Double((self.router?.dataStore?.totalItems ?? 0) * 10), completion: { [weak self] success in
-                if success && !(self?.loadDataWorkItem.isCancelled)! {
-                    self?.loadDataWorkItem.cancel()
-                    self?.loadDataSource()
+                guard let strongSelf = self else { return }
+
+                if success && !(strongSelf.loadDataWorkItem.isCancelled) {
+                    strongSelf.loadDataWorkItem.cancel()
+                    strongSelf.loadDataSource()
                 }
             })
 
@@ -225,42 +222,28 @@ extension UserFollowersShowViewController {
 extension UserFollowersShowViewController {
     // User Profile
     private func fetchFollowers() {
-        if var dataStore = self.router?.dataStore, let followersNew = Follower.loadFollowers(byUserNickName: dataStore.authorNickName, andPaginationPage: dataStore.paginationPage, forMode: dataStore.userSubscribeMode), followersNew.count > 0 {
+        if var dataStore = self.router?.dataStore, var followersNew = Follower.loadFollowers(byUserNickName: dataStore.authorNickName, andPaginationPage: dataStore.paginationPage, forMode: dataStore.userSubscribeMode), followersNew.count > 0 {
+            followersNew.removeAll(where: { $0.following == dataStore.lastAuthorNickName?.uppercaseFirst })
             self.followers.append(contentsOf: followersNew)
             
-            // Reload data in UITableView
-            let newIndexPathsToReload = self.calculateIndexPathsToReload(from: followersNew)
-            
-            if dataStore.paginationPage == 0 {
-                self.tableView.reloadData()
-            }
-                
-            else {
-                let indexPathsToReload = visibleIndexPathsToReload(intersecting: newIndexPathsToReload)
-                self.tableView.reloadRows(at: indexPathsToReload, with: .fade)
-            }
-            
             dataStore.paginationPage += 1
-            self.view.hideSkeleton()
             self.isFetchInProgress = false
             self.gsTimer?.stop()
+            
+            self.tableView.reloadData()
         }
     }
 }
 
 
-// MARK: - SkeletonTableViewDataSource
-extension UserFollowersShowViewController: SkeletonTableViewDataSource {
+// MARK: - UITableViewDataSource
+extension UserFollowersShowViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let dataStore = self.router?.dataStore else {
             return 0
         }
         
         return dataStore.totalItems
-    }
-    
-    func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
-        return "ActiveUserTableViewCell"
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -272,14 +255,16 @@ extension UserFollowersShowViewController: SkeletonTableViewDataSource {
             
             // Handlers
             cell.handlerSubscribeButtonTapped           =   { [weak self] activeVoterShortInfo in
-                guard (self?.isCurrentOperationPossible())! else { return }
+                guard let strongSelf = self else { return }
                 
-                self?.selectedVoterInRow = self?.followers.firstIndex(where: { $0.follower == activeVoterShortInfo.nickName }) ?? 0
+                guard strongSelf.isCurrentOperationPossible() else { return }
+                
+                strongSelf.selectedCell = cell
                 
                 guard activeVoterShortInfo.isSubscribe else {
                     // API 'Subscribe'
                     let requestModel = UserFollowersShowModels.Sub.RequestModel(willSubscribe: true, authorNickName: activeVoterShortInfo.nickName)
-                    self?.interactor?.subscribe(withRequestModel: requestModel)
+                    strongSelf.interactor?.subscribe(withRequestModel: requestModel)
                     
                     // Run spinner
                     DispatchQueue.main.async {
@@ -291,10 +276,12 @@ extension UserFollowersShowViewController: SkeletonTableViewDataSource {
                 }
                 
                 // API 'Unsibscribe'
-                self?.showAlertAction(withTitle: "Unsubscribe Verb", andMessage: String(format: "%@ @%@ ?", "Unsubscribe are you sure".localized(), activeVoterShortInfo.nickName), icon: activeVoterShortInfo.icon, actionTitle: "Cancel Subscribe Verb", needCancel: true, isCancelLeft: false, completion: { [weak self] success in
+                strongSelf.showAlertAction(withTitle: "Unsubscribe Verb", andMessage: String(format: "%@ @%@ ?", "Unsubscribe are you sure".localized(), activeVoterShortInfo.nickName), icon: activeVoterShortInfo.icon, actionTitle: "Cancel Subscribe Verb", needCancel: true, isCancelLeft: false, completion: { [weak self] success in
+                    guard let strongSelf = self else { return }
+
                     if success {
                         let requestModel = UserFollowersShowModels.Sub.RequestModel(willSubscribe: false, authorNickName: activeVoterShortInfo.nickName)
-                        self?.interactor?.subscribe(withRequestModel: requestModel)
+                        strongSelf.interactor?.subscribe(withRequestModel: requestModel)
                         
                         // Run spinner
                         DispatchQueue.main.async {
@@ -310,10 +297,12 @@ extension UserFollowersShowViewController: SkeletonTableViewDataSource {
             }
             
             cell.handlerAuthorVoterTapped               =   { [weak self] voterNickName in
-                self?.router?.routeToUserProfileShowScene(byUserNickName: voterNickName)
+                guard let strongSelf = self else { return }
+
+                strongSelf.router?.routeToUserProfileShowScene(byUserNickName: voterNickName)
             }
         }
-        
+
         return cell
     }
 }
@@ -345,6 +334,12 @@ extension UserFollowersShowViewController: UITableViewDelegate {
         }
         
         return headerView
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if let activeUserTableViewCell = cell as? ActiveUserTableViewCell {
+            activeUserTableViewCell.userProfileImageView.setTemplate(type: .userProfileImage)
+        }
     }
 }
 

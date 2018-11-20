@@ -607,9 +607,6 @@
                                             <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Vf-2X-EtZ" userLabel="Placeholder Button">
                                                 <rect key="frame" x="10" y="0.0" width="285" height="38"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
-                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="commentsButtonTapped:" destination="EfY-4r-YFi" eventType="touchUpInside" id="iDN-25-Sap"/>
                                                 </connections>
@@ -635,9 +632,6 @@
                                             <constraint firstAttribute="width" secondItem="PT7-0P-kCz" secondAttribute="height" multiplier="1:1" id="lgO-AK-ehc"/>
                                         </constraints>
                                         <state key="normal" image="icon-button-paper-clip-black-normal"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
-                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="commentsButtonTapped:" destination="EfY-4r-YFi" eventType="touchUpInside" id="Sa1-m4-mor"/>
                                         </connections>

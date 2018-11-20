@@ -155,4 +155,20 @@ extension UIImageView {
                               completion:   nil)
         })
     }
+    
+    func setTemplate(type: ImageType) {
+        switch type {
+        case .userProfileImage:
+            self.image = UIImage(named: "icon-user-profile-image-placeholder")
+
+        case .userCoverImage:
+            self.image = UIImage(named: "image-user-cover-placeholder")
+
+        default:
+            self.image = UIImage(named: "image-placeholder")
+        }
+        
+//        self.layer.cornerRadius =   cornerRadius
+//        self.clipsToBounds      =   true
+    }
 }

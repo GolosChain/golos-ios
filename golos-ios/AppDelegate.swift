@@ -42,13 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Fabric.with([Crashlytics.self])
         
         // Run Amplitude SDK
-        if let userNickName = User.current?.nickName {
-            Amplitude.instance()?.initializeApiKey("52defe807d145e49a6754f89aeaf9b32", userId: userNickName)
-        } else {
-            Amplitude.instance()?.initializeApiKey("52defe807d145e49a6754f89aeaf9b32")
-        }
-        
-        Amplitude.instance()?.setDeviceId(UIDevice.current.identifierForVendor!.uuidString)
+        Amplitude.instance()?.initializeApiKey("52defe807d145e49a6754f89aeaf9b32")
         
         // APNs
         self.registerForPushNotifications()
