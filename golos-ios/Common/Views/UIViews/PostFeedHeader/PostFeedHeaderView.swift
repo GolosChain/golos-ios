@@ -82,6 +82,12 @@ class PostFeedHeaderView: UIView {
         }
     }
     
+    @IBOutlet var categoryImageViewCollection: [UIImageView]! {
+        didSet {
+            self.categoryImageViewCollection.forEach({ $0.image = UIImage(named: "icon-cell-category-gray")})
+        }
+    }
+    
     @IBOutlet weak var timeLabel: UILabel! {
         didSet {
             self.timeLabel.tune(withText:        "",
@@ -167,24 +173,28 @@ class PostFeedHeaderView: UIView {
         
         // Set User profile info
         if let userProfile = User.fetch(byNickName: profileAuthorNickName) {
-//            self.authorNameButton.setTitle(userProfile.name.uppercaseFirst + "dfds fsd fsd fsga gdaghdgasDGASGDGAjsgahg dhjasgd jahgd agsd gahgdahj", for: .normal)
             self.authorNameButton.setTitle(userProfile.name.uppercaseFirst, for: .normal)
 
             self.timeLabel.text                 =   post.created.convertToTimeAgo()
-//            self.categoryLabel.text             =   "asd asdas dasdasb vdasdbavsbdvbasvd bav bsbdb vbddddd wfdasdas"
             self.categoryLabel.text             =   post.category.transliteration(forPermlink: false).uppercaseFirst
             self.authorReputationLabel.text     =   String(format: "%i", userProfile.reputation.convertWithLogarithm10())
 
             self.categoryLabel.sizeToFit()
             self.authorNameButton.titleLabel?.sizeToFit()
             
-//            self.categoryLabelCollection.forEach({ $0.text = self.categoryLabel.text })
-            self.categoryLabelCollection.forEach({ $0.text = post.category.transliteration(forPermlink: false).uppercaseFirst })
+            self.categoryLabelCollection.forEach({
+                let isCategoryNSFW  =   post.category.transliteration(forPermlink: false).contains("nsfw")
+                $0.text             =   post.category.transliteration(forPermlink: false).uppercaseFirst
+                $0.theme_textColor  =   isCategoryNSFW ? softRedColorPickers : darkGrayWhiteColorPickers
+            })
+
+            self.categoryImageViewCollection.forEach({
+                let isCategoryNSFW  =   post.category.transliteration(forPermlink: false).contains("nsfw")
+                $0.image            =   UIImage(named: isCategoryNSFW ? "icon-cell-category-red" : "icon-cell-category-gray")
+            })
 
             // Remove Category to second line
             if self.categoryLabel.frame.width == 0 || self.authorNameStackView.arrangedSubviews[2].frame.minX + self.authorNameStackView.arrangedSubviews[2].frame.width >= self.timeLabel.frame.minX {
-//            authorNameButton.frame.width + 25.0 + CGFloat(self.categoryLabel.text!.count * 5) >= (self.timeLabel.frame.minX - 5.0) {
-//            if self.categoryLabel.frame.width == 0 || self.authorNameButton.frame.width + 25.0 + CGFloat(self.categoryLabel.text!.count * 5) >= (self.timeLabel.frame.minX - 5.0) {
                 self.categoryLabel.isHidden             =   true
                 self.categoryImageView.isHidden         =   true
                 self.categoryStackView.isHidden         =   false

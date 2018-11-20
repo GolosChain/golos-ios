@@ -45,6 +45,8 @@
                 <outletCollection property="topConstraintsCollection" destination="wEe-v0-4zb" collectionClass="NSMutableArray" id="deN-ur-fJb"/>
                 <outletCollection property="topConstraintsCollection" destination="B9h-Fb-OFc" collectionClass="NSMutableArray" id="vhf-hb-KLU"/>
                 <outletCollection property="topConstraintsCollection" destination="iZP-HV-lEA" collectionClass="NSMutableArray" id="aQr-sp-0pC"/>
+                <outletCollection property="categoryImageViewCollection" destination="Obg-ts-apO" collectionClass="NSMutableArray" id="Put-Vy-M8m"/>
+                <outletCollection property="categoryImageViewCollection" destination="Go4-Kd-Te3" collectionClass="NSMutableArray" id="2d7-6S-pD4"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -108,12 +110,12 @@
                                 <action selector="profileAuthorButtonTapped:" destination="-1" eventType="touchUpInside" id="0ly-X0-CUC"/>
                             </connections>
                         </button>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" image="icon-cell-theme-small" translatesAutoresizingMaskIntoConstraints="NO" id="Obg-ts-apO">
-                            <rect key="frame" x="154" y="3" width="12" height="9"/>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" image="icon-cell-category-gray" translatesAutoresizingMaskIntoConstraints="NO" id="Obg-ts-apO">
+                            <rect key="frame" x="154" y="2.5" width="13" height="10"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </imageView>
                         <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="749" text="Category Label" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aki-nt-sGv" userLabel="Category Label">
-                            <rect key="frame" x="171" y="1.5" width="78" height="12"/>
+                            <rect key="frame" x="172" y="1.5" width="77" height="12"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                             <nil key="textColor"/>
@@ -137,12 +139,12 @@
                         <stackView contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="KFE-iD-xST" userLabel="Category Stack View">
                             <rect key="frame" x="0.0" y="0.0" width="307" height="31"/>
                             <subviews>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" image="icon-cell-theme-small" translatesAutoresizingMaskIntoConstraints="NO" id="Go4-Kd-Te3">
-                                    <rect key="frame" x="0.0" y="0.0" width="12" height="31"/>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" image="icon-cell-category-gray" translatesAutoresizingMaskIntoConstraints="NO" id="Go4-Kd-Te3">
+                                    <rect key="frame" x="0.0" y="0.0" width="13" height="31"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </imageView>
                                 <label clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="749" text="Category Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eDd-4r-Hls" userLabel="Category Label">
-                                    <rect key="frame" x="17" y="0.0" width="290" height="31"/>
+                                    <rect key="frame" x="18" y="0.0" width="289" height="31"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                     <nil key="textColor"/>
@@ -214,8 +216,8 @@
         </view>
     </objects>
     <resources>
+        <image name="icon-cell-category-gray" width="13" height="10"/>
         <image name="icon-cell-reblog" width="9" height="6"/>
-        <image name="icon-cell-theme-small" width="12" height="9"/>
         <image name="icon-user-profile-image-placeholder" width="40" height="40"/>
     </resources>
 </document>

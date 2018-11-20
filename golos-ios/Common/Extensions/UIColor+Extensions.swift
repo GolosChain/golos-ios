@@ -26,6 +26,7 @@ let veryLightGrayColorPickers: ThemeColorPicker                 =   [ "#dbdbdb",
 let lightGrayWhiteColorPickers: ThemeColorPicker                =   [ "#c1c1c1", "#ffffff" ]
 let redWhiteColorPickers: ThemeColorPicker                      =   [ "#ff0000", "#ffffff" ]
 let blueWhiteColorPickers: ThemeColorPicker                     =   [ "#0433ff", "#ffffff" ]
+let softRedColorPickers: ThemeColorPicker                       =   [ "#e34646", "#e34646" ]
 
 
 extension UIColor {

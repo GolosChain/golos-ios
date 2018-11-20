@@ -26,7 +26,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "golos-ios/Scenes/UserFollowersShow/UserFollowersShowViewController.swift"
-            timestampString = "564419974.010295"
+            timestampString = "564421505.1599931"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "175"
@@ -42,7 +42,7 @@
                   moduleName = "Golos"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/msm72/My%20Projects/GolosChain/App/golos-ios/Scenes/UserFollowersShow/UserFollowersShowViewController.swift"
-                  timestampString = "564419974.48807"
+                  timestampString = "564422397.078418"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "175"
@@ -57,7 +57,7 @@
                   moduleName = "Golos"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/msm72/My%20Projects/GolosChain/App/golos-ios/Scenes/UserFollowersShow/UserFollowersShowViewController.swift"
-                  timestampString = "564419974.491142"
+                  timestampString = "564422397.080448"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "175"
@@ -90,7 +90,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "golos-ios/Scenes/PostShow/PostShowViewController.swift"
-            timestampString = "564419974.010591"
+            timestampString = "564422396.526567"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1423"
@@ -264,38 +264,6 @@
             startingLineNumber = "261"
             endingLineNumber = "261"
             landmarkName = "logOutButtonTapped(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "golos-ios/Common/Views/UIViews/PostFeedHeader/PostFeedHeaderView.swift"
-            timestampString = "563858903.9788001"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "194"
-            endingLineNumber = "194"
-            landmarkName = "display(post:entry:inNavBar:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "golos-ios/Common/Views/UIViews/PostFeedHeader/PostFeedHeaderView.swift"
-            timestampString = "563858903.979278"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "185"
-            endingLineNumber = "185"
-            landmarkName = "display(post:entry:inNavBar:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
