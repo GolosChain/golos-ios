@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Frs-qu-ked">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Frs-qu-ked">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -161,19 +161,37 @@
                                     </mask>
                                 </variation>
                             </view>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r4h-n1-PDJ" userLabel="Infinite Scrolling View">
+                                <rect key="frame" x="0.0" y="692" width="414" height="44"/>
+                                <subviews>
+                                    <activityIndicatorView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="2LN-SD-41t" userLabel="Infinite Scrolling Activity Indicator">
+                                        <rect key="frame" x="197" y="12" width="20" height="20"/>
+                                        <color key="color" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="2LN-SD-41t" firstAttribute="centerX" secondItem="r4h-n1-PDJ" secondAttribute="centerX" id="F5b-dW-XWG"/>
+                                    <constraint firstItem="2LN-SD-41t" firstAttribute="centerY" secondItem="r4h-n1-PDJ" secondAttribute="centerY" id="N0N-2N-6VB"/>
+                                    <constraint firstAttribute="height" constant="44" identifier="infiniteScrollingViewHeightConstraint" id="Nbt-hh-P5R"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="r4h-n1-PDJ" secondAttribute="trailing" id="2lK-ON-fmr"/>
                             <constraint firstAttribute="trailing" secondItem="KN9-kt-Cga" secondAttribute="trailing" id="4oR-JI-v47"/>
                             <constraint firstItem="2uN-82-qIf" firstAttribute="trailing" secondItem="V1F-55-FXF" secondAttribute="trailing" id="6XD-dh-gkC"/>
                             <constraint firstItem="ffv-sr-RCO" firstAttribute="top" secondItem="V1F-55-FXF" secondAttribute="bottom" id="O79-cX-u5s"/>
                             <constraint firstItem="V1F-55-FXF" firstAttribute="leading" secondItem="2uN-82-qIf" secondAttribute="leading" id="PF6-Fc-F1L"/>
                             <constraint firstItem="2uN-82-qIf" firstAttribute="trailing" secondItem="ffv-sr-RCO" secondAttribute="trailing" id="QJk-IV-jwF"/>
+                            <constraint firstItem="r4h-n1-PDJ" firstAttribute="leading" secondItem="RIB-Kz-DZP" secondAttribute="leading" id="Scl-GD-ATd"/>
                             <constraint firstItem="V1F-55-FXF" firstAttribute="top" secondItem="RIB-Kz-DZP" secondAttribute="top" id="fuX-ez-PNd"/>
                             <constraint firstItem="KN9-kt-Cga" firstAttribute="top" secondItem="V1F-55-FXF" secondAttribute="bottom" id="hEm-zQ-GyO"/>
                             <constraint firstItem="2uN-82-qIf" firstAttribute="bottom" secondItem="ffv-sr-RCO" secondAttribute="bottom" id="rbX-tT-Mfd"/>
                             <constraint firstItem="KN9-kt-Cga" firstAttribute="leading" secondItem="RIB-Kz-DZP" secondAttribute="leading" id="sYL-KO-ozh"/>
                             <constraint firstItem="ffv-sr-RCO" firstAttribute="leading" secondItem="2uN-82-qIf" secondAttribute="leading" id="wad-pm-Dlc"/>
+                            <constraint firstAttribute="bottom" secondItem="r4h-n1-PDJ" secondAttribute="bottom" identifier="infiniteScrollingViewBottomConstraint" id="zoc-fg-JhR"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="2uN-82-qIf"/>
                     </view>
@@ -184,6 +202,8 @@
                         <outlet property="buttonsStackView" destination="VOV-AR-H2g" id="3ng-Qq-lVg"/>
                         <outlet property="containerView" destination="ffv-sr-RCO" id="T33-ED-Ymr"/>
                         <outlet property="contentViewWidthConstraint" destination="biU-OX-prh" id="4o0-on-aTu"/>
+                        <outlet property="infiniteScrollingView" destination="r4h-n1-PDJ" id="ITK-6h-Rhq"/>
+                        <outlet property="infiniteScrollingViewBottomConstraint" destination="zoc-fg-JhR" id="rWz-ek-ZFU"/>
                         <outlet property="lentaButton" destination="2Sj-LZ-Elw" id="g1m-lf-i6X"/>
                         <outlet property="lineView" destination="uXw-eA-Nu0" id="Woq-Rn-b6i"/>
                         <outlet property="lineViewLeadingConstraint" destination="bPe-Jg-l8d" id="JgL-E6-a7P"/>
@@ -200,6 +220,7 @@
                         <outletCollection property="buttonsCollection" destination="Qv1-pJ-ucr" collectionClass="NSMutableArray" id="iuc-IC-xgM"/>
                         <outletCollection property="buttonsCollection" destination="XgW-00-rgb" collectionClass="NSMutableArray" id="6Nk-5L-asv"/>
                         <outletCollection property="buttonsCollection" destination="Zff-rx-nQI" collectionClass="NSMutableArray" id="LZz-gx-url"/>
+                        <outletCollection property="heightsCollection" destination="Nbt-hh-P5R" collectionClass="NSMutableArray" id="DNN-5m-TSZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BMa-A2-yBx" userLabel="First Responder" sceneMemberID="firstResponder"/>

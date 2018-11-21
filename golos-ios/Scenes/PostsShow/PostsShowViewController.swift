@@ -98,6 +98,19 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
         }
     }
     
+    @IBOutlet weak var infiniteScrollingView: UIView! {
+        didSet {
+            self.infiniteScrollingView.tune()
+            self.infiniteScrollingView.alpha = 0.0
+        }
+    }
+    
+    @IBOutlet weak var infiniteScrollingViewBottomConstraint: NSLayoutConstraint! {
+        didSet {
+            self.infiniteScrollingViewBottomConstraint.constant = -44.0 * heightRatio
+        }
+    }
+    
     @IBOutlet var heightsCollection: [NSLayoutConstraint]! {
         didSet {
             self.heightsCollection.forEach({ $0.constant *= heightRatio })
@@ -464,6 +477,10 @@ extension PostsShowViewController {
         // Load data
         let loadPostsRequestModel = PostsShowModels.Items.RequestModel(postFeedType: self.postFeedTypes[self.selectedIndex])
         self.interactor?.loadPosts(withRequestModel: loadPostsRequestModel)
+        
+        if condition.isInfiniteScrolling {
+            self.infiniteScrollingView.show(constraint: self.infiniteScrollingViewBottomConstraint)
+        }
     }
 }
 
@@ -473,5 +490,6 @@ extension PostsShowViewController {
     // User Profile
     private func fetchPosts() {
         self.setActiveViewControllerHandlers()
+        self.infiniteScrollingView.hide(constraint: self.infiniteScrollingViewBottomConstraint)
     }
 }
