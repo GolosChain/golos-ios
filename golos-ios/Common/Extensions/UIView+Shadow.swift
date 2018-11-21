@@ -94,4 +94,23 @@ extension UIView {
         
         self.layer.addSublayer(gradientLayer)
     }
+    
+    func show(constraint: NSLayoutConstraint) {
+        constraint.constant = 0.0
+
+        UIView.animate(withDuration: 0.5) {
+            self.alpha = 1.0
+            self.layoutIfNeeded()
+        }
+    }
+
+    func hide(constraint: NSLayoutConstraint) {
+        constraint.constant = -self.frame.height
+        
+        UIView.animate(withDuration: 0.7, animations: {
+            self.layoutIfNeeded()
+        }, completion: { success in
+            self.alpha = 0.0
+        })
+    }
 }

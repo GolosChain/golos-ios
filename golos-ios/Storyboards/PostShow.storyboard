@@ -598,6 +598,21 @@
                                     <constraint firstAttribute="height" constant="1" id="Lz6-VG-cd8"/>
                                 </constraints>
                             </view>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vyE-fe-bwG" userLabel="Infinite Scrolling View">
+                                <rect key="frame" x="0.0" y="573" width="375" height="44"/>
+                                <subviews>
+                                    <activityIndicatorView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="8nR-R2-wpC" userLabel="Infinite Scrolling Activity Indicator">
+                                        <rect key="frame" x="177.5" y="12" width="20" height="20"/>
+                                        <color key="color" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="8nR-R2-wpC" firstAttribute="centerX" secondItem="vyE-fe-bwG" secondAttribute="centerX" id="9h9-Ig-qnN"/>
+                                    <constraint firstItem="8nR-R2-wpC" firstAttribute="centerY" secondItem="vyE-fe-bwG" secondAttribute="centerY" id="Nyz-Nk-8VA"/>
+                                    <constraint firstAttribute="height" constant="44" identifier="infiniteScrollingViewHeightConstraint" id="o5t-XK-Sc2"/>
+                                </constraints>
+                            </view>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7PU-1s-EvT" userLabel="Create New Comment View">
                                 <rect key="frame" x="0.0" y="617" width="375" height="50"/>
                                 <subviews>
@@ -655,6 +670,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="vyE-fe-bwG" secondAttribute="trailing" id="2cx-kV-0ye"/>
                             <constraint firstItem="UNP-hf-cFI" firstAttribute="bottom" secondItem="7PU-1s-EvT" secondAttribute="bottom" id="8Yf-FI-9bX"/>
                             <constraint firstItem="TmK-sy-43l" firstAttribute="top" secondItem="7f0-ZC-o8d" secondAttribute="bottom" id="9om-0c-AsV"/>
                             <constraint firstItem="7PU-1s-EvT" firstAttribute="leading" secondItem="AJS-P4-Hkt" secondAttribute="leading" id="HgG-Ra-Ncs"/>
@@ -671,9 +687,11 @@
                             <constraint firstItem="7PU-1s-EvT" firstAttribute="top" secondItem="TmK-sy-43l" secondAttribute="bottom" id="cjF-hC-jpd"/>
                             <constraint firstItem="7Js-bQ-ZpY" firstAttribute="leading" secondItem="UNP-hf-cFI" secondAttribute="leading" id="frb-bE-B30"/>
                             <constraint firstItem="7f0-ZC-o8d" firstAttribute="top" secondItem="7Js-bQ-ZpY" secondAttribute="bottom" id="gqN-tc-vlr"/>
+                            <constraint firstItem="vyE-fe-bwG" firstAttribute="leading" secondItem="AJS-P4-Hkt" secondAttribute="leading" id="hxz-Rw-O8t"/>
                             <constraint firstItem="UNP-hf-cFI" firstAttribute="trailing" secondItem="7f0-ZC-o8d" secondAttribute="trailing" id="iwS-Sb-9kM"/>
                             <constraint firstItem="7f0-ZC-o8d" firstAttribute="leading" secondItem="UNP-hf-cFI" secondAttribute="leading" id="jhh-u0-pH9"/>
                             <constraint firstItem="7PU-1s-EvT" firstAttribute="height" secondItem="AJS-P4-Hkt" secondAttribute="height" multiplier="50:667" id="mLe-pT-Xg2"/>
+                            <constraint firstItem="7PU-1s-EvT" firstAttribute="top" secondItem="vyE-fe-bwG" secondAttribute="bottom" identifier="infiniteScrollingViewBottomConstraint" id="mfK-x7-TqZ"/>
                             <constraint firstItem="UNP-hf-cFI" firstAttribute="trailing" secondItem="7Js-bQ-ZpY" secondAttribute="trailing" id="rVy-r2-yrE"/>
                             <constraint firstItem="7Js-bQ-ZpY" firstAttribute="height" secondItem="AJS-P4-Hkt" secondAttribute="height" multiplier="44:375" id="t0C-19-mbS"/>
                             <constraint firstItem="ZkM-23-awk" firstAttribute="top" secondItem="7Js-bQ-ZpY" secondAttribute="bottom" constant="-1" id="xPp-Ym-QMO"/>
@@ -713,6 +731,8 @@
                         <outlet property="dislikeButton" destination="aLP-ZP-yPw" id="fNr-aW-I76"/>
                         <outlet property="dislikeCountButton" destination="79w-mh-VA3" id="An2-qO-l0X"/>
                         <outlet property="donateButton" destination="SQB-q3-brD" id="pGH-FJ-UVL"/>
+                        <outlet property="infiniteScrollingView" destination="vyE-fe-bwG" id="jtz-8L-AMn"/>
+                        <outlet property="infiniteScrollingViewBottomConstraint" destination="mfK-x7-TqZ" id="3wD-Wa-ucz"/>
                         <outlet property="likeActivityIndicator" destination="bie-f8-jaU" id="OQ5-Nz-0w2"/>
                         <outlet property="likeButton" destination="fb3-VQ-GlM" id="p9Q-2w-lYk"/>
                         <outlet property="likeCountButton" destination="ql2-PU-ZSI" id="470-3Y-ecG"/>
@@ -814,6 +834,7 @@
                         <outletCollection property="widthsCollection" destination="nsA-4h-y9d" collectionClass="NSMutableArray" id="94C-il-L59"/>
                         <outletCollection property="heightsCollection" destination="Mo0-Se-CJg" collectionClass="NSMutableArray" id="uaC-VV-DV7"/>
                         <outletCollection property="heightsCollection" destination="DaE-On-fSR" collectionClass="NSMutableArray" id="3jU-MZ-Lug"/>
+                        <outletCollection property="heightsCollection" destination="o5t-XK-Sc2" collectionClass="NSMutableArray" id="dA7-zZ-hza"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CXI-Zv-5XY" userLabel="First Responder" sceneMemberID="firstResponder"/>

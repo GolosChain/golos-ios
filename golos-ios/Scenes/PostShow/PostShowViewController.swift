@@ -82,7 +82,14 @@ class PostShowViewController: GSBaseViewController {
         }
     }
     
-   @IBOutlet weak var loadingPostContentActivityIndicator: UIActivityIndicatorView! {
+    @IBOutlet weak var infiniteScrollingView: UIView! {
+        didSet {
+            self.infiniteScrollingView.tune()
+            self.infiniteScrollingView.alpha = 0.0
+        }
+    }
+    
+    @IBOutlet weak var loadingPostContentActivityIndicator: UIActivityIndicatorView! {
         didSet {
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
                 self.loadingPostContentActivityIndicator.startAnimating()
@@ -424,6 +431,12 @@ class PostShowViewController: GSBaseViewController {
         }
     }
     
+    @IBOutlet weak var infiniteScrollingViewBottomConstraint: NSLayoutConstraint! {
+        didSet {
+            self.infiniteScrollingViewBottomConstraint.constant = -44.0 * heightRatio
+        }
+    }
+
     @IBOutlet weak var tagsCollectionViewheightConstraint: NSLayoutConstraint!
     @IBOutlet weak var markdownViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var commentsControlViewTopConstraint: NSLayoutConstraint!
@@ -723,17 +736,24 @@ class PostShowViewController: GSBaseViewController {
     }
     
     private func didFinishLoadComments(afterPagination isPaginationRun: Bool) {
-        self.insertedRow = nil
-        self.permlinkCreatedItem = ""
-        self.didCommentsControlView(hided: false)
-
         if isPaginationRun {
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2.5, execute: {
                 self.isPaginationRun = false
                 self.gsTimer?.stop()
                 self.loadPostCommentsWorkItem.cancel()
+                self.infiniteScrollingView.hide(constraint: self.infiniteScrollingViewBottomConstraint)
+                
+                self.clearProperties()
             })
+        } else {
+            self.clearProperties()
         }
+    }
+    
+    private func clearProperties() {
+        self.insertedRow = nil
+        self.permlinkCreatedItem = ""
+        self.didCommentsControlView(hided: false)
     }
     
     
@@ -1434,7 +1454,8 @@ extension PostShowViewController: UIScrollViewDelegate {
         
         if bottom - scrollPosition <= 50.0 && !self.isPaginationRun && self.needPagination {
             self.isPaginationRun = true
-            
+            self.infiniteScrollingView.show(constraint: self.infiniteScrollingViewBottomConstraint)
+
             // Load Comments from CoreData
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2, execute: {
                 self.fetchPostComments()
