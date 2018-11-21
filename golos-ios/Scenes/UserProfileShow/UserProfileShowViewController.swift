@@ -411,7 +411,6 @@ extension UserProfileShowViewController {
     // User Profile
     private func fetchUserInfo() {
         if let userEntity = User.fetch(byNickName: self.router!.dataStore!.userNickName ?? "XXX") {
-            self.userProfileInfoTitleViewHeightConstraint.constant = 58.0
             self.userProfileHeaderView.updateUI(fromUserInfo: userEntity)
             self.userProfileInfoTitleView.updateUI(fromUserInfo: userEntity)
             
@@ -421,9 +420,9 @@ extension UserProfileShowViewController {
             }
             
             // Change profileInfoView height
-            if let info = userEntity.about, !info.isEmpty {
-                self.userProfileInfoTitleView.aboutLabelView.isHidden = false
-                userProfileInfoTitleViewHeightConstraint.constant *= 2
+            if let info = userEntity.about, info.isEmpty {
+                self.userProfileInfoTitleView.aboutLabelView.isHidden = true
+                self.userProfileInfoTitleViewHeightConstraint.constant /= 2
             }
         }
     }

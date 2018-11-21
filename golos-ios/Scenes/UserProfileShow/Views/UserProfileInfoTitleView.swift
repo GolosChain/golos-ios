@@ -24,7 +24,7 @@ class UserProfileInfoTitleView: PassthroughView {
     
     @IBOutlet weak var aboutLabelView: UIView! {
         didSet {
-            self.aboutLabelView.isHidden =   true
+            self.aboutLabelView.isHidden = false
         }
     }
     

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina3_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -25,21 +25,21 @@
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                         <subviews>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gKv-wz-hea" userLabel="User Profile Info Title View" customClass="UserProfileInfoTitleView" customModule="Golos" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="320" height="58"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="116"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="58" id="jGV-PL-NNh"/>
+                                                    <constraint firstAttribute="height" constant="116" id="jGV-PL-NNh"/>
                                                 </constraints>
                                             </view>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nQR-xd-4LM" userLabel="User Profile Info Wallet View">
-                                                <rect key="frame" x="0.0" y="58" width="320" height="44"/>
+                                                <rect key="frame" x="0.0" y="116" width="320" height="44"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="44" id="OCZ-c0-g1n"/>
                                                 </constraints>
                                             </view>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vAN-NO-FcT" userLabel="User Profile Info Control View">
-                                                <rect key="frame" x="0.0" y="112" width="320" height="44"/>
+                                                <rect key="frame" x="0.0" y="170" width="320" height="44"/>
                                                 <subviews>
                                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Ha-Kn-ad4">
                                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -159,7 +159,7 @@
                                                 </constraints>
                                             </view>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oTo-xI-SFK" userLabel="User Profile Info Control Bottom Line View">
-                                                <rect key="frame" x="0.0" y="156" width="320" height="1"/>
+                                                <rect key="frame" x="0.0" y="214" width="320" height="1"/>
                                                 <color key="backgroundColor" red="0.85882352941176465" green="0.85882352941176465" blue="0.85882352941176465" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="R54-AI-al2"/>
@@ -193,7 +193,7 @@
                                 </constraints>
                             </scrollView>
                             <containerView clipsSubviews="YES" tag="200" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I3j-FI-bZT" customClass="GSContainerView" customModule="Golos" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="-10" width="320" height="490"/>
+                                <rect key="frame" x="0.0" y="235" width="320" height="245"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" priority="250" constant="490" id="2sL-m7-fm8"/>

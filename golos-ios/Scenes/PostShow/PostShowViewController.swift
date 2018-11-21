@@ -552,7 +552,7 @@ class PostShowViewController: GSBaseViewController {
             self.commentsStackView.alpha    =   1.0
         }
         
-        if self.scrollCommentsDown && !self.isPostContentModify {
+        if self.scrollCommentsDown {
             self.didContentViewScrollToCommentsView()
         }
     }
@@ -635,8 +635,10 @@ class PostShowViewController: GSBaseViewController {
         
         self.tagsCollectionView.reloadData()
         
-        self.postFeedHeaderView.display(post: self.router!.dataStore!.displayedPost!, inNavBar: true, completion: { _ in })
-
+        if let dataStore = self.router?.dataStore, dataStore.displayedPost != nil {
+            self.postFeedHeaderView.display(post: dataStore.displayedPost!, inNavBar: true, completion: { _ in })
+        }
+        
         self.postFeedHeaderView.categoryLabel.text = self.router!.dataStore!.displayedPost!.category
                                                         .transliteration(forPermlink: false)
                                                         .uppercaseFirst
@@ -686,9 +688,17 @@ class PostShowViewController: GSBaseViewController {
                                 return
                             }
 
+                            // Scrolling after add new Comments item
+                            if self.isPostContentModify {
+                                let commentView = self.commentsStackView.arrangedSubviews[self.insertedRow ?? 0]
+                                let commentViewFrame = self.contentView.convert(commentView.frame, from: self.commentsStackView)
+                                self.scrollView.contentOffset.y = commentViewFrame.minY
+                            }
+
                             // Scrolling down only once after open scene
-                            if !self.isPaginationRun {
+                            else if self.scrollCommentsDown {
                                 self.scrollView.contentOffset.y = bottomViewFrame.maxY
+                                self.scrollCommentsDown = false
                             }
             })
         })
@@ -720,6 +730,8 @@ class PostShowViewController: GSBaseViewController {
         if isPaginationRun {
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2.5, execute: {
                 self.isPaginationRun = false
+                self.gsTimer?.stop()
+                self.loadPostCommentsWorkItem.cancel()
             })
         }
     }
@@ -819,10 +831,15 @@ class PostShowViewController: GSBaseViewController {
     @IBAction func commentsButtonTapped(_ sender: UIButton) {
         guard self.isCurrentOperationPossible() else { return }
 
-        DispatchQueue.main.async {
-            self.router?.routeToPostCreateScene(withType: .createComment)
-            self.insertedRow = self.comments?.count ?? 0
-        }
+        self.isPostContentModify = true
+        self.insertedRow = 3
+        
+        self.didContentViewScrollToCommentsView()
+        
+//        DispatchQueue.main.async {
+//            self.router?.routeToPostCreateScene(withType: .createComment)
+//            self.insertedRow = self.comments?.count ?? 0
+//        }
     }
 
     @IBAction func promoteButtonTapped(_ sender: UIButton) {
