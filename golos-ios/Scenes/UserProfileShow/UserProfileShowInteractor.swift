@@ -70,6 +70,9 @@ class UserProfileShowInteractor: UserProfileShowBusinessLogic, UserProfileShowDa
     }
 
     func loadUserInfo(withRequestModel requestModel: UserProfileShowModels.UserInfo.RequestModel) {
+        // Test value (only for Alfa version)
+//        self.userNickName   =   "golos"
+        
         // Load User Blog entries
         BlogEntry.clear(byBlogAuthorNickName: self.userNickName ?? "XXX")
 

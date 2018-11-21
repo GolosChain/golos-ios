@@ -19,7 +19,7 @@ enum ImageType: String {
 
 extension UIImageView {
     /// Download image
-    func uploadImage(byStringPath path: String, imageType: ImageType, size: CGSize, tags: [String]?, createdDate: Date, fromItem: String, completion: @escaping (CGFloat) -> Void) {
+    func uploadImage(byStringPath path: String, imageType: ImageType, size: CGSize, tags: [String]?, createdDate: Date, fromItem: String, isCurrentUserAuthor: Bool = false, completion: @escaping (CGFloat) -> Void) {
         let uploadedSize            =   CGSize(width: size.width * 3, height: size.height * 3)
         let imagePathWithProxy      =   path.trimmingCharacters(in: .whitespacesAndNewlines).addImageProxy(withSize: uploadedSize)
         
@@ -35,7 +35,7 @@ extension UIImageView {
         let imageKey: NSString      =   imageURL.absoluteString as NSString
 
         // Cover as 'NSFW'
-        if let tagsTemp = tags, tagsTemp.map({ $0.lowercased() }).contains("nsfw"), imageType == .userCoverImage {
+        if let tagsTemp = tags, tagsTemp.map({ $0.lowercased() }).contains("nsfw"), imageType == .userCoverImage, !isCurrentUserAuthor {
             self.image = UIImage(named: "image-nsfw")!
         }
 

@@ -242,13 +242,14 @@ extension PostFeedTableViewCell: ConfigureCell {
 
         // Load model user cover image
         if let coverImageURL = model.coverImageURL, !coverImageURL.isEmpty {
-            self.postImageView.uploadImage(byStringPath:    coverImageURL,
-                                           imageType:       .userCoverImage,
-                                           size:            CGSize(width: UIScreen.main.bounds.width, height: 180.0 * heightRatio),
-                                           tags:            model.tags,
-                                           createdDate:     model.created,
-                                           fromItem:        (model as! CachedImageFrom).fromItem,
-                                           completion:      { [weak self] sidesAspectRatio in
+            self.postImageView.uploadImage(byStringPath:            coverImageURL,
+                                           imageType:               .userCoverImage,
+                                           size:                    CGSize(width: UIScreen.main.bounds.width, height: 180.0 * heightRatio),
+                                           tags:                    model.tags,
+                                           createdDate:             model.created,
+                                           fromItem:                (model as! CachedImageFrom).fromItem,
+                                           isCurrentUserAuthor:     User.isAnonymous ? false : (User.current!.nickName == model.author),
+                                           completion:              { [weak self] sidesAspectRatio in
                                             if sidesAspectRatio >= 1.0 {
                                                 DispatchQueue.main.async(execute: {
                                                     self?.postImageViewHeightConstraint.constant = UIScreen.main.bounds.width * sidesAspectRatio

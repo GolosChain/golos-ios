@@ -81,9 +81,6 @@ public class User: NSManagedObject, CachedImageFrom {
             self.canVote        =   userModel.can_vote
             self.commentCount   =   userModel.comment_count
             self.created        =   userModel.created
-
-            // Set User full name as nickName
-            self.name           =   userModel.name
             self.nickName       =   userModel.name
 
             // UserSecretPostingKey
@@ -111,6 +108,11 @@ public class User: NSManagedObject, CachedImageFrom {
             self.followerCount  =   Int64(userFollowModel.follower_count)
             self.followingCount =   Int64(userFollowModel.following_count)
             self.followingLimit =   userFollowModel.limit
+        }
+        
+        // Set User full name as nickName
+        if self.name.isEmpty || self.name == "" || self.name == "XXX" {
+            self.name   =   self.nickName
         }
         
         // Extensions
