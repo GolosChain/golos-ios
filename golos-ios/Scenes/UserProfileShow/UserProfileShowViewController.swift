@@ -175,6 +175,19 @@ class UserProfileShowViewController: GSBaseViewController, ContainerViewSupport 
         }
     }
     
+    @IBOutlet weak var infiniteScrollingView: UIView! {
+        didSet {
+            self.infiniteScrollingView.tune()
+            self.infiniteScrollingView.alpha = 0.0
+        }
+    }
+    
+    @IBOutlet weak var infiniteScrollingViewBottomConstraint: NSLayoutConstraint! {
+        didSet {
+            self.infiniteScrollingViewBottomConstraint.constant = -44.0 * heightRatio
+        }
+    }
+    
     @IBOutlet var heightsCollection: [NSLayoutConstraint]! {
         didSet {
             self.heightsCollection.forEach({ $0.constant *= heightRatio })
@@ -402,6 +415,10 @@ extension UserProfileShowViewController {
             let userDetailsRequestModel = UserProfileShowModels.UserDetails.RequestModel(postFeedType: self.postFeedTypes[self.selectedButton.tag])
             self.interactor?.loadUserDetails(withRequestModel: userDetailsRequestModel)
         }
+        
+        if condition.isInfiniteScrolling {
+            self.infiniteScrollingView.show(constraint: self.infiniteScrollingViewBottomConstraint)
+        }
     }
 }
 
@@ -432,7 +449,9 @@ extension UserProfileShowViewController {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1, execute: {
             if let activeVC = self.containerView.activeVC {
                 activeVC.fetchPosts(byParameters: (author: self.router?.dataStore?.userNickName, postFeedType: self.postFeedTypes[self.selectedButton.tag], permlink: nil, sortBy: nil, entries: self.router?.dataStore?.userBlogEntries))
-                
+
+                self.infiniteScrollingView.hide(constraint: self.infiniteScrollingViewBottomConstraint)
+
                 // Handler Pull Refresh/Infinite Scrolling data
                 activeVC.handlerPushRefreshData                     =   { [weak self] lastItem in
                     self?.interactor?.save(lastItem: lastItem)
