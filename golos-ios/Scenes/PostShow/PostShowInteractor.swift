@@ -39,7 +39,7 @@ class PostShowInteractor: PostShowBusinessLogic, PostShowDataStore {
     var comment: PostShortInfo?
     var postType: PostsFeedType?
     var displayedPost: PostCellSupport?
-
+    
     var postShortInfo: PostShortInfo? {
         didSet {
             if let selectedPost = CoreDataManager.instance.readEntity(withName:                   self.postType!.caseTitle().uppercaseFirst,

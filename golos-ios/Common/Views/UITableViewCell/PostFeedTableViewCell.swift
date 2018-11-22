@@ -222,7 +222,7 @@ extension PostFeedTableViewCell: ConfigureCell {
             return
         }
         
-        self.postShortInfo              =   PostShortInfo(indexPath: indexPath)
+        self.postShortInfo              =   PostShortInfo(indexPath: indexPath, nsfwPath: self.postImageView.accessibilityIdentifier)
         self.likeButton.isEnabled       =   true
         self.dislikeButton.isEnabled    =   true
 

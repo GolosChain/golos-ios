@@ -600,8 +600,9 @@ class PostShowViewController: GSBaseViewController {
             
             if !withoutComments {
                 self.postFeedHeaderView.display(post: displayedPost, inNavBar: true, completion: { _ in })
-                self.markdownViewManager.load(markdown: Parser.repair(body: displayedPost.body))
                 
+                self.markdownViewManager.load(markdown: Parser.repair(body: displayedPost.body))
+
                 self.markdownViewManager.onRendered = { [weak self] height in
                     self?.markdownViewHeightConstraint.constant = height
                     

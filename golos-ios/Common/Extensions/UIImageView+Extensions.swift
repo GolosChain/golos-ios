@@ -37,6 +37,7 @@ extension UIImageView {
         // Cover as 'NSFW'
         if let tagsTemp = tags, tagsTemp.map({ $0.lowercased() }).contains("nsfw"), imageType == .userCoverImage, !isCurrentUserAuthor {
             self.image = UIImage(named: "image-nsfw")!
+            self.accessibilityIdentifier = imageURL.absoluteString
         }
 
         else {
