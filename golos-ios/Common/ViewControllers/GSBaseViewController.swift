@@ -171,7 +171,7 @@ class GSBaseViewController: UIViewController {
         let attributedMessage = NSMutableAttributedString(string: String(format: "%@%@", icon == nil ? "" : "\n\n\n", message.localized()))
         attributedMessage.addAttribute(.font, value: UIFont(name: "SFUIDisplay-Light", size: 14.0)!, range: NSRange(location: 0, length: attributedMessage.length))
         
-        let userNamePattern         =   "\\@\\w*\\W?\\w*"
+        let userNamePattern         =   "\\@\\w*\\W?\\w*\\W?\\w*"
         let userNameRegex           =   try! NSRegularExpression(pattern: userNamePattern, options: [])
         
         if let userNameMatches = userNameRegex.firstMatch(in: message.localized(), options: .withTransparentBounds, range: NSRange(location: 0, length: message.localized().count)) {

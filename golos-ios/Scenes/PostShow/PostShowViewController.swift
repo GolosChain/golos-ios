@@ -923,7 +923,7 @@ class PostShowViewController: GSBaseViewController {
         }
 
         // API 'Unsibscribe'
-        self.showAlertAction(withTitle: "Unsubscribe Verb", andMessage: String(format: "%@ @%@ ?", "Unsubscribe are you sure".localized(), self.postFeedHeaderView.authorNickNameButton.titleLabel!.text!), icon: self.postFeedHeaderView.authorProfileImageView.image, actionTitle: "Cancel Subscribe Verb", needCancel: true, isCancelLeft: false, completion: { [weak self] success in
+        self.showAlertAction(withTitle: "Unsubscribe Verb", andMessage: String(format: "%@ @%@ ?", "Unsubscribe are you sure".localized(), self.postFeedHeaderView.authorNickNameButton.titleLabel!.text!.uppercaseFirst), icon: self.postFeedHeaderView.authorProfileImageView.image, actionTitle: "Cancel Subscribe Verb", needCancel: true, isCancelLeft: false, completion: { [weak self] success in
             if success {
                 let requestModel = PostShowModels.Item.RequestModel(willSubscribe: false)
                 self?.interactor?.subscribe(withRequestModel: requestModel)
@@ -960,7 +960,7 @@ extension PostShowViewController: PostShowDisplayLogic {
         // Set post author subscribe button title
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5, execute: {
             self.showAlertView(withTitle:   viewModel.isFollowing ? "Subscribe Noun" : "Unsubscribe Noun",
-                               andMessage:  (viewModel.isFollowing ? "Subscribe Success" : "Unsubscribe Success").localized() + " @\(self.router!.dataStore!.postShortInfo!.author!)", needCancel: false, completion: { [weak self] _ in
+                               andMessage:  (viewModel.isFollowing ? "Subscribe Success" : "Unsubscribe Success").localized() + "\n@\(self.postFeedHeaderView.authorNickNameButton.titleLabel!.text!.uppercaseFirst)", needCancel: false, completion: { [weak self] _ in
                 self?.subscribeUserButton.isSelected = viewModel.isFollowing
                 self?.subscribeUserButton.setTitle((viewModel.isFollowing ? "Subscriptions" : "Subscribe Verb").localized(), for: .normal)
                 
