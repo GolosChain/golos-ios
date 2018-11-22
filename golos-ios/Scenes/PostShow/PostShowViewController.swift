@@ -30,6 +30,7 @@ protocol PostShowDisplayLogic: class {
 class PostShowViewController: GSBaseViewController {
     // MARK: - Properties
     var insertedRow: Int?
+    var tagsWidth: CGFloat = 0.0
     var scrollCommentsDown: Bool = false
     var permlinkCreatedItem: String = ""
     var isPostContentModify: Bool = false
@@ -1438,6 +1439,15 @@ extension PostShowViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let tag     =   self.router!.dataStore!.displayedPost!.tags![indexPath.row]
         let width   =   (CGFloat(tag.count) * 7.0 + 30.0) * widthRatio
+        
+        if indexPath.row == 0 {
+            self.tagsWidth = 0.0
+        }
+        
+        self.tagsWidth  +=  width + 6.0 * heightRatio
+        let lines       =   Int(self.tagsWidth / collectionView.frame.width) + 1
+        
+        self.tagsCollectionViewheightConstraint.constant = CGFloat(lines) * 30.0 * heightRatio + CGFloat(lines == 1 ? 0.0 : 6.0) * heightRatio
         
         return CGSize.init(width: width, height: 30.0 * heightRatio)
     }

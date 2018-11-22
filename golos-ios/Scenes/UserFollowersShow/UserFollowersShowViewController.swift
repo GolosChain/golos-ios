@@ -22,8 +22,8 @@ protocol UserFollowersShowDisplayLogic: class {
 
 class UserFollowersShowViewController: GSBaseViewController {
     // MARK: - Properties
-    var isFetchInProgress: Bool         =   false
-    var followers: [Follower]           =   [Follower]()
+    var loadMoreStatus: Bool = false
+    var followers: [Follower] = [Follower]()
     var headerView: CommentHeaderView!
     var selectedCell: ActiveUserTableViewCell?
 
@@ -37,18 +37,28 @@ class UserFollowersShowViewController: GSBaseViewController {
     // MARK: - IBOutlets
     @IBOutlet var tableView: UITableView! {
         didSet {
-            self.tableView.delegate     =   self
-            self.tableView.dataSource   =   self
-            
-            if #available(iOS 10.0, *) {
-                self.tableView.prefetchDataSource   =   self
-            }
-            
+            self.tableView.delegate = self
+            self.tableView.dataSource = self
+            self.tableView.tableFooterView?.isHidden = true
+
             self.tableView.tune()
             self.tableView.register(UINib(nibName: "ActiveUserTableViewCell", bundle: nil), forCellReuseIdentifier: "ActiveUserTableViewCell")
         }
     }
-
+    
+    @IBOutlet weak var infiniteScrollingView: UIView! {
+        didSet {
+            self.infiniteScrollingView.tune()
+            self.infiniteScrollingView.isHidden = true
+        }
+    }
+    
+    @IBOutlet weak var infiniteScrollingActivityIndicatorView: UIActivityIndicatorView! {
+        didSet {
+            self.infiniteScrollingActivityIndicatorView.stopAnimating()
+        }
+    }
+    
     @IBOutlet var heightsCollection: [NSLayoutConstraint]! {
         didSet {
             self.heightsCollection.forEach({ $0.constant *= heightRatio })
@@ -194,7 +204,7 @@ extension UserFollowersShowViewController: UserFollowersShowDisplayLogic {
 // MARK: - Load data from Blockchain by API
 extension UserFollowersShowViewController {
     func loadDataSource() {
-        guard !self.isFetchInProgress && (self.router?.dataStore?.needPagination)! else {
+        guard !self.loadMoreStatus && (self.router?.dataStore?.needPagination)! else {
             return
         }
 
@@ -213,7 +223,7 @@ extension UserFollowersShowViewController {
         }
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1, execute: self.loadDataWorkItem)
-        self.isFetchInProgress = true
+        self.loadMoreStatus = true
     }
 }
 
@@ -227,10 +237,15 @@ extension UserFollowersShowViewController {
             self.followers.append(contentsOf: followersNew)
             
             dataStore.paginationPage += 1
-            self.isFetchInProgress = false
+            self.loadMoreStatus = false
             self.gsTimer?.stop()
             
             self.tableView.reloadData()
+
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5, execute: {
+                self.tableView.tableFooterView?.isHidden = true
+                self.infiniteScrollingActivityIndicatorView.stopAnimating()
+            })
         }
     }
 }
@@ -239,31 +254,43 @@ extension UserFollowersShowViewController {
 // MARK: - UITableViewDataSource
 extension UserFollowersShowViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let dataStore = self.router?.dataStore else {
-            return 0
-        }
-        
-        return dataStore.totalItems
+        return self.followers.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell        =   tableView.dequeueReusableCell(withIdentifier: "ActiveUserTableViewCell") as! ActiveUserTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ActiveUserTableViewCell") as! ActiveUserTableViewCell
         
-        if !self.isLoadingCell(for: indexPath) {
-            let follower = self.followers[indexPath.row]
-            cell.display(author: follower)
+        let follower = self.followers[indexPath.row]
+        cell.display(author: follower)
+        
+        // Handlers
+        cell.handlerSubscribeButtonTapped           =   { [weak self] activeVoterShortInfo in
+            guard let strongSelf = self else { return }
             
-            // Handlers
-            cell.handlerSubscribeButtonTapped           =   { [weak self] activeVoterShortInfo in
+            guard strongSelf.isCurrentOperationPossible() else { return }
+            
+            strongSelf.selectedCell = cell
+            
+            guard activeVoterShortInfo.isSubscribe else {
+                // API 'Subscribe'
+                let requestModel = UserFollowersShowModels.Sub.RequestModel(willSubscribe: true, authorNickName: activeVoterShortInfo.nickName)
+                strongSelf.interactor?.subscribe(withRequestModel: requestModel)
+                
+                // Run spinner
+                DispatchQueue.main.async {
+                    cell.subscribeButton.setTitle(nil, for: .normal)
+                    cell.subscribeActivityIndicator.startAnimating()
+                }
+                
+                return
+            }
+            
+            // API 'Unsibscribe'
+            strongSelf.showAlertAction(withTitle: "Unsubscribe Verb", andMessage: String(format: "%@ @%@ ?", "Unsubscribe are you sure".localized(), activeVoterShortInfo.nickName), icon: activeVoterShortInfo.icon, actionTitle: "Cancel Subscribe Verb", needCancel: true, isCancelLeft: false, completion: { [weak self] success in
                 guard let strongSelf = self else { return }
                 
-                guard strongSelf.isCurrentOperationPossible() else { return }
-                
-                strongSelf.selectedCell = cell
-                
-                guard activeVoterShortInfo.isSubscribe else {
-                    // API 'Subscribe'
-                    let requestModel = UserFollowersShowModels.Sub.RequestModel(willSubscribe: true, authorNickName: activeVoterShortInfo.nickName)
+                if success {
+                    let requestModel = UserFollowersShowModels.Sub.RequestModel(willSubscribe: false, authorNickName: activeVoterShortInfo.nickName)
                     strongSelf.interactor?.subscribe(withRequestModel: requestModel)
                     
                     // Run spinner
@@ -271,36 +298,18 @@ extension UserFollowersShowViewController: UITableViewDataSource {
                         cell.subscribeButton.setTitle(nil, for: .normal)
                         cell.subscribeActivityIndicator.startAnimating()
                     }
-                    
-                    return
                 }
-                
-                // API 'Unsibscribe'
-                strongSelf.showAlertAction(withTitle: "Unsubscribe Verb", andMessage: String(format: "%@ @%@ ?", "Unsubscribe are you sure".localized(), activeVoterShortInfo.nickName), icon: activeVoterShortInfo.icon, actionTitle: "Cancel Subscribe Verb", needCancel: true, isCancelLeft: false, completion: { [weak self] success in
-                    guard let strongSelf = self else { return }
-
-                    if success {
-                        let requestModel = UserFollowersShowModels.Sub.RequestModel(willSubscribe: false, authorNickName: activeVoterShortInfo.nickName)
-                        strongSelf.interactor?.subscribe(withRequestModel: requestModel)
-                        
-                        // Run spinner
-                        DispatchQueue.main.async {
-                            cell.subscribeButton.setTitle(nil, for: .normal)
-                            cell.subscribeActivityIndicator.startAnimating()
-                        }
-                    }
-                        
-                    else {
-                        cell.subscribeActivityIndicator.stopAnimating()
-                    }
-                })
-            }
+                    
+                else {
+                    cell.subscribeActivityIndicator.stopAnimating()
+                }
+            })
+        }
+        
+        cell.handlerAuthorVoterTapped               =   { [weak self] voterNickName in
+            guard let strongSelf = self else { return }
             
-            cell.handlerAuthorVoterTapped               =   { [weak self] voterNickName in
-                guard let strongSelf = self else { return }
-
-                strongSelf.router?.routeToUserProfileShowScene(byUserNickName: voterNickName)
-            }
+            strongSelf.router?.routeToUserProfileShowScene(byUserNickName: voterNickName)
         }
 
         return cell
@@ -340,35 +349,11 @@ extension UserFollowersShowViewController: UITableViewDelegate {
         if let activeUserTableViewCell = cell as? ActiveUserTableViewCell {
             activeUserTableViewCell.userProfileImageView.setTemplate(type: .userProfileImage)
         }
-    }
-}
-
-
-// MARK: - UITableViewDataSourcePrefetching
-extension UserFollowersShowViewController: UITableViewDataSourcePrefetching {
-    private func isLoadingCell(for indexPath: IndexPath) -> Bool {
-        return indexPath.row >= self.followers.count
-    }
-    
-    private func visibleIndexPathsToReload(intersecting indexPaths: [IndexPath]) -> [IndexPath] {
-        let indexPathsForVisibleRows    =   self.tableView.indexPathsForVisibleRows ?? []
-        let indexPathsIntersection      =   Set(indexPathsForVisibleRows).intersection(indexPaths)
         
-        return Array(indexPathsIntersection)
-    }
-
-    private func calculateIndexPathsToReload(from items: [Follower]) -> [IndexPath] {
-        let startIndex  =   self.followers.count - items.count
-        let endIndex    =   startIndex + items.count
-        
-        return (startIndex..<endIndex).map { IndexPath(row: $0, section: 0) }
-    }
-    
-    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
-        Logger.log(message: "Prefetching row of \(indexPaths)", event: .warning)
-
-        if indexPaths.contains(where: self.isLoadingCell) {
+        if indexPath.row >= self.followers.count - 3 && !self.loadMoreStatus {
             self.loadDataSource()
+            self.infiniteScrollingActivityIndicatorView.startAnimating()
+            self.tableView.tableFooterView?.isHidden = false
         }
     }
 }

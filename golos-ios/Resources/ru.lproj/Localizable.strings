@@ -185,7 +185,6 @@
 "Followings List is empty"                  =   "Список подписок\nпуст";
 "First Name Last Name Placeholder"          =   "Имя Фамилия";
 "Short About Yourself Placeholder"          =   "Немного о себе";
-"Moscow Placeholder"                        =   "Москва";
 "Website Placeholder"                       =   "http://site.com";
 "No Comments Placeholder"                   =   "Пока нет комментариев. Будь первым";
 "Write Own Comment Placeholder"             =   "Напиши свой комментарий к посту";
@@ -196,7 +195,6 @@
 "Request Failed"                            =   "Ошибка запроса";
 "Invalid Data"                              =   "Неверные данные";
 "Response Unsuccessful"                     =   "Ошибка обработки ответа сервера";
-"Response Result is empty"                  =   "Сервер вернул пустое значение";
 "JSON Parsing Failure"                      =   "Ошибка анализа JSON структуры";
 "JSON Conversion Failure"                   =   "Ошибка конвертации JSON структуры в модель";
 "Signing Transaction Failure"               =   "Ошибка подписания трансакции";

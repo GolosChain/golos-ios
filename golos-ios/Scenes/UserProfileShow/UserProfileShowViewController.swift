@@ -418,6 +418,7 @@ extension UserProfileShowViewController {
         
         if condition.isInfiniteScrolling {
             self.infiniteScrollingView.show(constraint: self.infiniteScrollingViewBottomConstraint)
+            self.view.layoutIfNeeded()
         }
     }
 }

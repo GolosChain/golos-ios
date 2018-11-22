@@ -12,8 +12,8 @@
 "Blog Platform 2"                           =   "Blog Platform 3\nthe next generation";
 "Blog Platform 3"                           =   "Blog Platform 4\nthe next generation";
 "Welcome"                                   =   "Welcome";
-"in Golos.io"                               =   "in Golos.io";
-"Login Help Step Title 1"                   =   "1. Go to website https://golos.io";
+"in Golos.io"                               =   "to Golos.io";
+"Login Help Step Title 1"                   =   "1. Go to https://golos.io";
 "Login Help Step Title 2"                   =   "2. Proceed to ”Wallet“ section";
 "Login Help Step Title 3 Posting"           =   "3. In “Permissions“ section press show private posting key (it starts from 5 or 1)";
 "Login Help Step Title 3 Active"            =   "3. In “Permissions“ section press show private active key (it starts from 5 or 1)";
@@ -56,7 +56,7 @@
 "Reply Title Verb"                          =   "Reply";
 "Edit Profile Title"                        =   "Edit Profile";
 "Remote Notifications Title"                =   "Notifications";
-"Other photo Title"                         =   "Other photo";
+"Other photo Title"                         =   "Put new photo";
 "Change User Cover Photo Title"             =   "Change Cover Photo";
 "Save Verb Title"                           =   "Save";
 "Wiki Golos"                                =   "Wiki Golos";
@@ -88,7 +88,7 @@
 "Actual"                                    =   "Actual";
 "Popular"                                   =   "Popular";
 "Promo"                                     =   "Promo";
-"Lenta"                                     =   "Lenta";
+"Lenta"                                     =   "Feed";
 "Enter Title"                               =   "Enter";
 "Cancel Title"                              =   "Cancel";
 "Exit"                                      =   "Exit";
@@ -120,17 +120,17 @@
 "Ukrainian"                                 =   "Ukrainian";
 "Select Currency"                           =   "Select Currency";
 "Voice Power"                               =   "Voice Power";
-"LENTA VIEWING"                             =   "LENTA VIEWING";
+"LENTA VIEWING"                             =   "VIEW MODE";
 "Mode"                                      =   "Mode";
 "Day Mode"                                  =   "Day";
 "Night Mode"                                =   "Night";
 "Compact Mode"                              =   "Compact Mode";
 "Images Viewing"                            =   "Images Viewing";
 "Viewed Posts"                              =   "Viewed Posts";
-"MEMORIES"                                  =   "MEMORIES";
+"MEMORIES"                                  =   "MENTION";
 "Upvote"                                    =   "Upvote";
 "Short Comment"                             =   "Comment";
-"Reblog"                                    =   "Reblog";
+"Reblog"                                    =   "Repost";
 "Private Messages"                          =   "Private Messages";
 "Post Replies"                              =   "Post Responses";
 "Comments Replies"                          =   "Comments Responses";
@@ -173,19 +173,18 @@
 "Enter your text"                           =   "Enter name of link";
 "Enter your link"                           =   "Enter link address";
 "Enter prefix"                              =   "Enter";
-"Lenta List is empty"                       =   "List of My Subscriptions\n is empty";
-"Popular List is empty"                     =   "List of Popular Posts\n is empty";
-"Actual List is empty"                      =   "List of Actual Posts\n is empty";
-"New List is empty"                         =   "List of New Posts\n is empty";
-"Promo List is empty"                       =   "List of Promo Posts\n is empty";
-"Reply List is empty"                       =   "List of Answers\n is empty";
-"Blog List is empty"                        =   "List of My Blog\n is empty";
-"Comment List is empty"                     =   "List of Comments\n is empty";
-"Followers List is empty"                   =   "List of Followers\n is empty";
-"Followings List is empty"                  =   "List of Followings\n is empty";
+"Lenta List is empty"                       =   "Nothing here yet.\nSubscribe to interesting authors";
+"Popular List is empty"                     =   "Nothing here yet.\nBe in the top.\nOn Golos.io valued opinions, stories, creative content";
+"Actual List is empty"                      =   "Nothing here yet.\nOn Golos.io valued opinions, stories, creative content";
+"New List is empty"                         =   "Nothing here yet.\nLearn new things. Explore different #hashtags";
+"Promo List is empty"                       =   "Nothing here yet.";
+"Reply List is empty"                       =   "Nothing here yet.\nGet started by writing posts and receiving comments";
+"Blog List is empty"                        =   "Nothing here yet.\nWrite your first post with tags #golos #introducemyself";
+"Comment List is empty"                     =   "Nothing here yet.\nStart commenting";
+"Followers List is empty"                   =   "Nothing here yet.";
+"Followings List is empty"                  =   "Nothing here yet.\nSubscribe to interesting authors";
 "First Name Last Name Placeholder"          =   "First Name Last Name";
 "Short About Yourself Placeholder"          =   "About Yourself";
-"Moscow Placeholder"                        =   "Moscow";
 "Website Placeholder"                       =   "http://site.com";
 "No Comments Placeholder"                   =   "There are no comments yet. Be first";
 "Write Own Comment Placeholder"             =   "Write your comment to the post";
@@ -194,9 +193,8 @@
 // Error message
 "Developer error!"                          =   "Developer error!";
 "Request Failed"                            =   "Request Failed";
-"Invalid Data"                              =   "Invalid Data";
-"Response Unsuccessful"                     =   "Response Unsuccessful";
-"Response Result is empty"                  =   "The blockchain returned an empty value";
+"Invalid Data"                              =   "Incorrect data";
+"Response Unsuccessful"                     =   "Server response was unsuccessful.\nTry again";
 "JSON Parsing Failure"                      =   "JSON Parsing Failure";
 "JSON Conversion Failure"                   =   "JSON Conversion Failure";
 "Signing Transaction Failure"               =   "Error signing transaction";
@@ -207,7 +205,7 @@
 "Camera is not available"                   =   "Your device's camera is not available";
 "Album is not available"                    =   "Your device's album is not available";
 "No image found"                            =   "No image found";
-"You can add up to 5 tags"                  =   "You can add up to 5 tags";
+"You can add up to 5 tags"                  =   "Add tags";
 "Create Post Title Hint"                    =   "Enter an interesting title";
 "Post Text Body Hint"                       =   "Enter message text";
 "Scanner device error"                      =   "Your device does not support scanning a code from an item. Please use a device with a camera.";
@@ -222,8 +220,8 @@
 "List of posts is empty"                    =   "Post list is empty";
 "List of blog entries is empty"             =   "List of blog entries is empty";
 "Fetching Failed"                           =   "Fetching Failed from CoreData";
-"Broken Link Failure"                       =   "Broken Link Failure";
-"Response All Content Replies error"        =   "Response All Content Replies Result Error";
+"Broken Link Failure"                       =   "Broken Link";
+"Response All Content Replies error"        =   "Unknown error.\nPlease try again";
 "Voter maximum number error"                =   "You have used the maximum number of attempts to vote for this entry.";
 "Can only vote once every 3 seconds"        =   "Can only vote once every 3 seconds";
 "You have already voted in a similar way"   =   "You have already voted in a similar way.";
@@ -231,11 +229,11 @@
 "Error Comment 20 seconds"                  =   "You may only comment once every 20 seconds";
 "Error Post 5 minutes"                      =   "You may only post once every 5 minutes";
 "Error Copy Key Code"                       =   "The code of the copied key\nmust start with 5 or 1";
-"Erro Scan Key Code"                        =   "The code of the scanned key\n must begin with 5 or 1";
+"Error Scan Key Code"                       =   "The code of the scanned key\nmust begin with 5 or 1";
 
 
 // Segmented controls
-"Лента"                                     =   "Lenta";
+"Лента"                                     =   "Feed";
 "Популярное"                                =   "Popular";
 "Актуальное"                                =   "Actual";
 "Новое"                                     =   "New";
