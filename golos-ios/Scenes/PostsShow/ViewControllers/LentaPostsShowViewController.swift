@@ -20,7 +20,7 @@ class LentaPostsShowViewController: GSTableViewController {
             self.postsTableView = self.lentaTableView
         }
     }
-
+    
     
     // MARK: - Class Initialization
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {

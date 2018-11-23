@@ -98,19 +98,6 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
         }
     }
     
-    @IBOutlet weak var infiniteScrollingView: UIView! {
-        didSet {
-            self.infiniteScrollingView.tune()
-            self.infiniteScrollingView.alpha = 0.0
-        }
-    }
-    
-    @IBOutlet weak var infiniteScrollingViewBottomConstraint: NSLayoutConstraint! {
-        didSet {
-            self.infiniteScrollingViewBottomConstraint.constant = -44.0 * heightRatio
-        }
-    }
-    
     @IBOutlet var heightsCollection: [NSLayoutConstraint]! {
         didSet {
             self.heightsCollection.forEach({ $0.constant *= heightRatio })
@@ -262,6 +249,14 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
             if let activeVC = self.containerView.activeVC {
                 activeVC.fetchPosts(byParameters: (author: User.current?.nickName, postFeedType: self.postFeedTypes[self.selectedIndex], permlink: nil, sortBy: nil, entries: nil))
                 
+                // Hide Infinite Scrolling spinner
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.7, execute: {
+                    if let activeVC = self.containerView.activeVC {
+                        activeVC.postsTableView.tableFooterView?.isHidden = true
+                        activeVC.infiniteScrollingActivityIndicatorView.stopAnimating()
+                    }
+                })
+
                 // Handler Pull Refresh/Infinite Scrolling data
                 activeVC.handlerPushRefreshData                     =   { [weak self] lastItem in
                     self?.interactor?.save(lastItem: lastItem)
@@ -479,7 +474,12 @@ extension PostsShowViewController {
         self.interactor?.loadPosts(withRequestModel: loadPostsRequestModel)
         
         if condition.isInfiniteScrolling {
-            self.infiniteScrollingView.show(constraint: self.infiniteScrollingViewBottomConstraint)
+            DispatchQueue.main.async {
+                if let activeVC = self.containerView.activeVC {
+                    activeVC.postsTableView.tableFooterView?.isHidden = false
+                    activeVC.infiniteScrollingActivityIndicatorView.startAnimating()
+                }
+            }
         }
     }
 }
@@ -490,6 +490,5 @@ extension PostsShowViewController {
     // User Profile
     private func fetchPosts() {
         self.setActiveViewControllerHandlers()
-        self.infiniteScrollingView.hide(constraint: self.infiniteScrollingViewBottomConstraint)
     }
 }

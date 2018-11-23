@@ -23,6 +23,8 @@ class GSTableViewController: GSBaseViewController, HandlersCellSupport {
             self.postsTableView.delegate    =   self
             self.postsTableView.dataSource  =   self
             
+            self.postsTableView.tableFooterView?.isHidden = true
+            
             self.postsTableView.tune()
 
             // Set automatic dimensions for row height
@@ -86,8 +88,27 @@ class GSTableViewController: GSBaseViewController, HandlersCellSupport {
     
     // MARK: - IBOutlets
     @IBOutlet weak var commentsTableViewHeightConstraint: NSLayoutConstraint!
-
     
+    @IBOutlet weak var infiniteScrollingView: UIView! {
+        didSet {
+            self.infiniteScrollingView.tune()
+            self.infiniteScrollingView.isHidden = true
+        }
+    }
+    
+    @IBOutlet weak var infiniteScrollingActivityIndicatorView: UIActivityIndicatorView! {
+        didSet {
+            self.infiniteScrollingActivityIndicatorView.stopAnimating()
+        }
+    }
+    
+    @IBOutlet weak var infiniteScrollingViewHeightConstraint: NSLayoutConstraint! {
+        didSet {
+            self.infiniteScrollingViewHeightConstraint.constant = 44.0 * heightRatio
+        }
+    }
+
+
     // MARK: - Class Initialization
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -131,7 +152,7 @@ class GSTableViewController: GSBaseViewController, HandlersCellSupport {
                 self.postsTableView.alpha = 0.0
             }
             
-            self.postsTableView.tableHeaderView = nil
+            self.postsTableView.tableHeaderView?.isHidden = true
         }
     }
     
@@ -147,21 +168,20 @@ class GSTableViewController: GSBaseViewController, HandlersCellSupport {
     
     private func displaySpinner(_ show: Bool) {
         DispatchQueue.main.async {
-            guard self.activityIndicatorView == nil else {
-                return
-            }
-            
             guard show else {
                 self.activityIndicatorView.stopAnimating()
+                self.postsTableView.tableHeaderView?.isHidden = true
                 self.postsTableView.tableHeaderView = nil
+
                 return
             }
             
             self.activityIndicatorView  =   UIActivityIndicatorView.init(frame: CGRect(origin:  .zero,
                                                                                        size:    CGSize(width: self.postsTableView.frame.width, height: 64.0 * heightRatio)))
-            self.activityIndicatorView.style    =   .gray
-            self.postsTableView.separatorStyle  =   .none
-            self.postsTableView.tableHeaderView =   self.activityIndicatorView
+            self.activityIndicatorView.style                =   .gray
+            self.postsTableView.separatorStyle              =   .none
+            self.postsTableView.tableHeaderView             =   self.activityIndicatorView
+            self.postsTableView.tableHeaderView?.isHidden   =   false
 
             self.activityIndicatorView.startAnimating()
         }
@@ -282,11 +302,7 @@ class GSTableViewController: GSBaseViewController, HandlersCellSupport {
                 if self.fetchedResultsController.fetchedObjects?.count == 0 {
                     self.displayEmptyTitle(byType: self.postType)
                 }
-                    
-                else {
-                    self.postsTableView.tableHeaderView = nil
-                }
-
+                
                 // Infinite scrolling: update new cells
 //                if self.lastIndex > 0 {
 //                    self.postsTableView.beginUpdates()

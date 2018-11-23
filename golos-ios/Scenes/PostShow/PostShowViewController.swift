@@ -853,15 +853,15 @@ class PostShowViewController: GSBaseViewController {
     @IBAction func commentsButtonTapped(_ sender: UIButton) {
         guard self.isCurrentOperationPossible() else { return }
 
-        self.isPostContentModify = true
-        self.insertedRow = 3
+//        self.isPostContentModify = true
+//        self.insertedRow = 3
+//
+//        self.didContentViewScrollToCommentsView()
         
-        self.didContentViewScrollToCommentsView()
-        
-//        DispatchQueue.main.async {
-//            self.router?.routeToPostCreateScene(withType: .createComment)
-//            self.insertedRow = self.comments?.count ?? 0
-//        }
+        DispatchQueue.main.async {
+            self.router?.routeToPostCreateScene(withType: .createComment)
+            self.insertedRow = self.comments?.filter({ $0.treeLevel == 0 }).count ?? 0
+        }
     }
 
     @IBAction func promoteButtonTapped(_ sender: UIButton) {
@@ -1185,7 +1185,7 @@ extension PostShowViewController {
             self.commentsButton.setTitle("\(commentEntities.count)", for: .normal)
             self.commentsCountLabel.text = String(format: "%i", commentEntities.count)
             
-            if self.permlinkCreatedItem != "" {
+            if self.permlinkCreatedItem != "" && self.insertedRow == nil {
                 self.insertedRow = commentEntities.firstIndex(of: commentEntities.first(where: { $0.permlink == self.permlinkCreatedItem })!)
             }
             
