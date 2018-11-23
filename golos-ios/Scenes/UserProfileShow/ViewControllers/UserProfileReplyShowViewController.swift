@@ -21,7 +21,7 @@ class UserProfileReplyShowViewController: GSTableViewController {
             self.postsTableView     =   self.replyTableView
         }
     }
-    
+
     
     // MARK: - Class Initialization
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {

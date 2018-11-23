@@ -21,7 +21,7 @@ class UserProfileBlogShowViewController: GSTableViewController {
         }
     }
 
-
+    
     // MARK: - Class Initialization
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)

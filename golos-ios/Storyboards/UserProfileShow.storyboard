@@ -199,32 +199,14 @@
                                     <constraint firstAttribute="height" priority="250" constant="490" id="2sL-m7-fm8"/>
                                 </constraints>
                             </containerView>
-                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Ba-SE-nPn" userLabel="Infinite Scrolling View">
-                                <rect key="frame" x="0.0" y="436" width="320" height="44"/>
-                                <subviews>
-                                    <activityIndicatorView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="ktT-FZ-V8R" userLabel="Infinite Scrolling Activity Indicator">
-                                        <rect key="frame" x="150" y="12" width="20" height="20"/>
-                                        <color key="color" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </activityIndicatorView>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstItem="ktT-FZ-V8R" firstAttribute="centerX" secondItem="3Ba-SE-nPn" secondAttribute="centerX" id="KDh-3I-U0E"/>
-                                    <constraint firstAttribute="height" constant="44" identifier="infiniteScrollingViewHeightConstraint" id="Kry-Bw-72b"/>
-                                    <constraint firstItem="ktT-FZ-V8R" firstAttribute="centerY" secondItem="3Ba-SE-nPn" secondAttribute="centerY" id="qUO-yU-oQa"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="3Ba-SE-nPn" secondAttribute="trailing" id="7oU-Tg-hGO"/>
                             <constraint firstItem="NRq-2g-ooI" firstAttribute="bottom" secondItem="I3j-FI-bZT" secondAttribute="bottom" id="FBu-2u-wVX"/>
                             <constraint firstItem="I3j-FI-bZT" firstAttribute="leading" secondItem="NRq-2g-ooI" secondAttribute="leading" id="GTh-bx-2ND"/>
                             <constraint firstItem="6ju-JF-dqe" firstAttribute="leading" secondItem="NRq-2g-ooI" secondAttribute="leading" id="JaX-Di-LAa"/>
                             <constraint firstItem="6ju-JF-dqe" firstAttribute="top" secondItem="NRq-2g-ooI" secondAttribute="top" id="QiK-Qm-elv"/>
                             <constraint firstAttribute="bottom" secondItem="6ju-JF-dqe" secondAttribute="bottom" constant="60" id="Qz7-R2-cVn"/>
                             <constraint firstItem="I3j-FI-bZT" firstAttribute="top" secondItem="oTo-xI-SFK" secondAttribute="bottom" priority="750" id="TXF-Ne-W3U"/>
-                            <constraint firstItem="3Ba-SE-nPn" firstAttribute="leading" secondItem="43m-gv-AxQ" secondAttribute="leading" id="U6F-ku-JWj"/>
-                            <constraint firstAttribute="bottom" secondItem="3Ba-SE-nPn" secondAttribute="bottom" id="Xxy-AL-wBK"/>
                             <constraint firstItem="NRq-2g-ooI" firstAttribute="trailing" secondItem="I3j-FI-bZT" secondAttribute="trailing" id="n7K-7K-RVb"/>
                             <constraint firstItem="NRq-2g-ooI" firstAttribute="trailing" secondItem="6ju-JF-dqe" secondAttribute="trailing" id="ocs-fa-SvV"/>
                             <constraint firstItem="EqR-p6-NO1" firstAttribute="height" secondItem="43m-gv-AxQ" secondAttribute="height" priority="250" id="qhF-q3-J7A"/>
@@ -238,8 +220,6 @@
                         <outlet property="containerView" destination="I3j-FI-bZT" id="RIP-a2-dpp"/>
                         <outlet property="contentView" destination="EqR-p6-NO1" id="ICQ-4T-Ev7"/>
                         <outlet property="contentViewWidthConstraint" destination="iAS-jh-fB0" id="aS9-XH-xMh"/>
-                        <outlet property="infiniteScrollingView" destination="3Ba-SE-nPn" id="B9b-sk-j3f"/>
-                        <outlet property="infiniteScrollingViewBottomConstraint" destination="Xxy-AL-wBK" id="eBa-ZC-48p"/>
                         <outlet property="lineView" destination="Nf9-Bz-O5a" id="fRp-xW-gUP"/>
                         <outlet property="lineViewLeadingConstraint" destination="sF4-4L-mfC" id="aa1-r4-cqg"/>
                         <outlet property="lineViewWidthConstraint" destination="fVv-8p-x79" id="Nry-ll-Up2"/>
@@ -262,7 +242,6 @@
                         <outletCollection property="buttonsCollection" destination="hzI-8E-NbM" collectionClass="NSMutableArray" id="GeT-N7-HVu"/>
                         <outletCollection property="buttonsCollection" destination="MEc-tV-kI6" collectionClass="NSMutableArray" id="cRf-fO-b3d"/>
                         <outletCollection property="buttonsCollection" destination="v12-Mh-cQ2" collectionClass="NSMutableArray" id="y0F-uB-ya8"/>
-                        <outletCollection property="heightsCollection" destination="Kry-Bw-72b" collectionClass="NSMutableArray" id="gAx-xs-uUk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wTl-V5-NJX" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -286,6 +265,22 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ol8-0Q-A8s" userLabel="Blog Table View" customClass="GSTableViewWithReloadCompletion" customModule="Golos" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <view key="tableFooterView" clipsSubviews="YES" contentMode="scaleToFill" id="zhe-up-VaP" userLabel="Infinite Scrolling View">
+                                    <rect key="frame" x="0.0" y="72" width="320" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <activityIndicatorView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="cac-2L-DF8" userLabel="Infinite Scrolling Activity Indicator">
+                                            <rect key="frame" x="150" y="12" width="20" height="20"/>
+                                            <color key="color" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </activityIndicatorView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstItem="cac-2L-DF8" firstAttribute="centerY" secondItem="zhe-up-VaP" secondAttribute="centerY" id="2jA-4N-iKa"/>
+                                        <constraint firstItem="cac-2L-DF8" firstAttribute="centerX" secondItem="zhe-up-VaP" secondAttribute="centerX" id="L90-8b-Cwz"/>
+                                        <constraint firstAttribute="height" constant="44" identifier="infiniteScrollingViewHeightConstraint" id="pU2-lC-9I1"/>
+                                    </constraints>
+                                </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PostFeedTableViewCell" id="Agw-dO-Hga" customClass="PostFeedTableViewCell" customModule="Golos" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="44"/>
@@ -310,6 +305,9 @@
                     </view>
                     <connections>
                         <outlet property="blogTableView" destination="Ol8-0Q-A8s" id="Dww-z4-rG4"/>
+                        <outlet property="infiniteScrollingActivityIndicatorView" destination="cac-2L-DF8" id="3Xg-hE-4aV"/>
+                        <outlet property="infiniteScrollingView" destination="zhe-up-VaP" id="bgg-cy-e52"/>
+                        <outlet property="infiniteScrollingViewHeightConstraint" destination="pU2-lC-9I1" id="1gM-OJ-Edc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qY6-Ny-BY0" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -327,6 +325,22 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="d8h-qL-Xe7" userLabel="Reply Table View" customClass="GSTableViewWithReloadCompletion" customModule="Golos" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <view key="tableFooterView" clipsSubviews="YES" contentMode="scaleToFill" id="DpP-hq-ylI" userLabel="Infinite Scrolling View">
+                                    <rect key="frame" x="0.0" y="72" width="320" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <activityIndicatorView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="RZP-a3-lJJ" userLabel="Infinite Scrolling Activity Indicator">
+                                            <rect key="frame" x="150" y="12" width="20" height="20"/>
+                                            <color key="color" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </activityIndicatorView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="44" identifier="infiniteScrollingViewHeightConstraint" id="6Eb-Ga-DMp"/>
+                                        <constraint firstItem="RZP-a3-lJJ" firstAttribute="centerX" secondItem="DpP-hq-ylI" secondAttribute="centerX" id="NAQ-VS-Z1u"/>
+                                        <constraint firstItem="RZP-a3-lJJ" firstAttribute="centerY" secondItem="DpP-hq-ylI" secondAttribute="centerY" id="RbR-V1-mVu"/>
+                                    </constraints>
+                                </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ReplyTableViewCell" id="gOd-XZ-hPc" customClass="ReplyTableViewCell" customModule="Golos" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="44"/>
@@ -350,6 +364,9 @@
                         <viewLayoutGuide key="safeArea" id="pLD-Oq-88K"/>
                     </view>
                     <connections>
+                        <outlet property="infiniteScrollingActivityIndicatorView" destination="RZP-a3-lJJ" id="khG-Is-ten"/>
+                        <outlet property="infiniteScrollingView" destination="DpP-hq-ylI" id="6rt-Qi-TSs"/>
+                        <outlet property="infiniteScrollingViewHeightConstraint" destination="6Eb-Ga-DMp" id="wWJ-3B-PSm"/>
                         <outlet property="replyTableView" destination="d8h-qL-Xe7" id="RsU-1M-Q3J"/>
                     </connections>
                 </viewController>
