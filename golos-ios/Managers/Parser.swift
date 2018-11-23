@@ -13,8 +13,8 @@ import GoloSwift
 import Foundation
 
 class Parser {    
-    func getPictureURL(from body: String) -> String? {
-        let pattern     =   "(http(s?):)([/|.|\\w|\\s|-])*\\.(?:jpg|gif|png)(!d)?"
+    static func getPictureURL(fromBody body: String) -> String? {
+        let pattern     =   "(http(s?):)([/|.|\\w|\\s|-|%])*\\.(?:jpg|JPG|jpeg|JPEG|gif|GIF|png|PNG)(!d)?"
         
         let regex       =   try! NSRegularExpression(pattern: pattern)
         let results     =   regex.matches(in:       body,
@@ -133,6 +133,14 @@ class Parser {
                 modifiedBody = modifiedBody.replacingOccurrences(of: "\"<br>", with: "<br>")
             }
         }
+
+        // Delete center
+        modifiedBody = modifiedBody.replacingOccurrences(of: "<center>http", with: "![](http")
+        modifiedBody = modifiedBody.replacingOccurrences(of: "</center>", with: ")")
+
+        // Delete <div class=\"pull-left\"> http
+        modifiedBody = modifiedBody.replacingOccurrences(of: "<div class=\"pull-left\"> http", with: "![](http")
+        modifiedBody = modifiedBody.replacingOccurrences(of: "</div>", with: ")")
 
         // Delete @userName in link
         let userNamePattern         =   "\\/\\[\\@(\\w*\\W?\\w*)\\]\\("

@@ -241,8 +241,19 @@ extension PostFeedTableViewCell: ConfigureCell {
         
 
         // Load model user cover image
-        if let coverImageURL = model.coverImageURL, !coverImageURL.isEmpty {
-            self.postImageView.uploadImage(byStringPath:            coverImageURL,
+        var coverImageURL = Parser.getPictureURL(fromBody: model.body)
+        
+        if coverImageURL == nil {
+            coverImageURL = model.coverImageURL ?? ""
+        }
+        
+        // Hide post image
+        if (coverImageURL?.isEmpty)! {
+            self.postImageViewHeightConstraint.constant = 0
+        }
+        
+        else {
+            self.postImageView.uploadImage(byStringPath:            coverImageURL!,
                                            imageType:               .userCoverImage,
                                            size:                    CGSize(width: UIScreen.main.bounds.width, height: 180.0 * heightRatio),
                                            tags:                    model.tags,
@@ -258,12 +269,7 @@ extension PostFeedTableViewCell: ConfigureCell {
                                             }
             })
         }
-            
-        // Hide post image
-        else {
-            self.postImageViewHeightConstraint.constant = 0
-        }
-        
+    
         self.titleLabel.text    =   model.title
         selectionStyle          =   .none
         
