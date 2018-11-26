@@ -709,11 +709,12 @@ class PostShowViewController: GSBaseViewController {
                             if self.isPostContentModify && self.insertedRow != nil {
                                 let commentView = self.commentsStackView.arrangedSubviews[self.insertedRow!]
                                 let commentViewFrame = self.contentView.convert(commentView.frame, from: self.commentsStackView)
-                                self.scrollView.contentOffset.y = commentViewFrame.minY
+
+                                self.scrollView.scrollRectToVisible(commentViewFrame, animated: true)
                             }
 
                             // Scrolling down only once after open scene
-                            else if self.scrollCommentsDown {
+                            else if !self.scrollCommentsDown {
                                 self.scrollView.contentOffset.y = bottomViewFrame.maxY
                                 self.scrollCommentsDown = false
                             }
