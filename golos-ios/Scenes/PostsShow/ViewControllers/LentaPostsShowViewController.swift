@@ -54,12 +54,12 @@ class LentaPostsShowViewController: GSTableViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1, execute: {
-            self.lentaTableView.tableHeaderView?.isHidden = true
-            self.lentaTableView.tableFooterView?.isHidden = true
-            
-            self.activityIndicatorView.stopAnimating()
-            self.infiniteScrollingActivityIndicatorView.stopAnimating()
-        })
+//        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1, execute: {
+//            self.lentaTableView.tableHeaderView?.isHidden = true
+//            self.lentaTableView.tableFooterView?.isHidden = true
+//            
+//            self.activityIndicatorView.stopAnimating()
+//            self.infiniteScrollingActivityIndicatorView.stopAnimating()
+//        })
     }
 }
