@@ -136,8 +136,8 @@ class GSTableViewController: GSBaseViewController, HandlersCellSupport {
         super.viewWillAppear(animated)
         
         if self.postsTableView != nil {
-            self.displaySpinner(true)
-
+            self.displaySpinner(self.activityIndicatorView == nil)
+            
             UIView.animate(withDuration: 0.7) {
                 self.postsTableView.alpha = 1.0
             }
@@ -264,27 +264,23 @@ class GSTableViewController: GSBaseViewController, HandlersCellSupport {
         fetchedResultsController.delegate = self
         
         // Pull to refresh data
-//        let refreshDataQueue = DispatchQueue.global(qos: .background)
-//
-//        refreshDataQueue.async {
-            do {
-                try self.fetchedResultsController.performFetch()
+        do {
+            try self.fetchedResultsController.performFetch()
+            
+            if self.refreshData {
+                self.postsTableView.contentOffset = .zero
+                self.refreshControl.endRefreshing()
                 
-                if self.refreshData {
-                    self.postsTableView.contentOffset = .zero
-                    self.refreshControl.endRefreshing()
-                    
-                    self.loadDataFinished()
-                }
-                    
-                // Infinite scrolling data
-                else {
-                    self.loadDataFinished()
-                }
-            } catch {
-                Logger.log(message: error.localizedDescription, event: .error)
+                self.loadDataFinished()
             }
-//        }
+                
+                // Infinite scrolling data
+            else {
+                self.loadDataFinished()
+            }
+        } catch {
+            Logger.log(message: error.localizedDescription, event: .error)
+        }
     }
 
     func loadDataFinished() {
@@ -315,7 +311,7 @@ class GSTableViewController: GSBaseViewController, HandlersCellSupport {
 //                }
                 
                 self.refreshData            =   false
-                self.infiniteScrollingData  =   false
+                self.infiniteScrollingData  =   false                
             }
         }
     }

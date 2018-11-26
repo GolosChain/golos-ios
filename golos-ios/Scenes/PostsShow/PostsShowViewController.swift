@@ -195,21 +195,6 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
         self.isStatusBarStyleLight  =   true
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        if let activeVC = self.containerView.activeVC {
-            activeVC.postsTableView.contentOffset = .zero
-            activeVC.refreshControl.endRefreshing()
-            activeVC.loadDataFinished()
-
-            activeVC.postsTableView.reloadDataWithCompletion(completion: {})
-            
-            activeVC.postsTableView.tableHeaderView?.isHidden = true
-            activeVC.postsTableView.tableFooterView?.isHidden = true
-        }
-    }
-    
     
     // MARK: - Custom Functions
     override func localizeTitles() {
@@ -266,10 +251,10 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
                 
                 // Hide Infinite Scrolling spinner
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.7, execute: {
-                    if let activeVC = self.containerView.activeVC {
-                        activeVC.postsTableView.tableFooterView?.isHidden = true
-                        activeVC.infiniteScrollingActivityIndicatorView.stopAnimating()
-                    }
+                    activeVC.activityIndicatorView.stopAnimating()
+                    activeVC.postsTableView.tableHeaderView?.isHidden = true
+                    activeVC.postsTableView.tableFooterView?.isHidden = true
+                    activeVC.infiniteScrollingActivityIndicatorView.stopAnimating()
                 })
 
                 // Handler Pull Refresh/Infinite Scrolling data
