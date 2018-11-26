@@ -195,6 +195,21 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
         self.isStatusBarStyleLight  =   true
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        if let activeVC = self.containerView.activeVC {
+            activeVC.postsTableView.contentOffset = .zero
+            activeVC.refreshControl.endRefreshing()
+            activeVC.loadDataFinished()
+
+            activeVC.postsTableView.reloadDataWithCompletion(completion: {})
+            
+            activeVC.postsTableView.tableHeaderView?.isHidden = true
+            activeVC.postsTableView.tableFooterView?.isHidden = true
+        }
+    }
+    
     
     // MARK: - Custom Functions
     override func localizeTitles() {

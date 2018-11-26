@@ -43,7 +43,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Run Amplitude SDK
         Amplitude.instance()?.initializeApiKey("52defe807d145e49a6754f89aeaf9b32")
-        
+        Amplitude.instance()?.logEvent("ios_app_open", withEventProperties: [ UIDevice.current.identifierForVendor!.uuidString: "DEVICE_ID", (User.isAnonymous ? "Anonymous" : User.current!.nickName): "USER_ID" ])
+
         // APNs
         self.registerForPushNotifications()
         

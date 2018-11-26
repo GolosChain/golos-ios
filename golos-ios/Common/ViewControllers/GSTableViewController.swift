@@ -287,7 +287,7 @@ class GSTableViewController: GSBaseViewController, HandlersCellSupport {
 //        }
     }
 
-    private func loadDataFinished() {
+    func loadDataFinished() {
         DispatchQueue.main.async {
             self.postsTableView?.reloadDataWithCompletion {
                 Logger.log(message: "Load data is finished!!!", event: .debug)
