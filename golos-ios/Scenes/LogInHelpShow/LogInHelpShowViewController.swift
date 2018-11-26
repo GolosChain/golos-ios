@@ -14,12 +14,28 @@ class LogInHelpShowViewController: GSBaseViewController {
     
     
     // MARK: - IBOutlets
-    @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var contentView: UIView! {
+        didSet {
+            self.contentView.layer.cornerRadius = 12.0 * heightRatio
+            self.contentView.clipsToBounds = true
+        }
+    }
    
+    @IBOutlet weak var websiteButton: UIButton! {
+        didSet {
+            self.websiteButton.tune()
+            self.websiteButton.setTitle("Website Help Title Link".localized(), for: .normal)
+            self.websiteButton.setTitleColor(UIColor(hexString: "#2F7DFB"), for: .normal)
+            self.websiteButton.titleLabel?.font = UIFont(name: "SFProDisplay-Medium", size: 14.0)
+        }
+    }
+    
     @IBOutlet weak var closeButton: UIButton! {
         didSet {
-            closeButton.fill()
-            closeButton.setTitle("Thanks understood".localized(), for: .normal)
+            self.closeButton.tune()
+            self.closeButton.setTitle("Close Verb".localized(), for: .normal)
+            self.closeButton.setTitleColor(UIColor(hexString: "#2F7DFB"), for: .normal)
+            self.closeButton.titleLabel?.font = UIFont(name: "SFProDisplay-Medium", size: 18.0)
         }
     }
 
@@ -27,23 +43,27 @@ class LogInHelpShowViewController: GSBaseViewController {
         didSet {
             titlesCollection.forEach({
                 if $0.tag == 2 {
-                    $0.text = (loginType == .postingKey) ?  "Login Help Step Title 3 Posting".localized() :
-                        "Login Help Step Title 3 Active".localized()
+                    $0.text = (loginType == .postingKey) ?  "Keys Help Posting Title".localized() : "Keys Help Active Title".localized()
                 }
                 
                 $0.tune(withAttributedText:     $0.text ?? "XXX",
                         hexColors:              blackWhiteColorPickers,
-                        font:                   UIFont(name: "SFProDisplay-Regular", size: 13.0),
+                        font:                   UIFont(name: "SFProDisplay-Regular", size: 14.0),
                         alignment:              .left,
                         isMultiLines:           true)
             })
         }
     }
     
-    
-    @IBOutlet weak var wwwAspectRatioConstraint: NSLayoutConstraint! {
+    @IBOutlet var numbersLabelsCollection: [UILabel]! {
         didSet {
-            wwwAspectRatioConstraint.constant *= widthRatio
+            self.numbersLabelsCollection.forEach({
+                $0.tune(withAttributedText:     $0.text!,
+                        hexColors:              blackWhiteColorPickers,
+                        font:                   UIFont(name: "SFProDisplay-Bold", size: 14.0),
+                        alignment:              .left,
+                        isMultiLines:           false)
+            })
         }
     }
     
@@ -58,7 +78,7 @@ class LogInHelpShowViewController: GSBaseViewController {
             self.leadingConstraintsCollection.forEach({ $0.constant *= widthRatio })
         }
     }
-    
+        
     
     // MARK: - Class Functions
     override func viewDidLoad() {
@@ -71,5 +91,9 @@ class LogInHelpShowViewController: GSBaseViewController {
     // MARK: - Actions
     @IBAction func closeButtonPressed(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func websiteButtonTapped(_ sender: UIButton) {
+        self.openExternalLink(byURL: "https://golos.io/welcome")
     }
 }

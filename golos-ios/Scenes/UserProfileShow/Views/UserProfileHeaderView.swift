@@ -78,6 +78,15 @@ class UserProfileHeaderView: PassthroughView {
         }
     }
     
+    @IBOutlet var topConstraintsCollection: [NSLayoutConstraint]! {
+        didSet {
+            self.topConstraintsCollection.forEach({
+                $0.constant = (UIDevice.getDeviceScreenSize() == .iPhoneX ? 25.0 : 25.0) * heightRatio
+            })
+        }
+    }
+    
+    
     @IBOutlet private weak var imageViewTopConstraint: NSLayoutConstraint!
     
     

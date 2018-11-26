@@ -13,7 +13,6 @@
 		7DA06328203256D700B5630C /* PropertyStoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA06327203256D700B5630C /* PropertyStoring.swift */; };
 		7DA0632C203315A300B5630C /* PassthroughView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA0632B203315A300B5630C /* PassthroughView.swift */; };
 		7DE3531B2048CA3400C04CB2 /* LogInHelpShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE353192048CA3400C04CB2 /* LogInHelpShowViewController.swift */; };
-		7DE3531C2048CA3400C04CB2 /* LogInHelpShowViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DE3531A2048CA3400C04CB2 /* LogInHelpShowViewController.xib */; };
 		B1050CA020CECF75003CE4EE /* PostCreatePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1050C9A20CECF75003CE4EE /* PostCreatePresenter.swift */; };
 		B1050CA220CECF75003CE4EE /* PostCreateRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1050C9C20CECF75003CE4EE /* PostCreateRouter.swift */; };
 		B1050CA320CECF75003CE4EE /* PostCreateModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1050C9D20CECF75003CE4EE /* PostCreateModels.swift */; };
@@ -32,6 +31,7 @@
 		B111322420CD51EA00BC7F33 /* PostingKeyShowRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B111321E20CD51EA00BC7F33 /* PostingKeyShowRouter.swift */; };
 		B111322620CD51EA00BC7F33 /* PostingKeyShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B111322020CD51EA00BC7F33 /* PostingKeyShowViewController.swift */; };
 		B111C344215FB41300DE1F6E /* NSLayoutConstraint+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B111C343215FB41300DE1F6E /* NSLayoutConstraint+Extensions.swift */; };
+		B111FC7921A82D3300BA5864 /* LogInHelpShowViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B111FC7821A82D3300BA5864 /* LogInHelpShowViewController.xib */; };
 		B114192820CD1E260025B07F /* ReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B114192720CD1E260025B07F /* ReachabilityManager.swift */; };
 		B114192A20CD21530025B07F /* LogInShow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B114192920CD21530025B07F /* LogInShow.storyboard */; };
 		B114193320CD26710025B07F /* LogInShowRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B114192D20CD26710025B07F /* LogInShowRouter.swift */; };
@@ -300,7 +300,6 @@
 		7DA0632B203315A300B5630C /* PassthroughView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassthroughView.swift; sourceTree = "<group>"; };
 		7DCF55D0205883B5002FE7C3 /* Golos-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Golos-Bridging-Header.h"; sourceTree = "<group>"; };
 		7DE353192048CA3400C04CB2 /* LogInHelpShowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInHelpShowViewController.swift; sourceTree = "<group>"; };
-		7DE3531A2048CA3400C04CB2 /* LogInHelpShowViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LogInHelpShowViewController.xib; sourceTree = "<group>"; };
 		974FDF6AE6B94E5A2BFC2FDE /* Pods-Golos.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Golos.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Golos/Pods-Golos.debug.xcconfig"; sourceTree = "<group>"; };
 		B1050C9A20CECF75003CE4EE /* PostCreatePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCreatePresenter.swift; sourceTree = "<group>"; };
 		B1050C9C20CECF75003CE4EE /* PostCreateRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCreateRouter.swift; sourceTree = "<group>"; };
@@ -320,6 +319,7 @@
 		B111321E20CD51EA00BC7F33 /* PostingKeyShowRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingKeyShowRouter.swift; sourceTree = "<group>"; };
 		B111322020CD51EA00BC7F33 /* PostingKeyShowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingKeyShowViewController.swift; sourceTree = "<group>"; };
 		B111C343215FB41300DE1F6E /* NSLayoutConstraint+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutConstraint+Extensions.swift"; sourceTree = "<group>"; };
+		B111FC7821A82D3300BA5864 /* LogInHelpShowViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LogInHelpShowViewController.xib; sourceTree = "<group>"; };
 		B114192720CD1E260025B07F /* ReachabilityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityManager.swift; sourceTree = "<group>"; };
 		B114192920CD21530025B07F /* LogInShow.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LogInShow.storyboard; sourceTree = "<group>"; };
 		B114192D20CD26710025B07F /* LogInShowRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInShowRouter.swift; sourceTree = "<group>"; };
@@ -595,7 +595,7 @@
 			isa = PBXGroup;
 			children = (
 				7DE353192048CA3400C04CB2 /* LogInHelpShowViewController.swift */,
-				7DE3531A2048CA3400C04CB2 /* LogInHelpShowViewController.xib */,
+				B111FC7821A82D3300BA5864 /* LogInHelpShowViewController.xib */,
 			);
 			path = LogInHelpShow;
 			sourceTree = "<group>";
@@ -1465,11 +1465,11 @@
 				B134934D21819A0600B59827 /* ActiveUserTableViewCell.xib in Resources */,
 				B164CECA2119F6EB00349D79 /* Localizable.strings in Resources */,
 				B120D0702108256B00D949F5 /* SettingsNotificationsShow.storyboard in Resources */,
-				7DE3531C2048CA3400C04CB2 /* LogInHelpShowViewController.xib in Resources */,
 				B1F2B555216BBAC900CBAFC9 /* PostFeedHeaderView.xib in Resources */,
 				EC24FF7F200C4E2C00A0AE15 /* NavigationDropDownView.xib in Resources */,
 				B1050CBF20CECFBE003CE4EE /* PostCreate.storyboard in Resources */,
 				B15C29AE21101F760030D249 /* PostShow.storyboard in Resources */,
+				B111FC7921A82D3300BA5864 /* LogInHelpShowViewController.xib in Resources */,
 				B1CF44E22106D6CB00483A01 /* SettingsShow.storyboard in Resources */,
 				B13493552182079600B59827 /* SFUIDisplay-Medium.otf in Resources */,
 				B134933B2181878600B59827 /* ActiveVotersShow.storyboard in Resources */,

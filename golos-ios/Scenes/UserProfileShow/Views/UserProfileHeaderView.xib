@@ -32,6 +32,9 @@
                 <outletCollection property="labelsForAnimationCollection" destination="FaU-67-Zn3" collectionClass="NSMutableArray" id="JbW-JT-N9r"/>
                 <outletCollection property="labelsForAnimationCollection" destination="V8g-ut-yLv" collectionClass="NSMutableArray" id="TGo-tX-p1C"/>
                 <outletCollection property="labelsForAnimationCollection" destination="Tbu-zp-zfg" collectionClass="NSMutableArray" id="ZLS-5e-fI6"/>
+                <outletCollection property="topConstraintsCollection" destination="Iyw-SW-iIy" collectionClass="NSMutableArray" id="Qu9-QZ-u5U"/>
+                <outletCollection property="topConstraintsCollection" destination="ljc-xa-VRI" collectionClass="NSMutableArray" id="HJY-J7-eZt"/>
+                <outletCollection property="topConstraintsCollection" destination="1Cd-od-8T7" collectionClass="NSMutableArray" id="IAc-p3-vw0"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

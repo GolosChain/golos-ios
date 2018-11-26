@@ -171,7 +171,9 @@ class UserProfileShowViewController: GSBaseViewController, ContainerViewSupport 
 
     @IBOutlet weak var scrollViewTopConstraint: NSLayoutConstraint! {
         didSet {
-            self.scrollViewTopConstraint.constant = UIDevice.getDeviceScreenSize() == .iPhone4s ? -40.0 : -20.0
+            if UIDevice.modelName.hasSuffix("iPhone 5") {
+                self.scrollViewTopConstraint.constant = -20.0
+            }
         }
     }
     

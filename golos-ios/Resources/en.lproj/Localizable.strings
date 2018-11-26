@@ -13,11 +13,12 @@
 "Blog Platform 3"                           =   "Blog Platform 4\nthe next generation";
 "Welcome"                                   =   "Welcome";
 "in Golos.io"                               =   "to Golos.io";
-"Login Help Step Title 1"                   =   "1. Log in https://golos.io";
-"Login Help Step Title 2"                   =   "2. Proceed to \"Settings\" section";
-"Login Help Step Title 3 Posting"           =   "3. In \"Keys\" section press show private posting key (it starts from 5 or 1)";
-"Login Help Step Title 3 Active"            =   "3. In \"Keys\" section press show private active key (it starts from 5 or 1)";
-"Login Help Step Title 4"                   =   "4. You can copy-paste it, or\nscan through QR-code";
+"Website Help Title"                        =   "Go and login to";
+"Website Help Title Link"                   =   "Golos.io";
+"Settings Help Title"                       =   "Proceed to \"Settings\" section in profile";
+"Keys Help Posting Title"                   =   "In \"Keys\" section press show private posting key\n(it starts from 5 or 1)";
+"Keys Help Active Title"                    =   "In \"Keys\" section press show private active key\n(it starts from 5 or 1)";
+"QR Code Help Title"                        =   "You can copy-paste it, or scan through QR-code";
 "Do Not Registered"                         =   "Don’t have an account?";
 "Add Tags"                                  =   "Add tags";
 "No QR code is detected"                    =   "No QR code is detected";
@@ -37,7 +38,7 @@
 "Log In"                                    =   "Log In";
 "Sign In"                                   =   "Sign In";
 "More Info"                                 =   "More about Golos.io";
-"Thanks understood"                         =   "Got it";
+"Close Verb"                                =   "Close";
 "Registration"                              =   "Sign Up here";
 "Enter With Active Key"                     =   "Log In with active key";
 "Enter With Posting Key"                    =   "Log In with posting key";

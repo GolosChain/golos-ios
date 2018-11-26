@@ -13,11 +13,12 @@
 "Blog Platform 3"                           =   "Блог Платформа 4\nследующего поколения";
 "Welcome"                                   =   "Добро пожаловать";
 "in Golos.io"                               =   "в Golos.io";
-"Login Help Step Title 1"                   =   "1. Перейдите и авторизуйтесь на Golos.io";
-"Login Help Step Title 2"                   =   "2. Перейдите во вкладку \"Настройки\"";
-"Login Help Step Title 3 Posting"           =   "3. В разделе \"Ключи\"\nнажмите показать приватный постинг ключ\n(он начинается с 5 или 1)";
-"Login Help Step Title 3 Active"            =   "3. В разделе \"Ключи\"\nнажмите показать приватный активный ключ\n(он начинается с 5 или 1)";
-"Login Help Step Title 4"                   =   "4. Его нужно скопировать или\nсканировать через QR-код";
+"Website Help Title"                        =   "Перейдите и авторизуйтесь на";
+"Website Help Title Link"                   =   "Golos.io";
+"Settings Help Title"                       =   "Перейдите на вкладку \"Настройки\" в профиле";
+"Keys Help Posting Title"                   =   "В разделе \"Ключи\" нажмите показать приватный постинг ключ\n(он начинается с 5 или 1)";
+"Keys Help Active Title"                    =   "В разделе \"Ключи\" нажмите\nпоказать приватный активный ключ\n(он начинается с 5 или 1)";
+"QR Code Help Title"                        =   "Его нужно скопировать или сканировать через QR-код";
 "Do Not Registered"                         =   "Вы ещё не зарегистрированы?";
 "Add Tags"                                  =   "Добавьте теги";
 "No QR code is detected"                    =   "QR-код не обнаружен";
@@ -37,7 +38,7 @@
 "Log In"                                    =   "Войти";
 "Sign In"                                   =   "Регистрация";
 "More Info"                                 =   "Больше о Golos.io";
-"Thanks understood"                         =   "Спасибо, я всё понял";
+"Close Verb"                                =   "Закрыть";
 "Registration"                              =   "Регистрация";
 "Enter With Active Key"                     =   "Войти с активным ключом";
 "Enter With Posting Key"                    =   "Войти с постинг ключом";

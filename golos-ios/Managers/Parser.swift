@@ -5,7 +5,7 @@
 //  Created by Grigory on 16/02/2018.
 //  Copyright © 2018 golos. All rights reserved.
 //
-//  https://regex101.com
+//  https://regexr.com/3g1v7
 //
 
 import Down
@@ -14,7 +14,7 @@ import Foundation
 
 class Parser {    
     static func getPictureURL(fromBody body: String) -> String? {
-        let pattern     =   "(http(s?):)([/|.|\\w|\\s|-|%])*\\.(?:jpg|JPG|jpeg|JPEG|gif|GIF|png|PNG)(!d)?"
+        let pattern     =   "(http(s?):)([/|.|\\w|\\s\\%|-])*\\.(?:jpg|JPG|jpeg|JPEG|gif|GIF|png|PNG)(!d)?"
         
         let regex       =   try! NSRegularExpression(pattern: pattern)
         let results     =   regex.matches(in:       body,
