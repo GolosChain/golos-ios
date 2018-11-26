@@ -60,7 +60,7 @@ class CommentView: UIView, HandlersCellSupport {
     
     @IBOutlet weak var likeCountButton: UIButton! {
         didSet {
-            likeCountButton.tune(withTitle:     "",
+            likeCountButton.tune(withTitle:     " ",
                                  hexColors:     [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
                                  font:          UIFont(name: "SFProDisplay-Regular", size: 12.0),
                                  alignment:     .left)
@@ -77,7 +77,7 @@ class CommentView: UIView, HandlersCellSupport {
 
     @IBOutlet weak var dislikeCountButton: UIButton! {
         didSet {
-            dislikeCountButton.tune(withTitle:      "",
+            dislikeCountButton.tune(withTitle:      " ",
                                     hexColors:      [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
                                     font:           UIFont(name: "SFProDisplay-Regular", size: 12.0),
                                     alignment:      .center)
@@ -174,12 +174,12 @@ class CommentView: UIView, HandlersCellSupport {
         self.dislikeActivityIndicator.stopAnimating()
 
         self.likeButton.tag = comment.currentUserLiked ? 99 : 0
-        self.likeCountButton.setTitle(comment.likeCount > 0 ? "\(comment.likeCount)" : nil, for: .normal)
+        self.likeCountButton.setTitle(comment.likeCount > 0 ? "\(comment.likeCount)" : " ", for: .normal)
         self.likeButton.setImage(UIImage(named: comment.currentUserLiked ? "icon-button-post-like-selected" : "icon-button-post-like-normal"), for: .normal)
         
         // Dislike icon
         self.dislikeButton.tag = comment.currentUserDisliked ? 99 : 0
-        self.dislikeCountButton.setTitle(comment.dislikeCount > 0 ? "\(comment.dislikeCount)" : nil, for: .normal)
+        self.dislikeCountButton.setTitle(comment.dislikeCount > 0 ? "\(comment.dislikeCount)" : " ", for: .normal)
         self.dislikeButton.setImage(comment.currentUserDisliked ? UIImage(named: "icon-button-post-dislike-selected") : UIImage(named: "icon-button-post-dislike-normal"), for: .normal)
 
         // Avatar

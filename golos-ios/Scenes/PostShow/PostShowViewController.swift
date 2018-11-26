@@ -65,6 +65,7 @@ class PostShowViewController: GSBaseViewController {
     @IBOutlet weak var createNewCommentView: UIView! {
         didSet {
             self.createNewCommentView.tune()
+            self.createNewCommentView.isUserInteractionEnabled = false
         }
     }
     
@@ -188,7 +189,7 @@ class PostShowViewController: GSBaseViewController {
 
     @IBOutlet weak var likeCountButton: UIButton! {
         didSet {
-            likeCountButton.tune(withTitle:     "",
+            likeCountButton.tune(withTitle:     " ",
                                  hexColors:     [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
                                  font:          UIFont(name: "SFProDisplay-Regular", size: 12.0),
                                  alignment:     .left)
@@ -205,7 +206,7 @@ class PostShowViewController: GSBaseViewController {
     
     @IBOutlet weak var dislikeCountButton: UIButton! {
         didSet {
-            dislikeCountButton.tune(withTitle:      "",
+            dislikeCountButton.tune(withTitle:      " ",
                                     hexColors:      [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
                                     font:           UIFont(name: "SFProDisplay-Regular", size: 12.0),
                                     alignment:      .center)
@@ -353,7 +354,7 @@ class PostShowViewController: GSBaseViewController {
 
     @IBOutlet weak var commentsCountLabel: UILabel! {
         didSet {
-            commentsCountLabel.tune(withText:           "",
+            commentsCountLabel.tune(withText:           " ",
                                     hexColors:          grayWhiteColorPickers,
                                     font:               UIFont(name: "SFProDisplay-Regular", size: 14.0),
                                     alignment:          .left,
@@ -567,7 +568,7 @@ class PostShowViewController: GSBaseViewController {
         }
         
         if self.scrollCommentsDown {
-            self.didContentViewScrollToCommentsView()
+            self.didContentViewScrollToCommentsView(completion: {})
         }
     }
     
@@ -583,12 +584,12 @@ class PostShowViewController: GSBaseViewController {
 
             // Like icon
             self.likeButton.tag = displayedPost.currentUserLiked ? 99 : 0
-            self.likeCountButton.setTitle(displayedPost.likeCount > 0 ? "\(displayedPost.likeCount)" : nil, for: .normal)
+            self.likeCountButton.setTitle(displayedPost.likeCount > 0 ? "\(displayedPost.likeCount)" : " ", for: .normal)
             self.likeButton.setImage(UIImage(named: displayedPost.currentUserLiked ? "icon-button-post-like-selected" : "icon-button-post-like-normal"), for: .normal)
             
             // Dislike icon
             self.dislikeButton.tag = displayedPost.currentUserDisliked ? 99 : 0
-            self.dislikeCountButton.setTitle(displayedPost.dislikeCount > 0 ? "\(displayedPost.dislikeCount)" : nil, for: .normal)
+            self.dislikeCountButton.setTitle(displayedPost.dislikeCount > 0 ? "\(displayedPost.dislikeCount)" : " ", for: .normal)
             self.dislikeButton.setImage(displayedPost.currentUserDisliked ? UIImage(named: "icon-button-post-dislike-selected") : UIImage(named: "icon-button-post-dislike-normal"), for: .normal)
             
             // Comments icon
@@ -611,6 +612,7 @@ class PostShowViewController: GSBaseViewController {
                     })
                     
                     self?.gsTimer?.stop()
+                    self?.loadPostContentWorkItem.cancel()
                     
                     // Load comments
                     self?.loadPostComments()
@@ -687,7 +689,7 @@ class PostShowViewController: GSBaseViewController {
         }
     }
 
-    private func didContentViewScrollToCommentsView() {
+    private func didContentViewScrollToCommentsView(completion: @escaping () -> Void) {
         Logger.log(message: "Success", event: .severe)
 
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5, execute: {
@@ -704,8 +706,8 @@ class PostShowViewController: GSBaseViewController {
                             }
 
                             // Scrolling after add new Comments item
-                            if self.isPostContentModify {
-                                let commentView = self.commentsStackView.arrangedSubviews[self.insertedRow ?? 0]
+                            if self.isPostContentModify && self.insertedRow != nil {
+                                let commentView = self.commentsStackView.arrangedSubviews[self.insertedRow!]
                                 let commentViewFrame = self.contentView.convert(commentView.frame, from: self.commentsStackView)
                                 self.scrollView.contentOffset.y = commentViewFrame.minY
                             }
@@ -715,6 +717,12 @@ class PostShowViewController: GSBaseViewController {
                                 self.scrollView.contentOffset.y = bottomViewFrame.maxY
                                 self.scrollCommentsDown = false
                             }
+                            
+                            self.gsTimer?.stop()
+                            self.loadPostContentWorkItem.cancel()
+                            self.loadPostCommentsWorkItem.cancel()
+                            
+                            completion()
             })
         })
     }
@@ -753,9 +761,11 @@ class PostShowViewController: GSBaseViewController {
     }
     
     private func clearProperties() {
-        self.insertedRow = nil
-        self.permlinkCreatedItem = ""
-        self.didCommentsControlView(hided: false)
+        self.didContentViewScrollToCommentsView(completion: {
+            self.insertedRow = nil
+            self.permlinkCreatedItem = ""
+            self.didCommentsControlView(hided: false)
+        })
     }
     
     
@@ -817,8 +827,10 @@ class PostShowViewController: GSBaseViewController {
     }
 
     @IBAction func likeCountButtonTapped(_ sender: UIButton) {
-        DispatchQueue.main.async {
-            self.router?.routeToActiveVotersShowScene(asPost: true, withMode: .like)
+        if let countText = sender.titleLabel?.text, let countInt = Int(countText), countInt > 0 {
+            DispatchQueue.main.async {
+                self.router?.routeToActiveVotersShowScene(asPost: true, withMode: .like)
+            }
         }
     }
     
@@ -841,8 +853,10 @@ class PostShowViewController: GSBaseViewController {
     }
     
     @IBAction func dislikeCountButtonTapped(_ sender: UIButton) {
-        DispatchQueue.main.async {
-            self.router?.routeToActiveVotersShowScene(asPost: true, withMode: .dislike)
+        if let countText = sender.titleLabel?.text, let countInt = Int(countText), countInt > 0 {
+            DispatchQueue.main.async {
+                self.router?.routeToActiveVotersShowScene(asPost: true, withMode: .dislike)
+            }
         }
     }
     
@@ -860,7 +874,7 @@ class PostShowViewController: GSBaseViewController {
         
         DispatchQueue.main.async {
             self.router?.routeToPostCreateScene(withType: .createComment)
-            self.insertedRow = self.comments?.filter({ $0.treeLevel == 0 }).count ?? 0
+//            self.insertedRow = self.comments?.filter({ $0.treeLevel == 0 }).count ?? 0
         }
     }
 
@@ -897,7 +911,7 @@ class PostShowViewController: GSBaseViewController {
             
             // Scrolling to bottom
             if !sender.isSelected && self.scrollCommentsDown {
-                self.didContentViewScrollToCommentsView()
+                self.didContentViewScrollToCommentsView(completion: {})
             }
         }
     }
@@ -1186,7 +1200,9 @@ extension PostShowViewController {
             self.commentsCountLabel.text = String(format: "%i", commentEntities.count)
             
             if self.permlinkCreatedItem != "" && self.insertedRow == nil {
-                self.insertedRow = commentEntities.firstIndex(of: commentEntities.first(where: { $0.permlink == self.permlinkCreatedItem })!)
+                if let createdItemRow = commentEntities.firstIndex(of: commentEntities.first(where: { $0.permlink == self.permlinkCreatedItem })!), createdItemRow <= self.comments!.count, self.comments!.count % Int(paginationOffset) != 0  {
+                    self.insertedRow = createdItemRow
+                }
             }
             
             let startIndex  =   self.insertedRow ?? (self.comments?.count ?? 0 * self.paginationOffset)
@@ -1257,6 +1273,8 @@ extension PostShowViewController {
                             self?.needPagination = endIndex != commentEntities.count
                             self?.didFinishLoadComments(afterPagination: (self?.isPaginationRun)!)
                         }
+                        
+                        self?.createNewCommentView.isUserInteractionEnabled = true
                     })
                     
                     // Handlers
