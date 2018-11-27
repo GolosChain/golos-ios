@@ -20,13 +20,33 @@ class Parser {
         let results     =   regex.matches(in:       body,
                                           range:    NSRange.init(location: 0, length: body.count))
         
-        guard let match = results.first else {
-            return nil
+        if let match = results.first {
+            return (body as NSString).substring(with: match.range)
         }
 
-        return (body as NSString).substring(with: match.range)
+        else {
+            return self.getYouTubeVideoPictureURL(fromBody: body)
+        }
     }
-    
+
+    static func getYouTubeVideoPictureURL(fromBody body: String) -> String? {
+        if body.contains("https://www.youtube.com/") || body.contains("https://youtu.be/") {
+            let youTubeImagePattern     =   "http(?:s?):\\/\\/(?:www\\.)?youtu(?:be\\.com\\/watch\\?v=|\\.be\\/)([\\w\\-\\_]*)(&(amp;)?‌​[\\w\\?‌​=]*)?"
+            let youTubeRegEx            =   try! NSRegularExpression(pattern: youTubeImagePattern)
+            let results                 =   youTubeRegEx.matches(in: body, range: NSRange.init(location: 0, length: body.count))
+            
+            guard let result = results.first else { return nil }
+            
+            var youTubeImageLink        =   (body as NSString).substring(with: result.range)
+            youTubeImageLink            =   body.contains("https://youtu.be/") ?    youTubeImageLink.components(separatedBy: "/").last! :
+                                                                                    youTubeImageLink.components(separatedBy: "=").last!
+            
+            return String(format: "https://img.youtube.com/vi/%@/0.jpg", youTubeImageLink)
+        }
+        
+        return nil
+    }
+
     func getDescription(from body: String) -> String {
         let down = Down(markdownString: body)
         let html = try! down.toHTML()
@@ -89,6 +109,19 @@ class Parser {
     static func repair(body: String) -> String {
         var modifiedBody = body
         
+        // Modify images links
+        let imagePattern    =   "(http(s?):)([/|.|\\w|\\s|\\%|\\-|\\_|\\()])*\\.(?:jpg|JPG|jpeg|JPEG|gif|GIF|png|PNG)(!d)?"
+        
+        let imageRegEx      =   try! NSRegularExpression(pattern: imagePattern)
+        let imageResults    =   imageRegEx.matches(in:       modifiedBody,
+                                                   range:    NSRange.init(location: 0, length: modifiedBody.count))
+        
+        if imageResults.count > 0 {
+            for result in imageResults {
+                modifiedBody = imageRegEx.stringByReplacingMatches(in: modifiedBody, options: .withTransparentBounds, range: NSRange(location: 0, length: modifiedBody.count), withTemplate: String(format: "![](%@)", (modifiedBody as NSString).substring(with: result.range)))
+            }
+        }
+        
         // Modify YouTube video link
         if modifiedBody.contains("https://www.youtube.com/") || modifiedBody.contains("https://youtu.be/") {
             var youTubeImageLink: String?
@@ -104,6 +137,8 @@ class Parser {
             
             if let result = results.first {
                 youTubeImageLink        =   (modifiedBody as NSString).substring(with: result.range)
+                youTubeImageLink        =   modifiedBody.contains("https://youtu.be/") ?    youTubeImageLink!.components(separatedBy: "/").last! :
+                                                                                            youTubeImageLink!.components(separatedBy: "=").last!
             }
             
             youTubeRegEx                =   try! NSRegularExpression(pattern: youTubeVideoPattern)
@@ -114,7 +149,7 @@ class Parser {
             if let result = results.first {
                 youTubeVideoLink        =   (modifiedBody as NSString).substring(with: result.range)
 
-                modifiedBody = youTubeRegEx.stringByReplacingMatches(in: modifiedBody, options: .withTransparentBounds, range: NSRange(location: 0, length: modifiedBody.count), withTemplate: String(format: "[![](https://img.youtube.com/vi/%@/0.jpg)](%@)", youTubeImageLink!.components(separatedBy: "=").last!, youTubeVideoLink!))
+                modifiedBody = youTubeRegEx.stringByReplacingMatches(in: modifiedBody, options: .withTransparentBounds, range: NSRange(location: 0, length: modifiedBody.count), withTemplate: String(format: "[![](https://img.youtube.com/vi/%@/0.jpg)](%@)", youTubeImageLink!, youTubeVideoLink!))
             }
         }
         
@@ -139,8 +174,10 @@ class Parser {
 
         // Delete center
         modifiedBody = modifiedBody.replacingOccurrences(of: "<center>http", with: "![](http")
+        modifiedBody = modifiedBody.replacingOccurrences(of: "<center>", with: "")
         modifiedBody = modifiedBody.replacingOccurrences(of: "</center>", with: ")")
-
+        modifiedBody = modifiedBody.replacingOccurrences(of: "\n)", with: "\n")
+        
         // Delete <div class=\"pull-left\"> http
         modifiedBody = modifiedBody.replacingOccurrences(of: "<div class=\"pull-left\"> http", with: "![](http")
         modifiedBody = modifiedBody.replacingOccurrences(of: "</div>", with: ")")
@@ -158,7 +195,6 @@ class Parser {
 
         if userName != "XXX", let regex = try? NSRegularExpression(pattern: userNameLinkPattern, options: .caseInsensitive) {
             modifiedBody    =   regex.stringByReplacingMatches(in: modifiedBody, options: .withTransparentBounds, range: NSRange(location: 0, length: modifiedBody.count), withTemplate: "/\(userName)/")
-//            modifiedBody    =   modifiedBody.replacingOccurrences(of: ")](", with: ")\n(")
         }
 
         return modifiedBody

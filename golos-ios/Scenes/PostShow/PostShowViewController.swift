@@ -439,7 +439,7 @@ class PostShowViewController: GSBaseViewController {
         }
     }
 
-    @IBOutlet weak var tagsCollectionViewheightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var tagsCollectionViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var markdownViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var commentsControlViewTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var subscribesStackViewTopConstraint: NSLayoutConstraint!
@@ -496,6 +496,13 @@ class PostShowViewController: GSBaseViewController {
     
     
     // MARK: - Class Functions
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        let tagsHeight: CGFloat = self.tagsCollectionView.collectionViewLayout.collectionViewContentSize.height
+        self.tagsCollectionViewHeightConstraint.constant = tagsHeight
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         Logger.log(message: "Success", event: .severe)
@@ -563,13 +570,13 @@ class PostShowViewController: GSBaseViewController {
         self.contentViewTopConstraint.constant = 0.0
         
         UIView.animate(withDuration: 0.3) {
-            self.view.layoutIfNeeded()
+//            self.view.layoutIfNeeded()
             self.commentsStackView.alpha    =   1.0
         }
         
-        if self.scrollCommentsDown {
-            self.didContentViewScrollToCommentsView(completion: {})
-        }
+        self.didContentViewScrollToCommentsView(completion: {
+            self.createNewCommentView.isUserInteractionEnabled = true
+        })
     }
     
     private func loadViewSettings(withoutComments: Bool) {
@@ -622,6 +629,12 @@ class PostShowViewController: GSBaseViewController {
                 
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
                     self.tagsCollectionView.reloadData()
+                    
+                    // Tags collection height
+//                    let tagsHeight: CGFloat = self.tagsCollectionView.collectionViewLayout.collectionViewContentSize.height
+//                    self.tagsCollectionViewHeightConstraint.constant = tagsHeight
+//                    self.view.setNeedsLayout()
+//                    self.view.layoutIfNeeded()
                 }
                 
                 // Subscribe topic
@@ -651,6 +664,12 @@ class PostShowViewController: GSBaseViewController {
         Logger.log(message: "Success", event: .severe)
         
         self.tagsCollectionView.reloadData()
+        
+        // Tags collection height
+//        let tagsHeight: CGFloat = self.tagsCollectionView.collectionViewLayout.collectionViewContentSize.height
+//        self.tagsCollectionViewHeightConstraint.constant = tagsHeight
+//        self.view.setNeedsLayout()
+//                    self.view.layoutIfNeeded()
         
         if let dataStore = self.router?.dataStore, dataStore.displayedPost != nil {
             self.postFeedHeaderView.display(post: dataStore.displayedPost!, inNavBar: true, completion: { _ in })
@@ -695,30 +714,32 @@ class PostShowViewController: GSBaseViewController {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5, execute: {
             UIView.animate(withDuration:    0.1,
                            delay:           0.2,
-                           options:         .transitionCrossDissolve,
+                           options:         .allowAnimatedContent,
                            animations:      {
-                            let bottomViewFrame = self.backgroundGrayViewsCollection.first(where: { $0.tag == 1 })!.frame
-
-                            guard self.comments != nil else {
-                                self.scrollView.contentOffset.y = (self.commentsStackView.frame.maxY > self.view.frame.height) ? (64.0 + self.commentsStackView.frame.maxY - self.view.frame.height + self.createNewCommentView.frame.height) : self.createNewCommentView.frame.height
+                            // Scrolling down only once after open scene
+                            if self.scrollCommentsDown {
+                                if self.comments == nil {
+//                                    let visibleRect = self.contentView.convert(self.commentsHideButton.frame, from: self.commentsControlView)
+                                    self.scrollView.scrollRectToVisible(self.commentsControlView.frame, animated: true)
+                                }
                                 
-                                return
+                                else {
+                                    let commentView         =   self.commentsStackView.arrangedSubviews.first
+                                    let commentViewFrame    =   self.contentView.convert(commentView!.frame, from: self.commentsStackView)
+                                    self.scrollView.scrollRectToVisible(commentViewFrame, animated: true)
+                                }
+                                
+                                self.scrollCommentsDown = false
                             }
-
+                            
                             // Scrolling after add new Comments item
-                            if self.isPostContentModify && self.insertedRow != nil {
+                            else if self.isPostContentModify && self.insertedRow != nil {
                                 let commentView = self.commentsStackView.arrangedSubviews[self.insertedRow!]
                                 let commentViewFrame = self.contentView.convert(commentView.frame, from: self.commentsStackView)
 
                                 self.scrollView.scrollRectToVisible(commentViewFrame, animated: true)
                             }
-
-                            // Scrolling down only once after open scene
-                            else if !self.scrollCommentsDown {
-                                self.scrollView.contentOffset.y = bottomViewFrame.maxY
-                                self.scrollCommentsDown = false
-                            }
-                            
+                           
                             self.gsTimer?.stop()
                             self.loadPostContentWorkItem.cancel()
                             self.loadPostCommentsWorkItem.cancel()
@@ -766,6 +787,7 @@ class PostShowViewController: GSBaseViewController {
             self.insertedRow = nil
             self.permlinkCreatedItem = ""
             self.didCommentsControlView(hided: false)
+            self.createNewCommentView.isUserInteractionEnabled = true
         })
     }
     
@@ -867,15 +889,9 @@ class PostShowViewController: GSBaseViewController {
 
     @IBAction func commentsButtonTapped(_ sender: UIButton) {
         guard self.isCurrentOperationPossible() else { return }
-
-//        self.isPostContentModify = true
-//        self.insertedRow = 3
-//
-//        self.didContentViewScrollToCommentsView()
         
         DispatchQueue.main.async {
             self.router?.routeToPostCreateScene(withType: .createComment)
-//            self.insertedRow = self.comments?.filter({ $0.treeLevel == 0 }).count ?? 0
         }
     }
 
@@ -908,11 +924,13 @@ class PostShowViewController: GSBaseViewController {
         
         UIView.animate(withDuration: 0.5) {
             self.commentsStackView.alpha = sender.isSelected ? 0.0 : 1.0
-            self.view.layoutIfNeeded()
+//            self.view.layoutIfNeeded()
             
             // Scrolling to bottom
             if !sender.isSelected && self.scrollCommentsDown {
-                self.didContentViewScrollToCommentsView(completion: {})
+                self.didContentViewScrollToCommentsView(completion: {
+                    self.createNewCommentView.isUserInteractionEnabled = true
+                })
             }
         }
     }
@@ -1274,8 +1292,6 @@ extension PostShowViewController {
                             self?.needPagination = endIndex != commentEntities.count
                             self?.didFinishLoadComments(afterPagination: (self?.isPaginationRun)!)
                         }
-                        
-                        self?.createNewCommentView.isUserInteractionEnabled = true
                     })
                     
                     // Handlers
@@ -1445,7 +1461,7 @@ extension PostShowViewController {
 // MARK: - UICollectionViewDelegateFlowLayout
 extension PostShowViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets.init(top: 0.0, left: 0.0, bottom: 0.0, right: 12.0)
+        return UIEdgeInsets.init(top: 4.0, left: 0.0, bottom: 4.0, right: 12.0)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
@@ -1458,17 +1474,8 @@ extension PostShowViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let tag     =   self.router!.dataStore!.displayedPost!.tags![indexPath.row]
-        let width   =   (CGFloat(tag.count) * 7.0 + 30.0) * widthRatio
-        
-        if indexPath.row == 0 {
-            self.tagsWidth = 0.0
-        }
-        
-        self.tagsWidth  +=  width + 6.0 * heightRatio
-        let lines       =   Int(self.tagsWidth / collectionView.frame.width) + 1
-        
-        self.tagsCollectionViewheightConstraint.constant = CGFloat(lines) * 30.0 * heightRatio + CGFloat(lines == 1 ? 0.0 : 6.0) * heightRatio
-        
+        let width   =   CGFloat(tag.count) * 7.0 + 30.0 * widthRatio
+
         return CGSize.init(width: width, height: 30.0 * heightRatio)
     }
 }
