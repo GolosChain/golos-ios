@@ -500,6 +500,7 @@ class PostShowViewController: GSBaseViewController {
         super.viewDidLayoutSubviews()
         
         let tagsHeight: CGFloat = self.tagsCollectionView.collectionViewLayout.collectionViewContentSize.height
+        print("tagsHeight = \(tagsHeight)")
         self.tagsCollectionViewHeightConstraint.constant = tagsHeight
     }
 
