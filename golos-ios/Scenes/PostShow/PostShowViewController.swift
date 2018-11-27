@@ -643,7 +643,9 @@ class PostShowViewController: GSBaseViewController {
                 }
                 
                 // Subscribe User
-                if  let author = self.router?.dataStore?.postShortInfo?.author,
+                self.userNameLabel.text = self.postFeedHeaderView.authorNameButton.titleLabel!.text
+
+                if  let author = self.userNameLabel.text,
                     let user = User.fetch(byNickName: author), let userProfileImageURL = user.profileImageURL {
                     
                     self.userAvatarImageView.uploadImage(byStringPath:      userProfileImageURL,
@@ -654,8 +656,6 @@ class PostShowViewController: GSBaseViewController {
                                                          fromItem:          (user as CachedImageFrom).fromItem,
                                                          completion:        { _ in })
                 }
-                
-                self.userNameLabel.text = self.postFeedHeaderView.authorNameButton.titleLabel!.text
             }
         }
     }
@@ -1219,7 +1219,11 @@ extension PostShowViewController {
             self.commentsCountLabel.text = String(format: "%i", commentEntities.count)
             
             if self.permlinkCreatedItem != "" && self.insertedRow == nil {
-                if let createdItemRow = commentEntities.firstIndex(of: commentEntities.first(where: { $0.permlink == self.permlinkCreatedItem })!), createdItemRow <= self.comments!.count, self.comments!.count % Int(paginationOffset) != 0  {
+                if self.comments == nil {
+                    self.insertedRow = 0
+                }
+                
+                else if let createdItemRow = commentEntities.firstIndex(of: commentEntities.first(where: { $0.permlink == self.permlinkCreatedItem })!), createdItemRow <= self.comments!.count, self.comments!.count % Int(paginationOffset) != 0  {
                     self.insertedRow = createdItemRow
                 }
             }
@@ -1289,7 +1293,7 @@ extension PostShowViewController {
                                 }
                             }
                             
-                            self?.needPagination = endIndex != commentEntities.count
+                            self?.needPagination = (self?.comments?.count ?? 0) < Int(self?.commentsButton.titleLabel?.text ?? "0")!
                             self?.didFinishLoadComments(afterPagination: (self?.isPaginationRun)!)
                         }
                     })

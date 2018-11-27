@@ -112,8 +112,6 @@
 		B15267AE210DB4980037CAAA /* NSAttributedString+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15267AD210DB4980037CAAA /* NSAttributedString+Extensions.swift */; };
 		B157660A20B59D80009619A6 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B157660920B59D80009619A6 /* UserNotifications.framework */; };
 		B157660C20B59D80009619A6 /* UserNotificationsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B157660B20B59D80009619A6 /* UserNotificationsUI.framework */; };
-		B157660F20B59D80009619A6 /* RemoteNotificationTransferViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B157660E20B59D80009619A6 /* RemoteNotificationTransferViewController.swift */; };
-		B157661620B59D80009619A6 /* RemoteNotificationTransfer.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = B157660820B59D80009619A6 /* RemoteNotificationTransfer.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		B15C29AE21101F760030D249 /* PostShow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B15C29AD21101F760030D249 /* PostShow.storyboard */; };
 		B15C29B621101FEA0030D249 /* PostShowPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15C29B021101FEA0030D249 /* PostShowPresenter.swift */; };
 		B15C29B821101FEA0030D249 /* PostShowRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15C29B221101FEA0030D249 /* PostShowRouter.swift */; };
@@ -272,7 +270,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				B157661620B59D80009619A6 /* RemoteNotificationTransfer.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1619,7 +1616,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B157660F20B59D80009619A6 /* RemoteNotificationTransferViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
