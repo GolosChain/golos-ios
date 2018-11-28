@@ -41,4 +41,10 @@ public class Blog: NSManagedObject, CachedImageFrom  {
         // Update entity
         entity!.update(withModel: model)
     }
+
+    class func load(byID id: Int64) -> Blog? {
+        return CoreDataManager.instance.readEntities(withName:                  "Blog",
+                                                     withPredicateParameters:   NSPredicate(format: "id == \(id)"),
+                                                     andSortDescriptor:         nil)?.first as? Blog
+    }
 }

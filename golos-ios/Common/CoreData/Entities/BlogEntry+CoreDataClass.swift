@@ -20,6 +20,12 @@ public class BlogEntry: NSManagedObject {
                                                 completion:                 { _ in })
     }
     
+    class func load(byPermlink permlink: String) -> BlogEntry? {
+        return CoreDataManager.instance.readEntities(withName:                  "BlogEntry",
+                                                     withPredicateParameters:   NSPredicate(format: "permlink == %@", permlink),
+                                                     andSortDescriptor:         nil)?.first as? BlogEntry
+    }
+    
     class func loadEntries(byBlogAuthorNickName blogAuthorNickName: String) -> [BlogEntry]? {
         return CoreDataManager.instance.readEntities(withName:                  "BlogEntry",
                                                      withPredicateParameters:   NSPredicate(format: "blog == %@", blogAuthorNickName),

@@ -608,7 +608,7 @@ class PostShowViewController: GSBaseViewController {
             self.placeholderButton.setTitle((displayedPost.children == 0  ? "No Comments Placeholder" : "Write Own Comment Placeholder").localized(), for: .normal)
             
             if !withoutComments {
-                self.postFeedHeaderView.display(post: displayedPost, inNavBar: true, completion: { _ in })
+                self.setPostFeedHeaderView()
                 
                 self.markdownViewManager.load(markdown: Parser.repair(body: displayedPost.body))
 
@@ -672,9 +672,7 @@ class PostShowViewController: GSBaseViewController {
 //        self.view.setNeedsLayout()
 //                    self.view.layoutIfNeeded()
         
-        if let dataStore = self.router?.dataStore, dataStore.displayedPost != nil {
-            self.postFeedHeaderView.display(post: dataStore.displayedPost!, inNavBar: true, completion: { _ in })
-        }
+        self.setPostFeedHeaderView()
         
         self.postFeedHeaderView.categoryLabel.text = self.router!.dataStore!.displayedPost!.category
                                                         .transliteration(forPermlink: false)
@@ -708,6 +706,19 @@ class PostShowViewController: GSBaseViewController {
             self.topicTitleLabel.text = topicTitle
         }
     }
+    
+    private func setPostFeedHeaderView() {
+        if let dataStore = self.router?.dataStore, dataStore.displayedPost != nil {
+            // Blog entry
+            if let blogEntry = BlogEntry.load(byPermlink: dataStore.displayedPost!.permlink), dataStore.postShortInfo!.isPosted {
+                self.postFeedHeaderView!.display(post: dataStore.displayedPost!, entry: blogEntry, inNavBar: true, completion: { (_, _) in })
+            }
+
+            else {
+                self.postFeedHeaderView.display(post: dataStore.displayedPost!, inNavBar: true, completion: { (_, _) in })
+            }
+        }
+    }
 
     private func didContentViewScrollToCommentsView(completion: @escaping () -> Void) {
         Logger.log(message: "Success", event: .severe)
@@ -720,7 +731,6 @@ class PostShowViewController: GSBaseViewController {
                             // Scrolling down only once after open scene
                             if self.scrollCommentsDown {
                                 if self.comments == nil {
-//                                    let visibleRect = self.contentView.convert(self.commentsHideButton.frame, from: self.commentsControlView)
                                     self.scrollView.scrollRectToVisible(self.commentsControlView.frame, animated: true)
                                 }
                                 
@@ -1196,7 +1206,7 @@ extension PostShowViewController {
         if let postShortInfo = self.router?.dataStore?.postShortInfo {
             guard var commentEntities = CoreDataManager.instance.readEntities(withName:                    "Comment",
                                                                               withPredicateParameters:     NSPredicate(format: "url contains[cd] %@ AND url contains[cd] %@", postShortInfo.author ?? "XXX", postShortInfo.permlink ?? "XXX"),
-                                                                              andSortDescriptor:           nil) as? [Comment], commentEntities.count > 0 else {
+                                                                              andSortDescriptor:           NSSortDescriptor(key: "created", ascending: true)) as? [Comment], commentEntities.count > 0 else {
                                                                                 self.didFinishLoadComments(afterPagination: false)
                                                                                 self.didCommentsControlView(hided: true)
                                                                                 return

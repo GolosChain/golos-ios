@@ -95,7 +95,7 @@ extension UIImageView {
                                 return
                             }
                             
-                            if let data = data, let downloadedImage = UIImage(data: data) {
+                            if let data = data, var downloadedImage = UIImage(data: data) {
                                 if imageType == .userCoverImage {
                                     self.contentMode = .scaleAspectFill
                                 }

@@ -165,7 +165,7 @@ class PostFeedHeaderView: UIView {
 
     
     // MARK: - Custom Functions
-    func display(post: PostCellSupport, entry: BlogEntry? = nil, inNavBar: Bool, completion: @escaping ((CGFloat) -> Void)) {
+    func display(post: PostCellSupport, entry: BlogEntry? = nil, inNavBar: Bool, completion: @escaping ((Bool, CGFloat) -> Void)) {
         let postAuthorNickName      =   entry == nil ? post.author : entry!.author
         let profileAuthorNickName   =   entry == nil ? (post.rebloggedBy == nil ? post.author : post.rebloggedBy!.first!) : (entry!.author == entry!.blog ? entry!.author : entry!.blog)
 
@@ -247,7 +247,7 @@ class PostFeedHeaderView: UIView {
     
         let height = (self.stackViewHeightConstraint.constant == 0.0 ? 46.0 : (self.stackViewHeightConstraint.constant + 31.0)) * heightRatio
        
-        completion(height)
+        completion(!self.reblogStackView.isHidden, height)
     }
     
     private func setPostAuthor(byNickName nickName: String) {

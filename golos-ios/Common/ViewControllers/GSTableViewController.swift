@@ -452,7 +452,8 @@ extension GSTableViewController: UITableViewDataSource {
                                                                      parentAuthor:              model.parentAuthor,
                                                                      parentPermlink:            model.parentPermlink,
                                                                      activeVotes:               model.likeCount,
-                                                                     nsfwPath:                  postShortInfo.nsfwPath))
+                                                                     nsfwPath:                  postShortInfo.nsfwPath,
+                                                                     isPosted:                  postShortInfo.isPosted))
             }
 
             (cell as! PostFeedTableViewCell).handlerLikeCountButtonTapped   =   { [weak self] postShortInfo in
@@ -467,7 +468,8 @@ extension GSTableViewController: UITableViewDataSource {
                                                                   parentAuthor:                 model.parentAuthor,
                                                                   parentPermlink:               model.parentPermlink,
                                                                   activeVotes:                  model.likeCount,
-                                                                  nsfwPath:                     postShortInfo.nsfwPath))
+                                                                  nsfwPath:                     postShortInfo.nsfwPath,
+                                                                  isPosted:                     postShortInfo.isPosted))
             }
 
             (cell as! PostFeedTableViewCell).handlerDislikeButtonTapped     =   { [weak self] (isDislike, postShortInfo) in
@@ -482,7 +484,8 @@ extension GSTableViewController: UITableViewDataSource {
                                                                            parentAuthor:        model.parentAuthor,
                                                                            parentPermlink:      model.parentPermlink,
                                                                            activeVotes:         model.likeCount,
-                                                                           nsfwPath:            postShortInfo.nsfwPath))
+                                                                           nsfwPath:            postShortInfo.nsfwPath,
+                                                                           isPosted:            postShortInfo.isPosted))
             }
             
             (cell as! PostFeedTableViewCell).handlerDislikeCountButtonTapped =   { [weak self] postShortInfo in
@@ -497,7 +500,8 @@ extension GSTableViewController: UITableViewDataSource {
                                                                      parentAuthor:              model.parentAuthor,
                                                                      parentPermlink:            model.parentPermlink,
                                                                      activeVotes:               model.likeCount,
-                                                                     nsfwPath:                  postShortInfo.nsfwPath))
+                                                                     nsfwPath:                  postShortInfo.nsfwPath,
+                                                                     isPosted:                  postShortInfo.isPosted))
             }
             
             (cell as! PostFeedTableViewCell).handlerCommentsButtonTapped    =   { [weak self] postShortInfo in
@@ -512,7 +516,8 @@ extension GSTableViewController: UITableViewDataSource {
                                                                  parentAuthor:                  model.parentAuthor,
                                                                  parentPermlink:                model.parentPermlink,
                                                                  activeVotes:                   model.likeCount,
-                                                                 nsfwPath:                      postShortInfo.nsfwPath))
+                                                                 nsfwPath:                      postShortInfo.nsfwPath,
+                                                                 isPosted:                      postShortInfo.isPosted))
             }
 
             (cell as! PostFeedTableViewCell).handlerAuthorPostSelected      =   { [weak self] userName in
@@ -565,7 +570,8 @@ extension GSTableViewController: UITableViewDelegate {
                                                   parentAuthor:     model.parentAuthor,
                                                   parentPermlink:   model.parentPermlink,
                                                   activeVotes:      model.likeCount,
-                                                  nsfwPath:         cellSelected.postImageView.accessibilityIdentifier))
+                                                  nsfwPath:         cellSelected.postImageView.accessibilityIdentifier,
+                                                  isPosted:         cellSelected.postShortInfo.isPosted))
         }
     }
 }

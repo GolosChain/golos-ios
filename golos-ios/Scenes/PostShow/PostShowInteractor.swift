@@ -44,6 +44,7 @@ class PostShowInteractor: PostShowBusinessLogic, PostShowDataStore {
         didSet {
             if let selectedPost = CoreDataManager.instance.readEntity(withName:                   self.postType!.caseTitle().uppercaseFirst,
                                                                       andPredicateParameters:     NSPredicate(format: "id == \(self.postShortInfo!.id ?? 0)")) as? PostCellSupport {
+                
                 self.displayedPost = selectedPost
             }
         }

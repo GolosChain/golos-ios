@@ -1256,6 +1256,7 @@
 				EC9ABBBE20179CEF00AF8597 /* Images.swift */,
 				EC24FF53200C080300A0AE15 /* Notifications+Extensions.swift */,
 				B15267AD210DB4980037CAAA /* NSAttributedString+Extensions.swift */,
+				B111C343215FB41300DE1F6E /* NSLayoutConstraint+Extensions.swift */,
 				B1EBAFBD20EB56910050B1A2 /* NSManagedObject+Extensions.swift */,
 				7D911D192035DE5D00F19D3C /* String+Extensions.swift */,
 				ECF31724200A9D2800F7B703 /* UIAlertController+Window.swift */,
@@ -1272,7 +1273,6 @@
 				B1EE684920D261C4006BF802 /* UITextView+Extensions.swift */,
 				ECA8E35D2018D119003B8ABA /* UIView+Shadow.swift */,
 				EC6FD59D200AD53100DCB824 /* UIViewController+Extensions.swift */,
-				B111C343215FB41300DE1F6E /* NSLayoutConstraint+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";

@@ -36,7 +36,7 @@ protocol PostCellSupport: PaginationSupport, MetaDataSupport {
 
     var authorReblog: String? { get set }
     var rebloggedBy: [String]? { get set }
-
+    
     var active: Date { get set }
     var created: Date { get set }
     var lastUpdate: Date { get set }

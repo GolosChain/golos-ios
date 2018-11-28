@@ -43,6 +43,13 @@
                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                         </userDefinedRuntimeAttributes>
                     </imageView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image-mock-youtube-logo" translatesAutoresizingMaskIntoConstraints="NO" id="Q2q-Qk-kl1" userLabel="YouTube Logo Image View">
+                        <rect key="frame" x="153.5" y="160" width="65" height="45"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="Q2q-Qk-kl1" secondAttribute="height" multiplier="98:68" id="hu4-K6-aJ5"/>
+                        </constraints>
+                    </imageView>
                     <stackView contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="Ue8-6R-IBd" userLabel="Active Buttons Stack View">
                         <rect key="frame" x="16" y="272.5" width="340" height="45"/>
                         <subviews>
@@ -173,6 +180,7 @@
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
+                    <constraint firstItem="Q2q-Qk-kl1" firstAttribute="centerY" secondItem="cNc-UC-tpt" secondAttribute="centerY" id="0FS-0j-dfh"/>
                     <constraint firstAttribute="trailing" secondItem="jE4-pU-s2P" secondAttribute="trailing" id="1B5-Tl-anr"/>
                     <constraint firstAttribute="trailing" secondItem="VKV-nZ-kLa" secondAttribute="trailing" constant="16" id="3rQ-YB-AzO"/>
                     <constraint firstItem="jE4-pU-s2P" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="5cr-ed-Cqz"/>
@@ -184,8 +192,10 @@
                     <constraint firstItem="tTd-m2-4DM" firstAttribute="centerY" secondItem="1xx-38-jqd" secondAttribute="centerY" constant="-2" id="O8S-lF-eAW"/>
                     <constraint firstItem="VKV-nZ-kLa" firstAttribute="top" secondItem="x0K-7b-ZlY" secondAttribute="bottom" identifier="titleLabelTopConstraint" id="TZ0-Je-35T"/>
                     <constraint firstItem="VKV-nZ-kLa" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="TZf-fc-GqU"/>
+                    <constraint firstItem="Q2q-Qk-kl1" firstAttribute="height" secondItem="cNc-UC-tpt" secondAttribute="height" multiplier="0.25" id="V48-Sj-DDL"/>
                     <constraint firstItem="x0K-7b-ZlY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="YBj-9B-EKd"/>
                     <constraint firstAttribute="trailing" secondItem="cNc-UC-tpt" secondAttribute="trailing" id="aG2-dG-Iu3"/>
+                    <constraint firstItem="Q2q-Qk-kl1" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="ffv-Qn-cmz"/>
                     <constraint firstItem="1xx-38-jqd" firstAttribute="width" secondItem="1xx-38-jqd" secondAttribute="height" multiplier="1:1" id="gm5-lf-rbr"/>
                     <constraint firstItem="jro-Kl-0WQ" firstAttribute="centerY" secondItem="dWs-po-Va7" secondAttribute="centerY" id="k43-TK-41V"/>
                     <constraint firstItem="cNc-UC-tpt" firstAttribute="top" secondItem="VKV-nZ-kLa" secondAttribute="bottom" constant="12" identifier="postImageViewTopConstraint" id="ktp-dm-LFz"/>
@@ -212,6 +222,7 @@
                 <outlet property="postImageViewHeightConstraint" destination="peV-ev-Tz3" id="AFD-To-NGh"/>
                 <outlet property="repostButton" destination="1jY-NP-1y9" id="2m1-Qd-suO"/>
                 <outlet property="titleLabel" destination="VKV-nZ-kLa" id="ukM-uL-n0N"/>
+                <outlet property="youtubeLogoImageView" destination="Q2q-Qk-kl1" id="Wrq-UZ-kbw"/>
                 <outletCollection property="heightsCollection" destination="dwe-r9-QvL" collectionClass="NSMutableArray" id="rd0-Vw-niQ"/>
                 <outletCollection property="heightsCollection" destination="gj9-nR-R3l" collectionClass="NSMutableArray" id="DVb-RK-8xF"/>
                 <outletCollection property="heightsCollection" destination="peV-ev-Tz3" collectionClass="NSMutableArray" id="kll-eq-rdk"/>
@@ -235,5 +246,6 @@
         <image name="icon-button-post-comments-normal" width="17" height="17"/>
         <image name="icon-button-post-dislike-normal" width="17" height="17"/>
         <image name="icon-button-post-like-normal" width="17" height="17"/>
+        <image name="image-mock-youtube-logo" width="98" height="68"/>
     </resources>
 </document>

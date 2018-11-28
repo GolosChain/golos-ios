@@ -31,6 +31,12 @@ class PostFeedTableViewCell: UITableViewCell, HandlersCellSupport, PostCellLikeS
     @IBOutlet weak var postImageViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var postFeedHeaderViewHeightConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var youtubeLogoImageView: UIImageView! {
+        didSet {
+            self.youtubeLogoImageView.isHidden = true
+        }
+    }
+
     @IBOutlet private weak var titleLabel: UILabel! {
         didSet {
             titleLabel.tune(withText:           "",
@@ -229,8 +235,9 @@ extension PostFeedTableViewCell: ConfigureCell {
         self.likeActivityIndicator.stopAnimating()
 
         // Display PostFeedHeaderView
-        self.postFeedHeaderView.display(post: model, entry: blogEntry, inNavBar: false, completion: { [weak self] postFeedHeaderViewHeight in
+        self.postFeedHeaderView.display(post: model, entry: blogEntry, inNavBar: false, completion: { [weak self] (isPosted, postFeedHeaderViewHeight) in
             self?.postFeedHeaderViewHeightConstraint.constant = postFeedHeaderViewHeight
+            self?.postShortInfo.isPosted = isPosted
             self?.layoutIfNeeded()
         })
         
@@ -266,6 +273,10 @@ extension PostFeedTableViewCell: ConfigureCell {
                                                     self?.postImageViewHeightConstraint.constant = UIScreen.main.bounds.width * sidesAspectRatio
                                                     self?.layoutIfNeeded()
                                                 })
+                                            }
+                                            
+                                            if coverImageURL!.contains("youtube") {
+                                                self?.youtubeLogoImageView.isHidden = false
                                             }
             })
         }
