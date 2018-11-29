@@ -1220,7 +1220,7 @@ extension PostShowViewController {
             commentsSecondLevel.forEach({ $0.treeLevel = 1 })
             
             for (index, comment) in commentsFirstLevel.enumerated() {
-                comment.treeIndex = "\(index)"
+                comment.treeIndex = "\(index)".addFirstZero()
                 self.setViewTreeIndex(byComment: comment, andCommentsSecondLevel: commentsSecondLevel)
             }
             
@@ -1234,8 +1234,14 @@ extension PostShowViewController {
                     self.insertedRow = 0
                 }
                 
-                else if let createdItemRow = commentEntities.firstIndex(of: commentEntities.first(where: { $0.permlink == self.permlinkCreatedItem })!), createdItemRow <= self.comments!.count, self.comments!.count % Int(paginationOffset) != 0  {
+                else if let commentEntity = commentEntities.first(where: { $0.permlink == self.permlinkCreatedItem }), let createdItemRow = commentEntities.firstIndex(of: commentEntity), createdItemRow <= self.comments!.count, self.comments!.count % Int(paginationOffset) != 0  {
                     self.insertedRow = createdItemRow
+                }
+                
+                guard self.insertedRow != nil else {
+                    self.didFinishLoadComments(afterPagination: false)
+                    self.needPagination = (self.comments?.count ?? 0) < Int(self.commentsButton.titleLabel?.text ?? "0")!
+                    return
                 }
             }
             

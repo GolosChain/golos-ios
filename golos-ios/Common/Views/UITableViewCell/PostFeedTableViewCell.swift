@@ -157,6 +157,7 @@ class PostFeedTableViewCell: UITableViewCell, HandlersCellSupport, PostCellLikeS
 
         self.titleLabel.text                                    =   nil
         self.postImageView.image                                =   nil
+        self.youtubeLogoImageView.isHidden                      =   true
         self.postImageViewHeightConstraint.constant             =   180.0 * heightRatio
         
         self.likeCountButton.setTitle(nil, for: .normal)

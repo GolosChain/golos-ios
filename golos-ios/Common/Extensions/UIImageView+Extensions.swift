@@ -95,7 +95,7 @@ extension UIImageView {
                                 return
                             }
                             
-                            if let data = data, var downloadedImage = UIImage(data: data) {
+                            if let data = data, let downloadedImage = UIImage(data: data) {
                                 if imageType == .userCoverImage {
                                     self.contentMode = .scaleAspectFill
                                 }
@@ -112,7 +112,7 @@ extension UIImageView {
                                     DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.01, execute: {
                                         completion(downloadedImage.sidesAspectRatio())
                                     })
-                                    
+                                                                        
                                     self.fadeIn(image: downloadedImage)
                                 }
                                 

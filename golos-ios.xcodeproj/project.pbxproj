@@ -118,6 +118,7 @@
 		B15C29B921101FEA0030D249 /* PostShowModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15C29B321101FEA0030D249 /* PostShowModels.swift */; };
 		B15C29BA21101FEA0030D249 /* PostShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15C29B421101FEA0030D249 /* PostShowViewController.swift */; };
 		B15C29BB21101FEA0030D249 /* PostShowInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15C29B521101FEA0030D249 /* PostShowInteractor.swift */; };
+		B15CAAB421AECEAD007FF916 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CAAB321AECEAD007FF916 /* UIImage+Extensions.swift */; };
 		B15F227E20EE943200C44282 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15F227D20EE943200C44282 /* CoreDataManager.swift */; };
 		B15F228220EEB16500C44282 /* StateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15F228120EEB16500C44282 /* StateMachine.swift */; };
 		B15F228420EEB16C00C44282 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15F228320EEB16C00C44282 /* AppState.swift */; };
@@ -409,6 +410,7 @@
 		B15C29B321101FEA0030D249 /* PostShowModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostShowModels.swift; sourceTree = "<group>"; };
 		B15C29B421101FEA0030D249 /* PostShowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostShowViewController.swift; sourceTree = "<group>"; };
 		B15C29B521101FEA0030D249 /* PostShowInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostShowInteractor.swift; sourceTree = "<group>"; };
+		B15CAAB321AECEAD007FF916 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		B15F227D20EE943200C44282 /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		B15F228120EEB16500C44282 /* StateMachine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateMachine.swift; sourceTree = "<group>"; };
 		B15F228320EEB16C00C44282 /* AppState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
@@ -1265,6 +1267,7 @@
 				B198DB9020B9A21A008011A3 /* UIColor+Extensions.swift */,
 				ECB2C0D22008E55500AF1AF5 /* UIColors+Extensions.swift */,
 				EC9ABBE72018036E00AF8597 /* UIDevice+Size.swift */,
+				B15CAAB321AECEAD007FF916 /* UIImage+Extensions.swift */,
 				EC9ABBC22017D17000AF8597 /* UIImageEffects.swift */,
 				B14C97CE20F87F6D00569FB1 /* UIImageView+Extensions.swift */,
 				B11AA80620CB9FC800212713 /* UILabel+Extensions.swift */,
@@ -1629,6 +1632,7 @@
 				B111C344215FB41300DE1F6E /* NSLayoutConstraint+Extensions.swift in Sources */,
 				B1D5F24B21873AD000ABA1ED /* UserFollowersShowPresenter.swift in Sources */,
 				B13FE9BA20F512BA00F907BC /* ReplyTableViewCell.swift in Sources */,
+				B15CAAB421AECEAD007FF916 /* UIImage+Extensions.swift in Sources */,
 				B1EE684C20D27628006BF802 /* UIBarButtonItem+Extensions.swift in Sources */,
 				EC24FF59200C30B800A0AE15 /* MainContainerViewController.swift in Sources */,
 				B1E09E2A2101F7D9002CC5B7 /* Blog+CoreDataProperties.swift in Sources */,
