@@ -41,6 +41,7 @@ class SettingsShowViewController: GSBaseViewController {
     @IBOutlet weak var editUserProfileButton: UIButton!
     
     @IBOutlet weak var commonLabel: UILabel!
+    @IBOutlet weak var viewPicturesSwitch: UISwitch!
     
     @IBOutlet weak var languageLabel: UILabel! {
         didSet {
@@ -96,6 +97,26 @@ class SettingsShowViewController: GSBaseViewController {
     @IBOutlet var viewsCollection: [UIView]! {
         didSet {
             self.viewsCollection.forEach({ $0.tune(withThemeColorPicker: whiteBlackColorPickers )})
+        }
+    }
+    
+    @IBOutlet weak var displayModeTitleLabel: UILabel! {
+        didSet {
+            self.displayModeTitleLabel.tune(withText:       "Display Mode Title".localized(),
+                                            hexColors:      veryDarkGrayWhiteColorPickers,
+                                            font:           UIFont(name: "SFProDisplay-Medium", size: 14.0),
+                                            alignment:      .left,
+                                            isMultiLines:   false)
+        }
+    }
+ 
+    @IBOutlet weak var displayModeViewPicturesTitleLabel: UILabel! {
+        didSet {
+            self.displayModeViewPicturesTitleLabel.tune(withText:       "View Pictures Title".localized(),
+                                                        hexColors:      veryDarkGrayWhiteColorPickers,
+                                                        font:           UIFont(name: "SFProDisplay-Regular", size: 14.0),
+                                                        alignment:      .left,
+                                                        isMultiLines:   false)
         }
     }
     
@@ -280,13 +301,19 @@ class SettingsShowViewController: GSBaseViewController {
 //        self.router?.routeToSettingsNotificationsScene()
     }
     
+    @IBAction func viewPicturesSwitchChanged(_ sender: UISwitch) {
+    
+    }
+    
     // Set titles with support App language
     @objc override func localizeTitles() {
-        self.title              =   "Settings".localized()
-        self.commonLabel.text   =   "COMMON".localized()
-        self.versionLabel.text  =   String(format: "Golos %@ iOS %@", "for".localized(), appVersion)
-        self.languageLabel.text =   "Language App".localized()
-
+        self.title                                      =   "Settings".localized()
+        self.commonLabel.text                           =   "COMMON".localized()
+        self.versionLabel.text                          =   String(format: "Golos %@ iOS %@", "for".localized(), appVersion)
+        self.languageLabel.text                         =   "Language App".localized()
+        self.displayModeTitleLabel.text                 =   "Display Mode Title".localized()
+        self.displayModeViewPicturesTitleLabel.text     =   "View Pictures Title".localized()
+        
         self.wikiGolosButton.setTitle("Wiki Golos".localized(), for: .normal)
         self.welcomeButton.setTitle("About Golos.io".localized(), for: .normal)
         self.voicePowerButton.setTitle("Voice Power".localized(), for: .normal)
