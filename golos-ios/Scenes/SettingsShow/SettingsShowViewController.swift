@@ -42,6 +42,16 @@ class SettingsShowViewController: GSBaseViewController {
     
     @IBOutlet weak var commonLabel: UILabel!
     
+    @IBOutlet weak var languageLabel: UILabel! {
+        didSet {
+            self.languageLabel.tune(withText:       "Language App".localized(),
+                                    hexColors:      darkGrayWhiteColorPickers,
+                                    font:           UIFont(name: "SFProDisplay-Regular", size: 14.0),
+                                    alignment:      .right,
+                                    isMultiLines:   false)
+        }
+    }
+    
     @IBOutlet var actionButtonsCollection: [UIButton]! {
         didSet {
             actionButtonsCollection.forEach({
@@ -209,6 +219,7 @@ class SettingsShowViewController: GSBaseViewController {
             
             let languageAction  =   UIAlertAction(title: displayName, style: .default, handler: { _ in
                 Localize.setCurrentLanguage(language)
+                self.languageLabel.text = "Language App".localized()
             })
             
             actionSheet.addAction(languageAction)
@@ -274,7 +285,8 @@ class SettingsShowViewController: GSBaseViewController {
         self.title              =   "Settings".localized()
         self.commonLabel.text   =   "COMMON".localized()
         self.versionLabel.text  =   String(format: "Golos %@ iOS %@", "for".localized(), appVersion)
-        
+        self.languageLabel.text =   "Language App".localized()
+
         self.wikiGolosButton.setTitle("Wiki Golos".localized(), for: .normal)
         self.welcomeButton.setTitle("About Golos.io".localized(), for: .normal)
         self.voicePowerButton.setTitle("Voice Power".localized(), for: .normal)
@@ -293,6 +305,5 @@ class SettingsShowViewController: GSBaseViewController {
 extension SettingsShowViewController: SettingsShowDisplayLogic {
     func displaySomething(fromViewModel viewModel: SettingsShowModels.Items.ViewModel) {
         // NOTE: Display the result from the Presenter
-
     }
 }

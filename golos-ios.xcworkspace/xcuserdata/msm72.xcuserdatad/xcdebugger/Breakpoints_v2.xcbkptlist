@@ -178,13 +178,45 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "golos-ios/Scenes/SettingsShow/SettingsShowViewController.swift"
-            timestampString = "563858903.978447"
+            timestampString = "565172979.744895"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "261"
-            endingLineNumber = "261"
-            landmarkName = "logOutButtonTapped(_:)"
+            startingLineNumber = "274"
+            endingLineNumber = "274"
+            landmarkName = "editUserProfileButtonTapped(_:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Golos.SettingsShowViewController.editUserProfileButtonTapped(__C.UIButton) -&gt; ()"
+                  moduleName = "Golos"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/msm72/My%20Projects/GolosChain/App/golos-ios/Scenes/SettingsShow/SettingsShowViewController.swift"
+                  timestampString = "565172979.935819"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "274"
+                  endingLineNumber = "274"
+                  offsetFromSymbolStart = "37">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Bool) -&gt; () in Golos.SettingsShowViewController.editUserProfileButtonTapped(__C.UIButton) -&gt; ()"
+                  moduleName = "Golos"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/msm72/My%20Projects/GolosChain/App/golos-ios/Scenes/SettingsShow/SettingsShowViewController.swift"
+                  timestampString = "565172979.937487"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "274"
+                  endingLineNumber = "274"
+                  offsetFromSymbolStart = "4">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -226,7 +258,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "golos-ios/Scenes/PostShow/PostShowViewController.swift"
-            timestampString = "565170156.152522"
+            timestampString = "565172979.745396"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1385"
@@ -242,7 +274,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "golos-ios/Scenes/PostShow/PostShowViewController.swift"
-            timestampString = "565170156.1536601"
+            timestampString = "565172979.7464449"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "866"
@@ -258,7 +290,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "golos-ios/Scenes/PostShow/PostShowViewController.swift"
-            timestampString = "565170156.154428"
+            timestampString = "565172979.747038"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "504"

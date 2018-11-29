@@ -55,6 +55,13 @@
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AFo-zw-18l" userLabel="Language View">
                                                         <rect key="frame" x="0.0" y="70" width="375" height="70"/>
                                                         <subviews>
+                                                            <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jHg-ur-Nft" userLabel="Language Label">
+                                                                <rect key="frame" x="309" y="25" width="42" height="20.5"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
                                                             <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LeW-Nc-6kL" userLabel="Language Button">
                                                                 <rect key="frame" x="16" y="0.0" width="343" height="70"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -67,8 +74,10 @@
                                                         <constraints>
                                                             <constraint firstItem="LeW-Nc-6kL" firstAttribute="top" secondItem="AFo-zw-18l" secondAttribute="top" id="2Js-pf-Hf5"/>
                                                             <constraint firstItem="LeW-Nc-6kL" firstAttribute="leading" secondItem="AFo-zw-18l" secondAttribute="leading" constant="16" id="XN3-eQ-Wob"/>
+                                                            <constraint firstItem="LeW-Nc-6kL" firstAttribute="trailing" secondItem="jHg-ur-Nft" secondAttribute="trailing" constant="8" id="aXu-sI-xXu"/>
                                                             <constraint firstAttribute="trailing" secondItem="LeW-Nc-6kL" secondAttribute="trailing" constant="16" id="n0c-sQ-iHJ"/>
                                                             <constraint firstAttribute="bottom" secondItem="LeW-Nc-6kL" secondAttribute="bottom" id="spv-WN-Gmu"/>
+                                                            <constraint firstItem="jHg-ur-Nft" firstAttribute="centerY" secondItem="AFo-zw-18l" secondAttribute="centerY" id="z2x-xN-VsU"/>
                                                         </constraints>
                                                     </view>
                                                     <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9JV-o4-azi" userLabel="Currency View">
@@ -174,6 +183,14 @@
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uon-Ic-wwA" userLabel="Wiki View">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="87.5"/>
                                                         <subviews>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-button-arrow-rigth-gray-normal" translatesAutoresizingMaskIntoConstraints="NO" id="uVn-ye-8Lo" userLabel="Wiki Golos Image View">
+                                                                <rect key="frame" x="335" y="32" width="24" height="24"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" secondItem="uVn-ye-8Lo" secondAttribute="height" multiplier="1:1" id="bao-bV-Z4C"/>
+                                                                    <constraint firstAttribute="height" constant="24" id="mj8-e4-gyI"/>
+                                                                </constraints>
+                                                            </imageView>
                                                             <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3AS-i4-nYH" userLabel="Wiki Golos Button">
                                                                 <rect key="frame" x="16" y="0.0" width="343" height="87.5"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -187,12 +204,21 @@
                                                             <constraint firstAttribute="trailing" secondItem="3AS-i4-nYH" secondAttribute="trailing" constant="16" id="9D9-46-Zwa"/>
                                                             <constraint firstItem="3AS-i4-nYH" firstAttribute="top" secondItem="Uon-Ic-wwA" secondAttribute="top" id="GFG-8N-cw7"/>
                                                             <constraint firstItem="3AS-i4-nYH" firstAttribute="leading" secondItem="Uon-Ic-wwA" secondAttribute="leading" constant="16" id="HLf-5K-Dca"/>
+                                                            <constraint firstItem="3AS-i4-nYH" firstAttribute="trailing" secondItem="uVn-ye-8Lo" secondAttribute="trailing" id="OEi-zn-pJn"/>
                                                             <constraint firstAttribute="bottom" secondItem="3AS-i4-nYH" secondAttribute="bottom" id="cqo-Qh-3VK"/>
+                                                            <constraint firstItem="uVn-ye-8Lo" firstAttribute="centerY" secondItem="Uon-Ic-wwA" secondAttribute="centerY" id="uy8-Gh-U9q"/>
                                                         </constraints>
                                                     </view>
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HzJ-V7-GYb" userLabel="Welcome View">
                                                         <rect key="frame" x="0.0" y="87.5" width="375" height="87.5"/>
                                                         <subviews>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-button-arrow-rigth-gray-normal" translatesAutoresizingMaskIntoConstraints="NO" id="oYv-KD-uZp" userLabel="Welcome Image View">
+                                                                <rect key="frame" x="335" y="32" width="24" height="24"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="24" id="Utl-OG-Q2Y"/>
+                                                                </constraints>
+                                                            </imageView>
                                                             <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V8L-2N-v5i" userLabel="Welcome Button">
                                                                 <rect key="frame" x="16" y="0.0" width="343" height="87.5"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -204,6 +230,9 @@
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="bottom" secondItem="V8L-2N-v5i" secondAttribute="bottom" id="23f-Nb-FMD"/>
+                                                            <constraint firstItem="V8L-2N-v5i" firstAttribute="trailing" secondItem="oYv-KD-uZp" secondAttribute="trailing" id="JfM-lt-FFp"/>
+                                                            <constraint firstItem="oYv-KD-uZp" firstAttribute="centerY" secondItem="HzJ-V7-GYb" secondAttribute="centerY" id="M5H-Lt-PDC"/>
+                                                            <constraint firstItem="oYv-KD-uZp" firstAttribute="width" secondItem="oYv-KD-uZp" secondAttribute="height" multiplier="1:1" id="aLZ-lX-rsc"/>
                                                             <constraint firstItem="V8L-2N-v5i" firstAttribute="leading" secondItem="HzJ-V7-GYb" secondAttribute="leading" constant="16" id="buz-MP-q4I"/>
                                                             <constraint firstAttribute="trailing" secondItem="V8L-2N-v5i" secondAttribute="trailing" constant="16" id="jeI-NC-7pR"/>
                                                             <constraint firstItem="V8L-2N-v5i" firstAttribute="top" secondItem="HzJ-V7-GYb" secondAttribute="top" id="qTv-wc-EPS"/>
@@ -212,6 +241,13 @@
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iev-Xk-xLa" userLabel="Privacy Policy View">
                                                         <rect key="frame" x="0.0" y="175" width="375" height="87.5"/>
                                                         <subviews>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-button-arrow-rigth-gray-normal" translatesAutoresizingMaskIntoConstraints="NO" id="1Om-57-uxr" userLabel="Privacy Policy Image View">
+                                                                <rect key="frame" x="335" y="32" width="24" height="24"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="24" id="CDs-g4-fSA"/>
+                                                                </constraints>
+                                                            </imageView>
                                                             <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bgZ-MG-t6B" userLabel="Privacy Policy Button">
                                                                 <rect key="frame" x="16" y="0.0" width="343" height="87.5"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -223,9 +259,12 @@
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="trailing" secondItem="bgZ-MG-t6B" secondAttribute="trailing" constant="16" id="2bh-T8-hwn"/>
+                                                            <constraint firstItem="1Om-57-uxr" firstAttribute="width" secondItem="1Om-57-uxr" secondAttribute="height" multiplier="1:1" id="55K-NK-hi7"/>
+                                                            <constraint firstItem="1Om-57-uxr" firstAttribute="centerY" secondItem="iev-Xk-xLa" secondAttribute="centerY" id="JdP-Wa-IDK"/>
                                                             <constraint firstAttribute="bottom" secondItem="bgZ-MG-t6B" secondAttribute="bottom" id="KLL-4s-FjF"/>
                                                             <constraint firstItem="bgZ-MG-t6B" firstAttribute="top" secondItem="iev-Xk-xLa" secondAttribute="top" id="fYS-MA-E6q"/>
                                                             <constraint firstItem="bgZ-MG-t6B" firstAttribute="leading" secondItem="iev-Xk-xLa" secondAttribute="leading" constant="16" id="g03-us-ZhU"/>
+                                                            <constraint firstItem="bgZ-MG-t6B" firstAttribute="trailing" secondItem="1Om-57-uxr" secondAttribute="trailing" id="hwb-52-0cx"/>
                                                         </constraints>
                                                     </view>
                                                     <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xbA-9q-nzV" userLabel="Switch Acount View">
@@ -250,6 +289,13 @@
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6J8-Zi-uUr" userLabel="Log Out View">
                                                         <rect key="frame" x="0.0" y="262.5" width="375" height="87.5"/>
                                                         <subviews>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-button-arrow-rigth-gray-normal" translatesAutoresizingMaskIntoConstraints="NO" id="Qzs-7r-jMU" userLabel="Log Out Image View">
+                                                                <rect key="frame" x="335" y="32" width="24" height="24"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="24" id="OdG-cw-zg8"/>
+                                                                </constraints>
+                                                            </imageView>
                                                             <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gQD-QH-PUB" userLabel="Log Out Button">
                                                                 <rect key="frame" x="16" y="0.0" width="343" height="87.5"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -262,9 +308,12 @@
                                                         <constraints>
                                                             <constraint firstItem="gQD-QH-PUB" firstAttribute="centerY" secondItem="6J8-Zi-uUr" secondAttribute="centerY" id="LnR-8l-IP0"/>
                                                             <constraint firstItem="gQD-QH-PUB" firstAttribute="top" secondItem="6J8-Zi-uUr" secondAttribute="top" id="TM7-NK-NBo"/>
+                                                            <constraint firstItem="Qzs-7r-jMU" firstAttribute="centerY" secondItem="6J8-Zi-uUr" secondAttribute="centerY" id="UVx-O3-VV2"/>
                                                             <constraint firstAttribute="bottom" secondItem="gQD-QH-PUB" secondAttribute="bottom" id="Usu-nJ-Mil"/>
+                                                            <constraint firstItem="gQD-QH-PUB" firstAttribute="trailing" secondItem="Qzs-7r-jMU" secondAttribute="trailing" id="bfQ-VF-1re"/>
                                                             <constraint firstAttribute="trailing" secondItem="gQD-QH-PUB" secondAttribute="trailing" constant="16" id="bfv-HK-m3a"/>
                                                             <constraint firstItem="gQD-QH-PUB" firstAttribute="leading" secondItem="6J8-Zi-uUr" secondAttribute="leading" constant="16" id="pXi-8t-yUm"/>
+                                                            <constraint firstItem="Qzs-7r-jMU" firstAttribute="width" secondItem="Qzs-7r-jMU" secondAttribute="height" multiplier="1:1" id="veR-MI-PJv"/>
                                                         </constraints>
                                                     </view>
                                                 </subviews>
@@ -366,6 +415,7 @@
                         <outlet property="currencyButton" destination="T8D-oG-0Tn" id="TI1-aN-8qn"/>
                         <outlet property="editUserProfileButton" destination="2rV-a6-wzh" id="un9-0A-Qe6"/>
                         <outlet property="languageButton" destination="LeW-Nc-6kL" id="0R2-4L-abf"/>
+                        <outlet property="languageLabel" destination="jHg-ur-Nft" id="Nnq-uf-KAb"/>
                         <outlet property="logOutButton" destination="gQD-QH-PUB" id="fZ2-OP-Zev"/>
                         <outlet property="notificationsButton" destination="K7n-dv-Qcc" id="nj8-0T-Ug5"/>
                         <outlet property="privacyPolicyButton" destination="bgZ-MG-t6B" id="2rL-pD-CVf"/>
@@ -432,4 +482,7 @@
             <point key="canvasLocation" x="56.799999999999997" y="79.610194902548727"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="icon-button-arrow-rigth-gray-normal" width="24" height="24"/>
+    </resources>
 </document>
