@@ -712,6 +712,7 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="backButton" destination="Udv-hI-u2X" id="eT0-uF-4o2"/>
                         <outlet property="bottomLineView" destination="FJs-iF-r9g" id="Mm9-MF-0Zc"/>
                         <outlet property="buttonsStackViewTopConstraint" destination="qS2-XR-4rB" id="2OA-OO-1m2"/>
                         <outlet property="commentsButton" destination="wPR-xc-S9f" id="hb2-8D-Y0m"/>

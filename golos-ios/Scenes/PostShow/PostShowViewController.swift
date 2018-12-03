@@ -171,6 +171,14 @@ class PostShowViewController: GSBaseViewController {
         }
     }
     
+    @IBOutlet weak var backButton: UIButton! {
+        didSet {
+            self.backButton.setImage(UIImage(named: (AppSettings.isAppThemeDark ? "icon-button-back-white-normal" : "icon-button-back-black-normal")), for: .normal)
+            self.backButton.setImage(UIImage(named: (AppSettings.isAppThemeDark ? "icon-button-back-black-normal" : "icon-button-back-white-normal")), for: .highlighted)
+        }
+    }
+    
+    
     @IBOutlet weak var titleLabel: UILabel! {
         didSet {
             titleLabel.tune(withText:           "",
@@ -539,7 +547,7 @@ class PostShowViewController: GSBaseViewController {
         self.hideNavigationBar()
         
         // Set StatusBarStyle
-        self.isStatusBarStyleLight = false
+        self.isStatusBarStyleLight = AppSettings.isAppThemeDark
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -593,16 +601,16 @@ class PostShowViewController: GSBaseViewController {
             // Like icon
             self.likeButton.tag = displayedPost.currentUserLiked ? 99 : 0
             self.likeCountButton.setTitle(displayedPost.likeCount > 0 ? "\(displayedPost.likeCount)" : " ", for: .normal)
-            self.likeButton.setImage(UIImage(named: displayedPost.currentUserLiked ? "icon-button-post-like-selected" : "icon-button-post-like-normal"), for: .normal)
+            self.likeButton.setImage(UIImage(named: displayedPost.currentUserLiked ? "icon-button-post-like-selected" : (AppSettings.isAppThemeDark ? "icon-button-post-like-normal-white" : "icon-button-post-like-normal")), for: .normal)
             
             // Dislike icon
             self.dislikeButton.tag = displayedPost.currentUserDisliked ? 99 : 0
             self.dislikeCountButton.setTitle(displayedPost.dislikeCount > 0 ? "\(displayedPost.dislikeCount)" : " ", for: .normal)
-            self.dislikeButton.setImage(displayedPost.currentUserDisliked ? UIImage(named: "icon-button-post-dislike-selected") : UIImage(named: "icon-button-post-dislike-normal"), for: .normal)
+            self.dislikeButton.setImage(displayedPost.currentUserDisliked ? UIImage(named: "icon-button-post-dislike-selected") : UIImage(named: (AppSettings.isAppThemeDark ? "icon-button-post-dislike-normal-white" : "icon-button-post-dislike-normal")), for: .normal)
             
             // Comments icon
             self.commentsButton.setTitle(displayedPost.children > 0 ? "\(displayedPost.children)" : "    ", for: .normal)
-            self.commentsButton.setImage(UIImage(named: displayedPost.currentUserCommented ? "icon-button-post-comments-selected" : "icon-button-post-comments-normal"), for: .normal)
+            self.commentsButton.setImage(UIImage(named: displayedPost.currentUserCommented ? "icon-button-post-comments-selected" : (AppSettings.isAppThemeDark ? "icon-button-post-comments-normal-white" : "icon-button-post-comments-normal")), for: .normal)
 
             // Create new comment placeholder
             self.placeholderButton.setTitle((displayedPost.children == 0  ? "No Comments Placeholder" : "Write Own Comment Placeholder").localized(), for: .normal)

@@ -20,5 +20,7 @@ extension AppSettings {
     @NSManaged public var language: String
     @NSManaged public var userNickName: String
     @NSManaged public var isAppThemeDark: Bool
+    @NSManaged public var isFeedShowImages: Bool
     @NSManaged public var startWithWelcomeScene: Bool
+
 }

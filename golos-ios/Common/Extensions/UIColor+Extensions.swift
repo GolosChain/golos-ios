@@ -39,6 +39,7 @@ let blackWhiteDictionaryPickers: ThemeDictionaryPicker          =   ThemeDiction
 
 let veryLightGrayCGColorPickers: ThemeCGColorPicker             =   [ "#dbdbdb", "#dbdbdb" ]
 let whiteVeryDarkGrayCGColorPickers: ThemeCGColorPicker         =   [ "#ffffff", "#5a5a5a" ]
+let blackVeryDarkGrayCGColorPickers: ThemeCGColorPicker         =   [ "#000000", "#5a5a5a" ]
 
 
 extension UIColor {
@@ -74,5 +75,22 @@ extension UIColor {
         }
         
         self.init(red: CGFloat(red) / 255, green: CGFloat(green) / 255, blue: CGFloat(blue) / 255, alpha: CGFloat(alpha) / 255)
+    }
+    
+    class func colorForNavBar(color: UIColor) -> UIImage {
+        let rect = CGRect(x: 0.0, y: 0.0, width: 1.0, height: 1.0)
+        
+        // Or if you need a thinner border :
+        // let rect = CGRect(x: 0.0, y: 0.0, width: 1.0, height: 0.5)
+        UIGraphicsBeginImageContext(rect.size)
+        let context = UIGraphicsGetCurrentContext()
+        
+        context!.setFillColor(color.cgColor)
+        context!.fill(rect)
+        
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return image!
     }
 }

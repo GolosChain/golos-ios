@@ -42,7 +42,12 @@ class SettingsShowViewController: GSBaseViewController {
     @IBOutlet weak var editUserProfileButton: UIButton!
     
     @IBOutlet weak var commonLabel: UILabel!
-    @IBOutlet weak var viewPicturesSwitch: UISwitch!
+    
+    @IBOutlet weak var viewPicturesSwitch: UISwitch! {
+        didSet {
+            self.viewPicturesSwitch.isOn = AppSettings.isFeedShowImages
+        }
+    }
     
     @IBOutlet weak var dayImageView: UIImageView! {
         didSet {
@@ -83,7 +88,7 @@ class SettingsShowViewController: GSBaseViewController {
     @IBOutlet weak var languageLabel: UILabel! {
         didSet {
             self.languageLabel.tune(withText:       "Language App".localized(),
-                                    hexColors:      darkGrayWhiteColorPickers,
+                                    hexColors:      veryDarkGrayWhiteColorPickers,
                                     font:           UIFont(name: "SFProDisplay-Regular", size: 14.0),
                                     alignment:      .right,
                                     isMultiLines:   false)
@@ -367,6 +372,7 @@ class SettingsShowViewController: GSBaseViewController {
         self.moonRadioButton.iconColor  =   UIColor(hexString: "#B7B7BA")
         
         self.navigationController?.navigationBar.layer.theme_shadowColor  =   veryLightGrayCGColorPickers
+        (self.tabBarController as! GSTabBarController).setup()
     }
 
     @IBAction func moonRadioButtonTapped(_ sender: Any) {
@@ -378,13 +384,14 @@ class SettingsShowViewController: GSBaseViewController {
         self.moonImageView.image        =   UIImage(named: "icon-button-moon-selected")
         self.moonRadioButton.iconColor  =   UIColor(hexString: "#2F7DFB")
         self.navigationController?.navigationBar.layer.theme_shadowColor  =   whiteVeryDarkGrayCGColorPickers
+        (self.tabBarController as! GSTabBarController).setup()
     }
     
     @IBAction func viewPicturesSwitchChanged(_ sender: UISwitch) {
-    
+        AppSettings.instance().setFeedShowImages(sender.isOn)
     }
     
-    // Set titles with support App language
+    /// Set titles with support App language
     @objc override func localizeTitles() {
         self.title                                      =   "Settings".localized()
         self.commonLabel.text                           =   "COMMON".localized()

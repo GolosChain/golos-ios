@@ -18,7 +18,14 @@ class GSTabBarController: UITabBarController {
         configureViewControllers()
     }
     
+    func setup() {
+        UITabBar.appearance().shadowImage       =   UIImage.colorForNavBar(color: UIColor(hexString: (AppSettings.isAppThemeDark ? "#5A5A5A" : "#000000")))
+        UITabBar.appearance().backgroundImage   =   UIImage.colorForNavBar(color: UIColor(hexString: (AppSettings.isAppThemeDark ? "#393636" : "#FFFFFF")))
+    }
+    
     private func configureViewControllers() {
+//        self.setup()
+        
         let postsShowNC                         =   UIStoryboard(name: "PostsShow", bundle: nil).instantiateViewController(withIdentifier: "PostsShowNC") as! UINavigationController
         postsShowNC.tabBarItem                  =   UITabBarItem(title: "", image: UIImage(named: "icon-tabbar-button-home-normal"), selectedImage: nil)
         postsShowNC.tabBarItem.tag              =   0

@@ -25,6 +25,14 @@ public class AppSettings: NSManagedObject {
         }
     }
     
+    class var isFeedShowImages: Bool {
+        get {
+            return (CoreDataManager.instance.readEntities(withName:                     "AppSettings",
+                                                          withPredicateParameters:      settingsPredicate,
+                                                          andSortDescriptor:            nil)?.first as! AppSettings).isFeedShowImages
+        }
+    }
+
     class var startWithWelcomeScene: Bool {
         get {
             return (CoreDataManager.instance.readEntities(withName:                     "AppSettings",
@@ -63,10 +71,16 @@ public class AppSettings: NSManagedObject {
         self.save()
     }
 
+    func setFeedShowImages(_ value: Bool) {
+        self.isFeedShowImages       =   value
+        self.save()
+    }
+
     func setup() {
         self.language               =   Locale.current.languageCode ?? "en"
         self.userNickName           =   User.current?.nickName ?? "Anonymous"
         self.isAppThemeDark         =   false
+        self.isFeedShowImages       =   true
         self.startWithWelcomeScene  =   true
 
         ThemeManager.setTheme(index: 0)

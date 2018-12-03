@@ -171,8 +171,8 @@ class UserProfileHeaderView: PassthroughView {
             self.editProfileButton.setImage(UIImage(named: "icon-button-edit-black-normal"), for: .highlighted)
             self.settingsButton.setImage(UIImage(named: "icon-button-settings-white-normal"), for: .normal)
             self.settingsButton.setImage(UIImage(named: "icon-button-settings-black-normal"), for: .highlighted)
-            self.backButton.setImage(UIImage(named: "icon-button-back-white-normal"), for: .normal)
-            self.backButton.setImage(UIImage(named: "icon-button-back-black-normal"), for: .highlighted)
+            self.backButton.setImage(UIImage(named: (AppSettings.isAppThemeDark ? "icon-button-back-white-normal" : "icon-button-back-black-normal")), for: .normal)
+            self.backButton.setImage(UIImage(named: (AppSettings.isAppThemeDark ? "icon-button-back-black-normal" : "icon-button-back-white-normal")), for: .highlighted)
 
             self.userCoverImageView.uploadImage(byStringPath:       userCoverImagePath,
                                                 imageType:          .userCoverImage,
@@ -186,8 +186,8 @@ class UserProfileHeaderView: PassthroughView {
         }
         
         else {
-            self.backButton.setImage(UIImage(named: "icon-button-back-white-normal"), for: .normal)
-            self.backButton.setImage(UIImage(named: "icon-button-back-black-normal"), for: .highlighted)
+            self.backButton.setImage(UIImage(named: (AppSettings.isAppThemeDark ? "icon-button-back-white-normal" : "icon-button-back-black-normal")), for: .normal)
+            self.backButton.setImage(UIImage(named: (AppSettings.isAppThemeDark ? "icon-button-back-black-normal" : "icon-button-back-white-normal")), for: .highlighted)
             self.backButton.isHidden = userInfo.nickName == User.current?.nickName ?? "XXX"
         }
         

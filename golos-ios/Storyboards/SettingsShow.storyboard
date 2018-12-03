@@ -369,7 +369,7 @@
                                                             </button>
                                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8yy-xl-8pm" userLabel="Welcome Bottom Gray Line View">
                                                                 <rect key="frame" x="0.0" y="44" width="375" height="1"/>
-                                                                <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="1" id="hsy-Hc-Dgi"/>
                                                                 </constraints>

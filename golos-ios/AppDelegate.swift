@@ -183,10 +183,10 @@ extension AppDelegate {
     
     private func setupTabBarAppearance() {
         Logger.log(message: "Success", event: .severe)
-        
-        UITabBar.appearance().barTintColor      =   UIColor.white
-        UITabBar.appearance().tintColor         =   UIColor.Project.darkBlueTabSelected
-        UITabBar.appearance().isTranslucent     =   false
+
+        UITabBar.appearance().theme_barTintColor        =   whiteVeryDarkGrayishRedPickers
+        UITabBar.appearance().tintColor                 =   UIColor.Project.darkBlueTabSelected
+        UITabBar.appearance().isTranslucent             =   false        
     }
     
     

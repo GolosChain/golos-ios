@@ -193,6 +193,10 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
         // Set StatusBarStyle
         selectedTabBarItem          =   self.navigationController!.tabBarItem.tag
         self.isStatusBarStyleLight  =   true
+        
+        if let activeVC = self.containerView.activeVC, let indexPaths = activeVC.postsTableView.indexPathsForVisibleRows {
+            activeVC.postsTableView.reloadRows(at: indexPaths, with: UITableView.RowAnimation.fade)
+        }
     }
     
     

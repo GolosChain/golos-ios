@@ -28,8 +28,15 @@ class PostFeedTableViewCell: UITableViewCell, HandlersCellSupport, PostCellLikeS
     
     // MARK: - IBOutlets
     @IBOutlet weak var postImageView: UIImageView!
-    @IBOutlet weak var postImageViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var postFeedHeaderViewHeightConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var postImageViewHeightConstraint: NSLayoutConstraint! {
+        didSet {
+            if !AppSettings.isFeedShowImages {
+                self.postImageViewHeightConstraint.constant = 0.0
+            }
+        }
+    }
     
     @IBOutlet weak var youtubeLogoImageView: UIImageView! {
         didSet {
@@ -82,12 +89,12 @@ class PostFeedTableViewCell: UITableViewCell, HandlersCellSupport, PostCellLikeS
     
     @IBOutlet weak var likeCountButton: UIButton! {
         didSet {
-            likeCountButton.tune(withTitle:     "",
-                                 hexColors:     [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
-                                 font:          UIFont(name: "SFProDisplay-Regular", size: 12.0),
-                                 alignment:     .left)
+            self.likeCountButton.tune(withTitle:     "",
+                                      hexColors:     [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
+                                      font:          UIFont(name: "SFProDisplay-Regular", size: 12.0),
+                                      alignment:     .left)
             
-            likeCountButton.isEnabled = true
+            self.likeCountButton.isEnabled = true
         }
     }
 
@@ -99,12 +106,12 @@ class PostFeedTableViewCell: UITableViewCell, HandlersCellSupport, PostCellLikeS
     
     @IBOutlet weak var dislikeCountButton: UIButton! {
         didSet {
-            dislikeCountButton.tune(withTitle:      "",
-                                    hexColors:      [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
-                                    font:           UIFont(name: "SFProDisplay-Regular", size: 12.0),
-                                    alignment:      .center)
+            self.dislikeCountButton.tune(withTitle:      "",
+                                         hexColors:      [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
+                                         font:           UIFont(name: "SFProDisplay-Regular", size: 12.0),
+                                         alignment:      .center)
             
-            dislikeCountButton.isEnabled = true
+            self.dislikeCountButton.isEnabled = true
         }
     }
 
@@ -121,12 +128,12 @@ class PostFeedTableViewCell: UITableViewCell, HandlersCellSupport, PostCellLikeS
     
     @IBOutlet weak var commentsButton: UIButton! {
         didSet {
-            commentsButton.tune(withTitle:      "    ",
-                                hexColors:      [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
-                                font:           UIFont(name: "SFProDisplay-Regular", size: 12.0),
-                                alignment:      .left)
+            self.commentsButton.tune(withTitle:      "    ",
+                                     hexColors:      [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
+                                     font:           UIFont(name: "SFProDisplay-Regular", size: 12.0),
+                                     alignment:      .left)
             
-            commentsButton.isEnabled = true
+            self.commentsButton.isEnabled = true
         }
     }
     
@@ -158,11 +165,13 @@ class PostFeedTableViewCell: UITableViewCell, HandlersCellSupport, PostCellLikeS
         self.titleLabel.text                                    =   nil
         self.postImageView.image                                =   nil
         self.youtubeLogoImageView.isHidden                      =   true
-        self.postImageViewHeightConstraint.constant             =   180.0 * heightRatio
+        self.postImageViewHeightConstraint.constant             =   (AppSettings.isFeedShowImages ? 180.0 : 0.0) * heightRatio
         
         self.likeCountButton.setTitle(nil, for: .normal)
         self.commentsButton.setTitle("    ", for: .normal)
         self.dislikeCountButton.setTitle(nil, for: .normal)
+        
+        self.contentView.tune()
     }
     
     
@@ -225,6 +234,8 @@ class PostFeedTableViewCell: UITableViewCell, HandlersCellSupport, PostCellLikeS
 // MARK: - ConfigureCell implementation
 extension PostFeedTableViewCell: ConfigureCell {
     func setup(withItem item: Any?, andIndexPath indexPath: IndexPath, blogEntry: BlogEntry?) {
+        self.contentView.tune()
+
         guard let model = item as? PostCellSupport else {
             return
         }
@@ -256,7 +267,7 @@ extension PostFeedTableViewCell: ConfigureCell {
         }
         
         // Hide post image
-        if (coverImageURL?.isEmpty)! {
+        if (coverImageURL?.isEmpty)! || !AppSettings.isFeedShowImages {
             self.postImageViewHeightConstraint.constant = 0
         }
         
@@ -289,18 +300,18 @@ extension PostFeedTableViewCell: ConfigureCell {
         self.likeButton.tag = model.currentUserLiked ? 99 : 0
         self.likeCountButton.setTitle(model.likeCount > 0 ? "\(model.likeCount)" : nil, for: .normal)
         self.likeCountButton.setTitleColor(model.currentUserLiked ? UIColor(hexString: "#4469AF") : UIColor(hexString: "#4F4F4F"), for: .normal)
-        self.likeButton.setImage(UIImage(named: model.currentUserLiked ? "icon-button-post-like-selected" : "icon-button-post-like-normal"), for: .normal)
+        self.likeButton.setImage(UIImage(named: model.currentUserLiked ? "icon-button-post-like-selected" : (AppSettings.isAppThemeDark ? "icon-button-post-like-normal-white" : "icon-button-post-like-normal")), for: .normal)
         
         // Dislike icon
         self.dislikeButton.tag = model.currentUserDisliked ? 99 : 0
         self.dislikeCountButton.setTitle(model.dislikeCount > 0 ? "\(model.dislikeCount)" : nil, for: .normal)
         self.dislikeCountButton.setTitleColor(model.currentUserDisliked ? UIColor.red : UIColor.black, for: .normal)
-        self.dislikeButton.setImage(UIImage(named: model.currentUserDisliked ? "icon-button-post-dislike-selected" : "icon-button-post-dislike-normal"), for: .normal)
+        self.dislikeButton.setImage(UIImage(named: model.currentUserDisliked ? "icon-button-post-dislike-selected" : (AppSettings.isAppThemeDark ? "icon-button-post-dislike-normal-white" : "icon-button-post-dislike-normal")), for: .normal)
         
         // Comments icon
         self.commentsButton.setTitle(model.children > 0 ? "\(model.children)" : "    ", for: .normal)
         self.commentsButton.setTitleColor(model.currentUserCommented ? UIColor(hexString: "#4469AF") : UIColor(hexString: "#4F4F4F"), for: .normal)
-        self.commentsButton.setImage(UIImage(named: model.currentUserCommented ? "icon-button-post-comments-selected" : "icon-button-post-comments-normal"), for: .normal)
+        self.commentsButton.setImage(UIImage(named: model.currentUserCommented ? "icon-button-post-comments-selected" : (AppSettings.isAppThemeDark ? "icon-button-post-comments-normal-white" : "icon-button-post-comments-normal")), for: .normal)
         
         self.layoutIfNeeded()
     }

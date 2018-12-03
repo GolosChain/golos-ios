@@ -292,6 +292,8 @@ extension UIView {
         self.translatesAutoresizingMaskIntoConstraints = false
         self.frame = container.frame
         
+        self.tune()
+        
         container.addSubview(self)
         
         NSLayoutConstraint(item: self, attribute: .leading, relatedBy: .equal, toItem: container, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true

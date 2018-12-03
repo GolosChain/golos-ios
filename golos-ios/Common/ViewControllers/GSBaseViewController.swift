@@ -107,7 +107,7 @@ class GSBaseViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
-    func showNavigationBar(withBackButtonTitle title: String? = nil, backButtonImage: UIImage = UIImage(named: "icon-button-back-black-normal")!) {
+    func showNavigationBar(withBackButtonTitle title: String? = nil, backButtonImage: UIImage = UIImage(named: (AppSettings.isAppThemeDark ? "icon-button-back-white-normal" : "icon-button-back-black-normal"))!) {
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationController?.add(shadow: true, withBarTintColor: .white)
 
