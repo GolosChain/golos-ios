@@ -34,7 +34,7 @@ class PostCreateView: UIView {
                                 font:                   UIFont(name: "SFProDisplay-Regular", size: 16.0),
                                 alignment:              .left)
             
-            titleTextField.inputAccessoryView    =   UIView()
+            titleTextField.inputAccessoryView    =   UIView.init(frame: .zero)
             titleTextField.delegate              =   self
         }
     }

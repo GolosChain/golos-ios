@@ -11,8 +11,6 @@ import SwiftTheme
 
 extension UILabel {
     func tune(withText text: String, hexColors: ThemeColorPicker?, font: UIFont?, alignment: NSTextAlignment, isMultiLines: Bool) {
-        ThemeManager.setTheme(index: isAppThemeDark ? 1 : 0)
-        
         self.text               =   text.localized()
         self.font               =   font
         self.theme_textColor    =   hexColors
@@ -22,7 +20,7 @@ extension UILabel {
     }
     
     func tune(withAttributedText text: String, hexColors: ThemeColorPicker?, font: UIFont?, alignment: NSTextAlignment, isMultiLines: Bool) {
-        ThemeManager.setTheme(index: isAppThemeDark ? 1 : 0)
+        ThemeManager.setTheme(index: AppSettings.isAppThemeDark ? 1 : 0)
         
         let attributedString    =   NSMutableAttributedString(string:      text.localized(),
                                                               attributes:  [ NSAttributedString.Key.font: font! ])

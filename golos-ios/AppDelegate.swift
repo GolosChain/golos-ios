@@ -28,6 +28,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         Logger.log(message: "Success", event: .severe)
                 
+        // First create App Settings
+        _ = AppSettings.instance()
+        
         /// TEST
 //        GSTestManager.getGlobalProperties()
         
@@ -191,70 +194,70 @@ extension AppDelegate {
     private func registerForPushNotifications() {
         // Register for remote notifications
         if #available(iOS 10.0, *) {
-            let center = UNUserNotificationCenter.current()
-            center.delegate = self
-            
-            center.requestAuthorization(options: [ .alert, .badge, .sound ], completionHandler: { (granted, _) in
-                Logger.log(message: (granted) ? "User notifications are allowed." : "User notifications are not allowed.", event: .debug)
+            DispatchQueue.main.async {
+                let center = UNUserNotificationCenter.current()
+                center.delegate = self
                 
-                let viewAction = UNNotificationAction(identifier: "viewActionIdentifier",
-                                                      title: "View",
-                                                      options: [.foreground])
-                
-                let newsCategory = UNNotificationCategory(identifier: "newsCategoryIdentifier",
-                                                          actions: [viewAction],
-                                                          intentIdentifiers: [],
-                                                          options: [])
-                
-                UNUserNotificationCenter.current().setNotificationCategories([newsCategory])
-            })
+                center.requestAuthorization(options: [ .alert, .badge, .sound ], completionHandler: { (granted, _) in
+                    Logger.log(message: (granted) ? "User notifications are allowed." : "User notifications are not allowed.", event: .debug)
+                    
+                    let viewAction = UNNotificationAction(identifier: "viewActionIdentifier",
+                                                          title: "View",
+                                                          options: [.foreground])
+                    
+                    let newsCategory = UNNotificationCategory(identifier: "newsCategoryIdentifier",
+                                                              actions: [viewAction],
+                                                              intentIdentifiers: [],
+                                                              options: [])
+                    
+                    UNUserNotificationCenter.current().setNotificationCategories([newsCategory])
+                    
+                    UIApplication.shared.registerForRemoteNotifications()
+                })
+            }
         }
             
         else {
-            // Create `Restart` action
-            let restartAction                       =   UIMutableUserNotificationAction()
-            restartAction.identifier                =   "RESTART_ACTION"
-            restartAction.isDestructive             =   true
-            restartAction.title                     =   "Restart"
-            restartAction.activationMode            =   .background
-            restartAction.isAuthenticationRequired  =   false
-            
-            // Create `Snooze` action
-            let snoozeAction                        =   UIMutableUserNotificationAction()
-            snoozeAction.identifier                 =   "SNOOZE_ACTION"
-            snoozeAction.isDestructive              =   false
-            snoozeAction.title                      =   "Snooze"
-            snoozeAction.activationMode             =   .background
-            snoozeAction.isAuthenticationRequired   =   false
-            
-            // Create `Edit` action
-            let editAction                          =   UIMutableUserNotificationAction()
-            editAction.identifier                   =   "EDIT_ACTION"
-            editAction.isDestructive                =   false
-            editAction.title                        =   "Edit"
-            editAction.activationMode               =   .background
-            editAction.isAuthenticationRequired     =   false
-            
-            // Create the category
-            let category                            =   UIMutableUserNotificationCategory()
-            category.identifier                     =   "TEST_CATEGORY"
-            
-            // Set actions for the default context
-            category.setActions([ restartAction, snoozeAction, editAction ], for: .default)
-            
-            // Set actions for the minimal context
-            category.setActions([ restartAction, snoozeAction ], for: .minimal)
-            
-            // Notification Registration for all iOS versions
-            let settings = UIUserNotificationSettings(types: [ .alert, .badge, .sound ], categories: NSSet(array: [category]) as? Set<UIUserNotificationCategory>)
-            
             DispatchQueue.main.async {
+                // Create `Restart` action
+                let restartAction                       =   UIMutableUserNotificationAction()
+                restartAction.identifier                =   "RESTART_ACTION"
+                restartAction.isDestructive             =   true
+                restartAction.title                     =   "Restart"
+                restartAction.activationMode            =   .background
+                restartAction.isAuthenticationRequired  =   false
+                
+                // Create `Snooze` action
+                let snoozeAction                        =   UIMutableUserNotificationAction()
+                snoozeAction.identifier                 =   "SNOOZE_ACTION"
+                snoozeAction.isDestructive              =   false
+                snoozeAction.title                      =   "Snooze"
+                snoozeAction.activationMode             =   .background
+                snoozeAction.isAuthenticationRequired   =   false
+                
+                // Create `Edit` action
+                let editAction                          =   UIMutableUserNotificationAction()
+                editAction.identifier                   =   "EDIT_ACTION"
+                editAction.isDestructive                =   false
+                editAction.title                        =   "Edit"
+                editAction.activationMode               =   .background
+                editAction.isAuthenticationRequired     =   false
+                
+                // Create the category
+                let category                            =   UIMutableUserNotificationCategory()
+                category.identifier                     =   "TEST_CATEGORY"
+                
+                // Set actions for the default context
+                category.setActions([ restartAction, snoozeAction, editAction ], for: .default)
+                
+                // Set actions for the minimal context
+                category.setActions([ restartAction, snoozeAction ], for: .minimal)
+                
+                // Notification Registration for all iOS versions
+                let settings = UIUserNotificationSettings(types: [ .alert, .badge, .sound ], categories: NSSet(array: [category]) as? Set<UIUserNotificationCategory>)
+                
                 UIApplication.shared.registerUserNotificationSettings(settings)
             }
-        }
-        
-        DispatchQueue.main.async {
-            UIApplication.shared.registerForRemoteNotifications()
         }
     }
     

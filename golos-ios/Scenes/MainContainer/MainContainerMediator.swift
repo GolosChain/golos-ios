@@ -17,7 +17,7 @@ class MainContainerMediator: NSObject {
             viewController      =   GSTabBarController()
             
         case true:
-            if AppSettings.instance().startWithWelcomeScene {
+            if AppSettings.startWithWelcomeScene {
                 // FIX-ME: - USE ONLY IN ALFA-VERSION
                 let storyboard  =   UIStoryboard(name: "LogInShow", bundle: nil)
                 viewController  =   storyboard.instantiateViewController(withIdentifier: "LogInShowNC") as! UINavigationController

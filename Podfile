@@ -33,6 +33,7 @@ target 'Golos' do
     pod 'SwiftTheme'
     pod 'SnapKit', '~> 4.0'
     pod 'LayoutKit', '~> 7.0'
+    pod 'DLRadioButton', '~> 1.4'
     pod 'SwiftGifOrigin', '~> 1.6.1'
     pod 'MXParallaxHeader', '~> 0.6'
     pod 'AlignedCollectionViewFlowLayout'

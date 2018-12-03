@@ -15,8 +15,6 @@ import SwiftGifOrigin
 
 extension UITextView {
     func tune(textColors: ThemeColorPicker?, font: UIFont?, alignment: NSTextAlignment) {
-        ThemeManager.setTheme(index: isAppThemeDark ? 1 : 0)
-        
         self.font                       =   font
         self.theme_textColor            =   textColors
         self.textAlignment              =   alignment

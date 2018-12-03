@@ -60,14 +60,6 @@ let widthRatio: CGFloat                 =   UIScreen.main.bounds.width / (UIAppl
 
 let cacheApp                            =   NSCache<NSString, UIImage>()
 
-var isAppThemeDark: Bool {
-    set { }
-    
-    get {
-        return UserDefaults.standard.object(forKey: appThemeKey) as? Bool ?? false
-    }
-}
-
 var isNetworkAvailable: Bool {
     set { }
     
@@ -81,7 +73,6 @@ var selectedTabBarItem: Int             =   0
 
 
 // Keys
-let appThemeKey                         =   "AppTheme"
 let userStateKey                        =   "UserState"
 
 

@@ -31,7 +31,7 @@
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IZe-iE-639" userLabel="Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="695"/>
                                         <subviews>
-                                            <stackView clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="jcs-cQ-xDw" userLabel="Common Stack View">
+                                            <stackView contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="jcs-cQ-xDw" userLabel="Common Stack View">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="96"/>
                                                 <subviews>
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="76i-ty-bAE" userLabel="Common View">
@@ -157,7 +157,7 @@
                                                         </constraints>
                                                     </view>
                                                 </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </stackView>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V1W-H9-hJs" userLabel="Gray View 1">
                                                 <rect key="frame" x="0.0" y="96" width="375" height="10"/>
@@ -186,11 +186,110 @@
                                                     </view>
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qav-i0-xTk" userLabel="Display Mode Day View">
                                                         <rect key="frame" x="0.0" y="40" width="375" height="40"/>
+                                                        <subviews>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-button-day-normal" translatesAutoresizingMaskIntoConstraints="NO" id="vOm-04-5aZ" userLabel="Day Image View">
+                                                                <rect key="frame" x="334" y="9.5" width="21" height="21"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="21" id="0IX-RW-5VH"/>
+                                                                </constraints>
+                                                            </imageView>
+                                                            <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="55p-Mn-xpD" userLabel="Day Radio Button" customClass="DLRadioButton">
+                                                                <rect key="frame" x="20" y="5.5" width="294" height="29"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <accessibility key="accessibilityConfiguration" identifier="Day Mode"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <state key="normal" title="Day Mode">
+                                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                </state>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="iconSize">
+                                                                        <real key="value" value="20"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="indicatorSize">
+                                                                        <real key="value" value="10"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="iconColor">
+                                                                        <color key="value" red="0.18431372549019609" green="0.49019607843137253" blue="0.98431372549019602" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="iconStrokeWidth">
+                                                                        <real key="value" value="0.0"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="iconSquare" value="NO"/>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="iconOnRight" value="NO"/>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="marginWidth">
+                                                                        <real key="value" value="20"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="indicatorColor">
+                                                                        <color key="value" red="0.1843137255" green="0.49019607840000001" blue="0.98431372549999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="dayRadioButtonTapped:" destination="5Fz-c1-bKn" eventType="touchUpInside" id="m5H-zr-s03"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstItem="55p-Mn-xpD" firstAttribute="leading" secondItem="qav-i0-xTk" secondAttribute="leading" constant="20" id="Kz0-8N-KLt"/>
+                                                            <constraint firstItem="vOm-04-5aZ" firstAttribute="width" secondItem="vOm-04-5aZ" secondAttribute="height" multiplier="1:1" id="WFN-Xt-tyQ"/>
+                                                            <constraint firstAttribute="trailing" secondItem="vOm-04-5aZ" secondAttribute="trailing" constant="20" id="WQG-6u-bXf"/>
+                                                            <constraint firstItem="vOm-04-5aZ" firstAttribute="leading" secondItem="55p-Mn-xpD" secondAttribute="trailing" constant="20" id="hN2-mC-i5Y"/>
+                                                            <constraint firstItem="55p-Mn-xpD" firstAttribute="centerY" secondItem="qav-i0-xTk" secondAttribute="centerY" id="pyT-3g-Zhz"/>
+                                                            <constraint firstItem="vOm-04-5aZ" firstAttribute="centerY" secondItem="qav-i0-xTk" secondAttribute="centerY" id="uTa-9K-fJK"/>
+                                                        </constraints>
                                                     </view>
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eQK-4w-bFg" userLabel="Display Mode Moon View">
                                                         <rect key="frame" x="0.0" y="80" width="375" height="40"/>
+                                                        <subviews>
+                                                            <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1JG-zA-drC" userLabel="Moon Radio Button" customClass="DLRadioButton">
+                                                                <rect key="frame" x="20" y="5.5" width="299" height="29"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <accessibility key="accessibilityConfiguration" identifier="Dark Mode"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <state key="normal" title="Dark Mode">
+                                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                </state>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="iconSize">
+                                                                        <real key="value" value="20"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="indicatorSize">
+                                                                        <real key="value" value="10"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="marginWidth">
+                                                                        <real key="value" value="20"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="indicatorColor">
+                                                                        <color key="value" red="0.1843137255" green="0.49019607840000001" blue="0.98431372549999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="iconOnRight" value="NO"/>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="iconSquare" value="NO"/>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="iconColor">
+                                                                        <color key="value" red="0.1843137255" green="0.49019607840000001" blue="0.98431372549999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="moonRadioButtonTapped:" destination="5Fz-c1-bKn" eventType="touchUpInside" id="5a6-wy-nGP"/>
+                                                                    <outletCollection property="otherButtons" destination="55p-Mn-xpD" id="JOe-aw-6c9"/>
+                                                                </connections>
+                                                            </button>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-button-moon-normal" translatesAutoresizingMaskIntoConstraints="NO" id="uMi-vk-yGn" userLabel="Moon Image View">
+                                                                <rect key="frame" x="339" y="12.5" width="11" height="15"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="15.199999999999999" id="keB-Ea-VN0"/>
+                                                                </constraints>
+                                                            </imageView>
+                                                        </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstItem="uMi-vk-yGn" firstAttribute="width" secondItem="uMi-vk-yGn" secondAttribute="height" multiplier="11:15.2" id="b42-v5-c2g"/>
+                                                            <constraint firstItem="uMi-vk-yGn" firstAttribute="leading" secondItem="1JG-zA-drC" secondAttribute="trailing" constant="20" id="bRO-Qy-cnh"/>
+                                                            <constraint firstItem="1JG-zA-drC" firstAttribute="leading" secondItem="eQK-4w-bFg" secondAttribute="leading" constant="20" id="c77-ZQ-70O"/>
+                                                            <constraint firstItem="uMi-vk-yGn" firstAttribute="centerY" secondItem="eQK-4w-bFg" secondAttribute="centerY" id="w9H-5b-12V"/>
+                                                            <constraint firstItem="1JG-zA-drC" firstAttribute="centerY" secondItem="eQK-4w-bFg" secondAttribute="centerY" id="xuv-2W-7Tg"/>
+                                                        </constraints>
                                                     </view>
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pSv-4Z-QU8" userLabel="Display Mode Images View">
                                                         <rect key="frame" x="0.0" y="120" width="375" height="40"/>
@@ -221,7 +320,10 @@
                                                         </constraints>
                                                     </view>
                                                 </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstItem="uMi-vk-yGn" firstAttribute="centerX" secondItem="vOm-04-5aZ" secondAttribute="centerX" id="sx4-RS-f8m"/>
+                                                </constraints>
                                             </stackView>
                                             <stackView contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="or1-Jr-ffx" userLabel="Push Notifications Stack View">
                                                 <rect key="frame" x="0.0" y="290" width="375" height="135"/>
@@ -251,7 +353,7 @@
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HzJ-V7-GYb" userLabel="Welcome View">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
                                                         <subviews>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-button-arrow-rigth-gray-normal" translatesAutoresizingMaskIntoConstraints="NO" id="oYv-KD-uZp" userLabel="Welcome Image View">
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-button-arrow-rigth-gray-day-normal" translatesAutoresizingMaskIntoConstraints="NO" id="oYv-KD-uZp" userLabel="Welcome Image View">
                                                                 <rect key="frame" x="331" y="10.5" width="24" height="24"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
@@ -290,7 +392,7 @@
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uon-Ic-wwA" userLabel="Wiki View">
                                                         <rect key="frame" x="0.0" y="45" width="375" height="45"/>
                                                         <subviews>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-button-arrow-rigth-gray-normal" translatesAutoresizingMaskIntoConstraints="NO" id="uVn-ye-8Lo" userLabel="Wiki Golos Image View">
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-button-arrow-rigth-gray-day-normal" translatesAutoresizingMaskIntoConstraints="NO" id="uVn-ye-8Lo" userLabel="Wiki Golos Image View">
                                                                 <rect key="frame" x="331" y="10.5" width="24" height="24"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
@@ -329,7 +431,7 @@
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iev-Xk-xLa" userLabel="Privacy Policy View">
                                                         <rect key="frame" x="0.0" y="90" width="375" height="45"/>
                                                         <subviews>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-button-arrow-rigth-gray-normal" translatesAutoresizingMaskIntoConstraints="NO" id="1Om-57-uxr" userLabel="Privacy Policy Image View">
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-button-arrow-rigth-gray-day-normal" translatesAutoresizingMaskIntoConstraints="NO" id="1Om-57-uxr" userLabel="Privacy Policy Image View">
                                                                 <rect key="frame" x="331" y="10.5" width="24" height="24"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
@@ -387,7 +489,7 @@
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6J8-Zi-uUr" userLabel="Log Out View">
                                                         <rect key="frame" x="0.0" y="135" width="375" height="45"/>
                                                         <subviews>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-button-arrow-rigth-gray-normal" translatesAutoresizingMaskIntoConstraints="NO" id="Qzs-7r-jMU" userLabel="Log Out Image View">
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-button-arrow-rigth-gray-day-normal" translatesAutoresizingMaskIntoConstraints="NO" id="Qzs-7r-jMU" userLabel="Log Out Image View">
                                                                 <rect key="frame" x="331" y="10.5" width="24" height="24"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
@@ -425,7 +527,7 @@
                                                         </constraints>
                                                     </view>
                                                 </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </stackView>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="617-0L-gmR" userLabel="Version View">
                                                 <rect key="frame" x="0.0" y="655" width="375" height="40"/>
@@ -445,7 +547,7 @@
                                                 </constraints>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="jcs-cQ-xDw" firstAttribute="leading" secondItem="IZe-iE-639" secondAttribute="leading" id="1N6-B5-i6y"/>
                                             <constraint firstItem="jcs-cQ-xDw" firstAttribute="bottom" secondItem="V1W-H9-hJs" secondAttribute="top" id="22l-ha-9Iv"/>
@@ -473,7 +575,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="IZe-iE-639" firstAttribute="top" secondItem="eGZ-Iu-UAZ" secondAttribute="top" id="397-9U-sPw"/>
                                     <constraint firstAttribute="bottom" secondItem="IZe-iE-639" secondAttribute="bottom" id="5Fg-3o-V9o"/>
@@ -525,12 +627,16 @@
                         <outlet property="commonLabel" destination="Pc8-z8-9hA" id="GfM-y4-kFd"/>
                         <outlet property="contentView" destination="IZe-iE-639" id="eaR-uL-DNH"/>
                         <outlet property="currencyButton" destination="T8D-oG-0Tn" id="TI1-aN-8qn"/>
+                        <outlet property="dayImageView" destination="vOm-04-5aZ" id="saA-br-zTQ"/>
+                        <outlet property="dayRadioButton" destination="55p-Mn-xpD" id="Sj4-NY-zdl"/>
                         <outlet property="displayModeTitleLabel" destination="g1E-UH-J6z" id="hS5-X9-NDM"/>
                         <outlet property="displayModeViewPicturesTitleLabel" destination="3hq-cF-7Tq" id="eki-HZ-2F0"/>
                         <outlet property="editUserProfileButton" destination="2rV-a6-wzh" id="un9-0A-Qe6"/>
                         <outlet property="languageButton" destination="LeW-Nc-6kL" id="0R2-4L-abf"/>
                         <outlet property="languageLabel" destination="jHg-ur-Nft" id="Nnq-uf-KAb"/>
                         <outlet property="logOutButton" destination="gQD-QH-PUB" id="fZ2-OP-Zev"/>
+                        <outlet property="moonImageView" destination="uMi-vk-yGn" id="IYf-ZQ-G0z"/>
+                        <outlet property="moonRadioButton" destination="1JG-zA-drC" id="GZU-pV-c69"/>
                         <outlet property="notificationsButton" destination="K7n-dv-Qcc" id="nj8-0T-Ug5"/>
                         <outlet property="privacyPolicyButton" destination="bgZ-MG-t6B" id="2rL-pD-CVf"/>
                         <outlet property="scrollView" destination="eGZ-Iu-UAZ" id="n3L-aU-azh"/>
@@ -598,6 +704,26 @@
                         <outletCollection property="heightsCollection" destination="os1-lm-pga" collectionClass="NSMutableArray" id="SC0-VO-Zvp"/>
                         <outletCollection property="heightsCollection" destination="ngr-eN-tZH" collectionClass="NSMutableArray" id="jB1-TM-ddA"/>
                         <outletCollection property="heightsCollection" destination="WeF-OR-U2Y" collectionClass="NSMutableArray" id="eUX-fZ-uYL"/>
+                        <outletCollection property="widthsCollection" destination="WQG-6u-bXf" collectionClass="NSMutableArray" id="DV4-IZ-VjY"/>
+                        <outletCollection property="widthsCollection" destination="c77-ZQ-70O" collectionClass="NSMutableArray" id="0Dv-bd-SNE"/>
+                        <outletCollection property="widthsCollection" destination="Kz0-8N-KLt" collectionClass="NSMutableArray" id="9Lp-al-0wZ"/>
+                        <outletCollection property="widthsCollection" destination="hN2-mC-i5Y" collectionClass="NSMutableArray" id="ntP-li-tGF"/>
+                        <outletCollection property="widthsCollection" destination="bRO-Qy-cnh" collectionClass="NSMutableArray" id="xLn-th-GDg"/>
+                        <outletCollection property="radioButtonsCollection" destination="1JG-zA-drC" collectionClass="NSMutableArray" id="UpY-FW-m9R"/>
+                        <outletCollection property="radioButtonsCollection" destination="55p-Mn-xpD" collectionClass="NSMutableArray" id="hUd-rt-HAj"/>
+                        <outletCollection property="grayViewsCollection" destination="V1W-H9-hJs" collectionClass="NSMutableArray" id="6s7-PZ-UTf"/>
+                        <outletCollection property="grayViewsCollection" destination="xwL-85-b5M" collectionClass="NSMutableArray" id="HjI-yt-YrL"/>
+                        <outletCollection property="lineViewsCollection" destination="8yy-xl-8pm" collectionClass="NSMutableArray" id="hdc-RZ-7Zp"/>
+                        <outletCollection property="lineViewsCollection" destination="cI8-W2-MmJ" collectionClass="NSMutableArray" id="o10-3d-D3s"/>
+                        <outletCollection property="lineViewsCollection" destination="MNb-Ho-eCF" collectionClass="NSMutableArray" id="WZc-bx-hfK"/>
+                        <outletCollection property="lineViewsCollection" destination="wmB-31-5N0" collectionClass="NSMutableArray" id="dJv-Jb-jfi"/>
+                        <outletCollection property="viewsCollection" destination="L8H-Vo-VBL" collectionClass="NSMutableArray" id="1o1-Xt-XI8"/>
+                        <outletCollection property="viewsCollection" destination="XaR-aN-eqa" collectionClass="NSMutableArray" id="apK-0W-nLp"/>
+                        <outletCollection property="viewsCollection" destination="DcL-8m-c6o" collectionClass="NSMutableArray" id="SWu-zW-fUG"/>
+                        <outletCollection property="arrowImageViewsCollection" destination="oYv-KD-uZp" collectionClass="NSMutableArray" id="fGY-Y3-940"/>
+                        <outletCollection property="arrowImageViewsCollection" destination="uVn-ye-8Lo" collectionClass="NSMutableArray" id="mfX-wD-7Su"/>
+                        <outletCollection property="arrowImageViewsCollection" destination="1Om-57-uxr" collectionClass="NSMutableArray" id="0mN-iw-UvY"/>
+                        <outletCollection property="arrowImageViewsCollection" destination="Qzs-7r-jMU" collectionClass="NSMutableArray" id="e4T-bY-M8B"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Db1-M9-8YS" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -606,6 +732,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="icon-button-arrow-rigth-gray-normal" width="24" height="24"/>
+        <image name="icon-button-arrow-rigth-gray-day-normal" width="24" height="24"/>
+        <image name="icon-button-day-normal" width="20" height="20"/>
+        <image name="icon-button-moon-normal" width="13" height="17"/>
     </resources>
 </document>

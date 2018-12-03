@@ -19,8 +19,7 @@ enum SideType {
 
 extension UIView {
     func tune() {
-        ThemeManager.setTheme(index: isAppThemeDark ? 1 : 0)
-        self.theme_backgroundColor  =   whiteBlackColorPickers
+        self.theme_backgroundColor  =   whiteVeryDarkGrayishRedPickers
     }
     
     func tune(withThemeColorPicker themeColorPicker: ThemeColorPicker) {
@@ -28,10 +27,6 @@ extension UIView {
     }
 
     func display(withTopConstraint topConstraint: NSLayoutConstraint, height: CGFloat, isShow: Bool) {
-//        guard (self.alpha == 0.0 && isShow) || (self.alpha == 1.0 && !isShow) else {
-//            return
-//        }
-        
         UIView.animate(withDuration: 0.3, animations: {
             topConstraint.constant  =   height * (isShow ? 1 : -1)
             self.alpha              =   isShow ? 1.0 : 0.0

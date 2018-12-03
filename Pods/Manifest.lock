@@ -5,6 +5,7 @@ PODS:
   - Crashlytics (3.12.0):
     - Fabric (~> 1.9.0)
   - CryptoSwift (0.13.0)
+  - DLRadioButton (1.4.12)
   - Down (0.5.2)
   - Fabric (1.9.0)
   - Firebase/Core (5.0.1):
@@ -68,6 +69,7 @@ DEPENDENCIES:
   - AlignedCollectionViewFlowLayout
   - Amplitude-iOS (~> 4.0.4)
   - Crashlytics (~> 3.10)
+  - DLRadioButton (~> 1.4)
   - Down
   - Fabric (~> 1.7)
   - Firebase/Core
@@ -91,6 +93,7 @@ SPEC REPOS:
     - BeyovaJSON
     - Crashlytics
     - CryptoSwift
+    - DLRadioButton
     - Down
     - Fabric
     - Firebase
@@ -132,6 +135,7 @@ SPEC CHECKSUMS:
   BeyovaJSON: 085c9fa886fa0b13e2964cc8c6965fab5bc7f90f
   Crashlytics: 07fb167b1694128c1c9a5a5cc319b0e9c3ca0933
   CryptoSwift: 16e78bebf567bad1c87b2d58f6547f25b74c31aa
+  DLRadioButton: d7c4e225ed0e8013cef7be61455230c7557ad7c1
   Down: 587371ad58002b06023d9c602519216862c3acbc
   Fabric: f988e33c97f08930a413e08123064d2e5f68d655
   Firebase: d6861c2059d8c32d1e6dd8932e22ada346d90a3a
@@ -159,6 +163,6 @@ SPEC CHECKSUMS:
   SwiftTheme: 36d71c4eed4b2c401c782cf036e4586c749a8173
   Tags: 06eb9d45fcc234025d1b0053f78b9bb27f53a9d5
 
-PODFILE CHECKSUM: 3f5451bd1d0f8f7790ab963b1c410782f1a14d28
+PODFILE CHECKSUM: a58b16151781074849d3a6a51056495048952b26
 
 COCOAPODS: 1.6.0.beta.2

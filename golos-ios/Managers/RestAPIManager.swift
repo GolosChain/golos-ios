@@ -585,7 +585,7 @@ class RestAPIManager {
     }
     
     
-    /// Calculate Usr Voice Power
+    /// Calculate User Voice Power
     static func calculateVoicePower(byUserNickName nickName: String, completion: @escaping (Float) -> Void) {
         Broadcast.shared.getDynamicGlobalProperties(completion: { properties in
             if let globalProperties = properties {

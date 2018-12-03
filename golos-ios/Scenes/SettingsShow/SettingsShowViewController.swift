@@ -13,6 +13,7 @@
 import UIKit
 import GoloSwift
 import Amplitude_iOS
+import DLRadioButton
 import Localize_Swift
 
 // MARK: - Input & Output protocols
@@ -42,6 +43,42 @@ class SettingsShowViewController: GSBaseViewController {
     
     @IBOutlet weak var commonLabel: UILabel!
     @IBOutlet weak var viewPicturesSwitch: UISwitch!
+    
+    @IBOutlet weak var dayImageView: UIImageView! {
+        didSet {
+            self.dayImageView.image = UIImage(named: AppSettings.isAppThemeDark ? "icon-button-day-normal" : "icon-button-day-selected")
+        }
+    }
+    
+    @IBOutlet weak var moonImageView: UIImageView! {
+        didSet {
+            self.moonImageView.image = UIImage(named: AppSettings.isAppThemeDark ? "icon-button-moon-selected" : "icon-button-moon-normal")
+        }
+    }
+
+    @IBOutlet weak var dayRadioButton: DLRadioButton! {
+        didSet {
+            self.dayRadioButton.isSelected  =   !AppSettings.isAppThemeDark
+            self.dayRadioButton.iconColor   =   UIColor(hexString: AppSettings.isAppThemeDark ? "#B7B7BA" : "#2F7DFB")
+        }
+    }
+    
+    @IBOutlet weak var moonRadioButton: DLRadioButton! {
+        didSet {
+            self.moonRadioButton.isSelected =   AppSettings.isAppThemeDark
+            self.moonRadioButton.iconColor  =   UIColor(hexString: AppSettings.isAppThemeDark ? "#2F7DFB" : "#B7B7BA")
+        }
+    }
+    
+    @IBOutlet var radioButtonsCollection: [UIButton]! {
+        didSet {
+            self.radioButtonsCollection.forEach({
+                $0.tune(withTitle:      $0.accessibilityIdentifier!.localized(),
+                        hexColors:      [blackWhiteColorPickers, grayWhiteColorPickers, blackWhiteColorPickers, grayWhiteColorPickers],
+                        font:           UIFont(name: "SFProDisplay-Regular", size: 14.0),
+                        alignment:      .left) })
+        }
+    }
     
     @IBOutlet weak var languageLabel: UILabel! {
         didSet {
@@ -84,19 +121,19 @@ class SettingsShowViewController: GSBaseViewController {
     
     @IBOutlet weak var scrollView: UIScrollView! {
         didSet {
-            scrollView.tune(withThemeColorPicker: whiteBlackColorPickers)
+            self.scrollView.tune(withThemeColorPicker: whiteVeryDarkGrayishRedPickers)
         }
     }
     
     @IBOutlet weak var contentView: UIView! {
         didSet {
-            contentView.tune(withThemeColorPicker: whiteBlackColorPickers)
+            self.contentView.tune(withThemeColorPicker: whiteVeryDarkGrayishRedPickers)
         }
     }
     
     @IBOutlet var viewsCollection: [UIView]! {
         didSet {
-            self.viewsCollection.forEach({ $0.tune(withThemeColorPicker: whiteBlackColorPickers )})
+            self.viewsCollection.forEach({ $0.tune(withThemeColorPicker: whiteVeryDarkGrayishRedPickers )})
         }
     }
     
@@ -130,6 +167,24 @@ class SettingsShowViewController: GSBaseViewController {
         }
     }
     
+    @IBOutlet var grayViewsCollection: [UIView]! {
+        didSet {
+            self.grayViewsCollection.forEach({ $0.theme_backgroundColor = lightGrayishBlueBlackColorPickers })
+        }
+    }
+    
+    @IBOutlet var lineViewsCollection: [UIView]! {
+        didSet {
+            self.lineViewsCollection.forEach({ $0.theme_backgroundColor = veryLightGrayVeryDarkGrayColorPickers })
+        }
+    }
+    
+    @IBOutlet var arrowImageViewsCollection: [UIImageView]! {
+        didSet {
+            self.arrowImageViewsCollection.forEach({ $0.theme_image = [ "icon-button-arrow-rigth-gray-day-normal", "icon-button-arrow-rigth-gray-dark-normal" ]})
+        }
+    }
+
     @IBOutlet var constraintsCollection: [NSLayoutConstraint]! {
         didSet {
             self.constraintsCollection.forEach({ $0.constant *= heightRatio })
@@ -205,10 +260,10 @@ class SettingsShowViewController: GSBaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
+        
         // Set StatusBarStyle
         selectedTabBarItem          =   self.navigationController!.tabBarItem.tag
-        self.isStatusBarStyleLight  =   false
+        self.isStatusBarStyleLight  =   AppSettings.isAppThemeDark
 
         NotificationCenter.default.addObserver(self, selector: #selector(localizeTitles), name: NSNotification.Name(LCLLanguageChangeNotification), object: nil)
     }
@@ -301,6 +356,30 @@ class SettingsShowViewController: GSBaseViewController {
 //        self.router?.routeToSettingsNotificationsScene()
     }
     
+    
+    @IBAction func dayRadioButtonTapped(_ sender: DLRadioButton) {
+        AppSettings.instance().setAppThemeDark(false)
+        
+        self.isStatusBarStyleLight      =   false
+        self.dayImageView.image         =   UIImage(named: "icon-button-day-selected")
+        self.dayRadioButton.iconColor   =   UIColor(hexString: "#2F7DFB")
+        self.moonImageView.image        =   UIImage(named: "icon-button-moon-normal")
+        self.moonRadioButton.iconColor  =   UIColor(hexString: "#B7B7BA")
+        
+        self.navigationController?.navigationBar.layer.theme_shadowColor  =   veryLightGrayCGColorPickers
+    }
+
+    @IBAction func moonRadioButtonTapped(_ sender: Any) {
+        AppSettings.instance().setAppThemeDark(true)
+
+        self.isStatusBarStyleLight      =   true
+        self.dayImageView.image         =   UIImage(named: "icon-button-day-normal")
+        self.dayRadioButton.iconColor   =   UIColor(hexString: "#B7B7BA")
+        self.moonImageView.image        =   UIImage(named: "icon-button-moon-selected")
+        self.moonRadioButton.iconColor  =   UIColor(hexString: "#2F7DFB")
+        self.navigationController?.navigationBar.layer.theme_shadowColor  =   whiteVeryDarkGrayCGColorPickers
+    }
+    
     @IBAction func viewPicturesSwitchChanged(_ sender: UISwitch) {
     
     }
@@ -324,6 +403,8 @@ class SettingsShowViewController: GSBaseViewController {
         self.editUserProfileButton.setTitle("Edit Profile Title".localized(), for: .normal)
         self.notificationsButton.setTitle("Remote Notifications Title".localized(), for: .normal)
         self.logOutButton.setTitle((User.isAnonymous ? "Log In" : "Exit Verb").localized(), for: .normal)
+        
+        self.radioButtonsCollection.forEach({ $0.setTitle($0.accessibilityIdentifier?.localized(), for: .normal) })
     }
 }
 

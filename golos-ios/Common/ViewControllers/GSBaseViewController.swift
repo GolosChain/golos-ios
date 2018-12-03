@@ -28,7 +28,9 @@ class GSBaseViewController: UIViewController {
             self.setNeedsStatusBarAppearanceUpdate()
         }
     }
-        
+    
+    
+    // MARK: - Class Functions
     override var preferredStatusBarStyle: UIStatusBarStyle {
         guard let mainContainerVC = self.navigationController?.viewControllers.last as? MainContainerViewController else { return .default }
         
@@ -50,7 +52,7 @@ class GSBaseViewController: UIViewController {
     
     // MARK: - Custom Functions
     @objc func localizeTitles() {}
-
+    
     func registerForKeyboardNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
@@ -75,6 +77,13 @@ class GSBaseViewController: UIViewController {
                             }
             })
         }
+    }
+    
+    func setupNavBarStyle() {
+        self.navigationController?.navigationBar.theme_tintColor            =   blackWhiteColorPickers
+        self.tabBarController?.tabBar.theme_barTintColor                    =   whiteVeryDarkGrayishRedPickers
+        self.navigationController?.navigationBar.theme_barTintColor         =   whiteVeryDarkGrayishRedPickers
+        self.navigationController?.navigationBar.theme_titleTextAttributes  =   blackWhiteDictionaryPickers
     }
     
     func hide(localNotification: ForegroundRemoteNotificationView) {
@@ -102,6 +111,7 @@ class GSBaseViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationController?.add(shadow: true, withBarTintColor: .white)
 
+        self.setupNavBarStyle()
         self.configureBackButton(withTitle: title, backButtonImage: backButtonImage)
     }
     

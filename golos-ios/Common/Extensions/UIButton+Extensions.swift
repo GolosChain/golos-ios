@@ -77,8 +77,6 @@ extension UIButton {
 
     /// hexColors: [normal, highlighted, selected, disabled]
     func tune(withTitle title: String, hexColors: [ThemeColorPicker], font: UIFont?, alignment: NSTextAlignment) {
-        ThemeManager.setTheme(index: isAppThemeDark ? 1 : 0)
-        
         self.titleLabel?.font               =   font
         self.titleLabel?.textAlignment      =   alignment
         self.contentMode                    =   .scaleAspectFill
@@ -149,7 +147,7 @@ extension UIButton {
 
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
             spinner.startAnimating()
-            self.setImage(UIImage(named: isAppThemeDark ? "icon-button-active-vote-black-empty" : "icon-button-active-vote-white-empty"), for: .normal)
+            self.setImage(UIImage(named: AppSettings.isAppThemeDark ? "icon-button-active-vote-black-empty" : "icon-button-active-vote-white-empty"), for: .normal)
         }
     }
     

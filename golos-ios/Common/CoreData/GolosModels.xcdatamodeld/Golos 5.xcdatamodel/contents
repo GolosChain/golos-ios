@@ -51,12 +51,13 @@
         </uniquenessConstraints>
     </entity>
     <entity name="AppSettings" representedClassName="AppSettings" syncable="YES">
+        <attribute name="isAppThemeDark" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="language" attributeType="String" defaultValueString="English" syncable="YES"/>
-        <attribute name="name" attributeType="String" defaultValueString="Golos.io" syncable="YES"/>
         <attribute name="startWithWelcomeScene" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="userNickName" attributeType="String" defaultValueString="Anonymous" syncable="YES"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
-                <constraint value="name"/>
+                <constraint value="userNickName"/>
             </uniquenessConstraint>
         </uniquenessConstraints>
     </entity>
@@ -483,8 +484,9 @@
     <elements>
         <element name="ActiveVote" positionX="-459" positionY="-81" width="128" height="150"/>
         <element name="Actual" positionX="-405" positionY="-27" width="128" height="540"/>
-        <element name="AppSettings" positionX="-459" positionY="-81" width="128" height="90"/>
+        <element name="AppSettings" positionX="-459" positionY="-81" width="128" height="105"/>
         <element name="Blog" positionX="-459" positionY="-81" width="128" height="555"/>
+        <element name="BlogEntry" positionX="-459" positionY="-81" width="128" height="165"/>
         <element name="Comment" positionX="-459" positionY="-81" width="128" height="540"/>
         <element name="Follower" positionX="-450" positionY="-72" width="128" height="120"/>
         <element name="ImageCached" positionX="-459" positionY="-81" width="128" height="90"/>
@@ -499,6 +501,5 @@
         <element name="UserSecretOwnerKey" positionX="-243" positionY="-234" width="128" height="120"/>
         <element name="UserSecretPostingKey" positionX="-45" positionY="63" width="128" height="120"/>
         <element name="Voter" positionX="-459" positionY="-81" width="128" height="150"/>
-        <element name="BlogEntry" positionX="-459" positionY="-81" width="128" height="165"/>
     </elements>
 </model>
