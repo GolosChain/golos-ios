@@ -33,8 +33,7 @@ public class Broadcast {
     
     
     // MARK: - Class Initialization
-    private init() {
-    }
+    private init() {}
     
     deinit {
         Logger.log(message: "Success", event: .severe)
@@ -71,7 +70,7 @@ public class Broadcast {
         let requestAPIType = self.prepareGET(requestByMethodAPIType: methodAPIType)
         
         guard let requestMessage = requestAPIType.requestMessage else {
-            onError(ErrorAPI.requestFailed(message: "GET Request Failed"))
+            onError(ErrorAPI.requestFailed(message: "Broadcast, line 73: \(requestAPIType.errorAPI!.localizedDescription)"))
             return
         }
         
@@ -84,7 +83,7 @@ public class Broadcast {
             }
                 
             else {
-                onError(ErrorAPI.responseUnsuccessful(message: "Result not found"))
+                onError(ErrorAPI.responseUnsuccessful(message: "Broadcast, line 86: \(responseAPIType.errorAPI!.localizedDescription)"))
             }
         })
     }
@@ -183,7 +182,7 @@ public class Broadcast {
             Logger.log(message: "\nexecutePOST - requestOperationAPIType:\n\t\(requestOperationAPIType.requestMessage!)\n", event: .debug)
             
             guard requestOperationAPIType.errorAPI == nil else {
-                onError(ErrorAPI.requestFailed(message: "POST Request Failed"))
+                onError(ErrorAPI.requestFailed(message: "Broadcast, line 186: \(requestOperationAPIType.requestMessage!)"))
                 return
             }
             
@@ -194,7 +193,7 @@ public class Broadcast {
                 }
                     
                 else {
-                    onError(ErrorAPI.responseUnsuccessful(message: "Result not found"))
+                    onError(ErrorAPI.responseUnsuccessful(message: "Broadcast, line 197: \(responseAPIType.errorAPI!.localizedDescription)"))
                 }
             })
         })
@@ -284,7 +283,7 @@ public class Broadcast {
             return (id: codeID, requestMessage: jsonChainString, startTime: Date(), operationAPIType: requestParamsType.operationAPIType, errorAPI: nil)
         } catch {
             Logger.log(message: "Error: \(error.localizedDescription)", event: .error)
-            return (id: codeID, requestMessage: nil, startTime: Date(), operationAPIType: requestParamsType.operationAPIType, errorAPI: ErrorAPI.requestFailed(message: "Request Failed"))
+            return (id: codeID, requestMessage: nil, startTime: Date(), operationAPIType: requestParamsType.operationAPIType, errorAPI: ErrorAPI.requestFailed(message: "Broadcast, line 287: \(error.localizedDescription)"))
         }
     }
     
@@ -348,12 +347,12 @@ extension Broadcast {
         // Create GET Request messages to microservice
         let requestAPIType = self.prepareGET(requestByMicroserviceMethodAPIType: microserviceMethodAPIType)
         
-        guard let requestMessage = requestAPIType.requestMessage else {
-            onError(ErrorAPI.requestFailed(message: "GET Request Failed"))
+        guard requestAPIType.errorAPI == nil else {
+            onError(ErrorAPI.requestFailed(message: "Broadcast, line 352: \(requestAPIType.errorAPI!.localizedDescription)"))
             return
         }
         
-        Logger.log(message: "\nrequestMicroserviceMethodAPIType:\n\t\(requestMessage)\n", event: .debug)
+//        Logger.log(message: "\nrequestMicroserviceMethodAPIType:\n\t\(requestMessage)\n", event: .debug)
         
         // Send GET Request messages to microservice
         WebSocketManager.instanceMicroservices.sendGETRequest(withMicroserviceMethodAPIType: requestAPIType, completion: { responseAPIType in
@@ -362,7 +361,7 @@ extension Broadcast {
             }
                 
             else {
-                onError(ErrorAPI.responseUnsuccessful(message: "Result not found"))
+                onError(ErrorAPI.responseUnsuccessful(message: "Broadcast, line 365: \(requestAPIType.errorAPI!.localizedDescription)"))
             }
         })
     }
@@ -392,8 +391,8 @@ extension Broadcast {
             }
             
             jsonString          =   jsonString
-                .replacingOccurrences(of: "[[[", with: "[[")
-                .replacingOccurrences(of: "[\"nil\"]", with: "]")
+                                        .replacingOccurrences(of: "[[[", with: "[[")
+                                        .replacingOccurrences(of: "[\"nil\"]", with: "]")
             
             Logger.log(message: "\nEncoded JSON -> String:\n\t " + jsonString, event: .debug)
             
@@ -403,7 +402,7 @@ extension Broadcast {
             Logger.log(message: "Error: \(error.localizedDescription)", event: .error)
             
             // (id: Int, requestMessage: String?, startTime: Date, microserviceMethodAPIType: MicroserviceMethodAPIType, errorAPI: ErrorAPI?)
-            return (id: codeID, requestMessage: nil, startTime: Date(), microserviceMethodAPIType: requestParamsType.microserviceMethodAPIType, errorAPI: ErrorAPI.requestFailed(message: "GET Request Failed"))
+            return (id: codeID, requestMessage: nil, startTime: Date(), microserviceMethodAPIType: requestParamsType.microserviceMethodAPIType, errorAPI: ErrorAPI.requestFailed(message: "Broadcast, line 406: \(error.localizedDescription)"))
         }
     }
 }

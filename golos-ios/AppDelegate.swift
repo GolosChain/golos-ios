@@ -55,11 +55,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.clearCache()
         
         // Main window
-//        window?.backgroundColor = .white
-//        window?.makeKeyAndVisible()
-//
-//        return true
-        return false
+        window?.backgroundColor = .white
+        window?.makeKeyAndVisible()
+
+        return true
     }
     
     func applicationWillResignActive(_ application: UIApplication) {
@@ -87,7 +86,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if WebSocketManager.instanceMicroservices.webSocket.delegate == nil {
                 WebSocketManager.instanceMicroservices.webSocket.delegate = WebSocketManager.instanceMicroservices
             }
-        }        
+        }
+        
+        // Handlers
+        WebSocketManager.instanceMicroservices.completionIsConnected    =   {
+            DispatchQueue.main.async(execute: {
+                guard !User.isAnonymous else { return }
+                
+                RestAPIManager.getSecretKey(completion: { (secretKey, errorAPI) in
+                    guard errorAPI == nil else {
+                        return
+                    }
+                    
+                    Logger.log(message: "secretKey = \(secretKey!)", event: .debug)
+                })
+            })
+        }
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
@@ -344,26 +358,6 @@ extension AppDelegate {
 
 //        if let currentUser = User.current {
 //            currentUser.clearCache(atLastWeek: true)
-//        }
-    }
-    
-    
-    /// Microservices
-    private func startGateService() {
-        guard !User.isAnonymous else {
-            return
-        }
-        
-        // API 'getSecret'
-//        DispatchQueue.main.async {
-//            RestAPIManager.getSecretKey(completion: { (secretKey, errorAPI) in
-//                guard errorAPI == nil else {
-//                    Logger.log(message: "errorAPI = \(errorAPI!.localizedDescription)", event: .debug)
-//                    return
-//                }
-//                
-//                Logger.log(message: "secretKey = \(secretKey!)", event: .debug)
-//            })
 //        }
     }
 }
