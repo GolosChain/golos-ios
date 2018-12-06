@@ -4,7 +4,7 @@ PODS:
   - BeyovaJSON (0.0.7)
   - Crashlytics (3.12.0):
     - Fabric (~> 1.9.0)
-  - CryptoSwift (0.13.0)
+  - CryptoSwift (0.13.1)
   - DLRadioButton (1.4.12)
   - Down (0.5.2)
   - Fabric (1.9.0)
@@ -126,7 +126,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   GoloSwift:
-    :commit: ab8f1532b81041f267e08a49faabfa4be8b3968c
+    :commit: fa9b6733c62bf709ea55b459dc4d5f1c28853149
     :git: https://github.com/GolosChain/GoloSwift.git
 
 SPEC CHECKSUMS:
@@ -134,7 +134,7 @@ SPEC CHECKSUMS:
   Amplitude-iOS: 2ad4d7270c99186236c1272a3a9425463b1ae1a7
   BeyovaJSON: 085c9fa886fa0b13e2964cc8c6965fab5bc7f90f
   Crashlytics: 07fb167b1694128c1c9a5a5cc319b0e9c3ca0933
-  CryptoSwift: 16e78bebf567bad1c87b2d58f6547f25b74c31aa
+  CryptoSwift: ff68c35a53e03177d31aaa2c1e8b3e010aeed6cb
   DLRadioButton: d7c4e225ed0e8013cef7be61455230c7557ad7c1
   Down: 587371ad58002b06023d9c602519216862c3acbc
   Fabric: f988e33c97f08930a413e08123064d2e5f68d655

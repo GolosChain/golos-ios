@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9B9EEECEB4036C0063E2680C4F26E190"
+               BlueprintIdentifier = "0BF8E92C4C12E6BC5CC66CCF3EBF7DCD"
                BuildableName = "GoloSwift.framework"
                BlueprintName = "GoloSwift"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9B9EEECEB4036C0063E2680C4F26E190"
+            BlueprintIdentifier = "0BF8E92C4C12E6BC5CC66CCF3EBF7DCD"
             BuildableName = "GoloSwift.framework"
             BlueprintName = "GoloSwift"
             ReferencedContainer = "container:Pods.xcodeproj">

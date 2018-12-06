@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Class Functions
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         Logger.log(message: "Success", event: .severe)
-                
+        
         // First create App Settings
         _ = AppSettings.instance()
         
@@ -55,30 +55,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.clearCache()
         
         // Main window
-        window?.backgroundColor = .white
-        window?.makeKeyAndVisible()
-
-        return true
+//        window?.backgroundColor = .white
+//        window?.makeKeyAndVisible()
+//
+//        return true
+        return false
     }
     
     func applicationWillResignActive(_ application: UIApplication) {
         Logger.log(message: "Success", event: .severe)
         
-        webSocket.disconnect()
-    }
+        webSocketBlockchain.disconnect()
+        webSocketMicroservices.disconnect()    }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
         Logger.log(message: "Success", event: .severe)
         
         application.applicationIconBadgeNumber = 0
 
-        if !webSocket.isConnected {
-            webSocket.connect()
+        if !WebSocketManager.instanceBlockchain.webSocket.isConnected {
+            WebSocketManager.instanceBlockchain.webSocket.connect()
             
-            if webSocket.delegate == nil {
-                webSocket.delegate = webSocketManager
+            if WebSocketManager.instanceBlockchain.webSocket.delegate == nil {
+                WebSocketManager.instanceBlockchain.webSocket.delegate = WebSocketManager.instanceBlockchain
             }
         }
+        
+        if !WebSocketManager.instanceMicroservices.webSocket.isConnected {
+            WebSocketManager.instanceMicroservices.webSocket.connect()
+            
+            if WebSocketManager.instanceMicroservices.webSocket.delegate == nil {
+                WebSocketManager.instanceMicroservices.webSocket.delegate = WebSocketManager.instanceMicroservices
+            }
+        }        
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
@@ -335,6 +344,26 @@ extension AppDelegate {
 
 //        if let currentUser = User.current {
 //            currentUser.clearCache(atLastWeek: true)
+//        }
+    }
+    
+    
+    /// Microservices
+    private func startGateService() {
+        guard !User.isAnonymous else {
+            return
+        }
+        
+        // API 'getSecret'
+//        DispatchQueue.main.async {
+//            RestAPIManager.getSecretKey(completion: { (secretKey, errorAPI) in
+//                guard errorAPI == nil else {
+//                    Logger.log(message: "errorAPI = \(errorAPI!.localizedDescription)", event: .debug)
+//                    return
+//                }
+//                
+//                Logger.log(message: "secretKey = \(secretKey!)", event: .debug)
+//            })
 //        }
     }
 }

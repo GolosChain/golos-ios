@@ -278,7 +278,7 @@ public struct ResponseAPIDynamicGlobalProperty: Decodable {
     public let head_block_number: Int64
     public let total_vesting_shares: String
     public let total_vesting_fund_steem: String
-
+    
     
     // MARK: - In reserve
     /*
@@ -487,4 +487,21 @@ public struct ResponseAPIEntry: Decodable {
     public let reblog_title: String?
     public let reblog_body: String?
     public let reblog_json_metadata: String?
+}
+
+
+// MARK: -
+public struct ResponseAPIMicroserviceSecretResult: Decodable {
+    // MARK: - In work
+    public let id: Int64
+    public let jsonrpc: String
+    public let result: ResponseAPIMicroserviceSecret?
+    public let error: ResponseAPIError?
+}
+
+
+// MARK: -
+public struct ResponseAPIMicroserviceSecret: Decodable {
+    // MARK: - In work
+    public let secret: String
 }

@@ -9,25 +9,27 @@
 import Foundation
 
 /// Array of request unique IDs
-public var requestIDs                       =   [Int]()
+public var requestIDs   =   [Int]()
 
 /// Type of request API
-public typealias RequestMethodAPIType       =   (id: Int, requestMessage: String?, startTime: Date, methodAPIType: MethodAPIType, errorAPI: ErrorAPI?)
-public typealias RequestOperationAPIType    =   (id: Int, requestMessage: String?, startTime: Date, operationAPIType: OperationAPIType, errorAPI: ErrorAPI?)
+public typealias RequestMethodAPIType               =   (id: Int, requestMessage: String?, startTime: Date, methodAPIType: MethodAPIType, errorAPI: ErrorAPI?)
+public typealias RequestOperationAPIType            =   (id: Int, requestMessage: String?, startTime: Date, operationAPIType: OperationAPIType, errorAPI: ErrorAPI?)
+public typealias RequestMicroserviceMethodAPIType   =   (id: Int, requestMessage: String?, startTime: Date, microserviceMethodAPIType: MicroserviceMethodAPIType, errorAPI: ErrorAPI?)
 
 /// Type of response API
-public typealias ResponseAPIType            =   (responseAPI: Decodable?, errorAPI: ErrorAPI?)
-public typealias ResultAPIHandler           =   (Decodable) -> Void
-public typealias ErrorAPIHandler            =   (ErrorAPI) -> Void
+public typealias ResponseAPIType    =   (responseAPI: Decodable?, errorAPI: ErrorAPI?)
+public typealias ResultAPIHandler   =   (Decodable) -> Void
+public typealias ErrorAPIHandler    =   (ErrorAPI) -> Void
 
 /// Type of stored request API
-public typealias RequestMethodAPIStore      =   (methodAPIType: RequestMethodAPIType, completion: (ResponseAPIType) -> Void)
-public typealias RequestOperationAPIStore   =   (operationAPIType: RequestOperationAPIType, completion: (ResponseAPIType) -> Void)
+public typealias RequestMethodAPIStore              =   (methodAPIType: RequestMethodAPIType, completion: (ResponseAPIType) -> Void)
+public typealias RequestOperationAPIStore           =   (operationAPIType: RequestOperationAPIType, completion: (ResponseAPIType) -> Void)
+public typealias RequestMicroserviceMethodAPIStore  =   (microserviceMethodAPIType: RequestMicroserviceMethodAPIType, completion: (ResponseAPIType) -> Void)
 
 
 public class Broadcast {
     // MARK: - Properties
-    public static let shared                =   Broadcast()
+    public static let shared = Broadcast()
     
     
     // MARK: - Class Initialization
@@ -76,7 +78,7 @@ public class Broadcast {
         Logger.log(message: "\nrequestAPIType:\n\t\(requestMessage)\n", event: .debug)
         
         // Send GET Request messages to Blockchain
-        webSocketManager.sendGETRequest(withMethodAPIType: requestAPIType, completion: { responseAPIType in
+        WebSocketManager.instanceBlockchain.sendGETRequest(withMethodAPIType: requestAPIType, completion: { responseAPIType in
             if let responseAPI = responseAPIType.responseAPI {
                 onResult(responseAPI)
             }
@@ -92,7 +94,7 @@ public class Broadcast {
     private func prepareGET(requestByMethodAPIType methodAPIType: MethodAPIType) -> RequestMethodAPIType {
         Logger.log(message: "Success", event: .severe)
         
-        let codeID                  =   generate(methodUniqueId: true)
+        let codeID                  =   generateUniqueId(forType: methodAPIType)
         let requestParamsType       =   methodAPIType.introduced()
         
         let requestAPI              =   RequestAPI(id:          codeID,
@@ -119,7 +121,7 @@ public class Broadcast {
                 
             case .getUserBlogEntries(_):
                 jsonData            =   Data((requestParams as! String).utf8)
-
+                
             default:
                 break
             }
@@ -186,7 +188,7 @@ public class Broadcast {
             }
             
             // Send POST Request messages to Blockchain
-            webSocketManager.sendPOSTRequest(withOperationAPIType: requestOperationAPIType, completion: { responseAPIType in
+            WebSocketManager.instanceBlockchain.sendPOSTRequest(withOperationAPIType: requestOperationAPIType, completion: { responseAPIType in
                 if let responseAPI = responseAPIType.responseAPI {
                     onResult(responseAPI)
                 }
@@ -203,7 +205,7 @@ public class Broadcast {
     private func preparePOST(requestByOperationAPIType operationAPIType: OperationAPIType, byTransaction transaction: Transaction) -> RequestOperationAPIType {
         Logger.log(message: "Success", event: .severe)
         
-        let codeID                  =   generate(methodUniqueId: false)
+        let codeID                  =   generateUniqueId(forType: operationAPIType)
         let requestParamsType       =   operationAPIType.introduced()
         
         let requestAPI              =   RequestAPI(id:          codeID,
@@ -294,12 +296,12 @@ public class Broadcast {
         
         // Network Layer (WebSocketManager)
         DispatchQueue.main.async {
-            webSocketManager.sendGETRequest(withMethodAPIType: requestMethodAPIType, completion: { responseAPIType in
+            WebSocketManager.instanceBlockchain.sendGETRequest(withMethodAPIType: requestMethodAPIType, completion: { responseAPIType in
                 Logger.log(message: "\nresponseAPIType:\n\t\(responseAPIType)", event: .debug)
                 
                 guard   let responseAPI         =   responseAPIType.responseAPI,
-                        let responseAPIResult   =   responseAPI as? ResponseAPIDynamicGlobalPropertiesResult,
-                        let globalProperties    =   responseAPIResult.result else {
+                    let responseAPIResult   =   responseAPI as? ResponseAPIDynamicGlobalPropertiesResult,
+                    let globalProperties    =   responseAPIResult.result else {
                         Logger.log(message: responseAPIType.errorAPI!.caseInfo.message, event: .error)
                         completion(nil)
                         return
@@ -312,17 +314,96 @@ public class Broadcast {
     
     
     /// Generating a unique ID
-    //  for method:     < 500
-    //  for operation:  > 500
-    private func generate(methodUniqueId: Bool) -> Int {
+    //  for method:                 < 100
+    //  for operation:              100 < ??? < 200
+    //  for microserviceMethod:     200 < ??? < 300
+    private func generateUniqueId(forType type: Any) -> Int {
         var generatedID = 0
         
         repeat {
-            generatedID = Int((arc4random_uniform(500)) + (methodUniqueId ? 0 : 500))
+            if type is MethodAPIType {
+                generatedID = Int(arc4random_uniform(100))
+            }
+                
+            else if type is OperationAPIType {
+                generatedID = Int(arc4random_uniform(100)) + 100
+            }
+                
+            else if type is MicroserviceMethodAPIType {
+                generatedID = Int(arc4random_uniform(100)) + 200
+            }
         } while requestIDs.contains(generatedID)
         
         requestIDs.append(generatedID)
         
         return generatedID
+    }
+}
+
+
+// MARK: - Microservices
+extension Broadcast {
+    ///
+    public func executeGET(byMicroserviceMethodAPIType microserviceMethodAPIType: MicroserviceMethodAPIType, onResult: @escaping (Decodable) -> Void, onError: @escaping (ErrorAPI) -> Void) {
+        // Create GET Request messages to microservice
+        let requestAPIType = self.prepareGET(requestByMicroserviceMethodAPIType: microserviceMethodAPIType)
+        
+        guard let requestMessage = requestAPIType.requestMessage else {
+            onError(ErrorAPI.requestFailed(message: "GET Request Failed"))
+            return
+        }
+        
+        Logger.log(message: "\nrequestMicroserviceMethodAPIType:\n\t\(requestMessage)\n", event: .debug)
+        
+        // Send GET Request messages to microservice
+        WebSocketManager.instanceMicroservices.sendGETRequest(withMicroserviceMethodAPIType: requestAPIType, completion: { responseAPIType in
+            if let responseAPI = responseAPIType.responseAPI {
+                onResult(responseAPI)
+            }
+                
+            else {
+                onError(ErrorAPI.responseUnsuccessful(message: "Result not found"))
+            }
+        })
+    }
+    
+    ///
+    private func prepareGET(requestByMicroserviceMethodAPIType microserviceMethodAPIType: MicroserviceMethodAPIType) -> RequestMicroserviceMethodAPIType {
+        Logger.log(message: "Success", event: .severe)
+        
+        let codeID              =   generateUniqueId(forType: microserviceMethodAPIType)
+        let requestParamsType   =   microserviceMethodAPIType.introduced()
+        
+        let requestAPI          =   RequestAPI(id:          codeID,
+                                               method:      requestParamsType.nameAPI,
+                                               jsonrpc:     "2.0",
+                                               params:      requestParamsType.parameters)
+        
+        do {
+            // Encode data
+            let jsonEncoder     =   JSONEncoder()
+            var jsonData        =   Data()
+            var jsonString: String
+            
+            switch microserviceMethodAPIType {
+            case .getSecretKey(_):
+                jsonData        =   try jsonEncoder.encode(requestAPI)
+                jsonString      =   "\(String(data: jsonData, encoding: .utf8)!)"
+            }
+            
+            jsonString          =   jsonString
+                .replacingOccurrences(of: "[[[", with: "[[")
+                .replacingOccurrences(of: "[\"nil\"]", with: "]")
+            
+            Logger.log(message: "\nEncoded JSON -> String:\n\t " + jsonString, event: .debug)
+            
+            // (id: Int, requestMessage: String?, startTime: Date, microserviceMethodAPIType: MicroserviceMethodAPIType, errorAPI: ErrorAPI?)
+            return (id: codeID, requestMessage: jsonString, startTime: Date(), microserviceMethodAPIType: requestParamsType.microserviceMethodAPIType, errorAPI: nil)
+        } catch {
+            Logger.log(message: "Error: \(error.localizedDescription)", event: .error)
+            
+            // (id: Int, requestMessage: String?, startTime: Date, microserviceMethodAPIType: MicroserviceMethodAPIType, errorAPI: ErrorAPI?)
+            return (id: codeID, requestMessage: nil, startTime: Date(), microserviceMethodAPIType: requestParamsType.microserviceMethodAPIType, errorAPI: ErrorAPI.requestFailed(message: "GET Request Failed"))
+        }
     }
 }

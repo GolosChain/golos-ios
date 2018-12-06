@@ -9,14 +9,33 @@
 import Foundation
 import Starscream
 
+public enum WebSocketManagerMode {
+    case blockchain
+    case microservices
+}
+
 public class WebSocketManager {
     // MARK: - Properties
+    private var mode: WebSocketManagerMode  =   .blockchain
+    public var webSocket: WebSocket         =   webSocketBlockchain
+    
+    public static let instanceBlockchain    =   WebSocketManager(withMode: .blockchain)
+    public static let instanceMicroservices =   WebSocketManager(withMode: .microservices)
+    
     private var errorAPI: ErrorAPI?
-    private var requestMethodsAPIStore      =   [Int: RequestMethodAPIStore]()
-    private var requestOperationsAPIStore   =   [Int: RequestOperationAPIStore]()
+    private var requestMethodsAPIStore              =   [Int: RequestMethodAPIStore]()
+    private var requestOperationsAPIStore           =   [Int: RequestOperationAPIStore]()
+    private var requestMicroserviceMethodsAPIStore  =   [Int: RequestMicroserviceMethodAPIStore]()
     
     
     // MARK: - Class Initialization
+    private init() {}
+    
+    init(withMode mode: WebSocketManagerMode = .blockchain) {
+        self.mode       =   mode
+        self.webSocket  =   mode == .blockchain ? webSocketBlockchain : webSocketMicroservices
+    }
+    
     deinit {
         Logger.log(message: "Success", event: .severe)
     }
@@ -26,42 +45,52 @@ public class WebSocketManager {
     public func connect() {
         Logger.log(message: "Success", event: .severe)
         
-        if webSocket.isConnected { return }
-        webSocket.connect()
+        if self.webSocket.isConnected { return }
+        
+        self.webSocket.connect()
     }
     
     public func disconnect() {
         Logger.log(message: "Success", event: .severe)
         
-        guard webSocket.isConnected else { return }
+        guard self.webSocket.isConnected else { return }
         
         let requestMethodAPIStore       =   self.requestMethodsAPIStore.first?.value
         let requestOperationAPIStore    =   self.requestOperationsAPIStore.first?.value
         let isSendedRequestMethodAPI    =   requestOperationAPIStore == nil
         
         isSendedRequestMethodAPI ?  requestMethodAPIStore!.completion((responseAPI: nil, errorAPI: ErrorAPI.responseUnsuccessful(message: "No Internet Connection"))) :
-                                    requestOperationAPIStore!.completion((responseAPI: nil, errorAPI: ErrorAPI.responseUnsuccessful(message: "No Internet Connection")))
+            requestOperationAPIStore!.completion((responseAPI: nil, errorAPI: ErrorAPI.responseUnsuccessful(message: "No Internet Connection")))
         
         // Clean store lists
         requestIDs                      =   [Int]()
         self.requestMethodsAPIStore     =   [Int: RequestMethodAPIStore]()
         self.requestOperationsAPIStore  =   [Int: RequestOperationAPIStore]()
         
-        webSocket.disconnect()
+        self.webSocket.disconnect()
     }
     
     public func sendMessage(_ message: String) {
         Logger.log(message: "\nrequestMessage = \n\t\(message)", event: .debug)
-        webSocket.write(string: message)
+        self.webSocket.write(string: message)
     }
     
     
-    /// Websocket: send GET Request message
+    /// Blockchain: send GET Request message
     public func sendGETRequest(withMethodAPIType type: RequestMethodAPIType, completion: @escaping (ResponseAPIType) -> Void) {
         let requestMethodAPITypeStore           =   (methodAPIType: type, completion: completion)
         self.requestMethodsAPIStore[type.id]    =   requestMethodAPITypeStore
         
-        webSocket.isConnected ? sendMessage(type.requestMessage!) : webSocket.connect()
+        self.webSocket.isConnected ? sendMessage(type.requestMessage!) : self.webSocket.connect()
+    }
+    
+    
+    /// Microservices: send GET Request message
+    public func sendGETRequest(withMicroserviceMethodAPIType type: RequestMicroserviceMethodAPIType, completion: @escaping (ResponseAPIType) -> Void) {
+        let requestMicroserviceMethodAPITypeStore           =   (microserviceMethodAPIType: type, completion: completion)
+        self.requestMicroserviceMethodsAPIStore[type.id]    =   requestMicroserviceMethodAPITypeStore
+        
+        self.webSocket.isConnected ? sendMessage(type.requestMessage!) : self.webSocket.connect()
     }
     
     
@@ -70,7 +99,7 @@ public class WebSocketManager {
         let requestOperationAPITypeStore        =   (operationAPIType: type, completion: completion)
         self.requestOperationsAPIStore[type.id] =   requestOperationAPITypeStore
         
-        webSocket.isConnected ? sendMessage(type.requestMessage!) : webSocket.connect()
+        self.webSocket.isConnected ? sendMessage(type.requestMessage!) : self.webSocket.connect()
     }
     
     
@@ -85,7 +114,20 @@ public class WebSocketManager {
      */
     private func validate(json: [String: Any], completion: @escaping (_ codeID: Int, _ hasError: Bool) -> Void) {
 //        Logger.log(message: json.description, event:6 .debug)
-        completion(json["id"] as! Int, json["error"] != nil)
+        guard let id = json["id"] as? Int else {
+            MicroserviceManager.getSecretKey(completion: { (secretKey, errorAPI) in
+                guard errorAPI == nil else {
+                    Logger.log(message: "errorAPI = \(errorAPI!.localizedDescription)", event: .debug)
+                    return
+                }
+                
+                Logger.log(message: "secretKey = \(secretKey!)", event: .debug)
+            })
+            
+            return
+        }
+        
+        completion(id, json["error"] != nil)
     }
     
     
@@ -121,7 +163,7 @@ public class WebSocketManager {
                 
             case .getContentAllReplies(_):
                 return (responseAPI: try JSONDecoder().decode(ResponseAPIPostsResult.self, from: jsonData), errorAPI: nil)
-            
+                
             case .getActiveVotes(_):
                 return (responseAPI: try JSONDecoder().decode(ResponseAPIVoterResult.self, from: jsonData), errorAPI: nil)
                 
@@ -149,9 +191,22 @@ public class WebSocketManager {
                 
             case .createPost(_):
                 return (responseAPI: try JSONDecoder().decode(ResponseAPIBlockchainPostResult.self, from: jsonData), errorAPI: nil)
-
+                
             case .subscribe(_):
                 return (responseAPI: try JSONDecoder().decode(ResponseAPIBlockchainPostResult.self, from: jsonData), errorAPI: nil)
+            }
+        } catch {
+            Logger.log(message: "\(error)", event: .error)
+            return (responseAPI: nil, errorAPI: ErrorAPI.jsonParsingFailure(message: error.localizedDescription))
+        }
+    }
+    
+    func decode(from jsonData: Data, byMicroserviceMethodAPIType microserviceMethodAPIType: MicroserviceMethodAPIType) throws -> ResponseAPIType {
+        do {
+            // Gate microservices
+            switch microserviceMethodAPIType {
+            case .getSecretKey(_):
+                return (responseAPI: try JSONDecoder().decode(ResponseAPIMicroserviceSecretResult.self, from: jsonData), errorAPI: nil)
             }
         } catch {
             Logger.log(message: "\(error)", event: .error)
@@ -186,9 +241,6 @@ extension WebSocketManager: WebSocketDelegate {
                     return
                 }
                 
-                // Check stored sended Request by received ID
-                let isRequestMethodAPIStore = codeID < 500
-                
                 do {
                     let jsonDecoder = JSONDecoder()
                     
@@ -197,9 +249,8 @@ extension WebSocketManager: WebSocketDelegate {
                         self?.errorAPI = ErrorAPI.requestFailed(message: responseAPIResultError.error.message.components(separatedBy: "second.end(): ").last!)
                     }
                     
-                    switch isRequestMethodAPIStore {
                     // Method API's
-                    case true:
+                    if codeID < 100 {
                         guard let requestMethodAPIStore = self?.requestMethodsAPIStore[codeID] else { return }
                         
                         responseAPIType = try self?.decode(from: jsonData, byMethodAPIType: requestMethodAPIStore.methodAPIType.methodAPIType)
@@ -213,10 +264,11 @@ extension WebSocketManager: WebSocketDelegate {
 //                        Logger.log(message: "\nresponseMethodAPIResult model:\n\t\(responseAPIResult)", event: .debug)
                         
                         // Check websocket timeout: resend current request message
-                        self?.checkTimeout(result: responseAPIResult, byMethodAPI: true, requestMethodAPIStore: requestMethodAPIStore, requestOperationAPIStore: nil)
+                        self?.checkTimeout(result: responseAPIResult, requestAPIStore: requestMethodAPIStore)
+                    }
                         
                     // Operation API's
-                    case false:
+                    else if 100..<200 ~= codeID {
                         guard let requestOperationAPIStore = self?.requestOperationsAPIStore[codeID] else { return }
                         
                         responseAPIType = try self?.decode(from: jsonData, byOperationAPIType: requestOperationAPIStore.operationAPIType.operationAPIType)
@@ -230,7 +282,25 @@ extension WebSocketManager: WebSocketDelegate {
 //                        Logger.log(message: "\nresponseOperationAPIResult model:\n\t\(responseAPIResult)", event: .debug)
                         
                         // Check websocket timeout: resend current request message
-                        self?.checkTimeout(result: responseAPIResult, byMethodAPI: false, requestMethodAPIStore: nil, requestOperationAPIStore: requestOperationAPIStore)
+                        self?.checkTimeout(result: responseAPIResult, requestAPIStore: requestOperationAPIStore)
+                    }
+                        
+                    // Microservice API's
+                    else if 200..<300 ~= codeID {
+                        guard let requestMicroserviceMethodAPIStore = self?.requestMicroserviceMethodsAPIStore[codeID] else { return }
+                        
+                        responseAPIType = try self?.decode(from: jsonData, byMicroserviceMethodAPIType: requestMicroserviceMethodAPIStore.microserviceMethodAPIType.microserviceMethodAPIType)
+                        
+                        guard let responseAPIResult = responseAPIType?.responseAPI else {
+                            self?.errorAPI = responseAPIType?.errorAPI ?? ErrorAPI.invalidData(message: "Response Unsuccessful")
+                            
+                            return requestMicroserviceMethodAPIStore.completion((responseAPI: nil, errorAPI: self?.errorAPI))
+                        }
+                        
+                        Logger.log(message: "\nresponseMicroserviceAPIResult model:\n\t\(responseAPIResult)", event: .debug)
+                        
+                        // Check websocket timeout: resend current request message
+                        self?.checkTimeout(result: responseAPIResult, requestAPIStore: requestMicroserviceMethodAPIStore)
                     }
                 } catch {
                     Logger.log(message: "\nResponse Unsuccessful:\n\t\(error.localizedDescription)", event: .error)
@@ -244,56 +314,102 @@ extension WebSocketManager: WebSocketDelegate {
                         requestOperationAPIStore.completion((responseAPI: nil, errorAPI: self?.errorAPI))
                     }
                         
+                    else if let requestMicroserviceMethodAPIStore = self?.requestMicroserviceMethodsAPIStore[codeID] {
+                        requestMicroserviceMethodAPIStore.completion((responseAPI: nil, errorAPI: self?.errorAPI))
+                    }
+                        
                     else { return }
                 }
             })
         }
     }
     
-    private func checkTimeout(result: Decodable, byMethodAPI: Bool, requestMethodAPIStore: RequestMethodAPIStore?, requestOperationAPIStore: RequestOperationAPIStore?) {
-        let startTime   =   byMethodAPI ? requestMethodAPIStore!.methodAPIType.startTime : requestOperationAPIStore!.operationAPIType.startTime
+    private func checkTimeout(result: Decodable, requestAPIStore: Any) {
+        var codeID: Int     =   0
+        var startTime: Date =   Date()
+        
+        if let requestMethodAPIStore = requestAPIStore as? RequestMethodAPIStore {
+            codeID      =   requestMethodAPIStore.methodAPIType.id
+            startTime   =   requestMethodAPIStore.methodAPIType.startTime
+        }
+            
+        else if let requestOperationAPIStore = requestAPIStore as? RequestOperationAPIStore {
+            codeID      =   requestOperationAPIStore.operationAPIType.id
+            startTime   =   requestOperationAPIStore.operationAPIType.startTime
+        }
+            
+        else if let requestMicroserviceMethodAPIStore = requestAPIStore as? RequestMicroserviceMethodAPIStore {
+            codeID      =   requestMicroserviceMethodAPIStore.microserviceMethodAPIType.id
+            startTime   =   requestMicroserviceMethodAPIStore.microserviceMethodAPIType.startTime
+        }
+        
         let timeout     =   Double(Date().timeIntervalSince(startTime))
-        let codeID      =   byMethodAPI ? requestMethodAPIStore!.methodAPIType.id : requestOperationAPIStore!.operationAPIType.id
         
         Logger.log(message: "\nwebSocket timeout =\n\t\(timeout) sec", event: .debug)
         
         // Check websocket timeout: resend current request message
         if timeout >= webSocketTimeout {
-            switch byMethodAPI {
             // GET Request
-            case true:
-                let newRequestMethodAPIStore = (methodAPIType:  (id:                    codeID,
-                                                                 requestMessage:        requestMethodAPIStore!.methodAPIType.requestMessage,
-                                                                 startTime:             Date(),
-                                                                 methodAPIType:         requestMethodAPIStore!.methodAPIType.methodAPIType,
-                                                                 errorAPI:              requestMethodAPIStore!.methodAPIType.errorAPI),
-                                                completion:     requestMethodAPIStore!.completion)
+            if let requestMethodAPIStore = requestAPIStore as? RequestMethodAPIStore {
+                let newRequestMethodAPIStore        =   (methodAPIType:  (id:                    codeID,
+                                                                          requestMessage:        requestMethodAPIStore.methodAPIType.requestMessage,
+                                                                          startTime:             Date(),
+                                                                          methodAPIType:         requestMethodAPIStore.methodAPIType.methodAPIType,
+                                                                          errorAPI:              requestMethodAPIStore.methodAPIType.errorAPI),
+                                                         completion:     requestMethodAPIStore.completion)
                 
                 self.requestMethodsAPIStore[codeID] = newRequestMethodAPIStore
-                self.sendMessage(requestMethodAPIStore!.methodAPIType.requestMessage!)
+                self.sendMessage(requestMethodAPIStore.methodAPIType.requestMessage!)
+            }
                 
             // POST Request
-            case false:
-                let newRequestOperationAPIStore = (operationAPIType:    (id:                    codeID,
-                                                                         requestMessage:        requestOperationAPIStore!.operationAPIType.requestMessage,
-                                                                         startTime:             Date(),
-                                                                         operationAPIType:      requestOperationAPIStore!.operationAPIType.operationAPIType,
-                                                                         errorAPI:              requestOperationAPIStore!.operationAPIType.errorAPI),
-                                                   completion:          requestOperationAPIStore!.completion)
+            else if let requestOperationAPIStore = requestAPIStore as? RequestOperationAPIStore {
+                let newRequestOperationAPIStore     =   (operationAPIType:    (id:                    codeID,
+                                                                               requestMessage:        requestOperationAPIStore.operationAPIType.requestMessage,
+                                                                               startTime:             Date(),
+                                                                               operationAPIType:      requestOperationAPIStore.operationAPIType.operationAPIType,
+                                                                               errorAPI:              requestOperationAPIStore.operationAPIType.errorAPI),
+                                                         completion:          requestOperationAPIStore.completion)
                 
                 self.requestOperationsAPIStore[codeID] = newRequestOperationAPIStore
-                self.sendMessage(requestOperationAPIStore!.operationAPIType.requestMessage!)
+                self.sendMessage(requestOperationAPIStore.operationAPIType.requestMessage!)
+            }
+                
+            // Microservice Method Request
+            else if let requestMicroserviceMethodAPIStore = requestAPIStore as? RequestMicroserviceMethodAPIStore {
+                let newRequestMicroserviceMethodAPIStore  =   (microserviceMethodAPIType:   (id:                        codeID,
+                                                                                             requestMessage:            requestMicroserviceMethodAPIStore.microserviceMethodAPIType.requestMessage,
+                                                                                             startTime:                 Date(),
+                                                                                             microserviceMethodAPIType: requestMicroserviceMethodAPIStore.microserviceMethodAPIType.microserviceMethodAPIType,
+                                                                                             errorAPI:                  requestMicroserviceMethodAPIStore.microserviceMethodAPIType.errorAPI),
+                                                               completion:                  requestMicroserviceMethodAPIStore.completion)
+                
+                self.requestMicroserviceMethodsAPIStore[codeID] = newRequestMicroserviceMethodAPIStore
+                self.sendMessage(requestMicroserviceMethodAPIStore.microserviceMethodAPIType.requestMessage!)
             }
         }
             
-            // Check websocket timeout: handler completion
+        // Check websocket timeout: handler completion
         else {
-            byMethodAPI ?   requestMethodAPIStore!.completion((responseAPI: result, errorAPI: self.errorAPI)) :
-                            requestOperationAPIStore!.completion((responseAPI: result, errorAPI: self.errorAPI))
+            // GET Request
+            if let requestMethodAPIStore = requestAPIStore as? RequestMethodAPIStore {
+                requestMethodAPIStore.completion((responseAPI: result, errorAPI: self.errorAPI))
+            }
+                
+            // POST Request
+            else if let requestOperationAPIStore = requestAPIStore as? RequestOperationAPIStore {
+                requestOperationAPIStore.completion((responseAPI: result, errorAPI: self.errorAPI))
+            }
+                
+            // Microservice Request
+            else if let requestMicroserviceAPIStore = requestAPIStore as? RequestMicroserviceMethodAPIStore {
+                requestMicroserviceAPIStore.completion((responseAPI: result, errorAPI: self.errorAPI))
+            }
             
             // Clean requestsAPIStore
-            self.requestMethodsAPIStore[codeID] = nil
-            self.requestOperationsAPIStore[codeID] = nil
+            self.requestMethodsAPIStore[codeID]                 =   nil
+            self.requestOperationsAPIStore[codeID]              =   nil
+            self.requestMicroserviceMethodsAPIStore[codeID]     =   nil
             
             // Remove unique request ID
             if let requestID = requestIDs.index(of: codeID) {

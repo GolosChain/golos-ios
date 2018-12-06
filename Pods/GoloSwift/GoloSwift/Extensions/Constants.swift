@@ -19,17 +19,17 @@ public enum AppBuildConfig: String {
 }
 
 /// App Scheme
-public let appBuildConfig               =   AppBuildConfig.init(rawValue: (Bundle.main.infoDictionary?["Config"] as? String)!.replacingOccurrences(of: "\\", with: ""))
+public let appBuildConfig   =   AppBuildConfig.init(rawValue: (Bundle.main.infoDictionary?["Config"] as? String)!.replacingOccurrences(of: "\\", with: ""))
 
 
 /// Websocket
-public var webSocket                    =   WebSocket(url: URL(string: (appBuildConfig == AppBuildConfig.development) ? "wss://ws.testnet.golos.io" : "wss://ws.golos.io")!)
-public let webSocketManager             =   WebSocketManager()
+public var webSocketBlockchain      =   WebSocket(url: URL(string: (appBuildConfig == AppBuildConfig.development) ? "wss://ws.testnet.golos.io" : "wss://ws.golos.io")!)
+public var webSocketMicroservices   =   WebSocket(url: URL(string: "wss://gate.golos.io")!)
 
-public let imagesURL: String            =   "https://images.golos.io"
+public let imagesURL: String        =   "https://images.golos.io"
 
 
 /// Websocket response max timeout, in seconds
-public let loadDataLimit: UInt          =   10
-public let webSocketLimit: UInt         =   10
-public let webSocketTimeout             =   60.0
+public let loadDataLimit: UInt      =   10
+public let webSocketLimit: UInt     =   10
+public let webSocketTimeout         =   60.0
