@@ -72,10 +72,6 @@ let appVersion                          =   String(format: "%@.%@", Bundle.main.
 var selectedTabBarItem: Int             =   0
 
 
-// Keys
-let userStateKey                        =   "UserState"
-
-
 // Amplitude SDK
 enum AmplitudeEvent: String {
     case like                           =   "ios_post_like_"

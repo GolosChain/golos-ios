@@ -65,7 +65,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Logger.log(message: "Success", event: .severe)
         
         webSocketBlockchain.disconnect()
-        webSocketMicroservices.disconnect()    }
+        webSocketMicroservices.disconnect()
+    }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
         Logger.log(message: "Success", event: .severe)
@@ -80,6 +81,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         
+        guard !User.isAnonymous else { return }
+
+        // Load stored data
+//        let secretKey       =   KeychainManager.loadData(forUserNickName: User.current!.nickName, withKey: keySecret)?.values.first ?? "XXX"
+//        let privateKey      =   KeychainManager.load(privateKey: keyPrivate, forUserNickName: User.current!.nickName)
+//        Logger.log(message: "secretKey = \n\(secretKey)", event: .debug)
+//        Logger.log(message: "privateKeyData = \n\(privateKey ?? "XXX")", event: .debug)
+        
         if !WebSocketManager.instanceMicroservices.webSocket.isConnected {
             WebSocketManager.instanceMicroservices.webSocket.connect()
             
@@ -91,14 +100,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Handlers
         WebSocketManager.instanceMicroservices.completionIsConnected    =   {
             DispatchQueue.main.async(execute: {
-                guard !User.isAnonymous else { return }
-                
-                RestAPIManager.getSecretKey(completion: { (secretKey, errorAPI) in
+                RestAPIManager.getSecretKey(completion: { (resultKey, errorAPI) in
                     guard errorAPI == nil else {
                         return
                     }
                     
-                    Logger.log(message: "secretKey = \(secretKey!)", event: .debug)
+                    Logger.log(message: "secretKey = \(resultKey!)", event: .debug)
+                    _ = KeychainManager.save(data: [keySecret: resultKey!], userNickName: User.current!.nickName)
                 })
             })
         }

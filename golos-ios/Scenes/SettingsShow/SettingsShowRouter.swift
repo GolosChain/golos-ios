@@ -41,10 +41,12 @@ class SettingsShowRouter: NSObject, SettingsShowRoutingLogic, SettingsShowDataPa
     // MARK: - Routing
     func routeToLoginShowScene() {
         DispatchQueue.main.async {
+            _ = KeychainManager.deleteAllData(forUserNickName: User.current!.nickName)
+            WebSocketManager.instanceMicroservices.webSocket.disconnect()
             StateMachine.load().changeState(.loggedOut)
             User.current!.setIsAuthorized(false)
             User.clearCache()
-            
+
             // Firebase Cloud Messaging: unsubscribe from topics
             fcm.unsubscribeFromTopics()
         }

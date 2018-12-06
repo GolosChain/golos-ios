@@ -11,45 +11,66 @@ import Foundation
 
 public class KeychainManager {
     /// Delete stored data from Keychain
-    public static func deleteKey(byType type: PrivateKeyType, forUserNickName userNickName: String) -> Bool {
+    public static func deleteData(forUserNickName userNickName: String, withKey key: String) -> Bool {
         do {
-            try Locksmith.deleteDataForUserAccount(userAccount: userNickName)
-            Logger.log(message: "Successfully delete Login data from Keychain.", event: .severe)
+            try Locksmith.deleteDataForUserAccount(userAccount: userNickName, inService: key)
+            Logger.log(message: "Successfully delete User data by key from Keychain.", event: .severe)
             return true
         } catch {
-            Logger.log(message: "Delete Login data from Keychain error.", event: .error)
+            Logger.log(message: "Error delete User data by key from Keychain.", event: .error)
+            return false
+        }
+    }
+    
+    public static func deleteAllData(forUserNickName userNickName: String) -> Bool {
+        do {
+            try Locksmith.deleteDataForUserAccount(userAccount: userNickName)
+            Logger.log(message: "Successfully delete all User data from Keychain.", event: .severe)
+            return true
+        } catch {
+            Logger.log(message: "Delete error all User data from Keychain.", event: .error)
             return false
         }
     }
     
     
     /// Load data from Keychain
-    public static func loadPrivateKey(forUserNickName userNickName: String) -> String? {
-        var privateKey: String?
+    public static func load(privateKey: String, forUserNickName userNickName: String) -> String? {
+        var resultKey: String?
         
-        if let data = Locksmith.loadDataForUserAccount(userAccount: userNickName) {
-            privateKey = data["privateKey"] as? String
+        if let data = Locksmith.loadDataForUserAccount(userAccount: userNickName, inService: privateKey) {
+            resultKey = data[keyPrivate] as? String
         }
         
-        return privateKey
+        return resultKey
+    }
+    
+    public static func loadData(forUserNickName userNickName: String, withKey key: String) -> [String: Any]? {
+        return Locksmith.loadDataForUserAccount(userAccount: userNickName, inService: key)
+    }
+    
+    public static func loadAllData(forUserNickName userNickName: String) -> [String: Any]? {
+        return Locksmith.loadDataForUserAccount(userAccount: userNickName)
     }
     
     
     /// Save login data to Keychain
-    public static func save(key: String, userNickName: String) -> Bool {
+    public static func save(data: [String: Any], userNickName: String) -> Bool {
+        let keyData = data.keys.first ?? "XXX"
+        
         do {
-            if loadPrivateKey(forUserNickName: userNickName) == nil {
-                try Locksmith.saveData(data: [ "privateKey": key ], forUserAccount: userNickName)
+            if Locksmith.loadDataForUserAccount(userAccount: userNickName, inService: keyData) == nil {
+                try Locksmith.saveData(data: data, forUserAccount: userNickName, inService: keyData)
             }
                 
             else {
-                try Locksmith.updateData(data: [ "privateKey": key ], forUserAccount: userNickName)
+                try Locksmith.updateData(data: data, forUserAccount: userNickName, inService: keyData)
             }
             
-            Logger.log(message: "Successfully save Login data to Keychain.", event: .severe)
+            Logger.log(message: "Successfully save User data to Keychain.", event: .severe)
             return true
         } catch {
-            Logger.log(message: "Save Login data to Keychain error.", event: .error)
+            Logger.log(message: "Error save User data to Keychain.", event: .error)
             return false
         }
     }

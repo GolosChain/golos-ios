@@ -33,3 +33,9 @@ public let imagesURL: String        =   "https://images.golos.io"
 public let loadDataLimit: UInt      =   10
 public let webSocketLimit: UInt     =   10
 public let webSocketTimeout         =   60.0
+
+
+/// Keys
+public let keySecret                =   "SecretKey"
+public let keyPrivate               =   "PrivateKey"
+public let keyUserState             =   "UserState"

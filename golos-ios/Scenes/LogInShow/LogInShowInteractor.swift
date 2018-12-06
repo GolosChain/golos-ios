@@ -61,7 +61,7 @@ class LogInShowInteractor: LogInShowBusinessLogic {
                 
                 // Save Private key in Keychain
                 if success {
-                    _ = KeychainManager.save(key: requestModel.wif, userNickName: requestModel.userNickName)
+                    _ = KeychainManager.save(data: [keyPrivate: requestModel.wif], userNickName: requestModel.userNickName)
                 }
             }
             
