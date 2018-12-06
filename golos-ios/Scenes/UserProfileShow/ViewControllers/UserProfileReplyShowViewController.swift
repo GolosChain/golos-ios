@@ -53,7 +53,6 @@ class UserProfileReplyShowViewController: GSTableViewController {
         self.replyTableView.beginUpdates()
         self.replyTableView.reloadRows(at: self.replyTableView.indexPathsForVisibleRows!, with: .automatic)
         self.replyTableView.endUpdates()
-
     }
     
     override func viewWillDisappear(_ animated: Bool) {

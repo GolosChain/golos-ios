@@ -75,13 +75,14 @@ class GSTableViewController: GSBaseViewController, HandlersCellSupport {
     var completionCommentAuthorTapped: ((String) -> Void)?
 
     var activityIndicatorView: UIActivityIndicatorView!
-
     var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult>!
 
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(handlerTableViewRefreshData), for: .valueChanged)
         
+        refreshControl.tintColor = UIColor(hexString: AppSettings.isAppThemeDark ? "#FFFFFF" : "#DBDBDB")
+        refreshControl.addTarget(self, action: #selector(handlerTableViewRefreshData), for: .valueChanged)
+
         return refreshControl
     }()
 
@@ -178,7 +179,7 @@ class GSTableViewController: GSBaseViewController, HandlersCellSupport {
             
             self.activityIndicatorView  =   UIActivityIndicatorView.init(frame: CGRect(origin:  .zero,
                                                                                        size:    CGSize(width: self.postsTableView.frame.width, height: 64.0 * heightRatio)))
-            self.activityIndicatorView.style                =   .gray
+            self.activityIndicatorView.style                =   AppSettings.isAppThemeDark ? .white : .gray
             self.postsTableView.separatorStyle              =   .none
             self.postsTableView.tableHeaderView             =   self.activityIndicatorView
             self.postsTableView.tableHeaderView?.isHidden   =   false

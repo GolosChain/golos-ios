@@ -61,6 +61,12 @@ class UserProfileInfoTitleView: PassthroughView {
         }
     }
 
+    @IBOutlet var viewsCollection: [UIView]! {
+        didSet {
+            self.viewsCollection.forEach({ $0.tune() })
+        }
+    }
+    
     
     // MARK: - Initialization
     override init(frame: CGRect) {
@@ -82,6 +88,7 @@ class UserProfileInfoTitleView: PassthroughView {
         let view    =   nib.instantiate(withOwner: self, options: nil).first as! UIView
         
         addSubview(view)
+        view.tune()
         
         view.translatesAutoresizingMaskIntoConstraints                  =   false
         view.topAnchor.constraint(equalTo: topAnchor).isActive          =   true

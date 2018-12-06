@@ -79,7 +79,8 @@ class CommentHeaderView: UIView {
             self.infiniteScrollingActivityIndicator.stopAnimating()
             
         case .header:
-            self.emptyItemsLabel.isHidden       =   true
+            self.emptyItemsLabel.isHidden                   =   true
+            self.infiniteScrollingActivityIndicator.style   =   AppSettings.isAppThemeDark ? .white : .gray
             self.infiniteScrollingActivityIndicator.startAnimating()
             
         default:

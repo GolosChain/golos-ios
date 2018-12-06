@@ -42,16 +42,22 @@ class UserProfileShowViewController: GSBaseViewController, ContainerViewSupport 
     
     
     // MARK: - IBOutlets
-    @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var blogButton: UIButton!
     @IBOutlet weak var segmentedControlView: UIView!
     @IBOutlet weak var buttonsStackView: UIStackView!
     @IBOutlet weak var lineViewLeadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var contentViewWidthConstraint: NSLayoutConstraint!
 
+    @IBOutlet weak var contentView: UIView! {
+        didSet {
+            self.contentView.tune()
+        }
+    }
+
     @IBOutlet weak var buttonsScrollView: UIScrollView! {
         didSet {
-            buttonsScrollView.delegate = self
+            self.buttonsScrollView.tune()
+            self.buttonsScrollView.delegate = self
         }
     }
     
@@ -81,6 +87,7 @@ class UserProfileShowViewController: GSBaseViewController, ContainerViewSupport 
 
     @IBOutlet weak var containerView: GSContainerView! {
         didSet {
+            self.containerView.tune()
             self.containerView.mainVC            =   self
             self.containerView.viewControllers   =   self.getContainerViewControllers()
             
@@ -90,6 +97,8 @@ class UserProfileShowViewController: GSBaseViewController, ContainerViewSupport 
     
     @IBOutlet var userProfileHeaderView: UserProfileHeaderView! {
         didSet {
+            self.userProfileHeaderView.tune()
+            
             // Handlers
             userProfileHeaderView.handlerBackButtonTapped       =   { [weak self] in
                 self?.navigationController?.popViewController(animated: true)
@@ -152,8 +161,8 @@ class UserProfileShowViewController: GSBaseViewController, ContainerViewSupport 
     
     @IBOutlet weak var walletBalanceView: UIView! {
         didSet {
-            walletBalanceView.isHidden = true
             walletBalanceView.tune()
+            walletBalanceView.isHidden = true
         }
     }
 
@@ -637,7 +646,14 @@ extension UserProfileShowViewController: MXParallaxHeaderDelegate {
 
         guard !self.settingsShow else { return }
         
-        self.isStatusBarStyleLight = scrollView.parallaxHeader.progress != 0.0
+        if AppSettings.isAppThemeDark {
+            self.isStatusBarStyleLight = true
+        }
+        
+        else {
+            self.isStatusBarStyleLight = scrollView.parallaxHeader.progress != 0.0
+        }
+        
         self.userProfileHeaderView.whiteStatusBarView.isHidden = parallaxHeader.progress != 0.0
     }
 }

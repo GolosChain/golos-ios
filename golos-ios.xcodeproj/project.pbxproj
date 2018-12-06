@@ -154,6 +154,7 @@
 		B1A7580621719739002CEE50 /* WelcomeShow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1A7580821719739002CEE50 /* WelcomeShow.storyboard */; };
 		B1B6B39520D37F3100284387 /* PostCommentReply.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1B6B39420D37F3100284387 /* PostCommentReply.xib */; };
 		B1B6B4DE21514823005AB846 /* LentaPostsShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B6B4DD21514823005AB846 /* LentaPostsShowViewController.swift */; };
+		B1BA627521B69BEB001E93D6 /* WKWebView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BA627421B69BEB001E93D6 /* WKWebView+Extensions.swift */; };
 		B1BAAA522111F1E300B2F165 /* PostCreateWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BAAA4C2111F1E300B2F165 /* PostCreateWorker.swift */; };
 		B1C010682182BFE50088A3A6 /* Voter+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C010662182BFE50088A3A6 /* Voter+CoreDataClass.swift */; };
 		B1C010692182BFE50088A3A6 /* Voter+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C010672182BFE50088A3A6 /* Voter+CoreDataProperties.swift */; };
@@ -453,6 +454,7 @@
 		B1A758092171974D002CEE50 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/WelcomeShow.storyboard; sourceTree = "<group>"; };
 		B1B6B39420D37F3100284387 /* PostCommentReply.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostCommentReply.xib; sourceTree = "<group>"; };
 		B1B6B4DD21514823005AB846 /* LentaPostsShowViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LentaPostsShowViewController.swift; sourceTree = "<group>"; };
+		B1BA627421B69BEB001E93D6 /* WKWebView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WKWebView+Extensions.swift"; sourceTree = "<group>"; };
 		B1BAAA4C2111F1E300B2F165 /* PostCreateWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCreateWorker.swift; sourceTree = "<group>"; };
 		B1C010662182BFE50088A3A6 /* Voter+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Voter+CoreDataClass.swift"; sourceTree = "<group>"; };
 		B1C010672182BFE50088A3A6 /* Voter+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Voter+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -1276,6 +1278,7 @@
 				B1EE684920D261C4006BF802 /* UITextView+Extensions.swift */,
 				ECA8E35D2018D119003B8ABA /* UIView+Shadow.swift */,
 				EC6FD59D200AD53100DCB824 /* UIViewController+Extensions.swift */,
+				B1BA627421B69BEB001E93D6 /* WKWebView+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1807,6 +1810,7 @@
 				B12B3AC420FCBFCA00071B97 /* PostsShowPresenter.swift in Sources */,
 				B1EA154820FE007A0015EF76 /* Promo+CoreDataClass.swift in Sources */,
 				B164F04720E62AE600C5CDD3 /* UserProfileShowInteractor.swift in Sources */,
+				B1BA627521B69BEB001E93D6 /* WKWebView+Extensions.swift in Sources */,
 				B18ECE9621898F6D008A3B84 /* UserCellSupport.swift in Sources */,
 				B123C5BB20CE4C8B00747989 /* UITextField+Extensions.swift in Sources */,
 				B1EA154920FE007A0015EF76 /* Promo+CoreDataProperties.swift in Sources */,

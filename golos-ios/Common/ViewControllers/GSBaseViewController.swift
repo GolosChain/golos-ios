@@ -116,6 +116,8 @@ class GSBaseViewController: UIViewController {
     }
     
     private func configureBackButton(withTitle title: String? = nil, backButtonImage: UIImage) {
+        self.setupNavBarStyle()
+
         if title == nil {
             let customBackButton                    =   UIBarButtonItem(image: backButtonImage, style: .plain, target: self, action: #selector(backBarButtonTapped))
             self.navigationItem.leftBarButtonItem   =   customBackButton

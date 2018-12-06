@@ -48,6 +48,16 @@ class ReplyTableViewCell: UITableViewCell, ReusableCell {
     // MARK: - IBOutlets
     @IBOutlet var markdownViewManager: MarkdownViewManager! {
         didSet {
+            self.markdownViewManager.isHidden = true
+            
+            self.markdownViewManager.onRendered = { _ in
+                self.markdownViewManager.webView!.setBackgroundColor(forAppTheme: AppSettings.isAppThemeDark)
+                
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.7, execute: {
+                    self.markdownViewManager.isHidden = false
+                })
+            }
+
             // Handlers
             self.markdownViewManager.completionShowSafariURL            =   { [weak self] url in
                 self?.handlerMarkdownURLTapped!(url)
@@ -83,7 +93,7 @@ class ReplyTableViewCell: UITableViewCell, ReusableCell {
     
     @IBOutlet weak var authorLabel: UILabel! {
         didSet {
-            authorLabel.tune(withText:          "",
+            authorLabel.tune(withText:          " ",
                              hexColors:         veryDarkGrayWhiteColorPickers,
                              font:              UIFont(name: "SFProDisplay-Regular", size: 10.0),
                              alignment:         .left,
@@ -107,7 +117,7 @@ class ReplyTableViewCell: UITableViewCell, ReusableCell {
     
     @IBOutlet weak var replyTypeButton: UIButton!  {
         didSet {
-            replyTypeButton.tune(withTitle:         "",
+            replyTypeButton.tune(withTitle:         " ",
                                  hexColors:         [darkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
                                  font:              UIFont(name: "SFProDisplay-Regular", size: 10.0),
                                  alignment:         .left)
@@ -167,18 +177,23 @@ class ReplyTableViewCell: UITableViewCell, ReusableCell {
     // MARK: - Class Functions
     override func prepareForReuse() {
         super.prepareForReuse()
-        
+
+        contentView.tune()
+
         self.replyType                      =   .post
+        self.backgroundColor                =   UIColor.clear
         self.authorLabel.text               =   nil
         self.reputationLabel.text           =   nil
         self.authorAvatarImageView.image    =   UIImage(named: "icon-user-profile-image-placeholder")
+        self.markdownViewManager.isHidden   =   true
+
+        self.markdownViewManager.webView?.load(URLRequest.init(url: URL.init(string: "about:blank")!))
     }
     
     
     // MARK: - Custom Functions
     private func setup() {
         authorAvatarImageView.layer.masksToBounds = true
-        
         contentView.tune()
     }
     
@@ -233,7 +248,7 @@ class ReplyTableViewCell: UITableViewCell, ReusableCell {
     override var reuseIdentifier: String? {
         return ReplyTableViewCell.reuseIdentifier
     }
-    
+
     class var reuseIdentifier: String? {
         return String(describing: self)
     }
@@ -257,9 +272,7 @@ extension ReplyTableViewCell: ConfigureCell {
                                               parentPermlink:   model.parentPermlink)
         
         // Load markdown content
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
-            self.markdownViewManager.load(markdown: Parser.repair(body: model.body))
-        }
+        self.markdownViewManager.load(markdown: Parser.repair(body: model.body))
 
         // Load commentator info
         RestAPIManager.loadUsersInfo(byNickNames: [reply.author], completion: { [weak self] errorAPI in

@@ -9,6 +9,7 @@
 import UIKit
 import GoloSwift
 import MarkdownView
+import WebKit
 
 class MarkdownViewManager: MarkdownView {
     // MARK: - Properties
@@ -25,6 +26,10 @@ class MarkdownViewManager: MarkdownView {
         super.init(coder: aDecoder)
     
         self.isScrollEnabled    =   false
+
+//        DispatchQueue.main.async {
+            self.backgroundColor = UIColor(hexString: AppSettings.isAppThemeDark ? "#393636" : "#FFFFFF")
+//        }
 
         // Handler: display content in App
         self.onTouchLink = { [weak self] request in

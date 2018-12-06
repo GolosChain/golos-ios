@@ -25,6 +25,9 @@
                 <outletCollection property="labelsForAnimationCollection" destination="yOP-1Q-7sN" collectionClass="NSMutableArray" id="JQN-bA-M0o"/>
                 <outletCollection property="valuesCollection" destination="PaI-iL-bBT" collectionClass="NSMutableArray" id="XML-bz-EUu"/>
                 <outletCollection property="valuesCollection" destination="yOP-1Q-7sN" collectionClass="NSMutableArray" id="Bmf-OR-KFP"/>
+                <outletCollection property="viewsCollection" destination="jR6-hK-TDm" collectionClass="NSMutableArray" id="RSY-1w-cOq"/>
+                <outletCollection property="viewsCollection" destination="o4t-CK-JzB" collectionClass="NSMutableArray" id="525-9f-VOT"/>
+                <outletCollection property="viewsCollection" destination="W7T-fR-uEr" collectionClass="NSMutableArray" id="T47-7t-4dx"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

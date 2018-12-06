@@ -31,11 +31,11 @@ class UserProfileHeaderView: PassthroughView {
     
     @IBOutlet private weak var nameLabel: UILabel! {
         didSet {
-            nameLabel.tune(withText:        "        ",
-                           hexColors:       whiteBlackColorPickers,
-                           font:            UIFont(name: "SFProDisplay-Regular", size: 18.0),
-                           alignment:       .left,
-                           isMultiLines:    false)
+            self.nameLabel.tune(withText:        "        ",
+                                hexColors:       whiteColorPickers,
+                                font:            UIFont(name: "SFProDisplay-Regular", size: 18.0),
+                                alignment:       .left,
+                                isMultiLines:    false)
         }
     }
     
@@ -44,7 +44,12 @@ class UserProfileHeaderView: PassthroughView {
         }
     }
 
-    @IBOutlet weak var whiteStatusBarView: UIView!
+    @IBOutlet weak var whiteStatusBarView: UIView! {
+        didSet {
+            self.whiteStatusBarView.tune()
+        }
+    }
+    
     @IBOutlet private weak var voicePowerLabel: UILabel!
     @IBOutlet private weak var reputationLabel: UILabel!
     @IBOutlet private weak var reputationImageView: UIImageView!
@@ -71,7 +76,7 @@ class UserProfileHeaderView: PassthroughView {
             self.labelsCollection.forEach({
                 $0.text?.localize()
                 $0.font                 =   UIFont(name: "SFProDisplay-Regular", size: 12.0)
-                $0.theme_textColor      =   whiteBlackColorPickers
+                $0.theme_textColor      =   whiteColorPickers
                 $0.textAlignment        =   .left
                 $0.numberOfLines        =   1
             })
@@ -85,7 +90,6 @@ class UserProfileHeaderView: PassthroughView {
             })
         }
     }
-    
     
     @IBOutlet private weak var imageViewTopConstraint: NSLayoutConstraint!
     

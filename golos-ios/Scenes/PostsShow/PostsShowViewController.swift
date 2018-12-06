@@ -480,7 +480,8 @@ extension PostsShowViewController {
         if condition.isInfiniteScrolling {
             DispatchQueue.main.async {
                 if let activeVC = self.containerView.activeVC {
-                    activeVC.postsTableView.tableFooterView?.isHidden = false
+                    activeVC.postsTableView.tableFooterView?.isHidden       =   false
+                    activeVC.infiniteScrollingActivityIndicatorView.style   =   AppSettings.isAppThemeDark ? .white : .gray
                     activeVC.infiniteScrollingActivityIndicatorView.startAnimating()
                 }
             }

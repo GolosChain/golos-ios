@@ -123,6 +123,7 @@
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     </stackView>
                                                                 </subviews>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstItem="vmf-Ds-La6" firstAttribute="top" secondItem="I7c-B1-JBe" secondAttribute="top" id="8C9-eY-lU8"/>
                                                                     <constraint firstAttribute="width" secondItem="vmf-Ds-La6" secondAttribute="width" id="iAS-jh-fB0"/>
@@ -131,6 +132,7 @@
                                                                 </constraints>
                                                             </view>
                                                         </subviews>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="trailing" secondItem="I7c-B1-JBe" secondAttribute="trailing" id="4Zq-QH-fAB"/>
                                                             <constraint firstAttribute="bottom" secondItem="I7c-B1-JBe" secondAttribute="bottom" id="G7C-gM-hui"/>
@@ -253,7 +255,7 @@
                     <viewLayoutGuide key="safeArea" id="3ui-jC-vek"/>
                 </view>
             </objects>
-            <point key="canvasLocation" x="20" y="83.208395802098963"/>
+            <point key="canvasLocation" x="18.840579710144929" y="83.035714285714278"/>
         </scene>
         <!--User Profile Blog Show View Controller-->
         <scene sceneID="W43-Fd-Z7e">

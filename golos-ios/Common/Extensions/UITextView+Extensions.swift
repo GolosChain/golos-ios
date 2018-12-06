@@ -132,7 +132,7 @@ extension UITextView {
         
         smileButton.isEnabled           =   false
         
-        let closeButton                 =   BlockBarButtonItem(image:           UIImage(named: "icon-button-close-default"),
+        let closeButton                 =   BlockBarButtonItem(image:           UIImage(named: "icon-button-close-normal"),
                                                                style:           .done,
                                                                tag:             10,
                                                                actionHandler: { tag in

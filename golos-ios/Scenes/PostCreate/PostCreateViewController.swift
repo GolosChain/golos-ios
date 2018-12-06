@@ -243,41 +243,42 @@ class PostCreateViewController: GSBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Amplitude SDK
-        self.sendEvent(action: "open")
-
-        self.view.tune()
-        IQKeyboardManager.sharedManager().enable = false
-        self.navigationItem.title = (sceneType == .createPost) ? "Publish Title".localized() : "Comment Title Verb".localized()
-       
-        if sceneType == .createCommentReply {
-            self.commentReplyView.markdownViewManager.load(markdown: self.router?.dataStore?.commentTitle ?? "")
-
-            self.commentReplyView.markdownViewManager.onRendered = { [weak self] height in
-                self?.markdownViewHeightConstraint.constant = height + 15.0 * 2 * heightRatio
-                self?.stackView.layoutIfNeeded()
-                self?.showContent()
-            }
-        }
-        
-        else {
-            self.showContent()
-        }
-        
         NotificationCenter.default.addObserver(self, selector: #selector(localizeTitles), name: NSNotification.Name(LCLLanguageChangeNotification), object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.showNavigationBar(backButtonImage: UIImage(named: "icon-button-close-default")!)
+        // Amplitude SDK
+        self.sendEvent(action: "open")
+        
+        self.view.tune()
+        IQKeyboardManager.sharedManager().enable = false
+        
+        self.navigationItem.title = (sceneType == .createPost) ? "Publish Title".localized() : "Comment Title Verb".localized()
+        self.showNavigationBar(backButtonImage: UIImage(named: "icon-button-close-normal")!)
+        
+        if sceneType == .createCommentReply {
+            self.commentReplyView.markdownViewManager.load(markdown: self.router?.dataStore?.commentTitle ?? "")
+            
+            self.commentReplyView.markdownViewManager.onRendered = { [weak self] height in
+                self?.markdownViewHeightConstraint.constant = height + 15.0 * 2 * heightRatio
+                self?.stackView.layoutIfNeeded()
+                self?.showContent()
+            }
+        }
+            
+        else {
+            self.showContent()
+        }
+
         self.navigationController?.hidesBarsOnTap = false
-        self.navigationController?.add(shadow: true, withBarTintColor: .white)
+        self.navigationController?.isNavigationBarHidden = false
         self.contentTextView.layoutManager.ensureLayout(for: self.contentTextView.textContainer)
         
         // Set StatusBarStyle
         selectedTabBarItem          =   self.navigationController!.tabBarItem.tag
-        self.isStatusBarStyleLight  =   false
+        self.isStatusBarStyleLight  =   AppSettings.isAppThemeDark
     }
 
     
