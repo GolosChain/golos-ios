@@ -219,6 +219,7 @@
 		B1F3748120C2C5E1005EF767 /* RootShowRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F3747B20C2C5E1005EF767 /* RootShowRouter.swift */; };
 		B1F3748320C2C5E1005EF767 /* RootShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F3747D20C2C5E1005EF767 /* RootShowViewController.swift */; };
 		B1F6A36E20C130780096C393 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F6A36D20C130780096C393 /* Parser.swift */; };
+		B1FFFEB421C8D16600B52005 /* MicroservicesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FFFEB321C8D16600B52005 /* MicroservicesManager.swift */; };
 		EC07F4A22014093E00560CF0 /* HorizontalSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC07F4A12014093E00560CF0 /* HorizontalSelectorView.swift */; };
 		EC1DFB8F20063C400080BC50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1DFB8E20063C400080BC50 /* AppDelegate.swift */; };
 		EC1DFB9620063C400080BC50 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC1DFB9520063C400080BC50 /* Assets.xcassets */; };
@@ -519,6 +520,7 @@
 		B1F3747B20C2C5E1005EF767 /* RootShowRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootShowRouter.swift; sourceTree = "<group>"; };
 		B1F3747D20C2C5E1005EF767 /* RootShowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootShowViewController.swift; sourceTree = "<group>"; };
 		B1F6A36D20C130780096C393 /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
+		B1FFFEB321C8D16600B52005 /* MicroservicesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicroservicesManager.swift; sourceTree = "<group>"; };
 		DECBC36021F31D8D6F619C11 /* Pods-golos-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-golos-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-golos-ios/Pods-golos-ios.release.xcconfig"; sourceTree = "<group>"; };
 		EC07F4A12014093E00560CF0 /* HorizontalSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalSelectorView.swift; sourceTree = "<group>"; };
 		EC1DFB8B20063C400080BC50 /* Golos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Golos.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1131,15 +1133,16 @@
 		EC24FF29200BFA9300A0AE15 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				B15F228020EEB14700C44282 /* StateMachine */,
 				B1DCE31621098E5F00487DE0 /* FCManager.swift */,
 				B1DCE321210A32B600487DE0 /* GSTestManager.swift */,
 				B10C9DEF2171A096000D9915 /* GSTimer.swift */,
+				B13493382181536700B59827 /* HandlersManager.swift */,
 				B1961952211C90D2001DF789 /* MarkdownViewManager.swift */,
+				B1FFFEB321C8D16600B52005 /* MicroservicesManager.swift */,
 				B1F6A36D20C130780096C393 /* Parser.swift */,
 				B114192720CD1E260025B07F /* ReachabilityManager.swift */,
 				B10F487D20F793DE00F2BCAC /* RestAPIManager.swift */,
-				B13493382181536700B59827 /* HandlersManager.swift */,
-				B15F228020EEB14700C44282 /* StateMachine */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -1403,7 +1406,7 @@
 					EC1DFB8A20063C400080BC50 = {
 						CreatedOnToolsVersion = 9.2;
 						LastSwiftMigration = 1000;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -1810,6 +1813,7 @@
 				B12B3AC420FCBFCA00071B97 /* PostsShowPresenter.swift in Sources */,
 				B1EA154820FE007A0015EF76 /* Promo+CoreDataClass.swift in Sources */,
 				B164F04720E62AE600C5CDD3 /* UserProfileShowInteractor.swift in Sources */,
+				B1FFFEB421C8D16600B52005 /* MicroservicesManager.swift in Sources */,
 				B1BA627521B69BEB001E93D6 /* WKWebView+Extensions.swift in Sources */,
 				B18ECE9621898F6D008A3B84 /* UserCellSupport.swift in Sources */,
 				B123C5BB20CE4C8B00747989 /* UITextField+Extensions.swift in Sources */,
@@ -1953,8 +1957,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Golos.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Iuliia  Ermilova (29QBR47DMW)";
+				CODE_SIGN_STYLE = Manual;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 29QBR47DMW;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1967,7 +1971,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "io.golos.testing.golos-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "App Store";
 				SWIFT_OBJC_BRIDGING_HEADER = "golos-ios/Resources/Golos-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
@@ -2175,8 +2179,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Golos.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Iuliia  Ermilova (8DUPX529J7)";
+				CODE_SIGN_STYLE = Manual;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 29QBR47DMW;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2189,7 +2193,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "io.golos.testing.golos-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = Golos;
 				SWIFT_OBJC_BRIDGING_HEADER = "golos-ios/Resources/Golos-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
@@ -2207,8 +2211,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Golos.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Iuliia  Ermilova (29QBR47DMW)";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 29QBR47DMW;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2221,7 +2225,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "io.golos.testing.golos-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "App Store";
 				SWIFT_OBJC_BRIDGING_HEADER = "golos-ios/Resources/Golos-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;

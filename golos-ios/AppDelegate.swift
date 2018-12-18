@@ -100,7 +100,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Handlers
         WebSocketManager.instanceMicroservices.completionIsConnected    =   {
             DispatchQueue.main.async(execute: {
-                RestAPIManager.getSecretKey(completion: { (resultKey, errorAPI) in
+                MicroservicesManager.getSecretKey(completion: { (resultKey, errorAPI) in
                     guard errorAPI == nil else {
                         return
                     }
