@@ -64,7 +64,7 @@ var isNetworkAvailable: Bool {
     set { }
     
     get {
-        return ReachabilityManager.connection()
+        return ReachabilityManagerOld.connection()
     }
 }
 

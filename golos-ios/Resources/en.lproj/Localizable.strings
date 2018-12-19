@@ -232,6 +232,7 @@
 "Error Post 5 minutes"                      =   "You may only post once every 5 minutes";
 "Error Copy Key Code"                       =   "The code of the copied key\nmust start with 5 or 1";
 "Error Scan Key Code"                       =   "The code of the scanned key\nmust begin with 5 or 1";
+"Secret key not found"                      =   "Secret key not found";
 
 
 // Segmented controls

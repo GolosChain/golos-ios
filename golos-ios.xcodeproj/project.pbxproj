@@ -32,7 +32,6 @@
 		B111322620CD51EA00BC7F33 /* PostingKeyShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B111322020CD51EA00BC7F33 /* PostingKeyShowViewController.swift */; };
 		B111C344215FB41300DE1F6E /* NSLayoutConstraint+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B111C343215FB41300DE1F6E /* NSLayoutConstraint+Extensions.swift */; };
 		B111FC7921A82D3300BA5864 /* LogInHelpShowViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B111FC7821A82D3300BA5864 /* LogInHelpShowViewController.xib */; };
-		B114192820CD1E260025B07F /* ReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B114192720CD1E260025B07F /* ReachabilityManager.swift */; };
 		B114192A20CD21530025B07F /* LogInShow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B114192920CD21530025B07F /* LogInShow.storyboard */; };
 		B114193320CD26710025B07F /* LogInShowRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B114192D20CD26710025B07F /* LogInShowRouter.swift */; };
 		B114193520CD26710025B07F /* LogInShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B114192F20CD26710025B07F /* LogInShowViewController.swift */; };
@@ -220,6 +219,7 @@
 		B1F3748320C2C5E1005EF767 /* RootShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F3747D20C2C5E1005EF767 /* RootShowViewController.swift */; };
 		B1F6A36E20C130780096C393 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F6A36D20C130780096C393 /* Parser.swift */; };
 		B1FFFEB421C8D16600B52005 /* MicroservicesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FFFEB321C8D16600B52005 /* MicroservicesManager.swift */; };
+		B1FFFEB621CA1EA700B52005 /* ReachabilityManagerOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = B114192720CD1E260025B07F /* ReachabilityManagerOld.swift */; };
 		EC07F4A22014093E00560CF0 /* HorizontalSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC07F4A12014093E00560CF0 /* HorizontalSelectorView.swift */; };
 		EC1DFB8F20063C400080BC50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC1DFB8E20063C400080BC50 /* AppDelegate.swift */; };
 		EC1DFB9620063C400080BC50 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC1DFB9520063C400080BC50 /* Assets.xcassets */; };
@@ -320,7 +320,7 @@
 		B111322020CD51EA00BC7F33 /* PostingKeyShowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingKeyShowViewController.swift; sourceTree = "<group>"; };
 		B111C343215FB41300DE1F6E /* NSLayoutConstraint+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutConstraint+Extensions.swift"; sourceTree = "<group>"; };
 		B111FC7821A82D3300BA5864 /* LogInHelpShowViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LogInHelpShowViewController.xib; sourceTree = "<group>"; };
-		B114192720CD1E260025B07F /* ReachabilityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityManager.swift; sourceTree = "<group>"; };
+		B114192720CD1E260025B07F /* ReachabilityManagerOld.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityManagerOld.swift; sourceTree = "<group>"; };
 		B114192920CD21530025B07F /* LogInShow.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LogInShow.storyboard; sourceTree = "<group>"; };
 		B114192D20CD26710025B07F /* LogInShowRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInShowRouter.swift; sourceTree = "<group>"; };
 		B114192F20CD26710025B07F /* LogInShowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInShowViewController.swift; sourceTree = "<group>"; };
@@ -1141,7 +1141,7 @@
 				B1961952211C90D2001DF789 /* MarkdownViewManager.swift */,
 				B1FFFEB321C8D16600B52005 /* MicroservicesManager.swift */,
 				B1F6A36D20C130780096C393 /* Parser.swift */,
-				B114192720CD1E260025B07F /* ReachabilityManager.swift */,
+				B114192720CD1E260025B07F /* ReachabilityManagerOld.swift */,
 				B10F487D20F793DE00F2BCAC /* RestAPIManager.swift */,
 			);
 			path = Managers;
@@ -1773,7 +1773,6 @@
 				B15C29B921101FEA0030D249 /* PostShowModels.swift in Sources */,
 				B1DCE31721098E5F00487DE0 /* FCManager.swift in Sources */,
 				B120D078210825AD00D949F5 /* SettingsNotificationsShowWorker.swift in Sources */,
-				B114192820CD1E260025B07F /* ReachabilityManager.swift in Sources */,
 				B1EBAFBC20EB55690050B1A2 /* User+CoreDataProperties.swift in Sources */,
 				B111322420CD51EA00BC7F33 /* PostingKeyShowRouter.swift in Sources */,
 				B12F440420EA01F9003FFF58 /* ScannerShowRouter.swift in Sources */,
@@ -1804,6 +1803,7 @@
 				B12B3AC520FCBFCA00071B97 /* PostsShowWorker.swift in Sources */,
 				B136D50220D8BBEA003AD279 /* TagsCollectionViewController.swift in Sources */,
 				B1EA4986212E99C800F5F9CA /* CachedImageFrom.swift in Sources */,
+				B1FFFEB621CA1EA700B52005 /* ReachabilityManagerOld.swift in Sources */,
 				ECB2C0D52008E56300AF1AF5 /* ConstantsApp.swift in Sources */,
 				B114193520CD26710025B07F /* LogInShowViewController.swift in Sources */,
 				B1E09E242101F2CB002CC5B7 /* ConfigureCell.swift in Sources */,

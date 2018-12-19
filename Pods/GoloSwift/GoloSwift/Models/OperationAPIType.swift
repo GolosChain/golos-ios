@@ -22,10 +22,11 @@ public indirect enum OperationAPIType {
     // API: POST
     case createPost(operations: [Encodable])
     case vote(fields: RequestParameterAPI.Vote)
+    case voteAuth(fields: RequestParameterAPI.Vote)
     case comment(fields: RequestParameterAPI.Comment)
     case subscribe(fields: RequestParameterAPI.Subscription)
     case commentOptions(fields: RequestParameterAPI.CommentOptions)
-
+    
     
     /// In Reserve
     /*
@@ -90,6 +91,10 @@ public indirect enum OperationAPIType {
                                                                      paramsFirst:           ["network_broadcast_api", "broadcast_transaction"],
                                                                      paramsSecond:          [voteValue])
             
+        case .voteAuth(let voteValue):                      return  (operationAPIType:      self,
+                                                                     paramsFirst:           [],
+                                                                     paramsSecond:          [voteValue])
+            
         case .comment(let commentValue):                    return  (operationAPIType:      self,
                                                                      paramsFirst:           ["network_broadcast_api", "broadcast_transaction"],
                                                                      paramsSecond:          [commentValue])
@@ -105,7 +110,6 @@ public indirect enum OperationAPIType {
         case .subscribe(let subscriptionValue):             return  (operationAPIType:      self,
                                                                      paramsFirst:           ["network_broadcast_api", "broadcast_transaction"],
                                                                      paramsSecond:          [subscriptionValue])
-
         }
     }
 }

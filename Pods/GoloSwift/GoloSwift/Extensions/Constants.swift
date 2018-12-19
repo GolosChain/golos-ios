@@ -39,3 +39,13 @@ public let webSocketTimeout         =   60.0
 public let keySecret                =   "SecretKey"
 public let keyPrivate               =   "PrivateKey"
 public let keyUserState             =   "UserState"
+
+
+/// Check network connection
+var isNetworkAvailable: Bool {
+    set { }
+    
+    get {
+        return ReachabilityManager.connection()
+    }
+}

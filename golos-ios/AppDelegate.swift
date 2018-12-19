@@ -84,10 +84,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         guard !User.isAnonymous else { return }
 
         // Load stored data
-//        let secretKey       =   KeychainManager.loadData(forUserNickName: User.current!.nickName, withKey: keySecret)?.values.first ?? "XXX"
-//        let privateKey      =   KeychainManager.load(privateKey: keyPrivate, forUserNickName: User.current!.nickName)
-//        Logger.log(message: "secretKey = \n\(secretKey)", event: .debug)
-//        Logger.log(message: "privateKeyData = \n\(privateKey ?? "XXX")", event: .debug)
+        let secretKey       =   KeychainManager.loadData(forUserNickName: User.current!.nickName, withKey: keySecret)?.values.first ?? "XXX"
+        let privateKey      =   KeychainManager.load(privateKey: keyPrivate, forUserNickName: User.current!.nickName)
+        Logger.log(message: "secretKey = \n\(secretKey)", event: .debug)
+        Logger.log(message: "privateKey = \n\(privateKey ?? "XXX")", event: .debug)
         
         if !WebSocketManager.instanceMicroservices.webSocket.isConnected {
             WebSocketManager.instanceMicroservices.webSocket.connect()
@@ -107,6 +107,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     
                     Logger.log(message: "secretKey = \(resultKey!)", event: .debug)
                     _ = KeychainManager.save(data: [keySecret: resultKey!], userNickName: User.current!.nickName)
+                    
+                    
+                    /// Test API 'auth'
+                    MicroservicesManager.auth(voter: User.current!.nickName, completion: { errorAPI in
+                        Logger.log(message: "errorAPI = \(errorAPI?.localizedDescription ?? "XXX")", event: .debug)
+                    })
                 })
             })
         }

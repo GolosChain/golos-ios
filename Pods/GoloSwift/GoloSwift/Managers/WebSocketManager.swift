@@ -178,7 +178,7 @@ public class WebSocketManager {
         do {
             // POST
             switch operationAPIType {
-            case .vote(_):
+            case .vote(_), .voteAuth(_):
                 return (responseAPI: try JSONDecoder().decode(ResponseAPIBlockchainPostResult.self, from: jsonData), errorAPI: nil)
                 
             case .comment(_):
