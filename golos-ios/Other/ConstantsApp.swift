@@ -60,14 +60,6 @@ let widthRatio: CGFloat                 =   UIScreen.main.bounds.width / (UIAppl
 
 let cacheApp                            =   NSCache<NSString, UIImage>()
 
-var isNetworkAvailable: Bool {
-    set { }
-    
-    get {
-        return ReachabilityManagerOld.connection()
-    }
-}
-
 let appVersion                          =   String(format: "%@.%@", Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String, Bundle.main.infoDictionary?["CFBundleVersion"] as! String)
 var selectedTabBarItem: Int             =   0
 

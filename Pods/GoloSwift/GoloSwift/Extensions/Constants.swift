@@ -42,7 +42,7 @@ public let keyUserState             =   "UserState"
 
 
 /// Check network connection
-var isNetworkAvailable: Bool {
+public var isNetworkAvailable: Bool {
     set { }
     
     get {
