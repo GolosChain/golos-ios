@@ -37,7 +37,7 @@ public struct Transaction {
         self.serializedBuffer   =   [Byte]()
         self.userNickName       =   userNickName
     }
-
+    
     public init(forFakeUser userNickName: String, withOperations operations: [Encodable]) {
         self.ref_block_num      =   UInt16(3367)
         self.ref_block_prefix   =   UInt32(879276768)
@@ -48,8 +48,8 @@ public struct Transaction {
         self.serializedBuffer   =   [Byte]()
         self.userNickName       =   userNickName
     }
-
-        
+    
+    
     /// Service function to remove `operation code` from transaction
     private mutating func deleteOperationCode() {
         for (i, operation) in self.operations.enumerated() {
@@ -74,12 +74,12 @@ public struct Transaction {
      */
     public mutating func serialize(byOperationAPIType operationAPIType: OperationAPIType) -> (String?, ErrorAPI?) {
         let chainID: String = (appBuildConfig == AppBuildConfig.development) ?  "5876894a41e6361bde2e73278f07340f2eb8b41c2facd29099de9deef6cdb679" :
-                                                                                "782a3039b478c839e4cb0c941ff4eaeb7df40bdd68bd441afd444b9da763de12"
-
+        "782a3039b478c839e4cb0c941ff4eaeb7df40bdd68bd441afd444b9da763de12"
+        
         // Create `serializedBuffer` with `chainID`
         self.serializedBuffer = chainID.hexBytes
         Logger.log(message: "\nserializedBuffer + chainID:\n\t\(self.serializedBuffer.toHexString())\n", event: .debug)
-
+        
         // Add to buffer `ref_block_num` as `UInt16`
         self.serializedBuffer += self.ref_block_num.bytesReverse
         Logger.log(message: "\nserializedBuffer + ref_block_num:\n\t\(self.serializedBuffer.toHexString())\n", event: .debug)
@@ -143,12 +143,12 @@ public struct Transaction {
                     self.serialize(string: value)
                 }
                     
-                    // Operations: serialize Int64
+                // Operations: serialize Int64
                 else if let value = operationTypePropertyValue as? Int64 {
                     self.serialize(int64: value)
                 }
                     
-                    // Operations: serialize Array
+                // Operations: serialize Array
                 else if let values = operationTypePropertyValue as? [String] {
                     self.serializedBuffer += self.varint(int: values.count)
                     values.forEach({ self.serialize(string: $0) })

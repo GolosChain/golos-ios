@@ -30,7 +30,7 @@ public class WebSocketManager {
     // Handlers
     public var completionIsConnected: (() -> Void)?
     
-
+    
     // MARK: - Class Initialization
     private init() {}
     
@@ -124,7 +124,7 @@ public class WebSocketManager {
             
             return
         }
-
+        
         completion(id, json["error"] != nil)
     }
     
@@ -205,7 +205,7 @@ public class WebSocketManager {
             switch microserviceMethodAPIType {
             case .auth(_):
                 return (responseAPI: try JSONDecoder().decode(ResponseAPIMicroserviceAuthResult.self, from: jsonData), errorAPI: nil)
-
+                
             case .getSecretKey(_):
                 return (responseAPI: try JSONDecoder().decode(ResponseAPIMicroserviceSecretResult.self, from: jsonData), errorAPI: nil)
             }
@@ -249,7 +249,7 @@ extension WebSocketManager: WebSocketDelegate {
             }
         })
     }
-
+    
     public func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
         Logger.log(message: "Success", event: .severe)
         var responseAPIType: ResponseAPIType?
@@ -281,7 +281,7 @@ extension WebSocketManager: WebSocketDelegate {
                             return  requestMethodAPIStore.completion((responseAPI: nil, errorAPI: self?.errorAPI))
                         }
                         
-//                        Logger.log(message: "\nresponseMethodAPIResult model:\n\t\(responseAPIResult)", event: .debug)
+                        //                        Logger.log(message: "\nresponseMethodAPIResult model:\n\t\(responseAPIResult)", event: .debug)
                         
                         // Check websocket timeout: resend current request message
                         self?.checkTimeout(result: responseAPIResult, requestAPIStore: requestMethodAPIStore)

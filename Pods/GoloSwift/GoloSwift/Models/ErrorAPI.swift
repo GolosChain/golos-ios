@@ -17,12 +17,12 @@ public enum ErrorAPI: Error {
     case responseUnsuccessful(message: String)
     case jsonConversionFailure(message: String)
     case signingECCKeychainPostingKeyFailure(message: String)
-
+    
     public var caseInfo: (title: String, message: String) {
         switch self {
         case .blockchain(let message):
             return (title: "Error".localized(), message: message)
-
+            
         case .invalidData(let message):
             return (title: "Invalid Data".localized(), message: message)
             

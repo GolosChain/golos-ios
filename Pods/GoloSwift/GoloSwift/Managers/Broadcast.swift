@@ -236,7 +236,7 @@ public class Broadcast {
             onError(serializeResult.1!)
             return
         }
-
+        
         // Send POST Request messages to Blockchain
         let microserviceMethodAPIType = MicroserviceMethodAPIType.auth(user: userNickName, sign: serializeResult.0!)
         
@@ -251,7 +251,7 @@ public class Broadcast {
             }
         })
     }
-
+    
     
     /// Prepare POST Request API
     private func preparePOST(requestByOperationAPIType operationAPIType: OperationAPIType, byTransaction transaction: Transaction) -> RequestOperationAPIType {
