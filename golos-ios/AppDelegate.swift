@@ -89,32 +89,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Logger.log(message: "secretKey = \n\(secretKey)", event: .debug)
         Logger.log(message: "privateKey = \n\(privateKey ?? "XXX")", event: .debug)
         
-        if !WebSocketManager.instanceMicroservices.webSocket.isConnected {
-            WebSocketManager.instanceMicroservices.webSocket.connect()
-            
-            if WebSocketManager.instanceMicroservices.webSocket.delegate == nil {
-                WebSocketManager.instanceMicroservices.webSocket.delegate = WebSocketManager.instanceMicroservices
+        MicroservicesManager.startSession(forCurrentUser: User.current!.nickName) { errorAPI in
+            if let currentVC = (UIApplication.shared.keyWindow!.rootViewController as? UINavigationController)?.viewControllers.last as? GSBaseViewController, errorAPI != nil {
+                currentVC.showAlertView(withTitle: "Error", andMessage: errorAPI!.caseInfo.message, needCancel: false, completion: { _ in })
             }
-        }
-        
-        // Handlers
-        WebSocketManager.instanceMicroservices.completionIsConnected    =   {
-            DispatchQueue.main.async(execute: {
-                MicroservicesManager.getSecretKey(completion: { (resultKey, errorAPI) in
-                    guard errorAPI == nil else {
-                        return
-                    }
-                    
-                    Logger.log(message: "secretKey = \(resultKey!)", event: .debug)
-                    _ = KeychainManager.save(data: [keySecret: resultKey!], userNickName: User.current!.nickName)
-                    
-                    
-                    /// Test API 'auth'
-                    MicroservicesManager.auth(voter: User.current!.nickName, completion: { errorAPI in
-                        Logger.log(message: "errorAPI = \(errorAPI?.localizedDescription ?? "XXX")", event: .debug)
-                    })
-                })
-            })
         }
     }
     

@@ -163,42 +163,95 @@ public class Broadcast {
             Logger.log(message: "\nexecutePOST - operations:\n\t\(operations)\n", event: .debug)
             
             // Create Transaction (tx)
-            var tx: Transaction = Transaction(withOperations: operations, andGlobalProperties: globalProperties)
-            tx.setUser(nickName: userNickName)
+            var tx: Transaction = Transaction(forUser: userNickName, withOperations: operations, andGlobalProperties: globalProperties)
             Logger.log(message: "\nexecutePOST - transaction:\n\t\(tx)\n", event: .debug)
             
             // Transaction (tx): serialize & SHA256 & ECC signing
-            let errorAPI = tx.serialize(byOperationAPIType: operationAPIType)
+            let serializeResult = tx.serialize(byOperationAPIType: operationAPIType)
             
-            guard errorAPI == nil else {
+            guard serializeResult.1 == nil else {
                 // Show alert error
-                Logger.log(message: "\(errorAPI!.localizedDescription)", event: .error)
-                onError(errorAPI!)
-                return
-            }
-            
-            // Create POST message
-            let requestOperationAPIType = self.preparePOST(requestByOperationAPIType: operationAPIType, byTransaction: tx)
-            Logger.log(message: "\nexecutePOST - requestOperationAPIType:\n\t\(requestOperationAPIType.requestMessage!)\n", event: .debug)
-            
-            guard requestOperationAPIType.errorAPI == nil else {
-                onError(ErrorAPI.requestFailed(message: "Broadcast, line 186: \(requestOperationAPIType.requestMessage!)"))
+                Logger.log(message: "\(serializeResult.1!.localizedDescription)", event: .error)
+                onError(serializeResult.1!)
                 return
             }
             
             // Send POST Request messages to Blockchain
-            WebSocketManager.instanceBlockchain.sendPOSTRequest(withOperationAPIType: requestOperationAPIType, completion: { responseAPIType in
-                if let responseAPI = responseAPIType.responseAPI {
-                    onResult(responseAPI)
+            switch operationAPIType {
+            case .voteAuth:
+                let microserviceMethodAPIType = MicroserviceMethodAPIType.auth(user: userNickName, sign: serializeResult.0!)
+                
+                // Send POST to Microservice
+                WebSocketManager.instanceMicroservices.sendGETRequest(withMicroserviceMethodAPIType: self.prepareGET(requestByMicroserviceMethodAPIType: microserviceMethodAPIType), completion: { responseAPIType in
+                    if let responseAPI = responseAPIType.responseAPI {
+                        onResult(responseAPI)
+                    }
+                        
+                    else {
+                        onError(ErrorAPI.responseUnsuccessful(message: "Broadcast, line 197: \(responseAPIType.errorAPI!.localizedDescription)"))
+                    }
+                })
+                
+            default:
+                // Create POST message
+                let requestOperationAPIType = self.preparePOST(requestByOperationAPIType: operationAPIType, byTransaction: tx)
+                Logger.log(message: "\nexecutePOST - requestOperationAPIType:\n\t\(requestOperationAPIType.requestMessage!)\n", event: .debug)
+                
+                guard requestOperationAPIType.errorAPI == nil else {
+                    onError(ErrorAPI.requestFailed(message: "Broadcast, line 186: \(requestOperationAPIType.requestMessage!)"))
+                    return
                 }
-                    
-                else {
-                    onError(ErrorAPI.responseUnsuccessful(message: "Broadcast, line 197: \(responseAPIType.errorAPI!.localizedDescription)"))
-                }
-            })
+                
+                // Send POST message to Blockchain
+                WebSocketManager.instanceBlockchain.sendPOSTRequest(withOperationAPIType: requestOperationAPIType, completion: { responseAPIType in
+                    if let responseAPI = responseAPIType.responseAPI {
+                        onResult(responseAPI)
+                    }
+                        
+                    else {
+                        onError(ErrorAPI.responseUnsuccessful(message: "Broadcast, line 197: \(responseAPIType.errorAPI!.localizedDescription)"))
+                    }
+                })
+            }
         })
     }
     
+    
+    /// Gate-Service: 'auth'
+    public func executeFakePOST(requestByOperationAPIType operationAPIType: OperationAPIType, userNickName: String, onResult: @escaping (Decodable) -> Void, onError: @escaping (ErrorAPI) -> Void) {
+        // Create Operations for Transaction (tx)
+        let operations: [Encodable] = operationAPIType.introduced().paramsSecond
+        Logger.log(message: "\nexecutePOST - operations:\n\t\(operations)\n", event: .debug)
+        
+        // Create Transaction (tx)
+        var tx: Transaction = Transaction(forFakeUser: userNickName, withOperations: operations)
+        Logger.log(message: "\nexecutePOST - transaction:\n\t\(tx)\n", event: .debug)
+        
+        // Transaction (tx): serialize & SHA256 & ECC signing
+        let serializeResult = tx.serialize(byOperationAPIType: operationAPIType)
+        
+        guard serializeResult.1 == nil else {
+            // Show alert error
+            Logger.log(message: "\(serializeResult.1!.localizedDescription)", event: .error)
+            onError(serializeResult.1!)
+            return
+        }
+
+        // Send POST Request messages to Blockchain
+        let microserviceMethodAPIType = MicroserviceMethodAPIType.auth(user: userNickName, sign: serializeResult.0!)
+        
+        // Send POST to Microservice
+        WebSocketManager.instanceMicroservices.sendGETRequest(withMicroserviceMethodAPIType: self.prepareGET(requestByMicroserviceMethodAPIType: microserviceMethodAPIType), completion: { responseAPIType in
+            if let responseAPI = responseAPIType.responseAPI {
+                onResult(responseAPI)
+            }
+                
+            else {
+                onError(ErrorAPI.responseUnsuccessful(message: "Broadcast, line 197: \(responseAPIType.errorAPI!.localizedDescription)"))
+            }
+        })
+    }
+
     
     /// Prepare POST Request API
     private func preparePOST(requestByOperationAPIType operationAPIType: OperationAPIType, byTransaction transaction: Transaction) -> RequestOperationAPIType {
@@ -385,7 +438,7 @@ extension Broadcast {
             var jsonString: String
             
             switch microserviceMethodAPIType {
-            case .getSecretKey(_):
+            case .getSecretKey(_), .auth(_):
                 jsonData        =   try jsonEncoder.encode(requestAPI)
                 jsonString      =   "\(String(data: jsonData, encoding: .utf8)!)"
             }
@@ -393,6 +446,13 @@ extension Broadcast {
             jsonString          =   jsonString
                                         .replacingOccurrences(of: "[[[", with: "[[")
                                         .replacingOccurrences(of: "[\"nil\"]", with: "]")
+            
+            if microserviceMethodAPIType.introduced().nameAPI == "auth" {
+                jsonString      =   jsonString
+                                        .replacingOccurrences(of: "[", with: "{")
+                                        .replacingOccurrences(of: "]", with: "}")
+                                        .replacingOccurrences(of: "\\", with: "")
+            }
             
             Logger.log(message: "\nEncoded JSON -> String:\n\t " + jsonString, event: .debug)
             

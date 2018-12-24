@@ -203,6 +203,9 @@ public class WebSocketManager {
         do {
             // Gate microservices
             switch microserviceMethodAPIType {
+            case .auth(_):
+                return (responseAPI: try JSONDecoder().decode(ResponseAPIMicroserviceAuthResult.self, from: jsonData), errorAPI: nil)
+
             case .getSecretKey(_):
                 return (responseAPI: try JSONDecoder().decode(ResponseAPIMicroserviceSecretResult.self, from: jsonData), errorAPI: nil)
             }

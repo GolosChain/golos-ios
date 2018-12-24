@@ -27,7 +27,7 @@ public struct Transaction {
     
     
     // MARK: - Class Initialization
-    public init(withOperations operations: [Encodable], andExtensions extensions: [String]? = nil, andGlobalProperties globalProperties: ResponseAPIDynamicGlobalProperty) {
+    public init(forUser userNickName: String, withOperations operations: [Encodable], andExtensions extensions: [String]? = nil, andGlobalProperties globalProperties: ResponseAPIDynamicGlobalProperty) {
         self.ref_block_num      =   UInt16(globalProperties.head_block_number & 0xFFFF)
         self.ref_block_prefix   =   globalProperties.head_block_id.convert(toIntFromStartByte: 12, toEndByte: 16)
         self.expiration         =   globalProperties.time.convert(toDateFormat: .expirationDateType).addingTimeInterval(60).convert(toStringFormat: .expirationDateType)
@@ -35,15 +35,21 @@ public struct Transaction {
         self.extensions         =   extensions
         self.signatures         =   [String]()
         self.serializedBuffer   =   [Byte]()
-    }
-    
-    
-    // MARK: - Custom Functions
-    public mutating func setUser(nickName: String) {
-        self.userNickName = nickName
+        self.userNickName       =   userNickName
     }
 
-    
+    public init(forFakeUser userNickName: String, withOperations operations: [Encodable]) {
+        self.ref_block_num      =   UInt16(3367)
+        self.ref_block_prefix   =   UInt32(879276768)
+        self.expiration         =   "2018-07-06T14:52:24"
+        self.operations         =   operations
+        self.extensions         =   nil
+        self.signatures         =   [String]()
+        self.serializedBuffer   =   [Byte]()
+        self.userNickName       =   userNickName
+    }
+
+        
     /// Service function to remove `operation code` from transaction
     private mutating func deleteOperationCode() {
         for (i, operation) in self.operations.enumerated() {
@@ -66,14 +72,14 @@ public struct Transaction {
      - Returns: Error or nil.
      
      */
-    public mutating func serialize(byOperationAPIType operationAPIType: OperationAPIType) -> ErrorAPI? {
+    public mutating func serialize(byOperationAPIType operationAPIType: OperationAPIType) -> (String?, ErrorAPI?) {
         let chainID: String = (appBuildConfig == AppBuildConfig.development) ?  "5876894a41e6361bde2e73278f07340f2eb8b41c2facd29099de9deef6cdb679" :
                                                                                 "782a3039b478c839e4cb0c941ff4eaeb7df40bdd68bd441afd444b9da763de12"
 
-        /// Create `serializedBuffer` with `chainID`
+        // Create `serializedBuffer` with `chainID`
         self.serializedBuffer = chainID.hexBytes
         Logger.log(message: "\nserializedBuffer + chainID:\n\t\(self.serializedBuffer.toHexString())\n", event: .debug)
-        
+
         // Add to buffer `ref_block_num` as `UInt16`
         self.serializedBuffer += self.ref_block_num.bytesReverse
         Logger.log(message: "\nserializedBuffer + ref_block_num:\n\t\(self.serializedBuffer.toHexString())\n", event: .debug)
@@ -102,13 +108,13 @@ public struct Transaction {
         
         // ECC signing
         guard let signature = SigningManager.signingECC(messageSHA256: messageSHA256, userNickName: self.userNickName) else {
-            return ErrorAPI.signingECCKeychainPostingKeyFailure(message: "Signing Transaction Failure")
+            return (nil, ErrorAPI.signingECCKeychainPostingKeyFailure(message: "Signing Transaction Failure"))
         }
         
         self.add(signature: signature)
         Logger.log(message: "\nsignature:\n\t\(signature)\n", event: .debug)
         
-        return nil
+        return (signature, nil)
     }
     
     

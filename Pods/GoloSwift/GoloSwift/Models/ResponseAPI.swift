@@ -505,3 +505,14 @@ public struct ResponseAPIMicroserviceSecret: Decodable {
     // MARK: - In work
     public let secret: String
 }
+
+
+// MARK: -
+// Template: { "id": 2, "jsonrpc": "2.0", "result" : { "status": "OK" } }
+public struct ResponseAPIMicroserviceAuthResult: Decodable {
+    // MARK: - In work
+    public let id: Int64
+    public let jsonrpc: String
+    public let result: [String: String]?
+    public let error: ResponseAPIError?
+}
