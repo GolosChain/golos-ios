@@ -81,19 +81,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         
-        guard !User.isAnonymous else { return }
+//        guard !User.isAnonymous else { return }
+//        guard let userNickName = User.current?.nickName else { return }
 
         // Load stored data
-        let secretKey       =   KeychainManager.loadData(forUserNickName: User.current!.nickName, withKey: keySecret)?.values.first ?? "XXX"
-        let privateKey      =   KeychainManager.load(privateKey: keyPrivate, forUserNickName: User.current!.nickName)
-        Logger.log(message: "secretKey = \n\(secretKey)", event: .debug)
-        Logger.log(message: "privateKey = \n\(privateKey ?? "XXX")", event: .debug)
+//        var secretKey   =   KeychainManager.loadData(forUserNickName: userNickName, withKey: keySecret)?.values.first
+//        secretKey       =   KeychainManager.loadData(forUserNickName: userNickName, withKey: keySecret)?.values.first
+//        Logger.log(message: "secretKey = \n\(String(describing: secretKey))", event: .debug)
+
+//        let privateKey      =   KeychainManager.load(privateKey: keyPrivate, forUserNickName: User.current!.nickName)
+//        Logger.log(message: "privateKey = \n\(privateKey ?? "XXX")", event: .debug)
         
-        MicroservicesManager.startSession(forCurrentUser: User.current!.nickName) { errorAPI in
-            if let currentVC = (UIApplication.shared.keyWindow!.rootViewController as? UINavigationController)?.viewControllers.last as? GSBaseViewController, errorAPI != nil {
-                currentVC.showAlertView(withTitle: "Error", andMessage: errorAPI!.caseInfo.message, needCancel: false, completion: { _ in })
-            }
-        }
+//        MicroservicesManager.startSession(forCurrentUser: User.current!.nickName) { errorAPI in
+//            if let currentVC = (UIApplication.shared.keyWindow!.rootViewController as? UINavigationController)?.viewControllers.last as? GSBaseViewController, errorAPI != nil {
+//                currentVC.showAlertView(withTitle: "Error", andMessage: errorAPI!.caseInfo.message, needCancel: false, completion: { _ in })
+//            }
+//        }
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {

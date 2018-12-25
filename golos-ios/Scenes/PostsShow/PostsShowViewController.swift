@@ -183,6 +183,15 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
         self.localizeTitles()
         
         NotificationCenter.default.addObserver(self, selector: #selector(localizeTitles), name: NSNotification.Name(LCLLanguageChangeNotification), object: nil)
+        
+        // Start Microservice session
+        guard let userNickName = User.current?.nickName else { return }
+        
+        MicroservicesManager.startSession(forCurrentUser: userNickName) { errorAPI in
+            if errorAPI != nil {
+                self.showAlertView(withTitle: "Error", andMessage: errorAPI!.caseInfo.message, needCancel: false, completion: { _ in })
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

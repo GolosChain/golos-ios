@@ -41,7 +41,8 @@ class SettingsShowRouter: NSObject, SettingsShowRoutingLogic, SettingsShowDataPa
     // MARK: - Routing
     func routeToLoginShowScene() {
         DispatchQueue.main.async {
-            _ = KeychainManager.deleteAllData(forUserNickName: User.current!.nickName)
+            _ = KeychainManager.deleteData(forUserNickName: User.current!.nickName, withKey: keySecret)
+            _ = KeychainManager.deleteData(forUserNickName: User.current!.nickName, withKey: keyPrivate)
             WebSocketManager.instanceMicroservices.webSocket.disconnect()
             StateMachine.load().changeState(.loggedOut)
             User.current!.setIsAuthorized(false)
