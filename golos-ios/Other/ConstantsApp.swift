@@ -63,6 +63,9 @@ let cacheApp                            =   NSCache<NSString, UIImage>()
 let appVersion                          =   String(format: "%@.%@", Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String, Bundle.main.infoDictionary?["CFBundleVersion"] as! String)
 var selectedTabBarItem: Int             =   0
 
+let currentUserNickName                 =   User.current?.nickName ?? "XXX"
+let currentDeviceUDID                   =   UIDevice.current.identifierForVendor?.uuidString ?? "Simulator"
+
 
 // Amplitude SDK
 enum AmplitudeEvent: String {

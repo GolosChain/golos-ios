@@ -201,13 +201,18 @@ public class WebSocketManager {
     
     func decode(from jsonData: Data, byMicroserviceMethodAPIType microserviceMethodAPIType: MicroserviceMethodAPIType) throws -> ResponseAPIType {
         do {
+            Logger.log(message: "jsonData = \n\t\(String(describing: try JSONSerialization.jsonObject(with: jsonData, options : .allowFragments) as? [String: AnyObject]))", event: .debug)
+            
             // Gate microservices
             switch microserviceMethodAPIType {
-            case .auth(_):
+            case .auth(_), .setBasicOptions(_):
                 return (responseAPI: try JSONDecoder().decode(ResponseAPIMicroserviceAuthResult.self, from: jsonData), errorAPI: nil)
                 
             case .getSecretKey(_):
                 return (responseAPI: try JSONDecoder().decode(ResponseAPIMicroserviceSecretResult.self, from: jsonData), errorAPI: nil)
+                
+            case .getBasicOptions(_):
+                return (responseAPI: try JSONDecoder().decode(ResponseAPIMicroserviceGetOptionsResult.self, from: jsonData), errorAPI: nil)
             }
         } catch {
             Logger.log(message: "\(error)", event: .error)

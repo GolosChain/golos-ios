@@ -516,3 +516,83 @@ public struct ResponseAPIMicroserviceAuthResult: Decodable {
     public let result: [String: String]?
     public let error: ResponseAPIError?
 }
+
+
+// MARK: -
+// Template: { "id": 2, "jsonrpc": "2.0", "result" : { "status": "OK" } }
+public struct ResponseAPIMicroserviceGetOptionsResult: Decodable {
+    // MARK: - In work
+    public let id: Int64
+    public let jsonrpc: String
+    public let result: ResponseAPIMicroserviceGetOptions?
+    public let error: ResponseAPIError?
+}
+
+
+// MARK: -
+public struct ResponseAPIMicroserviceGetOptions: Decodable {
+    // MARK: - In work
+    public let push: ResponseAPIMicroserviceGetOptionsPush
+    public let basic: ResponseAPIMicroserviceGetOptionsBasic
+    public let notify: ResponseAPIMicroserviceGetOptionsNotify
+}
+
+
+// MARK: -
+public struct ResponseAPIMicroserviceGetOptionsBasic: Decodable {
+    // MARK: - In work
+    public let theme: Int
+}
+
+
+// MARK: -
+public struct ResponseAPIMicroserviceGetOptionsNotify: Decodable {
+    // MARK: - In work
+    public let show: ResponseAPIMicroserviceGetOptionsNotifyShow
+}
+
+
+// MARK: -
+public struct ResponseAPIMicroserviceGetOptionsNotifyShow: Decodable {
+    // MARK: - In work
+    public let curatorReward: Bool
+    public let flag: Bool
+    public let mention: Bool
+    public let message: Bool
+    public let reply: Bool
+    public let repost: Bool
+    public let reward: Bool
+    public let subscribe: Bool
+    public let transfer: Bool
+    public let unsubscribe: Bool
+    public let vote: Bool
+    public let witnessCancelVote: Bool
+    public let witnessVote: Bool
+}
+
+
+// MARK: -
+public struct ResponseAPIMicroserviceGetOptionsPush: Decodable {
+    // MARK: - In work
+    public let lang: String
+    public let show: ResponseAPIMicroserviceGetOptionsPushShow
+}
+
+
+// MARK: -
+public struct ResponseAPIMicroserviceGetOptionsPushShow: Decodable {
+    // MARK: - In work
+    public let award: Bool
+    public let curatorAward: Bool
+    public let flag: Bool
+    public let mention: Bool
+    public let message: Bool
+    public let reply: Bool
+    public let repost: Bool
+    public let subscribe: Bool
+    public let transfer: Bool
+    public let unsubscribe: Bool
+    public let vote: Bool
+    public let witnessCancelVote: Bool
+    public let witnessVote: Bool
+}

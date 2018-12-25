@@ -438,7 +438,7 @@ extension Broadcast {
             var jsonString: String
             
             switch microserviceMethodAPIType {
-            case .getSecretKey(_), .auth(_):
+            case .getSecretKey(_), .auth(_), .setBasicOptions(_), .getBasicOptions(_):
                 jsonData        =   try jsonEncoder.encode(requestAPI)
                 jsonString      =   "\(String(data: jsonData, encoding: .utf8)!)"
             }
@@ -447,11 +447,18 @@ extension Broadcast {
                                         .replacingOccurrences(of: "[[[", with: "[[")
                                         .replacingOccurrences(of: "[\"nil\"]", with: "]")
             
-            if microserviceMethodAPIType.introduced().nameAPI == "auth" {
+            if  microserviceMethodAPIType.introduced().nameAPI == "auth"        ||
+                microserviceMethodAPIType.introduced().nameAPI == "setOptions"  ||
+                microserviceMethodAPIType.introduced().nameAPI == "getOptions"  {
                 jsonString      =   jsonString
                                         .replacingOccurrences(of: "[", with: "{")
                                         .replacingOccurrences(of: "]", with: "}")
                                         .replacingOccurrences(of: "\\", with: "")
+            }
+            
+            if microserviceMethodAPIType.introduced().nameAPI == "setOptions" {
+                jsonString      =   jsonString
+                    .replacingOccurrences(of: "}\"}}", with: "}}}")
             }
             
             Logger.log(message: "\nEncoded JSON -> String:\n\t " + jsonString, event: .debug)

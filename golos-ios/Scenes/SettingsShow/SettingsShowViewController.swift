@@ -261,6 +261,9 @@ class SettingsShowViewController: GSBaseViewController {
         
         self.localizeTitles()
         self.loadViewSettings()
+        
+        // Microservice API `getOptions`
+        self.getBasicOptions()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -373,6 +376,9 @@ class SettingsShowViewController: GSBaseViewController {
         
         self.navigationController?.navigationBar.layer.theme_shadowColor  =   veryLightGrayCGColorPickers
         (self.tabBarController as! GSTabBarController).setup()
+        
+        // Microservice API `setOptions`
+        self.setBasicOptions()
     }
 
     @IBAction func moonRadioButtonTapped(_ sender: Any) {
@@ -385,6 +391,9 @@ class SettingsShowViewController: GSBaseViewController {
         self.moonRadioButton.iconColor  =   UIColor(hexString: "#2F7DFB")
         self.navigationController?.navigationBar.layer.theme_shadowColor  =   whiteVeryDarkGrayCGColorPickers
         (self.tabBarController as! GSTabBarController).setup()
+        
+        // Microservice API `setOptions`
+        self.setBasicOptions()
     }
     
     @IBAction func viewPicturesSwitchChanged(_ sender: UISwitch) {
@@ -420,5 +429,36 @@ class SettingsShowViewController: GSBaseViewController {
 extension SettingsShowViewController: SettingsShowDisplayLogic {
     func displaySomething(fromViewModel viewModel: SettingsShowModels.Items.ViewModel) {
         // NOTE: Display the result from the Presenter
+    }
+}
+
+
+// MARK: - Microservices
+extension SettingsShowViewController {
+    private func setBasicOptions() {
+        MicroservicesManager.setBasicOptions(userNickName: currentUserNickName, deviceUDID: currentDeviceUDID, isDarkTheme: AppSettings.instance().isAppThemeDark, completion: { [weak self] errorAPI in
+            guard let strongSelf = self else { return }
+            
+            if errorAPI != nil {
+                strongSelf.showAlertView(withTitle: "Error", andMessage: errorAPI!.caseInfo.message, needCancel: false, completion: { _ in })
+            }
+        })
+    }
+    
+    private func getBasicOptions() {
+        MicroservicesManager.getBasicOptions(userNickName: currentUserNickName, deviceUDID: currentDeviceUDID, completion: { [weak self] (resultOptions, errorAPI) in
+            guard let strongSelf = self else { return }
+            
+            if errorAPI != nil {
+                strongSelf.showAlertView(withTitle: "Error", andMessage: errorAPI!.caseInfo.message, needCancel: false, completion: { _ in })
+            }
+            
+            // Store 'basic' options
+            else if let getOptionsResult = resultOptions?.result {
+                Logger.log(message: "push = \n\t\(getOptionsResult.push)", event: .debug)
+                Logger.log(message: "basic = \n\t\(getOptionsResult.basic)", event: .debug)
+                Logger.log(message: "notify = \n\t\(getOptionsResult.notify)", event: .debug)
+            }
+        })
     }
 }
