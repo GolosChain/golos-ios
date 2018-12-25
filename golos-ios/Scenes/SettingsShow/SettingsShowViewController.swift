@@ -398,6 +398,9 @@ class SettingsShowViewController: GSBaseViewController {
     
     @IBAction func viewPicturesSwitchChanged(_ sender: UISwitch) {
         AppSettings.instance().setFeedShowImages(sender.isOn)
+        
+        // Microservice API `setOptions`
+        self.setBasicOptions()
     }
     
     /// Set titles with support App language
@@ -436,7 +439,7 @@ extension SettingsShowViewController: SettingsShowDisplayLogic {
 // MARK: - Microservices
 extension SettingsShowViewController {
     private func setBasicOptions() {
-        MicroservicesManager.setBasicOptions(userNickName: currentUserNickName, deviceUDID: currentDeviceUDID, isDarkTheme: AppSettings.instance().isAppThemeDark, completion: { [weak self] errorAPI in
+        MicroservicesManager.setBasicOptions(userNickName: currentUserNickName, deviceUDID: currentDeviceUDID, isDarkTheme: AppSettings.instance().isAppThemeDark, isFeedShowImages: AppSettings.instance().isFeedShowImages, completion: { [weak self] errorAPI in
             guard let strongSelf = self else { return }
             
             if errorAPI != nil {
