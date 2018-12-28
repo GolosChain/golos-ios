@@ -55,6 +55,12 @@ class PostCreateViewController: GSBaseViewController {
         }
     }
     
+    @IBOutlet weak var topLineView: UIView! {
+        didSet {
+            self.topLineView.tune(withThemeColorPicker: lightGrayishBlueWhiteColorPickers)
+        }
+    }
+
     @IBOutlet weak var contentView: UIView! {
         didSet {
             self.contentView.tune()
@@ -113,7 +119,7 @@ class PostCreateViewController: GSBaseViewController {
             contentTextView.placeholder     =   (sceneType == .createPost ? "Enter Text Placeholder" : "Enter Comment Placeholder").localized()
             
             contentTextView.tune(textColors:    darkGrayWhiteColorPickers,
-                                 font:          UIFont(name: "SFProDisplay-Regular", size: 13.0),
+                                 font:          UIFont(name: "SFProDisplay-Regular", size: 15.0),
                                  alignment:     .left)
         }
     }
@@ -126,7 +132,8 @@ class PostCreateViewController: GSBaseViewController {
     
     @IBOutlet weak var stackViewTopConstraint: NSLayoutConstraint! {
         didSet {
-            stackViewTopConstraint.constant =   (sceneType == .createComment) ? -70.0 * heightRatio : 6.0
+            self.stackViewTopConstraint.constant    =   (sceneType == .createComment) ? -20.0 : 20.0
+            self.scrollView.scrollsToTop            =   true
         }
     }
 
@@ -262,9 +269,13 @@ class PostCreateViewController: GSBaseViewController {
             self.commentReplyView.markdownViewManager.load(markdown: self.router?.dataStore?.commentTitle ?? "")
             
             self.commentReplyView.markdownViewManager.onRendered = { [weak self] height in
-                self?.markdownViewHeightConstraint.constant = height + 15.0 * 2 * heightRatio
-                self?.stackView.layoutIfNeeded()
-                self?.showContent()
+                guard let strongSelf = self else { return }
+
+                strongSelf.commentReplyView.markdownViewManager.webView!.setBackgroundColor(forAppTheme: AppSettings.isAppThemeDark)
+
+                strongSelf.markdownViewHeightConstraint.constant = height + 15.0 * 2 * heightRatio
+                strongSelf.stackView.layoutIfNeeded()
+                strongSelf.showContent()
             }
         }
             
@@ -651,7 +662,7 @@ private func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerCon
 extension PostCreateViewController {
     func displayPostingBarButtonActivityIndicator() {
         self.postingActivityIndicator           =   UIActivityIndicatorView(frame: CGRect(x: 0.0, y: 0.0, width: 20.0, height: 20.0))
-        self.postingActivityIndicator?.color    =   UIColor(hexString: "#6F7179")
+        self.postingActivityIndicator?.color    =   UIColor(hexString: AppSettings.isAppThemeDark ? "#FFFFFF" : "#6F7179")
         
         let barButton   =   UIBarButtonItem(customView: self.postingActivityIndicator!)
         self.navigationItem.setRightBarButton(barButton, animated: true)

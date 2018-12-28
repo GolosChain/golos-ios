@@ -146,7 +146,7 @@ class WelcomeShowViewController: GSBaseViewController {
         self.hideNavigationBar()
         
         // Set StatusBarStyle
-        self.isStatusBarStyleLight = false
+        self.isStatusBarStyleLight = AppSettings.isAppThemeDark
     }
     
     override func viewWillDisappear(_ animated: Bool) {

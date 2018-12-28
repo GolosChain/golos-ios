@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "golos-ios/Scenes/PostCreate/PostCreateViewController.swift"
-            timestampString = "565639911.728459"
+            timestampString = "567689926.751157"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "665"
-            endingLineNumber = "665"
+            startingLineNumber = "676"
+            endingLineNumber = "676"
             landmarkName = "hidePostingBarButtonActivityIndicator()"
             landmarkType = "7">
          </BreakpointContent>
@@ -26,7 +26,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Pods/GoloSwift/GoloSwift/Managers/WebSocketManager.swift"
-            timestampString = "567424471.08814"
+            timestampString = "567595214.772638"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "198"
@@ -42,7 +42,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Pods/GoloSwift/GoloSwift/Managers/WebSocketManager.swift"
-            timestampString = "567424471.089112"
+            timestampString = "567595214.773193"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "334"
@@ -106,7 +106,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Pods/GoloSwift/GoloSwift/Managers/WebSocketManager.swift"
-            timestampString = "567424471.089897"
+            timestampString = "567595214.773676"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "244"
@@ -122,28 +122,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Pods/GoloSwift/GoloSwift/Managers/WebSocketManager.swift"
-            timestampString = "567424471.090623"
+            timestampString = "567595214.774068"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "219"
             endingLineNumber = "219"
             landmarkName = "decode(from:byMicroserviceMethodAPIType:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Pods/GoloSwift/GoloSwift/Managers/WebSocketManager.swift"
-            timestampString = "567424471.091368"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "249"
-            endingLineNumber = "249"
-            landmarkName = "websocketDidConnect(socket:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -218,7 +202,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Pods/GoloSwift/GoloSwift/Managers/Broadcast.swift"
-            timestampString = "567424471.0921611"
+            timestampString = "567603321.173685"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "175"
@@ -233,24 +217,8 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Pods/GoloSwift/GoloSwift/Managers/SigningManager.swift"
-            timestampString = "566831471.469411"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "64"
-            endingLineNumber = "64"
-            landmarkName = "signingECC(messageSHA256:userNickName:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Pods/GoloSwift/GoloSwift/Managers/MicroservicesManager.swift"
-            timestampString = "567427187.3511029"
+            timestampString = "567603321.173749"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "57"
@@ -266,7 +234,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Pods/GoloSwift/GoloSwift/Managers/MicroservicesManager.swift"
-            timestampString = "567427187.351645"
+            timestampString = "567603321.173808"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "65"
@@ -282,7 +250,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Pods/GoloSwift/GoloSwift/Managers/MicroservicesManager.swift"
-            timestampString = "567427187.352047"
+            timestampString = "567603321.173862"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "71"
@@ -298,7 +266,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Pods/GoloSwift/GoloSwift/Managers/Broadcast.swift"
-            timestampString = "567424471.092882"
+            timestampString = "567603321.173915"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "417"
@@ -314,7 +282,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Pods/GoloSwift/GoloSwift/Managers/MicroservicesManager.swift"
-            timestampString = "567427187.352477"
+            timestampString = "567603321.173963"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "101"
@@ -330,7 +298,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Pods/GoloSwift/GoloSwift/Managers/MicroservicesManager.swift"
-            timestampString = "567427187.352897"
+            timestampString = "567603321.174015"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "107"
@@ -346,7 +314,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Pods/GoloSwift/GoloSwift/Managers/MicroservicesManager.swift"
-            timestampString = "567427187.3533109"
+            timestampString = "567603321.1740659"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "95"
@@ -362,7 +330,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Pods/GoloSwift/GoloSwift/Managers/Broadcast.swift"
-            timestampString = "567424471.093693"
+            timestampString = "567603321.174117"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "250"
@@ -378,7 +346,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Pods/GoloSwift/GoloSwift/Managers/Broadcast.swift"
-            timestampString = "567424471.094188"
+            timestampString = "567603321.1741641"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "236"
@@ -394,11 +362,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "golos-ios/Scenes/PostsShow/PostsShowViewController.swift"
-            timestampString = "567415104.022395"
+            timestampString = "567689926.7521729"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "192"
-            endingLineNumber = "192"
+            startingLineNumber = "201"
+            endingLineNumber = "201"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
             <Locations>
@@ -410,11 +378,11 @@
                   moduleName = "Golos"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/msm72/My%20Projects/GolosChain/App/golos-ios/Scenes/PostsShow/PostsShowViewController.swift"
-                  timestampString = "567427187.759483"
+                  timestampString = "567689927.157536"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "192"
-                  endingLineNumber = "192"
+                  startingLineNumber = "201"
+                  endingLineNumber = "201"
                   offsetFromSymbolStart = "255">
                </Location>
                <Location
@@ -425,11 +393,11 @@
                   moduleName = "Golos"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/msm72/My%20Projects/GolosChain/App/golos-ios/Scenes/PostsShow/PostsShowViewController.swift"
-                  timestampString = "567427187.76283"
+                  timestampString = "567689927.159983"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "192"
-                  endingLineNumber = "192"
+                  startingLineNumber = "201"
+                  endingLineNumber = "201"
                   offsetFromSymbolStart = "4">
                </Location>
             </Locations>
@@ -442,28 +410,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "golos-ios/AppDelegate.swift"
-            timestampString = "567403142.444524"
+            timestampString = "567677390.173973"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "112"
-            endingLineNumber = "112"
-            landmarkName = "unknown"
-            landmarkType = "0">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Pods/GoloSwift/GoloSwift/Managers/MicroservicesManager.swift"
-            timestampString = "567427187.353781"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "126"
-            endingLineNumber = "126"
-            landmarkName = "setBasicOptions(userNickName:deviceUDID:isDarkTheme:isFeedShowImages:completion:)"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
+            landmarkName = "application(_:didReceiveRemoteNotification:fetchCompletionHandler:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -474,7 +426,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Pods/GoloSwift/GoloSwift/Managers/MicroservicesManager.swift"
-            timestampString = "567427187.354277"
+            timestampString = "567603321.174654"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "130"
@@ -490,7 +442,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Pods/GoloSwift/GoloSwift/Managers/MicroservicesManager.swift"
-            timestampString = "567427187.354712"
+            timestampString = "567603321.174722"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "123"
@@ -506,60 +458,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Pods/GoloSwift/GoloSwift/Managers/Broadcast.swift"
-            timestampString = "567424471.094879"
+            timestampString = "567603321.174788"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "411"
-            endingLineNumber = "411"
+            startingLineNumber = "412"
+            endingLineNumber = "412"
             landmarkName = "executeGET(byMicroserviceMethodAPIType:onResult:onError:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "GoloSwift.Broadcast.executeGET(byMicroserviceMethodAPIType: GoloSwift.MicroserviceMethodAPIType, onResult: (Swift.Decodable) -&gt; (), onError: (GoloSwift.ErrorAPI) -&gt; ()) -&gt; ()"
-                  moduleName = "GoloSwift"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/msm72/My%20Projects/GolosChain/App/Pods/GoloSwift/GoloSwift/Managers/Broadcast.swift"
-                  timestampString = "567408022.915633"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "411"
-                  endingLineNumber = "411"
-                  offsetFromSymbolStart = "683">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 ((responseAPI: Swift.Optional&lt;Swift.Decodable&gt;, errorAPI: Swift.Optional&lt;GoloSwift.ErrorAPI&gt;)) -&gt; () in GoloSwift.Broadcast.executeGET(byMicroserviceMethodAPIType: GoloSwift.MicroserviceMethodAPIType, onResult: (Swift.Decodable) -&gt; (), onError: (GoloSwift.ErrorAPI) -&gt; ()) -&gt; ()"
-                  moduleName = "GoloSwift"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/msm72/My%20Projects/GolosChain/App/Pods/GoloSwift/GoloSwift/Managers/Broadcast.swift"
-                  timestampString = "567408022.918606"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "412"
-                  endingLineNumber = "412"
-                  offsetFromSymbolStart = "546">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Pods/GoloSwift/GoloSwift/Managers/WebSocketManager.swift"
-            timestampString = "567424471.0952179"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "209"
-            endingLineNumber = "209"
-            landmarkName = "decode(from:byMicroserviceMethodAPIType:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -570,7 +474,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Pods/GoloSwift/GoloSwift/Managers/Broadcast.swift"
-            timestampString = "567424471.096018"
+            timestampString = "567603321.1748379"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "467"
@@ -586,45 +490,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "golos-ios/Scenes/SettingsShow/SettingsShowViewController.swift"
-            timestampString = "567427187.3551871"
+            timestampString = "567689926.752664"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "456"
-            endingLineNumber = "456"
-            landmarkName = "getBasicOptions()"
+            startingLineNumber = "460"
+            endingLineNumber = "460"
+            landmarkName = "getBasicOptions(completion:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;GoloSwift.ResponseAPIMicroserviceGetOptionsResult&gt;, Swift.Optional&lt;GoloSwift.ErrorAPI&gt;) -&gt; () in Golos.SettingsShowViewController.(getBasicOptions in _CAC5A407F0150D7871A115AD88C976AE)() -&gt; ()"
-                  moduleName = "Golos"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/msm72/My%20Projects/GolosChain/App/golos-ios/Scenes/SettingsShow/SettingsShowViewController.swift"
-                  timestampString = "567427187.781464"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "456"
-                  endingLineNumber = "456"
-                  offsetFromSymbolStart = "491">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Bool) -&gt; () in closure #1 (Swift.Optional&lt;GoloSwift.ResponseAPIMicroserviceGetOptionsResult&gt;, Swift.Optional&lt;GoloSwift.ErrorAPI&gt;) -&gt; () in Golos.SettingsShowViewController.(getBasicOptions in _CAC5A407F0150D7871A115AD88C976AE)() -&gt; ()"
-                  moduleName = "Golos"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/msm72/My%20Projects/GolosChain/App/golos-ios/Scenes/SettingsShow/SettingsShowViewController.swift"
-                  timestampString = "567427187.7846071"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "456"
-                  endingLineNumber = "456"
-                  offsetFromSymbolStart = "4">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -634,11 +506,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Pods/GoloSwift/GoloSwift/Managers/MicroservicesManager.swift"
-            timestampString = "567427187.35618"
+            timestampString = "567603321.175295"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "162"
-            endingLineNumber = "162"
+            startingLineNumber = "163"
+            endingLineNumber = "163"
             landmarkName = "getBasicOptions(userNickName:deviceUDID:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -650,7 +522,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Pods/GoloSwift/GoloSwift/Managers/MicroservicesManager.swift"
-            timestampString = "567427187.35682"
+            timestampString = "567603321.175351"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "149"
@@ -666,7 +538,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Pods/GoloSwift/GoloSwift/Managers/MicroservicesManager.swift"
-            timestampString = "567427187.357151"
+            timestampString = "567603321.175403"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "156"
@@ -678,16 +550,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "golos-ios/Scenes/SettingsShow/SettingsShowViewController.swift"
-            timestampString = "567427187.357447"
+            filePath = "golos-ios/Scenes/PostShow/Views/CommentView.swift"
+            timestampString = "567689926.752852"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "463"
-            endingLineNumber = "463"
-            landmarkName = "getBasicOptions()"
+            startingLineNumber = "180"
+            endingLineNumber = "180"
+            landmarkName = "setupUI(withComment:forRow:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

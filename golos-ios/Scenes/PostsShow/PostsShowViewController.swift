@@ -54,7 +54,8 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
     
     @IBOutlet weak var lineView: UIView! {
         didSet {
-            self.lineView.frame.origin = CGPoint(x: self.buttonsStackView.spacing, y: lineView.frame.minY)
+            self.lineView.theme_backgroundColor     =   whiteColorPickers
+            self.lineView.frame.origin              =   CGPoint(x: self.buttonsStackView.spacing, y: lineView.frame.minY)
         }
     }
     
@@ -82,15 +83,16 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
         }
     }
     
-    @IBOutlet weak var shadowView: UIView! {
+    @IBOutlet weak var topLineView: UIView! {
         didSet {
-            shadowView.setGradientBackground(colors: [UIColor.lightGray.cgColor, UIColor.lightText.cgColor], onside: .bottom)
+            self.topLineView.tune(withThemeColorPicker: lightGrayishBlueWhiteColorPickers)
         }
     }
-    
+
     // ContainerViewSupport implementation
     @IBOutlet weak var containerView: GSContainerView! {
         didSet {
+            self.containerView.tune()
             self.containerView.mainVC            =   self
             self.containerView.viewControllers   =   self.getContainerViewControllers()
 
@@ -101,6 +103,12 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
     @IBOutlet var heightsCollection: [NSLayoutConstraint]! {
         didSet {
             self.heightsCollection.forEach({ $0.constant *= heightRatio })
+        }
+    }
+    
+    @IBOutlet weak var statusBarViewHeightConstraint: NSLayoutConstraint! {
+        didSet {
+            self.statusBarViewHeightConstraint.constant = UIDevice.hasMonobrow ? 84.0 : 64.0
         }
     }
     
@@ -185,9 +193,10 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
         NotificationCenter.default.addObserver(self, selector: #selector(localizeTitles), name: NSNotification.Name(LCLLanguageChangeNotification), object: nil)
         
         // Start Microservice session
-        guard let userNickName = User.current?.nickName else { return }
+        guard currentUserNickName != nil else { return }
+        guard KeychainManager.loadData(forUserNickName: currentUserNickName!, withKey: keySecret) != nil else { return }
         
-        MicroservicesManager.startSession(forCurrentUser: userNickName) { errorAPI in
+        MicroservicesManager.startSession(forCurrentUser: currentUserNickName!) { errorAPI in
             if errorAPI != nil {
                 self.showAlertView(withTitle: "Error", andMessage: errorAPI!.caseInfo.message, needCancel: false, completion: { _ in })
             }

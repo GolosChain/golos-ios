@@ -8,6 +8,7 @@
 //
 
 import CoreData
+import GoloSwift
 import Foundation
 import SwiftTheme
 import Localize_Swift
@@ -87,5 +88,10 @@ public class AppSettings: NSManagedObject {
         Localize.setCurrentLanguage(self.language)
 
         self.save()
+    }
+    
+    func update(basic: ResponseAPIMicroserviceGetOptionsBasic) {
+        self.setAppThemeDark(basic.theme == 0 ? false : true)
+        self.setFeedShowImages(basic.feedShowImages == 0 ? false : true)
     }
 }

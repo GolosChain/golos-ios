@@ -97,7 +97,7 @@ extension UIButton {
         self.theme_setTitleColor(whiteColorPickers, forState: .normal)
     }
     
-    func fill(colorPicker: ThemeColorPicker = vividBlueWhiteColorPickers, cornerRadius: CGFloat = 5.0, font: UIFont = UIFont(name: "SFProDisplay-Regular", size: 16.0)!) {
+    func fill(colorPicker: ThemeColorPicker = vividBlueColorPickers, cornerRadius: CGFloat = 5.0, font: UIFont = UIFont(name: "SFProDisplay-Regular", size: 16.0)!) {
         self.layoutIfNeeded()
         
         self.titleLabel?.font       =   font
@@ -113,7 +113,7 @@ extension UIButton {
         
         self.layer.borderColor      =   color
         self.layer.borderWidth      =   1.0
-        self.theme_backgroundColor  =   whiteColorPickers
+        self.theme_backgroundColor  =   whiteVeryDarkGrayPickers
     }
     
     func setBorderButtonRoundEdges() {
@@ -144,10 +144,10 @@ extension UIButton {
     // For Like / Dislike buttons
     func startLikeVote(withSpinner spinner: UIActivityIndicatorView) {
         self.isEnabled = false
-
+        
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
             spinner.startAnimating()
-            self.setImage(UIImage(named: AppSettings.isAppThemeDark ? "icon-button-active-vote-black-empty" : "icon-button-active-vote-white-empty"), for: .normal)
+            self.setImage(UIImage(named: AppSettings.isAppThemeDark ? "icon-button-active-vote-dark-empty" : "icon-button-active-vote-white-empty"), for: .normal)
         }
     }
     

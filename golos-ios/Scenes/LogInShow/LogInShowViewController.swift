@@ -169,7 +169,7 @@ class LogInShowViewController: GSBaseViewController {
         super.viewWillAppear(animated)
         
         // Set StatusBarStyle
-        self.isStatusBarStyleLight = false
+        self.isStatusBarStyleLight = AppSettings.isAppThemeDark
     }
     
     

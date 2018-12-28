@@ -295,15 +295,18 @@
                                                         <rect key="frame" x="0.0" y="120" width="375" height="40"/>
                                                         <subviews>
                                                             <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3hq-cF-7Tq" userLabel="Display Mode View Pictures Title Label">
-                                                                <rect key="frame" x="20" y="10" width="258" height="20.5"/>
+                                                                <rect key="frame" x="20" y="10" width="264" height="20.5"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <switch clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="MC4-0G-bGS" userLabel="Display Mode View Pictures Switch">
-                                                                <rect key="frame" x="298" y="4.5" width="51" height="31"/>
+                                                                <rect key="frame" x="304" y="4.5" width="51" height="31"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" secondItem="MC4-0G-bGS" secondAttribute="height" multiplier="49:31" id="Jdl-Cs-yzc"/>
+                                                                </constraints>
                                                                 <color key="onTintColor" red="0.18431372549019609" green="0.49019607843137253" blue="0.98431372549019602" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <connections>
                                                                     <action selector="viewPicturesSwitchChanged:" destination="5Fz-c1-bKn" eventType="valueChanged" id="je9-rN-dG5"/>
@@ -315,7 +318,7 @@
                                                             <constraint firstItem="3hq-cF-7Tq" firstAttribute="leading" secondItem="pSv-4Z-QU8" secondAttribute="leading" constant="20" id="0EZ-dh-e5s"/>
                                                             <constraint firstItem="MC4-0G-bGS" firstAttribute="centerY" secondItem="pSv-4Z-QU8" secondAttribute="centerY" id="1PX-CO-Zbd"/>
                                                             <constraint firstItem="MC4-0G-bGS" firstAttribute="leading" secondItem="3hq-cF-7Tq" secondAttribute="trailing" constant="20" id="alP-C5-oUw"/>
-                                                            <constraint firstAttribute="trailing" secondItem="MC4-0G-bGS" secondAttribute="trailing" constant="28" id="els-m1-R7e"/>
+                                                            <constraint firstAttribute="trailing" secondItem="MC4-0G-bGS" secondAttribute="trailing" constant="22" id="els-m1-R7e"/>
                                                             <constraint firstItem="3hq-cF-7Tq" firstAttribute="centerY" secondItem="pSv-4Z-QU8" secondAttribute="centerY" id="xaJ-gk-jhW"/>
                                                         </constraints>
                                                     </view>

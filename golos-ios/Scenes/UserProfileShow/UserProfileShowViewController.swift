@@ -63,7 +63,8 @@ class UserProfileShowViewController: GSBaseViewController, ContainerViewSupport 
     
     @IBOutlet weak var lineView: UIView! {
         didSet {
-            self.lineView.frame.origin = CGPoint(x: self.buttonsStackView.spacing, y: lineView.frame.minY)
+            self.lineView.theme_backgroundColor     =   whiteColorPickers
+            self.lineView.frame.origin              =   CGPoint(x: self.buttonsStackView.spacing, y: lineView.frame.minY)
         }
     }
 

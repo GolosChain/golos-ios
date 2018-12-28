@@ -39,7 +39,7 @@
                                                 </constraints>
                                             </view>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vAN-NO-FcT" userLabel="User Profile Info Control View">
-                                                <rect key="frame" x="0.0" y="170" width="414" height="44"/>
+                                                <rect key="frame" x="0.0" y="160" width="414" height="44"/>
                                                 <subviews>
                                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Ha-Kn-ad4">
                                                         <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
@@ -60,7 +60,7 @@
                                                                             <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oln-3N-yf2" userLabel="Button 0">
                                                                                 <rect key="frame" x="22" y="0.0" width="38" height="50"/>
                                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                                <inset key="contentEdgeInsets" minX="0.0" minY="10" maxX="0.0" maxY="0.0"/>
+                                                                                <inset key="contentEdgeInsets" minX="0.0" minY="16" maxX="0.0" maxY="0.0"/>
                                                                                 <state key="normal" title="Posts">
                                                                                     <color key="titleColor" red="0.4941176471" green="0.52549019610000003" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                 </state>
@@ -71,7 +71,7 @@
                                                                             <button clipsSubviews="YES" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pZ4-p8-64V" userLabel="Button 1">
                                                                                 <rect key="frame" x="80" y="0.0" width="50" height="50"/>
                                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                                <inset key="contentEdgeInsets" minX="0.0" minY="10" maxX="0.0" maxY="0.0"/>
+                                                                                <inset key="contentEdgeInsets" minX="0.0" minY="16" maxX="0.0" maxY="0.0"/>
                                                                                 <state key="normal" title="Replies">
                                                                                     <color key="titleColor" red="0.4941176471" green="0.52549019610000003" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                 </state>
@@ -143,6 +143,7 @@
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nf9-Bz-O5a" userLabel="Line View">
                                                         <rect key="frame" x="20" y="42" width="38" height="2"/>
                                                         <color key="backgroundColor" red="0.070588235294117646" green="0.59607843137254901" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="tintColor" red="0.015686274509803921" green="0.20000000000000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="38" id="fVv-8p-x79"/>
                                                             <constraint firstAttribute="height" constant="2" id="sCb-uY-Dry"/>
@@ -161,7 +162,7 @@
                                                 </constraints>
                                             </view>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oTo-xI-SFK" userLabel="User Profile Info Control Bottom Line View">
-                                                <rect key="frame" x="0.0" y="214" width="414" height="1"/>
+                                                <rect key="frame" x="0.0" y="204" width="414" height="1"/>
                                                 <color key="backgroundColor" red="0.85882352941176465" green="0.85882352941176465" blue="0.85882352941176465" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="R54-AI-al2"/>
@@ -172,7 +173,7 @@
                                         <constraints>
                                             <constraint firstItem="gKv-wz-hea" firstAttribute="leading" secondItem="EqR-p6-NO1" secondAttribute="leading" id="0E6-KH-K3p"/>
                                             <constraint firstItem="oTo-xI-SFK" firstAttribute="leading" secondItem="EqR-p6-NO1" secondAttribute="leading" id="423-zh-J7g"/>
-                                            <constraint firstItem="vAN-NO-FcT" firstAttribute="top" secondItem="nQR-xd-4LM" secondAttribute="bottom" constant="10" id="AzG-NT-1sW"/>
+                                            <constraint firstItem="vAN-NO-FcT" firstAttribute="top" secondItem="nQR-xd-4LM" secondAttribute="bottom" id="AzG-NT-1sW"/>
                                             <constraint firstAttribute="trailing" secondItem="gKv-wz-hea" secondAttribute="trailing" id="GXy-7Z-EZ5"/>
                                             <constraint firstItem="vAN-NO-FcT" firstAttribute="leading" secondItem="EqR-p6-NO1" secondAttribute="leading" id="UY2-rH-BeL"/>
                                             <constraint firstAttribute="trailing" secondItem="oTo-xI-SFK" secondAttribute="trailing" id="XNN-6f-fp5"/>
@@ -195,7 +196,7 @@
                                 </constraints>
                             </scrollView>
                             <containerView clipsSubviews="YES" tag="200" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I3j-FI-bZT" customClass="GSContainerView" customModule="Golos" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="215" width="414" height="647"/>
+                                <rect key="frame" x="0.0" y="205" width="414" height="657"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" priority="250" constant="490" id="2sL-m7-fm8"/>
@@ -222,7 +223,7 @@
                         <outlet property="containerView" destination="I3j-FI-bZT" id="RIP-a2-dpp"/>
                         <outlet property="contentView" destination="EqR-p6-NO1" id="ICQ-4T-Ev7"/>
                         <outlet property="contentViewWidthConstraint" destination="iAS-jh-fB0" id="aS9-XH-xMh"/>
-                        <outlet property="lineView" destination="Nf9-Bz-O5a" id="fRp-xW-gUP"/>
+                        <outlet property="lineView" destination="Nf9-Bz-O5a" id="qJg-Rr-qJJ"/>
                         <outlet property="lineViewLeadingConstraint" destination="sF4-4L-mfC" id="aa1-r4-cqg"/>
                         <outlet property="lineViewWidthConstraint" destination="fVv-8p-x79" id="Nry-ll-Up2"/>
                         <outlet property="scrollView" destination="6ju-JF-dqe" id="QLq-no-G9L"/>
@@ -238,7 +239,6 @@
                         <outletCollection property="widthsCollection" destination="hbO-9L-cIM" collectionClass="NSMutableArray" id="Tmh-Ao-sVy"/>
                         <outletCollection property="widthsCollection" destination="UY2-rH-BeL" collectionClass="NSMutableArray" id="6vr-lt-ubg"/>
                         <outletCollection property="heightsCollection" destination="R54-AI-al2" collectionClass="NSMutableArray" id="5OR-Zu-UT0"/>
-                        <outletCollection property="heightsCollection" destination="aRF-PN-7sa" collectionClass="NSMutableArray" id="pU0-v9-jEY"/>
                         <outletCollection property="buttonsCollection" destination="oln-3N-yf2" collectionClass="NSMutableArray" id="GcX-Af-VRH"/>
                         <outletCollection property="buttonsCollection" destination="pZ4-p8-64V" collectionClass="NSMutableArray" id="WN5-fS-kd2"/>
                         <outletCollection property="buttonsCollection" destination="hzI-8E-NbM" collectionClass="NSMutableArray" id="GeT-N7-HVu"/>

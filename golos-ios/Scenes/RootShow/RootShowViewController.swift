@@ -68,7 +68,41 @@ class RootShowViewController: GSBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.loadViewSettings()
+        // Start Microservices session & store secret key
+        if let userNickName = User.current?.nickName {
+            MicroservicesManager.startSession(forCurrentUser: userNickName) { errorAPI in
+                if let currentVC = (UIApplication.shared.keyWindow?.rootViewController as? UINavigationController)?.viewControllers.last as? GSBaseViewController, errorAPI != nil {
+                    currentVC.showAlertView(withTitle: "Error", andMessage: errorAPI!.caseInfo.message, needCancel: false, completion: { _ in })
+                }
+                    
+                // API `getOptions`
+                else {
+                    MicroservicesManager.getBasicOptions(userNickName: currentUserNickName!, deviceUDID: currentDeviceUDID, completion: { (resultOptions, errorAPI) in
+                        if let currentVC = (UIApplication.shared.keyWindow?.rootViewController as? UINavigationController)?.viewControllers.last as? GSBaseViewController, errorAPI != nil {
+                            currentVC.showAlertView(withTitle: "Error", andMessage: errorAPI!.caseInfo.message, needCancel: false, completion: { _ in })
+                        }
+                            
+                        // Synchronize 'basic' options
+                        else if let optionsResult = resultOptions?.result {
+                            Logger.log(message: "push = \n\t\(optionsResult.push)", event: .debug)
+                            Logger.log(message: "basic = \n\t\(optionsResult.basic)", event: .debug)
+                            Logger.log(message: "notify = \n\t\(optionsResult.notify)", event: .debug)
+                            
+                            AppSettings.instance().update(basic: optionsResult.basic)
+                            self.loadViewSettings()
+                        }
+                    })
+                }
+            }
+        }
+            
+        // First create App Settings
+        else {
+            _ = AppSettings.instance()
+            AppSettings.instance().setAppThemeDark(false)
+            AppSettings.instance().setFeedShowImages(true)
+            self.loadViewSettings()
+        }
         
         NotificationCenter.default.addObserver(self, selector: #selector(stateDidChange(_:)), name: NSNotification.Name.appStateChanged, object: nil)
     }

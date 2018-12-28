@@ -59,6 +59,12 @@ class UserFollowersShowViewController: GSBaseViewController {
         }
     }
     
+    @IBOutlet weak var topLineView: UIView! {
+        didSet {
+            self.topLineView.tune(withThemeColorPicker: lightGrayishBlueWhiteColorPickers)
+        }
+    }
+
     @IBOutlet var heightsCollection: [NSLayoutConstraint]! {
         didSet {
             self.heightsCollection.forEach({ $0.constant *= heightRatio })
@@ -128,7 +134,7 @@ class UserFollowersShowViewController: GSBaseViewController {
         
         // Set StatusBarStyle
         selectedTabBarItem          =   self.navigationController!.tabBarItem.tag
-        self.isStatusBarStyleLight  =   false
+        self.isStatusBarStyleLight  =   AppSettings.isAppThemeDark
     }
     
     override func viewWillDisappear(_ animated: Bool) {

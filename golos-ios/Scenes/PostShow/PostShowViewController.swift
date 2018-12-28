@@ -58,10 +58,21 @@ class PostShowViewController: GSBaseViewController {
     
     // MARK: - IBOutlets
     @IBOutlet weak var postFeedHeaderView: PostFeedHeaderView!
-    @IBOutlet weak var commentsControlView: UIView!
-    @IBOutlet weak var subscribesStackView: UIStackView!
     @IBOutlet weak var postFeedHeaderViewHeightConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var subscribesStackView: UIStackView! {
+        didSet {
+            self.subscribesStackView.tune()
+        }
+    }
+
+    @IBOutlet weak var commentsControlView: UIView! {
+        didSet {
+            self.commentsControlView.tune()
+        }
+    }
+
+
     @IBOutlet weak var createNewCommentView: UIView! {
         didSet {
             self.createNewCommentView.tune()
@@ -72,7 +83,7 @@ class PostShowViewController: GSBaseViewController {
     @IBOutlet weak var placeholderButton: UIButton! {
         didSet {
             self.placeholderButton.tune(withTitle:     "",
-                                        hexColors:     [darkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
+                                        hexColors:     [darkGrayPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
                                         font:          UIFont(name: "SFProDisplay-Regular", size: 14.0),
                                         alignment:     .left)
         }
@@ -81,6 +92,12 @@ class PostShowViewController: GSBaseViewController {
     @IBOutlet weak var commentsStackView: UIStackView! {
         didSet {
             self.commentsStackView.alpha = 0.0
+        }
+    }
+    
+    @IBOutlet weak var hideView: UIView! {
+        didSet {
+            self.hideView.tune()
         }
     }
     
@@ -94,6 +111,7 @@ class PostShowViewController: GSBaseViewController {
     @IBOutlet weak var loadingPostContentActivityIndicator: UIActivityIndicatorView! {
         didSet {
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
+                self.loadingPostContentActivityIndicator.theme_activityIndicatorViewStyle = grayWhiteActivityIndicatorViewStylePicker
                 self.loadingPostContentActivityIndicator.startAnimating()
             }
         }
@@ -101,30 +119,37 @@ class PostShowViewController: GSBaseViewController {
     
     @IBOutlet weak var likeActivityIndicator: UIActivityIndicatorView! {
         didSet {
+            self.likeActivityIndicator.theme_activityIndicatorViewStyle = grayWhiteActivityIndicatorViewStylePicker
             self.likeActivityIndicator.stopAnimating()
         }
     }
     
     @IBOutlet weak var dislikeActivityIndicator: UIActivityIndicatorView! {
         didSet {
+            self.dislikeActivityIndicator.theme_activityIndicatorViewStyle = grayWhiteActivityIndicatorViewStylePicker
             self.dislikeActivityIndicator.stopAnimating()
         }
     }
     
     @IBOutlet var hiddenViewsCollection: [UIView]! {
         didSet {
-            self.hiddenViewsCollection.forEach({ $0.alpha = 0.0 })
+            self.hiddenViewsCollection.forEach({
+                $0.tune()
+                $0.alpha = 0.0
+            })
         }
     }
     
     @IBOutlet weak var subscribeActivityIndicator: UIActivityIndicatorView! {
         didSet {
+            self.subscribeActivityIndicator.theme_activityIndicatorViewStyle = grayWhiteActivityIndicatorViewStylePicker
             self.subscribeActivityIndicator.stopAnimating()
         }
     }
     
     @IBOutlet weak var scrollView: UIScrollView! {
         didSet {
+            self.scrollView.tune()
             self.scrollView.delegate = self
         }
     }
@@ -161,7 +186,7 @@ class PostShowViewController: GSBaseViewController {
     
     @IBOutlet weak var contentView: UIView! {
         didSet {
-            contentView.tune()
+            self.contentView.tune()
         }
     }
     
@@ -352,54 +377,54 @@ class PostShowViewController: GSBaseViewController {
     
     @IBOutlet weak var commentsTitleLabel: UILabel! {
         didSet {
-            commentsTitleLabel.tune(withText:           "Comments Noun",
-                                    hexColors:          veryDarkGrayWhiteColorPickers,
-                                    font:               UIFont(name: "SFProDisplay-Regular", size: 14.0),
-                                    alignment:          .left,
-                                    isMultiLines:       false)
+            self.commentsTitleLabel.tune(withText:           "Comments Noun",
+                                         hexColors:          veryDarkGrayWhiteColorPickers,
+                                         font:               UIFont(name: "SFProDisplay-Regular", size: 14.0),
+                                         alignment:          .left,
+                                         isMultiLines:       false)
         }
     }
 
     @IBOutlet weak var commentsCountLabel: UILabel! {
         didSet {
-            commentsCountLabel.tune(withText:           " ",
-                                    hexColors:          grayWhiteColorPickers,
-                                    font:               UIFont(name: "SFProDisplay-Regular", size: 14.0),
-                                    alignment:          .left,
-                                    isMultiLines:       false)
+            self.commentsCountLabel.tune(withText:           " ",
+                                         hexColors:          grayWhiteColorPickers,
+                                         font:               UIFont(name: "SFProDisplay-Regular", size: 14.0),
+                                         alignment:          .left,
+                                         isMultiLines:       false)
         }
     }
 
     @IBOutlet weak var sortByLabel: UILabel! {
         didSet {
-            sortByLabel.tune(withText:           "Sort by",
-                             hexColors:          grayWhiteColorPickers,
-                             font:               UIFont(name: "SFProDisplay-Regular", size: 10.0),
-                             alignment:          .left,
-                             isMultiLines:       false)
+            self.sortByLabel.tune(withText:           "Sort by",
+                                  hexColors:          grayWhiteColorPickers,
+                                  font:               UIFont(name: "SFProDisplay-Regular", size: 10.0),
+                                  alignment:          .left,
+                                  isMultiLines:       false)
         }
     }
 
     @IBOutlet weak var commentsSortByButton: UIButton! {
         didSet {
-            commentsSortByButton.tune(withTitle:        "Action Sheet First New",
-                                      hexColors:        [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
-                                      font:             UIFont(name: "SFProDisplay-Regular", size: 10.0),
-                                      alignment:        .center)
+            self.commentsSortByButton.tune(withTitle:        "Action Sheet First New",
+                                           hexColors:        [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers, lightGrayWhiteColorPickers],
+                                           font:             UIFont(name: "SFProDisplay-Regular", size: 10.0),
+                                           alignment:        .center)
             
-            commentsSortByButton.isEnabled  =   true
+            self.commentsSortByButton.isEnabled  =   true
         }
     }
 
     @IBOutlet weak var commentsHideButton: UIButton! {
         didSet {
-            commentsHideButton.tune(withTitle:        "Hide Comments Verb",
-                                    hexColors:        [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers],
-                                    font:             UIFont(name: "SFProDisplay-Medium", size: 8.0),
-                                    alignment:        .center)
+            self.commentsHideButton.tune(withTitle:        "Hide Comments Verb",
+                                         hexColors:        [veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers, veryDarkGrayWhiteColorPickers, lightGrayWhiteColorPickers],
+                                         font:             UIFont(name: "SFProDisplay-Medium", size: 8.0),
+                                         alignment:        .center)
             
-            commentsHideButton.isEnabled    =   true
-            commentsHideButton.setBorder(color: UIColor(hexString: "#dbdbdb").cgColor, cornerRadius: 4.0 * heightRatio)
+            self.commentsHideButton.isEnabled    =   true
+            self.commentsHideButton.setBorder(color: UIColor(hexString: "#dbdbdb").cgColor, cornerRadius: 4.0 * heightRatio)
         }
     }
     
@@ -543,6 +568,7 @@ class PostShowViewController: GSBaseViewController {
         super.viewWillAppear(animated)
         Logger.log(message: "Success", event: .severe)
 
+        self.view.tune()
         self.localizeTitles()
         self.hideNavigationBar()
         
@@ -601,17 +627,20 @@ class PostShowViewController: GSBaseViewController {
             // Like icon
             self.likeButton.tag = displayedPost.currentUserLiked ? 99 : 0
             self.likeCountButton.setTitle(displayedPost.likeCount > 0 ? "\(displayedPost.likeCount)" : " ", for: .normal)
+            self.likeCountButton.setTitleColor(displayedPost.currentUserLiked ? UIColor(hexString: "#4469AF") : UIColor(hexString: AppSettings.isAppThemeDark ? "#FFFFFF" : "#4F4F4F"), for: .normal)
             self.likeButton.setImage(UIImage(named: displayedPost.currentUserLiked ? "icon-button-post-like-selected" : (AppSettings.isAppThemeDark ? "icon-button-post-like-normal-white" : "icon-button-post-like-normal")), for: .normal)
             
             // Dislike icon
             self.dislikeButton.tag = displayedPost.currentUserDisliked ? 99 : 0
             self.dislikeCountButton.setTitle(displayedPost.dislikeCount > 0 ? "\(displayedPost.dislikeCount)" : " ", for: .normal)
-            self.dislikeButton.setImage(displayedPost.currentUserDisliked ? UIImage(named: "icon-button-post-dislike-selected") : UIImage(named: (AppSettings.isAppThemeDark ? "icon-button-post-dislike-normal-white" : "icon-button-post-dislike-normal")), for: .normal)
+            self.dislikeButton.setTitleColor(displayedPost.currentUserDisliked ? UIColor(hexString: "#4469AF") : UIColor(hexString: AppSettings.isAppThemeDark ? "#FFFFFF" : "#4F4F4F"), for: .normal)
+            self.dislikeButton.setImage(UIImage(named: displayedPost.currentUserDisliked ? "icon-button-post-dislike-selected" : (AppSettings.isAppThemeDark ? "icon-button-post-dislike-normal-white" : "icon-button-post-dislike-normal")), for: .normal)
             
             // Comments icon
             self.commentsButton.setTitle(displayedPost.children > 0 ? "\(displayedPost.children)" : "    ", for: .normal)
+            self.commentsButton.setTitleColor(displayedPost.currentUserCommented ? UIColor(hexString: "#4469AF") : UIColor(hexString: AppSettings.isAppThemeDark ? "#FFFFFF" : "#4F4F4F"), for: .normal)
             self.commentsButton.setImage(UIImage(named: displayedPost.currentUserCommented ? "icon-button-post-comments-selected" : (AppSettings.isAppThemeDark ? "icon-button-post-comments-normal-white" : "icon-button-post-comments-normal")), for: .normal)
-
+            
             // Create new comment placeholder
             self.placeholderButton.setTitle((displayedPost.children == 0  ? "No Comments Placeholder" : "Write Own Comment Placeholder").localized(), for: .normal)
             
@@ -621,17 +650,21 @@ class PostShowViewController: GSBaseViewController {
                 self.markdownViewManager.load(markdown: Parser.repair(body: displayedPost.body))
 
                 self.markdownViewManager.onRendered = { [weak self] height in
-                    self?.markdownViewHeightConstraint.constant = height
+                    guard let strongSelf = self else { return }
+                    
+                    strongSelf.markdownViewManager.webView!.setBackgroundColor(forAppTheme: AppSettings.isAppThemeDark)
+
+                    strongSelf.markdownViewHeightConstraint.constant = height
                     
                     UIView.animate(withDuration: 0.5, animations: {
-                        self?.hiddenViewsCollection.forEach({ $0.alpha = 1.0 })
+                        strongSelf.hiddenViewsCollection.forEach({ $0.alpha = 1.0 })
                     })
                     
-                    self?.gsTimer?.stop()
-                    self?.loadPostContentWorkItem.cancel()
+                    strongSelf.gsTimer?.stop()
+                    strongSelf.loadPostContentWorkItem.cancel()
                     
                     // Load comments
-                    self?.loadPostComments()
+                    strongSelf.loadPostComments()
                 }
 
                 self.titleLabel.text = displayedPost.title

@@ -541,8 +541,8 @@ public struct ResponseAPIMicroserviceGetOptions: Decodable {
 // MARK: -
 public struct ResponseAPIMicroserviceGetOptionsBasic: Decodable {
     // MARK: - In work
-    public let theme: Int
-    public let feedShowImages: Int
+    public let theme: Int?
+    public let feedShowImages: Int?
 }
 
 

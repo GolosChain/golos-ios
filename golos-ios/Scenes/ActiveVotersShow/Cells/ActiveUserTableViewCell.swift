@@ -134,7 +134,7 @@ extension ActiveUserTableViewCell {
                 
                 strongSelf.subscribeButton.setTitle(isFollowing ? "Subscriptions".localized() : "Subscribe Verb".localized(), for: .normal)
                 
-                isFollowing ?   strongSelf.subscribeButton.setBorder(color: UIColor(hexString: "#dbdbdb").cgColor, cornerRadius: 5.0) :
+                isFollowing ?   strongSelf.subscribeButton.setBorder(color: UIColor(hexString: AppSettings.isAppThemeDark ? "#ffffff" : "#dbdbdb").cgColor, cornerRadius: 5.0) :
                                 strongSelf.subscribeButton.fill(font: UIFont(name: "SFProDisplay-Medium", size: 10.0)!)
             })
         }

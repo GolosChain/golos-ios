@@ -234,10 +234,10 @@
 "Error Scan Key Code"                       =   "The code of the scanned key\nmust begin with 5 or 1";
 "Secret key not found"                      =   "Secret key not found";
 "Signature key not found"                   =   "Signature key not found";
-"Error 1101"                                =   "Доступ запрещён,\nзапрашиваемый метод не входит\nв разрешенный список";
-"Error 1102"                                =   "Доступ запрещён,\nневалидный формат данных авторизации";
-"Error 1103"                                =   "Доступ запрещён,\nблокчейн отверг авторизацию";
-"Error 1104"                                =   "Ошибка передачи данных микросервису фасаду,\nвероятно проблема со связью";
+"Error 1101"                                =   "Access denied,\nthe method requested is not approved";
+"Error 1102"                                =   "Access denied,\nno valid feature found in the received authorization data";
+"Error 1103"                                =   "Access denied,\nthe authorization was rejected by blockchain";
+"Error 1104"                                =   "Error in the data transmission to the front,\nconnection issue is likely to be found";
 
 
 // Segmented controls

@@ -43,6 +43,10 @@ class SettingsShowRouter: NSObject, SettingsShowRoutingLogic, SettingsShowDataPa
         DispatchQueue.main.async {
             _ = KeychainManager.deleteData(forUserNickName: User.current!.nickName, withKey: keySecret)
             _ = KeychainManager.deleteData(forUserNickName: User.current!.nickName, withKey: keyPrivate)
+            
+            AppSettings.instance().setAppThemeDark(false)
+            AppSettings.instance().setFeedShowImages(true)
+
             WebSocketManager.instanceMicroservices.webSocket.disconnect()
             StateMachine.load().changeState(.loggedOut)
             User.current!.setIsAuthorized(false)

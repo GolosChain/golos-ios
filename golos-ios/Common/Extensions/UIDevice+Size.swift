@@ -46,6 +46,10 @@ extension UIDevice {
         }
     }
     
+    static let hasMonobrow: Bool = {
+        return UIDevice.modelName.contains("X")
+    }()
+    
     static let modelName: String = {
         var systemInfo = utsname()
         uname(&systemInfo)

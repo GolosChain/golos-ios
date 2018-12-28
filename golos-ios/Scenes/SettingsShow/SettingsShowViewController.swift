@@ -45,7 +45,8 @@ class SettingsShowViewController: GSBaseViewController {
     
     @IBOutlet weak var viewPicturesSwitch: UISwitch! {
         didSet {
-            self.viewPicturesSwitch.isOn = AppSettings.isFeedShowImages
+            self.viewPicturesSwitch.isOn        =   AppSettings.isFeedShowImages
+            self.viewPicturesSwitch.transform   =   CGAffineTransform(scaleX: widthRatio, y: widthRatio)
         }
     }
     
@@ -120,7 +121,7 @@ class SettingsShowViewController: GSBaseViewController {
     
     @IBOutlet weak var topLineView: UIView! {
         didSet {
-            topLineView.tune(withThemeColorPicker: lightGrayishBlueWhiteColorPickers)
+            self.topLineView.tune(withThemeColorPicker: lightGrayishBlueWhiteColorPickers)
         }
     }
     
@@ -259,11 +260,13 @@ class SettingsShowViewController: GSBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.localizeTitles()
-        self.loadViewSettings()
-        
         // Microservice API `getOptions`
-        self.getBasicOptions()
+        self.getBasicOptions(completion: { [weak self] success in
+            guard let strongSelf = self else {return}
+
+            strongSelf.localizeTitles()
+            strongSelf.loadViewSettings()
+        })
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -439,7 +442,7 @@ extension SettingsShowViewController: SettingsShowDisplayLogic {
 // MARK: - Microservices
 extension SettingsShowViewController {
     private func setBasicOptions() {
-        MicroservicesManager.setBasicOptions(userNickName: currentUserNickName, deviceUDID: currentDeviceUDID, isDarkTheme: AppSettings.instance().isAppThemeDark, isFeedShowImages: AppSettings.instance().isFeedShowImages, completion: { [weak self] errorAPI in
+        MicroservicesManager.setBasicOptions(userNickName: currentUserNickName!, deviceUDID: currentDeviceUDID, isDarkTheme: AppSettings.instance().isAppThemeDark, isFeedShowImages: AppSettings.instance().isFeedShowImages, completion: { [weak self] errorAPI in
             guard let strongSelf = self else { return }
             
             if errorAPI != nil {
@@ -448,19 +451,24 @@ extension SettingsShowViewController {
         })
     }
     
-    private func getBasicOptions() {
-        MicroservicesManager.getBasicOptions(userNickName: currentUserNickName, deviceUDID: currentDeviceUDID, completion: { [weak self] (resultOptions, errorAPI) in
+    private func getBasicOptions(completion: @escaping (Bool) -> Void) {
+        MicroservicesManager.getBasicOptions(userNickName: currentUserNickName!, deviceUDID: currentDeviceUDID, completion: { [weak self] (resultOptions, errorAPI) in
             guard let strongSelf = self else { return }
             
             if errorAPI != nil {
-                strongSelf.showAlertView(withTitle: "Error", andMessage: errorAPI!.caseInfo.message, needCancel: false, completion: { _ in })
+                strongSelf.showAlertView(withTitle: "Error", andMessage: errorAPI!.caseInfo.message, needCancel: false, completion: { _ in
+                    completion(false)
+                })
             }
             
-            // Store 'basic' options
-            else if let getOptionsResult = resultOptions?.result {
-                Logger.log(message: "push = \n\t\(getOptionsResult.push)", event: .debug)
-                Logger.log(message: "basic = \n\t\(getOptionsResult.basic)", event: .debug)
-                Logger.log(message: "notify = \n\t\(getOptionsResult.notify)", event: .debug)
+            // Synchronize 'basic' options
+            else if let optionsResult = resultOptions?.result {
+                Logger.log(message: "push = \n\t\(optionsResult.push)", event: .debug)
+                Logger.log(message: "basic = \n\t\(optionsResult.basic)", event: .debug)
+                Logger.log(message: "notify = \n\t\(optionsResult.notify)", event: .debug)
+                
+                AppSettings.instance().update(basic: optionsResult.basic)
+                completion(true)
             }
         })
     }

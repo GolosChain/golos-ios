@@ -19,21 +19,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ffv-sr-RCO" customClass="GSContainerView" customModule="Golos" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="86" width="375" height="581"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </containerView>
-                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KN9-kt-Cga" userLabel="Shadow View">
-                                <rect key="frame" x="0.0" y="64" width="375" height="6"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="6" id="NrR-Kv-x7q"/>
-                                </constraints>
-                            </view>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V1F-55-FXF" userLabel="Status Bar View">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="84"/>
                                 <subviews>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H3G-FO-Dpg">
-                                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="40" width="375" height="44"/>
                                         <subviews>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iBe-t9-Q5H" userLabel="Content View">
                                                 <rect key="frame" x="0.0" y="0.0" width="336" height="50"/>
@@ -131,7 +124,7 @@
                                         </constraints>
                                     </scrollView>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uXw-eA-Nu0" userLabel="Line View">
-                                        <rect key="frame" x="20" y="62" width="43" height="2"/>
+                                        <rect key="frame" x="20" y="82" width="43" height="2"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="43" id="lL7-rB-UGA"/>
@@ -147,7 +140,7 @@
                                     <constraint firstItem="H3G-FO-Dpg" firstAttribute="leading" secondItem="V1F-55-FXF" secondAttribute="leading" id="Yf8-Ad-6vS"/>
                                     <constraint firstAttribute="height" constant="44" id="acZ-Nq-tVm"/>
                                     <constraint firstItem="uXw-eA-Nu0" firstAttribute="leading" secondItem="V1F-55-FXF" secondAttribute="leading" priority="750" constant="20" id="bPe-Jg-l8d"/>
-                                    <constraint firstAttribute="height" constant="64" id="d32-YI-1Pt"/>
+                                    <constraint firstAttribute="height" constant="84" id="d32-YI-1Pt"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
@@ -161,18 +154,25 @@
                                     </mask>
                                 </variation>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gdd-VS-Imh" userLabel="Top Line View">
+                                <rect key="frame" x="0.0" y="84" width="375" height="2"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="2" id="11V-4T-EJv"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="KN9-kt-Cga" secondAttribute="trailing" id="4oR-JI-v47"/>
                             <constraint firstItem="2uN-82-qIf" firstAttribute="trailing" secondItem="V1F-55-FXF" secondAttribute="trailing" id="6XD-dh-gkC"/>
-                            <constraint firstItem="ffv-sr-RCO" firstAttribute="top" secondItem="V1F-55-FXF" secondAttribute="bottom" id="O79-cX-u5s"/>
+                            <constraint firstItem="gdd-VS-Imh" firstAttribute="leading" secondItem="RIB-Kz-DZP" secondAttribute="leading" id="J6r-8a-0he"/>
+                            <constraint firstAttribute="trailing" secondItem="gdd-VS-Imh" secondAttribute="trailing" id="NnJ-hg-rl8"/>
+                            <constraint firstItem="ffv-sr-RCO" firstAttribute="top" secondItem="gdd-VS-Imh" secondAttribute="bottom" id="O79-cX-u5s"/>
                             <constraint firstItem="V1F-55-FXF" firstAttribute="leading" secondItem="2uN-82-qIf" secondAttribute="leading" id="PF6-Fc-F1L"/>
                             <constraint firstItem="2uN-82-qIf" firstAttribute="trailing" secondItem="ffv-sr-RCO" secondAttribute="trailing" id="QJk-IV-jwF"/>
+                            <constraint firstItem="gdd-VS-Imh" firstAttribute="top" secondItem="V1F-55-FXF" secondAttribute="bottom" id="Y8k-g8-k1x"/>
                             <constraint firstItem="V1F-55-FXF" firstAttribute="top" secondItem="RIB-Kz-DZP" secondAttribute="top" id="fuX-ez-PNd"/>
-                            <constraint firstItem="KN9-kt-Cga" firstAttribute="top" secondItem="V1F-55-FXF" secondAttribute="bottom" id="hEm-zQ-GyO"/>
                             <constraint firstItem="2uN-82-qIf" firstAttribute="bottom" secondItem="ffv-sr-RCO" secondAttribute="bottom" id="rbX-tT-Mfd"/>
-                            <constraint firstItem="KN9-kt-Cga" firstAttribute="leading" secondItem="RIB-Kz-DZP" secondAttribute="leading" id="sYL-KO-ozh"/>
                             <constraint firstItem="ffv-sr-RCO" firstAttribute="leading" secondItem="2uN-82-qIf" secondAttribute="leading" id="wad-pm-Dlc"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="2uN-82-qIf"/>
@@ -189,11 +189,11 @@
                         <outlet property="lineViewLeadingConstraint" destination="bPe-Jg-l8d" id="JgL-E6-a7P"/>
                         <outlet property="lineViewWidthConstraint" destination="lL7-rB-UGA" id="QPf-nF-kCt"/>
                         <outlet property="scrollView" destination="H3G-FO-Dpg" id="J1y-Sr-qmb"/>
-                        <outlet property="shadowView" destination="KN9-kt-Cga" id="chr-0E-vDb"/>
                         <outlet property="statusBarView" destination="V1F-55-FXF" id="dht-lM-kl6"/>
+                        <outlet property="statusBarViewHeightConstraint" destination="d32-YI-1Pt" id="Aun-pu-CFl"/>
+                        <outlet property="topLineView" destination="gdd-VS-Imh" id="Uqd-Nl-iSo"/>
                         <outletCollection property="heightsCollection" destination="acZ-Nq-tVm" collectionClass="NSMutableArray" id="uED-bA-rbZ"/>
                         <outletCollection property="heightsCollection" destination="O79-cX-u5s" collectionClass="NSMutableArray" id="HZD-Pr-p0b"/>
-                        <outletCollection property="heightsCollection" destination="NrR-Kv-x7q" collectionClass="NSMutableArray" id="eFr-WB-qGI"/>
                         <outletCollection property="heightsCollection" destination="8Qn-nF-VZI" collectionClass="NSMutableArray" id="nIP-d9-RUA"/>
                         <outletCollection property="buttonsCollection" destination="2Sj-LZ-Elw" collectionClass="NSMutableArray" id="465-VX-8iO"/>
                         <outletCollection property="buttonsCollection" destination="so7-Z5-8mY" collectionClass="NSMutableArray" id="Dnd-Qg-rYz"/>
@@ -241,7 +241,7 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <activityIndicatorView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="2LN-SD-41t" userLabel="Infinite Scrolling Activity Indicator">
-                                            <rect key="frame" x="197" y="12" width="20" height="20"/>
+                                            <rect key="frame" x="177.5" y="12" width="20" height="20"/>
                                             <color key="color" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </activityIndicatorView>
                                     </subviews>

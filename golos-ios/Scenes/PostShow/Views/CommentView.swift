@@ -42,19 +42,21 @@ class CommentView: UIView, HandlersCellSupport {
     
     @IBOutlet weak var likeActivityIndicator: UIActivityIndicatorView! {
         didSet {
+            self.likeActivityIndicator.theme_activityIndicatorViewStyle = grayWhiteActivityIndicatorViewStylePicker
             self.likeActivityIndicator.stopAnimating()
         }
     }
     
     @IBOutlet weak var dislikeActivityIndicator: UIActivityIndicatorView! {
         didSet {
+            self.dislikeActivityIndicator.theme_activityIndicatorViewStyle = grayWhiteActivityIndicatorViewStylePicker
             self.dislikeActivityIndicator.stopAnimating()
         }
     }
     
     @IBOutlet weak var likeButton: UIButton! {
         didSet {
-            likeButton.isEnabled = true
+            self.likeButton.isEnabled = true
         }
     }
     
@@ -71,7 +73,7 @@ class CommentView: UIView, HandlersCellSupport {
 
     @IBOutlet weak var dislikeButton: UIButton! {
         didSet {
-            dislikeButton.isEnabled = true
+            self.dislikeButton.isEnabled = true
         }
     }
 
@@ -175,12 +177,14 @@ class CommentView: UIView, HandlersCellSupport {
 
         self.likeButton.tag = comment.currentUserLiked ? 99 : 0
         self.likeCountButton.setTitle(comment.likeCount > 0 ? "\(comment.likeCount)" : " ", for: .normal)
-        self.likeButton.setImage(UIImage(named: comment.currentUserLiked ? "icon-button-post-like-selected" : "icon-button-post-like-normal"), for: .normal)
-        
+        self.likeCountButton.setTitleColor(comment.currentUserLiked ? UIColor(hexString: "#4469AF") : UIColor(hexString: AppSettings.isAppThemeDark ? "#FFFFFF" : "#4F4F4F"), for: .normal)
+        self.likeButton.setImage(UIImage(named: comment.currentUserLiked ? "icon-button-post-like-selected" : (AppSettings.isAppThemeDark ? "icon-button-post-like-normal-white" : "icon-button-post-like-normal")), for: .normal)
+
         // Dislike icon
         self.dislikeButton.tag = comment.currentUserDisliked ? 99 : 0
         self.dislikeCountButton.setTitle(comment.dislikeCount > 0 ? "\(comment.dislikeCount)" : " ", for: .normal)
-        self.dislikeButton.setImage(comment.currentUserDisliked ? UIImage(named: "icon-button-post-dislike-selected") : UIImage(named: "icon-button-post-dislike-normal"), for: .normal)
+        self.dislikeButton.setTitleColor(comment.currentUserDisliked ? UIColor(hexString: "#4469AF") : UIColor(hexString: AppSettings.isAppThemeDark ? "#FFFFFF" : "#4F4F4F"), for: .normal)
+        self.dislikeButton.setImage(UIImage(named: comment.currentUserDisliked ? "icon-button-post-dislike-selected" : (AppSettings.isAppThemeDark ? "icon-button-post-dislike-normal-white" : "icon-button-post-dislike-normal")), for: .normal)
 
         // Avatar
         self.authorNameButton.setTitle(comment.author, for: .normal)
@@ -238,6 +242,7 @@ class CommentView: UIView, HandlersCellSupport {
         self.markdownViewManager.load(markdown: Parser.repair(body: body))
 
         self.markdownViewManager.onRendered = { height in
+            self.markdownViewManager.webView!.setBackgroundColor(forAppTheme: AppSettings.isAppThemeDark)
             completion(height)
         }
     }

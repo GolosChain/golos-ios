@@ -28,9 +28,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         Logger.log(message: "Success", event: .severe)
         
-        // First create App Settings
-        _ = AppSettings.instance()
-        
         /// TEST
 //        GSTestManager.getGlobalProperties()
         
@@ -47,7 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Run Amplitude SDK
         Amplitude.instance()?.initializeApiKey("52defe807d145e49a6754f89aeaf9b32")
         Amplitude.instance()?.logEvent("ios_app_open", withEventProperties: [ UIDevice.current.identifierForVendor!.uuidString: "DEVICE_ID", (User.isAnonymous ? "Anonymous" : User.current!.nickName): "USER_ID" ])
-
+        
         // APNs
         self.registerForPushNotifications()
         
@@ -57,7 +54,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Main window
         window?.backgroundColor = .white
         window?.makeKeyAndVisible()
-
+        
         return true
     }
     

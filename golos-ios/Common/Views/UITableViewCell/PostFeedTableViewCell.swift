@@ -71,12 +71,14 @@ class PostFeedTableViewCell: UITableViewCell, HandlersCellSupport, PostCellLikeS
     
     @IBOutlet weak var likeActivityIndicator: UIActivityIndicatorView! {
         didSet {
+            self.likeActivityIndicator.theme_activityIndicatorViewStyle = grayWhiteActivityIndicatorViewStylePicker
             self.likeActivityIndicator.stopAnimating()
         }
     }
     
     @IBOutlet weak var dislikeActivityIndicator: UIActivityIndicatorView! {
         didSet {
+            self.dislikeActivityIndicator.theme_activityIndicatorViewStyle = grayWhiteActivityIndicatorViewStylePicker
             self.dislikeActivityIndicator.stopAnimating()
         }
     }
@@ -299,18 +301,18 @@ extension PostFeedTableViewCell: ConfigureCell {
         // Like icon
         self.likeButton.tag = model.currentUserLiked ? 99 : 0
         self.likeCountButton.setTitle(model.likeCount > 0 ? "\(model.likeCount)" : nil, for: .normal)
-        self.likeCountButton.setTitleColor(model.currentUserLiked ? UIColor(hexString: "#4469AF") : UIColor(hexString: "#4F4F4F"), for: .normal)
+        self.likeCountButton.setTitleColor(model.currentUserLiked ? UIColor(hexString: "#4469AF") : UIColor(hexString: AppSettings.isAppThemeDark ? "#FFFFFF" : "#4F4F4F"), for: .normal)
         self.likeButton.setImage(UIImage(named: model.currentUserLiked ? "icon-button-post-like-selected" : (AppSettings.isAppThemeDark ? "icon-button-post-like-normal-white" : "icon-button-post-like-normal")), for: .normal)
         
         // Dislike icon
         self.dislikeButton.tag = model.currentUserDisliked ? 99 : 0
         self.dislikeCountButton.setTitle(model.dislikeCount > 0 ? "\(model.dislikeCount)" : nil, for: .normal)
-        self.dislikeCountButton.setTitleColor(model.currentUserDisliked ? UIColor.red : UIColor.black, for: .normal)
+        self.dislikeCountButton.setTitleColor(model.currentUserDisliked ? UIColor.red : (AppSettings.isAppThemeDark ? UIColor.white : UIColor.black), for: .normal)
         self.dislikeButton.setImage(UIImage(named: model.currentUserDisliked ? "icon-button-post-dislike-selected" : (AppSettings.isAppThemeDark ? "icon-button-post-dislike-normal-white" : "icon-button-post-dislike-normal")), for: .normal)
         
         // Comments icon
         self.commentsButton.setTitle(model.children > 0 ? "\(model.children)" : "    ", for: .normal)
-        self.commentsButton.setTitleColor(model.currentUserCommented ? UIColor(hexString: "#4469AF") : UIColor(hexString: "#4F4F4F"), for: .normal)
+        self.commentsButton.setTitleColor(model.currentUserCommented ? UIColor(hexString: "#4469AF") : UIColor(hexString: AppSettings.isAppThemeDark ? "#FFFFFF" : "#4F4F4F"), for: .normal)
         self.commentsButton.setImage(UIImage(named: model.currentUserCommented ? "icon-button-post-comments-selected" : (AppSettings.isAppThemeDark ? "icon-button-post-comments-normal-white" : "icon-button-post-comments-normal")), for: .normal)
         
         self.layoutIfNeeded()
