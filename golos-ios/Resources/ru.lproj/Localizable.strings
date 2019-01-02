@@ -166,22 +166,22 @@
 "Unsubscribe Noun"                          =   "Отписка";
 "Settings Online Notifications"             =   "Настройки онлайн уведомлений";
 "Settings Push Notifications"               =   "Настройки пуш уведомлений";
-"" =    "Звук уведомлений";
-"" =    "Включить все онлайн уведомления";
-"" =    "Включить все пуш уведомления";
-"" =    "УПОМИНАНИЯ";
-"" =    "Голос за";
-"" =    "Голос против";
-"" =    "Перевод средств";
-"" =    "Ответ на пост или комментарий";
-"" =    "Подписка на блог";
-"" =    "Отписка от блога";
-"" =    "Упоминание в посте или комменте через";
-"" =    "Репост";
-"" =    "Награда пользователю";
-"" =    "Награда куратору";
-"" =    "Личное сообщение";
-"" =    "Голос за вашу делегатскую ноду";
+"Settings Sound Notifications"              =   "Звук уведомлений";
+"Settings Enable All Online Notifications"  =   "Включить все онлайн уведомления";
+"Settings Enable All Push Notifications"    =   "Включить все пуш уведомления";
+"Settings MENTIONS"                         =   "УПОМИНАНИЯ";
+"Settings Vote"                             =   "Голос за";
+"Settings Flag"                             =   "Голос против";
+"Settings Transfer Money"                   =   "Перевод средств";
+"Settings Reply Post"                       =   "Ответ на пост или комментарий";
+"Settings Subscribe Post"                   =   "Подписка на блог";
+"Settings Unsubscribe Post"                 =   "Отписка от блога";
+"Settings Mention"                          =   "Упоминание в посте или комменте через";
+"Settings Repost"                           =   "Репост";
+"Settings User Reward"                      =   "Награда пользователю";
+"Settings Curator Reward"                   =   "Награда куратору";
+"Settings Private Message"                  =   "Личное сообщение";
+"Settings Witness Vote"                     =   "Голос за вашу делегатскую ноду";
 
 
 // Placeholders

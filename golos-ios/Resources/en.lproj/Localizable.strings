@@ -166,10 +166,10 @@
 "Unsubscribe Noun"                          =   "Unsubscribe";
 "Settings Online Notifications"             =   "Настройки онлайн уведомлений";
 "Settings Push Notifications"               =   "Настройки пуш уведомлений";
-"" =    "Звук уведомлений";
-"" =    "Включить все онлайн уведомления";
-"" =    "Включить все пуш уведомления";
-"" =    "УПОМИНАНИЯ";
+"Settings Sound Notifications"              =   "Звук уведомлений";
+"Settings Enable All Online Notifications"  =   "Включить все онлайн уведомления";
+"Settings Enable All Push Notifications"    =   "Включить все пуш уведомления";
+"Settings MENTIONS"                         =   "УПОМИНАНИЯ";
 "" =    "Голос за";
 "" =    "Голос против";
 "" =    "Перевод средств";

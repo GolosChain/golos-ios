@@ -32,7 +32,19 @@ class SettingsNotificationsShowViewController: GSBaseViewController {
     
     
     // MARK: - IBOutlets
-    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet var switchesCollection: [UISwitch]!
+    
+    @IBOutlet weak var scrollView: UIScrollView! {
+        didSet {
+            self.scrollView.tune()
+        }
+    }
+    
+    @IBOutlet weak var contentView: UIView! {
+        didSet {
+            self.contentView.tune()
+        }
+    }
     
     @IBOutlet weak var topLineView: UIView! {
         didSet {
@@ -40,54 +52,56 @@ class SettingsNotificationsShowViewController: GSBaseViewController {
         }
     }
     
-    @IBOutlet weak var titleLabel: UILabel! {
+    @IBOutlet weak var mentionsTitleLabel: UILabel! {
         didSet {
-            titleLabel.tune(withText:           "MEMORIES".localized(),
-                            hexColors:          darkGrayWhiteColorPickers,
-                            font:               UIFont(name: "SFProDisplay-Regular", size: 12.0),
-                            alignment:          .left,
-                            isMultiLines:       false)
+            self.mentionsTitleLabel.tune(withText:          " ",
+                                         hexColors:         darkGrayWhiteColorPickers,
+                                         font:              UIFont(name: "SFProDisplay-Medium", size: 14.0),
+                                         alignment:         .left,
+                                         isMultiLines:      true)
         }
     }
     
-    @IBOutlet weak var contentView: UIView! {
+    @IBOutlet var titleLabelsCollection: [UILabel]! {
         didSet {
-            contentView.tune(withThemeColorPicker: whiteBlackColorPickers)
+            self.titleLabelsCollection.forEach({ $0.tune(withText:          " ",
+                                                         hexColors:         blackWhiteColorPickers,
+                                                         font:              UIFont(name: "SFProDisplay-Regular", size: 14.0),
+                                                         alignment:         .left,
+                                                         isMultiLines:      true)})
         }
     }
     
-    @IBOutlet var labelsCollection: [UILabel]! {
+    @IBOutlet var grayViewsCollection: [UIView]! {
         didSet {
-            self.labelsCollection.forEach({ $0.tune(withText:        $0.text!.localized(),
-                                                    hexColors:       blackWhiteColorPickers,
-                                                    font:            UIFont(name: "SF Pro Display-Regular", size: 14.0),
-                                                    alignment:       .left,
-                                                    isMultiLines:    false)})
+            self.grayViewsCollection.forEach({ $0.theme_backgroundColor = lightGrayishBlueBlackColorPickers })
+        }
+    }
+
+    @IBOutlet var settingsButtonsCollection: [UIButton]! {
+        didSet {
+            self.settingsButtonsCollection.forEach({ $0.tune(withTitle:     $0.accessibilityLabel!.localized(),
+                                                             hexColors:     [blackWhiteColorPickers, veryLightGrayColorPickers, veryLightGrayColorPickers, veryLightGrayColorPickers],
+                                                             font:          UIFont(name: "SFProDisplay-Regular", size: 14.0),
+                                                             alignment:     .left)})
         }
     }
     
-    @IBOutlet var switchesCollection: [UISwitch]! {
+    @IBOutlet var imageViewsCollection: [UIImageView]! {
         didSet {
-            self.switchesCollection.forEach({
-                $0.setOn(false, animated: false)
-                $0.theme_onTintColor        =   $0.isOn ? verySoftBlueColorPickers  :   grayishRedColorPickers
-                $0.theme_thumbTintColor     =   $0.isOn ? vividBlueColorPickers     :   lightGrayishBlueWhiteColorPickers
-            })
-        }
-    }
-    
-    @IBOutlet var switchesBackgroundsCollection: [UIView]! {
-        didSet {
-            self.switchesBackgroundsCollection.forEach({
-                $0.theme_backgroundColor    =   grayishRedColorPickers
-                $0.layer.cornerRadius       =   ($0.bounds.height - 2) / 2 * heightRatio
-            })
+            self.imageViewsCollection.forEach({ $0.isHighlighted = true })
         }
     }
     
     @IBOutlet var hightsCollection: [NSLayoutConstraint]! {
         didSet {
             self.hightsCollection.forEach({ $0.constant *= heightRatio })
+        }
+    }
+
+    @IBOutlet var widthsCollection: [NSLayoutConstraint]! {
+        didSet {
+            self.hightsCollection.forEach({ $0.constant *= widthRatio })
         }
     }
 
@@ -150,6 +164,9 @@ class SettingsNotificationsShowViewController: GSBaseViewController {
         
         // Set StatusBarStyle
         self.isStatusBarStyleLight = AppSettings.isAppThemeDark
+        
+        // Translate
+        self.translateUI()
     }
 
     
@@ -163,13 +180,28 @@ class SettingsNotificationsShowViewController: GSBaseViewController {
         interactor?.doSomething(withRequestModel: requestModel)
     }
     
+    private func translateUI() {
+        self.mentionsTitleLabel.text = self.mentionsTitleLabel.accessibilityLabel?.localized()
+        
+        self.titleLabelsCollection.forEach({
+            $0.text = $0.accessibilityLabel?.localized()
+            
+            if $0.tag == 1 && self.settingsNotificationsMode == .push {
+                $0.text = "Settings Enable All Push Notifications".localized()
+            }
+        })
+        
+        self.settingsButtonsCollection.forEach({ $0.setTitle($0.accessibilityLabel!.localized(), for: .normal )})
+    }
+    
     
     // MARK: - Actions
-    @IBAction func switchChangeState(_ sender: UISwitch) {
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.05) {
-            sender.theme_onTintColor        =   sender.isOn ? verySoftBlueColorPickers  :   grayishRedColorPickers
-            sender.theme_thumbTintColor     =   sender.isOn ? vividBlueColorPickers     :   lightGrayishBlueWhiteColorPickers
-        }
+    @IBAction func soundSwitchChangeState(_ sender: UISwitch) {
+
+    }
+    
+    @IBAction func enableAllNotificationsSwitchChangeState(_ sender: UISwitch) {
+
     }
 }
 
