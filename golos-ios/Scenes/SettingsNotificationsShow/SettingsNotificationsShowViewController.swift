@@ -81,7 +81,7 @@ class SettingsNotificationsShowViewController: GSBaseViewController {
     @IBOutlet var settingsButtonsCollection: [UIButton]! {
         didSet {
             self.settingsButtonsCollection.forEach({ $0.tune(withTitle:     $0.accessibilityLabel!.localized(),
-                                                             hexColors:     [blackWhiteColorPickers, veryLightGrayColorPickers, veryLightGrayColorPickers, veryLightGrayColorPickers],
+                                                             hexColors:     [blackWhiteColorPickers, veryLightGrayColorPickers, blackWhiteColorPickers, veryLightGrayColorPickers],
                                                              font:          UIFont(name: "SFProDisplay-Regular", size: 14.0),
                                                              alignment:     .left)})
         }
@@ -203,6 +203,12 @@ class SettingsNotificationsShowViewController: GSBaseViewController {
     @IBAction func enableAllNotificationsSwitchChangeState(_ sender: UISwitch) {
 
     }
+    
+    // Settings buttons
+    @IBAction func settingsButtonTapped(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+        self.imageViewsCollection.first(where: { $0.tag == sender.tag })?.isHighlighted = !sender.isSelected
+   }
 }
 
 
