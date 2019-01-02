@@ -37,10 +37,11 @@ class SettingsShowViewController: GSBaseViewController {
     @IBOutlet weak var wikiGolosButton: UIButton!
     @IBOutlet weak var voicePowerButton: UIButton!
     @IBOutlet weak var switchAccountButton: UIButton!
-    @IBOutlet weak var notificationsButton: UIButton!
     @IBOutlet weak var privacyPolicyButton: UIButton!
     @IBOutlet weak var editUserProfileButton: UIButton!
-    
+    @IBOutlet weak var pushNotificationsButton: UIButton!
+    @IBOutlet weak var onlineNotificationsButton: UIButton!
+
     @IBOutlet weak var commonLabel: UILabel!
     
     @IBOutlet weak var viewPicturesSwitch: UISwitch! {
@@ -362,11 +363,13 @@ class SettingsShowViewController: GSBaseViewController {
 //        self.router?.routeToSettingsUserProfileEditScene()
     }
 
-    @IBAction func notificationsButtonTapped(_ sender: UIButton) {
-        self.showAlertView(withTitle: "Info", andMessage: "In development", needCancel: false, completion: { _ in })
-//        self.router?.routeToSettingsNotificationsScene()
+    @IBAction func pushNotificationsButtonTapped(_ sender: UIButton) {
+        self.router?.routeToSettingsNotificationsScene(mode: .push)
     }
-    
+
+    @IBAction func onlineNotificationsButtonTapped(_ sender: UIButton) {
+        self.router?.routeToSettingsNotificationsScene(mode: .online)
+    }
     
     @IBAction func dayRadioButtonTapped(_ sender: DLRadioButton) {
         AppSettings.instance().setAppThemeDark(false)
@@ -423,7 +426,8 @@ class SettingsShowViewController: GSBaseViewController {
         self.privacyPolicyButton.setTitle("Privacy Policy".localized(), for: .normal)
         self.switchAccountButton.setTitle("Switch Account Verb".localized(), for: .normal)
         self.editUserProfileButton.setTitle("Edit Profile Title".localized(), for: .normal)
-        self.notificationsButton.setTitle("Remote Notifications Title".localized(), for: .normal)
+        self.pushNotificationsButton.setTitle("Settings Push Notifications".localized(), for: .normal)
+        self.onlineNotificationsButton.setTitle("Settings Online Notifications".localized(), for: .normal)
         self.logOutButton.setTitle((User.isAnonymous ? "Log In" : "Exit Verb").localized(), for: .normal)
         
         self.radioButtonsCollection.forEach({ $0.setTitle($0.accessibilityIdentifier?.localized(), for: .normal) })

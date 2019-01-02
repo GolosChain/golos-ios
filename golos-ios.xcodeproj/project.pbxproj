@@ -1077,6 +1077,13 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		B1EEAC1B21DC92DE00F4F6CF /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
 		B1F3747620C2B4DE005EF767 /* RootShow */ = {
 			isa = PBXGroup;
 			children = (
@@ -1208,6 +1215,7 @@
 		ECC15F9B200975680099BBC9 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				B1EEAC1B21DC92DE00F4F6CF /* New Group */,
 				B134933C218187FA00B59827 /* ActiveVotersShow */,
 				7DE353182048CA1E00C04CB2 /* LogInHelpShow */,
 				ECF3172B200AB22000F7B703 /* LogInShow */,

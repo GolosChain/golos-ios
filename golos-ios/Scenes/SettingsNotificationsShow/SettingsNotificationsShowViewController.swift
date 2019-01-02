@@ -13,6 +13,11 @@
 import UIKit
 import GoloSwift
 
+@objc enum SettingsNotificationsMode: Int {
+    case push
+    case online
+}
+
 // MARK: - Input & Output protocols
 protocol SettingsNotificationsShowDisplayLogic: class {
     func displaySomething(fromViewModel viewModel: SettingsNotificationsShowModels.Items.ViewModel)
@@ -20,6 +25,8 @@ protocol SettingsNotificationsShowDisplayLogic: class {
 
 class SettingsNotificationsShowViewController: GSBaseViewController {
     // MARK: - Properties
+    var settingsNotificationsMode: SettingsNotificationsMode = .online
+    
     var interactor: SettingsNotificationsShowBusinessLogic?
     var router: (NSObjectProtocol & SettingsNotificationsShowRoutingLogic & SettingsNotificationsShowDataPassing)?
     
@@ -138,11 +145,20 @@ class SettingsNotificationsShowViewController: GSBaseViewController {
         self.loadViewSettings()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Set StatusBarStyle
+        self.isStatusBarStyleLight = AppSettings.isAppThemeDark
+    }
+
     
     // MARK: - Custom Functions
     private func loadViewSettings() {
-        self.title = "Remote Notifications Title".localized()
-        
+        self.view.tune()
+        self.showNavigationBar()
+        self.title = (self.settingsNotificationsMode == .push ? "Settings Push Notifications" : "Settings Online Notifications").localized()
+
         let requestModel = SettingsNotificationsShowModels.Items.RequestModel()
         interactor?.doSomething(withRequestModel: requestModel)
     }
