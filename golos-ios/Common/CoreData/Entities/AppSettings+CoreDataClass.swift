@@ -94,4 +94,44 @@ public class AppSettings: NSManagedObject {
         self.setAppThemeDark(basic.theme == 0 ? false : true)
         self.setFeedShowImages(basic.feedShowImages == 0 ? false : true)
     }
+    
+    func updateNotifications(mode: SettingsNotificationsMode, property: String, value: Bool) {
+        let propertyName = String(format: "isNotificaion%@%@", mode == .online ? "Online" : "Push", property.uppercaseFirst)
+
+        switch mode {
+        // Online notifications properties
+        case .online:
+            if propertyName == "isNotificaionOnlineVote"                    { self.isNotificaionOnlineVote = value }
+            else if propertyName == "isNotificaionOnlineFlag"               { self.isNotificaionOnlineFlag = value }
+            else if propertyName == "isNotificaionOnlineTransfer"           { self.isNotificaionOnlineTransfer = value }
+            else if propertyName == "isNotificaionOnlineReply"              { self.isNotificaionOnlineReply = value }
+            else if propertyName == "isNotificaionOnlineSubscribe"          { self.isNotificaionOnlineSubscribe = value }
+            else if propertyName == "isNotificaionOnlineUnsubscribe"        { self.isNotificaionOnlineUnsubscribe = value }
+            else if propertyName == "isNotificaionOnlineMention"            { self.isNotificaionOnlineMention = value }
+            else if propertyName == "isNotificaionOnlineRepost"             { self.isNotificaionOnlineRepost = value }
+            else if propertyName == "isNotificaionOnlineReward"             { self.isNotificaionOnlineReward = value }
+            else if propertyName == "isNotificaionOnlineCuratorReward"      { self.isNotificaionOnlineCuratorReward = value }
+            else if propertyName == "isNotificaionOnlineMessage"            { self.isNotificaionOnlineMessage = value }
+            else if propertyName == "isNotificaionOnlineWitnessVote"        { self.isNotificaionOnlineWitnessVote = value }
+            else if propertyName == "isNotificaionOnlineWitnessCancelVote"  { self.isNotificaionOnlineWitnessCancelVote = value }
+
+        // Push notifications properties
+        default:
+            if propertyName == "isNotificaionPushVote"                      { self.isNotificaionPushVote = value }
+            else if propertyName == "isNotificaionPushFlag"                 { self.isNotificaionPushFlag = value }
+            else if propertyName == "isNotificaionPushTransfer"             { self.isNotificaionPushTransfer = value }
+            else if propertyName == "isNotificaionPushReply"                { self.isNotificaionPushReply = value }
+            else if propertyName == "isNotificaionPushSubscribe"            { self.isNotificaionPushSubscribe = value }
+            else if propertyName == "isNotificaionPushUnsubscribe"          { self.isNotificaionPushUnsubscribe = value }
+            else if propertyName == "isNotificaionPushMention"              { self.isNotificaionPushMention = value }
+            else if propertyName == "isNotificaionPushRepost"               { self.isNotificaionPushRepost = value }
+            else if propertyName == "isNotificaionPushReward"               { self.isNotificaionPushReward = value }
+            else if propertyName == "isNotificaionPushCuratorReward"        { self.isNotificaionPushCuratorReward = value }
+            else if propertyName == "isNotificaionPushMessage"              { self.isNotificaionPushMessage = value }
+            else if propertyName == "isNotificaionPushWitnessVote"          { self.isNotificaionPushWitnessVote = value }
+            else if propertyName == "isNotificaionPushWitnessCancelVote"    { self.isNotificaionPushWitnessCancelVote = value }
+        }
+
+        self.save()
+    }
 }

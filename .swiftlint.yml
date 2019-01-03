@@ -17,7 +17,7 @@ identifier_name:
   min_length: 2 #only min_length
 
 cyclomatic_complexity:
-- 25
+- 35
 
 warning_threshold: 15
 
