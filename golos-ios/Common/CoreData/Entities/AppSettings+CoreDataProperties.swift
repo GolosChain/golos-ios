@@ -22,6 +22,10 @@ extension AppSettings {
     @NSManaged public var isAppThemeDark: Bool
     @NSManaged public var isFeedShowImages: Bool
     @NSManaged public var startWithWelcomeScene: Bool
+    @NSManaged public var isPushNotificationSoundOn: Bool
+    @NSManaged public var isOnlineNotificationSoundOn: Bool
+    @NSManaged public var isAllPushNotificationsOn: Bool
+    @NSManaged public var isAllOnlineNotificationsOn: Bool
 
     // Online notifications properties
     @NSManaged public var isNotificaionOnlineVote: Bool

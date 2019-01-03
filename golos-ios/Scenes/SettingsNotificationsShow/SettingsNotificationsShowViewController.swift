@@ -141,6 +141,9 @@ class SettingsNotificationsShowViewController: GSBaseViewController {
     }
     
     private func setupNotificationsPropertiesValues() {
+        self.switchesCollection.first(where: { $0.tag == 0 })?.isOn = self.settingsNotificationsMode == .push ? self.appSettings.isPushNotificationSoundOn : self.appSettings.isOnlineNotificationSoundOn
+        self.switchesCollection.first(where: { $0.tag == 1 })?.isOn = self.settingsNotificationsMode == .push ? self.appSettings.isAllPushNotificationsOn : self.appSettings.isAllOnlineNotificationsOn
+        
         self.settingsButtonsCollection.first(where: { $0.accessibilityIdentifier == "vote" })!.isSelected = self.settingsNotificationsMode == .push ? self.appSettings.isNotificaionPushVote : self.appSettings.isNotificaionOnlineVote
         self.imageViewsCollection.first(where: { $0.tag == 0 })?.isHighlighted = !(self.settingsNotificationsMode == .push ? self.appSettings.isNotificaionPushVote : self.appSettings.isNotificaionOnlineVote)
         
@@ -240,11 +243,15 @@ class SettingsNotificationsShowViewController: GSBaseViewController {
     
     // MARK: - Actions
     @IBAction func soundSwitchChangeState(_ sender: UISwitch) {
-
+        self.appSettings.setNotificationSoundOn(mode: self.settingsNotificationsMode, value: sender.isOn)
     }
     
     @IBAction func enableAllNotificationsSwitchChangeState(_ sender: UISwitch) {
-
+        self.appSettings.setAllNotificationsOn(mode: self.settingsNotificationsMode, value: sender.isOn)
+        self.settingsButtonsCollection.forEach({ $0.isSelected = sender.isOn })
+        self.imageViewsCollection.forEach({ $0.isHighlighted = !sender.isOn })
+        
+        self.appSettings.updateAllNotifications(mode: self.settingsNotificationsMode, value: sender.isOn)
     }
     
     // Settings buttons

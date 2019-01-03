@@ -42,6 +42,38 @@ public class AppSettings: NSManagedObject {
         }
     }
 
+    class var isAllOnlineNotificationsOn: Bool {
+        get {
+            return (CoreDataManager.instance.readEntities(withName:                     "AppSettings",
+                                                          withPredicateParameters:      settingsPredicate,
+                                                          andSortDescriptor:            nil)?.first as! AppSettings).isAllOnlineNotificationsOn
+        }
+    }
+
+    class var isOnlineNotificationSoundOn: Bool {
+        get {
+            return (CoreDataManager.instance.readEntities(withName:                     "AppSettings",
+                                                          withPredicateParameters:      settingsPredicate,
+                                                          andSortDescriptor:            nil)?.first as! AppSettings).isOnlineNotificationSoundOn
+        }
+    }
+
+    class var isAllPushNotificationsOn: Bool {
+        get {
+            return (CoreDataManager.instance.readEntities(withName:                     "AppSettings",
+                                                          withPredicateParameters:      settingsPredicate,
+                                                          andSortDescriptor:            nil)?.first as! AppSettings).isAllPushNotificationsOn
+        }
+    }
+    
+    class var isPushNotificationSoundOn: Bool {
+        get {
+            return (CoreDataManager.instance.readEntities(withName:                     "AppSettings",
+                                                          withPredicateParameters:      settingsPredicate,
+                                                          andSortDescriptor:            nil)?.first as! AppSettings).isPushNotificationSoundOn
+        }
+    }
+
     
     // MARK: - Class Functions
     class func instance() -> AppSettings {
@@ -74,6 +106,30 @@ public class AppSettings: NSManagedObject {
 
     func setFeedShowImages(_ value: Bool) {
         self.isFeedShowImages       =   value
+        self.save()
+    }
+
+    func setAllNotificationsOn(mode: SettingsNotificationsMode, value: Bool) {
+        switch mode {
+        case .online:
+            self.isAllOnlineNotificationsOn = value
+
+        default:
+            self.isAllPushNotificationsOn = value
+        }
+        
+        self.save()
+    }
+
+    func setNotificationSoundOn(mode: SettingsNotificationsMode, value: Bool) {
+        switch mode {
+        case .online:
+            self.isOnlineNotificationSoundOn = value
+            
+        default:
+            self.isPushNotificationSoundOn = value
+        }
+
         self.save()
     }
 
@@ -132,6 +188,44 @@ public class AppSettings: NSManagedObject {
             else if propertyName == "isNotificaionPushWitnessCancelVote"    { self.isNotificaionPushWitnessCancelVote = value }
         }
 
+        self.save()
+    }
+    
+    func updateAllNotifications(mode: SettingsNotificationsMode, value: Bool) {
+        switch mode {
+        // Online notifications properties
+        case .online:
+            self.isNotificaionOnlineVote                =   value
+            self.isNotificaionOnlineFlag                =   value
+            self.isNotificaionOnlineTransfer            =   value
+            self.isNotificaionOnlineReply               =   value
+            self.isNotificaionOnlineSubscribe           =   value
+            self.isNotificaionOnlineUnsubscribe         =   value
+            self.isNotificaionOnlineMention             =   value
+            self.isNotificaionOnlineRepost              =   value
+            self.isNotificaionOnlineReward              =   value
+            self.isNotificaionOnlineCuratorReward       =   value
+            self.isNotificaionOnlineMessage             =   value
+            self.isNotificaionOnlineWitnessVote         =   value
+            self.isNotificaionOnlineWitnessCancelVote   =   value
+            
+        // Push notifications properties
+        default:
+            self.isNotificaionPushVote                  =   value
+            self.isNotificaionPushFlag                  =   value
+            self.isNotificaionPushTransfer              =   value
+            self.isNotificaionPushReply                 =   value
+            self.isNotificaionPushSubscribe             =   value
+            self.isNotificaionPushUnsubscribe           =   value
+            self.isNotificaionPushMention               =   value
+            self.isNotificaionPushRepost                =   value
+            self.isNotificaionPushReward                =   value
+            self.isNotificaionPushCuratorReward         =   value
+            self.isNotificaionPushMessage               =   value
+            self.isNotificaionPushWitnessVote           =   value
+            self.isNotificaionPushWitnessCancelVote     =   value
+        }
+        
         self.save()
     }
 }
