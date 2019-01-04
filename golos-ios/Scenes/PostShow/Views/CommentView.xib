@@ -61,7 +61,7 @@
                             <rect key="frame" x="39" y="35" width="336" height="0.0"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="height" identifier="markdownViewHeightConstraint" id="7cj-30-Ntl"/>
+                                <constraint firstAttribute="height" identifier="CommentViewConstraint01" id="7cj-30-Ntl"/>
                             </constraints>
                         </view>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-user-profile-image-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="mdT-NO-nly" userLabel="Author Profile Image View">
@@ -72,8 +72,8 @@
                             <rect key="frame" x="2" y="10" width="40" height="40"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="width" secondItem="mlh-OO-ald" secondAttribute="height" multiplier="1:1" id="7RT-1B-L2t"/>
-                                <constraint firstAttribute="width" constant="40" id="Ol7-c9-mB8"/>
+                                <constraint firstAttribute="width" secondItem="mlh-OO-ald" secondAttribute="height" multiplier="1:1" identifier="CommentViewConstraint02" id="7RT-1B-L2t"/>
+                                <constraint firstAttribute="width" constant="40" identifier="CommentViewConstraint03" id="Ol7-c9-mB8"/>
                             </constraints>
                             <connections>
                                 <action selector="authorProfileImageButtonTapped:" destination="-1" eventType="touchUpInside" id="c5H-AB-tKT"/>
@@ -86,8 +86,8 @@
                                     <rect key="frame" x="1" y="1" width="18" height="18"/>
                                     <color key="backgroundColor" red="0.070588235289999995" green="0.40000000000000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="18" id="E7k-6F-MBy"/>
-                                        <constraint firstAttribute="width" secondItem="cy5-Ia-Z4f" secondAttribute="height" multiplier="1:1" id="oBb-VK-blm"/>
+                                        <constraint firstAttribute="width" constant="18" identifier="CommentViewConstraint04" id="E7k-6F-MBy"/>
+                                        <constraint firstAttribute="width" secondItem="cy5-Ia-Z4f" secondAttribute="height" multiplier="1:1" identifier="CommentViewConstraint05" id="oBb-VK-blm"/>
                                     </constraints>
                                     <state key="normal" image="icon-button-plus-white-normal">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -99,17 +99,17 @@
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstItem="cy5-Ia-Z4f" firstAttribute="centerX" secondItem="yNw-9n-yzN" secondAttribute="centerX" id="9wZ-Nm-FyO"/>
-                                <constraint firstAttribute="width" secondItem="yNw-9n-yzN" secondAttribute="height" multiplier="1:1" id="U1L-RD-ppJ"/>
-                                <constraint firstAttribute="width" constant="20" id="jXL-gx-aSk"/>
-                                <constraint firstItem="cy5-Ia-Z4f" firstAttribute="centerY" secondItem="yNw-9n-yzN" secondAttribute="centerY" id="rCs-K8-6jn"/>
+                                <constraint firstItem="cy5-Ia-Z4f" firstAttribute="centerX" secondItem="yNw-9n-yzN" secondAttribute="centerX" identifier="CommentViewConstraint08" id="9wZ-Nm-FyO"/>
+                                <constraint firstAttribute="width" secondItem="yNw-9n-yzN" secondAttribute="height" multiplier="1:1" identifier="CommentViewConstraint06" id="U1L-RD-ppJ"/>
+                                <constraint firstAttribute="width" constant="20" identifier="CommentViewConstraint07" id="jXL-gx-aSk"/>
+                                <constraint firstItem="cy5-Ia-Z4f" firstAttribute="centerY" secondItem="yNw-9n-yzN" secondAttribute="centerY" identifier="CommentViewConstraint09" id="rCs-K8-6jn"/>
                             </constraints>
                         </view>
                         <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eTP-vD-Kt8" userLabel="Author Name Button">
                             <rect key="frame" x="52" y="0.0" width="46" height="32"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="32" identifier="authorNameButtonHeightConstraint" id="Y2d-Sy-T19"/>
+                                <constraint firstAttribute="height" constant="32" identifier="CommentViewConstraint10" id="Y2d-Sy-T19"/>
                             </constraints>
                             <state key="normal" title="Button"/>
                             <connections>
@@ -133,7 +133,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="40" height="44"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="40" identifier="likeButtonWidthConstraint" id="f5e-d8-cHI"/>
+                                                <constraint firstAttribute="width" priority="999" constant="40" identifier="CommentViewConstraint11" id="f5e-d8-cHI"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="6"/>
@@ -151,7 +151,7 @@
                                             <rect key="frame" x="40" y="0.0" width="50" height="44"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="50" identifier="likeCountButtonWidthConstraint" id="22s-Gh-24N"/>
+                                                <constraint firstAttribute="width" constant="50" identifier="CommentViewConstraint12" id="22s-Gh-24N"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="6"/>
@@ -169,7 +169,7 @@
                                             <rect key="frame" x="90" y="0.0" width="40" height="44"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="40" identifier="dislikeButtonWidthConstraint" id="ZbD-uk-x1z"/>
+                                                <constraint firstAttribute="width" priority="999" constant="40" identifier="CommentViewConstraint13" id="ZbD-uk-x1z"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <inset key="imageEdgeInsets" minX="0.0" minY="6" maxX="0.0" maxY="0.0"/>
@@ -184,7 +184,7 @@
                                             <rect key="frame" x="130" y="0.0" width="50" height="44"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="50" identifier="dislikeCountButtonWidthConstraint" id="0Hf-1Q-LzP"/>
+                                                <constraint firstAttribute="width" constant="50" identifier="CommentViewConstraint14" id="0Hf-1Q-LzP"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="6"/>
@@ -202,7 +202,7 @@
                                             <rect key="frame" x="180" y="0.0" width="80" height="44"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="80" identifier="replyButtonWidthConstraint" id="7g8-30-S2i"/>
+                                                <constraint firstAttribute="width" priority="999" constant="80" identifier="CommentViewConstraint15" id="7g8-30-S2i"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <state key="normal" title="Reply Verb">
@@ -229,11 +229,11 @@
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstItem="qfO-v9-tpQ" firstAttribute="top" secondItem="bW7-se-LaC" secondAttribute="top" id="0bA-3W-7EG"/>
-                                <constraint firstAttribute="height" constant="44" identifier="buttonsViewHeightConstraint" id="9sJ-K0-GQc"/>
-                                <constraint firstItem="qfO-v9-tpQ" firstAttribute="leading" secondItem="bW7-se-LaC" secondAttribute="leading" id="OEP-tg-Ax1"/>
-                                <constraint firstAttribute="trailing" secondItem="qfO-v9-tpQ" secondAttribute="trailing" id="psh-EO-IAW"/>
-                                <constraint firstAttribute="bottom" secondItem="qfO-v9-tpQ" secondAttribute="bottom" id="qdN-MD-xP1"/>
+                                <constraint firstItem="qfO-v9-tpQ" firstAttribute="top" secondItem="bW7-se-LaC" secondAttribute="top" identifier="CommentViewConstraint17" id="0bA-3W-7EG"/>
+                                <constraint firstAttribute="height" priority="999" constant="44" identifier="CommentViewConstraint16" id="9sJ-K0-GQc"/>
+                                <constraint firstItem="qfO-v9-tpQ" firstAttribute="leading" secondItem="bW7-se-LaC" secondAttribute="leading" identifier="CommentViewConstraint18" id="OEP-tg-Ax1"/>
+                                <constraint firstAttribute="trailing" secondItem="qfO-v9-tpQ" secondAttribute="trailing" identifier="CommentViewConstraint19" id="psh-EO-IAW"/>
+                                <constraint firstAttribute="bottom" secondItem="qfO-v9-tpQ" secondAttribute="bottom" identifier="CommentViewConstraint20" id="qdN-MD-xP1"/>
                             </constraints>
                         </view>
                         <activityIndicatorView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="9vY-Xd-25N">
@@ -245,40 +245,40 @@
                             <rect key="frame" x="152" y="47" width="20" height="20"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="width" secondItem="g5F-k1-w0f" secondAttribute="height" multiplier="1:1" id="ouK-Sh-JDZ"/>
+                                <constraint firstAttribute="width" secondItem="g5F-k1-w0f" secondAttribute="height" multiplier="1:1" identifier="CommentViewConstraint21" id="ouK-Sh-JDZ"/>
                             </constraints>
                             <color key="color" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                         </activityIndicatorView>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstItem="eTP-vD-Kt8" firstAttribute="leading" secondItem="Mnb-Ny-ryB" secondAttribute="leading" constant="13" id="0Jc-1M-vHe"/>
-                        <constraint firstItem="9vY-Xd-25N" firstAttribute="centerY" secondItem="bW7-se-LaC" secondAttribute="centerY" id="0S2-ZY-ZVr"/>
-                        <constraint firstAttribute="bottom" secondItem="bW7-se-LaC" secondAttribute="bottom" id="6pU-gQ-bHT"/>
-                        <constraint firstItem="mlh-OO-ald" firstAttribute="top" secondItem="tNf-H6-dtq" secondAttribute="top" constant="10" id="ALu-zV-3cZ"/>
-                        <constraint firstItem="g5F-k1-w0f" firstAttribute="centerX" secondItem="FWp-8o-9XQ" secondAttribute="centerX" id="CNs-pU-NqI"/>
-                        <constraint firstItem="JV1-jP-ZcQ" firstAttribute="leading" secondItem="eTP-vD-Kt8" secondAttribute="trailing" constant="8" id="D4v-Ma-HTj"/>
-                        <constraint firstAttribute="trailing" secondItem="bW7-se-LaC" secondAttribute="trailing" id="DQT-JO-Lfz"/>
-                        <constraint firstItem="9vY-Xd-25N" firstAttribute="centerY" secondItem="o8N-iq-pgK" secondAttribute="centerY" id="HKy-Vo-dUA"/>
-                        <constraint firstItem="eTP-vD-Kt8" firstAttribute="leading" secondItem="mlh-OO-ald" secondAttribute="trailing" constant="10" id="K8l-41-h6y"/>
-                        <constraint firstItem="mdT-NO-nly" firstAttribute="width" secondItem="mlh-OO-ald" secondAttribute="width" id="KO0-h5-JpD"/>
-                        <constraint firstItem="yNw-9n-yzN" firstAttribute="leading" secondItem="mlh-OO-ald" secondAttribute="leading" constant="-2" id="Mje-bE-iK1"/>
-                        <constraint firstItem="eTP-vD-Kt8" firstAttribute="top" secondItem="tNf-H6-dtq" secondAttribute="top" id="O1g-Rr-psh"/>
-                        <constraint firstItem="Mnb-Ny-ryB" firstAttribute="top" secondItem="tNf-H6-dtq" secondAttribute="top" constant="35" identifier="markdownViewTopConstraint" id="OJk-RS-0eV"/>
-                        <constraint firstItem="bW7-se-LaC" firstAttribute="leading" secondItem="eTP-vD-Kt8" secondAttribute="leading" id="PJf-Ow-DpU"/>
-                        <constraint firstItem="mdT-NO-nly" firstAttribute="height" secondItem="mlh-OO-ald" secondAttribute="height" identifier="authorProfileImageViewHeightConstraint" id="RKS-8c-Yd4"/>
-                        <constraint firstAttribute="trailing" secondItem="Mnb-Ny-ryB" secondAttribute="trailing" id="WGM-xK-IuN"/>
-                        <constraint firstItem="g5F-k1-w0f" firstAttribute="width" secondItem="g5F-k1-w0f" secondAttribute="height" multiplier="1:1" id="Zb8-1f-D9l"/>
-                        <constraint firstItem="mdT-NO-nly" firstAttribute="centerX" secondItem="mlh-OO-ald" secondAttribute="centerX" id="bOG-Ok-y8j"/>
-                        <constraint firstItem="mdT-NO-nly" firstAttribute="centerY" secondItem="mlh-OO-ald" secondAttribute="centerY" id="bZS-MS-EyC"/>
-                        <constraint firstItem="yNw-9n-yzN" firstAttribute="bottom" secondItem="mlh-OO-ald" secondAttribute="bottom" constant="2" id="cCs-s7-z6A"/>
-                        <constraint firstItem="JV1-jP-ZcQ" firstAttribute="centerY" secondItem="eTP-vD-Kt8" secondAttribute="centerY" id="hdo-bQ-3nY"/>
-                        <constraint firstItem="bW7-se-LaC" firstAttribute="top" secondItem="Mnb-Ny-ryB" secondAttribute="bottom" id="ixt-cE-Hoz"/>
-                        <constraint firstItem="9vY-Xd-25N" firstAttribute="leading" secondItem="o8N-iq-pgK" secondAttribute="leading" id="ltK-yd-m1H"/>
-                        <constraint firstItem="Mnb-Ny-ryB" firstAttribute="top" secondItem="JV1-jP-ZcQ" secondAttribute="bottom" constant="8.5" id="nrc-W2-SGl"/>
-                        <constraint firstItem="yNw-9n-yzN" firstAttribute="leading" secondItem="tNf-H6-dtq" secondAttribute="leading" id="rJH-dn-TBo"/>
-                        <constraint firstItem="g5F-k1-w0f" firstAttribute="centerY" secondItem="FWp-8o-9XQ" secondAttribute="centerY" id="sIh-Dq-Tks"/>
-                        <constraint firstItem="Mnb-Ny-ryB" firstAttribute="top" secondItem="eTP-vD-Kt8" secondAttribute="bottom" constant="3" id="vJ4-Nh-Erq"/>
+                        <constraint firstItem="eTP-vD-Kt8" firstAttribute="leading" secondItem="Mnb-Ny-ryB" secondAttribute="leading" constant="13" identifier="CommentViewConstraint30" id="0Jc-1M-vHe"/>
+                        <constraint firstItem="9vY-Xd-25N" firstAttribute="centerY" secondItem="bW7-se-LaC" secondAttribute="centerY" identifier="CommentViewConstraint41" id="0S2-ZY-ZVr"/>
+                        <constraint firstAttribute="bottom" secondItem="bW7-se-LaC" secondAttribute="bottom" identifier="CommentViewConstraint37" id="6pU-gQ-bHT"/>
+                        <constraint firstItem="mlh-OO-ald" firstAttribute="top" secondItem="tNf-H6-dtq" secondAttribute="top" priority="999" constant="10" identifier="CommentViewConstraint26" id="ALu-zV-3cZ"/>
+                        <constraint firstItem="g5F-k1-w0f" firstAttribute="centerX" secondItem="FWp-8o-9XQ" secondAttribute="centerX" identifier="CommentViewConstraint46" id="CNs-pU-NqI"/>
+                        <constraint firstItem="JV1-jP-ZcQ" firstAttribute="leading" secondItem="eTP-vD-Kt8" secondAttribute="trailing" constant="8" identifier="CommentViewConstraint44" id="D4v-Ma-HTj"/>
+                        <constraint firstAttribute="trailing" secondItem="bW7-se-LaC" secondAttribute="trailing" identifier="CommentViewConstraint38" id="DQT-JO-Lfz"/>
+                        <constraint firstItem="9vY-Xd-25N" firstAttribute="centerY" secondItem="o8N-iq-pgK" secondAttribute="centerY" identifier="CommentViewConstraint42" id="HKy-Vo-dUA"/>
+                        <constraint firstItem="eTP-vD-Kt8" firstAttribute="leading" secondItem="mlh-OO-ald" secondAttribute="trailing" constant="10" identifier="CommentViewConstraint31" id="K8l-41-h6y"/>
+                        <constraint firstItem="mdT-NO-nly" firstAttribute="width" secondItem="mlh-OO-ald" secondAttribute="width" identifier="CommentViewConstraint22" id="KO0-h5-JpD"/>
+                        <constraint firstItem="yNw-9n-yzN" firstAttribute="leading" secondItem="mlh-OO-ald" secondAttribute="leading" constant="-2" identifier="CommentViewConstraint27" id="Mje-bE-iK1"/>
+                        <constraint firstItem="eTP-vD-Kt8" firstAttribute="top" secondItem="tNf-H6-dtq" secondAttribute="top" identifier="CommentViewConstraint32" id="O1g-Rr-psh"/>
+                        <constraint firstItem="Mnb-Ny-ryB" firstAttribute="top" secondItem="tNf-H6-dtq" secondAttribute="top" priority="999" constant="35" identifier="CommentViewConstraint33" id="OJk-RS-0eV"/>
+                        <constraint firstItem="bW7-se-LaC" firstAttribute="leading" secondItem="eTP-vD-Kt8" secondAttribute="leading" identifier="CommentViewConstraint39" id="PJf-Ow-DpU"/>
+                        <constraint firstItem="mdT-NO-nly" firstAttribute="height" secondItem="mlh-OO-ald" secondAttribute="height" identifier="CommentViewConstraint23" id="RKS-8c-Yd4"/>
+                        <constraint firstAttribute="trailing" secondItem="Mnb-Ny-ryB" secondAttribute="trailing" identifier="CommentViewConstraint34" id="WGM-xK-IuN"/>
+                        <constraint firstItem="g5F-k1-w0f" firstAttribute="width" secondItem="g5F-k1-w0f" secondAttribute="height" multiplier="1:1" identifier="CommentViewConstraint47" id="Zb8-1f-D9l"/>
+                        <constraint firstItem="mdT-NO-nly" firstAttribute="centerX" secondItem="mlh-OO-ald" secondAttribute="centerX" identifier="CommentViewConstraint24" id="bOG-Ok-y8j"/>
+                        <constraint firstItem="mdT-NO-nly" firstAttribute="centerY" secondItem="mlh-OO-ald" secondAttribute="centerY" identifier="CommentViewConstraint25" id="bZS-MS-EyC"/>
+                        <constraint firstItem="yNw-9n-yzN" firstAttribute="bottom" secondItem="mlh-OO-ald" secondAttribute="bottom" constant="2" identifier="CommentViewConstraint28" id="cCs-s7-z6A"/>
+                        <constraint firstItem="JV1-jP-ZcQ" firstAttribute="centerY" secondItem="eTP-vD-Kt8" secondAttribute="centerY" identifier="CommentViewConstraint45" id="hdo-bQ-3nY"/>
+                        <constraint firstItem="bW7-se-LaC" firstAttribute="top" secondItem="Mnb-Ny-ryB" secondAttribute="bottom" identifier="CommentViewConstraint40" id="ixt-cE-Hoz"/>
+                        <constraint firstItem="9vY-Xd-25N" firstAttribute="leading" secondItem="o8N-iq-pgK" secondAttribute="leading" identifier="CommentViewConstraint43" id="ltK-yd-m1H"/>
+                        <constraint firstItem="Mnb-Ny-ryB" firstAttribute="top" secondItem="JV1-jP-ZcQ" secondAttribute="bottom" constant="8.5" identifier="CommentViewConstraint35" id="nrc-W2-SGl"/>
+                        <constraint firstItem="yNw-9n-yzN" firstAttribute="leading" secondItem="tNf-H6-dtq" secondAttribute="leading" identifier="CommentViewConstraint29" id="rJH-dn-TBo"/>
+                        <constraint firstItem="g5F-k1-w0f" firstAttribute="centerY" secondItem="FWp-8o-9XQ" secondAttribute="centerY" identifier="CommentViewConstraint48" id="sIh-Dq-Tks"/>
+                        <constraint firstItem="Mnb-Ny-ryB" firstAttribute="top" secondItem="eTP-vD-Kt8" secondAttribute="bottom" constant="3" identifier="CommentViewConstraint36" id="vJ4-Nh-Erq"/>
                     </constraints>
                     <variation key="default">
                         <mask key="constraints">
@@ -290,10 +290,10 @@
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="tNf-H6-dtq" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="5E9-p5-OfM"/>
-                <constraint firstItem="tNf-H6-dtq" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="VFg-gZ-wzQ"/>
-                <constraint firstAttribute="trailing" secondItem="tNf-H6-dtq" secondAttribute="trailing" id="oKN-yo-MQB"/>
-                <constraint firstAttribute="bottom" secondItem="tNf-H6-dtq" secondAttribute="bottom" id="qBX-zc-ius"/>
+                <constraint firstItem="tNf-H6-dtq" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" identifier="CommentViewConstraint49" id="5E9-p5-OfM"/>
+                <constraint firstItem="tNf-H6-dtq" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" identifier="CommentViewConstraint50" id="VFg-gZ-wzQ"/>
+                <constraint firstAttribute="trailing" secondItem="tNf-H6-dtq" secondAttribute="trailing" identifier="CommentViewConstraint51" id="oKN-yo-MQB"/>
+                <constraint firstAttribute="bottom" secondItem="tNf-H6-dtq" secondAttribute="bottom" identifier="CommentViewConstraint52" id="qBX-zc-ius"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>

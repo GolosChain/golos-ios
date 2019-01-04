@@ -47,6 +47,7 @@
                 <outletCollection property="topConstraintsCollection" destination="iZP-HV-lEA" collectionClass="NSMutableArray" id="aQr-sp-0pC"/>
                 <outletCollection property="categoryImageViewCollection" destination="Obg-ts-apO" collectionClass="NSMutableArray" id="Put-Vy-M8m"/>
                 <outletCollection property="categoryImageViewCollection" destination="Go4-Kd-Te3" collectionClass="NSMutableArray" id="2d7-6S-pD4"/>
+                <outletCollection property="widthsCollection" destination="hfa-Ns-yLV" collectionClass="NSMutableArray" id="ivA-me-I8S"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -58,8 +59,8 @@
                     <rect key="frame" x="14" y="8" width="30" height="30"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="width" secondItem="CDW-mc-LZt" secondAttribute="height" multiplier="1:1" id="bpC-AQ-c3h"/>
-                        <constraint firstAttribute="width" constant="30" identifier="authorProfileImageViewWidthConstraint" id="szF-pt-Pnt"/>
+                        <constraint firstAttribute="width" secondItem="CDW-mc-LZt" secondAttribute="height" multiplier="1:1" identifier="PostFeedHeaderViewConstraint01" id="bpC-AQ-c3h"/>
+                        <constraint firstAttribute="width" constant="30" identifier="PostFeedHeaderViewConstraint02" id="szF-pt-Pnt"/>
                     </constraints>
                 </imageView>
                 <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nz4-9G-SQv" userLabel="Author Reputation Background View">
@@ -69,8 +70,8 @@
                             <rect key="frame" x="1" y="1" width="16" height="16"/>
                             <color key="backgroundColor" red="0.4941176471" green="0.52549019610000003" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="16" id="3kW-1H-NpI"/>
-                                <constraint firstAttribute="width" secondItem="Ggt-Mp-ead" secondAttribute="height" multiplier="1:1" id="QKv-hB-XYm"/>
+                                <constraint firstAttribute="width" constant="16" identifier="PostFeedHeaderViewConstraint03" id="3kW-1H-NpI"/>
+                                <constraint firstAttribute="width" secondItem="Ggt-Mp-ead" secondAttribute="height" multiplier="1:1" identifier="PostFeedHeaderViewConstraint04" id="QKv-hB-XYm"/>
                             </constraints>
                         </view>
                         <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iEZ-ed-6NY" userLabel="Author Reputation Label">
@@ -84,9 +85,9 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstItem="Ggt-Mp-ead" firstAttribute="centerY" secondItem="Nz4-9G-SQv" secondAttribute="centerY" id="27i-TJ-Cj6"/>
-                        <constraint firstItem="Ggt-Mp-ead" firstAttribute="centerX" secondItem="Nz4-9G-SQv" secondAttribute="centerX" id="NBk-1o-rWv"/>
-                        <constraint firstAttribute="width" constant="18" id="hfa-Ns-yLV"/>
+                        <constraint firstItem="Ggt-Mp-ead" firstAttribute="centerY" secondItem="Nz4-9G-SQv" secondAttribute="centerY" identifier="PostFeedHeaderViewConstraint06" id="27i-TJ-Cj6"/>
+                        <constraint firstItem="Ggt-Mp-ead" firstAttribute="centerX" secondItem="Nz4-9G-SQv" secondAttribute="centerX" identifier="PostFeedHeaderViewConstraint07" id="NBk-1o-rWv"/>
+                        <constraint firstAttribute="width" constant="18" identifier="PostFeedHeaderViewConstraint05" id="hfa-Ns-yLV"/>
                     </constraints>
                 </view>
                 <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uIf-55-Ixe" userLabel="Author Profile Button">
@@ -96,7 +97,7 @@
                         <action selector="profileAuthorButtonTapped:" destination="-1" eventType="touchUpInside" id="knC-GP-H5p"/>
                     </connections>
                 </button>
-                <stackView contentMode="scaleToFill" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Wa1-Jb-Coi" userLabel="Author Name Stack View">
+                <stackView contentMode="scaleToFill" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Wa1-Jb-Coi" userLabel="Author Name Stack View">
                     <rect key="frame" x="52" y="8" width="307" height="15"/>
                     <subviews>
                         <button clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8pZ-cO-uTP" userLabel="Author Name Button">
@@ -130,7 +131,7 @@
                         </label>
                     </subviews>
                     <constraints>
-                        <constraint firstAttribute="height" constant="15" id="Epo-Uz-yQX"/>
+                        <constraint firstAttribute="height" constant="15" identifier="PostFeedHeaderViewConstraint08" id="Epo-Uz-yQX"/>
                     </constraints>
                 </stackView>
                 <stackView contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="dm1-cc-tOw">
@@ -187,29 +188,29 @@
                         </stackView>
                     </subviews>
                     <constraints>
-                        <constraint firstAttribute="height" constant="31" id="3bW-4Z-X7q"/>
+                        <constraint firstAttribute="height" constant="31" identifier="PostFeedHeaderViewConstraint09" id="3bW-4Z-X7q"/>
                     </constraints>
                 </stackView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="dm1-cc-tOw" firstAttribute="top" secondItem="Wa1-Jb-Coi" secondAttribute="bottom" constant="1" id="1sn-dS-MtW"/>
-                <constraint firstItem="AQ6-r5-F3T" firstAttribute="trailing" secondItem="dm1-cc-tOw" secondAttribute="trailing" constant="16" id="3j2-39-uVk"/>
-                <constraint firstItem="CDW-mc-LZt" firstAttribute="top" secondItem="AQ6-r5-F3T" secondAttribute="top" constant="8" id="B9h-Fb-OFc"/>
-                <constraint firstItem="Nz4-9G-SQv" firstAttribute="leading" secondItem="CDW-mc-LZt" secondAttribute="leading" id="Egw-E1-o64"/>
-                <constraint firstItem="Wa1-Jb-Coi" firstAttribute="leading" secondItem="CDW-mc-LZt" secondAttribute="trailing" constant="8" id="FCw-cP-PsJ"/>
-                <constraint firstItem="uIf-55-Ixe" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="GUQ-LY-VRV"/>
-                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="CDW-mc-LZt" secondAttribute="bottom" constant="8" id="RcB-rC-lnU"/>
-                <constraint firstItem="Nz4-9G-SQv" firstAttribute="bottom" secondItem="CDW-mc-LZt" secondAttribute="bottom" id="ScJ-qY-QeZ"/>
-                <constraint firstItem="uIf-55-Ixe" firstAttribute="bottom" secondItem="iN0-l3-epB" secondAttribute="bottom" id="X8Z-O8-MrJ"/>
-                <constraint firstItem="uIf-55-Ixe" firstAttribute="trailing" secondItem="CDW-mc-LZt" secondAttribute="trailing" id="cgL-3V-6EF"/>
-                <constraint firstItem="AQ6-r5-F3T" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="dm1-cc-tOw" secondAttribute="bottom" constant="8" id="iZP-HV-lEA"/>
-                <constraint firstItem="CDW-mc-LZt" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="14" id="jVC-uP-2eK"/>
-                <constraint firstItem="uIf-55-Ixe" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="kgZ-y0-q3t"/>
-                <constraint firstItem="Nz4-9G-SQv" firstAttribute="width" secondItem="Nz4-9G-SQv" secondAttribute="height" multiplier="1:1" id="uOO-Hg-gFW"/>
-                <constraint firstItem="AQ6-r5-F3T" firstAttribute="trailing" secondItem="Wa1-Jb-Coi" secondAttribute="trailing" constant="16" id="ufj-RF-Jdg"/>
-                <constraint firstItem="dm1-cc-tOw" firstAttribute="leading" secondItem="CDW-mc-LZt" secondAttribute="trailing" constant="8" id="vy0-cr-Cea"/>
-                <constraint firstItem="Wa1-Jb-Coi" firstAttribute="top" secondItem="AQ6-r5-F3T" secondAttribute="top" constant="8" id="wEe-v0-4zb"/>
+                <constraint firstItem="dm1-cc-tOw" firstAttribute="top" secondItem="Wa1-Jb-Coi" secondAttribute="bottom" constant="1" identifier="PostFeedHeaderViewConstraint25" id="1sn-dS-MtW"/>
+                <constraint firstItem="AQ6-r5-F3T" firstAttribute="trailing" secondItem="dm1-cc-tOw" secondAttribute="trailing" constant="16" identifier="PostFeedHeaderViewConstraint10" id="3j2-39-uVk"/>
+                <constraint firstItem="CDW-mc-LZt" firstAttribute="top" secondItem="AQ6-r5-F3T" secondAttribute="top" priority="999" constant="8" identifier="PostFeedHeaderViewConstraint17" id="B9h-Fb-OFc"/>
+                <constraint firstItem="Nz4-9G-SQv" firstAttribute="leading" secondItem="CDW-mc-LZt" secondAttribute="leading" identifier="PostFeedHeaderViewConstraint20" id="Egw-E1-o64"/>
+                <constraint firstItem="Wa1-Jb-Coi" firstAttribute="leading" secondItem="CDW-mc-LZt" secondAttribute="trailing" constant="8" identifier="PostFeedHeaderViewConstraint23" id="FCw-cP-PsJ"/>
+                <constraint firstItem="uIf-55-Ixe" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" identifier="PostFeedHeaderViewConstraint13" id="GUQ-LY-VRV"/>
+                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="CDW-mc-LZt" secondAttribute="bottom" priority="999" constant="8" identifier="PostFeedHeaderViewConstraint18" id="RcB-rC-lnU"/>
+                <constraint firstItem="Nz4-9G-SQv" firstAttribute="bottom" secondItem="CDW-mc-LZt" secondAttribute="bottom" identifier="PostFeedHeaderViewConstraint21" id="ScJ-qY-QeZ"/>
+                <constraint firstItem="uIf-55-Ixe" firstAttribute="bottom" secondItem="iN0-l3-epB" secondAttribute="bottom" identifier="PostFeedHeaderViewConstraint14" id="X8Z-O8-MrJ"/>
+                <constraint firstItem="uIf-55-Ixe" firstAttribute="trailing" secondItem="CDW-mc-LZt" secondAttribute="trailing" identifier="PostFeedHeaderViewConstraint15" id="cgL-3V-6EF"/>
+                <constraint firstItem="AQ6-r5-F3T" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="dm1-cc-tOw" secondAttribute="bottom" constant="8" identifier="PostFeedHeaderViewConstraint11" id="iZP-HV-lEA"/>
+                <constraint firstItem="CDW-mc-LZt" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="14" identifier="PostFeedHeaderViewConstraint19" id="jVC-uP-2eK"/>
+                <constraint firstItem="uIf-55-Ixe" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" identifier="PostFeedHeaderViewConstraint16" id="kgZ-y0-q3t"/>
+                <constraint firstItem="Nz4-9G-SQv" firstAttribute="width" secondItem="Nz4-9G-SQv" secondAttribute="height" multiplier="1:1" identifier="PostFeedHeaderViewConstraint22" id="uOO-Hg-gFW"/>
+                <constraint firstItem="AQ6-r5-F3T" firstAttribute="trailing" secondItem="Wa1-Jb-Coi" secondAttribute="trailing" constant="16" identifier="PostFeedHeaderViewConstraint12" id="ufj-RF-Jdg"/>
+                <constraint firstItem="dm1-cc-tOw" firstAttribute="leading" secondItem="CDW-mc-LZt" secondAttribute="trailing" constant="8" identifier="PostFeedHeaderViewConstraint26" id="vy0-cr-Cea"/>
+                <constraint firstItem="Wa1-Jb-Coi" firstAttribute="top" secondItem="AQ6-r5-F3T" secondAttribute="top" constant="8" identifier="PostFeedHeaderViewConstraint24" id="wEe-v0-4zb"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="AQ6-r5-F3T"/>

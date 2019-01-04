@@ -136,8 +136,8 @@
                         <constraint firstAttribute="height" constant="44" id="rso-2L-BYS"/>
                     </constraints>
                     <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
-                    <state key="normal" image="icon-button-back-while-normal"/>
-                    <state key="highlighted" image="icon-button-back-white-normal"/>
+                    <state key="normal" image="icon-button-back-white-normal"/>
+                    <state key="highlighted" image="icon-button-back-black-normal"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
                             <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -254,7 +254,7 @@
         </view>
     </objects>
     <resources>
-        <image name="icon-button-back-while-normal" width="8" height="14"/>
+        <image name="icon-button-back-black-normal" width="8" height="14"/>
         <image name="icon-button-back-white-normal" width="8" height="14"/>
         <image name="icon-button-edit-white-normal" width="37.5" height="37.5"/>
         <image name="icon-button-settings-white-normal" width="37.5" height="37.5"/>

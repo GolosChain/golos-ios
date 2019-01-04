@@ -239,6 +239,8 @@ class CommentView: UIView, HandlersCellSupport {
     
     func loadData(fromBody body: String, completion: @escaping (CGFloat) -> Void) {
         // Load markdown content
+//        let lastWorld = body.components(separatedBy: " ").last
+        
         self.markdownViewManager.load(markdown: Parser.repair(body: body))
 
         self.markdownViewManager.onRendered = { height in

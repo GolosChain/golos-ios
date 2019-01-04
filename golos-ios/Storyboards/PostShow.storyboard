@@ -28,7 +28,7 @@
                                                 <rect key="frame" x="14" y="338.33333333333331" width="345" height="0.0"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" identifier="commentsStackViewHeightConstraint" id="i0s-JR-gEA"/>
+                                                    <constraint firstAttribute="height" identifier="PostShowViewControllerConstraint01" id="i0s-JR-gEA"/>
                                                 </constraints>
                                             </stackView>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dZE-L5-SIs" userLabel="Hide View">
@@ -63,7 +63,7 @@
                                                         <rect key="frame" x="79.666666666666686" y="33" width="120" height="35"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="120" id="8A6-dT-b1z"/>
+                                                            <constraint firstAttribute="width" constant="120" identifier="PostShowViewControllerConstraint02" id="8A6-dT-b1z"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                         <inset key="imageEdgeInsets" minX="85" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -78,8 +78,8 @@
                                                         <rect key="frame" x="249" y="21" width="110" height="35"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="110" id="CMb-x3-YcA"/>
-                                                            <constraint firstAttribute="height" constant="35" identifier="hideCommentsButtonHeightConstraint" id="SAs-Xj-sbJ"/>
+                                                            <constraint firstAttribute="width" constant="110" identifier="PostShowViewControllerConstraint03" id="CMb-x3-YcA"/>
+                                                            <constraint firstAttribute="height" constant="35" identifier="PostShowViewControllerConstraint04" id="SAs-Xj-sbJ"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="8"/>
                                                         <state key="normal" title="Hide Comments Verb">
@@ -92,18 +92,18 @@
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstItem="NIC-bg-8Kq" firstAttribute="leading" secondItem="nt5-Bc-nF3" secondAttribute="leading" constant="16" id="2mh-xf-Jtc"/>
-                                                    <constraint firstItem="dVT-lc-meT" firstAttribute="top" secondItem="nt5-Bc-nF3" secondAttribute="top" constant="15" id="44z-oF-6P4"/>
-                                                    <constraint firstItem="bfp-bA-aPN" firstAttribute="centerY" secondItem="NIC-bg-8Kq" secondAttribute="centerY" id="4Uj-gq-vA3"/>
-                                                    <constraint firstAttribute="height" constant="70" identifier="commentsControlViewHeightConstraint" id="62h-iQ-2EM"/>
-                                                    <constraint firstItem="bfp-bA-aPN" firstAttribute="leading" secondItem="NIC-bg-8Kq" secondAttribute="trailing" constant="8" id="Dqb-8R-Al5"/>
-                                                    <constraint firstAttribute="trailing" secondItem="lI5-dI-xCS" secondAttribute="trailing" constant="16" id="JTG-WK-R4O"/>
-                                                    <constraint firstItem="gp2-Gr-TVH" firstAttribute="leading" secondItem="dVT-lc-meT" secondAttribute="trailing" constant="8" id="QDG-1p-rPh"/>
-                                                    <constraint firstItem="lI5-dI-xCS" firstAttribute="height" secondItem="bfp-bA-aPN" secondAttribute="height" identifier="sortCommentsButtonHeightConstraint" id="Xhb-Ms-8zX"/>
-                                                    <constraint firstItem="dVT-lc-meT" firstAttribute="leading" secondItem="nt5-Bc-nF3" secondAttribute="leading" constant="16" id="Z82-qG-aDV"/>
-                                                    <constraint firstItem="gp2-Gr-TVH" firstAttribute="centerY" secondItem="dVT-lc-meT" secondAttribute="centerY" id="ZB6-cI-lPh"/>
-                                                    <constraint firstItem="NIC-bg-8Kq" firstAttribute="top" secondItem="dVT-lc-meT" secondAttribute="bottom" constant="5" id="haj-jd-NUZ"/>
-                                                    <constraint firstItem="lI5-dI-xCS" firstAttribute="top" secondItem="nt5-Bc-nF3" secondAttribute="top" constant="21" id="jnh-ae-TK2"/>
+                                                    <constraint firstItem="NIC-bg-8Kq" firstAttribute="leading" secondItem="nt5-Bc-nF3" secondAttribute="leading" constant="16" identifier="PostShowViewControllerConstraint08" id="2mh-xf-Jtc"/>
+                                                    <constraint firstItem="dVT-lc-meT" firstAttribute="top" secondItem="nt5-Bc-nF3" secondAttribute="top" constant="15" identifier="PostShowViewControllerConstraint06" id="44z-oF-6P4"/>
+                                                    <constraint firstItem="bfp-bA-aPN" firstAttribute="centerY" secondItem="NIC-bg-8Kq" secondAttribute="centerY" identifier="PostShowViewControllerConstraint10" id="4Uj-gq-vA3"/>
+                                                    <constraint firstAttribute="height" constant="70" identifier="PostShowViewControllerConstraint05" id="62h-iQ-2EM"/>
+                                                    <constraint firstItem="bfp-bA-aPN" firstAttribute="leading" secondItem="NIC-bg-8Kq" secondAttribute="trailing" constant="8" identifier="PostShowViewControllerConstraint11" id="Dqb-8R-Al5"/>
+                                                    <constraint firstAttribute="trailing" secondItem="lI5-dI-xCS" secondAttribute="trailing" constant="16" identifier="PostShowViewControllerConstraint14" id="JTG-WK-R4O"/>
+                                                    <constraint firstItem="gp2-Gr-TVH" firstAttribute="leading" secondItem="dVT-lc-meT" secondAttribute="trailing" constant="8" identifier="PostShowViewControllerConstraint12" id="QDG-1p-rPh"/>
+                                                    <constraint firstItem="lI5-dI-xCS" firstAttribute="height" secondItem="bfp-bA-aPN" secondAttribute="height" identifier="PostShowViewControllerConstraint15" id="Xhb-Ms-8zX"/>
+                                                    <constraint firstItem="dVT-lc-meT" firstAttribute="leading" secondItem="nt5-Bc-nF3" secondAttribute="leading" constant="16" identifier="PostShowViewControllerConstraint07" id="Z82-qG-aDV"/>
+                                                    <constraint firstItem="gp2-Gr-TVH" firstAttribute="centerY" secondItem="dVT-lc-meT" secondAttribute="centerY" identifier="PostShowViewControllerConstraint13" id="ZB6-cI-lPh"/>
+                                                    <constraint firstItem="NIC-bg-8Kq" firstAttribute="top" secondItem="dVT-lc-meT" secondAttribute="bottom" constant="5" identifier="PostShowViewControllerConstraint09" id="haj-jd-NUZ"/>
+                                                    <constraint firstItem="lI5-dI-xCS" firstAttribute="top" secondItem="nt5-Bc-nF3" secondAttribute="top" constant="21" identifier="PostShowViewControllerConstraint16" id="jnh-ae-TK2"/>
                                                 </constraints>
                                             </view>
                                             <stackView hidden="YES" contentMode="scaleToFill" distribution="fillEqually" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="h9e-KO-AhW" userLabel="Buttons Stack View">
@@ -138,14 +138,14 @@
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="34" identifier="buttonsStackViewHeightConstraint" id="cWb-2n-6vU"/>
+                                                    <constraint firstAttribute="height" constant="34" identifier="PostShowViewControllerConstraint17" id="cWb-2n-6vU"/>
                                                 </constraints>
                                             </stackView>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tHL-Id-QDj" userLabel="Top Background Gray View">
                                                 <rect key="frame" x="0.0" y="178.33333333333331" width="375" height="5"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="5" identifier="topBackgroundGrayViewHeightConstraint" id="1Sx-7f-Mvj"/>
+                                                    <constraint firstAttribute="height" constant="5" identifier="PostShowViewControllerConstraint18" id="1Sx-7f-Mvj"/>
                                                 </constraints>
                                             </view>
                                             <stackView contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="hL9-He-JpB" userLabel="Subscribes Stack View">
@@ -158,7 +158,7 @@
                                                                 <rect key="frame" x="16" y="-25" width="50" height="50"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="height" constant="50" identifier="subscribeTopicCoverImageViewHeightConstraint" id="ViH-ru-v31"/>
+                                                                    <constraint firstAttribute="height" constant="50" identifier="PostShowViewControllerConstraint19" id="ViH-ru-v31"/>
                                                                 </constraints>
                                                             </imageView>
                                                             <stackView contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="FWj-A1-RtJ" userLabel="Labels Stack View">
@@ -185,8 +185,8 @@
                                                                 <rect key="frame" x="259" y="-15" width="100" height="30"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="width" constant="100" id="ae4-xp-nk8"/>
-                                                                    <constraint firstAttribute="height" constant="30" identifier="subcribeTopicButtonHeightConstraint" id="dhc-wp-wmh"/>
+                                                                    <constraint firstAttribute="width" constant="100" identifier="PostShowViewControllerConstraint20" id="ae4-xp-nk8"/>
+                                                                    <constraint firstAttribute="height" constant="30" identifier="PostShowViewControllerConstraint21" id="dhc-wp-wmh"/>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <state key="normal" title="Subscribe">
@@ -201,24 +201,24 @@
                                                                 <rect key="frame" x="0.0" y="-1" width="375" height="1"/>
                                                                 <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="height" constant="1" identifier="bottomLineViewHeightConstraint" id="8wU-ag-IAJ"/>
+                                                                    <constraint firstAttribute="height" constant="1" identifier="PostShowViewControllerConstraint22" id="8wU-ag-IAJ"/>
                                                                 </constraints>
                                                             </view>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
-                                                            <constraint firstItem="FWj-A1-RtJ" firstAttribute="height" secondItem="brE-kk-Xo3" secondAttribute="height" multiplier="0.7" id="0Nj-6g-9Ll"/>
-                                                            <constraint firstAttribute="bottom" secondItem="FJs-iF-r9g" secondAttribute="bottom" id="Isk-6D-anB"/>
-                                                            <constraint firstItem="brE-kk-Xo3" firstAttribute="leading" secondItem="QZ1-ab-xUw" secondAttribute="leading" constant="16" id="Ivy-ao-ygU"/>
-                                                            <constraint firstItem="28F-WH-XIS" firstAttribute="centerY" secondItem="QZ1-ab-xUw" secondAttribute="centerY" id="QLL-et-17a"/>
-                                                            <constraint firstItem="FWj-A1-RtJ" firstAttribute="centerY" secondItem="QZ1-ab-xUw" secondAttribute="centerY" id="TrS-k4-DQ8"/>
-                                                            <constraint firstItem="FWj-A1-RtJ" firstAttribute="leading" secondItem="brE-kk-Xo3" secondAttribute="trailing" constant="10" id="VPy-H7-8W7"/>
-                                                            <constraint firstAttribute="trailing" secondItem="FJs-iF-r9g" secondAttribute="trailing" id="W2D-vJ-fpd"/>
-                                                            <constraint firstItem="brE-kk-Xo3" firstAttribute="centerY" secondItem="QZ1-ab-xUw" secondAttribute="centerY" id="Wtv-Ko-6Cn"/>
-                                                            <constraint firstItem="brE-kk-Xo3" firstAttribute="width" secondItem="brE-kk-Xo3" secondAttribute="height" multiplier="1:1" id="Xw1-Cp-l3X"/>
-                                                            <constraint firstItem="28F-WH-XIS" firstAttribute="leading" secondItem="FWj-A1-RtJ" secondAttribute="trailing" constant="10" id="jyC-Fr-RtI"/>
-                                                            <constraint firstItem="FJs-iF-r9g" firstAttribute="leading" secondItem="QZ1-ab-xUw" secondAttribute="leading" id="vMN-gw-HY1"/>
-                                                            <constraint firstAttribute="trailing" secondItem="28F-WH-XIS" secondAttribute="trailing" constant="16" id="x5d-ES-U9B"/>
+                                                            <constraint firstItem="FWj-A1-RtJ" firstAttribute="height" secondItem="brE-kk-Xo3" secondAttribute="height" multiplier="0.7" identifier="PostShowViewControllerConstraint29" id="0Nj-6g-9Ll"/>
+                                                            <constraint firstAttribute="bottom" secondItem="FJs-iF-r9g" secondAttribute="bottom" identifier="PostShowViewControllerConstraint23" id="Isk-6D-anB"/>
+                                                            <constraint firstItem="brE-kk-Xo3" firstAttribute="leading" secondItem="QZ1-ab-xUw" secondAttribute="leading" constant="16" identifier="PostShowViewControllerConstraint26" id="Ivy-ao-ygU"/>
+                                                            <constraint firstItem="28F-WH-XIS" firstAttribute="centerY" secondItem="QZ1-ab-xUw" secondAttribute="centerY" identifier="PostShowViewControllerConstraint32" id="QLL-et-17a"/>
+                                                            <constraint firstItem="FWj-A1-RtJ" firstAttribute="centerY" secondItem="QZ1-ab-xUw" secondAttribute="centerY" identifier="PostShowViewControllerConstraint30" id="TrS-k4-DQ8"/>
+                                                            <constraint firstItem="FWj-A1-RtJ" firstAttribute="leading" secondItem="brE-kk-Xo3" secondAttribute="trailing" constant="10" identifier="PostShowViewControllerConstraint31" id="VPy-H7-8W7"/>
+                                                            <constraint firstAttribute="trailing" secondItem="FJs-iF-r9g" secondAttribute="trailing" identifier="PostShowViewControllerConstraint24" id="W2D-vJ-fpd"/>
+                                                            <constraint firstItem="brE-kk-Xo3" firstAttribute="centerY" secondItem="QZ1-ab-xUw" secondAttribute="centerY" identifier="PostShowViewControllerConstraint27" id="Wtv-Ko-6Cn"/>
+                                                            <constraint firstItem="brE-kk-Xo3" firstAttribute="width" secondItem="brE-kk-Xo3" secondAttribute="height" multiplier="1:1" identifier="PostShowViewControllerConstraint28" id="Xw1-Cp-l3X"/>
+                                                            <constraint firstItem="28F-WH-XIS" firstAttribute="leading" secondItem="FWj-A1-RtJ" secondAttribute="trailing" constant="10" identifier="PostShowViewControllerConstraint33" id="jyC-Fr-RtI"/>
+                                                            <constraint firstItem="FJs-iF-r9g" firstAttribute="leading" secondItem="QZ1-ab-xUw" secondAttribute="leading" identifier="PostShowViewControllerConstraint25" id="vMN-gw-HY1"/>
+                                                            <constraint firstAttribute="trailing" secondItem="28F-WH-XIS" secondAttribute="trailing" constant="16" identifier="PostShowViewControllerConstraint34" id="x5d-ES-U9B"/>
                                                         </constraints>
                                                     </view>
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n52-gC-8Jz" userLabel="Subscribe User View">
@@ -228,16 +228,16 @@
                                                                 <rect key="frame" x="16" y="15" width="50" height="50"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="width" constant="50" id="c5A-Bm-dxL"/>
-                                                                    <constraint firstAttribute="width" secondItem="ZH2-hK-oIK" secondAttribute="height" multiplier="1:1" id="nxn-Xc-s0D"/>
+                                                                    <constraint firstAttribute="width" constant="50" identifier="PostShowViewControllerConstraint35" id="c5A-Bm-dxL"/>
+                                                                    <constraint firstAttribute="width" secondItem="ZH2-hK-oIK" secondAttribute="height" multiplier="1:1" identifier="PostShowViewControllerConstraint36" id="nxn-Xc-s0D"/>
                                                                 </constraints>
                                                             </imageView>
                                                             <button clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eEn-P4-Nhn" userLabel="Subscribe User Button">
                                                                 <rect key="frame" x="264" y="22.666666666666686" width="95" height="35"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="width" constant="95" id="pdk-dM-cga"/>
-                                                                    <constraint firstAttribute="height" constant="35" identifier="subscribeUserButtonHeightConstraint" id="pwV-Lk-m0t"/>
+                                                                    <constraint firstAttribute="width" constant="95" identifier="PostShowViewControllerConstraint37" id="pdk-dM-cga"/>
+                                                                    <constraint firstAttribute="height" constant="35" identifier="PostShowViewControllerConstraint38" id="pwV-Lk-m0t"/>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <state key="normal" title="Subscribe">
@@ -283,20 +283,20 @@
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
-                                                            <constraint firstItem="jR5-dE-efI" firstAttribute="height" secondItem="ZH2-hK-oIK" secondAttribute="height" multiplier="0.8" id="8WJ-qa-sa8"/>
-                                                            <constraint firstItem="jR5-dE-efI" firstAttribute="leading" secondItem="ZH2-hK-oIK" secondAttribute="trailing" constant="10" id="CM4-vj-VKz"/>
-                                                            <constraint firstItem="ZH2-hK-oIK" firstAttribute="centerY" secondItem="n52-gC-8Jz" secondAttribute="centerY" id="DQc-Pu-inE"/>
-                                                            <constraint firstItem="eEn-P4-Nhn" firstAttribute="centerY" secondItem="n52-gC-8Jz" secondAttribute="centerY" id="Kid-aW-ozu"/>
-                                                            <constraint firstItem="eEn-P4-Nhn" firstAttribute="leading" secondItem="jR5-dE-efI" secondAttribute="trailing" constant="10" id="NaH-us-5aQ"/>
-                                                            <constraint firstAttribute="trailing" secondItem="eEn-P4-Nhn" secondAttribute="trailing" constant="16" id="bRb-U9-bGv"/>
-                                                            <constraint firstItem="jR5-dE-efI" firstAttribute="centerY" secondItem="n52-gC-8Jz" secondAttribute="centerY" id="fkq-IA-u24"/>
-                                                            <constraint firstItem="ZH2-hK-oIK" firstAttribute="leading" secondItem="n52-gC-8Jz" secondAttribute="leading" constant="16" id="xip-8c-po2"/>
+                                                            <constraint firstItem="jR5-dE-efI" firstAttribute="height" secondItem="ZH2-hK-oIK" secondAttribute="height" multiplier="0.8" identifier="PostShowViewControllerConstraint41" id="8WJ-qa-sa8"/>
+                                                            <constraint firstItem="jR5-dE-efI" firstAttribute="leading" secondItem="ZH2-hK-oIK" secondAttribute="trailing" constant="10" identifier="PostShowViewControllerConstraint42" id="CM4-vj-VKz"/>
+                                                            <constraint firstItem="ZH2-hK-oIK" firstAttribute="centerY" secondItem="n52-gC-8Jz" secondAttribute="centerY" identifier="PostShowViewControllerConstraint39" id="DQc-Pu-inE"/>
+                                                            <constraint firstItem="eEn-P4-Nhn" firstAttribute="centerY" secondItem="n52-gC-8Jz" secondAttribute="centerY" identifier="PostShowViewControllerConstraint44" id="Kid-aW-ozu"/>
+                                                            <constraint firstItem="eEn-P4-Nhn" firstAttribute="leading" secondItem="jR5-dE-efI" secondAttribute="trailing" constant="10" identifier="PostShowViewControllerConstraint45" id="NaH-us-5aQ"/>
+                                                            <constraint firstAttribute="trailing" secondItem="eEn-P4-Nhn" secondAttribute="trailing" constant="16" identifier="PostShowViewControllerConstraint46" id="bRb-U9-bGv"/>
+                                                            <constraint firstItem="jR5-dE-efI" firstAttribute="centerY" secondItem="n52-gC-8Jz" secondAttribute="centerY" identifier="PostShowViewControllerConstraint43" id="fkq-IA-u24"/>
+                                                            <constraint firstItem="ZH2-hK-oIK" firstAttribute="leading" secondItem="n52-gC-8Jz" secondAttribute="leading" constant="16" identifier="PostShowViewControllerConstraint40" id="xip-8c-po2"/>
                                                         </constraints>
                                                     </view>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="80" identifier="subscribesStackViewHeightConstraint" id="f8Z-8u-tnH"/>
+                                                    <constraint firstAttribute="height" constant="80" identifier="PostShowViewControllerConstraint47" id="f8Z-8u-tnH"/>
                                                 </constraints>
                                             </stackView>
                                             <activityIndicatorView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="3Lz-nN-lGc">
@@ -314,14 +314,14 @@
                                                 <rect key="frame" x="0.0" y="263.33333333333331" width="375" height="5"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="5" identifier="bottomBackgroundGrayViewHeightConstraint" id="5i8-Ig-cw7"/>
+                                                    <constraint firstAttribute="height" constant="5" identifier="PostShowViewControllerConstraint48" id="5i8-Ig-cw7"/>
                                                 </constraints>
                                             </view>
                                             <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="260" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zPm-d9-LiX" userLabel="Title Label">
                                                 <rect key="frame" x="16" y="15.999999999999998" width="343" height="20.333333333333329"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" identifier="titleLabelHeightConstraint" id="Igq-aA-EI4"/>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" identifier="PostShowViewControllerConstraint49" id="Igq-aA-EI4"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
@@ -336,7 +336,7 @@
                                                 <rect key="frame" x="0.0" y="52.333333333333343" width="375" height="0.0"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" identifier="markdownViewHeightConstraint" id="XZb-1l-yIm"/>
+                                                    <constraint firstAttribute="height" identifier="PostShowViewControllerConstraint50" id="XZb-1l-yIm"/>
                                                 </constraints>
                                             </view>
                                             <stackView contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="MhK-Vc-x7K" userLabel="Active Buttons Stack View">
@@ -346,7 +346,7 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="40" height="80"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="40" identifier="likeButtonWidthConstraint" id="BMn-7Q-hzB"/>
+                                                            <constraint firstAttribute="width" constant="40" identifier="PostShowViewControllerConstraint51" id="BMn-7Q-hzB"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                         <inset key="titleEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -365,7 +365,7 @@
                                                         <rect key="frame" x="40" y="0.0" width="50" height="80"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="50" identifier="likeCountButtonWidthConstraint" id="yOW-sq-6Ox"/>
+                                                            <constraint firstAttribute="width" constant="50" identifier="PostShowViewControllerConstraint52" id="yOW-sq-6Ox"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="6"/>
@@ -383,7 +383,7 @@
                                                         <rect key="frame" x="90" y="0.0" width="40" height="80"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="40" identifier="dislikeButtonWidthConstraint" id="cOe-6K-SD4"/>
+                                                            <constraint firstAttribute="width" constant="40" identifier="PostShowViewControllerConstraint53" id="cOe-6K-SD4"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="6" maxX="0.0" maxY="0.0"/>
@@ -398,7 +398,7 @@
                                                         <rect key="frame" x="130" y="0.0" width="50" height="80"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="50" identifier="dislikeCountButtonWidthConstraint" id="rg6-J8-Scp"/>
+                                                            <constraint firstAttribute="width" constant="50" identifier="PostShowViewControllerConstraint54" id="rg6-J8-Scp"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="6"/>
@@ -416,7 +416,7 @@
                                                         <rect key="frame" x="180" y="0.0" width="80" height="80"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="80" identifier="commentsButtonWidthConstraint" id="5Ht-Xu-X4A"/>
+                                                            <constraint firstAttribute="width" constant="80" identifier="PostShowViewControllerConstraint55" id="5Ht-Xu-X4A"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                         <inset key="titleEdgeInsets" minX="32" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -441,14 +441,14 @@
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="80" identifier="activeButtonsStackViewHeightConstraint" id="nb7-Km-WjT"/>
+                                                    <constraint firstAttribute="height" constant="80" identifier="PostShowViewControllerConstraint56" id="nb7-Km-WjT"/>
                                                 </constraints>
                                             </stackView>
                                             <activityIndicatorView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="bie-f8-jaU" userLabel="Like Activity Indicator">
                                                 <rect key="frame" x="16" y="128.33333333333331" width="20" height="20"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" secondItem="bie-f8-jaU" secondAttribute="height" multiplier="1:1" id="IAt-Z9-c6D"/>
+                                                    <constraint firstAttribute="width" secondItem="bie-f8-jaU" secondAttribute="height" multiplier="1:1" identifier="PostShowViewControllerConstraint57" id="IAt-Z9-c6D"/>
                                                 </constraints>
                                                 <color key="color" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                             </activityIndicatorView>
@@ -456,7 +456,7 @@
                                                 <rect key="frame" x="116" y="128.33333333333331" width="20" height="20"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" secondItem="AYT-cY-Zsi" secondAttribute="height" multiplier="1:1" id="KLI-if-npM"/>
+                                                    <constraint firstAttribute="width" secondItem="AYT-cY-Zsi" secondAttribute="height" multiplier="1:1" identifier="PostShowViewControllerConstraint58" id="KLI-if-npM"/>
                                                 </constraints>
                                                 <color key="color" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                             </activityIndicatorView>
@@ -464,7 +464,7 @@
                                                 <rect key="frame" x="16" y="68.333333333333343" width="343" height="30"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" priority="999" constant="30" id="Y53-hN-irR"/>
+                                                    <constraint firstAttribute="height" priority="999" constant="30" identifier="PostShowViewControllerConstraint59" id="Y53-hN-irR"/>
                                                 </constraints>
                                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="6" minimumInteritemSpacing="5" id="fBM-RK-HmS">
                                                     <size key="itemSize" width="50" height="50"/>
@@ -487,62 +487,62 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstItem="bie-f8-jaU" firstAttribute="leading" secondItem="fb3-VQ-GlM" secondAttribute="leading" id="05e-4y-gbS"/>
-                                            <constraint firstAttribute="trailing" secondItem="hL9-He-JpB" secondAttribute="trailing" id="0NR-rB-Aj5"/>
-                                            <constraint firstItem="lwn-iM-8rz" firstAttribute="top" secondItem="Vl1-2x-lVp" secondAttribute="bottom" constant="16" id="0cK-Wq-U7s"/>
-                                            <constraint firstItem="h9e-KO-AhW" firstAttribute="leading" secondItem="BtF-Gk-D12" secondAttribute="leading" constant="16" id="24g-ha-yWK"/>
-                                            <constraint firstItem="3Lz-nN-lGc" firstAttribute="centerY" secondItem="eEn-P4-Nhn" secondAttribute="centerY" id="26K-rT-rta"/>
-                                            <constraint firstItem="hj6-Ie-c5P" firstAttribute="top" secondItem="nt5-Bc-nF3" secondAttribute="bottom" identifier="commentsStackViewTopConstraint" id="3YN-XU-Hlf"/>
-                                            <constraint firstItem="dZE-L5-SIs" firstAttribute="bottom" secondItem="tqm-aY-SVr" secondAttribute="bottom" id="3ia-Ns-xyE"/>
-                                            <constraint firstItem="tHL-Id-QDj" firstAttribute="top" secondItem="h9e-KO-AhW" secondAttribute="bottom" priority="750" constant="20" id="4nI-Ir-YHS"/>
-                                            <constraint firstAttribute="trailing" secondItem="hj6-Ie-c5P" secondAttribute="trailing" constant="16" id="5LC-Le-clu"/>
-                                            <constraint firstItem="VyW-ed-xji" firstAttribute="leading" secondItem="BtF-Gk-D12" secondAttribute="leading" id="5gQ-4Z-ReG"/>
-                                            <constraint firstAttribute="trailing" secondItem="Vl1-2x-lVp" secondAttribute="trailing" id="7GF-bG-0GC"/>
-                                            <constraint firstItem="VyW-ed-xji" firstAttribute="trailing" secondItem="TQB-vz-8Uo" secondAttribute="trailing" id="8fZ-qG-a9I"/>
-                                            <constraint firstItem="nt5-Bc-nF3" firstAttribute="leading" secondItem="BtF-Gk-D12" secondAttribute="leading" id="A4x-Ss-gif"/>
-                                            <constraint firstItem="tHL-Id-QDj" firstAttribute="leading" secondItem="BtF-Gk-D12" secondAttribute="leading" id="BcU-Z1-Qtf"/>
-                                            <constraint firstItem="tqm-aY-SVr" firstAttribute="top" secondItem="hL9-He-JpB" secondAttribute="bottom" id="BrC-7Y-Atz"/>
-                                            <constraint firstAttribute="trailing" secondItem="tHL-Id-QDj" secondAttribute="trailing" id="EjG-ui-SBY"/>
-                                            <constraint firstItem="AYT-cY-Zsi" firstAttribute="centerY" secondItem="aLP-ZP-yPw" secondAttribute="centerY" id="Hhq-Lo-TK8"/>
-                                            <constraint firstItem="hL9-He-JpB" firstAttribute="top" secondItem="tHL-Id-QDj" secondAttribute="bottom" id="IGQ-Cb-Z91"/>
-                                            <constraint firstItem="hj6-Ie-c5P" firstAttribute="leading" secondItem="BtF-Gk-D12" secondAttribute="leading" constant="14" id="J1E-xZ-z6s"/>
-                                            <constraint firstAttribute="trailing" secondItem="tqm-aY-SVr" secondAttribute="trailing" id="Jgk-6F-7KU"/>
-                                            <constraint firstItem="AYT-cY-Zsi" firstAttribute="centerX" secondItem="aLP-ZP-yPw" secondAttribute="centerX" id="K4R-WR-FsD"/>
-                                            <constraint firstItem="VyW-ed-xji" firstAttribute="bottom" secondItem="n52-gC-8Jz" secondAttribute="bottom" id="LFI-wT-ilU"/>
-                                            <constraint firstItem="VyW-ed-xji" firstAttribute="top" secondItem="n52-gC-8Jz" secondAttribute="top" id="Os2-4F-O1G"/>
-                                            <constraint firstAttribute="leading" secondItem="bie-f8-jaU" secondAttribute="trailing" constant="-36" id="PZN-8T-mOK"/>
-                                            <constraint firstAttribute="trailing" secondItem="MhK-Vc-x7K" secondAttribute="trailing" constant="16" id="QAV-gt-84U"/>
-                                            <constraint firstItem="tqm-aY-SVr" firstAttribute="leading" secondItem="BtF-Gk-D12" secondAttribute="leading" id="RRT-Ii-59C"/>
-                                            <constraint firstAttribute="trailing" secondItem="lwn-iM-8rz" secondAttribute="trailing" constant="16" id="T9i-xq-yw4"/>
-                                            <constraint firstAttribute="trailing" secondItem="zPm-d9-LiX" secondAttribute="trailing" constant="16" id="ZOe-fx-a6L"/>
-                                            <constraint firstItem="hL9-He-JpB" firstAttribute="leading" secondItem="BtF-Gk-D12" secondAttribute="leading" id="cgt-dp-hh8"/>
-                                            <constraint firstItem="MhK-Vc-x7K" firstAttribute="leading" secondItem="BtF-Gk-D12" secondAttribute="leading" constant="16" id="fUC-kO-iPy"/>
-                                            <constraint firstItem="zPm-d9-LiX" firstAttribute="leading" secondItem="BtF-Gk-D12" secondAttribute="leading" constant="16" id="gGh-Ki-O6Z"/>
-                                            <constraint firstItem="3Lz-nN-lGc" firstAttribute="centerX" secondItem="eEn-P4-Nhn" secondAttribute="centerX" id="hm8-4R-hK9"/>
-                                            <constraint firstItem="lwn-iM-8rz" firstAttribute="leading" secondItem="BtF-Gk-D12" secondAttribute="leading" constant="16" id="nHj-Vg-MQe"/>
-                                            <constraint firstItem="bie-f8-jaU" firstAttribute="centerY" secondItem="fb3-VQ-GlM" secondAttribute="centerY" id="oeX-jg-DRW"/>
-                                            <constraint firstItem="MhK-Vc-x7K" firstAttribute="top" secondItem="lwn-iM-8rz" secondAttribute="bottom" id="pJh-g4-f8G"/>
-                                            <constraint firstItem="h9e-KO-AhW" firstAttribute="top" secondItem="MhK-Vc-x7K" secondAttribute="bottom" id="qS2-XR-4rB"/>
-                                            <constraint firstItem="Vl1-2x-lVp" firstAttribute="top" secondItem="zPm-d9-LiX" secondAttribute="bottom" constant="16" id="rDi-pt-7XW"/>
-                                            <constraint firstAttribute="trailing" secondItem="dZE-L5-SIs" secondAttribute="trailing" id="rFS-LF-C6k"/>
-                                            <constraint firstAttribute="trailing" secondItem="nt5-Bc-nF3" secondAttribute="trailing" id="rcV-lt-t9Y"/>
-                                            <constraint firstItem="tHL-Id-QDj" firstAttribute="top" secondItem="MhK-Vc-x7K" secondAttribute="bottom" id="u8K-s0-eby"/>
-                                            <constraint firstAttribute="bottom" secondItem="hj6-Ie-c5P" secondAttribute="bottom" id="vbT-f5-bcD"/>
-                                            <constraint firstItem="dZE-L5-SIs" firstAttribute="top" secondItem="BtF-Gk-D12" secondAttribute="top" id="vqu-Hh-h5L"/>
-                                            <constraint firstItem="dZE-L5-SIs" firstAttribute="leading" secondItem="BtF-Gk-D12" secondAttribute="leading" id="wnW-sW-cjs"/>
-                                            <constraint firstItem="Vl1-2x-lVp" firstAttribute="leading" secondItem="BtF-Gk-D12" secondAttribute="leading" id="xZX-FY-WXJ"/>
-                                            <constraint firstAttribute="trailing" secondItem="h9e-KO-AhW" secondAttribute="trailing" constant="16" id="xZj-dB-yaV"/>
-                                            <constraint firstItem="nt5-Bc-nF3" firstAttribute="top" secondItem="tqm-aY-SVr" secondAttribute="bottom" id="yY2-1e-3ly"/>
-                                            <constraint firstItem="zPm-d9-LiX" firstAttribute="top" secondItem="BtF-Gk-D12" secondAttribute="top" constant="16" id="yhV-aC-ubu"/>
+                                            <constraint firstItem="bie-f8-jaU" firstAttribute="leading" secondItem="fb3-VQ-GlM" secondAttribute="leading" identifier="PostShowViewControllerConstraint76" id="05e-4y-gbS"/>
+                                            <constraint firstAttribute="trailing" secondItem="hL9-He-JpB" secondAttribute="trailing" identifier="PostShowViewControllerConstraint92" id="0NR-rB-Aj5"/>
+                                            <constraint firstItem="lwn-iM-8rz" firstAttribute="top" secondItem="Vl1-2x-lVp" secondAttribute="bottom" constant="16" identifier="PostShowViewControllerConstraint70" id="0cK-Wq-U7s"/>
+                                            <constraint firstItem="h9e-KO-AhW" firstAttribute="leading" secondItem="BtF-Gk-D12" secondAttribute="leading" constant="16" identifier="PostShowViewControllerConstraint85" id="24g-ha-yWK"/>
+                                            <constraint firstItem="3Lz-nN-lGc" firstAttribute="centerY" secondItem="eEn-P4-Nhn" secondAttribute="centerY" identifier="PostShowViewControllerConstraint105" id="26K-rT-rta"/>
+                                            <constraint firstItem="hj6-Ie-c5P" firstAttribute="top" secondItem="nt5-Bc-nF3" secondAttribute="bottom" identifier="PostShowViewControllerConstraint101" id="3YN-XU-Hlf"/>
+                                            <constraint firstItem="dZE-L5-SIs" firstAttribute="bottom" secondItem="tqm-aY-SVr" secondAttribute="bottom" identifier="PostShowViewControllerConstraint60" id="3ia-Ns-xyE"/>
+                                            <constraint firstItem="tHL-Id-QDj" firstAttribute="top" secondItem="h9e-KO-AhW" secondAttribute="bottom" priority="750" constant="20" identifier="PostShowViewControllerConstraint81" id="4nI-Ir-YHS"/>
+                                            <constraint firstAttribute="trailing" secondItem="hj6-Ie-c5P" secondAttribute="trailing" constant="16" identifier="PostShowViewControllerConstraint102" id="5LC-Le-clu"/>
+                                            <constraint firstItem="VyW-ed-xji" firstAttribute="leading" secondItem="BtF-Gk-D12" secondAttribute="leading" identifier="PostShowViewControllerConstraint88" id="5gQ-4Z-ReG"/>
+                                            <constraint firstAttribute="trailing" secondItem="Vl1-2x-lVp" secondAttribute="trailing" identifier="PostShowViewControllerConstraint67" id="7GF-bG-0GC"/>
+                                            <constraint firstItem="VyW-ed-xji" firstAttribute="trailing" secondItem="TQB-vz-8Uo" secondAttribute="trailing" identifier="PostShowViewControllerConstraint89" id="8fZ-qG-a9I"/>
+                                            <constraint firstItem="nt5-Bc-nF3" firstAttribute="leading" secondItem="BtF-Gk-D12" secondAttribute="leading" identifier="PostShowViewControllerConstraint98" id="A4x-Ss-gif"/>
+                                            <constraint firstItem="tHL-Id-QDj" firstAttribute="leading" secondItem="BtF-Gk-D12" secondAttribute="leading" identifier="PostShowViewControllerConstraint82" id="BcU-Z1-Qtf"/>
+                                            <constraint firstItem="tqm-aY-SVr" firstAttribute="top" secondItem="hL9-He-JpB" secondAttribute="bottom" identifier="PostShowViewControllerConstraint95" id="BrC-7Y-Atz"/>
+                                            <constraint firstAttribute="trailing" secondItem="tHL-Id-QDj" secondAttribute="trailing" identifier="PostShowViewControllerConstraint83" id="EjG-ui-SBY"/>
+                                            <constraint firstItem="AYT-cY-Zsi" firstAttribute="centerY" secondItem="aLP-ZP-yPw" secondAttribute="centerY" identifier="PostShowViewControllerConstraint79" id="Hhq-Lo-TK8"/>
+                                            <constraint firstItem="hL9-He-JpB" firstAttribute="top" secondItem="tHL-Id-QDj" secondAttribute="bottom" identifier="PostShowViewControllerConstraint93" id="IGQ-Cb-Z91"/>
+                                            <constraint firstItem="hj6-Ie-c5P" firstAttribute="leading" secondItem="BtF-Gk-D12" secondAttribute="leading" constant="14" identifier="PostShowViewControllerConstraint103" id="J1E-xZ-z6s"/>
+                                            <constraint firstAttribute="trailing" secondItem="tqm-aY-SVr" secondAttribute="trailing" identifier="PostShowViewControllerConstraint96" id="Jgk-6F-7KU"/>
+                                            <constraint firstItem="AYT-cY-Zsi" firstAttribute="centerX" secondItem="aLP-ZP-yPw" secondAttribute="centerX" identifier="PostShowViewControllerConstraint80" id="K4R-WR-FsD"/>
+                                            <constraint firstItem="VyW-ed-xji" firstAttribute="bottom" secondItem="n52-gC-8Jz" secondAttribute="bottom" identifier="PostShowViewControllerConstraint90" id="LFI-wT-ilU"/>
+                                            <constraint firstItem="VyW-ed-xji" firstAttribute="top" secondItem="n52-gC-8Jz" secondAttribute="top" identifier="PostShowViewControllerConstraint91" id="Os2-4F-O1G"/>
+                                            <constraint firstAttribute="leading" secondItem="bie-f8-jaU" secondAttribute="trailing" constant="-36" identifier="PostShowViewControllerConstraint77" id="PZN-8T-mOK"/>
+                                            <constraint firstAttribute="trailing" secondItem="MhK-Vc-x7K" secondAttribute="trailing" constant="16" identifier="PostShowViewControllerConstraint73" id="QAV-gt-84U"/>
+                                            <constraint firstItem="tqm-aY-SVr" firstAttribute="leading" secondItem="BtF-Gk-D12" secondAttribute="leading" identifier="PostShowViewControllerConstraint97" id="RRT-Ii-59C"/>
+                                            <constraint firstAttribute="trailing" secondItem="lwn-iM-8rz" secondAttribute="trailing" constant="16" identifier="PostShowViewControllerConstraint71" id="T9i-xq-yw4"/>
+                                            <constraint firstAttribute="trailing" secondItem="zPm-d9-LiX" secondAttribute="trailing" constant="16" identifier="PostShowViewControllerConstraint64" id="ZOe-fx-a6L"/>
+                                            <constraint firstItem="hL9-He-JpB" firstAttribute="leading" secondItem="BtF-Gk-D12" secondAttribute="leading" identifier="PostShowViewControllerConstraint94" id="cgt-dp-hh8"/>
+                                            <constraint firstItem="MhK-Vc-x7K" firstAttribute="leading" secondItem="BtF-Gk-D12" secondAttribute="leading" constant="16" identifier="PostShowViewControllerConstraint74" id="fUC-kO-iPy"/>
+                                            <constraint firstItem="zPm-d9-LiX" firstAttribute="leading" secondItem="BtF-Gk-D12" secondAttribute="leading" constant="16" identifier="PostShowViewControllerConstraint65" id="gGh-Ki-O6Z"/>
+                                            <constraint firstItem="3Lz-nN-lGc" firstAttribute="centerX" secondItem="eEn-P4-Nhn" secondAttribute="centerX" identifier="PostShowViewControllerConstraint106" id="hm8-4R-hK9"/>
+                                            <constraint firstItem="lwn-iM-8rz" firstAttribute="leading" secondItem="BtF-Gk-D12" secondAttribute="leading" constant="16" identifier="PostShowViewControllerConstraint72" id="nHj-Vg-MQe"/>
+                                            <constraint firstItem="bie-f8-jaU" firstAttribute="centerY" secondItem="fb3-VQ-GlM" secondAttribute="centerY" identifier="PostShowViewControllerConstraint78" id="oeX-jg-DRW"/>
+                                            <constraint firstItem="MhK-Vc-x7K" firstAttribute="top" secondItem="lwn-iM-8rz" secondAttribute="bottom" identifier="PostShowViewControllerConstraint75" id="pJh-g4-f8G"/>
+                                            <constraint firstItem="h9e-KO-AhW" firstAttribute="top" secondItem="MhK-Vc-x7K" secondAttribute="bottom" identifier="PostShowViewControllerConstraint86" id="qS2-XR-4rB"/>
+                                            <constraint firstItem="Vl1-2x-lVp" firstAttribute="top" secondItem="zPm-d9-LiX" secondAttribute="bottom" constant="16" identifier="PostShowViewControllerConstraint68" id="rDi-pt-7XW"/>
+                                            <constraint firstAttribute="trailing" secondItem="dZE-L5-SIs" secondAttribute="trailing" identifier="PostShowViewControllerConstraint61" id="rFS-LF-C6k"/>
+                                            <constraint firstAttribute="trailing" secondItem="nt5-Bc-nF3" secondAttribute="trailing" identifier="PostShowViewControllerConstraint99" id="rcV-lt-t9Y"/>
+                                            <constraint firstItem="tHL-Id-QDj" firstAttribute="top" secondItem="MhK-Vc-x7K" secondAttribute="bottom" identifier="PostShowViewControllerConstraint84" id="u8K-s0-eby"/>
+                                            <constraint firstAttribute="bottom" secondItem="hj6-Ie-c5P" secondAttribute="bottom" identifier="PostShowViewControllerConstraint104" id="vbT-f5-bcD"/>
+                                            <constraint firstItem="dZE-L5-SIs" firstAttribute="top" secondItem="BtF-Gk-D12" secondAttribute="top" identifier="PostShowViewControllerConstraint62" id="vqu-Hh-h5L"/>
+                                            <constraint firstItem="dZE-L5-SIs" firstAttribute="leading" secondItem="BtF-Gk-D12" secondAttribute="leading" identifier="PostShowViewControllerConstraint63" id="wnW-sW-cjs"/>
+                                            <constraint firstItem="Vl1-2x-lVp" firstAttribute="leading" secondItem="BtF-Gk-D12" secondAttribute="leading" identifier="PostShowViewControllerConstraint69" id="xZX-FY-WXJ"/>
+                                            <constraint firstAttribute="trailing" secondItem="h9e-KO-AhW" secondAttribute="trailing" constant="16" identifier="PostShowViewControllerConstraint87" id="xZj-dB-yaV"/>
+                                            <constraint firstItem="nt5-Bc-nF3" firstAttribute="top" secondItem="tqm-aY-SVr" secondAttribute="bottom" identifier="PostShowViewControllerConstraint100" id="yY2-1e-3ly"/>
+                                            <constraint firstItem="zPm-d9-LiX" firstAttribute="top" secondItem="BtF-Gk-D12" secondAttribute="top" constant="16" identifier="PostShowViewControllerConstraint66" id="yhV-aC-ubu"/>
                                         </constraints>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="BtF-Gk-D12" secondAttribute="trailing" id="2QT-d7-WaC"/>
-                                    <constraint firstItem="BtF-Gk-D12" firstAttribute="leading" secondItem="7f0-ZC-o8d" secondAttribute="leading" id="Kja-qz-TOu"/>
-                                    <constraint firstItem="BtF-Gk-D12" firstAttribute="top" secondItem="7f0-ZC-o8d" secondAttribute="top" constant="52" id="qo5-eR-zwm"/>
-                                    <constraint firstAttribute="bottom" secondItem="BtF-Gk-D12" secondAttribute="bottom" id="wnd-Uz-U0c"/>
+                                    <constraint firstAttribute="trailing" secondItem="BtF-Gk-D12" secondAttribute="trailing" identifier="PostShowViewControllerConstraint107" id="2QT-d7-WaC"/>
+                                    <constraint firstItem="BtF-Gk-D12" firstAttribute="leading" secondItem="7f0-ZC-o8d" secondAttribute="leading" identifier="PostShowViewControllerConstraint108" id="Kja-qz-TOu"/>
+                                    <constraint firstItem="BtF-Gk-D12" firstAttribute="top" secondItem="7f0-ZC-o8d" secondAttribute="top" constant="52" identifier="PostShowViewControllerConstraint109" id="qo5-eR-zwm"/>
+                                    <constraint firstAttribute="bottom" secondItem="BtF-Gk-D12" secondAttribute="bottom" identifier="PostShowViewControllerConstraint110" id="wnd-Uz-U0c"/>
                                 </constraints>
                             </scrollView>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Js-bQ-ZpY" userLabel="NavBar View">
@@ -552,7 +552,7 @@
                                         <rect key="frame" x="28" y="0.0" width="347" height="44"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="63" identifier="postFeedHeaderViewHeightConstraint" id="qu2-Ft-Su1"/>
+                                            <constraint firstAttribute="height" constant="63" identifier="PostShowViewControllerConstraint111" id="qu2-Ft-Su1"/>
                                         </constraints>
                                         <variation key="default">
                                             <mask key="constraints">
@@ -564,8 +564,8 @@
                                         <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" secondItem="Udv-hI-u2X" secondAttribute="height" multiplier="1:1" id="KyM-0v-CgZ"/>
-                                            <constraint firstAttribute="height" constant="44" identifier="backButtonHeightConstraint" id="iyq-uX-JO5"/>
+                                            <constraint firstAttribute="width" secondItem="Udv-hI-u2X" secondAttribute="height" multiplier="1:1" identifier="PostShowViewControllerConstraint112" id="KyM-0v-CgZ"/>
+                                            <constraint firstAttribute="height" constant="44" identifier="PostShowViewControllerConstraint113" id="iyq-uX-JO5"/>
                                         </constraints>
                                         <state key="normal" image="icon-button-back-black-normal"/>
                                         <connections>
@@ -575,27 +575,27 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="a7j-dG-pvN" firstAttribute="leading" secondItem="Udv-hI-u2X" secondAttribute="trailing" constant="-16" identifier="postFeedHeaderViewLeadingConstraint" id="754-es-Dtx"/>
-                                    <constraint firstAttribute="trailing" secondItem="a7j-dG-pvN" secondAttribute="trailing" id="IEX-07-NWV"/>
-                                    <constraint firstItem="Udv-hI-u2X" firstAttribute="leading" secondItem="7Js-bQ-ZpY" secondAttribute="leading" id="JJv-Ok-ROH"/>
-                                    <constraint firstItem="a7j-dG-pvN" firstAttribute="top" secondItem="7Js-bQ-ZpY" secondAttribute="top" id="jTD-Gi-Rm0"/>
-                                    <constraint firstAttribute="bottom" secondItem="a7j-dG-pvN" secondAttribute="bottom" id="m4F-9D-zo8"/>
-                                    <constraint firstAttribute="height" constant="44" identifier="navbarViewHeightConstraint" id="p07-Sd-p3F"/>
-                                    <constraint firstAttribute="bottom" secondItem="Udv-hI-u2X" secondAttribute="bottom" id="vNH-xC-FkJ"/>
+                                    <constraint firstItem="a7j-dG-pvN" firstAttribute="leading" secondItem="Udv-hI-u2X" secondAttribute="trailing" constant="-16" identifier="PostShowViewControllerConstraint117" id="754-es-Dtx"/>
+                                    <constraint firstAttribute="trailing" secondItem="a7j-dG-pvN" secondAttribute="trailing" identifier="PostShowViewControllerConstraint118" id="IEX-07-NWV"/>
+                                    <constraint firstItem="Udv-hI-u2X" firstAttribute="leading" secondItem="7Js-bQ-ZpY" secondAttribute="leading" identifier="PostShowViewControllerConstraint115" id="JJv-Ok-ROH"/>
+                                    <constraint firstItem="a7j-dG-pvN" firstAttribute="top" secondItem="7Js-bQ-ZpY" secondAttribute="top" identifier="PostShowViewControllerConstraint119" id="jTD-Gi-Rm0"/>
+                                    <constraint firstAttribute="bottom" secondItem="a7j-dG-pvN" secondAttribute="bottom" identifier="PostShowViewControllerConstraint120" id="m4F-9D-zo8"/>
+                                    <constraint firstAttribute="height" constant="44" identifier="PostShowViewControllerConstraint114" id="p07-Sd-p3F"/>
+                                    <constraint firstAttribute="bottom" secondItem="Udv-hI-u2X" secondAttribute="bottom" identifier="PostShowViewControllerConstraint116" id="vNH-xC-FkJ"/>
                                 </constraints>
                             </view>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZkM-23-awk" userLabel="Shadow View">
                                 <rect key="frame" x="0.0" y="87" width="375" height="1"/>
                                 <color key="backgroundColor" red="0.8784313725490196" green="0.8784313725490196" blue="0.8784313725490196" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="1" identifier="shadowViewHeightConstraint" id="xhV-K2-9Ri"/>
+                                    <constraint firstAttribute="height" constant="1" identifier="PostShowViewControllerConstraint121" id="xhV-K2-9Ri"/>
                                 </constraints>
                             </view>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TmK-sy-43l" userLabel="Top Line View">
                                 <rect key="frame" x="0.0" y="716" width="375" height="1"/>
                                 <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="1" id="Lz6-VG-cd8"/>
+                                    <constraint firstAttribute="height" constant="1" identifier="PostShowViewControllerConstraint122" id="Lz6-VG-cd8"/>
                                 </constraints>
                             </view>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vyE-fe-bwG" userLabel="Infinite Scrolling View">
@@ -608,9 +608,9 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="8nR-R2-wpC" firstAttribute="centerX" secondItem="vyE-fe-bwG" secondAttribute="centerX" id="9h9-Ig-qnN"/>
-                                    <constraint firstItem="8nR-R2-wpC" firstAttribute="centerY" secondItem="vyE-fe-bwG" secondAttribute="centerY" id="Nyz-Nk-8VA"/>
-                                    <constraint firstAttribute="height" constant="44" identifier="infiniteScrollingViewHeightConstraint" id="o5t-XK-Sc2"/>
+                                    <constraint firstItem="8nR-R2-wpC" firstAttribute="centerX" secondItem="vyE-fe-bwG" secondAttribute="centerX" identifier="PostShowViewControllerConstraint124" id="9h9-Ig-qnN"/>
+                                    <constraint firstItem="8nR-R2-wpC" firstAttribute="centerY" secondItem="vyE-fe-bwG" secondAttribute="centerY" identifier="PostShowViewControllerConstraint125" id="Nyz-Nk-8VA"/>
+                                    <constraint firstAttribute="height" constant="44" identifier="PostShowViewControllerConstraint123" id="o5t-XK-Sc2"/>
                                 </constraints>
                             </view>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7PU-1s-EvT" userLabel="Create New Comment View">
@@ -629,10 +629,10 @@
                                         </subviews>
                                         <color key="backgroundColor" red="0.94901960784313721" green="0.95686274509803915" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstItem="6Vf-2X-EtZ" firstAttribute="leading" secondItem="EhY-gl-gIp" secondAttribute="leading" constant="10" id="Bun-Et-Yci"/>
-                                            <constraint firstItem="6Vf-2X-EtZ" firstAttribute="top" secondItem="EhY-gl-gIp" secondAttribute="top" id="M0y-Dk-9qy"/>
-                                            <constraint firstAttribute="bottom" secondItem="6Vf-2X-EtZ" secondAttribute="bottom" id="kgf-35-U2P"/>
-                                            <constraint firstAttribute="trailing" secondItem="6Vf-2X-EtZ" secondAttribute="trailing" constant="10" id="nsA-4h-y9d"/>
+                                            <constraint firstItem="6Vf-2X-EtZ" firstAttribute="leading" secondItem="EhY-gl-gIp" secondAttribute="leading" constant="10" identifier="PostShowViewControllerConstraint126" id="Bun-Et-Yci"/>
+                                            <constraint firstItem="6Vf-2X-EtZ" firstAttribute="top" secondItem="EhY-gl-gIp" secondAttribute="top" identifier="PostShowViewControllerConstraint127" id="M0y-Dk-9qy"/>
+                                            <constraint firstAttribute="bottom" secondItem="6Vf-2X-EtZ" secondAttribute="bottom" identifier="PostShowViewControllerConstraint128" id="kgf-35-U2P"/>
+                                            <constraint firstAttribute="trailing" secondItem="6Vf-2X-EtZ" secondAttribute="trailing" constant="10" identifier="PostShowViewControllerConstraint129" id="nsA-4h-y9d"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -644,7 +644,7 @@
                                         <rect key="frame" x="314" y="0.0" width="61" height="61"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" secondItem="PT7-0P-kCz" secondAttribute="height" multiplier="1:1" id="lgO-AK-ehc"/>
+                                            <constraint firstAttribute="width" secondItem="PT7-0P-kCz" secondAttribute="height" multiplier="1:1" identifier="PostShowViewControllerConstraint130" id="lgO-AK-ehc"/>
                                         </constraints>
                                         <state key="normal" image="icon-button-paper-clip-black-normal"/>
                                         <connections>
@@ -654,13 +654,13 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="PT7-0P-kCz" firstAttribute="leading" secondItem="EhY-gl-gIp" secondAttribute="trailing" constant="10" id="92F-lg-28J"/>
-                                    <constraint firstAttribute="bottom" secondItem="PT7-0P-kCz" secondAttribute="bottom" id="CDm-5U-xBi"/>
-                                    <constraint firstAttribute="bottom" secondItem="EhY-gl-gIp" secondAttribute="bottom" constant="6" id="DaE-On-fSR"/>
-                                    <constraint firstItem="EhY-gl-gIp" firstAttribute="top" secondItem="7PU-1s-EvT" secondAttribute="top" constant="6" id="Mo0-Se-CJg"/>
-                                    <constraint firstAttribute="trailing" secondItem="PT7-0P-kCz" secondAttribute="trailing" id="QGM-Np-bko"/>
-                                    <constraint firstItem="EhY-gl-gIp" firstAttribute="leading" secondItem="7PU-1s-EvT" secondAttribute="leading" constant="10" id="SQS-P7-fY6"/>
-                                    <constraint firstItem="PT7-0P-kCz" firstAttribute="top" secondItem="7PU-1s-EvT" secondAttribute="top" id="zri-8l-rOT"/>
+                                    <constraint firstItem="PT7-0P-kCz" firstAttribute="leading" secondItem="EhY-gl-gIp" secondAttribute="trailing" constant="10" identifier="PostShowViewControllerConstraint134" id="92F-lg-28J"/>
+                                    <constraint firstAttribute="bottom" secondItem="PT7-0P-kCz" secondAttribute="bottom" identifier="PostShowViewControllerConstraint135" id="CDm-5U-xBi"/>
+                                    <constraint firstAttribute="bottom" secondItem="EhY-gl-gIp" secondAttribute="bottom" constant="6" identifier="PostShowViewControllerConstraint131" id="DaE-On-fSR"/>
+                                    <constraint firstItem="EhY-gl-gIp" firstAttribute="top" secondItem="7PU-1s-EvT" secondAttribute="top" constant="6" identifier="PostShowViewControllerConstraint132" id="Mo0-Se-CJg"/>
+                                    <constraint firstAttribute="trailing" secondItem="PT7-0P-kCz" secondAttribute="trailing" identifier="PostShowViewControllerConstraint136" id="QGM-Np-bko"/>
+                                    <constraint firstItem="EhY-gl-gIp" firstAttribute="leading" secondItem="7PU-1s-EvT" secondAttribute="leading" constant="10" identifier="PostShowViewControllerConstraint133" id="SQS-P7-fY6"/>
+                                    <constraint firstItem="PT7-0P-kCz" firstAttribute="top" secondItem="7PU-1s-EvT" secondAttribute="top" identifier="PostShowViewControllerConstraint137" id="zri-8l-rOT"/>
                                 </constraints>
                             </view>
                             <activityIndicatorView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="NB0-PC-C9r" userLabel="Loading Post Activity Indicator">
@@ -670,32 +670,32 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="vyE-fe-bwG" secondAttribute="trailing" id="2cx-kV-0ye"/>
-                            <constraint firstItem="UNP-hf-cFI" firstAttribute="bottom" secondItem="7PU-1s-EvT" secondAttribute="bottom" id="8Yf-FI-9bX"/>
-                            <constraint firstItem="vyE-fe-bwG" firstAttribute="top" secondItem="7f0-ZC-o8d" secondAttribute="bottom" constant="-1" id="9om-0c-AsV"/>
-                            <constraint firstItem="7PU-1s-EvT" firstAttribute="leading" secondItem="AJS-P4-Hkt" secondAttribute="leading" id="HgG-Ra-Ncs"/>
-                            <constraint firstItem="7Js-bQ-ZpY" firstAttribute="height" secondItem="AJS-P4-Hkt" secondAttribute="height" multiplier="64:623" id="Lx4-fU-huY"/>
-                            <constraint firstItem="ZkM-23-awk" firstAttribute="leading" secondItem="UNP-hf-cFI" secondAttribute="leading" id="NJu-wh-mfP"/>
-                            <constraint firstItem="NB0-PC-C9r" firstAttribute="centerX" secondItem="AJS-P4-Hkt" secondAttribute="centerX" id="Nvm-5Z-Pgo"/>
-                            <constraint firstAttribute="trailing" secondItem="7PU-1s-EvT" secondAttribute="trailing" id="Qdo-j7-2Uu"/>
-                            <constraint firstItem="TmK-sy-43l" firstAttribute="leading" secondItem="AJS-P4-Hkt" secondAttribute="leading" id="Qq9-WE-dTc"/>
-                            <constraint firstItem="ZkM-23-awk" firstAttribute="trailing" secondItem="UNP-hf-cFI" secondAttribute="trailing" id="TUm-7b-gkA"/>
-                            <constraint firstAttribute="trailing" secondItem="TmK-sy-43l" secondAttribute="trailing" id="UX5-wi-3bA"/>
-                            <constraint firstItem="7Js-bQ-ZpY" firstAttribute="top" secondItem="UNP-hf-cFI" secondAttribute="top" identifier="navBarViewTopConstraint" id="VIL-0O-CY8"/>
-                            <constraint firstItem="BtF-Gk-D12" firstAttribute="height" secondItem="AJS-P4-Hkt" secondAttribute="height" priority="250" identifier="contentViewHeightConstraint" id="Xao-g2-cMG"/>
-                            <constraint firstItem="BtF-Gk-D12" firstAttribute="width" secondItem="AJS-P4-Hkt" secondAttribute="width" id="bZf-1n-jZ3"/>
-                            <constraint firstItem="7PU-1s-EvT" firstAttribute="top" secondItem="TmK-sy-43l" secondAttribute="bottom" id="cjF-hC-jpd"/>
-                            <constraint firstItem="7Js-bQ-ZpY" firstAttribute="leading" secondItem="UNP-hf-cFI" secondAttribute="leading" id="frb-bE-B30"/>
-                            <constraint firstItem="7f0-ZC-o8d" firstAttribute="top" secondItem="7Js-bQ-ZpY" secondAttribute="bottom" id="gqN-tc-vlr"/>
-                            <constraint firstItem="vyE-fe-bwG" firstAttribute="leading" secondItem="AJS-P4-Hkt" secondAttribute="leading" id="hxz-Rw-O8t"/>
-                            <constraint firstItem="UNP-hf-cFI" firstAttribute="trailing" secondItem="7f0-ZC-o8d" secondAttribute="trailing" id="iwS-Sb-9kM"/>
-                            <constraint firstItem="7f0-ZC-o8d" firstAttribute="leading" secondItem="UNP-hf-cFI" secondAttribute="leading" id="jhh-u0-pH9"/>
-                            <constraint firstItem="7PU-1s-EvT" firstAttribute="height" secondItem="AJS-P4-Hkt" secondAttribute="height" multiplier="50:667" id="mLe-pT-Xg2"/>
-                            <constraint firstItem="7PU-1s-EvT" firstAttribute="top" secondItem="vyE-fe-bwG" secondAttribute="bottom" identifier="infiniteScrollingViewBottomConstraint" id="mfK-x7-TqZ"/>
-                            <constraint firstItem="UNP-hf-cFI" firstAttribute="trailing" secondItem="7Js-bQ-ZpY" secondAttribute="trailing" id="rVy-r2-yrE"/>
-                            <constraint firstItem="7Js-bQ-ZpY" firstAttribute="height" secondItem="AJS-P4-Hkt" secondAttribute="height" multiplier="44:375" id="t0C-19-mbS"/>
-                            <constraint firstItem="ZkM-23-awk" firstAttribute="top" secondItem="7Js-bQ-ZpY" secondAttribute="bottom" constant="-1" id="xPp-Ym-QMO"/>
-                            <constraint firstItem="NB0-PC-C9r" firstAttribute="top" secondItem="ZkM-23-awk" secondAttribute="bottom" constant="16" id="yVe-xd-hGk"/>
+                            <constraint firstAttribute="trailing" secondItem="vyE-fe-bwG" secondAttribute="trailing" identifier="PostShowViewControllerConstraint154" id="2cx-kV-0ye"/>
+                            <constraint firstItem="UNP-hf-cFI" firstAttribute="bottom" secondItem="7PU-1s-EvT" secondAttribute="bottom" identifier="PostShowViewControllerConstraint138" id="8Yf-FI-9bX"/>
+                            <constraint firstItem="vyE-fe-bwG" firstAttribute="top" secondItem="7f0-ZC-o8d" secondAttribute="bottom" constant="-1" identifier="PostShowViewControllerConstraint155" id="9om-0c-AsV"/>
+                            <constraint firstItem="7PU-1s-EvT" firstAttribute="leading" secondItem="AJS-P4-Hkt" secondAttribute="leading" identifier="PostShowViewControllerConstraint159" id="HgG-Ra-Ncs"/>
+                            <constraint firstItem="7Js-bQ-ZpY" firstAttribute="height" secondItem="AJS-P4-Hkt" secondAttribute="height" multiplier="64:623" identifier="PostShowViewControllerConstraint141" id="Lx4-fU-huY"/>
+                            <constraint firstItem="ZkM-23-awk" firstAttribute="leading" secondItem="UNP-hf-cFI" secondAttribute="leading" identifier="PostShowViewControllerConstraint145" id="NJu-wh-mfP"/>
+                            <constraint firstItem="NB0-PC-C9r" firstAttribute="centerX" secondItem="AJS-P4-Hkt" secondAttribute="centerX" identifier="PostShowViewControllerConstraint152" id="Nvm-5Z-Pgo"/>
+                            <constraint firstAttribute="trailing" secondItem="7PU-1s-EvT" secondAttribute="trailing" identifier="PostShowViewControllerConstraint160" id="Qdo-j7-2Uu"/>
+                            <constraint firstItem="TmK-sy-43l" firstAttribute="leading" secondItem="AJS-P4-Hkt" secondAttribute="leading" identifier="PostShowViewControllerConstraint157" id="Qq9-WE-dTc"/>
+                            <constraint firstItem="ZkM-23-awk" firstAttribute="trailing" secondItem="UNP-hf-cFI" secondAttribute="trailing" identifier="PostShowViewControllerConstraint146" id="TUm-7b-gkA"/>
+                            <constraint firstAttribute="trailing" secondItem="TmK-sy-43l" secondAttribute="trailing" identifier="PostShowViewControllerConstraint158" id="UX5-wi-3bA"/>
+                            <constraint firstItem="7Js-bQ-ZpY" firstAttribute="top" secondItem="UNP-hf-cFI" secondAttribute="top" identifier="PostShowViewControllerConstraint142" id="VIL-0O-CY8"/>
+                            <constraint firstItem="BtF-Gk-D12" firstAttribute="height" secondItem="AJS-P4-Hkt" secondAttribute="height" priority="250" identifier="PostShowViewControllerConstraint150" id="Xao-g2-cMG"/>
+                            <constraint firstItem="BtF-Gk-D12" firstAttribute="width" secondItem="AJS-P4-Hkt" secondAttribute="width" identifier="PostShowViewControllerConstraint151" id="bZf-1n-jZ3"/>
+                            <constraint firstItem="7PU-1s-EvT" firstAttribute="top" secondItem="TmK-sy-43l" secondAttribute="bottom" identifier="PostShowViewControllerConstraint161" id="cjF-hC-jpd"/>
+                            <constraint firstItem="7Js-bQ-ZpY" firstAttribute="leading" secondItem="UNP-hf-cFI" secondAttribute="leading" identifier="PostShowViewControllerConstraint143" id="frb-bE-B30"/>
+                            <constraint firstItem="7f0-ZC-o8d" firstAttribute="top" secondItem="7Js-bQ-ZpY" secondAttribute="bottom" identifier="PostShowViewControllerConstraint148" id="gqN-tc-vlr"/>
+                            <constraint firstItem="vyE-fe-bwG" firstAttribute="leading" secondItem="AJS-P4-Hkt" secondAttribute="leading" identifier="PostShowViewControllerConstraint156" id="hxz-Rw-O8t"/>
+                            <constraint firstItem="UNP-hf-cFI" firstAttribute="trailing" secondItem="7f0-ZC-o8d" secondAttribute="trailing" identifier="PostShowViewControllerConstraint139" id="iwS-Sb-9kM"/>
+                            <constraint firstItem="7f0-ZC-o8d" firstAttribute="leading" secondItem="UNP-hf-cFI" secondAttribute="leading" identifier="PostShowViewControllerConstraint149" id="jhh-u0-pH9"/>
+                            <constraint firstItem="7PU-1s-EvT" firstAttribute="height" secondItem="AJS-P4-Hkt" secondAttribute="height" multiplier="50:667" identifier="PostShowViewControllerConstraint162" id="mLe-pT-Xg2"/>
+                            <constraint firstItem="7PU-1s-EvT" firstAttribute="top" secondItem="vyE-fe-bwG" secondAttribute="bottom" identifier="PostShowViewControllerConstraint163" id="mfK-x7-TqZ"/>
+                            <constraint firstItem="UNP-hf-cFI" firstAttribute="trailing" secondItem="7Js-bQ-ZpY" secondAttribute="trailing" identifier="PostShowViewControllerConstraint140" id="rVy-r2-yrE"/>
+                            <constraint firstItem="7Js-bQ-ZpY" firstAttribute="height" secondItem="AJS-P4-Hkt" secondAttribute="height" multiplier="44:375" identifier="PostShowViewControllerConstraint144" id="t0C-19-mbS"/>
+                            <constraint firstItem="ZkM-23-awk" firstAttribute="top" secondItem="7Js-bQ-ZpY" secondAttribute="bottom" constant="-1" identifier="PostShowViewControllerConstraint147" id="xPp-Ym-QMO"/>
+                            <constraint firstItem="NB0-PC-C9r" firstAttribute="top" secondItem="ZkM-23-awk" secondAttribute="bottom" constant="16" identifier="PostShowViewControllerConstraint153" id="yVe-xd-hGk"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="UNP-hf-cFI"/>
                         <variation key="default">
