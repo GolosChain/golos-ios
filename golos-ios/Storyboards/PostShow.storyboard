@@ -25,7 +25,7 @@
                                         <rect key="frame" x="0.0" y="52" width="375" height="338.33333333333331"/>
                                         <subviews>
                                             <stackView contentMode="scaleToFill" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="hj6-Ie-c5P" userLabel="Comments Stack View">
-                                                <rect key="frame" x="14" y="338.33333333333331" width="345" height="0.0"/>
+                                                <rect key="frame" x="14" y="338.33333333333331" width="353" height="0.0"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" identifier="PostShowViewControllerConstraint01" id="i0s-JR-gEA"/>
@@ -495,7 +495,7 @@
                                             <constraint firstItem="hj6-Ie-c5P" firstAttribute="top" secondItem="nt5-Bc-nF3" secondAttribute="bottom" identifier="PostShowViewControllerConstraint101" id="3YN-XU-Hlf"/>
                                             <constraint firstItem="dZE-L5-SIs" firstAttribute="bottom" secondItem="tqm-aY-SVr" secondAttribute="bottom" identifier="PostShowViewControllerConstraint60" id="3ia-Ns-xyE"/>
                                             <constraint firstItem="tHL-Id-QDj" firstAttribute="top" secondItem="h9e-KO-AhW" secondAttribute="bottom" priority="750" constant="20" identifier="PostShowViewControllerConstraint81" id="4nI-Ir-YHS"/>
-                                            <constraint firstAttribute="trailing" secondItem="hj6-Ie-c5P" secondAttribute="trailing" constant="16" identifier="PostShowViewControllerConstraint102" id="5LC-Le-clu"/>
+                                            <constraint firstAttribute="trailing" secondItem="hj6-Ie-c5P" secondAttribute="trailing" constant="8" identifier="PostShowViewControllerConstraint102" id="5LC-Le-clu"/>
                                             <constraint firstItem="VyW-ed-xji" firstAttribute="leading" secondItem="BtF-Gk-D12" secondAttribute="leading" identifier="PostShowViewControllerConstraint88" id="5gQ-4Z-ReG"/>
                                             <constraint firstAttribute="trailing" secondItem="Vl1-2x-lVp" secondAttribute="trailing" identifier="PostShowViewControllerConstraint67" id="7GF-bG-0GC"/>
                                             <constraint firstItem="VyW-ed-xji" firstAttribute="trailing" secondItem="TQB-vz-8Uo" secondAttribute="trailing" identifier="PostShowViewControllerConstraint89" id="8fZ-qG-a9I"/>
