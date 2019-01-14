@@ -15,7 +15,7 @@ import GoloSwift
 
 // MARK: - Business Logic protocols
 protocol SettingsNotificationsShowBusinessLogic {
-    func doSomething(withRequestModel requestModel: SettingsNotificationsShowModels.Items.RequestModel)
+    func loadPushNotificationsOptions(withRequestModel requestModel: SettingsNotificationsShowModels.Options.RequestModel)
 }
 
 protocol SettingsNotificationsShowDataStore {
@@ -25,7 +25,6 @@ protocol SettingsNotificationsShowDataStore {
 class SettingsNotificationsShowInteractor: SettingsNotificationsShowBusinessLogic, SettingsNotificationsShowDataStore {
     // MARK: - Properties
     var presenter: SettingsNotificationsShowPresentationLogic?
-    var worker: SettingsNotificationsShowWorker?
     
     // ... protocol implementation
 //    var name: String = ""
@@ -38,11 +37,23 @@ class SettingsNotificationsShowInteractor: SettingsNotificationsShowBusinessLogi
     
 
     // MARK: - Business logic implementation
-    func doSomething(withRequestModel requestModel: SettingsNotificationsShowModels.Items.RequestModel) {
-        worker = SettingsNotificationsShowWorker()
-        worker?.doSomeWork()
-        
-        let responseModel = SettingsNotificationsShowModels.Items.ResponseModel()
-        presenter?.presentSomething(fromResponseModel: responseModel)
+    func loadPushNotificationsOptions(withRequestModel requestModel: SettingsNotificationsShowModels.Options.RequestModel) {
+        // API `getOptions`
+        MicroservicesManager.getOptions(type: .push, userNickName: currentUserNickName!, deviceUDID: currentDeviceUDID, completion: { [weak self] (resultOptions, errorAPI) in
+            guard let strongSelf = self else { return }
+            
+            // Synchronize 'basic' options
+            if let optionsResult = resultOptions?.result {
+                Logger.log(message: "push = \n\t\(optionsResult.push)", event: .debug)
+                Logger.log(message: "basic = \n\t\(optionsResult.basic)", event: .debug)
+                Logger.log(message: "notify = \n\t\(optionsResult.notify)", event: .debug)
+                
+                // CoreData: modify AppSettings
+                AppSettings.instance().update(push: optionsResult.push)
+            }
+            
+            let responseModel = SettingsNotificationsShowModels.Options.ResponseModel(errorAPI: errorAPI)
+            strongSelf.presenter?.presentSomething(fromResponseModel: responseModel)
+        })
     }
 }

@@ -11,18 +11,21 @@
 //
 
 import UIKit
+import GoloSwift
 
 // MARK: - Data models
 enum SettingsNotificationsShowModels {
     // MARK: - Use cases
-    enum Items {
+    enum Options {
         struct RequestModel {
         }
         
         struct ResponseModel {
+            let errorAPI: ErrorAPI?
         }
         
         struct ViewModel {
+            let errorAPI: ErrorAPI?
         }
     }
 }

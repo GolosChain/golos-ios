@@ -49,7 +49,6 @@
 		B120D06E2108252300D949F5 /* SettingsUserProfileEdit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B120D06D2108252300D949F5 /* SettingsUserProfileEdit.storyboard */; };
 		B120D0702108256B00D949F5 /* SettingsNotificationsShow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B120D06F2108256B00D949F5 /* SettingsNotificationsShow.storyboard */; };
 		B120D077210825AD00D949F5 /* SettingsNotificationsShowPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B120D071210825AD00D949F5 /* SettingsNotificationsShowPresenter.swift */; };
-		B120D078210825AD00D949F5 /* SettingsNotificationsShowWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B120D072210825AD00D949F5 /* SettingsNotificationsShowWorker.swift */; };
 		B120D079210825AD00D949F5 /* SettingsNotificationsShowRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B120D073210825AD00D949F5 /* SettingsNotificationsShowRouter.swift */; };
 		B120D07A210825AD00D949F5 /* SettingsNotificationsShowModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B120D074210825AD00D949F5 /* SettingsNotificationsShowModels.swift */; };
 		B120D07B210825AD00D949F5 /* SettingsNotificationsShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B120D075210825AD00D949F5 /* SettingsNotificationsShowViewController.swift */; };
@@ -335,7 +334,6 @@
 		B120D06D2108252300D949F5 /* SettingsUserProfileEdit.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SettingsUserProfileEdit.storyboard; sourceTree = "<group>"; };
 		B120D06F2108256B00D949F5 /* SettingsNotificationsShow.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SettingsNotificationsShow.storyboard; sourceTree = "<group>"; };
 		B120D071210825AD00D949F5 /* SettingsNotificationsShowPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsNotificationsShowPresenter.swift; sourceTree = "<group>"; };
-		B120D072210825AD00D949F5 /* SettingsNotificationsShowWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsNotificationsShowWorker.swift; sourceTree = "<group>"; };
 		B120D073210825AD00D949F5 /* SettingsNotificationsShowRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsNotificationsShowRouter.swift; sourceTree = "<group>"; };
 		B120D074210825AD00D949F5 /* SettingsNotificationsShowModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsNotificationsShowModels.swift; sourceTree = "<group>"; };
 		B120D075210825AD00D949F5 /* SettingsNotificationsShowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsNotificationsShowViewController.swift; sourceTree = "<group>"; };
@@ -659,7 +657,6 @@
 				B120D071210825AD00D949F5 /* SettingsNotificationsShowPresenter.swift */,
 				B120D073210825AD00D949F5 /* SettingsNotificationsShowRouter.swift */,
 				B120D075210825AD00D949F5 /* SettingsNotificationsShowViewController.swift */,
-				B120D072210825AD00D949F5 /* SettingsNotificationsShowWorker.swift */,
 			);
 			path = SettingsNotificationsShow;
 			sourceTree = "<group>";
@@ -1774,7 +1771,6 @@
 				B1CF44DF2106D65600483A01 /* SettingsShowViewController.swift in Sources */,
 				B15C29B921101FEA0030D249 /* PostShowModels.swift in Sources */,
 				B1DCE31721098E5F00487DE0 /* FCManager.swift in Sources */,
-				B120D078210825AD00D949F5 /* SettingsNotificationsShowWorker.swift in Sources */,
 				B1EBAFBC20EB55690050B1A2 /* User+CoreDataProperties.swift in Sources */,
 				B111322420CD51EA00BC7F33 /* PostingKeyShowRouter.swift in Sources */,
 				B12F440420EA01F9003FFF58 /* ScannerShowRouter.swift in Sources */,

@@ -121,6 +121,29 @@ public class AppSettings: NSManagedObject {
         self.setFeedShowImages(basic.feedShowImages == 0 ? false : true)
     }
     
+    func update(push: ResponseAPIMicroserviceGetOptionsPush) {
+        self.language                           =   push.lang
+        self.isNotificaionPushVote              =   push.show.vote
+        self.isNotificaionPushFlag              =   push.show.flag
+        self.isNotificaionPushTransfer          =   push.show.transfer
+        self.isNotificaionPushReply             =   push.show.reply
+        self.isNotificaionPushSubscribe         =   push.show.subscribe
+        self.isNotificaionPushUnsubscribe       =   push.show.unsubscribe
+        self.isNotificaionPushMention           =   push.show.mention
+        self.isNotificaionPushRepost            =   push.show.repost
+        self.isNotificaionPushReward            =   push.show.award
+        self.isNotificaionPushCuratorReward     =   push.show.curatorAward
+        self.isNotificaionPushMessage           =   push.show.message
+        self.isNotificaionPushWitnessVote       =   push.show.witnessVote
+        self.isNotificaionPushWitnessCancelVote =   push.show.witnessCancelVote
+        
+        self.isAllPushNotificationsOn           =   push.show.vote && push.show.flag && push.show.transfer && push.show.reply && push.show.subscribe && push.show.unsubscribe &&
+                                                    push.show.mention && push.show.repost && push.show.award && push.show.curatorAward && push.show.message && push.show.witnessVote &&
+                                                    push.show.witnessCancelVote
+
+        self.save()
+    }
+
     func updatePushNotifications(property: String, value: Bool) {
         let propertyName = String(format: "isNotificaion%@%@", "Push", property.uppercaseFirst)
 

@@ -465,6 +465,7 @@ extension SettingsShowViewController {
                 Logger.log(message: "basic = \n\t\(optionsResult.basic)", event: .debug)
                 Logger.log(message: "notify = \n\t\(optionsResult.notify)", event: .debug)
                 
+                // CoreData: modify AppSettings
                 AppSettings.instance().update(basic: optionsResult.basic)
                 completion(true)
             }

@@ -15,7 +15,7 @@ import GoloSwift
 
 // MARK: - Input & Output protocols
 protocol SettingsNotificationsShowDisplayLogic: class {
-    func displaySomething(fromViewModel viewModel: SettingsNotificationsShowModels.Items.ViewModel)
+    func displayLoadPushNotificationsOptions(fromViewModel viewModel: SettingsNotificationsShowModels.Options.ViewModel)
 }
 
 class SettingsNotificationsShowViewController: GSBaseViewController {
@@ -215,8 +215,8 @@ class SettingsNotificationsShowViewController: GSBaseViewController {
         self.showNavigationBar()
         self.title = "Settings Push Notifications".localized()
 
-        let requestModel = SettingsNotificationsShowModels.Items.RequestModel()
-        interactor?.doSomething(withRequestModel: requestModel)
+        let requestModel = SettingsNotificationsShowModels.Options.RequestModel()
+        interactor?.loadPushNotificationsOptions(withRequestModel: requestModel)
     }
     
     private func translateUI() {
@@ -273,8 +273,13 @@ class SettingsNotificationsShowViewController: GSBaseViewController {
 
 // MARK: - SettingsNotificationsShowDisplayLogic
 extension SettingsNotificationsShowViewController: SettingsNotificationsShowDisplayLogic {
-    func displaySomething(fromViewModel viewModel: SettingsNotificationsShowModels.Items.ViewModel) {
+    func displayLoadPushNotificationsOptions(fromViewModel viewModel: SettingsNotificationsShowModels.Options.ViewModel) {
         // NOTE: Display the result from the Presenter
-
+        guard viewModel.errorAPI == nil else {
+            self.showAlertView(withTitle: "Error", andMessage: viewModel.errorAPI!.caseInfo.message, needCancel: false, completion: { _ in })
+            return
+        }
+        
+        self.setupNotificationsPropertiesValues()
     }
 }
