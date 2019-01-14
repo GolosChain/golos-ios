@@ -164,24 +164,22 @@
 "Unsubscribe are you sure"                  =   "Are you sure\nyou want to unsubscribe";
 "Subscribe Noun"                            =   "Subscribe";
 "Unsubscribe Noun"                          =   "Unsubscribe";
-"Settings Online Notifications"             =   "Настройки онлайн уведомлений";
-"Settings Push Notifications"               =   "Настройки пуш уведомлений";
-"Settings Sound Notifications"              =   "Звук уведомлений";
-"Settings Enable All Online Notifications"  =   "Включить все онлайн уведомления";
-"Settings Enable All Push Notifications"    =   "Включить все пуш уведомления";
-"Settings MENTIONS"                         =   "УПОМИНАНИЯ";
-"" =    "Голос за";
-"" =    "Голос против";
-"" =    "Перевод средств";
-"" =    "Ответ на пост или комментарий";
-"" =    "Подписка на блог";
-"" =    "Отписка от блога";
-"" =    "Упоминание в посте или комменте через";
-"" =    "Репост";
-"" =    "Награда пользователю";
-"" =    "Награда куратору";
-"" =    "Личное сообщение";
-"" =    "Голос за вашу делегатскую ноду";
+"Settings Push Notifications"               =   "Push notification settings";
+"Settings Sound Notifications"              =   "Notification sound";
+"Settings Enable All Push Notifications"    =   "Turn all push notifications on";
+"Settings MENTIONS"                         =   "MENTIONS";
+"Settings Vote"                             =   "Vote for";
+"Settings Flag"                             =   "Vote against";
+"Settings Transfer Money"                   =   "Funds transfer";
+"Settings Reply Post"                       =   "Reply to a post or a comment";
+"Settings Subscribe Post"                   =   "Subscribing to the blog";
+"Settings Unsubscribe Post"                 =   "Unsubscribing from the blog";
+"Settings Mention"                          =   "Mention in a post or a comment via";
+"Settings Repost"                           =   "Repost";
+"Settings User Reward"                      =   "User reward";
+"Settings Curator Reward"                   =   "Curation reward";
+"Settings Private Message"                  =   "Private message";
+"Settings Witness Vote"                     =   "Vote for your delegate node";
 
 
 // Placeholders

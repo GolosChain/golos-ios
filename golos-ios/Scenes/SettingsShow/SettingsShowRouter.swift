@@ -19,7 +19,7 @@ import GoloSwift
     func showOnlineGolosPage()
     func routeToLoginShowScene()
     func routeToSettingsUserProfileEditScene()
-    func routeToSettingsNotificationsScene(mode: SettingsNotificationsMode)
+    func routeToSettingsPushNotificationsScene()
 }
 
 protocol SettingsShowDataPassing {
@@ -57,10 +57,9 @@ class SettingsShowRouter: NSObject, SettingsShowRoutingLogic, SettingsShowDataPa
         }
     }
     
-    func routeToSettingsNotificationsScene(mode: SettingsNotificationsMode) {
+    func routeToSettingsPushNotificationsScene() {
         let storyboard      =   UIStoryboard(name: "SettingsNotificationsShow", bundle: nil)
         let destinationVC   =   storyboard.instantiateViewController(withIdentifier: "SettingsNotificationsShowVC") as! SettingsNotificationsShowViewController
-        destinationVC.settingsNotificationsMode = mode
         
         navigateToSettingsNotificationsScene(source: viewController!, destination: destinationVC)
     }

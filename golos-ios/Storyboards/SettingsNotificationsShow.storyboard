@@ -71,7 +71,7 @@
                                                             <label clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All Mentions Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GnA-yU-eSl" userLabel="Enable All Notifications Label">
                                                                 <rect key="frame" x="0.0" y="12" width="140" height="20.5"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <accessibility key="accessibilityConfiguration" label="Settings Enable All Online Notifications"/>
+                                                                <accessibility key="accessibilityConfiguration" label="Settings Enable All Push Notifications"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>

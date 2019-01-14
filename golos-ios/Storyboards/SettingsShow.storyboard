@@ -29,7 +29,7 @@
                                 <rect key="frame" x="0.0" y="22" width="375" height="645"/>
                                 <subviews>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IZe-iE-639" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="650"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="605"/>
                                         <subviews>
                                             <stackView contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="jcs-cQ-xDw" userLabel="Common Stack View">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="96"/>
@@ -310,7 +310,7 @@
                                                 </constraints>
                                             </stackView>
                                             <stackView contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="or1-Jr-ffx" userLabel="Notifications Stack View">
-                                                <rect key="frame" x="0.0" y="290" width="375" height="90"/>
+                                                <rect key="frame" x="0.0" y="290" width="375" height="45"/>
                                                 <subviews>
                                                     <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L8H-Vo-VBL" userLabel="Edit User Profile View">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="0.0"/>
@@ -348,47 +348,8 @@
                                                             <constraint firstItem="Ghb-RS-3zt" firstAttribute="leading" secondItem="L8H-Vo-VBL" secondAttribute="leading" constant="20" id="jy4-9t-vwk"/>
                                                         </constraints>
                                                     </view>
-                                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XaR-aN-eqa" userLabel="Online Notifications View">
-                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
-                                                        <subviews>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-button-arrow-rigth-gray-day-normal" translatesAutoresizingMaskIntoConstraints="NO" id="lFG-yH-5oF" userLabel="Online Notifications Image View">
-                                                                <rect key="frame" x="331" y="10.5" width="24" height="24"/>
-                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="width" secondItem="lFG-yH-5oF" secondAttribute="height" multiplier="1:1" id="A7g-yU-8RI"/>
-                                                                    <constraint firstAttribute="height" constant="24" id="Ca7-oV-Co2"/>
-                                                                </constraints>
-                                                            </imageView>
-                                                            <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gc6-zA-toX" userLabel="Online Notifications Button">
-                                                                <rect key="frame" x="20" y="0.0" width="335" height="45"/>
-                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <connections>
-                                                                    <action selector="onlineNotificationsButtonTapped:" destination="5Fz-c1-bKn" eventType="touchUpInside" id="iEN-pn-cPx"/>
-                                                                </connections>
-                                                            </button>
-                                                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o9G-qL-39z" userLabel="Online Notifications Bottom Gray Line View">
-                                                                <rect key="frame" x="0.0" y="44" width="375" height="1"/>
-                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="1" id="VbZ-zg-FiF"/>
-                                                                </constraints>
-                                                            </view>
-                                                        </subviews>
-                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="bottom" secondItem="o9G-qL-39z" secondAttribute="bottom" id="4Vt-1x-QA5"/>
-                                                            <constraint firstAttribute="bottom" secondItem="Gc6-zA-toX" secondAttribute="bottom" id="Dak-QJ-tdi"/>
-                                                            <constraint firstAttribute="trailing" secondItem="Gc6-zA-toX" secondAttribute="trailing" constant="20" id="KLJ-97-ZKM"/>
-                                                            <constraint firstAttribute="trailing" secondItem="o9G-qL-39z" secondAttribute="trailing" id="Y2j-dr-EMh"/>
-                                                            <constraint firstItem="Gc6-zA-toX" firstAttribute="trailing" secondItem="lFG-yH-5oF" secondAttribute="trailing" id="dAD-Sk-xic"/>
-                                                            <constraint firstItem="Gc6-zA-toX" firstAttribute="leading" secondItem="XaR-aN-eqa" secondAttribute="leading" constant="20" id="etS-ZH-oM9"/>
-                                                            <constraint firstItem="Gc6-zA-toX" firstAttribute="top" secondItem="XaR-aN-eqa" secondAttribute="top" id="jfQ-99-ZCI"/>
-                                                            <constraint firstItem="o9G-qL-39z" firstAttribute="leading" secondItem="XaR-aN-eqa" secondAttribute="leading" id="u6v-gz-Lhj"/>
-                                                            <constraint firstItem="lFG-yH-5oF" firstAttribute="centerY" secondItem="XaR-aN-eqa" secondAttribute="centerY" id="ug6-HF-Bjk"/>
-                                                        </constraints>
-                                                    </view>
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DcL-8m-c6o" userLabel="Push Notifications View">
-                                                        <rect key="frame" x="0.0" y="45" width="375" height="45"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-button-arrow-rigth-gray-day-normal" translatesAutoresizingMaskIntoConstraints="NO" id="A6a-qi-AX3" userLabel="Push Notifications Image View">
                                                                 <rect key="frame" x="331" y="10.5" width="24" height="24"/>
@@ -420,11 +381,11 @@
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </stackView>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xwL-85-b5M" userLabel="Gray View 2">
-                                                <rect key="frame" x="0.0" y="380" width="375" height="10"/>
+                                                <rect key="frame" x="0.0" y="335" width="375" height="10"/>
                                                 <color key="backgroundColor" red="0.94901960780000005" green="0.95686274510000002" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                                             </view>
                                             <stackView contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="UBu-iY-XBV" userLabel="BottomStack View">
-                                                <rect key="frame" x="0.0" y="390" width="375" height="180"/>
+                                                <rect key="frame" x="0.0" y="345" width="375" height="180"/>
                                                 <subviews>
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HzJ-V7-GYb" userLabel="Welcome View">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
@@ -606,7 +567,7 @@
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </stackView>
                                             <view clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="617-0L-gmR" userLabel="Version View">
-                                                <rect key="frame" x="0.0" y="610" width="375" height="40"/>
+                                                <rect key="frame" x="0.0" y="565" width="375" height="40"/>
                                                 <subviews>
                                                     <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MUM-yE-fsH" userLabel="Version Label">
                                                         <rect key="frame" x="166.5" y="9.5" width="42" height="20.5"/>
@@ -676,7 +637,7 @@
                             <constraint firstItem="jcs-cQ-xDw" firstAttribute="height" secondItem="cD3-Sv-AfB" secondAttribute="height" multiplier="96:667" id="UeH-G8-G4s"/>
                             <constraint firstItem="xwL-85-b5M" firstAttribute="height" secondItem="cD3-Sv-AfB" secondAttribute="height" multiplier="10:667" id="Yna-Bo-P2q"/>
                             <constraint firstItem="Jd1-if-qni" firstAttribute="height" secondItem="cD3-Sv-AfB" secondAttribute="height" multiplier="160:375" id="fr3-Ta-ZCk"/>
-                            <constraint firstItem="or1-Jr-ffx" firstAttribute="height" secondItem="cD3-Sv-AfB" secondAttribute="height" multiplier="90:667" id="l6a-5D-b2H"/>
+                            <constraint firstItem="or1-Jr-ffx" firstAttribute="height" secondItem="cD3-Sv-AfB" secondAttribute="height" multiplier="45:667" id="l6a-5D-b2H"/>
                             <constraint firstItem="eGZ-Iu-UAZ" firstAttribute="top" secondItem="vjD-ob-m17" secondAttribute="bottom" id="lfP-ch-TLp"/>
                             <constraint firstItem="Jd1-if-qni" firstAttribute="height" secondItem="cD3-Sv-AfB" secondAttribute="height" multiplier="160:667" id="oYM-H7-1pC"/>
                             <constraint firstItem="UBu-iY-XBV" firstAttribute="height" secondItem="cD3-Sv-AfB" secondAttribute="height" multiplier="1800:375" id="wIl-Ua-VZ0"/>
@@ -713,7 +674,6 @@
                         <outlet property="logOutButton" destination="gQD-QH-PUB" id="fZ2-OP-Zev"/>
                         <outlet property="moonImageView" destination="uMi-vk-yGn" id="IYf-ZQ-G0z"/>
                         <outlet property="moonRadioButton" destination="1JG-zA-drC" id="GZU-pV-c69"/>
-                        <outlet property="onlineNotificationsButton" destination="Gc6-zA-toX" id="5J4-Di-LID"/>
                         <outlet property="privacyPolicyButton" destination="bgZ-MG-t6B" id="2rL-pD-CVf"/>
                         <outlet property="pushNotificationsButton" destination="GD3-LG-tNH" id="YLb-W4-17C"/>
                         <outlet property="scrollView" destination="eGZ-Iu-UAZ" id="n3L-aU-azh"/>
@@ -791,7 +751,6 @@
                         <outletCollection property="lineViewsCollection" destination="MNb-Ho-eCF" collectionClass="NSMutableArray" id="WZc-bx-hfK"/>
                         <outletCollection property="lineViewsCollection" destination="wmB-31-5N0" collectionClass="NSMutableArray" id="dJv-Jb-jfi"/>
                         <outletCollection property="viewsCollection" destination="L8H-Vo-VBL" collectionClass="NSMutableArray" id="1o1-Xt-XI8"/>
-                        <outletCollection property="viewsCollection" destination="XaR-aN-eqa" collectionClass="NSMutableArray" id="apK-0W-nLp"/>
                         <outletCollection property="viewsCollection" destination="DcL-8m-c6o" collectionClass="NSMutableArray" id="SWu-zW-fUG"/>
                         <outletCollection property="arrowImageViewsCollection" destination="oYv-KD-uZp" collectionClass="NSMutableArray" id="fGY-Y3-940"/>
                         <outletCollection property="arrowImageViewsCollection" destination="uVn-ye-8Lo" collectionClass="NSMutableArray" id="mfX-wD-7Su"/>
@@ -799,14 +758,9 @@
                         <outletCollection property="arrowImageViewsCollection" destination="Qzs-7r-jMU" collectionClass="NSMutableArray" id="e4T-bY-M8B"/>
                         <outletCollection property="widthsCollection" destination="Hfv-Pb-C5c" collectionClass="NSMutableArray" id="Aud-KE-inr"/>
                         <outletCollection property="widthsCollection" destination="UBc-fo-Zy9" collectionClass="NSMutableArray" id="MYy-sC-arg"/>
-                        <outletCollection property="widthsCollection" destination="etS-ZH-oM9" collectionClass="NSMutableArray" id="JUG-y7-NHi"/>
-                        <outletCollection property="widthsCollection" destination="KLJ-97-ZKM" collectionClass="NSMutableArray" id="bQq-ip-Kq2"/>
                         <outletCollection property="widthsCollection" destination="jy4-9t-vwk" collectionClass="NSMutableArray" id="O8m-5R-CyV"/>
                         <outletCollection property="widthsCollection" destination="5i0-sR-HdU" collectionClass="NSMutableArray" id="XRY-hG-Z2N"/>
-                        <outletCollection property="actionButtonsCollection" destination="Gc6-zA-toX" collectionClass="NSMutableArray" id="3Jl-r2-fxl"/>
                         <outletCollection property="actionButtonsCollection" destination="GD3-LG-tNH" collectionClass="NSMutableArray" id="xed-m8-FyM"/>
-                        <outletCollection property="lineViewsCollection" destination="o9G-qL-39z" collectionClass="NSMutableArray" id="II2-Zi-ZkM"/>
-                        <outletCollection property="arrowImageViewsCollection" destination="lFG-yH-5oF" collectionClass="NSMutableArray" id="Yso-gc-SSv"/>
                         <outletCollection property="arrowImageViewsCollection" destination="A6a-qi-AX3" collectionClass="NSMutableArray" id="nUD-So-yd0"/>
                         <outletCollection property="arrowImageViewsCollection" destination="jUm-IL-TlN" collectionClass="NSMutableArray" id="THK-JP-63b"/>
                         <outletCollection property="lineViewsCollection" destination="bJ7-o2-1VV" collectionClass="NSMutableArray" id="pW3-4a-1QJ"/>

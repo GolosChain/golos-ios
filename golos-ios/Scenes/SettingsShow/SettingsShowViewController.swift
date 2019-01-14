@@ -40,7 +40,6 @@ class SettingsShowViewController: GSBaseViewController {
     @IBOutlet weak var privacyPolicyButton: UIButton!
     @IBOutlet weak var editUserProfileButton: UIButton!
     @IBOutlet weak var pushNotificationsButton: UIButton!
-    @IBOutlet weak var onlineNotificationsButton: UIButton!
 
     @IBOutlet weak var commonLabel: UILabel!
     
@@ -364,13 +363,9 @@ class SettingsShowViewController: GSBaseViewController {
     }
 
     @IBAction func pushNotificationsButtonTapped(_ sender: UIButton) {
-        self.router?.routeToSettingsNotificationsScene(mode: .push)
+        self.router?.routeToSettingsPushNotificationsScene()
     }
 
-    @IBAction func onlineNotificationsButtonTapped(_ sender: UIButton) {
-        self.router?.routeToSettingsNotificationsScene(mode: .online)
-    }
-    
     @IBAction func dayRadioButtonTapped(_ sender: DLRadioButton) {
         AppSettings.instance().setAppThemeDark(false)
         
@@ -427,7 +422,6 @@ class SettingsShowViewController: GSBaseViewController {
         self.switchAccountButton.setTitle("Switch Account Verb".localized(), for: .normal)
         self.editUserProfileButton.setTitle("Edit Profile Title".localized(), for: .normal)
         self.pushNotificationsButton.setTitle("Settings Push Notifications".localized(), for: .normal)
-        self.onlineNotificationsButton.setTitle("Settings Online Notifications".localized(), for: .normal)
         self.logOutButton.setTitle((User.isAnonymous ? "Log In" : "Exit Verb").localized(), for: .normal)
         
         self.radioButtonsCollection.forEach({ $0.setTitle($0.accessibilityIdentifier?.localized(), for: .normal) })

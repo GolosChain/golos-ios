@@ -378,7 +378,7 @@
                   moduleName = "Golos"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/msm72/My%20Projects/GolosChain/App/golos-ios/Scenes/PostsShow/PostsShowViewController.swift"
-                  timestampString = "568286372.284492"
+                  timestampString = "568720986.506712"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "201"
@@ -393,7 +393,7 @@
                   moduleName = "Golos"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/msm72/My%20Projects/GolosChain/App/golos-ios/Scenes/PostsShow/PostsShowViewController.swift"
-                  timestampString = "568286372.286656"
+                  timestampString = "568720986.5083899"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "201"
@@ -490,11 +490,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "golos-ios/Scenes/SettingsShow/SettingsShowViewController.swift"
-            timestampString = "568117643.858155"
+            timestampString = "568720986.1427751"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "464"
-            endingLineNumber = "464"
+            startingLineNumber = "458"
+            endingLineNumber = "458"
             landmarkName = "getBasicOptions(completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -577,6 +577,22 @@
             endingLineNumber = "108"
             landmarkName = "PostsShowViewController"
             landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "golos-ios/Scenes/SettingsNotificationsShow/SettingsNotificationsShowViewController.swift"
+            timestampString = "568721036.901879"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "267"
+            endingLineNumber = "267"
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

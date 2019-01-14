@@ -42,22 +42,6 @@ public class AppSettings: NSManagedObject {
         }
     }
 
-    class var isAllOnlineNotificationsOn: Bool {
-        get {
-            return (CoreDataManager.instance.readEntities(withName:                     "AppSettings",
-                                                          withPredicateParameters:      settingsPredicate,
-                                                          andSortDescriptor:            nil)?.first as! AppSettings).isAllOnlineNotificationsOn
-        }
-    }
-
-    class var isOnlineNotificationSoundOn: Bool {
-        get {
-            return (CoreDataManager.instance.readEntities(withName:                     "AppSettings",
-                                                          withPredicateParameters:      settingsPredicate,
-                                                          andSortDescriptor:            nil)?.first as! AppSettings).isOnlineNotificationSoundOn
-        }
-    }
-
     class var isAllPushNotificationsOn: Bool {
         get {
             return (CoreDataManager.instance.readEntities(withName:                     "AppSettings",
@@ -109,27 +93,13 @@ public class AppSettings: NSManagedObject {
         self.save()
     }
 
-    func setAllNotificationsOn(mode: SettingsNotificationsMode, value: Bool) {
-        switch mode {
-        case .online:
-            self.isAllOnlineNotificationsOn = value
-
-        default:
-            self.isAllPushNotificationsOn = value
-        }
-        
+    func setAllPushNotificationsOn(value: Bool) {
+        self.isAllPushNotificationsOn = value
         self.save()
     }
 
-    func setNotificationSoundOn(mode: SettingsNotificationsMode, value: Bool) {
-        switch mode {
-        case .online:
-            self.isOnlineNotificationSoundOn = value
-            
-        default:
-            self.isPushNotificationSoundOn = value
-        }
-
+    func setPushNotificationSoundOn(value: Bool) {
+        self.isPushNotificationSoundOn = value
         self.save()
     }
 
@@ -151,80 +121,40 @@ public class AppSettings: NSManagedObject {
         self.setFeedShowImages(basic.feedShowImages == 0 ? false : true)
     }
     
-    func updateNotifications(mode: SettingsNotificationsMode, property: String, value: Bool) {
-        let propertyName = String(format: "isNotificaion%@%@", mode == .online ? "Online" : "Push", property.uppercaseFirst)
+    func updatePushNotifications(property: String, value: Bool) {
+        let propertyName = String(format: "isNotificaion%@%@", "Push", property.uppercaseFirst)
 
-        switch mode {
-        // Online notifications properties
-        case .online:
-            if propertyName == "isNotificaionOnlineVote"                    { self.isNotificaionOnlineVote = value }
-            else if propertyName == "isNotificaionOnlineFlag"               { self.isNotificaionOnlineFlag = value }
-            else if propertyName == "isNotificaionOnlineTransfer"           { self.isNotificaionOnlineTransfer = value }
-            else if propertyName == "isNotificaionOnlineReply"              { self.isNotificaionOnlineReply = value }
-            else if propertyName == "isNotificaionOnlineSubscribe"          { self.isNotificaionOnlineSubscribe = value }
-            else if propertyName == "isNotificaionOnlineUnsubscribe"        { self.isNotificaionOnlineUnsubscribe = value }
-            else if propertyName == "isNotificaionOnlineMention"            { self.isNotificaionOnlineMention = value }
-            else if propertyName == "isNotificaionOnlineRepost"             { self.isNotificaionOnlineRepost = value }
-            else if propertyName == "isNotificaionOnlineReward"             { self.isNotificaionOnlineReward = value }
-            else if propertyName == "isNotificaionOnlineCuratorReward"      { self.isNotificaionOnlineCuratorReward = value }
-            else if propertyName == "isNotificaionOnlineMessage"            { self.isNotificaionOnlineMessage = value }
-            else if propertyName == "isNotificaionOnlineWitnessVote"        { self.isNotificaionOnlineWitnessVote = value }
-            else if propertyName == "isNotificaionOnlineWitnessCancelVote"  { self.isNotificaionOnlineWitnessCancelVote = value }
-
-        // Push notifications properties
-        default:
-            if propertyName == "isNotificaionPushVote"                      { self.isNotificaionPushVote = value }
-            else if propertyName == "isNotificaionPushFlag"                 { self.isNotificaionPushFlag = value }
-            else if propertyName == "isNotificaionPushTransfer"             { self.isNotificaionPushTransfer = value }
-            else if propertyName == "isNotificaionPushReply"                { self.isNotificaionPushReply = value }
-            else if propertyName == "isNotificaionPushSubscribe"            { self.isNotificaionPushSubscribe = value }
-            else if propertyName == "isNotificaionPushUnsubscribe"          { self.isNotificaionPushUnsubscribe = value }
-            else if propertyName == "isNotificaionPushMention"              { self.isNotificaionPushMention = value }
-            else if propertyName == "isNotificaionPushRepost"               { self.isNotificaionPushRepost = value }
-            else if propertyName == "isNotificaionPushReward"               { self.isNotificaionPushReward = value }
-            else if propertyName == "isNotificaionPushCuratorReward"        { self.isNotificaionPushCuratorReward = value }
-            else if propertyName == "isNotificaionPushMessage"              { self.isNotificaionPushMessage = value }
-            else if propertyName == "isNotificaionPushWitnessVote"          { self.isNotificaionPushWitnessVote = value }
-            else if propertyName == "isNotificaionPushWitnessCancelVote"    { self.isNotificaionPushWitnessCancelVote = value }
-        }
-
+        if propertyName == "isNotificaionPushVote"                      { self.isNotificaionPushVote = value }
+        else if propertyName == "isNotificaionPushFlag"                 { self.isNotificaionPushFlag = value }
+        else if propertyName == "isNotificaionPushTransfer"             { self.isNotificaionPushTransfer = value }
+        else if propertyName == "isNotificaionPushReply"                { self.isNotificaionPushReply = value }
+        else if propertyName == "isNotificaionPushSubscribe"            { self.isNotificaionPushSubscribe = value }
+        else if propertyName == "isNotificaionPushUnsubscribe"          { self.isNotificaionPushUnsubscribe = value }
+        else if propertyName == "isNotificaionPushMention"              { self.isNotificaionPushMention = value }
+        else if propertyName == "isNotificaionPushRepost"               { self.isNotificaionPushRepost = value }
+        else if propertyName == "isNotificaionPushReward"               { self.isNotificaionPushReward = value }
+        else if propertyName == "isNotificaionPushCuratorReward"        { self.isNotificaionPushCuratorReward = value }
+        else if propertyName == "isNotificaionPushMessage"              { self.isNotificaionPushMessage = value }
+        else if propertyName == "isNotificaionPushWitnessVote"          { self.isNotificaionPushWitnessVote = value }
+        else if propertyName == "isNotificaionPushWitnessCancelVote"    { self.isNotificaionPushWitnessCancelVote = value }
+        
         self.save()
     }
     
-    func updateAllNotifications(mode: SettingsNotificationsMode, value: Bool) {
-        switch mode {
-        // Online notifications properties
-        case .online:
-            self.isNotificaionOnlineVote                =   value
-            self.isNotificaionOnlineFlag                =   value
-            self.isNotificaionOnlineTransfer            =   value
-            self.isNotificaionOnlineReply               =   value
-            self.isNotificaionOnlineSubscribe           =   value
-            self.isNotificaionOnlineUnsubscribe         =   value
-            self.isNotificaionOnlineMention             =   value
-            self.isNotificaionOnlineRepost              =   value
-            self.isNotificaionOnlineReward              =   value
-            self.isNotificaionOnlineCuratorReward       =   value
-            self.isNotificaionOnlineMessage             =   value
-            self.isNotificaionOnlineWitnessVote         =   value
-            self.isNotificaionOnlineWitnessCancelVote   =   value
-            
-        // Push notifications properties
-        default:
-            self.isNotificaionPushVote                  =   value
-            self.isNotificaionPushFlag                  =   value
-            self.isNotificaionPushTransfer              =   value
-            self.isNotificaionPushReply                 =   value
-            self.isNotificaionPushSubscribe             =   value
-            self.isNotificaionPushUnsubscribe           =   value
-            self.isNotificaionPushMention               =   value
-            self.isNotificaionPushRepost                =   value
-            self.isNotificaionPushReward                =   value
-            self.isNotificaionPushCuratorReward         =   value
-            self.isNotificaionPushMessage               =   value
-            self.isNotificaionPushWitnessVote           =   value
-            self.isNotificaionPushWitnessCancelVote     =   value
-        }
+    func updateAllPushNotifications(value: Bool) {
+        self.isNotificaionPushVote                  =   value
+        self.isNotificaionPushFlag                  =   value
+        self.isNotificaionPushTransfer              =   value
+        self.isNotificaionPushReply                 =   value
+        self.isNotificaionPushSubscribe             =   value
+        self.isNotificaionPushUnsubscribe           =   value
+        self.isNotificaionPushMention               =   value
+        self.isNotificaionPushRepost                =   value
+        self.isNotificaionPushReward                =   value
+        self.isNotificaionPushCuratorReward         =   value
+        self.isNotificaionPushMessage               =   value
+        self.isNotificaionPushWitnessVote           =   value
+        self.isNotificaionPushWitnessCancelVote     =   value
         
         self.save()
     }

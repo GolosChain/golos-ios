@@ -51,23 +51,9 @@
         </uniquenessConstraints>
     </entity>
     <entity name="AppSettings" representedClassName="AppSettings" syncable="YES">
-        <attribute name="isAllOnlineNotificationsOn" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="isAllPushNotificationsOn" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="isAppThemeDark" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="isFeedShowImages" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="isNotificaionOnlineCuratorReward" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="isNotificaionOnlineFlag" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="isNotificaionOnlineMention" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="isNotificaionOnlineMessage" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="isNotificaionOnlineReply" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="isNotificaionOnlineRepost" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="isNotificaionOnlineReward" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="isNotificaionOnlineSubscribe" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="isNotificaionOnlineTransfer" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="isNotificaionOnlineUnsubscribe" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="isNotificaionOnlineVote" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="isNotificaionOnlineWitnessCancelVote" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="isNotificaionOnlineWitnessVote" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="isNotificaionPushCuratorReward" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="isNotificaionPushFlag" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="isNotificaionPushMention" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
@@ -81,7 +67,6 @@
         <attribute name="isNotificaionPushVote" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="isNotificaionPushWitnessCancelVote" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="isNotificaionPushWitnessVote" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="isOnlineNotificationSoundOn" optional="YES" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="isPushNotificationSoundOn" optional="YES" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="language" attributeType="String" defaultValueString="English" syncable="YES"/>
         <attribute name="startWithWelcomeScene" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES" syncable="YES"/>
@@ -515,7 +500,7 @@
     <elements>
         <element name="ActiveVote" positionX="-459" positionY="-81" width="128" height="150"/>
         <element name="Actual" positionX="-405" positionY="-27" width="128" height="540"/>
-        <element name="AppSettings" positionX="-459" positionY="-81" width="128" height="570"/>
+        <element name="AppSettings" positionX="-459" positionY="-81" width="128" height="345"/>
         <element name="Blog" positionX="-459" positionY="-81" width="128" height="555"/>
         <element name="BlogEntry" positionX="-459" positionY="-81" width="128" height="165"/>
         <element name="Comment" positionX="-459" positionY="-81" width="128" height="540"/>

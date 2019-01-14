@@ -22,27 +22,11 @@ extension AppSettings {
     @NSManaged public var isAppThemeDark: Bool
     @NSManaged public var isFeedShowImages: Bool
     @NSManaged public var startWithWelcomeScene: Bool
-    @NSManaged public var isPushNotificationSoundOn: Bool
-    @NSManaged public var isOnlineNotificationSoundOn: Bool
-    @NSManaged public var isAllPushNotificationsOn: Bool
-    @NSManaged public var isAllOnlineNotificationsOn: Bool
-
-    // Online notifications properties
-    @NSManaged public var isNotificaionOnlineVote: Bool
-    @NSManaged public var isNotificaionOnlineFlag: Bool
-    @NSManaged public var isNotificaionOnlineTransfer: Bool
-    @NSManaged public var isNotificaionOnlineReply: Bool
-    @NSManaged public var isNotificaionOnlineSubscribe: Bool
-    @NSManaged public var isNotificaionOnlineUnsubscribe: Bool
-    @NSManaged public var isNotificaionOnlineMention: Bool
-    @NSManaged public var isNotificaionOnlineRepost: Bool
-    @NSManaged public var isNotificaionOnlineReward: Bool
-    @NSManaged public var isNotificaionOnlineCuratorReward: Bool
-    @NSManaged public var isNotificaionOnlineMessage: Bool
-    @NSManaged public var isNotificaionOnlineWitnessVote: Bool
-    @NSManaged public var isNotificaionOnlineWitnessCancelVote: Bool
 
     // Push notifications properties
+    @NSManaged public var isAllPushNotificationsOn: Bool
+    @NSManaged public var isPushNotificationSoundOn: Bool
+
     @NSManaged public var isNotificaionPushVote: Bool
     @NSManaged public var isNotificaionPushFlag: Bool
     @NSManaged public var isNotificaionPushTransfer: Bool

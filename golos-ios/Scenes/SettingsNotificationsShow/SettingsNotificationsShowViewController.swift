@@ -13,11 +13,6 @@
 import UIKit
 import GoloSwift
 
-@objc enum SettingsNotificationsMode: Int {
-    case push
-    case online
-}
-
 // MARK: - Input & Output protocols
 protocol SettingsNotificationsShowDisplayLogic: class {
     func displaySomething(fromViewModel viewModel: SettingsNotificationsShowModels.Items.ViewModel)
@@ -26,7 +21,6 @@ protocol SettingsNotificationsShowDisplayLogic: class {
 class SettingsNotificationsShowViewController: GSBaseViewController {
     // MARK: - Properties
     private let appSettings = AppSettings.instance()
-    var settingsNotificationsMode: SettingsNotificationsMode = .online
     
     var interactor: SettingsNotificationsShowBusinessLogic?
     var router: (NSObjectProtocol & SettingsNotificationsShowRoutingLogic & SettingsNotificationsShowDataPassing)?
@@ -141,47 +135,47 @@ class SettingsNotificationsShowViewController: GSBaseViewController {
     }
     
     private func setupNotificationsPropertiesValues() {
-        self.switchesCollection.first(where: { $0.tag == 0 })?.isOn = self.settingsNotificationsMode == .push ? self.appSettings.isPushNotificationSoundOn : self.appSettings.isOnlineNotificationSoundOn
-        self.switchesCollection.first(where: { $0.tag == 1 })?.isOn = self.settingsNotificationsMode == .push ? self.appSettings.isAllPushNotificationsOn : self.appSettings.isAllOnlineNotificationsOn
+        self.switchesCollection.first(where: { $0.tag == 0 })?.isOn = self.appSettings.isPushNotificationSoundOn
+        self.switchesCollection.first(where: { $0.tag == 1 })?.isOn = self.appSettings.isAllPushNotificationsOn
         
-        self.settingsButtonsCollection.first(where: { $0.accessibilityIdentifier == "vote" })!.isSelected = self.settingsNotificationsMode == .push ? self.appSettings.isNotificaionPushVote : self.appSettings.isNotificaionOnlineVote
-        self.imageViewsCollection.first(where: { $0.tag == 0 })?.isHighlighted = !(self.settingsNotificationsMode == .push ? self.appSettings.isNotificaionPushVote : self.appSettings.isNotificaionOnlineVote)
+        self.imageViewsCollection.first(where: { $0.tag == 0 })?.isHighlighted = !self.appSettings.isNotificaionPushVote
+        self.settingsButtonsCollection.first(where: { $0.accessibilityIdentifier == "vote" })!.isSelected = self.appSettings.isNotificaionPushVote
         
-        self.settingsButtonsCollection.first(where: { $0.accessibilityIdentifier == "flag" })!.isSelected = self.settingsNotificationsMode == .push ? self.appSettings.isNotificaionPushFlag : self.appSettings.isNotificaionOnlineFlag
-        self.imageViewsCollection.first(where: { $0.tag == 1 })?.isHighlighted = !(self.settingsNotificationsMode == .push ? self.appSettings.isNotificaionPushFlag : self.appSettings.isNotificaionOnlineFlag)
+        self.imageViewsCollection.first(where: { $0.tag == 1 })?.isHighlighted = !self.appSettings.isNotificaionPushFlag
+        self.settingsButtonsCollection.first(where: { $0.accessibilityIdentifier == "flag" })!.isSelected = self.appSettings.isNotificaionPushFlag
 
-        self.settingsButtonsCollection.first(where: { $0.accessibilityIdentifier == "transfer" })!.isSelected = self.settingsNotificationsMode == .push ? self.appSettings.isNotificaionPushTransfer : self.appSettings.isNotificaionOnlineTransfer
-        self.imageViewsCollection.first(where: { $0.tag == 2 })?.isHighlighted = !(self.settingsNotificationsMode == .push ? self.appSettings.isNotificaionPushTransfer : self.appSettings.isNotificaionOnlineTransfer)
+        self.imageViewsCollection.first(where: { $0.tag == 2 })?.isHighlighted = !self.appSettings.isNotificaionPushTransfer
+        self.settingsButtonsCollection.first(where: { $0.accessibilityIdentifier == "transfer" })!.isSelected = self.appSettings.isNotificaionPushTransfer
 
-        self.settingsButtonsCollection.first(where: { $0.accessibilityIdentifier == "reply" })!.isSelected = self.settingsNotificationsMode == .push ? self.appSettings.isNotificaionPushReply : self.appSettings.isNotificaionOnlineReply
-        self.imageViewsCollection.first(where: { $0.tag == 3 })?.isHighlighted = !(self.settingsNotificationsMode == .push ? self.appSettings.isNotificaionPushReply : self.appSettings.isNotificaionOnlineReply)
+        self.imageViewsCollection.first(where: { $0.tag == 3 })?.isHighlighted = !self.appSettings.isNotificaionPushReply
+        self.settingsButtonsCollection.first(where: { $0.accessibilityIdentifier == "reply" })!.isSelected = self.appSettings.isNotificaionPushReply
 
-        self.settingsButtonsCollection.first(where: { $0.accessibilityIdentifier == "subscribe" })!.isSelected = self.settingsNotificationsMode == .push ? self.appSettings.isNotificaionPushSubscribe : self.appSettings.isNotificaionOnlineSubscribe
-        self.imageViewsCollection.first(where: { $0.tag == 4 })?.isHighlighted = !(self.settingsNotificationsMode == .push ? self.appSettings.isNotificaionPushSubscribe : self.appSettings.isNotificaionOnlineSubscribe)
+        self.imageViewsCollection.first(where: { $0.tag == 4 })?.isHighlighted = !self.appSettings.isNotificaionPushSubscribe
+        self.settingsButtonsCollection.first(where: { $0.accessibilityIdentifier == "subscribe" })!.isSelected = self.appSettings.isNotificaionPushSubscribe
 
-        self.settingsButtonsCollection.first(where: { $0.accessibilityIdentifier == "unsubscribe" })!.isSelected = self.settingsNotificationsMode == .push ? self.appSettings.isNotificaionPushUnsubscribe : self.appSettings.isNotificaionOnlineUnsubscribe
-        self.imageViewsCollection.first(where: { $0.tag == 5 })?.isHighlighted = !(self.settingsNotificationsMode == .push ? self.appSettings.isNotificaionPushUnsubscribe : self.appSettings.isNotificaionOnlineUnsubscribe)
+        self.imageViewsCollection.first(where: { $0.tag == 5 })?.isHighlighted = !self.appSettings.isNotificaionPushUnsubscribe
+        self.settingsButtonsCollection.first(where: { $0.accessibilityIdentifier == "unsubscribe" })!.isSelected = self.appSettings.isNotificaionPushUnsubscribe
 
-        self.settingsButtonsCollection.first(where: { $0.accessibilityIdentifier == "mention" })!.isSelected = self.settingsNotificationsMode == .push ? self.appSettings.isNotificaionPushMention : self.appSettings.isNotificaionOnlineMention
-        self.imageViewsCollection.first(where: { $0.tag == 6 })?.isHighlighted = !(self.settingsNotificationsMode == .push ? self.appSettings.isNotificaionPushMention : self.appSettings.isNotificaionOnlineMention)
+        self.imageViewsCollection.first(where: { $0.tag == 6 })?.isHighlighted = !self.appSettings.isNotificaionPushMention
+        self.settingsButtonsCollection.first(where: { $0.accessibilityIdentifier == "mention" })!.isSelected = self.appSettings.isNotificaionPushMention
 
-        self.settingsButtonsCollection.first(where: { $0.accessibilityIdentifier == "repost" })!.isSelected = self.settingsNotificationsMode == .push ? self.appSettings.isNotificaionPushRepost : self.appSettings.isNotificaionOnlineRepost
-        self.imageViewsCollection.first(where: { $0.tag == 7 })?.isHighlighted = !(self.settingsNotificationsMode == .push ? self.appSettings.isNotificaionPushRepost : self.appSettings.isNotificaionOnlineRepost)
+        self.imageViewsCollection.first(where: { $0.tag == 7 })?.isHighlighted = !self.appSettings.isNotificaionPushRepost
+        self.settingsButtonsCollection.first(where: { $0.accessibilityIdentifier == "repost" })!.isSelected = self.appSettings.isNotificaionPushRepost
 
-        self.settingsButtonsCollection.first(where: { $0.accessibilityIdentifier == "reward" })!.isSelected = self.settingsNotificationsMode == .push ? self.appSettings.isNotificaionPushReward : self.appSettings.isNotificaionOnlineReward
-        self.imageViewsCollection.first(where: { $0.tag == 8 })?.isHighlighted = !(self.settingsNotificationsMode == .push ? self.appSettings.isNotificaionPushReward : self.appSettings.isNotificaionOnlineReward)
+        self.imageViewsCollection.first(where: { $0.tag == 8 })?.isHighlighted = !self.appSettings.isNotificaionPushReward
+        self.settingsButtonsCollection.first(where: { $0.accessibilityIdentifier == "reward" })!.isSelected = self.appSettings.isNotificaionPushReward
 
-        self.settingsButtonsCollection.first(where: { $0.accessibilityIdentifier == "curatorReward" })!.isSelected = self.settingsNotificationsMode == .push ? self.appSettings.isNotificaionPushCuratorReward : self.appSettings.isNotificaionOnlineCuratorReward
-        self.imageViewsCollection.first(where: { $0.tag == 9 })?.isHighlighted = !(self.settingsNotificationsMode == .push ? self.appSettings.isNotificaionPushCuratorReward : self.appSettings.isNotificaionOnlineCuratorReward)
+        self.imageViewsCollection.first(where: { $0.tag == 9 })?.isHighlighted = !self.appSettings.isNotificaionPushCuratorReward
+        self.settingsButtonsCollection.first(where: { $0.accessibilityIdentifier == "curatorReward" })!.isSelected = self.appSettings.isNotificaionPushCuratorReward
 
-        self.settingsButtonsCollection.first(where: { $0.accessibilityIdentifier == "message" })!.isSelected = self.settingsNotificationsMode == .push ? self.appSettings.isNotificaionPushMessage : self.appSettings.isNotificaionOnlineMessage
-        self.imageViewsCollection.first(where: { $0.tag == 10 })?.isHighlighted = !(self.settingsNotificationsMode == .push ? self.appSettings.isNotificaionPushMessage : self.appSettings.isNotificaionOnlineMessage)
+        self.imageViewsCollection.first(where: { $0.tag == 10 })?.isHighlighted = !self.appSettings.isNotificaionPushMessage
+        self.settingsButtonsCollection.first(where: { $0.accessibilityIdentifier == "message" })!.isSelected = self.appSettings.isNotificaionPushMessage
 
-        self.settingsButtonsCollection.first(where: { $0.accessibilityIdentifier == "witnessVote" })!.isSelected = self.settingsNotificationsMode == .push ? self.appSettings.isNotificaionPushWitnessVote : self.appSettings.isNotificaionOnlineWitnessVote
-        self.imageViewsCollection.first(where: { $0.tag == 11 })?.isHighlighted = !(self.settingsNotificationsMode == .push ? self.appSettings.isNotificaionPushWitnessVote : self.appSettings.isNotificaionOnlineWitnessVote)
+        self.imageViewsCollection.first(where: { $0.tag == 11 })?.isHighlighted = !self.appSettings.isNotificaionPushWitnessVote
+        self.settingsButtonsCollection.first(where: { $0.accessibilityIdentifier == "witnessVote" })!.isSelected = self.appSettings.isNotificaionPushWitnessVote
 
-        self.settingsButtonsCollection.first(where: { $0.accessibilityIdentifier == "witnessCancelVote" })!.isSelected = self.settingsNotificationsMode == .push ? self.appSettings.isNotificaionPushWitnessCancelVote : self.appSettings.isNotificaionOnlineWitnessCancelVote
-        self.imageViewsCollection.first(where: { $0.tag == 12 })?.isHighlighted = !(self.settingsNotificationsMode == .push ? self.appSettings.isNotificaionPushWitnessCancelVote : self.appSettings.isNotificaionOnlineWitnessCancelVote)
+        self.imageViewsCollection.first(where: { $0.tag == 12 })?.isHighlighted = !self.appSettings.isNotificaionPushWitnessCancelVote
+        self.settingsButtonsCollection.first(where: { $0.accessibilityIdentifier == "witnessCancelVote" })!.isSelected = self.appSettings.isNotificaionPushWitnessCancelVote
     }
 
     
@@ -219,7 +213,7 @@ class SettingsNotificationsShowViewController: GSBaseViewController {
     private func loadViewSettings() {
         self.view.tune()
         self.showNavigationBar()
-        self.title = (self.settingsNotificationsMode == .push ? "Settings Push Notifications" : "Settings Online Notifications").localized()
+        self.title = "Settings Push Notifications".localized()
 
         let requestModel = SettingsNotificationsShowModels.Items.RequestModel()
         interactor?.doSomething(withRequestModel: requestModel)
@@ -231,7 +225,7 @@ class SettingsNotificationsShowViewController: GSBaseViewController {
         self.titleLabelsCollection.forEach({
             $0.text = $0.accessibilityLabel?.localized()
             
-            if $0.tag == 1 && self.settingsNotificationsMode == .push {
+            if $0.tag == 1 {
                 $0.text = "Settings Enable All Push Notifications".localized()
             }
         })
@@ -243,22 +237,36 @@ class SettingsNotificationsShowViewController: GSBaseViewController {
     
     // MARK: - Actions
     @IBAction func soundSwitchChangeState(_ sender: UISwitch) {
-        self.appSettings.setNotificationSoundOn(mode: self.settingsNotificationsMode, value: sender.isOn)
+        self.appSettings.setPushNotificationSoundOn(value: sender.isOn)
     }
     
     @IBAction func enableAllNotificationsSwitchChangeState(_ sender: UISwitch) {
-        self.appSettings.setAllNotificationsOn(mode: self.settingsNotificationsMode, value: sender.isOn)
+        self.appSettings.setAllPushNotificationsOn(value: sender.isOn)
         self.settingsButtonsCollection.forEach({ $0.isSelected = sender.isOn })
         self.imageViewsCollection.forEach({ $0.isHighlighted = !sender.isOn })
         
-        self.appSettings.updateAllNotifications(mode: self.settingsNotificationsMode, value: sender.isOn)
+        self.appSettings.updateAllPushNotifications(value: sender.isOn)
     }
     
     // Settings buttons
     @IBAction func settingsButtonTapped(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
         self.imageViewsCollection.first(where: { $0.tag == sender.tag })?.isHighlighted = !sender.isSelected
-        self.appSettings.updateNotifications(mode: self.settingsNotificationsMode, property: sender.accessibilityIdentifier!, value: sender.isSelected)
+        self.appSettings.updatePushNotifications(property: sender.accessibilityIdentifier!, value: sender.isSelected)
+        
+        if let switcher = self.switchesCollection.first(where: { $0.tag == 1 }) {
+            let buttons = self.settingsButtonsCollection.compactMap({ $0.isSelected == true })
+            
+            if !sender.isSelected && switcher.isOn {
+                switcher.isOn = false
+                self.appSettings.setAllPushNotificationsOn(value: false)
+            }
+            
+            else if buttons.count == 13 && sender.isSelected && !switcher.isOn {
+                switcher.isOn = true
+                self.appSettings.setAllPushNotificationsOn(value: true)
+            }
+        }
    }
 }
 

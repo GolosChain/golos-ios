@@ -164,10 +164,8 @@
 "Unsubscribe are you sure"                  =   "Вы уверены, что хотите\nотменить подписку";
 "Subscribe Noun"                            =   "Подписка";
 "Unsubscribe Noun"                          =   "Отписка";
-"Settings Online Notifications"             =   "Настройки онлайн уведомлений";
 "Settings Push Notifications"               =   "Настройки пуш уведомлений";
 "Settings Sound Notifications"              =   "Звук уведомлений";
-"Settings Enable All Online Notifications"  =   "Включить все онлайн уведомления";
 "Settings Enable All Push Notifications"    =   "Включить все пуш уведомления";
 "Settings MENTIONS"                         =   "УПОМИНАНИЯ";
 "Settings Vote"                             =   "Голос за";
