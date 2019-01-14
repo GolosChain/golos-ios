@@ -321,4 +321,50 @@ public struct RequestParameterAPI {
             return [ "required_auths", "required_posting_auths", "id", "json" ]
         }
     }
+    
+    
+    // MARK: -
+    public struct PushOptions: Encodable {
+        // MARK: - Properties
+        public let language: String
+        public let vote: Bool
+        public let flag: Bool
+        public let transfer: Bool
+        public let reply: Bool
+        public let subscribe: Bool
+        public let unsubscribe: Bool
+        public let mention: Bool
+        public let repost: Bool
+        public let award: Bool
+        public let curatorAward: Bool
+        public let message: Bool
+        public let witnessVote: Bool
+        public let witnessCancelVote: Bool
+        
+        
+        // MARK: - Initialization
+        public init(languageValue: String = "ru", voteValue: Bool = true, flagValue: Bool = true, transferValue: Bool = true, replyValue: Bool = true, subscribeValue: Bool = true, unsubscribeValue: Bool = true, mentionValue: Bool = true, repostValue: Bool = true, awardValue: Bool = true, curatorAwardValue: Bool = true, messageValue: Bool = true, witnessVoteValue: Bool = true, witnessCancelVoteValue: Bool = true) {
+            self.language           =   languageValue
+            self.vote               =   voteValue
+            self.flag               =   flagValue
+            self.transfer           =   transferValue
+            self.reply              =   replyValue
+            self.subscribe          =   subscribeValue
+            self.unsubscribe        =   unsubscribeValue
+            self.mention            =   mentionValue
+            self.repost             =   repostValue
+            self.award              =   awardValue
+            self.curatorAward       =   curatorAwardValue
+            self.message            =   messageValue
+            self.witnessVote        =   witnessVoteValue
+            self.witnessCancelVote  =   witnessCancelVoteValue
+        }
+        
+        
+        // MARK: - Functions
+        // Template: "vote": <voteValue>, "flag": <flagValue>, "reply": <replyValue>, "transfer": <transferValue>, "subscribe": <subscribeValue>, "unsubscribe": <unsibscribeValue>, "mention": <mentionValue>, "repost": <repostValue>,  "message": <messageValue>, "witnessVote": <witnessVoteValue>, "witnessCancelVote": <witnessCancelVoteValue>, "reward": <rewardValue>, "curatorReward": <curatorRewardValue>
+        public func getOptionsValues() -> String {
+            return  String(format: "\"vote\": %d, \"flag\": %d, \"reply\": %d, \"transfer\": %d, \"subscribe\": %d, \"unsubscribe\": %d, \"mention\": %d, \"repost\": %d, \"message\": %d, \"witnessVote\": %d, \"witnessCancelVote\": %d, \"reward\": %d, \"curatorReward\": %d", self.vote.intValue, self.flag.intValue, self.reply.intValue, self.transfer.intValue, self.subscribe.intValue, self.unsubscribe.intValue, self.mention.intValue, self.repost.intValue, self.message.intValue, self.witnessVote.intValue, self.witnessCancelVote.intValue, self.award.intValue, self.curatorAward.intValue)
+        }
+    }
 }

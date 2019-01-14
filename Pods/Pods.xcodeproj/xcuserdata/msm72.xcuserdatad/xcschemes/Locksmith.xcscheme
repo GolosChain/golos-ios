@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C18A75BD1D5FAC00DFD946B50ACA9062"
+               BlueprintIdentifier = "07B0230D5513FE8CB3BBD3486C37E8A9"
                BuildableName = "Locksmith.framework"
                BlueprintName = "Locksmith"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "C18A75BD1D5FAC00DFD946B50ACA9062"
+            BlueprintIdentifier = "07B0230D5513FE8CB3BBD3486C37E8A9"
             BuildableName = "Locksmith.framework"
             BlueprintName = "Locksmith"
             ReferencedContainer = "container:Pods.xcodeproj">
