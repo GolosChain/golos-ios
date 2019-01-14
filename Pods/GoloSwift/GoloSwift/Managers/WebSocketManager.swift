@@ -211,7 +211,7 @@ public class WebSocketManager {
             case .getSecretKey(_):
                 return (responseAPI: try JSONDecoder().decode(ResponseAPIMicroserviceSecretResult.self, from: jsonData), errorAPI: nil)
                 
-            case .getBasicOptions(_):
+            case .getOptions(_):
                 return (responseAPI: try JSONDecoder().decode(ResponseAPIMicroserviceGetOptionsResult.self, from: jsonData), errorAPI: nil)
             }
         } catch {

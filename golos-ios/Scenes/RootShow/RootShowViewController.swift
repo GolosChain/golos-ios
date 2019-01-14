@@ -77,7 +77,7 @@ class RootShowViewController: GSBaseViewController {
                     
                 // API `getOptions`
                 else {
-                    MicroservicesManager.getBasicOptions(userNickName: currentUserNickName!, deviceUDID: currentDeviceUDID, completion: { (resultOptions, errorAPI) in
+                    MicroservicesManager.getOptions(type: .basic, userNickName: currentUserNickName!, deviceUDID: currentDeviceUDID, completion: { (resultOptions, errorAPI) in
                         if let currentVC = (UIApplication.shared.keyWindow?.rootViewController as? UINavigationController)?.viewControllers.last as? GSBaseViewController, errorAPI != nil {
                             currentVC.showAlertView(withTitle: "Error", andMessage: errorAPI!.caseInfo.message, needCancel: false, completion: { _ in })
                         }

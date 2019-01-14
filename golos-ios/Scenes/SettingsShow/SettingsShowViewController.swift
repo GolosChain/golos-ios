@@ -261,8 +261,8 @@ class SettingsShowViewController: GSBaseViewController {
         super.viewDidLoad()
         
         // Microservice API `getOptions`
-        self.getBasicOptions(completion: { [weak self] success in
-            guard let strongSelf = self else {return}
+        self.getOptions(type: .basic, completion: { [weak self] success in
+            guard let strongSelf = self else { return }
 
             strongSelf.localizeTitles()
             strongSelf.loadViewSettings()
@@ -449,8 +449,8 @@ extension SettingsShowViewController {
         })
     }
     
-    private func getBasicOptions(completion: @escaping (Bool) -> Void) {
-        MicroservicesManager.getBasicOptions(userNickName: currentUserNickName!, deviceUDID: currentDeviceUDID, completion: { [weak self] (resultOptions, errorAPI) in
+    private func getOptions(type: MicroserviceOperationsType, completion: @escaping (Bool) -> Void) {
+        MicroservicesManager.getOptions(type: type, userNickName: currentUserNickName!, deviceUDID: currentDeviceUDID, completion: { [weak self] (resultOptions, errorAPI) in
             guard let strongSelf = self else { return }
             
             if errorAPI != nil {

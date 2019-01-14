@@ -438,7 +438,7 @@ extension Broadcast {
             var jsonString: String
             
             switch microserviceMethodAPIType {
-            case .getSecretKey(_), .auth(_), .setBasicOptions(_), .getBasicOptions(_):
+            case .getSecretKey(_), .auth(_), .setBasicOptions(_), .getOptions(_):
                 jsonData        =   try jsonEncoder.encode(requestAPI)
                 jsonString      =   "\(String(data: jsonData, encoding: .utf8)!)"
             }
