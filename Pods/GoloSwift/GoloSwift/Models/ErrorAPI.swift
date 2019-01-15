@@ -10,6 +10,7 @@ import Foundation
 import Localize_Swift
 
 public enum ErrorAPI: Error {
+    case disableInternetConnection()
     case blockchain(message: String)
     case invalidData(message: String)
     case requestFailed(message: String)
@@ -18,28 +19,31 @@ public enum ErrorAPI: Error {
     case jsonConversionFailure(message: String)
     case signingECCKeychainPostingKeyFailure(message: String)
     
-    public var caseInfo: (title: String, message: String) {
+    public var caseInfo: (title: String, message: String, code: Int) {
         switch self {
+        case .disableInternetConnection():
+            return (title: "Error".localized(), message: "No Internet Connection".localized(), code: 599)
+            
         case .blockchain(let message):
-            return (title: "Error".localized(), message: message)
+            return (title: "Error".localized(), message: message, code: 100)
             
         case .invalidData(let message):
-            return (title: "Invalid Data".localized(), message: message)
+            return (title: "Invalid Data".localized(), message: message, code: 100)
             
         case .requestFailed(let message):
-            return (title: "Request Failed".localized(), message: message)
+            return (title: "Request Failed".localized(), message: message, code: 100)
             
         case .responseUnsuccessful(let message):
-            return (title: "Response Unsuccessful".localized(), message: message)
+            return (title: "Response Unsuccessful".localized(), message: message, code: 100)
             
         case .jsonParsingFailure(let message):
-            return (title: "JSON Parsing Failure".localized(), message: message)
+            return (title: "JSON Parsing Failure".localized(), message: message, code: 100)
             
         case .jsonConversionFailure(let message):
-            return (title: "JSON Conversion Failure".localized(), message: message)
+            return (title: "JSON Conversion Failure".localized(), message: message, code: 100)
             
         case .signingECCKeychainPostingKeyFailure(let message):
-            return (title: "Keychain Posting Key Failure".localized(), message: message)
+            return (title: "Keychain Posting Key Failure".localized(), message: message, code: 100)
         }
     }
 }

@@ -276,7 +276,14 @@ extension SettingsNotificationsShowViewController: SettingsNotificationsShowDisp
     func displayLoadPushNotificationsOptions(fromViewModel viewModel: SettingsNotificationsShowModels.Options.ViewModel) {
         // NOTE: Display the result from the Presenter
         guard viewModel.errorAPI == nil else {
-            self.showAlertView(withTitle: "Error", andMessage: viewModel.errorAPI!.caseInfo.message, needCancel: false, completion: { _ in })
+            self.showAlertView(withTitle: "Error", andMessage: viewModel.errorAPI!.caseInfo.message, needCancel: false, completion: { [weak self] success in
+                guard let strongSelf = self else { return }
+                
+                if viewModel.errorAPI!.caseInfo.code == 599 {
+                    strongSelf.setupNotificationsPropertiesValues()
+                }
+            })
+            
             return
         }
         

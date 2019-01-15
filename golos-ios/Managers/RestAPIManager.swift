@@ -88,7 +88,7 @@ class RestAPIManager {
             
         // Offline mode
         else {
-            completion(NSError(domain: "No Internet Connection", code: 599, userInfo: nil) as? ErrorAPI)
+            completion(ErrorAPI.disableInternetConnection())
         }
     }
 
@@ -120,7 +120,7 @@ class RestAPIManager {
             
         // Offline mode
         else {
-            completion(NSError(domain: "No Internet Connection", code: 599, userInfo: nil) as? ErrorAPI)
+            completion(ErrorAPI.disableInternetConnection())
         }
     }
 
@@ -152,7 +152,7 @@ class RestAPIManager {
             
         // Offline mode
         else {
-            completion(BlogEntry.loadEntries(byBlogAuthorNickName: nickName), NSError(domain: "No Internet Connection", code: 599, userInfo: nil) as? ErrorAPI)
+            completion(BlogEntry.loadEntries(byBlogAuthorNickName: nickName), ErrorAPI.disableInternetConnection())
         }
     }
     
@@ -224,7 +224,7 @@ class RestAPIManager {
         
         // Offline mode
         else {
-            completion(NSError(domain: "No Internet Connection", code: 599, userInfo: nil) as? ErrorAPI)
+            completion(ErrorAPI.disableInternetConnection())
         }
     }
     
@@ -310,7 +310,7 @@ class RestAPIManager {
             
         // Offline mode
         else {
-            completion(NSError(domain: "No Internet Connection", code: 599, userInfo: nil) as? ErrorAPI)
+            completion(ErrorAPI.disableInternetConnection())
         }
     }
 
@@ -348,7 +348,7 @@ class RestAPIManager {
             
         // Offline mode
         else {
-            completion(NSError(domain: "No Internet Connection", code: 599, userInfo: nil) as? ErrorAPI)
+            completion(ErrorAPI.disableInternetConnection())
         }
     }
 
@@ -383,7 +383,7 @@ class RestAPIManager {
             
         // Offline mode
         else {
-            completion(NSError(domain: "No Internet Connection", code: 599, userInfo: nil) as? ErrorAPI)
+            completion(ErrorAPI.disableInternetConnection())
         }
     }
 
@@ -417,7 +417,7 @@ class RestAPIManager {
             
         // Offline mode
         else {
-            completion(userNickName, [userNickName], NSError(domain: "No Internet Connection", code: 599, userInfo: nil) as? ErrorAPI)
+            completion(userNickName, [userNickName], ErrorAPI.disableInternetConnection())
         }
     }
     
@@ -451,7 +451,7 @@ class RestAPIManager {
             
         // Offline mode
         else {
-            completion(userNickName, [userNickName], NSError(domain: "No Internet Connection", code: 599, userInfo: nil) as? ErrorAPI)
+            completion(userNickName, [userNickName], ErrorAPI.disableInternetConnection())
         }
     }
     
@@ -481,7 +481,7 @@ class RestAPIManager {
             
         // Offline mode
         else {
-            completion(false, NSError(domain: "No Internet Connection", code: 599, userInfo: nil) as? ErrorAPI)
+            completion(false, ErrorAPI.disableInternetConnection())
         }
     }
     
@@ -507,7 +507,7 @@ class RestAPIManager {
             
         // Offline mode
         else {
-            completion(NSError(domain: "No Internet Connection", code: 599, userInfo: nil) as! ErrorAPI)
+            completion(ErrorAPI.disableInternetConnection())
         }
     }
     
