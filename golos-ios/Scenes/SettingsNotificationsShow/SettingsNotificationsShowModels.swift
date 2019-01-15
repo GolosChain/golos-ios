@@ -18,7 +18,7 @@ enum SettingsNotificationsShowModels {
     // MARK: - Use cases
     enum Options {
         struct RequestModel {
-            let enableAllNotificationsSwitchChangeState: Bool?
+            let isShowAllNotificationsOptions: Bool?
         }
         
         struct ResponseModel {

@@ -27,18 +27,18 @@ extension AppSettings {
     @NSManaged public var isAllPushNotificationsOn: Bool
     @NSManaged public var isPushNotificationSoundOn: Bool
 
-    @NSManaged public var isNotificaionPushVote: Bool
-    @NSManaged public var isNotificaionPushFlag: Bool
-    @NSManaged public var isNotificaionPushTransfer: Bool
-    @NSManaged public var isNotificaionPushReply: Bool
-    @NSManaged public var isNotificaionPushSubscribe: Bool
-    @NSManaged public var isNotificaionPushUnsubscribe: Bool
-    @NSManaged public var isNotificaionPushMention: Bool
-    @NSManaged public var isNotificaionPushRepost: Bool
-    @NSManaged public var isNotificaionPushReward: Bool
-    @NSManaged public var isNotificaionPushCuratorReward: Bool
-    @NSManaged public var isNotificaionPushMessage: Bool
-    @NSManaged public var isNotificaionPushWitnessVote: Bool
-    @NSManaged public var isNotificaionPushWitnessCancelVote: Bool
+    @NSManaged public var isPushNotificationVote: Bool
+    @NSManaged public var isPushNotificationFlag: Bool
+    @NSManaged public var isPushNotificationTransfer: Bool
+    @NSManaged public var isPushNotificationReply: Bool
+    @NSManaged public var isPushNotificationSubscribe: Bool
+    @NSManaged public var isPushNotificationUnsubscribe: Bool
+    @NSManaged public var isPushNotificationMention: Bool
+    @NSManaged public var isPushNotificationRepost: Bool
+    @NSManaged public var isPushNotificationAward: Bool
+    @NSManaged public var isPushNotificationCuratorAward: Bool
+    @NSManaged public var isPushNotificationMessage: Bool
+    @NSManaged public var isPushNotificationWitnessVote: Bool
+    @NSManaged public var isPushNotificationWitnessCancelVote: Bool
 
 }

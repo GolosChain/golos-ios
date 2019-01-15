@@ -176,8 +176,8 @@
 "Settings Unsubscribe Post"                 =   "Unsubscribing from the blog";
 "Settings Mention"                          =   "Mention in a post or a comment via";
 "Settings Repost"                           =   "Repost";
-"Settings User Reward"                      =   "User reward";
-"Settings Curator Reward"                   =   "Curation reward";
+"Settings User Award"                       =   "User award";
+"Settings Curator Award"                    =   "Curation award";
 "Settings Private Message"                  =   "Private message";
 "Settings Witness Vote"                     =   "Vote for your delegate node";
 

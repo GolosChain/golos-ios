@@ -77,19 +77,24 @@ public class AppSettings: NSManagedObject {
     
     // MARK: - Custom Functions
     func setStartWithWelcomeScene(_ value: Bool) {
-        self.startWithWelcomeScene  =   value
+        self.startWithWelcomeScene = value
         self.save()
     }
     
     func setAppThemeDark(_ value: Bool) {
         ThemeManager.setTheme(index: value ? 1 : 0)
-        self.isAppThemeDark         =   value
+        self.isAppThemeDark = value
 
         self.save()
     }
 
+    func setPushNotificationSoundOn(_ value: Bool) {
+        self.isPushNotificationSoundOn = value
+        self.save()
+    }
+
     func setFeedShowImages(_ value: Bool) {
-        self.isFeedShowImages       =   value
+        self.isFeedShowImages = value
         self.save()
     }
 
@@ -119,25 +124,26 @@ public class AppSettings: NSManagedObject {
     func update(basic: ResponseAPIMicroserviceGetOptionsBasic) {
         self.setAppThemeDark(basic.theme == 0 ? false : true)
         self.setFeedShowImages(basic.feedShowImages == 0 ? false : true)
+        self.setPushNotificationSoundOn(basic.soundOn == 0 ? false : true)
     }
     
     func update(push: ResponseAPIMicroserviceGetOptionsPush) {
-        self.language                           =   push.lang
-        self.isNotificaionPushVote              =   push.show.vote
-        self.isNotificaionPushFlag              =   push.show.flag
-        self.isNotificaionPushTransfer          =   push.show.transfer
-        self.isNotificaionPushReply             =   push.show.reply
-        self.isNotificaionPushSubscribe         =   push.show.subscribe
-        self.isNotificaionPushUnsubscribe       =   push.show.unsubscribe
-        self.isNotificaionPushMention           =   push.show.mention
-        self.isNotificaionPushRepost            =   push.show.repost
-        self.isNotificaionPushReward            =   push.show.award
-        self.isNotificaionPushCuratorReward     =   push.show.curatorAward
-        self.isNotificaionPushMessage           =   push.show.message
-        self.isNotificaionPushWitnessVote       =   push.show.witnessVote
-        self.isNotificaionPushWitnessCancelVote =   push.show.witnessCancelVote
+        self.language                               =   push.lang
+        self.isPushNotificationVote                 =   push.show.vote
+        self.isPushNotificationFlag                 =   push.show.flag
+        self.isPushNotificationTransfer             =   push.show.transfer
+        self.isPushNotificationReply                =   push.show.reply
+        self.isPushNotificationSubscribe            =   push.show.subscribe
+        self.isPushNotificationUnsubscribe          =   push.show.unsubscribe
+        self.isPushNotificationMention              =   push.show.mention
+        self.isPushNotificationRepost               =   push.show.repost
+        self.isPushNotificationAward                =   push.show.award
+        self.isPushNotificationCuratorAward         =   push.show.curatorAward
+        self.isPushNotificationMessage              =   push.show.message
+        self.isPushNotificationWitnessVote          =   push.show.witnessVote
+        self.isPushNotificationWitnessCancelVote    =   push.show.witnessCancelVote
         
-        self.isAllPushNotificationsOn           =   push.show.vote && push.show.flag && push.show.transfer && push.show.reply && push.show.subscribe && push.show.unsubscribe &&
+        self.isAllPushNotificationsOn   =   push.show.vote && push.show.flag && push.show.transfer && push.show.reply && push.show.subscribe && push.show.unsubscribe &&
                                                     push.show.mention && push.show.repost && push.show.award && push.show.curatorAward && push.show.message && push.show.witnessVote &&
                                                     push.show.witnessCancelVote
 
@@ -145,39 +151,39 @@ public class AppSettings: NSManagedObject {
     }
 
     func updatePushNotifications(property: String, value: Bool) {
-        let propertyName = String(format: "isNotificaion%@%@", "Push", property.uppercaseFirst)
+        let propertyName = String(format: "isPushNotification%@", property.uppercaseFirst)
 
-        if propertyName == "isNotificaionPushVote"                      { self.isNotificaionPushVote = value }
-        else if propertyName == "isNotificaionPushFlag"                 { self.isNotificaionPushFlag = value }
-        else if propertyName == "isNotificaionPushTransfer"             { self.isNotificaionPushTransfer = value }
-        else if propertyName == "isNotificaionPushReply"                { self.isNotificaionPushReply = value }
-        else if propertyName == "isNotificaionPushSubscribe"            { self.isNotificaionPushSubscribe = value }
-        else if propertyName == "isNotificaionPushUnsubscribe"          { self.isNotificaionPushUnsubscribe = value }
-        else if propertyName == "isNotificaionPushMention"              { self.isNotificaionPushMention = value }
-        else if propertyName == "isNotificaionPushRepost"               { self.isNotificaionPushRepost = value }
-        else if propertyName == "isNotificaionPushReward"               { self.isNotificaionPushReward = value }
-        else if propertyName == "isNotificaionPushCuratorReward"        { self.isNotificaionPushCuratorReward = value }
-        else if propertyName == "isNotificaionPushMessage"              { self.isNotificaionPushMessage = value }
-        else if propertyName == "isNotificaionPushWitnessVote"          { self.isNotificaionPushWitnessVote = value }
-        else if propertyName == "isNotificaionPushWitnessCancelVote"    { self.isNotificaionPushWitnessCancelVote = value }
+        if propertyName == "isPushNotificationVote"                     { self.isPushNotificationVote = value }
+        else if propertyName == "isPushNotificationFlag"                { self.isPushNotificationFlag = value }
+        else if propertyName == "isPushNotificationTransfer"            { self.isPushNotificationTransfer = value }
+        else if propertyName == "isPushNotificationReply"               { self.isPushNotificationReply = value }
+        else if propertyName == "isPushNotificationSubscribe"           { self.isPushNotificationSubscribe = value }
+        else if propertyName == "isPushNotificationUnsubscribe"         { self.isPushNotificationUnsubscribe = value }
+        else if propertyName == "isPushNotificationMention"             { self.isPushNotificationMention = value }
+        else if propertyName == "isPushNotificationRepost"              { self.isPushNotificationRepost = value }
+        else if propertyName == "isPushNotificationAward"               { self.isPushNotificationAward = value }
+        else if propertyName == "isPushNotificationCuratorAward"        { self.isPushNotificationCuratorAward = value }
+        else if propertyName == "isPushNotificationMessage"             { self.isPushNotificationMessage = value }
+        else if propertyName == "isPushNotificationWitnessVote"         { self.isPushNotificationWitnessVote = value }
+        else if propertyName == "isPushNotificationWitnessCancelVote"   { self.isPushNotificationWitnessCancelVote = value }
         
         self.save()
     }
     
     func updateAllPushNotifications(value: Bool) {
-        self.isNotificaionPushVote                  =   value
-        self.isNotificaionPushFlag                  =   value
-        self.isNotificaionPushTransfer              =   value
-        self.isNotificaionPushReply                 =   value
-        self.isNotificaionPushSubscribe             =   value
-        self.isNotificaionPushUnsubscribe           =   value
-        self.isNotificaionPushMention               =   value
-        self.isNotificaionPushRepost                =   value
-        self.isNotificaionPushReward                =   value
-        self.isNotificaionPushCuratorReward         =   value
-        self.isNotificaionPushMessage               =   value
-        self.isNotificaionPushWitnessVote           =   value
-        self.isNotificaionPushWitnessCancelVote     =   value
+        self.isPushNotificationVote                 =   value
+        self.isPushNotificationFlag                 =   value
+        self.isPushNotificationTransfer             =   value
+        self.isPushNotificationReply                =   value
+        self.isPushNotificationSubscribe            =   value
+        self.isPushNotificationUnsubscribe          =   value
+        self.isPushNotificationMention              =   value
+        self.isPushNotificationRepost               =   value
+        self.isPushNotificationAward                =   value
+        self.isPushNotificationCuratorAward         =   value
+        self.isPushNotificationMessage              =   value
+        self.isPushNotificationWitnessVote          =   value
+        self.isPushNotificationWitnessCancelVote    =   value
         
         self.isAllPushNotificationsOn               =   value
         

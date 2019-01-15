@@ -139,44 +139,44 @@ class SettingsNotificationsShowViewController: GSBaseViewController {
         self.switchesCollection.first(where: { $0.tag == 0 })?.isOn = self.appSettings.isPushNotificationSoundOn
         self.switchesCollection.first(where: { $0.tag == 1 })?.isOn = self.appSettings.isAllPushNotificationsOn
         
-        self.imageViewsCollection.first(where: { $0.tag == 0 })?.isHighlighted = !self.appSettings.isNotificaionPushVote
-        self.settingsButtonsCollection.first(where: { $0.accessibilityIdentifier == "vote" })!.isSelected = self.appSettings.isNotificaionPushVote
+        self.imageViewsCollection.first(where: { $0.tag == 0 })?.isHighlighted = !self.appSettings.isPushNotificationVote
+        self.settingsButtonsCollection.first(where: { $0.accessibilityIdentifier == "vote" })!.isSelected = self.appSettings.isPushNotificationVote
         
-        self.imageViewsCollection.first(where: { $0.tag == 1 })?.isHighlighted = !self.appSettings.isNotificaionPushFlag
-        self.settingsButtonsCollection.first(where: { $0.accessibilityIdentifier == "flag" })!.isSelected = self.appSettings.isNotificaionPushFlag
+        self.imageViewsCollection.first(where: { $0.tag == 1 })?.isHighlighted = !self.appSettings.isPushNotificationFlag
+        self.settingsButtonsCollection.first(where: { $0.accessibilityIdentifier == "flag" })!.isSelected = self.appSettings.isPushNotificationFlag
 
-        self.imageViewsCollection.first(where: { $0.tag == 2 })?.isHighlighted = !self.appSettings.isNotificaionPushTransfer
-        self.settingsButtonsCollection.first(where: { $0.accessibilityIdentifier == "transfer" })!.isSelected = self.appSettings.isNotificaionPushTransfer
+        self.imageViewsCollection.first(where: { $0.tag == 2 })?.isHighlighted = !self.appSettings.isPushNotificationTransfer
+        self.settingsButtonsCollection.first(where: { $0.accessibilityIdentifier == "transfer" })!.isSelected = self.appSettings.isPushNotificationTransfer
 
-        self.imageViewsCollection.first(where: { $0.tag == 3 })?.isHighlighted = !self.appSettings.isNotificaionPushReply
-        self.settingsButtonsCollection.first(where: { $0.accessibilityIdentifier == "reply" })!.isSelected = self.appSettings.isNotificaionPushReply
+        self.imageViewsCollection.first(where: { $0.tag == 3 })?.isHighlighted = !self.appSettings.isPushNotificationReply
+        self.settingsButtonsCollection.first(where: { $0.accessibilityIdentifier == "reply" })!.isSelected = self.appSettings.isPushNotificationReply
 
-        self.imageViewsCollection.first(where: { $0.tag == 4 })?.isHighlighted = !self.appSettings.isNotificaionPushSubscribe
-        self.settingsButtonsCollection.first(where: { $0.accessibilityIdentifier == "subscribe" })!.isSelected = self.appSettings.isNotificaionPushSubscribe
+        self.imageViewsCollection.first(where: { $0.tag == 4 })?.isHighlighted = !self.appSettings.isPushNotificationSubscribe
+        self.settingsButtonsCollection.first(where: { $0.accessibilityIdentifier == "subscribe" })!.isSelected = self.appSettings.isPushNotificationSubscribe
 
-        self.imageViewsCollection.first(where: { $0.tag == 5 })?.isHighlighted = !self.appSettings.isNotificaionPushUnsubscribe
-        self.settingsButtonsCollection.first(where: { $0.accessibilityIdentifier == "unsubscribe" })!.isSelected = self.appSettings.isNotificaionPushUnsubscribe
+        self.imageViewsCollection.first(where: { $0.tag == 5 })?.isHighlighted = !self.appSettings.isPushNotificationUnsubscribe
+        self.settingsButtonsCollection.first(where: { $0.accessibilityIdentifier == "unsubscribe" })!.isSelected = self.appSettings.isPushNotificationUnsubscribe
 
-        self.imageViewsCollection.first(where: { $0.tag == 6 })?.isHighlighted = !self.appSettings.isNotificaionPushMention
-        self.settingsButtonsCollection.first(where: { $0.accessibilityIdentifier == "mention" })!.isSelected = self.appSettings.isNotificaionPushMention
+        self.imageViewsCollection.first(where: { $0.tag == 6 })?.isHighlighted = !self.appSettings.isPushNotificationMention
+        self.settingsButtonsCollection.first(where: { $0.accessibilityIdentifier == "mention" })!.isSelected = self.appSettings.isPushNotificationMention
 
-        self.imageViewsCollection.first(where: { $0.tag == 7 })?.isHighlighted = !self.appSettings.isNotificaionPushRepost
-        self.settingsButtonsCollection.first(where: { $0.accessibilityIdentifier == "repost" })!.isSelected = self.appSettings.isNotificaionPushRepost
+        self.imageViewsCollection.first(where: { $0.tag == 7 })?.isHighlighted = !self.appSettings.isPushNotificationRepost
+        self.settingsButtonsCollection.first(where: { $0.accessibilityIdentifier == "repost" })!.isSelected = self.appSettings.isPushNotificationRepost
 
-        self.imageViewsCollection.first(where: { $0.tag == 8 })?.isHighlighted = !self.appSettings.isNotificaionPushReward
-        self.settingsButtonsCollection.first(where: { $0.accessibilityIdentifier == "reward" })!.isSelected = self.appSettings.isNotificaionPushReward
+        self.imageViewsCollection.first(where: { $0.tag == 8 })?.isHighlighted = !self.appSettings.isPushNotificationAward
+        self.settingsButtonsCollection.first(where: { $0.accessibilityIdentifier == "reward" })!.isSelected = self.appSettings.isPushNotificationAward
 
-        self.imageViewsCollection.first(where: { $0.tag == 9 })?.isHighlighted = !self.appSettings.isNotificaionPushCuratorReward
-        self.settingsButtonsCollection.first(where: { $0.accessibilityIdentifier == "curatorReward" })!.isSelected = self.appSettings.isNotificaionPushCuratorReward
+        self.imageViewsCollection.first(where: { $0.tag == 9 })?.isHighlighted = !self.appSettings.isPushNotificationCuratorAward
+        self.settingsButtonsCollection.first(where: { $0.accessibilityIdentifier == "curatorReward" })!.isSelected = self.appSettings.isPushNotificationCuratorAward
 
-        self.imageViewsCollection.first(where: { $0.tag == 10 })?.isHighlighted = !self.appSettings.isNotificaionPushMessage
-        self.settingsButtonsCollection.first(where: { $0.accessibilityIdentifier == "message" })!.isSelected = self.appSettings.isNotificaionPushMessage
+        self.imageViewsCollection.first(where: { $0.tag == 10 })?.isHighlighted = !self.appSettings.isPushNotificationMessage
+        self.settingsButtonsCollection.first(where: { $0.accessibilityIdentifier == "message" })!.isSelected = self.appSettings.isPushNotificationMessage
 
-        self.imageViewsCollection.first(where: { $0.tag == 11 })?.isHighlighted = !self.appSettings.isNotificaionPushWitnessVote
-        self.settingsButtonsCollection.first(where: { $0.accessibilityIdentifier == "witnessVote" })!.isSelected = self.appSettings.isNotificaionPushWitnessVote
+        self.imageViewsCollection.first(where: { $0.tag == 11 })?.isHighlighted = !self.appSettings.isPushNotificationWitnessVote
+        self.settingsButtonsCollection.first(where: { $0.accessibilityIdentifier == "witnessVote" })!.isSelected = self.appSettings.isPushNotificationWitnessVote
 
-        self.imageViewsCollection.first(where: { $0.tag == 12 })?.isHighlighted = !self.appSettings.isNotificaionPushWitnessCancelVote
-        self.settingsButtonsCollection.first(where: { $0.accessibilityIdentifier == "witnessCancelVote" })!.isSelected = self.appSettings.isNotificaionPushWitnessCancelVote
+        self.imageViewsCollection.first(where: { $0.tag == 12 })?.isHighlighted = !self.appSettings.isPushNotificationWitnessCancelVote
+        self.settingsButtonsCollection.first(where: { $0.accessibilityIdentifier == "witnessCancelVote" })!.isSelected = self.appSettings.isPushNotificationWitnessCancelVote
     }
 
     
@@ -216,7 +216,7 @@ class SettingsNotificationsShowViewController: GSBaseViewController {
         self.showNavigationBar()
         self.title = "Settings Push Notifications".localized()
 
-        let requestModel = SettingsNotificationsShowModels.Options.RequestModel(enableAllNotificationsSwitchChangeState: nil)
+        let requestModel = SettingsNotificationsShowModels.Options.RequestModel(isShowAllNotificationsOptions: nil)
         interactor?.loadPushNotificationsOptions(withRequestModel: requestModel)
     }
     
@@ -238,11 +238,11 @@ class SettingsNotificationsShowViewController: GSBaseViewController {
     
     // MARK: - Actions
     @IBAction func soundSwitchChangeState(_ sender: UISwitch) {
-        self.appSettings.setPushNotificationSoundOn(value: sender.isOn)
+        self.setBasicOption(soundOn: sender.isOn)
     }
     
     @IBAction func enableAllNotificationsSwitchChangeState(_ sender: UISwitch) {
-        let requestModel = SettingsNotificationsShowModels.Options.RequestModel(enableAllNotificationsSwitchChangeState: sender.isOn)
+        let requestModel = SettingsNotificationsShowModels.Options.RequestModel(isShowAllNotificationsOptions: sender.isOn)
         interactor?.setAllPushNotificationsShowOptions(withRequestModel: requestModel)
     }
     
@@ -303,5 +303,21 @@ extension SettingsNotificationsShowViewController: SettingsNotificationsShowDisp
         }
         
         self.setupNotificationsPropertiesValues()
+    }
+}
+
+
+// MARK: - Microservices
+extension SettingsNotificationsShowViewController {
+    private func setBasicOption(soundOn: Bool) {
+        MicroservicesManager.setBasicOptions(userNickName: currentUserNickName!, deviceUDID: currentDeviceUDID, isDarkTheme: self.appSettings.isAppThemeDark, isFeedShowImages: self.appSettings.isFeedShowImages, isSoundOn: soundOn, completion: { [weak self] errorAPI in
+            guard let strongSelf = self else { return }
+            
+            if errorAPI != nil {
+                strongSelf.showAlertView(withTitle: "Error", andMessage: errorAPI!.caseInfo.message, needCancel: false, completion: { _ in })
+            }
+            
+            strongSelf.appSettings.setPushNotificationSoundOn(value: soundOn)
+        })
     }
 }

@@ -176,8 +176,8 @@
 "Settings Unsubscribe Post"                 =   "Отписка от блога";
 "Settings Mention"                          =   "Упоминание в посте или комменте через";
 "Settings Repost"                           =   "Репост";
-"Settings User Reward"                      =   "Награда пользователю";
-"Settings Curator Reward"                   =   "Награда куратору";
+"Settings User Award"                       =   "Награда пользователю";
+"Settings Curator Award"                    =   "Награда куратору";
 "Settings Private Message"                  =   "Личное сообщение";
 "Settings Witness Vote"                     =   "Голос за вашу делегатскую ноду";
 

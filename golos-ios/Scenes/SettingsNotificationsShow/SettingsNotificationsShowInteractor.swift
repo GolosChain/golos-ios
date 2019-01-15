@@ -40,7 +40,7 @@ class SettingsNotificationsShowInteractor: SettingsNotificationsShowBusinessLogi
 
     // MARK: - Business logic implementation
     func loadPushNotificationsOptions(withRequestModel requestModel: SettingsNotificationsShowModels.Options.RequestModel) {
-        // API `getOptions`
+        // API push `getOptions`
         MicroservicesManager.getOptions(type: .push, userNickName: currentUserNickName!, deviceUDID: currentDeviceUDID, completion: { [weak self] (resultOptions, errorAPI) in
             guard let strongSelf = self else { return }
             
@@ -61,13 +61,13 @@ class SettingsNotificationsShowInteractor: SettingsNotificationsShowBusinessLogi
     
     func setAllPushNotificationsShowOptions(withRequestModel requestModel: SettingsNotificationsShowModels.Options.RequestModel) {
         // API all push `setOptions`
-        MicroservicesManager.setPushOptions(userNickName: currentUserNickName!, deviceUDID: currentDeviceUDID, options: RequestParameterAPI.PushOptions.init(languageValue: Localize.currentLanguage(), valueForAll: requestModel.enableAllNotificationsSwitchChangeState ?? true), completion: { [weak self] errorAPI in
+        MicroservicesManager.setPushOptions(userNickName: currentUserNickName!, deviceUDID: currentDeviceUDID, options: RequestParameterAPI.PushOptions.init(languageValue: Localize.currentLanguage(), valueForAll: requestModel.isShowAllNotificationsOptions ?? true), completion: { [weak self] errorAPI in
             guard let strongSelf = self else { return }
             
             // Synchronize `all push` options
             if errorAPI == nil {
                 // CoreData: modify AppSettings
-                AppSettings.instance().updateAllPushNotifications(value: requestModel.enableAllNotificationsSwitchChangeState ?? true)
+                AppSettings.instance().updateAllPushNotifications(value: requestModel.isShowAllNotificationsOptions ?? true)
             }
             
             let responseModel = SettingsNotificationsShowModels.Options.ResponseModel(errorAPI: errorAPI)
