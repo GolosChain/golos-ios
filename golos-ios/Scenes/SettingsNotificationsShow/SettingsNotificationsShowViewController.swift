@@ -16,6 +16,7 @@ import GoloSwift
 // MARK: - Input & Output protocols
 protocol SettingsNotificationsShowDisplayLogic: class {
     func displayLoadPushNotificationsOptions(fromViewModel viewModel: SettingsNotificationsShowModels.Options.ViewModel)
+    func displaySetAllPushNotificationsShowOptions(fromViewModel viewModel: SettingsNotificationsShowModels.Options.ViewModel)
 }
 
 class SettingsNotificationsShowViewController: GSBaseViewController {
@@ -215,7 +216,7 @@ class SettingsNotificationsShowViewController: GSBaseViewController {
         self.showNavigationBar()
         self.title = "Settings Push Notifications".localized()
 
-        let requestModel = SettingsNotificationsShowModels.Options.RequestModel()
+        let requestModel = SettingsNotificationsShowModels.Options.RequestModel(enableAllNotificationsSwitchChangeState: nil)
         interactor?.loadPushNotificationsOptions(withRequestModel: requestModel)
     }
     
@@ -241,11 +242,8 @@ class SettingsNotificationsShowViewController: GSBaseViewController {
     }
     
     @IBAction func enableAllNotificationsSwitchChangeState(_ sender: UISwitch) {
-        self.appSettings.setAllPushNotificationsOn(value: sender.isOn)
-        self.settingsButtonsCollection.forEach({ $0.isSelected = sender.isOn })
-        self.imageViewsCollection.forEach({ $0.isHighlighted = !sender.isOn })
-        
-        self.appSettings.updateAllPushNotifications(value: sender.isOn)
+        let requestModel = SettingsNotificationsShowModels.Options.RequestModel(enableAllNotificationsSwitchChangeState: sender.isOn)
+        interactor?.setAllPushNotificationsShowOptions(withRequestModel: requestModel)
     }
     
     // Settings buttons
@@ -274,6 +272,23 @@ class SettingsNotificationsShowViewController: GSBaseViewController {
 // MARK: - SettingsNotificationsShowDisplayLogic
 extension SettingsNotificationsShowViewController: SettingsNotificationsShowDisplayLogic {
     func displayLoadPushNotificationsOptions(fromViewModel viewModel: SettingsNotificationsShowModels.Options.ViewModel) {
+        // NOTE: Display the result from the Presenter
+        guard viewModel.errorAPI == nil else {
+            self.showAlertView(withTitle: "Error", andMessage: viewModel.errorAPI!.caseInfo.message, needCancel: false, completion: { [weak self] success in
+                guard let strongSelf = self else { return }
+                
+                if viewModel.errorAPI!.caseInfo.code == 599 {
+                    strongSelf.setupNotificationsPropertiesValues()
+                }
+            })
+            
+            return
+        }
+        
+        self.setupNotificationsPropertiesValues()
+    }
+    
+    func displaySetAllPushNotificationsShowOptions(fromViewModel viewModel: SettingsNotificationsShowModels.Options.ViewModel) {
         // NOTE: Display the result from the Presenter
         guard viewModel.errorAPI == nil else {
             self.showAlertView(withTitle: "Error", andMessage: viewModel.errorAPI!.caseInfo.message, needCancel: false, completion: { [weak self] success in

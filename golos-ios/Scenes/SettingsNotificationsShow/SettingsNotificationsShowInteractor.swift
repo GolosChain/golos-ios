@@ -12,10 +12,12 @@
 
 import UIKit
 import GoloSwift
+import Localize_Swift
 
 // MARK: - Business Logic protocols
 protocol SettingsNotificationsShowBusinessLogic {
     func loadPushNotificationsOptions(withRequestModel requestModel: SettingsNotificationsShowModels.Options.RequestModel)
+    func setAllPushNotificationsShowOptions(withRequestModel requestModel: SettingsNotificationsShowModels.Options.RequestModel)
 }
 
 protocol SettingsNotificationsShowDataStore {
@@ -53,7 +55,23 @@ class SettingsNotificationsShowInteractor: SettingsNotificationsShowBusinessLogi
             }
             
             let responseModel = SettingsNotificationsShowModels.Options.ResponseModel(errorAPI: errorAPI)
-            strongSelf.presenter?.presentSomething(fromResponseModel: responseModel)
+            strongSelf.presenter?.presentLoadPushNotificationsOptions(fromResponseModel: responseModel)
+        })
+    }
+    
+    func setAllPushNotificationsShowOptions(withRequestModel requestModel: SettingsNotificationsShowModels.Options.RequestModel) {
+        // API all push `setOptions`
+        MicroservicesManager.setPushOptions(userNickName: currentUserNickName!, deviceUDID: currentDeviceUDID, options: RequestParameterAPI.PushOptions.init(languageValue: Localize.currentLanguage(), valueForAll: requestModel.enableAllNotificationsSwitchChangeState ?? true), completion: { [weak self] errorAPI in
+            guard let strongSelf = self else { return }
+            
+            // Synchronize `all push` options
+            if errorAPI == nil {
+                // CoreData: modify AppSettings
+                AppSettings.instance().updateAllPushNotifications(value: requestModel.enableAllNotificationsSwitchChangeState ?? true)
+            }
+            
+            let responseModel = SettingsNotificationsShowModels.Options.ResponseModel(errorAPI: errorAPI)
+            strongSelf.presenter?.presentSetAllPushNotificationsShowOptions(fromResponseModel: responseModel)
         })
     }
 }

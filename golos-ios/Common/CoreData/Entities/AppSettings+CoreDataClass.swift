@@ -179,6 +179,8 @@ public class AppSettings: NSManagedObject {
         self.isNotificaionPushWitnessVote           =   value
         self.isNotificaionPushWitnessCancelVote     =   value
         
+        self.isAllPushNotificationsOn               =   value
+        
         self.save()
     }
 }

@@ -53,10 +53,10 @@ public struct RequestParameterAPI {
             }
             
             return  result
-                        .replacingOccurrences(of: "{{", with: "{")
-                        .replacingOccurrences(of: "}{", with: ",")
-                        .replacingOccurrences(of: "],{", with: "],")
-                        .replacingOccurrences(of: "}\"}", with: "}\"")
+                .replacingOccurrences(of: "{{", with: "{")
+                .replacingOccurrences(of: "}{", with: ",")
+                .replacingOccurrences(of: "],{", with: "],")
+                .replacingOccurrences(of: "}\"}", with: "}\"")
         } catch {
             Logger.log(message: "Error: \(error.localizedDescription)", event: .error)
             return nil
@@ -182,14 +182,14 @@ public struct RequestParameterAPI {
         
         public func getProperties() -> [String: Any] {
             return  [
-                        "parent_author":    self.parentAuthor,
-                        "parent_permlink":  self.parentPermlink,
-                        "author":           self.author,
-                        "permlink":         self.permlink,
-                        "title":            self.title,
-                        "body":             self.body,
-                        "json_metadata":    self.jsonMetadata
-                    ]
+                "parent_author":    self.parentAuthor,
+                "parent_permlink":  self.parentPermlink,
+                "author":           self.author,
+                "permlink":         self.permlink,
+                "title":            self.title,
+                "body":             self.body,
+                "json_metadata":    self.jsonMetadata
+            ]
         }
         
         func getPropertiesNames() -> [String] {
@@ -309,12 +309,12 @@ public struct RequestParameterAPI {
             let isWhatNil = self.what == nil
             
             return  [
-                "required_auths":           [],
-                "required_posting_auths":   self.userNickNames,
-                "id":                       "follow",
-                "json":                     isWhatNil ? "[\"follow\",{\"follower\":\"\(self.follower)\",\"following\":\"\(self.authorNickName)\",\"what\":[]}]" :
-                "[\"follow\",{\"follower\":\"\(self.follower)\",\"following\":\"\(self.authorNickName)\",\"what\":[\"\(self.what!)\"]}]"
-            ]
+                        "required_auths":           [],
+                        "required_posting_auths":   self.userNickNames,
+                        "id":                       "follow",
+                        "json":                     isWhatNil ? "[\"follow\",{\"follower\":\"\(self.follower)\",\"following\":\"\(self.authorNickName)\",\"what\":[]}]" :
+                                                                "[\"follow\",{\"follower\":\"\(self.follower)\",\"following\":\"\(self.authorNickName)\",\"what\":[\"\(self.what!)\"]}]"
+                    ]
         }
         
         func getPropertiesNames() -> [String] {
@@ -360,11 +360,28 @@ public struct RequestParameterAPI {
             self.witnessCancelVote  =   witnessCancelVoteValue
         }
         
+        public init(languageValue: String = "ru", valueForAll: Bool = true) {
+            self.language           =   languageValue
+            self.vote               =   valueForAll
+            self.flag               =   valueForAll
+            self.transfer           =   valueForAll
+            self.reply              =   valueForAll
+            self.subscribe          =   valueForAll
+            self.unsubscribe        =   valueForAll
+            self.mention            =   valueForAll
+            self.repost             =   valueForAll
+            self.award              =   valueForAll
+            self.curatorAward       =   valueForAll
+            self.message            =   valueForAll
+            self.witnessVote        =   valueForAll
+            self.witnessCancelVote  =   valueForAll
+        }
+        
         
         // MARK: - Functions
-        // Template: "vote": <voteValue>, "flag": <flagValue>, "reply": <replyValue>, "transfer": <transferValue>, "subscribe": <subscribeValue>, "unsubscribe": <unsibscribeValue>, "mention": <mentionValue>, "repost": <repostValue>,  "message": <messageValue>, "witnessVote": <witnessVoteValue>, "witnessCancelVote": <witnessCancelVoteValue>, "reward": <rewardValue>, "curatorReward": <curatorRewardValue>
+        // Template: "vote": <voteValue>, "flag": <flagValue>, "reply": <replyValue>, "transfer": <transferValue>, "subscribe": <subscribeValue>, "unsubscribe": <unsibscribeValue>, "mention": <mentionValue>, "repost": <repostValue>,  "message": <messageValue>, "witnessVote": <witnessVoteValue>, "witnessCancelVote": <witnessCancelVoteValue>, "award": <awardValue>, "curatorAward": <curatorAwardValue>
         public func getOptionsValues() -> String {
-            return  String(format: "\"vote\": %d, \"flag\": %d, \"reply\": %d, \"transfer\": %d, \"subscribe\": %d, \"unsubscribe\": %d, \"mention\": %d, \"repost\": %d, \"message\": %d, \"witnessVote\": %d, \"witnessCancelVote\": %d, \"reward\": %d, \"curatorReward\": %d", self.vote.intValue, self.flag.intValue, self.reply.intValue, self.transfer.intValue, self.subscribe.intValue, self.unsubscribe.intValue, self.mention.intValue, self.repost.intValue, self.message.intValue, self.witnessVote.intValue, self.witnessCancelVote.intValue, self.award.intValue, self.curatorAward.intValue)
+            return  String(format: "\"vote\": %d, \"flag\": %d, \"reply\": %d, \"transfer\": %d, \"subscribe\": %d, \"unsubscribe\": %d, \"mention\": %d, \"repost\": %d, \"message\": %d, \"witnessVote\": %d, \"witnessCancelVote\": %d, \"award\": %d, \"curatorAward\": %d", self.vote.intValue, self.flag.intValue, self.reply.intValue, self.transfer.intValue, self.subscribe.intValue, self.unsubscribe.intValue, self.mention.intValue, self.repost.intValue, self.message.intValue, self.witnessVote.intValue, self.witnessCancelVote.intValue, self.award.intValue, self.curatorAward.intValue)
         }
     }
 }
