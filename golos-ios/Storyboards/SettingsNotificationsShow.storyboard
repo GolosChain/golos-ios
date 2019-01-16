@@ -166,6 +166,9 @@
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-settings-flag-normal" highlightedImage="icon-settings-flag-highlighted" translatesAutoresizingMaskIntoConstraints="NO" id="u2o-Hi-Bw6" userLabel="Flag Image View">
                                                                 <rect key="frame" x="307" y="12" width="20" height="20"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <accessibility key="accessibilityConfiguration" identifier="flag">
+                                                                    <bool key="isElement" value="YES"/>
+                                                                </accessibility>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" secondItem="u2o-Hi-Bw6" secondAttribute="height" multiplier="1:1" id="F26-zo-3iz"/>
                                                                     <constraint firstAttribute="width" constant="20" id="dzk-ar-ZON"/>
@@ -198,6 +201,9 @@
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-settings-transfer-money-normal" highlightedImage="icon-settings-transfer-money-highlighted" translatesAutoresizingMaskIntoConstraints="NO" id="ZNj-1x-qS1" userLabel="Transfer Money Image View">
                                                                 <rect key="frame" x="307" y="12" width="20" height="20"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <accessibility key="accessibilityConfiguration" identifier="transfer">
+                                                                    <bool key="isElement" value="YES"/>
+                                                                </accessibility>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="20" id="Qwl-Rb-jdn"/>
                                                                     <constraint firstAttribute="width" secondItem="ZNj-1x-qS1" secondAttribute="height" multiplier="1:1" id="yNf-ap-TAU"/>
@@ -230,6 +236,9 @@
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-settings-reply-post-normal" highlightedImage="icon-settings-reply-post-highlighted" translatesAutoresizingMaskIntoConstraints="NO" id="46f-36-f5d" userLabel="Reply Post Image View">
                                                                 <rect key="frame" x="307" y="12" width="20" height="20"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <accessibility key="accessibilityConfiguration" identifier="reply">
+                                                                    <bool key="isElement" value="YES"/>
+                                                                </accessibility>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="20" id="5h0-KV-IeT"/>
                                                                     <constraint firstAttribute="width" secondItem="46f-36-f5d" secondAttribute="height" multiplier="1:1" id="IaT-MP-oIf"/>
@@ -262,6 +271,9 @@
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="4" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-settings-subscribe-blog-normal" highlightedImage="icon-settings-subscribe-blog-highlighted" translatesAutoresizingMaskIntoConstraints="NO" id="z1x-DA-VPO" userLabel="Subscribe Blog Image View">
                                                                 <rect key="frame" x="307" y="12" width="20" height="20"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <accessibility key="accessibilityConfiguration" identifier="subscribe">
+                                                                    <bool key="isElement" value="YES"/>
+                                                                </accessibility>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" secondItem="z1x-DA-VPO" secondAttribute="height" multiplier="1:1" id="N1i-x1-D12"/>
                                                                     <constraint firstAttribute="width" constant="20" id="R1Q-gI-5Ix"/>
@@ -294,6 +306,9 @@
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-settings-unsubscribe-blog-normal" highlightedImage="icon-settings-unsubscribe-blog-highlighted" translatesAutoresizingMaskIntoConstraints="NO" id="4IY-bb-vj8" userLabel="Unsubscribe Blog Image View">
                                                                 <rect key="frame" x="307" y="12" width="20" height="20"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <accessibility key="accessibilityConfiguration" identifier="unsubscribe">
+                                                                    <bool key="isElement" value="YES"/>
+                                                                </accessibility>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="20" id="Pv7-QH-WCS"/>
                                                                     <constraint firstAttribute="width" secondItem="4IY-bb-vj8" secondAttribute="height" multiplier="1:1" id="rw4-bU-JXp"/>
@@ -326,6 +341,9 @@
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="6" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-settings-mention-email-normal" highlightedImage="icon-settings-mention-email-highlighted" translatesAutoresizingMaskIntoConstraints="NO" id="sPn-Xg-O3p" userLabel="Mention Email Image View">
                                                                 <rect key="frame" x="307" y="12" width="20" height="20"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <accessibility key="accessibilityConfiguration" identifier="mention">
+                                                                    <bool key="isElement" value="YES"/>
+                                                                </accessibility>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="20" id="AyU-Cn-Qvp"/>
                                                                     <constraint firstAttribute="width" secondItem="sPn-Xg-O3p" secondAttribute="height" multiplier="1:1" id="rkF-70-BI1"/>
@@ -358,6 +376,9 @@
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="7" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-settings-repost-normal" highlightedImage="icon-settings-repost-highlighted" translatesAutoresizingMaskIntoConstraints="NO" id="XTx-zz-NSo" userLabel="Repost Image View">
                                                                 <rect key="frame" x="307" y="12" width="20" height="20"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <accessibility key="accessibilityConfiguration" identifier="repost">
+                                                                    <bool key="isElement" value="YES"/>
+                                                                </accessibility>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" secondItem="XTx-zz-NSo" secondAttribute="height" multiplier="1:1" id="BKI-b5-VX6"/>
                                                                     <constraint firstAttribute="width" constant="20" id="h6j-TO-DzH"/>
@@ -390,6 +411,9 @@
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="8" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-settings-user-reward-normal" highlightedImage="icon-settings-user-reward-highlighted" translatesAutoresizingMaskIntoConstraints="NO" id="uVW-CV-Dpp" userLabel="User Award Image View">
                                                                 <rect key="frame" x="307" y="12" width="20" height="20"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <accessibility key="accessibilityConfiguration" identifier="award">
+                                                                    <bool key="isElement" value="YES"/>
+                                                                </accessibility>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" secondItem="uVW-CV-Dpp" secondAttribute="height" multiplier="1:1" id="Gpj-wW-ZSu"/>
                                                                     <constraint firstAttribute="width" constant="20" id="b1I-8e-tcK"/>
@@ -422,6 +446,9 @@
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="9" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-settings-curator-reward-normal" highlightedImage="icon-settings-curator-reward-highlighted" translatesAutoresizingMaskIntoConstraints="NO" id="BKY-XR-cIs" userLabel="Curator Award Image View">
                                                                 <rect key="frame" x="307" y="12" width="20" height="20"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <accessibility key="accessibilityConfiguration" identifier="curatorAward">
+                                                                    <bool key="isElement" value="YES"/>
+                                                                </accessibility>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" secondItem="BKY-XR-cIs" secondAttribute="height" multiplier="1:1" id="Q61-n9-quS"/>
                                                                     <constraint firstAttribute="width" constant="20" id="jw4-EF-m55"/>
@@ -454,6 +481,9 @@
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="10" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-settings-private-message-normal" highlightedImage="icon-settings-private-message-highlighted" translatesAutoresizingMaskIntoConstraints="NO" id="erQ-r5-H7p" userLabel="Private Message Image View">
                                                                 <rect key="frame" x="307" y="12" width="20" height="20"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <accessibility key="accessibilityConfiguration" identifier="message">
+                                                                    <bool key="isElement" value="YES"/>
+                                                                </accessibility>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="20" id="cpZ-QL-Auh"/>
                                                                     <constraint firstAttribute="width" secondItem="erQ-r5-H7p" secondAttribute="height" multiplier="1:1" id="qkq-t0-YIR"/>
@@ -486,6 +516,9 @@
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="11" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-settings-witness-vote-normal" highlightedImage="icon-settings-witness-vote-highlighted" translatesAutoresizingMaskIntoConstraints="NO" id="lY9-Sm-Vbo" userLabel="Delegate Node Image View">
                                                                 <rect key="frame" x="307" y="12" width="20" height="20"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <accessibility key="accessibilityConfiguration" identifier="witnessVote">
+                                                                    <bool key="isElement" value="YES"/>
+                                                                </accessibility>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="20" id="ETh-5O-wbP"/>
                                                                     <constraint firstAttribute="width" secondItem="lY9-Sm-Vbo" secondAttribute="height" multiplier="1:1" id="WkL-OO-tEH"/>
@@ -518,6 +551,9 @@
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="12" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-settings-mention-golos-normal" highlightedImage="icon-settings-mention-golos-highlighted" translatesAutoresizingMaskIntoConstraints="NO" id="LPE-bo-LAb" userLabel="Mention Golos Image View">
                                                                 <rect key="frame" x="307" y="12" width="20" height="20"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <accessibility key="accessibilityConfiguration" identifier="witnessCancelVote">
+                                                                    <bool key="isElement" value="YES"/>
+                                                                </accessibility>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" secondItem="LPE-bo-LAb" secondAttribute="height" multiplier="1:1" id="97n-yJ-GbV"/>
                                                                     <constraint firstAttribute="width" constant="20" id="bFn-bR-d4P"/>
