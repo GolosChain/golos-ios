@@ -19,6 +19,7 @@ enum SettingsNotificationsShowModels {
     enum Options {
         struct RequestModel {
             let isShowAllNotificationsOptions: Bool?
+            let requestParameterAPIPushOptions: RequestParameterAPI.PushOptions?
         }
         
         struct ResponseModel {

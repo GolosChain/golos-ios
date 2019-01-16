@@ -150,6 +150,29 @@ public class AppSettings: NSManagedObject {
         self.save()
     }
 
+    func updatePush(options: RequestParameterAPI.PushOptions) {
+        self.language                               =   options.language
+        self.isPushNotificationVote                 =   options.vote
+        self.isPushNotificationFlag                 =   options.flag
+        self.isPushNotificationTransfer             =   options.transfer
+        self.isPushNotificationReply                =   options.reply
+        self.isPushNotificationSubscribe            =   options.subscribe
+        self.isPushNotificationUnsubscribe          =   options.unsubscribe
+        self.isPushNotificationMention              =   options.mention
+        self.isPushNotificationRepost               =   options.repost
+        self.isPushNotificationAward                =   options.award
+        self.isPushNotificationCuratorAward         =   options.curatorAward
+        self.isPushNotificationMessage              =   options.message
+        self.isPushNotificationWitnessVote          =   options.witnessVote
+        self.isPushNotificationWitnessCancelVote    =   options.witnessCancelVote
+        
+        self.isAllPushNotificationsOn   =   options.vote && options.flag && options.transfer && options.reply && options.subscribe && options.unsubscribe &&
+            options.mention && options.repost && options.award && options.curatorAward && options.message && options.witnessVote &&
+            options.witnessCancelVote
+        
+        self.save()
+    }
+    
     func updatePushNotifications(property: String, value: Bool) {
         let propertyName = String(format: "isPushNotification%@", property.uppercaseFirst)
 

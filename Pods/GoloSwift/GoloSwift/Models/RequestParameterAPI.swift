@@ -377,6 +377,23 @@ public struct RequestParameterAPI {
             self.witnessCancelVote  =   valueForAll
         }
         
+        public init(languageValue: String = "ru", imageViews: [UIImageView]) {
+            self.language           =   languageValue
+            self.vote               =   !imageViews[0].isHighlighted
+            self.flag               =   !imageViews[1].isHighlighted
+            self.transfer           =   !imageViews[2].isHighlighted
+            self.reply              =   !imageViews[3].isHighlighted
+            self.subscribe          =   !imageViews[4].isHighlighted
+            self.unsubscribe        =   !imageViews[5].isHighlighted
+            self.mention            =   !imageViews[6].isHighlighted
+            self.repost             =   !imageViews[7].isHighlighted
+            self.award              =   !imageViews[8].isHighlighted
+            self.curatorAward       =   !imageViews[9].isHighlighted
+            self.message            =   !imageViews[10].isHighlighted
+            self.witnessVote        =   !imageViews[11].isHighlighted
+            self.witnessCancelVote  =   !imageViews[12].isHighlighted
+        }
+
         
         // MARK: - Functions
         // Template: "vote": <voteValue>, "flag": <flagValue>, "reply": <replyValue>, "transfer": <transferValue>, "subscribe": <subscribeValue>, "unsubscribe": <unsibscribeValue>, "mention": <mentionValue>, "repost": <repostValue>,  "message": <messageValue>, "witnessVote": <witnessVoteValue>, "witnessCancelVote": <witnessCancelVoteValue>, "award": <awardValue>, "curatorAward": <curatorAwardValue>

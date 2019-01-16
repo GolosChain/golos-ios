@@ -16,7 +16,7 @@ import GoloSwift
 // MARK: - Presentation Logic protocols
 protocol SettingsNotificationsShowPresentationLogic {
     func presentLoadPushNotificationsOptions(fromResponseModel responseModel: SettingsNotificationsShowModels.Options.ResponseModel)
-    func presentSetAllPushNotificationsShowOptions(fromResponseModel responseModel: SettingsNotificationsShowModels.Options.ResponseModel)
+    func presentSetPushNotificationsShowOptions(fromResponseModel responseModel: SettingsNotificationsShowModels.Options.ResponseModel)
 }
 
 class SettingsNotificationsShowPresenter: SettingsNotificationsShowPresentationLogic {
@@ -36,8 +36,8 @@ class SettingsNotificationsShowPresenter: SettingsNotificationsShowPresentationL
         viewController?.displayLoadPushNotificationsOptions(fromViewModel: viewModel)
     }
     
-    func presentSetAllPushNotificationsShowOptions(fromResponseModel responseModel: SettingsNotificationsShowModels.Options.ResponseModel) {
+    func presentSetPushNotificationsShowOptions(fromResponseModel responseModel: SettingsNotificationsShowModels.Options.ResponseModel) {
         let viewModel = SettingsNotificationsShowModels.Options.ViewModel(errorAPI: responseModel.errorAPI)
-        viewController?.displaySetAllPushNotificationsShowOptions(fromViewModel: viewModel)
+        viewController?.displaySetPushNotificationsShowOptions(fromViewModel: viewModel)
     }
 }

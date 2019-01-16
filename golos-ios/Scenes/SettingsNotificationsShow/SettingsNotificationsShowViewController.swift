@@ -12,15 +12,17 @@
 
 import UIKit
 import GoloSwift
+import Localize_Swift
 
 // MARK: - Input & Output protocols
 protocol SettingsNotificationsShowDisplayLogic: class {
     func displayLoadPushNotificationsOptions(fromViewModel viewModel: SettingsNotificationsShowModels.Options.ViewModel)
-    func displaySetAllPushNotificationsShowOptions(fromViewModel viewModel: SettingsNotificationsShowModels.Options.ViewModel)
+    func displaySetPushNotificationsShowOptions(fromViewModel viewModel: SettingsNotificationsShowModels.Options.ViewModel)
 }
 
 class SettingsNotificationsShowViewController: GSBaseViewController {
     // MARK: - Properties
+    var selectedOption: UIButton?
     private let appSettings = AppSettings.instance()
     
     var interactor: SettingsNotificationsShowBusinessLogic?
@@ -83,11 +85,7 @@ class SettingsNotificationsShowViewController: GSBaseViewController {
         }
     }
     
-    @IBOutlet var imageViewsCollection: [UIImageView]! {
-        didSet {
-            self.imageViewsCollection.forEach({ $0.isHighlighted = true })
-        }
-    }
+    @IBOutlet var imageViewsCollection: [UIImageView]!
     
     @IBOutlet var hightsCollection: [NSLayoutConstraint]! {
         didSet {
@@ -139,9 +137,9 @@ class SettingsNotificationsShowViewController: GSBaseViewController {
         self.switchesCollection.first(where: { $0.tag == 0 })?.isOn = self.appSettings.isPushNotificationSoundOn
         self.switchesCollection.first(where: { $0.tag == 1 })?.isOn = self.appSettings.isAllPushNotificationsOn
         
-        self.imageViewsCollection.first(where: { $0.tag == 0 })?.isHighlighted = !self.appSettings.isPushNotificationVote
+        self.imageViewsCollection.first(where: { $0.accessibilityIdentifier == "vote" })?.isHighlighted = !self.appSettings.isPushNotificationVote
         self.settingsButtonsCollection.first(where: { $0.accessibilityIdentifier == "vote" })!.isSelected = self.appSettings.isPushNotificationVote
-        
+
         self.imageViewsCollection.first(where: { $0.tag == 1 })?.isHighlighted = !self.appSettings.isPushNotificationFlag
         self.settingsButtonsCollection.first(where: { $0.accessibilityIdentifier == "flag" })!.isSelected = self.appSettings.isPushNotificationFlag
 
@@ -164,10 +162,10 @@ class SettingsNotificationsShowViewController: GSBaseViewController {
         self.settingsButtonsCollection.first(where: { $0.accessibilityIdentifier == "repost" })!.isSelected = self.appSettings.isPushNotificationRepost
 
         self.imageViewsCollection.first(where: { $0.tag == 8 })?.isHighlighted = !self.appSettings.isPushNotificationAward
-        self.settingsButtonsCollection.first(where: { $0.accessibilityIdentifier == "reward" })!.isSelected = self.appSettings.isPushNotificationAward
+        self.settingsButtonsCollection.first(where: { $0.accessibilityIdentifier == "award" })!.isSelected = self.appSettings.isPushNotificationAward
 
         self.imageViewsCollection.first(where: { $0.tag == 9 })?.isHighlighted = !self.appSettings.isPushNotificationCuratorAward
-        self.settingsButtonsCollection.first(where: { $0.accessibilityIdentifier == "curatorReward" })!.isSelected = self.appSettings.isPushNotificationCuratorAward
+        self.settingsButtonsCollection.first(where: { $0.accessibilityIdentifier == "curatorAward" })!.isSelected = self.appSettings.isPushNotificationCuratorAward
 
         self.imageViewsCollection.first(where: { $0.tag == 10 })?.isHighlighted = !self.appSettings.isPushNotificationMessage
         self.settingsButtonsCollection.first(where: { $0.accessibilityIdentifier == "message" })!.isSelected = self.appSettings.isPushNotificationMessage
@@ -216,7 +214,7 @@ class SettingsNotificationsShowViewController: GSBaseViewController {
         self.showNavigationBar()
         self.title = "Settings Push Notifications".localized()
 
-        let requestModel = SettingsNotificationsShowModels.Options.RequestModel(isShowAllNotificationsOptions: nil)
+        let requestModel = SettingsNotificationsShowModels.Options.RequestModel(isShowAllNotificationsOptions: nil, requestParameterAPIPushOptions: nil)
         interactor?.loadPushNotificationsOptions(withRequestModel: requestModel)
     }
     
@@ -242,29 +240,19 @@ class SettingsNotificationsShowViewController: GSBaseViewController {
     }
     
     @IBAction func enableAllNotificationsSwitchChangeState(_ sender: UISwitch) {
-        let requestModel = SettingsNotificationsShowModels.Options.RequestModel(isShowAllNotificationsOptions: sender.isOn)
-        interactor?.setAllPushNotificationsShowOptions(withRequestModel: requestModel)
+        let requestModel = SettingsNotificationsShowModels.Options.RequestModel(isShowAllNotificationsOptions: sender.isOn, requestParameterAPIPushOptions: nil)
+        interactor?.setPushNotificationsShowOptions(withRequestModel: requestModel)
     }
     
     // Settings buttons
     @IBAction func settingsButtonTapped(_ sender: UIButton) {
-        sender.isSelected = !sender.isSelected
-        self.imageViewsCollection.first(where: { $0.tag == sender.tag })?.isHighlighted = !sender.isSelected
-        self.appSettings.updatePushNotifications(property: sender.accessibilityIdentifier!, value: sender.isSelected)
-        
-        if let switcher = self.switchesCollection.first(where: { $0.tag == 1 }) {
-            let buttons = self.settingsButtonsCollection.compactMap({ $0.isSelected == true })
-            
-            if !sender.isSelected && switcher.isOn {
-                switcher.isOn = false
-                self.appSettings.setAllPushNotificationsOn(value: false)
-            }
-            
-            else if buttons.count == 13 && sender.isSelected && !switcher.isOn {
-                switcher.isOn = true
-                self.appSettings.setAllPushNotificationsOn(value: true)
-            }
-        }
+        self.selectedOption = sender
+        self.imageViewsCollection.first(where: { $0.accessibilityIdentifier == sender.accessibilityIdentifier })?.isHighlighted = sender.isSelected
+
+        let requestModel = SettingsNotificationsShowModels.Options.RequestModel(isShowAllNotificationsOptions:      nil,
+                                                                                requestParameterAPIPushOptions:     RequestParameterAPI.PushOptions.init(languageValue:     Localize.currentLanguage(),
+                                                                                                                                                         imageViews:        self.imageViewsCollection))
+        interactor?.setPushNotificationsShowOptions(withRequestModel: requestModel)
    }
 }
 
@@ -288,7 +276,7 @@ extension SettingsNotificationsShowViewController: SettingsNotificationsShowDisp
         self.setupNotificationsPropertiesValues()
     }
     
-    func displaySetAllPushNotificationsShowOptions(fromViewModel viewModel: SettingsNotificationsShowModels.Options.ViewModel) {
+    func displaySetPushNotificationsShowOptions(fromViewModel viewModel: SettingsNotificationsShowModels.Options.ViewModel) {
         // NOTE: Display the result from the Presenter
         guard viewModel.errorAPI == nil else {
             self.showAlertView(withTitle: "Error", andMessage: viewModel.errorAPI!.caseInfo.message, needCancel: false, completion: { [weak self] success in
@@ -300,6 +288,25 @@ extension SettingsNotificationsShowViewController: SettingsNotificationsShowDisp
             })
             
             return
+        }
+        
+        if let sender = self.selectedOption {
+            sender.isSelected = !sender.isSelected
+            self.appSettings.updatePushNotifications(property: sender.accessibilityIdentifier!, value: sender.isSelected)
+            
+//            if let switcher = self.switchesCollection.first(where: { $0.tag == 1 }) {
+//                let buttons = self.settingsButtonsCollection.compactMap({ $0.isSelected == true })
+//
+//                if !sender.isSelected && switcher.isOn {
+//                    switcher.isOn = false
+//                    self.appSettings.setAllPushNotificationsOn(value: false)
+//                }
+//
+//                else if buttons.count == 13 && sender.isSelected && !switcher.isOn {
+//                    switcher.isOn = true
+//                    self.appSettings.setAllPushNotificationsOn(value: true)
+//                }
+//            }
         }
         
         self.setupNotificationsPropertiesValues()
