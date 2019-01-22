@@ -137,14 +137,14 @@ public class AppSettings: NSManagedObject {
         self.isPushNotificationUnsubscribe          =   push.show.unsubscribe
         self.isPushNotificationMention              =   push.show.mention
         self.isPushNotificationRepost               =   push.show.repost
-        self.isPushNotificationAward                =   push.show.award
-        self.isPushNotificationCuratorAward         =   push.show.curatorAward
+        self.isPushNotificationAward                =   push.show.reward
+        self.isPushNotificationCuratorAward         =   push.show.curatorReward
         self.isPushNotificationMessage              =   push.show.message
         self.isPushNotificationWitnessVote          =   push.show.witnessVote
         self.isPushNotificationWitnessCancelVote    =   push.show.witnessCancelVote
         
         self.isAllPushNotificationsOn   =   push.show.vote && push.show.flag && push.show.transfer && push.show.reply && push.show.subscribe && push.show.unsubscribe &&
-                                                    push.show.mention && push.show.repost && push.show.award && push.show.curatorAward && push.show.message && push.show.witnessVote &&
+            push.show.mention && push.show.repost && push.show.reward && push.show.curatorReward && push.show.message && push.show.witnessVote &&
                                                     push.show.witnessCancelVote
 
         self.save()

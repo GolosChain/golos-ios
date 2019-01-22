@@ -584,8 +584,8 @@ public struct ResponseAPIMicroserviceGetOptionsPush: Decodable {
 // MARK: -
 public struct ResponseAPIMicroserviceGetOptionsPushShow: Decodable {
     // MARK: - In work
-    public let award: Bool
-    public let curatorAward: Bool
+    public let reward: Bool
+    public let curatorReward: Bool
     public let flag: Bool
     public let mention: Bool
     public let message: Bool

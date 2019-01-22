@@ -411,7 +411,7 @@
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="8" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-settings-user-reward-normal" highlightedImage="icon-settings-user-reward-highlighted" translatesAutoresizingMaskIntoConstraints="NO" id="uVW-CV-Dpp" userLabel="User Award Image View">
                                                                 <rect key="frame" x="307" y="12" width="20" height="20"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <accessibility key="accessibilityConfiguration" identifier="award">
+                                                                <accessibility key="accessibilityConfiguration" identifier="reward">
                                                                     <bool key="isElement" value="YES"/>
                                                                 </accessibility>
                                                                 <constraints>
@@ -422,7 +422,7 @@
                                                             <button clipsSubviews="YES" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uCb-op-5Rq" userLabel="User Award Button">
                                                                 <rect key="frame" x="0.0" y="0.0" width="327" height="44"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <accessibility key="accessibilityConfiguration" identifier="award" label="Settings User Award"/>
+                                                                <accessibility key="accessibilityConfiguration" identifier="reward" label="Settings User Award"/>
                                                                 <state key="normal" title="Button"/>
                                                                 <connections>
                                                                     <action selector="settingsButtonTapped:" destination="zQc-9G-j5D" eventType="touchUpInside" id="Uh0-Gr-tOa"/>
@@ -446,7 +446,7 @@
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="9" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-settings-curator-reward-normal" highlightedImage="icon-settings-curator-reward-highlighted" translatesAutoresizingMaskIntoConstraints="NO" id="BKY-XR-cIs" userLabel="Curator Award Image View">
                                                                 <rect key="frame" x="307" y="12" width="20" height="20"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <accessibility key="accessibilityConfiguration" identifier="curatorAward">
+                                                                <accessibility key="accessibilityConfiguration" identifier="curatorReward">
                                                                     <bool key="isElement" value="YES"/>
                                                                 </accessibility>
                                                                 <constraints>
@@ -457,7 +457,7 @@
                                                             <button clipsSubviews="YES" tag="9" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vg7-bc-hWj" userLabel="Curator Award Button">
                                                                 <rect key="frame" x="0.0" y="0.0" width="327" height="44"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <accessibility key="accessibilityConfiguration" identifier="curatorAward" label="Settings Curator Award"/>
+                                                                <accessibility key="accessibilityConfiguration" identifier="curatorReward" label="Settings Curator Award"/>
                                                                 <state key="normal" title="Button"/>
                                                                 <connections>
                                                                     <action selector="settingsButtonTapped:" destination="zQc-9G-j5D" eventType="touchUpInside" id="0wH-Y5-kDP"/>

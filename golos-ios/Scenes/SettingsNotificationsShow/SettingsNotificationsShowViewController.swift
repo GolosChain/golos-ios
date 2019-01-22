@@ -161,11 +161,11 @@ class SettingsNotificationsShowViewController: GSBaseViewController {
         self.imageViewsCollection.first(where: { $0.accessibilityIdentifier == "repost" })?.isHighlighted = !self.appSettings.isPushNotificationRepost
         self.settingsButtonsCollection.first(where: { $0.accessibilityIdentifier == "repost" })!.isSelected = self.appSettings.isPushNotificationRepost
 
-        self.imageViewsCollection.first(where: { $0.accessibilityIdentifier == "award" })?.isHighlighted = !self.appSettings.isPushNotificationAward
-        self.settingsButtonsCollection.first(where: { $0.accessibilityIdentifier == "award" })!.isSelected = self.appSettings.isPushNotificationAward
+        self.imageViewsCollection.first(where: { $0.accessibilityIdentifier == "reward" })?.isHighlighted = !self.appSettings.isPushNotificationAward
+        self.settingsButtonsCollection.first(where: { $0.accessibilityIdentifier == "reward" })!.isSelected = self.appSettings.isPushNotificationAward
 
-        self.imageViewsCollection.first(where: { $0.accessibilityIdentifier == "curatorAward" })?.isHighlighted = !self.appSettings.isPushNotificationCuratorAward
-        self.settingsButtonsCollection.first(where: { $0.accessibilityIdentifier == "curatorAward" })!.isSelected = self.appSettings.isPushNotificationCuratorAward
+        self.imageViewsCollection.first(where: { $0.accessibilityIdentifier == "curatorReward" })?.isHighlighted = !self.appSettings.isPushNotificationCuratorAward
+        self.settingsButtonsCollection.first(where: { $0.accessibilityIdentifier == "curatorReward" })!.isSelected = self.appSettings.isPushNotificationCuratorAward
 
         self.imageViewsCollection.first(where: { $0.accessibilityIdentifier == "message" })?.isHighlighted = !self.appSettings.isPushNotificationMessage
         self.settingsButtonsCollection.first(where: { $0.accessibilityIdentifier == "message" })!.isSelected = self.appSettings.isPushNotificationMessage

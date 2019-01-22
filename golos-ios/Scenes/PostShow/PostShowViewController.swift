@@ -688,8 +688,7 @@ class PostShowViewController: GSBaseViewController {
                 self.userNameLabel.text = self.postFeedHeaderView.authorNameButton.titleLabel!.text
 
                 if  let author = self.userNameLabel.text,
-                    let user = User.fetch(byNickName: author), let userProfileImageURL = user.profileImageURL {
-                    
+                    let user = User.fetch(byNickName: author.lowercased()), let userProfileImageURL = user.profileImageURL {
                     self.userAvatarImageView.uploadImage(byStringPath:      userProfileImageURL,
                                                          imageType:         .userProfileImage,
                                                          size:              CGSize(width: 50.0, height: 50.0),
