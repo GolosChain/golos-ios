@@ -141,13 +141,6 @@
                                                     <constraint firstAttribute="height" constant="34" identifier="PostShowViewControllerConstraint17" id="cWb-2n-6vU"/>
                                                 </constraints>
                                             </stackView>
-                                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tHL-Id-QDj" userLabel="Top Background Gray View">
-                                                <rect key="frame" x="0.0" y="178.33333333333331" width="375" height="5"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="5" identifier="PostShowViewControllerConstraint18" id="1Sx-7f-Mvj"/>
-                                                </constraints>
-                                            </view>
                                             <stackView contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="hL9-He-JpB" userLabel="Subscribes Stack View">
                                                 <rect key="frame" x="0.0" y="183.33333333333331" width="375" height="80"/>
                                                 <subviews>
@@ -310,13 +303,6 @@
                                                     <action selector="userProfileImageButtonTapped:" destination="EfY-4r-YFi" eventType="touchUpInside" id="Dkc-eE-c5l"/>
                                                 </connections>
                                             </button>
-                                            <view clipsSubviews="YES" tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tqm-aY-SVr" userLabel="Bottom Background Gray View">
-                                                <rect key="frame" x="0.0" y="263.33333333333331" width="375" height="5"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="5" identifier="PostShowViewControllerConstraint48" id="5i8-Ig-cw7"/>
-                                                </constraints>
-                                            </view>
                                             <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="260" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zPm-d9-LiX" userLabel="Title Label">
                                                 <rect key="frame" x="16" y="15.999999999999998" width="343" height="20.333333333333329"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -484,6 +470,20 @@
                                                     </collectionViewCell>
                                                 </cells>
                                             </collectionView>
+                                            <view clipsSubviews="YES" tag="100" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tHL-Id-QDj" userLabel="Top Background Gray View">
+                                                <rect key="frame" x="0.0" y="178.33333333333331" width="375" height="5"/>
+                                                <color key="backgroundColor" red="0.94901960784313721" green="0.95686274509803915" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="5" identifier="PostShowViewControllerConstraint18" id="1Sx-7f-Mvj"/>
+                                                </constraints>
+                                            </view>
+                                            <view clipsSubviews="YES" tag="101" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tqm-aY-SVr" userLabel="Bottom Background Gray View">
+                                                <rect key="frame" x="0.0" y="263.33333333333331" width="375" height="5"/>
+                                                <color key="backgroundColor" red="0.94901960784313721" green="0.95686274509803915" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="5" identifier="PostShowViewControllerConstraint48" id="5i8-Ig-cw7"/>
+                                                </constraints>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>

@@ -369,11 +369,7 @@ class PostShowViewController: GSBaseViewController {
         }
     }
     
-    @IBOutlet var backgroundGrayViewsCollection: [UIView]! {
-        didSet {
-            self.backgroundGrayViewsCollection.forEach({ $0.theme_backgroundColor = veryLightGrayColorPickers })
-        }
-    }
+    @IBOutlet var backgroundGrayViewsCollection: [UIView]!
     
     @IBOutlet weak var commentsTitleLabel: UILabel! {
         didSet {
@@ -554,8 +550,8 @@ class PostShowViewController: GSBaseViewController {
             let isNamesMatch = user.nickName == self.router?.dataStore?.postShortInfo?.author
             
             self.subscribesStackViewTopConstraint.constant = isNamesMatch ? -100.0 * heightRatio : 0.0
-            self.backgroundGrayViewsCollection.first(where: { $0.tag == 0 })?.isHidden = isNamesMatch
-            self.contentView.bringSubviewToFront(self.backgroundGrayViewsCollection.first(where: { $0.tag == 1 })!)
+            self.backgroundGrayViewsCollection.first(where: { $0.tag == 100 })?.isHidden = isNamesMatch
+            self.contentView.bringSubviewToFront(self.backgroundGrayViewsCollection.first(where: { $0.tag == 101 })!)
             
             UIView.animate(withDuration: 0.3) {
                 self.subscribesStackView.isHidden = isNamesMatch
@@ -658,6 +654,7 @@ class PostShowViewController: GSBaseViewController {
                     
                     UIView.animate(withDuration: 0.5, animations: {
                         strongSelf.hiddenViewsCollection.forEach({ $0.alpha = 1.0 })
+                        strongSelf.backgroundGrayViewsCollection.forEach({ $0.theme_backgroundColor = lightGrayishBlueBlackColorPickers })
                     })
                     
                     strongSelf.gsTimer?.stop()
