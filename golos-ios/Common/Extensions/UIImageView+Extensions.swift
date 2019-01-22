@@ -20,7 +20,8 @@ enum ImageType: String {
 extension UIImageView {
     /// Download image
     func uploadImage(byStringPath path: String, imageType: ImageType, size: CGSize, tags: [String]?, createdDate: Date, fromItem: String, isCurrentUserAuthor: Bool = false, completion: @escaping (CGFloat) -> Void) {
-        let uploadedSize            =   CGSize(width: size.width, height: size.height)
+        let coefficient: CGFloat    =   imageType == .userProfileImage ? 3.0 : 1.0
+        let uploadedSize            =   CGSize(width: size.width * coefficient, height: size.height * coefficient)
         let imagePathWithProxy      =   path.trimmingCharacters(in: .whitespacesAndNewlines).addImageProxy(withSize: uploadedSize)
         
         guard let imageURL = URL(string: imagePathWithProxy) else {
