@@ -51,6 +51,10 @@ extension NSManagedObject {
             entity.currentUserDisliked          =   false
             entity.currentUserCommented         =   false
 
+            if let firstRebloggedOn = model.first_reblogged_on, firstRebloggedOn != "1970-01-01T00:00:00" {
+                entity.firstRebloggedOn         =   firstRebloggedOn.convert(toDateFormat: .expirationDateType)
+            }
+            
             if let authorReputation = model.author_reputation.stringValue {
                 entity.authorReputation         =   authorReputation
             }

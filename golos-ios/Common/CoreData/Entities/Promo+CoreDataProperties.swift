@@ -51,9 +51,10 @@ extension Promo: PostCellSupport {
     @NSManaged public var rebloggedFirstOn: String?
     @NSManaged public var jsonMetadataReblog: String?
     
-   @NSManaged public var active: Date
+    @NSManaged public var active: Date
     @NSManaged public var created: Date
     @NSManaged public var lastUpdate: Date
     @NSManaged public var lastPayout: Date
+    @NSManaged public var firstRebloggedOn: Date?
 
 }

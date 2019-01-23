@@ -94,6 +94,8 @@ class RootShowViewController: GSBaseViewController {
         
         // Start Microservices session & store secret key
         if let userNickName = User.current?.nickName {
+            self.loadViewSettings()
+            
             MicroservicesManager.startSession(forCurrentUser: userNickName) { errorAPI in
                 if let currentVC = (UIApplication.shared.keyWindow?.rootViewController as? UINavigationController)?.viewControllers.last as? GSBaseViewController, errorAPI != nil {
                     currentVC.showAlertView(withTitle: "Error", andMessage: errorAPI!.caseInfo.message, needCancel: false, completion: { _ in })

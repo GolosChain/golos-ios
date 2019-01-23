@@ -56,5 +56,6 @@ extension Reply: PostCellSupport {
     @NSManaged public var created: Date
     @NSManaged public var lastUpdate: Date
     @NSManaged public var lastPayout: Date
-    
+    @NSManaged public var firstRebloggedOn: Date?
+
 }

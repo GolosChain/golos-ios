@@ -175,7 +175,14 @@ class PostFeedHeaderView: UIView {
         if let userProfile = User.fetch(byNickName: profileAuthorNickName) {
             self.authorNameButton.setTitle(userProfile.name.uppercaseFirst, for: .normal)
 
-            self.timeLabel.text                 =   post.created.convertToTimeAgo()
+            if let firstRebloggedOn = post.firstRebloggedOn {
+                self.timeLabel.text             =   firstRebloggedOn.convertToTimeAgo()
+            }
+            
+            else {
+                self.timeLabel.text             =   post.active.convertToTimeAgo()
+            }
+            
             self.categoryLabel.text             =   post.category.transliteration(forPermlink: false).uppercaseFirst
             self.authorReputationLabel.text     =   String(format: "%i", userProfile.reputation.convertWithLogarithm10())
 
