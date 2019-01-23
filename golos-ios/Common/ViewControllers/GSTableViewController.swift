@@ -433,6 +433,12 @@ extension GSTableViewController: UITableViewDataSource {
             (cell as! ReplyTableViewCell).handlerMarkdownAuthorNameTapped   =   { [weak self] authorName in
                 self?.handlerAuthorProfileImageButtonTapped!(authorName)
             }
+            
+            (cell as! ReplyTableViewCell).handlerMarkdownRenderedEnd        =   { height in
+                if (cell as! ReplyTableViewCell).postShortInfo.indexPath == indexPath {
+                    cell.frame.size = CGSize(width: tableView.frame.width, height: height + 78.0)
+                }
+            }
         }
         
         // Handlers Lenta, Blog, Popular, Actual, New, Promo comletion

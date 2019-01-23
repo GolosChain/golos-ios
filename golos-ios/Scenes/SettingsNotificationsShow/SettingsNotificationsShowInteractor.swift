@@ -41,10 +41,10 @@ class SettingsNotificationsShowInteractor: SettingsNotificationsShowBusinessLogi
     // MARK: - Business logic implementation
     func loadPushNotificationsOptions(withRequestModel requestModel: SettingsNotificationsShowModels.Options.RequestModel) {
         // API push `getOptions`
-        MicroservicesManager.getOptions(type: .push, userNickName: currentUserNickName!, deviceUDID: currentDeviceUDID, completion: { [weak self] (resultOptions, errorAPI) in
+        MicroservicesManager.getOptions(userNickName: User.current?.nickName ?? currentUserNickName!, deviceType: currentDeviceType, completion: { [weak self] (resultOptions, errorAPI) in
             guard let strongSelf = self else { return }
             
-            // Synchronize 'basic' options
+            // Synchronize 'push' options
             if let optionsResult = resultOptions?.result {
                 Logger.log(message: "push = \n\t\(optionsResult.push)", event: .debug)
                 Logger.log(message: "basic = \n\t\(optionsResult.basic)", event: .debug)
@@ -65,7 +65,7 @@ class SettingsNotificationsShowInteractor: SettingsNotificationsShowBusinessLogi
                                                         RequestParameterAPI.PushOptions.init(languageValue:     Localize.currentLanguage(),
                                                                                              valueForAll:       requestModel.isShowAllNotificationsOptions ?? true)
         
-        MicroservicesManager.setPushOptions(userNickName: currentUserNickName!, deviceUDID: currentDeviceUDID, options: options, completion: { [weak self] errorAPI in
+        MicroservicesManager.setPushOptions(userNickName: User.current?.nickName ?? currentUserNickName!, deviceType: currentDeviceType, options: options, completion: { [weak self] errorAPI in
             guard let strongSelf = self else { return }
             
             // Synchronize `all push` options

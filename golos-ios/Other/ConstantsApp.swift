@@ -63,8 +63,8 @@ let cacheApp                            =   NSCache<NSString, UIImage>()
 let appVersion                          =   String(format: "%@.%@", Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String, Bundle.main.infoDictionary?["CFBundleVersion"] as! String)
 var selectedTabBarItem: Int             =   0
 
-let currentUserNickName                 =   User.current?.nickName
-let currentDeviceUDID                   =   UIDevice.current.identifierForVendor?.uuidString ?? "Simulator"
+let currentDeviceType: String           =   { return UIDevice.modelName.replacingOccurrences(of: " ", with: "-") }()
+let currentUserNickName: String?        =   { return User.current?.nickName }()
 
 
 // Amplitude SDK

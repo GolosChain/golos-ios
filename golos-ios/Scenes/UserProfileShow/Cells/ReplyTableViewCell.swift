@@ -43,18 +43,27 @@ class ReplyTableViewCell: UITableViewCell, ReusableCell {
     var handlerMarkdownError: ((String) -> Void)?
     var handlerMarkdownURLTapped: ((URL) -> Void)?
     var handlerMarkdownAuthorNameTapped: ((String) -> Void)?
-
+    var handlerMarkdownRenderedEnd: ((CGFloat) -> Void)?
+    
     
     // MARK: - IBOutlets
+    @IBOutlet weak var markdownViewHeightConstraint: NSLayoutConstraint!
+    
     @IBOutlet var markdownViewManager: MarkdownViewManager! {
         didSet {
             self.markdownViewManager.isHidden = true
             
-            self.markdownViewManager.onRendered = { _ in
-                self.markdownViewManager.webView!.setBackgroundColor(forAppTheme: AppSettings.isAppThemeDark)
+            self.markdownViewManager.onRendered = { [weak self] height in
+                guard let strongSelf = self else { return }
+                
+                strongSelf.markdownViewHeightConstraint.constant = height
+                strongSelf.layoutIfNeeded()
+                strongSelf.markdownViewManager.webView!.setBackgroundColor(forAppTheme: AppSettings.isAppThemeDark)
                 
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.7, execute: {
-                    self.markdownViewManager.isHidden = false
+                    strongSelf.markdownViewManager.isHidden = false
+//                    strongSelf.frame.size = CGSize(width: strongSelf.frame.width, height: height + 78.0)
+                    strongSelf.handlerMarkdownRenderedEnd!(height)
                 })
             }
 
@@ -187,6 +196,8 @@ class ReplyTableViewCell: UITableViewCell, ReusableCell {
         self.authorAvatarImageView.image    =   UIImage(named: "icon-user-profile-image-placeholder")
         self.markdownViewManager.isHidden   =   true
 
+        self.markdownViewHeightConstraint.constant = 0.0
+
         self.markdownViewManager.webView?.load(URLRequest.init(url: URL.init(string: "about:blank")!))
     }
     
@@ -267,7 +278,7 @@ extension ReplyTableViewCell: ConfigureCell {
                                               author:           model.author,
                                               permlink:         model.permlink,
                                               parentTag:        model.tags?.first,
-                                              indexPath:        nil,
+                                              indexPath:        indexPath,
                                               parentAuthor:     model.parentAuthor,
                                               parentPermlink:   model.parentPermlink)
         

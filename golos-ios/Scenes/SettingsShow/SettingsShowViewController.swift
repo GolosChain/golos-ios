@@ -261,7 +261,7 @@ class SettingsShowViewController: GSBaseViewController {
         super.viewDidLoad()
         
         // Microservice API `getOptions`
-        self.getOptions(type: .basic, completion: { [weak self] success in
+        self.getOptions(completion: { [weak self] success in
             guard let strongSelf = self else { return }
 
             strongSelf.localizeTitles()
@@ -440,7 +440,7 @@ extension SettingsShowViewController: SettingsShowDisplayLogic {
 // MARK: - Microservices
 extension SettingsShowViewController {
     private func setBasicOptions() {
-        MicroservicesManager.setBasicOptions(userNickName: currentUserNickName!, deviceUDID: currentDeviceUDID, isDarkTheme: AppSettings.instance().isAppThemeDark, isFeedShowImages: AppSettings.instance().isFeedShowImages, isSoundOn: AppSettings.instance().isPushNotificationSoundOn, completion: { [weak self] errorAPI in
+        MicroservicesManager.setBasicOptions(userNickName: User.current?.nickName ?? currentUserNickName!, deviceType: currentDeviceType, isDarkTheme: AppSettings.instance().isAppThemeDark, isFeedShowImages: AppSettings.instance().isFeedShowImages, isSoundOn: AppSettings.instance().isPushNotificationSoundOn, completion: { [weak self] errorAPI in
             guard let strongSelf = self else { return }
             
             if errorAPI != nil {
@@ -449,8 +449,8 @@ extension SettingsShowViewController {
         })
     }
     
-    private func getOptions(type: MicroserviceOperationsType, completion: @escaping (Bool) -> Void) {
-        MicroservicesManager.getOptions(type: type, userNickName: currentUserNickName!, deviceUDID: currentDeviceUDID, completion: { [weak self] (resultOptions, errorAPI) in
+    private func getOptions(completion: @escaping (Bool) -> Void) {
+        MicroservicesManager.getOptions(userNickName: User.current?.nickName ?? currentUserNickName!, deviceType: currentDeviceType, completion: { [weak self] (resultOptions, errorAPI) in
             guard let strongSelf = self else { return }
             
             if errorAPI != nil {

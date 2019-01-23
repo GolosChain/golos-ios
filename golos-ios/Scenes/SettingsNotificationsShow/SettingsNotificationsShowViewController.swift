@@ -304,7 +304,7 @@ extension SettingsNotificationsShowViewController: SettingsNotificationsShowDisp
 // MARK: - Microservices
 extension SettingsNotificationsShowViewController {
     private func setBasicOption(soundOn: Bool) {
-        MicroservicesManager.setBasicOptions(userNickName: currentUserNickName!, deviceUDID: currentDeviceUDID, isDarkTheme: self.appSettings.isAppThemeDark, isFeedShowImages: self.appSettings.isFeedShowImages, isSoundOn: soundOn, completion: { [weak self] errorAPI in
+        MicroservicesManager.setBasicOptions(userNickName: User.current?.nickName ?? currentUserNickName!, deviceType: currentDeviceType, isDarkTheme: self.appSettings.isAppThemeDark, isFeedShowImages: self.appSettings.isFeedShowImages, isSoundOn: soundOn, completion: { [weak self] errorAPI in
             guard let strongSelf = self else { return }
             
             if errorAPI != nil {

@@ -193,10 +193,10 @@ class PostsShowViewController: GSTableViewController, ContainerViewSupport {
         NotificationCenter.default.addObserver(self, selector: #selector(localizeTitles), name: NSNotification.Name(LCLLanguageChangeNotification), object: nil)
         
         // Start Microservice session
-        guard currentUserNickName != nil else { return }
-        guard KeychainManager.loadData(forUserNickName: currentUserNickName!, withKey: keySecret) != nil else { return }
+        guard let userNickName = currentUserNickName else { return }
+        guard KeychainManager.loadData(forUserNickName: userNickName, withKey: keySecret) != nil else { return }
         
-        MicroservicesManager.startSession(forCurrentUser: currentUserNickName!) { errorAPI in
+        MicroservicesManager.startSession(forCurrentUser: userNickName) { errorAPI in
             if errorAPI != nil {
                 self.showAlertView(withTitle: "Error", andMessage: errorAPI!.caseInfo.message, needCancel: false, completion: { _ in })
             }

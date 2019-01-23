@@ -109,11 +109,12 @@ public class AppSettings: NSManagedObject {
     }
 
     func setup() {
-        self.language               =   Locale.current.languageCode ?? "en"
-        self.userNickName           =   User.current?.nickName ?? "Anonymous"
-        self.isAppThemeDark         =   false
-        self.isFeedShowImages       =   true
-        self.startWithWelcomeScene  =   true
+        self.language                   =   Locale.current.languageCode ?? "en"
+        self.userNickName               =   User.current?.nickName ?? "Anonymous"
+        self.isAppThemeDark             =   false
+        self.isFeedShowImages           =   true
+        self.isPushNotificationSoundOn  =   true
+        self.startWithWelcomeScene      =   true
 
         ThemeManager.setTheme(index: 0)
         Localize.setCurrentLanguage(self.language)
