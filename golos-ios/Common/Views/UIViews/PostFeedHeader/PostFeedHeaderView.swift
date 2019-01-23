@@ -180,7 +180,7 @@ class PostFeedHeaderView: UIView {
             }
             
             else {
-                self.timeLabel.text             =   post.active.convertToTimeAgo()
+                self.timeLabel.text             =   post.created.convertToTimeAgo()
             }
             
             self.categoryLabel.text             =   post.category.transliteration(forPermlink: false).uppercaseFirst
