@@ -213,10 +213,9 @@ extension String {
             return "Error Comment 20 seconds".localized()
         }
 
-        if self.contains("You may only post once every 5 minutes") {
+        if self.contains("You may only post once every 5 minutes") || self.contains("You may only post 1 times in 300 seconds") {
             return "Error Post 5 minutes".localized()
         }
-
 
         return self
     }
