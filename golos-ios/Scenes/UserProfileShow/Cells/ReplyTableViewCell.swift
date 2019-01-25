@@ -43,8 +43,8 @@ class ReplyTableViewCell: UITableViewCell, ReusableCell {
     var handlerMarkdownError: ((String) -> Void)?
     var handlerMarkdownURLTapped: ((URL) -> Void)?
     var handlerMarkdownAuthorNameTapped: ((String) -> Void)?
-    var handlerMarkdownRenderedEnd: ((CGFloat) -> Void)?
-    
+    var handlerMarkdownRenderedEnd: (() -> Void)?
+
     
     // MARK: - IBOutlets
     @IBOutlet weak var markdownViewHeightConstraint: NSLayoutConstraint!
@@ -55,15 +55,15 @@ class ReplyTableViewCell: UITableViewCell, ReusableCell {
             
             self.markdownViewManager.onRendered = { [weak self] height in
                 guard let strongSelf = self else { return }
+                guard self?.markdownViewManager.indexPath == self?.postShortInfo.indexPath else { return }
                 
-                strongSelf.markdownViewHeightConstraint.constant = height
-                strongSelf.layoutIfNeeded()
+//                strongSelf.markdownViewHeightConstraint.constant = height
+//                strongSelf.layoutIfNeeded()
                 strongSelf.markdownViewManager.webView!.setBackgroundColor(forAppTheme: AppSettings.isAppThemeDark)
                 
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.7, execute: {
                     strongSelf.markdownViewManager.isHidden = false
-//                    strongSelf.frame.size = CGSize(width: strongSelf.frame.width, height: height + 78.0)
-                    strongSelf.handlerMarkdownRenderedEnd!(height)
+//                    strongSelf.handlerMarkdownRenderedEnd!()
                 })
             }
 
@@ -79,6 +79,8 @@ class ReplyTableViewCell: UITableViewCell, ReusableCell {
             self.markdownViewManager.completionCommentAuthorTapped      =   { [weak self] commentAuthorName in
                 self?.handlerAuthorCommentReplyTapped!(commentAuthorName)
             }
+            
+            self.layoutIfNeeded()
         }
     }
 
@@ -190,13 +192,14 @@ class ReplyTableViewCell: UITableViewCell, ReusableCell {
         contentView.tune()
 
         self.replyType                      =   .post
+//        self.frame.size                     =   CGSize(width: self.frame.width, height: 78.0)
         self.backgroundColor                =   UIColor.clear
         self.authorLabel.text               =   nil
         self.reputationLabel.text           =   nil
         self.authorAvatarImageView.image    =   UIImage(named: "icon-user-profile-image-placeholder")
         self.markdownViewManager.isHidden   =   true
-
-        self.markdownViewHeightConstraint.constant = 0.0
+        
+//        self.markdownViewHeightConstraint.constant = 24.0
 
         self.markdownViewManager.webView?.load(URLRequest.init(url: URL.init(string: "about:blank")!))
     }
@@ -283,6 +286,7 @@ extension ReplyTableViewCell: ConfigureCell {
                                               parentPermlink:   model.parentPermlink)
         
         // Load markdown content
+        self.markdownViewManager.indexPath = indexPath
         self.markdownViewManager.load(markdown: Parser.repair(body: model.body))
 
         // Load commentator info

@@ -11,6 +11,7 @@ import CoreData
 import GoloSwift
 import SwiftTheme
 import SafariServices
+import MarkdownView
 
 typealias FetchPostParameters = (author: String?, postFeedType: PostsFeedType, permlink: String?, sortBy: String?, entries: [BlogEntry]?)
 
@@ -19,7 +20,7 @@ class GSTableViewController: GSBaseViewController, HandlersCellSupport {
     var postsTableView: GSTableViewWithReloadCompletion! {
         didSet {
             self.postsTableView.register(UINib(nibName: self.cellIdentifier, bundle: nil), forCellReuseIdentifier: self.cellIdentifier)
-
+            
             self.postsTableView.delegate    =   self
             self.postsTableView.dataSource  =   self
             
@@ -275,7 +276,7 @@ class GSTableViewController: GSBaseViewController, HandlersCellSupport {
                 self.loadDataFinished()
             }
                 
-                // Infinite scrolling data
+            // Infinite scrolling data
             else {
                 self.loadDataFinished()
             }
@@ -395,9 +396,13 @@ extension GSTableViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell    =   self.postsTableView.dequeueReusableCell(withIdentifier: self.cellIdentifier, for: indexPath)
+        var cell    =   self.postsTableView.dequeueReusableCell(withIdentifier: self.cellIdentifier)
         let entity  =   self.postsList![indexPath.row]
         
+        if cell == nil {
+            cell = Bundle.main.loadNibNamed(self.cellIdentifier, owner: self, options: nil)?[0] as? UITableViewCell
+        }
+
         // Blog entries
         if type(of: entity) == Blog.self, let entries = self.blogEntries, entries.count > 0, let blog = entity as? Blog, let entry = entries.first(where: { $0.permlink == blog.permlink }) {
             (cell as! ConfigureCell).setup(withItem: entity, andIndexPath: indexPath, blogEntry: entry)
@@ -433,11 +438,11 @@ extension GSTableViewController: UITableViewDataSource {
             (cell as! ReplyTableViewCell).handlerMarkdownAuthorNameTapped   =   { [weak self] authorName in
                 self?.handlerAuthorProfileImageButtonTapped!(authorName)
             }
-            
-            (cell as! ReplyTableViewCell).handlerMarkdownRenderedEnd        =   { height in
-                if (cell as! ReplyTableViewCell).postShortInfo.indexPath == indexPath {
-                    cell.frame.size = CGSize(width: tableView.frame.width, height: height + 78.0)
-                }
+
+            (cell as! ReplyTableViewCell).handlerMarkdownRenderedEnd        =   {
+//                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.7, execute: {
+//                    (cell as! ReplyTableViewCell).markdownViewManager.isHidden = false
+//                })
             }
         }
         
@@ -532,16 +537,16 @@ extension GSTableViewController: UITableViewDataSource {
             }
         }
         
-        return cell
+        return cell!
     }
 }
 
 
 // MARK: - UITableViewDelegate
 extension GSTableViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
-    }
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return UITableView.automaticDimension
+//    }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         guard let posts = self.postsList, posts.count > 0 else {

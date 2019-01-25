@@ -55,6 +55,12 @@ class UserProfileReplyShowViewController: GSTableViewController {
         self.replyTableView.endUpdates()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        self.replyTableView.reloadData()
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
     }

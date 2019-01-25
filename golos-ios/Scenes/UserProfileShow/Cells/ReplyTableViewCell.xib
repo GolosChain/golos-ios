@@ -16,15 +16,15 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" indentationWidth="10" rowHeight="122" id="KGk-i7-Jjw" customClass="ReplyTableViewCell" customModule="Golos" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="399" height="88"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" indentationWidth="10" rowHeight="142" id="KGk-i7-Jjw" customClass="ReplyTableViewCell" customModule="Golos" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="399" height="142"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <tableViewCellContentView key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="399" height="87.5"/>
+            <tableViewCellContentView key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="399" height="141.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-user-profile-image-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="5dM-W2-WiW" userLabel="Author Avatar Image View">
-                        <rect key="frame" x="24" y="15" width="50" height="50"/>
+                        <rect key="frame" x="24" y="15.5" width="50" height="50"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="5dM-W2-WiW" secondAttribute="height" multiplier="1:1" identifier="ReplyTableViewCellConstraint01" id="iC6-qe-4Ay"/>
@@ -32,7 +32,7 @@
                         </constraints>
                     </imageView>
                     <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vrc-AX-Q5Q" userLabel="Amount View">
-                        <rect key="frame" x="22" y="52" width="15" height="15"/>
+                        <rect key="frame" x="22" y="52.5" width="15" height="15"/>
                         <subviews>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oIT-Sh-GeD" userLabel="Amount Number View">
                                 <rect key="frame" x="1" y="1" width="13" height="13"/>
@@ -66,25 +66,25 @@
                             <constraint firstAttribute="width" constant="15" identifier="ReplyTableViewCellConstraint10" id="enc-E8-S5j"/>
                         </constraints>
                     </view>
-                    <stackView tag="5" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="cH0-jo-JaP" userLabel="Top Stack View">
-                        <rect key="frame" x="90" y="0.0" width="285" height="34"/>
+                    <stackView tag="5" contentMode="scaleToFill" verticalHuggingPriority="251" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="cH0-jo-JaP" userLabel="Top Stack View">
+                        <rect key="frame" x="90" y="0.0" width="285" height="34.5"/>
                         <subviews>
                             <label clipsSubviews="YES" contentMode="left" text="digitalbeauty" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z1W-Iv-j6x" userLabel="Author Label">
-                                <rect key="frame" x="0.0" y="0.0" width="63" height="34"/>
+                                <rect key="frame" x="0.0" y="0.0" width="63" height="34.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <color key="textColor" red="0.30980392159999998" green="0.30980392159999998" blue="0.30980392159999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="751" text="ответил на ваш" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xcp-yw-meJ" userLabel="Author Title Label">
-                                <rect key="frame" x="73" y="0.0" width="77" height="34"/>
+                                <rect key="frame" x="73" y="0.0" width="77" height="34.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <color key="textColor" red="0.30980392159999998" green="0.30980392159999998" blue="0.30980392159999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="248" horizontalCompressionResistancePriority="748" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VLM-nf-vOI" userLabel="Reply Type Button">
-                                <rect key="frame" x="160" y="0.0" width="125" height="34"/>
+                                <rect key="frame" x="160" y="0.0" width="125" height="34.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <inset key="contentEdgeInsets" minX="0.0" minY="10" maxX="0.0" maxY="10"/>
@@ -101,18 +101,18 @@
                             <constraint firstAttribute="height" constant="34" identifier="ReplyTableViewCellConstraint15" id="xaM-cH-VDo"/>
                         </constraints>
                     </stackView>
-                    <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bcl-Lq-2Dg" customClass="MarkdownViewManager" customModule="Golos" customModuleProvider="target">
-                        <rect key="frame" x="74" y="34" width="309" height="0.0"/>
+                    <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bcl-Lq-2Dg" customClass="MarkdownViewManager" customModule="Golos" customModuleProvider="target">
+                        <rect key="frame" x="74" y="34.5" width="309" height="64"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="height" identifier="ReplyTableViewCellConstraint16" id="v1t-cb-uwC"/>
+                            <constraint firstAttribute="height" constant="64" identifier="ReplyTableViewCellConstraint16" id="v1t-cb-uwC"/>
                         </constraints>
                     </view>
-                    <stackView clipsSubviews="YES" contentMode="left" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Ty5-mp-LK8" userLabel="Bottom Stack View">
-                        <rect key="frame" x="90" y="34" width="309" height="53.5"/>
+                    <stackView clipsSubviews="YES" contentMode="left" verticalHuggingPriority="251" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Ty5-mp-LK8" userLabel="Bottom Stack View">
+                        <rect key="frame" x="90" y="98.5" width="309" height="44"/>
                         <subviews>
                             <button hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bgm-nf-yUO">
-                                <rect key="frame" x="0.0" y="0.0" width="0.0" height="53.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="0.0" height="44"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <inset key="contentEdgeInsets" minX="0.0" minY="10" maxX="0.0" maxY="10"/>
@@ -124,21 +124,21 @@
                                 </connections>
                             </button>
                             <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TiI-Qb-jdB">
-                                <rect key="frame" x="0.0" y="0.0" width="186" height="53.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="186" height="44"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="252" horizontalCompressionResistancePriority="752" translatesAutoresizingMaskIntoConstraints="NO" id="Cwp-ar-exE" userLabel="Empty View">
-                                <rect key="frame" x="198" y="0.0" width="111" height="53.5"/>
+                                <rect key="frame" x="198" y="0.0" width="111" height="44"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="150" identifier="ReplyTableViewCellConstraint17" id="XSd-XP-l02"/>
-                            <constraint firstAttribute="height" priority="999" constant="44" identifier="ReplyTableViewCellConstraint18" id="nm8-uM-BJq"/>
+                            <constraint firstAttribute="height" constant="44" identifier="ReplyTableViewCellConstraint18" id="nm8-uM-BJq"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -147,7 +147,7 @@
                         </variation>
                     </stackView>
                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ykh-lR-Ouj" userLabel="Bottom Line View">
-                        <rect key="frame" x="0.0" y="85.5" width="399" height="2"/>
+                        <rect key="frame" x="0.0" y="140.5" width="399" height="2"/>
                         <color key="backgroundColor" red="0.85882352941176465" green="0.85882352941176465" blue="0.85882352941176465" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="2" identifier="ReplyTableViewCellConstraint19" id="GTG-UV-FGE"/>
@@ -168,13 +168,11 @@
                     <constraint firstItem="5dM-W2-WiW" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" identifier="ReplyTableViewCellConstraint21" id="SV9-7q-AEL"/>
                     <constraint firstItem="Ty5-mp-LK8" firstAttribute="bottom" secondItem="Ykh-lR-Ouj" secondAttribute="bottom" identifier="ReplyTableViewCellConstraint32" id="Ucp-4Y-j8g"/>
                     <constraint firstItem="5dM-W2-WiW" firstAttribute="bottom" secondItem="vrc-AX-Q5Q" secondAttribute="bottom" constant="-2" identifier="ReplyTableViewCellConstraint22" id="Xoh-Go-GDa"/>
-                    <constraint firstAttribute="bottom" secondItem="bcl-Lq-2Dg" secondAttribute="bottom" priority="999" constant="38" identifier="ReplyTableViewCellConstraint35" id="amK-QZ-YmX"/>
                     <constraint firstItem="Ty5-mp-LK8" firstAttribute="top" secondItem="bcl-Lq-2Dg" secondAttribute="bottom" id="elO-7t-oqS"/>
                     <constraint firstAttribute="trailing" secondItem="Ty5-mp-LK8" secondAttribute="trailing" identifier="ReplyTableViewCellConstraint33" id="mR2-zf-hdy"/>
                     <constraint firstItem="Ykh-lR-Ouj" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" identifier="ReplyTableViewCellConstraint36" id="o6T-sN-Ftx"/>
                     <constraint firstAttribute="trailing" secondItem="bcl-Lq-2Dg" secondAttribute="trailing" constant="16" identifier="ReplyTableViewCellConstraint26" id="sk4-lH-NK7"/>
                     <constraint firstItem="cH0-jo-JaP" firstAttribute="leading" secondItem="5dM-W2-WiW" secondAttribute="trailing" constant="16" identifier="ReplyTableViewCellConstraint29" id="tee-0k-JaO"/>
-                    <constraint firstItem="bcl-Lq-2Dg" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" priority="999" constant="1000" identifier="ReplyTableViewCellConstraint34" id="vHS-AR-b84"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

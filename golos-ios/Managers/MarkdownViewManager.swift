@@ -14,6 +14,7 @@ import WebKit
 class MarkdownViewManager: MarkdownView {
     // MARK: - Properties
     var height: CGFloat = 0.0
+    var indexPath: IndexPath?
     
     // Handlers
     var completionErrorAlertView: ((String) -> Void)?
