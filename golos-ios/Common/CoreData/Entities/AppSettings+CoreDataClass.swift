@@ -20,41 +20,51 @@ public class AppSettings: NSManagedObject {
     
     class var isAppThemeDark: Bool {
         get {
-            return (CoreDataManager.instance.readEntities(withName:                     "AppSettings",
-                                                          withPredicateParameters:      settingsPredicate,
-                                                          andSortDescriptor:            nil)?.first as! AppSettings).isAppThemeDark
+            guard let appSettings = CoreDataManager.instance.readEntities(withName:                    "AppSettings",
+                                                                          withPredicateParameters:     settingsPredicate,
+                                                                          andSortDescriptor:           nil)?.first as? AppSettings else { return false }
+            
+            return appSettings.isAppThemeDark
         }
     }
     
     class var isFeedShowImages: Bool {
         get {
-            return (CoreDataManager.instance.readEntities(withName:                     "AppSettings",
-                                                          withPredicateParameters:      settingsPredicate,
-                                                          andSortDescriptor:            nil)?.first as! AppSettings).isFeedShowImages
+            guard let appSettings = CoreDataManager.instance.readEntities(withName:                    "AppSettings",
+                                                                          withPredicateParameters:     settingsPredicate,
+                                                                          andSortDescriptor:           nil)?.first as? AppSettings else { return true }
+            
+            return appSettings.isFeedShowImages
         }
     }
 
     class var startWithWelcomeScene: Bool {
         get {
-            return (CoreDataManager.instance.readEntities(withName:                     "AppSettings",
-                                                          withPredicateParameters:      settingsPredicate,
-                                                          andSortDescriptor:            nil)?.first as! AppSettings).startWithWelcomeScene
+            guard let appSettings = CoreDataManager.instance.readEntities(withName:                    "AppSettings",
+                                                                          withPredicateParameters:     settingsPredicate,
+                                                                          andSortDescriptor:           nil)?.first as? AppSettings else { return true }
+            
+            return appSettings.startWithWelcomeScene
         }
     }
 
     class var isAllPushNotificationsOn: Bool {
         get {
-            return (CoreDataManager.instance.readEntities(withName:                     "AppSettings",
-                                                          withPredicateParameters:      settingsPredicate,
-                                                          andSortDescriptor:            nil)?.first as! AppSettings).isAllPushNotificationsOn
+            guard let appSettings = CoreDataManager.instance.readEntities(withName:                    "AppSettings",
+                                                                          withPredicateParameters:     settingsPredicate,
+                                                                          andSortDescriptor:           nil)?.first as? AppSettings else { return false }
+            
+            return appSettings.isAllPushNotificationsOn
         }
     }
     
     class var isPushNotificationSoundOn: Bool {
         get {
-            return (CoreDataManager.instance.readEntities(withName:                     "AppSettings",
-                                                          withPredicateParameters:      settingsPredicate,
-                                                          andSortDescriptor:            nil)?.first as! AppSettings).isPushNotificationSoundOn
+            guard let appSettings = CoreDataManager.instance.readEntities(withName:                    "AppSettings",
+                                                                          withPredicateParameters:     settingsPredicate,
+                                                                          andSortDescriptor:           nil)?.first as? AppSettings else { return true }
+            
+            return appSettings.isPushNotificationSoundOn
         }
     }
 
@@ -126,10 +136,13 @@ public class AppSettings: NSManagedObject {
         self.setAppThemeDark(basic.theme == 0 ? false : true)
         self.setFeedShowImages(basic.feedShowImages == 0 ? false : true)
         self.setPushNotificationSoundOn(basic.soundOn == 0 ? false : true)
+        
+        self.language = basic.lang ?? "ru"
+        Localize.setCurrentLanguage(self.language)
     }
     
     func update(push: ResponseAPIMicroserviceGetOptionsPush) {
-        self.language                               =   push.lang
+//        self.language                               =   push.lang
         self.isPushNotificationVote                 =   push.show.vote
         self.isPushNotificationFlag                 =   push.show.flag
         self.isPushNotificationTransfer             =   push.show.transfer

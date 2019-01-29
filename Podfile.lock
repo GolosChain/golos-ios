@@ -126,7 +126,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   GoloSwift:
-    :commit: 85bd9ea19a4e0d87c8b316ee1c274d034ceaf254
+    :commit: 137d8ba4631086a6624bc100a27c85a7529e78dd
     :git: https://github.com/GolosChain/GoloSwift.git
 
 SPEC CHECKSUMS:

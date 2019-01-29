@@ -544,6 +544,7 @@ public struct ResponseAPIMicroserviceGetOptionsBasic: Decodable {
     public let theme: Int?
     public let soundOn: Int?
     public let feedShowImages: Int?
+    public let lang: String?
 }
 
 

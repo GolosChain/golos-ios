@@ -307,6 +307,9 @@ class SettingsShowViewController: GSBaseViewController {
             let languageAction  =   UIAlertAction(title: displayName, style: .default, handler: { _ in
                 Localize.setCurrentLanguage(language)
                 self.languageLabel.text = "Language App".localized()
+                
+                // Microservice API `setOptions`
+                self.setBasicOptions()
             })
             
             actionSheet.addAction(languageAction)

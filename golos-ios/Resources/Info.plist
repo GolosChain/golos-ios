@@ -30,7 +30,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>3</string>
 	<key>Config</key>
 	<string>$(CONFIGURATION)</string>
 	<key>Fabric</key>
@@ -59,11 +59,11 @@
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>We need access to your device&apos;s camera to scan the QR code</string>
+	<string>We need access to your device's camera to scan the QR code</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>We need access to your device&apos;s album to show photos</string>
+	<string>We need access to your device's album to show photos</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>We need access to your device&apos;s album to show photos</string>
+	<string>We need access to your device's album to show photos</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>SFProDisplay-Regular.otf</string>
